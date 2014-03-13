@@ -71,8 +71,6 @@ namespace R7.University.Launchpad
 			positions.Insert (0, new PositionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), PositionID = Null.NullInteger });
 			// divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
 
-			comboPositions.DataTextField = "ShortTitle";
-			comboPositions.DataValueField = "PositionID";
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
 
