@@ -3,6 +3,7 @@
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/URLControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Picker" Src="~/controls/filepickeruploader.ascx" %> 
+<%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnnweb" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 
 <script type="text/javascript">
@@ -13,6 +14,7 @@
 	<div id="employeeTabs" class="dnnForm dnnClear">
 	<ul class="dnnAdminTabNav dnnClear">
 	    <li><a href="#employeeCommon">Common</a></li>
+	    <li><a href="#employeeAbout">About</a></li>
 	    <li><a href="#employeePositions">Positions</a></li>
 	    <li><a href="#employeeAchivements">Achivements</a></li>
 	</ul>
@@ -125,10 +127,6 @@
 				<asp:TextBox id="textExperienceYearsBySpec" runat="server" />
 			</div>
 			<div class="dnnFormItem">
-				<dnn:Label id="labelBiography" runat="server" ControlName="textBiography" Suffix=":" />
-				<asp:TextBox id="textBiography" runat="server" TextMode="MultiLine" />
-			</div>
-			<div class="dnnFormItem">
 				<dnn:Label id="labelIsPublished" runat="server" ControlName="checkIsPublished" Suffix=":" />
 				<asp:CheckBox id="checkIsPublished" runat="server" />
 			</div>
@@ -136,6 +134,17 @@
 				<dnn:Label id="labelIsDeleted" runat="server" ControlName="checkIsDeleted" Suffix=":" />
 				<asp:CheckBox id="checkIsDeleted" runat="server" />
 			</div> --%>
+		</fieldset>
+	</div>
+
+	<div id="employeeAbout">
+		<fieldset>
+			<div class="dnnFormItem">
+				<%-- <dnn:Label id="labelBiography" runat="server" ControlName="textBiography" Suffix=":" /> --%>
+				<div style="margin-right:20px">
+					<dnn:TextEditor id="textBiography" runat="server" Width="100%" Height="300px" />
+				</div>
+			</div>
 		</fieldset>
 	</div>
 

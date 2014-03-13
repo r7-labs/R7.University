@@ -57,7 +57,7 @@ namespace R7.University.Launchpad
 		protected LabelControl labelExperienceYearsBySpec;
 		protected TextBox textExperienceYearsBySpec;
 		protected LabelControl labelBiography;
-		protected TextBox textBiography;
+		protected TextEditor textBiography;
 		protected LabelControl labelIsPublished;
 		protected CheckBox checkIsPublished;
 		// protected LabelControl labelIsDeleted;
