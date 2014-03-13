@@ -10,8 +10,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<!-- <license src="License.txt"></license> -->
-			<license>
-				<![CDATA[
+			<license><![CDATA[
 				<p>R7 Solutions - http://www.r7space.ru<br />
 	             Copyright (c) 2013-2014 by R7 Solutions</p>
 
@@ -28,10 +27,8 @@
 	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
 	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 	             DEALINGS IN THE SOFTWARE.</p>
-	     		]]>
-    	 	</license>
-	 		<releaseNotes>
-		 		<![CDATA[
+	     		]]></license>
+			<releaseNotes><![CDATA[
 		 			<h3>Version 01.00.01</h3>
 		 			<p>This is stabilization release for 01.00.00.</p>
 		 			<ul>
@@ -44,9 +41,7 @@
 
 		 		    <h3>Version 01.00.00</h3>
 		 			<p>This is the initial release.</p>
-				]]>
-			</releaseNotes>
-
+				]]></releaseNotes>
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
@@ -68,15 +63,15 @@
 						</script>
 					</scripts>
 				</component>
- 				<component type="Assembly">
-			     <assemblies>
-			       <basePath>bin</basePath>
-			       <assembly>
-			         <path>bin</path>
-			         <name>R7.University.dll</name>
-			       </assembly>
-			     </assemblies>
-       			</component>
+				<component type="Assembly">
+					<assemblies>
+						<basePath>bin</basePath>
+						<assembly>
+							<path>bin</path>
+							<name>R7.University.dll</name>
+						</assembly>
+					</assemblies>
+				</component>
 			</components>
 		</package>
 		<package name="R7.University.Launchpad" type="Module" version="01.00.01">
@@ -89,8 +84,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<!-- <license src="License.txt"></license> -->
-			<license>
-				<![CDATA[
+			<license><![CDATA[
 				<p>R7 Solutions - http://www.r7space.ru<br />
 	             Copyright (c) 2013-2014 by R7 Solutions</p>
 
@@ -107,10 +101,8 @@
 	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
 	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 	             DEALINGS IN THE SOFTWARE.</p>
-	     		]]>
-    	 	</license>
-	 		<releaseNotes>
-		 		<![CDATA[
+	     		]]></license>
+			<releaseNotes><![CDATA[
 		 			<h3>Version 01.00.01</h3>
 		 			<p>This is stabilization release for 01.00.00.</p>
 		 			<ul>
@@ -123,8 +115,7 @@
 
 		 		    <h3>Version 01.00.00</h3>
 		 			<p>This is the initial release.</p>
-				]]>
-			</releaseNotes>
+				]]></releaseNotes>
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
@@ -211,26 +202,25 @@
 						</moduleDefinitions>
 					</desktopModule>
 				</component>
+				<component type="ResourceFile">
+					<resourceFiles>
+						<basePath>DesktopModules/R7.University/R7.University.Launchpad</basePath>
+						<resourceFile>
+							<name>R7.University.Launchpad.zip</name>
+						</resourceFile>
+					</resourceFiles>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<basePath>bin</basePath>
+						<assembly>
+							<path>bin</path>
+							<name>R7.University.Launchpad.dll</name>
+						</assembly>
+					</assemblies>
+				</component>
 
-		       <component type="ResourceFile">
-		         <resourceFiles>
-		           <basePath>DesktopModules/R7.University/R7.University.Launchpad</basePath>
-		           <resourceFile>
-		             <name>R7.University.Launchpad.zip</name>
-		           </resourceFile>
-		         </resourceFiles>
-		       </component>
-		       <component type="Assembly">
-		         <assemblies>
-		           <basePath>bin</basePath>
-		           <assembly>
-		             <path>bin</path>
-		             <name>R7.University.Launchpad.dll</name>
-		           </assembly>
-		         </assemblies>
-		       </component>
-
-      --><!---
+      --&gt;<!---
 				<component type="File">
 					<files>
 						<basePath>DesktopModules\R7.University\R7.University.Launchpad</basePath>
@@ -272,8 +262,7 @@
 						</file>
 					</files>
 				</component>
--->
-			</components>
+--></components>
 		</package>
 		<package name="R7.University.Employee" type="Module" version="01.00.01">
 			<friendlyName>R7.University.Employee</friendlyName>
@@ -285,8 +274,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<!-- <license src="License.txt"></license> -->
-			<license>
-				<![CDATA[
+			<license><![CDATA[
 				<p>R7 Solutions - http://www.r7space.ru<br />
 	             Copyright (c) 2013-2014 by R7 Solutions</p>
 
@@ -303,10 +291,8 @@
 	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
 	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 	             DEALINGS IN THE SOFTWARE.</p>
-	     		]]>
-    	 	</license>
-	 		<releaseNotes>
-		 		<![CDATA[
+	     		]]></license>
+			<releaseNotes><![CDATA[
 		 			<h3>Version 01.00.01</h3>
 		 			<p>This is stabilization release for 01.00.00.</p>
 		 			<ul>
@@ -319,8 +305,7 @@
 
 		 		    <h3>Version 01.00.00</h3>
 		 			<p>This is the initial release.</p>
-				]]>
-			</releaseNotes>
+				]]></releaseNotes>
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
@@ -381,27 +366,24 @@
 						</moduleDefinitions>
 					</desktopModule>
 				</component>
-
-       <component type="ResourceFile">
-         <resourceFiles>
-           <basePath>DesktopModules/R7.University/R7.University.Employee</basePath>
-           <resourceFile>
-             <name>R7.University.Employee.zip</name>
-           </resourceFile>
-         </resourceFiles>
-       </component>
-
-       <component type="Assembly">
-         <assemblies>
-           <basePath>bin</basePath>
-           <assembly>
-             <path>bin</path>
-             <name>R7.University.Employee.dll</name>
-           </assembly>
-         </assemblies>
-       </component>
-
-      <!---
+				<component type="ResourceFile">
+					<resourceFiles>
+						<basePath>DesktopModules/R7.University/R7.University.Employee</basePath>
+						<resourceFile>
+							<name>R7.University.Employee.zip</name>
+						</resourceFile>
+					</resourceFiles>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<basePath>bin</basePath>
+						<assembly>
+							<path>bin</path>
+							<name>R7.University.Employee.dll</name>
+						</assembly>
+					</assemblies>
+				</component>
+				<!---
 				<component type="File">
 					<files>
 						<basePath>DesktopModules\R7.University\R7.University.Employee</basePath>
@@ -448,8 +430,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<!-- <license src="License.txt"></license> -->
-			<license>
-				<![CDATA[
+			<license><![CDATA[
 				<p>R7 Solutions - http://www.r7space.ru<br />
 	             Copyright (c) 2013-2014 by R7 Solutions</p>
 
@@ -466,10 +447,8 @@
 	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
 	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 	             DEALINGS IN THE SOFTWARE.</p>
-	     		]]>
-    	 	</license>
-	 		<releaseNotes>
-		 		<![CDATA[
+	     		]]></license>
+			<releaseNotes><![CDATA[
 		 			<h3>Version 01.00.01</h3>
 		 			<p>This is stabilization release for 01.00.00.</p>
 		 			<ul>
@@ -482,8 +461,7 @@
 
 		 		    <h3>Version 01.00.00</h3>
 		 			<p>This is the initial release.</p>
-				]]>
-			</releaseNotes>
+				]]></releaseNotes>
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
@@ -559,26 +537,24 @@
          </scripts>
        </component>
 -->
-       <component type="ResourceFile">
-         <resourceFiles>
-           <basePath>DesktopModules/R7.University/R7.University.EmployeeList</basePath>
-           <resourceFile>
-             <name>R7.University.EmployeeList.zip</name>
-           </resourceFile>
-         </resourceFiles>
-       </component>
-      
-       <component type="Assembly">
-         <assemblies>
-           <basePath>bin</basePath>
-           <assembly>
-             <path>bin</path>
-             <name>R7.University.EmployeeList.dll</name>
-           </assembly>
-         </assemblies>
-       </component>
-
-       <!--				<component type="File">
+				<component type="ResourceFile">
+					<resourceFiles>
+						<basePath>DesktopModules/R7.University/R7.University.EmployeeList</basePath>
+						<resourceFile>
+							<name>R7.University.EmployeeList.zip</name>
+						</resourceFile>
+					</resourceFiles>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<basePath>bin</basePath>
+						<assembly>
+							<path>bin</path>
+							<name>R7.University.EmployeeList.dll</name>
+						</assembly>
+					</assemblies>
+				</component>
+				<!--				<component type="File">
 					<files>
 						<basePath>DesktopModules\R7.University\R7.University.EmployeeList</basePath>
 						<file>
