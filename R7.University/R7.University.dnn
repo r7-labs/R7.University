@@ -1,9 +1,8 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="01.00.00">
+		<package name="R7.University" type="Library" version="01.00.01">
 			<friendlyName>R7.University</friendlyName>
-			<description>This is a common library for all R7.University modules. By installing this package, you also install 
-			all available R7.University modules, such as Launchpad, Employee, EmployeeList, etc.</description>
+			<description>This is a common library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Employee, EmployeeList, etc.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
 				<organization>R7 Solutions</organization>
@@ -32,16 +31,19 @@
 	     		]]>
     	 	</license>
 	 		<releaseNotes>
-		 		<![CDATA[<h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-
-					<!-- <h3>Version XX.YY.ZZ</h3>
-					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
-
-					<ul>
-						<li>Revision/Bug ticket number - Description</li>
+		 		<![CDATA[
+		 			<h3>Version 01.00.01</h3>
+		 			<p>This is stabilization release for 01.00.00.</p>
+		 			<ul>
+						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
+						<li>Employee about / biography moved to a separate tab.</li>
+						<li>Use richtext editor for employee about / biography.</li>
+						<li>Some style changes in Employee module.</li>
+						<li>Allow update employee if no occupied positions defined.</li>
 					</ul>
-	         		-->
+
+		 		    <h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
 				]]>
 			</releaseNotes>
 
@@ -55,6 +57,10 @@
 						<script type="Install">
 							<name>01.00.00.SqlDataProvider</name>
 							<version>01.00.00</version>
+						</script>
+						<script type="Install">
+							<name>01.00.01.SqlDataProvider</name>
+							<version>01.00.01</version>
 						</script>
 						<script type="UnInstall">
 							<name>Uninstall.SqlDataProvider</name>
@@ -73,7 +79,7 @@
        			</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.00.00">
+		<package name="R7.University.Launchpad" type="Module" version="01.00.01">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -104,16 +110,19 @@
 	     		]]>
     	 	</license>
 	 		<releaseNotes>
-		 		<![CDATA[<h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-
-					<!-- <h3>Version XX.YY.ZZ</h3>
-					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
-
-					<ul>
-						<li>Revision/Bug ticket number - Description</li>
+		 		<![CDATA[
+		 			<h3>Version 01.00.01</h3>
+		 			<p>This is stabilization release for 01.00.00.</p>
+		 			<ul>
+						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
+						<li>Employee about / biography moved to a separate tab.</li>
+						<li>Use richtext editor for employee about / biography.</li>
+						<li>Some style changes in Employee module.</li>
+						<li>Allow update employee if no occupied positions defined.</li>
 					</ul>
-	         		-->
+
+		 		    <h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
 				]]>
 			</releaseNotes>
 			<!-- <dependencies>
@@ -266,7 +275,7 @@
 -->
 			</components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="01.00.00">
+		<package name="R7.University.Employee" type="Module" version="01.00.01">
 			<friendlyName>R7.University.Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -297,16 +306,19 @@
 	     		]]>
     	 	</license>
 	 		<releaseNotes>
-		 		<![CDATA[<h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-
-					<!-- <h3>Version XX.YY.ZZ</h3>
-					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
-
-					<ul>
-						<li>Revision/Bug ticket number - Description</li>
+		 		<![CDATA[
+		 			<h3>Version 01.00.01</h3>
+		 			<p>This is stabilization release for 01.00.00.</p>
+		 			<ul>
+						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
+						<li>Employee about / biography moved to a separate tab.</li>
+						<li>Use richtext editor for employee about / biography.</li>
+						<li>Some style changes in Employee module.</li>
+						<li>Allow update employee if no occupied positions defined.</li>
 					</ul>
-	         		-->
+
+		 		    <h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
 				]]>
 			</releaseNotes>
 			<!-- <dependencies>
@@ -426,7 +438,7 @@
 				</component> -->
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="01.00.00">
+		<package name="R7.University.EmployeeList" type="Module" version="01.00.01">
 			<friendlyName>R7.University.EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
@@ -457,16 +469,19 @@
 	     		]]>
     	 	</license>
 	 		<releaseNotes>
-		 		<![CDATA[<h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-
-					<!-- <h3>Version XX.YY.ZZ</h3>
-					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
-
-					<ul>
-						<li>Revision/Bug ticket number - Description</li>
+		 		<![CDATA[
+		 			<h3>Version 01.00.01</h3>
+		 			<p>This is stabilization release for 01.00.00.</p>
+		 			<ul>
+						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
+						<li>Employee about / biography moved to a separate tab.</li>
+						<li>Use richtext editor for employee about / biography.</li>
+						<li>Some style changes in Employee module.</li>
+						<li>Allow update employee if no occupied positions defined.</li>
 					</ul>
-	         		-->
+
+		 		    <h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
 				]]>
 			</releaseNotes>
 			<!-- <dependencies>

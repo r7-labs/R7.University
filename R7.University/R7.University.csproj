@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
+    <ReleaseVersion>1.0.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,5 +72,8 @@
     </None>
     <None Include="Uninstall.SqlDataProvider" />
     <None Include="R7.University.dnn" />
+    <None Include="01.00.01.SqlDataProvider">
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </None>
   </ItemGroup>
 </Project>
