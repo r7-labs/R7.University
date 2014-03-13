@@ -270,16 +270,20 @@ namespace R7.University.Launchpad
 					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 
-
-
 					var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
-					var occupiedPositionInfos = new List<OccupiedPositionInfo>();
+					// check if we have positions defined
+					if (occupiedPositions != null)
+					{
+						var occupiedPositionInfos = new List<OccupiedPositionInfo>();
 
-					foreach (var op in occupiedPositions)
-						occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
+						foreach (var op in occupiedPositions)
+							occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
 
-					// add item
-					ctrl.AddEmployee(item, occupiedPositionInfos);
+						// add item
+						ctrl.AddEmployee(item, occupiedPositionInfos);
+					}
+					else
+						ctrl.Add<EmployeeInfo>(item);
 				}
 				else
 				{
@@ -324,15 +328,20 @@ namespace R7.University.Launchpad
 					item.LastModifiedByUserID = this.UserId;
 					item.LastModifiedOnDate = DateTime.Now;
 
-
 					var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
-					var occupiedPositionInfos = new List<OccupiedPositionInfo>();
+					// check if we have positions defined
+					if (occupiedPositions != null)
+					{
+						var occupiedPositionInfos = new List<OccupiedPositionInfo>();
 
-					foreach (var op in occupiedPositions)
-						occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
+						foreach (var op in occupiedPositions)
+							occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
 
-					// update item
-					ctrl.UpdateEmployee(item, occupiedPositionInfos);
+						// update
+						ctrl.UpdateEmployee(item, occupiedPositionInfos);
+					}
+					else
+						ctrl.Update<EmployeeInfo>(item);
 				}
 
 				Utils.SynchronizeModule(this);
