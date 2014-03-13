@@ -1,0 +1,61 @@
+﻿-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+-- Drop constraints
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions] 
+	DROP CONSTRAINT [FK_{objectQualifier}University_Divisions_Taxonomy_Terms] 
+GO
+
+-- ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+--	DROP CONSTRAINT [FK_{objectQualifier}University_Employees_Users]
+-- GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]  
+	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Divisions]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Employees]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Positions] 
+GO
+
+-- Drop tables
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_Positions] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_Divisions] 
+GO
+
+-- DROP TABLE {databaseOwner}[{objectQualifier}University_Employees] 
+-- GO
+
+-- Drop views
+ 
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]
+GO
+
+-- Drop stored procedures & functions
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployeesByDivisionID]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]
+GO
+
+DROP FUNCTION {databaseOwner}[{objectQualifier}University_DivisionsHierarchy]
+GO

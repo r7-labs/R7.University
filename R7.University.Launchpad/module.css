@@ -1,0 +1,15 @@
+﻿/* Place module CSS here */
+
+.Launchpad_ContentList { width:100% }				
+.Launchpad_ContentListItem { text-align: left }
+.Launchpad_UserName { font-weight:bold }
+.Launchpad_CreateOnDate { font-style:italic }
+.Launchpad_Content { clear:both }
+
+/*
+.dlTable { display:table; width:100% }
+.dlRow { display:table-row }
+
+.dlColumn1 { display:table-cell }
+.dlColumn2 { display:table-cell }
+*/

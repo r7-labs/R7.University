@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="ModuleHelp.Text">
+		<value>&lt;P&gt;A Edit employee module&lt;/P&gt;</value>
+	</data>
+	<data name="ControlTitle_edit.Text">
+		<value>Edit Employee</value>
+	</data>
+	<data name="labelPhoto.Text">
+		<value>Photo</value>
+	</data>
+	<data name="labelPhoto.Help">
+		<value>Add or select photo image for an employee</value>
+	</data>
+	<data name="labelUser.Text">
+		<value>User</value>
+	</data>
+	<data name="labelUser.Help">
+		<value>Optional link to existing website user</value>
+	</data>
+	<data name="labelLastName.Text">
+		<value>Last name</value>
+	</data>
+	<data name="labelLastName.Help">
+		<value>Specify employee last name</value>
+	</data>
+	<data name="labelFirstName.Text">
+		<value>First name</value>
+	</data>
+	<data name="labelFirstName.Help">
+		<value>Specify employee first name</value>
+	</data>
+	<data name="labelOtherName.Text">
+		<value>Other name</value>
+	</data>
+	<data name="labelOtherName.Help">
+		<value>Specify employee other name</value>
+	</data>
+	<data name="labelAcademicDegree.Text">
+		<value>Academic degree</value>
+	</data>
+	<data name="labelAcademicDegree.Help">
+		<value>Specify academic degree</value>
+	</data>
+	<data name="labelAcademicTitle.Text">
+		<value>Academic title</value>
+	</data>
+	<data name="labelAcademicTitle.Help">
+		<value>Specify academic title</value>
+	</data>
+	<data name="labelNamePrefix.Text">
+		<value>Name prefix</value>
+	</data>
+	<data name="labelNamePrefix.Help">
+		<value>Specify employee name prefix</value>
+	</data>
+	<data name="labelPhone.Text">
+		<value>Phone</value>
+	</data>
+	<data name="labelPhone.Help">
+		<value>Enter phone number</value>
+	</data>
+	<data name="labelCellPhone.Text">
+		<value>CellPhone</value>
+	</data>
+	<data name="labelCellPhone.Help">
+		<value>Enter second (cellular) phone number</value>
+	</data>
+	<data name="labelFax.Text">
+		<value>Fax</value>
+	</data>
+	<data name="labelFax.Help">
+		<value>Enter fax number</value>
+	</data>
+	<data name="labelEmail.Text">
+		<value>Email</value>
+	</data>
+	<data name="labelEmail.Help">
+		<value>Enter email address</value>
+	</data>
+	<data name="labelSecondaryEmail.Text">
+		<value>Secondary Email</value>
+	</data>
+	<data name="labelSecondaryEmail.Help">
+		<value>Enter secondary email address</value>
+	</data>
+	<data name="labelWebSite.Text">
+		<value>Personal website</value>
+	</data>
+	<data name="labelWebSite.Help">
+		<value>Enter personal website address</value>
+	</data>
+	<data name="labelMessenger.Text">
+		<value>Instant messenger</value>
+	</data>
+	<data name="labelMessenger.Help">
+		<value>Enter instant messager kind and number</value>
+	</data>
+	<data name="labelWorkingHours.Text">
+		<value>Working hours</value>
+	</data>
+	<data name="labelWorkingHours.Help">
+		<value>Enter employee's working hours / schedule description</value>
+	</data>
+	<data name="labelWorkingPlace.Text">
+		<value>Working place</value>
+	</data>
+	<data name="labelWorkingPlace.Help">
+		<value>Enter emloyee's working place, e.g. office and cabinet number</value>
+	</data>
+	<data name="labelExperienceYears.Text">
+		<value>Experience (years)</value>
+	</data>
+	<data name="labelExperienceYears.Help">
+		<value>Enter employee's working experience (years)</value>
+	</data>
+	<data name="labelExperienceYearsBySpec.Text">
+		<value>Experience by speciality (years)</value>
+	</data>
+	<data name="labelExperienceYearsBySpec.Help">
+		<value>Enter employee's working experience by speciality (years)</value>
+	</data>
+	<data name="labelBiography.Text">
+		<value>About</value>
+	</data>
+	<data name="labelBiography.Help">
+		<value>Enter employee's biography / about</value>
+	</data>
+	<data name="labelIsPublished.Text">
+		<value>Published</value>
+	</data>
+	<data name="labelIsPublished.Help">
+		<value>Check to make employee record published</value>
+	</data>
+	<data name="labelUserLookup.Text">
+		<value>User lookup</value>
+	</data>
+	<data name="labelUserLookup.Help">
+		<value>Enter user email address or username and press Lookup to find users</value>
+	</data>
+	<data name="labelPositions.Text">
+		<value>Position</value>
+	</data>
+	<data name="labelPositions.Help">
+		<value>Specify position for this employee</value>
+	</data>
+	<data name="labelDivisions.Text">
+		<value>Division</value>
+	</data>
+	<data name="labelDivisions.Help">
+		<value>Specify division for this employee</value>
+	</data>
+	<data name="labelIsPrime.Text">
+		<value>Prime</value>
+	</data>
+	<data name="labelIsPrime.Help">
+		<value>Select this if corresponding position is prime for this employee</value>
+	</data>
+	<data name="buttonUserLookup.Text">
+		<value>Lookup</value>
+	</data>
+	<data name="checkIncludeDeletedUsers.Text">
+		<value>Include deleted?</value>
+	</data>
+	<data name="buttonAddOccupiedPosition.Text">
+		<value>Add position</value>
+	</data>
+	<data name="sectionTest.Text">
+		<value>Test Section</value>
+	</data>
+</root>

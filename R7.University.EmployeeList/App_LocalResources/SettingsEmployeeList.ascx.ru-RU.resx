@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="lblTemplate.Text" xml:space="preserve">
+    <value>Шаблон</value>
+  </data>
+	<data name="lblTemplate.Help" xml:space="preserve">
+    <value>Позволяет задать пользовательский шаблон для отображения элементов. Используйте параметры для замены: [CONTENT] [CREATEDONDATE] [CREATEDBYUSER] [CREATEDBYUSERNAME]</value>
+  </data>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Настройки EmployeeList</value>
+  </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>О настройках EmployeeList</value>
+  </data>
+</root>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>EmployeeList Settings</value>
+  </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>About EmployeeList Settings</value>
+  </data>
+	<data name="labelDivision.Text" xml:space="preserve">
+    <value>Division</value>
+  </data>
+   <data name="labelDivision.Help" xml:space="preserve">
+    <value>Select a division from a tree to display it's employees.</value>
+  </data>
+  <data name="labelIncludeSubdivisions.Text" xml:space="preserve">
+    <value>Include Subdivisions</value>
+  </data>
+   <data name="labelIncludeSubdivisions.Help" xml:space="preserve">
+    <value>Check to include employees from all subordinate divisions.</value>
+  </data>
+  <data name="labelSortType.Text" xml:space="preserve">
+    <value>Sort Type</value>
+  </data>
+   <data name="labelIncludeSubdivisions.Help" xml:space="preserve">
+    <value>Select a sort type from the list to use with this module.</value>
+  </data>
+  <data name="SortTypeByMaxWeight.Text" xml:space="preserve">
+    <value>By max position weight</value>
+  </data>
+  <data name="SortTypeByTotalWeight.Text" xml:space="preserve">
+    <value>By total positions weight</value>
+  </data>
+  <data name="SortTypeByName.Text" xml:space="preserve">
+    <value>By employee name</value>
+  </data>
+</root>

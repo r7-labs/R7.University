@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>R7.University</RootNamespace>
+    <AssemblyName>R7.University</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Package|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Package</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="DotNetNuke">
+      <HintPath>..\..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="components\Utils.cs" />
+    <Compile Include="components\SettingsWrapper.cs" />
+    <Compile Include="entities\EmployeeInfo.cs" />
+    <Compile Include="entities\DivisionInfo.cs" />
+    <Compile Include="entities\EntityBase.cs" />
+    <Compile Include="entities\PositionInfo.cs" />
+    <Compile Include="entities\IAuditable.cs" />
+    <Compile Include="entities\ReferenceEntityBase.cs" />
+    <Compile Include="entities\OccupiedPositionInfo.cs" />
+    <Compile Include="components\ControllerBase.cs" />
+    <Compile Include="entities\IReferenceEntity.cs" />
+    <Compile Include="entities\OccupiedPositionInfoEx.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="entities\" />
+    <Folder Include="components\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="01.00.00.SqlDataProvider">
+      <DeployService-Deploy>True</DeployService-Deploy>
+    </None>
+    <None Include="Uninstall.SqlDataProvider" />
+    <None Include="R7.University.dnn" />
+  </ItemGroup>
+</Project>

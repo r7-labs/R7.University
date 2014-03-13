@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="lblTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="lblTitle.Help" xml:space="preserve">
+    <value>Enter a title for division</value>
+  </data>
+  <data name="lblShortTitle.Text" xml:space="preserve">
+    <value>Short title</value>
+  </data>
+  <data name="lblShortTitle.Help" xml:space="preserve">
+    <value>Enter a short title for division</value>
+  </data>
+  <data name="lblParentDivision.Text" xml:space="preserve">
+    <value>Parent division</value>
+  </data>
+   <data name="lblParentDivision.Help" xml:space="preserve">
+    <value>Select a parent division for this division</value>
+  </data>
+  <data name="lblDivisionTerm.Text" xml:space="preserve">
+    <value>Associated term</value>
+  </data>
+   <data name="lblDivisionTerm.Help" xml:space="preserve">
+    <value>Select taxonomy term, associated with this division</value>
+  </data>
+  <data name="lblHomePage.Text" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="lblHomePage.Help" xml:space="preserve">
+    <value>Specify a home page for this division.</value>
+  </data>
+   <data name="lblWebSite.Text" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="lblWebSite.Help" xml:space="preserve">
+    <value>A separate website for this division, if available</value>
+  </data>
+  <data name="lblPhone.Text" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="lblPhone.Help" xml:space="preserve">
+    <value>Enter the division's phone number</value>
+  </data>
+  <data name="lblFax.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="lblFax.Help" xml:space="preserve">
+    <value>Enter the division's fax number</value>
+  </data>
+  <data name="lblEmail.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblEmail.Help" xml:space="preserve">
+    <value>Enter the division's email address</value>
+  </data>
+  <data name="lblEmail.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblSecondaryEmail.Help" xml:space="preserve">
+    <value>Enter the division's secondary email address</value>
+  </data>
+  <data name="lblSecondaryEmail.Text" xml:space="preserve">
+    <value>Secondary Email</value>
+  </data>
+  <data name="lblLocation.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="lblLocation.Help" xml:space="preserve">
+    <value>Enter location of the division, e.g. office and cabinet number</value>
+  </data>
+   <data name="lblWorkingHours.Text" xml:space="preserve">
+    <value>Working hours</value>
+  </data>
+  <data name="lblWorkingHours.Help" xml:space="preserve">
+    <value>Enter working hours for the division</value>
+  </data>
+  	<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;P&gt;A Edit division module&lt;/P&gt;</value>
+  </data>
+	<data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Edit Division</value>
+  </data>
+</root>

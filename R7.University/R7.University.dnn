@@ -1,0 +1,599 @@
+﻿<dotnetnuke type="Package" version="5.0">
+	<packages>
+		<package name="R7.University" type="Library" version="01.00.00">
+			<friendlyName>R7.University</friendlyName>
+			<description>This is a common library for all R7.University modules. By installing this package, you also install 
+			all available R7.University modules, such as Launchpad, Employee, EmployeeList, etc.</description>
+			<owner>
+				<name>Roman M. Yagodin</name>
+				<organization>R7 Solutions</organization>
+				<url>http://www.r7space.ru</url>
+				<email>roman.yagodin@gmail.com</email>
+			</owner>
+			<!-- <license src="License.txt"></license> -->
+			<license>
+				<![CDATA[
+				<p>R7 Solutions - http://www.r7space.ru<br />
+	             Copyright (c) 2013-2014 by R7 Solutions</p>
+
+	            <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+	             documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
+	             the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and 
+	             to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+	            <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions 
+	             of the Software.</p>
+
+	            <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+	             TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+	             DEALINGS IN THE SOFTWARE.</p>
+	     		]]>
+    	 	</license>
+	 		<releaseNotes>
+		 		<![CDATA[<h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
+
+					<!-- <h3>Version XX.YY.ZZ</h3>
+					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
+
+					<ul>
+						<li>Revision/Bug ticket number - Description</li>
+					</ul>
+	         		-->
+				]]>
+			</releaseNotes>
+
+			<!-- <dependencies>
+		<dependency type="CoreVersion">07.00.00</dependency>
+	</dependencies> -->
+			<components>
+				<component type="Script">
+					<scripts>
+						<basePath>DesktopModules\R7.University\R7.University</basePath>
+						<script type="Install">
+							<name>01.00.00.SqlDataProvider</name>
+							<version>01.00.00</version>
+						</script>
+						<script type="UnInstall">
+							<name>Uninstall.SqlDataProvider</name>
+							<version>01.00.00</version>
+						</script>
+					</scripts>
+				</component>
+ 				<component type="Assembly">
+			     <assemblies>
+			       <basePath>bin</basePath>
+			       <assembly>
+			         <path>bin</path>
+			         <name>R7.University.dll</name>
+			       </assembly>
+			     </assemblies>
+       			</component>
+			</components>
+		</package>
+		<package name="R7.University.Launchpad" type="Module" version="01.00.00">
+			<friendlyName>R7.University.Launchpad</friendlyName>
+			<description>This is a simple module to display some records from database table.</description>
+			<owner>
+				<name>Roman M. Yagodin</name>
+				<organization>R7 Solutions</organization>
+				<url>http://www.r7space.ru</url>
+				<email>roman.yagodin@gmail.com</email>
+			</owner>
+			<!-- <license src="License.txt"></license> -->
+			<license>
+				<![CDATA[
+				<p>R7 Solutions - http://www.r7space.ru<br />
+	             Copyright (c) 2013-2014 by R7 Solutions</p>
+
+	            <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+	             documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
+	             the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and 
+	             to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+	            <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions 
+	             of the Software.</p>
+
+	            <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+	             TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+	             DEALINGS IN THE SOFTWARE.</p>
+	     		]]>
+    	 	</license>
+	 		<releaseNotes>
+		 		<![CDATA[<h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
+
+					<!-- <h3>Version XX.YY.ZZ</h3>
+					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
+
+					<ul>
+						<li>Revision/Bug ticket number - Description</li>
+					</ul>
+	         		-->
+				]]>
+			</releaseNotes>
+			<!-- <dependencies>
+		<dependency type="CoreVersion">07.00.00</dependency>
+	</dependencies> -->
+			<components>
+				<component type="Module">
+					<desktopModule>
+						<moduleName>R7.University.Launchpad</moduleName>
+						<foldername>R7.University.Launchpad</foldername>
+						<businessControllerClass>R7.University.Launchpad.LaunchpadController</businessControllerClass>
+						<supportedFeatures>
+							<supportedFeature type="Portable" />
+							<!-- <supportedFeature type="Searchable" /> -->
+						</supportedFeatures>
+						<moduleDefinitions>
+							<moduleDefinition>
+								<friendlyName>R7.University.Launchpad</friendlyName>
+								<definitionName>R7.University.Launchpad</definitionName>
+								<defaultCacheTime>0</defaultCacheTime>
+								<moduleControls>
+									<moduleControl>
+										<controlKey />
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/ViewLaunchpad.ascx</controlSrc>
+										<controlTitle />
+										<controlType>View</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Settings</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/SettingsLaunchpad.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<controlTitle>Settings</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>EditEmployee</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEmployee.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Employee</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>EditDivision</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDivision.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Division</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>EditPosition</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditPosition.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Position</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+								</moduleControls>
+							</moduleDefinition>
+						</moduleDefinitions>
+					</desktopModule>
+				</component>
+
+		       <component type="ResourceFile">
+		         <resourceFiles>
+		           <basePath>DesktopModules/R7.University/R7.University.Launchpad</basePath>
+		           <resourceFile>
+		             <name>R7.University.Launchpad.zip</name>
+		           </resourceFile>
+		         </resourceFiles>
+		       </component>
+		       <component type="Assembly">
+		         <assemblies>
+		           <basePath>bin</basePath>
+		           <assembly>
+		             <path>bin</path>
+		             <name>R7.University.Launchpad.dll</name>
+		           </assembly>
+		         </assemblies>
+		       </component>
+
+      --><!---
+				<component type="File">
+					<files>
+						<basePath>DesktopModules\R7.University\R7.University.Launchpad</basePath>
+						<file>
+							<name>ViewLaunchpad.ascx</name>
+						</file>
+						<file>
+							<name>EditLaunchpad.ascx</name>
+						</file>
+						<file>
+							<name>SettingsLaunchpad.ascx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>ViewLaunchpad.ascx.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>EditLaunchpad.ascx.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>SettingsLaunchpad.ascx.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>ViewLaunchpad.ascx.ru-RU.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>EditLaunchpad.ascx.ru-RU.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>SettingsLaunchpad.ascx.ru-RU.resx</name>
+						</file>
+						<file>
+							<name>module.css</name>
+						</file>
+					</files>
+				</component>
+-->
+			</components>
+		</package>
+		<package name="R7.University.Employee" type="Module" version="01.00.00">
+			<friendlyName>R7.University.Employee</friendlyName>
+			<description>This is a module to display information about single employee.</description>
+			<owner>
+				<name>Roman M. Yagodin</name>
+				<organization>R7 Solutions</organization>
+				<url>http://www.r7space.ru</url>
+				<email>roman.yagodin@gmail.com</email>
+			</owner>
+			<!-- <license src="License.txt"></license> -->
+			<license>
+				<![CDATA[
+				<p>R7 Solutions - http://www.r7space.ru<br />
+	             Copyright (c) 2013-2014 by R7 Solutions</p>
+
+	            <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+	             documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
+	             the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and 
+	             to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+	            <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions 
+	             of the Software.</p>
+
+	            <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+	             TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+	             DEALINGS IN THE SOFTWARE.</p>
+	     		]]>
+    	 	</license>
+	 		<releaseNotes>
+		 		<![CDATA[<h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
+
+					<!-- <h3>Version XX.YY.ZZ</h3>
+					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
+
+					<ul>
+						<li>Revision/Bug ticket number - Description</li>
+					</ul>
+	         		-->
+				]]>
+			</releaseNotes>
+			<!-- <dependencies>
+		<dependency type="CoreVersion">07.00.00</dependency>
+	</dependencies> -->
+			<components>
+				<component type="Module">
+					<desktopModule>
+						<moduleName>R7.University.Employee</moduleName>
+						<foldername>R7.University.Employee</foldername>
+						<businessControllerClass>R7.University.Employee.EmployeeController</businessControllerClass>
+						<supportedFeatures>
+							<supportedFeature type="Portable" />
+							<supportedFeature type="Searchable" />
+						</supportedFeatures>
+						<moduleDefinitions>
+							<moduleDefinition>
+								<friendlyName>R7.University.Employee</friendlyName>
+								<definitionName>R7.University.Employee</definitionName>
+								<defaultCacheTime>1200</defaultCacheTime>
+								<moduleControls>
+									<moduleControl>
+										<controlKey />
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployee.ascx</controlSrc>
+										<controlTitle />
+										<controlType>View</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Edit</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEmployee.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Employee</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Settings</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<controlTitle>Employee Settings</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+								</moduleControls>
+							</moduleDefinition>
+						</moduleDefinitions>
+					</desktopModule>
+				</component>
+
+       <component type="ResourceFile">
+         <resourceFiles>
+           <basePath>DesktopModules/R7.University/R7.University.Employee</basePath>
+           <resourceFile>
+             <name>R7.University.Employee.zip</name>
+           </resourceFile>
+         </resourceFiles>
+       </component>
+
+       <component type="Assembly">
+         <assemblies>
+           <basePath>bin</basePath>
+           <assembly>
+             <path>bin</path>
+             <name>R7.University.Employee.dll</name>
+           </assembly>
+         </assemblies>
+       </component>
+
+      <!---
+				<component type="File">
+					<files>
+						<basePath>DesktopModules\R7.University\R7.University.Employee</basePath>
+						<file>
+							<name>ViewEmployee.ascx</name>
+						</file>
+						<file>
+							<name>SettingsEmployee.ascx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>ViewEmployee.ascx.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>SettingsEmployee.ascx.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>ViewEmployee.ascx.ru-RU.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>SettingsEmployee.ascx.ru-RU.resx</name>
+						</file>
+						<file>
+							<path>js</path>
+							<name>module.js</name>
+						</file>
+						<file>
+							<name>module.css</name>
+						</file>
+					</files>
+				</component> -->
+			</components>
+		</package>
+		<package name="R7.University.EmployeeList" type="Module" version="01.00.00">
+			<friendlyName>R7.University.EmployeeList</friendlyName>
+			<description>This is a simple module to display a list of employees.</description>
+			<owner>
+				<name>Roman M. Yagodin</name>
+				<organization>R7 Solutions</organization>
+				<url>http://www.r7space.ru</url>
+				<email>roman.yagodin@gmail.com</email>
+			</owner>
+			<!-- <license src="License.txt"></license> -->
+			<license>
+				<![CDATA[
+				<p>R7 Solutions - http://www.r7space.ru<br />
+	             Copyright (c) 2013-2014 by R7 Solutions</p>
+
+	            <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+	             documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
+	             the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and 
+	             to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+	            <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions 
+	             of the Software.</p>
+
+	            <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+	             TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+	             THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+	             CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+	             DEALINGS IN THE SOFTWARE.</p>
+	     		]]>
+    	 	</license>
+	 		<releaseNotes>
+		 		<![CDATA[<h3>Version 01.00.00</h3>
+		 			<p>This is the initial release.</p>
+
+					<!-- <h3>Version XX.YY.ZZ</h3>
+					<p><strong>NOTE:</strong> If upgrading from versions prior to 01.00.00 upgrade to 01.00.00 first!</p>
+
+					<ul>
+						<li>Revision/Bug ticket number - Description</li>
+					</ul>
+	         		-->
+				]]>
+			</releaseNotes>
+			<!-- <dependencies>
+		<dependency type="CoreVersion">07.00.00</dependency>
+	</dependencies> -->
+			<components>
+				<component type="Module">
+					<desktopModule>
+						<moduleName>R7.University.EmployeeList</moduleName>
+						<foldername>R7.University.EmployeeList</foldername>
+						<businessControllerClass>R7.University.EmployeeList.EmployeeListController</businessControllerClass>
+						<supportedFeatures>
+							<supportedFeature type="Portable" />
+							<supportedFeature type="Searchable" />
+						</supportedFeatures>
+						<moduleDefinitions>
+							<moduleDefinition>
+								<friendlyName>R7.University.EmployeeList</friendlyName>
+								<definitionName>R7.University.EmployeeList</definitionName>
+								<defaultCacheTime>1200</defaultCacheTime>
+								<moduleControls>
+									<moduleControl>
+										<controlKey />
+										<controlSrc>DesktopModules/R7.University/R7.University.EmployeeList/ViewEmployeeList.ascx</controlSrc>
+										<controlTitle />
+										<controlType>View</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Edit</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEmployee.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Employee</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Settings</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.EmployeeList/SettingsEmployeeList.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<controlTitle>Settings</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+								</moduleControls>
+							</moduleDefinition>
+						</moduleDefinitions>
+					</desktopModule>
+				</component>
+				<!--
+       <component type="Script">
+         <scripts>
+           <basePath>DesktopModules\R7.University.EmployeeList</basePath>
+           <script type="Install">
+             <name>01.00.00.SqlDataProvider</name>
+             <version>01.00.00</version>
+           </script>
+           <script type="UnInstall">
+             <name>Uninstall.SqlDataProvider</name>
+             <version>01.00.00</version>
+           </script>
+         </scripts>
+       </component>
+-->
+       <component type="ResourceFile">
+         <resourceFiles>
+           <basePath>DesktopModules/R7.University/R7.University.EmployeeList</basePath>
+           <resourceFile>
+             <name>R7.University.EmployeeList.zip</name>
+           </resourceFile>
+         </resourceFiles>
+       </component>
+      
+       <component type="Assembly">
+         <assemblies>
+           <basePath>bin</basePath>
+           <assembly>
+             <path>bin</path>
+             <name>R7.University.EmployeeList.dll</name>
+           </assembly>
+         </assemblies>
+       </component>
+
+       <!--				<component type="File">
+					<files>
+						<basePath>DesktopModules\R7.University\R7.University.EmployeeList</basePath>
+						<file>
+							<name>ViewEmployeeList.ascx</name>
+						</file>
+						<file>
+							<name>SettingsEmployeeList.ascx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>ViewEmployeeList.ascx.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>SettingsEmployeeList.ascx.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>ViewEmployeeList.ascx.ru-RU.resx</name>
+						</file>
+						<file>
+							<path>App_LocalResources</path>
+							<name>SettingsEmployeeList.ascx.ru-RU.resx</name>
+						</file>
+						<file>
+							<name>module.css</name>
+						</file>
+					</files>
+				</component> -->
+			</components>
+		</package>
+	</packages>
+</dotnetnuke>

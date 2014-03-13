@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="labelEmployee.Text" xml:space="preserve">
+    	<value>Сотрудник</value>
+  	</data>
+	<data name="labelEmployee.Help" xml:space="preserve">
+    	<value>Выберите сотрудника для отображения в данном модуле.</value>
+  	</data>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+   		<value>Настройки Employee</value>
+  	</data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    	<value>О настройках Employee</value>
+  </data>
+</root>

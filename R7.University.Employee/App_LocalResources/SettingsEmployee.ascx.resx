@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+    	<value>Employee Settings</value>
+  	</data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    	<value>About Employee Settings</value>
+ 	</data>
+    <data name="labelEmployee.Text" xml:space="preserve">
+    	<value>Employee</value>
+  	</data>
+	<data name="labelEmployee.Help" xml:space="preserve">
+    	<value>Select an employee to display in this module.</value>
+  	</data>
+	<data name="labelAutoTitle.Text" xml:space="preserve">
+    	<value>Auto Title</value>
+  	</data>
+	<data name="labelAutoTitle.Help" xml:space="preserve">
+    	<value>If checked, module title will be set to employee name.</value>
+  	</data>
+</root>

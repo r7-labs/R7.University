@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Add Employee</value>
+  </data>
+  <data name="EditContent.Action" xml:space="preserve">
+    <value>Edit Employee</value>
+  </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;P&gt;A Employee module&lt;/P&gt;</value>
+  </data>
+	<data name="DefaultContent.Text" xml:space="preserve">
+    <value>Here is some sample content</value>
+  </data>
+	<data name="NothingToDisplay.Text" xml:space="preserve">
+  	<value>Please select employee to display.</value>
+  </data>
+	<data name="EmployeeHardDeleted.Text" xml:space="preserve">
+  	<value>Selected employee doesn't exist!</value>
+  </data>
+<!---
+	<data name="EmployeeSoftDeleted.Text" xml:space="preserve">
+  	<value>Selected employee was soft-deleted.</value>
+  </data>
+-->
+	<data name="EmployeeNotPublished.Text" xml:space="preserve">
+  	<value>Selected employee not published.</value>
+  </data>
+  <data name="ViewProfile.Text" xml:space="preserve">
+    <value>View profile</value>
+  </data>
+  <data name="Fax.Text" xml:space="preserve">
+    <value>(fax)</value>
+  </data>
+</root>

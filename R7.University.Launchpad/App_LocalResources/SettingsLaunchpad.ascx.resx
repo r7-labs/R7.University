@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="lblTemplate.Text" xml:space="preserve">
+    <value>Template</value>
+  </data>
+	<data name="lblTemplate.Help" xml:space="preserve">
+    <value>Allows you to provide a custom template for displaying the items. Use parameters for dynamic substitution ( ie. [CONTENT] [CREATEDONDATE] [CREATEDBYUSER] [CREATEDBYUSERNAME] )</value>
+  </data>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Launchpad Settings</value>
+  </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>About Launchpad Settings</value>
+  </data>
+</root>

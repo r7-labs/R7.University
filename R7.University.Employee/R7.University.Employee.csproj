@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{755C907B-A0E7-486E-83E5-AF4E01A75513}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>R7.University.Employee</RootNamespace>
+    <AssemblyName>R7.University.Employee</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AspNet>
+      <AspNet DisableCodeBehindGeneration="True" />
+    </AspNet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AspNet>
+      <AspNet DisableCodeBehindGeneration="True" />
+    </AspNet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Package|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Custom" name="Package for DNN" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="DotNetNuke">
+      <HintPath>..\..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\..\..\bin\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="module.css" />
+    <Content Include="ViewEmployee.ascx" />
+    <Content Include="SettingsEmployee.ascx" />
+    <Content Include="js\module.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_LocalResources\ViewEmployee.ascx.resx" />
+    <None Include="App_LocalResources\ViewEmployee.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\SettingsEmployee.ascx.resx" />
+    <None Include="App_LocalResources\SettingsEmployee.ascx.ru-RU.resx" />
+    <None Include="doc\install.txt" />
+    <None Include="App_LocalResources\Common.ti" />
+    <None Include="App_LocalResources\SharedResources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="components\EmployeeSettings.cs" />
+    <Compile Include="components\EmployeeController.cs" />
+    <Compile Include="ViewEmployee.ascx.cs">
+      <DependentUpon>ViewEmployee.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEmployee.ascx.controls.cs">
+      <DependentUpon>ViewEmployee.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsEmployee.ascx.cs">
+      <DependentUpon>SettingsEmployee.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsEmployee.ascx.controls.cs">
+      <DependentUpon>SettingsEmployee.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="True" VerifyCodeBehindEvents="True">
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\R7.University\R7.University.csproj">
+      <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
+      <Name>R7.University</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

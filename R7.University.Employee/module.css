@@ -1,0 +1,39 @@
+﻿.Employee_Label { display:block }
+
+.Employee_PhotoContainer { text-align:center }
+
+.Employee_Photo {}
+
+.Employee_Positions 
+{
+	display:block;
+	margin-top:8px; 
+}
+.Employee_Name
+{
+	display:block;
+	margin-top:8px;
+	text-align:center;
+}
+
+.Employee_FullName { font-style:italic; }
+.Employee_UserProfile 
+{ 
+	display:block;
+	margin-top:8px;
+	text-align:right;
+}
+
+.Employee_OfflineContacts
+{
+	display:block;
+	margin-top:8px;  
+	text-align:center;
+}
+
+.Employee_OnlineContacts
+{
+	display:block;
+	margin-top:8px;  
+	text-align:center;
+}
