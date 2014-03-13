@@ -296,7 +296,7 @@ namespace R7.University.Launchpad
 			dt.Columns.Add (new DataColumn ("NamePrefix", typeof(string)));
 			dt.Columns.Add (new DataColumn ("WorkingPlace", typeof(string)));
 			dt.Columns.Add (new DataColumn ("WorkingHours", typeof(string)));
-			dt.Columns.Add (new DataColumn ("Biography", typeof(string)));
+			// dt.Columns.Add (new DataColumn ("Biography", typeof(string)));
 			dt.Columns.Add (new DataColumn ("ExperienceYears", typeof(int)));
 			dt.Columns.Add (new DataColumn ("ExperienceYearsBySpec", typeof(int)));
 			dt.Columns.Add (new DataColumn ("IsPublished", typeof(bool)));
@@ -333,7 +333,7 @@ namespace R7.University.Launchpad
 				dr [i++] = employee.NamePrefix;
 				dr [i++] = employee.WorkingPlace;
 				dr [i++] = employee.WorkingHours;
-				dr [i++] = employee.Biography;
+				// dr [i++] = employee.Biography;
 				dr [i++] = employee.ExperienceYears ?? Null.NullInteger;
 				dr [i++] = employee.ExperienceYearsBySpec ?? Null.NullInteger;
 				dr [i++] = employee.IsPublished;
