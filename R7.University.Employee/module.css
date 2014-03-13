@@ -1,8 +1,10 @@
 ﻿.Employee_Label { display:block }
 
+.Employee_Email { display:inline-block }
+
 .Employee_PhotoContainer { text-align:center }
 
-.Employee_Photo {}
+.Employee_Photo { margin-top:8px; }
 
 .Employee_Positions 
 {

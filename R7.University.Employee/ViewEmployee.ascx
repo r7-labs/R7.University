@@ -30,7 +30,7 @@
 	<asp:Label id="labelWorkingHours" runat="server" />
 		--%>
 	<div class="Employee_OnlineContacts">
-		<asp:HyperLink id="linkEmail" runat="server" CssClass="email Employee_Label" />
+		<asp:HyperLink id="linkEmail" runat="server" CssClass="email Employee_Email" />
 		<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="Employee_Label" />
 		<asp:Label id="labelMessenger" runat="server" CssClass="Employee_Label" />
 	</div>
