@@ -71,9 +71,9 @@
       <DeployService-Deploy>True</DeployService-Deploy>
     </None>
     <None Include="Uninstall.SqlDataProvider" />
-    <None Include="R7.University.dnn" />
     <None Include="01.00.01.SqlDataProvider">
       <DeployService-Deploy>True</DeployService-Deploy>
     </None>
+    <None Include="R7.University.dnn" />
   </ItemGroup>
 </Project>
