@@ -151,8 +151,12 @@
 	<div id="employeePositions">
 		<fieldset>
 			<div class="dnnFormItem">
-				<dnn:Label id="labelDivisions" runat="server" ControlName="comboDivisions" Suffix=":" />
-				<dnnweb:DnnComboBox id="comboDivisions" runat="server" />
+				<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" Suffix=":" />
+				<dnnweb:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+					DataTextField="ShortTitle"
+					DataValueField="DivisionID"
+					DataFieldParentID="ParentDivisionID"
+				/>
 			</div>
 
 			<div class="dnnFormItem">

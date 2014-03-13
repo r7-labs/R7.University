@@ -65,21 +65,19 @@ namespace R7.University.Launchpad
 
 			// if results are null or empty, lists were empty too
 			var positions = new List<PositionInfo>(ctrl.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
-			var divisions = new List<DivisionInfo>(ctrl.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
+			var divisions = ctrl.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC");
 
 			// add default items
 			positions.Insert (0, new PositionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), PositionID = Null.NullInteger });
-			divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
+			// divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
 
 			comboPositions.DataTextField = "ShortTitle";
 			comboPositions.DataValueField = "PositionID";
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
-		
-			comboDivisions.DataTextField = "ShortTitle";
-			comboDivisions.DataValueField = "DivisionID";
-			comboDivisions.DataSource = divisions;
-			comboDivisions.DataBind ();
+
+			treeDivisions.DataSource = divisions;
+			treeDivisions.DataBind ();
 		}
 
 		/// <summary>
@@ -449,7 +447,7 @@ namespace R7.University.Launchpad
 			try
 			{
 				var positionID = int.Parse(comboPositions.SelectedValue);
-				var divisionID = int.Parse(comboDivisions.SelectedValue);
+				var divisionID = int.Parse(treeDivisions.SelectedValue);
 
 				if (!Null.IsNull(positionID) && !Null.IsNull(divisionID))
 				{
@@ -459,7 +457,7 @@ namespace R7.University.Launchpad
 
 					occupiedPositions.Add(
 						new OccupiedPositionView(positionID, comboPositions.Text, 
-							divisionID, comboDivisions.Text, checkIsPrime.Checked));
+							divisionID, treeDivisions.SelectedNode.Text, checkIsPrime.Checked));
 
 					ViewState["occupiedPositions"] = occupiedPositions;
 					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);

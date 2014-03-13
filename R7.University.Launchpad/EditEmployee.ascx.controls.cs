@@ -75,7 +75,7 @@ namespace R7.University.Launchpad
 		protected LabelControl labelDivisions;
 		protected LabelControl labelIsPrime;
 		protected DnnComboBox comboPositions;
-		protected DnnComboBox comboDivisions;
+		protected DnnTreeView treeDivisions;
 		protected LinkButton buttonAddOccupiedPosition;
 		protected CheckBox checkIsPrime;
 	}
