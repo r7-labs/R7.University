@@ -198,6 +198,14 @@ namespace R7.University.Launchpad
 						ctlAudit.Visible = false;
 					}
 				}
+				else 
+				{
+					// NOTE: Fix for issue #1 - just update FilePath every postback
+					if (pickerPhoto.FileID > 0)
+						pickerPhoto.FilePath = FileManager.Instance.GetUrl (
+							FileManager.Instance.GetFile (pickerPhoto.FileID))
+								.Remove (0, PortalSettings.HomeDirectory.Length);
+				}
 			}
 			catch (Exception ex)
 			{
