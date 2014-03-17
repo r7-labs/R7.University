@@ -79,5 +79,6 @@
       <DeployService-Deploy>True</DeployService-Deploy>
     </None>
     <None Include="License.txt" />
+    <None Include="ReleaseNotes.txt" />
   </ItemGroup>
 </Project>

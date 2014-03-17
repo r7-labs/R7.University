@@ -10,20 +10,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<license src="License.txt" />
-			<releaseNotes><![CDATA[
-		 			<h3>Version 01.00.01</h3>
-		 			<p>This is stabilization release for 01.00.00.</p>
-		 			<ul>
-						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
-						<li>Employee about / biography moved to a separate tab.</li>
-						<li>Use richtext editor for employee about / biography.</li>
-						<li>Some style changes in Employee module.</li>
-						<li>Allow update employee if no occupied positions defined.</li>
-					</ul>
-
-		 		    <h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-				]]></releaseNotes>
+			<releaseNotes src="ReleaseNotes.txt" />
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
@@ -70,20 +57,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<license src="License.txt" />
-			<releaseNotes><![CDATA[
-		 			<h3>Version 01.00.01</h3>
-		 			<p>This is stabilization release for 01.00.00.</p>
-		 			<ul>
-						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
-						<li>Employee about / biography moved to a separate tab.</li>
-						<li>Use richtext editor for employee about / biography.</li>
-						<li>Some style changes in Employee module.</li>
-						<li>Allow update employee if no occupied positions defined.</li>
-					</ul>
-
-		 		    <h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-				]]></releaseNotes>
+			<releaseNotes src="ReleaseNotes.txt" />
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
@@ -242,20 +216,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<license src="License.txt" />
-			<releaseNotes><![CDATA[
-		 			<h3>Version 01.00.01</h3>
-		 			<p>This is stabilization release for 01.00.00.</p>
-		 			<ul>
-						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
-						<li>Employee about / biography moved to a separate tab.</li>
-						<li>Use richtext editor for employee about / biography.</li>
-						<li>Some style changes in Employee module.</li>
-						<li>Allow update employee if no occupied positions defined.</li>
-					</ul>
-
-		 		    <h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-				]]></releaseNotes>
+			<releaseNotes src="ReleaseNotes.txt" />
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
@@ -380,20 +341,7 @@
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
 			<license src="License.txt" />
-			<releaseNotes><![CDATA[
-		 			<h3>Version 01.00.01</h3>
-		 			<p>This is stabilization release for 01.00.00.</p>
-		 			<ul>
-						<li>Then edit employee positions, select division from a tree instead of combobox.</li>
-						<li>Employee about / biography moved to a separate tab.</li>
-						<li>Use richtext editor for employee about / biography.</li>
-						<li>Some style changes in Employee module.</li>
-						<li>Allow update employee if no occupied positions defined.</li>
-					</ul>
-
-		 		    <h3>Version 01.00.00</h3>
-		 			<p>This is the initial release.</p>
-				]]></releaseNotes>
+			<releaseNotes src="ReleaseNotes.txt" />
 			<!-- <dependencies>
 		<dependency type="CoreVersion">07.00.00</dependency>
 	</dependencies> -->
