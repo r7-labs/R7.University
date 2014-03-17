@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="01.00.01">
+		<package name="R7.University" type="Library" version="01.00.02">
 			<friendlyName>R7.University</friendlyName>
 			<description>This is a common library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Employee, EmployeeList, etc.</description>
 			<owner>
@@ -57,6 +57,10 @@
 							<name>01.00.01.SqlDataProvider</name>
 							<version>01.00.01</version>
 						</script>
+						<script type="Install">
+							<name>01.00.02.SqlDataProvider</name>
+							<version>01.00.02</version>
+						</script>
 						<script type="UnInstall">
 							<name>Uninstall.SqlDataProvider</name>
 							<version>01.00.00</version>
@@ -74,7 +78,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.00.01">
+		<package name="R7.University.Launchpad" type="Module" version="01.00.02">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -264,7 +268,7 @@
 				</component>
 --></components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="01.00.01">
+		<package name="R7.University.Employee" type="Module" version="01.00.02">
 			<friendlyName>R7.University.Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -420,7 +424,7 @@
 				</component> -->
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="01.00.01">
+		<package name="R7.University.EmployeeList" type="Module" version="01.00.02">
 			<friendlyName>R7.University.EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
