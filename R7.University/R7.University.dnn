@@ -207,7 +207,7 @@
 --></components>
 		</package>
 		<package name="R7.University.Employee" type="Module" version="01.00.02">
-			<friendlyName>R7.University.Employee</friendlyName>
+			<friendlyName>_Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
@@ -332,7 +332,7 @@
 			</components>
 		</package>
 		<package name="R7.University.EmployeeList" type="Module" version="01.00.02">
-			<friendlyName>R7.University.EmployeeList</friendlyName>
+			<friendlyName>_EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
