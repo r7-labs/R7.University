@@ -78,5 +78,6 @@
     <None Include="01.00.02.SqlDataProvider">
       <DeployService-Deploy>True</DeployService-Deploy>
     </None>
+    <None Include="License.txt" />
   </ItemGroup>
 </Project>
