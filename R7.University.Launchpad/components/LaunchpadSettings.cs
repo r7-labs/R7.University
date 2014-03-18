@@ -18,16 +18,10 @@ namespace R7.University.Launchpad
 			// this.module = module;
 		}
 
-		/// <summary>
-		/// Template used to render the module content
-		/// </summary>
-		public string Template {
-			get { 
-				return ReadSetting<string> ("template", 
-					"<i>[CREATEDONDATE]<i> <b>[CREATEDBYUSERNAME]</b>:<br />[CONTENT]", 
-					true); 
-			}
-			set { WriteSetting<string> ("template", value, true); }
+		public int PageSize
+		{
+			get { return ReadSetting<int> ("Launchpad_PageSize", 15, true); }
+			set { WriteSetting<int> ("Launchpad_PageSize", value, true); }
 		}
 
 		#endregion

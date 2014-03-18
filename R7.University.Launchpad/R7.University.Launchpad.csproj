@@ -84,13 +84,13 @@
     <None Include="App_LocalResources\EditPosition.ascx.resx" />
     <None Include="App_LocalResources\EditDivision.ascx.resx" />
     <None Include="App_LocalResources\Common.ti" />
-    <None Include="App_LocalResources\EditEmployee.ascx.resx">
-      <DependentUpon>__EditEmployee.ascx.tt</DependentUpon>
-    </None>
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\__EditEmployee.ascx.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EditEmployee.ascx.resx</LastGenOutput>
+      <LastGenOutput>__EditEmployee.ascx.resx</LastGenOutput>
+    </None>
+    <None Include="App_LocalResources\__EditEmployee.ascx.resx">
+      <DependentUpon>__EditEmployee.ascx.tt</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

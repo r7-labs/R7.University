@@ -67,17 +67,11 @@
     <Folder Include="components\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="01.00.00.SqlDataProvider">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </None>
+    <None Include="01.00.00.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
-    <None Include="01.00.01.SqlDataProvider">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </None>
+    <None Include="01.00.01.SqlDataProvider" />
     <None Include="R7.University.dnn" />
-    <None Include="01.00.02.SqlDataProvider">
-      <DeployService-Deploy>True</DeployService-Deploy>
-    </None>
+    <None Include="01.00.02.SqlDataProvider" />
     <None Include="License.txt" />
     <None Include="ReleaseNotes.txt" />
   </ItemGroup>

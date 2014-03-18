@@ -14,14 +14,20 @@ namespace R7.University.Launchpad
 		/// Handles the loading of the module setting for this control
 		/// </summary>
 		public override void LoadSettings ()
-		{
+		{ 
 			try {
 				if (!IsPostBack) {
 					var settings = new LaunchpadSettings (this);
-										
-					if (!string.IsNullOrWhiteSpace (settings.Template)) {
-						txtTemplate.Text = settings.Template;
+
+					// fill PageSize combobox
+					for (var i = 1; i <= 10; i++)
+					{
+						var strPageSize = (i * 5).ToString();
+						comboPageSize.AddItem(strPageSize, strPageSize);
 					}
+
+					// TODO: Allow select nearest pagesize value
+					comboPageSize.Select (settings.PageSize.ToString(), false);
 				}
 			} catch (Exception ex) {
 				Exceptions.ProcessModuleLoadException (this, ex);
@@ -36,7 +42,7 @@ namespace R7.University.Launchpad
 			try {
 				var settings = new LaunchpadSettings (this);
 				
-				settings.Template = txtTemplate.Text;
+				settings.PageSize = int.Parse(comboPageSize.SelectedValue);
 
 				// NOTE: update module cache (temporary fix before 7.2.0)?
 				// more info: https://github.com/dnnsoftware/Dnn.Platform/pull/21
