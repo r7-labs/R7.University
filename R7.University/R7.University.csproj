@@ -22,17 +22,11 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\bin</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Package|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Package</OutputPath>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -74,5 +68,6 @@
     <None Include="01.00.02.SqlDataProvider" />
     <None Include="License.txt" />
     <None Include="ReleaseNotes.txt" />
+    <None Include="Package.cmd" />
   </ItemGroup>
 </Project>

@@ -36,11 +36,6 @@
       <AspNet DisableCodeBehindGeneration="True" />
     </AspNet>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Package|AnyCPU' ">
-    <Optimize>false</Optimize>
-    <OutputPath>bin</OutputPath>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
