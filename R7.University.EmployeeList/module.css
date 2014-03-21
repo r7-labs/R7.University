@@ -1,9 +1,10 @@
-﻿.EmployeeList_ContentList { width:100%; vertical-align:center}				
-.EmployeeList_ContentListItem { text-align: left }
-.EmployeeList_ContentListItem.NonPublished { /* opacity:0.33; */ background-color:#fcc; }
-.EmployeeList_PhotoColumn { display:inline-block;float:left;height:100% }
-.EmployeeList_EditLink { float:left }
-.EmployeeList_Photo { display:block;float:left;margin-right:8px; }
+﻿.EmployeeList_List {  }				
+.EmployeeList_ListItem { text-align: left; }
+.EmployeeList_ListItemWrapper { display:table-row }
+.EmployeeList_ListItem.NonPublished { /* opacity:0.33; */ background-color:#fcc; }
+.EmployeeList_EditLink { margin-right:4px }
+.EmployeeList_Photo { display:table-cell;margin-right:8px; }
+.EmployeeList_Info { display:table-cell;vertical-align:top }
 .EmployeeList_FullName { font-style:italic; }
 .EmployeeList_Positions { display:block; margin-top:8px }
 .EmployeeList_Phones { display:block; margin-top:8px }
