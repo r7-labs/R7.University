@@ -2,10 +2,12 @@
 <asp:DataList ID="listEmployees" DataKeyField="EmployeeID" runat="server" CssClass="EmployeeList_ContentList dnnGrid" 
 	OnItemDataBound="listEmployees_ItemDataBound">
 	<ItemTemplate>
-		<asp:HyperLink id="linkEdit" runat="server" CssClass="EmployeeList_EditLink">
-			<asp:Image id="imageEdit" runat="server" ImageUrl="~/images/edit.gif" AlternateText="Edit" ResourceKey="Edit" />
-		</asp:HyperLink>
-		<asp:Image id="imagePhoto" runat="server" CssClass="EmployeeList_Photo" />
+		<div class="EmployeeList_PhotoColumn">
+			<asp:HyperLink id="linkEdit" runat="server" CssClass="EmployeeList_EditLink">
+				<asp:Image id="imageEdit" runat="server" ImageUrl="~/images/edit.gif" AlternateText="Edit" ResourceKey="Edit" />
+			</asp:HyperLink>
+			<asp:Image id="imagePhoto" runat="server" CssClass="EmployeeList_Photo" />
+		</div>
 		<asp:Label id="labelFullName" runat="server" CssClass="EmployeeList_FullName"  />
 		<asp:Label id="labelAcademicDegreeAndTitle" runat="server" CssClass="EmployeeList_AcademicDegreeAndTitle" />
 		<asp:Label id="labelPositions" runat="server" CssClass="EmployeeList_Positions" />

@@ -1,6 +1,7 @@
 ﻿.EmployeeList_ContentList { width:100%; vertical-align:center}				
 .EmployeeList_ContentListItem { text-align: left }
 .EmployeeList_ContentListItem.NonPublished { /* opacity:0.33; */ background-color:#fcc; }
+.EmployeeList_PhotoColumn { display:inline-block;float:left;height:100% }
 .EmployeeList_EditLink { float:left }
 .EmployeeList_Photo { display:block;float:left;margin-right:8px; }
 .EmployeeList_FullName { font-style:italic; }
@@ -8,5 +9,3 @@
 .EmployeeList_Phones { display:block; margin-top:8px }
 .EmployeeList_Email {  display:inline-block; margin-top:8px;margin-right:8px }
 .EmployeeList_WebSite {  display:inline-block; margin-top:8px;margin-right:8px }
-
-
