@@ -308,22 +308,25 @@ namespace R7.University.Employee
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
 
-				actions.Add (
-					GetNextActionID (), 
-					Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
-					ModuleActionType.AddContent, 
-					"", 
-					"", 
-					Utils.EditUrl (this, "Edit"),
-					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
-					true, 
-					false
-				);
-
-				// add edit action only if we have employee to edit
-				if (!Null.IsNull (EmployeeID))
+				// add "add" action only if we have no employee to display
+				if (Null.IsNull (EmployeeID))
 				{
+					actions.Add (
+						GetNextActionID (), 
+						Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
+						ModuleActionType.AddContent, 
+						"", 
+						"", 
+						Utils.EditUrl (this, "Edit"),
+						false, 
+						DotNetNuke.Security.SecurityAccessLevel.Edit,
+						true, 
+						false
+					);
+				}
+				else
+				{
+					// otherwise, add "edit" action
 					actions.Add (
 						GetNextActionID (), 
 						Localization.GetString (ModuleActionType.EditContent, this.LocalResourceFile),

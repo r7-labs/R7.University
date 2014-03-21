@@ -288,6 +288,14 @@ namespace R7.University.Launchpad
 					}
 					else
 						ctrl.Add<EmployeeInfo>(item);
+
+					// then adding new employee from Employee module, 
+					// set calling module to display new employee
+					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
+					{
+						var mctrl = new ModuleController();
+						mctrl.UpdateModuleSetting (ModuleId, "Employee_EmployeeID", item.EmployeeID.ToString());
+					}
 				}
 				else
 				{
