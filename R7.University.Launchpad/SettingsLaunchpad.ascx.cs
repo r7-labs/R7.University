@@ -13,11 +13,10 @@ namespace R7.University.Launchpad
 		public void OnInit()
 		{
 			// fill PageSize combobox
-			for (var i = 1; i <= 10; i++)
-			{
-				var strPageSize = (i * 5).ToString();
-				comboPageSize.AddItem(strPageSize, strPageSize);
-			}
+			comboPageSize.AddItem("10", "10");
+			comboPageSize.AddItem("25", "25");
+			comboPageSize.AddItem("50", "50");
+			comboPageSize.AddItem("100", "100");
 
 			// fill tables list
 			listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Positions", "positions"));

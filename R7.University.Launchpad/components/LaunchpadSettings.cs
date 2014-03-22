@@ -20,7 +20,7 @@ namespace R7.University.Launchpad
 
 		public int PageSize
 		{
-			get { return ReadSetting<int> ("Launchpad_PageSize", 15, true); }
+			get { return ReadSetting<int> ("Launchpad_PageSize", 20, true); }
 			set { WriteSetting<int> ("Launchpad_PageSize", value, true); }
 		}
 
