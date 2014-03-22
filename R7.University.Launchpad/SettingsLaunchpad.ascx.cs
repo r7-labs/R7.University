@@ -10,7 +10,7 @@ namespace R7.University.Launchpad
 {
 	public partial class SettingsLaunchpad : ModuleSettingsBase
 	{
-		public void OnInit()
+		public void Page_Init()
 		{
 			// fill PageSize combobox
 			comboPageSize.AddItem("10", "10");
