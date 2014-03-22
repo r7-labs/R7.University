@@ -59,13 +59,7 @@ namespace R7.University.Launchpad
 				var settings = new LaunchpadSettings (this);
 				
 				settings.PageSize = int.Parse(comboPageSize.SelectedValue);
-
 				settings.Tables = Utils.FormatList(";", listTables.CheckedItems.Select(i => i.Value).ToArray());
-
-				// NOTE: update module cache (temporary fix before 7.2.0)?
-				// more info: https://github.com/dnnsoftware/Dnn.Platform/pull/21
-				var moduleController = new ModuleController();
-				moduleController.ClearCache(TabId);
 
 				Utils.SynchronizeModule(this);
 
