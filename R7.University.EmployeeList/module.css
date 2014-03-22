@@ -4,7 +4,7 @@
 .EmployeeList_ListItem.NonPublished { /* opacity:0.33; */ background-color:#fcc; }
 .EmployeeList_EditLink { margin-right:4px }
 .EmployeeList_Photo { display:table-cell;margin-right:8px; }
-.EmployeeList_Info { display:table-cell;vertical-align:top }
+.EmployeeList_Info { display:table-cell;vertical-align:top;padding-bottom:8px }
 .EmployeeList_FullName { font-style:italic; }
 .EmployeeList_Positions { display:block; margin-top:8px }
 .EmployeeList_Phones { display:block; margin-top:8px }
