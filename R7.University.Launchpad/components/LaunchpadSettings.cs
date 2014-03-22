@@ -24,6 +24,12 @@ namespace R7.University.Launchpad
 			set { WriteSetting<int> ("Launchpad_PageSize", value, true); }
 		}
 
+		public string Tables
+		{
+			get { return ReadSetting<string> ("Launchpad_Tables", "positions", true); }
+			set { WriteSetting<string> ("Launchpad_Tables", value, true); }
+		}
+
 		#endregion
 	}
 }

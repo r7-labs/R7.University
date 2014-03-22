@@ -13,5 +13,7 @@ namespace R7.University.Launchpad
 	{
 		protected LabelControl labelPageSize;
 		protected DnnComboBox comboPageSize;
+		protected LabelControl labelTables;
+		protected DnnListBox listTables;
 	}
 }

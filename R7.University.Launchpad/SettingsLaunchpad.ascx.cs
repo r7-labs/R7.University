@@ -28,6 +28,20 @@ namespace R7.University.Launchpad
 
 					// TODO: Allow select nearest pagesize value
 					comboPageSize.Select (settings.PageSize.ToString(), false);
+
+					// fill tables list
+					listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Positions", "positions"));
+					listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Divisions", "divisions"));
+					listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Employees", "employees"));
+
+					// check table list items
+					var tableNames = settings.Tables.Split(';');
+					foreach (var tableName in tableNames)
+					{
+						var item = listTables.FindItemByValue(tableName);
+						if (item != null) item.Checked = true;
+					}
+
 				}
 			} catch (Exception ex) {
 				Exceptions.ProcessModuleLoadException (this, ex);
@@ -43,6 +57,8 @@ namespace R7.University.Launchpad
 				var settings = new LaunchpadSettings (this);
 				
 				settings.PageSize = int.Parse(comboPageSize.SelectedValue);
+
+				settings.Tables = Utils.FormatList(";", listTables.CheckedItems.Select(i => i.Value).ToArray());
 
 				// NOTE: update module cache (temporary fix before 7.2.0)?
 				// more info: https://github.com/dnnsoftware/Dnn.Platform/pull/21

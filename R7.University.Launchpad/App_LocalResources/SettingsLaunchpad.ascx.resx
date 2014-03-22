@@ -6,6 +6,12 @@
 	<data name="labelPageSize.Help" xml:space="preserve">
     <value>Select preferable page size for data grids of this module.</value>
   </data>
+	<data name="labelTables.Text" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+	<data name="labelTables.Help" xml:space="preserve">
+    <value>Select tables to display in this module.</value>
+  </data>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
     <value>Launchpad Settings</value>
   </data>
