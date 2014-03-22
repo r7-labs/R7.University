@@ -10,6 +10,21 @@ namespace R7.University.Launchpad
 {
 	public partial class SettingsLaunchpad : ModuleSettingsBase
 	{
+		public void OnInit()
+		{
+			// fill PageSize combobox
+			for (var i = 1; i <= 10; i++)
+			{
+				var strPageSize = (i * 5).ToString();
+				comboPageSize.AddItem(strPageSize, strPageSize);
+			}
+
+			// fill tables list
+			listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Positions", "positions"));
+			listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Divisions", "divisions"));
+			listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Employees", "employees"));
+		}
+
 		/// <summary>
 		/// Handles the loading of the module setting for this control
 		/// </summary>
@@ -19,20 +34,8 @@ namespace R7.University.Launchpad
 				if (!IsPostBack) {
 					var settings = new LaunchpadSettings (this);
 
-					// fill PageSize combobox
-					for (var i = 1; i <= 10; i++)
-					{
-						var strPageSize = (i * 5).ToString();
-						comboPageSize.AddItem(strPageSize, strPageSize);
-					}
-
 					// TODO: Allow select nearest pagesize value
 					comboPageSize.Select (settings.PageSize.ToString(), false);
-
-					// fill tables list
-					listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Positions", "positions"));
-					listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Divisions", "divisions"));
-					listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Employees", "employees"));
 
 					// check table list items
 					var tableNames = settings.Tables.Split(';');
