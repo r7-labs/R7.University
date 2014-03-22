@@ -1,33 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.ViewLaunchpad" %>
-<%-- <asp:DataList ID="lstContent" DataKeyField="LaunchpadID" runat="server" CssClass="Launchpad_ContentList" OnItemDataBound="lstContent_ItemDataBound">
-	<ItemTemplate>
-		<asp:HyperLink ID="linkEdit" runat="server">
-			<asp:Image ID="imageEdit" runat="server" ImageUrl="~/images/edit.gif" AlternateText="Edit" ResourceKey="Edit" />
-		</asp:HyperLink>
-		<asp:Label ID="lblUserName" runat="server" CssClass="Launchpad_UserName" />
-		<asp:Label ID="lblCreatedOnDate" runat="server" CssClass="Launchpad_CreatedOnDate" /> 
-		<asp:Label ID="lblContent" runat="server" CssClass="Launchpad_Content" />
-	</ItemTemplate>
-	<ItemStyle CssClass="Launchpad_ContentListItem" />
-</asp:DataList>
-<!-- Label for debug info -->
-<asp:Label ID="lblDebug" runat="server" /> --%>
-
-<%-- <dnn:DnnJsInclude ID="DnnJsInclude" runat="server" FilePath="~/DesktopModules/R7.University.Launchpad/js/module.js" /> --%>
-	<%--
-<script type="text/javascript">
-$(function() {
-    $( "#tabs" ).tabs();
-});
-</script>
-
-<div id="tabs" class="dnnForm dnnClear">
-<ul class="dnnAdminTabNav dnnClear">
-    <li><a href="#positions">Positions</a></li>
-    <li><a href="#divisions">Divisions</a></li>
-    <li><a href="#employees">Employees</a></li>
-</ul>
- --%>
 
 <div class="dnnForm">
 	<ul class="dnnAdminTabNav dnnClear">
