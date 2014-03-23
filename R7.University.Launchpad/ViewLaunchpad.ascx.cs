@@ -19,21 +19,6 @@ namespace R7.University.Launchpad
 {
 	public partial class ViewLaunchpad : PortalModuleBase, IActionable
 	{
-		/*
-		private int ActiveViewIndex
-		{
-			get 
-			{
-				var obj = Session ["Launchpad_ActiveViewIndex"];
-				if (obj != null)
-					return (int)obj;
-				else
-					return 0;
-			}
-			set { Session ["Launchpad_ActiveViewIndex"] = value; }
-		}
-		*/
-
 		#region Handlers
 
 		/// <summary>
