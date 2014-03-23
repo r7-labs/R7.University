@@ -1,16 +1,20 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.ViewLaunchpad" %>
 
 <div class="dnnForm">
-	<ul class="dnnAdminTabNav dnnClear">
-		<li id="liPositions" runat="server" class="ui-tabs-active"><asp:LinkButton id="linkPositions" runat="server" OnClick="linkTab_Clicked">Positions</asp:LinkButton></li>
-		<li id="liDivisions" runat="server"><asp:LinkButton id="linkDivisions" runat="server" OnClick="linkTab_Clicked">Divisions</asp:LinkButton></li>
-		<li id="liEmployees" runat="server"><asp:LinkButton id="linkEmployees" runat="server" OnClick="linkTab_Clicked">Employees</asp:LinkButton></li>
-	</ul>
-
+	<asp:Repeater id="repeatTabs" runat="server" OnItemDataBound="repeatTabs_ItemDataBound">
+		<HeaderTemplate>
+			<ul class="dnnAdminTabNav dnnClear">
+		</HeaderTemplate>
+		<ItemTemplate>
+			<li id="liTab" runat="server"><asp:LinkButton id="linkTab" runat="server" OnClick="linkTab_Clicked" /></li>
+		</ItemTemplate>
+		<FooterTemplate>
+			</ul>
+		</FooterTemplate>
+	</asp:Repeater>
 	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged">
-		<asp:View runat="server">
+		<asp:View id="viewPositions" runat="server">
 			<div id="positions" style="overflow:auto">
-
 					<asp:HyperLink runat="server" id="buttonAddPosition" CssClass="dnnPrimaryAction">Add position</asp:HyperLink><br />
 					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="true"
 					PageSize="15" AllowPaging="true" AllowSorting="true" GridLines="None"
@@ -38,7 +42,7 @@
 			        <br />
 				</div>
 		</asp:View>
-		<asp:View runat="server"> 
+		<asp:View id="viewDivisions" runat="server"> 
 			<div id="divisions" style="overflow:auto">
 				<asp:HyperLink runat="server" id="buttonAddDivision" CssClass="dnnPrimaryAction">Add division</asp:HyperLink><br />
 				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="true" 
@@ -67,7 +71,7 @@
 		        <br />
 		    </div>
 		</asp:View>
-		<asp:View runat="server">
+		<asp:View id="viewEmployees" runat="server">
 			<div id="employees" style="overflow:auto">
 				<asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink><br />
 				<asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" 

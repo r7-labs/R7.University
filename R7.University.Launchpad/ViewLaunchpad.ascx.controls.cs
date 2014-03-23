@@ -21,9 +21,6 @@ namespace R7.University.Launchpad
 		protected HyperLink buttonAddDivision;
 		protected GridView gridEmployees;
 		protected HyperLink buttonAddEmployee;
-
-		protected HtmlControl liPositions;
-		protected HtmlControl liDivisions;
-		protected HtmlControl liEmployees;
+		protected Repeater repeatTabs;
 	}
 }

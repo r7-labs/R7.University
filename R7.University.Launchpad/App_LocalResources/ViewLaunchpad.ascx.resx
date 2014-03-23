@@ -9,7 +9,7 @@
 	<data name="DefaultContent.Text" xml:space="preserve">
     <value>Here is some sample content</value>
   </data>
-	<data name="NothingToDisplay.Text" xml:space="preserve">
-  	<value>Nothing to display, add some items.</value>
+  <data name="NotConfigured.Text" xml:space="preserve">
+    <value>Please select tables to display in module settings.</value>
   </data>
 </root>

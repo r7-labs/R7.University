@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using System.Linq;
 using DotNetNuke.Data;
 using DotNetNuke.Common.Utilities;
@@ -43,6 +44,22 @@ namespace R7.University.Launchpad
 		{
 			base.OnInit (e);
 		
+			var settings = new LaunchpadSettings (this);
+
+			// read tab names
+			var tabNames = settings.Tables.Split (new char [] {';'}, StringSplitOptions.RemoveEmptyEntries);
+			if (tabNames == null || tabNames.Length == 0)
+			{
+				Utils.Message (this, MessageSeverity.Info, "NotConfigured.Text", true);
+				return;
+			}
+			else if (tabNames.Length > 1)
+			{
+				// bind tabs
+				repeatTabs.DataSource = tabNames;
+				repeatTabs.DataBind ();
+			}
+
 			// wireup LoadComplete handler 
 			Page.LoadComplete += new EventHandler(OnLoadComplete);
 
@@ -52,10 +69,14 @@ namespace R7.University.Launchpad
 			buttonAddEmployee.NavigateUrl = Utils.EditUrl (this, "EditEmployee");
 
 			// show first view if no session info available
-			if (Session ["Launchpad_ActiveViewIndex_" + TabModuleId] == null)
+			if (Session ["Launchpad_ActiveView_" + TabModuleId] == null)
 			{
-				multiView.ActiveViewIndex = 0;
-				SelectTab (0);
+				// if no tabs set in settings, don't set active view
+				if (tabNames != null && tabNames.Length > 0)
+				{
+					multiView.SetActiveView (FindView (tabNames [0]));
+					SelectTab (tabNames [0]);
+				}
 			}
 		}
 
@@ -80,10 +101,10 @@ namespace R7.University.Launchpad
 				if (!IsPostBack)
 				{
 					// restore multiview state from session on first load
-					if (Session ["Launchpad_ActiveViewIndex_" + TabModuleId] != null)
+					if (Session ["Launchpad_ActiveView_" + TabModuleId] != null)
 					{
-						multiView.ActiveViewIndex = (int)Session ["Launchpad_ActiveViewIndex_" + TabModuleId];
-						SelectTab (multiView.ActiveViewIndex);
+						multiView.SetActiveView(FindView((string)Session ["Launchpad_ActiveView_" + TabModuleId]));
+						SelectTab ((string)Session ["Launchpad_ActiveView_" + TabModuleId]);
 					}
 
 					gridDivisions.DataSource = DivisionsDataSource ();
@@ -112,7 +133,25 @@ namespace R7.University.Launchpad
 		/// <param name="e">Event arguments</param>
 		protected void multiView_ActiveViewChanged (object sender, EventArgs e)
 		{
-			Session ["Launchpad_ActiveViewIndex_" + TabModuleId] = multiView.ActiveViewIndex;
+			// set session variable to active view name without "view" prefix
+			Session ["Launchpad_ActiveView_" + TabModuleId] = 
+				multiView.GetActiveView ().ID.Substring(4).ToLowerInvariant();
+		}
+
+		/// <summary>
+		/// Handles ItemDataBound event for tabs repeater 
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">Event arguments.</param>
+		protected void repeatTabs_ItemDataBound (object sender, RepeaterItemEventArgs e)
+		{
+			if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+			{
+				var link = e.Item.FindControl ("linkTab") as LinkButton;
+				var tabName = e.Item.DataItem as string;
+				link.Text = Utils.FirstCharToUpperInvariant (tabName);
+				link.CommandArgument = tabName;
+			}
 		}
 
 		#endregion
@@ -454,46 +493,52 @@ namespace R7.University.Launchpad
 		}
 
 		/// <summary>
-		/// Makes tab selected by tab index
+		/// Makes tab selected by its name.
 		/// </summary>
-		/// <param name="index">Index.</param>
-		protected void SelectTab (int index)
+		/// <param name="tabName">Tab name.</param>
+		protected void SelectTab (string tabName)
 		{
-			liPositions.Attributes ["class"] = "";
-			liDivisions.Attributes ["class"] = "";
-			liEmployees.Attributes ["class"] = "";
+			// enumerate all repeater items
+			foreach (RepeaterItem item in repeatTabs.Items)
+				// enumerate all child controls in a item 
+				foreach (var control in item.Controls)
+					if (control is HtmlControl) 
+					{
+						// this means <li>
+						var li = control as HtmlControl;
 
-			switch (index)
-			{
-			case 1:
-				liDivisions.Attributes ["class"] = "ui-tabs-active";
-				break;
-			case 2:
-				liEmployees.Attributes ["class"] = "ui-tabs-active";
-				break;
-			case 0:
-			default:
-				liPositions.Attributes ["class"] = "ui-tabs-active";
-				break;
-			}
+						// set CSS class attribute to <li>,
+						// depending on linkbutton's (first child of <li>) commandname
+						li.Attributes ["class"] = 
+							((li.Controls [0] as LinkButton).CommandArgument == tabName) ? "ui-tabs-active" : "";
+					}
 		}
 
+		/// <summary>
+		/// Finds the view in a multiview by its name.
+		/// </summary>
+		/// <returns>The view.</returns>
+		/// <param name="viewName">View name without prefix.</param>
+		/// <param name="prefix">View name prefix.</param>
+		protected View FindView (string viewName, string prefix = "view")
+		{
+			foreach (View view in multiView.Views)
+				if (view.ID.ToLowerInvariant () == prefix + viewName)
+					return view;
+
+			return null;
+		}
+
+		/// <summary>
+		/// Handles click on tab linkbutton
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">Event arguments.</param>
 		protected void linkTab_Clicked (object sender, EventArgs e)
 		{
-			liPositions.Attributes ["class"] = "";
-			liDivisions.Attributes ["class"] = "";
-			liEmployees.Attributes ["class"] = "";
-
-			if (sender == linkPositions)
-				multiView.ActiveViewIndex = 0;
-			else if (sender == linkDivisions)
-				multiView.ActiveViewIndex = 1;
-			else if (sender == linkEmployees)
-				multiView.ActiveViewIndex = 2;
-			else
-				multiView.ActiveViewIndex = 0;
-		
-			SelectTab (multiView.ActiveViewIndex);
+			var tabName = (sender as LinkButton).CommandArgument;
+			multiView.SetActiveView (FindView(tabName));
+			SelectTab (tabName);
 		}
 	}
 	// class

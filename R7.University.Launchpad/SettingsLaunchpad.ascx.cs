@@ -61,6 +61,10 @@ namespace R7.University.Launchpad
 				settings.PageSize = int.Parse(comboPageSize.SelectedValue);
 				settings.Tables = Utils.FormatList(";", listTables.CheckedItems.Select(i => i.Value).ToArray());
 
+				// remove session variable for active view,
+				// since view set may be changed
+				Session.Remove("Launchpad_ActiveView_" + TabModuleId);
+
 				Utils.SynchronizeModule(this);
 
 			} catch (Exception ex) {
