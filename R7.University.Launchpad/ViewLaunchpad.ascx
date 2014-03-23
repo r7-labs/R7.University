@@ -7,7 +7,7 @@
 		<li id="liEmployees" runat="server"><asp:LinkButton id="linkEmployees" runat="server" OnClick="linkTab_Clicked">Employees</asp:LinkButton></li>
 	</ul>
 
-	<asp:MultiView id="multiView" runat="server" ActiveViewIndex="0">
+	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged">
 		<asp:View runat="server">
 			<div id="positions" style="overflow:auto">
 

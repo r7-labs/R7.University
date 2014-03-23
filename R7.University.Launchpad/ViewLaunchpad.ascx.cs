@@ -42,13 +42,21 @@ namespace R7.University.Launchpad
 		protected override void OnInit (EventArgs e)
 		{
 			base.OnInit (e);
+		
+			// wireup LoadComplete handler 
+			Page.LoadComplete += new EventHandler(OnLoadComplete);
 
 			// initialize "Add" buttons
 			buttonAddPosition.NavigateUrl = Utils.EditUrl (this, "EditPosition");
 			buttonAddDivision.NavigateUrl = Utils.EditUrl (this, "EditDivision");
 			buttonAddEmployee.NavigateUrl = Utils.EditUrl (this, "EditEmployee");
 
-			// multiView.ActiveViewIndex = ActiveViewIndex;
+			// show first view if no session info available
+			if (Session ["Launchpad_ActiveViewIndex_" + TabModuleId] == null)
+			{
+				multiView.ActiveViewIndex = 0;
+				SelectTab (0);
+			}
 		}
 
 		/// <summary>
@@ -58,12 +66,25 @@ namespace R7.University.Launchpad
 		protected override void OnLoad (EventArgs e)
 		{
 			base.OnLoad (e);
+		}
 
-			try
+		/// <summary>
+		/// Fires when module load is complete (after all postback handlers)
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="e">Event agruments.</param>
+		protected void OnLoadComplete(object sender, EventArgs e)
+		{
+			try 
 			{
 				if (!IsPostBack)
 				{
-					// multiView.ActiveViewIndex = ActiveViewIndex;
+					// restore multiview state from session on first load
+					if (Session ["Launchpad_ActiveViewIndex_" + TabModuleId] != null)
+					{
+						multiView.ActiveViewIndex = (int)Session ["Launchpad_ActiveViewIndex_" + TabModuleId];
+						SelectTab (multiView.ActiveViewIndex);
+					}
 
 					gridDivisions.DataSource = DivisionsDataSource ();
 					Session [gridDivisions.ID] = gridDivisions.DataSource;
@@ -82,7 +103,16 @@ namespace R7.University.Launchpad
 			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
-			
+		}
+
+		/// <summary>
+		/// Mirrors multiview ActiveViewIndex changes in session variable
+		/// </summary>
+		/// <param name="sender">Sender (a MultiView)</param>
+		/// <param name="e">Event arguments</param>
+		protected void multiView_ActiveViewChanged (object sender, EventArgs e)
+		{
+			Session ["Launchpad_ActiveViewIndex_" + TabModuleId] = multiView.ActiveViewIndex;
 		}
 
 		#endregion
@@ -423,6 +453,31 @@ namespace R7.University.Launchpad
 			lblContent.Text = Server.HtmlDecode (item.Content);
 		}
 
+		/// <summary>
+		/// Makes tab selected by tab index
+		/// </summary>
+		/// <param name="index">Index.</param>
+		protected void SelectTab (int index)
+		{
+			liPositions.Attributes ["class"] = "";
+			liDivisions.Attributes ["class"] = "";
+			liEmployees.Attributes ["class"] = "";
+
+			switch (index)
+			{
+			case 1:
+				liDivisions.Attributes ["class"] = "ui-tabs-active";
+				break;
+			case 2:
+				liEmployees.Attributes ["class"] = "ui-tabs-active";
+				break;
+			case 0:
+			default:
+				liPositions.Attributes ["class"] = "ui-tabs-active";
+				break;
+			}
+		}
+
 		protected void linkTab_Clicked (object sender, EventArgs e)
 		{
 			liPositions.Attributes ["class"] = "";
@@ -430,29 +485,15 @@ namespace R7.University.Launchpad
 			liEmployees.Attributes ["class"] = "";
 
 			if (sender == linkPositions)
-			{
-				liPositions.Attributes ["class"] = "ui-tabs-active";
-				// ActiveViewIndex = 0;
 				multiView.ActiveViewIndex = 0;
-			}
 			else if (sender == linkDivisions)
-			{
-				liDivisions.Attributes ["class"] = "ui-tabs-active";
-				// ActiveViewIndex = 1;
 				multiView.ActiveViewIndex = 1;
-			}
 			else if (sender == linkEmployees)
-			{
-				liEmployees.Attributes ["class"] = "ui-tabs-active";
-				// ActiveViewIndex = 2;
 				multiView.ActiveViewIndex = 2;
-			}
 			else
-			{
-				liPositions.Attributes ["class"] = "ui-tabs-active";
-				// ActiveViewIndex = 0;
 				multiView.ActiveViewIndex = 0;
-			}
+		
+			SelectTab (multiView.ActiveViewIndex);
 		}
 	}
 	// class
