@@ -287,6 +287,15 @@ namespace R7.University.Employee
 			else
 				linkEmail.Visible = false;
 
+			// Secondary email
+			if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail))
+			{
+				linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
+				linkSecondaryEmail.Text = employee.SecondaryEmail;
+			}
+			else
+				linkSecondaryEmail.Visible = false;
+
 			// Profile link
 			if (!Utils.IsNull<int> (employee.UserID))
 			{

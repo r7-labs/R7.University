@@ -28,6 +28,7 @@ namespace R7.University.Employee
 
 		protected HyperLink linkWebSite;
 		protected HyperLink linkEmail;
+		protected HyperLink linkSecondaryEmail;
 		protected HyperLink linkUserProfile;
 		protected Repeater repeaterPositions;
 	}

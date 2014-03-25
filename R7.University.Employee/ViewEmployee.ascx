@@ -23,14 +23,9 @@
 		<FooterTemplate></ul></FooterTemplate>
 	</asp:Repeater>
 
-
-
-		<%--
-	<asp:Label id="labelWorkingPlace" runat="server" />
-	<asp:Label id="labelWorkingHours" runat="server" />
-		--%>
 	<div class="Employee_OnlineContacts">
 		<asp:HyperLink id="linkEmail" runat="server" CssClass="email Employee_Email" />
+		<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email Employee_Email" />
 		<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="Employee_Label" />
 		<asp:Label id="labelMessenger" runat="server" CssClass="Employee_Label" />
 	</div>
