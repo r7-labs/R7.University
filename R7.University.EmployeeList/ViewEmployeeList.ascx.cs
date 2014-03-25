@@ -219,7 +219,7 @@ namespace R7.University.EmployeeList
 				linkEmail.Visible = false;
 
 			// secondary email
-			if (!string.IsNullOrWhiteSpace (employee.Email))
+			if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail))
 			{
 				linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
 				linkSecondaryEmail.Text = employee.SecondaryEmail; 
