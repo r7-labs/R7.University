@@ -17,7 +17,7 @@
 			<div id="positions" style="overflow:auto">
 					<asp:HyperLink runat="server" id="buttonAddPosition" CssClass="dnnPrimaryAction">Add position</asp:HyperLink><br />
 					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="true"
-					PageSize="15" AllowPaging="true" AllowSorting="true" GridLines="None"
+					AllowPaging="true" AllowSorting="true" GridLines="None"
 					OnSorting="gridView_Sorting" 
 					OnPageIndexChanging="gridView_PageIndexChanging"
 					OnRowDataBound="gridView_RowDataBound" CssClass="dnnGrid">
@@ -46,7 +46,7 @@
 			<div id="divisions" style="overflow:auto">
 				<asp:HyperLink runat="server" id="buttonAddDivision" CssClass="dnnPrimaryAction">Add division</asp:HyperLink><br />
 				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="true" 
-				PageSize="15" AllowPaging="true" AllowSorting="true" GridLines="None"
+				AllowPaging="true" AllowSorting="true" GridLines="None"
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
 				OnRowDataBound="gridView_RowDataBound">
@@ -75,7 +75,7 @@
 			<div id="employees" style="overflow:auto">
 				<asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink><br />
 				<asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" 
-				PageSize="15" AllowPaging="true" AllowSorting="true" GridLines="None" 
+				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
 				OnRowDataBound="gridView_RowDataBound">

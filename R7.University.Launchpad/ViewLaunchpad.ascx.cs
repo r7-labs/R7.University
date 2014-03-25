@@ -63,6 +63,12 @@ namespace R7.University.Launchpad
 					SelectTab (tabNames [0]);
 				}
 			}
+
+			// apply page size setting to gridview's
+			var pageSize = settings.PageSize;
+			gridPositions.PageSize = pageSize;
+			gridDivisions.PageSize = pageSize;
+			gridEmployees.PageSize = pageSize;
 		}
 
 		/// <summary>
