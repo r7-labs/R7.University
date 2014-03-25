@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
@@ -138,7 +139,9 @@ namespace R7.University.EmployeeList
 			var labelPositions = e.Item.FindControl ("labelPositions") as Label;
 			var labelPhones = e.Item.FindControl ("labelPhones") as Label;
 			var linkEmail = e.Item.FindControl ("linkEmail") as HyperLink;
+			var linkSecondaryEmail = e.Item.FindControl ("linkSecondaryEmail") as HyperLink;
 			var linkWebSite = e.Item.FindControl ("linkWebSite") as HyperLink;
+			var linkUserProfile = e.Item.FindControl ("linkUserProfile") as HyperLink;
 
 			// read module settings (may be useful in a future)
 			// var settings = new EmployeeListSettings (this);            
@@ -215,6 +218,15 @@ namespace R7.University.EmployeeList
 			else
 				linkEmail.Visible = false;
 
+			// secondary email
+			if (!string.IsNullOrWhiteSpace (employee.Email))
+			{
+				linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
+				linkSecondaryEmail.Text = employee.SecondaryEmail; 
+			}
+			else
+				linkSecondaryEmail.Visible = false;
+
 			// website
 			if (!string.IsNullOrWhiteSpace (employee.WebSite))
 			{
@@ -237,6 +249,16 @@ namespace R7.University.EmployeeList
 			}
 			else
 				linkWebSite.Visible = false;
+
+			// Profile link
+			if (!Utils.IsNull<int> (employee.UserID))
+			{
+				linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
+				// TODO: Replace profile text with something more sane
+				linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
+			}
+			else
+				linkUserProfile.Visible = false;
 
 			// occupied positions
 			// NOTE: Current division positions go first, then checks IsPrime, then PositionWeight

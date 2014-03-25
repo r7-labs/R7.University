@@ -8,5 +8,9 @@
 .EmployeeList_FullName { font-style:italic; }
 .EmployeeList_Positions { display:block; margin-top:8px }
 .EmployeeList_Phones { display:block; margin-top:8px }
-.EmployeeList_Email {  display:inline-block; margin-top:8px;margin-right:8px }
-.EmployeeList_WebSite {  display:inline-block; margin-top:8px;margin-right:8px }
+.EmployeeList_Email, .EmployeeList_WebSite, .EmployeeList_UserProfile  
+{  
+	display:inline-block; 
+	margin-top:8px;
+	margin-right:8px 
+}

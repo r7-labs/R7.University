@@ -12,7 +12,9 @@
 				<asp:Label id="labelAcademicDegreeAndTitle" runat="server" CssClass="EmployeeList_AcademicDegreeAndTitle" />
 				<asp:Label id="labelPositions" runat="server" CssClass="EmployeeList_Positions" />
 				<asp:HyperLink id="linkEmail" runat="server" CssClass="EmployeeList_Email email" />
+				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="EmployeeList_Email email" />
 				<asp:HyperLink id="linkWebSite" runat="server" CssClass="EmployeeList_WebSite" />
+				<asp:HyperLink id="linkUserProfile" runat="server" CssClass="more EmployeeList_UserProfile" />
 				<asp:Label id="labelPhones" runat="server" CssClass="EmployeeList_Phones" />
 			</div>
 		</div>
