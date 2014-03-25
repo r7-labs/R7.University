@@ -301,7 +301,7 @@ namespace R7.University.Employee
 			{
 				linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
 				// TODO: Replace profile text with something more sane
-				linkUserProfile.Text = Localization.GetString ("ViewProfile.Text", LocalResourceFile);
+				linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
 			}
 			else
 				linkUserProfile.Visible = false;

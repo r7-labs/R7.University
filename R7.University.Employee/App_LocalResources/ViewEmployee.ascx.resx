@@ -26,8 +26,8 @@
 	<data name="EmployeeNotPublished.Text" xml:space="preserve">
   	<value>Selected employee not published.</value>
   </data>
-  <data name="ViewProfile.Text" xml:space="preserve">
-    <value>View profile</value>
+  <data name="VisitProfile.Text" xml:space="preserve">
+    <value>Visit profile</value>
   </data>
   <data name="Fax.Text" xml:space="preserve">
     <value>(fax)</value>
