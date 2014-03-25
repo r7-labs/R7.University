@@ -33,7 +33,7 @@ Global
 		{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = R7.University.EmployeeList\R7.University.EmployeeList.csproj
+		StartupItem = R7.University.Launchpad\R7.University.Launchpad.csproj
 		version = 1.0.2
 	EndGlobalSection
 EndGlobal

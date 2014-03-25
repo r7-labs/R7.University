@@ -1,4 +1,16 @@
-﻿<h3>Version 01.00.02</h3>
+﻿<h3>Version 01.00.03</h3>
+<p>This is stabilization release for 01.00.00.</p>
+<ul>
+	<li>Make setting and realize ability to select tables to display in Launchpad module.</li>
+	<li>Added page size option for Launchpad module.</li>
+	<li>Removed text wrapping around photo and edit link in EmployeeList module.</li>
+	<li>Ability to display secondary email and profile links in Employee and EmployeeList modules.</li>
+	<li>Lauchpad now preserve selected tab between page loads using session variable.</li>
+	<li>Ability to add new employee right from Employee module.</li>
+	<li>Added package script.</li>
+</ul>
+
+<h3>Version 01.00.02</h3>
 <p>This is stabilization release for 01.00.00.</p>
 <ul>
 	<li>Fix for issue #1 - DnnFilePickerUploader misses it's state between postbacks.</li>
