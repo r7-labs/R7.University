@@ -34,6 +34,6 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = R7.University.Launchpad\R7.University.Launchpad.csproj
-		version = 1.0.2
+		version = 1.0.4
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,13 @@
-﻿<h3>Version 01.00.03</h3>
+﻿<h3>Version 01.00.04</h3>
+<p>This is stabilization release for 01.00.04.</p>
+<ul>
+	<li>Photo thumbnails now generated with R7.ImageHandler.</li>
+	<li>Added settings to photo thumbnail width to Employee and EmployeeList modules.</li>
+	<li>Fix for issue #4: University_Positions.ShortTitle field length expanded to 64.</li>
+</ul>
+<p><strong>Note:</strong> R7.ImageHandler is not required if photo width settings in Employee and EmployeeList modules is not set - original photos are used instead.</p>
+
+<h3>Version 01.00.03</h3>
 <p>This is stabilization release for 01.00.00.</p>
 <ul>
 	<li>Make setting and realize ability to select tables to display in Launchpad module.</li>
