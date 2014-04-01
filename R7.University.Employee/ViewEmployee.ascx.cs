@@ -162,6 +162,7 @@ namespace R7.University.Employee
 		protected void Display (EmployeeInfo employee)
 		{
 			var ctrl = new EmployeeController ();
+			var setting = new EmployeeSettings (this);
 
 			// occupied positions
 			var occupiedPositions = ctrl.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight]", employee.EmployeeID);
@@ -180,10 +181,29 @@ namespace R7.University.Employee
 			// Photo
 			if (!Utils.IsNull<int> (employee.PhotoFileID))
 			{
-				imagePhoto.ImageUrl = Utils.FormatURL (this, "FileID=" + employee.PhotoFileID, false);
+				// imagePhoto.ImageUrl = Utils.FormatURL (this, "FileID=" + employee.PhotoFileID, false);
+				// var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
+				// imagePhoto.Width = image.Width;
+				// imagePhoto.Height = image.Height;
+
 				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-				imagePhoto.Width = image.Width;
-				imagePhoto.Height = image.Height;
+				var photoWidth = setting.PhotoWidth;
+
+				if (!Null.IsNull (photoWidth))
+				{
+					imagePhoto.Width = photoWidth;
+					imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
+
+					imagePhoto.ImageUrl = string.Format(
+						"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
+				}
+				else
+				{
+					// use original image
+					imagePhoto.Width = image.Width;
+					imagePhoto.Height = image.Height;
+					imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
+				}
 
 				// set alt & title for photo
 				imagePhoto.AlternateText = fullName;

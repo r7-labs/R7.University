@@ -33,6 +33,8 @@ namespace R7.University.Employee
 
 					checkAutoTitle.Checked = settings.AutoTitle;
 
+					if (!Null.IsNull(settings.PhotoWidth))
+						textPhotoWidth.Text = settings.PhotoWidth.ToString();
 				}
 			}
 			catch (Exception ex)
@@ -52,6 +54,11 @@ namespace R7.University.Employee
 				
 				settings.EmployeeID = int.Parse(comboEmployees.SelectedValue);
 				settings.AutoTitle = checkAutoTitle.Checked;
+
+				if (!string.IsNullOrWhiteSpace(textPhotoWidth.Text))
+					settings.PhotoWidth = int.Parse(textPhotoWidth.Text);
+				else
+					settings.PhotoWidth = Null.NullInteger;
 
 				Utils.SynchronizeModule(this);
 

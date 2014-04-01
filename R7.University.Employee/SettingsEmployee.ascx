@@ -10,6 +10,10 @@
 			<dnnweb:DnnComboBox id="comboEmployees" runat="server" />
 		</div>
 		<div class="dnnFormItem">
+			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" Suffix=":" />
+			<asp:TextBox id="textPhotoWidth" runat="server" Style="width:100px" />
+		</div>
+		<div class="dnnFormItem">
 			<dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" Suffix=":" />
 			<asp:CheckBox id="checkAutoTitle" runat="server" Checked="true" />
 		</div>

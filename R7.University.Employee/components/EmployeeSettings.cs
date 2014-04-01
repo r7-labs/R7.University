@@ -29,6 +29,13 @@ namespace R7.University.Employee
 			set { WriteSetting<bool> ("Employee_AutoTitle", value, false); }
 		}
 
+		public int PhotoWidth
+		{
+			// REVIEW: Need a way to customize default settings like PhotoWidth
+			get { return ReadSetting<int> ("Employee_PhotoWidth", 192, true); }
+			set { WriteSetting<int> ("Employee_PhotoWidth", value, true); }
+		}
+
 		#endregion
 	}
 }

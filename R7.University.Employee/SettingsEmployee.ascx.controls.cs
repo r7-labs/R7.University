@@ -15,5 +15,7 @@ namespace R7.University.Employee
 		protected DnnComboBox comboEmployees;
 		protected LabelControl labelAutoTitle;
 		protected CheckBox checkAutoTitle;
+		protected LabelControl labelPhotoWidth;
+		protected TextBox textPhotoWidth;
 	}
 }

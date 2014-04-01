@@ -18,4 +18,10 @@
 	<data name="labelAutoTitle.Help" xml:space="preserve">
     	<value>If checked, module title will be set to employee name.</value>
   	</data>
+	<data name="labelPhotoWidth.Text" xml:space="preserve">
+    	<value>Photo Width</value>
+  	</data>
+	<data name="labelPhotoWidth.Help" xml:space="preserve">
+    	<value>Enter photo width in pixels, or leave empty to use original photo size.</value>
+  	</data>
 </root>
