@@ -22,5 +22,9 @@
 			<dnn:Label id="labelSortType" runat="server" ControlName="comboSortType" Suffix=":" />
 			<dnnweb:DnnComboBox id="comboSortType" runat="server"/>
 		</div>
+		<div class="dnnFormItem">
+			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" Suffix=":" />
+			<asp:TextBox id="textPhotoWidth" runat="server" Style="width:100px" />
+		</div>
 	</fieldset>	
 </div>

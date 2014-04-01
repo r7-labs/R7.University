@@ -61,6 +61,13 @@ namespace R7.University.EmployeeList
 			set { WriteSetting<int> ("EmployeeList_SortType", value, true); }
 		}
 
+		public int PhotoWidth
+		{
+			// REVIEW: Need a way to customize default settings like PhotoWidth
+			get { return ReadSetting<int> ("EmployeeList_PhotoWidth", 120, true); }
+			set { WriteSetting<int> ("EmployeeList_PhotoWidth", value, true); }
+		}
+
 		#endregion
 	}
 }

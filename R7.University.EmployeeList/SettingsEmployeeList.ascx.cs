@@ -63,6 +63,9 @@ namespace R7.University.EmployeeList
 					comboSortType.AddItem(Localization.GetString("SortTypeByName.Text", LocalResourceFile), "2");
 
 					comboSortType.Select(settings.SortType.ToString(), false);
+
+					if (!Null.IsNull(settings.PhotoWidth))
+						textPhotoWidth.Text = settings.PhotoWidth.ToString();
 				}
 			}
 			catch (Exception ex)
@@ -83,6 +86,11 @@ namespace R7.University.EmployeeList
 				settings.DivisionID = int.Parse(treeDivisions.SelectedValue);
 				settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
 				settings.SortType = int.Parse(comboSortType.SelectedValue);
+
+				if (!string.IsNullOrWhiteSpace(textPhotoWidth.Text))
+					settings.PhotoWidth = int.Parse(textPhotoWidth.Text);
+				else
+					settings.PhotoWidth = Null.NullInteger;
 
 				Utils.SynchronizeModule (this);
 			}
