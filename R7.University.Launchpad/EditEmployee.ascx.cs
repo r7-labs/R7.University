@@ -131,11 +131,17 @@ namespace R7.University.Launchpad
 							checkIsPublished.Checked = item.IsPublished;
 							// checkIsDeleted.Checked = item.IsDeleted;
 
+					
 							// set photo
 							if (!Utils.IsNull (item.PhotoFileID))
-								pickerPhoto.FilePath = FileManager.Instance.GetUrl (
-									FileManager.Instance.GetFile (item.PhotoFileID.Value))
+							{
+								var photo = FileManager.Instance.GetFile (item.PhotoFileID.Value);
+								if (photo != null)
+								{
+									pickerPhoto.FilePath = FileManager.Instance.GetUrl (photo)
 										.Remove (0, PortalSettings.HomeDirectory.Length);
+								}
+							}
 
 							//	Utils.Message(this, MessageSeverity.Info, item.PhotoURL.Replace("File=",""));
 
