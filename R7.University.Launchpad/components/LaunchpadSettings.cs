@@ -10,13 +10,11 @@ namespace R7.University.Launchpad
 	/// </summary>
 	public class LaunchpadSettings : SettingsWrapper
 	{
-		#region Properties for settings
-
 		public LaunchpadSettings (IModuleControl module) : base (module)
 		{
-			// ctrl = new ModuleController (); 
-			// this.module = module;
 		}
+
+		#region Properties for settings
 
 		public int PageSize
 		{

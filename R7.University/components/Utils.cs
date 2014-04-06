@@ -228,12 +228,6 @@ namespace R7.University
 			moduleController.ClearCache (module.ModuleContext.TabId);
 
 		}
-
-	}
-
-
-
-	// class
-}
- // namespace
-
+	} // class
+} // namespace
+	
