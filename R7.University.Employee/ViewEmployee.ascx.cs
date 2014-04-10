@@ -178,6 +178,7 @@ namespace R7.University.Employee
 			var fullName = employee.FullName;
 			labelFullName.Text = fullName;
 
+			var imageVisible = false;
 			// Photo
 			if (!Utils.IsNull<int> (employee.PhotoFileID))
 			{
@@ -187,28 +188,37 @@ namespace R7.University.Employee
 				// imagePhoto.Height = image.Height;
 
 				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-				var photoWidth = setting.PhotoWidth;
-
-				if (!Null.IsNull (photoWidth))
+				if (image != null)
 				{
-					imagePhoto.Width = photoWidth;
-					imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
+					var photoWidth = setting.PhotoWidth;
 
-					imagePhoto.ImageUrl = string.Format(
-						"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
-				}
-				else
-				{
-					// use original image
-					imagePhoto.Width = image.Width;
-					imagePhoto.Height = image.Height;
-					imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
-				}
+					if (!Null.IsNull (photoWidth))
+					{
+						imagePhoto.Width = photoWidth;
+						imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
 
-				// set alt & title for photo
-				imagePhoto.AlternateText = fullName;
-				imagePhoto.ToolTip = fullName;
+						imagePhoto.ImageUrl = string.Format (
+							"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
+					}
+					else
+					{
+						// use original image
+						imagePhoto.Width = image.Width;
+						imagePhoto.Height = image.Height;
+						imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
+					}
+
+					// set alt & title for photo
+					imagePhoto.AlternateText = fullName;
+					imagePhoto.ToolTip = fullName;
+
+					// make image visible
+					imageVisible = true;
+				}
 			}
+
+			// REVIEW: Need to add fallback image?
+			imagePhoto.Visible = imageVisible;
 
 			// Academic degree & title
 			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
