@@ -23,9 +23,6 @@
 			<dnn:Label id="lblDivisionTerm" runat="server" ControlName="tsDivisionTerm" Suffix=":" />
 			<dnnweb:DnnTreeView ID="treeDivisionTerms" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE" />
 			<br /><br />
-			<%-- <dnnweb:TermsList ID="listDivisionTerms" runat="server" /> --%>
-			<%-- <dnnweb:TermsSelector ID="tsDivisionTerm" runat="server" /> --%>
-			<%-- <asp:DropDownList id="ddlDivisionTerm" runat="server" /> --%>
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblHomePage" runat="server" ControlName="urlHomePage" Suffix=":" />
