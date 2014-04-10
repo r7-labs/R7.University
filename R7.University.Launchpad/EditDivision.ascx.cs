@@ -188,54 +188,44 @@ namespace R7.University.Launchpad
 			try {
 				var ctrl = new LaunchpadController ();
 				DivisionInfo item;
-
+		
 				// determine if we are adding or updating
 				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue) {
-
-					// to add new record
+				if (!itemId.HasValue) 
+				{
+					// add new record
 					item = new DivisionInfo ();
+				}
+				else
+				{	
+					// update existing record
+					item = ctrl.Get<DivisionInfo> (itemId.Value);
+				}
 
-					item.Title = txtTitle.Text;
-					item.ShortTitle = txtShortTitle.Text;
-					item.Email = txtEmail.Text;
-					item.SecondaryEmail = txtSecondaryEmail.Text;
-					item.Phone = txtPhone.Text;
-					item.Fax = txtFax.Text;
-					item.Location = txtLocation.Text;
-					item.WorkingHours = txtWorkingHours.Text;
-					item.WebSite = txtWebSite.Text;
+				// fill the object
+				item.Title = txtTitle.Text;
+				item.ShortTitle = txtShortTitle.Text;
+				item.Email = txtEmail.Text;
+				item.SecondaryEmail = txtSecondaryEmail.Text;
+				item.Phone = txtPhone.Text;
+				item.Fax = txtFax.Text;
+				item.Location = txtLocation.Text;
+				item.WorkingHours = txtWorkingHours.Text;
+				item.WebSite = txtWebSite.Text;
+				item.ParentDivisionID = Utils.ParseToNullableInt(comboParentDivisions.SelectedValue);
+				item.DivisionTermID = Utils.ParseToNullableInt(treeDivisionTerms.SelectedValue);
+				item.HomePage = urlHomePage.Url;
 
-					item.ParentDivisionID = Utils.ParseToNullableInt(comboParentDivisions.SelectedValue);
-					item.DivisionTermID = Utils.ParseToNullableInt(treeDivisionTerms.SelectedValue);
-				
-					item.HomePage = urlHomePage.Url;
-
+				if (!itemId.HasValue)
+			    {
 					// update audit info
 					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 
 					ctrl.Add<DivisionInfo> (item);
-				} else {
-
-					// to update existing record
-					item = ctrl.Get<DivisionInfo> (itemId.Value);
-
-					item.Title = txtTitle.Text;
-					item.ShortTitle = txtShortTitle.Text;
-					item.Email = txtEmail.Text;
-					item.SecondaryEmail = txtSecondaryEmail.Text;
-					item.Phone = txtPhone.Text;
-					item.Fax = txtFax.Text;
-					item.Location = txtLocation.Text;
-					item.WorkingHours = txtWorkingHours.Text;
-					item.WebSite = txtWebSite.Text;
-				
-					item.ParentDivisionID = Utils.ParseToNullableInt(comboParentDivisions.SelectedValue);
-					item.DivisionTermID = Utils.ParseToNullableInt(treeDivisionTerms.SelectedValue);
-
-					item.HomePage = urlHomePage.Url;
-
+				}
+				else
+				{
 					// update audit info
 					item.LastModifiedByUserID = this.UserId;
 					item.LastModifiedOnDate = DateTime.Now;
