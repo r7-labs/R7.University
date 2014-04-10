@@ -14,9 +14,9 @@
 	<div id="employeeTabs" class="dnnForm dnnClear">
 	<ul class="dnnAdminTabNav dnnClear">
 	    <li><a href="#employeeCommon">Common</a></li>
-	    <li><a href="#employeeAbout">About</a></li>
 	    <li><a href="#employeePositions">Positions</a></li>
 	    <li><a href="#employeeAchivements">Achivements</a></li>
+	    <li><a href="#employeeAbout">About</a></li>
 	</ul>
 	<br /><br />
 	<div id="employeeCommon">
@@ -137,17 +137,6 @@
 		</fieldset>
 	</div>
 
-	<div id="employeeAbout">
-		<fieldset>
-			<div class="dnnFormItem">
-				<%-- <dnn:Label id="labelBiography" runat="server" ControlName="textBiography" Suffix=":" /> --%>
-				<div style="margin-right:20px">
-					<dnn:TextEditor id="textBiography" runat="server" Width="100%" Height="300px" />
-				</div>
-			</div>
-		</fieldset>
-	</div>
-
 	<div id="employeePositions">
 		<fieldset>
 			<div class="dnnFormItem">
@@ -233,6 +222,17 @@
 		</div>
 	</fieldset>
 	--%>
+
+	<div id="employeeAbout">
+		<fieldset>
+			<div class="dnnFormItem">
+				<%-- <dnn:Label id="labelBiography" runat="server" ControlName="textBiography" Suffix=":" /> --%>
+				<div style="margin-right:20px">
+					<dnn:TextEditor id="textBiography" runat="server" Width="100%" Height="300px" />
+				</div>
+			</div>
+		</fieldset>
+	</div>
 
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
