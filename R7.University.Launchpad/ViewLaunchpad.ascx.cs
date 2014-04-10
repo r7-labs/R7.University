@@ -22,6 +22,33 @@ namespace R7.University.Launchpad
 		#region Handlers
 
 		/// <summary>
+		/// Get DataTable stored in Session by GridView ID
+		/// </summary>
+		/// <returns>The data table.</returns>
+		/// <param name="gridviewId">Gridview identifier.</param>
+		private DataTable GetDataTable  (string gridviewId)
+		{
+			var session = Session [gridviewId];
+			if (session == null)
+			{
+				switch (gridviewId)
+				{
+				case "gridPositions": 
+					session = PositionsDataSource ();
+					break;
+				case "gridDivisions": 
+					session = DivisionsDataSource ();
+					break;
+				case "gridEmployees": 
+					session = EmployeesDataSource ();
+					break;
+				}
+				Session [gridviewId] = session;
+			}
+			return session as DataTable;
+		}
+
+		/// <summary>
 		/// Handles Init event for a control
 		/// </summary>
 		/// <param name="e">Event args.</param>
@@ -205,7 +232,7 @@ namespace R7.University.Launchpad
 			var gv = sender as GridView;
 
 			//Retrieve the table from the session object.
-			var dt = Session [gv.ID] as DataTable;
+			var dt = GetDataTable (gv.ID);
 
 			if (dt != null)
 			{
@@ -413,7 +440,7 @@ namespace R7.University.Launchpad
 		protected void gridView_PageIndexChanging (object sender, GridViewPageEventArgs e)
 		{
 			var gv = sender as GridView;
-			var dt = Session [gv.ID] as DataTable;
+			var dt = GetDataTable (gv.ID);
 
 			if (dt != null)
 			{
