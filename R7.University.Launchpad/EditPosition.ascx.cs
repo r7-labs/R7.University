@@ -105,8 +105,8 @@ namespace R7.University.Launchpad
 				}
 
 				// fill the object
-				item.Title = txtTitle.Text;
-				item.ShortTitle = txtShortTitle.Text;
+				item.Title = txtTitle.Text.Trim();
+				item.ShortTitle = txtShortTitle.Text.Trim();
 				item.Weight = int.Parse(txtWeight.Text);				
 
 				if (!itemId.HasValue) 
