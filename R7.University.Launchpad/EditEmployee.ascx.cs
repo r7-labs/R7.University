@@ -239,43 +239,44 @@ namespace R7.University.Launchpad
 				// ALT: if (Null.IsNull (itemId))
 				if (!itemId.HasValue)
 				{
-					// TODO: populate new object properties with data from controls 
 					// to add new record
 					item = new EmployeeInfo ();
+				}
+				else
+				{
+					// update existing record
+					item = ctrl.Get<EmployeeInfo> (itemId.Value);
+				}
 
-					item.LastName = textLastName.Text;
-					item.FirstName = textFirstName.Text;
-					item.OtherName = textOtherName.Text;
-					item.NamePrefix = textNamePrefix.Text;
-					item.AcademicTitle = textAcademicTitle.Text;
-					item.AcademicDegree = textAcademicDegree.Text;
-					item.Phone = textPhone.Text;
-					item.CellPhone = textCellPhone.Text;
-					item.Fax = textFax.Text;
-					item.Email = textEmail.Text;
-					item.SecondaryEmail = textSecondaryEmail.Text;
-					item.WebSite = textWebSite.Text;
-					item.Messenger = textMessenger.Text;
-					item.WorkingHours = textWorkingHours.Text;
-					item.WorkingPlace = textWorkingPlace.Text;
-					item.Biography = textBiography.Text;
+				// fill the object
+				item.LastName = textLastName.Text;
+				item.FirstName = textFirstName.Text;
+				item.OtherName = textOtherName.Text;
+				item.NamePrefix = textNamePrefix.Text;
+				item.AcademicTitle = textAcademicTitle.Text;
+				item.AcademicDegree = textAcademicDegree.Text;
+				item.Phone = textPhone.Text;
+				item.CellPhone = textCellPhone.Text;
+				item.Fax = textFax.Text;
+				item.Email = textEmail.Text;
+				item.SecondaryEmail = textSecondaryEmail.Text;
+				item.WebSite = textWebSite.Text;
+				item.Messenger = textMessenger.Text;
+				item.WorkingHours = textWorkingHours.Text;
+				item.WorkingPlace = textWorkingPlace.Text;
+				item.Biography = textBiography.Text;
 
-					item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
-					item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);
+				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
+				item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);
 
-					item.IsPublished = checkIsPublished.Checked;
-					// item.IsDeleted = checkIsDeleted.Checked;
+				item.IsPublished = checkIsPublished.Checked;
 
-					// pickerPhoto.FileID may be 0 by default
-					item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?)pickerPhoto.FileID : null;
+				// pickerPhoto.FileID may be 0 by default
+				item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?)pickerPhoto.FileID : null;
+				item.UserID = Utils.ParseToNullableInt (comboUsers.SelectedValue);
 
-					// item.UserID = Utils.ParseToNullableInt (listUsers.SelectedValue);
-					item.UserID = Utils.ParseToNullableInt (comboUsers.SelectedValue);
-
-					// parse user url
-					// item.UserID = Utils.ParseToNullableInt(urlUser.Url.ToUpperInvariant().Replace("USERID=",""));
-					//Utils.Message (this, MessageSeverity.Info, urlUser.Url);
-
+				if (!itemId.HasValue)
+				{		
 					// update audit info
 					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
@@ -305,43 +306,6 @@ namespace R7.University.Launchpad
 				}
 				else
 				{
-					// TODO: update properties of existing object with data from controls 
-					// to update existing record
-					item = ctrl.Get<EmployeeInfo> (itemId.Value);
-
-					item.LastName = textLastName.Text;
-					item.FirstName = textFirstName.Text;
-					item.OtherName = textOtherName.Text;
-					item.NamePrefix = textNamePrefix.Text;
-					item.AcademicTitle = textAcademicTitle.Text;
-					item.AcademicDegree = textAcademicDegree.Text;
-					item.Phone = textPhone.Text;
-					item.CellPhone = textCellPhone.Text;
-					item.Fax = textFax.Text;
-					item.Email = textEmail.Text;
-					item.SecondaryEmail = textSecondaryEmail.Text;
-					item.WebSite = textWebSite.Text;
-					item.Messenger = textMessenger.Text;
-					item.WorkingHours = textWorkingHours.Text;
-					item.WorkingPlace = textWorkingPlace.Text;
-					item.Biography = textBiography.Text;
-
-					item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
-					item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);
-
-					item.IsPublished = checkIsPublished.Checked;
-					// item.IsDeleted = checkIsDeleted.Checked;
-
-					// pickerPhoto.FileID may be 0 by default
-					item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?)pickerPhoto.FileID : null;
-
-					// item.UserID = Utils.ParseToNullableInt (listUsers.SelectedValue);
-					item.UserID = Utils.ParseToNullableInt (comboUsers.SelectedValue);
-
-					// parse user url
-					// item.UserID = Utils.ParseToNullableInt(urlUser.Url.ToUpperInvariant().Replace("USERID=",""));
-					//Utils.Message (this, MessageSeverity.Info, urlUser.Url);
-
 					// update audit info
 					item.LastModifiedByUserID = this.UserId;
 					item.LastModifiedOnDate = DateTime.Now;
