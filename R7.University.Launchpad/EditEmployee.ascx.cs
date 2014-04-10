@@ -249,22 +249,22 @@ namespace R7.University.Launchpad
 				}
 
 				// fill the object
-				item.LastName = textLastName.Text;
-				item.FirstName = textFirstName.Text;
-				item.OtherName = textOtherName.Text;
-				item.NamePrefix = textNamePrefix.Text;
-				item.AcademicTitle = textAcademicTitle.Text;
-				item.AcademicDegree = textAcademicDegree.Text;
-				item.Phone = textPhone.Text;
-				item.CellPhone = textCellPhone.Text;
-				item.Fax = textFax.Text;
-				item.Email = textEmail.Text;
-				item.SecondaryEmail = textSecondaryEmail.Text;
-				item.WebSite = textWebSite.Text;
-				item.Messenger = textMessenger.Text;
-				item.WorkingHours = textWorkingHours.Text;
-				item.WorkingPlace = textWorkingPlace.Text;
-				item.Biography = textBiography.Text;
+				item.LastName = textLastName.Text.Trim();
+				item.FirstName = textFirstName.Text.Trim();
+				item.OtherName = textOtherName.Text.Trim();
+				item.NamePrefix = textNamePrefix.Text.Trim();
+				item.AcademicTitle = textAcademicTitle.Text.Trim();
+				item.AcademicDegree = textAcademicDegree.Text.Trim();
+				item.Phone = textPhone.Text.Trim();
+				item.CellPhone = textCellPhone.Text.Trim();
+				item.Fax = textFax.Text.Trim();
+				item.Email = textEmail.Text.Trim();
+				item.SecondaryEmail = textSecondaryEmail.Text.Trim();
+				item.WebSite = textWebSite.Text.Trim();
+				item.Messenger = textMessenger.Text.Trim();
+				item.WorkingHours = textWorkingHours.Text.Trim();
+				item.WorkingPlace = textWorkingPlace.Text.Trim();
+				item.Biography = textBiography.Text.Trim();
 
 				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
 				item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);
