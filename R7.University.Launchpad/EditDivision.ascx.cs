@@ -203,15 +203,15 @@ namespace R7.University.Launchpad
 				}
 
 				// fill the object
-				item.Title = txtTitle.Text;
-				item.ShortTitle = txtShortTitle.Text;
-				item.Email = txtEmail.Text;
-				item.SecondaryEmail = txtSecondaryEmail.Text;
-				item.Phone = txtPhone.Text;
-				item.Fax = txtFax.Text;
-				item.Location = txtLocation.Text;
-				item.WorkingHours = txtWorkingHours.Text;
-				item.WebSite = txtWebSite.Text;
+				item.Title = txtTitle.Text.Trim();
+				item.ShortTitle = txtShortTitle.Text.Trim();
+				item.Email = txtEmail.Text.Trim();
+				item.SecondaryEmail = txtSecondaryEmail.Text.Trim();
+				item.Phone = txtPhone.Text.Trim();
+				item.Fax = txtFax.Text.Trim();
+				item.Location = txtLocation.Text.Trim();
+				item.WorkingHours = txtWorkingHours.Text.Trim();
+				item.WebSite = txtWebSite.Text.Trim();
 				item.ParentDivisionID = Utils.ParseToNullableInt(comboParentDivisions.SelectedValue);
 				item.DivisionTermID = Utils.ParseToNullableInt(treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;
