@@ -187,6 +187,8 @@ namespace R7.University.Employee
 				// imagePhoto.Width = image.Width;
 				// imagePhoto.Height = image.Height;
 
+				// REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
+
 				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
 				if (image != null)
 				{
