@@ -24,23 +24,9 @@
 			<div class="dnnFormItem">
 				<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" Suffix=":" />
 				<dnn:Picker id="pickerPhoto" runat="server" Required="true" />
-				<%-- <dnn:Url id="urlPhoto" runat="server" UrlType="F" 
-				        ShowFiles="true" ShowTabs="false"
-				        ShowUrls="true" ShowUsers="false"
-						ShowLog="false" ShowTrack="false"
-						ShowNone="true" ShowNewWindow="false" /> --%>
 			</div>
-			<%-- <div class="dnnFormItem">
-				<dnn:Label id="labelUser" runat="server" ControlName="urlUser" Suffix=":" />
-				<dnn:Url id="urlUser" runat="server" UrlType="F" 
-				        ShowFiles="false" ShowTabs="false"
-				        ShowUrls="false" ShowUsers="true"
-						ShowLog="false" ShowTrack="false"
-						ShowNone="true" ShowNewWindow="false" />      
-			</div> --%>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" Suffix=":" />
-				<%-- <asp:DropDownList id="listUsers" runat="server" /> --%>
 				<dnnweb:DnnComboBox id="comboUsers" runat="server" />
 			</div>
 			<div class="dnnFormItem">
@@ -50,14 +36,6 @@
 					CssClass="dnnSecondaryAction" OnClick="buttonUserLookup_Click" />
 				<asp:CheckBox id="checkIncludeDeletedUsers" runat="server" resourcekey="checkIncludeDeletedUsers" />
 			</div>
-
-			<%--
-			<div class="dnnFormItem">
-				<div class="dnnLabel"></div>
-
-				<asp:Label id="labelUserNames" runat="server" Visible="false" CssClass="dnnFormMessage dnnFormInfo" />
-			</div> --%>
-
 			<div class="dnnFormItem">
 				<dnn:Label id="labelLastName" runat="server" ControlName="textLastName" Suffix=":" />
 				<asp:TextBox id="textLastName" runat="server" />
@@ -130,10 +108,6 @@
 				<dnn:Label id="labelIsPublished" runat="server" ControlName="checkIsPublished" Suffix=":" />
 				<asp:CheckBox id="checkIsPublished" runat="server" />
 			</div>
-			<%-- <div class="dnnFormItem">
-				<dnn:Label id="labelIsDeleted" runat="server" ControlName="checkIsDeleted" Suffix=":" />
-				<asp:CheckBox id="checkIsDeleted" runat="server" />
-			</div> --%>
 		</fieldset>
 	</div>
 
@@ -168,21 +142,6 @@
 					CssClass="dnnSecondaryAction" OnClick="buttonAddOccupiedPosition_Click" />
 			</div>
 
-			<%-- 
-			<div class="dnnFormItem">
-				<div class="dnnLabel"></div>
-				<dnnweb:DnnListBox id="listOccupiedPositions" runat="server" ></dnnweb:DnnListBox>
-				<asp:DataList id="listOccupiedPositions" runat="server" RepeatLayout="Flow" OnItemDataBound="listOccupiedPositions_ItemDataBound">
-					<ItemTemplate>
-						<asp:Label id="labelDivisionTitle" runat="server" />
-						<asp:Label id="labelPositionTitle" runat="server" />
-						<asp:HyperLink id="linkDeleteOccupiedPosition" runat="server">
-							<asp:Image runat="server" ImageUrl="/images/action_delete.gif" />
-						</asp:HyperLink>
-	 				</ItemTemplate>
-				</asp:DataList>
-			</div> --%>
-
 			<div class="dnnFormItem">
 				<div class="dnnLabel"></div>
 				<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="true" 
@@ -212,16 +171,6 @@
 		<fieldset>
 		</fieldset>
 	</div>
-
-	<%--
-	<h2 class="dnnFormSectionHead"><a href="" ><asp:Label runat="server" ResourceKey="sectionTest.Text" /></a></h2>
-	<fieldset>
-		<div class="dnnFormItem">
-			<div class="dnnLabel"></div>
-			<asp:TextBox id="textTest" runat="server" />
-		</div>
-	</fieldset>
-	--%>
 
 	<div id="employeeAbout">
 		<fieldset>
