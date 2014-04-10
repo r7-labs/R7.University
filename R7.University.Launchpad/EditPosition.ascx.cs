@@ -93,25 +93,26 @@ namespace R7.University.Launchpad
 
 				// determine if we are adding or updating
 				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue) {
-
-					// to add new record
+				if (!itemId.HasValue) 
+				{
+					// add new record
 					item = new PositionInfo ();
-					item.Title = txtTitle.Text;
-					item.ShortTitle = txtShortTitle.Text;
-					item.Weight = int.Parse(txtWeight.Text);				
-
-					ctrl.Add<PositionInfo> (item);
-				} else {
-					 
-					// to update existing record
-					item = ctrl.Get<PositionInfo> (itemId.Value);
-					item.Title = txtTitle.Text;
-					item.ShortTitle = txtShortTitle.Text;
-					item.Weight = int.Parse(txtWeight.Text);	
-
-					ctrl.Update<PositionInfo> (item);
 				}
+				else 
+				{
+					// update existing record
+					item = ctrl.Get<PositionInfo> (itemId.Value);
+				}
+
+				// fill the object
+				item.Title = txtTitle.Text;
+				item.ShortTitle = txtShortTitle.Text;
+				item.Weight = int.Parse(txtWeight.Text);				
+
+				if (!itemId.HasValue) 
+					ctrl.Add<PositionInfo> (item);
+				else
+					ctrl.Update<PositionInfo> (item);
 
 				Utils.SynchronizeModule(this);
 
