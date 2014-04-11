@@ -140,9 +140,7 @@ namespace R7.University.Launchpad
 								textExperienceYearsBySpec.Text = item.ExperienceYearsBySpec.ToString ();
 
 							checkIsPublished.Checked = item.IsPublished;
-							// checkIsDeleted.Checked = item.IsDeleted;
 
-					
 							// set photo
 							if (!Utils.IsNull (item.PhotoFileID))
 							{
@@ -153,22 +151,6 @@ namespace R7.University.Launchpad
 										.Remove (0, PortalSettings.HomeDirectory.Length);
 								}
 							}
-
-							//	Utils.Message(this, MessageSeverity.Info, item.PhotoURL.Replace("File=",""));
-
-							/*FilePath = FileManager.Instance.GetUrl(
-								FileManager.Instance.GetFile(item.PhotoURL))
-								.Remove(0, PortalSettings.HomeDirectory.Length);
-*/
-							/*
-							// set link to a user
-							// CHECK: If item.UserID is null, -1, or !HasValue
-							if (!Null.IsNull(item.UserID))
-								urlUser.Url = string.Format("UserID={0}", item.UserID);
-							else
-								// or set to "None", if Url is empty
-								urlUser.UrlType = "N";
-							*/
 
 							if (!Null.IsNull (item.UserID))
 							{
@@ -208,9 +190,6 @@ namespace R7.University.Launchpad
 					}
 					else
 					{
-						// textExperienceYears.Text = "0";
-						//	textExperienceYearsBySpec.Text = "0";
-
 						buttonDelete.Visible = false;
 						ctlAudit.Visible = false;
 					}
@@ -428,21 +407,15 @@ namespace R7.University.Launchpad
 				users.AddRange (UserController.GetUsersByUserName (Null.NullInteger, term, -1, -1, ref usersFound, includeDeleted, false));
 				usersFoundTotal += usersFound;
 
-
 				// clear user combox & add default item
 				comboUsers.Items.Clear();
 				comboUsers.AddItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
-
-				//listUsers.Items.Clear ();
-				//listUsers.Items.Add (new ListItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ()));
 
 				if (usersFoundTotal > 0)
 				{
 					foreach (var userObj in users)
 					{
 						var user = userObj as UserInfo;
-						/* labelUserNames.Text += (user as UserInfo).Username + "; ";*/
-						// listUsers.Items.Add (new ListItem (user.Username + " / " + user.Email, user.UserID.ToString ())); 
 						comboUsers.AddItem (user.Username + " / " + user.Email, user.UserID.ToString ());
 					}
 
@@ -455,10 +428,6 @@ namespace R7.University.Launchpad
 			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
-		}
-
-		protected void listOccupiedPositions_ItemDataBound (object sender, DataListItemEventArgs e)
-		{
 		}
 
 		protected void buttonAddPosition_Click (object sender, EventArgs e)
