@@ -56,10 +56,10 @@
 				<dnn:Label id="labelAcademicTitle" runat="server" ControlName="textAcademicTitle" Suffix=":" />
 				<asp:TextBox id="textAcademicTitle" runat="server" />
 			</div>
-			<div class="dnnFormItem">
+			<%-- <div class="dnnFormItem">
 				<dnn:Label id="labelNamePrefix" runat="server" ControlName="textNamePrefix" Suffix=":" />
 				<asp:TextBox id="textNamePrefix" runat="server" />
-			</div>
+			</div> --%>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelPhone" runat="server" ControlName="textPhone" Suffix=":" />
 				<asp:TextBox id="textPhone" runat="server" />

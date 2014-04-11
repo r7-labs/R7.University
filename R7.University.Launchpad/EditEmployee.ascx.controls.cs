@@ -32,8 +32,8 @@ namespace R7.University.Launchpad
 		protected TextBox textAcademicDegree;
 		protected LabelControl labelAcademicTitle;
 		protected TextBox textAcademicTitle;
-		protected LabelControl labelNamePrefix;
-		protected TextBox textNamePrefix;
+		//protected LabelControl labelNamePrefix;
+		// protected TextBox textNamePrefix;
 		protected LabelControl labelPhone;
 		protected TextBox textPhone;
 		protected LabelControl labelCellPhone;
