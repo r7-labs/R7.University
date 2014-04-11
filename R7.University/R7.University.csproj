@@ -69,5 +69,6 @@
     <None Include="ReleaseNotes.txt" />
     <None Include="Package.cmd" />
     <None Include="01.00.04.SqlDataProvider" />
+    <None Include="01.00.04 %28copy%29.SqlDataProvider" />
   </ItemGroup>
 </Project>
