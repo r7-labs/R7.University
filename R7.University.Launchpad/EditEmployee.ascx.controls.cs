@@ -48,8 +48,11 @@ namespace R7.University.Launchpad
 		protected TextBox textWebSite;
 		protected LabelControl labelMessenger;
 		protected TextBox textMessenger;
-		protected LabelControl labelWorkingHours;
+		protected LabelControl labelCustomWorkingHours;
 		protected TextBox textWorkingHours;
+		protected CheckBox checkAddToVocabulary;
+		protected LabelControl labelWorkingHours;
+		protected DnnComboBox comboWorkingHours;
 		protected LabelControl labelWorkingPlace;
 		protected TextBox textWorkingPlace;
 		protected LabelControl labelExperienceYears;

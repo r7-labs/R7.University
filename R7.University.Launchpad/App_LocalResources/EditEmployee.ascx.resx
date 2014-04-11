@@ -100,7 +100,13 @@
 		<value>Working hours</value>
 	</data>
 	<data name="labelWorkingHours.Help">
-		<value>Enter employee's working hours / schedule description</value>
+		<value>Select employee's working hours (schedule) from a list</value>
+	</data>
+	<data name="labelCustomWorkingHours.Text">
+		<value>Custom working hours</value>
+	</data>
+	<data name="labelCustomWorkingHours.Help">
+		<value>Enter the employee's custom working hours (schedule) description</value>
 	</data>
 	<data name="labelWorkingPlace.Text">
 		<value>Working place</value>
@@ -164,5 +170,8 @@
 	</data>
 	<data name="sectionTest.Text">
 		<value>Test Section</value>
+	</data>
+	<data name="checkAddToVocabulary.Text">
+		<value>Add to vocabulary</value>
 	</data>
 </root>

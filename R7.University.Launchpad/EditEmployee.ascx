@@ -94,7 +94,15 @@
 			</div>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
-				<asp:TextBox id="textWorkingHours" runat="server" />
+				<dnnweb:DnnComboBox id="comboWorkingHours" runat="server"
+							DataTextField="Name"
+							DataValueField="TermId"
+					 />
+			</div>
+			<div class="dnnFormItem">
+				<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
+				<asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" />
+				<asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
 			</div>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelExperienceYears" runat="server" ControlName="textExperienceYears" Suffix=":" />
