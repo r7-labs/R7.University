@@ -147,7 +147,7 @@
 					CssClass="dnnSecondaryAction" OnClick="buttonAddPosition_Click" Style="margin-left:10px" />
 			</div>
 
-			<div class="dnnFormItem">
+			<div class="dnnFormItem" style="margin-top:10px">
 				<div class="dnnLabel"></div>
 				<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="true" 
 					GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound">
