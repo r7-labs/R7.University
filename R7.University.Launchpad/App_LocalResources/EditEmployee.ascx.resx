@@ -150,20 +150,17 @@
 	<data name="labelDivisions.Help">
 		<value>Specify division for this employee</value>
 	</data>
-	<data name="labelIsPrime.Text">
-		<value>Prime</value>
-	</data>
-	<data name="labelIsPrime.Help">
-		<value>Select this if corresponding position is prime for this employee</value>
-	</data>
 	<data name="buttonUserLookup.Text">
 		<value>Lookup</value>
 	</data>
 	<data name="checkIncludeDeletedUsers.Text">
 		<value>Include deleted?</value>
 	</data>
-	<data name="buttonAddOccupiedPosition.Text">
+	<data name="buttonAddPosition.Text">
 		<value>Add position</value>
+	</data>
+	<data name="buttonAddPrimePosition.Text">
+		<value>Add prime position</value>
 	</data>
 	<data name="sectionTest.Text">
 		<value>Test Section</value>

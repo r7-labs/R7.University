@@ -73,10 +73,9 @@ namespace R7.University.Launchpad
 		protected GridView gridOccupiedPositions;
 		protected LabelControl labelPositions;
 		protected LabelControl labelDivisions;
-		protected LabelControl labelIsPrime;
 		protected DnnComboBox comboPositions;
 		protected DnnTreeView treeDivisions;
-		protected LinkButton buttonAddOccupiedPosition;
-		protected CheckBox checkIsPrime;
+		protected LinkButton buttonAddPosition;
+		protected LinkButton buttonAddPrimePosition;
 	}
 }

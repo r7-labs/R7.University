@@ -426,7 +426,7 @@ namespace R7.University.Launchpad
 		{
 		}
 
-		protected void buttonAddOccupiedPosition_Click (object sender, EventArgs e)
+		protected void buttonAddPosition_Click (object sender, EventArgs e)
 		{
 			try
 			{
@@ -439,16 +439,16 @@ namespace R7.University.Launchpad
 					if (occupiedPositions == null)
 						occupiedPositions = new List<OccupiedPositionView>();
 
+					// determine if we should add prime position
+					var isPrime = sender == buttonAddPrimePosition;
+
 					occupiedPositions.Add(
 						new OccupiedPositionView(positionID, comboPositions.Text, 
-							divisionID, treeDivisions.SelectedNode.Text, checkIsPrime.Checked));
+							divisionID, treeDivisions.SelectedNode.Text, isPrime));
 
 					ViewState["occupiedPositions"] = occupiedPositions;
 					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
 					gridOccupiedPositions.DataBind ();
-
-					// uncheck IsPrime, to minify UX errors 
-					checkIsPrime.Checked = false;
 				}
 			}
 			catch (Exception ex)

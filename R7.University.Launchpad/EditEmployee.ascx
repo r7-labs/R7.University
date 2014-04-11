@@ -132,14 +132,11 @@
 			</div>
 
 			<div class="dnnFormItem">
-				<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" Suffix=":" />
-				<asp:CheckBox id="checkIsPrime" runat="server" />
-			</div>
-
-			<div class="dnnFormItem">
 				<div class="dnnLabel"></div>
-				<asp:LinkButton id="buttonAddOccupiedPosition" runat="server" resourcekey="buttonAddOccupiedPosition" 
-					CssClass="dnnSecondaryAction" OnClick="buttonAddOccupiedPosition_Click" />
+				<asp:LinkButton id="buttonAddPrimePosition" runat="server" resourcekey="buttonAddPrimePosition" 
+					CssClass="dnnPrimaryAction" OnClick="buttonAddPosition_Click" />
+				<asp:LinkButton id="buttonAddPosition" runat="server" resourcekey="buttonAddPosition" 
+					CssClass="dnnSecondaryAction" OnClick="buttonAddPosition_Click" Style="margin-left:10px" />
 			</div>
 
 			<div class="dnnFormItem">
