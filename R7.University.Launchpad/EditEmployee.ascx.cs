@@ -115,7 +115,7 @@ namespace R7.University.Launchpad
 							textLastName.Text = item.LastName;
 							textFirstName.Text = item.FirstName;
 							textOtherName.Text = item.OtherName;
-							textNamePrefix.Text = item.NamePrefix;
+							//textNamePrefix.Text = item.NamePrefix;
 							textAcademicTitle.Text = item.AcademicTitle;
 							textAcademicDegree.Text = item.AcademicDegree;
 							textPhone.Text = item.Phone;
@@ -263,7 +263,7 @@ namespace R7.University.Launchpad
 				item.LastName = textLastName.Text.Trim();
 				item.FirstName = textFirstName.Text.Trim();
 				item.OtherName = textOtherName.Text.Trim();
-				item.NamePrefix = textNamePrefix.Text.Trim();
+				//item.NamePrefix = textNamePrefix.Text.Trim();
 				item.AcademicTitle = textAcademicTitle.Text.Trim();
 				item.AcademicDegree = textAcademicDegree.Text.Trim();
 				item.Phone = textPhone.Text.Trim();
