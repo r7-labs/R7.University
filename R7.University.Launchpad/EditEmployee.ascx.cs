@@ -212,9 +212,12 @@ namespace R7.University.Launchpad
 								treeNode = treeNode.ParentNode;
 							} 
 						}
-						else
-							treeDivisions.Nodes[0].Selected = true;
 					}
+
+					// select first (default) node, if none selected - 
+					// fix for issue #8
+					if (treeDivisions.SelectedNode == null)
+						treeDivisions.Nodes[0].Selected = true;
 				}
 				else 
 				{
