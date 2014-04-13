@@ -34,12 +34,24 @@ namespace R7.University.Employee
 		public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)
 		{
 			var searchDocs = new List<SearchDocument>();
-
-			// DOIT: Implement IPortable for Employee module
-
-			// var sd = new SearchDocument();
-			// searchDocs.Add(searchDoc);
-
+			var settings = new EmployeeSettings (modInfo);
+			var employee = Get<EmployeeInfo> (settings.EmployeeID);
+		
+			if (employee != null && employee.LastModifiedOnDate.ToUniversalTime() > beginDate.ToUniversalTime())
+			{
+				var sd = new SearchDocument () 
+				{
+					PortalId = modInfo.PortalID,
+					AuthorUserId = employee.LastModifiedByUserID,
+					Title = employee.FullName,
+					Description = "",
+					Body = "",
+					ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime(),
+					UniqueKey = string.Format ("UE_{0}", employee.EmployeeID)
+				};
+	
+				searchDocs.Add (sd);
+			}
 			return searchDocs;
 		}
 
