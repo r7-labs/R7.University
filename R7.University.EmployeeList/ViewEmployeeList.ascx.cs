@@ -106,7 +106,8 @@ namespace R7.University.EmployeeList
 					ModuleActionType.AddContent, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Edit"),
+					Null.IsNull(CustomSettings.DivisionID)?
+					Utils.EditUrl (this, "Edit") : Utils.EditUrl (this, "Edit", "division_id", CustomSettings.DivisionID.ToString()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
@@ -150,7 +151,11 @@ namespace R7.University.EmployeeList
 			// edit link
 			if (IsEditable)
 			{
-				linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString ());
+				if (Null.IsNull(CustomSettings.DivisionID))
+					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString ());
+				else
+					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString (), 
+						"division_id", CustomSettings.DivisionID.ToString());
 				// WTF: iconEdit.NavigateUrl = Utils.FormatURL (this, image.Url, false);
 			}
 

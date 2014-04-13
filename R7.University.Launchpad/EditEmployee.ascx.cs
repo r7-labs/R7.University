@@ -71,12 +71,12 @@ namespace R7.University.Launchpad
 			var ctrl = new LaunchpadController ();
 
 			// if results are null or empty, lists were empty too
-			var positions = new List<PositionInfo>(ctrl.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
-			var divisions = ctrl.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC");
+			var positions = new List<PositionInfo> (ctrl.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
+			var divisions = new List<DivisionInfo> (ctrl.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
 
 			// add default items
 			positions.Insert (0, new PositionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), PositionID = Null.NullInteger });
-			// divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
+			divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
 
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
@@ -192,6 +192,28 @@ namespace R7.University.Launchpad
 					{
 						buttonDelete.Visible = false;
 						ctlAudit.Visible = false;
+					}
+
+					// then edit / add from EmployeeList, divisionId query param
+					// can be set to current division ID
+					var divisionId = Request.QueryString["division_id"];
+					if (!string.IsNullOrWhiteSpace(divisionId))
+					{
+						var treeNode = treeDivisions.FindNodeByValue(divisionId);
+						if (treeNode != null)
+						{
+							treeNode.Selected = true;
+
+							// expand all parent nodes
+							treeNode = treeNode.ParentNode;
+							while (treeNode != null)
+							{
+								treeNode.Expanded = true;
+								treeNode = treeNode.ParentNode;
+							} 
+						}
+						else
+							treeDivisions.Nodes[0].Selected = true;
 					}
 				}
 				else 
