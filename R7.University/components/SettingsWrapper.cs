@@ -12,7 +12,8 @@ namespace R7.University
 	public class SettingsWrapper
 	{
 		protected ModuleController ctrl;
-		protected IModuleControl module;
+		protected int ModuleId;
+		protected int TabModuleId;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Launchpad.LaunchpadSettings"/> class.
@@ -26,7 +27,15 @@ namespace R7.University
 		public SettingsWrapper (IModuleControl module)
 		{
 			ctrl = new ModuleController (); 
-			this.module = module;
+			ModuleId = module.ModuleContext.ModuleId;
+			TabModuleId = module.ModuleContext.TabModuleId;
+		}
+
+		public SettingsWrapper (ModuleInfo moduleInfo)
+		{
+			ctrl = new ModuleController ();
+			ModuleId = moduleInfo.ModuleID;
+			TabModuleId = moduleInfo.TabModuleID;
 		}
 
 		/// <summary>
@@ -50,8 +59,8 @@ namespace R7.University
 		protected T ReadSetting<T> (string settingName, T defaultValue, bool tabSpecific)
 		{
 			var settings = (tabSpecific) ? 
-            	ctrl.GetTabModuleSettings (module.ModuleContext.TabModuleId) :
-            	ctrl.GetModuleSettings (module.ModuleContext.ModuleId);
+            	ctrl.GetTabModuleSettings (TabModuleId) :
+            	ctrl.GetModuleSettings (ModuleId);
            
 			T ret = default(T);
 
@@ -84,9 +93,9 @@ namespace R7.University
 		protected void WriteSetting<T> (string settingName, T value, bool tabSpecific)
 		{
 			if (tabSpecific)
-				ctrl.UpdateTabModuleSetting (module.ModuleContext.TabModuleId, settingName, value.ToString ());
+				ctrl.UpdateTabModuleSetting (TabModuleId, settingName, value.ToString ());
 			else
-				ctrl.UpdateModuleSetting (module.ModuleContext.ModuleId, settingName, value.ToString ());
+				ctrl.UpdateModuleSetting (ModuleId, settingName, value.ToString ());
 		}
 	}
 }
