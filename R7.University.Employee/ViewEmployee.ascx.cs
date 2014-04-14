@@ -165,7 +165,7 @@ namespace R7.University.Employee
 			var setting = new EmployeeSettings (this);
 
 			// occupied positions
-			var occupiedPositions = ctrl.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight]", employee.EmployeeID);
+			var occupiedPositions = ctrl.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
 			if (occupiedPositions != null && occupiedPositions.Any())
 			{
 				repeaterPositions.DataSource = occupiedPositions;//.ToList();
