@@ -1,5 +1,26 @@
-﻿<h3>Version 01.00.04</h3>
-<p>This is stabilization release for 01.00.04.</p>
+﻿<h3>Version 01.00.05</h3>
+<p>This is stabilization release for 01.00.00.</p>
+<ul>
+	<li>Added basic search by employee data in Employee and EmployeeList modules.</li>
+	<li>Possible fix for issue #5: EditEmployee crashes if photo file was deleted.</li>
+	<li>Fix for issue #6: Now employee positions grouped by division.</li>
+	<li>Fix wrong sort order of employee positions.</li>
+	<li>Fix for issue #7: Allow more chars for phone number fields in a DB.</li>
+	<li>Fix for issue #8: Click on "Add position" button no longer results in a crash in EditEmployee positions tab if no division was selected.</li>
+	<li>Trim string values then updating records in all forms.</li>
+	<li>EditEmployee: Allow select commonly used working hours from a list.</li>
+	<li>EditEmployee: About tab moved to the right.</li>
+	<li>EditEmployee: Always select tab 0 then open new form.</li>
+	<li>EditEmployee: Add separate "Add prime position" button instead of button + checkbox.</li>
+	<li>EditEmployee: Autoselect division in a tree then editing from EmployeeList module.</li>
+	<li>Launchpad: Load data tables in the session if it is empty.</li>
+	<li>EditEmployee, Launchpad: Fix dnnGridHeader class doesn't apply to th element of gridview.</li> 
+	<li>Other small fixed and improvements.</li> 
+</ul>
+<p><strong>Note:</strong> R7.ImageHandler is not required if photo width settings in Employee and EmployeeList modules is not set - original photos are used instead.</p>
+
+<h3>Version 01.00.04</h3>
+<p>This is stabilization release for 01.00.00.</p>
 <ul>
 	<li>Photo thumbnails now generated with R7.ImageHandler.</li>
 	<li>Added settings to photo thumbnail width to Employee and EmployeeList modules.</li>
