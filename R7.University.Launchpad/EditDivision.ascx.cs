@@ -67,7 +67,7 @@ namespace R7.University.Launchpad
 			// Fill terms list
 			var termCtrl = new TermController ();
 			// TODO: Org. structure vocabulary name must be set in settings
-			var terms = termCtrl.GetTermsByVocabulary("Structure").ToList(); 
+			var terms = termCtrl.GetTermsByVocabulary("University_Structure").ToList(); 
 
 			// add default term, 
 			// TermId = Null.NullInteger is setting in cstor
