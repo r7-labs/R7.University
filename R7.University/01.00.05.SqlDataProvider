@@ -29,3 +29,24 @@ BEGIN
 			N'System vocabulary for frequently used employee / division working hours')
 END
 GO
+
+-- Rename Structure vocabulary to University_Structure, if exists
+UPDATE {databaseOwner}[{objectQualifier}Taxonomy_Vocabularies] 
+	SET [Name] = N'University_Structure',
+		[Description] = N'Host-level vocabulary for organizational structure'
+	WHERE [Name] = N'Structure';
+
+-- Add or rename University_Structure vocabulary
+IF NOT EXISTS (SELECT [VocabularyID]
+	FROM {databaseOwner}[{objectQualifier}Taxonomy_Vocabularies] 
+		WHERE [Name] = N'University_Structure')
+BEGIN
+	INSERT INTO {databaseOwner}[{objectQualifier}Taxonomy_Vocabularies]
+		([VocabularyTypeID], [Name], [ScopeTypeID], [IsSystem], 
+		[CreatedByUserID], [LastModifiedByUserID], [CreatedOnDate], [LastModifiedOnDate],
+		[Description]) 
+		VALUES (2, N'University_Structure', 1, 0, 
+			-1, -1, GETDATE(), GETDATE(),
+			N'Host-level vocabulary for organization structure')
+END
+GO
