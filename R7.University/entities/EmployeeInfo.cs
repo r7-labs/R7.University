@@ -81,25 +81,25 @@ namespace R7.University
 		{
 			get 
 			{
-				var sb = new StringBuilder ();
-
-				sb.AppendFormat ("{0}, ", FullName);
-				sb.AppendFormat ("{0}, ", AcademicDegree);
-				sb.AppendFormat ("{0}, ", AcademicTitle);
-				sb.AppendFormat ("{0}, ", Phone);
-				sb.AppendFormat ("{0}, ", CellPhone);
-				sb.AppendFormat ("{0}, ", Fax);
-				sb.AppendFormat ("{0}, ", Email);
-				sb.AppendFormat ("{0}, ", SecondaryEmail);
-				sb.AppendFormat ("{0}, ", WebSite);
-				sb.AppendFormat ("{0}, ", Messenger);
-				sb.AppendFormat ("{0}, ", WorkingPlace);
-				sb.AppendFormat ("{0}, ", WorkingHours);
-				sb.AppendFormat ("{0}, ", HtmlUtils.ConvertToText(Biography));
+				var text = Utils.FormatList (", ",
+					           FullName,
+					           AcademicDegree,
+					           AcademicTitle,
+					           Phone,
+					           CellPhone,
+					           Fax,
+					           Email,
+					           SecondaryEmail,
+					           WebSite,
+					           Messenger,
+					           WorkingPlace,
+					           WorkingHours,
+					           HtmlUtils.ConvertToText (Biography)
+				);
 
 				// TODO: Add positions to the index
 
-				return sb.ToString ();
+				return text;
 			}
 		}
 
