@@ -155,26 +155,6 @@ namespace R7.University.Employee
 			}
 		}
 
-		protected IEnumerable<OccupiedPositionInfoEx> CombinePositions (IEnumerable<OccupiedPositionInfoEx> occupiedPositions)
-		{
-			var opList = occupiedPositions.ToList ();
-
-			for (var i = 0; i < opList.Count; i++)
-			{
-				for (var j = i + 1; j < opList.Count; )
-				{
-					if (opList [i].DivisionID == opList [j].DivisionID)
-					{
-						opList [i].PositionShortTitle += ", " + opList [j].PositionShortTitle;
-						opList.RemoveAt (j);
-					}
-					else j++;
-				}
-			}
-
-			return opList;
-		}
-
 		/// <summary>
 		/// Displays the specified employee.
 		/// </summary>
@@ -188,7 +168,7 @@ namespace R7.University.Employee
 			var occupiedPositions = ctrl.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
 			if (occupiedPositions != null && occupiedPositions.Any())
 			{
-				repeaterPositions.DataSource = CombinePositions (occupiedPositions);
+				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
 				repeaterPositions.DataBind ();
 			}
 			else

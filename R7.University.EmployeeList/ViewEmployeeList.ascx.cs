@@ -302,7 +302,7 @@ namespace R7.University.EmployeeList
 			// TODO: Need to retrieve occupied positions more effectively, e.g. preload them
 			// THINK: add "AND [DivisionID] = @1" to display employee positions only from current division
 			var ops = Ctrl.GetObjects<OccupiedPositionInfoEx> (
-				"WHERE [EmployeeID] = @0 ORDER BY (CASE WHEN [DivisionID]=@1 THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight]", 
+				"WHERE [EmployeeID] = @0 ORDER BY (CASE WHEN [DivisionID]=@1 THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
 				employee.EmployeeID, CustomSettings.DivisionID
 			);
 
@@ -311,7 +311,7 @@ namespace R7.University.EmployeeList
 			if (ops != null && ops.Any())
 			{
 				var strOps = string.Empty;
-				foreach (var op in ops)
+				foreach (var op in OccupiedPositionInfoEx.GroupByDivision (ops))
 				{
 					// do not display division title for high-level divisions AND current division
 					if (op.DivisionID == CustomSettings.DivisionID || op.ParentDivisionID == null)
