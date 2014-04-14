@@ -17,7 +17,6 @@
 	<li>EditEmployee, Launchpad: Fix dnnGridHeader class doesn't apply to th element of gridview.</li> 
 	<li>Other small fixed and improvements.</li> 
 </ul>
-<p><strong>Note:</strong> R7.ImageHandler is not required if photo width settings in Employee and EmployeeList modules is not set - original photos are used instead.</p>
 
 <h3>Version 01.00.04</h3>
 <p>This is stabilization release for 01.00.00.</p>
