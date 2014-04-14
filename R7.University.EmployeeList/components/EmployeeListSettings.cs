@@ -15,6 +15,10 @@ namespace R7.University.EmployeeList
 		{
 		}
 
+		public EmployeeListSettings (ModuleInfo module): base (module)
+		{
+		}
+
 		#region Properties for settings
 
 		// THINK: Use Attributes to describe settings (tabspecific, data type, name, default value) 

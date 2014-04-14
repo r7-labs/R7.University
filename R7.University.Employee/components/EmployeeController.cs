@@ -29,8 +29,6 @@ namespace R7.University.Employee
 
 		#region ModuleSearchBase implementaion
 
-		// DOIT: Implement ModuleSearchBase for Employee module
-
 		public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)
 		{
 			var searchDocs = new List<SearchDocument>();
@@ -48,7 +46,7 @@ namespace R7.University.Employee
 					// Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
 					Body = aboutEmployee,
 					ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime(),
-					UniqueKey = string.Format ("UE_{0}", employee.EmployeeID)
+					UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID)
 				};
 	
 				searchDocs.Add (sd);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
@@ -29,15 +30,35 @@ namespace R7.University.EmployeeList
 
 		#region ModuleSearchBase implementaion
 
-		// DOIT: Implement ModuleSearchBase for EmployeeList module
-
 		public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)
 		{
 			var searchDocs = new List<SearchDocument>();
+			var settings = new EmployeeListSettings (modInfo);
+		
+			var	employees = GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+				(settings.IncludeSubdivisions)? // which SP to use
+				"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
+				settings.DivisionID, settings.SortType, false
+			);
 
-			// var sd = new SearchDocument();
-			// searchDocs.Add(searchDoc);
+			foreach (var employee in employees)
+			{
+				if (employee != null && employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
+				{
+					var aboutEmployee = employee.SearchDocumentText;
+					var sd = new SearchDocument () {
+						PortalId = modInfo.PortalID,
+						AuthorUserId = employee.LastModifiedByUserID,
+						Title = employee.FullName,
+						// Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
+						Body = aboutEmployee,
+						ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
+						UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID)
+					};
 
+					searchDocs.Add (sd);
+				}
+			}
 			return searchDocs;
 		}
 
