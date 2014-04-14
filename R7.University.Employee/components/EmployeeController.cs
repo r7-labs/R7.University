@@ -39,13 +39,14 @@ namespace R7.University.Employee
 		
 			if (employee != null && employee.LastModifiedOnDate.ToUniversalTime() > beginDate.ToUniversalTime())
 			{
+				var aboutEmployee = employee.SearchDocumentText;
 				var sd = new SearchDocument () 
 				{
 					PortalId = modInfo.PortalID,
 					AuthorUserId = employee.LastModifiedByUserID,
 					Title = employee.FullName,
-					Description = "",
-					Body = "",
+					// Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
+					Body = aboutEmployee,
 					ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime(),
 					UniqueKey = string.Format ("UE_{0}", employee.EmployeeID)
 				};

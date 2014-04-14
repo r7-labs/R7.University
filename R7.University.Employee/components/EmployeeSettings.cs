@@ -15,6 +15,10 @@ namespace R7.University.Employee
 		{
 		}
 
+		public EmployeeSettings (ModuleInfo module) : base (module)
+		{
+		}
+
 		#region Properties for settings
 
 		public int EmployeeID
