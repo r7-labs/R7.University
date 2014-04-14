@@ -46,7 +46,8 @@ namespace R7.University.Employee
 					// Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
 					Body = aboutEmployee,
 					ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime(),
-					UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID)
+					UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
+					IsActive = employee.IsPublished
 				};
 	
 				searchDocs.Add (sd);
