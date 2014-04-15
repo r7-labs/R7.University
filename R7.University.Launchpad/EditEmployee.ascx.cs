@@ -281,7 +281,7 @@ namespace R7.University.Launchpad
 				item.Biography = textBiography.Text.Trim();
 
 				var workingHoursStr =  textWorkingHours.Text.Trim();
-				if (!string.IsNullOrEmpty(workingHoursStr) || comboWorkingHours.SelectedIndex == 0)
+				if (!string.IsNullOrWhiteSpace(workingHoursStr) || comboWorkingHours.SelectedIndex == 0)
 				{
 					item.WorkingHours = workingHoursStr;
 
