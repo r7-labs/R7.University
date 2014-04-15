@@ -273,8 +273,8 @@ namespace R7.University.Launchpad
 				item.Phone = textPhone.Text.Trim();
 				item.CellPhone = textCellPhone.Text.Trim();
 				item.Fax = textFax.Text.Trim();
-				item.Email = textEmail.Text.Trim();
-				item.SecondaryEmail = textSecondaryEmail.Text.Trim();
+				item.Email = textEmail.Text.Trim().ToLowerInvariant();
+				item.SecondaryEmail = textSecondaryEmail.Text.Trim().ToLowerInvariant();
 				item.WebSite = textWebSite.Text.Trim();
 				item.Messenger = textMessenger.Text.Trim();
 				item.WorkingPlace = textWorkingPlace.Text.Trim();

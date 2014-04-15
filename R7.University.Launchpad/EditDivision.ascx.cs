@@ -205,8 +205,8 @@ namespace R7.University.Launchpad
 				// fill the object
 				item.Title = txtTitle.Text.Trim();
 				item.ShortTitle = txtShortTitle.Text.Trim();
-				item.Email = txtEmail.Text.Trim();
-				item.SecondaryEmail = txtSecondaryEmail.Text.Trim();
+				item.Email = txtEmail.Text.Trim().ToLowerInvariant();
+				item.SecondaryEmail = txtSecondaryEmail.Text.Trim().ToLowerInvariant();
 				item.Phone = txtPhone.Text.Trim();
 				item.Fax = txtFax.Text.Trim();
 				item.Location = txtLocation.Text.Trim();
