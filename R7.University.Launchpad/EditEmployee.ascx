@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/URLControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Picker" Src="~/controls/filepickeruploader.ascx" %> 
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
-<%@ Register TagPrefix="dnnweb" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 
 <script type="text/javascript">
 	$(function() { $( "#employeeTabs" ).dnnTabs( <%= (!IsPostBack)? "{selected: 0}" : "" %>  ); });
@@ -27,7 +27,7 @@
 			</div>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" Suffix=":" />
-				<dnnweb:DnnComboBox id="comboUsers" runat="server" />
+				<dnn:DnnComboBox id="comboUsers" runat="server" />
 			</div>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" Suffix=":" /> 
@@ -94,7 +94,7 @@
 			</div>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
-				<dnnweb:DnnComboBox id="comboWorkingHours" runat="server"
+				<dnn:DnnComboBox id="comboWorkingHours" runat="server"
 							DataTextField="Name"
 							DataValueField="TermId"
 					 />
@@ -123,7 +123,7 @@
 		<fieldset>
 			<div class="dnnFormItem">
 				<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" Suffix=":" />
-				<dnnweb:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+				<dnn:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
 					DataTextField="ShortTitle"
 					DataValueField="DivisionID"
 					DataFieldID = "DivisionID"
@@ -133,7 +133,7 @@
 
 			<div class="dnnFormItem">
 				<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" Suffix=":" />
-				<dnnweb:DnnComboBox id="comboPositions" runat="server" 
+				<dnn:DnnComboBox id="comboPositions" runat="server" 
 					DataTextField="ShortTitle"
 					DataValueField="PositionID"
 				/>

@@ -7,7 +7,7 @@
 	<fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label id="labelDivision" runat="server" ControlName="treeDivisions" Suffix=":" />
-			<dnnweb:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+			<dnn:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
 				DataFieldID="DivisionID"
 				DataFieldParentID="ParentDivisionID"
 				DataValueField="DivisionID"

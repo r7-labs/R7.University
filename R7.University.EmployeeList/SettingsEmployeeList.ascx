@@ -1,13 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsEmployeeList.ascx.cs" Inherits="R7.University.EmployeeList.SettingsEmployeeList" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
-<%@ Register TagPrefix="dnnweb" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 
 <div class="dnnForm dnnClear">
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
 	<fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label id="labelDivision" runat="server" ControlName="treeDivisions" Suffix=":" />
-			<dnnweb:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+			<dnn:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
 				DataFieldID="DivisionID"
 				DataFieldParentID="ParentDivisionID"
 				DataValueField="DivisionID"
@@ -20,7 +20,7 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelSortType" runat="server" ControlName="comboSortType" Suffix=":" />
-			<dnnweb:DnnComboBox id="comboSortType" runat="server"/>
+			<dnn:DnnComboBox id="comboSortType" runat="server"/>
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" Suffix=":" />

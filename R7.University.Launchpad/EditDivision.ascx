@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/URLControl.ascx" %>
-<%@ Register TagPrefix="dnnweb" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 
 <div class="dnnForm dnnClear">
 	<br /><br />
@@ -17,11 +17,11 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblParentDivision" runat="server" ControlName="comboParentDivisions" Suffix=":" />
-			<dnnweb:DnnComboBox id="comboParentDivisions" runat="server" />
+			<dnn:DnnComboBox id="comboParentDivisions" runat="server" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblDivisionTerm" runat="server" ControlName="tsDivisionTerm" Suffix=":" />
-			<dnnweb:DnnTreeView ID="treeDivisionTerms" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE" />
+			<dnn:DnnTreeView ID="treeDivisionTerms" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE" />
 			<br /><br />
 		</div>
 		<div class="dnnFormItem">
