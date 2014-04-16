@@ -67,13 +67,14 @@ namespace R7.University.Division
 					var ctrl = new DivisionController ();
 					var settings = new DivisionSettings (this);
 
-					var display = true;
+					var display = false;
 
 					if (!Null.IsNull(settings.DivisionID))
 					{
 						var item = ctrl.Get<DivisionInfo> (settings.DivisionID);
 						if (item != null )
 						{	
+							display = true;
 							DisplayDivision(item);
 						}
 					}
@@ -113,7 +114,7 @@ namespace R7.University.Division
 					ModuleActionType.AddContent, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Edit"),
+					Utils.EditUrl (this, "EditDivision"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
