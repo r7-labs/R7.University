@@ -33,6 +33,15 @@ namespace R7.University
 		{
 		}
 
+		/*
+		 * BEGIN:VCARD
+VERSION:3.0
+TEL:+7 (927) 530-87-50
+EMAIL:support.vgsha@gmail.com
+ORG:Volgograd SAU
+END:VCARD
+		 */ 
+
 		public const string Version = "3.0";
 
 		// TODO: Must provide unique product id
