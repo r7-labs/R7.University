@@ -13,6 +13,9 @@ mkdir %PACKAGE%\bin
 cd R7.University.Employee
 %Z7% a ..\%PACKAGE%\R7.University.Employee.zip *.ascx *.css *.js App_LocalResources\*.resx js 
 cd ..
+cd R7.University.Division
+%Z7% a ..\%PACKAGE%\R7.University.Division.zip *.ascx *.css *.js App_LocalResources\*.resx js 
+cd ..
 cd R7.University.EmployeeList
 %Z7% a ..\%PACKAGE%\R7.University.EmployeeList.zip *.ascx *.css *.js App_LocalResources\*.resx js 
 cd ..
