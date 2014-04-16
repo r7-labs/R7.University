@@ -30,11 +30,14 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+
 using R7.University;
 
 namespace R7.University.Division
@@ -95,8 +98,79 @@ namespace R7.University.Division
 
 		protected void DisplayDivision (DivisionInfo division)
 		{
-			// fill the controls
+			// division title
 			labelTitle.Text = division.Title;
+
+			// division short title
+			if (division.ShortTitle.Length < division.Title.Length)
+				labelShortTitle.Text = string.Format ("({0})", division.ShortTitle);
+			else
+				labelShortTitle.Visible = false;
+
+			// link to division resources
+			if (division.DivisionTermID != null)
+			{
+				var termCtrl = new TermController ();
+				var term = termCtrl.GetTerm (division.DivisionTermID.Value);
+				if (term != null)
+				{
+					linkTerm.Text = term.Name;
+					linkTerm.NavigateUrl = Globals.NavigateURL (PortalSettings.SearchTabId, "", "Tag", term.Name);
+				}
+			}
+
+			// home page 
+			int homeTabId;
+			if (int.TryParse (division.HomePage, out homeTabId) && TabId != homeTabId)
+			{
+				// REVIEW: Display tab name instead?
+				linkHomePage.Text = "Home page";
+				linkHomePage.NavigateUrl = Globals.NavigateURL (homeTabId);
+			}
+			else
+				linkHomePage.Visible = false;
+
+			// email
+			if (!string.IsNullOrWhiteSpace (division.Email))
+			{
+				linkEmail.Text = division.Email;
+				linkEmail.NavigateUrl = "mailto:" + division.Email;
+			}
+			else
+				linkEmail.Visible = false;
+
+			// secondary email
+			if (!string.IsNullOrWhiteSpace (division.SecondaryEmail))
+			{
+				linkSecondaryEmail.Text = division.SecondaryEmail;
+				linkSecondaryEmail.NavigateUrl = "mailto:" + division.SecondaryEmail;
+			}
+			else
+				linkSecondaryEmail.Visible = false;
+
+			// phone
+			if (!string.IsNullOrWhiteSpace (division.Phone))
+				labelPhone.Text = division.Phone;
+			else
+				labelPhone.Visible = false;
+
+			// fax
+			if (!string.IsNullOrWhiteSpace (division.Fax))
+				labelFax.Text = string.Format (Localization.GetString("Fax.Format", LocalResourceFile), division.Fax);
+			else
+				labelFax.Visible = false;
+
+			// location
+			if (!string.IsNullOrWhiteSpace (division.Location))
+				labelLocation.Text = division.Location;
+			else
+				labelLocation.Visible = false;
+
+			// working hours
+			if (!string.IsNullOrWhiteSpace (division.WorkingHours))
+				labelWorkingHours.Text = division.WorkingHours;
+			else
+				labelWorkingHours.Visible = false;
 		}
 
 		#region IActionable implementation

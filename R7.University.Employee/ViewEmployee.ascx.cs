@@ -243,7 +243,7 @@ namespace R7.University.Employee
 
 			// Fax
 			if (!string.IsNullOrWhiteSpace (employee.Fax))
-				labelFax.Text = employee.Fax + " " + Localization.GetString("Fax.Text", LocalResourceFile);
+				labelFax.Text = string.Format(Localization.GetString("Fax.Format", LocalResourceFile), employee.Fax);
 			else
 				labelFax.Visible = false;
 

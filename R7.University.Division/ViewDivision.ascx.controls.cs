@@ -13,5 +13,14 @@ namespace R7.University.Division
 	public partial class ViewDivision
 	{
 		protected Label labelTitle;
+		protected Label labelShortTitle;
+		protected HyperLink linkTerm;
+		protected HyperLink linkHomePage;
+		protected HyperLink linkEmail;
+		protected HyperLink linkSecondaryEmail;
+		protected Label labelPhone;
+		protected Label labelFax;
+		protected Label labelLocation;
+		protected Label labelWorkingHours;
 	}
 }
