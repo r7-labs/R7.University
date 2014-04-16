@@ -68,7 +68,6 @@
     <None Include="App_LocalResources\ViewDivision.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SettingsDivision.ascx.resx" />
     <None Include="App_LocalResources\SettingsDivision.ascx.ru-RU.resx" />
-    <None Include="Division.dnn" />
     <None Include="App_LocalResources\SharedResources.resx" />
   </ItemGroup>
   <ItemGroup>
