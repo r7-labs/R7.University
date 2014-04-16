@@ -171,6 +171,13 @@ namespace R7.University.Division
 				labelWorkingHours.Text = division.WorkingHours;
 			else
 				labelWorkingHours.Visible = false;
+
+			// barcode image test
+			imageBarcode.ImageUrl = 
+				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&content={2}",
+					150, 150, Server.UrlEncode("Test test1 tesT2")
+			);
+
 		}
 
 		#region IActionable implementation

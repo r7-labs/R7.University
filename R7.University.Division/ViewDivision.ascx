@@ -9,3 +9,13 @@
 <asp:Label id="labelFax" runat="server" CssClass="Division_Label" />
 <asp:Label id="labelLocation" runat="server" CssClass="Division_Label" />
 <asp:Label id="labelWorkingHours" runat="server" CssClass="Division_Label" />
+<asp:Image id="imageBarcode" runat="server" CssClass="Division_Label" />
+<asp:Repeater id="repeatSubDivisions" runat="server">
+	<HeaderTemplate><ul></HeaderTemplate>
+	<ItemTemplate>
+		<li>
+			<asp:HyperLink id="linkSubDivision" runat="server"></asp:HyperLink>
+		</li>
+	</ItemTemplate>
+	<FooterTemplate></ul></FooterTemplate>
+</asp:Repeater>

@@ -22,5 +22,7 @@ namespace R7.University.Division
 		protected Label labelFax;
 		protected Label labelLocation;
 		protected Label labelWorkingHours;
+		protected Image imageBarcode;
+		protected Repeater repeatSubDivisions;
 	}
 }
