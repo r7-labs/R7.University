@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="lblTemplate.Text" xml:space="preserve">
-    <value>Template</value>
-  </data>
-	<data name="lblTemplate.Help" xml:space="preserve">
-    <value>Allows you to provide a custom template for displaying the items. Use parameters for dynamic substitution ( ie. [CONTENT] [CREATEDONDATE] [CREATEDBYUSER] [CREATEDBYUSERNAME] )</value>
-  </data>
+	<data name="labelDivision.Text" xml:space="preserve">
+		<value>Division</value>
+	</data>
+	<data name="labelDivision.Help" xml:space="preserve">
+		<value>Select a division from a tree to display it's employees.</value>
+	</data>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>Division Settings</value>
-  </data>
+		<value>Division Settings</value>
+	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>About Division Settings</value>
-  </data>
+		<value>About Division Settings</value>
+	</data>
 </root>

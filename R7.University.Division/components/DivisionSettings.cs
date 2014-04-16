@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using R7.University;
@@ -46,17 +47,12 @@ namespace R7.University.Division
 		#region Properties for settings
 
 		/// <summary>
-		/// Template used to render the module content
+		/// Division ID
 		/// </summary>
-		public string Template
+		public int DivisionID
 		{
-			get
-			{ 
-				return ReadSetting<string> ("template", 
-					"<i>[CREATEDONDATE]<i> <b>[CREATEDBYUSERNAME]</b>:<br />[CONTENT]", 
-					true); 
-			}
-			set { WriteSetting<string> ("template", value, true); }
+			get { return ReadSetting<int> ("Division_DivisionID", Null.NullInteger, false); }
+			set { WriteSetting<int> ("Division_DivisionID", value, false); }
 		}
 
 		#endregion

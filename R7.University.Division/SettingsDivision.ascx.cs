@@ -26,9 +26,11 @@
 using System;
 using System.Web.UI.WebControls;
 using System.Linq;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.UserControls;
+using DotNetNuke.Services.Localization;
 using R7.University;
 
 namespace R7.University.Division
@@ -45,11 +47,38 @@ namespace R7.University.Division
 				if (!IsPostBack)
 				{
 					var settings = new DivisionSettings (this);
-										
-					if (!string.IsNullOrWhiteSpace (settings.Template))
+					var ctrl = new DivisionController ();
+
+					// get divisions
+					var divisions = ctrl.GetObjects<DivisionInfo>("ORDER BY [Title] ASC").ToList();
+
+					// insert default item
+					divisions.Insert (0, new DivisionInfo() { 
+						DivisionID = Null.NullInteger, 
+						ParentDivisionID = null,
+						Title = Localization.GetString("NotSelected.Text", LocalResourceFile),
+						ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile)
+					});
+
+					// bind list to a tree
+					treeDivisions.DataSource = divisions;
+					treeDivisions.DataBind();
+
+					// select currently stored value
+					var treeNode = treeDivisions.FindNodeByValue(settings.DivisionID.ToString());
+					if (treeNode != null)
 					{
-						txtTemplate.Text = settings.Template;
+						treeNode.Selected = true;
+
+						// expand all parent nodes
+						treeNode = treeNode.ParentNode;
+						while (treeNode != null)
+						{
+							treeNode.Expanded = true;
+							treeNode = treeNode.ParentNode;
+						} 
 					}
+
 				}
 			}
 			catch (Exception ex)
@@ -66,8 +95,8 @@ namespace R7.University.Division
 			try
 			{
 				var settings = new DivisionSettings (this);
-				
-				settings.Template = txtTemplate.Text;
+
+				settings.DivisionID = int.Parse(treeDivisions.SelectedValue);
 
 				Utils.SynchronizeModule (this);
 			}

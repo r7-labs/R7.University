@@ -11,7 +11,7 @@ namespace R7.University.Division
 {
 	public partial class SettingsDivision
 	{
-		protected LabelControl lblTemplate;
-		protected TextBox txtTemplate;
+		protected LabelControl labelDivision;
+		protected DnnTreeView treeDivisions;
 	}
 }

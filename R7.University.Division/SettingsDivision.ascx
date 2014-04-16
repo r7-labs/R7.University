@@ -6,8 +6,13 @@
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
 	<fieldset>	
 		<div class="dnnFormItem">
-			<dnn:Label ID="lblTemplate" runat="server" ControlName="txtTemplate" Suffix=":" />
-			<asp:TextBox ID="txtTemplate" runat="server" CssClass="NormalTextBox" Rows="10" Columns="30" TextMode="MultiLine" MaxLength="2000" />
+			<dnn:Label id="labelDivision" runat="server" ControlName="treeDivisions" Suffix=":" />
+			<dnnweb:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+				DataFieldID="DivisionID"
+				DataFieldParentID="ParentDivisionID"
+				DataValueField="DivisionID"
+				DataTextField="ShortTitle"
+			/> 
 		</div>
 	</fieldset>	
 </div>
