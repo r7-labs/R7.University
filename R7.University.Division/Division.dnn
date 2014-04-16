@@ -1,0 +1,113 @@
+﻿<dotnetnuke type="Package" version="5.0">
+ <packages>
+   <package name="Division" type="Module" version="01.00.00">
+     <friendlyName>Division</friendlyName>
+     <description>This is a simple module to display some records from database table.</description>
+     <owner>
+       <name>Roman M. Yagodin</name>
+       <organization>R7 Solutions</organization>
+       <url>http://www.R7 Solutions.com/Division</url>
+       <email>roman.yagodin@gmail.com</email>
+     </owner>
+	 <license src="License.txt" />
+     <releaseNotes src="ReleaseNotes.txt" />
+     <!-- <dependencies>
+		<dependency type="CoreVersion">07.00.00</dependency>
+	</dependencies> -->
+     <components>
+
+        <component type="Module">
+         <desktopModule>
+           <moduleName>Division</moduleName>
+           <foldername>Division</foldername>
+           <businessControllerClass>Division.DivisionController</businessControllerClass>
+           <supportedFeatures>
+             <supportedFeature type="Portable" />
+             <supportedFeature type="Searchable" />
+           </supportedFeatures>
+           <moduleDefinitions>
+             <moduleDefinition>
+               <friendlyName>Division</friendlyName>
+               <definitionName>Division</definitionName>
+               <defaultCacheTime>0</defaultCacheTime>
+               <moduleControls>
+                 <moduleControl>
+                   <controlKey />
+                   <controlSrc>DesktopModules/Division/Division/ViewDivision.ascx</controlSrc>
+                   <controlTitle />
+                   <controlType>View</controlType>
+                   <iconFile />
+                   <helpUrl />
+                   <supportsPartialRendering>False</supportsPartialRendering>
+                   <supportsPopUps>False</supportsPopUps>
+                   <viewOrder>0</viewOrder>
+                 </moduleControl>
+                 <moduleControl>
+                   <controlKey>Edit</controlKey>
+                   <controlSrc>DesktopModules/Division/Division/EditDivision.ascx</controlSrc>
+                   <supportsPartialRendering>False</supportsPartialRendering>
+                   <supportsPopUps>True</supportsPopUps>
+                   <controlTitle>Edit</controlTitle>
+                   <controlType>Edit</controlType>
+                   <iconFile />
+                   <helpUrl />
+                   <supportsPartialRendering>False</supportsPartialRendering>
+                   <supportsPopUps>True</supportsPopUps>
+                   <viewOrder>0</viewOrder>
+                 </moduleControl>
+                 <moduleControl>
+                   <controlKey>Settings</controlKey>
+                   <controlSrc>DesktopModules/Division/Division/SettingsDivision.ascx</controlSrc>
+                   <supportsPartialRendering>False</supportsPartialRendering>
+                   <controlTitle>Settings</controlTitle>
+                   <controlType>Edit</controlType>
+                   <iconFile />
+                   <helpUrl />
+                   <supportsPartialRendering>False</supportsPartialRendering>
+                   <supportsPopUps>False</supportsPopUps>
+                   <viewOrder>0</viewOrder>
+                 </moduleControl>
+               </moduleControls>
+             </moduleDefinition>
+           </moduleDefinitions>
+         </desktopModule>
+       </component>
+
+       <component type="Script">
+         <scripts>
+           <basePath>DesktopModules\Division\Division</basePath>
+           <script type="Install">
+             <name>01.00.00.SqlDataProvider</name>
+             <version>01.00.00</version>
+           </script>
+           <script type="UnInstall">
+             <name>Uninstall.SqlDataProvider</name>
+             <version>01.00.00</version>
+           </script>
+         </scripts>
+       </component>
+
+       <component type="ResourceFile">
+         <resourceFiles>
+           <basePath>DesktopModules\Division\Division</basePath>
+           <resourceFile>
+             <name>Division.zip</name>
+           </resourceFile>
+         </resourceFiles>
+       </component>
+
+       <component type="Assembly">
+         <assemblies>
+           <basePath>bin</basePath>
+           <assembly>
+             <path>bin</path>
+             <name>Division.dll</name>
+           </assembly>
+         </assemblies>
+       </component>
+    
+     </components>
+   </package>
+ </packages>
+</dotnetnuke>
+

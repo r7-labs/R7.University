@@ -1,0 +1,9 @@
+﻿/* Place module CSS here */
+
+.Division_ContentList { width:100% }				
+.Division_ContentListItem { text-align: left }
+.Division_UserName { font-weight:bold }
+.Division_CreateOnDate { font-style:italic }
+.Division_Content { clear:both }
+
+

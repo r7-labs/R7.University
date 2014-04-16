@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Employee", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EmployeeList", "R7.University.EmployeeList\R7.University.EmployeeList.csproj", "{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Division", "R7.University.Division\R7.University.Division.csproj", "{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = R7.University.Employee\R7.University.Employee.csproj
