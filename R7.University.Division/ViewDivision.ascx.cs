@@ -65,19 +65,22 @@ namespace R7.University.Division
 				if (!IsPostBack)
 				{
 					var ctrl = new DivisionController ();
-					var items = ctrl.GetObjects<DivisionInfo> (this.ModuleId);
+					var settings = new DivisionSettings (this);
 
-					// check if we have some content to display, 
-					// otherwise display a message for module editors.
-					if (items == null && IsEditable)
+					var display = true;
+
+					if (!Null.IsNull(settings.DivisionID))
+					{
+						var item = ctrl.Get<DivisionInfo> (settings.DivisionID);
+						if (item != null )
+						{	
+							DisplayDivision(item);
+						}
+					}
+
+					if (!display && IsEditable)
 					{
 						Utils.Message (this, MessageSeverity.Info, Localization.GetString ("NothingToDisplay.Text", LocalResourceFile));
-					}
-					else
-					{
-						// bind the data
-						lstContent.DataSource = items;
-						lstContent.DataBind ();
 					}
 				}
 			}
@@ -88,6 +91,12 @@ namespace R7.University.Division
 		}
 
 		#endregion
+
+		protected void DisplayDivision (DivisionInfo division)
+		{
+			// fill the controls
+			labelTitle.Text = division.Title;
+		}
 
 		#region IActionable implementation
 
@@ -117,44 +126,6 @@ namespace R7.University.Division
 
 		#endregion
 
-		/// <summary>
-		/// Handles the items being bound to the datalist control. In this method we merge the data with the
-		/// template defined for this control to produce the result to display to the user
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		protected void lstContent_ItemDataBound (object sender, System.Web.UI.WebControls.DataListItemEventArgs e)
-		{
-			// use e.Item.DataItem as object of DivisionInfo class,
-			// as we really know it is:
-			var item = e.Item.DataItem as DivisionInfo;
-			
-			// find controls in DataList item template
-			var lblUserName = e.Item.FindControl ("lblUserName") as Label;
-			var lblCreatedOnDate = e.Item.FindControl ("lblCreatedOnDate") as Label;
-			var lblContent = e.Item.FindControl ("lblContent") as Label;
-			var linkEdit = e.Item.FindControl ("linkEdit") as HyperLink;
-			var iconEdit = e.Item.FindControl ("imageEdit") as Image;
-			
-			// read module settings (may be useful in a future)
-			// var settings = new DivisionSettings (this);            
-            
-			// edit link
-			if (IsEditable)
-			{
-				linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "DivisionID", item.DivisionID.ToString ());
-				// WTF: iconEdit.NavigateUrl = Utils.FormatURL (this, image.Url, false);
-			}
-
-			// make edit link visible in edit mode
-			linkEdit.Visible = IsEditable;
-			iconEdit.Visible = IsEditable;
-            
-			// fill the controls
-
-			lblCreatedOnDate.Text = item.CreatedOnDate.ToShortDateString ();
-			lblContent.Text = Server.HtmlDecode (item.Title);
-		}
 	}
 }
 

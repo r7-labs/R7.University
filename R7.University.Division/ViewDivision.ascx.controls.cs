@@ -12,6 +12,6 @@ namespace R7.University.Division
 {
 	public partial class ViewDivision
 	{
-		protected DataList lstContent;
+		protected Label labelTitle;
 	}
 }
