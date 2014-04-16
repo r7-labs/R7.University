@@ -84,7 +84,7 @@ namespace R7.University.Division
 				{
 					sb.Append ("<Division>");
 					sb.Append ("<content>");
-					sb.Append (XmlUtils.XMLEncode (info.Content));
+					sb.Append (XmlUtils.XMLEncode (info.Title));
 					sb.Append ("</content>");
 					sb.Append ("</Division>");
 				}
@@ -108,9 +108,9 @@ namespace R7.University.Division
 			foreach (XmlNode info in infos.SelectNodes("Division"))
 			{
 				var item = new DivisionInfo ();
-				item.ModuleID = ModuleID;
-				item.Content = info.SelectSingleNode ("content").InnerText;
-				item.CreatedByUser = UserID;
+
+				item.Title = info.SelectSingleNode ("content").InnerText;
+				item.CreatedByUserID = UserID;
 
 				Add<DivisionInfo> (item);
 			}

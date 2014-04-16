@@ -151,9 +151,9 @@ namespace R7.University.Division
 			iconEdit.Visible = IsEditable;
             
 			// fill the controls
-			lblUserName.Text = item.CreatedByUserName;
+
 			lblCreatedOnDate.Text = item.CreatedOnDate.ToShortDateString ();
-			lblContent.Text = Server.HtmlDecode (item.Content);
+			lblContent.Text = Server.HtmlDecode (item.Title);
 		}
 	}
 }
