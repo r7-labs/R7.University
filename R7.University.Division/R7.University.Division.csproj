@@ -6,28 +6,35 @@
     <ProjectGuid>{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}</ProjectGuid>
     <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Division</RootNamespace>
-    <AssemblyName>Division</AssemblyName>
+    <RootNamespace>R7.University.Division</RootNamespace>
+    <AssemblyName>R7.University.Division</AssemblyName>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <ReleaseVersion>1.0.5</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin</OutputPath>
+    <OutputPath>..\..\..\bin</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <AspNet>
+      <AspNet DisableCodeBehindGeneration="True" />
+    </AspNet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin</OutputPath>
+    <OutputPath>..\..\..\bin</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <AspNet>
+      <AspNet DisableCodeBehindGeneration="True" />
+    </AspNet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -39,13 +46,13 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="DotNetNuke">
-      <HintPath>..\..\..\Dotnetnuke7\bin\DotNetNuke.dll</HintPath>
+      <HintPath>..\..\..\bin\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web">
-      <HintPath>..\..\..\Dotnetnuke7\bin\DotNetNuke.Web.dll</HintPath>
+      <HintPath>..\..\..\bin\DotNetNuke.Web.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI">
-      <HintPath>..\..\..\Dotnetnuke7\bin\Telerik.Web.UI.dll</HintPath>
+      <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
