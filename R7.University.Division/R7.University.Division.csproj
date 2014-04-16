@@ -71,10 +71,6 @@
     <None Include="Division.dnn" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="lib\ControllerBase.cs" />
-    <Compile Include="lib\SettingsWrapper.cs" />
-    <Compile Include="lib\Utils.cs" />
-    <Compile Include="lib\Properties\AssemblyInfo.cs" />
     <Compile Include="components\DivisionSettings.cs" />
     <Compile Include="components\DivisionController.cs" />
     <Compile Include="components\DivisionInfo.cs" />
