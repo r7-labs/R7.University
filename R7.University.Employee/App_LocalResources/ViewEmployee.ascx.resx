@@ -29,7 +29,7 @@
   <data name="VisitProfile.Text" xml:space="preserve">
     <value>Visit profile</value>
   </data>
-  <data name="Fax.Text" xml:space="preserve">
-    <value>(fax)</value>
+  <data name="Fax.Format" xml:space="preserve">
+    <value>{0} (fax)</value>
   </data>
 </root>
