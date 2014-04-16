@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewDivision.ascx.cs" Inherits="Division.ViewDivision" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewDivision.ascx.cs" Inherits="R7.University.Division.ViewDivision" %>
 <asp:DataList ID="lstContent" DataKeyField="DivisionID" runat="server" CssClass="Division_ContentList" OnItemDataBound="lstContent_ItemDataBound">
 	<ItemTemplate>
 		<asp:HyperLink ID="linkEdit" runat="server">

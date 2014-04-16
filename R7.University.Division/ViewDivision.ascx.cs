@@ -35,8 +35,9 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using R7.University;
 
-namespace Division
+namespace R7.University.Division
 {
 	public partial class ViewDivision : PortalModuleBase, IActionable
 	{

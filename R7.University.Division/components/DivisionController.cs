@@ -34,13 +34,14 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search;
 using DotNetNuke.Services.Search.Entities;
+using R7.University;
 
-namespace Division
+namespace R7.University.Division
 {
 	public partial class DivisionController : ControllerBase, IPortable
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Division.DivisionController"/> class.
+		/// Initializes a new instance of the <see cref="R7.University.Division.DivisionController"/> class.
 		/// </summary>
 		public DivisionController () : base ()
 		{ 

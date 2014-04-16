@@ -29,8 +29,9 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.UserControls;
+using R7.University;
 
-namespace Division
+namespace R7.University.Division
 {
 	public partial class SettingsDivision : ModuleSettingsBase
 	{

@@ -6,8 +6,9 @@ using System.Linq;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
+using R7.University;
 
-namespace Division
+namespace R7.University.Division
 {
 	public partial class ViewDivision
 	{

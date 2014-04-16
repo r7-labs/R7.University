@@ -29,8 +29,9 @@ using DotNetNuke.Data;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Users;
+using R7.University;
 
-namespace Division
+namespace R7.University.Division
 {
 	// More attributes for class:
 	// Set caching for table: [Cacheable("Division_DivisionInfos", CacheItemPriority.Default, 20)]

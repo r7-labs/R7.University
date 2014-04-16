@@ -26,8 +26,9 @@
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
+using R7.University;
 
-namespace Division
+namespace R7.University.Division
 {
 	/// <summary>
 	/// Provides strong typed access to settings used by module
