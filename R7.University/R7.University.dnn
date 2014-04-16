@@ -165,50 +165,7 @@
 						</assembly>
 					</assemblies>
 				</component>
-
-      --&gt;<!---
-				<component type="File">
-					<files>
-						<basePath>DesktopModules\R7.University\R7.University.Launchpad</basePath>
-						<file>
-							<name>ViewLaunchpad.ascx</name>
-						</file>
-						<file>
-							<name>EditLaunchpad.ascx</name>
-						</file>
-						<file>
-							<name>SettingsLaunchpad.ascx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>ViewLaunchpad.ascx.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>EditLaunchpad.ascx.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>SettingsLaunchpad.ascx.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>ViewLaunchpad.ascx.ru-RU.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>EditLaunchpad.ascx.ru-RU.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>SettingsLaunchpad.ascx.ru-RU.resx</name>
-						</file>
-						<file>
-							<name>module.css</name>
-						</file>
-					</files>
-				</component>
---></components>
+      		</components>
 		</package>
 		<package name="R7.University.Employee" type="Module" version="01.00.05">
 			<friendlyName>_Employee</friendlyName>
@@ -298,41 +255,6 @@
 						</assembly>
 					</assemblies>
 				</component>
-				<!---
-				<component type="File">
-					<files>
-						<basePath>DesktopModules\R7.University\R7.University.Employee</basePath>
-						<file>
-							<name>ViewEmployee.ascx</name>
-						</file>
-						<file>
-							<name>SettingsEmployee.ascx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>ViewEmployee.ascx.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>SettingsEmployee.ascx.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>ViewEmployee.ascx.ru-RU.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>SettingsEmployee.ascx.ru-RU.resx</name>
-						</file>
-						<file>
-							<path>js</path>
-							<name>module.js</name>
-						</file>
-						<file>
-							<name>module.css</name>
-						</file>
-					</files>
-				</component> -->
 			</components>
 		</package>
 		<package name="R7.University.EmployeeList" type="Module" version="01.00.05">
@@ -438,36 +360,96 @@
 						</assembly>
 					</assemblies>
 				</component>
-				<!--				<component type="File">
-					<files>
-						<basePath>DesktopModules\R7.University\R7.University.EmployeeList</basePath>
-						<file>
-							<name>ViewEmployeeList.ascx</name>
-						</file>
-						<file>
-							<name>SettingsEmployeeList.ascx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>ViewEmployeeList.ascx.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>SettingsEmployeeList.ascx.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>ViewEmployeeList.ascx.ru-RU.resx</name>
-						</file>
-						<file>
-							<path>App_LocalResources</path>
-							<name>SettingsEmployeeList.ascx.ru-RU.resx</name>
-						</file>
-						<file>
-							<name>module.css</name>
-						</file>
-					</files>
-				</component> -->
+			</components>
+		</package>
+		<package name="R7.University.Division" type="Module" version="01.00.05">
+			<friendlyName>_Division</friendlyName>
+			<description>This is a module to display information about single division.</description>
+			<owner>
+				<name>Roman M. Yagodin</name>
+				<organization>R7 Solutions</organization>
+				<url>http://www.r7space.ru</url>
+				<email>roman.yagodin@gmail.com</email>
+			</owner>
+			<license src="License.txt" />
+			<releaseNotes src="ReleaseNotes.txt" />
+			<!-- <dependencies>
+		<dependency type="CoreVersion">07.00.00</dependency>
+	</dependencies> -->
+			<components>
+				<component type="Module">
+					<desktopModule>
+						<moduleName>R7.University.Division</moduleName>
+						<foldername>R7.University.Division</foldername>
+						<businessControllerClass>R7.University.Division.DivisionController</businessControllerClass>
+						<supportedFeatures>
+							<supportedFeature type="Portable" />
+							<supportedFeature type="Searchable" />
+						</supportedFeatures>
+						<moduleDefinitions>
+							<moduleDefinition>
+								<friendlyName>R7.University.Division</friendlyName>
+								<definitionName>R7.University.Division</definitionName>
+								<defaultCacheTime>1200</defaultCacheTime>
+								<moduleControls>
+									<moduleControl>
+										<controlKey />
+										<controlSrc>DesktopModules/R7.University/R7.University.Division/ViewDivision.ascx</controlSrc>
+										<controlTitle />
+										<controlType>View</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Edit</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDivision.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Division</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Settings</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Division/SettingsDivision.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<controlTitle>Division Settings</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+								</moduleControls>
+							</moduleDefinition>
+						</moduleDefinitions>
+					</desktopModule>
+				</component>
+				<component type="ResourceFile">
+					<resourceFiles>
+						<basePath>DesktopModules/R7.University/R7.University.Division</basePath>
+						<resourceFile>
+							<name>R7.University.Division.zip</name>
+						</resourceFile>
+					</resourceFiles>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<basePath>bin</basePath>
+						<assembly>
+							<path>bin</path>
+							<name>R7.University.Division.dll</name>
+						</assembly>
+					</assemblies>
+				</component>
 			</components>
 		</package>
 	</packages>
