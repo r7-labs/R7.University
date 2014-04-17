@@ -281,7 +281,7 @@ namespace R7.University.Launchpad
 				item.Biography = textBiography.Text.Trim();
 
 				var workingHoursStr =  textWorkingHours.Text.Trim();
-				if (!string.IsNullOrWhiteSpace(workingHoursStr) || comboWorkingHours.SelectedIndex == 0)
+				if (!string.IsNullOrWhiteSpace(workingHoursStr) || comboWorkingHours.SelectedIndex <= 0)
 				{
 					item.WorkingHours = workingHoursStr;
 
@@ -302,7 +302,7 @@ namespace R7.University.Launchpad
 				else
 				{
 					// get working hours from a combo
-					item.WorkingHours = comboWorkingHours.SelectedValue;
+					item.WorkingHours = comboWorkingHours.SelectedItem.Text;
 				}
 
 				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
