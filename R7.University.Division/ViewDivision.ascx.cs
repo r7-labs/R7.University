@@ -174,8 +174,8 @@ namespace R7.University.Division
 
 			// barcode image test
 			imageBarcode.ImageUrl = 
-				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&content={2}",
-					150, 150, Server.UrlEncode("Test test1 tesT2")
+				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
+					150, 150, Server.UrlEncode(division.Title)
 			);
 
 		}
