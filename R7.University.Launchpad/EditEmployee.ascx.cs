@@ -281,12 +281,14 @@ namespace R7.University.Launchpad
 				item.Biography = textBiography.Text.Trim();
 
 				var workingHoursStr =  textWorkingHours.Text.Trim();
-				if (!string.IsNullOrWhiteSpace(workingHoursStr) || comboWorkingHours.SelectedIndex <= 0)
+				var workingHoursNonEmpty = !string.IsNullOrWhiteSpace(workingHoursStr);
+
+				if (comboWorkingHours.SelectedIndex <= 0 || workingHoursNonEmpty)
 				{
 					item.WorkingHours = workingHoursStr;
 
 					// REVIEW: Shouldn't we try to add term after updating main item?
-					if (checkAddToVocabulary.Checked)
+					if (checkAddToVocabulary.Checked && workingHoursNonEmpty)  
 					{
 						// try add new term to University_WorkingHours vocabulary
 						var vocCtrl = new VocabularyController();
