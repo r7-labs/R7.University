@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Text;
 
 namespace R7.University
 {
@@ -41,6 +42,8 @@ EMAIL:support.vgsha@gmail.com
 ORG:Volgograd SAU
 END:VCARD
 		 */ 
+
+		#region Properties
 
 		public const string Version = "3.0";
 
@@ -99,6 +102,22 @@ END:VCARD
 		public string AccessClassification { get; set; }
 
 		public string PublicKey { get; set; }
+
+		#endregion
+
+		public override string ToString ()
+		{
+			var vcard = new StringBuilder ();
+			vcard.AppendLine ("BEGIN:VCARD");
+
+			vcard.AppendLine ("VERSION:" + Version);
+			vcard.Append ("EMAIL:");
+			vcard.AppendLine (Utils.FormatList (",", Emails));
+
+			vcard.AppendLine ("END:VCARD");
+
+			return vcard.ToString ();
+		}
 	}
 }
 
