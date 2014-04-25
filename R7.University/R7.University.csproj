@@ -71,5 +71,6 @@
     <None Include="Package.cmd" />
     <None Include="01.00.04.SqlDataProvider" />
     <None Include="01.00.05.SqlDataProvider" />
+    <None Include="Tweaks.SqlDataProvider" />
   </ItemGroup>
 </Project>
