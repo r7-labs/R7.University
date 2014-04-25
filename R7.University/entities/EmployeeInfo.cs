@@ -105,6 +105,20 @@ namespace R7.University
 
 		#endregion
 
+		public VCard VCard
+		{
+			get 
+			{
+				return new VCard () {
+					Names = new string[] { LastName, FirstName, OtherName },
+					FormattedName = FullName,
+					Emails = new string[] { Email, SecondaryEmail },
+					Phone = Phone,
+					Title = Utils.FormatList (",", AcademicDegree, AcademicTitle)
+				};
+			}
+		}
+
 	}
 }
 
