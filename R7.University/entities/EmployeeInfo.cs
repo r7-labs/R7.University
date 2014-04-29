@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 using DotNetNuke.Data;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.ComponentModel.DataAnnotations;
@@ -19,10 +20,6 @@ namespace R7.University
 	[PrimaryKey ("EmployeeID", AutoIncrement = true)]
 	public class EmployeeInfo : EntityBase
 	{
-		#region Fields
-
-		#endregion
-
 		/// <summary>
 		/// Empty default cstor
 		/// </summary>
@@ -105,6 +102,46 @@ namespace R7.University
 
 		#endregion
 
-	}
-}
+		public VCard VCard
+		{
+			get
+			{
+				var vcard = new VCard ();
 
+				// names
+				vcard.Names = new List<string> () { LastName, FirstName, OtherName, Utils.FormatList (", ", AcademicDegree, AcademicTitle) };
+
+				// formatted name
+				vcard.FormattedName = Utils.FormatList (", ", AcademicDegree, AcademicTitle) + " " + FullName;
+
+				// email
+				if (!string.IsNullOrWhiteSpace (Email))
+					vcard.Emails.Add (Email);
+
+				// secondary email
+				if (!string.IsNullOrWhiteSpace (SecondaryEmail))
+					vcard.Emails.Add (SecondaryEmail);
+			
+				// phone
+				if (!string.IsNullOrWhiteSpace(Phone))
+					vcard.Phones.Add (new Phone () { Number = Phone, Type = PhoneType.Work });
+
+				// cellphone
+				if (!string.IsNullOrWhiteSpace(CellPhone))
+					vcard.Phones.Add (new Phone () { Number = CellPhone, Type = PhoneType.Cell });
+
+				// fax
+				if (!string.IsNullOrWhiteSpace(Fax))
+					vcard.Phones.Add (new Phone () { Number = Fax, Type = PhoneType.Fax });
+
+				// website
+				if (!string.IsNullOrWhiteSpace (WebSite))
+					vcard.Url = WebSite;
+
+				return vcard;
+			}
+		}
+
+	} // class
+} // namespace
+	
