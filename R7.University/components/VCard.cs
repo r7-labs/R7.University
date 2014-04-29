@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace R7.University
 {
@@ -32,16 +33,23 @@ namespace R7.University
 	{
 		public VCard ()
 		{
+			Names = new List<string> ();
+			Emails = new List<string> ();
+			Phones = new List<Phone> ();
 		}
 
+		#region Example
+
 		/*
-		 * BEGIN:VCARD
-VERSION:3.0
-TEL:+7 (927) 530-87-50
-EMAIL:support.vgsha@gmail.com
-ORG:Volgograd SAU
-END:VCARD
-		 */ 
+		BEGIN:VCARD
+		VERSION:3.0
+		TEL:+7 (927) 530-87-50
+		EMAIL:support.vgsha@gmail.com
+		ORG:Volgograd SAU
+		END:VCARD
+		*/ 
+
+		#endregion
 
 		#region Properties
 
@@ -52,7 +60,7 @@ END:VCARD
 
 		public string FormattedName { get; set; }
 
-		public string [] Names { get; set; }
+		public List<string> Names { get; set; }
 
 		public string Nickname { get; set; }
 
@@ -64,9 +72,9 @@ END:VCARD
 
 		public string AddressLabel { get; set; }
 
-		public string Phone { get; set; }
+		public List<Phone> Phones { get; set; }
 
-		public string [] Emails { get; set; }
+		public List<string> Emails { get; set; }
 
 		public string EmailProgram  { get; set; }
 
@@ -84,7 +92,7 @@ END:VCARD
 
 		public string OrganizationName { get; set; }
 
-		public string [] Categories { get; set; }
+		public List<string> Categories { get; set; }
 
 		public string Note { get; set; }
 
@@ -98,7 +106,6 @@ END:VCARD
 
 		public string Url { get; set; }
 
-		//PUBLIC PRIVATE CONFIDENTIAL
 		public string AccessClassification { get; set; }
 
 		public string PublicKey { get; set; }
@@ -110,14 +117,101 @@ END:VCARD
 			var vcard = new StringBuilder ();
 			vcard.AppendLine ("BEGIN:VCARD");
 
+			// version
 			vcard.AppendLine ("VERSION:" + Version);
-			vcard.Append ("EMAIL:");
-			vcard.AppendLine (Utils.FormatList (",", Emails));
+
+			// formatted name
+			if (!string.IsNullOrWhiteSpace (FormattedName))
+				vcard.AppendLine ("FN:" + FormattedName);
+
+			// names
+			// NOTE: Last element must contain additional names, comma separated
+			if (Names.Count > 0)
+				vcard.AppendLine (Utils.FormatList (";", Names));
+
+			// phone
+			foreach (var phone in Phones)
+			{
+				if (phone.Type == PhoneType.None)
+					vcard.AppendLine ("TEL:" + phone.Number);
+				else
+					vcard.AppendLine (
+						string.Format ("TEL;TYPE={0}:{1}", 
+							GetPhoneTypeString (phone.Type).ToUpperInvariant (), phone.Number));
+			}
+
+			// emails
+			var firstEmail = true;
+			foreach (var email in Emails)
+			{		if (firstEmail)
+				{	
+					vcard.AppendLine ("EMAIL;TYPE=PREF:" + email);
+					firstEmail = false;
+				}
+				else
+					vcard.AppendLine ("EMAIL:" + email);
+			}
+
+			// url
+			if (!string.IsNullOrWhiteSpace(Url))
+				vcard.AppendLine ("URL:" + Url);
+
+			// title
+			if (!string.IsNullOrWhiteSpace(Title))
+				vcard.AppendLine ("TITLE:" + Title);
 
 			vcard.AppendLine ("END:VCARD");
 
 			return vcard.ToString ();
 		}
+
+		private string GetPhoneTypeString (PhoneType type)
+		{
+			var types = new List<string>();
+
+			if ((type & PhoneType.Home) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Msg) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Work) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Pref) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Voice) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Fax) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Cell) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Video) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Pager) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Bbs) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Modem) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Car) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Isdn) > 0)
+				types.Add(type.ToString());
+
+			if ((type & PhoneType.Pcs) > 0)
+				types.Add(type.ToString());
+
+			return Utils.FormatList (", ", types.ToArray ());
+		}
 	}
 }
-
