@@ -102,6 +102,7 @@ namespace R7.University
 
 		#endregion
 
+		[IgnoreColumn]
 		public VCard VCard
 		{
 			get
