@@ -63,7 +63,7 @@
     <Content Include="ViewEmployee.ascx" />
     <Content Include="SettingsEmployee.ascx" />
     <Content Include="js\module.js" />
-    <Content Include="ViewEmployee %28copy%29.ascx" />
+    <Content Include="ViewVCard.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewEmployee.ascx.resx" />
@@ -90,8 +90,8 @@
       <DependentUpon>SettingsEmployee.ascx</DependentUpon>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ViewEmployee.ascx %28copy%29.cs">
-      <DependentUpon>ViewEmployee %28copy%29.ascx</DependentUpon>
+    <Compile Include="ViewVCard.ascx.cs">
+      <DependentUpon>ViewVCard.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
