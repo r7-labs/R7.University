@@ -93,9 +93,6 @@
     <Compile Include="ViewEmployee.ascx %28copy%29.cs">
       <DependentUpon>ViewEmployee %28copy%29.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewEmployee.ascx.controls %28copy%29.cs">
-      <DependentUpon>ViewEmployee %28copy%29.ascx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
