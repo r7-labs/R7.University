@@ -139,6 +139,14 @@ namespace R7.University
 				if (!string.IsNullOrWhiteSpace (WebSite))
 					vcard.Url = WebSite;
 
+				// working place
+				if (!string.IsNullOrWhiteSpace (WorkingPlace))
+					// TODO: Add division address
+					vcard.DeliveryAddress = WorkingPlace;
+
+				// revision
+				vcard.LastRevision = LastModifiedOnDate;
+
 				return vcard;
 			}
 		}
