@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="AddContent.Action" xml:space="preserve">
-    <value>Add Content</value>
-  </data>
+	<data name="AddDivision.Action" xml:space="preserve">
+    	<value>Add Division</value>
+  	</data>
+	<data name="EditDivision.Action" xml:space="preserve">
+    	<value>Edit Division</value>
+  	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt;A Division module&lt;/P&gt;</value>
   </data>

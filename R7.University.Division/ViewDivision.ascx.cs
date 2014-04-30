@@ -213,7 +213,7 @@ namespace R7.University.Division
 				{
 					actions.Add (
 						GetNextActionID (), 
-						Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
+						Localization.GetString ("AddDivision.Action", LocalResourceFile),
 						ModuleActionType.AddContent, 
 						"", 
 						"", 
@@ -230,7 +230,7 @@ namespace R7.University.Division
 					// otherwise, add "edit" action
 					actions.Add (
 						GetNextActionID (), 
-						Localization.GetString (ModuleActionType.EditContent, this.LocalResourceFile),
+						Localization.GetString ("EditDivision.Action", LocalResourceFile),
 						ModuleActionType.EditContent, 
 						"", 
 						"", 
@@ -243,7 +243,7 @@ namespace R7.University.Division
 
 					actions.Add (
 						GetNextActionID (), 
-						Localization.GetString("VCard.Action", this.LocalResourceFile),
+						Localization.GetString("VCard.Action", LocalResourceFile),
 						ModuleActionType.ContentOptions, 
 						"", 
 						"", 

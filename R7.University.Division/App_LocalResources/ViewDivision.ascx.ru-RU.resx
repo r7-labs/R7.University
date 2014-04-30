@@ -1,8 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="AddContent.Action" xml:space="preserve">
-    <value>Добавить содержимое</value>
-  </data>
+	<data name="AddDivision.Action" xml:space="preserve">
+    	<value>Добавить подразделение</value>
+  	</data>
+	<data name="EditDivision.Action" xml:space="preserve">
+    	<value>Редактировать подразделение</value>
+  	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt; Модуль Division&lt;/P&gt;</value>
   </data>
