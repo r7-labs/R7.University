@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="AddContent.Action" xml:space="preserve">
+  <data name="AddEmployee.Action" xml:space="preserve">
     <value>Add Employee</value>
   </data>
-  <data name="EditContent.Action" xml:space="preserve">
+  <data name="EditEmployee.Action" xml:space="preserve">
     <value>Edit Employee</value>
   </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">

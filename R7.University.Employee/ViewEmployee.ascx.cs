@@ -354,7 +354,7 @@ namespace R7.University.Employee
 				{
 					actions.Add (
 						GetNextActionID (), 
-						Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
+						Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
 						ModuleActionType.AddContent, 
 						"", 
 						"", 
@@ -370,7 +370,7 @@ namespace R7.University.Employee
 					// otherwise, add "edit" action
 					actions.Add (
 						GetNextActionID (), 
-						Localization.GetString (ModuleActionType.EditContent, this.LocalResourceFile),
+						Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
 						ModuleActionType.EditContent, 
 						"", 
 						"", 

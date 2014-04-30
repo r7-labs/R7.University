@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="AddContent.Action" xml:space="preserve">
-    <value>Добавить содержимое</value>
+   <data name="AddEmployee.Action" xml:space="preserve">
+    <value>Добавить сотрудника</value>
+  </data>
+   <data name="EditEmployee.Action" xml:space="preserve">
+    <value>Редактировать сотрудника</value>
   </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt; Модуль Employee&lt;/P&gt;</value>
