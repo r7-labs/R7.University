@@ -31,10 +31,20 @@ namespace R7.University
 	public enum PhoneType 
 	{
 		None = 0,
-		Home, Msg, Work, Pref,
-		Voice, Fax, Cell, Video,
-		Pager, Bbs, Modem,
-		Car, Isdn, Pcs
+		Home = 1, 
+		Msg = 2, 
+		Work = 4, 
+		Pref = 8,
+		Voice = 16,
+		Fax = 32, 
+		Cell = 64, 
+		Video = 128,
+		Pager = 256, 
+		Bbs = 512, 
+		Modem = 1024,
+		Car = 2048, 
+		Isdn = 4096, 
+		Pcs = 8192
 	}
 
 	public class Phone

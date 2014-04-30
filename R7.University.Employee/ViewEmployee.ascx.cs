@@ -380,6 +380,20 @@ namespace R7.University.Employee
 						true, 
 						false
 					);
+
+					actions.Add (
+						GetNextActionID (), 
+						"VCard",
+						ModuleActionType.ContentOptions, 
+						"", 
+						"", 
+						Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()),
+						false, 
+						DotNetNuke.Security.SecurityAccessLevel.View,
+						true, 
+						true // open in new window
+					);
+
 				}
 
 				return actions;

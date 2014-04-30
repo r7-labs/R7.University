@@ -127,7 +127,7 @@ namespace R7.University
 			// names
 			// NOTE: Last element must contain additional names, comma separated
 			if (Names.Count > 0)
-				vcard.AppendLine (Utils.FormatList (";", Names));
+				vcard.AppendLine ("N:" + Utils.FormatList (";", Names.ToArray()));
 
 			// phone
 			foreach (var phone in Phones)
@@ -170,48 +170,48 @@ namespace R7.University
 			var types = new List<string>();
 
 			if ((type & PhoneType.Home) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Home.ToString());
 
 			if ((type & PhoneType.Msg) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Msg.ToString());
 
 			if ((type & PhoneType.Work) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Work.ToString());
 
 			if ((type & PhoneType.Pref) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Pref.ToString());
 
 			if ((type & PhoneType.Voice) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Voice.ToString());
 
 			if ((type & PhoneType.Fax) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Fax.ToString());
 
 			if ((type & PhoneType.Cell) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Cell.ToString());
 
 			if ((type & PhoneType.Video) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Video.ToString());
 
 			if ((type & PhoneType.Pager) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Pager.ToString());
 
 			if ((type & PhoneType.Bbs) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Bbs.ToString());
 
 			if ((type & PhoneType.Modem) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Modem.ToString());
 
 			if ((type & PhoneType.Car) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Car.ToString());
 
 			if ((type & PhoneType.Isdn) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Isdn.ToString());
 
 			if ((type & PhoneType.Pcs) > 0)
-				types.Add(type.ToString());
+				types.Add(PhoneType.Pcs.ToString());
 
-			return Utils.FormatList (", ", types.ToArray ());
+			return Utils.FormatList (",", types.ToArray ());
 		}
 	}
 }
