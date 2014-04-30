@@ -163,7 +163,7 @@ namespace R7.University
 
 			// revision
 			if (LastRevision != DateTime.MinValue)
-				vcard.AppendLine ("REV:" + LastRevision.ToString ("YYYY-MM-DD"));
+				vcard.AppendLine ("REV:" + LastRevision.ToString ("yyyy-MM-dd"));
 
 			// address
 			if (!string.IsNullOrWhiteSpace (DeliveryAddress))
