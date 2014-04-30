@@ -51,6 +51,48 @@ namespace R7.University
 
 		#endregion
 
+		[IgnoreColumn]
+		public VCard VCard
+		{
+			get
+			{
+				var vcard = new VCard ();
+
+				// org. name
+				if (!string.IsNullOrWhiteSpace (Title))
+					vcard.OrganizationName = Title;
+
+				// email
+				if (!string.IsNullOrWhiteSpace (Email))
+					vcard.Emails.Add (Email);
+
+				// secondary email
+				if (!string.IsNullOrWhiteSpace (SecondaryEmail))
+					vcard.Emails.Add (SecondaryEmail);
+
+				// phone
+				if (!string.IsNullOrWhiteSpace(Phone))
+					vcard.Phones.Add (new VCardPhone () { Number = Phone, Type = VCardPhoneType.Work });
+
+				// fax
+				if (!string.IsNullOrWhiteSpace(Fax))
+					vcard.Phones.Add (new VCardPhone () { Number = Fax, Type = VCardPhoneType.Fax });
+
+				// website
+				if (!string.IsNullOrWhiteSpace (WebSite))
+					vcard.Url = WebSite;
+
+				// location
+				if (!string.IsNullOrWhiteSpace (Location))
+					// TODO: Add organization address
+					vcard.DeliveryAddress = Location;
+
+				// revision
+				vcard.LastRevision = LastModifiedOnDate;
+
+				return vcard;
+			}
+		}
 
 	}
 }
