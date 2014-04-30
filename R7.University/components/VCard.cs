@@ -169,6 +169,10 @@ namespace R7.University
 			if (!string.IsNullOrWhiteSpace (DeliveryAddress))
 				vcard.AppendLine ("ADR:" + DeliveryAddress);
 
+			// organization
+			if (!string.IsNullOrWhiteSpace (OrganizationName))
+				vcard.AppendLine ("ORG:" + OrganizationName);
+
 			vcard.AppendLine ("END:VCARD");
 
 			return vcard.ToString ();
