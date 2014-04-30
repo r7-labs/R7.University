@@ -35,7 +35,7 @@ namespace R7.University
 		{
 			Names = new List<string> ();
 			Emails = new List<string> ();
-			Phones = new List<Phone> ();
+			Phones = new List<VCardPhone> ();
 		}
 
 		#region Example
@@ -72,7 +72,7 @@ namespace R7.University
 
 		public string AddressLabel { get; set; }
 
-		public List<Phone> Phones { get; set; }
+		public List<VCardPhone> Phones { get; set; }
 
 		public List<string> Emails { get; set; }
 
@@ -132,7 +132,7 @@ namespace R7.University
 			// phone
 			foreach (var phone in Phones)
 			{
-				if (phone.Type == PhoneType.None)
+				if (phone.Type == VCardPhoneType.None)
 					vcard.AppendLine ("TEL:" + phone.Number);
 				else
 					vcard.AppendLine (
@@ -165,51 +165,51 @@ namespace R7.University
 			return vcard.ToString ();
 		}
 
-		private string GetPhoneTypeString (PhoneType type)
+		private string GetPhoneTypeString (VCardPhoneType type)
 		{
 			var types = new List<string>();
 
-			if ((type & PhoneType.Home) > 0)
-				types.Add(PhoneType.Home.ToString());
+			if ((type & VCardPhoneType.Home) > 0)
+				types.Add(VCardPhoneType.Home.ToString());
 
-			if ((type & PhoneType.Msg) > 0)
-				types.Add(PhoneType.Msg.ToString());
+			if ((type & VCardPhoneType.Msg) > 0)
+				types.Add(VCardPhoneType.Msg.ToString());
 
-			if ((type & PhoneType.Work) > 0)
-				types.Add(PhoneType.Work.ToString());
+			if ((type & VCardPhoneType.Work) > 0)
+				types.Add(VCardPhoneType.Work.ToString());
 
-			if ((type & PhoneType.Pref) > 0)
-				types.Add(PhoneType.Pref.ToString());
+			if ((type & VCardPhoneType.Pref) > 0)
+				types.Add(VCardPhoneType.Pref.ToString());
 
-			if ((type & PhoneType.Voice) > 0)
-				types.Add(PhoneType.Voice.ToString());
+			if ((type & VCardPhoneType.Voice) > 0)
+				types.Add(VCardPhoneType.Voice.ToString());
 
-			if ((type & PhoneType.Fax) > 0)
-				types.Add(PhoneType.Fax.ToString());
+			if ((type & VCardPhoneType.Fax) > 0)
+				types.Add(VCardPhoneType.Fax.ToString());
 
-			if ((type & PhoneType.Cell) > 0)
-				types.Add(PhoneType.Cell.ToString());
+			if ((type & VCardPhoneType.Cell) > 0)
+				types.Add(VCardPhoneType.Cell.ToString());
 
-			if ((type & PhoneType.Video) > 0)
-				types.Add(PhoneType.Video.ToString());
+			if ((type & VCardPhoneType.Video) > 0)
+				types.Add(VCardPhoneType.Video.ToString());
 
-			if ((type & PhoneType.Pager) > 0)
-				types.Add(PhoneType.Pager.ToString());
+			if ((type & VCardPhoneType.Pager) > 0)
+				types.Add(VCardPhoneType.Pager.ToString());
 
-			if ((type & PhoneType.Bbs) > 0)
-				types.Add(PhoneType.Bbs.ToString());
+			if ((type & VCardPhoneType.Bbs) > 0)
+				types.Add(VCardPhoneType.Bbs.ToString());
 
-			if ((type & PhoneType.Modem) > 0)
-				types.Add(PhoneType.Modem.ToString());
+			if ((type & VCardPhoneType.Modem) > 0)
+				types.Add(VCardPhoneType.Modem.ToString());
 
-			if ((type & PhoneType.Car) > 0)
-				types.Add(PhoneType.Car.ToString());
+			if ((type & VCardPhoneType.Car) > 0)
+				types.Add(VCardPhoneType.Car.ToString());
 
-			if ((type & PhoneType.Isdn) > 0)
-				types.Add(PhoneType.Isdn.ToString());
+			if ((type & VCardPhoneType.Isdn) > 0)
+				types.Add(VCardPhoneType.Isdn.ToString());
 
-			if ((type & PhoneType.Pcs) > 0)
-				types.Add(PhoneType.Pcs.ToString());
+			if ((type & VCardPhoneType.Pcs) > 0)
+				types.Add(VCardPhoneType.Pcs.ToString());
 
 			return Utils.FormatList (",", types.ToArray ());
 		}

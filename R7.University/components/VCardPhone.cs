@@ -28,7 +28,7 @@ using System;
 namespace R7.University
 {
 	[Flags]
-	public enum PhoneType 
+	public enum VCardPhoneType 
 	{
 		None = 0,
 		Home = 1, 
@@ -47,9 +47,9 @@ namespace R7.University
 		Pcs = 8192
 	}
 
-	public class Phone
+	public class VCardPhone
 	{
 		public string Number { get; set; }
-		public PhoneType Type { get; set; }
+		public VCardPhoneType Type { get; set; }
 	}
 }

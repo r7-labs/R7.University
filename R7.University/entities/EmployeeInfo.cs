@@ -125,15 +125,15 @@ namespace R7.University
 			
 				// phone
 				if (!string.IsNullOrWhiteSpace(Phone))
-					vcard.Phones.Add (new Phone () { Number = Phone, Type = PhoneType.Work });
+					vcard.Phones.Add (new VCardPhone () { Number = Phone, Type = VCardPhoneType.Work });
 
 				// cellphone
 				if (!string.IsNullOrWhiteSpace(CellPhone))
-					vcard.Phones.Add (new Phone () { Number = CellPhone, Type = PhoneType.Cell });
+					vcard.Phones.Add (new VCardPhone () { Number = CellPhone, Type = VCardPhoneType.Cell });
 
 				// fax
 				if (!string.IsNullOrWhiteSpace(Fax))
-					vcard.Phones.Add (new Phone () { Number = Fax, Type = PhoneType.Fax });
+					vcard.Phones.Add (new VCardPhone () { Number = Fax, Type = VCardPhoneType.Fax });
 
 				// website
 				if (!string.IsNullOrWhiteSpace (WebSite))
