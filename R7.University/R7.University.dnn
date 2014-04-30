@@ -415,6 +415,17 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
+										<controlKey>VCard</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Division/ViewVCard.ascx</controlSrc>
+										<controlTitle />
+										<controlType>View</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
 										<controlKey>Edit</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDivision.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>

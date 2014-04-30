@@ -44,6 +44,25 @@ namespace R7.University.Division
 {
 	public partial class ViewDivision : PortalModuleBase, IActionable
 	{
+		private bool divisionIDLoaded = false;
+		private int divisionID = Null.NullInteger;
+
+		protected int DivisionID
+		{
+			get 
+			{
+				if (divisionIDLoaded)
+					return divisionID;
+				else
+				{
+					var settings = new DivisionSettings (this);
+					divisionID = settings.DivisionID;
+					divisionIDLoaded = true;
+					return divisionID;
+				}
+			} 
+		}
+
 		#region Handlers
 
 		/// <summary>
@@ -189,18 +208,52 @@ namespace R7.University.Division
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
-				actions.Add (
-					GetNextActionID (), 
-					Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
-					ModuleActionType.AddContent, 
-					"", 
-					"", 
-					Utils.EditUrl (this, "EditDivision"),
-					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
-					true, 
-					false
-				);
+
+				if (Null.IsNull (DivisionID))
+				{
+					actions.Add (
+						GetNextActionID (), 
+						Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
+						ModuleActionType.AddContent, 
+						"", 
+						"", 
+						Utils.EditUrl (this, "EditDivision"),
+						false, 
+						DotNetNuke.Security.SecurityAccessLevel.Edit,
+						true, 
+						false
+					);
+
+				}
+				else
+				{
+					// otherwise, add "edit" action
+					actions.Add (
+						GetNextActionID (), 
+						Localization.GetString (ModuleActionType.EditContent, this.LocalResourceFile),
+						ModuleActionType.EditContent, 
+						"", 
+						"", 
+						Utils.EditUrl (this, "Edit", "division_id", DivisionID.ToString ()),
+						false, 
+						DotNetNuke.Security.SecurityAccessLevel.Edit,
+						true, 
+						false
+					);
+
+					actions.Add (
+						GetNextActionID (), 
+						"VCard",
+						ModuleActionType.ContentOptions, 
+						"", 
+						"", 
+						Utils.EditUrl (this, "VCard", "division_id", DivisionID.ToString ()),
+						false, 
+						DotNetNuke.Security.SecurityAccessLevel.View,
+						true, 
+						true // open in new window
+					);
+				}
 
 				return actions;
 			}
