@@ -130,6 +130,10 @@ namespace R7.University
 			if (Names.Count > 0)
 				vcard.AppendLine ("N:" + Utils.FormatList (";", Names.ToArray()));
 
+			// organization
+			if (!string.IsNullOrWhiteSpace (OrganizationName))
+				vcard.AppendLine ("ORG:" + OrganizationName);
+
 			// phone
 			foreach (var phone in Phones)
 			{
@@ -161,17 +165,13 @@ namespace R7.University
 			if (!string.IsNullOrWhiteSpace(Title))
 				vcard.AppendLine ("TITLE:" + Title);
 
-			// revision
-			if (LastRevision != DateTime.MinValue)
-				vcard.AppendLine ("REV:" + LastRevision.ToString ("yyyy-MM-dd"));
-
 			// address
 			if (!string.IsNullOrWhiteSpace (DeliveryAddress))
 				vcard.AppendLine ("ADR:" + DeliveryAddress);
 
-			// organization
-			if (!string.IsNullOrWhiteSpace (OrganizationName))
-				vcard.AppendLine ("ORG:" + OrganizationName);
+			// revision
+			if (LastRevision != DateTime.MinValue)
+				vcard.AppendLine ("REV:" + LastRevision.ToString ("yyyy-MM-dd"));
 
 			vcard.AppendLine ("END:VCARD");
 
