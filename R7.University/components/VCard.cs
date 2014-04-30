@@ -31,6 +31,8 @@ namespace R7.University
 {
 	public class VCard
 	{
+		// TODO: Allow import vcf in Window Contacts correctly 
+
 		public VCard ()
 		{
 			Names = new List<string> ();
@@ -38,19 +40,6 @@ namespace R7.University
 			Phones = new List<VCardPhone> ();
 			LastRevision = DateTime.MinValue;
 		}
-
-		#region Example
-
-		/*
-		BEGIN:VCARD
-		VERSION:3.0
-		TEL:+7 (927) 530-87-50
-		EMAIL:support.vgsha@gmail.com
-		ORG:Volgograd SAU
-		END:VCARD
-		*/ 
-
-		#endregion
 
 		#region Properties
 
