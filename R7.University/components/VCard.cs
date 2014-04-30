@@ -36,6 +36,7 @@ namespace R7.University
 			Names = new List<string> ();
 			Emails = new List<string> ();
 			Phones = new List<VCardPhone> ();
+			LastRevision = DateTime.MinValue;
 		}
 
 		#region Example
@@ -68,7 +69,7 @@ namespace R7.University
 
 		public DateTime BirthDay { get; set; }
 
-		public string DeliveryAddres { get; set; }
+		public string DeliveryAddress { get; set; }
 
 		public string AddressLabel { get; set; }
 
@@ -159,6 +160,14 @@ namespace R7.University
 			// title
 			if (!string.IsNullOrWhiteSpace(Title))
 				vcard.AppendLine ("TITLE:" + Title);
+
+			// revision
+			if (LastRevision != DateTime.MinValue)
+				vcard.AppendLine ("REV:" + LastRevision.ToString ("YYYY-MM-DD"));
+
+			// address
+			if (!string.IsNullOrWhiteSpace (DeliveryAddress))
+				vcard.AppendLine ("ADR:" + DeliveryAddress);
 
 			vcard.AppendLine ("END:VCARD");
 
