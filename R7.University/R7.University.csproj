@@ -56,6 +56,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="components\VCard.cs" />
     <Compile Include="components\VCardPhone.cs" />
+    <Compile Include="components\QuotedPrintable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
