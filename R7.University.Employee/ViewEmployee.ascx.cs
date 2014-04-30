@@ -383,7 +383,7 @@ namespace R7.University.Employee
 
 					actions.Add (
 						GetNextActionID (), 
-						"VCard",
+						Localization.GetString("VCard.Action", this.LocalResourceFile),
 						ModuleActionType.ContentOptions, 
 						"", 
 						"", 

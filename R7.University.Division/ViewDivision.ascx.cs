@@ -243,7 +243,7 @@ namespace R7.University.Division
 
 					actions.Add (
 						GetNextActionID (), 
-						"VCard",
+						Localization.GetString("VCard.Action", this.LocalResourceFile),
 						ModuleActionType.ContentOptions, 
 						"", 
 						"", 
