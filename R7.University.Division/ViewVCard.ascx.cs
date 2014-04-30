@@ -41,7 +41,6 @@ namespace R7.University.Division
 						var division = ctrl.Get<DivisionInfo> (int.Parse(division_id));
 						if (division != null)
 						{
-
 							Response.Clear();
 							Response.ContentType = "text/x-vcard";
 							Response.Write(division.VCard.ToString());
@@ -65,6 +64,8 @@ namespace R7.University.Division
 						else
 							throw new Exception ("No division found with DivisionID=" + division_id);
 					}
+					else
+						throw new Exception ("\"division_id\" query parametershould not be empty");
 				} 
 			}
 			catch (Exception ex)

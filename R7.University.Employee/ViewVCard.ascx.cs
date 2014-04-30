@@ -66,6 +66,8 @@ namespace R7.University.Employee
 						else
 							throw new Exception ("No employee found with EmployeeID=" + employee_id);
 					}
+					else
+						throw new Exception ("\"employee_id\" query parameter should not be empty");
 				} 
 			}
 			catch (Exception ex)
