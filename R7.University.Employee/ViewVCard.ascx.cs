@@ -34,7 +34,6 @@ namespace R7.University.Employee
 				if (!IsPostBack)
 				{
 					var ctrl = new EmployeeController ();
-					var settings = new EmployeeSettings (this);
 
 					var employee_id = Request.QueryString["employee_id"];
 					if (!string.IsNullOrWhiteSpace(employee_id))
@@ -42,26 +41,13 @@ namespace R7.University.Employee
 						var employee = ctrl.Get<EmployeeInfo> (int.Parse(employee_id));
 						if (employee != null)
 						{
-
 							Response.Clear();
 							Response.ContentType = "text/x-vcard";
+							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}.vcf\"", employee.FileName));
+							Response.ContentEncoding = System.Text.Encoding.UTF8;
 							Response.Write(employee.VCard.ToString());
 							Response.Flush();
 							Response.Close();
-
-							// TODO: Add filename to vCard
-							/* Attachment filename example
-							var attachmentFilename = strOriginalFileName;
-
-							if (Request.Browser.Browser.Contains("MSIE") || Request.Browser.Browser.StartsWith("IE"))
-							{
-								attachmentFilename = Server.UrlEncode(attachmentFilename);
-								if (!string.IsNullOrEmpty(attachmentFilename)) 
-									attachmentFilename = attachmentFilename.Replace("+", "%20");
-							}   
-							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}\"", attachmentFilename));
-		                    Response.ContentEncoding = System.Text.Encoding.UTF8;
-		                    Response.ContentType = Utils.GetMimeType(Path.GetExtension(strPath).ToLower());*/
 						}
 						else
 							throw new Exception ("No employee found with EmployeeID=" + employee_id);

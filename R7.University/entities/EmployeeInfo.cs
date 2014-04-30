@@ -68,6 +68,12 @@ namespace R7.University
 		}
 
 		[IgnoreColumn]
+		public string FileName
+		{
+			get { return string.Format ("{0}_{1}{2}", LastName, FirstName.Substring(0,1), OtherName.Substring(0,1)); }
+		}
+
+		[IgnoreColumn]
 		public string FullName
 		{
 			get { return Utils.FormatList(" ", LastName, FirstName, OtherName); }

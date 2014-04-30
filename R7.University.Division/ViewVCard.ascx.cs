@@ -43,23 +43,11 @@ namespace R7.University.Division
 						{
 							Response.Clear();
 							Response.ContentType = "text/x-vcard";
+							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}.vcf\"", division.FileName));
+							Response.ContentEncoding = System.Text.Encoding.UTF8;
 							Response.Write(division.VCard.ToString());
 							Response.Flush();
 							Response.Close();
-
-							// TODO: Add filename to vCard
-							/* Attachment filename example
-							var attachmentFilename = strOriginalFileName;
-
-							if (Request.Browser.Browser.Contains("MSIE") || Request.Browser.Browser.StartsWith("IE"))
-							{
-								attachmentFilename = Server.UrlEncode(attachmentFilename);
-								if (!string.IsNullOrEmpty(attachmentFilename)) 
-									attachmentFilename = attachmentFilename.Replace("+", "%20");
-							}   
-							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}\"", attachmentFilename));
-		                    Response.ContentEncoding = System.Text.Encoding.UTF8;
-		                    Response.ContentType = Utils.GetMimeType(Path.GetExtension(strPath).ToLower());*/
 						}
 						else
 							throw new Exception ("No division found with DivisionID=" + division_id);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using DotNetNuke.Data;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.Entities.Portals;
@@ -50,6 +51,14 @@ namespace R7.University
 		public string WorkingHours { get; set; }
 
 		#endregion
+
+		[IgnoreColumn]
+		public string FileName 
+		{
+			// replace all non-word character with spaces, 
+			// trim resulting string and then replace all spaces with single underscore
+			get { return Regex.Replace (Regex.Replace (ShortTitle, @"\W", " ").Trim(), @"\s+", "_"); } 
+		}
 
 		[IgnoreColumn]
 		public VCard VCard
