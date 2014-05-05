@@ -383,6 +383,19 @@ namespace R7.University.Employee
 
 					actions.Add (
 						GetNextActionID (), 
+						Localization.GetString("EmployeeDetails.Action", this.LocalResourceFile),
+						ModuleActionType.ContentOptions, 
+						"", 
+						"", 
+						Utils.EditUrl (this, "EmployeeDetails", "employee_id", EmployeeID.ToString ()),
+						false, 
+						DotNetNuke.Security.SecurityAccessLevel.View,
+						true, 
+						false
+					);
+
+					actions.Add (
+						GetNextActionID (), 
 						Localization.GetString("VCard.Action", this.LocalResourceFile),
 						ModuleActionType.ContentOptions, 
 						"", 
