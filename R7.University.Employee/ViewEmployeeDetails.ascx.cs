@@ -52,6 +52,9 @@ namespace R7.University.Employee
 		protected override void OnInit (EventArgs e)
 		{
 			base.OnInit (e);
+
+			linkReturn.Attributes.Add("onclick", "javascript:return " + 
+				UrlUtils.ClosePopUp( refresh: false, url: "", onClickEvent: true));
 		}
 
 		/// <summary>

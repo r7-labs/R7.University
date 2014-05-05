@@ -11,5 +11,6 @@ namespace R7.University.Employee
 {
 	public partial class ViewEmployeeDetails
 	{
+		protected HyperLink linkReturn;
 	}
 }
