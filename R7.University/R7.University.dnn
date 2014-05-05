@@ -211,7 +211,7 @@
 									<moduleControl>
 										<controlKey>Details</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
-										<controlTitle />
+										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
 										<helpUrl />
