@@ -208,52 +208,46 @@ namespace R7.University.Division
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
+				var existingDivision = !Null.IsNull (DivisionID);
 
-				if (Null.IsNull (DivisionID))
-				{
-					actions.Add (
-						GetNextActionID (), 
-						Localization.GetString ("AddDivision.Action", LocalResourceFile),
-						ModuleActionType.AddContent, 
-						"", 
-						"", 
-						Utils.EditUrl (this, "EditDivision"),
-						false, 
-						DotNetNuke.Security.SecurityAccessLevel.Edit,
-						true, 
-						false
-					);
+				actions.Add (
+					GetNextActionID (), 
+					Localization.GetString ("AddDivision.Action", LocalResourceFile),
+					ModuleActionType.AddContent, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "EditDivision"),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					!existingDivision,
+					false
+				);
 
-				}
-				else
-				{
-					// otherwise, add "edit" action
-					actions.Add (
-						GetNextActionID (), 
-						Localization.GetString ("EditDivision.Action", LocalResourceFile),
-						ModuleActionType.EditContent, 
-						"", 
-						"", 
-						Utils.EditUrl (this, "Edit", "division_id", DivisionID.ToString ()),
-						false, 
-						DotNetNuke.Security.SecurityAccessLevel.Edit,
-						true, 
-						false
-					);
+				actions.Add (
+					GetNextActionID (), 
+					Localization.GetString ("EditDivision.Action", LocalResourceFile),
+					ModuleActionType.EditContent, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "Edit", "division_id", DivisionID.ToString ()),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					existingDivision, 
+					false
+				);
 
-					actions.Add (
-						GetNextActionID (), 
-						Localization.GetString("VCard.Action", LocalResourceFile),
-						ModuleActionType.ContentOptions, 
-						"", 
-						"", 
-						Utils.EditUrl (this, "VCard", "division_id", DivisionID.ToString ()),
-						false, 
-						DotNetNuke.Security.SecurityAccessLevel.View,
-						true, 
-						true // open in new window
-					);
-				}
+				actions.Add (
+					GetNextActionID (), 
+					Localization.GetString("VCard.Action", LocalResourceFile),
+					ModuleActionType.ContentOptions, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "VCard", "division_id", DivisionID.ToString ()),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.View,
+					existingDivision, 
+					true // open in new window
+				);
 
 				return actions;
 			}
