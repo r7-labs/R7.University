@@ -32,9 +32,6 @@
   <data name="Fax.Format" xml:space="preserve">
     <value>{0} (fax)</value>
   </data>
-  <data name="VCard.Action" xml:space="preserve">
-    <value>VCard</value>
-  </data>
   <data name="Details.Action" xml:space="preserve">
     <value>Employee Details</value>
   </data>
