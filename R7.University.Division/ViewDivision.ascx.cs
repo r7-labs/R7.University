@@ -143,6 +143,7 @@ namespace R7.University.Division
 			}
 
 			// link to division resources
+			var displaySearchByTerm = false;
 			if (division.DivisionTermID != null)
 			{
 				var termCtrl = new TermController ();
@@ -151,10 +152,15 @@ namespace R7.University.Division
 				{
 					linkTerm.Text = term.Name;
 					linkTerm.NavigateUrl = Globals.NavigateURL (PortalSettings.SearchTabId, "", "Tag", term.Name);
+					displaySearchByTerm = true;
 				}
 			}
 
-
+			if (!displaySearchByTerm)
+			{
+				linkTerm.Visible = false;
+				labelSearchByTerm.Visible = false;
+			}
 
 			// email
 			if (!string.IsNullOrWhiteSpace (division.Email))
@@ -209,6 +215,16 @@ namespace R7.University.Division
 
 			imageBarcode.ToolTip = Localization.GetString ("imageBarcode.ToolTip", LocalResourceFile);
 			imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
+
+			// get & bind subdivisions
+			var ctrl = new DivisionController ();
+			var subDivisions = ctrl.GetObjects<DivisionInfo> (
+				"WHERE [ParentDivisionID] = @0 ORDER BY [Title]", division.DivisionID); 
+			if (subDivisions != null && subDivisions.Any ())
+			{
+				repeatSubDivisions.DataSource = subDivisions;
+				repeatSubDivisions.DataBind ();
+			}
 		}
 
 		#region IActionable implementation
@@ -266,6 +282,34 @@ namespace R7.University.Division
 		}
 
 		#endregion
+
+		protected void repeaterSubDivisions_ItemDataBound (object sender, RepeaterItemEventArgs e)
+		{
+			// exclude header & footer
+			if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+			{
+				var division = e.Item.DataItem as DivisionInfo;
+
+				var labelSubDivision = e.Item.FindControl ("labelSubDivision") as Label;
+				var linkSubDivision = e.Item.FindControl ("linkSubDivision") as HyperLink;
+
+				// home page 
+				int homeTabId;
+				if (int.TryParse (division.HomePage, out homeTabId) && TabId != homeTabId)
+				{
+					// has home page, display as link 
+					linkSubDivision.NavigateUrl = Globals.NavigateURL (homeTabId);
+					linkSubDivision.Text = division.Title;
+					labelSubDivision.Visible = false;
+				}
+				else
+				{
+					// no home page, display as label
+					labelSubDivision.Text = division.Title;
+					linkSubDivision.Visible = false;
+				}	
+			}
+		}
 
 	}
 }

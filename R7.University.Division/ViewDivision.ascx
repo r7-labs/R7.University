@@ -18,18 +18,21 @@
 		<asp:Label id="labelLocation" runat="server" CssClass="Division_Label" />
 		<asp:Label id="labelWorkingHours" runat="server" CssClass="Division_Label" />
 	</div>
-	<div class="Division_BarCodeContainer">
-		<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" />
-	</div>
-	<asp:Repeater id="repeatSubDivisions" runat="server">
-		<HeaderTemplate><ul></HeaderTemplate>
+
+	<asp:Repeater id="repeatSubDivisions" runat="server" OnItemDataBound="repeaterSubDivisions_ItemDataBound">
+		<HeaderTemplate><ul class="Division_Section"></HeaderTemplate>
 		<ItemTemplate>
 			<li>
-				<asp:HyperLink id="linkSubDivision" runat="server"></asp:HyperLink>
+				<asp:HyperLink id="linkSubDivision" runat="server" />
+				<asp:Label id="labelSubDivision" runat="server" />
 			</li>
 		</ItemTemplate>
 		<FooterTemplate></ul></FooterTemplate>
 	</asp:Repeater>
+
+	<div class="Division_BarCodeContainer">
+		<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" />
+	</div>
 
 	<div class="Division_Section Division_SearchByTerm">
 		<asp:Label id="labelSearchByTerm" runat="server" resourcekey="labelSearchByTerm" />

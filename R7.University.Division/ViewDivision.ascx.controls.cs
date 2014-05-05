@@ -14,6 +14,7 @@ namespace R7.University.Division
 	{
 		protected Label labelTitle;
 		protected HyperLink linkTerm;
+		protected Label labelSearchByTerm;
 		protected HyperLink linkHomePage;
 		protected HyperLink linkEmail;
 		protected HyperLink linkSecondaryEmail;
