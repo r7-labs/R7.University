@@ -120,13 +120,27 @@ namespace R7.University.Division
 			var settings = new DivisionSettings (this);
 
 			// division title
-			labelTitle.Text = division.Title;
+			var divisionTitle = division.Title;
 
-			// division short title
+			// add division short title
 			if (division.ShortTitle.Length < division.Title.Length)
-				labelShortTitle.Text = string.Format ("({0})", division.ShortTitle);
+				divisionTitle += string.Format (" ({0})", division.ShortTitle);
+
+			// home page 
+			int homeTabId;
+			if (int.TryParse (division.HomePage, out homeTabId) && TabId != homeTabId)
+			{
+				// has home page, display as link 
+				linkHomePage.Text = divisionTitle;
+				linkHomePage.NavigateUrl = Globals.NavigateURL (homeTabId);
+				labelTitle.Visible = false;
+			}
 			else
-				labelShortTitle.Visible = false;
+			{
+				// no home page, display as label
+				labelTitle.Text = divisionTitle;
+				linkHomePage.Visible = false;
+			}
 
 			// link to division resources
 			if (division.DivisionTermID != null)
@@ -140,16 +154,7 @@ namespace R7.University.Division
 				}
 			}
 
-			// home page 
-			int homeTabId;
-			if (int.TryParse (division.HomePage, out homeTabId) && TabId != homeTabId)
-			{
-				// REVIEW: Display tab name instead?
-				linkHomePage.Text = "Home page";
-				linkHomePage.NavigateUrl = Globals.NavigateURL (homeTabId);
-			}
-			else
-				linkHomePage.Visible = false;
+
 
 			// email
 			if (!string.IsNullOrWhiteSpace (division.Email))

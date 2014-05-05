@@ -2,7 +2,6 @@
 
 <asp:Panel id="panelDivision" runat="server">
 	<asp:Label id="labelTitle" runat="server" CssClass="Division_Label" />
-	<asp:Label id="labelShortTitle" runat="server" CssClass="Division_Label" />
 	<asp:HyperLink id="linkHomePage" runat="server" CssClass="Division_Label" />
 	<asp:HyperLink id="linkEmail" runat="server" CssClass="Division_Label email" />
 	<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="Division_Label email" />
