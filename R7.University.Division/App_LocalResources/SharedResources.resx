@@ -1,6 +1,15 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- not selected --</value>
+  </data>
+	<data name="AddDivision.Action" xml:space="preserve">
+		<value>Add Division</value>
+	</data>
+	<data name="EditDivision.Action" xml:space="preserve">
+		<value>Edit Division</value>
+	</data>
+	<data name="VCard.Action" xml:space="preserve">
+    <value>VCard</value>
   </data>
 </root>

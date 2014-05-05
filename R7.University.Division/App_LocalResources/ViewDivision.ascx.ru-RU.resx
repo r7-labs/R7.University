@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="AddDivision.Action" xml:space="preserve">
-    	<value>Добавить подразделение</value>
-  	</data>
-	<data name="EditDivision.Action" xml:space="preserve">
-    	<value>Редактировать подразделение</value>
-  	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt; Модуль Division&lt;/P&gt;</value>
   </data>
@@ -17,8 +11,5 @@
   </data>
 	<data name="Fax.Format" xml:space="preserve">
     <value>{0} (факс)</value>
-  </data>
-  <data name="VCard.Action" xml:space="preserve">
-    <value>VCard</value>
   </data>
 </root>

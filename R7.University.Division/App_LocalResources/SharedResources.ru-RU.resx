@@ -3,4 +3,13 @@
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- не выбрано --</value>
   </data>
+<data name="AddDivision.Action" xml:space="preserve">
+    	<value>Добавить подразделение</value>
+  	</data>
+	<data name="EditDivision.Action" xml:space="preserve">
+    	<value>Редактировать подразделение</value>
+  	</data>
+ <data name="VCard.Action" xml:space="preserve">
+    <value>VCard</value>
+  </data>
 </root>
