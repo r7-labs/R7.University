@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="AddEmployee.Action" xml:space="preserve">
-    <value>Add Employee</value>
-  </data>
-  <data name="EditEmployee.Action" xml:space="preserve">
-    <value>Edit Employee</value>
-  </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt;A Employee module&lt;/P&gt;</value>
   </data>
@@ -18,11 +12,6 @@
 	<data name="EmployeeHardDeleted.Text" xml:space="preserve">
   	<value>Selected employee doesn't exist!</value>
   </data>
-<!---
-	<data name="EmployeeSoftDeleted.Text" xml:space="preserve">
-  	<value>Selected employee was soft-deleted.</value>
-  </data>
--->
 	<data name="EmployeeNotPublished.Text" xml:space="preserve">
   	<value>Selected employee not published.</value>
   </data>
@@ -31,8 +20,5 @@
   </data>
   <data name="Fax.Format" xml:space="preserve">
     <value>{0} (fax)</value>
-  </data>
-  <data name="Details.Action" xml:space="preserve">
-    <value>Employee Details</value>
   </data>
 </root>

@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-   <data name="AddEmployee.Action" xml:space="preserve">
-    <value>Добавить сотрудника</value>
-  </data>
-   <data name="EditEmployee.Action" xml:space="preserve">
-    <value>Редактировать сотрудника</value>
-  </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt; Модуль Employee&lt;/P&gt;</value>
   </data>
@@ -20,8 +14,5 @@
   </data>
  <data name="Fax.Format" xml:space="preserve">
     <value>{0} (факс)</value>
-  </data>
- <data name="Details.Action" xml:space="preserve">
-    <value>Подробнее о сотруднике</value>
   </data>
 </root>

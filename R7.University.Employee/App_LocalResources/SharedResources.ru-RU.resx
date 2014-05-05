@@ -1,9 +1,18 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- не выбрано --</value>
   </data>
-  <data name="VCard.Action" xml:space="preserve">
+	<data name="AddEmployee.Action" xml:space="preserve">
+    <value>Добавить сотрудника</value>
+  </data>
+	<data name="EditEmployee.Action" xml:space="preserve">
+    <value>Редактировать сотрудника</value>
+  </data>
+	<data name="VCard.Action" xml:space="preserve">
     <value>vCard</value>
+  </data>
+	<data name="Details.Action" xml:space="preserve">
+    <value>Подробнее о сотруднике</value>
   </data>
 </root>
