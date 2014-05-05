@@ -219,8 +219,15 @@ namespace R7.University.Employee
 				}
 			}
 
+			if (imageVisible)
+			{
+				// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
+				linkPhoto.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ());
+			}
+
 			// REVIEW: Need to add fallback image?
-			imagePhoto.Visible = imageVisible;
+			linkPhoto.Visible = imageVisible;
+			// imagePhoto.Visible = imageVisible;
 
 			// Academic degree & title
 			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
