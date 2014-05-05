@@ -39,6 +39,7 @@ namespace R7.University
 			Emails = new List<string> ();
 			Phones = new List<VCardPhone> ();
 			LastRevision = DateTime.MinValue;
+			Encoding = Encoding.UTF8;
 		}
 
 		#region Properties
@@ -102,9 +103,16 @@ namespace R7.University
 
 		#endregion
 
+		public Encoding Encoding { get; set; }
+
 		public override string ToString ()
 		{
 			var vcard = new StringBuilder ();
+		
+			var charset= "";
+			if (Encoding != Encoding.UTF8)
+				charset = ";CHARSET=" + Encoding.WebName;
+
 			vcard.AppendLine ("BEGIN:VCARD");
 
 			// version
@@ -112,16 +120,16 @@ namespace R7.University
 
 			// formatted name
 			if (!string.IsNullOrWhiteSpace (FormattedName))
-				vcard.AppendLine ("FN:" + FormattedName);
+				vcard.AppendFormat("FN{0}:{1}\n", charset, FormattedName);
 
 			// names
 			// NOTE: Last element must contain additional names, comma separated
 			if (Names.Count > 0)
-				vcard.AppendLine ("N:" + Utils.FormatList (";", Names.ToArray()));
+				vcard.AppendFormat ("N{0}:{1}\n", charset, Utils.FormatList (";", Names.ToArray()));
 
 			// organization
 			if (!string.IsNullOrWhiteSpace (OrganizationName))
-				vcard.AppendLine ("ORG:" + OrganizationName);
+				vcard.AppendFormat("ORG{0}:{1}\n", charset, OrganizationName);
 
 			// phone
 			foreach (var phone in Phones)
@@ -152,11 +160,11 @@ namespace R7.University
 
 			// title
 			if (!string.IsNullOrWhiteSpace(Title))
-				vcard.AppendLine ("TITLE:" + Title);
+				vcard.AppendFormat ("TITLE{0}:{1}\n", charset, Title);
 
 			// address
 			if (!string.IsNullOrWhiteSpace (DeliveryAddress))
-				vcard.AppendLine ("ADR:" + DeliveryAddress);
+				vcard.AppendFormat ("ADR{0}:{1}\n", charset, DeliveryAddress);
 
 			// revision
 			if (LastRevision != DateTime.MinValue)

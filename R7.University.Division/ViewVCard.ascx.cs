@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -41,11 +42,23 @@ namespace R7.University.Division
 						var division = ctrl.Get<DivisionInfo> (int.Parse(division_id));
 						if (division != null)
 						{
+							var vcard = division.VCard;
+
 							Response.Clear();
 							Response.ContentType = "text/x-vcard";
 							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}.vcf\"", division.FileName));
-							Response.ContentEncoding = System.Text.Encoding.UTF8;
-							Response.Write(division.VCard.ToString());
+
+							if (Request.Browser.Platform.ToUpperInvariant().StartsWith("WIN"))
+							{
+								// HACK: Windows russian version hack
+								// TODO: Need a way to determine language / locale for division description
+								Response.ContentEncoding = Encoding.GetEncoding(1251);
+								vcard.Encoding = Response.ContentEncoding;
+							}
+							else 
+								Response.ContentEncoding = Encoding.UTF8;
+
+							Response.Write(vcard.ToString());
 							Response.Flush();
 							Response.Close();
 						}
@@ -53,7 +66,7 @@ namespace R7.University.Division
 							throw new Exception ("No division found with DivisionID=" + division_id);
 					}
 					else
-						throw new Exception ("\"division_id\" query parametershould not be empty");
+						throw new Exception ("\"division_id\" query parameter should not be empty");
 				} 
 			}
 			catch (Exception ex)
