@@ -206,6 +206,9 @@ namespace R7.University.Division
 					Server.UrlEncode(division.VCard.ToString()
 						.Replace("+","%2b")) // fix for "+" signs in phone numbers
 			);
+
+			imageBarcode.ToolTip = Localization.GetString ("imageBarcode.ToolTip", LocalResourceFile);
+			imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
 		}
 
 		#region IActionable implementation

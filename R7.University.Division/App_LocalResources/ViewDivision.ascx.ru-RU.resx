@@ -14,5 +14,11 @@
   </data>
   <data name="labelSearchByTerm.Text" xml:space="preserve">
     <value>Все материалы с тегом:</value>
+  </data> 
+  <data name="imageBarcode.ToolTip" xml:space="preserve">
+    <value>Отсканируй меня!</value>
+  </data>
+ <data name="imageBarcode.AlternateText" xml:space="preserve">
+    <value>Штрих-код</value>
   </data>
 </root>

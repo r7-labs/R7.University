@@ -14,5 +14,11 @@
   </data>
   <data name="labelSearchByTerm.Text" xml:space="preserve">
     <value>All content with term:</value>
+  </data> 
+  <data name="imageBarcode.ToolTip" xml:space="preserve">
+    <value>Scan me!</value>
+  </data>
+ <data name="imageBarcode.AlternateText" xml:space="preserve">
+    <value>Barcode</value>
   </data>
 </root>
