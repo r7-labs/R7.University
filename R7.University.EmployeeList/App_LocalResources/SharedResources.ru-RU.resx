@@ -1,6 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- не выбрано --</value>
+  </data>
+	<data name="AddContent.Action" xml:space="preserve">
+    <value>Добавить содержимое</value>
   </data>
 </root>

@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="AddContent.Action" xml:space="preserve">
-    <value>Add Employee</value>
-  </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt;A EmployeeList module&lt;/P&gt;</value>
   </data>
