@@ -88,6 +88,7 @@
       <DependentUpon>__EditEmployee.ascx.tt</DependentUpon>
     </None>
     <None Include="App_LocalResources\EditEmployee.ascx.resx" />
+    <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\LaunchpadInfo.cs" />

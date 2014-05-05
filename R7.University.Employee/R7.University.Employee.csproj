@@ -74,6 +74,7 @@
     <None Include="doc\install.txt" />
     <None Include="App_LocalResources\Common.ti" />
     <None Include="App_LocalResources\SharedResources.resx" />
+    <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\EmployeeSettings.cs" />
