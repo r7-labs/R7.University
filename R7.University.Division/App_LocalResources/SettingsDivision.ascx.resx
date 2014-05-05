@@ -12,4 +12,10 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
 		<value>About Division Settings</value>
 	</data>
+	<data name="labelBarcodeWidth.Text" xml:space="preserve">
+		<value>Barcode Width</value>
+	</data>
+	<data name="labelBarcodeWidth.Help" xml:space="preserve">
+		<value>Specify width in pixels for barcode image with division contact info.</value>
+	</data>
 </root>

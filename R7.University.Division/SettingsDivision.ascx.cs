@@ -79,6 +79,7 @@ namespace R7.University.Division
 						} 
 					}
 
+					textBarcodeWidth.Text = settings.BarcodeWidth.ToString();
 				}
 			}
 			catch (Exception ex)
@@ -97,6 +98,7 @@ namespace R7.University.Division
 				var settings = new DivisionSettings (this);
 
 				settings.DivisionID = int.Parse(treeDivisions.SelectedValue);
+				settings.BarcodeWidth = int.Parse (textBarcodeWidth.Text);
 
 				Utils.SynchronizeModule (this);
 			}

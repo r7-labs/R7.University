@@ -14,6 +14,10 @@
 				DataTextField="ShortTitle"
 			/> 
 		</div>
+		<div class="dnnFormItem">
+			<dnn:Label id="labelBarcodeWidth" runat="server" ControlName="textBarcodeWidth" Suffix=":" />
+			<asp:TextBox id="textBarcodeWidth" runat="server" Style="width:100px" />
+		</div>
 	</fieldset>	
 </div>
 

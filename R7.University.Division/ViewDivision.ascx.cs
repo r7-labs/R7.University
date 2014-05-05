@@ -117,6 +117,8 @@ namespace R7.University.Division
 
 		protected void DisplayDivision (DivisionInfo division)
 		{
+			var settings = new DivisionSettings (this);
+
 			// division title
 			labelTitle.Text = division.Title;
 
@@ -192,9 +194,10 @@ namespace R7.University.Division
 				labelWorkingHours.Visible = false;
 
 			// barcode image test
+			var barcodeWidth = settings.BarcodeWidth;
 			imageBarcode.ImageUrl = 
 				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
-					240, 240, // width & height
+					barcodeWidth, barcodeWidth, 
 					Server.UrlEncode(division.VCard.ToString()
 						.Replace("+","%2b")) // fix for "+" signs in phone numbers
 			);

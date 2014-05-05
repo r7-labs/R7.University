@@ -55,6 +55,16 @@ namespace R7.University.Division
 			set { WriteSetting<int> ("Division_DivisionID", value, false); }
 		}
 
+		/// <summary>
+		/// Gets or sets the width of the bar code.
+		/// </summary>
+		/// <value>The width of the bar code.</value>
+		public int BarcodeWidth
+		{
+			get { return ReadSetting<int> ("Division_BarcodeWidth", 120, true); }
+			set { WriteSetting<int> ("Division_BarcodeWidth", value, true); }
+		}
+
 		#endregion
 	}
 }

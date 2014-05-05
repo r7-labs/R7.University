@@ -13,5 +13,7 @@ namespace R7.University.Division
 	{
 		protected LabelControl labelDivision;
 		protected DnnTreeView treeDivisions;
+		protected LabelControl labelBarcodeWidth;
+		protected TextBox textBarcodeWidth;
 	}
 }
