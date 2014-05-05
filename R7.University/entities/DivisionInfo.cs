@@ -80,11 +80,11 @@ namespace R7.University
 					vcard.Emails.Add (SecondaryEmail);
 
 				// phone
-				if (!string.IsNullOrWhiteSpace(Phone))
+				if (!string.IsNullOrWhiteSpace (Phone))
 					vcard.Phones.Add (new VCardPhone () { Number = Phone, Type = VCardPhoneType.Work });
 
 				// fax
-				if (!string.IsNullOrWhiteSpace(Fax))
+				if (!string.IsNullOrWhiteSpace (Fax))
 					vcard.Phones.Add (new VCardPhone () { Number = Fax, Type = VCardPhoneType.Fax });
 
 				// website
@@ -93,8 +93,8 @@ namespace R7.University
 
 				// location
 				if (!string.IsNullOrWhiteSpace (Location))
-					// TODO: Add organization address
-					vcard.DeliveryAddress = Location;
+				// TODO: Add organization address
+				vcard.DeliveryAddress = Location;
 
 				// revision
 				vcard.LastRevision = LastModifiedOnDate;
