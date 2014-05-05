@@ -24,7 +24,7 @@
  <data name="VCard.Action" xml:space="preserve">
     <value>VCard</value>
   </data>
- <data name="EmployeeDetails.Action" xml:space="preserve">
+ <data name="Details.Action" xml:space="preserve">
     <value>Подробнее о сотруднике</value>
   </data>
 </root>

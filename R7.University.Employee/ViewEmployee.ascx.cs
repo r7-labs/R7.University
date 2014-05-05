@@ -383,11 +383,11 @@ namespace R7.University.Employee
 
 					actions.Add (
 						GetNextActionID (), 
-						Localization.GetString("EmployeeDetails.Action", this.LocalResourceFile),
+						Localization.GetString("Details.Action", this.LocalResourceFile),
 						ModuleActionType.ContentOptions, 
 						"", 
 						"", 
-						Utils.EditUrl (this, "EmployeeDetails", "employee_id", EmployeeID.ToString ()),
+						Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()),
 						false, 
 						DotNetNuke.Security.SecurityAccessLevel.View,
 						true, 
