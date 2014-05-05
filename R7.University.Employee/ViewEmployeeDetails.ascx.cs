@@ -53,8 +53,10 @@ namespace R7.University.Employee
 		{
 			base.OnInit (e);
 
-			linkReturn.Attributes.Add("onclick", "javascript:return " + 
-				UrlUtils.ClosePopUp( refresh: false, url: "", onClickEvent: true));
+			linkReturn.Attributes.Add ("onclick", "javascript:return " +
+			UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
+
+			linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()); 
 		}
 
 		/// <summary>
