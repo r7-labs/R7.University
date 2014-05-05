@@ -1,3 +1,3 @@
-﻿/* Place module CSS here */
-
-.Division_Label { display:block }				
+﻿.Division_Label { display:block }
+.Division_LabelRight { display:block;text-align:right }
+.Division_BarCodeContainer { text-align:center }			
