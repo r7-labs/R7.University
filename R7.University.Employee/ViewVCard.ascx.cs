@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -41,11 +42,23 @@ namespace R7.University.Employee
 						var employee = ctrl.Get<EmployeeInfo> (int.Parse(employee_id));
 						if (employee != null)
 						{
+							var vcard = employee.VCard;
+
 							Response.Clear();
 							Response.ContentType = "text/x-vcard";
 							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}.vcf\"", employee.FileName));
-							Response.ContentEncoding = System.Text.Encoding.UTF8;
-							Response.Write(employee.VCard.ToString());
+
+							if (Request.Browser.Platform.ToUpperInvariant().StartsWith("WIN"))
+							{
+								// HACK: Windows russian version hack
+								// TODO: Need a way to determine language / locale for employee description
+								Response.ContentEncoding = Encoding.GetEncoding(1251);
+								vcard.Encoding = Response.ContentEncoding;
+							}
+							else 
+								Response.ContentEncoding = Encoding.UTF8;
+
+							Response.Write(vcard.ToString());
 							Response.Flush();
 							Response.Close();
 						}
