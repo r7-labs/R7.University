@@ -2,7 +2,9 @@
 
 <asp:Panel id="panelEmployee" runat="server">
 	<div class="Employee_PhotoContainer">
-		<asp:Image id="imagePhoto" runat="server" CssClass="Employee_Photo" />
+        <asp:HyperLink id="linkPhoto" runat="server" CssClass="Employee_Photo" >
+			<asp:Image id="imagePhoto" runat="server" />
+		</asp:HyperLink>
 	</div>
 	<div class="Employee_Name">
 		<asp:Label id="labelFullName" runat="server" CssClass="Employee_FullName" />

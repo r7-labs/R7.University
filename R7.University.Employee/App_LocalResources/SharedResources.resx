@@ -3,4 +3,7 @@
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- not selected --</value>
   </data>
+  <data name="VCard.Action" xml:space="preserve">
+    <value>vCard</value>
+  </data>
 </root>
