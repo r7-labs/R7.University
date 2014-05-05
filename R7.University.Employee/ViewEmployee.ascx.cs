@@ -355,66 +355,60 @@ namespace R7.University.Employee
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
+				var existingEmployee = !Null.IsNull (EmployeeID);
 
-				// add "add" action only if we have no employee to display
-				if (Null.IsNull (EmployeeID))
-				{
-					actions.Add (
-						GetNextActionID (), 
-						Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
-						ModuleActionType.AddContent, 
-						"", 
-						"", 
-						Utils.EditUrl (this, "Edit"),
-						false, 
-						DotNetNuke.Security.SecurityAccessLevel.Edit,
-						true, 
-						false
-					);
-				}
-				else
-				{
-					// otherwise, add "edit" action
-					actions.Add (
-						GetNextActionID (), 
-						Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
-						ModuleActionType.EditContent, 
-						"", 
-						"", 
-						Utils.EditUrl (this, "Edit", "employee_id", EmployeeID.ToString ()),
-						false, 
-						DotNetNuke.Security.SecurityAccessLevel.Edit,
-						true, 
-						false
-					);
+				actions.Add (
+					GetNextActionID (), 
+					Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
+					ModuleActionType.AddContent, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "Edit"),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					!existingEmployee, 
+					false
+				);
 
-					actions.Add (
-						GetNextActionID (), 
-						Localization.GetString("Details.Action", this.LocalResourceFile),
-						ModuleActionType.ContentOptions, 
-						"", 
-						"", 
-						Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()),
-						false, 
-						DotNetNuke.Security.SecurityAccessLevel.View,
-						true, 
-						false
-					);
+				// otherwise, add "edit" action
+				actions.Add (
+					GetNextActionID (), 
+					Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
+					ModuleActionType.EditContent, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "Edit", "employee_id", EmployeeID.ToString ()),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					existingEmployee, 
+					false
+				);
 
-					actions.Add (
-						GetNextActionID (), 
-						Localization.GetString("VCard.Action", this.LocalResourceFile),
-						ModuleActionType.ContentOptions, 
-						"", 
-						"", 
-						Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()),
-						false, 
-						DotNetNuke.Security.SecurityAccessLevel.View,
-						true, 
-						true // open in new window
-					);
+				actions.Add (
+					GetNextActionID (), 
+					Localization.GetString("Details.Action", this.LocalResourceFile),
+					ModuleActionType.ContentOptions, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.View,
+					existingEmployee, 
+					false
+				);
 
-				}
+				actions.Add (
+					GetNextActionID (), 
+					Localization.GetString("VCard.Action", this.LocalResourceFile),
+					ModuleActionType.ContentOptions, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.View,
+					existingEmployee, 
+					true // open in new window
+				);
 
 				return actions;
 			}
