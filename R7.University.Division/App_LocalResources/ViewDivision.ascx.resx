@@ -12,4 +12,7 @@
 	<data name="Fax.Format" xml:space="preserve">
     <value>{0} (fax)</value>
   </data>
+  <data name="labelSearchByTerm.Text" xml:space="preserve">
+    <value>All content with term:</value>
+  </data>
 </root>
