@@ -10,6 +10,6 @@
 		<value>Edit Division</value>
 	</data>
 	<data name="VCard.Action" xml:space="preserve">
-    <value>VCard</value>
+    <value>vCard</value>
   </data>
 </root>
