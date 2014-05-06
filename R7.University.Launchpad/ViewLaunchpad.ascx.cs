@@ -62,7 +62,7 @@ namespace R7.University.Launchpad
 			var tabNames = settings.Tables.Split (new char [] {';'}, StringSplitOptions.RemoveEmptyEntries);
 			if (tabNames == null || tabNames.Length == 0)
 			{
-				Utils.Message (this, MessageSeverity.Info, "NotConfigured.Text", true);
+				Utils.Message (this, "NotConfigured.Text", MessageType.Info, true);
 				return;
 			}
 			else if (tabNames.Length > 1)
