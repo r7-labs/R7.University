@@ -105,7 +105,7 @@ namespace R7.University.Division
 					{
 						if (IsEditable)
 						{
-							Utils.Message (this, MessageSeverity.Info, Localization.GetString ("NothingToDisplay.Text", LocalResourceFile));
+							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 							// hide only module content
 							panelDivision.Visible = false;
 						}

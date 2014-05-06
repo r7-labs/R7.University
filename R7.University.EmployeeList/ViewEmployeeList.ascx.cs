@@ -70,7 +70,7 @@ namespace R7.University.EmployeeList
 					if (items == null || !items.Any())
 					{
 						if (IsEditable)
-							Utils.Message (this, MessageSeverity.Info, Localization.GetString ("NothingToDisplay.Text", LocalResourceFile));
+							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 						else
 							// hide entire module
 							ContainerControl.Visible = false;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using DotNetNuke.UI.Modules;
+using DotNetNuke.UI.Skins;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Portals;
@@ -15,13 +16,15 @@ using DotNetNuke.Services.Localization;
 namespace R7.University
 {
 	/// <summary>
-	/// Message severities
+	/// Module message types.
 	/// </summary>
-	public enum MessageSeverity
+	public enum MessageType
 	{
-		Info,
-		Warning,
-		Error
+		// duplicate ModuleMessage.ModuleMessageType values here
+		Success = DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess,
+		Info = DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.BlueInfo,
+		Warning = DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.YellowWarning,
+		Error = DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.RedError
 	}
 
 	public class Utils
@@ -113,20 +116,34 @@ namespace R7.University
 		}
 
 		/// <summary>
-		/// Display a message at the top of the specified module.
+		/// Displays a message of messageType for specified module with heading, with optional localization.
 		/// </summary>
-		/// <param name="module">Module reference.</param>
-		/// <param name="severity">Message severity level.</param>
-		/// <param name="message">Message text.</param>
-		public static void Message (IModuleControl module, MessageSeverity severity, string message, bool localize = false)
+		/// <param name="module">Module.</param>
+		/// <param name="heading">Message heading.</param>
+		/// <param name="message">Message body.</param>
+		/// <param name="messageType">Message type.</param>
+		/// <param name="localize">If set to <c>true</c> localize message and heading.</param>
+		public static void Message (PortalModuleBase module, string heading, string message, MessageType messageType = MessageType.Info, bool localize = false)
 		{
-			var label = new Label ();
-			label.CssClass = "dnnFormMessage dnnForm" + severity;
-			label.Text = localize? Localization.GetString(message, module.LocalResourceFile) : message;
-
-			module.Control.Controls.AddAt (0, label);
+			var locheading = localize? Localization.GetString(heading, module.LocalResourceFile) : heading;
+			var locmessage = localize? Localization.GetString(message, module.LocalResourceFile) : message;
+			Skin.AddModuleMessage (module, locheading, locmessage, 
+				(DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType)messageType);
 		}
 
+		/// <summary>
+		/// Displays a message of messageType for specified module, with optional localization.
+		/// </summary>
+		/// <param name="module">Module.</param>
+		/// <param name="message">Message body.</param>
+		/// <param name="messageType">Message type.</param>
+		/// <param name="localize">If set to <c>true</c> localize message.</param>
+		public static void Message (PortalModuleBase module, string message, MessageType messageType = MessageType.Info, bool localize = false)
+		{
+			var locmessage = localize? Localization.GetString(message, module.LocalResourceFile) : message;
+			Skin.AddModuleMessage (module, locmessage, 
+				(DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType)messageType);
+		}
 
 		public static bool IsNull<T> (Nullable<T> n) where T: struct
 		{

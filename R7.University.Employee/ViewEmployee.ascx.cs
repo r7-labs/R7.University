@@ -76,7 +76,7 @@ namespace R7.University.Employee
 					if (Null.IsNull (EmployeeID))
 					{
 						if (IsEditable)
-							Utils.Message (this, MessageSeverity.Info, "NothingToDisplay.Text", true);
+							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 
 						display = false;
 					}
@@ -88,7 +88,7 @@ namespace R7.University.Employee
 						{
 							// employee is hard-deleted!
 							if (IsEditable)
-								Utils.Message (this, MessageSeverity.Error, "EmployeeHardDeleted.Text", true);
+								Utils.Message (this, "EmployeeHardDeleted.Text", MessageType.Error, true);
 
 							// were is nothing to display
 							display = false;
@@ -110,7 +110,7 @@ namespace R7.University.Employee
 							{
 								// employee isn't published
 								if (IsEditable)
-									Utils.Message (this, MessageSeverity.Warning, "EmployeeNotPublished.Text", true);
+									Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
 
 								// display only in edit mode
 								display = IsEditable;
