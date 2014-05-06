@@ -46,13 +46,25 @@ namespace R7.University.Division
 
 		#region Properties for settings
 
+		private int? divisionId;
+
 		/// <summary>
 		/// Division ID
 		/// </summary>
 		public int DivisionID
 		{
-			get { return ReadSetting<int> ("Division_DivisionID", Null.NullInteger, false); }
-			set { WriteSetting<int> ("Division_DivisionID", value, false); }
+			get 
+			{
+				if (divisionId == null)
+					divisionId = ReadSetting<int> ("Division_DivisionID", Null.NullInteger, false); 
+			
+				return divisionId.Value;
+			}
+			set 
+			{ 
+				WriteSetting<int> ("Division_DivisionID", value, false); 
+				divisionId = value;
+			}
 		}
 
 		/// <summary>
