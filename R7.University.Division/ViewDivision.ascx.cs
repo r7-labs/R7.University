@@ -87,13 +87,12 @@ namespace R7.University.Division
 				if (!IsPostBack)
 				{
 					var ctrl = new DivisionController ();
-					var settings = new DivisionSettings (this);
 
 					var display = false;
 
-					if (!Null.IsNull(settings.DivisionID))
+					if (!Null.IsNull(DivisionID))
 					{
-						var item = ctrl.Get<DivisionInfo> (settings.DivisionID);
+						var item = ctrl.Get<DivisionInfo> (DivisionID);
 						if (item != null )
 						{	
 							display = true;
@@ -125,8 +124,6 @@ namespace R7.University.Division
 
 		protected void DisplayDivision (DivisionInfo division)
 		{
-			var settings = new DivisionSettings (this);
-
 			// division title
 			var divisionTitle = division.Title;
 
@@ -209,6 +206,7 @@ namespace R7.University.Division
 				labelWorkingHours.Visible = false;
 
 			// barcode image test
+			var settings = new DivisionSettings (this);
 			var barcodeWidth = settings.BarcodeWidth;
 			imageBarcode.ImageUrl = 
 				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
