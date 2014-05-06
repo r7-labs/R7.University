@@ -91,6 +91,7 @@
     <Compile Include="ViewVCard.ascx.cs">
       <DependentUpon>ViewVCard.ascx</DependentUpon>
     </Compile>
+    <Compile Include="components\DivisionModuleBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

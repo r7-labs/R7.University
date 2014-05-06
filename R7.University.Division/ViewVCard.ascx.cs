@@ -18,7 +18,7 @@ using R7.University;
 
 namespace R7.University.Division
 {
-	public partial class ViewVCard : PortalModuleBase
+	public partial class ViewVCard : DivisionPortalModuleBase
 	{
 		#region Handlers
 
@@ -34,12 +34,10 @@ namespace R7.University.Division
 			{
 				if (!IsPostBack)
 				{
-					var ctrl = new DivisionController ();
-
 					var division_id = Request.QueryString["division_id"];
 					if (!string.IsNullOrWhiteSpace(division_id))
 					{
-						var division = ctrl.Get<DivisionInfo> (int.Parse(division_id));
+						var division = DivisionController.Get<DivisionInfo> (int.Parse(division_id));
 						if (division != null)
 						{
 							var vcard = division.VCard;

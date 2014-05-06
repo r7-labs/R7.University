@@ -35,7 +35,7 @@ using R7.University;
 
 namespace R7.University.Division
 {
-	public partial class SettingsDivision : ModuleSettingsBase
+	public partial class SettingsDivision : DivisionModuleSettingsBase
 	{
 		/// <summary>
 		/// Handles the loading of the module setting for this control
@@ -46,11 +46,8 @@ namespace R7.University.Division
 			{
 				if (!IsPostBack)
 				{
-					var settings = new DivisionSettings (this);
-					var ctrl = new DivisionController ();
-
 					// get divisions
-					var divisions = ctrl.GetObjects<DivisionInfo>("ORDER BY [Title] ASC").ToList();
+					var divisions = DivisionController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC").ToList();
 
 					// insert default item
 					divisions.Insert (0, new DivisionInfo() { 
@@ -65,7 +62,7 @@ namespace R7.University.Division
 					treeDivisions.DataBind();
 
 					// select currently stored value
-					var treeNode = treeDivisions.FindNodeByValue(settings.DivisionID.ToString());
+					var treeNode = treeDivisions.FindNodeByValue(DivisionSettings.DivisionID.ToString());
 					if (treeNode != null)
 					{
 						treeNode.Selected = true;
@@ -79,7 +76,7 @@ namespace R7.University.Division
 						} 
 					}
 
-					textBarcodeWidth.Text = settings.BarcodeWidth.ToString();
+					textBarcodeWidth.Text = DivisionSettings.BarcodeWidth.ToString();
 				}
 			}
 			catch (Exception ex)
@@ -95,10 +92,8 @@ namespace R7.University.Division
 		{
 			try
 			{
-				var settings = new DivisionSettings (this);
-
-				settings.DivisionID = int.Parse(treeDivisions.SelectedValue);
-				settings.BarcodeWidth = int.Parse (textBarcodeWidth.Text);
+				DivisionSettings.DivisionID = int.Parse(treeDivisions.SelectedValue);
+				DivisionSettings.BarcodeWidth = int.Parse (textBarcodeWidth.Text);
 
 				Utils.SynchronizeModule (this);
 			}

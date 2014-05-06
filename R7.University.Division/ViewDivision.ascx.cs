@@ -42,27 +42,8 @@ using R7.University;
 
 namespace R7.University.Division
 {
-	public partial class ViewDivision : PortalModuleBase, IActionable
+	public partial class ViewDivision : DivisionPortalModuleBase, IActionable
 	{
-		private bool divisionIDLoaded = false;
-		private int divisionID = Null.NullInteger;
-
-		protected int DivisionID
-		{
-			get 
-			{
-				if (divisionIDLoaded)
-					return divisionID;
-				else
-				{
-					var settings = new DivisionSettings (this);
-					divisionID = settings.DivisionID;
-					divisionIDLoaded = true;
-					return divisionID;
-				}
-			} 
-		}
-
 		#region Handlers
 
 		/// <summary>
@@ -86,13 +67,10 @@ namespace R7.University.Division
 			{
 				if (!IsPostBack)
 				{
-					var ctrl = new DivisionController ();
-
 					var display = false;
-
-					if (!Null.IsNull(DivisionID))
+					if (!Null.IsNull(DivisionSettings.DivisionID))
 					{
-						var item = ctrl.Get<DivisionInfo> (DivisionID);
+						var item = DivisionController.Get<DivisionInfo> (DivisionSettings.DivisionID);
 						if (item != null )
 						{	
 							display = true;
@@ -206,8 +184,7 @@ namespace R7.University.Division
 				labelWorkingHours.Visible = false;
 
 			// barcode image test
-			var settings = new DivisionSettings (this);
-			var barcodeWidth = settings.BarcodeWidth;
+			var barcodeWidth = DivisionSettings.BarcodeWidth;
 			imageBarcode.ImageUrl = 
 				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
 					barcodeWidth, barcodeWidth, 
@@ -219,8 +196,7 @@ namespace R7.University.Division
 			imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
 
 			// get & bind subdivisions
-			var ctrl = new DivisionController ();
-			var subDivisions = ctrl.GetObjects<DivisionInfo> (
+			var subDivisions = DivisionController.GetObjects<DivisionInfo> (
 				"WHERE [ParentDivisionID] = @0 ORDER BY [Title]", division.DivisionID); 
 			if (subDivisions != null && subDivisions.Any ())
 			{
@@ -238,14 +214,14 @@ namespace R7.University.Division
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
-				var existingDivision = !Null.IsNull (DivisionID);
+				var existingDivision = !Null.IsNull (DivisionSettings.DivisionID);
 
 				actions.Add (
 					GetNextActionID (), 
 					Localization.GetString ("AddDivision.Action", LocalResourceFile),
 					ModuleActionType.AddContent, 
 					"", 
-					"", 
+					"",
 					Utils.EditUrl (this, "EditDivision"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
@@ -259,7 +235,7 @@ namespace R7.University.Division
 					ModuleActionType.EditContent, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Edit", "division_id", DivisionID.ToString ()),
+					Utils.EditUrl (this, "Edit", "division_id", DivisionSettings.DivisionID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					existingDivision, 
@@ -272,7 +248,7 @@ namespace R7.University.Division
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "VCard", "division_id", DivisionID.ToString ()),
+					Utils.EditUrl (this, "VCard", "division_id", DivisionSettings.DivisionID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
 					existingDivision, 
