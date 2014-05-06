@@ -27,7 +27,7 @@ namespace R7.University
 		Error = DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.RedError
 	}
 
-	public class Utils
+	public static class Utils
 	{
 		public static string GetUserDisplayName (int userId)
 		{
@@ -48,8 +48,8 @@ namespace R7.University
 			if (!string.IsNullOrWhiteSpace (fileName))
 				return Globals.glbImageFileTypes.Contains (
 					Path.GetExtension (fileName).Substring (1).ToLowerInvariant ());
-			else
-				return false;
+
+			return false;
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace R7.University
 		/// <param name="trackClicks">If set to <c>true</c> then track clicks.</param>
 		public static string FormatURL (IModuleControl module, string link, bool trackClicks)
 		{
-			return DotNetNuke.Common.Globals.LinkClick 
+			return Globals.LinkClick 
 				(link, module.ModuleContext.TabId, module.ModuleContext.ModuleId, trackClicks);
 		}
 
@@ -145,7 +145,7 @@ namespace R7.University
 				(DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType)messageType);
 		}
 
-		public static bool IsNull<T> (Nullable<T> n) where T: struct
+		public static bool IsNull<T> (T? n) where T: struct
 		{
 			// NOTE: n.HasValue is equvalent to n != null
 			if (n.HasValue && !Null.IsNull (n.Value)) 
@@ -154,9 +154,9 @@ namespace R7.University
 			return true;
 		}
 
-		public static Nullable<T> ToNullable<T>(T n) where T: struct
+		public static T? ToNullable<T>(T n) where T: struct
 		{
-			return Null.IsNull (n)? null : (Nullable<T>) n;
+			return Null.IsNull (n)? null : (T?) n;
 		}	
 
 		/// <summary>
@@ -173,8 +173,8 @@ namespace R7.University
 
 			if (int.TryParse (value, out n))
 				return Null.IsNull (n)? null : (int?) n;
-			else
-				return null;
+		
+			return null;
 		}	
 
 		/*
@@ -220,8 +220,8 @@ namespace R7.University
 					return s.ToUpper();
 				else
 					return s.ToUpper()[0].ToString () + s.Substring (1);
-			else
-				return s;
+		
+			return s;
 		}
 
 		public static string FirstCharToUpperInvariant(string s)
@@ -231,8 +231,7 @@ namespace R7.University
 					return s.ToUpperInvariant();
 				else
 					return s.ToUpperInvariant()[0].ToString () + s.Substring (1);
-			else
-				return s;
+			return s;
 		}
 
 		public static void SynchronizeModule(IModuleControl module)
