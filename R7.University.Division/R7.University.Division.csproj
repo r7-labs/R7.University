@@ -63,6 +63,7 @@
     <Content Include="ViewDivision.ascx" />
     <Content Include="SettingsDivision.ascx" />
     <Content Include="ViewVCard.ascx" />
+    <Content Include="EditDivision.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewDivision.ascx.resx" />
@@ -92,6 +93,12 @@
       <DependentUpon>ViewVCard.ascx</DependentUpon>
     </Compile>
     <Compile Include="components\DivisionModuleBase.cs" />
+    <Compile Include="EditDivision.ascx.cs">
+      <DependentUpon>EditDivision.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDivision.ascx.controls.cs">
+      <DependentUpon>EditDivision.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -119,7 +119,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
 										<controlTitle>Edit Division</controlTitle>
@@ -438,7 +438,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Edit</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
 										<controlTitle>Edit Division</controlTitle>

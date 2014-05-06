@@ -12,9 +12,9 @@ using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University;
 
-namespace R7.University.Launchpad
+namespace R7.University.Division
 {
-	public partial class EditDivision : PortalModuleBase
+	public partial class EditDivision : DivisionPortalModuleBase
 	{
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
@@ -39,14 +39,12 @@ namespace R7.University.Launchpad
 			// add confirmation dialog to delete button
 			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 
-			var ctrl = new LaunchpadController ();
-
 			// parse QueryString
 			itemId = Utils.ParseToNullableInt (Request.QueryString["division_id"]);
 		
 			// fill divisions dropdown
 			comboParentDivisions.AddItem(Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString());
-			foreach (var division in ctrl.GetObjects<DivisionInfo>("ORDER BY [Title] ASC")) 
+			foreach (var division in DivisionController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC")) 
 			{
 				// remove current division from a list
 				if (itemId == null || itemId != division.DivisionID)
@@ -112,9 +110,9 @@ namespace R7.University.Launchpad
 					// check we have an item to lookup
 					// ALT: if (!Null.IsNull (itemId) 
 					if (itemId != null) {
+
 						// load the item
-						var ctrl = new LaunchpadController ();
-						var item = ctrl.Get<DivisionInfo> (itemId.Value);
+						var item = DivisionController.Get<DivisionInfo> (itemId.Value);
 
 						if (item != null) {
 
@@ -185,8 +183,8 @@ namespace R7.University.Launchpad
 		/// </param>
 		protected void buttonUpdate_Click (object sender, EventArgs e)
 		{
-			try {
-				var ctrl = new LaunchpadController ();
+			try 
+			{
 				DivisionInfo item;
 		
 				// determine if we are adding or updating
@@ -199,7 +197,7 @@ namespace R7.University.Launchpad
 				else
 				{	
 					// update existing record
-					item = ctrl.Get<DivisionInfo> (itemId.Value);
+					item = DivisionController.Get<DivisionInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -222,7 +220,7 @@ namespace R7.University.Launchpad
 					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 
-					ctrl.Add<DivisionInfo> (item);
+					DivisionController.Add<DivisionInfo> (item);
 				}
 				else
 				{
@@ -230,7 +228,7 @@ namespace R7.University.Launchpad
 					item.LastModifiedByUserID = this.UserId;
 					item.LastModifiedOnDate = DateTime.Now;
 
-					ctrl.Update<DivisionInfo> (item);
+					DivisionController.Update<DivisionInfo> (item);
 				}
 
 				Utils.SynchronizeModule(this);
@@ -254,9 +252,9 @@ namespace R7.University.Launchpad
 		{
 			try {
 				// ALT: if (!Null.IsNull (itemId))
-				if (itemId.HasValue) {
-					var ctrl = new LaunchpadController ();
-					ctrl.Delete<DivisionInfo> (itemId.Value);
+				if (itemId.HasValue) 
+				{
+					DivisionController.Delete<DivisionInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			} catch (Exception ex) {

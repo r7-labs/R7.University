@@ -65,7 +65,6 @@
     <Content Include="SettingsLaunchpad.ascx" />
     <Content Include="js\module.js" />
     <Content Include="EditPosition.ascx" />
-    <Content Include="EditDivision.ascx" />
     <Content Include="EditEmployee.ascx" />
   </ItemGroup>
   <ItemGroup>
@@ -112,12 +111,6 @@
     </Compile>
     <Compile Include="EditPosition.ascx.controls.cs">
       <DependentUpon>EditPosition.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditDivision.ascx.cs">
-      <DependentUpon>EditDivision.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditDivision.ascx.controls.cs">
-      <DependentUpon>EditDivision.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditEmployee.ascx.cs">
       <DependentUpon>EditEmployee.ascx</DependentUpon>

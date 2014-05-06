@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditDivision.ascx.cs" Inherits="R7.University.Launchpad.EditDivision" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditDivision.ascx.cs" Inherits="R7.University.Division.EditDivision" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/URLControl.ascx" %>
