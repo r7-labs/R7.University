@@ -3,11 +3,8 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt;A Division module&lt;/P&gt;</value>
   </data>
-	<data name="DefaultContent.Text" xml:space="preserve">
-    <value>Here is some sample content</value>
-  </data>
 	<data name="NothingToDisplay.Text" xml:space="preserve">
-  	<value>Nothing to display, add some items.</value>
+  	<value>Nothing to display: division doesn't set or was deleted.</value>
   </data>
 	<data name="Fax.Format" xml:space="preserve">
     <value>{0} (fax)</value>
