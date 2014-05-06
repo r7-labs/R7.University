@@ -101,9 +101,17 @@ namespace R7.University.Division
 						}
 					}
 
-					if (!display && IsEditable)
+					if (!display)
 					{
-						Utils.Message (this, MessageSeverity.Info, Localization.GetString ("NothingToDisplay.Text", LocalResourceFile));
+						if (IsEditable)
+						{
+							Utils.Message (this, MessageSeverity.Info, Localization.GetString ("NothingToDisplay.Text", LocalResourceFile));
+							// hide only module content
+							panelDivision.Visible = false;
+						}
+						else
+							// hide entire module from regular users
+							ContainerControl.Visible = false;
 					}
 				}
 			}

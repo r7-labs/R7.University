@@ -12,6 +12,7 @@ namespace R7.University.Division
 {
 	public partial class ViewDivision
 	{
+		protected Panel panelDivision;
 		protected Label labelTitle;
 		protected HyperLink linkTerm;
 		protected Label labelSearchByTerm;
