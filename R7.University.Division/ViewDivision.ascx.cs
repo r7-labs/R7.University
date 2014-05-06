@@ -158,17 +158,13 @@ namespace R7.University.Division
 				var term = termCtrl.GetTerm (division.DivisionTermID.Value);
 				if (term != null)
 				{
-					linkTerm.Text = term.Name;
-					linkTerm.NavigateUrl = Globals.NavigateURL (PortalSettings.SearchTabId, "", "Tag", term.Name);
+					linkSearchByTerm.NavigateUrl = Globals.NavigateURL (PortalSettings.SearchTabId, "", "Tag", term.Name);
 					displaySearchByTerm = true;
 				}
 			}
 
 			if (!displaySearchByTerm)
-			{
-				linkTerm.Visible = false;
-				labelSearchByTerm.Visible = false;
-			}
+				linkSearchByTerm.Visible = false;
 
 			// email
 			if (!string.IsNullOrWhiteSpace (division.Email))

@@ -14,8 +14,7 @@ namespace R7.University.Division
 	{
 		protected Panel panelDivision;
 		protected Label labelTitle;
-		protected HyperLink linkTerm;
-		protected Label labelSearchByTerm;
+		protected HyperLink linkSearchByTerm;
 		protected HyperLink linkHomePage;
 		protected HyperLink linkEmail;
 		protected HyperLink linkSecondaryEmail;

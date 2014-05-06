@@ -17,5 +17,8 @@
   </data>
  <data name="imageBarcode.AlternateText" xml:space="preserve">
     <value>Штрих-код</value>
+  </data>  
+  <data name="linkSearchByTerm.Text" xml:space="preserve">
+    <value>Связанные ресурсы</value>
   </data>
 </root>

@@ -30,12 +30,6 @@
 		<FooterTemplate></ul></FooterTemplate>
 	</asp:Repeater>
 
-	<div class="Division_BarCodeContainer">
-		<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" />
-	</div>
-
-	<div class="Division_Section Division_SearchByTerm">
-		<asp:Label id="labelSearchByTerm" runat="server" resourcekey="labelSearchByTerm" />
-		<asp:HyperLink id="linkTerm" runat="server" />
-	</div>
+	<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" CssClass="Division_Section" />
+	<asp:HyperLink id="linkSearchByTerm" runat="server" resourcekey="linkSearchByTerm" CssClass="Division_Section tag" />
 </asp:Panel>
