@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="01.00.05">
+		<package name="R7.University" type="Library" version="01.00.06">
 			<friendlyName>R7.University</friendlyName>
 			<description>This is a common library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Employee, EmployeeList, etc.</description>
 			<owner>
@@ -11,9 +11,9 @@
 			</owner>
 			<license src="License.txt" />
 			<releaseNotes src="ReleaseNotes.txt" />
-			<!-- <dependencies>
-		<dependency type="CoreVersion">07.00.00</dependency>
-	</dependencies> -->
+			<dependencies>
+				<dependency type="CoreVersion">07.01.02</dependency>
+			</dependencies>
 			<components>
 				<component type="Script">
 					<scripts>
@@ -51,7 +51,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.00.05">
+		<package name="R7.University.Launchpad" type="Module" version="01.00.06">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -62,9 +62,9 @@
 			</owner>
 			<license src="License.txt" />
 			<releaseNotes src="ReleaseNotes.txt" />
-			<!-- <dependencies>
-		<dependency type="CoreVersion">07.00.00</dependency>
-	</dependencies> -->
+			<dependencies>
+				<dependency type="CoreVersion">07.01.02</dependency>
+			</dependencies>
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -167,7 +167,7 @@
 				</component>
       		</components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="01.00.05">
+		<package name="R7.University.Employee" type="Module" version="01.00.06">
 			<friendlyName>_Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -178,9 +178,9 @@
 			</owner>
 			<license src="License.txt" />
 			<releaseNotes src="ReleaseNotes.txt" />
-			<!-- <dependencies>
-		<dependency type="CoreVersion">07.00.00</dependency>
-	</dependencies> -->
+			<dependencies>
+				<dependency type="CoreVersion">07.01.02</dependency>
+			</dependencies>
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -279,7 +279,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="01.00.05">
+		<package name="R7.University.EmployeeList" type="Module" version="01.00.06">
 			<friendlyName>_EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
@@ -290,9 +290,9 @@
 			</owner>
 			<license src="License.txt" />
 			<releaseNotes src="ReleaseNotes.txt" />
-			<!-- <dependencies>
-		<dependency type="CoreVersion">07.00.00</dependency>
-	</dependencies> -->
+			<dependencies>
+				<dependency type="CoreVersion">07.01.02</dependency>
+			</dependencies>
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -384,7 +384,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Division" type="Module" version="01.00.05">
+		<package name="R7.University.Division" type="Module" version="01.00.06">
 			<friendlyName>_Division</friendlyName>
 			<description>This is a module to display information about single division.</description>
 			<owner>
@@ -395,9 +395,9 @@
 			</owner>
 			<license src="License.txt" />
 			<releaseNotes src="ReleaseNotes.txt" />
-			<!-- <dependencies>
-		<dependency type="CoreVersion">07.00.00</dependency>
-	</dependencies> -->
+			<dependencies>
+				<dependency type="CoreVersion">07.01.02</dependency>
+			</dependencies>
 			<components>
 				<component type="Module">
 					<desktopModule>

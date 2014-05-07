@@ -1,4 +1,20 @@
-﻿<h3>Version 01.00.05</h3>
+﻿<h3>Version 01.00.06</h3>
+<p>This is stabilization release for 01.00.00.</p>
+<ul>
+	<li>Added Division module to display information about specified division.</li>
+	<li>EditDivision control moved to Division module from Launchpad.</li>
+    <li>Added VCard class to base library with partial vCard implementation.</li>
+    <li>Added QuotedPrintable class to base library to encode/decode QP-strings.</li>
+	<li>Added vCard export to Division and Employee modules (in edit mode).</li>
+	<li>Show QR-code in Division module with vCard info.</li>
+	<li>Use Skin.AddModuleMessage() in Utils.Message() which mess with a ViewState before.</li>
+	<li>Added Tweaks.SqlDataProvider script with temporary DB tweaks to execute manually.</li>
+	<li>Fix issue #9: Working hours TermID saved instead of term Name.</li>
+	<li>Localization updated, more messages moved to SharedResources.resx.</li>
+	<li>Other small fixed and improvements.</li>
+</ul>
+
+<h3>Version 01.00.05</h3>
 <p>This is stabilization release for 01.00.00.</p>
 <ul>
 	<li>Added basic search by employee data in Employee and EmployeeList modules.</li>
@@ -15,7 +31,7 @@
 	<li>EditEmployee: Autoselect division in a tree then editing from EmployeeList module.</li>
 	<li>Launchpad: Load data tables in the session if it is empty.</li>
 	<li>EditEmployee, Launchpad: Fix dnnGridHeader class doesn't apply to th element of gridview.</li> 
-	<li>Other small fixed and improvements.</li> 
+	<li>Other small fixed and improvements.</li>
 </ul>
 
 <h3>Version 01.00.04</h3>
