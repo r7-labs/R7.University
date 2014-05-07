@@ -76,7 +76,6 @@
     <None Include="App_LocalResources\SettingsLaunchpad.ascx.ru-RU.resx" />
     <None Include="doc\install.txt" />
     <None Include="App_LocalResources\EditPosition.ascx.resx" />
-    <None Include="App_LocalResources\EditDivision.ascx.resx" />
     <None Include="App_LocalResources\Common.ti" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\__EditEmployee.ascx.tt">
