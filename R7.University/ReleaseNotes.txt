@@ -1,5 +1,5 @@
 ﻿<h3>Version 01.00.06</h3>
-<p>This is stabilization release for 01.00.00.</p>
+<p>This release brings some new features and more stabilization fixes for 01.00.00.</p>
 <ul>
 	<li>Added Division module to display information about specified division.</li>
 	<li>EditDivision control moved to Division module from Launchpad.</li>
