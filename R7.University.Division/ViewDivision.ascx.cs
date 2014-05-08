@@ -133,7 +133,9 @@ namespace R7.University.Division
 				var term = termCtrl.GetTerm (division.DivisionTermID.Value);
 				if (term != null)
 				{
-					linkSearchByTerm.NavigateUrl = Globals.NavigateURL (PortalSettings.SearchTabId, "", "Tag", term.Name);
+					// NOTE: Use raw url format instead of Globals.NavigateURL to allow search work 
+					// independently of current friendly urls settings
+					linkSearchByTerm.NavigateUrl = "/Default.aspx?tabid=" + PortalSettings.SearchTabId + "&tag=" + term.Name;
 					displaySearchByTerm = true;
 				}
 			}
