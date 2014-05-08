@@ -4,6 +4,8 @@
 	<asp:Label id="labelTitle" runat="server" CssClass="Division_Title" />
 	<asp:HyperLink id="linkHomePage" runat="server" CssClass="Division_Title" />
 
+	<asp:HyperLink id="linkSearchByTerm" runat="server" resourcekey="linkSearchByTerm" CssClass="Division_Section tag" />
+
 	<div class="Division_Section">
 		<asp:Label id="labelPhone" runat="server" CssClass="Division_Label" />
 		<asp:Label id="labelFax" runat="server" CssClass="Division_Label" />
@@ -30,6 +32,5 @@
 		<FooterTemplate></ul></FooterTemplate>
 	</asp:Repeater>
 
-	<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" CssClass="Division_Section" />
-	<asp:HyperLink id="linkSearchByTerm" runat="server" resourcekey="linkSearchByTerm" CssClass="Division_Section tag" />
+	<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" CssClass="Division_Barcode" />
 </asp:Panel>

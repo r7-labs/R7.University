@@ -1,3 +1,4 @@
 ﻿.Division_Title { display:block }
 .Division_Label { display:inline-block;margin-right:8px}
 .Division_Section { display:block; margin-top:8px; }		
+.Division_Barcode { margin-top:8px; float:right }	
