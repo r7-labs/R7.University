@@ -170,7 +170,8 @@ namespace R7.University
 			if (LastRevision != DateTime.MinValue)
 				vcard.AppendLine ("REV:" + LastRevision.ToString ("yyyy-MM-dd"));
 
-			vcard.AppendLine ("END:VCARD");
+			// no need to write endline, so using Append()
+			vcard.Append ("END:VCARD");
 
 			return vcard.ToString ();
 		}
