@@ -27,6 +27,7 @@
 		<div class="dnnFormItem">
 			<dnn:Label id="lblHomePage" runat="server" ControlName="urlHomePage" Suffix=":" />
 			<dnn:Url id="urlHomePage" runat="server" UrlType="T" 
+					IncludeActiveTab="true"
 			        ShowFiles="false" ShowTabs="true"
 			        ShowUrls="true" ShowUsers="false"
 					ShowLog="false" ShowTrack="false"
