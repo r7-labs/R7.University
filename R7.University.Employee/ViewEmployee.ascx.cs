@@ -17,6 +17,25 @@ using R7.University;
 
 namespace R7.University.Employee
 {
+	public static class CacheHelper
+	{
+		public static bool CacheExists(string key)
+		{
+			// CBO.GetCachedObject<string>()
+			return DataCache.GetCache(key) != null;
+		}
+
+		public static void SetCache<T>(T toSet, string key)
+		{
+			DataCache.SetCache(key, toSet, new TimeSpan(0,0,1200));
+		}
+
+		public static T GetItemFromCache<T>(string key)
+		{
+			return (T) DataCache.GetCache(key);
+		}
+	}
+
 	public partial class ViewEmployee : PortalModuleBase, IActionable
 	{
 		#region Properties
@@ -52,6 +71,7 @@ namespace R7.University.Employee
 		protected override void OnInit (EventArgs e)
 		{
 			base.OnInit (e);
+
 		}
 
 		/// <summary>
@@ -66,6 +86,13 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
+
+					if (CacheHelper.CacheExists (TabModuleId + "_content"))
+					{
+						return;
+					}
+
+
 					var ctrl = new EmployeeController ();
 					var settings = new EmployeeSettings (this);
 
@@ -139,6 +166,36 @@ namespace R7.University.Employee
 			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
+		}
+
+		protected override void Render(HtmlTextWriter writer)
+		{
+			string newContent = string.Empty;
+
+			if (!CacheHelper.CacheExists (TabModuleId + "_content"))
+			{
+				var content = string.Empty;
+
+				using (var stringWriter = new System.IO.StringWriter())
+				using (var htmlWriter = new HtmlTextWriter(stringWriter))
+				{
+					// render the current page content to our temp writer
+					base.Render(htmlWriter);
+					// htmlWriter.Flush();
+					htmlWriter.Close();
+
+					// get the content
+					content = stringWriter.ToString();
+				}
+		
+				newContent = content + "<p>" + DateTime.Now.ToShortTimeString () + "</p>";
+				CacheHelper.SetCache<string> (newContent, TabModuleId + "_content");
+			}
+			else
+				newContent = CacheHelper.GetItemFromCache<string> (TabModuleId + "_content");
+
+			// write the new html to the page
+			writer.Write(newContent);
 		}
 
 		#endregion
