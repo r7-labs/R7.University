@@ -100,7 +100,16 @@ namespace R7.University.Employee
 				if (!IsPostBack)
 				{
 					#if (DATACACHE)
-					if (CacheHelper.Exists (DataCacheKey)) return;
+
+					// don't use data cache in edit mode
+					if (IsEditable) 
+					{
+						DataCache.RemoveCache(DataCacheKey);
+						disableCache = true;
+					}
+					else
+						if (CacheHelper.Exists (DataCacheKey)) return;
+
 					#endif
 
 					var ctrl = new EmployeeController ();
@@ -189,6 +198,7 @@ namespace R7.University.Employee
 		}
 
 		private bool disableRender = false;
+		private bool disableCache = false;
 
 		protected void ClearDataCache_Action (object sender, ActionEventArgs e)
 		{
@@ -238,7 +248,8 @@ namespace R7.University.Employee
 					content = string.Concat (content, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
 
 					// TODO: Must get caching timeout from module settings or use Host.PerformanceSetting * something
-					CacheHelper.Set<string> (content, DataCacheKey, 300);
+					if (!disableCache)
+						CacheHelper.Set<string> (content, DataCacheKey, 300);
 				}
 
 				// write the new html to the page
