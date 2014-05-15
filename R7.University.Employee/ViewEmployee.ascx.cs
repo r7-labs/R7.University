@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define DATACACHE
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Host;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Entities.Modules.Actions;
@@ -19,20 +21,28 @@ namespace R7.University.Employee
 {
 	public static class CacheHelper
 	{
-		public static bool CacheExists(string key)
+		public static bool Exists(string key)
 		{
-			// CBO.GetCachedObject<string>()
 			return DataCache.GetCache(key) != null;
 		}
 
-		public static void SetCache<T>(T toSet, string key)
+		public static void Set<T>(T toSet, string key, int seconds)
 		{
-			DataCache.SetCache(key, toSet, new TimeSpan(0,0,1200));
+			DataCache.SetCache(key, toSet, TimeSpan.FromSeconds(seconds)); 
 		}
 
-		public static T GetItemFromCache<T>(string key)
+		public static T Get<T>(string key)
 		{
 			return (T) DataCache.GetCache(key);
+		}
+
+		public static T TryGet<T>(string key, T defValue) 
+		{
+			var obj = DataCache.GetCache (key);
+			if (obj != null)
+				return (T) obj;
+
+			return defValue;
 		}
 	}
 
@@ -72,6 +82,9 @@ namespace R7.University.Employee
 		{
 			base.OnInit (e);
 
+			#if (DATACACHE)
+			AddActionHandler (ClearDataCache_Action);
+			#endif
 		}
 
 		/// <summary>
@@ -86,12 +99,9 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-
-					if (CacheHelper.CacheExists (TabModuleId + "_content"))
-					{
-						return;
-					}
-
+					#if (DATACACHE)
+					if (CacheHelper.Exists (DataCacheKey)) return;
+					#endif
 
 					var ctrl = new EmployeeController ();
 					var settings = new EmployeeSettings (this);
@@ -168,36 +178,75 @@ namespace R7.University.Employee
 			}
 		}
 
-		protected override void Render(HtmlTextWriter writer)
+		#endregion
+
+		#region Data Cache 
+		#if (DATACACHE)
+
+		protected string DataCacheKey
 		{
-			string newContent = string.Empty;
-
-			if (!CacheHelper.CacheExists (TabModuleId + "_content"))
-			{
-				var content = string.Empty;
-
-				using (var stringWriter = new System.IO.StringWriter())
-				using (var htmlWriter = new HtmlTextWriter(stringWriter))
-				{
-					// render the current page content to our temp writer
-					base.Render(htmlWriter);
-					// htmlWriter.Flush();
-					htmlWriter.Close();
-
-					// get the content
-					content = stringWriter.ToString();
-				}
-		
-				newContent = content + "<p>" + DateTime.Now.ToShortTimeString () + "</p>";
-				CacheHelper.SetCache<string> (newContent, TabModuleId + "_content");
-			}
-			else
-				newContent = CacheHelper.GetItemFromCache<string> (TabModuleId + "_content");
-
-			// write the new html to the page
-			writer.Write(newContent);
+			get { return "Employee_" + TabModuleId + "_RenderedContent"; }
 		}
 
+		private bool disableRender = false;
+
+		protected void ClearDataCache_Action (object sender, ActionEventArgs e)
+		{
+			try 
+			{
+				if (e.Action.CommandName == "ClearDataCache.Action")
+				{
+					DataCache.RemoveCache(DataCacheKey);
+
+					// Disabling render as we don't have controls, filled with data.
+					disableRender = true; 
+
+					// NOTE: Also, control binding could be done in LoadComplete,
+					// so we should know that we need update view, and there
+					// be no need to disable render
+
+					Response.Redirect (Globals.NavigateURL (), true);
+				}
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
+			}
+		}
+
+		protected override void Render(HtmlTextWriter writer)
+		{
+			if (!disableRender)
+			{
+				var content = CacheHelper.Get<string> (DataCacheKey);
+				if (content == null)
+				{
+					// cache expired
+					using (var stringWriter = new System.IO.StringWriter ())
+					using (var htmlWriter = new HtmlTextWriter (stringWriter))
+					{
+						// render the current page content to our temp writer
+						base.Render (htmlWriter);
+						// htmlWriter.Flush();
+						htmlWriter.Close ();
+
+						// get the content
+						content = stringWriter.ToString ();
+					}
+		
+					// TODO: Remove after testing
+					content = string.Concat (content, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
+
+					// TODO: Must get caching timeout from module settings or use Host.PerformanceSetting * something
+					CacheHelper.Set<string> (content, DataCacheKey, 300);
+				}
+
+				// write the new html to the page
+				writer.Write(content);
+			}
+		}
+
+		#endif
 		#endregion
 
 		protected void AutoTitle (EmployeeInfo employee)
@@ -466,6 +515,20 @@ namespace R7.University.Employee
 					existingEmployee, 
 					true // open in new window
 				);
+
+				#if (DATACACHE)
+				actions.Add (
+					GetNextActionID (), 
+					"Clear Data Cache", // Localization.GetString("ClearDataCache.Action", this.LocalResourceFile),
+					"ClearDataCache.Action", "", 
+					"/images/action_refresh.gif",
+					"", //Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()),
+					true,  // use action event
+					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					true, 
+					false // open in new window
+				);
+				#endif
 
 				return actions;
 			}
