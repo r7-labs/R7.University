@@ -230,7 +230,7 @@ namespace R7.University.Division
 					ModuleActionType.AddContent, 
 					"", 
 					"",
-					Utils.EditUrl (this, "EditDivision"),
+					Utils.EditUrl (this, "Edit"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					!existingDivision,
