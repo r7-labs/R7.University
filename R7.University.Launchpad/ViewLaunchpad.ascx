@@ -37,7 +37,7 @@
 					            </ItemTemplate>
 					        </asp:TemplateField>
 						</Columns>
-						<PagerSettings Mode="Numeric" Visible="true" />
+						<PagerSettings Mode="NumericFirstLast" Visible="true" />
 			        </asp:GridView>
 			        <br />
 				</div>
@@ -66,7 +66,7 @@
 			               </ItemTemplate>
 			        	</asp:TemplateField>
 					</Columns>
-					<PagerSettings Mode="Numeric" Visible="true" />
+					<PagerSettings Mode="NumericFirstLast" Visible="true" />
 		        </asp:GridView>
 		        <br />
 		    </div>
@@ -95,7 +95,7 @@
 			               </ItemTemplate>
 			        	</asp:TemplateField>
 					</Columns>
-					<PagerSettings Mode="Numeric" Visible="true" />
+					<PagerSettings Mode="NumericFirstLast" Visible="true" />
 		        </asp:GridView>
 		        <br />
 		    </div>
