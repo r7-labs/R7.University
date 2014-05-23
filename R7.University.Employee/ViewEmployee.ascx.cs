@@ -1,4 +1,4 @@
-﻿#define DATACACHE
+﻿#define RENDERCACHE
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -82,9 +82,9 @@ namespace R7.University.Employee
 		{
 			base.OnInit (e);
 
-			#if (DATACACHE)
-			AddActionHandler (ClearDataCache_Action);
-			#endif
+			//#if (DATACACHE)
+			//AddActionHandler (ClearDataCache_Action);
+			//#endif
 		}
 
 		/// <summary>
@@ -99,23 +99,37 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					#if (DATACACHE)
+					#if (RENDERCACHE)
 
-					// don't use data cache in edit mode
 					if (IsEditable) 
 					{
-						DataCache.RemoveCache(DataCacheKey);
-						disableCache = true;
+						// don't use render cache in edit mode
+						DataCache.RemoveCache(renderCacheKey);
 					}
-					else
-						if (CacheHelper.Exists (DataCacheKey)) return;
-
+					else 
+					{
+						// NOTE: read cache here, cause it may be too late on render
+						renderCacheContent = CacheHelper.Get<string>(renderCacheKey); 
+					
+						if (renderCacheContent != null)
+						{
+							var visible = CacheHelper.TryGet<bool>(renderCacheKey + "_ContainerVisible", false);
+							ContainerControl.Visible = visible;
+							
+							disableRender = !visible;
+							
+							// no need to do anything, just render from cache
+							return;
+						}
+					}
+					
 					#endif
 
 					var ctrl = new EmployeeController ();
 					var settings = new EmployeeSettings (this);
 
-					var display = true;
+					var hasData = true;
+					
 					EmployeeInfo employee = null;
 
 					// check if we have something to display
@@ -124,7 +138,7 @@ namespace R7.University.Employee
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 
-						display = false;
+						hasData = false;
 					}
 					else 
 					{
@@ -137,7 +151,7 @@ namespace R7.University.Employee
 								Utils.Message (this, "EmployeeHardDeleted.Text", MessageType.Error, true);
 
 							// were is nothing to display
-							display = false;
+							hasData = false;
 						}
 						else 
 						{
@@ -157,20 +171,24 @@ namespace R7.University.Employee
 								// employee isn't published
 								if (IsEditable)
 									Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
-
-								// display only in edit mode
-								display = IsEditable;
 							}
 						}
 					}
-
-					// display or hide entire module
-					ContainerControl.Visible = display || IsEditable;
-
-					// display or hide module content
-					panelEmployee.Visible = display;
-
-					if (display)
+					
+					// if we have something published to display
+					// the display module to common users
+					CacheHelper.Set<bool>(hasData && employee.IsPublished, renderCacheKey + "_ContainerVisible", 400);
+					
+					// display module only in edit mode
+					// or if we have published data to display
+					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);
+										
+					// display module content only if it exists
+					// and if publshed or in edit mode
+					var displayContent = hasData && (IsEditable || employee.IsPublished);
+					panelEmployee.Visible = displayContent;
+					
+					if (displayContent)
 					{
 						if (settings.AutoTitle)
 							AutoTitle (employee);
@@ -189,17 +207,22 @@ namespace R7.University.Employee
 
 		#endregion
 
-		#region Data Cache 
-		#if (DATACACHE)
-
-		protected string DataCacheKey
-		{
-			get { return "Employee_" + TabModuleId + "_RenderedContent"; }
-		}
+		#region RENDERCACHE
+		
+		#if (RENDERCACHE)
 
 		private bool disableRender = false;
-		private bool disableCache = false;
+		
+		private string renderCacheContent;
+		
+		private string renderCacheKey
+		{
+			get { return "Employee_Render_" + TabModuleId; }
+		}
 
+		/*
+		private bool disableRender = false;
+		
 		protected void ClearDataCache_Action (object sender, ActionEventArgs e)
 		{
 			try 
@@ -222,14 +245,15 @@ namespace R7.University.Employee
 			{
 				Exceptions.ProcessModuleLoadException(this, ex);
 			}
-		}
+		}*/
 
 		protected override void Render(HtmlTextWriter writer)
 		{
 			if (!disableRender)
 			{
-				var content = CacheHelper.Get<string> (DataCacheKey);
-				if (content == null)
+				//var content = CacheHelper.Get<string> (DataCacheKey);
+				
+				if (renderCacheContent == null)
 				{
 					// cache expired
 					using (var stringWriter = new System.IO.StringWriter ())
@@ -241,23 +265,24 @@ namespace R7.University.Employee
 						htmlWriter.Close ();
 
 						// get the content
-						content = stringWriter.ToString ();
+						renderCacheContent = stringWriter.ToString ();
 					}
 		
 					// TODO: Remove after testing
-					content = string.Concat (content, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
+					renderCacheContent = string.Concat (renderCacheContent, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
 
 					// TODO: Must get caching timeout from module settings or use Host.PerformanceSetting * something
-					if (!disableCache)
-						CacheHelper.Set<string> (content, DataCacheKey, 300);
+					if (IsEditable)
+						CacheHelper.Set<string> (renderCacheContent, renderCacheKey, 300);
 				}
 
 				// write the new html to the page
-				writer.Write(content);
+				writer.Write(renderCacheContent);
 			}
 		}
 
 		#endif
+		
 		#endregion
 
 		protected void AutoTitle (EmployeeInfo employee)
@@ -527,6 +552,7 @@ namespace R7.University.Employee
 					true // open in new window
 				);
 
+				/*
 				#if (DATACACHE)
 				actions.Add (
 					GetNextActionID (), 
@@ -539,7 +565,7 @@ namespace R7.University.Employee
 					true, 
 					false // open in new window
 				);
-				#endif
+				#endif*/
 
 				return actions;
 			}
