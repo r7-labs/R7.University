@@ -21,10 +21,22 @@ namespace R7.University.Employee
 
 		#region Properties for settings
 
+		private int? employeeId;
+		
 		public int EmployeeID
 		{
-			get { return ReadSetting<int> ("Employee_EmployeeID", Null.NullInteger, false); }
-			set { WriteSetting<int> ("Employee_EmployeeID", value, false); }
+			get 
+			{ 
+				if (employeeId == null)
+					employeeId = ReadSetting<int> ("Employee_EmployeeID", Null.NullInteger, false); 
+				
+				return employeeId.Value;
+			}
+			set 
+			{ 
+				WriteSetting<int> ("Employee_EmployeeID", value, false); 
+				employeeId = value;
+			}
 		}
 
 		public bool AutoTitle

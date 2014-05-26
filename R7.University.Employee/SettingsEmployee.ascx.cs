@@ -10,7 +10,7 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public partial class SettingsEmployee : ModuleSettingsBase
+	public partial class SettingsEmployee : EmployeeModuleSettingsBase
 	{
 		/// <summary>
 		/// Handles the loading of the module setting for this control
@@ -21,23 +21,20 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					var ctrl = new EmployeeController ();
-					var settings = new EmployeeSettings (this);
-
 					comboEmployees.AddItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString());
-					foreach (var employee in  ctrl.GetObjects<EmployeeInfo>("ORDER BY [LastName]"))
+					foreach (var employee in EmployeeController.GetObjects<EmployeeInfo>("ORDER BY [LastName]"))
 						comboEmployees.AddItem (employee.AbbrName, employee.EmployeeID.ToString());
 				
-					if (!Null.IsNull(settings.EmployeeID))
-						comboEmployees.Select(settings.EmployeeID.ToString(), false);
+					if (!Null.IsNull(EmployeeSettings.EmployeeID))
+						comboEmployees.Select(EmployeeSettings.EmployeeID.ToString(), false);
 
-					checkAutoTitle.Checked = settings.AutoTitle;
+					checkAutoTitle.Checked = EmployeeSettings.AutoTitle;
 
-					if (!Null.IsNull(settings.PhotoWidth))
-						textPhotoWidth.Text = settings.PhotoWidth.ToString();
+					if (!Null.IsNull(EmployeeSettings.PhotoWidth))
+						textPhotoWidth.Text = EmployeeSettings.PhotoWidth.ToString();
 					
-					if (!Null.IsNull (settings.DataCacheTime))
-						textDataCacheTime.Text = settings.DataCacheTime.ToString ();
+					if (!Null.IsNull (EmployeeSettings.DataCacheTime))
+						textDataCacheTime.Text = EmployeeSettings.DataCacheTime.ToString ();
 				}
 			}
 			catch (Exception ex)
@@ -53,20 +50,18 @@ namespace R7.University.Employee
 		{
 			try
 			{
-				var settings = new EmployeeSettings (this);
-				
-				settings.EmployeeID = int.Parse(comboEmployees.SelectedValue);
-				settings.AutoTitle = checkAutoTitle.Checked;
+				EmployeeSettings.EmployeeID = int.Parse(comboEmployees.SelectedValue);
+				EmployeeSettings.AutoTitle = checkAutoTitle.Checked;
 
 				if (!string.IsNullOrWhiteSpace(textPhotoWidth.Text))
-					settings.PhotoWidth = int.Parse(textPhotoWidth.Text);
+					EmployeeSettings.PhotoWidth = int.Parse(textPhotoWidth.Text);
 				else
-					settings.PhotoWidth = Null.NullInteger;
+					EmployeeSettings.PhotoWidth = Null.NullInteger;
 				
 				if (!string.IsNullOrWhiteSpace(textDataCacheTime.Text))
-					settings.DataCacheTime = int.Parse(textDataCacheTime.Text);
+					EmployeeSettings.DataCacheTime = int.Parse(textDataCacheTime.Text);
 				else
-					settings.DataCacheTime = Null.NullInteger;
+					EmployeeSettings.DataCacheTime = Null.NullInteger;
 				
 				Utils.SynchronizeModule(this);
 

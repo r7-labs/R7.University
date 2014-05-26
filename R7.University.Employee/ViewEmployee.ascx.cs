@@ -18,29 +18,9 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public partial class ViewEmployee : PortalModuleBase, IActionable
+	public partial class ViewEmployee : EmployeePortalModuleBase, IActionable
 	{
 		#region Properties
-
-		private bool employeeIDLoaded = false;
-		private int employeeID = Null.NullInteger;
-
-		protected int EmployeeID
-		{
-			get 
-			{
-				if (employeeIDLoaded)
-					return employeeID;
-				else
-				{
-					var settings = new EmployeeSettings (this);
-					employeeID = settings.EmployeeID;
-					employeeIDLoaded = true;
-					return employeeID;
-				}
-			} 
-		}
-
 
 		#endregion 
 
@@ -73,15 +53,12 @@ namespace R7.University.Employee
 				{
 					if (Cache_OnLoad()) return;
 					
-					var ctrl = new EmployeeController ();
-					var settings = new EmployeeSettings (this);
-
 					var hasData = true;
 					
 					EmployeeInfo employee = null;
 
 					// check if we have something to display
-					if (Null.IsNull (EmployeeID))
+					if (Null.IsNull (EmployeeSettings.EmployeeID))
 					{
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
@@ -90,7 +67,7 @@ namespace R7.University.Employee
 					}
 					else 
 					{
-						employee = ctrl.Get<EmployeeInfo>(EmployeeID);
+						employee = EmployeeController.Get<EmployeeInfo>(EmployeeSettings.EmployeeID);
 
 						if (employee == null)
 						{
@@ -138,7 +115,7 @@ namespace R7.University.Employee
 					
 					if (displayContent)
 					{
-						if (settings.AutoTitle)
+						if (EmployeeSettings.AutoTitle)
 							AutoTitle (employee);
 
 						// display employee info
@@ -175,11 +152,8 @@ namespace R7.University.Employee
 		/// <param name="employee">Employee.</param>
 		protected void Display (EmployeeInfo employee)
 		{
-			var ctrl = new EmployeeController ();
-			var setting = new EmployeeSettings (this);
-
 			// occupied positions
-			var occupiedPositions = ctrl.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
+			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
 			if (occupiedPositions != null && occupiedPositions.Any())
 			{
 				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
@@ -206,7 +180,7 @@ namespace R7.University.Employee
 				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
 				if (image != null)
 				{
-					var photoWidth = setting.PhotoWidth;
+					var photoWidth = EmployeeSettings.PhotoWidth;
 
 					if (!Null.IsNull (photoWidth))
 					{
@@ -236,7 +210,7 @@ namespace R7.University.Employee
 			if (imageVisible)
 			{
 				// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
-				linkPhoto.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ());
+				linkPhoto.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ());
 			}
 
 			// REVIEW: Need to add fallback image?
@@ -369,7 +343,7 @@ namespace R7.University.Employee
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
-				var existingEmployee = !Null.IsNull (EmployeeID);
+				var existingEmployee = !Null.IsNull (EmployeeSettings.EmployeeID);
 
 				actions.Add (
 					GetNextActionID (), 
@@ -391,7 +365,7 @@ namespace R7.University.Employee
 					ModuleActionType.EditContent, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Edit", "employee_id", EmployeeID.ToString ()),
+					Utils.EditUrl (this, "Edit", "employee_id", EmployeeSettings.EmployeeID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					existingEmployee, 
@@ -404,7 +378,7 @@ namespace R7.University.Employee
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()),
+					Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
 					existingEmployee, 
@@ -417,7 +391,7 @@ namespace R7.University.Employee
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()),
+					Utils.EditUrl (this, "VCard", "employee_id", EmployeeSettings.EmployeeID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
 					existingEmployee, 
