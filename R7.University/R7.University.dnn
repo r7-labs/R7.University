@@ -195,7 +195,7 @@
 							<moduleDefinition>
 								<friendlyName>R7.University.Employee</friendlyName>
 								<definitionName>R7.University.Employee</definitionName>
-								<defaultCacheTime>1200</defaultCacheTime>
+								<defaultCacheTime>0</defaultCacheTime>
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
