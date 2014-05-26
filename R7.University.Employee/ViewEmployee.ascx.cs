@@ -1,5 +1,4 @@
-﻿#define RENDERCACHE
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -19,33 +18,6 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public static class CacheHelper
-	{
-		public static bool Exists(string key)
-		{
-			return DataCache.GetCache(key) != null;
-		}
-
-		public static void Set<T>(T toSet, string key, int seconds)
-		{
-			DataCache.SetCache(key, toSet, TimeSpan.FromSeconds(seconds)); 
-		}
-
-		public static T Get<T>(string key)
-		{
-			return (T) DataCache.GetCache(key);
-		}
-
-		public static T TryGet<T>(string key, T defValue) 
-		{
-			var obj = DataCache.GetCache (key);
-			if (obj != null)
-				return (T) obj;
-
-			return defValue;
-		}
-	}
-
 	public partial class ViewEmployee : PortalModuleBase, IActionable
 	{
 		#region Properties
@@ -99,32 +71,8 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					#if (RENDERCACHE)
-
-					if (IsEditable) 
-					{
-						// don't use render cache in edit mode
-						DataCache.RemoveCache(renderCacheKey);
-					}
-					else 
-					{
-						// NOTE: read cache here, cause it may be too late on render
-						renderCacheContent = CacheHelper.Get<string>(renderCacheKey); 
+					if (Cache_Exists()) return;
 					
-						if (renderCacheContent != null)
-						{
-							var visible = CacheHelper.TryGet<bool>(renderCacheKey + "_ContainerVisible", false);
-							ContainerControl.Visible = visible;
-							
-							disableRender = !visible;
-							
-							// no need to do anything, just render from cache
-							return;
-						}
-					}
-					
-					#endif
-
 					var ctrl = new EmployeeController ();
 					var settings = new EmployeeSettings (this);
 
@@ -177,10 +125,10 @@ namespace R7.University.Employee
 					
 					// if we have something published to display
 					// the display module to common users
-					CacheHelper.Set<bool>(hasData && employee.IsPublished, renderCacheKey + "_ContainerVisible", 400);
+					Cache_SetContainerVisible(hasData && employee.IsPublished);
 					
 					// display module only in edit mode
-					// or if we have published data to display
+					// only if we have published data to display
 					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);
 										
 					// display module content only if it exists
@@ -207,83 +155,7 @@ namespace R7.University.Employee
 
 		#endregion
 
-		#region RENDERCACHE
 		
-		#if (RENDERCACHE)
-
-		private bool disableRender = false;
-		
-		private string renderCacheContent;
-		
-		private string renderCacheKey
-		{
-			get { return "Employee_Render_" + TabModuleId; }
-		}
-
-		/*
-		private bool disableRender = false;
-		
-		protected void ClearDataCache_Action (object sender, ActionEventArgs e)
-		{
-			try 
-			{
-				if (e.Action.CommandName == "ClearDataCache.Action")
-				{
-					DataCache.RemoveCache(DataCacheKey);
-
-					// Disabling render as we don't have controls, filled with data.
-					disableRender = true; 
-
-					// NOTE: Also, control binding could be done in LoadComplete,
-					// so we should know that we need update view, and there
-					// be no need to disable render
-
-					Response.Redirect (Globals.NavigateURL (), true);
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException(this, ex);
-			}
-		}*/
-
-		protected override void Render(HtmlTextWriter writer)
-		{
-			if (!disableRender)
-			{
-				//var content = CacheHelper.Get<string> (DataCacheKey);
-				
-				if (renderCacheContent == null)
-				{
-					// cache expired
-					using (var stringWriter = new System.IO.StringWriter ())
-					using (var htmlWriter = new HtmlTextWriter (stringWriter))
-					{
-						// render the current page content to our temp writer
-						base.Render (htmlWriter);
-						// htmlWriter.Flush();
-						htmlWriter.Close ();
-
-						// get the content
-						renderCacheContent = stringWriter.ToString ();
-					}
-		
-					// TODO: Remove after testing
-					renderCacheContent = string.Concat (renderCacheContent, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
-
-					// TODO: Must get caching timeout from module settings or use Host.PerformanceSetting * something
-					if (IsEditable)
-						CacheHelper.Set<string> (renderCacheContent, renderCacheKey, 300);
-				}
-
-				// write the new html to the page
-				writer.Write(renderCacheContent);
-			}
-		}
-
-		#endif
-		
-		#endregion
 
 		protected void AutoTitle (EmployeeInfo employee)
 		{
