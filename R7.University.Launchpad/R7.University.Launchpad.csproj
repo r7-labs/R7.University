@@ -65,7 +65,6 @@
     <Content Include="SettingsLaunchpad.ascx" />
     <Content Include="js\module.js" />
     <Content Include="EditPosition.ascx" />
-    <Content Include="EditEmployee.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
@@ -85,7 +84,6 @@
     <None Include="App_LocalResources\__EditEmployee.ascx.resx">
       <DependentUpon>__EditEmployee.ascx.tt</DependentUpon>
     </None>
-    <None Include="App_LocalResources\EditEmployee.ascx.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
@@ -111,13 +109,6 @@
     <Compile Include="EditPosition.ascx.controls.cs">
       <DependentUpon>EditPosition.ascx</DependentUpon>
     </Compile>
-    <Compile Include="EditEmployee.ascx.cs">
-      <DependentUpon>EditEmployee.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditEmployee.ascx.controls.cs">
-      <DependentUpon>EditEmployee.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="entities\OccupiedPositionView.cs" />
     <Compile Include="entities\UserView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

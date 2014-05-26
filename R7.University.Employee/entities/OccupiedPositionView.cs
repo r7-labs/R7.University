@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace R7.University.Launchpad
+namespace R7.University.Employee
 {
 	[Serializable]
 	public class OccupiedPositionView : ISerializable

@@ -7,7 +7,7 @@ using DotNetNuke.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University;
 
-namespace R7.University.Launchpad
+namespace R7.University.Employee
 {
 	public partial class EditEmployee
 	{

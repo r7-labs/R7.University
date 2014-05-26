@@ -106,7 +106,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
 										<controlTitle>Edit Employee</controlTitle>
@@ -232,7 +232,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Edit</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
 										<controlTitle>Edit Employee</controlTitle>
@@ -322,7 +322,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Edit</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
 										<controlTitle>Edit Employee</controlTitle>

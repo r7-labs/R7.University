@@ -17,9 +17,9 @@ using R7.University;
 
 // TODO: ModuleAuditControl not saving label content in a ViewState - disabled in a control itself!
 
-namespace R7.University.Launchpad
+namespace R7.University.Employee
 {
-	public partial class EditEmployee : PortalModuleBase
+	public partial class EditEmployee : EmployeePortalModuleBase
 	{
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
@@ -68,11 +68,9 @@ namespace R7.University.Launchpad
 			comboWorkingHours.DataSource = workingHours;
 			comboWorkingHours.DataBind ();
 
-			var ctrl = new LaunchpadController ();
-
 			// if results are null or empty, lists were empty too
-			var positions = new List<PositionInfo> (ctrl.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
-			var divisions = new List<DivisionInfo> (ctrl.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
+			var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
+			var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
 
 			// add default items
 			positions.Insert (0, new PositionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), PositionID = Null.NullInteger });
@@ -107,8 +105,7 @@ namespace R7.University.Launchpad
 					if (itemId.HasValue)
 					{
 						// load the item
-						var ctrl = new LaunchpadController ();
-						var item = ctrl.Get<EmployeeInfo> (itemId.Value);
+						var item = EmployeeController.Get<EmployeeInfo> (itemId.Value);
 
 						if (item != null)
 						{
@@ -167,7 +164,7 @@ namespace R7.University.Launchpad
 							}
 
 							// read OccupiedPositions data
-							var occupiedPositionsEx = ctrl.GetObjects<OccupiedPositionInfoEx>(
+							var occupiedPositionsEx = EmployeeController.GetObjects<OccupiedPositionInfoEx>(
 								"WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
 
 							// fill view list
@@ -247,7 +244,6 @@ namespace R7.University.Launchpad
 		{
 			try
 			{
-				var ctrl = new LaunchpadController ();
 				EmployeeInfo item;
 
 				// determine if we are adding or updating
@@ -260,7 +256,7 @@ namespace R7.University.Launchpad
 				else
 				{
 					// update existing record
-					item = ctrl.Get<EmployeeInfo> (itemId.Value);
+					item = EmployeeController.Get<EmployeeInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -332,17 +328,18 @@ namespace R7.University.Launchpad
 							occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
 
 						// add item
-						ctrl.AddEmployee(item, occupiedPositionInfos);
+						EmployeeController.AddEmployee(item, occupiedPositionInfos);
 					}
 					else
-						ctrl.Add<EmployeeInfo>(item);
+						EmployeeController.Add<EmployeeInfo>(item);
 
 					// then adding new employee from Employee module, 
 					// set calling module to display new employee
 					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
 					{
-						var mctrl = new ModuleController();
-						mctrl.UpdateModuleSetting (ModuleId, "Employee_EmployeeID", item.EmployeeID.ToString());
+						//var mctrl = new ModuleController();
+						//mctrl.UpdateModuleSetting (ModuleId, "Employee_EmployeeID", item.EmployeeID.ToString());
+						EmployeeSettings.EmployeeID = item.EmployeeID;
 					}
 				}
 				else
@@ -361,10 +358,10 @@ namespace R7.University.Launchpad
 							occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
 
 						// update
-						ctrl.UpdateEmployee(item, occupiedPositionInfos);
+						EmployeeController.UpdateEmployee(item, occupiedPositionInfos);
 					}
 					else
-						ctrl.Update<EmployeeInfo>(item);
+						EmployeeController.Update<EmployeeInfo>(item);
 				}
 
 				Utils.SynchronizeModule(this);
@@ -394,8 +391,7 @@ namespace R7.University.Launchpad
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue)
 				{
-					var ctrl = new LaunchpadController ();
-					ctrl.Delete<EmployeeInfo> (itemId.Value);
+					EmployeeController.Delete<EmployeeInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}
