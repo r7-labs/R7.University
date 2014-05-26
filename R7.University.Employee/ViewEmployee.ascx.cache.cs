@@ -44,7 +44,7 @@ namespace R7.University.Employee
 			get { return "Employee_" + TabModuleId; }
 		}
 
-		protected override void Render(HtmlTextWriter writer)
+		protected override void Render (HtmlTextWriter writer)
 		{
 			if (!renderDisabled)
 			{
@@ -63,16 +63,17 @@ namespace R7.University.Employee
 						renderCacheContent = stringWriter.ToString ();
 					}
 		
-					// TODO: Remove after testing
-					renderCacheContent = string.Concat (renderCacheContent, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
+					// NOTE: For testing purposes
+					// renderCacheContent = string.Concat (renderCacheContent, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
 
-					// TODO: Must get caching timeout from module settings or use Host.PerformanceSetting * something
-										
 					// NOTE: Set render cache only in non-edit mode - this give editors 
 					// somethat increased performance and ensures that common users see only allowed content
 					
 					if (!IsEditable)
-						CacheHelper.Set<string> (renderCacheContent, DataCacheKey, 300);
+					{
+						var settings = new EmployeeSettings (this);
+						CacheHelper.Set<string> (renderCacheContent, DataCacheKey, settings.DataCacheTime);
+					}
 				}
 
 				// write the new html to the page
@@ -117,26 +118,31 @@ namespace R7.University.Employee
 		
 			#if (RENDERCACHE)
 			
-			if (IsEditable) 
-			{
-				// don't use cache in edit mode
-				DataCache.RemoveCache(DataCacheKey);
-				// DataCache.RemoveCache(dataCacheKey + "_ContainerVisible");
-			}
-			else 
-			{
-				// NOTE: read cache here, cause it may be too late on render
-				renderCacheContent = CacheHelper.Get<string>(DataCacheKey); 
+			var settings = new EmployeeSettings (this);
 			
-				if (renderCacheContent != null)
+			if (settings.DataCacheTime > 0)
+			{
+				if (IsEditable) 
 				{
-					var visible = CacheHelper.TryGet<bool>(DataCacheKey + "_ContainerVisible", false);
-					
-					ContainerControl.Visible = visible;
-					renderDisabled = !visible;
-					
-					// no need to do anything, just render from cache
-					cacheExists = true;
+					// don't use cache in edit mode
+					DataCache.RemoveCache(DataCacheKey);
+					// DataCache.RemoveCache(dataCacheKey + "_ContainerVisible");
+				}
+				else 
+				{
+					// NOTE: read cache here, cause it may be too late on render
+					renderCacheContent = CacheHelper.Get<string>(DataCacheKey); 
+				
+					if (renderCacheContent != null)
+					{
+						var visible = CacheHelper.TryGet<bool>(DataCacheKey + "_ContainerVisible", false);
+						
+						ContainerControl.Visible = visible;
+						renderDisabled = !visible;
+						
+						// no need to do anything, just render from cache
+						cacheExists = true;
+					}
 				}
 			}
 			
@@ -154,7 +160,8 @@ namespace R7.University.Employee
 		{
 			#if (RENDERCACHE)
 		
-			CacheHelper.Set<bool>(visible, DataCacheKey + "_ContainerVisible", 400);
+			var settings = new EmployeeSettings (this);
+			CacheHelper.Set<bool>(visible, DataCacheKey + "_ContainerVisible", settings.DataCacheTime + 60);
 			
 			#endif
 		}
