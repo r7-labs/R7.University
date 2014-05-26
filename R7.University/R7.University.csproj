@@ -57,6 +57,7 @@
     <Compile Include="components\VCard.cs" />
     <Compile Include="components\VCardPhone.cs" />
     <Compile Include="components\QuotedPrintable.cs" />
+    <Compile Include="components\CacheHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
