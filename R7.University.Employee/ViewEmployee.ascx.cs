@@ -71,7 +71,7 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					if (Cache_Exists()) return;
+					if (Cache_OnLoad()) return;
 					
 					var ctrl = new EmployeeController ();
 					var settings = new EmployeeSettings (this);
@@ -126,7 +126,7 @@ namespace R7.University.Employee
 					// if we have something published to display
 					// the display module to common users
 					Cache_SetContainerVisible(hasData && employee.IsPublished);
-					
+										
 					// display module only in edit mode
 					// only if we have published data to display
 					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);

@@ -36,21 +36,18 @@ namespace R7.University.Employee
 	{
 		#if (RENDERCACHE)
 		
-		private bool disableRender = false;
-		
+		private bool renderDisabled = false;
 		private string renderCacheContent;
 		
-		private string renderCacheKey
+		private string DataCacheKey 
 		{
-			get { return "Employee_Render_" + TabModuleId; }
+			get { return "Employee_" + TabModuleId; }
 		}
 
 		protected override void Render(HtmlTextWriter writer)
 		{
-			if (!disableRender)
+			if (!renderDisabled)
 			{
-				//var content = CacheHelper.Get<string> (DataCacheKey);
-				
 				if (renderCacheContent == null)
 				{
 					// cache expired
@@ -75,7 +72,7 @@ namespace R7.University.Employee
 					// somethat increased performance and ensures that common users see only allowed content
 					
 					if (!IsEditable)
-						CacheHelper.Set<string> (renderCacheContent, renderCacheKey, 300);
+						CacheHelper.Set<string> (renderCacheContent, DataCacheKey, 300);
 				}
 
 				// write the new html to the page
@@ -110,7 +107,11 @@ namespace R7.University.Employee
 		
 		#endif
 		
-		private bool Cache_Exists ()
+		/// <summary>
+		/// Apply necessary cache logic on load
+		/// </summary>
+		/// <returns><c>true</c>, if control must render from cache, <c>false</c> otherwise.</returns>
+		private bool Cache_OnLoad ()
 		{
 			var cacheExists = false;
 		
@@ -118,20 +119,21 @@ namespace R7.University.Employee
 			
 			if (IsEditable) 
 			{
-				// don't use render cache in edit mode
-				DataCache.RemoveCache(renderCacheKey);
+				// don't use cache in edit mode
+				DataCache.RemoveCache(DataCacheKey);
+				// DataCache.RemoveCache(dataCacheKey + "_ContainerVisible");
 			}
 			else 
 			{
 				// NOTE: read cache here, cause it may be too late on render
-				renderCacheContent = CacheHelper.Get<string>(renderCacheKey); 
+				renderCacheContent = CacheHelper.Get<string>(DataCacheKey); 
 			
 				if (renderCacheContent != null)
 				{
-					var visible = CacheHelper.TryGet<bool>(renderCacheKey + "_ContainerVisible", false);
-					ContainerControl.Visible = visible;
+					var visible = CacheHelper.TryGet<bool>(DataCacheKey + "_ContainerVisible", false);
 					
-					disableRender = !visible;
+					ContainerControl.Visible = visible;
+					renderDisabled = !visible;
 					
 					// no need to do anything, just render from cache
 					cacheExists = true;
@@ -143,11 +145,16 @@ namespace R7.University.Employee
 			return cacheExists;
 		}
 		
-		private void Cache_SetContainerVisible (bool visible)
+		
+		/// <summary>
+		/// Stores container control visibility to data cache
+		/// </summary>
+		/// <param name="visible">Set to <c>true</c>, if container control should be visible to common users.</param>
+		private void Cache_SetContainerVisible(bool visible)
 		{
 			#if (RENDERCACHE)
 		
-			CacheHelper.Set<bool>(visible, renderCacheKey + "_ContainerVisible", 400);
+			CacheHelper.Set<bool>(visible, DataCacheKey + "_ContainerVisible", 400);
 			
 			#endif
 		}
