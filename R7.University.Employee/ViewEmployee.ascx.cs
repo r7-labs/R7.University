@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Host;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Entities.Modules.Actions;
@@ -52,6 +53,10 @@ namespace R7.University.Employee
 		protected override void OnInit (EventArgs e)
 		{
 			base.OnInit (e);
+
+			//#if (DATACACHE)
+			//AddActionHandler (ClearDataCache_Action);
+			//#endif
 		}
 
 		/// <summary>
@@ -66,10 +71,13 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
+					if (Cache_OnLoad()) return;
+					
 					var ctrl = new EmployeeController ();
 					var settings = new EmployeeSettings (this);
 
-					var display = true;
+					var hasData = true;
+					
 					EmployeeInfo employee = null;
 
 					// check if we have something to display
@@ -78,7 +86,7 @@ namespace R7.University.Employee
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 
-						display = false;
+						hasData = false;
 					}
 					else 
 					{
@@ -91,7 +99,7 @@ namespace R7.University.Employee
 								Utils.Message (this, "EmployeeHardDeleted.Text", MessageType.Error, true);
 
 							// were is nothing to display
-							display = false;
+							hasData = false;
 						}
 						else 
 						{
@@ -111,20 +119,24 @@ namespace R7.University.Employee
 								// employee isn't published
 								if (IsEditable)
 									Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
-
-								// display only in edit mode
-								display = IsEditable;
 							}
 						}
 					}
-
-					// display or hide entire module
-					ContainerControl.Visible = display || IsEditable;
-
-					// display or hide module content
-					panelEmployee.Visible = display;
-
-					if (display)
+					
+					// if we have something published to display
+					// the display module to common users
+					Cache_SetContainerVisible(hasData && employee.IsPublished);
+										
+					// display module only in edit mode
+					// only if we have published data to display
+					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);
+										
+					// display module content only if it exists
+					// and if publshed or in edit mode
+					var displayContent = hasData && (IsEditable || employee.IsPublished);
+					panelEmployee.Visible = displayContent;
+					
+					if (displayContent)
 					{
 						if (settings.AutoTitle)
 							AutoTitle (employee);
@@ -142,6 +154,8 @@ namespace R7.University.Employee
 		}
 
 		#endregion
+
+		
 
 		protected void AutoTitle (EmployeeInfo employee)
 		{
@@ -409,6 +423,21 @@ namespace R7.University.Employee
 					existingEmployee, 
 					true // open in new window
 				);
+
+				/*
+				#if (DATACACHE)
+				actions.Add (
+					GetNextActionID (), 
+					"Clear Data Cache", // Localization.GetString("ClearDataCache.Action", this.LocalResourceFile),
+					"ClearDataCache.Action", "", 
+					"/images/action_refresh.gif",
+					"", //Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()),
+					true,  // use action event
+					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					true, 
+					false // open in new window
+				);
+				#endif*/
 
 				return actions;
 			}

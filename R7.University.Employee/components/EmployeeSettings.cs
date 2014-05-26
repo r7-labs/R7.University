@@ -39,7 +39,25 @@ namespace R7.University.Employee
 			get { return ReadSetting<int> ("Employee_PhotoWidth", 192, true); }
 			set { WriteSetting<int> ("Employee_PhotoWidth", value, true); }
 		}
-
+		
+		private int? dataCacheTime;
+		
+		public int DataCacheTime
+		{
+			get 
+			{ 
+				if (dataCacheTime == null)
+					dataCacheTime = ReadSetting<int> ("Employee_DataCacheTime", 1200, true);
+				
+				return dataCacheTime.Value;
+			}
+			set 
+			{ 
+				WriteSetting<int> ("Employee_DataCacheTime", value, true); 
+				dataCacheTime = value;
+			}
+		}
+		
 		#endregion
 	}
 }

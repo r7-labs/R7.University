@@ -368,6 +368,7 @@ namespace R7.University.Launchpad
 				}
 
 				Utils.SynchronizeModule(this);
+				DataCache.RemoveCache("Employee_" + TabModuleId + "_RenderedContent");
 
 				Response.Redirect (Globals.NavigateURL (), true);
 			}
