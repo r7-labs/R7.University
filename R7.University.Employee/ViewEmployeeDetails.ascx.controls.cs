@@ -11,6 +11,8 @@ namespace R7.University.Employee
 {
 	public partial class ViewEmployeeDetails
 	{
+		protected Image imagePhoto;
+		
 		protected HyperLink linkReturn;
 		protected HyperLink linkVCard;
 	}

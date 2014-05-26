@@ -21,26 +21,6 @@ namespace R7.University.Employee
 	{
 		#region Properties
 
-		private bool employeeIDLoaded = false;
-		private int employeeID = Null.NullInteger;
-
-		protected int EmployeeID
-		{
-			get 
-			{
-				if (employeeIDLoaded)
-					return employeeID;
-				else
-				{
-					var settings = new EmployeeSettings (this);
-					employeeID = settings.EmployeeID;
-					employeeIDLoaded = true;
-					return employeeID;
-				}
-			} 
-		}
-
-
 		#endregion 
 
 		#region Handlers
@@ -56,7 +36,7 @@ namespace R7.University.Employee
 			linkReturn.Attributes.Add ("onclick", "javascript:return " +
 			UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
 
-			linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()); 
+			linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", EmployeeSettings.EmployeeID.ToString ()); 
 		}
 
 		/// <summary>
@@ -71,8 +51,13 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					var ctrl = new EmployeeController ();
-					var settings = new EmployeeSettings (this);
+					if (!Null.IsNull(EmployeeSettings.EmployeeID))
+					{
+						var employee = EmployeeController.Get<EmployeeInfo>(EmployeeSettings.EmployeeID);
+						
+						if (employee != null)
+							Display(employee);
+					}
 				
 				} // if (!IsPostBack)
 			}
@@ -83,6 +68,57 @@ namespace R7.University.Employee
 		}
 
 		#endregion
+		
+		protected void Display (EmployeeInfo employee)
+		{
+			var fullname = employee.FullName;
+			
+			// set popup title
+			((DotNetNuke.Framework.CDefault)this.Page).Title = fullname;
+			
+			#region Photo 
+			
+			var imageVisible = false;
+			
+			// Photo
+			if (!Utils.IsNull<int> (employee.PhotoFileID))
+			{
+				// REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
+
+				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
+				if (image != null)
+				{
+					var photoWidth = EmployeeSettings.PhotoWidth;
+
+					if (!Null.IsNull (photoWidth))
+					{
+						imagePhoto.Width = photoWidth;
+						imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
+
+						imagePhoto.ImageUrl = string.Format (
+							"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
+					}
+					else
+					{
+						// use original image
+						imagePhoto.Width = image.Width;
+						imagePhoto.Height = image.Height;
+						imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
+					}
+
+					// set alt & title for photo
+					imagePhoto.AlternateText = fullname;
+					imagePhoto.ToolTip = fullname;
+
+					// make image visible
+					imageVisible = true;
+				}
+			}
+
+			imagePhoto.Visible = imageVisible;
+			
+			#endregion
+		}
 
 	} // class
 } // namespace
