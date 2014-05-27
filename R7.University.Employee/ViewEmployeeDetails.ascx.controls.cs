@@ -12,6 +12,19 @@ namespace R7.University.Employee
 	public partial class ViewEmployeeDetails
 	{
 		protected Image imagePhoto;
+		protected Image imageBarcode;
+		protected Label labelAcademicDegreeAndTitle;
+		protected Label labelMessenger;
+		protected Label labelPhone;
+		protected Label labelFax;
+		protected Label labelCellPhone;
+		protected Label labelWorkingPlaceAndHours;
+		protected Literal litAbout;
+		protected HyperLink linkEmail;
+		protected HyperLink linkSecondaryEmail;
+		protected HyperLink linkWebSite;
+		protected HyperLink linkUserProfile;
+		protected Repeater repeaterPositions;
 		
 		protected HyperLink linkReturn;
 		protected HyperLink linkVCard;

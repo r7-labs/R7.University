@@ -78,6 +78,7 @@
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditEmployee.ascx.resx" />
+    <None Include="App_LocalResources\ViewEmployeeDetails.ascx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\EmployeeSettings.cs" />

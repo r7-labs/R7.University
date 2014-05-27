@@ -76,6 +76,18 @@ namespace R7.University.Employee
 			// set popup title
 			((DotNetNuke.Framework.CDefault)this.Page).Title = fullname;
 			
+			
+			// occupied positions
+			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
+			if (occupiedPositions != null && occupiedPositions.Any())
+			{
+				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
+				repeaterPositions.DataBind ();
+			}
+			else
+				repeaterPositions.Visible = false;
+			
+			
 			#region Photo 
 			
 			var imageVisible = false;
@@ -118,8 +130,159 @@ namespace R7.University.Employee
 			imagePhoto.Visible = imageVisible;
 			
 			#endregion
-		}
+			
+			// barcode image test
+			var barcodeWidth = 192;
+			imageBarcode.ImageUrl = 
+				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
+					barcodeWidth, barcodeWidth, 
+					Server.UrlEncode(employee.VCard.ToString()
+						.Replace("+","%2b")) // fix for "+" signs in phone numbers
+			);
 
+			imageBarcode.ToolTip = LocalizeString("imageBarcode.ToolTip");
+			imageBarcode.AlternateText =  LocalizeString("imageBarcode.AlternateText");
+			
+			// Academic degree & title
+			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
+			if (!string.IsNullOrWhiteSpace (degreeAndTitle))
+				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper(degreeAndTitle);
+			else
+				labelAcademicDegreeAndTitle.Visible = false;
+				
+			// Phone
+			if (!string.IsNullOrWhiteSpace (employee.Phone))
+				labelPhone.Text = employee.Phone;
+			else
+				labelPhone.Visible = false;
+
+			// CellPhome
+			if (!string.IsNullOrWhiteSpace (employee.CellPhone))
+				labelCellPhone.Text = employee.CellPhone;
+			else
+				labelCellPhone.Visible = false;
+
+			// Fax
+			if (!string.IsNullOrWhiteSpace (employee.Fax))
+				labelFax.Text = string.Format(Localization.GetString("Fax.Format", LocalResourceFile), employee.Fax);
+			else
+				labelFax.Visible = false;
+
+			// Messenger
+			if (!string.IsNullOrWhiteSpace (employee.Messenger))
+				labelMessenger.Text = employee.Messenger;
+			else
+				labelMessenger.Visible = false;
+
+			// Working place and Hours
+			var workingPlaceAndHours = Utils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+			if (!string.IsNullOrWhiteSpace (workingPlaceAndHours))
+				labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
+			else
+				labelWorkingPlaceAndHours.Visible = false;
+
+			// WebSite
+			if (!string.IsNullOrWhiteSpace (employee.WebSite))
+			{
+				// THINK: Less optimistic protocol detection?
+				var lowerWebSite = employee.WebSite.ToLowerInvariant ();
+				if (lowerWebSite.StartsWith ("http://") ||  lowerWebSite.StartsWith ("https://"))
+				{
+					linkWebSite.NavigateUrl = employee.WebSite;
+					// 01234567890
+					// http://www.volgau.com
+					// https://www.volgau.com
+					linkWebSite.Text = employee.WebSite.Remove(0, employee.WebSite.IndexOf("://")+3); 
+				}
+				else
+				{
+					// add http by default
+					linkWebSite.NavigateUrl = "http://" + employee.WebSite;
+					linkWebSite.Text = employee.WebSite; 
+				}
+			}
+			else
+				linkWebSite.Visible = false;
+
+
+			// Email
+			if (!string.IsNullOrWhiteSpace (employee.Email))
+			{
+				linkEmail.NavigateUrl = "mailto:" + employee.Email;
+				linkEmail.Text = employee.Email;
+			}
+			else
+				linkEmail.Visible = false;
+
+			// Secondary email
+			if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail))
+			{
+				linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
+				linkSecondaryEmail.Text = employee.SecondaryEmail;
+			}
+			else
+				linkSecondaryEmail.Visible = false;
+
+			// Profile link
+			if (!Utils.IsNull<int> (employee.UserID))
+			{
+				linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
+				// TODO: Replace profile text with something more sane
+				linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
+			}
+			else
+				linkUserProfile.Visible = false;
+			
+			
+			// about
+			if (!string.IsNullOrWhiteSpace (employee.Biography))
+				litAbout.Text = Server.HtmlDecode(employee.Biography);
+			else
+				litAbout.Visible = false;
+			
+		}
+		
+		protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)
+		{
+			// exclude header & footer
+			if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+			{
+				var opex = e.Item.DataItem as OccupiedPositionInfoEx;
+
+				var labelPosition = e.Item.FindControl ("labelPosition") as Label;
+				var labelDivision = e.Item.FindControl ("labelDivision") as Label;
+				var linkDivision = e.Item.FindControl ("linkDivision") as HyperLink;
+
+				labelPosition.Text = opex.PositionShortTitle;
+
+				// don't display division title for highest level divisions
+				if (Utils.IsNull(opex.ParentDivisionID))
+				{
+					labelDivision.Visible = false;
+					linkDivision.Visible = false;
+				}
+				else
+				{
+					if (!string.IsNullOrWhiteSpace (opex.HomePage))
+					{
+						// link to division's homepage
+						labelDivision.Visible = false;
+						linkDivision.NavigateUrl = Utils.FormatURL (this, opex.HomePage, false);
+
+						labelPosition.Text += ": "; // to prev label!
+						linkDivision.Text = opex.DivisionShortTitle;
+					}
+					else
+					{	
+						// only division title
+						linkDivision.Visible = false;
+
+						labelPosition.Text += ": "; // to prev label!
+						labelDivision.Text = opex.DivisionShortTitle;
+					}
+				}
+			}
+		}
 	} // class
 } // namespace
 

@@ -15,4 +15,7 @@
 	<data name="Details.Action" xml:space="preserve">
     <value>Подробнее о сотруднике</value>
   </data>
+	<data name="VisitProfile.Text" xml:space="preserve">
+    	<value>Профайл</value>
+  	</data>
 </root>

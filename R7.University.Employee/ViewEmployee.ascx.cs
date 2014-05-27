@@ -211,6 +211,9 @@ namespace R7.University.Employee
 			{
 				// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
 				linkPhoto.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ());
+				
+				// alter popup window height
+				linkPhoto.NavigateUrl.Replace("550,950","500,950");
 			}
 
 			// REVIEW: Need to add fallback image?
