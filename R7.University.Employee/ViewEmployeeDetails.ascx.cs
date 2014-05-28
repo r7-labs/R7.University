@@ -87,61 +87,9 @@ namespace R7.University.Employee
 			else
 				repeaterPositions.Visible = false;
 			
+			Photo (employee, fullname);
 			
-			#region Photo 
-			
-			var imageVisible = false;
-			
-			// Photo
-			if (!Utils.IsNull<int> (employee.PhotoFileID))
-			{
-				// REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
-
-				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-				if (image != null)
-				{
-					var photoWidth = EmployeeSettings.PhotoWidth;
-
-					if (!Null.IsNull (photoWidth))
-					{
-						imagePhoto.Width = photoWidth;
-						imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
-
-						imagePhoto.ImageUrl = string.Format (
-							"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
-					}
-					else
-					{
-						// use original image
-						imagePhoto.Width = image.Width;
-						imagePhoto.Height = image.Height;
-						imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
-					}
-
-					// set alt & title for photo
-					imagePhoto.AlternateText = fullname;
-					imagePhoto.ToolTip = fullname;
-
-					// make image visible
-					imageVisible = true;
-				}
-			}
-
-			imagePhoto.Visible = imageVisible;
-			
-			#endregion
-			
-			// barcode image test
-			var barcodeWidth = 192;
-			imageBarcode.ImageUrl = 
-				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
-				barcodeWidth, barcodeWidth, 
-				Server.UrlEncode (employee.VCard.ToString ()
-						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
-			);
-
-			imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
-			imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
+			Barcode (employee);
 			
 			// Academic degree & title
 			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
@@ -247,6 +195,63 @@ namespace R7.University.Employee
 			
 		}
 
+		void Photo (EmployeeInfo employee, string fullname)
+		{
+			var imageVisible = false;
+			
+			// Photo
+			if (!Utils.IsNull<int> (employee.PhotoFileID))
+			{
+				// REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
+
+				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
+				if (image != null)
+				{
+					var photoWidth = EmployeeSettings.PhotoWidth;
+
+					if (!Null.IsNull (photoWidth))
+					{
+						imagePhoto.Width = photoWidth;
+						imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
+
+						imagePhoto.ImageUrl = string.Format (
+							"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
+					}
+					else
+					{
+						// use original image
+						imagePhoto.Width = image.Width;
+						imagePhoto.Height = image.Height;
+						imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
+					}
+
+					// set alt & title for photo
+					imagePhoto.AlternateText = fullname;
+					imagePhoto.ToolTip = fullname;
+
+					// make image visible
+					imageVisible = true;
+				}
+			}
+
+			imagePhoto.Visible = imageVisible;
+		}
+		
+		void Barcode (EmployeeInfo employee)
+		{
+			// barcode image test
+			var barcodeWidth = 192;
+			imageBarcode.ImageUrl = 
+				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
+				barcodeWidth, barcodeWidth, 
+				Server.UrlEncode (employee.VCard.ToString ()
+						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
+			);
+
+			imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
+			imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
+		}
+		
 		void Experience (EmployeeInfo employee)
 		{
 			// experience years
