@@ -34,6 +34,7 @@ namespace R7.University.EmployeeList
 
 		#region Handlers
 
+		/*
 		/// <summary>
 		/// Handles Init event for a control
 		/// </summary>
@@ -41,8 +42,8 @@ namespace R7.University.EmployeeList
 		protected override void OnInit (EventArgs e)
 		{
 			base.OnInit (e);
-		}
-
+		}*/
+		
 		/// <summary>
 		/// Handles Load event for a control
 		/// </summary>

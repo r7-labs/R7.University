@@ -26,6 +26,7 @@ namespace R7.University.Employee
 
 		#region Handlers
 
+		/*
 		/// <summary>
 		/// Handles Init event for a control
 		/// </summary>
@@ -37,7 +38,7 @@ namespace R7.University.Employee
 			//#if (DATACACHE)
 			//AddActionHandler (ClearDataCache_Action);
 			//#endif
-		}
+		}*/
 
 		/// <summary>
 		/// Handles Load event for a control
