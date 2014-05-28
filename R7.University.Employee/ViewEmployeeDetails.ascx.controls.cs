@@ -20,12 +20,12 @@ namespace R7.University.Employee
 		protected Label labelCellPhone;
 		protected Label labelWorkingPlaceAndHours;
 		protected Literal litAbout;
+		protected HyperLink linkAbout;
 		protected HyperLink linkEmail;
 		protected HyperLink linkSecondaryEmail;
 		protected HyperLink linkWebSite;
 		protected HyperLink linkUserProfile;
 		protected Repeater repeaterPositions;
-		
 		protected HyperLink linkReturn;
 		protected HyperLink linkVCard;
 	}

@@ -15,7 +15,7 @@
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employeeCommon">Common</a></li>
 			<li><a href="#employeeAchivements">Achivements</a></li>
-		    <li><a href="#employeeAbout">About</a></li>
+		  	<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout">About</asp:HyperLink></li>
 			<li><a href="#employeeBarcode">QR-code</a></li>
 		</ul>
 
@@ -60,7 +60,7 @@
 			</div>
 			
 
-</div>
+		</div>
 
 		<div id="employeeAchivements">		
 		</div>

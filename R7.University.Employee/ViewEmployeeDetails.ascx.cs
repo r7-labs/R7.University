@@ -79,7 +79,7 @@ namespace R7.University.Employee
 			
 			// occupied positions
 			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-			if (occupiedPositions != null && occupiedPositions.Any())
+			if (occupiedPositions != null && occupiedPositions.Any ())
 			{
 				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
 				repeaterPositions.DataBind ();
@@ -135,18 +135,18 @@ namespace R7.University.Employee
 			var barcodeWidth = 192;
 			imageBarcode.ImageUrl = 
 				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
-					barcodeWidth, barcodeWidth, 
-					Server.UrlEncode(employee.VCard.ToString()
-						.Replace("+","%2b")) // fix for "+" signs in phone numbers
+				barcodeWidth, barcodeWidth, 
+				Server.UrlEncode (employee.VCard.ToString ()
+						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
 			);
 
-			imageBarcode.ToolTip = LocalizeString("imageBarcode.ToolTip");
-			imageBarcode.AlternateText =  LocalizeString("imageBarcode.AlternateText");
+			imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
+			imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
 			
 			// Academic degree & title
 			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
 			if (!string.IsNullOrWhiteSpace (degreeAndTitle))
-				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper(degreeAndTitle);
+				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper (degreeAndTitle);
 			else
 				labelAcademicDegreeAndTitle.Visible = false;
 				
@@ -164,7 +164,7 @@ namespace R7.University.Employee
 
 			// Fax
 			if (!string.IsNullOrWhiteSpace (employee.Fax))
-				labelFax.Text = string.Format(Localization.GetString("Fax.Format", LocalResourceFile), employee.Fax);
+				labelFax.Text = string.Format (Localization.GetString ("Fax.Format", LocalResourceFile), employee.Fax);
 			else
 				labelFax.Visible = false;
 
@@ -186,13 +186,13 @@ namespace R7.University.Employee
 			{
 				// THINK: Less optimistic protocol detection?
 				var lowerWebSite = employee.WebSite.ToLowerInvariant ();
-				if (lowerWebSite.StartsWith ("http://") ||  lowerWebSite.StartsWith ("https://"))
+				if (lowerWebSite.StartsWith ("http://") || lowerWebSite.StartsWith ("https://"))
 				{
 					linkWebSite.NavigateUrl = employee.WebSite;
 					// 01234567890
 					// http://www.volgau.com
 					// https://www.volgau.com
-					linkWebSite.Text = employee.WebSite.Remove(0, employee.WebSite.IndexOf("://")+3); 
+					linkWebSite.Text = employee.WebSite.Remove (0, employee.WebSite.IndexOf ("://") + 3); 
 				}
 				else
 				{
@@ -236,10 +236,12 @@ namespace R7.University.Employee
 			
 			// about
 			if (!string.IsNullOrWhiteSpace (employee.Biography))
-				litAbout.Text = Server.HtmlDecode(employee.Biography);
+				litAbout.Text = Server.HtmlDecode (employee.Biography);
 			else
-				litAbout.Visible = false;
-			
+			{
+				// hide entire About tab
+				linkAbout.Visible = false;
+			}
 		}
 		
 		protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)
