@@ -3,7 +3,9 @@
 	OnItemDataBound="listEmployees_ItemDataBound">
 	<ItemTemplate>
 		<div class="EmployeeList_ListItemWrapper">
-			<asp:Image id="imagePhoto" runat="server" CssClass="EmployeeList_Photo" />
+			<asp:HyperLink id="linkDetails" runat="server" CssClass="EmployeeList_DetailsLink">	
+				<asp:Image id="imagePhoto" runat="server" CssClass="EmployeeList_Photo" />
+			</asp:HyperLink>
 			<div class="EmployeeList_Info">	
 				<asp:HyperLink id="linkEdit" runat="server" CssClass="EmployeeList_EditLink">
 					<asp:Image id="imageEdit" runat="server" ImageUrl="~/images/edit.gif" AlternateText="Edit" ResourceKey="Edit" />

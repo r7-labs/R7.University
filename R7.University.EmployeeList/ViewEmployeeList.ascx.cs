@@ -136,6 +136,7 @@ namespace R7.University.EmployeeList
 			var linkEdit = e.Item.FindControl ("linkEdit") as HyperLink;
 			var imageEdit = e.Item.FindControl ("imageEdit") as Image;
 			var imagePhoto = e.Item.FindControl ("imagePhoto") as Image;
+			var linkDetails = e.Item.FindControl ("linkDetails") as HyperLink; 
 			var labelFullName = e.Item.FindControl ("labelFullName") as Label;
 			var labelAcademicDegreeAndTitle = e.Item.FindControl ("labelAcademicDegreeAndTitle") as Label;
 			var labelPositions = e.Item.FindControl ("labelPositions") as Label;
@@ -151,24 +152,24 @@ namespace R7.University.EmployeeList
 			// edit link
 			if (IsEditable)
 			{
-				if (Null.IsNull(CustomSettings.DivisionID))
+				if (Null.IsNull (CustomSettings.DivisionID))
 					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString ());
 				else
 					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString (), 
-						"division_id", CustomSettings.DivisionID.ToString());
+						"division_id", CustomSettings.DivisionID.ToString ());
 				// WTF: iconEdit.NavigateUrl = Utils.FormatURL (this, image.Url, false);
 			}
 
 			// make edit link visible in edit mode
 			linkEdit.Visible = IsEditable;
-				imageEdit.Visible = IsEditable;
+			imageEdit.Visible = IsEditable;
             
 			// mark non-published employees, as they visible only to editors
 			if (!employee.IsPublished)
-				if (e.Item.ItemType == ListItemType.Item)
-					e.Item.CssClass = listEmployees.ItemStyle.CssClass + " NonPublished";
-				else
-					e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " NonPublished";
+			if (e.Item.ItemType == ListItemType.Item)
+				e.Item.CssClass = listEmployees.ItemStyle.CssClass + " NonPublished";
+			else
+				e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " NonPublished";
 
 			// fill the controls
 
@@ -226,7 +227,13 @@ namespace R7.University.EmployeeList
 			if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl))
 			{
 				// TODO: Add fallback mini photo here
-				imagePhoto.Visible = false;
+				// imagePhoto.Visible = false;
+				linkDetails.Visible = false;
+			}
+			else
+			{
+				// link to employee details
+				linkDetails.NavigateUrl = Utils.EditUrl(this, "Details", "employee_id", employee.EmployeeID.ToString()).Replace("550,950", "450,950");
 			}
 
 			// employee fullname
