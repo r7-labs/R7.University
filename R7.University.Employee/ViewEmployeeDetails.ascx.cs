@@ -242,6 +242,48 @@ namespace R7.University.Employee
 				// hide entire About tab
 				linkAbout.Visible = false;
 			}
+			
+			Experience (employee);
+			
+		}
+
+		void Experience (EmployeeInfo employee)
+		{
+			// experience years
+			var exp1 = false;
+			var exp2 = false;
+			
+			// Общий стаж работы (лет): {0}
+			// Общий стаж работы по специальности (лет): {0}
+			// Общий стаж работы (лет): {0}, из них по специальности: {1}
+			
+			if (employee.ExperienceYears != null && employee.ExperienceYears.Value > 0)
+				exp1 = true;
+			
+			if (employee.ExperienceYearsBySpec != null && employee.ExperienceYearsBySpec.Value > 0)
+				exp2 = true;
+			
+			if (exp1 && !exp2)
+			{
+				labelExperienceYears.Text = string.Format (
+					LocalizeString ("ExperienceYears.Format1"), employee.ExperienceYears.Value);
+			}
+			else if (!exp1 && exp2)
+			{
+				labelExperienceYears.Text = string.Format (
+					LocalizeString ("ExperienceYears.Format2"), employee.ExperienceYearsBySpec);
+			}
+			else if (exp1 && exp2)
+			{
+				labelExperienceYears.Text = string.Format (
+					LocalizeString ("ExperienceYears.Format3"), 
+					employee.ExperienceYears.Value, employee.ExperienceYearsBySpec);
+			}
+			else
+			{
+				// hide Experience tab
+				linkExperience.Visible = false;
+			}
 		}
 		
 		protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)

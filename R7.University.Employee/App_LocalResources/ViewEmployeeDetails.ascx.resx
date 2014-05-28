@@ -1,6 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="BarcodeScan.Text" xml:space="preserve">
+	<data name="BarcodeScan.Text" xml:space="preserve">
     <value>Use your mobile device barcode scanning application to add this employee vCard to your address book.</value>
+  </data>
+	<data name="CommonTab.Text" xml:space="preserve">
+    <value>Common</value>
+  </data>
+	<data name="ExperienceTab.Text" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+	<data name="AboutTab.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+	<data name="AchivementsTab.Text" xml:space="preserve">
+    <value>Achivements</value>
+  </data>
+	<data name="BarcodeTab.Text" xml:space="preserve">
+    <value>QR-code</value>
+  </data>
+	<data name="ExperienceYears.Format1" xml:space="preserve">
+    <value>Total work experience (years): {0}</value>
+  </data>
+	<data name="ExperienceYears.Format2" xml:space="preserve">
+    <value>Work experience in speciality (years): {0}</value>
+  </data>
+	<data name="ExperienceYears.Format3" xml:space="preserve">
+    <value>Total work experience (years): {0}, in which in speciality: {1}</value>
   </data>
 </root>

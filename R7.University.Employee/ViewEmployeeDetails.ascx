@@ -13,10 +13,11 @@
 	
 	<div id="employeeTabs" class="dnnForm dnnClear" style="display:inline-block;width:auto">
 		<ul class="dnnAdminTabNav dnnClear">
-		    <li><a href="#employeeCommon">Common</a></li>
-			<li><a href="#employeeAchivements">Achivements</a></li>
-		  	<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout">About</asp:HyperLink></li>
-			<li><a href="#employeeBarcode">QR-code</a></li>
+		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
+			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("ExperienceTab.Text") %></asp:HyperLink></li>
+			<li><asp:HyperLink id="linkAchivements" runat="server" href="#employeeAchivements"><%= LocalizeString("AchivementsTab.Text") %></asp:HyperLink></li>
+		  	<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></asp:HyperLink></li>
+			<li><a href="#employeeBarcode"><%= LocalizeString("BarcodeTab.Text") %></a></li>
 		</ul>
 
 		<div id="employeeCommon">
@@ -60,6 +61,11 @@
 			</div>
 			
 
+		</div>
+
+		<div id="employeeExperience">	
+			<asp:Label id="labelExperienceYears" runat="server" CssClass="EmployeeDetails_Label" />	
+			<%-- <asp:Label id="labelExperienceYearsBySpec" runat="server" CssClass="EmployeeDetails_Label" /> --%>	
 		</div>
 
 		<div id="employeeAchivements">		
