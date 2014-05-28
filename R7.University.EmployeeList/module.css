@@ -1,7 +1,7 @@
 ﻿.EmployeeList_List { width:100% }				
 .EmployeeList_ListItem { text-align: left; }
 .EmployeeList_ListItemWrapper { display:table-row }
-.EmployeeList_ListItem.NonPublished { /* opacity:0.33; */ background-color:#fcc; }
+.EmployeeList_ListItem.NonPublished { /* opacity:0.33; */ background-color:#ffc; }
 .EmployeeList_EditLink { margin-right:4px }
 .EmployeeList_DetailsLink { display:table-cell; }
 .EmployeeList_Photo { margin-right:8px; }
