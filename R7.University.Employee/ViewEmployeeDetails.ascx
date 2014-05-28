@@ -86,6 +86,6 @@
 		<hr />
 		<li><asp:HyperLink id="linkReturn" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdReturn" /></li>
 		<li><asp:HyperLink id="linkUserProfile" runat="server" CssClass="dnnSecondaryAction" ResourceKey="VisitProfile.Text" /></li>
-		<li><asp:HyperLink id="linkVCard" runat="server" CssClass="dnnSecondaryAction" ResourceKey="VCard.Action" /></li>
+		<li><asp:HyperLink id="linkVCard" runat="server" CssClass="dnnSecondaryAction" ResourceKey="VCard.Action" Visible="false" /></li>
 	</ul>
 </div>
