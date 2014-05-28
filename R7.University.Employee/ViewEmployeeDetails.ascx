@@ -75,7 +75,7 @@
 			<asp:Literal id="litAbout" runat="server" />
 		</div>
 		
-		<div id="employeeBarcode">
+		<div id="employeeBarcode" style="max-width:700px">
 			<asp:Label runat="server" resourcekey="BarcodeScan.Text" CssClass="dnnFormMessage" />
 			<asp:Image id="imageBarcode" runat="server" CssClass="EmployeeDetails_Barcode" />
 		</div>

@@ -17,7 +17,7 @@ GO
 
 -- Set all EmployeeList modules cache time to 0
 UPDATE {databaseOwner}[{objectQualifier}TabModules] SET CacheTime = 0 
-WHERE TabModuleID IN (
+WHERE ModuleID IN (
 	SELECT ModuleID 
 		FROM {databaseOwner}[{objectQualifier}Modules] AS M
 		INNER JOIN {databaseOwner}[{objectQualifier}ModuleDefinitions] AS MD 

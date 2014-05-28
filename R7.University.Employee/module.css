@@ -2,9 +2,9 @@
 
 .Employee_Email { display:inline-block }
 
-.Employee_PhotoContainer { text-align:center }
+.Employee_PhotoContainer { text-align:center;margin-top:8px }
 
-.Employee_Photo { margin-top:8px; }
+.Employee_Photo { margin-top:8px }
 
 .Employee_Positions 
 {
