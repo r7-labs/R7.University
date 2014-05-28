@@ -51,7 +51,7 @@ namespace R7.University.Employee
 				{
 					// try get EmployeeID from querysting
 					var employeeId = Utils.ParseToNullableInt(Request.QueryString["employee_id"]);
-					
+			
 					// if not, use module settings
 					if (employeeId == null && !Null.IsNull(EmployeeSettings.EmployeeID))
 						employeeId = EmployeeSettings.EmployeeID;
@@ -251,7 +251,7 @@ namespace R7.University.Employee
 		void Barcode (EmployeeInfo employee)
 		{
 			// barcode image test
-			var barcodeWidth = 192;
+			var barcodeWidth = 150;
 			imageBarcode.ImageUrl = 
 				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
 				barcodeWidth, barcodeWidth, 
