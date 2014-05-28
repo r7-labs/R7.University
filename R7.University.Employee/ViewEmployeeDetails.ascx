@@ -71,7 +71,7 @@
 		<div id="employeeAchivements">		
 		</div>
 
-		<div id="employeeAbout">
+		<div id="employeeAbout" style="max-width:700px">
 			<asp:Literal id="litAbout" runat="server" />
 		</div>
 		
