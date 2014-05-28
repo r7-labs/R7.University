@@ -29,13 +29,12 @@ namespace R7.University
 
 	public static class Utils
 	{
-		public static string GetUserDisplayName (int userId)
+		public static string GetUserDisplayName (int userId, string defName)
 		{
 			var portalId = PortalController.GetCurrentPortalSettings ().PortalId;
 			var user = UserController.GetUserById (portalId, userId);
-
-			// TODO: "System" user name needs localization
-			return (user != null) ? user.DisplayName : "System";
+	
+			return (user != null) ? user.DisplayName : defName;
 		}
 
 		/// <summary>

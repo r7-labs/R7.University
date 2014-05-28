@@ -3,6 +3,9 @@
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- не выбрано --</value>
   </data>
+<data name="System.Text" xml:space="preserve">
+    <value>Система</value>
+  </data>
 <data name="AddDivision.Action" xml:space="preserve">
     	<value>Добавить подразделение</value>
   	</data>

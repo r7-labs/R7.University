@@ -3,6 +3,9 @@
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- not selected --</value>
   </data>
+<data name="System.Text" xml:space="preserve">
+    <value>System</value>
+  </data>
  <data name="AddEmployee.Action" xml:space="preserve">
     <value>Add Employee</value>
   </data>

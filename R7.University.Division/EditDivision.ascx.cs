@@ -155,9 +155,9 @@ namespace R7.University.Division
 								urlHomePage.UrlType = "N";
 
 							// setup audit control
-							ctlAudit.CreatedByUser = Utils.GetUserDisplayName(item.CreatedByUserID);
+							ctlAudit.CreatedByUser = Utils.GetUserDisplayName(item.CreatedByUserID, LocalizeString("System.Text"));
 							ctlAudit.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName(item.LastModifiedByUserID);
+							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName(item.LastModifiedByUserID, LocalizeString("System.Text"));
 							ctlAudit.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString();
 
 						} else
