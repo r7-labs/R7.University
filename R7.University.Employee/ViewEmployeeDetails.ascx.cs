@@ -224,6 +224,9 @@ namespace R7.University.Employee
 				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
 				if (image != null)
 				{
+					// TODO: Then opening from EmployeeList module, default PhotoWidth value is used
+					// as no Employee_PhotoWidth setting exists for this module
+					
 					var photoWidth = EmployeeSettings.PhotoWidth;
 
 					if (!Null.IsNull (photoWidth))
