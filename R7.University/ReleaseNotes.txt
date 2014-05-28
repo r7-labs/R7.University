@@ -1,4 +1,19 @@
-﻿<h3>Version 01.00.06</h3>
+﻿<h3>Version 01.00.07</h3>
+<p>This release brings some new features and more stabilization fixes for 01.00.00.</p>
+<ul>
+	<li>Solution for global issue #17: Employee and EmployeeList modules now use custom data cache.</li>
+	<li>Added popup with details about employee to the Employee and EmployeeList modules.</li>
+	<li>Added ModuleBase classes to simplify access to controller and settings to Employee and Division modules.<li>
+	<li>Fix issue #19: Then editing division from division's tab, HomePage reset to main page.</li>
+	<li>EditEmployee control moved to Employee module from Launchpad.</li>
+	<li>Fix issue #20: You can now add new division right from Division module.</li>
+	<li>Launchpad pager mode changed to simplify access to the last records.</li>
+	<li>More friendly SearchByTerm link in Division module.</li>
+	<li>Reworked short title display logic in Division module.</li>
+	<li>Remove endline after END:VCARD in generated vCards.<li>
+	<li>Other small fixed and improvements.</li>
+</ul>
+<h3>Version 01.00.06</h3>
 <p>This release brings some new features and more stabilization fixes for 01.00.00.</p>
 <ul>
 	<li>Added Division module to display information about specified division.</li>
