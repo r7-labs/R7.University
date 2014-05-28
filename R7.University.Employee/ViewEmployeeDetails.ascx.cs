@@ -35,8 +35,6 @@ namespace R7.University.Employee
 
 			linkReturn.Attributes.Add ("onclick", "javascript:return " +
 			UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
-
-			linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", EmployeeSettings.EmployeeID.ToString ()); 
 		}
 
 		/// <summary>
@@ -51,14 +49,27 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					if (!Null.IsNull(EmployeeSettings.EmployeeID))
+					// try get EmployeeID from querysting
+					var employeeId = Utils.ParseToNullableInt(Request.QueryString["employee_id"]);
+					
+					// if not, use module settings
+					if (employeeId == null && !Null.IsNull(EmployeeSettings.EmployeeID))
+						employeeId = EmployeeSettings.EmployeeID;
+					
+					if (employeeId != null)
 					{
-						var employee = EmployeeController.Get<EmployeeInfo>(EmployeeSettings.EmployeeID);
-						
+						var employee = EmployeeController.Get<EmployeeInfo>(employeeId.Value);
+					
 						if (employee != null)
+						{
 							Display(employee);
+							
+							linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", EmployeeSettings.EmployeeID.ToString ()); 
+						}
+						else 
+							// nothing to show
+							Response.Redirect(Globals.NavigateURL(), true);
 					}
-				
 				} // if (!IsPostBack)
 			}
 			catch (Exception ex)
