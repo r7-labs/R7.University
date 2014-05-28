@@ -64,7 +64,7 @@ namespace R7.University.Employee
 						{
 							Display(employee);
 							
-							linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", EmployeeSettings.EmployeeID.ToString ()); 
+							linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString()); 
 						}
 						else 
 							// nothing to show
