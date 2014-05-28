@@ -149,7 +149,7 @@ namespace R7.University.Employee
 			// WebSite
 			if (!string.IsNullOrWhiteSpace (employee.WebSite))
 			{
-				// THINK: Less optimistic protocol detection?
+				// REVIEW: Less optimistic protocol detection?
 				var lowerWebSite = employee.WebSite.ToLowerInvariant ();
 				if (lowerWebSite.StartsWith ("http://") || lowerWebSite.StartsWith ("https://"))
 				{

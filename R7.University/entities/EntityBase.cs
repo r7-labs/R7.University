@@ -18,7 +18,7 @@ namespace R7.University
 		public int CreatedByUserID { get; set; }
 		public DateTime CreatedOnDate { get; set; }
 
-		// THINK: Make CreatedOnDate a [ReadOnlyColumn]?
+		// REVIEW: Make CreatedOnDate a [ReadOnlyColumn]?
 
 		#endregion
 

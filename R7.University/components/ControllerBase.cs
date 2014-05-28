@@ -309,7 +309,7 @@ namespace R7.University
 					// add new OccupiedPositions
 					foreach (var op in occupiedPositions)
 					{
-						// THINK: Do we really need to set EmployeeID here?
+						// REVIEW: Do we really need to set EmployeeID here?
 						op.EmployeeID = employee.EmployeeID;
 						Add<OccupiedPositionInfo> (op);
 					}

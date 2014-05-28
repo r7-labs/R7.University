@@ -282,7 +282,7 @@ namespace R7.University.EmployeeList
 			// website
 			if (!string.IsNullOrWhiteSpace (employee.WebSite))
 			{
-				// THINK: Less optimistic protocol detection?
+				// REVIEW: Less optimistic protocol detection?
 				var lowerWebSite = employee.WebSite.ToLowerInvariant ();
 				if (lowerWebSite.StartsWith ("http://") ||  lowerWebSite.StartsWith ("https://"))
 				{
@@ -315,7 +315,7 @@ namespace R7.University.EmployeeList
 			// occupied positions
 			// NOTE: Current division positions go first, then checks IsPrime, then PositionWeight
 			// TODO: Need to retrieve occupied positions more effectively, e.g. preload them
-			// THINK: add "AND [DivisionID] = @1" to display employee positions only from current division
+			// REVIEW: add "AND [DivisionID] = @1" to display employee positions only from current division
 			var ops = Ctrl.GetObjects<OccupiedPositionInfoEx> (
 				"WHERE [EmployeeID] = @0 ORDER BY (CASE WHEN [DivisionID]=@1 THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
 				employee.EmployeeID, CustomSettings.DivisionID

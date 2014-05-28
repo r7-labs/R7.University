@@ -68,8 +68,8 @@ namespace R7.University.Division
 			var terms = termCtrl.GetTermsByVocabulary("University_Structure").ToList(); 
 
 			// add default term, 
-			// TermId = Null.NullInteger is setting in cstor
-			// TODO: Localize "-- not selected --" string
+			// TermId = Null.NullInteger is set in cstor
+			
 			terms.Insert(0, new Term (Localization.GetString("NotSelected.Text", LocalResourceFile)));
 
 			// setup treeview (from TermsList.cs)

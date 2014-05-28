@@ -44,7 +44,7 @@ namespace R7.University
 		public string Messenger { get; set; }
 		public string AcademicDegree { get; set; }
 		public string AcademicTitle { get; set; }
-		public string NamePrefix { get; set; } // THINK: Use Academic Degree & Title, of just NamePrefix?
+		public string NamePrefix { get; set; } // REVIEW: Use Academic Degree & Title, of just NamePrefix?
 		public string WorkingPlace { get; set; }
 		public string WorkingHours { get; set; }
 		public string Biography { get; set; }

@@ -68,7 +68,7 @@ namespace R7.University.EmployeeList
 
 		#region IPortable members
 
-		// DOIT: Implement IPortable for EmployeeList module
+		// TODO: Implement IPortable for EmployeeList module
 
 		/// <summary>
 		/// Exports a module to XML

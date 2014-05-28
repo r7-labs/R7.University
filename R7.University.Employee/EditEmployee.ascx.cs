@@ -15,7 +15,7 @@ using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University;
 
-// TODO: ModuleAuditControl not saving label content in a ViewState - disabled in a control itself!
+// TODO: ModuleAuditControl not saving label content in a ViewState!
 
 namespace R7.University.Employee
 {
@@ -50,15 +50,6 @@ namespace R7.University.Employee
 			pickerPhoto.FilePath = "Images/faces/";
 
 			// add default item to user list
-			// TODO: Localize Not selected value
-			// listUsers.Items.Add (new ListItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ()));
-
-			/*
-			comboUsers.DataTextField = "UsernameAndEmail";
-			comboUsers.DataValueField = "UserID";
-			comboUsers.DataSource = new List<UserView> () { new UserView (Localization.GetString("NotSelected.Text", LocalResourceFile)) };
-			comboUsers.DataBind ();
-*/
 			comboUsers.AddItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
 
 			// fill working hours terms
