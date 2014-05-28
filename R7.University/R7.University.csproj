@@ -75,5 +75,6 @@
     <None Include="01.00.04.SqlDataProvider" />
     <None Include="01.00.05.SqlDataProvider" />
     <None Include="Tweaks.SqlDataProvider" />
+    <None Include="01.00.07.SqlDataProvider" />
   </ItemGroup>
 </Project>
