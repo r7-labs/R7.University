@@ -55,9 +55,10 @@ namespace R7.University.EmployeeList
 			{
 				if (!IsPostBack)
 				{
-					// THINK: Add Employees.LastYearRating field and sorting by it!
-					// TODO: Make not publshed employee status visible to editors
-
+					if (Cache_OnLoad()) return;
+					
+					// REVIEW: Add Employees.LastYearRating field and sorting by it!
+					
 					// get employees by DivisionID, in edit mode show also non-published employees
 					var	items = Ctrl.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
 						(CustomSettings.IncludeSubdivisions)? // which SP to use
@@ -69,6 +70,9 @@ namespace R7.University.EmployeeList
 					// otherwise display a message for module editors or hide module from regular users
 					if (items == null || !items.Any())
 					{
+						// set container control visibility to common users
+						 Cache_SetContainerVisible(false);
+						
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 						else
@@ -77,6 +81,9 @@ namespace R7.University.EmployeeList
 					}
 					else
 					{
+						// set container control visibility to common users
+						Cache_SetContainerVisible(true);
+						
 						// bind the data
 						listEmployees.DataSource = items;
 						listEmployees.DataBind ();

@@ -66,6 +66,9 @@ namespace R7.University.EmployeeList
 
 					if (!Null.IsNull(settings.PhotoWidth))
 						textPhotoWidth.Text = settings.PhotoWidth.ToString();
+					
+					if (!Null.IsNull (settings.DataCacheTime))
+						textDataCacheTime.Text = settings.DataCacheTime.ToString ();
 				}
 			}
 			catch (Exception ex)
@@ -91,6 +94,11 @@ namespace R7.University.EmployeeList
 					settings.PhotoWidth = int.Parse(textPhotoWidth.Text);
 				else
 					settings.PhotoWidth = Null.NullInteger;
+				
+				if (!string.IsNullOrWhiteSpace(textDataCacheTime.Text))
+					settings.DataCacheTime = int.Parse(textDataCacheTime.Text);
+				else
+					settings.DataCacheTime = Null.NullInteger;
 
 				Utils.SynchronizeModule (this);
 			}

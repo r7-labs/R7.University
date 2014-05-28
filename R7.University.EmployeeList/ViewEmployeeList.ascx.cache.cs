@@ -30,9 +30,9 @@ using System.Web.UI;
 using DotNetNuke.Common.Utilities;
 using R7.University;
 
-namespace R7.University.Employee
+namespace R7.University.EmployeeList
 {
-	public partial class ViewEmployee
+	public partial class ViewEmployeeList
 	{
 		#if (RENDERCACHE)
 		
@@ -41,7 +41,7 @@ namespace R7.University.Employee
 		
 		private string DataCacheKey 
 		{
-			get { return "Employee_" + TabModuleId; }
+			get { return "EmployeeList_" + TabModuleId; }
 		}
 
 		protected override void Render (HtmlTextWriter writer)
@@ -71,7 +71,7 @@ namespace R7.University.Employee
 					
 					if (!IsEditable)
 					{
-						var settings = new EmployeeSettings (this);
+						var settings = new EmployeeListSettings (this);
 						CacheHelper.Set<string> (renderCacheContent, DataCacheKey, settings.DataCacheTime);
 					}
 				}
@@ -118,7 +118,7 @@ namespace R7.University.Employee
 		
 			#if (RENDERCACHE)
 			
-			var settings = new EmployeeSettings (this);
+			var settings = new EmployeeListSettings (this);
 			
 			if (settings.DataCacheTime > 0)
 			{
@@ -161,7 +161,7 @@ namespace R7.University.Employee
 		{
 			#if (RENDERCACHE)
 		
-			var settings = new EmployeeSettings (this);
+			var settings = new EmployeeListSettings (this);
 			CacheHelper.Set<bool>(visible, DataCacheKey + "_ContainerVisible", settings.DataCacheTime + 60);
 			
 			#endif

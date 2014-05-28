@@ -72,6 +72,24 @@ namespace R7.University.EmployeeList
 			set { WriteSetting<int> ("EmployeeList_PhotoWidth", value, true); }
 		}
 
+		private int? dataCacheTime;
+		
+		public int DataCacheTime
+		{
+			get 
+			{ 
+				if (dataCacheTime == null)
+					dataCacheTime = ReadSetting<int> ("EmployeeList_DataCacheTime", 1200, true);
+				
+				return dataCacheTime.Value;
+			}
+			set 
+			{ 
+				WriteSetting<int> ("EmployeeList_DataCacheTime", value, true); 
+				dataCacheTime = value;
+			}
+		}
+		
 		#endregion
 	}
 }
