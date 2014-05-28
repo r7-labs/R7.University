@@ -62,9 +62,15 @@ namespace R7.University.Employee
 					
 						if (employee != null)
 						{
-							Display(employee);
+							if (IsEditable || employee.IsPublished)
+							{
+								Display(employee);
 							
-							linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString()); 
+								linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString()); 
+							}
+							else
+								// can show only published
+								Response.Redirect(Globals.NavigateURL(), true);
 						}
 						else 
 							// nothing to show
