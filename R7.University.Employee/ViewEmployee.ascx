@@ -1,17 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewEmployee.ascx.cs" Inherits="R7.University.Employee.ViewEmployee" %>
 
-<asp:Panel id="panelEmployee" runat="server">
-	<div class="Employee_PhotoContainer">
-        <asp:HyperLink id="linkPhoto" runat="server" CssClass="Employee_Photo" >
+<asp:Panel id="panelEmployee" runat="server" CssClass="Employee">
+	<div class="_photo">
+        <asp:HyperLink id="linkPhoto" runat="server" >
 			<asp:Image id="imagePhoto" runat="server" />
 		</asp:HyperLink>
 	</div>
-	<div class="Employee_Name">
-		<asp:Label id="labelFullName" runat="server" CssClass="Employee_FullName" />
+	<div class="_name">
+		<asp:Label id="labelFullName" runat="server" CssClass="_fullname" />
 		<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
 	</div>
 	<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
-		<HeaderTemplate><ul class="Employee_Positions"></HeaderTemplate>
+		<HeaderTemplate><ul class="_positions"></HeaderTemplate>
 		<ItemTemplate>
 			<li>
 				<asp:Label id="labelPosition" runat="server" />
@@ -21,17 +21,19 @@
 		</ItemTemplate>
 		<FooterTemplate></ul></FooterTemplate>
 	</asp:Repeater>
-	<div class="Employee_OnlineContacts">
-		<asp:HyperLink id="linkEmail" runat="server" CssClass="email Employee_Email" />
-		<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email Employee_Email" />
-		<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="Employee_Label" />
-		<asp:Label id="labelMessenger" runat="server" CssClass="Employee_Label" />
+
+	<div class="_section">
+		<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
+		<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
+		<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_label" />
+		<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
 	</div>
-	<div class="Employee_OfflineContacts">
-		<asp:Label id="labelPhone" runat="server" CssClass="Employee_Label" />
-		<asp:Label id="labelFax" runat="server" CssClass="Employee_Label" />
-		<asp:Label id="labelCellPhone" runat="server" CssClass="Employee_Label" />
-		<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="Employee_Label" />
+
+	<div class="_section">
+		<asp:Label id="labelPhone" runat="server" CssClass="_label" />
+		<asp:Label id="labelFax" runat="server" CssClass="_label" />
+		<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
+		<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
 	</div>
-	<asp:HyperLink id="linkUserProfile" runat="server" CssClass="more Employee_UserProfile" />
+	<asp:HyperLink id="linkUserProfile" runat="server" CssClass="more _userprofile" />
 </asp:Panel>

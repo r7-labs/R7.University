@@ -1,71 +1,74 @@
-﻿.Employee_Label { display:block }
+﻿/* Employee styles */
 
-.Employee_Email { display:inline-block }
-
-.Employee_PhotoContainer { text-align:center;margin-top:8px }
-
-.Employee_Photo { margin-top:8px }
-
-.Employee_Positions 
-{
-	display:block;
-	margin-top:8px; 
+.Employee ._label,
+.Employee ._section,
+.Employee ._name,
+.Employee ._positions,
+.Employee ._userprofile
+{ 
+	display:block 
 }
 
-.Employee_Name
+.Employee ._section,
+.Employee ._name,
+.Employee ._positions,
+.Employee ._userprofile
 {
-	display:block;
-	margin-top:8px;
+	margin-top:8px
+}
+
+.Employee ._section,
+.Employee ._photo,
+.Employee ._name
+{ 
 	text-align:center;
 }
 
-.Employee_FullName { font-style:italic; }
-.Employee_UserProfile 
-{ 
-	display:block;
-	margin-top:8px;
-	text-align:right;
-}
+.Employee ._photo { padding-top:8px }
 
-.Employee_OfflineContacts
+.Employee ._email { display:inline-block }
+
+.Employee ._userprofile { text-align:right }
+
+.Employee ._fullname { font-style:italic; }
+
+/* Employee details styles */
+
+.EmployeeDetails ._section,
+.EmployeeDetails ._positions,
+.EmployeeDetails ._website
 {
-	display:block;
-	margin-top:8px;  
-	text-align:center;
+	display:block
 }
 
-.Employee_OnlineContacts
+.EmployeeDetails ._section,
+.EmployeeDetails ._positions
 {
-	display:block;
-	margin-top:8px;  
-	text-align:center;
+	margin-top:8px
 }
 
-.EmployeeDetails_Block
+.EmployeeDetails ._tabs,
+.EmployeeDetails ._label,
+.EmployeeDetails ._email,
+.EmployeeDetails ._barcode
 {
-	display:block;
-	margin-top:8px;  
+	display:inline-block
 }
-
-.EmployeeDetails_Label 
-{ 
-	display:inline-block;
-	margin-right:5px
-}
-
-.EmployeeDetails_Email
-{ 
-	display:inline-block;
-	margin-right:5px
-}
-
-.EmployeeDetails_WebSite
-{ 
-	display:block;
-}
-
-img.EmployeeDetails_Barcode
+.EmployeeDetails ._label,
+.EmployeeDetails ._email
 {
-	display:inline-block;
-	border:4px solid #DDD;
+	margin-right:8px
 }
+
+.EmployeeDetails ._photo
+{
+	vertical-align:top;
+	margin-right:10px;
+	margin-top:2px
+}
+
+.EmployeeDetails ._tabs { width:auto }
+
+.EmployeeDetails ._tab { max-width:700px }
+
+.EmployeeDetails ._barcode { border:5px solid #eee }

@@ -175,9 +175,9 @@ namespace R7.University.EmployeeList
 			// mark non-published employees, as they visible only to editors
 			if (!employee.IsPublished)
 			if (e.Item.ItemType == ListItemType.Item)
-				e.Item.CssClass = listEmployees.ItemStyle.CssClass + " NonPublished";
+				e.Item.CssClass = listEmployees.ItemStyle.CssClass + " _nonpublished";
 			else
-				e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " NonPublished";
+				e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " _nonpublished";
 
 			// fill the controls
 

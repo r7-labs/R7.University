@@ -7,11 +7,11 @@
 	$(function() { $( "#employeeTabs" ).dnnTabs( <%= (!IsPostBack)? "{selected: 0}" : "" %>  ); });
 </script>
 
-<div class="dnnForm dnnClear">
+<div class="dnnForm dnnClear EmployeeDetails">
 	
-	<asp:Image id="imagePhoto" runat="server" Style="vertical-align:top;margin-right:10px;margin-top:2px" />	
+	<asp:Image id="imagePhoto" runat="server" CssClass="_photo" />	
 	
-	<div id="employeeTabs" class="dnnForm dnnClear" style="display:inline-block;width:auto">
+	<div id="employeeTabs" class="dnnForm dnnClear _tabs">
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
 			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("ExperienceTab.Text") %></asp:HyperLink></li>
@@ -20,12 +20,12 @@
 			<li><a href="#employeeBarcode"><%= LocalizeString("BarcodeTab.Text") %></a></li>
 		</ul>
 
-		<div id="employeeCommon">
+		<div id="employeeCommon" class="_tab">
 
 			<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
 
 			<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
-				<HeaderTemplate><ul class="Employee_Positions"></HeaderTemplate>
+				<HeaderTemplate><ul class="_positions"></HeaderTemplate>
 				<ItemTemplate>
 					<li>
 						<asp:Label id="labelPosition" runat="server" />
@@ -36,48 +36,42 @@
 				<FooterTemplate></ul></FooterTemplate>
 			</asp:Repeater>
 						
-			<div class="EmployeeDetails_Block">
-				<asp:HyperLink id="linkEmail" runat="server" CssClass="email EmployeeDetails_Email" />
-				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email EmployeeDetails_Email" />
-				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="EmployeeDetails_WebSite" />
+			<div class="_section">
+				<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
+				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
+				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
 			</div>
 
-			<div class="EmployeeDetails_Block">
-				<asp:Label id="labelMessenger" runat="server" CssClass="EmployeeDetails_Label" />
-			</div>
-			
-			<div class="EmployeeDetails_Block">
-				
-			</div>
-
-			<div class="EmployeeDetails_Block">
-				<asp:Label id="labelPhone" runat="server" CssClass="EmployeeDetails_Label" />
-				<asp:Label id="labelFax" runat="server" CssClass="EmployeeDetails_Label" />
-				<asp:Label id="labelCellPhone" runat="server" CssClass="EmployeeDetails_Label" />
-			</div>
-
-			<div class="EmployeeDetails_Block">
-				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="EmployeeDetails_Label" />
+			<div class="_section">
+				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
 			</div>
 			
+			<div class="_section">
+				<asp:Label id="labelPhone" runat="server" CssClass="_label" />
+				<asp:Label id="labelFax" runat="server" CssClass="_label" />
+				<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
+			</div>
+
+			<div class="_section">
+				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
+			</div>
 
 		</div>
 
-		<div id="employeeExperience">	
-			<asp:Label id="labelExperienceYears" runat="server" CssClass="EmployeeDetails_Label" />	
-			<%-- <asp:Label id="labelExperienceYearsBySpec" runat="server" CssClass="EmployeeDetails_Label" /> --%>	
+		<div id="employeeExperience" class="_tab">	
+			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
 		</div>
 
-		<div id="employeeAchivements">		
+		<div id="employeeAchivements" class="_tab">		
 		</div>
 
-		<div id="employeeAbout" style="max-width:700px">
+		<div id="employeeAbout" class="_tab">
 			<asp:Literal id="litAbout" runat="server" />
 		</div>
 		
-		<div id="employeeBarcode" style="max-width:700px">
+		<div id="employeeBarcode" class="_tab">
 			<asp:Label runat="server" resourcekey="BarcodeScan.Text" CssClass="dnnFormMessage" />
-			<asp:Image id="imageBarcode" runat="server" CssClass="EmployeeDetails_Barcode" />
+			<asp:Image id="imageBarcode" runat="server" CssClass="_barcode" />
 		</div>
 
 	</div>
