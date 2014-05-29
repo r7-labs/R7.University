@@ -7,7 +7,7 @@
     <value>Общие</value>
   </data>
 	<data name="ExperienceTab.Text" xml:space="preserve">
-    <value>Образование и опыт</value>
+    <value>Образование и опыт работы</value>
   </data>
 	<data name="AboutTab.Text" xml:space="preserve">
     <value>О себе</value>
@@ -25,6 +25,6 @@
     <value>Стаж работы по специальности (лет): {0}</value>
   </data>
 	<data name="ExperienceYears.Format3" xml:space="preserve">
-    <value>Общий стаж работы (лет): {0}, из них по специальности: {1}</value>
+    <value>Общий стаж работы (лет): {0}, из них {1} по специальности</value>
   </data>
 </root>
