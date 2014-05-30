@@ -54,7 +54,7 @@ namespace R7.University.EmployeeList
 			
 			try
 			{
-				if (!IsPostBack)
+				if (!IsPostBack || ViewState.Count == 0) // Fix for issue #23
 				{
 					if (Cache_OnLoad()) return;
 					

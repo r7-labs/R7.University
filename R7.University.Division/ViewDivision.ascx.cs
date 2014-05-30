@@ -65,7 +65,7 @@ namespace R7.University.Division
 			
 			try
 			{
-				if (!IsPostBack)
+				if (!IsPostBack || ViewState.Count == 0) // Fix for issue #23
 				{
 					var display = false;
 					if (!Null.IsNull(DivisionSettings.DivisionID))
