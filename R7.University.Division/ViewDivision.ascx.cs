@@ -46,6 +46,7 @@ namespace R7.University.Division
 	{
 		#region Handlers
 
+		/*
 		/// <summary>
 		/// Handles Init event for a control
 		/// </summary>
@@ -53,7 +54,7 @@ namespace R7.University.Division
 		protected override void OnInit (EventArgs e)
 		{
 			base.OnInit (e);
-		}
+		}*/
 
 		/// <summary>
 		/// Handles Load event for a control
