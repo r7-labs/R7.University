@@ -13,8 +13,8 @@
 				<asp:Label id="labelFullName" runat="server" CssClass="_fullname"  />
 				<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
 				<asp:Label id="labelPositions" runat="server" CssClass="_positions" />
-				<asp:HyperLink id="linkEmail" runat="server" CssClass="EmployeeList_Email email" />
-				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="EmployeeList_Email email" />
+				<asp:HyperLink id="linkEmail" runat="server" CssClass="_email email" />
+				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="_email email" />
 				<asp:HyperLink id="linkWebSite" runat="server" CssClass="_website" />
 				<asp:HyperLink id="linkUserProfile" runat="server" CssClass="more _userprofile" />
 				<asp:Label id="labelPhones" runat="server" CssClass="_phones" />
