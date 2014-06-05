@@ -52,12 +52,8 @@ namespace R7.University.Employee
 			// add default item to user list
 			comboUsers.AddItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
 
-			// fill working hours terms
-			var termCtrl = new TermController ();
-			var workingHours = termCtrl.GetTermsByVocabulary ("University_WorkingHours").ToList ();
-			workingHours.Insert(0, new Term (Localization.GetString("NotSelected.Text", LocalResourceFile)));
-			comboWorkingHours.DataSource = workingHours;
-			comboWorkingHours.DataBind ();
+			// init working hours
+			SharedLogic.WorkingHours.Init (this, comboWorkingHours);
 
 			// if results are null or empty, lists were empty too
 			var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
@@ -115,11 +111,9 @@ namespace R7.University.Employee
 							textMessenger.Text = item.Messenger;
 							textWorkingPlace.Text = item.WorkingPlace;
 							textBiography.Text = item.Biography;
-
-							// search for working hours text in a combo
-							comboWorkingHours.Select(item.WorkingHours, true);
-							if (comboWorkingHours.SelectedIndex <= 0)
-								textWorkingHours.Text = item.WorkingHours;
+							
+							// load working hours
+							SharedLogic.WorkingHours.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
 							if (!Null.IsNull(item.ExperienceYears))
 								textExperienceYears.Text = item.ExperienceYears.ToString ();
@@ -267,32 +261,8 @@ namespace R7.University.Employee
 				item.WorkingPlace = textWorkingPlace.Text.Trim();
 				item.Biography = textBiography.Text.Trim();
 
-				var workingHoursStr =  textWorkingHours.Text.Trim();
-				var workingHoursNonEmpty = !string.IsNullOrWhiteSpace(workingHoursStr);
-
-				if (comboWorkingHours.SelectedIndex <= 0 || workingHoursNonEmpty)
-				{
-					item.WorkingHours = workingHoursStr;
-
-					// REVIEW: Shouldn't we try to add term after updating main item?
-					if (checkAddToVocabulary.Checked && workingHoursNonEmpty)  
-					{
-						// try add new term to University_WorkingHours vocabulary
-						var vocCtrl = new VocabularyController();
-						var voc = vocCtrl.GetVocabularies().SingleOrDefault(v => v.Name == "University_WorkingHours");
-						if (voc != null) 
-						{
-							var termCtrl = new TermController();
-							termCtrl.AddTerm (new Term (workingHoursStr, "", voc.VocabularyId)); 
-							vocCtrl.ClearVocabularyCache();
-						}
-					}
-				}
-				else
-				{
-					// get working hours from a combo
-					item.WorkingHours = comboWorkingHours.SelectedItem.Text;
-				}
+				// update working hours
+				SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
 
 				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
 				item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);
