@@ -51,19 +51,14 @@ namespace R7.University.Division
 					comboParentDivisions.AddItem (division.ShortTitle, division.DivisionID.ToString ());
 			}
 
-			/*
+			// fill working hours terms
 			var termCtrl = new TermController ();
-			var terms = termCtrl.GetTermsByVocabulary("Structure");
-			tsDivisionTerm.PortalId = this.PortalId;
-			tsDivisionTerm.Terms = terms.ToList();
-			tsDivisionTerm.DataBind();
-
-			tsDivisionTerm.IncludeTags = true;
-			tsDivisionTerm.IncludeSystemVocabularies = true;
-			*/
-
+			var workingHours = termCtrl.GetTermsByVocabulary ("University_WorkingHours").ToList ();
+			workingHours.Insert(0, new Term (Localization.GetString("NotSelected.Text", LocalResourceFile)));
+			comboWorkingHours.DataSource = workingHours;
+			comboWorkingHours.DataBind ();
+			
 			// Fill terms list
-			var termCtrl = new TermController ();
 			// TODO: Org. structure vocabulary name must be set in settings
 			var terms = termCtrl.GetTermsByVocabulary("University_Structure").ToList(); 
 
@@ -125,8 +120,12 @@ namespace R7.University.Division
 							txtLocation.Text = item.Location;
 							txtPhone.Text = item.Phone;
 							txtFax.Text = item.Fax;
-							txtWorkingHours.Text = item.WorkingHours;
-
+							
+							// search for working hours text in a combo
+							comboWorkingHours.Select(item.WorkingHours, true);
+							if (comboWorkingHours.SelectedIndex <= 0)
+								textWorkingHours.Text = item.WorkingHours;
+							
 							// select parent division
 							comboParentDivisions.Select (item.ParentDivisionID.ToString(), false);
 
@@ -208,12 +207,38 @@ namespace R7.University.Division
 				item.Phone = txtPhone.Text.Trim();
 				item.Fax = txtFax.Text.Trim();
 				item.Location = txtLocation.Text.Trim();
-				item.WorkingHours = txtWorkingHours.Text.Trim();
 				item.WebSite = txtWebSite.Text.Trim();
 				item.ParentDivisionID = Utils.ParseToNullableInt(comboParentDivisions.SelectedValue);
 				item.DivisionTermID = Utils.ParseToNullableInt(treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;
 
+				var workingHoursStr =  textWorkingHours.Text.Trim();
+				var workingHoursNonEmpty = !string.IsNullOrWhiteSpace(workingHoursStr);
+
+				if (comboWorkingHours.SelectedIndex <= 0 || workingHoursNonEmpty)
+				{
+					item.WorkingHours = workingHoursStr;
+
+					// REVIEW: Shouldn't we try to add term after updating main item?
+					if (checkAddToVocabulary.Checked && workingHoursNonEmpty)  
+					{
+						// try add new term to University_WorkingHours vocabulary
+						var vocCtrl = new VocabularyController();
+						var voc = vocCtrl.GetVocabularies().SingleOrDefault(v => v.Name == "University_WorkingHours");
+						if (voc != null) 
+						{
+							var termCtrl = new TermController();
+							termCtrl.AddTerm (new Term (workingHoursStr, "", voc.VocabularyId)); 
+							vocCtrl.ClearVocabularyCache();
+						}
+					}
+				}
+				else
+				{
+					// get working hours from a combo
+					item.WorkingHours = comboWorkingHours.SelectedItem.Text;
+				}
+				
 				if (!itemId.HasValue)
 			    {
 					// update audit info

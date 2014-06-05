@@ -58,9 +58,21 @@
 			<asp:TextBox id="txtLocation" runat="server" />
 		</div>
 		<div class="dnnFormItem">
+			<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
+			<dnn:DnnComboBox id="comboWorkingHours" runat="server"
+						DataTextField="Name"
+						DataValueField="TermId"
+				 />
+		</div>
+		<div class="dnnFormItem">
+			<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
+			<asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" />
+			<asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
+		</div>
+		<%-- <div class="dnnFormItem">
 			<dnn:Label id="lblWorkingHours" runat="server" ControlName="txtWorkingHours" Suffix=":" />
 			<asp:TextBox id="txtWorkingHours" runat="server" />
-		</div>
+		</div> --%>
 	</fieldset>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>

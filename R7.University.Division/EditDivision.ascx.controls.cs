@@ -40,7 +40,10 @@ namespace R7.University.Division
 		protected TextBox txtSecondaryEmail;
 		protected LabelControl lblLocation;
 		protected TextBox txtLocation;
-		protected LabelControl lblWorkingHours;
-		protected TextBox txtWorkingHours;
+		protected LabelControl labelWorkingHours;
+		protected LabelControl labelCustomWorkingHours;
+		protected DnnComboBox comboWorkingHours;
+		protected TextBox textWorkingHours;
+		protected CheckBox checkAddToVocabulary;
 	}
 }
