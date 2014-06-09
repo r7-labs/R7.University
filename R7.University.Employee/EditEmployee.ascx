@@ -19,7 +19,7 @@
 		    <li><a href="#employeeAbout">About</a></li>
 		</ul>
 		<br /><br />
-		<div id="employeeCommon">
+		<div id="employeeCommon dnnForm">
 			<fieldset>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" Suffix=":" />
@@ -36,17 +36,23 @@
 						CssClass="dnnSecondaryAction" OnClick="buttonUserLookup_Click" />
 					<asp:CheckBox id="checkIncludeDeletedUsers" runat="server" resourcekey="checkIncludeDeletedUsers" />
 				</div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelLastName" runat="server" ControlName="textLastName" Suffix=":" />
 					<asp:TextBox id="textLastName" runat="server" />
+					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLastName" 
+						CssClass="dnnFormMessage dnnFormError" resourcekey="LastName.Required" />
 				</div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelFirstName" runat="server" ControlName="textFirstName" Suffix=":" />
 					<asp:TextBox id="textFirstName" runat="server" />
+					<asp:RequiredFieldValidator runat="server" ControlToValidate="textFirstName" 
+						CssClass="dnnFormMessage dnnFormError" resourcekey="FirstName.Required" />
 				</div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" Suffix=":" />
 					<asp:TextBox id="textOtherName" runat="server" />
+					<asp:RequiredFieldValidator runat="server" ControlToValidate="textOtherName" 
+						CssClass="dnnFormMessage dnnFormError" resourcekey="OtherName.Required" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAcademicDegree" runat="server" ControlName="textAcademicDegree" Suffix=":" />

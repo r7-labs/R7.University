@@ -24,17 +24,26 @@
 	<data name="labelLastName.Help">
 		<value>Specify employee last name</value>
 	</data>
+	<data name="LastName.Required">
+		<value>Last name is required</value>
+	</data>
 	<data name="labelFirstName.Text">
 		<value>First name</value>
 	</data>
 	<data name="labelFirstName.Help">
 		<value>Specify employee first name</value>
 	</data>
+	<data name="FirstName.Required">
+		<value>First name is required</value>
+	</data>
 	<data name="labelOtherName.Text">
 		<value>Other name</value>
 	</data>
 	<data name="labelOtherName.Help">
 		<value>Specify employee other name</value>
+	</data>
+	<data name="OtherName.Required">
+		<value>Other name is required</value>
 	</data>
 	<data name="labelAcademicDegree.Text">
 		<value>Academic degree</value>
