@@ -262,7 +262,7 @@ namespace R7.University.Employee
 				item.Biography = textBiography.Text.Trim();
 
 				// update working hours
-				SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
+				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
 
 				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
 				item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);

@@ -207,7 +207,7 @@ namespace R7.University.Division
 				item.HomePage = urlHomePage.Url;
 
 				// update working hours
-				SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
+				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
 				
 				if (!itemId.HasValue)
 			    {
