@@ -19,7 +19,7 @@
 		    <li><a href="#employeeAbout">About</a></li>
 		</ul>
 		<br /><br />
-		<div id="employeeCommon dnnForm">
+		<div id="employeeCommon">
 			<fieldset>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" Suffix=":" />
