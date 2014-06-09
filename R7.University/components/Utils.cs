@@ -200,7 +200,7 @@ namespace R7.University
 			var i = 0;
 			foreach (var a in args)
 			{
-				if (!string.IsNullOrWhiteSpace (a.ToString()))
+				if (a != null && !string.IsNullOrWhiteSpace (a.ToString()))
 				{
 					if (i++ > 0)
 						sb.Append (separator);
