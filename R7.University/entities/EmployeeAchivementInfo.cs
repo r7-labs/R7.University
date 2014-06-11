@@ -55,6 +55,7 @@ namespace R7.University
 		public char AchivementType
 		{
 			get { return AchivementTypeString [0]; }
+			set { AchivementTypeString = value.ToString (); }
 		}
 		
 	}
