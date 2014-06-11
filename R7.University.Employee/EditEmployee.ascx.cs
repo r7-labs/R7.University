@@ -532,6 +532,11 @@ namespace R7.University.Employee
 			}
 		}
 		
+		protected void linkDeleteAchivement_Command (object sender, CommandEventArgs e)
+		{
+			
+		}
+
 		#endregion
 	}
 }
