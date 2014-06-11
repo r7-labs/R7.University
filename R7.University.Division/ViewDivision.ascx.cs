@@ -106,11 +106,8 @@ namespace R7.University.Division
 			// division title
 			var divisionTitle = division.Title;
 
-			// add division short title if it exists, have lesser length
-			// and doesn't present cutted form of the full title 
-			if (!string.IsNullOrEmpty(division.ShortTitle) &&
-				division.ShortTitle.Length < division.Title.Length &&
-			    !division.Title.StartsWith (division.ShortTitle))
+			// add division short title
+			if (division.HasUniqueShortTitle)
 			{
 				divisionTitle += string.Format (" ({0})", division.ShortTitle);
 			}

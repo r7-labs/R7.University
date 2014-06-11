@@ -102,6 +102,39 @@ namespace R7.University
 				return vcard;
 			}
 		}
+		
+		[IgnoreColumn]
+		public bool HasUniqueShortTitle
+		{
+			get 
+			{ 
+				return !string.IsNullOrEmpty(ShortTitle) &&
+					 !string.IsNullOrEmpty(Title) &&
+					ShortTitle.Length < Title.Length &&
+					!Title.StartsWith (ShortTitle);
+			}
+		}
+		
+		[IgnoreColumn]
+		public string SearchDocumentText
+		{
+			get
+			{
+				var text = Utils.FormatList (", ",
+					Title,
+					HasUniqueShortTitle? ShortTitle : null,
+					Phone,
+					Fax,
+					Email,
+					SecondaryEmail,
+					WebSite,
+					Location,
+					WorkingHours
+				);
+
+				return text;
+			}
+		}
 
 	}
 }
