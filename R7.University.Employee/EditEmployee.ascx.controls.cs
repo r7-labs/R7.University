@@ -80,5 +80,7 @@ namespace R7.University.Employee
 		protected DnnTreeView treeDivisions;
 		protected LinkButton buttonAddPosition;
 		protected LinkButton buttonAddPrimePosition;
+		
+		protected GridView gridAchivements;
 	}
 }

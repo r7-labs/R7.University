@@ -180,6 +180,28 @@
 	
 		<div id="employeeAchivements">
 			<fieldset>
+				<div class="dnnFormItem" style="margin-top:10px">
+					<div class="dnnLabel"></div>
+					<asp:GridView id="gridAchivements" runat="server" AutoGenerateColumns="true" 
+						GridLines="None" OnRowDataBound="gridAchivements_RowDataBound">
+							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+					        <SelectedRowStyle CssClass="dnnFormError" />
+					        <EditRowStyle CssClass="dnnFormInput" />
+					        <FooterStyle CssClass="dnnGridFooter" />
+					        <PagerStyle CssClass="dnnGridPager" />
+							<Columns>
+								<asp:TemplateField>
+					               <ItemTemplate>
+					                	<asp:LinkButton id="linkDeleteAchivement" runat="server" OnCommand="linkDeleteAchivement_Command" >
+					                		<asp:Image runat="server" ImageUrl="~/images/delete.gif" />
+					                	</asp:LinkButton>
+					               </ItemTemplate>
+					        	</asp:TemplateField>
+							</Columns>
+				        </asp:GridView>
+				</div>
 			</fieldset>
 		</div>
 	

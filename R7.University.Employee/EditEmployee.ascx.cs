@@ -515,7 +515,23 @@ namespace R7.University.Employee
 
 			return dt;
 		}
+		
+		protected void gridAchivements_RowDataBound (object sender, GridViewRowEventArgs e)
+		{
+			// hide ItemID column, also in header
+			e.Row.Cells [1].Visible = false;
 
+			// exclude header
+			if (e.Row.RowType == DataControlRowType.DataRow)
+			{
+				// find delete linkbutton
+				var link = e.Row.Cells [0].FindControl ("linkDeleteAchivement") as LinkButton;
+
+				// set recordId to delete
+				link.CommandArgument = e.Row.Cells [1].Text;
+			}
+		}
+		
 		#endregion
 	}
 }
