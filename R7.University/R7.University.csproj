@@ -66,6 +66,7 @@
     <Compile Include="components\QuotedPrintable.cs" />
     <Compile Include="components\CacheHelper.cs" />
     <Compile Include="components\SharedLogic.cs" />
+    <Compile Include="entities\EmployeeAchivementInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -84,5 +85,6 @@
     <None Include="01.00.05.SqlDataProvider" />
     <None Include="Tweaks.SqlDataProvider" />
     <None Include="01.00.07.SqlDataProvider" />
+    <None Include="01.01.00.SqlDataProvider" />
   </ItemGroup>
 </Project>
