@@ -17,29 +17,29 @@
 			<components>
 				<component type="Script">
 					<scripts>
-						<basePath>DesktopModules\R7.University\R7.University\SqlDataProvider</basePath>
+						<basePath>DesktopModules\R7.University</basePath>
 						<script type="Install">
-							<name>01.00.00.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.00.SqlDataProvider</name>
 							<version>01.00.00</version>
 						</script>
 						<script type="Install">
-							<name>01.00.02.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.02.SqlDataProvider</name>
 							<version>01.00.02</version>
 						</script>
 						<script type="Install">
-							<name>01.00.04.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.04.SqlDataProvider</name>
 							<version>01.00.04</version>
 						</script>
 						<script type="Install">
-							<name>01.00.05.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.05.SqlDataProvider</name>
 							<version>01.00.05</version>
 						</script>
 						<script type="Install">
-							<name>01.00.07.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.07.SqlDataProvider</name>
 							<version>01.00.07</version>
 						</script>
 						<script type="UnInstall">
-							<name>Uninstall.SqlDataProvider</name>
+							<name>SqlDataProvider\Uninstall.SqlDataProvider</name>
 							<version>01.00.07</version>
 						</script>
 					</scripts>
@@ -52,6 +52,14 @@
 							<name>R7.University.dll</name>
 						</assembly>
 					</assemblies>
+				</component>
+				<component type="ResourceFile">
+					<resourceFiles>
+						<basePath>DesktopModules/R7.University</basePath>
+						<resourceFile>
+							<name>Resources.zip</name>
+						</resourceFile>
+					</resourceFiles>
 				</component>
 			</components>
 		</package>
@@ -151,14 +159,6 @@
 							</moduleDefinition>
 						</moduleDefinitions>
 					</desktopModule>
-				</component>
-				<component type="ResourceFile">
-					<resourceFiles>
-						<basePath>DesktopModules/R7.University/R7.University.Launchpad</basePath>
-						<resourceFile>
-							<name>R7.University.Launchpad.zip</name>
-						</resourceFile>
-					</resourceFiles>
 				</component>
 				<component type="Assembly">
 					<assemblies>
@@ -264,14 +264,6 @@
 						</moduleDefinitions>
 					</desktopModule>
 				</component>
-				<component type="ResourceFile">
-					<resourceFiles>
-						<basePath>DesktopModules/R7.University/R7.University.Employee</basePath>
-						<resourceFile>
-							<name>R7.University.Employee.zip</name>
-						</resourceFile>
-					</resourceFiles>
-				</component>
 				<component type="Assembly">
 					<assemblies>
 						<basePath>bin</basePath>
@@ -365,29 +357,6 @@
 						</moduleDefinitions>
 					</desktopModule>
 				</component>
-				<!--
-       <component type="Script">
-         <scripts>
-           <basePath>DesktopModules\R7.University.EmployeeList</basePath>
-           <script type="Install">
-             <name>01.00.00.SqlDataProvider</name>
-             <version>01.00.00</version>
-           </script>
-           <script type="UnInstall">
-             <name>Uninstall.SqlDataProvider</name>
-             <version>01.00.00</version>
-           </script>
-         </scripts>
-       </component>
--->
-				<component type="ResourceFile">
-					<resourceFiles>
-						<basePath>DesktopModules/R7.University/R7.University.EmployeeList</basePath>
-						<resourceFile>
-							<name>R7.University.EmployeeList.zip</name>
-						</resourceFile>
-					</resourceFiles>
-				</component>
 				<component type="Assembly">
 					<assemblies>
 						<basePath>bin</basePath>
@@ -480,14 +449,6 @@
 							</moduleDefinition>
 						</moduleDefinitions>
 					</desktopModule>
-				</component>
-				<component type="ResourceFile">
-					<resourceFiles>
-						<basePath>DesktopModules/R7.University/R7.University.Division</basePath>
-						<resourceFile>
-							<name>R7.University.Division.zip</name>
-						</resourceFile>
-					</resourceFiles>
 				</component>
 				<component type="Assembly">
 					<assemblies>

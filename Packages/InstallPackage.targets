@@ -67,6 +67,9 @@
 		<!-- Create Resources.zip -->
 		<Zip Files="@(ResourcesContent)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp_Resources"
 			 ZipFileName="Resources.$(PackageExtension)" />
+		<!--- Copy Resources.zip to tmp_Package folder -->
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\Resources.$(PackageExtension)"
+			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package/" />
 		<!-- Declare tmp package folder -->
 		<CreateItem Include="$(MSBuildProjectDirectory)\tmp_Package\**\*.*">
 			<Output TaskParameter="Include" ItemName="OutputContent" />
