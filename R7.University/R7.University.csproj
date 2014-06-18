@@ -71,29 +71,5 @@
   <ItemGroup>
     <Folder Include="entities\" />
     <Folder Include="components\" />
-    <Folder Include="BuildScripts\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="01.00.00.SqlDataProvider" />
-    <None Include="Uninstall.SqlDataProvider" />
-    <None Include="R7.University.dnn" />
-    <None Include="01.00.02.SqlDataProvider" />
-    <None Include="License.txt" />
-    <None Include="ReleaseNotes.txt" />
-    <None Include="Package.cmd" />
-    <None Include="01.00.04.SqlDataProvider" />
-    <None Include="01.00.05.SqlDataProvider" />
-    <None Include="Tweaks.SqlDataProvider" />
-    <None Include="01.00.07.SqlDataProvider" />
-    <None Include="BuildScripts\R7.University.Targets" />
-  </ItemGroup>
-  <PropertyGroup>
-    <Extension>zip</Extension>
-    <DNNFileName>R7.University</DNNFileName>
-    <PackageName>R7.University</PackageName>
-    <!-- <MSBuildCommunityTasksPath>C:\Program Files (x86)\MSBuild\MSBuildCommunityTasks</MSBuildCommunityTasksPath> -->
-	<MSBuildDnnBinPath Condition="'$(MSBuildDnnBinPath)' == ''">..\..\..\bin</MSBuildDnnBinPath>
-  </PropertyGroup>
-  <Import Project="BuildScripts\R7.University.Targets" />
-  <Target Name="AfterBuild" DependsOnTargets="PackageModule" />
 </Project>

@@ -11,12 +11,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EmployeeList"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Division", "R7.University.Division\R7.University.Division.csproj", "{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages", "Packages\Packages.csproj", "{0497C4E5-75E1-4835-9C35-2B35F84AF212}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0497C4E5-75E1-4835-9C35-2B35F84AF212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0497C4E5-75E1-4835-9C35-2B35F84AF212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0497C4E5-75E1-4835-9C35-2B35F84AF212}.Release|Any CPU.Build.0 = Release|Any CPU
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Release|Any CPU.ActiveCfg = Release|Any CPU

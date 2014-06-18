@@ -17,7 +17,7 @@
 			<components>
 				<component type="Script">
 					<scripts>
-						<basePath>DesktopModules\R7.University\R7.University</basePath>
+						<basePath>DesktopModules\R7.University\R7.University\SqlDataProvider</basePath>
 						<script type="Install">
 							<name>01.00.00.SqlDataProvider</name>
 							<version>01.00.00</version>
