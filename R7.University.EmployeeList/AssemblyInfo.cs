@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle ("R7.University.EmployeeList")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("R7 Solutions")]
+[assembly: AssemblyCompany ("R7.Solutions")]
 [assembly: AssemblyProduct ("R7.University")]
 [assembly: AssemblyCopyright ("Roman M. Yagodin")]
 [assembly: AssemblyTrademark ("")]
