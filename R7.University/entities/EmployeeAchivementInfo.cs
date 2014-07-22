@@ -7,6 +7,13 @@ using DotNetNuke.Entities.Users;
 
 namespace R7.University
 {
+	public enum AchivementType
+	{
+		Achivement = 'A',
+		Education = 'E',
+		Training = 'T'
+	}
+
 	// More attributes for class:
 	// Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]
 	// Explicit mapping declaration: [DeclareColumns]
@@ -52,10 +59,10 @@ namespace R7.University
 		#endregion
 		
 		[IgnoreColumn]
-		public char AchivementType
+		public AchivementType AchivementType
 		{
-			get { return AchivementTypeString [0]; }
-			set { AchivementTypeString = value.ToString (); }
+			get { return (AchivementType)AchivementTypeString[0]; }
+			set { AchivementTypeString = ((char)value).ToString(); }
 		}
 		
 	}
