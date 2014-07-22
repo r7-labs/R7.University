@@ -4,20 +4,10 @@ using System.Runtime.Serialization;
 namespace R7.University.Employee
 {
 	[Serializable]
-	public class EmployeeAchivementView : EmployeeAchivementInfo, ISerializable
+	public class EmployeeAchievementView : EmployeeAchievementInfo, ISerializable
 	{
 		public int ItemID { get; set; }
 	
-		/*
-		public int EmployeeAchivementID { get; set; }
-		public int EmployeeID { get; set; }
-		public string Title { get; set; }
-		public string ShortTitle { get; set; }
-		public int? YearBegin { get; set; }
-		public int? YearEnd { get; set; }
-		public AchivementType AchivementType { get; set; }
-		*/
-
 		private static int nextItemID = 0;
 
 		public static int GetNextItemID()
@@ -25,42 +15,42 @@ namespace R7.University.Employee
 			return nextItemID++;
 		}
 
-		public EmployeeAchivementView ()
+		public EmployeeAchievementView ()
 		{
 			ItemID = GetNextItemID ();
 		}
 		
-		public EmployeeAchivementView (EmployeeAchivementInfo achivement)
+		public EmployeeAchievementView (EmployeeAchievementInfo achievement)
 		{
 			ItemID = GetNextItemID ();
 			
-			EmployeeAchivementID = achivement.EmployeeAchivementID;
-			EmployeeID = achivement.EmployeeID;
-			Title = achivement.Title;
-			ShortTitle = achivement.ShortTitle;
-			Description = achivement.Description;
-			DocumentURL = achivement.DocumentURL;
-			IsTitle = achivement.IsTitle;
-			YearBegin = achivement.YearBegin;
-			YearEnd = achivement.YearEnd;
-			AchivementType = achivement.AchivementType;
+			EmployeeAchievementID = achievement.EmployeeAchievementID;
+			EmployeeID = achievement.EmployeeID;
+			Title = achievement.Title;
+			ShortTitle = achievement.ShortTitle;
+			Description = achievement.Description;
+			DocumentURL = achievement.DocumentURL;
+			IsTitle = achievement.IsTitle;
+			YearBegin = achievement.YearBegin;
+			YearEnd = achievement.YearEnd;
+			AchievementType = achievement.AchievementType;
 		}
 
 		// NOTE: if [Serializable] is set, all *fields* serialized by default
 
 		#region ISerializable implementation
 
-		protected EmployeeAchivementView (SerializationInfo info, StreamingContext context)
+		protected EmployeeAchievementView (SerializationInfo info, StreamingContext context)
 		{ 
 			ItemID = info.GetInt32 ("ItemID");
-			EmployeeAchivementID = info.GetInt32 ("EmployeeAchivementID");
+			EmployeeAchievementID = info.GetInt32 ("EmployeeAchievementID");
 			EmployeeID = info.GetInt32 ("EmployeeID");
 			Title = info.GetString ("Title");
 			ShortTitle = info.GetString ("ShortTitle");
 			Description = info.GetString ("Description");
 			DocumentURL = info.GetString ("DocumentURL");
 			IsTitle = info.GetBoolean ("IsTitle");
-			AchivementType = (AchivementType)info.GetChar ("AchivementType");
+			AchievementType = (AchievementType)info.GetChar ("AchievementType");
 			
 			try
 			{
@@ -84,14 +74,14 @@ namespace R7.University.Employee
 		public void GetObjectData (SerializationInfo info, StreamingContext context)
 		{
 			info.AddValue ("ItemID", ItemID);
-			info.AddValue ("EmployeeAchivementID", EmployeeAchivementID);
+			info.AddValue ("EmployeeAchievementID", EmployeeAchievementID);
 			info.AddValue ("EmployeeID", EmployeeID);
 			info.AddValue ("Title", Title);
 			info.AddValue ("ShortTitle", ShortTitle);
 			info.AddValue ("Description", Description);
 			info.AddValue ("DocumentURL", DocumentURL);
 			info.AddValue ("IsTitle", IsTitle);
-			info.AddValue ("AchivementType", (char)AchivementType);
+			info.AddValue ("AchievementType", (char)AchievementType);
 			
 			if (YearBegin != null)
 				info.AddValue ("YearBegin", YearBegin.Value);
@@ -103,20 +93,20 @@ namespace R7.University.Employee
 		#endregion
 		
 		/*
-		public EmployeeAchivementInfo NewEmployeeAchivementInfo()
+		public EmployeeAchievementInfo NewEmployeeAchievementInfo()
 		{
 			
-			var achInfo = new EmployeeAchivementInfo ();
+			var achInfo = new EmployeeAchievementInfo ();
 
 			// achInfo.Description 
 			// achInfo.DocumentURL
 			// achInfo.IsTitle 
 			
 			achInfo.EmployeeID = EmployeeID;
-			achInfo.EmployeeAchivementID = EmployeeAchivementID;
+			achInfo.EmployeeAchievementID = EmployeeAchievementID;
 			achInfo.Title = Title;
 			achInfo.ShortTitle = ShortTitle;
-			achInfo.AchivementType = AchivementType;
+			achInfo.AchievementType = AchievementType;
 			achInfo.YearBegin = YearBegin;
 			achInfo.YearEnd = YearEnd;
 

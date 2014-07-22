@@ -15,7 +15,7 @@
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
 			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("ExperienceTab.Text") %></asp:HyperLink></li>
-			<li><asp:HyperLink id="linkAchivements" runat="server" href="#employeeAchivements" Visible="false"><%= LocalizeString("AchivementsTab.Text") %></asp:HyperLink></li>
+			<li><asp:HyperLink id="linkAchievements" runat="server" href="#employeeAchievements" Visible="false"><%= LocalizeString("AchievementsTab.Text") %></asp:HyperLink></li>
 		  	<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></asp:HyperLink></li>
 			<li><a href="#employeeBarcode"><%= LocalizeString("BarcodeTab.Text") %></a></li>
 		</ul>
@@ -62,7 +62,7 @@
 			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
 		</div>
 
-		<div id="employeeAchivements" class="_tab">		
+		<div id="employeeAchievements" class="_tab">		
 		</div>
 
 		<div id="employeeAbout" class="_tab">

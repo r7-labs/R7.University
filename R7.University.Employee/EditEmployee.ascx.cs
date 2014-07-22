@@ -68,6 +68,10 @@ namespace R7.University.Employee
 
 			treeDivisions.DataSource = divisions;
 			treeDivisions.DataBind ();
+
+			// bind achievement types
+			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes(LocalizeString);
+			comboAchievementTypes.DataBind();
 		}
 
 		/// <summary>
@@ -77,7 +81,7 @@ namespace R7.University.Employee
 		protected override void OnLoad (EventArgs e)
 		{
 			base.OnLoad (e);
-			
+
 			try
 			{
 				// parse querystring parameters
@@ -149,17 +153,32 @@ namespace R7.University.Employee
 							}
 
 							// read OccupiedPositions data
-							var occupiedPositionsEx = EmployeeController.GetObjects<OccupiedPositionInfoEx>(
+							var occupiedPositionInfoExs = EmployeeController.GetObjects<OccupiedPositionInfoEx>(
 								"WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
 
 							// fill view list
 							var occupiedPositions = new List<OccupiedPositionView>();
-							foreach (var op in occupiedPositionsEx)
+							foreach (var op in occupiedPositionInfoExs)
 								occupiedPositions.Add(new OccupiedPositionView(op));
 
+							// bind occupied positions
 							ViewState["occupiedPositions"] = occupiedPositions;
 							gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
 							gridOccupiedPositions.DataBind ();
+
+							// read employee achievements
+							var achievementInfos = EmployeeController.GetObjects<EmployeeAchievementInfo>(
+								"WHERE [EmployeeID] = @0", itemId.Value);
+
+							// fill achievements list
+							var achievements = new List<EmployeeAchievementView>();
+							foreach (var achievement in achievementInfos)
+								achievements.Add(new EmployeeAchievementView(achievement));
+
+							// bind achievements
+							ViewState["achievements"] = achievements;
+							gridAchievements.DataSource = AchievementsDataTable(achievements);
+							gridAchievements.DataBind ();
 
 							// setup audit control
 							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString("System.Text"));
@@ -515,8 +534,44 @@ namespace R7.University.Employee
 
 			return dt;
 		}
+
+		private DataTable AchievementsDataTable (List<EmployeeAchievementView> achievements)
+		{
+			var dt = new DataTable ();
+			DataRow dr;
+			var col = 0;
+
+			dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
+			// dt.Columns.Add (new DataColumn ("EmployeeID", typeof(int)));
+			// dt.Columns.Add (new DataColumn ("EmployeeAchievementID", typeof(int)));
+			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
+			dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
+			dt.Columns.Add (new DataColumn ("Description", typeof(string)));
+			dt.Columns.Add (new DataColumn ("DocumentURL", typeof(string)));
+			dt.Columns.Add (new DataColumn ("IsTitle", typeof(bool)));
+			dt.Columns.Add (new DataColumn ("YearBegin", typeof(int)));
+			dt.Columns.Add (new DataColumn ("YearEnd", typeof(int)));
+			dt.Columns.Add (new DataColumn ("AchievementType", typeof(string)));
+
+			foreach (var achievement in achievements)
+			{
+				dr = dt.NewRow ();
+				dr [col++] = achievement.ItemID;
+				dr [col++] = achievement.Title;
+				dr [col++] = achievement.ShortTitle;
+				dr [col++] = achievement.Description;
+				dr [col++] = achievement.DocumentURL;
+				dr [col++] = achievement.IsTitle;
+				dr [col++] = achievement.YearBegin ?? Null.NullInteger;
+				dr [col++] = achievement.YearEnd ?? Null.NullInteger;
+				dr [col++] = LocalizeString(AchievementTypeInfo.GetResourceKey(achievement.AchievementType));
+				dt.Rows.Add (dr);
+			}
+
+			return dt;
+		}
 		
-		protected void gridAchivements_RowDataBound (object sender, GridViewRowEventArgs e)
+		protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
 		{
 			// hide ItemID column, also in header
 			e.Row.Cells [1].Visible = false;
@@ -524,15 +579,22 @@ namespace R7.University.Employee
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
-				// find delete linkbutton
-				var link = e.Row.Cells [0].FindControl ("linkDeleteAchivement") as LinkButton;
-
-				// set recordId to delete
-				link.CommandArgument = e.Row.Cells [1].Text;
+				// find command linkbuttons
+				var linkEdit = e.Row.Cells [0].FindControl ("linkEditAchievement") as LinkButton;
+				var linkDelete = e.Row.Cells [0].FindControl ("linkDeleteAchievement") as LinkButton;
+				
+				// set recordId
+				linkEdit.CommandArgument = e.Row.Cells [1].Text;
+				linkDelete.CommandArgument = e.Row.Cells [1].Text;
 			}
 		}
 		
-		protected void linkDeleteAchivement_Command (object sender, CommandEventArgs e)
+		protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
+		{
+			
+		}
+
+		protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
 		{
 			
 		}

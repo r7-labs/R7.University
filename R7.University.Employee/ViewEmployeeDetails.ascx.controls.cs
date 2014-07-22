@@ -21,7 +21,7 @@ namespace R7.University.Employee
 		protected Label labelWorkingPlaceAndHours;
 		protected Literal litAbout;
 		protected HyperLink linkAbout;
-		protected HyperLink linkAchivements;
+		protected HyperLink linkAchievements;
 		protected HyperLink linkExperience;
 		protected HyperLink linkEmail;
 		protected HyperLink linkSecondaryEmail;

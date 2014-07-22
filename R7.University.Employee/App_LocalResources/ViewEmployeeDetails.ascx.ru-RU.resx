@@ -12,7 +12,7 @@
 	<data name="AboutTab.Text" xml:space="preserve">
     <value>О себе</value>
   </data>
-	<data name="AchivementsTab.Text" xml:space="preserve">
+	<data name="AchievementsTab.Text" xml:space="preserve">
     <value>Достижения</value>
   </data>
 	<data name="BarcodeTab.Text" xml:space="preserve">

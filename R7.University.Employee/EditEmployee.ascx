@@ -15,7 +15,7 @@
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employeeCommon">Common</a></li>
 		    <li><a href="#employeePositions">Positions</a></li>
-		    <li><a href="#employeeAchivements">Achivements</a></li>
+		    <li><a href="#employeeAchievements">Achievements</a></li>
 		    <li><a href="#employeeAbout">About</a></li>
 		</ul>
 		<br /><br />
@@ -178,12 +178,12 @@
 			</fieldset>
 		</div>
 	
-		<div id="employeeAchivements">
+		<div id="employeeAchievements">
 			<fieldset>
 				<div class="dnnFormItem" style="margin-top:10px">
 					<div class="dnnLabel"></div>
-					<asp:GridView id="gridAchivements" runat="server" AutoGenerateColumns="true" 
-						GridLines="None" OnRowDataBound="gridAchivements_RowDataBound">
+					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
+						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound">
 							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
 					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -194,13 +194,24 @@
 							<Columns>
 								<asp:TemplateField>
 					               <ItemTemplate>
-					                	<asp:LinkButton id="linkDeleteAchivement" runat="server" OnCommand="linkDeleteAchivement_Command" >
+					                	<asp:LinkButton id="linkEditAchievement" runat="server" OnCommand="linkEditAchievement_Command" >
+					                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+					                	</asp:LinkButton>
+										<asp:LinkButton id="linkDeleteAchievement" runat="server" OnCommand="linkDeleteAchievement_Command" >
 					                		<asp:Image runat="server" ImageUrl="~/images/delete.gif" />
 					                	</asp:LinkButton>
 					               </ItemTemplate>
 					        	</asp:TemplateField>
 							</Columns>
-				        </asp:GridView>
+				    </asp:GridView>
+				</div>
+
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
+					<dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
+						DataTextField="LocalizedAchivementType"
+						DataValueField="AchievementType"
+					/>
 				</div>
 			</fieldset>
 		</div>

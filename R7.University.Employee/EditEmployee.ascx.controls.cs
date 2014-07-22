@@ -81,6 +81,7 @@ namespace R7.University.Employee
 		protected LinkButton buttonAddPosition;
 		protected LinkButton buttonAddPrimePosition;
 		
-		protected GridView gridAchivements;
+		protected GridView gridAchievements;
+		protected DnnComboBox comboAchievementTypes;
 	}
 }

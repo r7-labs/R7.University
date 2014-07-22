@@ -66,7 +66,9 @@
     <Compile Include="components\QuotedPrintable.cs" />
     <Compile Include="components\CacheHelper.cs" />
     <Compile Include="components\SharedLogic.cs" />
-    <Compile Include="entities\EmployeeAchivementInfo.cs" />
+    <Compile Include="entities\EmployeeAchievementInfo.cs" />
+    <Compile Include="entities\AchievementTypeInfo.cs" />
+    <Compile Include="entities\Delegates.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

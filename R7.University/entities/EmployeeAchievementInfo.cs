@@ -7,13 +7,6 @@ using DotNetNuke.Entities.Users;
 
 namespace R7.University
 {
-	public enum AchivementType
-	{
-		Achivement = 'A',
-		Education = 'E',
-		Training = 'T'
-	}
-
 	// More attributes for class:
 	// Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]
 	// Explicit mapping declaration: [DeclareColumns]
@@ -21,9 +14,9 @@ namespace R7.University
 	// Custom column name: [ColumnName("DivisionID")]
 	// Explicit include column: [IncludeColumn]
 	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
-	[TableName ("University_EmployeeAchivements")]
-	[PrimaryKey ("EmployeeAchivementID", AutoIncrement = true)]
-	public class EmployeeAchivementInfo : IReferenceEntity
+	[TableName ("University_EmployeeAchievements")]
+	[PrimaryKey ("EmployeeAchievementID", AutoIncrement = true)]
+	public class EmployeeAchievementInfo : IReferenceEntity
 	{
 		#region Fields
 
@@ -32,7 +25,7 @@ namespace R7.University
 		/// <summary>
 		/// Empty default cstor
 		/// </summary>
-		public EmployeeAchivementInfo ()
+		public EmployeeAchievementInfo ()
 		{
 		}
 
@@ -45,7 +38,7 @@ namespace R7.University
 
 		#region Properties
 
-		public int EmployeeAchivementID { get; set; }
+		public int EmployeeAchievementID { get; set; }
 		public int EmployeeID  { get; set; }
 		public string Description { get; set; }
 		public int? YearBegin { get; set; }
@@ -53,16 +46,16 @@ namespace R7.University
 		public bool IsTitle { get; set; }
 		public string DocumentURL { get; set; }
 		
-		[ColumnName ("AchivementType")]
-		public string AchivementTypeString { get; set; }
+		[ColumnName ("AchievementType")]
+		public string AchievementTypeString { get; set; }
 	
 		#endregion
 		
 		[IgnoreColumn]
-		public AchivementType AchivementType
+		public AchievementType AchievementType
 		{
-			get { return (AchivementType)AchivementTypeString[0]; }
-			set { AchivementTypeString = ((char)value).ToString(); }
+			get { return (AchievementType)AchievementTypeString[0]; }
+			set { AchievementTypeString = ((char)value).ToString(); }
 		}
 		
 	}
