@@ -192,6 +192,9 @@
 	<data name="AchievementTypeE.Text">
 		<value>Education</value>
 	</data>
+	<data name="AchievementTypeW.Text">
+		<value>Work</value>
+	</data>
 	<data name="labelAchievementTypes.Text">
 		<value>Achievement Type</value>
 	</data>

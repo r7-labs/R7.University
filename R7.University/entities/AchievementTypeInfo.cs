@@ -32,7 +32,8 @@ namespace R7.University
 	{
 		Achievement = 'A',
 		Education = 'E',
-		Training = 'T'
+		Training = 'T',
+		Work = 'W'
 	}
 	
 	public class AchievementTypeInfo
