@@ -493,14 +493,8 @@ namespace R7.University.Employee
 				// Utils.Message (this, MessageSeverity.Info, itemID);
 
 				// find position in a list
-				OccupiedPositionView opFound = null;
-				foreach (var op in occupiedPositions)
-					if (op.ItemID.ToString () == itemID)
-					{
-						opFound = op;
-						break;
-					}
-
+				var opFound = occupiedPositions.Find(op => op.ItemID.ToString() == itemID);
+			
 				if (opFound != null)
 				{
 					occupiedPositions.Remove (opFound);
@@ -597,18 +591,12 @@ namespace R7.University.Employee
 				var itemID = e.CommandArgument.ToString ();
 
 				// find position in a list
-				EmployeeAchievementView achFound = null;
-				foreach (var ach in achievements)
-					if (ach.ItemID.ToString () == itemID)
-					{
-						achFound = ach;
-						break;
-					}
+				var achievement = achievements.Find(ach => ach.ItemID.ToString() == itemID);
 
-				if (achFound != null)
+				if (achievement != null)
 				{
 					// remove achievement
-					achievements.Remove (achFound);
+					achievements.Remove (achievement);
 					
 					// refresh viewstate
 					ViewState["achievements"] = achievements;
@@ -628,13 +616,7 @@ namespace R7.University.Employee
 				var itemID = e.CommandArgument.ToString ();
 
 				// find position in a list
-				EmployeeAchievementView achievement = null;
-				foreach (var ach in achievements)
-					if (ach.ItemID.ToString () == itemID)
-					{
-						achievement = ach;
-						break;
-					}
+				var achievement = achievements.Find(ach => ach.ItemID.ToString() == itemID);
 
 				if (achievement != null)
 				{
