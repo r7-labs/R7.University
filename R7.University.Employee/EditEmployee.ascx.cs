@@ -591,12 +591,63 @@ namespace R7.University.Employee
 		
 		protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
 		{
-			
+			var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+			if (achievements != null)
+			{
+				var itemID = e.CommandArgument.ToString ();
+
+				// find position in a list
+				EmployeeAchievementView achFound = null;
+				foreach (var ach in achievements)
+					if (ach.ItemID.ToString () == itemID)
+					{
+						achFound = ach;
+						break;
+					}
+
+				if (achFound != null)
+				{
+					// remove achievement
+					achievements.Remove (achFound);
+					
+					// refresh viewstate
+					ViewState["achievements"] = achievements;
+
+					// bind achievements to the gridview
+					gridAchievements.DataSource = AchievementsDataTable(achievements);
+					gridAchievements.DataBind ();
+				}
+			}
 		}
 
 		protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
 		{
-			
+			var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+			if (achievements != null)
+			{
+				var itemID = e.CommandArgument.ToString ();
+
+				// find position in a list
+				EmployeeAchievementView achievement = null;
+				foreach (var ach in achievements)
+					if (ach.ItemID.ToString () == itemID)
+					{
+						achievement = ach;
+						break;
+					}
+
+				if (achievement != null)
+				{
+					// fill achievements form
+					textAchievementTitle.Text = achievement.Title;
+					textAchievementShortTitle.Text = achievement.ShortTitle;
+					textAchievementDescription.Text = achievement.Description;
+					textYearBegin.Text = achievement.YearBegin.ToString();
+					textYearEnd.Text = achievement.YearEnd.ToString();
+					checkIsTitle.Checked = achievement.IsTitle;
+					urlDocumentURL.Url = achievement.DocumentURL;
+				}
+			}
 		}
 
 		protected void buttonAddAchievement_Click (object sender, EventArgs e)
@@ -606,7 +657,7 @@ namespace R7.University.Employee
 				var achievement = new EmployeeAchievementView();
 
 				achievement.Title = textAchievementTitle.Text;
-				achievement.ShortTitle = textAchievementTitle.Text;
+				achievement.ShortTitle = textAchievementShortTitle.Text;
 				achievement.Description = textAchievementDescription.Text;
 				achievement.IsTitle = checkIsTitle.Checked;
 				achievement.YearBegin = Utils.ParseToNullableInt(textYearBegin.Text);
