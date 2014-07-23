@@ -612,6 +612,7 @@ namespace R7.University.Employee
 				achievement.YearBegin = Utils.ParseToNullableInt(textYearBegin.Text);
 				achievement.YearEnd = Utils.ParseToNullableInt(textYearEnd.Text);
 				achievement.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
+				achievement.DocumentURL = urlDocumentURL.Url;
 
 				// get achievements list from viewstate or create new
 				var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;

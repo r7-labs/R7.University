@@ -237,4 +237,10 @@
 	<data name="labelIsTitle.Help">
 		<value>If checked, this achivement will be displayed as one of employee's titles along with his/her name.</value>
 	</data>
+	<data name="labelDocumentURL.Text">
+		<value>Document URL</value>
+	</data>
+	<data name="labelDocumentURL.Help">
+		<value>Specify URL for a document, associated with the achievement.</value>
+	</data>
 </root>

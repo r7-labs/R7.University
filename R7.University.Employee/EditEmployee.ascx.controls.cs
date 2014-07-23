@@ -97,5 +97,7 @@ namespace R7.University.Employee
 		protected TextBox textAchievementDescription;
 		protected LabelControl labelIsTitle;
 		protected CheckBox checkIsTitle;
+		protected LabelControl labelDocumentURL;
+		protected UrlControl urlDocumentURL;
 	}
 }

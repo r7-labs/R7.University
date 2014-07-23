@@ -237,6 +237,15 @@
 					<asp:CheckBox id="checkIsTitle" runat="server" />
 				</div>
 				<div class="dnnFormItem">
+					<dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" Suffix=":" />
+					<dnn:Url id="urlDocumentURL" runat="server" UrlType="F" 
+						IncludeActiveTab="true"
+			        	ShowFiles="true" ShowTabs="true"
+			        	ShowUrls="true" ShowUsers="true"
+						ShowLog="false" ShowTrack="false"
+						ShowNone="true" ShowNewWindow="false" />      
+				</div>
+				<div class="dnnFormItem">
 					<div class="dnnLabel"></div>
 					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
 						CssClass="dnnPrimaryAction" OnClick="buttonAddAchievement_Click" />
