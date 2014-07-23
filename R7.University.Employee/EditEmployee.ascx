@@ -238,7 +238,7 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" Suffix=":" />
-					<dnn:Url id="urlDocumentURL" runat="server" UrlType="F" 
+					<dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
 						IncludeActiveTab="true"
 			        	ShowFiles="true" ShowTabs="true"
 			        	ShowUrls="true" ShowUsers="true"
