@@ -221,6 +221,10 @@
 					<asp:TextBox id="textAchievementShortTitle" runat="server" />
 				</div>
 				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="labelAchievementDescription" Suffix=":" />
+					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
+				</div>
+				<div class="dnnFormItem">
 					<dnn:Label id="labelYearBegin" runat="server" ControlName="textYearBegin" Suffix=":" />
 					<asp:TextBox id="textYearBegin" runat="server" />
 				</div>

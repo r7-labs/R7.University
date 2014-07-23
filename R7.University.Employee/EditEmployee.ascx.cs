@@ -607,6 +607,7 @@ namespace R7.University.Employee
 
 				achievement.Title = textAchievementTitle.Text;
 				achievement.ShortTitle = textAchievementTitle.Text;
+				achievement.Description = textAchievementDescription.Text;
 				achievement.IsTitle = checkIsTitle.Checked;
 				achievement.YearBegin = Utils.ParseToNullableInt(textYearBegin.Text);
 				achievement.YearEnd = Utils.ParseToNullableInt(textYearEnd.Text);

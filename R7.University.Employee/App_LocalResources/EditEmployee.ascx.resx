@@ -225,6 +225,12 @@
 	<data name="labelAchievementShortTitle.Help">
 		<value>Enter the short title for described achievement.</value>
 	</data>
+	<data name="labelAchievementDescription.Text">
+		<value>Description</value>
+	</data>
+	<data name="labelAchievementDescription.Help">
+		<value>Enter optional description to describe achievement.</value>
+	</data>
 	<data name="labelIsTitle.Text">
 		<value>Is title</value>
 	</data>

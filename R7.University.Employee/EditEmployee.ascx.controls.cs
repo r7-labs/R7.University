@@ -93,6 +93,8 @@ namespace R7.University.Employee
 		protected TextBox textAchievementTitle;
 		protected LabelControl labelAchievementShortTitle;
 		protected TextBox textAchievementShortTitle;
+		protected LabelControl labelAchievementDescription;
+		protected TextBox textAchievementDescription;
 		protected LabelControl labelIsTitle;
 		protected CheckBox checkIsTitle;
 	}
