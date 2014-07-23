@@ -83,5 +83,17 @@ namespace R7.University.Employee
 		
 		protected GridView gridAchievements;
 		protected DnnComboBox comboAchievementTypes;
+		protected LabelControl labelYearBegin;
+		protected TextBox textYearBegin;
+		protected LabelControl labelYearEnd;
+		protected TextBox textYearEnd;
+		protected LinkButton buttonAddAchievement;
+
+		protected LabelControl labelAchievementTitle;
+		protected TextBox textAchievementTitle;
+		protected LabelControl labelAchievementShortTitle;
+		protected TextBox textAchievementShortTitle;
+		protected LabelControl labelIsTitle;
+		protected CheckBox checkIsTitle;
 	}
 }

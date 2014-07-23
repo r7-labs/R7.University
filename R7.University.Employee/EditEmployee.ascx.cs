@@ -539,8 +539,7 @@ namespace R7.University.Employee
 		{
 			var dt = new DataTable ();
 			DataRow dr;
-			var col = 0;
-
+			
 			dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
 			// dt.Columns.Add (new DataColumn ("EmployeeID", typeof(int)));
 			// dt.Columns.Add (new DataColumn ("EmployeeAchievementID", typeof(int)));
@@ -555,6 +554,7 @@ namespace R7.University.Employee
 
 			foreach (var achievement in achievements)
 			{
+				var col = 0;
 				dr = dt.NewRow ();
 				dr [col++] = achievement.ItemID;
 				dr [col++] = achievement.Title;
@@ -599,6 +599,38 @@ namespace R7.University.Employee
 			
 		}
 
+		protected void buttonAddAchievement_Click (object sender, EventArgs e)
+		{
+			try
+			{
+				var achievement = new EmployeeAchievementView();
+
+				achievement.Title = textAchievementTitle.Text;
+				achievement.ShortTitle = textAchievementTitle.Text;
+				achievement.IsTitle = checkIsTitle.Checked;
+				achievement.YearBegin = Utils.ParseToNullableInt(textYearBegin.Text);
+				achievement.YearEnd = Utils.ParseToNullableInt(textYearEnd.Text);
+				achievement.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
+
+				// get achievements list from viewstate or create new
+				var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;
+				if (achievements == null)
+					achievements = new List<EmployeeAchievementView>();
+
+				achievements.Add (achievement);
+
+				// refresh viewstate
+				ViewState["achievements"] = achievements;
+
+				// bind achievements to the gridview
+				gridAchievements.DataSource = AchievementsDataTable(achievements);
+				gridAchievements.DataBind ();
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException (this, ex);
+			}
+		}
 		#endregion
 	}
 }

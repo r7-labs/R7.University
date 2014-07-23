@@ -205,13 +205,37 @@
 							</Columns>
 				    </asp:GridView>
 				</div>
-
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
 					<dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
 						DataTextField="LocalizedAchivementType"
 						DataValueField="AchievementType"
 					/>
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
+					<asp:TextBox id="textAchievementTitle" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
+					<asp:TextBox id="textAchievementShortTitle" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelYearBegin" runat="server" ControlName="textYearBegin" Suffix=":" />
+					<asp:TextBox id="textYearBegin" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelYearEnd" runat="server" ControlName="textYearEnd" Suffix=":" />
+					<asp:TextBox id="textYearEnd" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" Suffix="?" />
+					<asp:CheckBox id="checkIsTitle" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<div class="dnnLabel"></div>
+					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
+						CssClass="dnnPrimaryAction" OnClick="buttonAddAchievement_Click" />
 				</div>
 			</fieldset>
 		</div>

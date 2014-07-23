@@ -198,4 +198,37 @@
 	<data name="labelAchievementTypes.Help">
 		<value>Select employee achievement type from the list.</value>
 	</data>
+	<data name="buttonAddAchievement.Text">
+		<value>Add achivement</value>
+	</data>
+	<data name="labelYearBegin.Text">
+		<value>Year begin</value>
+	</data>
+	<data name="labelYearBegin.Help">
+		<value>Enter starting year of achievement.</value>
+	</data>
+	<data name="labelYearEnd.Text">
+		<value>Year end</value>
+	</data>
+	<data name="labelYearEnd.Help">
+		<value>Enter final year of achievement.</value>
+	</data>
+	<data name="labelAchievementTitle.Text">
+		<value>Title</value>
+	</data>
+	<data name="labelAchievementTitle.Help">
+		<value>Enter the title for described achievement.</value>
+	</data>
+	<data name="labelAchievementShortTitle.Text">
+		<value>Short title</value>
+	</data>
+	<data name="labelAchievementShortTitle.Help">
+		<value>Enter the short title for described achievement.</value>
+	</data>
+	<data name="labelIsTitle.Text">
+		<value>Is title</value>
+	</data>
+	<data name="labelIsTitle.Help">
+		<value>If checked, this achivement will be displayed as one of employee's titles along with his/her name.</value>
+	</data>
 </root>
