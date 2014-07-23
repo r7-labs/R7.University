@@ -204,6 +204,12 @@
 	<data name="buttonAddAchievement.Text">
 		<value>Add achivement</value>
 	</data>
+	<data name="buttonUpdateAchievement.Text">
+		<value>Update achivement</value>
+	</data>
+	<data name="buttonCancelUpdateAchievement.Text">
+		<value>Cancel</value>
+	</data>
 	<data name="labelYearBegin.Text">
 		<value>Year begin</value>
 	</data>

@@ -248,8 +248,13 @@
 				<div class="dnnFormItem">
 					<div class="dnnLabel"></div>
 					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
-						CssClass="dnnPrimaryAction" OnClick="buttonAddAchievement_Click" />
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" CommandArgument="Add" />
+					<asp:LinkButton id="buttonUpdateAchievement" runat="server" resourcekey="buttonUpdateAchievement" 
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" Visible="false" CommandArgument="Update" />
+					<asp:LinkButton id="buttonCancelUpdateAchievement" runat="server" resourcekey="buttonCancelUpdateAchievement" 
+						CssClass="dnnSecondaryAction" OnClick="buttonCancelUpdateAchievement_Click" Visible="false" />
 				</div>
+				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>
 		</div>
 	

@@ -88,6 +88,8 @@ namespace R7.University.Employee
 		protected LabelControl labelYearEnd;
 		protected TextBox textYearEnd;
 		protected LinkButton buttonAddAchievement;
+		protected LinkButton buttonUpdateAchievement;
+		protected LinkButton buttonCancelUpdateAchievement;
 
 		protected LabelControl labelAchievementTitle;
 		protected TextBox textAchievementTitle;
@@ -99,5 +101,6 @@ namespace R7.University.Employee
 		protected CheckBox checkIsTitle;
 		protected LabelControl labelDocumentURL;
 		protected UrlControl urlDocumentURL;
+		protected HiddenField hiddenAchievementItemID;
 	}
 }
