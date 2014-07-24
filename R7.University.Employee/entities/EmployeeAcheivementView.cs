@@ -36,6 +36,26 @@ namespace R7.University.Employee
 			AchievementType = achievement.AchievementType;
 		}
 
+		public EmployeeAchievementInfo NewEmployeeAchievementInfo()
+		{
+			// REVIEW: Use decorator pattern?
+
+			var achInfo = new EmployeeAchievementInfo ();
+
+			achInfo.EmployeeAchievementID = EmployeeAchievementID;
+			achInfo.EmployeeID = EmployeeID;
+			achInfo.Title = Title;
+			achInfo.ShortTitle = ShortTitle;
+			achInfo.Description = Description;
+			achInfo.DocumentURL = DocumentURL;
+			achInfo.IsTitle = IsTitle;
+			achInfo.AchievementType = AchievementType;
+			achInfo.YearBegin = YearBegin;
+			achInfo.YearEnd = YearEnd;
+
+			return achInfo;
+        }
+
 		// NOTE: if [Serializable] is set, all *fields* serialized by default
 
 		#region ISerializable implementation
@@ -92,30 +112,9 @@ namespace R7.University.Employee
 
 		#endregion
 		
-		/*
-		public EmployeeAchievementInfo NewEmployeeAchievementInfo()
-		{
-			
-			var achInfo = new EmployeeAchievementInfo ();
-
-			// achInfo.Description 
-			// achInfo.DocumentURL
-			// achInfo.IsTitle 
-			
-			achInfo.EmployeeID = EmployeeID;
-			achInfo.EmployeeAchievementID = EmployeeAchievementID;
-			achInfo.Title = Title;
-			achInfo.ShortTitle = ShortTitle;
-			achInfo.AchievementType = AchievementType;
-			achInfo.YearBegin = YearBegin;
-			achInfo.YearEnd = YearEnd;
-
-			return achInfo;
-            
-			
-			// return this;
-		}
-        */
+	
+		
+       
 
 	} // class
 } // namespace

@@ -265,7 +265,8 @@ namespace R7.University
 
 		#region Custom methods
 
-		public void AddEmployee(EmployeeInfo employee, List<OccupiedPositionInfo> occupiedPositions)
+		public void AddEmployee(EmployeeInfo employee, 
+			List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
 			using (var ctx = DataContext.Instance ()) 
 			{
@@ -282,17 +283,27 @@ namespace R7.University
 						op.EmployeeID = employee.EmployeeID;
 						Add<OccupiedPositionInfo> (op);
 					}
+					
+					// add new EmployeeAchievements
+					foreach (var ach in achievements)
+					{
+						ach.EmployeeID = employee.EmployeeID;
+						Add<EmployeeAchievementInfo> (ach);
+					}
+				
 					ctx.Commit ();
 				}
 				catch
 				{
 					ctx.RollbackTransaction ();
+					throw;
 				}
 			}
 
 		}
 
-		public void UpdateEmployee(EmployeeInfo employee, List<OccupiedPositionInfo> occupiedPositions)
+		public void UpdateEmployee(EmployeeInfo employee, 
+			List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
 			using (var ctx = DataContext.Instance ()) 
 			{
@@ -305,7 +316,7 @@ namespace R7.University
 
 					// delete old OccupiedPositions 
 					Delete<OccupiedPositionInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID); 
-
+					
 					// add new OccupiedPositions
 					foreach (var op in occupiedPositions)
 					{
@@ -313,12 +324,23 @@ namespace R7.University
 						op.EmployeeID = employee.EmployeeID;
 						Add<OccupiedPositionInfo> (op);
 					}
+					
+					// delete old EmployeeAchievements
+					Delete<EmployeeAchievementInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID);
+
+					// add new EmployeeAchievements
+					foreach (var ach in achievements)
+					{
+						ach.EmployeeID = employee.EmployeeID;
+						Add<EmployeeAchievementInfo> (ach);
+					}
 
 					ctx.Commit ();
 				}
 				catch
 				{
 					ctx.RollbackTransaction ();
+					throw;
 				}
 			}
 		}

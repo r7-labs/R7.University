@@ -297,22 +297,10 @@ namespace R7.University.Employee
 					// update audit info
 					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
-
-					var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
-					// check if we have positions defined
-					if (occupiedPositions != null)
-					{
-						var occupiedPositionInfos = new List<OccupiedPositionInfo>();
-
-						foreach (var op in occupiedPositions)
-							occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
-
-						// add item
-						EmployeeController.AddEmployee(item, occupiedPositionInfos);
-					}
-					else
-						EmployeeController.Add<EmployeeInfo>(item);
-
+	
+					// add employee
+					EmployeeController.AddEmployee(item, GetOccupiedPositions(), GetEmployeeAchievements());
+					
 					// then adding new employee from Employee module, 
 					// set calling module to display new employee
 					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
@@ -328,20 +316,8 @@ namespace R7.University.Employee
 					item.LastModifiedByUserID = this.UserId;
 					item.LastModifiedOnDate = DateTime.Now;
 
-					var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
-					// check if we have positions defined
-					if (occupiedPositions != null)
-					{
-						var occupiedPositionInfos = new List<OccupiedPositionInfo>();
-
-						foreach (var op in occupiedPositions)
-							occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
-
-						// update
-						EmployeeController.UpdateEmployee(item, occupiedPositionInfos);
-					}
-					else
-						EmployeeController.Update<EmployeeInfo>(item);
+					// update employee
+					EmployeeController.UpdateEmployee(item, GetOccupiedPositions(), GetEmployeeAchievements());
 				}
 
 				Utils.SynchronizeModule(this);
@@ -353,6 +329,30 @@ namespace R7.University.Employee
 			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
+		}
+
+		private List<OccupiedPositionInfo> GetOccupiedPositions ()
+		{
+			var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
+					
+			var occupiedPositionInfos = new List<OccupiedPositionInfo>();
+			if (occupiedPositions != null)
+				foreach (var op in occupiedPositions)
+					occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
+
+			return occupiedPositionInfos;
+		}
+
+		private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
+		{
+			var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;
+				
+			var achievementInfos = new List<EmployeeAchievementInfo>();
+			if (achievements != null)
+				foreach (var ach in achievements)
+					achievementInfos.Add(ach.NewEmployeeAchievementInfo());
+
+			return achievementInfos;
 		}
 
 		/// <summary>
