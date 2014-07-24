@@ -633,6 +633,7 @@ namespace R7.University.Employee
 					textYearEnd.Text = achievement.YearEnd.ToString();
 					checkIsTitle.Checked = achievement.IsTitle;
 					urlDocumentURL.Url = achievement.DocumentURL;
+					comboAchievementTypes.Select(achievement.AchievementType.ToString(), false);
 					
 					// show update and cancel buttons (enter edit mode)
 					buttonAddAchievement.Visible = false;
@@ -657,8 +658,23 @@ namespace R7.University.Employee
 		{
 			try
 			{
-				var achievement = new EmployeeAchievementView();
+				EmployeeAchievementView achievement;
 
+				// get achievements list from viewstate
+				var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;
+
+				var command = e.CommandArgument.ToString ();
+				if (command == "Add")
+				{
+					achievement = new EmployeeAchievementView();
+				}
+				else 
+				{
+					// restore ItemID from hidden field
+					var hiddenItemID = int.Parse(hiddenAchievementItemID.Value);
+					achievement = achievements.Find(ach => ach.ItemID == hiddenItemID);
+				}
+	
 				achievement.Title = textAchievementTitle.Text;
 				achievement.ShortTitle = textAchievementShortTitle.Text;
 				achievement.Description = textAchievementDescription.Text;
@@ -668,30 +684,18 @@ namespace R7.University.Employee
 				achievement.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
 				achievement.DocumentURL = urlDocumentURL.Url;
 				
-				// get achievements list from viewstate or create new
-				var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;
-				if (achievements == null)
-					achievements = new List<EmployeeAchievementView>();
-
-				var command = e.CommandArgument.ToString ();
 				if (command == "Add")
 				{
 					achievements.Add (achievement);
 				}
-				else // update
+				else 
 				{
-					// restore ItemID from hidden field
-					achievement.ItemID = int.Parse(hiddenAchievementItemID.Value);
-					var itemIndex = achievements.FindIndex(ach => ach.ItemID == achievement.ItemID);
-					if (itemIndex >= 0)
-					{
-						achievements[itemIndex] = achievement;
-						
-						// restore default buttons visibility (quit edit mode)
-						buttonAddAchievement.Visible = true;
-						buttonUpdateAchievement.Visible = false;
-						buttonCancelUpdateAchievement.Visible = false;
-					}
+					// update: already done
+					
+					// restore default buttons visibility (quit edit mode)
+					buttonAddAchievement.Visible = true;
+					buttonUpdateAchievement.Visible = false;
+					buttonCancelUpdateAchievement.Visible = false;
 				}
 
 				// refresh viewstate
