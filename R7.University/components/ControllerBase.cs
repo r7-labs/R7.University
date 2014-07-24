@@ -326,13 +326,19 @@ namespace R7.University
 					}
 					
 					// delete old EmployeeAchievements
-					Delete<EmployeeAchievementInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID);
+					// Delete<EmployeeAchievementInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID);
+					Delete<EmployeeAchievementInfo>(
+						string.Format("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
+							employee.EmployeeID, Utils.FormatList(", ", achievements.Select(a => a.EmployeeAchievementID.ToString()).ToArray()))); 
 
 					// add new EmployeeAchievements
 					foreach (var ach in achievements)
 					{
 						ach.EmployeeID = employee.EmployeeID;
-						Add<EmployeeAchievementInfo> (ach);
+						if (ach.EmployeeAchievementID <= 0)
+							Add<EmployeeAchievementInfo> (ach);
+						else
+							Update<EmployeeAchievementInfo> (ach);
 					}
 
 					ctx.Commit ();
