@@ -9,28 +9,72 @@ BEGIN
 	CREATE TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] (
 		[EmployeeAchievementID] [int] IDENTITY(1,1) NOT NULL,
 		[EmployeeID] [int] NOT NULL,
-		[Title] [nvarchar](250) NOT NULL,
+		[AchievementID] [int] NULL,
+		[Title] [nvarchar](250) NULL,	
+		[TitleSuffix] [nvarchar](100) NULL,
 		[ShortTitle] [nvarchar](64) NULL,
 		[Description] [nvarchar](max) NULL,
 		[YearBegin] [int] NULL,
 		[YearEnd] [int] NULL,
 		[IsTitle] [bit] NOT NULL,
 		[DocumentURL] [nvarchar](250) NULL,
-		[AchievementType] [nchar] (1) NOT NULL,
+		[AchievementType] [nchar] (1) NULL,
 		CONSTRAINT [PK_{objectQualifier}University_EmployeeAchievements] PRIMARY KEY CLUSTERED 
 		(
 			[EmployeeAchievementID] ASC
-		) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+		)
+		WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 	
 	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] ADD  CONSTRAINT [DF_{objectQualifier}University_EmployeeAchievements_IsTitle]  DEFAULT ((0)) FOR [IsTitle]
 	
-	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]  WITH CHECK ADD  CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Employees] FOREIGN KEY([EmployeeID])
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] WITH CHECK ADD CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Employees] FOREIGN KEY([EmployeeID])
 	REFERENCES {databaseOwner}[{objectQualifier}University_Employees] ([EmployeeID])
 	ON DELETE CASCADE
 	
 	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] CHECK CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Employees]
+	
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] WITH CHECK ADD CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Achievements] FOREIGN KEY([AchievementID])
+	REFERENCES {databaseOwner}[{objectQualifier}University_Achievements] ([AchievementID])
+	ON DELETE SET NULL
 
 END
 GO
 
+IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_Achievements]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}University_Achievements] (
+		[AchievementID] [int] IDENTITY(1,1) NOT NULL,
+		[Title] [nvarchar](250) NOT NULL,
+		[ShortTitle] [nvarchar](64) NULL,
+		[AchievementType] [nchar](1) NOT NULL,
+		CONSTRAINT [PK_{objectQualifier}University_Achievements] PRIMARY KEY CLUSTERED 
+		(
+			[AchievementID] ASC
+		)	
+		WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+
+END
+GO
+
+-- Create views
+
+IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]') and OBJECTPROPERTY(id, N'IsView') = 1)
+BEGIN
+
+	CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
+	AS
+		SELECT        
+			EA.EmployeeAchievementID, EA.EmployeeID, EA.AchievementID,
+			EA.YearBegin, EA.YearEnd, 
+			CASE WHEN EA.AchievementID IS NOT NULL THEN A.Title ELSE EA.Title END AS Title, 
+			EA.TitleSuffix,	EA.IsTitle, 
+			CASE WHEN EA.AchievementID IS NOT NULL THEN A.ShortTitle ELSE EA.ShortTitle END AS ShortTitle, 
+			EA.Description, EA.DocumentURL, 
+			CASE WHEN EA.AchievementID IS NOT NULL THEN A.AchievementType ELSE EA.AchievementType END AS AchievementType
+		FROM {databaseOwner}[{objectQualifier}University_EmployeeAchievements] AS EA 
+			LEFT OUTER JOIN {databaseOwner}[{objectQualifier}University_Achievements] AS A 
+				ON EA.AchievementID = A.AchievementID
+END
+GO
