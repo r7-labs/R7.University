@@ -58,13 +58,21 @@ namespace R7.University.Employee
 			// if results are null or empty, lists were empty too
 			var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
 			var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
+			var achievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ("ORDER BY [Title] ASC"));
+
+			ViewState["commonAchievements"] = achievements;
 
 			// add default items
 			positions.Insert (0, new PositionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), PositionID = Null.NullInteger });
 			divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
+			achievements.Insert (0, new AchievementInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), AchievementID = Null.NullInteger });
 
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
+
+			comboAchievements.SelectedIndexChanged += comboAchievements_SelectedIndexChanged;
+			comboAchievements.DataSource = achievements;
+			comboAchievements.DataBind();
 
 			treeDivisions.DataSource = divisions;
 			treeDivisions.DataBind ();
@@ -621,19 +629,39 @@ namespace R7.University.Employee
 				var itemID = e.CommandArgument.ToString ();
 
 				// find position in a list
-				var achievement = achievements.Find(ach => ach.ItemID.ToString() == itemID);
+				var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
 
 				if (achievement != null)
 				{
 					// fill achievements form
-					textAchievementTitle.Text = achievement.Title;
-					textAchievementShortTitle.Text = achievement.ShortTitle;
+					
+					if (achievement.AchievementID != null)
+					{
+						comboAchievements.Select(achievement.AchievementID.ToString(), false);
+
+						panelAchievementTitle.Visible = false;
+						panelAchievementShortTitle.Visible = false;
+						panelAchievementTypes.Visible = false;
+					}					
+					else
+					{
+						comboAchievements.Select(Null.NullInteger.ToString(), false);
+
+						textAchievementTitle.Text = achievement.Title;
+						textAchievementShortTitle.Text = achievement.ShortTitle;
+						comboAchievementTypes.Select(achievement.AchievementType.ToString(), false);
+						
+						panelAchievementTitle.Visible = true;
+						panelAchievementShortTitle.Visible = true;
+						panelAchievementTypes.Visible = true;
+					}
+
 					textAchievementDescription.Text = achievement.Description;
 					textYearBegin.Text = achievement.YearBegin.ToString();
 					textYearEnd.Text = achievement.YearEnd.ToString();
 					checkIsTitle.Checked = achievement.IsTitle;
 					urlDocumentURL.Url = achievement.DocumentURL;
-					comboAchievementTypes.Select(achievement.AchievementType.ToString(), false);
+					
 					
 					// show update and cancel buttons (enter edit mode)
 					buttonAddAchievement.Visible = false;
@@ -675,13 +703,29 @@ namespace R7.University.Employee
 					achievement = achievements.Find(ach => ach.ItemID == hiddenItemID);
 				}
 	
-				achievement.Title = textAchievementTitle.Text;
-				achievement.ShortTitle = textAchievementShortTitle.Text;
+				achievement.AchievementID = Utils.ParseToNullableInt(comboAchievements.SelectedValue);
+				if (achievement.AchievementID == null)
+				{
+					achievement.Title = textAchievementTitle.Text;
+					achievement.ShortTitle = textAchievementShortTitle.Text;
+					achievement.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
+				}
+				else
+				{
+					var commonAchievements = ViewState["commonAchievements"] as List<AchievementInfo>;
+					var ach = commonAchievements.Find(a => a.AchievementID.ToString() == comboAchievements.SelectedValue);
+
+					// TODO: must set to selected achievement titles
+					achievement.Title = ach.Title;
+					achievement.ShortTitle = ach.ShortTitle;
+					achievement.AchievementType = ach.AchievementType;
+				}
+
 				achievement.Description = textAchievementDescription.Text;
 				achievement.IsTitle = checkIsTitle.Checked;
 				achievement.YearBegin = Utils.ParseToNullableInt(textYearBegin.Text);
 				achievement.YearEnd = Utils.ParseToNullableInt(textYearEnd.Text);
-				achievement.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
+				
 				achievement.DocumentURL = urlDocumentURL.Url;
 				
 				if (command == "Add")
@@ -710,6 +754,23 @@ namespace R7.University.Employee
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
+
+		protected void comboAchievements_SelectedIndexChanged (object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
+		{
+			if (e.Value == "-1")
+			{
+				panelAchievementTitle.Visible = true;
+				panelAchievementShortTitle.Visible = true;
+				panelAchievementTypes.Visible = true;
+			}
+			else
+			{
+				panelAchievementTitle.Visible = false;
+				panelAchievementShortTitle.Visible = false;
+				panelAchievementTypes.Visible = false;
+			}
+		}
+
 		#endregion
 	}
 }

@@ -102,5 +102,10 @@ namespace R7.University.Employee
 		protected LabelControl labelDocumentURL;
 		protected UrlControl urlDocumentURL;
 		protected HiddenField hiddenAchievementItemID;
+		protected LabelControl labelAchievements;
+		protected DnnComboBox comboAchievements;
+		protected Panel panelAchievementTitle;
+		protected Panel panelAchievementShortTitle;
+		protected Panel panelAchievementTypes;
 	}
 }

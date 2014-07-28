@@ -206,20 +206,28 @@
 				    </asp:GridView>
 				</div>
 				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" Suffix=":" />
+					<dnn:DnnComboBox id="comboAchievements" runat="server" AutoPostBack="true"
+						DataTextField="ShortTitle"
+						DataValueField="AchievementID"
+						SelectedIndexChanged="comboAchievements_SelectedIndexChanged"
+					/>
+				</div>
+				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
+					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
+					<asp:TextBox id="textAchievementTitle" runat="server" />
+				</asp:Panel>
+				<asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
+					<dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
+					<asp:TextBox id="textAchievementShortTitle" runat="server" />
+				</asp:Panel>
+				<asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
 					<dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
 						DataTextField="LocalizedAchivementType"
 						DataValueField="AchievementType"
 					/>
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
-					<asp:TextBox id="textAchievementTitle" runat="server" />
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
-					<asp:TextBox id="textAchievementShortTitle" runat="server" />
-				</div>
+				</asp:Panel>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="labelAchievementDescription" Suffix=":" />
 					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />

@@ -40,6 +40,7 @@ namespace R7.University
 
 		public int EmployeeAchievementID { get; set; }
 		public int EmployeeID  { get; set; }
+		public int? AchievementID { get; set; }
 		public string Description { get; set; }
 		public int? YearBegin { get; set; }
 		public int? YearEnd { get; set; }

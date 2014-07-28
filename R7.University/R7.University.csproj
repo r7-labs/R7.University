@@ -69,6 +69,7 @@
     <Compile Include="entities\EmployeeAchievementInfo.cs" />
     <Compile Include="entities\AchievementTypeInfo.cs" />
     <Compile Include="entities\Delegates.cs" />
+    <Compile Include="entities\AchievementInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

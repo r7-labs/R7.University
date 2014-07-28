@@ -252,4 +252,10 @@
 	<data name="labelDocumentURL.Help">
 		<value>Specify URL for a document, associated with the achievement.</value>
 	</data>
+	<data name="labelAchievements.Text">
+		<value>Achievement title</value>
+	</data>
+	<data name="labelAchievements.Help">
+		<value>Select the achievement title from dropdown or set both full and short titles manually.</value>
+	</data>
 </root>
