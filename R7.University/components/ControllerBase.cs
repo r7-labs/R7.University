@@ -325,15 +325,31 @@ namespace R7.University
 						Add<OccupiedPositionInfo> (op);
 					}
 					
-					// delete old EmployeeAchievements
-					// Delete<EmployeeAchievementInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID);
-					Delete<EmployeeAchievementInfo>(
-						string.Format("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
-							employee.EmployeeID, Utils.FormatList(", ", achievements.Select(a => a.EmployeeAchievementID.ToString()).ToArray()))); 
+					var employeeAchievementIDs = achievements.Select(a => a.EmployeeAchievementID.ToString()).ToArray();
+					if (employeeAchievementIDs.Length > 0)
+					{
+						// delete those not in current list
+						Delete<EmployeeAchievementInfo>(
+							string.Format("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
+								employee.EmployeeID, Utils.FormatList(", ", employeeAchievementIDs))); 
+					}
+					else
+					{
+						// delete all employee achievements
+						Delete<EmployeeAchievementInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID);
+					}
 
 					// add new EmployeeAchievements
 					foreach (var ach in achievements)
 					{
+						if (ach.AchievementID != null)
+						{
+							// reset linked properties
+							ach.Title = null;
+							ach.ShortTitle = null;
+							ach.AchievementType = null;
+						}
+						
 						ach.EmployeeID = employee.EmployeeID;
 						if (ach.EmployeeAchievementID <= 0)
 							Add<EmployeeAchievementInfo> (ach);
