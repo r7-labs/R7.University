@@ -24,6 +24,26 @@ namespace R7.University.Employee
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
 
+		#region Properties
+		
+		private List<AchievementInfo> CommonAchievements
+		{
+			get
+			{ 
+				var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
+				if (commonAchievements == null)
+				{
+					commonAchievements = EmployeeController.GetObjects<AchievementInfo> ().ToList();
+					ViewState ["commonAchievements"] = commonAchievements;
+				}
+				
+				return commonAchievements;
+			}
+		}
+	
+
+		#endregion
+
 		#region Handlers
 
 		/// <summary>
@@ -58,20 +78,20 @@ namespace R7.University.Employee
 			// if results are null or empty, lists were empty too
 			var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
 			var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
-			var achievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ("ORDER BY [Title] ASC"));
+			var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ("ORDER BY [Title] ASC"));
 
-			ViewState["commonAchievements"] = achievements;
+			ViewState["commonAchievements"] = commonAchievements;
 
 			// add default items
 			positions.Insert (0, new PositionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), PositionID = Null.NullInteger });
 			divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
-			achievements.Insert (0, new AchievementInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), AchievementID = Null.NullInteger });
+			commonAchievements.Insert (0, new AchievementInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), AchievementID = Null.NullInteger });
 
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
 
 			comboAchievements.SelectedIndexChanged += comboAchievements_SelectedIndexChanged;
-			comboAchievements.DataSource = achievements;
+			comboAchievements.DataSource = commonAchievements;
 			comboAchievements.DataBind();
 
 			treeDivisions.DataSource = divisions;
@@ -712,8 +732,7 @@ namespace R7.University.Employee
 				}
 				else
 				{
-					var commonAchievements = ViewState["commonAchievements"] as List<AchievementInfo>;
-					var ach = commonAchievements.Find(a => a.AchievementID.ToString() == comboAchievements.SelectedValue);
+					var ach = CommonAchievements.Find(a => a.AchievementID.ToString() == comboAchievements.SelectedValue);
 
 					// TODO: must set to selected achievement titles
 					achievement.Title = ach.Title;
