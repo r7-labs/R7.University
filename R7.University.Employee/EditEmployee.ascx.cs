@@ -196,7 +196,7 @@ namespace R7.University.Employee
 
 							// read employee achievements
 							var achievementInfos = EmployeeController.GetObjects<EmployeeAchievementInfo>(
-								"WHERE [EmployeeID] = @0", itemId.Value);
+								CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", itemId.Value);
 
 							// fill achievements list
 							var achievements = new List<EmployeeAchievementView>();
@@ -681,8 +681,7 @@ namespace R7.University.Employee
 					textYearEnd.Text = achievement.YearEnd.ToString();
 					checkIsTitle.Checked = achievement.IsTitle;
 					urlDocumentURL.Url = achievement.DocumentURL;
-					
-					
+				
 					// show update and cancel buttons (enter edit mode)
 					buttonAddAchievement.Visible = false;
 					buttonUpdateAchievement.Visible = true;
@@ -734,7 +733,6 @@ namespace R7.University.Employee
 				{
 					var ach = CommonAchievements.Find(a => a.AchievementID.ToString() == comboAchievements.SelectedValue);
 
-					// TODO: must set to selected achievement titles
 					achievement.Title = ach.Title;
 					achievement.ShortTitle = ach.ShortTitle;
 					achievement.AchievementType = ach.AchievementType;
