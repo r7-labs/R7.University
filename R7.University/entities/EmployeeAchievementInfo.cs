@@ -53,10 +53,22 @@ namespace R7.University
 		#endregion
 		
 		[IgnoreColumn]
-		public AchievementType AchievementType
+		public AchievementType? AchievementType
 		{
-			get { return (AchievementType)AchievementTypeString[0]; }
-			set { AchievementTypeString = ((char)value).ToString(); }
+			get
+			{ 
+				if (!string.IsNullOrWhiteSpace (AchievementTypeString))
+					return (AchievementType)AchievementTypeString [0];
+
+				return null;
+			}
+			set
+			{ 
+				if (value != null)
+					AchievementTypeString = ((char)value).ToString(); 
+				else
+					AchievementTypeString = null;
+			}
 		}
 		
 	}

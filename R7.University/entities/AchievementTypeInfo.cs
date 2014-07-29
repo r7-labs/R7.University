@@ -76,9 +76,12 @@ namespace R7.University
 			return achievementTypes;
 		}
 					
-		public static string GetResourceKey (AchievementType achievementType)
+		public static string GetResourceKey (AchievementType? achievementType)
 		{
-			return "AchievementType" + (char)achievementType + ".Text";
+			if (achievementType != null)
+				return "AchievementType" + (char)achievementType.Value + ".Text";
+		
+			return "AchievementTypeN.Text";
 		}
 		
 		#endregion

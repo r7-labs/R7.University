@@ -26,6 +26,7 @@ namespace R7.University.Employee
 			
 			EmployeeAchievementID = achievement.EmployeeAchievementID;
 			EmployeeID = achievement.EmployeeID;
+			AchievementID = achievement.AchievementID;
 			Title = achievement.Title;
 			ShortTitle = achievement.ShortTitle;
 			Description = achievement.Description;
@@ -44,6 +45,7 @@ namespace R7.University.Employee
 
 			achInfo.EmployeeAchievementID = EmployeeAchievementID;
 			achInfo.EmployeeID = EmployeeID;
+			achInfo.AchievementID = AchievementID;
 			achInfo.Title = Title;
 			achInfo.ShortTitle = ShortTitle;
 			achInfo.Description = Description;
@@ -70,8 +72,25 @@ namespace R7.University.Employee
 			Description = info.GetString ("Description");
 			DocumentURL = info.GetString ("DocumentURL");
 			IsTitle = info.GetBoolean ("IsTitle");
-			AchievementType = (AchievementType)info.GetChar ("AchievementType");
 			
+			try 
+			{
+				AchievementID = info.GetInt32 ("AchievementID");
+			}
+			catch
+			{
+				AchievementID = null;
+			}
+
+			try
+			{
+				AchievementType = (AchievementType)info.GetValue("AchievementType", typeof(AchievementType));			
+			}
+			catch
+			{
+				AchievementType = null;
+			}
+
 			try
 			{
 				YearBegin = info.GetInt32 ("YearBegin");
@@ -101,7 +120,12 @@ namespace R7.University.Employee
 			info.AddValue ("Description", Description);
 			info.AddValue ("DocumentURL", DocumentURL);
 			info.AddValue ("IsTitle", IsTitle);
-			info.AddValue ("AchievementType", (char)AchievementType);
+
+			if (AchievementID != null)
+				info.AddValue ("AchievementID", AchievementID.Value);
+
+			if (AchievementType != null)
+				info.AddValue ("AchievementType", AchievementType.Value);
 			
 			if (YearBegin != null)
 				info.AddValue ("YearBegin", YearBegin.Value);
@@ -111,10 +135,6 @@ namespace R7.University.Employee
 		}
 
 		#endregion
-		
-	
-		
-       
 
 	} // class
 } // namespace
