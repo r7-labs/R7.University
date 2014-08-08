@@ -76,7 +76,4 @@
     <Folder Include="entities\" />
     <Folder Include="components\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="01.01.00.SqlDataProvider" />
-  </ItemGroup>
 </Project>
