@@ -15,7 +15,7 @@
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employeeCommon">Common</a></li>
 		    <li><a href="#employeePositions">Positions</a></li>
-		    <li><a href="#employeeAchivements">Achivements</a></li>
+		    <li><a href="#employeeAchievements">Achievements</a></li>
 		    <li><a href="#employeeAbout">About</a></li>
 		</ul>
 		<br /><br />
@@ -178,8 +178,95 @@
 			</fieldset>
 		</div>
 	
-		<div id="employeeAchivements">
+		<div id="employeeAchievements">
 			<fieldset>
+				<div class="dnnFormItem" style="margin-bottom:10px">
+					<div class="dnnLabel"></div>
+					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
+						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound">
+							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+					        <SelectedRowStyle CssClass="dnnFormError" />
+					        <EditRowStyle CssClass="dnnFormInput" />
+					        <FooterStyle CssClass="dnnGridFooter" />
+					        <PagerStyle CssClass="dnnGridPager" />
+							<Columns>
+								<asp:TemplateField>
+					               <ItemTemplate>
+					                	<asp:LinkButton id="linkEditAchievement" runat="server" OnCommand="linkEditAchievement_Command" >
+					                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+					                	</asp:LinkButton>
+										<asp:LinkButton id="linkDeleteAchievement" runat="server" OnCommand="linkDeleteAchievement_Command" >
+					                		<asp:Image runat="server" ImageUrl="~/images/delete.gif" />
+					                	</asp:LinkButton>
+					               </ItemTemplate>
+					        	</asp:TemplateField>
+							</Columns>
+				    </asp:GridView>
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" Suffix=":" />
+					<dnn:DnnComboBox id="comboAchievements" runat="server" AutoPostBack="true"
+						DataTextField="ShortTitle"
+						DataValueField="AchievementID"
+						SelectedIndexChanged="comboAchievements_SelectedIndexChanged"
+					/>
+				</div>
+				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
+					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
+					<asp:TextBox id="textAchievementTitle" runat="server" />
+				</asp:Panel>
+				<asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
+					<dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
+					<asp:TextBox id="textAchievementShortTitle" runat="server" />
+				</asp:Panel>
+				<asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
+					<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
+					<dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
+						DataTextField="LocalizedAchivementType"
+						DataValueField="AchievementType"
+					/>
+				</asp:Panel>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" Suffix=":" />
+					<asp:TextBox id="textAchievementTitleSuffix" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" Suffix=":" />
+					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelYearBegin" runat="server" ControlName="textYearBegin" Suffix=":" />
+					<asp:TextBox id="textYearBegin" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelYearEnd" runat="server" ControlName="textYearEnd" Suffix=":" />
+					<asp:TextBox id="textYearEnd" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" Suffix="?" />
+					<asp:CheckBox id="checkIsTitle" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" Suffix=":" />
+					<dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
+						IncludeActiveTab="true"
+			        	ShowFiles="true" ShowTabs="true"
+			        	ShowUrls="true" ShowUsers="true"
+						ShowLog="false" ShowTrack="false"
+						ShowNone="true" ShowNewWindow="false" />      
+				</div>
+				<div class="dnnFormItem">
+					<div class="dnnLabel"></div>
+					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" CommandArgument="Add" />
+					<asp:LinkButton id="buttonUpdateAchievement" runat="server" resourcekey="buttonUpdateAchievement" 
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" Visible="false" CommandArgument="Update" />
+					<asp:LinkButton id="buttonCancelUpdateAchievement" runat="server" resourcekey="buttonCancelUpdateAchievement" 
+						CssClass="dnnSecondaryAction" OnClick="buttonCancelUpdateAchievement_Click" Visible="false" />
+				</div>
+				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>
 		</div>
 	

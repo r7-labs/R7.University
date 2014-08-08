@@ -183,4 +183,85 @@
 	<data name="checkAddToVocabulary.Text">
 		<value>Add to vocabulary</value>
 	</data>
+	<data name="AchievementTypeA.Text">
+		<value>Achievement</value>
+	</data>
+	<data name="AchievementTypeT.Text">
+		<value>Training</value>
+	</data>
+	<data name="AchievementTypeE.Text">
+		<value>Education</value>
+	</data>
+	<data name="AchievementTypeW.Text">
+		<value>Work</value>
+	</data>
+	<data name="labelAchievementTypes.Text">
+		<value>Achievement Type</value>
+	</data>
+	<data name="labelAchievementTypes.Help">
+		<value>Select employee achievement type from the list.</value>
+	</data>
+	<data name="buttonAddAchievement.Text">
+		<value>Add achivement</value>
+	</data>
+	<data name="buttonUpdateAchievement.Text">
+		<value>Update achivement</value>
+	</data>
+	<data name="buttonCancelUpdateAchievement.Text">
+		<value>Cancel</value>
+	</data>
+	<data name="labelYearBegin.Text">
+		<value>Year begin</value>
+	</data>
+	<data name="labelYearBegin.Help">
+		<value>Enter starting year of achievement.</value>
+	</data>
+	<data name="labelYearEnd.Text">
+		<value>Year end</value>
+	</data>
+	<data name="labelYearEnd.Help">
+		<value>Enter final year of achievement.</value>
+	</data>
+	<data name="labelAchievementTitle.Text">
+		<value>Title</value>
+	</data>
+	<data name="labelAchievementTitle.Help">
+		<value>Enter the title for described achievement.</value>
+	</data>
+	<data name="labelAchievementShortTitle.Text">
+		<value>Short title</value>
+	</data>
+	<data name="labelAchievementShortTitle.Help">
+		<value>Enter the short title for described achievement.</value>
+	</data>
+	<data name="labelAchievementDescription.Text">
+		<value>Description</value>
+	</data>
+	<data name="labelAchievementDescription.Help">
+		<value>Enter optional description to describe achievement.</value>
+	</data>
+	<data name="labelAchievementTitleSuffix.Text">
+		<value>Title suffix</value>
+	</data>
+	<data name="labelAchievementTitleSuffix.Help">
+		<value>Enter the extension suffix for the achievement title.</value>
+	</data>
+	<data name="labelIsTitle.Text">
+		<value>Is title</value>
+	</data>
+	<data name="labelIsTitle.Help">
+		<value>If checked, this achivement will be displayed as one of employee's titles along with his/her name.</value>
+	</data>
+	<data name="labelDocumentURL.Text">
+		<value>Document URL</value>
+	</data>
+	<data name="labelDocumentURL.Help">
+		<value>Specify URL for a document, associated with the achievement.</value>
+	</data>
+	<data name="labelAchievements.Text">
+		<value>Achievement title</value>
+	</data>
+	<data name="labelAchievements.Help">
+		<value>Select the achievement title from dropdown or set both full and short titles manually.</value>
+	</data>
 </root>

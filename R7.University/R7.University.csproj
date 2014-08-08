@@ -66,10 +66,17 @@
     <Compile Include="components\QuotedPrintable.cs" />
     <Compile Include="components\CacheHelper.cs" />
     <Compile Include="components\SharedLogic.cs" />
+    <Compile Include="entities\EmployeeAchievementInfo.cs" />
+    <Compile Include="entities\AchievementTypeInfo.cs" />
+    <Compile Include="entities\Delegates.cs" />
+    <Compile Include="entities\AchievementInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="entities\" />
     <Folder Include="components\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="01.01.00.SqlDataProvider" />
   </ItemGroup>
 </Project>

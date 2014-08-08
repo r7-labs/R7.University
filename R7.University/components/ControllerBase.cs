@@ -265,7 +265,8 @@ namespace R7.University
 
 		#region Custom methods
 
-		public void AddEmployee(EmployeeInfo employee, List<OccupiedPositionInfo> occupiedPositions)
+		public void AddEmployee(EmployeeInfo employee, 
+			List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
 			using (var ctx = DataContext.Instance ()) 
 			{
@@ -282,17 +283,27 @@ namespace R7.University
 						op.EmployeeID = employee.EmployeeID;
 						Add<OccupiedPositionInfo> (op);
 					}
+					
+					// add new EmployeeAchievements
+					foreach (var ach in achievements)
+					{
+						ach.EmployeeID = employee.EmployeeID;
+						Add<EmployeeAchievementInfo> (ach);
+					}
+				
 					ctx.Commit ();
 				}
 				catch
 				{
 					ctx.RollbackTransaction ();
+					throw;
 				}
 			}
 
 		}
 
-		public void UpdateEmployee(EmployeeInfo employee, List<OccupiedPositionInfo> occupiedPositions)
+		public void UpdateEmployee(EmployeeInfo employee, 
+			List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
 			using (var ctx = DataContext.Instance ()) 
 			{
@@ -305,7 +316,7 @@ namespace R7.University
 
 					// delete old OccupiedPositions 
 					Delete<OccupiedPositionInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID); 
-
+					
 					// add new OccupiedPositions
 					foreach (var op in occupiedPositions)
 					{
@@ -313,12 +324,45 @@ namespace R7.University
 						op.EmployeeID = employee.EmployeeID;
 						Add<OccupiedPositionInfo> (op);
 					}
+					
+					var employeeAchievementIDs = achievements.Select(a => a.EmployeeAchievementID.ToString()).ToArray();
+					if (employeeAchievementIDs.Length > 0)
+					{
+						// delete those not in current list
+						Delete<EmployeeAchievementInfo>(
+							string.Format("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
+								employee.EmployeeID, Utils.FormatList(", ", employeeAchievementIDs))); 
+					}
+					else
+					{
+						// delete all employee achievements
+						Delete<EmployeeAchievementInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID);
+					}
+
+					// add new EmployeeAchievements
+					foreach (var ach in achievements)
+					{
+						if (ach.AchievementID != null)
+						{
+							// reset linked properties
+							ach.Title = null;
+							ach.ShortTitle = null;
+							ach.AchievementType = null;
+						}
+						
+						ach.EmployeeID = employee.EmployeeID;
+						if (ach.EmployeeAchievementID <= 0)
+							Add<EmployeeAchievementInfo> (ach);
+						else
+							Update<EmployeeAchievementInfo> (ach);
+					}
 
 					ctx.Commit ();
 				}
 				catch
 				{
 					ctx.RollbackTransaction ();
+					throw;
 				}
 			}
 		}

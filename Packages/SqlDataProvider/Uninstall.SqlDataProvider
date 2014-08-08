@@ -24,6 +24,10 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Positions] 
 GO
 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Achievements] 
+GO
+
 -- Drop tables
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
@@ -33,6 +37,12 @@ DROP TABLE {databaseOwner}[{objectQualifier}University_Positions]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_Divisions] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_Achievements] 
 GO
 
 -- DROP TABLE {databaseOwner}[{objectQualifier}University_Employees] 
@@ -47,6 +57,9 @@ DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]
 GO
 
 DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
 GO
 
 -- Drop stored procedures & functions

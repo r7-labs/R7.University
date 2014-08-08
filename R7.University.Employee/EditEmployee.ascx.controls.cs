@@ -80,5 +80,34 @@ namespace R7.University.Employee
 		protected DnnTreeView treeDivisions;
 		protected LinkButton buttonAddPosition;
 		protected LinkButton buttonAddPrimePosition;
+		
+		protected GridView gridAchievements;
+		protected DnnComboBox comboAchievementTypes;
+		protected LabelControl labelYearBegin;
+		protected TextBox textYearBegin;
+		protected LabelControl labelYearEnd;
+		protected TextBox textYearEnd;
+		protected LinkButton buttonAddAchievement;
+		protected LinkButton buttonUpdateAchievement;
+		protected LinkButton buttonCancelUpdateAchievement;
+
+		protected LabelControl labelAchievementTitle;
+		protected TextBox textAchievementTitle;
+		protected LabelControl labelAchievementShortTitle;
+		protected TextBox textAchievementShortTitle;
+		protected LabelControl labelAchievementDescription;
+		protected TextBox textAchievementDescription;
+		protected LabelControl labelIsTitle;
+		protected CheckBox checkIsTitle;
+		protected LabelControl labelDocumentURL;
+		protected UrlControl urlDocumentURL;
+		protected HiddenField hiddenAchievementItemID;
+		protected LabelControl labelAchievements;
+		protected DnnComboBox comboAchievements;
+		protected Panel panelAchievementTitle;
+		protected Panel panelAchievementShortTitle;
+		protected Panel panelAchievementTypes;
+		protected LabelControl labelAchievementTitleSuffix;
+		protected TextBox textAchievementTitleSuffix;
 	}
 }
