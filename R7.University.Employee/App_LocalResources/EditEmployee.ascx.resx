@@ -240,6 +240,12 @@
 	<data name="labelAchievementDescription.Help">
 		<value>Enter optional description to describe achievement.</value>
 	</data>
+	<data name="labelAchievementTitleSuffix.Text">
+		<value>Title suffix</value>
+	</data>
+	<data name="labelAchievementTitleSuffix.Help">
+		<value>Enter the extension suffix for the achievement title.</value>
+	</data>
 	<data name="labelIsTitle.Text">
 		<value>Is title</value>
 	</data>

@@ -579,7 +579,7 @@ namespace R7.University.Employee
 				var col = 0;
 				dr = dt.NewRow ();
 				dr [col++] = achievement.ItemID;
-				dr [col++] = achievement.Title;
+				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
 				//dr [col++] = achievement.ShortTitle;
 				//dr [col++] = achievement.Description;
 				//dr [col++] = achievement.DocumentURL;
@@ -676,6 +676,7 @@ namespace R7.University.Employee
 						panelAchievementTypes.Visible = true;
 					}
 
+					textAchievementTitleSuffix.Text = achievement.TitleSuffix;
 					textAchievementDescription.Text = achievement.Description;
 					textYearBegin.Text = achievement.YearBegin.ToString();
 					textYearEnd.Text = achievement.YearEnd.ToString();
@@ -738,6 +739,7 @@ namespace R7.University.Employee
 					achievement.AchievementType = ach.AchievementType;
 				}
 
+				achievement.TitleSuffix = textAchievementTitleSuffix.Text;
 				achievement.Description = textAchievementDescription.Text;
 				achievement.IsTitle = checkIsTitle.Checked;
 				achievement.YearBegin = Utils.ParseToNullableInt(textYearBegin.Text);

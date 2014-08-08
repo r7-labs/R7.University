@@ -107,5 +107,7 @@ namespace R7.University.Employee
 		protected Panel panelAchievementTitle;
 		protected Panel panelAchievementShortTitle;
 		protected Panel panelAchievementTypes;
+		protected LabelControl labelAchievementTitleSuffix;
+		protected TextBox textAchievementTitleSuffix;
 	}
 }

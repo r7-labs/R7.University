@@ -229,7 +229,11 @@
 					/>
 				</asp:Panel>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="labelAchievementDescription" Suffix=":" />
+					<dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" Suffix=":" />
+					<asp:TextBox id="textAchievementTitleSuffix" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" Suffix=":" />
 					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
 				</div>
 				<div class="dnnFormItem">

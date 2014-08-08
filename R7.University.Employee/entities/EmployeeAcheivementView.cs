@@ -29,6 +29,7 @@ namespace R7.University.Employee
 			AchievementID = achievement.AchievementID;
 			Title = achievement.Title;
 			ShortTitle = achievement.ShortTitle;
+			TitleSuffix = achievement.TitleSuffix;
 			Description = achievement.Description;
 			DocumentURL = achievement.DocumentURL;
 			IsTitle = achievement.IsTitle;
@@ -48,6 +49,7 @@ namespace R7.University.Employee
 			achInfo.AchievementID = AchievementID;
 			achInfo.Title = Title;
 			achInfo.ShortTitle = ShortTitle;
+			achInfo.TitleSuffix = TitleSuffix;
 			achInfo.Description = Description;
 			achInfo.DocumentURL = DocumentURL;
 			achInfo.IsTitle = IsTitle;
@@ -69,6 +71,7 @@ namespace R7.University.Employee
 			EmployeeID = info.GetInt32 ("EmployeeID");
 			Title = info.GetString ("Title");
 			ShortTitle = info.GetString ("ShortTitle");
+			TitleSuffix = info.GetString ("TitleSuffix");
 			Description = info.GetString ("Description");
 			DocumentURL = info.GetString ("DocumentURL");
 			IsTitle = info.GetBoolean ("IsTitle");
@@ -117,6 +120,7 @@ namespace R7.University.Employee
 			info.AddValue ("EmployeeID", EmployeeID);
 			info.AddValue ("Title", Title);
 			info.AddValue ("ShortTitle", ShortTitle);
+			info.AddValue ("TitleSuffix", TitleSuffix);
 			info.AddValue ("Description", Description);
 			info.AddValue ("DocumentURL", DocumentURL);
 			info.AddValue ("IsTitle", IsTitle);

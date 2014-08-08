@@ -46,7 +46,8 @@ namespace R7.University
 		public int? YearEnd { get; set; }
 		public bool IsTitle { get; set; }
 		public string DocumentURL { get; set; }
-		
+		public string TitleSuffix { get; set; }		
+
 		[ColumnName ("AchievementType")]
 		public string AchievementTypeString { get; set; }
 	
