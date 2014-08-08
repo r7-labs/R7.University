@@ -180,7 +180,7 @@
 	
 		<div id="employeeAchievements">
 			<fieldset>
-				<div class="dnnFormItem" style="margin-top:10px">
+				<div class="dnnFormItem" style="margin-bottom:10px">
 					<div class="dnnLabel"></div>
 					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
 						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound">
