@@ -25,15 +25,20 @@ namespace R7.University.Launchpad
 			set { WriteSetting<int> ("Launchpad_PageSize", value, true); }
 		}
 
+		private List<string> tables;
+
 		public List<string> Tables
 		{
 			get
 			{ 
-				var tables = new List<string>();
-				tables.AddRange(
-					ReadSetting<string> ("Launchpad_Tables", LaunchpadTableInfo.TablePositions, true)
-					.Split(new [] {';'}, StringSplitOptions.RemoveEmptyEntries));
-					
+				if (tables == null)
+				{
+					tables = new List<string> ();
+					tables.AddRange (
+						ReadSetting<string> ("Launchpad_Tables", LaunchpadTableInfo.TablePositions, true)
+						.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+				}
+				
 				return tables;
 			}
 			set 
