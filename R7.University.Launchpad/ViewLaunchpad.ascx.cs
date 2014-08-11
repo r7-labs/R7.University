@@ -155,7 +155,7 @@ namespace R7.University.Launchpad
 
 					if (settings.Tables.Contains(LaunchpadTableInfo.TableAchievements))
 					{
-						gridPositions.DataSource = AchievementsDataSource ();
+						gridAchievements.DataSource = AchievementsDataSource ();
 						Session [gridAchievements.ID] = gridAchievements.DataSource;
 						gridAchievements.DataBind ();
 					}
@@ -491,10 +491,12 @@ namespace R7.University.Launchpad
 			{
 				var col = 0;
 				dr = dt.NewRow ();
+
 				dr [col++] = achievement.AchievementID;
 				dr [col++] = achievement.Title;
 				dr [col++] = achievement.ShortTitle;
 				dr [col++] = LocalizeString(AchievementTypeInfo.GetResourceKey(achievement.AchievementType));
+
 				dt.Rows.Add (dr);
 			}
 
