@@ -110,6 +110,7 @@
       <DependentUpon>EditPosition.ascx</DependentUpon>
     </Compile>
     <Compile Include="entities\UserView.cs" />
+    <Compile Include="entities\LaunchpadTableInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
