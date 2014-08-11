@@ -21,6 +21,8 @@ namespace R7.University.Launchpad
 		protected HyperLink buttonAddDivision;
 		protected GridView gridEmployees;
 		protected HyperLink buttonAddEmployee;
+		protected GridView gridAchievements;
+		protected HyperLink buttonAddAchievement;
 		protected Repeater repeatTabs;
 	}
 }

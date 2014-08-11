@@ -42,6 +42,9 @@ namespace R7.University.Launchpad
 				case "gridEmployees": 
 					session = EmployeesDataSource ();
 					break;
+				case "gridAchievements": 
+					session = AchievementsDataSource ();
+					break;
 				}
 				Session [gridviewId] = session;
 			}
@@ -79,6 +82,7 @@ namespace R7.University.Launchpad
 			buttonAddPosition.NavigateUrl = Utils.EditUrl (this, "EditPosition");
 			buttonAddDivision.NavigateUrl = Utils.EditUrl (this, "EditDivision");
 			buttonAddEmployee.NavigateUrl = Utils.EditUrl (this, "EditEmployee");
+			buttonAddAchievement.NavigateUrl = Utils.EditUrl (this, "EditAchievement");
 
 			// show first view if no session info available
 			if (Session ["Launchpad_ActiveView_" + TabModuleId] == null)
@@ -96,6 +100,7 @@ namespace R7.University.Launchpad
 			gridPositions.PageSize = pageSize;
 			gridDivisions.PageSize = pageSize;
 			gridEmployees.PageSize = pageSize;
+			gridAchievements.PageSize = pageSize;
 		}
 
 		/// <summary>
@@ -146,6 +151,13 @@ namespace R7.University.Launchpad
 						gridPositions.DataSource = PositionsDataSource ();
 						Session [gridPositions.ID] = gridPositions.DataSource;
 						gridPositions.DataBind ();
+					}
+
+					if (settings.Tables.Contains(LaunchpadTableInfo.TableAchievements))
+					{
+						gridPositions.DataSource = AchievementsDataSource ();
+						Session [gridAchievements.ID] = gridAchievements.DataSource;
+						gridAchievements.DataBind ();
 					}
 				}
 			}
@@ -226,6 +238,18 @@ namespace R7.University.Launchpad
 					"", 
 					"", 
 					Utils.EditUrl (this, "EditEmployee"),
+					false, 
+					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					true, 
+					false
+				);
+				actions.Add (
+					GetNextActionID (), 
+					"Add Achievement",
+					ModuleActionType.AddContent, 
+					"", 
+					"", 
+					Utils.EditUrl (this, "EditAchievement"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
@@ -448,6 +472,35 @@ namespace R7.University.Launchpad
 			return dt;
 		}
 
+		private DataTable AchievementsDataSource ()
+		{
+			var dt = new DataTable ();
+			DataRow dr;
+		
+			dt.Columns.Add (new DataColumn ("AchievementID", typeof(int)));
+			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
+			dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
+			dt.Columns.Add (new DataColumn ("AchievementType", typeof(string)));
+
+			foreach (DataColumn column in dt.Columns)
+				column.AllowDBNull = true;
+
+			var ctrl = new LaunchpadController ();
+
+			foreach (var achievement in ctrl.GetObjects<AchievementInfo>())
+			{
+				var col = 0;
+				dr = dt.NewRow ();
+				dr [col++] = achievement.AchievementID;
+				dr [col++] = achievement.Title;
+				dr [col++] = achievement.ShortTitle;
+				dr [col++] = LocalizeString(AchievementTypeInfo.GetResourceKey(achievement.AchievementType));
+				dt.Rows.Add (dr);
+			}
+
+			return dt;
+		}
+
 		protected void gridView_PageIndexChanging (object sender, GridViewPageEventArgs e)
 		{
 			var gv = sender as GridView;
@@ -479,6 +532,8 @@ namespace R7.University.Launchpad
 					link.NavigateUrl = Utils.EditUrl (this, "EditDivision", "division_id", e.Row.Cells [1].Text);
 				else if (sender == gridEmployees)
 					link.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", e.Row.Cells [1].Text);
+				else if (sender == gridAchievements)
+					link.NavigateUrl = Utils.EditUrl (this, "EditAchievement", "achievement_id", e.Row.Cells [1].Text);
 			}
 		}
 
