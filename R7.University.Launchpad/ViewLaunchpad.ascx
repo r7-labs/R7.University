@@ -100,5 +100,34 @@
 		        <br />
 		    </div>
 		</asp:View>
+		<asp:View id="viewAchievements" runat="server">
+			<div id="achievements" style="overflow:auto">
+				<asp:HyperLink runat="server" id="buttonAddAchievement" CssClass="dnnPrimaryAction">Add achievement</asp:HyperLink><br />
+				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
+				AllowPaging="true" AllowSorting="true" GridLines="None" 
+				OnSorting="gridView_Sorting" 
+				OnPageIndexChanging="gridView_PageIndexChanging"
+				OnRowDataBound="gridView_RowDataBound">
+					<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+			        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+			        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+			        <SelectedRowStyle CssClass="dnnFormError" />
+			        <EditRowStyle CssClass="dnnFormInput" />
+			        <FooterStyle CssClass="dnnGridFooter" />
+			        <PagerStyle CssClass="dnnGridPager" />
+			        <Columns>
+						<asp:TemplateField>
+			               <ItemTemplate>
+			                	<asp:HyperLink id="linkEdit" runat="server">
+			                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+			                	</asp:HyperLink>
+			               </ItemTemplate>
+			        	</asp:TemplateField>
+					</Columns>
+					<PagerSettings Mode="NumericFirstLast" Visible="true" />
+		        </asp:GridView>
+		        <br />
+		    </div>
+		</asp:View>
 	</asp:MultiView>
 </div>

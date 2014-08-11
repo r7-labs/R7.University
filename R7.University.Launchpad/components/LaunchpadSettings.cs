@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using R7.University;
@@ -22,13 +25,30 @@ namespace R7.University.Launchpad
 			set { WriteSetting<int> ("Launchpad_PageSize", value, true); }
 		}
 
-		public string Tables
+		private List<string> tables;
+
+		public List<string> Tables
 		{
-			get { return ReadSetting<string> ("Launchpad_Tables", "positions", true); }
-			set { WriteSetting<string> ("Launchpad_Tables", value, true); }
+			get
+			{ 
+				if (tables == null)
+				{
+					tables = new List<string> ();
+					tables.AddRange (
+						ReadSetting<string> ("Launchpad_Tables", LaunchpadTableInfo.TablePositions, true)
+						.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+				}
+				
+				return tables;
+			}
+			set 
+			{ 
+				WriteSetting<string> ("Launchpad_Tables", Utils.FormatList(";", value.ToArray()), true); 
+			}
 		}
 
 		#endregion
+	
 	}
 }
 

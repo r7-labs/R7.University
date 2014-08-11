@@ -1,9 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<data name="NotSelected.Text" xml:space="preserve">
-    <value>-- not selected --</value>
-  </data>
-	<data name="AddContent.Action" xml:space="preserve">
-    <value>Add Content</value>
-  </data>
+    <data name="NotSelected.Text" xml:space="preserve">
+        <value>-- not selected --</value>
+    </data>
+    <data name="AddContent.Action" xml:space="preserve">
+        <value>Add Content</value>
+    </data>
+	<data name="AchievementTypeA.Text">
+		<value>Achievement</value>
+	</data>
+	<data name="AchievementTypeT.Text">
+		<value>Training</value>
+	</data>
+	<data name="AchievementTypeE.Text">
+		<value>Education</value>
+	</data>
+	<data name="AchievementTypeW.Text">
+		<value>Work</value>
+	</data>
 </root>

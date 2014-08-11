@@ -10,18 +10,17 @@ namespace R7.University.Launchpad
 {
 	public partial class SettingsLaunchpad : ModuleSettingsBase
 	{
-		public void Page_Init()
+		public void Page_Init ()
 		{
 			// fill PageSize combobox
-			comboPageSize.AddItem("10", "10");
-			comboPageSize.AddItem("25", "25");
-			comboPageSize.AddItem("50", "50");
-			comboPageSize.AddItem("100", "100");
+			comboPageSize.AddItem ("10", "10");
+			comboPageSize.AddItem ("25", "25");
+			comboPageSize.AddItem ("50", "50");
+			comboPageSize.AddItem ("100", "100");
 
 			// fill tables list
-			listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Positions", "positions"));
-			listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Divisions", "divisions"));
-			listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem("Employees", "employees"));
+			foreach (var table in LaunchpadTableInfo.AvailableTables)
+				listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (Utils.FirstCharToUpperInvariant(table), table));
 		}
 
 		/// <summary>
@@ -37,10 +36,9 @@ namespace R7.University.Launchpad
 					comboPageSize.Select (settings.PageSize.ToString(), false);
 
 					// check table list items
-					var tableNames = settings.Tables.Split(';');
-					foreach (var tableName in tableNames)
+					foreach (var table in settings.Tables)
 					{
-						var item = listTables.FindItemByValue(tableName);
+						var item = listTables.FindItemByValue(table);
 						if (item != null) item.Checked = true;
 					}
 
@@ -59,7 +57,7 @@ namespace R7.University.Launchpad
 				var settings = new LaunchpadSettings (this);
 				
 				settings.PageSize = int.Parse(comboPageSize.SelectedValue);
-				settings.Tables = Utils.FormatList(";", listTables.CheckedItems.Select(i => i.Value).ToArray());
+				settings.Tables = listTables.CheckedItems.Select(i => i.Value).ToList();
 
 				// remove session variable for active view,
 				// since view set may be changed
