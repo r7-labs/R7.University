@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="labelTitle.Text" xml:space="preserve">
+    	<value>Title</value>
+  	</data>
+	<data name="labelTitle.Help" xml:space="preserve">
+    	<value>Enter the title for an employee achievement.</value>
+  	</data>
+	<data name="labelShortTitle.Text" xml:space="preserve">
+    	<value>Short title</value>
+ 	</data>
+	<data name="labelShortTitle.Help" xml:space="preserve">
+    	<value>Enter the short title for employee achievement.</value>
+  	</data>
+	<data name="labelAchievementTypes.Text">
+		<value>Achievement Type</value>
+	</data>
+	<data name="labelAchievementTypes.Help">
+		<value>Select employee achievement type from the list.</value>
+	</data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    	<value>&lt;P&gt;A Edit position module&lt;/P&gt;</value>
+  	</data>
+	<data name="ControlTitle_edit.Text" xml:space="preserve">
+    	<value>Edit Achievement</value>
+  	</data>
+</root>

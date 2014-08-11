@@ -155,6 +155,19 @@
 										<supportsPopUps>True</supportsPopUps>
 										<viewOrder>0</viewOrder>
 									</moduleControl>
+									<moduleControl>
+										<controlKey>EditPosition</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditAchievement.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Achievement</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
 								</moduleControls>
 							</moduleDefinition>
 						</moduleDefinitions>
