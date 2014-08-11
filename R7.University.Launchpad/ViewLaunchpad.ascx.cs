@@ -59,16 +59,16 @@ namespace R7.University.Launchpad
 			var settings = new LaunchpadSettings (this);
 
 			// read tab names
-			var tabNames = settings.Tables.Split (new char [] {';'}, StringSplitOptions.RemoveEmptyEntries);
-			if (tabNames == null || tabNames.Length == 0)
+			var tables = settings.Tables;
+			if (tables == null || tables.Count == 0)
 			{
 				Utils.Message (this, "NotConfigured.Text", MessageType.Info, true);
 				return;
 			}
-			else if (tabNames.Length > 1)
+			else if (tables.Count > 1)
 			{
 				// bind tabs
-				repeatTabs.DataSource = tabNames;
+				repeatTabs.DataSource = tables;
 				repeatTabs.DataBind ();
 			}
 
@@ -84,10 +84,10 @@ namespace R7.University.Launchpad
 			if (Session ["Launchpad_ActiveView_" + TabModuleId] == null)
 			{
 				// if no tabs set in settings, don't set active view
-				if (tabNames != null && tabNames.Length > 0)
+				if (tables != null && tables.Count > 0)
 				{
-					multiView.SetActiveView (FindView (tabNames [0]));
-					SelectTab (tabNames [0]);
+					multiView.SetActiveView (FindView (tables [0]));
+					SelectTab (tables [0]);
 				}
 			}
 
