@@ -51,7 +51,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = R7.University\R7.University.csproj
+		StartupItem = R7.University.Launchpad\R7.University.Launchpad.csproj
 		version = 1.0.7
 	EndGlobalSection
 EndGlobal
