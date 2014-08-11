@@ -125,17 +125,28 @@ namespace R7.University.Launchpad
 						SelectTab ((string)Session ["Launchpad_ActiveView_" + TabModuleId]);
 					}
 
-					gridDivisions.DataSource = DivisionsDataSource ();
-					Session [gridDivisions.ID] = gridDivisions.DataSource;
-					gridDivisions.DataBind ();
+					var settings = new LaunchpadSettings(this);
+					
+					if (settings.Tables.Contains(LaunchpadTableInfo.TableDivisions))
+					{
+						gridDivisions.DataSource = DivisionsDataSource ();
+						Session [gridDivisions.ID] = gridDivisions.DataSource;
+						gridDivisions.DataBind ();
+					}
+						
+					if (settings.Tables.Contains(LaunchpadTableInfo.TableEmployees))
+					{
+						gridEmployees.DataSource = EmployeesDataSource ();
+						Session [gridEmployees.ID] = gridEmployees.DataSource;
+						gridEmployees.DataBind ();
+					}
 
-					gridEmployees.DataSource = EmployeesDataSource ();
-					Session [gridEmployees.ID] = gridEmployees.DataSource;
-					gridEmployees.DataBind ();
-
-					gridPositions.DataSource = PositionsDataSource ();
-					Session [gridPositions.ID] = gridPositions.DataSource;
-					gridPositions.DataBind ();
+					if (settings.Tables.Contains(LaunchpadTableInfo.TablePositions))
+					{
+						gridPositions.DataSource = PositionsDataSource ();
+						Session [gridPositions.ID] = gridPositions.DataSource;
+						gridPositions.DataBind ();
+					}
 				}
 			}
 			catch (Exception ex)
