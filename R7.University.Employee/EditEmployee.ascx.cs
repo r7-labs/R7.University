@@ -509,6 +509,18 @@ namespace R7.University.Employee
 			}
 		}
 
+		protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
+		{
+			try
+			{
+			
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
+			}
+		}
+
 		protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
 		{
 			var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;

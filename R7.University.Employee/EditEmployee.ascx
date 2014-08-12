@@ -141,6 +141,9 @@
 							<Columns>
 								<asp:TemplateField>
 					               <ItemTemplate>
+										<asp:LinkButton id="linkEditOccupiedPosition" runat="server" OnCommand="linkEditOccupiedPosition_Command" >
+					                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+					                	</asp:LinkButton>
 					                	<asp:LinkButton id="linkDeleteOccupiedPosition" runat="server" OnCommand="linkDeleteOccupiedPosition_Command" >
 					                		<asp:Image runat="server" ImageUrl="~/images/delete.gif" />
 					                	</asp:LinkButton>
