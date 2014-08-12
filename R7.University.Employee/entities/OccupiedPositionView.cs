@@ -13,6 +13,7 @@ namespace R7.University.Employee
 		public string PositionShortTitle { get; set; }
 		public string DivisionShortTitle { get; set; }
 		public bool IsPrime { get; set; }
+		public string TitleSuffix { get; set; }
 
 		private static int nextItemID = 0;
 
@@ -33,6 +34,7 @@ namespace R7.University.Employee
 			opinfo.PositionID = PositionID;
 			opinfo.DivisionID = DivisionID;
 			opinfo.IsPrime = IsPrime;
+			opinfo.TitleSuffix = TitleSuffix;
 
 			return opinfo;
 		}
@@ -44,16 +46,18 @@ namespace R7.University.Employee
 			PositionShortTitle = opex.PositionShortTitle;
 			DivisionShortTitle = opex.DivisionShortTitle;
 			IsPrime = opex.IsPrime;
+			TitleSuffix = opex.TitleSuffix;
 		}
 
 		public OccupiedPositionView  (int positionID, string positionShortTitle, 
-			int divisionID, string divisionShortTitle, bool isPrime) : this()
+			int divisionID, string divisionShortTitle, bool isPrime, string titleSuffix) : this()
 		{
 			PositionID = positionID;
 			DivisionID = divisionID;
 			PositionShortTitle = positionShortTitle;
 			DivisionShortTitle = divisionShortTitle;
 			IsPrime = isPrime;
+			TitleSuffix = titleSuffix;
 		}
 
 		// NOTE: if [Serializable] is set, all *fields* serialized by default
@@ -68,6 +72,7 @@ namespace R7.University.Employee
 			PositionShortTitle = info.GetString("PositionShortTitle");
 			DivisionShortTitle = info.GetString("DivisionShortTitle");
 			IsPrime = info.GetBoolean ("IsPrime");
+			TitleSuffix = info.GetString ("TitleSuffix");
 		}
 
 		public void GetObjectData (SerializationInfo info, StreamingContext context)
@@ -78,6 +83,7 @@ namespace R7.University.Employee
 			info.AddValue ("PositionShortTitle", PositionShortTitle);
 			info.AddValue ("DivisionShortTitle", DivisionShortTitle);
 			info.AddValue ("IsPrime", IsPrime);
+			info.AddValue ("TitleSuffix", TitleSuffix);
 		}
 
 		#endregion

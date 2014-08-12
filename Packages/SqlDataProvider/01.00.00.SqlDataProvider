@@ -164,15 +164,15 @@ GO
 -- Drop existing views
 
  IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]') and OBJECTPROPERTY(id, N'IsView') = 1)
- 	DROP VIEW [dbo].[vw_University_OccupiedPositions]
+ 	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]
  GO
 
  IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]') and OBJECTPROPERTY(id, N'IsView') = 1)
- 	DROP VIEW [dbo].[vw_University_EmployeesMaxWeight]
+ 	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]
  GO
 
  IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]') and OBJECTPROPERTY(id, N'IsView') = 1)
- 	DROP VIEW [dbo].[vw_University_EmployeesTotalWeight]
+ 	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]
  GO
 
 -- Create views

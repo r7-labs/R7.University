@@ -77,10 +77,16 @@ namespace R7.University.Employee
 		protected LabelControl labelPositions;
 		protected LabelControl labelDivisions;
 		protected DnnComboBox comboPositions;
+		protected LabelControl labelPositionTitleSuffix;
+		protected TextBox textPositionTitleSuffix;
 		protected DnnTreeView treeDivisions;
+		protected LabelControl labelIsPrime;
+		protected CheckBox checkIsPrime;
 		protected LinkButton buttonAddPosition;
-		protected LinkButton buttonAddPrimePosition;
-		
+		protected LinkButton buttonUpdatePosition;
+		protected LinkButton buttonCancelUpdatePosition;
+		protected HiddenField hiddenOccupiedPositionItemID;
+
 		protected GridView gridAchievements;
 		protected DnnComboBox comboAchievementTypes;
 		protected LabelControl labelYearBegin;

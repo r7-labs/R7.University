@@ -226,23 +226,8 @@ namespace R7.University.Employee
 					// then edit / add from EmployeeList, divisionId query param
 					// can be set to current division ID
 					var divisionId = Request.QueryString["division_id"];
-					if (!string.IsNullOrWhiteSpace(divisionId))
-					{
-						var treeNode = treeDivisions.FindNodeByValue(divisionId);
-						if (treeNode != null)
-						{
-							treeNode.Selected = true;
-
-							// expand all parent nodes
-							treeNode = treeNode.ParentNode;
-							while (treeNode != null)
-							{
-								treeNode.Expanded = true;
-								treeNode = treeNode.ParentNode;
-							} 
-						}
-					}
-
+					Utils.SelectAndExpandByValue (treeDivisions, divisionId);
+				
 					// select first (default) node, if none selected - 
 					// fix for issue #8
 					if (treeDivisions.SelectedNode == null)
@@ -462,7 +447,22 @@ namespace R7.University.Employee
 			}
 		}
 
-		protected void buttonAddPosition_Click (object sender, EventArgs e)
+		protected void buttonCancelUpdatePosition_Click (object sender, EventArgs e)
+		{
+			try 
+			{
+				// restore default buttons visibility (quit edit mode)
+				buttonAddPosition.Visible = true;
+				buttonUpdatePosition.Visible = false;
+				buttonCancelUpdatePosition.Visible = false;
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
+			}
+		}
+
+		protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
 		{
 			try
 			{
@@ -471,17 +471,42 @@ namespace R7.University.Employee
 
 				if (!Null.IsNull(positionID) && !Null.IsNull(divisionID))
 				{
-					var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
-					if (occupiedPositions == null)
-						occupiedPositions = new List<OccupiedPositionView>();
+					OccupiedPositionView occupiedPosition;
 
-					// determine if we should add prime position
-					var isPrime = sender == buttonAddPrimePosition;
-
-					occupiedPositions.Add(
-						new OccupiedPositionView(positionID, comboPositions.Text, 
-							divisionID, treeDivisions.SelectedNode.Text, isPrime));
-
+					var occupiedPositions = (List<OccupiedPositionView>) ViewState["occupiedPositions"];
+					
+					var command = e.CommandArgument.ToString();
+					if (command == "Add")
+					{
+						occupiedPosition = new OccupiedPositionView();
+					}
+					else // update 
+					{
+						// restore ItemID from hidden field
+						var hiddenItemID = int.Parse(hiddenOccupiedPositionItemID.Value);
+						occupiedPosition = occupiedPositions.Find(op => op.ItemID == hiddenItemID);
+					}
+					
+					// fill the object
+					occupiedPosition.PositionID = positionID;
+					occupiedPosition.DivisionID = divisionID;
+					occupiedPosition.PositionShortTitle = comboPositions.Text;
+					occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
+					occupiedPosition.IsPrime = checkIsPrime.Checked;
+					occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text;
+					
+					if (command == "Add")
+					{
+						occupiedPositions.Add(occupiedPosition);
+					}
+					else // update
+					{
+						// restore default buttons visibility (quit edit mode)
+						buttonAddPosition.Visible = true;
+						buttonUpdatePosition.Visible = false;
+						buttonCancelUpdatePosition.Visible = false;
+					}
+			
 					ViewState["occupiedPositions"] = occupiedPositions;
 					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
 					gridOccupiedPositions.DataBind ();
@@ -501,36 +526,82 @@ namespace R7.University.Employee
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
-				// find delete linkbutton
-				var link = e.Row.Cells [0].FindControl ("linkDeleteOccupiedPosition") as LinkButton;
+				// find edit and delete linkbuttons
+				var linkDelete = e.Row.Cells [0].FindControl ("linkDeleteOccupiedPosition") as LinkButton;
+				var linkEdit = e.Row.Cells [0].FindControl ("linkEditOccupiedPosition") as LinkButton;
 
 				// set recordId to delete
-				link.CommandArgument = e.Row.Cells [1].Text;
+				linkEdit.CommandArgument = e.Row.Cells [1].Text;
+				linkDelete.CommandArgument = e.Row.Cells [1].Text;
+			}
+		}
+
+		protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
+		{
+			try
+			{
+				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+				if (occupiedPositions != null)
+				{
+					var itemID = e.CommandArgument.ToString ();
+	
+					// find position in a list
+					var occupiedPosition = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
+	
+					if (occupiedPosition != null)
+					{
+						// fill the form
+						treeDivisions.CollapseAllNodes();
+						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString());
+						comboPositions.Select (occupiedPosition.PositionID.ToString(), false);
+						checkIsPrime.Checked = occupiedPosition.IsPrime;
+						textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
+						
+						// set hidden field value to ItemID of edited item
+						hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString();
+
+						// show / hide buttonss
+						buttonAddPosition.Visible = false;
+						buttonUpdatePosition.Visible = true;
+						buttonCancelUpdatePosition.Visible = true;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
 			}
 		}
 
 		protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
 		{
-			var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
-			if (occupiedPositions != null)
+			try
 			{
-				//var itemID = (sender as LinkButton).CommandArgument;
-				var itemID = e.CommandArgument.ToString ();
-
-				// NOTE: Adding controls dynamically conflicts with ViewState!
-				// Utils.Message (this, MessageSeverity.Info, itemID);
-
-				// find position in a list
-				var opFound = occupiedPositions.Find(op => op.ItemID.ToString() == itemID);
-			
-				if (opFound != null)
+				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+				if (occupiedPositions != null)
 				{
-					occupiedPositions.Remove (opFound);
-					ViewState ["occupiedPositions"] = occupiedPositions;
-
-					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
-					gridOccupiedPositions.DataBind ();
+					//var itemID = (sender as LinkButton).CommandArgument;
+					var itemID = e.CommandArgument.ToString ();
+	
+					// NOTE: Adding controls dynamically conflicts with ViewState!
+					// Utils.Message (this, MessageSeverity.Info, itemID);
+	
+					// find position in a list
+					var opFound = occupiedPositions.Find(op => op.ItemID.ToString() == itemID);
+				
+					if (opFound != null)
+					{
+						occupiedPositions.Remove (opFound);
+						ViewState ["occupiedPositions"] = occupiedPositions;
+	
+						gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
+						gridOccupiedPositions.DataBind ();
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
 			}
 		}
 
@@ -549,7 +620,7 @@ namespace R7.University.Employee
 				dr = dt.NewRow ();
 				dr [0] = op.ItemID;
 				dr [1] = op.DivisionShortTitle;
-				dr [2] = op.PositionShortTitle;
+				dr [2] = op.PositionShortTitle + " " + op.TitleSuffix;
 				dr [3] = op.IsPrime;
 				dt.Rows.Add (dr);
 			}
@@ -613,93 +684,114 @@ namespace R7.University.Employee
 		
 		protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
 		{
-			var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
-			if (achievements != null)
+			try 
 			{
-				var itemID = e.CommandArgument.ToString ();
-
-				// find position in a list
-				var achievement = achievements.Find(ach => ach.ItemID.ToString() == itemID);
-
-				if (achievement != null)
+				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+				if (achievements != null)
 				{
-					// remove achievement
-					achievements.Remove (achievement);
-					
-					// refresh viewstate
-					ViewState["achievements"] = achievements;
-
-					// bind achievements to the gridview
-					gridAchievements.DataSource = AchievementsDataTable(achievements);
-					gridAchievements.DataBind ();
-
-					// restore default buttons visibility (quit edit mode)
-					buttonAddAchievement.Visible = true;
-					buttonUpdateAchievement.Visible = false;
-					buttonCancelUpdateAchievement.Visible = false;
+					var itemID = e.CommandArgument.ToString ();
+	
+					// find position in a list
+					var achievement = achievements.Find(ach => ach.ItemID.ToString() == itemID);
+	
+					if (achievement != null)
+					{
+						// remove achievement
+						achievements.Remove (achievement);
+						
+						// refresh viewstate
+						ViewState["achievements"] = achievements;
+	
+						// bind achievements to the gridview
+						gridAchievements.DataSource = AchievementsDataTable(achievements);
+						gridAchievements.DataBind ();
+	
+						// restore default buttons visibility (quit edit mode)
+						buttonAddAchievement.Visible = true;
+						buttonUpdateAchievement.Visible = false;
+						buttonCancelUpdateAchievement.Visible = false;
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
 			}
 		}
 
 		protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
 		{
-			var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
-			if (achievements != null)
+			try 
 			{
-				var itemID = e.CommandArgument.ToString ();
-
-				// find position in a list
-				var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
-
-				if (achievement != null)
+				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+				if (achievements != null)
 				{
-					// fill achievements form
-					
-					if (achievement.AchievementID != null)
+					var itemID = e.CommandArgument.ToString ();
+	
+					// find position in a list
+					var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
+	
+					if (achievement != null)
 					{
-						comboAchievements.Select(achievement.AchievementID.ToString(), false);
-
-						panelAchievementTitle.Visible = false;
-						panelAchievementShortTitle.Visible = false;
-						panelAchievementTypes.Visible = false;
-					}					
-					else
-					{
-						comboAchievements.Select(Null.NullInteger.ToString(), false);
-
-						textAchievementTitle.Text = achievement.Title;
-						textAchievementShortTitle.Text = achievement.ShortTitle;
-						comboAchievementTypes.Select(achievement.AchievementType.ToString(), false);
+						// fill achievements form
 						
-						panelAchievementTitle.Visible = true;
-						panelAchievementShortTitle.Visible = true;
-						panelAchievementTypes.Visible = true;
+						if (achievement.AchievementID != null)
+						{
+							comboAchievements.Select(achievement.AchievementID.ToString(), false);
+	
+							panelAchievementTitle.Visible = false;
+							panelAchievementShortTitle.Visible = false;
+							panelAchievementTypes.Visible = false;
+						}					
+						else
+						{
+							comboAchievements.Select(Null.NullInteger.ToString(), false);
+	
+							textAchievementTitle.Text = achievement.Title;
+							textAchievementShortTitle.Text = achievement.ShortTitle;
+							comboAchievementTypes.Select(achievement.AchievementType.ToString(), false);
+							
+							panelAchievementTitle.Visible = true;
+							panelAchievementShortTitle.Visible = true;
+							panelAchievementTypes.Visible = true;
+						}
+	
+						textAchievementTitleSuffix.Text = achievement.TitleSuffix;
+						textAchievementDescription.Text = achievement.Description;
+						textYearBegin.Text = achievement.YearBegin.ToString();
+						textYearEnd.Text = achievement.YearEnd.ToString();
+						checkIsTitle.Checked = achievement.IsTitle;
+						urlDocumentURL.Url = achievement.DocumentURL;
+					
+						// show update and cancel buttons (enter edit mode)
+						buttonAddAchievement.Visible = false;
+						buttonUpdateAchievement.Visible = true;
+						buttonCancelUpdateAchievement.Visible = true;
+	
+						// store ItemID in the hidden field
+						hiddenAchievementItemID.Value = achievement.ItemID.ToString();
 					}
-
-					textAchievementTitleSuffix.Text = achievement.TitleSuffix;
-					textAchievementDescription.Text = achievement.Description;
-					textYearBegin.Text = achievement.YearBegin.ToString();
-					textYearEnd.Text = achievement.YearEnd.ToString();
-					checkIsTitle.Checked = achievement.IsTitle;
-					urlDocumentURL.Url = achievement.DocumentURL;
-				
-					// show update and cancel buttons (enter edit mode)
-					buttonAddAchievement.Visible = false;
-					buttonUpdateAchievement.Visible = true;
-					buttonCancelUpdateAchievement.Visible = true;
-
-					// store ItemID in the hidden field
-					hiddenAchievementItemID.Value = achievement.ItemID.ToString();
 				}
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
 			}
 		}
 
 		protected void buttonCancelUpdateAchievement_Click (object sender, EventArgs e)
 		{
-			// restore default buttons visibility (quit edit mode)
-			buttonAddAchievement.Visible = true;
-			buttonUpdateAchievement.Visible = false;
-			buttonCancelUpdateAchievement.Visible = false;
+			try 
+			{
+				// restore default buttons visibility (quit edit mode)
+				buttonAddAchievement.Visible = true;
+				buttonUpdateAchievement.Visible = false;
+				buttonCancelUpdateAchievement.Visible = false;
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
+			}
 		}
 
 		protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
@@ -709,7 +801,7 @@ namespace R7.University.Employee
 				EmployeeAchievementView achievement;
 
 				// get achievements list from viewstate
-				var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;
+				var achievements = (List<EmployeeAchievementView>) ViewState["achievements"];
 
 				var command = e.CommandArgument.ToString ();
 				if (command == "Add")
@@ -776,17 +868,24 @@ namespace R7.University.Employee
 
 		protected void comboAchievements_SelectedIndexChanged (object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
 		{
-			if (e.Value == "-1")
+			try 
 			{
-				panelAchievementTitle.Visible = true;
-				panelAchievementShortTitle.Visible = true;
-				panelAchievementTypes.Visible = true;
+				if (e.Value == "-1")
+				{
+					panelAchievementTitle.Visible = true;
+					panelAchievementShortTitle.Visible = true;
+					panelAchievementTypes.Visible = true;
+				}
+				else
+				{
+					panelAchievementTitle.Visible = false;
+					panelAchievementShortTitle.Visible = false;
+					panelAchievementTypes.Visible = false;
+				}
 			}
-			else
+			catch (Exception ex)
 			{
-				panelAchievementTitle.Visible = false;
-				panelAchievementShortTitle.Visible = false;
-				panelAchievementTypes.Visible = false;
+				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
 

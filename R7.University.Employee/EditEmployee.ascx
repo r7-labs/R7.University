@@ -127,33 +127,7 @@
 	
 		<div id="employeePositions">
 			<fieldset>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" Suffix=":" />
-					<dnn:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
-						DataTextField="ShortTitle"
-						DataValueField="DivisionID"
-						DataFieldID = "DivisionID"
-						DataFieldParentID="ParentDivisionID"
-					/>
-				</div>
-	
-				<div class="dnnFormItem">
-					<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" Suffix=":" />
-					<dnn:DnnComboBox id="comboPositions" runat="server" 
-						DataTextField="ShortTitle"
-						DataValueField="PositionID"
-					/>
-				</div>
-	
-				<div class="dnnFormItem">
-					<div class="dnnLabel"></div>
-					<asp:LinkButton id="buttonAddPrimePosition" runat="server" resourcekey="buttonAddPrimePosition" 
-						CssClass="dnnPrimaryAction" OnClick="buttonAddPosition_Click" />
-					<asp:LinkButton id="buttonAddPosition" runat="server" resourcekey="buttonAddPosition" 
-						CssClass="dnnSecondaryAction" OnClick="buttonAddPosition_Click" Style="margin-left:10px" />
-				</div>
-	
-				<div class="dnnFormItem" style="margin-top:10px">
+				<div class="dnnFormItem" style="margin-bottom:10px">
 					<div class="dnnLabel"></div>
 					<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="true" 
 						GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound">
@@ -167,6 +141,9 @@
 							<Columns>
 								<asp:TemplateField>
 					               <ItemTemplate>
+										<asp:LinkButton id="linkEditOccupiedPosition" runat="server" OnCommand="linkEditOccupiedPosition_Command" >
+					                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+					                	</asp:LinkButton>
 					                	<asp:LinkButton id="linkDeleteOccupiedPosition" runat="server" OnCommand="linkDeleteOccupiedPosition_Command" >
 					                		<asp:Image runat="server" ImageUrl="~/images/delete.gif" />
 					                	</asp:LinkButton>
@@ -175,6 +152,40 @@
 							</Columns>
 				        </asp:GridView>
 				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" Suffix=":" />
+					<dnn:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+						DataTextField="ShortTitle"
+						DataValueField="DivisionID"
+						DataFieldID = "DivisionID"
+						DataFieldParentID="ParentDivisionID"
+					/>
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" Suffix=":" />
+					<dnn:DnnComboBox id="comboPositions" runat="server" 
+						DataTextField="ShortTitle"
+						DataValueField="PositionID"
+					/>
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" Suffix=":" />
+					<asp:TextBox id="textPositionTitleSuffix" runat="server" />
+				</div>
+				<div class="dnnFormItem" style="margin-bottom:10px">
+					<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" Suffix="?" />
+					<asp:CheckBox id="checkIsPrime" runat="server" />
+				</div>
+				<div class="dnnFormItem">
+					<div class="dnnLabel"></div>
+					<asp:LinkButton id="buttonAddPosition" runat="server" resourcekey="buttonAddPosition" 
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command"  CommandArgument="Add" />
+					<asp:LinkButton id="buttonUpdatePosition" runat="server" resourcekey="buttonUpdatePosition" 
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command" Visible="false" CommandArgument="Update" />
+					<asp:LinkButton id="buttonCancelUpdatePosition" runat="server" resourcekey="buttonCancelUpdatePosition" 
+						CssClass="dnnSecondaryAction" OnClick="buttonCancelUpdatePosition_Click" Visible="false" />
+				</div>
+				<asp:HiddenField id="hiddenOccupiedPositionItemID" runat="server" />
 			</fieldset>
 		</div>
 	
