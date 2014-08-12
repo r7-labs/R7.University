@@ -226,23 +226,8 @@ namespace R7.University.Employee
 					// then edit / add from EmployeeList, divisionId query param
 					// can be set to current division ID
 					var divisionId = Request.QueryString["division_id"];
-					if (!string.IsNullOrWhiteSpace(divisionId))
-					{
-						var treeNode = treeDivisions.FindNodeByValue(divisionId);
-						if (treeNode != null)
-						{
-							treeNode.Selected = true;
-
-							// expand all parent nodes
-							treeNode = treeNode.ParentNode;
-							while (treeNode != null)
-							{
-								treeNode.Expanded = true;
-								treeNode = treeNode.ParentNode;
-							} 
-						}
-					}
-
+					Utils.SelectAndExpandByValue (treeDivisions, divisionId);
+				
 					// select first (default) node, if none selected - 
 					// fix for issue #8
 					if (treeDivisions.SelectedNode == null)
@@ -462,7 +447,22 @@ namespace R7.University.Employee
 			}
 		}
 
-		protected void buttonAddPosition_Click (object sender, EventArgs e)
+		protected void buttonCancelUpdatePosition_Click (object sender, EventArgs e)
+		{
+			try 
+			{
+				// restore default buttons visibility (quit edit mode)
+				buttonAddPosition.Visible = true;
+				buttonUpdatePosition.Visible = false;
+				buttonCancelUpdatePosition.Visible = false;
+			}
+			catch (Exception ex)
+			{
+				Exceptions.ProcessModuleLoadException(this, ex);
+			}
+		}
+
+		protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
 		{
 			try
 			{
@@ -471,17 +471,41 @@ namespace R7.University.Employee
 
 				if (!Null.IsNull(positionID) && !Null.IsNull(divisionID))
 				{
-					var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
-					if (occupiedPositions == null)
-						occupiedPositions = new List<OccupiedPositionView>();
+					OccupiedPositionView occupiedPosition;
 
-					// determine if we should add prime position
-					var isPrime = sender == buttonAddPrimePosition;
-
-					occupiedPositions.Add(
-						new OccupiedPositionView(positionID, comboPositions.Text, 
-							divisionID, treeDivisions.SelectedNode.Text, isPrime));
-
+					var occupiedPositions = (List<OccupiedPositionView>) ViewState["occupiedPositions"];
+					
+					var command = e.CommandArgument.ToString();
+					if (command == "Add")
+					{
+						occupiedPosition = new OccupiedPositionView();
+					}
+					else // update 
+					{
+						// restore ItemID from hidden field
+						var hiddenItemID = int.Parse(hiddenOccupiedPositionItemID.Value);
+						occupiedPosition = occupiedPositions.Find(op => op.ItemID == hiddenItemID);
+					}
+					
+					// fill the object
+					occupiedPosition.PositionID = positionID;
+					occupiedPosition.DivisionID = divisionID;
+					occupiedPosition.PositionShortTitle = comboPositions.Text;
+					occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
+					occupiedPosition.IsPrime = checkIsPrime.Checked;
+					
+					if (command == "Add")
+					{
+						occupiedPositions.Add(occupiedPosition);
+					}
+					else // update
+					{
+						// restore default buttons visibility (quit edit mode)
+						buttonAddPosition.Visible = true;
+						buttonUpdatePosition.Visible = false;
+						buttonCancelUpdatePosition.Visible = false;
+					}
+			
 					ViewState["occupiedPositions"] = occupiedPositions;
 					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
 					gridOccupiedPositions.DataBind ();
@@ -501,11 +525,13 @@ namespace R7.University.Employee
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
-				// find delete linkbutton
-				var link = e.Row.Cells [0].FindControl ("linkDeleteOccupiedPosition") as LinkButton;
+				// find edit and delete linkbuttons
+				var linkDelete = e.Row.Cells [0].FindControl ("linkDeleteOccupiedPosition") as LinkButton;
+				var linkEdit = e.Row.Cells [0].FindControl ("linkEditOccupiedPosition") as LinkButton;
 
 				// set recordId to delete
-				link.CommandArgument = e.Row.Cells [1].Text;
+				linkEdit.CommandArgument = e.Row.Cells [1].Text;
+				linkDelete.CommandArgument = e.Row.Cells [1].Text;
 			}
 		}
 
@@ -513,7 +539,31 @@ namespace R7.University.Employee
 		{
 			try
 			{
-			
+				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+				if (occupiedPositions != null)
+				{
+					var itemID = e.CommandArgument.ToString ();
+	
+					// find position in a list
+					var occupiedPosition = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
+	
+					if (occupiedPosition != null)
+					{
+						// fill the form
+						treeDivisions.CollapseAllNodes();
+						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString());
+						comboPositions.Select (occupiedPosition.PositionID.ToString(), false);
+						checkIsPrime.Checked = occupiedPosition.IsPrime;
+						
+						// set hidden field value to ItemID of edited item
+						hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString();
+
+						// show / hide buttonss
+						buttonAddPosition.Visible = false;
+						buttonUpdatePosition.Visible = true;
+						buttonCancelUpdatePosition.Visible = true;
+					}
+				}
 			}
 			catch (Exception ex)
 			{
@@ -749,7 +799,7 @@ namespace R7.University.Employee
 				EmployeeAchievementView achievement;
 
 				// get achievements list from viewstate
-				var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;
+				var achievements = (List<EmployeeAchievementView>) ViewState["achievements"];
 
 				var command = e.CommandArgument.ToString ();
 				if (command == "Add")

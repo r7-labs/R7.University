@@ -174,9 +174,18 @@
 	<data name="buttonAddPosition.Text">
 		<value>Add position</value>
 	</data>
-	<data name="buttonAddPrimePosition.Text">
-		<value>Add prime position</value>
+    <data name="buttonUpdatePosition.Text">
+        <value>Update position</value>
+    </data>
+    <data name="buttonCancelUpdatePosition.Text">
+        <value>Cancel</value>
+    </data>
+	<data name="labelIsPrime.Text">
+		<value>Is prime</value>
 	</data>
+    <data name="labelIsPrime.Help">
+        <value>If checked, this occupied position will be counted as prime for the employee.</value>
+    </data>
 	<data name="sectionTest.Text">
 		<value>Test Section</value>
 	</data>

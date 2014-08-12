@@ -169,12 +169,19 @@
 					/>
 				</div>
 				<div class="dnnFormItem">
-					<div class="dnnLabel"></div>
-					<asp:LinkButton id="buttonAddPrimePosition" runat="server" resourcekey="buttonAddPrimePosition" 
-						CssClass="dnnPrimaryAction" OnClick="buttonAddPosition_Click" />
-					<asp:LinkButton id="buttonAddPosition" runat="server" resourcekey="buttonAddPosition" 
-						CssClass="dnnSecondaryAction" OnClick="buttonAddPosition_Click" Style="margin-left:10px" />
+					<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" Suffix="?" />
+					<asp:CheckBox id="checkIsPrime" runat="server" />
 				</div>
+				<div class="dnnFormItem">
+					<div class="dnnLabel"></div>
+					<asp:LinkButton id="buttonAddPosition" runat="server" resourcekey="buttonAddPosition" 
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command"  CommandArgument="Add" />
+					<asp:LinkButton id="buttonUpdatePosition" runat="server" resourcekey="buttonUpdatePosition" 
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command" Visible="false" CommandArgument="Update" />
+					<asp:LinkButton id="buttonCancelUpdatePosition" runat="server" resourcekey="buttonCancelUpdatePosition" 
+						CssClass="dnnSecondaryAction" OnClick="buttonCancelUpdatePosition_Click" Visible="false" />
+				</div>
+				<asp:HiddenField id="hiddenOccupiedPositionItemID" runat="server" />
 			</fieldset>
 		</div>
 	
