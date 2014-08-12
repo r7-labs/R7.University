@@ -493,6 +493,7 @@ namespace R7.University.Employee
 					occupiedPosition.PositionShortTitle = comboPositions.Text;
 					occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
 					occupiedPosition.IsPrime = checkIsPrime.Checked;
+					occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text;
 					
 					if (command == "Add")
 					{
@@ -554,6 +555,7 @@ namespace R7.University.Employee
 						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString());
 						comboPositions.Select (occupiedPosition.PositionID.ToString(), false);
 						checkIsPrime.Checked = occupiedPosition.IsPrime;
+						textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
 						
 						// set hidden field value to ItemID of edited item
 						hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString();
@@ -618,7 +620,7 @@ namespace R7.University.Employee
 				dr = dt.NewRow ();
 				dr [0] = op.ItemID;
 				dr [1] = op.DivisionShortTitle;
-				dr [2] = op.PositionShortTitle;
+				dr [2] = op.PositionShortTitle + " " + op.TitleSuffix;
 				dr [3] = op.IsPrime;
 				dt.Rows.Add (dr);
 			}

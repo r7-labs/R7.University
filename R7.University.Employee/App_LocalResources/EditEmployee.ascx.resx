@@ -159,6 +159,12 @@
 	<data name="labelPositions.Help">
 		<value>Specify position for this employee</value>
 	</data>
+    <data name="labelPositionTitleSuffix.Text">
+        <value>Position suffix</value>
+    </data>
+    <data name="labelPositionTitleSuffix.Help">
+        <value>Specify a suffix to use along with the position title.</value>
+    </data>
 	<data name="labelDivisions.Text">
 		<value>Division</value>
 	</data>

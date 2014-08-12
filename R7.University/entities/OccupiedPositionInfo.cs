@@ -39,6 +39,7 @@ namespace R7.University
 		public int DivisionID { get; set; }
 		public int EmployeeID { get; set; }
 		public bool IsPrime { get; set; }
+		public string TitleSuffix { get; set; }
 
 		#endregion
 	}
