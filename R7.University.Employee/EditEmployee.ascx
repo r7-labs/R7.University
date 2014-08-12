@@ -168,7 +168,7 @@
 						DataValueField="PositionID"
 					/>
 				</div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem" style="margin-bottom:10px">
 					<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" Suffix="?" />
 					<asp:CheckBox id="checkIsPrime" runat="server" />
 				</div>
