@@ -330,7 +330,7 @@ namespace R7.University.EmployeeList
 				{
 					// do not display division title for high-level divisions AND current division
 					if (op.DivisionID == CustomSettings.DivisionID || op.ParentDivisionID == null)
-						strOps = Utils.FormatList (", ", strOps, op.PositionShortTitle);
+						strOps = Utils.FormatList ("; ", strOps, op.PositionShortTitle);
 					else
 					{
 						// division name or link
@@ -341,7 +341,9 @@ namespace R7.University.EmployeeList
 						else
 							strDivision = op.DivisionShortTitle;
 
-						strOps = Utils.FormatList (", ", strOps, 
+						// op.PositionShortTitle is a comma-separated 
+						// list of positions, including TitleSuffix
+						strOps = Utils.FormatList ("; ", strOps, 
 							Utils.FormatList (": ", op.PositionShortTitle, strDivision));
 					}
 				}
