@@ -72,3 +72,13 @@
 .EmployeeDetails ._tab { max-width:700px }
 
 .EmployeeDetails ._barcode { border:5px solid #eee }
+
+/* dnnGridHeader fix */
+.dnnGridHeader th 
+{
+    border-bottom: 1px solid #c9c9c9;
+    border-right: 1px solid #c9c9c9;
+    background: #f0f2f1;
+    background: linear-gradient(top, #fff 0%,#f0f2f1 100%);
+    padding: 5px;
+}
