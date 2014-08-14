@@ -451,18 +451,15 @@ namespace R7.University.Employee
 						// link to division's homepage
 						labelDivision.Visible = false;
 						linkDivision.NavigateUrl = Utils.FormatURL (this, opex.HomePage, false);
-
-						labelPosition.Text += ": "; // to prev label!
-						linkDivision.Text = opex.DivisionShortTitle;
 					}
 					else
 					{	
 						// only division title
 						linkDivision.Visible = false;
-
-						labelPosition.Text += ": "; // to prev label!
-						labelDivision.Text = opex.DivisionShortTitle;
 					}
+
+					labelPosition.Text += ": "; // to prev label!
+					linkDivision.Text = opex.DivisionShortTitle;
 				}
 			}
 		}
