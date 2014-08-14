@@ -32,7 +32,7 @@
 							<asp:TemplateField>
 								<ItemTemplate>
 					                	<asp:HyperLink id="linkEdit" runat="server">
-					                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+					                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
 					                	</asp:HyperLink>
 					            </ItemTemplate>
 					        </asp:TemplateField>
@@ -61,7 +61,7 @@
 						<asp:TemplateField>
 			               <ItemTemplate>
 			                	<asp:HyperLink id="linkEdit" runat="server">
-			                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+			                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
 			                	</asp:HyperLink>
 			               </ItemTemplate>
 			        	</asp:TemplateField>
@@ -90,7 +90,7 @@
 						<asp:TemplateField>
 			               <ItemTemplate>
 			                	<asp:HyperLink id="linkEdit" runat="server">
-			                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+			                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
 			                	</asp:HyperLink>
 			               </ItemTemplate>
 			        	</asp:TemplateField>
@@ -119,7 +119,7 @@
 						<asp:TemplateField>
 			               <ItemTemplate>
 			                	<asp:HyperLink id="linkEdit" runat="server">
-			                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+			                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
 			                	</asp:HyperLink>
 			               </ItemTemplate>
 			        	</asp:TemplateField>

@@ -11,6 +11,7 @@ using DotNetNuke.Data;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University;
@@ -19,6 +20,15 @@ namespace R7.University.Launchpad
 {
 	public partial class ViewLaunchpad : PortalModuleBase, IActionable
 	{
+		#region Properties
+		
+		protected string EditIconUrl
+		{
+			get { return IconController.IconURL ("Edit"); }
+		}
+
+		#endregion
+
 		#region Handlers
 
 		/// <summary>

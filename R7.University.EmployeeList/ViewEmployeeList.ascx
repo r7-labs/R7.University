@@ -8,7 +8,7 @@
 			</asp:HyperLink>
 			<div class="_info">	
 				<asp:HyperLink id="linkEdit" runat="server" CssClass="_editlink">
-					<asp:Image id="imageEdit" runat="server" ImageUrl="~/images/edit.gif" AlternateText="Edit" ResourceKey="Edit" />
+					<asp:Image id="imageEdit" runat="server" ImageUrl="<%# EditIconUrl %>" AlternateText="Edit" ResourceKey="Edit" />
 				</asp:HyperLink>
 				<asp:Label id="labelFullName" runat="server" CssClass="_fullname"  />
 				<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />

@@ -7,6 +7,7 @@ using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
@@ -41,6 +42,15 @@ namespace R7.University.Employee
 			}
 		}
 	
+		protected string EditIconUrl
+		{
+			get { return IconController.IconURL ("Edit"); }
+		}
+
+		protected string DeleteIconUrl
+		{
+			get { return IconController.IconURL ("Delete"); }
+		}
 
 		#endregion
 

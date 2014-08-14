@@ -11,6 +11,7 @@ using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
@@ -31,6 +32,15 @@ namespace R7.University.EmployeeList
 		{
 			get { return __customSettings ?? (__customSettings = new EmployeeListSettings (this)); }
 		}
+
+		#region Properties
+		
+		protected string EditIconUrl
+		{
+			get { return IconController.IconURL ("Edit"); }
+		}
+
+		#endregion
 
 		#region Handlers
 

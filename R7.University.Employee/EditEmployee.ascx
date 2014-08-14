@@ -142,10 +142,10 @@
 								<asp:TemplateField>
 					               <ItemTemplate>
 										<asp:LinkButton id="linkEditOccupiedPosition" runat="server" OnCommand="linkEditOccupiedPosition_Command" >
-					                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+					                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
 					                	</asp:LinkButton>
 					                	<asp:LinkButton id="linkDeleteOccupiedPosition" runat="server" OnCommand="linkDeleteOccupiedPosition_Command" >
-					                		<asp:Image runat="server" ImageUrl="~/images/delete.gif" />
+					                		<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
 					                	</asp:LinkButton>
 					               </ItemTemplate>
 					        	</asp:TemplateField>
@@ -206,10 +206,10 @@
 								<asp:TemplateField>
 					               <ItemTemplate>
 					                	<asp:LinkButton id="linkEditAchievement" runat="server" OnCommand="linkEditAchievement_Command" >
-					                		<asp:Image runat="server" ImageUrl="~/images/edit.gif" />
+					                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
 					                	</asp:LinkButton>
 										<asp:LinkButton id="linkDeleteAchievement" runat="server" OnCommand="linkDeleteAchievement_Command" >
-					                		<asp:Image runat="server" ImageUrl="~/images/delete.gif" />
+					                		<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
 					                	</asp:LinkButton>
 					               </ItemTemplate>
 					        	</asp:TemplateField>
