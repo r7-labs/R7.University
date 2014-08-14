@@ -434,6 +434,8 @@ namespace R7.University.Employee
 				var labelDivision = e.Item.FindControl ("labelDivision") as Label;
 				var linkDivision = e.Item.FindControl ("linkDivision") as HyperLink;
 
+				// opex.PositionShortTitle is a comma-separated 
+				// list of positions, including TitleSuffix
 				labelPosition.Text = opex.PositionShortTitle;
 
 				// don't display division title for highest level divisions
