@@ -51,11 +51,17 @@ namespace R7.University
 
 			for (var i = 0; i < opList.Count; i++)
 			{
+				// first combine position short title with it's suffix
+				opList [i].PositionShortTitle = Utils.FormatList (" ", opList [i].PositionShortTitle, opList[i].TitleSuffix);
+
 				for (var j = i + 1; j < opList.Count; )
 				{
 					if (opList [i].DivisionID == opList [j].DivisionID)
 					{
-						opList [i].PositionShortTitle += ", " + opList [j].PositionShortTitle;
+						opList [i].PositionShortTitle += ", " + 
+							Utils.FormatList(" ", opList [j].PositionShortTitle, opList[j].TitleSuffix);
+						
+						// remove groupped item
 						opList.RemoveAt (j);
 					}
 					else j++;
