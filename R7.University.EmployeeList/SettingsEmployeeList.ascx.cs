@@ -10,7 +10,7 @@ using R7.University;
 
 namespace R7.University.EmployeeList
 {
-	public partial class SettingsEmployeeList : ModuleSettingsBase
+	public partial class SettingsEmployeeList : EmployeeListModuleSettingsBase
 	{
 		/// <summary>
 		/// Handles the loading of the module setting for this control
@@ -21,11 +21,8 @@ namespace R7.University.EmployeeList
 			{
 				if (!IsPostBack)
 				{
-					var settings = new EmployeeListSettings (this);
-					var ctrl = new EmployeeListController ();
-
 					// get divisions
-					var divisions = ctrl.GetObjects<DivisionInfo>("ORDER BY [Title] ASC").ToList();
+					var divisions = EmployeeListController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC").ToList();
 
 					// insert default item
 					divisions.Insert (0, new DivisionInfo() { 
@@ -40,7 +37,7 @@ namespace R7.University.EmployeeList
 					treeDivisions.DataBind();
 
 					// select currently stored value
-					var treeNode = treeDivisions.FindNodeByValue(settings.DivisionID.ToString());
+					var treeNode = treeDivisions.FindNodeByValue(EmployeeListSettings.DivisionID.ToString());
 					if (treeNode != null)
 					{
 						treeNode.Selected = true;
@@ -55,20 +52,20 @@ namespace R7.University.EmployeeList
 					}
 
 					// check / uncheck IncludeSubdivisions
-					checkIncludeSubdivisions.Checked = settings.IncludeSubdivisions;
+					checkIncludeSubdivisions.Checked = EmployeeListSettings.IncludeSubdivisions;
 
 					// sort type
 					comboSortType.AddItem(Localization.GetString("SortTypeByMaxWeight.Text", LocalResourceFile), "0");
 					comboSortType.AddItem(Localization.GetString("SortTypeByTotalWeight.Text", LocalResourceFile), "1");
 					comboSortType.AddItem(Localization.GetString("SortTypeByName.Text", LocalResourceFile), "2");
 
-					comboSortType.Select(settings.SortType.ToString(), false);
+					comboSortType.Select(EmployeeListSettings.SortType.ToString(), false);
 
-					if (!Null.IsNull(settings.PhotoWidth))
-						textPhotoWidth.Text = settings.PhotoWidth.ToString();
+					if (!Null.IsNull(EmployeeListSettings.PhotoWidth))
+						textPhotoWidth.Text = EmployeeListSettings.PhotoWidth.ToString();
 					
-					if (!Null.IsNull (settings.DataCacheTime))
-						textDataCacheTime.Text = settings.DataCacheTime.ToString ();
+					if (!Null.IsNull (EmployeeListSettings.DataCacheTime))
+						textDataCacheTime.Text = EmployeeListSettings.DataCacheTime.ToString ();
 				}
 			}
 			catch (Exception ex)
@@ -84,21 +81,19 @@ namespace R7.University.EmployeeList
 		{
 			try
 			{
-				var settings = new EmployeeListSettings (this);
-
-				settings.DivisionID = int.Parse(treeDivisions.SelectedValue);
-				settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
-				settings.SortType = int.Parse(comboSortType.SelectedValue);
+				EmployeeListSettings.DivisionID = int.Parse(treeDivisions.SelectedValue);
+				EmployeeListSettings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
+				EmployeeListSettings.SortType = int.Parse(comboSortType.SelectedValue);
 
 				if (!string.IsNullOrWhiteSpace(textPhotoWidth.Text))
-					settings.PhotoWidth = int.Parse(textPhotoWidth.Text);
+					EmployeeListSettings.PhotoWidth = int.Parse(textPhotoWidth.Text);
 				else
-					settings.PhotoWidth = Null.NullInteger;
+					EmployeeListSettings.PhotoWidth = Null.NullInteger;
 				
 				if (!string.IsNullOrWhiteSpace(textDataCacheTime.Text))
-					settings.DataCacheTime = int.Parse(textDataCacheTime.Text);
+					EmployeeListSettings.DataCacheTime = int.Parse(textDataCacheTime.Text);
 				else
-					settings.DataCacheTime = Null.NullInteger;
+					EmployeeListSettings.DataCacheTime = Null.NullInteger;
 
 				Utils.SynchronizeModule (this);
 			}

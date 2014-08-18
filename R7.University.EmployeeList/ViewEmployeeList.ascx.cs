@@ -19,20 +19,8 @@ using R7.University;
 
 namespace R7.University.EmployeeList
 {
-	public partial class ViewEmployeeList : PortalModuleBase, IActionable
+	public partial class ViewEmployeeList : EmployeeListPortalModuleBase, IActionable
 	{
-		private EmployeeListController __ctrl;
-		protected EmployeeListController Ctrl
-		{
-			get { return __ctrl ?? (__ctrl = new EmployeeListController ()); }
-		}
-
-		private EmployeeListSettings __customSettings;
-		protected EmployeeListSettings CustomSettings
-		{
-			get { return __customSettings ?? (__customSettings = new EmployeeListSettings (this)); }
-		}
-
 		#region Properties
 		
 		protected string EditIconUrl
@@ -71,10 +59,10 @@ namespace R7.University.EmployeeList
 					// REVIEW: Add Employees.LastYearRating field and sorting by it!
 					
 					// get employees by DivisionID, in edit mode show also non-published employees
-					var	items = Ctrl.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-						(CustomSettings.IncludeSubdivisions)? // which SP to use
+					var	items = EmployeeListController.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+						(EmployeeListSettings.IncludeSubdivisions)? // which SP to use
 							"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-						CustomSettings.DivisionID, CustomSettings.SortType, IsEditable
+						EmployeeListSettings.DivisionID, EmployeeListSettings.SortType, IsEditable
 					);
 
 					// check if we have some content to display, 
@@ -124,8 +112,8 @@ namespace R7.University.EmployeeList
 					ModuleActionType.AddContent, 
 					"", 
 					"", 
-					Null.IsNull(CustomSettings.DivisionID)?
-					Utils.EditUrl (this, "Edit") : Utils.EditUrl (this, "Edit", "division_id", CustomSettings.DivisionID.ToString()),
+					Null.IsNull(EmployeeListSettings.DivisionID)?
+					Utils.EditUrl (this, "Edit") : Utils.EditUrl (this, "Edit", "division_id", EmployeeListSettings.DivisionID.ToString()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
@@ -170,11 +158,11 @@ namespace R7.University.EmployeeList
 			// edit link
 			if (IsEditable)
 			{
-				if (Null.IsNull (CustomSettings.DivisionID))
+				if (Null.IsNull (EmployeeListSettings.DivisionID))
 					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString ());
 				else
 					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString (), 
-						"division_id", CustomSettings.DivisionID.ToString ());
+						"division_id", EmployeeListSettings.DivisionID.ToString ());
 				// WTF: iconEdit.NavigateUrl = Utils.FormatURL (this, image.Url, false);
 			}
 
@@ -214,7 +202,7 @@ namespace R7.University.EmployeeList
 						                  FolderManager.Instance.GetFolder (photo.FolderId), 
 						                  Path.GetFileNameWithoutExtension (photo.FileName) + "_square" + Path.GetExtension (photo.FileName));
 
-					var photoWidth = CustomSettings.PhotoWidth;
+					var photoWidth = EmployeeListSettings.PhotoWidth;
 
 					if (squarePhoto != null)
 					{
@@ -266,7 +254,7 @@ namespace R7.University.EmployeeList
 			*/
 
 			// Employee titles
-			var achievements =  Ctrl.GetObjects<EmployeeAchievementInfo>(
+			var achievements =  EmployeeListController.GetObjects<EmployeeAchievementInfo>(
 					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
 
 			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList();
@@ -343,9 +331,9 @@ namespace R7.University.EmployeeList
 			// NOTE: Current division positions go first, then checks IsPrime, then PositionWeight
 			// TODO: Need to retrieve occupied positions more effectively, e.g. preload them
 			// REVIEW: add "AND [DivisionID] = @1" to display employee positions only from current division
-			var ops = Ctrl.GetObjects<OccupiedPositionInfoEx> (
+			var ops = EmployeeListController.GetObjects<OccupiedPositionInfoEx> (
 				"WHERE [EmployeeID] = @0 ORDER BY (CASE WHEN [DivisionID]=@1 THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
-				employee.EmployeeID, CustomSettings.DivisionID
+				employee.EmployeeID, EmployeeListSettings.DivisionID
 			);
 
 			// build positions value
@@ -356,7 +344,7 @@ namespace R7.University.EmployeeList
 				foreach (var op in OccupiedPositionInfoEx.GroupByDivision (ops))
 				{
 					// do not display division title for high-level divisions AND current division
-					if (op.DivisionID == CustomSettings.DivisionID || op.ParentDivisionID == null)
+					if (op.DivisionID == EmployeeListSettings.DivisionID || op.ParentDivisionID == null)
 						strOps = Utils.FormatList ("; ", strOps, op.PositionShortTitle);
 					else
 					{
