@@ -71,6 +71,12 @@ namespace R7.University
 					AchievementTypeString = null;
 			}
 		}
+
+		[IgnoreColumn]
+		public string DisplayShortTitle
+		{
+			get { return !string.IsNullOrWhiteSpace(TitleSuffix)? ShortTitle + " " + TitleSuffix : ShortTitle; } 
+		}
 		
 	}
 }
