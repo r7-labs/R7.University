@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
+using System.Data;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Host;
@@ -57,6 +58,7 @@ namespace R7.University.Employee
 					var hasData = true;
 					
 					EmployeeInfo employee = null;
+					IEnumerable<EmployeeAchievementInfo> achievements = null;
 
 					// check if we have something to display
 					if (Null.IsNull (EmployeeSettings.EmployeeID))
@@ -118,9 +120,13 @@ namespace R7.University.Employee
 					{
 						if (EmployeeSettings.AutoTitle)
 							AutoTitle (employee);
+						
+						// get employee achievements (titles) only then it about to display
+						achievements =  EmployeeController.GetObjects<EmployeeAchievementInfo>(
+								CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", EmployeeSettings.EmployeeID);
 
 						// display employee info
-						Display (employee);
+						Display (employee, achievements);
 					}
 
 				} // if (!IsPostBack)
@@ -151,7 +157,7 @@ namespace R7.University.Employee
 		/// Displays the specified employee.
 		/// </summary>
 		/// <param name="employee">Employee.</param>
-		protected void Display (EmployeeInfo employee)
+		protected void Display (EmployeeInfo employee, IEnumerable<EmployeeAchievementInfo> achievements)
 		{
 			// occupied positions
 			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
@@ -221,13 +227,27 @@ namespace R7.University.Employee
 			linkPhoto.Visible = imageVisible;
 			// imagePhoto.Visible = imageVisible;
 
-			// Academic degree & title
+			/* // Old academic degree & title
 			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
 			if (!string.IsNullOrWhiteSpace (degreeAndTitle))
 				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + degreeAndTitle;
 			else
 				labelAcademicDegreeAndTitle.Visible = false;
-				
+			*/
+			
+			// Employee titles
+			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList();
+			
+			// add academic degree and title for backward compatibility
+			titles.Add (employee.AcademicDegree);
+			titles.Add (employee.AcademicTitle);
+	
+			var strTitles = Utils.FormatList (", ", titles);
+			if (!string.IsNullOrWhiteSpace (strTitles))
+				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
+			else
+				labelAcademicDegreeAndTitle.Visible = false;
+	
 			// Phone
 			if (!string.IsNullOrWhiteSpace (employee.Phone))
 				labelPhone.Text = employee.Phone;
