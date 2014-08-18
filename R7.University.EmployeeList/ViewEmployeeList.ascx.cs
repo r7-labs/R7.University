@@ -257,13 +257,30 @@ namespace R7.University.EmployeeList
 			// employee fullname
 			labelFullName.Text = employee.FullName;
 
-			// academic degree and title
+			/* // Old academic degree and title
 			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
 			if (!string.IsNullOrWhiteSpace (degreeAndTitle))
 				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + degreeAndTitle;
 			else
 				labelAcademicDegreeAndTitle.Visible = false;
+			*/
 
+			// Employee titles
+			var achievements =  Ctrl.GetObjects<EmployeeAchievementInfo>(
+					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
+
+			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList();
+			
+			// add academic degree and title for backward compatibility
+			titles.Add (employee.AcademicDegree);
+			titles.Add (employee.AcademicTitle);
+	
+			var strTitles = Utils.FormatList (", ", titles);
+			if (!string.IsNullOrWhiteSpace (strTitles))
+				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
+			else
+				labelAcademicDegreeAndTitle.Visible = false;
+			
 			// phones
 			var phones = Utils.FormatList (", ", employee.Phone, employee.CellPhone);
 			if (!string.IsNullOrWhiteSpace (phones))
