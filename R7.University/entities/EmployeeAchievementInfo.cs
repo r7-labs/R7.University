@@ -77,6 +77,24 @@ namespace R7.University
 		{
 			get { return !string.IsNullOrWhiteSpace(TitleSuffix)? ShortTitle + " " + TitleSuffix : ShortTitle; } 
 		}
+
+		[IgnoreColumn]
+		public string FormatYears
+		{
+			get 
+			{
+				if (YearBegin != null && YearEnd == null)
+					return YearBegin.ToString(); 
+				
+				if (YearBegin == null && YearEnd != null)
+					return YearEnd.ToString(); 
+				
+				if (YearBegin != null && YearEnd != null)
+					return string.Format ("{0} - {1}", YearBegin, YearEnd);
+
+				return string.Empty;
+			}
+		}
 		
 	}
 }
