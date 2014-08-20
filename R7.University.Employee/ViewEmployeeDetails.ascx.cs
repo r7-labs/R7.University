@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
+using System.Data;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
@@ -313,8 +314,57 @@ namespace R7.University.Employee
 				// hide Experience tab
 				linkExperience.Visible = false;
 			}
+	
+			gridExperience.DataSource = ExperiencesDataTable(employee);
+			gridExperience.DataBind();
 		}
 		
+		private DataTable ExperiencesDataTable (EmployeeInfo employee)
+		{
+			var dt = new DataTable ();
+			DataRow dr;
+			
+			dt.Columns.Add (new DataColumn (LocalizeString("Years.Column"), typeof(string)));
+			dt.Columns.Add (new DataColumn (LocalizeString("Title.Column"), typeof(string)));
+			dt.Columns.Add (new DataColumn (LocalizeString("AchievementType.Column"), typeof(string)));
+			dt.Columns.Add (new DataColumn (LocalizeString("DocumentUrl.Column"), typeof(string)));
+		
+			foreach (DataColumn column in dt.Columns)
+				column.AllowDBNull = true;
+
+			var experiences = EmployeeController.GetObjects<EmployeeAchievementInfo>(
+				CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0" +
+				" AND [AchievementType] IN ('E', 'T', 'W') ORDER BY [YearBegin] DESC", 
+				employee.EmployeeID);
+
+			foreach (var achievement in experiences)
+			{
+				var col = 0;
+				dr = dt.NewRow ();
+				dr [col++] = achievement.FormatYears;
+				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
+				dr [col++] = LocalizeString(AchievementTypeInfo.GetResourceKey(achievement.AchievementType));
+				dr [col++] = achievement.DocumentURL; 
+					
+				dt.Rows.Add (dr);
+			}
+
+			return dt;
+		}
+
+		protected void gridExperience_RowDataBound (object sender, GridViewRowEventArgs e)
+		{
+			// exclude header
+			if (e.Row.RowType == DataControlRowType.DataRow)
+			{
+				// WTF: empty DocumentURL's cells contains non-breakable spaces?
+				var documentUrl = e.Row.Cells [3].Text.Replace("&nbsp;", "");
+				if (!string.IsNullOrWhiteSpace(documentUrl))
+					 e.Row.Cells [3].Text = string.Format("<a href=\"{0}\">{1}</a>", 
+							Globals.LinkClick (documentUrl, TabId, ModuleId), LocalizeString("DocumentUrl.Text"));
+			}
+		}
+
 		protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)
 		{
 			// exclude header & footer
