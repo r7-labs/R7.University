@@ -59,6 +59,16 @@
 		</div>
 
 		<div id="employeeExperience" class="_tab">	
+			<div class="_section" style="margin-bottom:10px">
+				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="true" 
+						OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
+						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+				        <SelectedRowStyle CssClass="dnnFormError" />
+				        <FooterStyle CssClass="dnnGridFooter" />
+				    </asp:GridView>
+				</div>
 			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
 		</div>
 
