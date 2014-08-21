@@ -360,7 +360,7 @@ namespace R7.University.Employee
 				// WTF: empty DocumentURL's cells contains non-breakable spaces?
 				var documentUrl = e.Row.Cells [3].Text.Replace("&nbsp;", "");
 				if (!string.IsNullOrWhiteSpace(documentUrl))
-					 e.Row.Cells [3].Text = string.Format("<a href=\"{0}\">{1}</a>", 
+					 e.Row.Cells [3].Text = string.Format("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
 							Globals.LinkClick (documentUrl, TabId, ModuleId), LocalizeString("DocumentUrl.Text"));
 			}
 		}
