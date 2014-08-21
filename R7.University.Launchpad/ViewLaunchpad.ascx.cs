@@ -18,7 +18,7 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class ViewLaunchpad : PortalModuleBase, IActionable
+	public partial class ViewLaunchpad : LaunchpadPortalModuleBase, IActionable
 	{
 		#region Properties
 		
@@ -69,10 +69,8 @@ namespace R7.University.Launchpad
 		{
 			base.OnInit (e);
 		
-			var settings = new LaunchpadSettings (this);
-
 			// read tab names
-			var tables = settings.Tables;
+			var tables = LaunchpadSettings.Tables;
 			if (tables == null || tables.Count == 0)
 			{
 				Utils.Message (this, "NotConfigured.Text", MessageType.Info, true);
@@ -106,7 +104,7 @@ namespace R7.University.Launchpad
 			}
 
 			// apply page size setting to gridview's
-			var pageSize = settings.PageSize;
+			var pageSize =LaunchpadSettings.PageSize;
 			gridPositions.PageSize = pageSize;
 			gridDivisions.PageSize = pageSize;
 			gridEmployees.PageSize = pageSize;
@@ -140,30 +138,28 @@ namespace R7.University.Launchpad
 						SelectTab ((string)Session ["Launchpad_ActiveView_" + TabModuleId]);
 					}
 
-					var settings = new LaunchpadSettings(this);
-					
-					if (settings.Tables.Contains(LaunchpadTableInfo.TableDivisions))
+					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TableDivisions))
 					{
 						gridDivisions.DataSource = DivisionsDataSource ();
 						Session [gridDivisions.ID] = gridDivisions.DataSource;
 						gridDivisions.DataBind ();
 					}
 						
-					if (settings.Tables.Contains(LaunchpadTableInfo.TableEmployees))
+					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TableEmployees))
 					{
 						gridEmployees.DataSource = EmployeesDataSource ();
 						Session [gridEmployees.ID] = gridEmployees.DataSource;
 						gridEmployees.DataBind ();
 					}
 
-					if (settings.Tables.Contains(LaunchpadTableInfo.TablePositions))
+					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TablePositions))
 					{
 						gridPositions.DataSource = PositionsDataSource ();
 						Session [gridPositions.ID] = gridPositions.DataSource;
 						gridPositions.DataBind ();
 					}
 
-					if (settings.Tables.Contains(LaunchpadTableInfo.TableAchievements))
+					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TableAchievements))
 					{
 						gridAchievements.DataSource = AchievementsDataSource ();
 						Session [gridAchievements.ID] = gridAchievements.DataSource;
@@ -333,9 +329,7 @@ namespace R7.University.Launchpad
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
 
-			var ctrl = new LaunchpadController ();
-
-			foreach (var position in ctrl.GetObjects<PositionInfo>())
+			foreach (var position in LaunchpadController.GetObjects<PositionInfo>())
 			{
 				dr = dt.NewRow ();
 				dr [0] = position.PositionID;
@@ -375,9 +369,7 @@ namespace R7.University.Launchpad
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
 
-			var ctrl = new LaunchpadController ();
-
-			foreach (var division in ctrl.GetObjects<DivisionInfo>())
+			foreach (var division in LaunchpadController.GetObjects<DivisionInfo>())
 			{
 				dr = dt.NewRow ();
 				var i = 0;
@@ -441,9 +433,7 @@ namespace R7.University.Launchpad
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
 
-			var ctrl = new LaunchpadController ();
-
-			foreach (var employee in ctrl.GetObjects<EmployeeInfo>())
+			foreach (var employee in LaunchpadController.GetObjects<EmployeeInfo>())
 			{
 				dr = dt.NewRow ();
 				var i = 0;
@@ -495,9 +485,7 @@ namespace R7.University.Launchpad
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
 
-			var ctrl = new LaunchpadController ();
-
-			foreach (var achievement in ctrl.GetObjects<AchievementInfo>())
+			foreach (var achievement in LaunchpadController.GetObjects<AchievementInfo>())
 			{
 				var col = 0;
 				dr = dt.NewRow ();

@@ -11,7 +11,7 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditPosition : PortalModuleBase
+	public partial class EditPosition : LaunchpadPortalModuleBase
 	{
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
@@ -56,8 +56,7 @@ namespace R7.University.Launchpad
 					// ALT: if (!Null.IsNull (itemId) 
 					if (itemId.HasValue) {
 						// load the item
-						var ctrl = new LaunchpadController ();
-						var item = ctrl.Get<PositionInfo> (itemId.Value);
+						var item = LaunchpadController.Get<PositionInfo> (itemId.Value);
 
 						if (item != null) {
 											
@@ -88,7 +87,6 @@ namespace R7.University.Launchpad
 		protected void buttonUpdate_Click (object sender, EventArgs e)
 		{
 			try {
-				var ctrl = new LaunchpadController ();
 				PositionInfo item;
 
 				// determine if we are adding or updating
@@ -101,7 +99,7 @@ namespace R7.University.Launchpad
 				else 
 				{
 					// update existing record
-					item = ctrl.Get<PositionInfo> (itemId.Value);
+					item = LaunchpadController.Get<PositionInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -110,9 +108,9 @@ namespace R7.University.Launchpad
 				item.Weight = int.Parse(txtWeight.Text);				
 
 				if (!itemId.HasValue) 
-					ctrl.Add<PositionInfo> (item);
+					LaunchpadController.Add<PositionInfo> (item);
 				else
-					ctrl.Update<PositionInfo> (item);
+					LaunchpadController.Update<PositionInfo> (item);
 
 				Utils.SynchronizeModule(this);
 
@@ -136,8 +134,7 @@ namespace R7.University.Launchpad
 			try {
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue) {
-					var ctrl = new LaunchpadController ();
-					ctrl.Delete<PositionInfo> (itemId.Value);
+					LaunchpadController.Delete<PositionInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			} catch (Exception ex) {

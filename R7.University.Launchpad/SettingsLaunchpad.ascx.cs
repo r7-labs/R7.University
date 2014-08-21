@@ -8,7 +8,7 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class SettingsLaunchpad : ModuleSettingsBase
+	public partial class SettingsLaunchpad : LaunchpadModuleSettingsBase
 	{
 		public void Page_Init ()
 		{
@@ -30,13 +30,11 @@ namespace R7.University.Launchpad
 		{ 
 			try {
 				if (!IsPostBack) {
-					var settings = new LaunchpadSettings (this);
-
 					// TODO: Allow select nearest pagesize value
-					comboPageSize.Select (settings.PageSize.ToString(), false);
+					comboPageSize.Select (LaunchpadSettings.PageSize.ToString(), false);
 
 					// check table list items
-					foreach (var table in settings.Tables)
+					foreach (var table in LaunchpadSettings.Tables)
 					{
 						var item = listTables.FindItemByValue(table);
 						if (item != null) item.Checked = true;
@@ -54,10 +52,8 @@ namespace R7.University.Launchpad
 		public override void UpdateSettings ()
 		{
 			try {
-				var settings = new LaunchpadSettings (this);
-				
-				settings.PageSize = int.Parse(comboPageSize.SelectedValue);
-				settings.Tables = listTables.CheckedItems.Select(i => i.Value).ToList();
+				LaunchpadSettings.PageSize = int.Parse(comboPageSize.SelectedValue);
+				LaunchpadSettings.Tables = listTables.CheckedItems.Select(i => i.Value).ToList();
 
 				// remove session variable for active view,
 				// since view set may be changed

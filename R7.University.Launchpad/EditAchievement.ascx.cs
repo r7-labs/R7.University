@@ -11,7 +11,7 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditAchievement : PortalModuleBase
+	public partial class EditAchievement : LaunchpadPortalModuleBase
 	{
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
@@ -63,8 +63,7 @@ namespace R7.University.Launchpad
 					if (itemId.HasValue)
 					{
 						// load the item
-						var ctrl = new LaunchpadController ();
-						var item = ctrl.Get<AchievementInfo> (itemId.Value);
+						var item = LaunchpadController.Get<AchievementInfo> (itemId.Value);
 
 						if (item != null)
 						{
@@ -100,7 +99,6 @@ namespace R7.University.Launchpad
 		{
 			try
 			{
-				var ctrl = new LaunchpadController ();
 				AchievementInfo item;
 
 				// determine if we are adding or updating
@@ -113,7 +111,7 @@ namespace R7.University.Launchpad
 				else
 				{
 					// update existing record
-					item = ctrl.Get<AchievementInfo> (itemId.Value);
+					item = LaunchpadController.Get<AchievementInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -122,9 +120,9 @@ namespace R7.University.Launchpad
 				item.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
 
 				if (!itemId.HasValue)
-					ctrl.Add<AchievementInfo> (item);
+					LaunchpadController.Add<AchievementInfo> (item);
 				else
-					ctrl.Update<AchievementInfo> (item);
+					LaunchpadController.Update<AchievementInfo> (item);
 
 				Utils.SynchronizeModule (this);
 
@@ -152,8 +150,7 @@ namespace R7.University.Launchpad
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue)
 				{
-					var ctrl = new LaunchpadController ();
-					ctrl.Delete<AchievementInfo> (itemId.Value);
+					LaunchpadController.Delete<AchievementInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}

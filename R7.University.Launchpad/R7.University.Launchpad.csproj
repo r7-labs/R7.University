@@ -119,6 +119,7 @@
     <Compile Include="EditAchievement.ascx.controls.cs">
       <DependentUpon>EditAchievement.ascx</DependentUpon>
     </Compile>
+    <Compile Include="components\LaunchpadModuleBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
