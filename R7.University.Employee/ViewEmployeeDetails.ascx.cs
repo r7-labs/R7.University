@@ -315,29 +315,44 @@ namespace R7.University.Employee
 				linkExperience.Visible = false;
 			}
 	
-			gridExperience.DataSource = ExperiencesDataTable(employee);
+			gridExperience.DataSource = AchievementsDataTable(employee, true);
 			gridExperience.DataBind();
+
+			gridAchievements.DataSource = AchievementsDataTable(employee, false);
+			gridAchievements.DataBind();
 		}
 		
-		private DataTable ExperiencesDataTable (EmployeeInfo employee)
+		private DataTable AchievementsDataTable (EmployeeInfo employee, bool experience)
 		{
 			var dt = new DataTable ();
 			DataRow dr;
 			
-			dt.Columns.Add (new DataColumn (LocalizeString("Years.Column"), typeof(string)));
-			dt.Columns.Add (new DataColumn (LocalizeString("Title.Column"), typeof(string)));
-			dt.Columns.Add (new DataColumn (LocalizeString("AchievementType.Column"), typeof(string)));
-			dt.Columns.Add (new DataColumn (LocalizeString("DocumentUrl.Column"), typeof(string)));
+			dt.Columns.Add (new DataColumn (LocalizeString ("Years.Column"), typeof(string)));
+			dt.Columns.Add (new DataColumn (LocalizeString ("Title.Column"), typeof(string)));
+			dt.Columns.Add (new DataColumn (LocalizeString ("AchievementType.Column"), typeof(string)));
+			dt.Columns.Add (new DataColumn (LocalizeString ("DocumentUrl.Column"), typeof(string)));
 		
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
 
-			var experiences = EmployeeController.GetObjects<EmployeeAchievementInfo>(
-				CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0" +
+			IEnumerable<EmployeeAchievementInfo> achievements;
+			
+			if (experience)
+			{
+				achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
+					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0" +
 				" AND [AchievementType] IN ('E', 'T', 'W') ORDER BY [YearBegin] DESC", 
-				employee.EmployeeID);
+					employee.EmployeeID);
+			}
+			else
+			{
+				achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
+					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0" +
+				" AND [AchievementType] IN ('A') ORDER BY [YearBegin] DESC", 
+					employee.EmployeeID);
+			}
 
-			foreach (var achievement in experiences)
+			foreach (var achievement in achievements)
 			{
 				var col = 0;
 				dr = dt.NewRow ();
