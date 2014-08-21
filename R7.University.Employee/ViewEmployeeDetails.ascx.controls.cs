@@ -31,5 +31,7 @@ namespace R7.University.Employee
 		protected Label labelExperienceYears;
 		protected HyperLink linkReturn;
 		protected HyperLink linkVCard;
+		protected GridView gridExperience;
+		protected GridView gridAchievements;
 	}
 }

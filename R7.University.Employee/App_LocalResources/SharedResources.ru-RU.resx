@@ -1,24 +1,51 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<data name="NotSelected.Text" xml:space="preserve">
-    <value>-- не выбрано --</value>
-  </data>
-	<data name="System.Text" xml:space="preserve">
-    <value>Система</value>
-  </data>
-	<data name="AddEmployee.Action" xml:space="preserve">
-    <value>Добавить сотрудника</value>
-  </data>
-	<data name="EditEmployee.Action" xml:space="preserve">
-    <value>Редактировать сотрудника</value>
-  </data>
-	<data name="VCard.Action" xml:space="preserve">
-    <value>vCard</value>
-  </data>
-	<data name="Details.Action" xml:space="preserve">
-    <value>Подробнее о сотруднике</value>
-  </data>
-	<data name="VisitProfile.Text" xml:space="preserve">
-    	<value>Профайл</value>
-  	</data>
+    <data name="NotSelected.Text" xml:space="preserve">
+        <value>-- не выбрано --</value>
+    </data>
+    <data name="System.Text" xml:space="preserve">
+        <value>Система</value>
+    </data>
+    <data name="AddEmployee.Action" xml:space="preserve">
+        <value>Добавить сотрудника</value>
+    </data>
+    <data name="EditEmployee.Action" xml:space="preserve">
+        <value>Редактировать сотрудника</value>
+    </data>
+    <data name="VCard.Action" xml:space="preserve">
+        <value>vCard</value>
+    </data>
+    <data name="Details.Action" xml:space="preserve">
+        <value>Подробнее о сотруднике</value>
+    </data>
+    <data name="VisitProfile.Text" xml:space="preserve">
+        <value>Профайл</value>
+    </data>
+    <data name="AchievementTypeA.Text">
+        <value></value>
+    </data>
+    <data name="AchievementTypeT.Text">
+        <value>Повышение квалификации</value>
+    </data>
+    <data name="AchievementTypeE.Text">
+        <value>Образование</value>
+    </data>
+    <data name="AchievementTypeW.Text">
+        <value>Работа</value>
+    </data>
+    <data name="Years.Column">
+        <value>Год(ы)</value>
+    </data>
+    <data name="Title.Column">
+        <value>Звание (роль)</value>
+    </data>
+    <data name="AchievementType.Column">
+        <value>Тип</value>
+    </data>
+    <data name="DocumentUrl.Column">
+        <value>Документ</value>
+    </data>
+    <data name="DocumentUrl.Text">
+        <value>Просмотр</value>
+    </data>
 </root>

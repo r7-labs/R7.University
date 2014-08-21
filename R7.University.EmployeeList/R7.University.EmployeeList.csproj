@@ -92,6 +92,7 @@
     <Compile Include="ViewEmployeeList.ascx.cache.cs">
       <DependentUpon>ViewEmployeeList.ascx</DependentUpon>
     </Compile>
+    <Compile Include="components\EmployeeListModuleBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

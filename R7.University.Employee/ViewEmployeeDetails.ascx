@@ -15,7 +15,7 @@
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
 			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("ExperienceTab.Text") %></asp:HyperLink></li>
-			<li><asp:HyperLink id="linkAchievements" runat="server" href="#employeeAchievements" Visible="false"><%= LocalizeString("AchievementsTab.Text") %></asp:HyperLink></li>
+			<li><asp:HyperLink id="linkAchievements" runat="server" href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></asp:HyperLink></li>
 		  	<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></asp:HyperLink></li>
 			<li><a href="#employeeBarcode"><%= LocalizeString("BarcodeTab.Text") %></a></li>
 		</ul>
@@ -60,9 +60,29 @@
 
 		<div id="employeeExperience" class="_tab">	
 			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
+			<div class="_section" style="margin-bottom:10px">
+				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="true" 
+						OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
+						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+				        <SelectedRowStyle CssClass="dnnFormError" />
+				        <FooterStyle CssClass="dnnGridFooter" />
+			    </asp:GridView>
+			</div>
 		</div>
 
-		<div id="employeeAchievements" class="_tab">		
+		<div id="employeeAchievements" class="_tab">
+			<div class="_section" style="margin-bottom:10px">
+				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
+						OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
+						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+				        <SelectedRowStyle CssClass="dnnFormError" />
+				        <FooterStyle CssClass="dnnGridFooter" />
+			    </asp:GridView>
+			</div>		
 		</div>
 
 		<div id="employeeAbout" class="_tab">

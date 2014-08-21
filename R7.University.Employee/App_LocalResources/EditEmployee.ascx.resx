@@ -49,13 +49,13 @@
 		<value>Academic degree</value>
 	</data>
 	<data name="labelAcademicDegree.Help">
-		<value>Specify academic degree</value>
+		<value>Specify academic degree. This field is obsolete, you must specify employee's academic degrees on the Achievements tab.</value>
 	</data>
 	<data name="labelAcademicTitle.Text">
 		<value>Academic title</value>
 	</data>
 	<data name="labelAcademicTitle.Help">
-		<value>Specify academic title</value>
+		<value>Specify academic title. This field is obsolete, you must specify employee's academic titles on the Achievements tab.</value>
 	</data>
 	<data name="labelNamePrefix.Text">
 		<value>Name prefix</value>
@@ -197,18 +197,6 @@
 	</data>
 	<data name="checkAddToVocabulary.Text">
 		<value>Add to vocabulary</value>
-	</data>
-	<data name="AchievementTypeA.Text">
-		<value>Achievement</value>
-	</data>
-	<data name="AchievementTypeT.Text">
-		<value>Training</value>
-	</data>
-	<data name="AchievementTypeE.Text">
-		<value>Education</value>
-	</data>
-	<data name="AchievementTypeW.Text">
-		<value>Work</value>
 	</data>
 	<data name="labelAchievementTypes.Text">
 		<value>Achievement Type</value>

@@ -1,24 +1,51 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<data name="NotSelected.Text" xml:space="preserve">
-    <value>-- not selected --</value>
-  </data>
-<data name="System.Text" xml:space="preserve">
-    <value>System</value>
-  </data>
- <data name="AddEmployee.Action" xml:space="preserve">
-    <value>Add Employee</value>
-  </data>
-  <data name="EditEmployee.Action" xml:space="preserve">
-    <value>Edit Employee</value>
-  </data>
-  <data name="VCard.Action" xml:space="preserve">
-    <value>vCard</value>
-  </data>
- <data name="Details.Action" xml:space="preserve">
-    <value>Employee Details</value>
-  </data>
-	<data name="VisitProfile.Text" xml:space="preserve">
-		<value>Visit profile</value>
-	</data>
+    <data name="NotSelected.Text" xml:space="preserve">
+        <value>-- not selected --</value>
+    </data>
+    <data name="System.Text" xml:space="preserve">
+        <value>System</value>
+    </data>
+    <data name="AddEmployee.Action" xml:space="preserve">
+        <value>Add Employee</value>
+    </data>
+    <data name="EditEmployee.Action" xml:space="preserve">
+        <value>Edit Employee</value>
+    </data>
+    <data name="VCard.Action" xml:space="preserve">
+        <value>vCard</value>
+    </data>
+    <data name="Details.Action" xml:space="preserve">
+        <value>Employee Details</value>
+    </data>
+    <data name="VisitProfile.Text" xml:space="preserve">
+    	<value>Visit profile</value>
+    </data>
+    <data name="AchievementTypeA.Text">
+    	<value>Achievement</value>
+    </data>
+    <data name="AchievementTypeT.Text">
+    	<value>Training</value>
+    </data>
+    <data name="AchievementTypeE.Text">
+    	<value>Education</value>
+    </data>
+    <data name="AchievementTypeW.Text">
+    	<value>Work</value>
+    </data>
+    <data name="Years.Column">
+        <value>Year(s)</value>
+    </data>
+    <data name="Title.Column">
+        <value>Title (role)</value>
+    </data>
+    <data name="AchievementType.Column">
+        <value>Type</value>
+    </data>
+    <data name="DocumentUrl.Column">
+        <value>Document</value>
+    </data>
+    <data name="DocumentUrl.Text">
+        <value>View</value>
+    </data>
 </root>

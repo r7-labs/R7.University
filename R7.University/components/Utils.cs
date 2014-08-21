@@ -2,6 +2,7 @@
 using System.Web;
 using System.IO;
 using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using DotNetNuke.UI.Modules;
@@ -221,7 +222,12 @@ namespace R7.University
 		/// <param name="args">Arguments.</param>
 		public static string FormatList (string separator, params object [] args)
 		{
-			var sb = new StringBuilder (args.Length);
+			return FormatList (separator, (IEnumerable)args);
+		}
+
+		public static string FormatList (string separator, IEnumerable args)
+		{
+			var sb = new StringBuilder ();
 
 			var i = 0;
 			foreach (var a in args)
