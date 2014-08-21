@@ -314,15 +314,25 @@ namespace R7.University.Employee
 				// hide Experience tab
 				linkExperience.Visible = false;
 			}
+
+			var achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
+					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
+					employee.EmployeeID);
 	
-			gridExperience.DataSource = AchievementsDataTable(employee, true);
+			gridExperience.DataSource = AchievementsDataTable(
+				achievements.Where(ach => ach.AchievementType == AchievementType.Education ||
+					ach.AchievementType == AchievementType.Training ||
+					ach.AchievementType == AchievementType.Work)
+				.OrderByDescending(ach => ach.YearBegin));
 			gridExperience.DataBind();
 
-			gridAchievements.DataSource = AchievementsDataTable(employee, false);
+			gridAchievements.DataSource = AchievementsDataTable(
+				achievements.Where(ach => ach.AchievementType == AchievementType.Achievement)
+				.OrderByDescending(ach => ach.YearBegin));
 			gridAchievements.DataBind();
 		}
 		
-		private DataTable AchievementsDataTable (EmployeeInfo employee, bool experience)
+		private DataTable AchievementsDataTable (IEnumerable<EmployeeAchievementInfo> achievements)
 		{
 			var dt = new DataTable ();
 			DataRow dr;
@@ -334,23 +344,6 @@ namespace R7.University.Employee
 		
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
-
-			IEnumerable<EmployeeAchievementInfo> achievements;
-			
-			if (experience)
-			{
-				achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
-					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0" +
-				" AND [AchievementType] IN ('E', 'T', 'W') ORDER BY [YearBegin] DESC", 
-					employee.EmployeeID);
-			}
-			else
-			{
-				achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
-					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0" +
-				" AND [AchievementType] IN ('A') ORDER BY [YearBegin] DESC", 
-					employee.EmployeeID);
-			}
 
 			foreach (var achievement in achievements)
 			{
