@@ -22,9 +22,9 @@
     <value>Total work experience (years): {0}</value>
   </data>
 	<data name="ExperienceYears.Format2" xml:space="preserve">
-    <value>Work experience in speciality (years): {0}</value>
+    <value>Work experience by speciality (years): {0}</value>
   </data>
 	<data name="ExperienceYears.Format3" xml:space="preserve">
-    <value>Total work experience (years): {0}, in which in speciality: {1}</value>
+    <value>Total work experience (years): {0}, in which by speciality: {1}</value>
   </data>
 </root>
