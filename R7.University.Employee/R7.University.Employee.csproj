@@ -116,7 +116,7 @@
       <DependentUpon>EditEmployee.ascx</DependentUpon>
     </Compile>
     <Compile Include="entities\OccupiedPositionView.cs" />
-    <Compile Include="entities\EmployeeAchievementView.cs" />
+    <Compile Include="entities\EmployeeAcheivementView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
