@@ -315,10 +315,12 @@ namespace R7.University.Employee
 				linkExperience.Visible = false;
 			}
 
+			// get all empoyee achievements
 			var achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
 					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
 					employee.EmployeeID);
 	
+			// get only experience-related achievements
 			gridExperience.DataSource = AchievementsDataTable(
 				achievements.Where(ach => ach.AchievementType == AchievementType.Education ||
 					ach.AchievementType == AchievementType.Training ||
@@ -326,6 +328,7 @@ namespace R7.University.Employee
 				.OrderByDescending(ach => ach.YearBegin));
 			gridExperience.DataBind();
 
+			// get all other achievements
 			gridAchievements.DataSource = AchievementsDataTable(
 				achievements.Where(ach => ach.AchievementType == AchievementType.Achievement)
 				.OrderByDescending(ach => ach.YearBegin));
