@@ -539,6 +539,16 @@ namespace R7.University.Employee
 
 		protected void gridOccupiedPositions_RowDataBound (object sender, GridViewRowEventArgs e)
 		{
+			grids_RowDataBound (sender, e);
+		}
+
+		protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
+		{
+			grids_RowDataBound (sender, e);
+		}
+		
+		private void grids_RowDataBound (object sender, GridViewRowEventArgs e)
+		{
 			// hide ItemID column, also in header
 			e.Row.Cells [1].Visible = false;
 
@@ -546,8 +556,8 @@ namespace R7.University.Employee
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
 				// find edit and delete linkbuttons
-				var linkDelete = e.Row.Cells [0].FindControl ("linkDeleteOccupiedPosition") as LinkButton;
-				var linkEdit = e.Row.Cells [0].FindControl ("linkEditOccupiedPosition") as LinkButton;
+				var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
+				var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
 
 				// set recordId to delete
 				linkEdit.CommandArgument = e.Row.Cells [1].Text;
@@ -684,27 +694,6 @@ namespace R7.University.Employee
 			}
 
 			return dt;
-		}
-
-		protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
-		{
-			// hide ItemID column, also in header
-			e.Row.Cells [1].Visible = false;
-
-			// exclude header
-			if (e.Row.RowType == DataControlRowType.DataRow)
-			{
-				// find command linkbuttons
-				var linkEdit = e.Row.Cells [0].FindControl ("linkEditAchievement") as LinkButton;
-				var linkDelete = e.Row.Cells [0].FindControl ("linkDeleteAchievement") as LinkButton;
-				
-				// set recordId
-				linkEdit.CommandArgument = e.Row.Cells [1].Text;
-				linkDelete.CommandArgument = e.Row.Cells [1].Text;
-
-				// add confirmation dialog to delete link
-				linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
-			}
 		}
 
 		protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
