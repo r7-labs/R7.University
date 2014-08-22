@@ -40,11 +40,11 @@ namespace R7.University.Division
 			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 
 			// parse QueryString
-			itemId = Utils.ParseToNullableInt (Request.QueryString["division_id"]);
+			itemId = Utils.ParseToNullableInt (Request.QueryString ["division_id"]);
 		
 			// fill divisions dropdown
-			comboParentDivisions.AddItem(Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString());
-			foreach (var division in DivisionController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC")) 
+			comboParentDivisions.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
+			foreach (var division in DivisionController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC"))
 			{
 				// remove current division from a list
 				if (itemId == null || itemId != division.DivisionID)
@@ -57,12 +57,12 @@ namespace R7.University.Division
 			// Fill terms list
 			// TODO: Org. structure vocabulary name must be set in settings
 			var termCtrl = new TermController ();
-			var terms = termCtrl.GetTermsByVocabulary("University_Structure").ToList(); 
+			var terms = termCtrl.GetTermsByVocabulary ("University_Structure").ToList (); 
 
 			// add default term, 
 			// TermId = Null.NullInteger is set in cstor
 			
-			terms.Insert(0, new Term (Localization.GetString("NotSelected.Text", LocalResourceFile)));
+			terms.Insert (0, new Term (Localization.GetString ("NotSelected.Text", LocalResourceFile)));
 
 			// setup treeview (from TermsList.cs)
 			treeDivisionTerms.DataTextField = "Name";
@@ -92,21 +92,25 @@ namespace R7.University.Division
 		{
 			base.OnLoad (e);
 			
-			try {
+			try
+			{
 				// parse querystring parameters
 				itemId = Utils.ParseToNullableInt (Request.QueryString ["division_id"]);
       
-				if (!IsPostBack) {
+				if (!IsPostBack)
+				{
 					// load the data into the control the first time we hit this page
 
 					// check we have an item to lookup
 					// ALT: if (!Null.IsNull (itemId) 
-					if (itemId != null) {
+					if (itemId != null)
+					{
 
 						// load the item
 						var item = DivisionController.Get<DivisionInfo> (itemId.Value);
 
-						if (item != null) {
+						if (item != null)
+						{
 
 							txtTitle.Text = item.Title;
 							txtShortTitle.Text = item.ShortTitle;
@@ -121,10 +125,10 @@ namespace R7.University.Division
 							SharedLogic.WorkingHours.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 							
 							// select parent division
-							comboParentDivisions.Select (item.ParentDivisionID.ToString(), false);
+							comboParentDivisions.Select (item.ParentDivisionID.ToString (), false);
 
 							// select taxonomy term
-							var treeNode = treeDivisionTerms.FindNodeByValue(item.DivisionTermID.ToString());
+							var treeNode = treeDivisionTerms.FindNodeByValue (item.DivisionTermID.ToString ());
 							if (treeNode != null)
 							{
 								treeNode.Selected = true;
@@ -138,29 +142,34 @@ namespace R7.University.Division
 								} 
 							}
 							else
-								treeDivisionTerms.Nodes[0].Selected = true;
+								treeDivisionTerms.Nodes [0].Selected = true;
 
 							// set HomePage url
-							if (!string.IsNullOrWhiteSpace(item.HomePage))
+							if (!string.IsNullOrWhiteSpace (item.HomePage))
 								urlHomePage.Url = item.HomePage;
 							else
 								// or set to "None", if Url is empty
 								urlHomePage.UrlType = "N";
 
 							// setup audit control
-							ctlAudit.CreatedByUser = Utils.GetUserDisplayName(item.CreatedByUserID, LocalizeString("System.Text"));
+							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString ("System.Text"));
 							ctlAudit.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName(item.LastModifiedByUserID, LocalizeString("System.Text"));
-							ctlAudit.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString();
+							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, LocalizeString ("System.Text"));
+							ctlAudit.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
 
-						} else
+						}
+						else
 							Response.Redirect (Globals.NavigateURL (), true);
-					} else {
+					}
+					else
+					{
 						buttonDelete.Visible = false;
 						ctlAudit.Visible = false;
 					}
 				}
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
@@ -176,13 +185,13 @@ namespace R7.University.Division
 		/// </param>
 		protected void buttonUpdate_Click (object sender, EventArgs e)
 		{
-			try 
+			try
 			{
 				DivisionInfo item;
 		
 				// determine if we are adding or updating
 				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue) 
+				if (!itemId.HasValue)
 				{
 					// add new record
 					item = new DivisionInfo ();
@@ -194,23 +203,23 @@ namespace R7.University.Division
 				}
 
 				// fill the object
-				item.Title = txtTitle.Text.Trim();
-				item.ShortTitle = txtShortTitle.Text.Trim();
-				item.Email = txtEmail.Text.Trim().ToLowerInvariant();
-				item.SecondaryEmail = txtSecondaryEmail.Text.Trim().ToLowerInvariant();
-				item.Phone = txtPhone.Text.Trim();
-				item.Fax = txtFax.Text.Trim();
-				item.Location = txtLocation.Text.Trim();
-				item.WebSite = txtWebSite.Text.Trim();
-				item.ParentDivisionID = Utils.ParseToNullableInt(comboParentDivisions.SelectedValue);
-				item.DivisionTermID = Utils.ParseToNullableInt(treeDivisionTerms.SelectedValue);
+				item.Title = txtTitle.Text.Trim ();
+				item.ShortTitle = txtShortTitle.Text.Trim ();
+				item.Email = txtEmail.Text.Trim ().ToLowerInvariant ();
+				item.SecondaryEmail = txtSecondaryEmail.Text.Trim ().ToLowerInvariant ();
+				item.Phone = txtPhone.Text.Trim ();
+				item.Fax = txtFax.Text.Trim ();
+				item.Location = txtLocation.Text.Trim ();
+				item.WebSite = txtWebSite.Text.Trim ();
+				item.ParentDivisionID = Utils.ParseToNullableInt (comboParentDivisions.SelectedValue);
+				item.DivisionTermID = Utils.ParseToNullableInt (treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;
 
 				// update working hours
 				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
 				
 				if (!itemId.HasValue)
-			    {
+				{
 					// update audit info
 					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
@@ -221,7 +230,7 @@ namespace R7.University.Division
 					// set calling module to display new division info
 					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division")
 					{
-						var mctrl = new ModuleController();
+						var mctrl = new ModuleController ();
 						DivisionSettings.DivisionID = item.DivisionID;
 					}
 				}
@@ -234,10 +243,12 @@ namespace R7.University.Division
 					DivisionController.Update<DivisionInfo> (item);
 				}
 
-				Utils.SynchronizeModule(this);
+				Utils.SynchronizeModule (this);
 
 				Response.Redirect (Globals.NavigateURL (), true);
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
@@ -253,14 +264,17 @@ namespace R7.University.Division
 		/// </param>
 		protected void buttonDelete_Click (object sender, EventArgs e)
 		{
-			try {
+			try
+			{
 				// ALT: if (!Null.IsNull (itemId))
-				if (itemId.HasValue) 
+				if (itemId.HasValue)
 				{
 					DivisionController.Delete<DivisionInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}

@@ -69,13 +69,13 @@ namespace R7.University.Division
 				if (!IsPostBack || ViewState.Count == 0) // Fix for issue #23
 				{
 					var display = false;
-					if (!Null.IsNull(DivisionSettings.DivisionID))
+					if (!Null.IsNull (DivisionSettings.DivisionID))
 					{
 						var item = DivisionController.Get<DivisionInfo> (DivisionSettings.DivisionID);
-						if (item != null )
+						if (item != null)
 						{	
 							display = true;
-							DisplayDivision(item);
+							DisplayDivision (item);
 						}
 					}
 
@@ -139,7 +139,7 @@ namespace R7.University.Division
 					// NOTE: Add raw tag to Globals.NavigateURL to allow search work 
 					// independently of current friendly urls settings
 					// linkSearchByTerm.NavigateUrl = "/Default.aspx?tabid=" + PortalSettings.SearchTabId + "&tag=" + term.Name;
-					linkSearchByTerm.NavigateUrl = Globals.NavigateURL(PortalSettings.SearchTabId)  + "?tag=" + term.Name;
+					linkSearchByTerm.NavigateUrl = Globals.NavigateURL (PortalSettings.SearchTabId) + "?tag=" + term.Name;
 					displaySearchByTerm = true;
 				}
 			}
@@ -173,7 +173,7 @@ namespace R7.University.Division
 
 			// fax
 			if (!string.IsNullOrWhiteSpace (division.Fax))
-				labelFax.Text = string.Format (Localization.GetString("Fax.Format", LocalResourceFile), division.Fax);
+				labelFax.Text = string.Format (Localization.GetString ("Fax.Format", LocalResourceFile), division.Fax);
 			else
 				labelFax.Visible = false;
 
@@ -193,9 +193,9 @@ namespace R7.University.Division
 			var barcodeWidth = DivisionSettings.BarcodeWidth;
 			imageBarcode.ImageUrl = 
 				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
-					barcodeWidth, barcodeWidth, 
-					Server.UrlEncode(division.VCard.ToString()
-						.Replace("+","%2b")) // fix for "+" signs in phone numbers
+				barcodeWidth, barcodeWidth, 
+				Server.UrlEncode (division.VCard.ToString ()
+						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
 			);
 
 			imageBarcode.ToolTip = Localization.GetString ("imageBarcode.ToolTip", LocalResourceFile);
@@ -203,7 +203,7 @@ namespace R7.University.Division
 
 			// get & bind subdivisions
 			var subDivisions = DivisionController.GetObjects<DivisionInfo> (
-				"WHERE [ParentDivisionID] = @0 ORDER BY [Title]", division.DivisionID); 
+				                   "WHERE [ParentDivisionID] = @0 ORDER BY [Title]", division.DivisionID); 
 			if (subDivisions != null && subDivisions.Any ())
 			{
 				repeatSubDivisions.DataSource = subDivisions;
@@ -250,7 +250,7 @@ namespace R7.University.Division
 
 				actions.Add (
 					GetNextActionID (), 
-					Localization.GetString("VCard.Action", LocalResourceFile),
+					Localization.GetString ("VCard.Action", LocalResourceFile),
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 

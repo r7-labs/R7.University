@@ -52,21 +52,20 @@ namespace R7.University.Division
 
 		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
 		{
-			var searchDocs = new List<SearchDocument>();
+			var searchDocs = new List<SearchDocument> ();
 			var settings = new DivisionSettings (modInfo);
 			var division = Get<DivisionInfo> (settings.DivisionID);
 		
-			if (division != null && division.LastModifiedOnDate.ToUniversalTime() > beginDate.ToUniversalTime())
+			if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
 			{
 				var aboutDivision = division.SearchDocumentText;
-				var sd = new SearchDocument () 
-				{
+				var sd = new SearchDocument () {
 					PortalId = modInfo.PortalID,
 					AuthorUserId = division.LastModifiedByUserID,
 					Title = division.Title,
 					// Description = HtmlUtils.Shorten (aboutDivision, 255, "..."),
 					Body = aboutDivision,
-					ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime(),
+					ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),
 					UniqueKey = string.Format ("University_Division_{0}", division.DivisionID),
 					IsActive = true /* division.IsPublished */
 				};

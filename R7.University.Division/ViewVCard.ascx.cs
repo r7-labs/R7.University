@@ -34,31 +34,31 @@ namespace R7.University.Division
 			{
 				if (!IsPostBack)
 				{
-					var division_id = Request.QueryString["division_id"];
-					if (!string.IsNullOrWhiteSpace(division_id))
+					var division_id = Request.QueryString ["division_id"];
+					if (!string.IsNullOrWhiteSpace (division_id))
 					{
-						var division = DivisionController.Get<DivisionInfo> (int.Parse(division_id));
+						var division = DivisionController.Get<DivisionInfo> (int.Parse (division_id));
 						if (division != null)
 						{
 							var vcard = division.VCard;
 
-							Response.Clear();
+							Response.Clear ();
 							Response.ContentType = "text/x-vcard";
-							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}.vcf\"", division.FileName));
+							Response.AddHeader ("content-disposition", string.Format ("attachment; filename=\"{0}.vcf\"", division.FileName));
 
-							if (Request.Browser.Platform.ToUpperInvariant().StartsWith("WIN"))
+							if (Request.Browser.Platform.ToUpperInvariant ().StartsWith ("WIN"))
 							{
 								// HACK: Windows russian version hack
 								// TODO: Need a way to determine language / locale for division description
-								Response.ContentEncoding = Encoding.GetEncoding(1251);
+								Response.ContentEncoding = Encoding.GetEncoding (1251);
 								vcard.Encoding = Response.ContentEncoding;
 							}
-							else 
+							else
 								Response.ContentEncoding = Encoding.UTF8;
 
-							Response.Write(vcard.ToString());
-							Response.Flush();
-							Response.Close();
+							Response.Write (vcard.ToString ());
+							Response.Flush ();
+							Response.Close ();
 						}
 						else
 							throw new Exception ("No division found with DivisionID=" + division_id);
@@ -75,6 +75,8 @@ namespace R7.University.Division
 
 		#endregion
 
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 

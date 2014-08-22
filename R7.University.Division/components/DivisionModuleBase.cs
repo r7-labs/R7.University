@@ -34,13 +34,15 @@ namespace R7.University.Division
 	public class DivisionPortalModuleBase : PortalModuleBase
 	{
 		private DivisionController ctrl = null;
-		protected DivisionController DivisionController 
+
+		protected DivisionController DivisionController
 		{
 			get { return ctrl ?? (ctrl = new DivisionController ()); }
 		}
 
 		private DivisionSettings settings = null;
-		protected DivisionSettings DivisionSettings 
+
+		protected DivisionSettings DivisionSettings
 		{
 			get { return settings ?? (settings = new DivisionSettings (this)); }
 		}
@@ -52,13 +54,15 @@ namespace R7.University.Division
 	public class DivisionModuleSettingsBase : ModuleSettingsBase
 	{
 		private DivisionController ctrl = null;
-		protected DivisionController DivisionController 
+
+		protected DivisionController DivisionController
 		{
 			get { return ctrl ?? (ctrl = new DivisionController ()); }
 		}
 
 		private DivisionSettings settings = null;
-		protected DivisionSettings DivisionSettings 
+
+		protected DivisionSettings DivisionSettings
 		{
 			get { return settings ?? (settings = new DivisionSettings (this)); }
 		}

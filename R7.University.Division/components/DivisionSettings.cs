@@ -53,14 +53,14 @@ namespace R7.University.Division
 		/// </summary>
 		public int DivisionID
 		{
-			get 
+			get
 			{
 				if (divisionId == null)
 					divisionId = ReadSetting<int> ("Division_DivisionID", Null.NullInteger, false); 
 			
 				return divisionId.Value;
 			}
-			set 
+			set
 			{ 
 				WriteSetting<int> ("Division_DivisionID", value, false); 
 				divisionId = value;

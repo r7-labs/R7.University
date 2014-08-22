@@ -47,22 +47,22 @@ namespace R7.University.Division
 				if (!IsPostBack)
 				{
 					// get divisions
-					var divisions = DivisionController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC").ToList();
+					var divisions = DivisionController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
 
 					// insert default item
-					divisions.Insert (0, new DivisionInfo() { 
+					divisions.Insert (0, new DivisionInfo () { 
 						DivisionID = Null.NullInteger, 
 						ParentDivisionID = null,
-						Title = Localization.GetString("NotSelected.Text", LocalResourceFile),
-						ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile)
+						Title = Localization.GetString ("NotSelected.Text", LocalResourceFile),
+						ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile)
 					});
 
 					// bind list to a tree
 					treeDivisions.DataSource = divisions;
-					treeDivisions.DataBind();
+					treeDivisions.DataBind ();
 
 					// select currently stored value
-					var treeNode = treeDivisions.FindNodeByValue(DivisionSettings.DivisionID.ToString());
+					var treeNode = treeDivisions.FindNodeByValue (DivisionSettings.DivisionID.ToString ());
 					if (treeNode != null)
 					{
 						treeNode.Selected = true;
@@ -76,7 +76,7 @@ namespace R7.University.Division
 						} 
 					}
 
-					textBarcodeWidth.Text = DivisionSettings.BarcodeWidth.ToString();
+					textBarcodeWidth.Text = DivisionSettings.BarcodeWidth.ToString ();
 				}
 			}
 			catch (Exception ex)
@@ -92,7 +92,7 @@ namespace R7.University.Division
 		{
 			try
 			{
-				DivisionSettings.DivisionID = int.Parse(treeDivisions.SelectedValue);
+				DivisionSettings.DivisionID = int.Parse (treeDivisions.SelectedValue);
 				DivisionSettings.BarcodeWidth = int.Parse (textBarcodeWidth.Text);
 
 				Utils.SynchronizeModule (this);
