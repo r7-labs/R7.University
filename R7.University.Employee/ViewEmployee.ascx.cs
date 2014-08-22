@@ -23,7 +23,7 @@ namespace R7.University.Employee
 	{
 		#region Properties
 
-		#endregion 
+		#endregion
 
 		#region Handlers
 
@@ -53,7 +53,7 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack || ViewState.Count == 0) // Fix for issue #23
 				{
-					if (Cache_OnLoad()) return;
+					if (Cache_OnLoad ()) return;
 					
 					var hasData = true;
 					
@@ -68,9 +68,9 @@ namespace R7.University.Employee
 
 						hasData = false;
 					}
-					else 
+					else
 					{
-						employee = EmployeeController.Get<EmployeeInfo>(EmployeeSettings.EmployeeID);
+						employee = EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
 
 						if (employee == null)
 						{
@@ -81,7 +81,7 @@ namespace R7.University.Employee
 							// were is nothing to display
 							hasData = false;
 						}
-						else 
+						else
 						{
 							/*
 							if (employee.IsDeleted)
@@ -105,7 +105,7 @@ namespace R7.University.Employee
 					
 					// if we have something published to display
 					// the display module to common users
-					Cache_SetContainerVisible(hasData && employee.IsPublished);
+					Cache_SetContainerVisible (hasData && employee.IsPublished);
 										
 					// display module only in edit mode
 					// only if we have published data to display
@@ -122,8 +122,8 @@ namespace R7.University.Employee
 							AutoTitle (employee);
 						
 						// get employee achievements (titles) only then it about to display
-						achievements =  EmployeeController.GetObjects<EmployeeAchievementInfo>(
-								CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", EmployeeSettings.EmployeeID);
+						achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
+							CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", EmployeeSettings.EmployeeID);
 
 						// display employee info
 						Display (employee, achievements);
@@ -161,7 +161,7 @@ namespace R7.University.Employee
 		{
 			// occupied positions
 			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-			if (occupiedPositions != null && occupiedPositions.Any())
+			if (occupiedPositions != null && occupiedPositions.Any ())
 			{
 				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
 				repeaterPositions.DataBind ();
@@ -220,7 +220,7 @@ namespace R7.University.Employee
 				var popupUrl = Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ());
 				
 				// alter popup window height
-				linkPhoto.NavigateUrl = popupUrl.Replace("550,950","450,950");
+				linkPhoto.NavigateUrl = popupUrl.Replace ("550,950", "450,950");
 			}
 
 			// REVIEW: Need to add fallback image?
@@ -236,7 +236,7 @@ namespace R7.University.Employee
 			*/
 			
 			// Employee titles
-			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList();
+			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList ();
 			
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);
@@ -262,7 +262,7 @@ namespace R7.University.Employee
 
 			// Fax
 			if (!string.IsNullOrWhiteSpace (employee.Fax))
-				labelFax.Text = string.Format(Localization.GetString("Fax.Format", LocalResourceFile), employee.Fax);
+				labelFax.Text = string.Format (Localization.GetString ("Fax.Format", LocalResourceFile), employee.Fax);
 			else
 				labelFax.Visible = false;
 
@@ -310,13 +310,13 @@ namespace R7.University.Employee
 			{
 				// REVIEW: Less optimistic protocol detection?
 				var lowerWebSite = employee.WebSite.ToLowerInvariant ();
-				if (lowerWebSite.StartsWith ("http://") ||  lowerWebSite.StartsWith ("https://"))
+				if (lowerWebSite.StartsWith ("http://") || lowerWebSite.StartsWith ("https://"))
 				{
 					linkWebSite.NavigateUrl = employee.WebSite;
 					// 01234567890
 					// http://www.volgau.com
 					// https://www.volgau.com
-					linkWebSite.Text = employee.WebSite.Remove(0, employee.WebSite.IndexOf("://")+3); 
+					linkWebSite.Text = employee.WebSite.Remove (0, employee.WebSite.IndexOf ("://") + 3); 
 				}
 				else
 				{
@@ -398,11 +398,11 @@ namespace R7.University.Employee
 
 				actions.Add (
 					GetNextActionID (), 
-					Localization.GetString("Details.Action", this.LocalResourceFile),
+					Localization.GetString ("Details.Action", this.LocalResourceFile),
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ()).Replace("550,950","450,950"),
+					Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ()).Replace ("550,950", "450,950"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
 					existingEmployee, 
@@ -411,7 +411,7 @@ namespace R7.University.Employee
 
 				actions.Add (
 					GetNextActionID (), 
-					Localization.GetString("VCard.Action", this.LocalResourceFile),
+					Localization.GetString ("VCard.Action", this.LocalResourceFile),
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
@@ -459,7 +459,7 @@ namespace R7.University.Employee
 				labelPosition.Text = opex.PositionShortTitle;
 
 				// don't display division title for highest level divisions
-				if (Utils.IsNull(opex.ParentDivisionID))
+				if (Utils.IsNull (opex.ParentDivisionID))
 				{
 					labelDivision.Visible = false;
 					linkDivision.Visible = false;
@@ -484,6 +484,8 @@ namespace R7.University.Employee
 			}
 		}
 
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 

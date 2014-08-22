@@ -36,31 +36,31 @@ namespace R7.University.Employee
 				{
 					var ctrl = new EmployeeController ();
 
-					var employee_id = Request.QueryString["employee_id"];
-					if (!string.IsNullOrWhiteSpace(employee_id))
+					var employee_id = Request.QueryString ["employee_id"];
+					if (!string.IsNullOrWhiteSpace (employee_id))
 					{
-						var employee = ctrl.Get<EmployeeInfo> (int.Parse(employee_id));
+						var employee = ctrl.Get<EmployeeInfo> (int.Parse (employee_id));
 						if (employee != null)
 						{
 							var vcard = employee.VCard;
 
-							Response.Clear();
+							Response.Clear ();
 							Response.ContentType = "text/x-vcard";
-							Response.AddHeader("content-disposition", string.Format("attachment; filename=\"{0}.vcf\"", employee.FileName));
+							Response.AddHeader ("content-disposition", string.Format ("attachment; filename=\"{0}.vcf\"", employee.FileName));
 
-							if (Request.Browser.Platform.ToUpperInvariant().StartsWith("WIN"))
+							if (Request.Browser.Platform.ToUpperInvariant ().StartsWith ("WIN"))
 							{
 								// HACK: Windows russian version hack
 								// TODO: Need a way to determine language / locale for employee description
-								Response.ContentEncoding = Encoding.GetEncoding(1251);
+								Response.ContentEncoding = Encoding.GetEncoding (1251);
 								vcard.Encoding = Response.ContentEncoding;
 							}
-							else 
+							else
 								Response.ContentEncoding = Encoding.UTF8;
 
-							Response.Write(vcard.ToString());
-							Response.Flush();
-							Response.Close();
+							Response.Write (vcard.ToString ());
+							Response.Flush ();
+							Response.Close ();
 						}
 						else
 							throw new Exception ("No employee found with EmployeeID=" + employee_id);
@@ -77,6 +77,8 @@ namespace R7.University.Employee
 
 		#endregion
 
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 

@@ -21,17 +21,17 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					comboEmployees.AddItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString());
+					comboEmployees.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
 					foreach (var employee in EmployeeController.GetObjects<EmployeeInfo>("ORDER BY [LastName]"))
-						comboEmployees.AddItem (employee.AbbrName, employee.EmployeeID.ToString());
+						comboEmployees.AddItem (employee.AbbrName, employee.EmployeeID.ToString ());
 				
-					if (!Null.IsNull(EmployeeSettings.EmployeeID))
-						comboEmployees.Select(EmployeeSettings.EmployeeID.ToString(), false);
+					if (!Null.IsNull (EmployeeSettings.EmployeeID))
+						comboEmployees.Select (EmployeeSettings.EmployeeID.ToString (), false);
 
 					checkAutoTitle.Checked = EmployeeSettings.AutoTitle;
 
-					if (!Null.IsNull(EmployeeSettings.PhotoWidth))
-						textPhotoWidth.Text = EmployeeSettings.PhotoWidth.ToString();
+					if (!Null.IsNull (EmployeeSettings.PhotoWidth))
+						textPhotoWidth.Text = EmployeeSettings.PhotoWidth.ToString ();
 					
 					if (!Null.IsNull (EmployeeSettings.DataCacheTime))
 						textDataCacheTime.Text = EmployeeSettings.DataCacheTime.ToString ();
@@ -50,20 +50,20 @@ namespace R7.University.Employee
 		{
 			try
 			{
-				EmployeeSettings.EmployeeID = int.Parse(comboEmployees.SelectedValue);
+				EmployeeSettings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
 				EmployeeSettings.AutoTitle = checkAutoTitle.Checked;
 
-				if (!string.IsNullOrWhiteSpace(textPhotoWidth.Text))
-					EmployeeSettings.PhotoWidth = int.Parse(textPhotoWidth.Text);
+				if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
+					EmployeeSettings.PhotoWidth = int.Parse (textPhotoWidth.Text);
 				else
 					EmployeeSettings.PhotoWidth = Null.NullInteger;
 				
-				if (!string.IsNullOrWhiteSpace(textDataCacheTime.Text))
-					EmployeeSettings.DataCacheTime = int.Parse(textDataCacheTime.Text);
+				if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
+					EmployeeSettings.DataCacheTime = int.Parse (textDataCacheTime.Text);
 				else
 					EmployeeSettings.DataCacheTime = Null.NullInteger;
 				
-				Utils.SynchronizeModule(this);
+				Utils.SynchronizeModule (this);
 
 			}
 			catch (Exception ex)

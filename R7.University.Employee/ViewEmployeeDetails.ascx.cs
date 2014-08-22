@@ -22,7 +22,7 @@ namespace R7.University.Employee
 	{
 		#region Properties
 
-		#endregion 
+		#endregion
 
 		#region Handlers
 
@@ -51,35 +51,35 @@ namespace R7.University.Employee
 				if (!IsPostBack)
 				{
 					// try get EmployeeID from querysting
-					var employeeId = Utils.ParseToNullableInt(Request.QueryString["employee_id"]);
+					var employeeId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
 			
 					// if not, use module settings
-					if (employeeId == null && !Null.IsNull(EmployeeSettings.EmployeeID))
+					if (employeeId == null && !Null.IsNull (EmployeeSettings.EmployeeID))
 						employeeId = EmployeeSettings.EmployeeID;
 					
 					if (employeeId != null)
 					{
-						var employee = EmployeeController.Get<EmployeeInfo>(employeeId.Value);
+						var employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
 					
 						if (employee != null)
 						{
 							if (IsEditable || employee.IsPublished)
 							{
-								Display(employee);
+								Display (employee);
 								
 								if (IsEditable)
 								{
 									linkVCard.Visible = true;
-									linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString());
+									linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString ());
 								}
 							}
 							else
 								// can show only published
-								Response.Redirect(Globals.NavigateURL(), true);
+								Response.Redirect (Globals.NavigateURL (), true);
 						}
 						else 
 							// nothing to show
-							Response.Redirect(Globals.NavigateURL(), true);
+							Response.Redirect (Globals.NavigateURL (), true);
 					}
 				} // if (!IsPostBack)
 			}
@@ -90,7 +90,7 @@ namespace R7.University.Employee
 		}
 
 		#endregion
-		
+
 		protected void Display (EmployeeInfo employee)
 		{
 			var fullname = employee.FullName;
@@ -261,7 +261,7 @@ namespace R7.University.Employee
 
 			imagePhoto.Visible = imageVisible;
 		}
-		
+
 		void Barcode (EmployeeInfo employee)
 		{
 			// barcode image test
@@ -276,7 +276,7 @@ namespace R7.University.Employee
 			imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
 			imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
 		}
-		
+
 		void Experience (EmployeeInfo employee)
 		{
 			// experience years
@@ -317,24 +317,24 @@ namespace R7.University.Employee
 
 			// get all empoyee achievements
 			var achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
-					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
-					employee.EmployeeID);
+				                   CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
+				                   employee.EmployeeID);
 	
 			// get only experience-related achievements
-			gridExperience.DataSource = AchievementsDataTable(
-				achievements.Where(ach => ach.AchievementType == AchievementType.Education ||
-					ach.AchievementType == AchievementType.Training ||
-					ach.AchievementType == AchievementType.Work)
-				.OrderByDescending(ach => ach.YearBegin));
-			gridExperience.DataBind();
+			gridExperience.DataSource = AchievementsDataTable (
+				achievements.Where (ach => ach.AchievementType == AchievementType.Education ||
+				ach.AchievementType == AchievementType.Training ||
+				ach.AchievementType == AchievementType.Work)
+				.OrderByDescending (ach => ach.YearBegin));
+			gridExperience.DataBind ();
 
 			// get all other achievements
-			gridAchievements.DataSource = AchievementsDataTable(
-				achievements.Where(ach => ach.AchievementType == AchievementType.Achievement)
-				.OrderByDescending(ach => ach.YearBegin));
-			gridAchievements.DataBind();
+			gridAchievements.DataSource = AchievementsDataTable (
+				achievements.Where (ach => ach.AchievementType == AchievementType.Achievement)
+				.OrderByDescending (ach => ach.YearBegin));
+			gridAchievements.DataBind ();
 		}
-		
+
 		private DataTable AchievementsDataTable (IEnumerable<EmployeeAchievementInfo> achievements)
 		{
 			var dt = new DataTable ();
@@ -354,7 +354,7 @@ namespace R7.University.Employee
 				dr = dt.NewRow ();
 				dr [col++] = achievement.FormatYears;
 				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
-				dr [col++] = LocalizeString(AchievementTypeInfo.GetResourceKey(achievement.AchievementType));
+				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
 				dr [col++] = achievement.DocumentURL; 
 					
 				dt.Rows.Add (dr);
@@ -369,10 +369,10 @@ namespace R7.University.Employee
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
 				// WTF: empty DocumentURL's cells contains non-breakable spaces?
-				var documentUrl = e.Row.Cells [3].Text.Replace("&nbsp;", "");
-				if (!string.IsNullOrWhiteSpace(documentUrl))
-					 e.Row.Cells [3].Text = string.Format("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-							Globals.LinkClick (documentUrl, TabId, ModuleId), LocalizeString("DocumentUrl.Text"));
+				var documentUrl = e.Row.Cells [3].Text.Replace ("&nbsp;", "");
+				if (!string.IsNullOrWhiteSpace (documentUrl))
+					e.Row.Cells [3].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
+						Globals.LinkClick (documentUrl, TabId, ModuleId), LocalizeString ("DocumentUrl.Text"));
 			}
 		}
 
@@ -390,7 +390,7 @@ namespace R7.University.Employee
 				labelPosition.Text = opex.PositionShortTitle;
 
 				// don't display division title for highest level divisions
-				if (Utils.IsNull(opex.ParentDivisionID))
+				if (Utils.IsNull (opex.ParentDivisionID))
 				{
 					labelDivision.Visible = false;
 					linkDivision.Visible = false;
@@ -417,6 +417,8 @@ namespace R7.University.Employee
 				}
 			}
 		}
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 

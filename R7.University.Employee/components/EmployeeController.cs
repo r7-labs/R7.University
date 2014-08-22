@@ -29,23 +29,22 @@ namespace R7.University.Employee
 
 		#region ModuleSearchBase implementaion
 
-		public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)
+		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
 		{
-			var searchDocs = new List<SearchDocument>();
+			var searchDocs = new List<SearchDocument> ();
 			var settings = new EmployeeSettings (modInfo);
 			var employee = Get<EmployeeInfo> (settings.EmployeeID);
 		
-			if (employee != null && employee.LastModifiedOnDate.ToUniversalTime() > beginDate.ToUniversalTime())
+			if (employee != null && employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
 			{
 				var aboutEmployee = employee.SearchDocumentText;
-				var sd = new SearchDocument () 
-				{
+				var sd = new SearchDocument () {
 					PortalId = modInfo.PortalID,
 					AuthorUserId = employee.LastModifiedByUserID,
 					Title = employee.FullName,
 					// Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
 					Body = aboutEmployee,
-					ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime(),
+					ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
 					UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
 					IsActive = employee.IsPublished
 				};

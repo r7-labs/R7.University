@@ -7,10 +7,10 @@ namespace R7.University.Employee
 	public class EmployeeAchievementView : EmployeeAchievementInfo, ISerializable
 	{
 		public int ItemID { get; set; }
-	
+
 		private static int nextItemID = 0;
 
-		public static int GetNextItemID()
+		public static int GetNextItemID ()
 		{
 			return nextItemID++;
 		}
@@ -19,7 +19,7 @@ namespace R7.University.Employee
 		{
 			ItemID = GetNextItemID ();
 		}
-		
+
 		public EmployeeAchievementView (EmployeeAchievementInfo achievement)
 		{
 			ItemID = GetNextItemID ();
@@ -38,7 +38,7 @@ namespace R7.University.Employee
 			AchievementType = achievement.AchievementType;
 		}
 
-		public EmployeeAchievementInfo NewEmployeeAchievementInfo()
+		public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
 		{
 			// REVIEW: Use decorator pattern?
 
@@ -58,7 +58,7 @@ namespace R7.University.Employee
 			achInfo.YearEnd = YearEnd;
 
 			return achInfo;
-        }
+		}
 
 		// NOTE: if [Serializable] is set, all *fields* serialized by default
 
@@ -76,7 +76,7 @@ namespace R7.University.Employee
 			DocumentURL = info.GetString ("DocumentURL");
 			IsTitle = info.GetBoolean ("IsTitle");
 			
-			try 
+			try
 			{
 				AchievementID = info.GetInt32 ("AchievementID");
 			}
@@ -87,7 +87,7 @@ namespace R7.University.Employee
 
 			try
 			{
-				AchievementType = (AchievementType)info.GetValue("AchievementType", typeof(AchievementType));			
+				AchievementType = (AchievementType)info.GetValue ("AchievementType", typeof(AchievementType));			
 			}
 			catch
 			{
@@ -140,6 +140,8 @@ namespace R7.University.Employee
 
 		#endregion
 
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 

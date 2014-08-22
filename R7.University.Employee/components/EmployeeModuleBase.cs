@@ -35,13 +35,15 @@ namespace R7.University.Employee
 	public class EmployeePortalModuleBase : PortalModuleBase
 	{
 		private EmployeeController ctrl = null;
-		protected EmployeeController EmployeeController 
+
+		protected EmployeeController EmployeeController
 		{
 			get { return ctrl ?? (ctrl = new EmployeeController ()); }
 		}
 
 		private EmployeeSettings settings = null;
-		protected EmployeeSettings EmployeeSettings 
+
+		protected EmployeeSettings EmployeeSettings
 		{
 			get { return settings ?? (settings = new EmployeeSettings (this)); }
 		}
@@ -53,13 +55,15 @@ namespace R7.University.Employee
 	public class EmployeeModuleSettingsBase : ModuleSettingsBase
 	{
 		private EmployeeController ctrl = null;
-		protected EmployeeController EmployeeController 
+
+		protected EmployeeController EmployeeController
 		{
 			get { return ctrl ?? (ctrl = new EmployeeController ()); }
 		}
 
 		private EmployeeSettings settings = null;
-		protected EmployeeSettings EmployeeSettings 
+
+		protected EmployeeSettings EmployeeSettings
 		{
 			get { return settings ?? (settings = new EmployeeSettings (this)); }
 		}

@@ -9,15 +9,20 @@ namespace R7.University.Employee
 		public int ItemID { get; set; }
 
 		public int PositionID { get; set; }
+
 		public int DivisionID { get; set; }
+
 		public string PositionShortTitle { get; set; }
+
 		public string DivisionShortTitle { get; set; }
+
 		public bool IsPrime { get; set; }
+
 		public string TitleSuffix { get; set; }
 
 		private static int nextItemID = 0;
 
-		public static int GetNextItemID()
+		public static int GetNextItemID ()
 		{
 			return nextItemID++;
 		}
@@ -27,7 +32,7 @@ namespace R7.University.Employee
 			ItemID = GetNextItemID ();
 		}
 
-		public OccupiedPositionInfo NewOccupiedPositionInfo()
+		public OccupiedPositionInfo NewOccupiedPositionInfo ()
 		{
 			var opinfo = new OccupiedPositionInfo ();
 
@@ -39,7 +44,7 @@ namespace R7.University.Employee
 			return opinfo;
 		}
 
-		public OccupiedPositionView (OccupiedPositionInfoEx opex) : this()
+		public OccupiedPositionView (OccupiedPositionInfoEx opex) : this ()
 		{
 			PositionID = opex.PositionID;
 			DivisionID = opex.DivisionID;
@@ -49,8 +54,8 @@ namespace R7.University.Employee
 			TitleSuffix = opex.TitleSuffix;
 		}
 
-		public OccupiedPositionView  (int positionID, string positionShortTitle, 
-			int divisionID, string divisionShortTitle, bool isPrime, string titleSuffix) : this()
+		public OccupiedPositionView (int positionID, string positionShortTitle, 
+		                              int divisionID, string divisionShortTitle, bool isPrime, string titleSuffix) : this ()
 		{
 			PositionID = positionID;
 			DivisionID = divisionID;
@@ -66,11 +71,11 @@ namespace R7.University.Employee
 
 		protected OccupiedPositionView (SerializationInfo info, StreamingContext context)
 		{ 
-			ItemID = info.GetInt32("ItemID");
-			PositionID = info.GetInt32("PositionID");
-			DivisionID = info.GetInt32("DivisionID");
-			PositionShortTitle = info.GetString("PositionShortTitle");
-			DivisionShortTitle = info.GetString("DivisionShortTitle");
+			ItemID = info.GetInt32 ("ItemID");
+			PositionID = info.GetInt32 ("PositionID");
+			DivisionID = info.GetInt32 ("DivisionID");
+			PositionShortTitle = info.GetString ("PositionShortTitle");
+			DivisionShortTitle = info.GetString ("DivisionShortTitle");
 			IsPrime = info.GetBoolean ("IsPrime");
 			TitleSuffix = info.GetString ("TitleSuffix");
 		}
@@ -88,6 +93,8 @@ namespace R7.University.Employee
 
 		#endregion
 
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 

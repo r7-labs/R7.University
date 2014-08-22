@@ -22,17 +22,17 @@ namespace R7.University.Employee
 		#region Properties for settings
 
 		private int? employeeId;
-		
+
 		public int EmployeeID
 		{
-			get 
+			get
 			{ 
 				if (employeeId == null)
 					employeeId = ReadSetting<int> ("Employee_EmployeeID", Null.NullInteger, false); 
 				
 				return employeeId.Value;
 			}
-			set 
+			set
 			{ 
 				WriteSetting<int> ("Employee_EmployeeID", value, false); 
 				employeeId = value;
@@ -51,25 +51,25 @@ namespace R7.University.Employee
 			get { return ReadSetting<int> ("Employee_PhotoWidth", 192, true); }
 			set { WriteSetting<int> ("Employee_PhotoWidth", value, true); }
 		}
-		
+
 		private int? dataCacheTime;
-		
+
 		public int DataCacheTime
 		{
-			get 
+			get
 			{ 
 				if (dataCacheTime == null)
 					dataCacheTime = ReadSetting<int> ("Employee_DataCacheTime", 1200, true);
 				
 				return dataCacheTime.Value;
 			}
-			set 
+			set
 			{ 
 				WriteSetting<int> ("Employee_DataCacheTime", value, true); 
 				dataCacheTime = value;
 			}
 		}
-		
+
 		#endregion
 	}
 }

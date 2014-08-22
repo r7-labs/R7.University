@@ -38,8 +38,8 @@ namespace R7.University.Employee
 		
 		private bool renderDisabled = false;
 		private string renderCacheContent;
-		
-		private string DataCacheKey 
+
+		private string DataCacheKey
 		{
 			get { return "Employee_" + TabModuleId; }
 		}
@@ -77,7 +77,7 @@ namespace R7.University.Employee
 				}
 
 				// write the new html to the page
-				writer.Write(renderCacheContent);
+				writer.Write (renderCacheContent);
 			}
 		}
 		
@@ -122,21 +122,21 @@ namespace R7.University.Employee
 			
 			if (settings.DataCacheTime > 0)
 			{
-				if (IsEditable) 
+				if (IsEditable)
 				{
 					// don't use cache in edit mode
-					DataCache.RemoveCache(DataCacheKey);
+					DataCache.RemoveCache (DataCacheKey);
 					// DataCache.RemoveCache(dataCacheKey + "_ContainerVisible");
 				}
-				else 
+				else
 				{
 					// NOTE: read cache here, cause it may be too late on render
-					renderCacheContent = CacheHelper.Get<string>(DataCacheKey); 
+					renderCacheContent = CacheHelper.Get<string> (DataCacheKey); 
 				
 					if (renderCacheContent != null)
 					{
 						// REVIEW: Maybe is would be better is set default container visibility to true?
-						var visible = CacheHelper.TryGet<bool>(DataCacheKey + "_ContainerVisible", false);
+						var visible = CacheHelper.TryGet<bool> (DataCacheKey + "_ContainerVisible", false);
 						
 						ContainerControl.Visible = visible;
 						renderDisabled = !visible;
@@ -151,18 +151,18 @@ namespace R7.University.Employee
 			
 			return cacheExists;
 		}
-		
+
 		
 		/// <summary>
 		/// Stores container control visibility to data cache
 		/// </summary>
 		/// <param name="visible">Set to <c>true</c>, if container control should be visible to common users.</param>
-		private void Cache_SetContainerVisible(bool visible)
+		private void Cache_SetContainerVisible (bool visible)
 		{
 			#if (RENDERCACHE)
 		
 			var settings = new EmployeeSettings (this);
-			CacheHelper.Set<bool>(visible, DataCacheKey + "_ContainerVisible", settings.DataCacheTime + 60);
+			CacheHelper.Set<bool> (visible, DataCacheKey + "_ContainerVisible", settings.DataCacheTime + 60);
 			
 			#endif
 		}

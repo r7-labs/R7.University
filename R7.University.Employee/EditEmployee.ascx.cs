@@ -26,7 +26,7 @@ namespace R7.University.Employee
 		private int? itemId = null;
 
 		#region Properties
-		
+
 		private List<AchievementInfo> CommonAchievements
 		{
 			get
@@ -34,14 +34,14 @@ namespace R7.University.Employee
 				var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
 				if (commonAchievements == null)
 				{
-					commonAchievements = EmployeeController.GetObjects<AchievementInfo> ().ToList();
+					commonAchievements = EmployeeController.GetObjects<AchievementInfo> ().ToList ();
 					ViewState ["commonAchievements"] = commonAchievements;
 				}
 				
 				return commonAchievements;
 			}
 		}
-	
+
 		protected string EditIconUrl
 		{
 			get { return IconController.IconURL ("Edit"); }
@@ -80,7 +80,7 @@ namespace R7.University.Employee
 			pickerPhoto.FilePath = "Images/faces/";
 
 			// add default item to user list
-			comboUsers.AddItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
+			comboUsers.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
 
 			// init working hours
 			SharedLogic.WorkingHours.Init (this, comboWorkingHours);
@@ -90,26 +90,35 @@ namespace R7.University.Employee
 			var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
 			var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ("ORDER BY [Title] ASC"));
 
-			ViewState["commonAchievements"] = commonAchievements;
+			ViewState ["commonAchievements"] = commonAchievements;
 
 			// add default items
-			positions.Insert (0, new PositionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), PositionID = Null.NullInteger });
-			divisions.Insert (0, new DivisionInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), DivisionID = Null.NullInteger });
-			commonAchievements.Insert (0, new AchievementInfo () { ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile), AchievementID = Null.NullInteger });
+			positions.Insert (0, new PositionInfo () {
+				ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile),
+				PositionID = Null.NullInteger
+			});
+			divisions.Insert (0, new DivisionInfo () {
+				ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile),
+				DivisionID = Null.NullInteger
+			});
+			commonAchievements.Insert (0, new AchievementInfo () {
+				ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile),
+				AchievementID = Null.NullInteger
+			});
 
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
 
 			comboAchievements.SelectedIndexChanged += comboAchievements_SelectedIndexChanged;
 			comboAchievements.DataSource = commonAchievements;
-			comboAchievements.DataBind();
+			comboAchievements.DataBind ();
 
 			treeDivisions.DataSource = divisions;
 			treeDivisions.DataBind ();
 
 			// bind achievement types
-			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes(LocalizeString);
-			comboAchievementTypes.DataBind();
+			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
+			comboAchievementTypes.DataBind ();
 		}
 
 		/// <summary>
@@ -157,10 +166,10 @@ namespace R7.University.Employee
 							// load working hours
 							SharedLogic.WorkingHours.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
-							if (!Null.IsNull(item.ExperienceYears))
+							if (!Null.IsNull (item.ExperienceYears))
 								textExperienceYears.Text = item.ExperienceYears.ToString ();
 
-							if (!Null.IsNull(item.ExperienceYearsBySpec))
+							if (!Null.IsNull (item.ExperienceYearsBySpec))
 								textExperienceYearsBySpec.Text = item.ExperienceYearsBySpec.ToString ();
 
 							checkIsPublished.Checked = item.IsPublished;
@@ -191,37 +200,37 @@ namespace R7.University.Employee
 							}
 
 							// read OccupiedPositions data
-							var occupiedPositionInfoExs = EmployeeController.GetObjects<OccupiedPositionInfoEx>(
-								"WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
+							var occupiedPositionInfoExs = EmployeeController.GetObjects<OccupiedPositionInfoEx> (
+								                              "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
 
 							// fill view list
-							var occupiedPositions = new List<OccupiedPositionView>();
+							var occupiedPositions = new List<OccupiedPositionView> ();
 							foreach (var op in occupiedPositionInfoExs)
-								occupiedPositions.Add(new OccupiedPositionView(op));
+								occupiedPositions.Add (new OccupiedPositionView (op));
 
 							// bind occupied positions
-							ViewState["occupiedPositions"] = occupiedPositions;
-							gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
+							ViewState ["occupiedPositions"] = occupiedPositions;
+							gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
 							gridOccupiedPositions.DataBind ();
 
 							// read employee achievements
-							var achievementInfos = EmployeeController.GetObjects<EmployeeAchievementInfo>(
-								CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", itemId.Value);
+							var achievementInfos = EmployeeController.GetObjects<EmployeeAchievementInfo> (
+								                       CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", itemId.Value);
 
 							// fill achievements list
-							var achievements = new List<EmployeeAchievementView>();
+							var achievements = new List<EmployeeAchievementView> ();
 							foreach (var achievement in achievementInfos)
-								achievements.Add(new EmployeeAchievementView(achievement));
+								achievements.Add (new EmployeeAchievementView (achievement));
 
 							// bind achievements
-							ViewState["achievements"] = achievements;
-							gridAchievements.DataSource = AchievementsDataTable(achievements);
+							ViewState ["achievements"] = achievements;
+							gridAchievements.DataSource = AchievementsDataTable (achievements);
 							gridAchievements.DataBind ();
 
 							// setup audit control
-							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString("System.Text"));
+							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString ("System.Text"));
 							ctlAudit.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, LocalizeString("System.Text"));
+							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, LocalizeString ("System.Text"));
 							ctlAudit.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
 						}
 						else
@@ -235,15 +244,15 @@ namespace R7.University.Employee
 
 					// then edit / add from EmployeeList, divisionId query param
 					// can be set to current division ID
-					var divisionId = Request.QueryString["division_id"];
+					var divisionId = Request.QueryString ["division_id"];
 					Utils.SelectAndExpandByValue (treeDivisions, divisionId);
 				
 					// select first (default) node, if none selected - 
 					// fix for issue #8
 					if (treeDivisions.SelectedNode == null)
-						treeDivisions.Nodes[0].Selected = true;
+						treeDivisions.Nodes [0].Selected = true;
 				}
-				else 
+				else
 				{
 					// NOTE: Fix for issue #1 - just update FilePath every postback
 					if (pickerPhoto.FileID > 0)
@@ -287,21 +296,21 @@ namespace R7.University.Employee
 				}
 
 				// fill the object
-				item.LastName = textLastName.Text.Trim();
-				item.FirstName = textFirstName.Text.Trim();
-				item.OtherName = textOtherName.Text.Trim();
+				item.LastName = textLastName.Text.Trim ();
+				item.FirstName = textFirstName.Text.Trim ();
+				item.OtherName = textOtherName.Text.Trim ();
 				//item.NamePrefix = textNamePrefix.Text.Trim();
-				item.AcademicTitle = textAcademicTitle.Text.Trim();
-				item.AcademicDegree = textAcademicDegree.Text.Trim();
-				item.Phone = textPhone.Text.Trim();
-				item.CellPhone = textCellPhone.Text.Trim();
-				item.Fax = textFax.Text.Trim();
-				item.Email = textEmail.Text.Trim().ToLowerInvariant();
-				item.SecondaryEmail = textSecondaryEmail.Text.Trim().ToLowerInvariant();
-				item.WebSite = textWebSite.Text.Trim();
-				item.Messenger = textMessenger.Text.Trim();
-				item.WorkingPlace = textWorkingPlace.Text.Trim();
-				item.Biography = textBiography.Text.Trim();
+				item.AcademicTitle = textAcademicTitle.Text.Trim ();
+				item.AcademicDegree = textAcademicDegree.Text.Trim ();
+				item.Phone = textPhone.Text.Trim ();
+				item.CellPhone = textCellPhone.Text.Trim ();
+				item.Fax = textFax.Text.Trim ();
+				item.Email = textEmail.Text.Trim ().ToLowerInvariant ();
+				item.SecondaryEmail = textSecondaryEmail.Text.Trim ().ToLowerInvariant ();
+				item.WebSite = textWebSite.Text.Trim ();
+				item.Messenger = textMessenger.Text.Trim ();
+				item.WorkingPlace = textWorkingPlace.Text.Trim ();
+				item.Biography = textBiography.Text.Trim ();
 
 				// update working hours
 				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
@@ -322,7 +331,7 @@ namespace R7.University.Employee
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
 					// add employee
-					EmployeeController.AddEmployee(item, GetOccupiedPositions(), GetEmployeeAchievements());
+					EmployeeController.AddEmployee (item, GetOccupiedPositions (), GetEmployeeAchievements ());
 					
 					// then adding new employee from Employee module, 
 					// set calling module to display new employee
@@ -340,11 +349,11 @@ namespace R7.University.Employee
 					item.LastModifiedOnDate = DateTime.Now;
 
 					// update employee
-					EmployeeController.UpdateEmployee(item, GetOccupiedPositions(), GetEmployeeAchievements());
+					EmployeeController.UpdateEmployee (item, GetOccupiedPositions (), GetEmployeeAchievements ());
 				}
 
-				Utils.SynchronizeModule(this);
-				DataCache.RemoveCache("Employee_" + TabModuleId + "_RenderedContent");
+				Utils.SynchronizeModule (this);
+				DataCache.RemoveCache ("Employee_" + TabModuleId + "_RenderedContent");
 
 				Response.Redirect (Globals.NavigateURL (), true);
 			}
@@ -356,24 +365,24 @@ namespace R7.University.Employee
 
 		private List<OccupiedPositionInfo> GetOccupiedPositions ()
 		{
-			var occupiedPositions = ViewState["occupiedPositions"] as List<OccupiedPositionView>;
+			var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
 					
-			var occupiedPositionInfos = new List<OccupiedPositionInfo>();
+			var occupiedPositionInfos = new List<OccupiedPositionInfo> ();
 			if (occupiedPositions != null)
 				foreach (var op in occupiedPositions)
-					occupiedPositionInfos.Add(op.NewOccupiedPositionInfo());
+					occupiedPositionInfos.Add (op.NewOccupiedPositionInfo ());
 
 			return occupiedPositionInfos;
 		}
 
 		private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
 		{
-			var achievements = ViewState["achievements"] as List<EmployeeAchievementView>;
+			var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
 				
-			var achievementInfos = new List<EmployeeAchievementInfo>();
+			var achievementInfos = new List<EmployeeAchievementInfo> ();
 			if (achievements != null)
 				foreach (var ach in achievements)
-					achievementInfos.Add(ach.NewEmployeeAchievementInfo());
+					achievementInfos.Add (ach.NewEmployeeAchievementInfo ());
 
 			return achievementInfos;
 		}
@@ -435,8 +444,8 @@ namespace R7.University.Employee
 				usersFoundTotal += usersFound;
 
 				// clear user combox & add default item
-				comboUsers.Items.Clear();
-				comboUsers.AddItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
+				comboUsers.Items.Clear ();
+				comboUsers.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
 
 				if (usersFoundTotal > 0)
 				{
@@ -459,7 +468,7 @@ namespace R7.University.Employee
 
 		protected void buttonCancelUpdatePosition_Click (object sender, EventArgs e)
 		{
-			try 
+			try
 			{
 				// restore default buttons visibility (quit edit mode)
 				buttonAddPosition.Visible = true;
@@ -468,7 +477,7 @@ namespace R7.University.Employee
 			}
 			catch (Exception ex)
 			{
-				Exceptions.ProcessModuleLoadException(this, ex);
+				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
 
@@ -476,25 +485,25 @@ namespace R7.University.Employee
 		{
 			try
 			{
-				var positionID = int.Parse(comboPositions.SelectedValue);
-				var divisionID = int.Parse(treeDivisions.SelectedValue);
+				var positionID = int.Parse (comboPositions.SelectedValue);
+				var divisionID = int.Parse (treeDivisions.SelectedValue);
 
-				if (!Null.IsNull(positionID) && !Null.IsNull(divisionID))
+				if (!Null.IsNull (positionID) && !Null.IsNull (divisionID))
 				{
 					OccupiedPositionView occupiedPosition;
 
-					var occupiedPositions = (List<OccupiedPositionView>) ViewState["occupiedPositions"];
+					var occupiedPositions = (List<OccupiedPositionView>)ViewState ["occupiedPositions"];
 					
-					var command = e.CommandArgument.ToString();
+					var command = e.CommandArgument.ToString ();
 					if (command == "Add")
 					{
-						occupiedPosition = new OccupiedPositionView();
+						occupiedPosition = new OccupiedPositionView ();
 					}
 					else // update 
 					{
 						// restore ItemID from hidden field
-						var hiddenItemID = int.Parse(hiddenOccupiedPositionItemID.Value);
-						occupiedPosition = occupiedPositions.Find(op => op.ItemID == hiddenItemID);
+						var hiddenItemID = int.Parse (hiddenOccupiedPositionItemID.Value);
+						occupiedPosition = occupiedPositions.Find (op => op.ItemID == hiddenItemID);
 					}
 					
 					// fill the object
@@ -507,7 +516,7 @@ namespace R7.University.Employee
 					
 					if (command == "Add")
 					{
-						occupiedPositions.Add(occupiedPosition);
+						occupiedPositions.Add (occupiedPosition);
 					}
 					else // update
 					{
@@ -517,8 +526,8 @@ namespace R7.University.Employee
 						buttonCancelUpdatePosition.Visible = false;
 					}
 			
-					ViewState["occupiedPositions"] = occupiedPositions;
-					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
+					ViewState ["occupiedPositions"] = occupiedPositions;
+					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
 					gridOccupiedPositions.DataBind ();
 				}
 			}
@@ -561,14 +570,14 @@ namespace R7.University.Employee
 					if (occupiedPosition != null)
 					{
 						// fill the form
-						treeDivisions.CollapseAllNodes();
-						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString());
-						comboPositions.Select (occupiedPosition.PositionID.ToString(), false);
+						treeDivisions.CollapseAllNodes ();
+						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString ());
+						comboPositions.Select (occupiedPosition.PositionID.ToString (), false);
 						checkIsPrime.Checked = occupiedPosition.IsPrime;
 						textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
 						
 						// set hidden field value to ItemID of edited item
-						hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString();
+						hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString ();
 
 						// show / hide buttonss
 						buttonAddPosition.Visible = false;
@@ -579,7 +588,7 @@ namespace R7.University.Employee
 			}
 			catch (Exception ex)
 			{
-				Exceptions.ProcessModuleLoadException(this, ex);
+				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
 
@@ -597,21 +606,21 @@ namespace R7.University.Employee
 					// Utils.Message (this, MessageSeverity.Info, itemID);
 	
 					// find position in a list
-					var opFound = occupiedPositions.Find(op => op.ItemID.ToString() == itemID);
+					var opFound = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
 				
 					if (opFound != null)
 					{
 						occupiedPositions.Remove (opFound);
 						ViewState ["occupiedPositions"] = occupiedPositions;
 	
-						gridOccupiedPositions.DataSource = OccupiedPositionsDataTable(occupiedPositions);
+						gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
 						gridOccupiedPositions.DataBind ();
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				Exceptions.ProcessModuleLoadException(this, ex);
+				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
 
@@ -667,13 +676,13 @@ namespace R7.University.Employee
 				dr [col++] = achievement.IsTitle;
 				dr [col++] = achievement.YearBegin ?? Null.NullInteger;
 				dr [col++] = achievement.YearEnd ?? Null.NullInteger;
-				dr [col++] = LocalizeString(AchievementTypeInfo.GetResourceKey(achievement.AchievementType));
+				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
 				dt.Rows.Add (dr);
 			}
 
 			return dt;
 		}
-		
+
 		protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
 		{
 			// hide ItemID column, also in header
@@ -691,10 +700,10 @@ namespace R7.University.Employee
 				linkDelete.CommandArgument = e.Row.Cells [1].Text;
 			}
 		}
-		
+
 		protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
 		{
-			try 
+			try
 			{
 				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
 				if (achievements != null)
@@ -702,7 +711,7 @@ namespace R7.University.Employee
 					var itemID = e.CommandArgument.ToString ();
 	
 					// find position in a list
-					var achievement = achievements.Find(ach => ach.ItemID.ToString() == itemID);
+					var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
 	
 					if (achievement != null)
 					{
@@ -710,10 +719,10 @@ namespace R7.University.Employee
 						achievements.Remove (achievement);
 						
 						// refresh viewstate
-						ViewState["achievements"] = achievements;
+						ViewState ["achievements"] = achievements;
 	
 						// bind achievements to the gridview
-						gridAchievements.DataSource = AchievementsDataTable(achievements);
+						gridAchievements.DataSource = AchievementsDataTable (achievements);
 						gridAchievements.DataBind ();
 	
 						// restore default buttons visibility (quit edit mode)
@@ -725,13 +734,13 @@ namespace R7.University.Employee
 			}
 			catch (Exception ex)
 			{
-				Exceptions.ProcessModuleLoadException(this, ex);
+				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
 
 		protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
 		{
-			try 
+			try
 			{
 				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
 				if (achievements != null)
@@ -747,19 +756,19 @@ namespace R7.University.Employee
 						
 						if (achievement.AchievementID != null)
 						{
-							comboAchievements.Select(achievement.AchievementID.ToString(), false);
+							comboAchievements.Select (achievement.AchievementID.ToString (), false);
 	
 							panelAchievementTitle.Visible = false;
 							panelAchievementShortTitle.Visible = false;
 							panelAchievementTypes.Visible = false;
-						}					
+						}
 						else
 						{
-							comboAchievements.Select(Null.NullInteger.ToString(), false);
+							comboAchievements.Select (Null.NullInteger.ToString (), false);
 	
 							textAchievementTitle.Text = achievement.Title;
 							textAchievementShortTitle.Text = achievement.ShortTitle;
-							comboAchievementTypes.Select(achievement.AchievementType.ToString(), false);
+							comboAchievementTypes.Select (achievement.AchievementType.ToString (), false);
 							
 							panelAchievementTitle.Visible = true;
 							panelAchievementShortTitle.Visible = true;
@@ -768,8 +777,8 @@ namespace R7.University.Employee
 	
 						textAchievementTitleSuffix.Text = achievement.TitleSuffix;
 						textAchievementDescription.Text = achievement.Description;
-						textYearBegin.Text = achievement.YearBegin.ToString();
-						textYearEnd.Text = achievement.YearEnd.ToString();
+						textYearBegin.Text = achievement.YearBegin.ToString ();
+						textYearEnd.Text = achievement.YearEnd.ToString ();
 						checkIsTitle.Checked = achievement.IsTitle;
 						urlDocumentURL.Url = achievement.DocumentURL;
 					
@@ -779,19 +788,19 @@ namespace R7.University.Employee
 						buttonCancelUpdateAchievement.Visible = true;
 	
 						// store ItemID in the hidden field
-						hiddenAchievementItemID.Value = achievement.ItemID.ToString();
+						hiddenAchievementItemID.Value = achievement.ItemID.ToString ();
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				Exceptions.ProcessModuleLoadException(this, ex);
+				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
 
 		protected void buttonCancelUpdateAchievement_Click (object sender, EventArgs e)
 		{
-			try 
+			try
 			{
 				// restore default buttons visibility (quit edit mode)
 				buttonAddAchievement.Visible = true;
@@ -800,7 +809,7 @@ namespace R7.University.Employee
 			}
 			catch (Exception ex)
 			{
-				Exceptions.ProcessModuleLoadException(this, ex);
+				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
 
@@ -811,30 +820,30 @@ namespace R7.University.Employee
 				EmployeeAchievementView achievement;
 
 				// get achievements list from viewstate
-				var achievements = (List<EmployeeAchievementView>) ViewState["achievements"];
+				var achievements = (List<EmployeeAchievementView>)ViewState ["achievements"];
 
 				var command = e.CommandArgument.ToString ();
 				if (command == "Add")
 				{
-					achievement = new EmployeeAchievementView();
+					achievement = new EmployeeAchievementView ();
 				}
-				else 
+				else
 				{
 					// restore ItemID from hidden field
-					var hiddenItemID = int.Parse(hiddenAchievementItemID.Value);
-					achievement = achievements.Find(ach => ach.ItemID == hiddenItemID);
+					var hiddenItemID = int.Parse (hiddenAchievementItemID.Value);
+					achievement = achievements.Find (ach => ach.ItemID == hiddenItemID);
 				}
 	
-				achievement.AchievementID = Utils.ParseToNullableInt(comboAchievements.SelectedValue);
+				achievement.AchievementID = Utils.ParseToNullableInt (comboAchievements.SelectedValue);
 				if (achievement.AchievementID == null)
 				{
 					achievement.Title = textAchievementTitle.Text;
 					achievement.ShortTitle = textAchievementShortTitle.Text;
-					achievement.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
+					achievement.AchievementType = (AchievementType)Enum.Parse (typeof(AchievementType), comboAchievementTypes.SelectedValue);
 				}
 				else
 				{
-					var ach = CommonAchievements.Find(a => a.AchievementID.ToString() == comboAchievements.SelectedValue);
+					var ach = CommonAchievements.Find (a => a.AchievementID.ToString () == comboAchievements.SelectedValue);
 
 					achievement.Title = ach.Title;
 					achievement.ShortTitle = ach.ShortTitle;
@@ -844,8 +853,8 @@ namespace R7.University.Employee
 				achievement.TitleSuffix = textAchievementTitleSuffix.Text;
 				achievement.Description = textAchievementDescription.Text;
 				achievement.IsTitle = checkIsTitle.Checked;
-				achievement.YearBegin = Utils.ParseToNullableInt(textYearBegin.Text);
-				achievement.YearEnd = Utils.ParseToNullableInt(textYearEnd.Text);
+				achievement.YearBegin = Utils.ParseToNullableInt (textYearBegin.Text);
+				achievement.YearEnd = Utils.ParseToNullableInt (textYearEnd.Text);
 				
 				achievement.DocumentURL = urlDocumentURL.Url;
 				
@@ -853,7 +862,7 @@ namespace R7.University.Employee
 				{
 					achievements.Add (achievement);
 				}
-				else 
+				else
 				{
 					// update: already done
 					
@@ -864,10 +873,10 @@ namespace R7.University.Employee
 				}
 
 				// refresh viewstate
-				ViewState["achievements"] = achievements;
+				ViewState ["achievements"] = achievements;
 
 				// bind achievements to the gridview
-				gridAchievements.DataSource = AchievementsDataTable(achievements);
+				gridAchievements.DataSource = AchievementsDataTable (achievements);
 				gridAchievements.DataBind ();
 			}
 			catch (Exception ex)
@@ -878,7 +887,7 @@ namespace R7.University.Employee
 
 		protected void comboAchievements_SelectedIndexChanged (object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
 		{
-			try 
+			try
 			{
 				if (e.Value == "-1")
 				{
