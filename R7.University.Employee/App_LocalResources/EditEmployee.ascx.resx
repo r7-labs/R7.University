@@ -217,13 +217,13 @@
 		<value>Year begin</value>
 	</data>
 	<data name="labelYearBegin.Help">
-		<value>Enter starting year of achievement.</value>
+		<value>Enter starting year of the achievement. If not exists or not known, leave empty or set to -1.</value>
 	</data>
 	<data name="labelYearEnd.Text">
 		<value>Year end</value>
 	</data>
 	<data name="labelYearEnd.Help">
-		<value>Enter final year of achievement.</value>
+		<value>Enter final year of achievement. Set to 0 to specify ATM value; if not exists or not known, leave empty or set to -1.</value>
 	</data>
 	<data name="labelAchievementTitle.Text">
 		<value>Title</value>

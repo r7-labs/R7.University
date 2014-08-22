@@ -96,10 +96,15 @@ namespace R7.University
 					return YearBegin.ToString (); 
 				
 				if (YearBegin == null && YearEnd != null)
-					return YearEnd.ToString (); 
+					return "? - " + YearEnd; 
 				
 				if (YearBegin != null && YearEnd != null)
-					return string.Format ("{0} - {1}", YearBegin, YearEnd);
+				{
+					if (YearEnd.Value != 0)
+						return string.Format ("{0} - {1}", YearBegin, YearEnd);
+
+					return YearBegin + " - {ATM}";
+				}
 
 				return string.Empty;
 			}

@@ -678,12 +678,14 @@ namespace R7.University.Employee
 
 			// TODO: Add column for DocumentURL
 
+			var atTheMoment = LocalizeString("AtTheMoment.Text");
+
 			foreach (var achievement in achievements)
 			{
 				var col = 0;
 				dr = dt.NewRow ();
 				dr [col++] = achievement.ItemID;
-				dr [col++] = achievement.FormatYears;
+				dr [col++] = achievement.FormatYears.Replace ("{ATM}", atTheMoment);
 				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
 				//dr [col++] = achievement.ShortTitle;
 				//dr [col++] = achievement.Description;
