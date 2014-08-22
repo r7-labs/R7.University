@@ -29,9 +29,9 @@ namespace R7.University.Launchpad
 
 		#region ModuleSearchBase implementaion
 
-		public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)
+		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
 		{
-			var searchDocs = new List<SearchDocument>();
+			var searchDocs = new List<SearchDocument> ();
 
 			// TODO: Realize GetModifiedSearchDocuments()
 
@@ -56,10 +56,11 @@ namespace R7.University.Launchpad
 			var sb = new StringBuilder ();
 			var infos = GetObjects<LaunchpadInfo> (moduleId);
 
-			if (infos != null) 
+			if (infos != null)
 			{
 				sb.Append ("<Launchpads>");
-				foreach (var info in infos) {
+				foreach (var info in infos)
+				{
 					sb.Append ("<Launchpad>");
 					sb.Append ("<content>");
 					sb.Append (XmlUtils.XMLEncode (info.Content));
@@ -83,7 +84,8 @@ namespace R7.University.Launchpad
 		{
 			var infos = DotNetNuke.Common.Globals.GetContent (Content, "Launchpads");
 		
-			foreach (XmlNode info in infos.SelectNodes("Launchpad")) {
+			foreach (XmlNode info in infos.SelectNodes("Launchpad"))
+			{
 				var item = new LaunchpadInfo ();
 				item.ModuleID = ModuleID;
 				item.Content = info.SelectSingleNode ("content").InnerText;

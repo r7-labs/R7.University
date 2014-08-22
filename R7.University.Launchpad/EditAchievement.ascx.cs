@@ -37,8 +37,8 @@ namespace R7.University.Launchpad
 			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 
 			// bind achievement types
-			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes(LocalizeString);
-			comboAchievementTypes.DataBind();
+			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
+			comboAchievementTypes.DataBind ();
 		}
 
 		/// <summary>
@@ -69,7 +69,7 @@ namespace R7.University.Launchpad
 						{
 							textTitle.Text = item.Title;
 							textShortTitle.Text = item.ShortTitle;
-							comboAchievementTypes.Select(item.AchievementType.ToString(), false);
+							comboAchievementTypes.Select (item.AchievementType.ToString (), false);
 						}
 						else
 							Response.Redirect (Globals.NavigateURL (), true);
@@ -117,7 +117,7 @@ namespace R7.University.Launchpad
 				// fill the object
 				item.Title = textTitle.Text.Trim ();
 				item.ShortTitle = textShortTitle.Text.Trim ();
-				item.AchievementType = (AchievementType)Enum.Parse(typeof(AchievementType), comboAchievementTypes.SelectedValue);
+				item.AchievementType = (AchievementType)Enum.Parse (typeof(AchievementType), comboAchievementTypes.SelectedValue);
 
 				if (!itemId.HasValue)
 					LaunchpadController.Add<AchievementInfo> (item);

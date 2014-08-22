@@ -40,7 +40,7 @@ namespace R7.University.Launchpad
 		public static string TableAchievements = "achievements";
 
 		public static List<string> AvailableTables = 
-			new List<string> { TablePositions, TableDivisions, TableEmployees, TableAchievements }; 
+			new List<string> { TablePositions, TableDivisions, TableEmployees, TableAchievements };
 	}
 }
 

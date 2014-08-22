@@ -34,13 +34,15 @@ namespace R7.University.Launchpad
 	public class LaunchpadPortalModuleBase : PortalModuleBase
 	{
 		private LaunchpadController ctrl = null;
-		protected LaunchpadController LaunchpadController 
+
+		protected LaunchpadController LaunchpadController
 		{
 			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
 		}
 
 		private LaunchpadSettings settings = null;
-		protected LaunchpadSettings LaunchpadSettings 
+
+		protected LaunchpadSettings LaunchpadSettings
 		{
 			get { return settings ?? (settings = new LaunchpadSettings (this)); }
 		}
@@ -52,13 +54,15 @@ namespace R7.University.Launchpad
 	public class LaunchpadModuleSettingsBase : ModuleSettingsBase
 	{
 		private LaunchpadController ctrl = null;
-		protected LaunchpadController LaunchpadController 
+
+		protected LaunchpadController LaunchpadController
 		{
 			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
 		}
 
 		private LaunchpadSettings settings = null;
-		protected LaunchpadSettings LaunchpadSettings 
+
+		protected LaunchpadSettings LaunchpadSettings
 		{
 			get { return settings ?? (settings = new LaunchpadSettings (this)); }
 		}

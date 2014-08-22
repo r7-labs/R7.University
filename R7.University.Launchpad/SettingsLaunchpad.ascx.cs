@@ -20,7 +20,7 @@ namespace R7.University.Launchpad
 
 			// fill tables list
 			foreach (var table in LaunchpadTableInfo.AvailableTables)
-				listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (Utils.FirstCharToUpperInvariant(table), table));
+				listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (Utils.FirstCharToUpperInvariant (table), table));
 		}
 
 		/// <summary>
@@ -28,20 +28,24 @@ namespace R7.University.Launchpad
 		/// </summary>
 		public override void LoadSettings ()
 		{ 
-			try {
-				if (!IsPostBack) {
+			try
+			{
+				if (!IsPostBack)
+				{
 					// TODO: Allow select nearest pagesize value
-					comboPageSize.Select (LaunchpadSettings.PageSize.ToString(), false);
+					comboPageSize.Select (LaunchpadSettings.PageSize.ToString (), false);
 
 					// check table list items
 					foreach (var table in LaunchpadSettings.Tables)
 					{
-						var item = listTables.FindItemByValue(table);
+						var item = listTables.FindItemByValue (table);
 						if (item != null) item.Checked = true;
 					}
 
 				}
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
@@ -51,17 +55,20 @@ namespace R7.University.Launchpad
 		/// </summary>
 		public override void UpdateSettings ()
 		{
-			try {
-				LaunchpadSettings.PageSize = int.Parse(comboPageSize.SelectedValue);
-				LaunchpadSettings.Tables = listTables.CheckedItems.Select(i => i.Value).ToList();
+			try
+			{
+				LaunchpadSettings.PageSize = int.Parse (comboPageSize.SelectedValue);
+				LaunchpadSettings.Tables = listTables.CheckedItems.Select (i => i.Value).ToList ();
 
 				// remove session variable for active view,
 				// since view set may be changed
-				Session.Remove("Launchpad_ActiveView_" + TabModuleId);
+				Session.Remove ("Launchpad_ActiveView_" + TabModuleId);
 
-				Utils.SynchronizeModule(this);
+				Utils.SynchronizeModule (this);
 
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}

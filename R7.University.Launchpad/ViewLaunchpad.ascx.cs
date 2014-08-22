@@ -21,7 +21,7 @@ namespace R7.University.Launchpad
 	public partial class ViewLaunchpad : LaunchpadPortalModuleBase, IActionable
 	{
 		#region Properties
-		
+
 		protected string EditIconUrl
 		{
 			get { return IconController.IconURL ("Edit"); }
@@ -36,25 +36,25 @@ namespace R7.University.Launchpad
 		/// </summary>
 		/// <returns>The data table.</returns>
 		/// <param name="gridviewId">Gridview identifier.</param>
-		private DataTable GetDataTable  (string gridviewId)
+		private DataTable GetDataTable (string gridviewId)
 		{
 			var session = Session [gridviewId];
 			if (session == null)
 			{
 				switch (gridviewId)
 				{
-				case "gridPositions": 
-					session = PositionsDataSource ();
-					break;
-				case "gridDivisions": 
-					session = DivisionsDataSource ();
-					break;
-				case "gridEmployees": 
-					session = EmployeesDataSource ();
-					break;
-				case "gridAchievements": 
-					session = AchievementsDataSource ();
-					break;
+					case "gridPositions": 
+						session = PositionsDataSource ();
+						break;
+					case "gridDivisions": 
+						session = DivisionsDataSource ();
+						break;
+					case "gridEmployees": 
+						session = EmployeesDataSource ();
+						break;
+					case "gridAchievements": 
+						session = AchievementsDataSource ();
+						break;
 				}
 				Session [gridviewId] = session;
 			}
@@ -84,7 +84,7 @@ namespace R7.University.Launchpad
 			}
 
 			// wireup LoadComplete handler 
-			Page.LoadComplete += new EventHandler(OnLoadComplete);
+			Page.LoadComplete += new EventHandler (OnLoadComplete);
 
 			// initialize "Add" buttons
 			buttonAddPosition.NavigateUrl = Utils.EditUrl (this, "EditPosition");
@@ -104,7 +104,7 @@ namespace R7.University.Launchpad
 			}
 
 			// apply page size setting to gridview's
-			var pageSize =LaunchpadSettings.PageSize;
+			var pageSize = LaunchpadSettings.PageSize;
 			gridPositions.PageSize = pageSize;
 			gridDivisions.PageSize = pageSize;
 			gridEmployees.PageSize = pageSize;
@@ -125,41 +125,41 @@ namespace R7.University.Launchpad
 		/// </summary>
 		/// <param name="sender">Sender.</param>
 		/// <param name="e">Event agruments.</param>
-		protected void OnLoadComplete(object sender, EventArgs e)
+		protected void OnLoadComplete (object sender, EventArgs e)
 		{
-			try 
+			try
 			{
 				if (!IsPostBack)
 				{
 					// restore multiview state from session on first load
 					if (Session ["Launchpad_ActiveView_" + TabModuleId] != null)
 					{
-						multiView.SetActiveView(FindView((string)Session ["Launchpad_ActiveView_" + TabModuleId]));
+						multiView.SetActiveView (FindView ((string)Session ["Launchpad_ActiveView_" + TabModuleId]));
 						SelectTab ((string)Session ["Launchpad_ActiveView_" + TabModuleId]);
 					}
 
-					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TableDivisions))
+					if (LaunchpadSettings.Tables.Contains (LaunchpadTableInfo.TableDivisions))
 					{
 						gridDivisions.DataSource = DivisionsDataSource ();
 						Session [gridDivisions.ID] = gridDivisions.DataSource;
 						gridDivisions.DataBind ();
 					}
 						
-					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TableEmployees))
+					if (LaunchpadSettings.Tables.Contains (LaunchpadTableInfo.TableEmployees))
 					{
 						gridEmployees.DataSource = EmployeesDataSource ();
 						Session [gridEmployees.ID] = gridEmployees.DataSource;
 						gridEmployees.DataBind ();
 					}
 
-					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TablePositions))
+					if (LaunchpadSettings.Tables.Contains (LaunchpadTableInfo.TablePositions))
 					{
 						gridPositions.DataSource = PositionsDataSource ();
 						Session [gridPositions.ID] = gridPositions.DataSource;
 						gridPositions.DataBind ();
 					}
 
-					if (LaunchpadSettings.Tables.Contains(LaunchpadTableInfo.TableAchievements))
+					if (LaunchpadSettings.Tables.Contains (LaunchpadTableInfo.TableAchievements))
 					{
 						gridAchievements.DataSource = AchievementsDataSource ();
 						Session [gridAchievements.ID] = gridAchievements.DataSource;
@@ -182,7 +182,7 @@ namespace R7.University.Launchpad
 		{
 			// set session variable to active view name without "view" prefix
 			Session ["Launchpad_ActiveView_" + TabModuleId] = 
-				multiView.GetActiveView ().ID.Substring(4).ToLowerInvariant();
+				multiView.GetActiveView ().ID.Substring (4).ToLowerInvariant ();
 		}
 
 		/// <summary>
@@ -455,8 +455,8 @@ namespace R7.University.Launchpad
 				dr [i++] = employee.NamePrefix;
 				dr [i++] = employee.WorkingPlace;
 				dr [i++] = employee.WorkingHours;
-				dr [i++] = string.IsNullOrWhiteSpace(employee.Biography)? 
-					string.Empty : employee.Biography.Substring(0, Math.Min(employee.Biography.Length, 16));
+				dr [i++] = string.IsNullOrWhiteSpace (employee.Biography) ? 
+					string.Empty : employee.Biography.Substring (0, Math.Min (employee.Biography.Length, 16));
 				dr [i++] = employee.ExperienceYears ?? Null.NullInteger;
 				dr [i++] = employee.ExperienceYearsBySpec ?? Null.NullInteger;
 				dr [i++] = employee.IsPublished;
@@ -493,7 +493,7 @@ namespace R7.University.Launchpad
 				dr [col++] = achievement.AchievementID;
 				dr [col++] = achievement.Title;
 				dr [col++] = achievement.ShortTitle;
-				dr [col++] = LocalizeString(AchievementTypeInfo.GetResourceKey(achievement.AchievementType));
+				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
 
 				dt.Rows.Add (dr);
 			}
@@ -586,7 +586,7 @@ namespace R7.University.Launchpad
 			foreach (RepeaterItem item in repeatTabs.Items)
 				// enumerate all child controls in a item 
 				foreach (var control in item.Controls)
-					if (control is HtmlControl) 
+					if (control is HtmlControl)
 					{
 						// this means <li>
 						var li = control as HtmlControl;
@@ -621,11 +621,11 @@ namespace R7.University.Launchpad
 		protected void linkTab_Clicked (object sender, EventArgs e)
 		{
 			var tabName = (sender as LinkButton).CommandArgument;
-			multiView.SetActiveView (FindView(tabName));
+			multiView.SetActiveView (FindView (tabName));
 			SelectTab (tabName);
 		}
 	}
 	// class
 }
- // namespace
+// namespace
 

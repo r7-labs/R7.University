@@ -41,9 +41,9 @@ namespace R7.University.Launchpad
 				
 				return tables;
 			}
-			set 
+			set
 			{ 
-				WriteSetting<string> ("Launchpad_Tables", Utils.FormatList(";", value.ToArray()), true); 
+				WriteSetting<string> ("Launchpad_Tables", Utils.FormatList (";", value.ToArray ()), true); 
 			}
 		}
 

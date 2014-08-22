@@ -47,9 +47,12 @@ namespace R7.University.Launchpad
 		public DateTime CreatedOnDate { get; set; }
 
 		[IgnoreColumn]
-		public string CreatedByUserName {
-			get {
-				if (createdByUserName == null) {
+		public string CreatedByUserName
+		{
+			get
+			{
+				if (createdByUserName == null)
+				{
 					var portalId = PortalController.GetCurrentPortalSettings ().PortalId;
 					var user = UserController.GetUserById (portalId, CreatedByUser);
 					createdByUserName = user.DisplayName;

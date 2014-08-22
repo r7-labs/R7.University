@@ -45,32 +45,41 @@ namespace R7.University.Launchpad
 		{
 			base.OnLoad (e);
 			
-			try {
+			try
+			{
 				// parse querystring parameters
 				itemId = Utils.ParseToNullableInt (Request.QueryString ["position_id"]);
       
-				if (!IsPostBack) {
+				if (!IsPostBack)
+				{
 					// load the data into the control the first time we hit this page
 
 					// check we have an item to lookup
 					// ALT: if (!Null.IsNull (itemId) 
-					if (itemId.HasValue) {
+					if (itemId.HasValue)
+					{
 						// load the item
 						var item = LaunchpadController.Get<PositionInfo> (itemId.Value);
 
-						if (item != null) {
+						if (item != null)
+						{
 											
 							txtTitle.Text = item.Title;
 							txtShortTitle.Text = item.ShortTitle;
-							txtWeight.Text = item.Weight.ToString();
+							txtWeight.Text = item.Weight.ToString ();
 														
-						} else
+						}
+						else
 							Response.Redirect (Globals.NavigateURL (), true);
-					} else {
+					}
+					else
+					{
 						buttonDelete.Visible = false;
 					}
 				}
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
@@ -86,36 +95,39 @@ namespace R7.University.Launchpad
 		/// </param>
 		protected void buttonUpdate_Click (object sender, EventArgs e)
 		{
-			try {
+			try
+			{
 				PositionInfo item;
 
 				// determine if we are adding or updating
 				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue) 
+				if (!itemId.HasValue)
 				{
 					// add new record
 					item = new PositionInfo ();
 				}
-				else 
+				else
 				{
 					// update existing record
 					item = LaunchpadController.Get<PositionInfo> (itemId.Value);
 				}
 
 				// fill the object
-				item.Title = txtTitle.Text.Trim();
-				item.ShortTitle = txtShortTitle.Text.Trim();
-				item.Weight = int.Parse(txtWeight.Text);				
+				item.Title = txtTitle.Text.Trim ();
+				item.ShortTitle = txtShortTitle.Text.Trim ();
+				item.Weight = int.Parse (txtWeight.Text);				
 
-				if (!itemId.HasValue) 
+				if (!itemId.HasValue)
 					LaunchpadController.Add<PositionInfo> (item);
 				else
 					LaunchpadController.Update<PositionInfo> (item);
 
-				Utils.SynchronizeModule(this);
+				Utils.SynchronizeModule (this);
 
 				Response.Redirect (Globals.NavigateURL (), true);
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
@@ -131,13 +143,17 @@ namespace R7.University.Launchpad
 		/// </param>
 		protected void buttonDelete_Click (object sender, EventArgs e)
 		{
-			try {
+			try
+			{
 				// ALT: if (!Null.IsNull (itemId))
-				if (itemId.HasValue) {
+				if (itemId.HasValue)
+				{
 					LaunchpadController.Delete<PositionInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
