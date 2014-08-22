@@ -668,27 +668,27 @@ namespace R7.University.Employee
 			dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
 			// dt.Columns.Add (new DataColumn ("EmployeeID", typeof(int)));
 			// dt.Columns.Add (new DataColumn ("EmployeeAchievementID", typeof(int)));
+			dt.Columns.Add (new DataColumn ("Year(s)", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
 			//dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
 			//dt.Columns.Add (new DataColumn ("Description", typeof(string)));
 			//dt.Columns.Add (new DataColumn ("DocumentURL", typeof(string)));
 			dt.Columns.Add (new DataColumn ("IsTitle", typeof(bool)));
-			dt.Columns.Add (new DataColumn ("YearBegin", typeof(int)));
-			dt.Columns.Add (new DataColumn ("YearEnd", typeof(int)));
 			dt.Columns.Add (new DataColumn ("AchievementType", typeof(string)));
+
+			// TODO: Add column for DocumentURL
 
 			foreach (var achievement in achievements)
 			{
 				var col = 0;
 				dr = dt.NewRow ();
 				dr [col++] = achievement.ItemID;
+				dr [col++] = achievement.FormatYears;
 				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
 				//dr [col++] = achievement.ShortTitle;
 				//dr [col++] = achievement.Description;
 				//dr [col++] = achievement.DocumentURL;
 				dr [col++] = achievement.IsTitle;
-				dr [col++] = achievement.YearBegin ?? Null.NullInteger;
-				dr [col++] = achievement.YearEnd ?? Null.NullInteger;
 				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
 				dt.Rows.Add (dr);
 			}
