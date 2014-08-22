@@ -509,10 +509,10 @@ namespace R7.University.Employee
 					// fill the object
 					occupiedPosition.PositionID = positionID;
 					occupiedPosition.DivisionID = divisionID;
-					occupiedPosition.PositionShortTitle = comboPositions.Text;
+					occupiedPosition.PositionShortTitle = comboPositions.Text.Trim();
 					occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
 					occupiedPosition.IsPrime = checkIsPrime.Checked;
-					occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text;
+					occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text.Trim();
 					
 					if (command == "Add")
 					{
@@ -832,8 +832,8 @@ namespace R7.University.Employee
 				achievement.AchievementID = Utils.ParseToNullableInt (comboAchievements.SelectedValue);
 				if (achievement.AchievementID == null)
 				{
-					achievement.Title = textAchievementTitle.Text;
-					achievement.ShortTitle = textAchievementShortTitle.Text;
+					achievement.Title = textAchievementTitle.Text.Trim();
+					achievement.ShortTitle = textAchievementShortTitle.Text.Trim();
 					achievement.AchievementType = (AchievementType)Enum.Parse (typeof(AchievementType), comboAchievementTypes.SelectedValue);
 				}
 				else
@@ -845,8 +845,8 @@ namespace R7.University.Employee
 					achievement.AchievementType = ach.AchievementType;
 				}
 
-				achievement.TitleSuffix = textAchievementTitleSuffix.Text;
-				achievement.Description = textAchievementDescription.Text;
+				achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim();
+				achievement.Description = textAchievementDescription.Text.Trim();
 				achievement.IsTitle = checkIsTitle.Checked;
 				achievement.YearBegin = Utils.ParseToNullableInt (textYearBegin.Text);
 				achievement.YearEnd = Utils.ParseToNullableInt (textYearEnd.Text);
