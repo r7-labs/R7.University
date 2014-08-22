@@ -32,6 +32,7 @@ namespace R7.University
 		#region IReferenceEntity implementation
 
 		public string Title { get; set; }
+
 		public string ShortTitle { get; set; }
 
 		#endregion
@@ -39,20 +40,28 @@ namespace R7.University
 		#region Properties
 
 		public int EmployeeAchievementID { get; set; }
+
 		public int EmployeeID  { get; set; }
+
 		public int? AchievementID { get; set; }
+
 		public string Description { get; set; }
+
 		public int? YearBegin { get; set; }
+
 		public int? YearEnd { get; set; }
+
 		public bool IsTitle { get; set; }
+
 		public string DocumentURL { get; set; }
-		public string TitleSuffix { get; set; }		
+
+		public string TitleSuffix { get; set; }
 
 		[ColumnName ("AchievementType")]
 		public string AchievementTypeString { get; set; }
-	
+
 		#endregion
-		
+
 		[IgnoreColumn]
 		public AchievementType? AchievementType
 		{
@@ -66,7 +75,7 @@ namespace R7.University
 			set
 			{ 
 				if (value != null)
-					AchievementTypeString = ((char)value).ToString(); 
+					AchievementTypeString = ((char)value).ToString ();
 				else
 					AchievementTypeString = null;
 			}
@@ -75,19 +84,19 @@ namespace R7.University
 		[IgnoreColumn]
 		public string DisplayShortTitle
 		{
-			get { return !string.IsNullOrWhiteSpace(TitleSuffix)? ShortTitle + " " + TitleSuffix : ShortTitle; } 
+			get { return !string.IsNullOrWhiteSpace (TitleSuffix) ? ShortTitle + " " + TitleSuffix : ShortTitle; } 
 		}
 
 		[IgnoreColumn]
 		public string FormatYears
 		{
-			get 
+			get
 			{
 				if (YearBegin != null && YearEnd == null)
-					return YearBegin.ToString(); 
+					return YearBegin.ToString (); 
 				
 				if (YearBegin == null && YearEnd != null)
-					return YearEnd.ToString(); 
+					return YearEnd.ToString (); 
 				
 				if (YearBegin != null && YearEnd != null)
 					return string.Format ("{0} - {1}", YearBegin, YearEnd);

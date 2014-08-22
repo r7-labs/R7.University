@@ -32,24 +32,24 @@ namespace R7.University
 	{
 		public static bool Exists (string key)
 		{
-			return DataCache.GetCache(key) != null;
+			return DataCache.GetCache (key) != null;
 		}
 
 		public static void Set<T> (T toSet, string key, int seconds)
 		{
-			DataCache.SetCache(key, toSet, TimeSpan.FromSeconds(seconds)); 
+			DataCache.SetCache (key, toSet, TimeSpan.FromSeconds (seconds)); 
 		}
 
 		public static T Get<T> (string key)
 		{
-			return (T) DataCache.GetCache(key);
+			return (T)DataCache.GetCache (key);
 		}
 
-		public static T TryGet<T> (string key, T defValue) 
+		public static T TryGet<T> (string key, T defValue)
 		{
 			var obj = DataCache.GetCache (key);
 			if (obj != null)
-				return (T) obj;
+				return (T)obj;
 
 			return defValue;
 		}

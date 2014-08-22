@@ -32,6 +32,7 @@ namespace R7.University
 		#region IReferenceEntity implementation
 
 		public string Title { get; set; }
+
 		public string ShortTitle { get; set; }
 
 		#endregion
@@ -39,25 +40,35 @@ namespace R7.University
 		#region Properties
 
 		public int DivisionID { get; set; }
+
 		public int? ParentDivisionID  { get; set; }
+
 		public int? DivisionTermID  { get; set; }
+
 		public string HomePage { get; set; }
+
 		public string WebSite { get; set; }
+
 		public string Phone { get; set; }
+
 		public string Fax { get; set; }
+
 		public string Email { get; set; }
+
 		public string SecondaryEmail { get; set; }
+
 		public string Location { get; set; }
+
 		public string WorkingHours { get; set; }
 
 		#endregion
 
 		[IgnoreColumn]
-		public string FileName 
+		public string FileName
 		{
 			// replace all non-word character with spaces, 
 			// trim resulting string and then replace all spaces with single underscore
-			get { return Regex.Replace (Regex.Replace (ShortTitle, @"\W", " ").Trim(), @"\s+", "_"); } 
+			get { return Regex.Replace (Regex.Replace (ShortTitle, @"\W", " ").Trim (), @"\s+", "_"); } 
 		}
 
 		[IgnoreColumn]
@@ -102,35 +113,35 @@ namespace R7.University
 				return vcard;
 			}
 		}
-		
+
 		[IgnoreColumn]
 		public bool HasUniqueShortTitle
 		{
-			get 
+			get
 			{ 
-				return !string.IsNullOrEmpty(ShortTitle) &&
-					 !string.IsNullOrEmpty(Title) &&
-					ShortTitle.Length < Title.Length &&
-					!Title.StartsWith (ShortTitle);
+				return !string.IsNullOrEmpty (ShortTitle) &&
+				!string.IsNullOrEmpty (Title) &&
+				ShortTitle.Length < Title.Length &&
+				!Title.StartsWith (ShortTitle);
 			}
 		}
-		
+
 		[IgnoreColumn]
 		public string SearchDocumentText
 		{
 			get
 			{
 				var text = Utils.FormatList (", ",
-					Title,
-					HasUniqueShortTitle? ShortTitle : null,
-					Phone,
-					Fax,
-					Email,
-					SecondaryEmail,
-					WebSite,
-					Location,
-					WorkingHours
-				);
+					           Title,
+					           HasUniqueShortTitle ? ShortTitle : null,
+					           Phone,
+					           Fax,
+					           Email,
+					           SecondaryEmail,
+					           WebSite,
+					           Location,
+					           WorkingHours
+				           );
 
 				return text;
 			}

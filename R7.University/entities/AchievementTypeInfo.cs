@@ -35,28 +35,28 @@ namespace R7.University
 		Training = 'T',
 		Work = 'W'
 	}
-	
+
 	public class AchievementTypeInfo
 	{
 		public AchievementType AchievementType { get; set; }
-		
+
 		public string LocalizedAchivementType
 		{
 			get { return OnLocalize != null ? OnLocalize (ResourceKey) : ResourceKey; }
 		}
-		
+
 		public AchievementTypeInfo (AchievementType achievementType)
 		{
 			AchievementType = achievementType;
 		}
 
 		#region Private members
-		
+
 		private event LocalizeHandler OnLocalize;
 
-		private string ResourceKey 
+		private string ResourceKey
 		{
-			get { return GetResourceKey(AchievementType); } 
+			get { return GetResourceKey (AchievementType); } 
 		}
 
 		#endregion
@@ -69,13 +69,13 @@ namespace R7.University
 			foreach (AchievementType achievementType in Enum.GetValues(typeof(AchievementType)))
 			{   
 				var achievement = new AchievementTypeInfo (achievementType);
-				achievement.OnLocalize += new LocalizeHandler(localizeHandler);
+				achievement.OnLocalize += new LocalizeHandler (localizeHandler);
 				achievementTypes.Add (achievement);
 			}
 
 			return achievementTypes;
 		}
-					
+
 		public static string GetResourceKey (AchievementType? achievementType)
 		{
 			if (achievementType != null)
@@ -83,7 +83,7 @@ namespace R7.University
 		
 			return "AchievementTypeN.Text";
 		}
-		
+
 		#endregion
 	}
 }

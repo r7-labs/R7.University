@@ -28,28 +28,29 @@ using System;
 namespace R7.University
 {
 	[Flags]
-	public enum VCardPhoneType 
+	public enum VCardPhoneType
 	{
 		None = 0,
-		Home = 1, 
-		Msg = 2, 
-		Work = 4, 
+		Home = 1,
+		Msg = 2,
+		Work = 4,
 		Pref = 8,
 		Voice = 16,
-		Fax = 32, 
-		Cell = 64, 
+		Fax = 32,
+		Cell = 64,
 		Video = 128,
-		Pager = 256, 
-		Bbs = 512, 
+		Pager = 256,
+		Bbs = 512,
 		Modem = 1024,
-		Car = 2048, 
-		Isdn = 4096, 
+		Car = 2048,
+		Isdn = 4096,
 		Pcs = 8192
 	}
 
 	public class VCardPhone
 	{
 		public string Number { get; set; }
+
 		public VCardPhoneType Type { get; set; }
 	}
 }

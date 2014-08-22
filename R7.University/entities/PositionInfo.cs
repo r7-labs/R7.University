@@ -39,6 +39,7 @@ namespace R7.University
 		#region Properties
 
 		public int PositionID { get; set; }
+
 		public int Weight { get; set; }
 
 		#endregion

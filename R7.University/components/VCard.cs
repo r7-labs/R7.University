@@ -31,7 +31,7 @@ namespace R7.University
 {
 	public class VCard
 	{
-		// TODO: Allow import vcf in Window Contacts correctly 
+		// TODO: Allow import vcf in Window Contacts correctly
 
 		public VCard ()
 		{
@@ -109,7 +109,7 @@ namespace R7.University
 		{
 			var vcard = new StringBuilder ();
 		
-			var charset= "";
+			var charset = "";
 			if (Encoding != Encoding.UTF8)
 				charset = ";CHARSET=" + Encoding.WebName;
 
@@ -120,16 +120,16 @@ namespace R7.University
 
 			// formatted name
 			if (!string.IsNullOrWhiteSpace (FormattedName))
-				vcard.AppendFormat("FN{0}:{1}\n", charset, FormattedName);
+				vcard.AppendFormat ("FN{0}:{1}\n", charset, FormattedName);
 
 			// names
 			// NOTE: Last element must contain additional names, comma separated
 			if (Names.Count > 0)
-				vcard.AppendFormat ("N{0}:{1}\n", charset, Utils.FormatList (";", Names.ToArray()));
+				vcard.AppendFormat ("N{0}:{1}\n", charset, Utils.FormatList (";", Names.ToArray ()));
 
 			// organization
 			if (!string.IsNullOrWhiteSpace (OrganizationName))
-				vcard.AppendFormat("ORG{0}:{1}\n", charset, OrganizationName);
+				vcard.AppendFormat ("ORG{0}:{1}\n", charset, OrganizationName);
 
 			// phone
 			foreach (var phone in Phones)
@@ -145,7 +145,8 @@ namespace R7.University
 			// emails
 			var firstEmail = true;
 			foreach (var email in Emails)
-			{		if (firstEmail)
+			{
+				if (firstEmail)
 				{	
 					vcard.AppendLine ("EMAIL;TYPE=PREF:" + email);
 					firstEmail = false;
@@ -155,11 +156,11 @@ namespace R7.University
 			}
 
 			// url
-			if (!string.IsNullOrWhiteSpace(Url))
+			if (!string.IsNullOrWhiteSpace (Url))
 				vcard.AppendLine ("URL:" + Url);
 
 			// title
-			if (!string.IsNullOrWhiteSpace(Title))
+			if (!string.IsNullOrWhiteSpace (Title))
 				vcard.AppendFormat ("TITLE{0}:{1}\n", charset, Title);
 
 			// address
@@ -178,49 +179,49 @@ namespace R7.University
 
 		private string GetPhoneTypeString (VCardPhoneType type)
 		{
-			var types = new List<string>();
+			var types = new List<string> ();
 
 			if ((type & VCardPhoneType.Home) > 0)
-				types.Add(VCardPhoneType.Home.ToString());
+				types.Add (VCardPhoneType.Home.ToString ());
 
 			if ((type & VCardPhoneType.Msg) > 0)
-				types.Add(VCardPhoneType.Msg.ToString());
+				types.Add (VCardPhoneType.Msg.ToString ());
 
 			if ((type & VCardPhoneType.Work) > 0)
-				types.Add(VCardPhoneType.Work.ToString());
+				types.Add (VCardPhoneType.Work.ToString ());
 
 			if ((type & VCardPhoneType.Pref) > 0)
-				types.Add(VCardPhoneType.Pref.ToString());
+				types.Add (VCardPhoneType.Pref.ToString ());
 
 			if ((type & VCardPhoneType.Voice) > 0)
-				types.Add(VCardPhoneType.Voice.ToString());
+				types.Add (VCardPhoneType.Voice.ToString ());
 
 			if ((type & VCardPhoneType.Fax) > 0)
-				types.Add(VCardPhoneType.Fax.ToString());
+				types.Add (VCardPhoneType.Fax.ToString ());
 
 			if ((type & VCardPhoneType.Cell) > 0)
-				types.Add(VCardPhoneType.Cell.ToString());
+				types.Add (VCardPhoneType.Cell.ToString ());
 
 			if ((type & VCardPhoneType.Video) > 0)
-				types.Add(VCardPhoneType.Video.ToString());
+				types.Add (VCardPhoneType.Video.ToString ());
 
 			if ((type & VCardPhoneType.Pager) > 0)
-				types.Add(VCardPhoneType.Pager.ToString());
+				types.Add (VCardPhoneType.Pager.ToString ());
 
 			if ((type & VCardPhoneType.Bbs) > 0)
-				types.Add(VCardPhoneType.Bbs.ToString());
+				types.Add (VCardPhoneType.Bbs.ToString ());
 
 			if ((type & VCardPhoneType.Modem) > 0)
-				types.Add(VCardPhoneType.Modem.ToString());
+				types.Add (VCardPhoneType.Modem.ToString ());
 
 			if ((type & VCardPhoneType.Car) > 0)
-				types.Add(VCardPhoneType.Car.ToString());
+				types.Add (VCardPhoneType.Car.ToString ());
 
 			if ((type & VCardPhoneType.Isdn) > 0)
-				types.Add(VCardPhoneType.Isdn.ToString());
+				types.Add (VCardPhoneType.Isdn.ToString ());
 
 			if ((type & VCardPhoneType.Pcs) > 0)
-				types.Add(VCardPhoneType.Pcs.ToString());
+				types.Add (VCardPhoneType.Pcs.ToString ());
 
 			return Utils.FormatList (",", types.ToArray ());
 		}

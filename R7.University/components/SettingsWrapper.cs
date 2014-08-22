@@ -64,14 +64,19 @@ namespace R7.University
            
 			T ret = default(T);
 
-			if (settings.ContainsKey (settingName)) {
+			if (settings.ContainsKey (settingName))
+			{
 				var tc = TypeDescriptor.GetConverter (typeof(T));
-				try {
+				try
+				{
 					ret = (T)tc.ConvertFrom (settings [settingName]);
-				} catch {
+				}
+				catch
+				{
 					ret = defaultValue;
 				}
-			} else
+			}
+			else
 				ret = defaultValue;
 
 			return ret;

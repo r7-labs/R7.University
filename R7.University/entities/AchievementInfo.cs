@@ -41,22 +41,23 @@ namespace R7.University
 		}
 
 		public int AchievementID { get; set; }
-		
+
 		#region IReferenceEntity implementation
 
 		public string Title { get; set; }
+
 		public string ShortTitle { get; set; }
 
 		#endregion
-		
+
 		[ColumnName ("AchievementType")]
 		public string AchievementTypeString { get; set; }
-		
+
 		[IgnoreColumn]
 		public AchievementType AchievementType
 		{
-			get { return (AchievementType)AchievementTypeString[0]; }
-			set { AchievementTypeString = ((char)value).ToString(); }
+			get { return (AchievementType)AchievementTypeString [0]; }
+			set { AchievementTypeString = ((char)value).ToString (); }
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace R7.University
 	[TableName ("University_OccupiedPositions")]
 	[PrimaryKey ("OccupiedPositionID", AutoIncrement = true)]
 	[Scope ("DivisionID")]
-	public class OccupiedPositionInfo  
+	public class OccupiedPositionInfo
 	{
 		#region Fields
 
@@ -35,10 +35,15 @@ namespace R7.University
 		#region Properties
 
 		public int OccupiedPositionID { get; set; }
+
 		public int PositionID { get; set; }
+
 		public int DivisionID { get; set; }
+
 		public int EmployeeID { get; set; }
+
 		public bool IsPrime { get; set; }
+
 		public string TitleSuffix { get; set; }
 
 		#endregion

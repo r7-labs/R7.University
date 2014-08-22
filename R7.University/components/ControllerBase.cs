@@ -31,7 +31,8 @@ namespace R7.University
 		/// <param name='info'></param>
 		public void Add<T> (T info) where T: class
 		{
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				repo.Insert (info);
 			}
@@ -50,7 +51,8 @@ namespace R7.University
 		{
 			T info;
 
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				info = repo.GetById (itemId);
 			}
@@ -74,7 +76,8 @@ namespace R7.University
 		{
 			T info;
 
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				info = repo.GetById (itemId, scopeId);
 			}
@@ -90,7 +93,8 @@ namespace R7.University
 		/// </param>
 		public void Update<T> (T info) where T: class
 		{
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				repo.Update (info);
 			}
@@ -107,7 +111,8 @@ namespace R7.University
 		{
 			IEnumerable<T> infos = null;
 
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				infos = repo.Get (scopeId);
 				
@@ -126,7 +131,8 @@ namespace R7.University
 		{
 			IEnumerable<T> infos = null;
 
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				infos = repo.Get ();
 			}
@@ -145,7 +151,8 @@ namespace R7.University
 		{
 			IEnumerable<T> infos = null;
 			
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				infos = repo.Find (sqlConditon, args);
 			}
@@ -165,7 +172,8 @@ namespace R7.University
 		{
 			IEnumerable<T> infos = null;
 			
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				infos = ctx.ExecuteQuery<T>	(cmdType, sql, args);
 			}
 			
@@ -183,7 +191,8 @@ namespace R7.University
 		{
 			IPagedList<T> infos;
 
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				infos = repo.GetPage (scopeId, index, size);
 			}
@@ -201,7 +210,8 @@ namespace R7.University
 		{
 			IPagedList<T> infos;
 
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				infos = repo.GetPage (index, size);
 			}
@@ -215,7 +225,8 @@ namespace R7.University
 		/// <param name='info'></param>
 		public void Delete<T> (T info) where T: class
 		{
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				repo.Delete (info);
 		
@@ -228,7 +239,8 @@ namespace R7.University
 		/// <param name='itemId'></param>
 		public void Delete<T> (int itemId) where T: class
 		{
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
 				repo.Delete (repo.GetById (itemId));
 			}
@@ -241,9 +253,10 @@ namespace R7.University
 		/// <param name='args'>Optional arguments</param>
 		public void Delete<T> (string sqlConditon, params object[] args) where T: class
 		{
-			using (var ctx = DataContext.Instance ()) {
+			using (var ctx = DataContext.Instance ())
+			{
 				var repo = ctx.GetRepository<T> ();
-				repo.Delete(sqlConditon, args);
+				repo.Delete (sqlConditon, args);
 			}
 		}
 
@@ -265,14 +278,14 @@ namespace R7.University
 
 		#region Custom methods
 
-		public void AddEmployee(EmployeeInfo employee, 
-			List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
+		public void AddEmployee (EmployeeInfo employee, 
+		                        List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
-			using (var ctx = DataContext.Instance ()) 
+			using (var ctx = DataContext.Instance ())
 			{
 				ctx.BeginTransaction ();
 
-				try 
+				try
 				{
 					// add Employee
 					Add<EmployeeInfo> (employee);
@@ -302,20 +315,20 @@ namespace R7.University
 
 		}
 
-		public void UpdateEmployee(EmployeeInfo employee, 
-			List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
+		public void UpdateEmployee (EmployeeInfo employee, 
+		                           List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
-			using (var ctx = DataContext.Instance ()) 
+			using (var ctx = DataContext.Instance ())
 			{
 				ctx.BeginTransaction ();
 
-				try 
+				try
 				{
 					// update Employee
 					Update<EmployeeInfo> (employee);
 
 					// delete old OccupiedPositions 
-					Delete<OccupiedPositionInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID); 
+					Delete<OccupiedPositionInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID); 
 					
 					// add new OccupiedPositions
 					foreach (var op in occupiedPositions)
@@ -325,18 +338,18 @@ namespace R7.University
 						Add<OccupiedPositionInfo> (op);
 					}
 					
-					var employeeAchievementIDs = achievements.Select(a => a.EmployeeAchievementID.ToString()).ToArray();
+					var employeeAchievementIDs = achievements.Select (a => a.EmployeeAchievementID.ToString ()).ToArray ();
 					if (employeeAchievementIDs.Length > 0)
 					{
 						// delete those not in current list
-						Delete<EmployeeAchievementInfo>(
-							string.Format("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
-								employee.EmployeeID, Utils.FormatList(", ", employeeAchievementIDs))); 
+						Delete<EmployeeAchievementInfo> (
+							string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
+								employee.EmployeeID, Utils.FormatList (", ", employeeAchievementIDs))); 
 					}
 					else
 					{
 						// delete all employee achievements
-						Delete<EmployeeAchievementInfo>("WHERE [EmployeeID] = @0", employee.EmployeeID);
+						Delete<EmployeeAchievementInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
 					}
 
 					// add new EmployeeAchievements

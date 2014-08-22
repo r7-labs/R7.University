@@ -94,7 +94,8 @@ namespace R7.University
 			{
 				var index = 0;
 				var strvalue = value.ToString ();
-				foreach (ListItem item in list.Items) {
+				foreach (ListItem item in list.Items)
+				{
 					if (item.Value == strvalue)
 						return index;
 					index++;
@@ -123,9 +124,9 @@ namespace R7.University
 		/// <param name="ignoreCase">If set to <c>true</c> ignore value case.</param>
 		public static void SelectAndExpandByValue (Telerik.Web.UI.RadTreeView treeview, string value, bool ignoreCase = false)
 		{
-			if (!string.IsNullOrWhiteSpace(value))
+			if (!string.IsNullOrWhiteSpace (value))
 			{
-				var treeNode = treeview.FindNodeByValue(value, ignoreCase);
+				var treeNode = treeview.FindNodeByValue (value, ignoreCase);
 				if (treeNode != null)
 				{
 					treeNode.Selected = true;
@@ -151,8 +152,8 @@ namespace R7.University
 		/// <param name="localize">If set to <c>true</c> localize message and heading.</param>
 		public static void Message (PortalModuleBase module, string heading, string message, MessageType messageType = MessageType.Info, bool localize = false)
 		{
-			var locheading = localize? Localization.GetString(heading, module.LocalResourceFile) : heading;
-			var locmessage = localize? Localization.GetString(message, module.LocalResourceFile) : message;
+			var locheading = localize ? Localization.GetString (heading, module.LocalResourceFile) : heading;
+			var locmessage = localize ? Localization.GetString (message, module.LocalResourceFile) : message;
 			Skin.AddModuleMessage (module, locheading, locmessage, 
 				(DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType)messageType);
 		}
@@ -166,7 +167,7 @@ namespace R7.University
 		/// <param name="localize">If set to <c>true</c> localize message.</param>
 		public static void Message (PortalModuleBase module, string message, MessageType messageType = MessageType.Info, bool localize = false)
 		{
-			var locmessage = localize? Localization.GetString(message, module.LocalResourceFile) : message;
+			var locmessage = localize ? Localization.GetString (message, module.LocalResourceFile) : message;
 			Skin.AddModuleMessage (module, locmessage, 
 				(DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType)messageType);
 		}
@@ -174,16 +175,16 @@ namespace R7.University
 		public static bool IsNull<T> (T? n) where T: struct
 		{
 			// NOTE: n.HasValue is equvalent to n != null
-			if (n.HasValue && !Null.IsNull (n.Value)) 
+			if (n.HasValue && !Null.IsNull (n.Value))
 				return false;
 
 			return true;
 		}
 
-		public static T? ToNullable<T>(T n) where T: struct
+		public static T? ToNullable<T> (T n) where T: struct
 		{
-			return Null.IsNull (n)? null : (T?) n;
-		}	
+			return Null.IsNull (n) ? null : (T?)n;
+		}
 
 		/// <summary>
 		/// Parses specified string value to a nullable int, 
@@ -191,17 +192,17 @@ namespace R7.University
 		/// </summary>
 		/// <returns>The nullable int.</returns>
 		/// <param name="value">String value to parse.</param>
-		public static int? ParseToNullableInt(string value)
+		public static int? ParseToNullableInt (string value)
 		{
 			// TODO: Make another variant of ParseToNullableInt() without using DNN Null object
 
 			int n;
 
 			if (int.TryParse (value, out n))
-				return Null.IsNull (n)? null : (int?) n;
+				return Null.IsNull (n) ? null : (int?)n;
 		
 			return null;
-		}	
+		}
 
 		/*
 		public static Nullable<T> ParseToNullable<T>(string value) where T: struct
@@ -220,7 +221,7 @@ namespace R7.University
 		/// <returns>Formatted list.</returns>
 		/// <param name="separator">Separator.</param>
 		/// <param name="args">Arguments.</param>
-		public static string FormatList (string separator, params object [] args)
+		public static string FormatList (string separator, params object[] args)
 		{
 			return FormatList (separator, (IEnumerable)args);
 		}
@@ -232,7 +233,7 @@ namespace R7.University
 			var i = 0;
 			foreach (var a in args)
 			{
-				if (a != null && !string.IsNullOrWhiteSpace (a.ToString()))
+				if (a != null && !string.IsNullOrWhiteSpace (a.ToString ()))
 				{
 					if (i++ > 0)
 						sb.Append (separator);
@@ -244,37 +245,39 @@ namespace R7.University
 			return sb.ToString ();
 		}
 
-		public static string FirstCharToUpper(string s)
+		public static string FirstCharToUpper (string s)
 		{
 			if (!string.IsNullOrWhiteSpace (s))
-				if (s.Length == 1)
-					return s.ToUpper();
-				else
-					return s.ToUpper()[0].ToString () + s.Substring (1);
+			if (s.Length == 1)
+				return s.ToUpper ();
+			else
+				return s.ToUpper () [0].ToString () + s.Substring (1);
 		
 			return s;
 		}
 
-		public static string FirstCharToUpperInvariant(string s)
+		public static string FirstCharToUpperInvariant (string s)
 		{
 			if (!string.IsNullOrWhiteSpace (s))
-				if (s.Length == 1)
-					return s.ToUpperInvariant();
-				else
-					return s.ToUpperInvariant()[0].ToString () + s.Substring (1);
+			if (s.Length == 1)
+				return s.ToUpperInvariant ();
+			else
+				return s.ToUpperInvariant () [0].ToString () + s.Substring (1);
 			return s;
 		}
 
-		public static void SynchronizeModule(IModuleControl module)
+		public static void SynchronizeModule (IModuleControl module)
 		{
-			ModuleController.SynchronizeModule(module.ModuleContext.ModuleId);
+			ModuleController.SynchronizeModule (module.ModuleContext.ModuleId);
 
 			// NOTE: update module cache (temporary fix before 7.2.0)?
 			// more info: https://github.com/dnnsoftware/Dnn.Platform/pull/21
-			var moduleController = new ModuleController();
+			var moduleController = new ModuleController ();
 			moduleController.ClearCache (module.ModuleContext.TabId);
 
 		}
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 	

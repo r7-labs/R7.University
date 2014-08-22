@@ -37,7 +37,7 @@ namespace R7.University
 	/// </summary>
 	public class QuotedPrintable
 	{
-		private QuotedPrintable()
+		private QuotedPrintable ()
 		{
 		}
 
@@ -51,130 +51,131 @@ namespace R7.University
 		/// </summary>
 		/// <param name="textToEncode"></param>
 		/// <returns></returns>
-		public static string Encode(string textToEncode)
+		public static string Encode (string textToEncode)
 		{
 			if (textToEncode == null)
-				throw new ArgumentNullException();
+				throw new ArgumentNullException ();
 
-			return Encode(textToEncode, RFC_1521_MAX_CHARS_PER_LINE);
+			return Encode (textToEncode, RFC_1521_MAX_CHARS_PER_LINE);
 		}
 
-		private static string Encode(string textToEncode, int charsPerLine)
+		private static string Encode (string textToEncode, int charsPerLine)
 		{
 			if (textToEncode == null)
-				throw new ArgumentNullException();
+				throw new ArgumentNullException ();
 
 			if (charsPerLine <= 0)
-				throw new ArgumentOutOfRangeException();
+				throw new ArgumentOutOfRangeException ();
 
-			return FormatEncodedString(EncodeString(textToEncode), charsPerLine);
+			return FormatEncodedString (EncodeString (textToEncode), charsPerLine);
 		}
+
 		/// <summary>
 		/// Return quoted printable string, all in one line.
 		/// </summary>
 		/// <param name="textToEncode"></param>
 		/// <returns></returns>
-		public static string EncodeString(string textToEncode)
+		public static string EncodeString (string textToEncode)
 		{
 			if (textToEncode == null)
-				throw new ArgumentNullException();
+				throw new ArgumentNullException ();
 
-			byte[] bytes = Encoding.UTF8.GetBytes(textToEncode);
-			StringBuilder builder = new StringBuilder();
+			byte[] bytes = Encoding.UTF8.GetBytes (textToEncode);
+			StringBuilder builder = new StringBuilder ();
 			foreach (byte b in bytes)
 			{
 				if (b != 0)
-				if  ((b < 32) || (b > 126))
-					builder.Append(String.Format("={0}", b.ToString("X2")));
+				if ((b < 32) || (b > 126))
+					builder.Append (String.Format ("={0}", b.ToString ("X2")));
 				else
 				{
 					switch (b)
 					{
 						case 13:
-							builder.Append("=0D");
+							builder.Append ("=0D");
 							break;
 						case 10:
-							builder.Append("=0A");
+							builder.Append ("=0A");
 							break;
 						case 61:
-							builder.Append("=3D");
+							builder.Append ("=3D");
 							break;
 						default:
-							builder.Append(Convert.ToChar(b));
+							builder.Append (Convert.ToChar (b));
 							break;
 					}
 				}
 			}
 
-			return builder.ToString();
+			return builder.ToString ();
 		}
 
-		private static string FormatEncodedString(string qpstr, int maxcharlen)
+		private static string FormatEncodedString (string qpstr, int maxcharlen)
 		{
 			if (qpstr == null)
-				throw new ArgumentNullException();
+				throw new ArgumentNullException ();
 
-			StringBuilder builder = new StringBuilder();
-			char[] charArray = qpstr.ToCharArray();
+			StringBuilder builder = new StringBuilder ();
+			char[] charArray = qpstr.ToCharArray ();
 			int i = 0;
 			foreach (char c in charArray)
 			{
-				builder.Append(c);
+				builder.Append (c);
 				i++;
 				if (i == maxcharlen)
 				{
-					builder.AppendLine("=");
+					builder.AppendLine ("=");
 					i = 0;
 				}
 			}
 
-			return builder.ToString();
+			return builder.ToString ();
 		}
 
-		static string HexDecoderEvaluator(Match m)
+		static string HexDecoderEvaluator (Match m)
 		{
-			if (String.IsNullOrEmpty(m.Value))
+			if (String.IsNullOrEmpty (m.Value))
 				return null;
 
-			CaptureCollection captures = m.Groups[3].Captures;
+			CaptureCollection captures = m.Groups [3].Captures;
 			byte[] bytes = new byte[captures.Count];
 
 			for (int i = 0; i < captures.Count; i++)
 			{
-				bytes[i] = Convert.ToByte(captures[i].Value, 16);
+				bytes [i] = Convert.ToByte (captures [i].Value, 16);
 			}
 
-			return UTF8Encoding.UTF8.GetString(bytes);
+			return UTF8Encoding.UTF8.GetString (bytes);
 		}
 
-		static string HexDecoder(string line)
+		static string HexDecoder (string line)
 		{
 			if (line == null)
-				throw new ArgumentNullException();
+				throw new ArgumentNullException ();
 
-			Regex re = new Regex("((\\=([0-9A-F][0-9A-F]))*)", RegexOptions.IgnoreCase);
-			return re.Replace(line, new MatchEvaluator(HexDecoderEvaluator));
+			Regex re = new Regex ("((\\=([0-9A-F][0-9A-F]))*)", RegexOptions.IgnoreCase);
+			return re.Replace (line, new MatchEvaluator (HexDecoderEvaluator));
 		}
 
 
-		public static string Decode(string encodedText)
+		public static string Decode (string encodedText)
 		{
 			if (encodedText == null)
-				throw new ArgumentNullException();
+				throw new ArgumentNullException ();
 
-			using (StringReader sr = new StringReader(encodedText))
+			using (StringReader sr = new StringReader (encodedText))
 			{
-				StringBuilder builder = new StringBuilder();
+				StringBuilder builder = new StringBuilder ();
 				string line;
-				while ((line = sr.ReadLine()) != null)
+				while ((line = sr.ReadLine ()) != null)
 				{
-					if (line.EndsWith("="))
-						builder.Append(line.Substring(0, line.Length - 1));
+					if (line.EndsWith ("="))
+						builder.Append (line.Substring (0, line.Length - 1));
 					else
-						builder.Append(line);
+						builder.Append (line);
 				}
 
-				return HexDecoder(builder.ToString());
+				return HexDecoder (builder.ToString ());
 			}
 		}
 

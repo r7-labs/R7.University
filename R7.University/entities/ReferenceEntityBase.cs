@@ -11,6 +11,7 @@ namespace R7.University
 		#region IReferenceEntity implementation
 
 		public string Title { get; set; }
+
 		public string ShortTitle  { get; set; }
 
 		#endregion

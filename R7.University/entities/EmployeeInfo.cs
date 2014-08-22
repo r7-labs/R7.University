@@ -30,27 +30,45 @@ namespace R7.University
 		#region Properties
 
 		public int EmployeeID { get; set; }
-		public int? UserID { get; set; }  
+
+		public int? UserID { get; set; }
+
 		public int? PhotoFileID { get; set; }
+
 		public string Phone { get; set; }
+
 		public string CellPhone { get; set; }
+
 		public string Fax { get; set; }
+
 		public string LastName { get; set; }
+
 		public string FirstName { get; set; }
+
 		public string OtherName { get; set; }
+
 		public string Email { get; set; }
+
 		public string SecondaryEmail { get; set; }
+
 		public string WebSite { get; set; }
+
 		public string Messenger { get; set; }
+
 		public string AcademicDegree { get; set; }
+
 		public string AcademicTitle { get; set; }
-		public string NamePrefix { get; set; } // REVIEW: Use Academic Degree & Title, of just NamePrefix?
+
+		public string NamePrefix { get; set; }
+		// REVIEW: Use Academic Degree & Title, of just NamePrefix?
 		public string WorkingPlace { get; set; }
+
 		public string WorkingHours { get; set; }
+
 		public string Biography { get; set; }
 
 		// NOTE: Employee stage may be not continuous, so using starting date is not possible
-		public int? ExperienceYears { get; set; } 
+		public int? ExperienceYears { get; set; }
 		// NOTE: Employee ExpYearsBySpec even more unbinded to dates
 		public int? ExperienceYearsBySpec { get; set; }
 
@@ -64,25 +82,25 @@ namespace R7.University
 		[IgnoreColumn]
 		public string AbbrName
 		{
-			get { return string.Format ("{0} {1}.{2}.", LastName, FirstName.Substring(0,1), OtherName.Substring(0,1)); }
+			get { return string.Format ("{0} {1}.{2}.", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); }
 		}
 
 		[IgnoreColumn]
 		public string FileName
 		{
-			get { return string.Format ("{0}_{1}{2}", LastName, FirstName.Substring(0,1), OtherName.Substring(0,1)); }
+			get { return string.Format ("{0}_{1}{2}", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); }
 		}
 
 		[IgnoreColumn]
 		public string FullName
 		{
-			get { return Utils.FormatList(" ", LastName, FirstName, OtherName); }
+			get { return Utils.FormatList (" ", LastName, FirstName, OtherName); }
 		}
 
 		[IgnoreColumn]
-		public string SearchDocumentText 
+		public string SearchDocumentText
 		{
-			get 
+			get
 			{
 				var text = Utils.FormatList (", ",
 					           FullName,
@@ -98,7 +116,7 @@ namespace R7.University
 					           WorkingPlace,
 					           WorkingHours,
 					           HtmlUtils.ConvertToText (Biography)
-				);
+				           );
 
 				// TODO: Add positions to the index
 
@@ -162,6 +180,8 @@ namespace R7.University
 			}
 		}
 
-	} // class
-} // namespace
+	}
+	// class
+}
+ // namespace
 	
