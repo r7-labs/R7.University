@@ -96,8 +96,11 @@ namespace R7.University
 					return YearBegin.ToString (); 
 				
 				if (YearBegin == null && YearEnd != null)
-					return "? - " + YearEnd; 
-				
+				{
+					if (YearEnd.Value != 0)
+						return "? - " + YearEnd; 
+				}
+
 				if (YearBegin != null && YearEnd != null)
 				{
 					if (YearEnd.Value != 0)
