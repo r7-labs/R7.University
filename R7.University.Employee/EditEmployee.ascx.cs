@@ -552,6 +552,9 @@ namespace R7.University.Employee
 				// set recordId to delete
 				linkEdit.CommandArgument = e.Row.Cells [1].Text;
 				linkDelete.CommandArgument = e.Row.Cells [1].Text;
+
+				// add confirmation dialog to delete link
+				linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 			}
 		}
 
@@ -698,6 +701,9 @@ namespace R7.University.Employee
 				// set recordId
 				linkEdit.CommandArgument = e.Row.Cells [1].Text;
 				linkDelete.CommandArgument = e.Row.Cells [1].Text;
+
+				// add confirmation dialog to delete link
+				linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 			}
 		}
 
