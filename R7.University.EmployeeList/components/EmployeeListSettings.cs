@@ -11,17 +11,17 @@ namespace R7.University.EmployeeList
 	/// </summary>
 	public partial class EmployeeListSettings : SettingsWrapper
 	{
-		public EmployeeListSettings (IModuleControl module): base (module)
+		public EmployeeListSettings (IModuleControl module) : base (module)
 		{
 		}
 
-		public EmployeeListSettings (ModuleInfo module): base (module)
+		public EmployeeListSettings (ModuleInfo module) : base (module)
 		{
 		}
 
 		#region Properties for settings
 
-		// REVIEW: Use Attributes to describe settings (tabspecific, data type, name, default value) 
+		// REVIEW: Use Attributes to describe settings (tabspecific, data type, name, default value)
 
 		// cached DivisionID value for frequent use
 		private int? divisionId = null;
@@ -31,14 +31,14 @@ namespace R7.University.EmployeeList
 		/// </summary>
 		public int DivisionID
 		{
-			get 
+			get
 			{ 
 				if (divisionId == null)
 					divisionId = ReadSetting<int> ("EmployeeList_DivisionID", Null.NullInteger, false);
 
 				return divisionId.Value;
 			}
-			set 
+			set
 			{ 
 				WriteSetting<int> ("EmployeeList_DivisionID", value, false);
 				divisionId = value;
@@ -73,23 +73,23 @@ namespace R7.University.EmployeeList
 		}
 
 		private int? dataCacheTime;
-		
+
 		public int DataCacheTime
 		{
-			get 
+			get
 			{ 
 				if (dataCacheTime == null)
 					dataCacheTime = ReadSetting<int> ("EmployeeList_DataCacheTime", 1200, true);
 				
 				return dataCacheTime.Value;
 			}
-			set 
+			set
 			{ 
 				WriteSetting<int> ("EmployeeList_DataCacheTime", value, true); 
 				dataCacheTime = value;
 			}
 		}
-		
+
 		#endregion
 	}
 }

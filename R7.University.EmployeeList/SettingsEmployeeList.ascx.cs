@@ -22,22 +22,22 @@ namespace R7.University.EmployeeList
 				if (!IsPostBack)
 				{
 					// get divisions
-					var divisions = EmployeeListController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC").ToList();
+					var divisions = EmployeeListController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
 
 					// insert default item
-					divisions.Insert (0, new DivisionInfo() { 
+					divisions.Insert (0, new DivisionInfo () { 
 						DivisionID = Null.NullInteger, 
 						ParentDivisionID = null,
-						Title = Localization.GetString("NotSelected.Text", LocalResourceFile),
-						ShortTitle = Localization.GetString("NotSelected.Text", LocalResourceFile)
+						Title = Localization.GetString ("NotSelected.Text", LocalResourceFile),
+						ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile)
 					});
 
 					// bind list to a tree
 					treeDivisions.DataSource = divisions;
-					treeDivisions.DataBind();
+					treeDivisions.DataBind ();
 
 					// select currently stored value
-					var treeNode = treeDivisions.FindNodeByValue(EmployeeListSettings.DivisionID.ToString());
+					var treeNode = treeDivisions.FindNodeByValue (EmployeeListSettings.DivisionID.ToString ());
 					if (treeNode != null)
 					{
 						treeNode.Selected = true;
@@ -55,14 +55,14 @@ namespace R7.University.EmployeeList
 					checkIncludeSubdivisions.Checked = EmployeeListSettings.IncludeSubdivisions;
 
 					// sort type
-					comboSortType.AddItem(Localization.GetString("SortTypeByMaxWeight.Text", LocalResourceFile), "0");
-					comboSortType.AddItem(Localization.GetString("SortTypeByTotalWeight.Text", LocalResourceFile), "1");
-					comboSortType.AddItem(Localization.GetString("SortTypeByName.Text", LocalResourceFile), "2");
+					comboSortType.AddItem (Localization.GetString ("SortTypeByMaxWeight.Text", LocalResourceFile), "0");
+					comboSortType.AddItem (Localization.GetString ("SortTypeByTotalWeight.Text", LocalResourceFile), "1");
+					comboSortType.AddItem (Localization.GetString ("SortTypeByName.Text", LocalResourceFile), "2");
 
-					comboSortType.Select(EmployeeListSettings.SortType.ToString(), false);
+					comboSortType.Select (EmployeeListSettings.SortType.ToString (), false);
 
-					if (!Null.IsNull(EmployeeListSettings.PhotoWidth))
-						textPhotoWidth.Text = EmployeeListSettings.PhotoWidth.ToString();
+					if (!Null.IsNull (EmployeeListSettings.PhotoWidth))
+						textPhotoWidth.Text = EmployeeListSettings.PhotoWidth.ToString ();
 					
 					if (!Null.IsNull (EmployeeListSettings.DataCacheTime))
 						textDataCacheTime.Text = EmployeeListSettings.DataCacheTime.ToString ();
@@ -81,17 +81,17 @@ namespace R7.University.EmployeeList
 		{
 			try
 			{
-				EmployeeListSettings.DivisionID = int.Parse(treeDivisions.SelectedValue);
+				EmployeeListSettings.DivisionID = int.Parse (treeDivisions.SelectedValue);
 				EmployeeListSettings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
-				EmployeeListSettings.SortType = int.Parse(comboSortType.SelectedValue);
+				EmployeeListSettings.SortType = int.Parse (comboSortType.SelectedValue);
 
-				if (!string.IsNullOrWhiteSpace(textPhotoWidth.Text))
-					EmployeeListSettings.PhotoWidth = int.Parse(textPhotoWidth.Text);
+				if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
+					EmployeeListSettings.PhotoWidth = int.Parse (textPhotoWidth.Text);
 				else
 					EmployeeListSettings.PhotoWidth = Null.NullInteger;
 				
-				if (!string.IsNullOrWhiteSpace(textDataCacheTime.Text))
-					EmployeeListSettings.DataCacheTime = int.Parse(textDataCacheTime.Text);
+				if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
+					EmployeeListSettings.DataCacheTime = int.Parse (textDataCacheTime.Text);
 				else
 					EmployeeListSettings.DataCacheTime = Null.NullInteger;
 

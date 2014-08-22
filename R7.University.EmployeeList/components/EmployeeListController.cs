@@ -30,16 +30,16 @@ namespace R7.University.EmployeeList
 
 		#region ModuleSearchBase implementaion
 
-		public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)
+		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
 		{
-			var searchDocs = new List<SearchDocument>();
+			var searchDocs = new List<SearchDocument> ();
 			var settings = new EmployeeListSettings (modInfo);
 		
 			var	employees = GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-				(settings.IncludeSubdivisions)? // which SP to use
+				                (settings.IncludeSubdivisions) ? // which SP to use
 				"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-				settings.DivisionID, settings.SortType, false
-			);
+				                settings.DivisionID, settings.SortType, false
+			                );
 
 			foreach (var employee in employees)
 			{

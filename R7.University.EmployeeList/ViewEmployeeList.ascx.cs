@@ -22,7 +22,7 @@ namespace R7.University.EmployeeList
 	public partial class ViewEmployeeList : EmployeeListPortalModuleBase, IActionable
 	{
 		#region Properties
-		
+
 		protected string EditIconUrl
 		{
 			get { return IconController.IconURL ("Edit"); }
@@ -54,23 +54,23 @@ namespace R7.University.EmployeeList
 			{
 				if (!IsPostBack || ViewState.Count == 0) // Fix for issue #23
 				{
-					if (Cache_OnLoad()) return;
+					if (Cache_OnLoad ()) return;
 					
 					// REVIEW: Add Employees.LastYearRating field and sorting by it!
 					
 					// get employees by DivisionID, in edit mode show also non-published employees
 					var	items = EmployeeListController.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-						(EmployeeListSettings.IncludeSubdivisions)? // which SP to use
+						            (EmployeeListSettings.IncludeSubdivisions) ? // which SP to use
 							"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-						EmployeeListSettings.DivisionID, EmployeeListSettings.SortType, IsEditable
-					);
+						            EmployeeListSettings.DivisionID, EmployeeListSettings.SortType, IsEditable
+					            );
 
 					// check if we have some content to display, 
 					// otherwise display a message for module editors or hide module from regular users
-					if (items == null || !items.Any())
+					if (items == null || !items.Any ())
 					{
 						// set container control visibility to common users
-						 Cache_SetContainerVisible(false);
+						Cache_SetContainerVisible (false);
 						
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
@@ -81,7 +81,7 @@ namespace R7.University.EmployeeList
 					else
 					{
 						// set container control visibility to common users
-						Cache_SetContainerVisible(true);
+						Cache_SetContainerVisible (true);
 						
 						// bind the data
 						listEmployees.DataSource = items;
@@ -112,8 +112,8 @@ namespace R7.University.EmployeeList
 					ModuleActionType.AddContent, 
 					"", 
 					"", 
-					Null.IsNull(EmployeeListSettings.DivisionID)?
-					Utils.EditUrl (this, "Edit") : Utils.EditUrl (this, "Edit", "division_id", EmployeeListSettings.DivisionID.ToString()),
+					Null.IsNull (EmployeeListSettings.DivisionID) ?
+					Utils.EditUrl (this, "Edit") : Utils.EditUrl (this, "Edit", "division_id", EmployeeListSettings.DivisionID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
@@ -239,7 +239,7 @@ namespace R7.University.EmployeeList
 			else
 			{
 				// link to employee details
-				linkDetails.NavigateUrl = Utils.EditUrl(this, "Details", "employee_id", employee.EmployeeID.ToString()).Replace("550,950", "450,950");
+				linkDetails.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
 			}
 
 			// employee fullname
@@ -254,10 +254,10 @@ namespace R7.University.EmployeeList
 			*/
 
 			// Employee titles
-			var achievements =  EmployeeListController.GetObjects<EmployeeAchievementInfo>(
-					CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
+			var achievements = EmployeeListController.GetObjects<EmployeeAchievementInfo> (
+				                   CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
 
-			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList();
+			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList ();
 			
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);
@@ -299,13 +299,13 @@ namespace R7.University.EmployeeList
 			{
 				// REVIEW: Less optimistic protocol detection?
 				var lowerWebSite = employee.WebSite.ToLowerInvariant ();
-				if (lowerWebSite.StartsWith ("http://") ||  lowerWebSite.StartsWith ("https://"))
+				if (lowerWebSite.StartsWith ("http://") || lowerWebSite.StartsWith ("https://"))
 				{
 					linkWebSite.NavigateUrl = employee.WebSite;
 					// 01234567890
 					// http://www.volgau.com
 					// https://www.volgau.com
-					linkWebSite.Text = employee.WebSite.Remove(0, employee.WebSite.IndexOf("://")+3); 
+					linkWebSite.Text = employee.WebSite.Remove (0, employee.WebSite.IndexOf ("://") + 3); 
 				}
 				else
 				{
@@ -332,13 +332,13 @@ namespace R7.University.EmployeeList
 			// TODO: Need to retrieve occupied positions more effectively, e.g. preload them
 			// REVIEW: add "AND [DivisionID] = @1" to display employee positions only from current division
 			var ops = EmployeeListController.GetObjects<OccupiedPositionInfoEx> (
-				"WHERE [EmployeeID] = @0 ORDER BY (CASE WHEN [DivisionID]=@1 THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
-				employee.EmployeeID, EmployeeListSettings.DivisionID
-			);
+				          "WHERE [EmployeeID] = @0 ORDER BY (CASE WHEN [DivisionID]=@1 THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
+				          employee.EmployeeID, EmployeeListSettings.DivisionID
+			          );
 
 			// build positions value
 			var positionsVisible = false;
-			if (ops != null && ops.Any())
+			if (ops != null && ops.Any ())
 			{
 				var strOps = string.Empty;
 				foreach (var op in OccupiedPositionInfoEx.GroupByDivision (ops))
@@ -352,7 +352,7 @@ namespace R7.University.EmployeeList
 						var strDivision = "";
 						if (!string.IsNullOrWhiteSpace (op.HomePage))
 							strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
-								Utils.FormatURL(this, op.HomePage, false), op.DivisionShortTitle);
+								Utils.FormatURL (this, op.HomePage, false), op.DivisionShortTitle);
 						else
 							strDivision = op.DivisionShortTitle;
 
