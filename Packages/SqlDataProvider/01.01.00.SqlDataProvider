@@ -4,6 +4,23 @@
 
 -- Create tables
 
+IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_Achievements]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}University_Achievements] (
+		[AchievementID] [int] IDENTITY(1,1) NOT NULL,
+		[Title] [nvarchar](250) NOT NULL,
+		[ShortTitle] [nvarchar](64) NULL,
+		[AchievementType] [nchar](1) NOT NULL,
+		CONSTRAINT [PK_{objectQualifier}University_Achievements] PRIMARY KEY CLUSTERED 
+		(
+			[AchievementID] ASC
+		)	
+		WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+
+END
+GO
+
 IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeAchievements]') and OBJECTPROPERTY(id, N'IsTable') = 1)
 BEGIN
 	CREATE TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] (
@@ -37,23 +54,6 @@ BEGIN
 	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] WITH CHECK ADD CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Achievements] FOREIGN KEY([AchievementID])
 	REFERENCES {databaseOwner}[{objectQualifier}University_Achievements] ([AchievementID])
 	ON DELETE SET NULL
-
-END
-GO
-
-IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_Achievements]') and OBJECTPROPERTY(id, N'IsTable') = 1)
-BEGIN
-	CREATE TABLE {databaseOwner}[{objectQualifier}University_Achievements] (
-		[AchievementID] [int] IDENTITY(1,1) NOT NULL,
-		[Title] [nvarchar](250) NOT NULL,
-		[ShortTitle] [nvarchar](64) NULL,
-		[AchievementType] [nchar](1) NOT NULL,
-		CONSTRAINT [PK_{objectQualifier}University_Achievements] PRIMARY KEY CLUSTERED 
-		(
-			[AchievementID] ASC
-		)	
-		WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-	) ON [PRIMARY]
 
 END
 GO
