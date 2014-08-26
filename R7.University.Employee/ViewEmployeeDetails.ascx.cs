@@ -321,18 +321,25 @@ namespace R7.University.Employee
 				                   employee.EmployeeID);
 	
 			// get only experience-related achievements
-			gridExperience.DataSource = AchievementsDataTable (
-				achievements.Where (ach => ach.AchievementType == AchievementType.Education ||
-				ach.AchievementType == AchievementType.Training ||
-				ach.AchievementType == AchievementType.Work)
-				.OrderByDescending (ach => ach.YearBegin));
-			gridExperience.DataBind ();
+			var experiences = achievements.Where (ach => ach.AchievementType == AchievementType.Education ||
+			                  ach.AchievementType == AchievementType.Training ||
+			                  ach.AchievementType == AchievementType.Work);
 
+			if (experiences != null && experiences.Any ())
+			{
+				gridExperience.DataSource = AchievementsDataTable (experiences.OrderByDescending (exp => exp.YearBegin));
+				gridExperience.DataBind ();
+			}
+			
 			// get all other achievements
-			gridAchievements.DataSource = AchievementsDataTable (
-				achievements.Where (ach => ach.AchievementType == AchievementType.Achievement)
-				.OrderByDescending (ach => ach.YearBegin));
-			gridAchievements.DataBind ();
+			achievements = achievements.Where (ach => ach.AchievementType == AchievementType.Achievement);
+			if (achievements != null && achievements.Any ())
+			{
+				gridAchievements.DataSource = AchievementsDataTable (achievements.OrderByDescending (ach => ach.YearBegin));
+				gridAchievements.DataBind ();
+			}
+			else
+				linkAchievements.Visible = false;
 		}
 
 		private DataTable AchievementsDataTable (IEnumerable<EmployeeAchievementInfo> achievements)
