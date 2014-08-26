@@ -66,9 +66,13 @@ GO
 
 -- Drop existing views
 
- IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]') and OBJECTPROPERTY(id, N'IsView') = 1)
- 	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]
- GO
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]') and OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]
+GO
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]') and OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
+GO
 
 -- Create views
 
@@ -83,21 +87,18 @@ CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS
 		INNER JOIN {databaseOwner}[{objectQualifier}University_Divisions] AS D 
 			ON OP.DivisionID = D.DivisionID
 GO	
-		
-IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]') and OBJECTPROPERTY(id, N'IsView') = 1)
-BEGIN
-	CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
-	AS
-		SELECT        
-			EA.EmployeeAchievementID, EA.EmployeeID, EA.AchievementID,
-			EA.YearBegin, EA.YearEnd, 
-			CASE WHEN EA.AchievementID IS NOT NULL THEN A.Title ELSE EA.Title END AS Title, 
-			EA.TitleSuffix,	EA.IsTitle, 
-			CASE WHEN EA.AchievementID IS NOT NULL THEN A.ShortTitle ELSE EA.ShortTitle END AS ShortTitle, 
-			EA.Description, EA.DocumentURL, 
-			CASE WHEN EA.AchievementID IS NOT NULL THEN A.AchievementType ELSE EA.AchievementType END AS AchievementType
-		FROM {databaseOwner}[{objectQualifier}University_EmployeeAchievements] AS EA 
-			LEFT OUTER JOIN {databaseOwner}[{objectQualifier}University_Achievements] AS A 
-				ON EA.AchievementID = A.AchievementID
-END
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
+AS
+	SELECT        
+		EA.EmployeeAchievementID, EA.EmployeeID, EA.AchievementID,
+		EA.YearBegin, EA.YearEnd, 
+		CASE WHEN EA.AchievementID IS NOT NULL THEN A.Title ELSE EA.Title END AS Title, 
+		EA.TitleSuffix,	EA.IsTitle, 
+		CASE WHEN EA.AchievementID IS NOT NULL THEN A.ShortTitle ELSE EA.ShortTitle END AS ShortTitle, 
+		EA.Description, EA.DocumentURL, 
+		CASE WHEN EA.AchievementID IS NOT NULL THEN A.AchievementType ELSE EA.AchievementType END AS AchievementType
+	FROM {databaseOwner}[{objectQualifier}University_EmployeeAchievements] AS EA 
+		LEFT OUTER JOIN {databaseOwner}[{objectQualifier}University_Achievements] AS A 
+			ON EA.AchievementID = A.AchievementID
 GO
