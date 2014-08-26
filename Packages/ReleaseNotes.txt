@@ -1,4 +1,22 @@
-﻿<h3>Version 01.00.07</h3>
+﻿<h3>Version 01.01.00</h3>
+<p>This is the minor release that dedicated mostly to implementing employee achievements / experience features.</p>
+<ul>
+	<li>Added DB shema, edit and view UI for employee achievements, including common achievement types.</li>
+	<li>As a result, AcademicTitle and AcademicDegree fields marked as obsolete, but still can be used.</li>
+	<li>Fix for issue #23: View controls was empty on repeating postbacks.</li>
+	<li>Allow select division schedule from the list (like an employee shedule).</li>
+	<li>Division module now searchable (preview, not all data exposed).</li>	
+	<li>MSBuild is used to create install and source packages instead of Package.cmd.</li>
+	<li>Added suffix field for occupied positions to solve problems like then division is not explicitly defined.</li>
+	<li>Employee's occupied positions now also editable.</li>
+	<li>Delete occupied position and achievement commands now have confirmations.</li>
+	<li>Careful update of occupied position (and achievement) records - don't delete / recreate all records in the DB.</li>
+	<li>Modules now use default icon theme through IconController.</li>
+	<li>Launchpad module will load to viewstate only tables which is about to display.</li>
+	<li>Other small optimizations, improvements and fixes.</li>
+</ul>
+
+<h3>Version 01.00.07</h3>
 <p>This release brings some new features and more stabilization fixes for 01.00.00.</p>
 <ul>
 	<li>Solution for global issue #17: Employee and EmployeeList modules now use custom data cache.</li>
@@ -11,7 +29,7 @@
 	<li>More friendly SearchByTerm link in Division module.</li>
 	<li>Reworked short title display logic in Division module.</li>
 	<li>Remove endline after END:VCARD in generated vCards.</li>
-	<li>Other small fixed and improvements.</li>
+	<li>Other small fixes and improvements.</li>
 </ul>
 
 <h3>Version 01.00.06</h3>
