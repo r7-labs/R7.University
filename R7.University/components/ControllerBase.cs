@@ -327,19 +327,33 @@ namespace R7.University
 					// update Employee
 					Update<EmployeeInfo> (employee);
 
-					// delete old OccupiedPositions 
-					Delete<OccupiedPositionInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID); 
+					var occupiedPositonIDs = occupiedPositions.Select (op => op.OccupiedPositionID.ToString ());
+					if (occupiedPositonIDs.Any())
+					{
+						Delete<OccupiedPositionInfo> (
+							string.Format ("WHERE [EmployeeID] = {0} AND [OccupiedPositionID] NOT IN ({1})", 
+								employee.EmployeeID, Utils.FormatList (", ", occupiedPositonIDs))); 
+					}
+					else
+					{
+						// delete all employee occupied positions 
+						Delete<OccupiedPositionInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID); 
+					}
 					
 					// add new OccupiedPositions
 					foreach (var op in occupiedPositions)
 					{
 						// REVIEW: Do we really need to set EmployeeID here?
 						op.EmployeeID = employee.EmployeeID;
-						Add<OccupiedPositionInfo> (op);
+						
+						if (op.OccupiedPositionID <= 0)
+							Add<OccupiedPositionInfo> (op);
+						else
+							Update<OccupiedPositionInfo> (op);
 					}
 					
-					var employeeAchievementIDs = achievements.Select (a => a.EmployeeAchievementID.ToString ()).ToArray ();
-					if (employeeAchievementIDs.Length > 0)
+					var employeeAchievementIDs = achievements.Select (a => a.EmployeeAchievementID.ToString ());
+					if (employeeAchievementIDs.Any())
 					{
 						// delete those not in current list
 						Delete<EmployeeAchievementInfo> (
