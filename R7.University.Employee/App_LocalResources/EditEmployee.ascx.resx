@@ -229,13 +229,13 @@
 		<value>Title</value>
 	</data>
 	<data name="labelAchievementTitle.Help">
-		<value>Enter the title for described achievement.</value>
+		<value>Enter the title for the described achievement.</value>
 	</data>
 	<data name="labelAchievementShortTitle.Text">
 		<value>Short title</value>
 	</data>
 	<data name="labelAchievementShortTitle.Help">
-		<value>Enter the short title for described achievement.</value>
+		<value>Enter the optional short title for the described achievement.</value>
 	</data>
 	<data name="labelAchievementDescription.Text">
 		<value>Description</value>

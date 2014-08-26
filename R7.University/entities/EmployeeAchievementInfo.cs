@@ -84,7 +84,11 @@ namespace R7.University
 		[IgnoreColumn]
 		public string DisplayShortTitle
 		{
-			get { return !string.IsNullOrWhiteSpace (TitleSuffix) ? ShortTitle + " " + TitleSuffix : ShortTitle; } 
+			get 
+			{ 
+				var shortTitle = !string.IsNullOrWhiteSpace(ShortTitle)? ShortTitle : Title;
+				return !string.IsNullOrWhiteSpace (TitleSuffix) ? shortTitle + " " + TitleSuffix : shortTitle; 
+			} 
 		}
 
 		[IgnoreColumn]
