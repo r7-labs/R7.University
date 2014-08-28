@@ -492,8 +492,12 @@ namespace R7.University.Employee
 				{
 					OccupiedPositionView occupiedPosition;
 
-					var occupiedPositions = (List<OccupiedPositionView>)ViewState ["occupiedPositions"];
-					
+					var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+
+					// creating new list, if none
+					if (occupiedPositions == null)
+						occupiedPositions = new List<OccupiedPositionView>();
+
 					var command = e.CommandArgument.ToString ();
 					if (command == "Add")
 					{
@@ -509,7 +513,7 @@ namespace R7.University.Employee
 					// fill the object
 					occupiedPosition.PositionID = positionID;
 					occupiedPosition.DivisionID = divisionID;
-					occupiedPosition.PositionShortTitle = comboPositions.Text.Trim();
+					occupiedPosition.PositionShortTitle = comboPositions.Text;
 					occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
 					occupiedPosition.IsPrime = checkIsPrime.Checked;
 					occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text.Trim();
@@ -817,7 +821,11 @@ namespace R7.University.Employee
 				EmployeeAchievementView achievement;
 
 				// get achievements list from viewstate
-				var achievements = (List<EmployeeAchievementView>)ViewState ["achievements"];
+				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+				
+				// creating new list, if none
+				if (achievements == null)
+					achievements = new List<EmployeeAchievementView>();
 
 				var command = e.CommandArgument.ToString ();
 				if (command == "Add")
