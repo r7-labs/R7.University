@@ -38,29 +38,29 @@
 				</div>
 				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelLastName" runat="server" ControlName="textLastName" Suffix=":" />
-					<asp:TextBox id="textLastName" runat="server" />
+					<asp:TextBox id="textLastName" runat="server" MaxLength="50" />
 					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLastName" 
 						CssClass="dnnFormMessage dnnFormError" resourcekey="LastName.Required" />
 				</div>
 				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelFirstName" runat="server" ControlName="textFirstName" Suffix=":" />
-					<asp:TextBox id="textFirstName" runat="server" />
+					<asp:TextBox id="textFirstName" runat="server" MaxLength="50" />
 					<asp:RequiredFieldValidator runat="server" ControlToValidate="textFirstName" 
 						CssClass="dnnFormMessage dnnFormError" resourcekey="FirstName.Required" />
 				</div>
 				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" Suffix=":" />
-					<asp:TextBox id="textOtherName" runat="server" />
+					<asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
 					<asp:RequiredFieldValidator runat="server" ControlToValidate="textOtherName" 
 						CssClass="dnnFormMessage dnnFormError" resourcekey="OtherName.Required" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAcademicDegree" runat="server" ControlName="textAcademicDegree" Suffix=":" />
-					<asp:TextBox id="textAcademicDegree" runat="server" />
+					<asp:TextBox id="textAcademicDegree" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAcademicTitle" runat="server" ControlName="textAcademicTitle" Suffix=":" />
-					<asp:TextBox id="textAcademicTitle" runat="server" />
+					<asp:TextBox id="textAcademicTitle" runat="server" MaxLength="250" />
 				</div>
 				<%-- <div class="dnnFormItem">
 					<dnn:Label id="labelNamePrefix" runat="server" ControlName="textNamePrefix" Suffix=":" />
@@ -68,35 +68,35 @@
 				</div> --%>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPhone" runat="server" ControlName="textPhone" Suffix=":" />
-					<asp:TextBox id="textPhone" runat="server" />
+					<asp:TextBox id="textPhone" runat="server" MaxLength="64" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelCellPhone" runat="server" ControlName="textCellPhone" Suffix=":" />
-					<asp:TextBox id="textCellPhone" runat="server" />
+					<asp:TextBox id="textCellPhone" runat="server" MaxLength="64"/>
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelFax" runat="server" ControlName="textFax" Suffix=":" />
-					<asp:TextBox id="textFax" runat="server" />
+					<asp:TextBox id="textFax" runat="server" MaxLength="30" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelEmail" runat="server" ControlName="textEmail" Suffix=":" />
-					<asp:TextBox id="textEmail" runat="server" />
+					<asp:TextBox id="textEmail" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelSecondaryEmail" runat="server" ControlName="textSecondaryEmail" Suffix=":" />
-					<asp:TextBox id="textSecondaryEmail" runat="server" />
+					<asp:TextBox id="textSecondaryEmail" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelWebSite" runat="server" ControlName="textWebSite" Suffix=":" />
-					<asp:TextBox id="textWebSite" runat="server" />
+					<asp:TextBox id="textWebSite" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelMessenger" runat="server" ControlName="textMessenger" Suffix=":" />
-					<asp:TextBox id="textMessenger" runat="server" />
+					<asp:TextBox id="textMessenger" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelWorkingPlace" runat="server" ControlName="textWorkingPlace" Suffix=":" />
-					<asp:TextBox id="textWorkingPlace" runat="server" />
+					<asp:TextBox id="textWorkingPlace" runat="server" MaxLength="50" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
@@ -107,7 +107,7 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
-					<asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" />
+					<asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" MaxLength="100" />
 					<asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
 				</div>
 				<div class="dnnFormItem">
@@ -170,7 +170,7 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" Suffix=":" />
-					<asp:TextBox id="textPositionTitleSuffix" runat="server" />
+					<asp:TextBox id="textPositionTitleSuffix" runat="server" MaxLength="100" />
 				</div>
 				<div class="dnnFormItem" style="margin-bottom:10px">
 					<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" Suffix="?" />
@@ -226,11 +226,11 @@
 				</div>
 				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
-					<asp:TextBox id="textAchievementTitle" runat="server" />
+					<asp:TextBox id="textAchievementTitle" runat="server" MaxLength="250" />
 				</asp:Panel>
 				<asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
-					<asp:TextBox id="textAchievementShortTitle" runat="server" />
+					<asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
 				</asp:Panel>
 				<asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
@@ -241,7 +241,7 @@
 				</asp:Panel>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" Suffix=":" />
-					<asp:TextBox id="textAchievementTitleSuffix" runat="server" />
+					<asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" Suffix=":" />

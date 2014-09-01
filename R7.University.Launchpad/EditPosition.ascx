@@ -6,11 +6,11 @@
 	<fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label ID="lblTitle" runat="server" ControlName="txtTitle" Suffix=":" />
-			<asp:TextBox ID="txtTitle" runat="server" />
+			<asp:TextBox ID="txtTitle" runat="server" MaxLength="100" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label ID="lblShortTitle" runat="server" ControlName="txtShortTitle" Suffix=":" />
-			<asp:TextBox ID="txtShortTitle" runat="server" />
+			<asp:TextBox ID="txtShortTitle" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label ID="lblWeight" runat="server" ControlName="lblWeight" Suffix=":" />

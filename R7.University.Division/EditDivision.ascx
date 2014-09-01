@@ -9,11 +9,11 @@
 	<fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label id="lblTitle" runat="server" ControlName="txtTitle" Suffix=":" />
-			<asp:TextBox id="txtTitle" runat="server" />
+			<asp:TextBox id="txtTitle" runat="server" MaxLength="128" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblShortTitle" runat="server" ControlName="txtShortTitle" Suffix=":" />
-			<asp:TextBox id="txtShortTitle" runat="server" />
+			<asp:TextBox id="txtShortTitle" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblParentDivision" runat="server" ControlName="comboParentDivisions" Suffix=":" />
@@ -35,27 +35,27 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblWebSite" runat="server" ControlName="txtWebSite" Suffix=":" />
-			<asp:TextBox id="txtWebSite" runat="server" />
+			<asp:TextBox id="txtWebSite" runat="server" MaxLength="128" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblPhone" runat="server" ControlName="txtPhone" Suffix=":" />
-			<asp:TextBox id="txtPhone" runat="server" />
+			<asp:TextBox id="txtPhone" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblFax" runat="server" ControlName="txtFax" Suffix=":" />
-			<asp:TextBox id="txtFax" runat="server" />
+			<asp:TextBox id="txtFax" runat="server" MaxLength="50" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblEmail" runat="server" ControlName="txtEmail" Suffix=":" />
-			<asp:TextBox id="txtEmail" runat="server" />
+			<asp:TextBox id="txtEmail" runat="server" MaxLength="250" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblSecondaryEmail" runat="server" ControlName="txtSecondaryEmail" Suffix=":" />
-			<asp:TextBox id="txtSecondaryEmail" runat="server" />
+			<asp:TextBox id="txtSecondaryEmail" runat="server" MaxLength="250" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblLocation" runat="server" ControlName="txtLocation" Suffix=":" />
-			<asp:TextBox id="txtLocation" runat="server" />
+			<asp:TextBox id="txtLocation" runat="server" MaxLength="128" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />

@@ -7,11 +7,11 @@
 	<fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label ID="labelTitle" runat="server" ControlName="textTitle" Suffix=":" />
-			<asp:TextBox ID="textTitle" runat="server" />
+			<asp:TextBox ID="textTitle" runat="server" MaxLength="250" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label ID="labelShortTitle" runat="server" ControlName="textShortTitle" Suffix=":" />
-			<asp:TextBox ID="textShortTitle" runat="server" />
+			<asp:TextBox ID="textShortTitle" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
