@@ -140,12 +140,14 @@
 							<Columns>
 								<asp:TemplateField>
 					               <ItemTemplate>
-										<asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditOccupiedPosition_Command" >
-					                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-					                	</asp:LinkButton>
-					                	<asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteOccupiedPosition_Command" >
-					                		<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-					                	</asp:LinkButton>
+										<span style="white-space:nowrap">
+											<asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditOccupiedPosition_Command" >
+					                			<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+					                		</asp:LinkButton>
+					                		<asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteOccupiedPosition_Command" >
+					                			<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
+					                		</asp:LinkButton>
+										</span>
 					               </ItemTemplate>
 					        	</asp:TemplateField>
 							</Columns>
@@ -203,12 +205,14 @@
 							<Columns>
 								<asp:TemplateField>
 					               <ItemTemplate>
-					                	<asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditAchievement_Command" >
-					                		<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-					                	</asp:LinkButton>
-										<asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteAchievement_Command" >
-					                		<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-					                	</asp:LinkButton>
+										<span style="white-space:nowrap">
+					                		<asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditAchievement_Command" >
+					                			<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+					                		</asp:LinkButton>
+											<asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteAchievement_Command" >
+					                			<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
+					                		</asp:LinkButton>
+										</span>
 					               </ItemTemplate>
 					        	</asp:TemplateField>
 							</Columns>
