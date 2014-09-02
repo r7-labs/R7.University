@@ -112,14 +112,7 @@ namespace R7.University.Employee
 			Photo (employee, fullname);
 			
 			Barcode (employee);
-			
-			// Academic degree & title
-			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
-			if (!string.IsNullOrWhiteSpace (degreeAndTitle))
-				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper (degreeAndTitle);
-			else
-				labelAcademicDegreeAndTitle.Visible = false;
-				
+					
 			// Phone
 			if (!string.IsNullOrWhiteSpace (employee.Phone))
 				labelPhone.Text = employee.Phone;
@@ -320,6 +313,19 @@ namespace R7.University.Employee
 				                   CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
 				                   employee.EmployeeID);
 	
+			// employee titles
+			var titles = achievements.Where (ach => ach.IsTitle).Select(ach => Utils.FirstCharToLower(ach.DisplayShortTitle)).ToList();
+
+			// add academic degree and title for backward compatibility
+			titles.Add (employee.AcademicDegree);
+			titles.Add (employee.AcademicTitle);
+
+			var strTitles = Utils.FormatList (", ", titles);
+			if (!string.IsNullOrWhiteSpace (strTitles))
+				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper(strTitles);
+			else
+				labelAcademicDegreeAndTitle.Visible = false;
+
 			// get only experience-related achievements
 			var experiences = achievements.Where (ach => ach.AchievementType == AchievementType.Education ||
 			                  ach.AchievementType == AchievementType.Training ||
@@ -340,6 +346,9 @@ namespace R7.University.Employee
 			}
 			else
 				linkAchievements.Visible = false;
+			
+			
+
 		}
 
 		private DataTable AchievementsDataTable (IEnumerable<EmployeeAchievementInfo> achievements)
