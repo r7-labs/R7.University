@@ -257,7 +257,7 @@ namespace R7.University.EmployeeList
 			var achievements = EmployeeListController.GetObjects<EmployeeAchievementInfo> (
 				                   CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
 
-			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList ();
+			var titles = achievements.Select (ach => Utils.FirstCharToLower(ach.DisplayShortTitle)).ToList ();
 			
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);

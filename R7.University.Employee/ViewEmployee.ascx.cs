@@ -236,7 +236,7 @@ namespace R7.University.Employee
 			*/
 			
 			// Employee titles
-			var titles = achievements.Select (ach => ach.DisplayShortTitle).ToList ();
+			var titles = achievements.Select (ach => Utils.FirstCharToLower(ach.DisplayShortTitle)).ToList ();
 			
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);

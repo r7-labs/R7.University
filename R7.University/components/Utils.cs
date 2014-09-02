@@ -266,6 +266,27 @@ namespace R7.University
 			return s;
 		}
 
+		public static string FirstCharToLower (string s)
+		{
+			if (!string.IsNullOrWhiteSpace (s))
+			if (s.Length == 1)
+				return s.ToLower ();
+			else
+				return s.ToLower () [0].ToString () + s.Substring (1);
+		
+			return s;
+		}
+
+		public static string FirstCharToLowerInvariant (string s)
+		{
+			if (!string.IsNullOrWhiteSpace (s))
+			if (s.Length == 1)
+				return s.ToLowerInvariant ();
+			else
+				return s.ToLowerInvariant () [0].ToString () + s.Substring (1);
+			return s;
+		}
+
 		public static void SynchronizeModule (IModuleControl module)
 		{
 			ModuleController.SynchronizeModule (module.ModuleContext.ModuleId);
