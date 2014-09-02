@@ -127,10 +127,9 @@
 	
 		<div id="employeePositions">
 			<fieldset>
-				<div class="dnnFormItem" style="margin-bottom:10px">
-					<div class="dnnLabel"></div>
+				<div class="dnnFormItem">
 					<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="true" 
-						GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound">
+						GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound" Style="margin-bottom:30px;width:775px">
 							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
 					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -191,10 +190,9 @@
 	
 		<div id="employeeAchievements">
 			<fieldset>
-				<div class="dnnFormItem" style="margin-bottom:10px">
-					<div class="dnnLabel"></div>
+				<div class="dnnFormItem">
 					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
-						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound">
+						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound" Style="margin-bottom:30px;width:775px">
 							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
 					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
