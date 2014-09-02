@@ -352,6 +352,9 @@ namespace R7.University.Employee
 			dt.Columns.Add (new DataColumn (LocalizeString ("AchievementType.Column"), typeof(string)));
 			dt.Columns.Add (new DataColumn (LocalizeString ("DocumentUrl.Column"), typeof(string)));
 		
+			// add description column (no need to localize as it's hidden)
+			dt.Columns.Add (new DataColumn ("Description.Column", typeof(string)));
+					
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
 
@@ -365,6 +368,7 @@ namespace R7.University.Employee
 				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
 				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
 				dr [col++] = achievement.DocumentURL; 
+				dr [col++] = achievement.Description;
 					
 				dt.Rows.Add (dr);
 			}
@@ -374,6 +378,10 @@ namespace R7.University.Employee
 
 		protected void gridExperience_RowDataBound (object sender, GridViewRowEventArgs e)
 		{
+			// description
+			e.Row.Cells [4].Visible = false;
+			e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [4].Text);
+
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
@@ -382,6 +390,9 @@ namespace R7.University.Employee
 				if (!string.IsNullOrWhiteSpace (documentUrl))
 					e.Row.Cells [3].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
 						Globals.LinkClick (documentUrl, TabId, ModuleId), LocalizeString ("DocumentUrl.Text"));
+
+				// e.Row.Cells [4].Text = "...";
+				// e.Row.Cells [4].Attributes.Add("onclick", "javascript:confirm('" + description + "')");
 			}
 		}
 
@@ -429,5 +440,5 @@ namespace R7.University.Employee
 	}
 	// class
 }
- // namespace
+// namespace
 

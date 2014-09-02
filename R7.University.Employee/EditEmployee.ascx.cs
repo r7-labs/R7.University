@@ -555,7 +555,14 @@ namespace R7.University.Employee
 		{
 			// hide ItemID column, also in header
 			e.Row.Cells [1].Visible = false;
-
+			
+			if (sender == gridAchievements)
+			{
+				// description
+				e.Row.Cells [6].Visible = false;
+				e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [6].Text);
+			}
+	
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
@@ -670,16 +677,12 @@ namespace R7.University.Employee
 			DataRow dr;
 			
 			dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
-			// dt.Columns.Add (new DataColumn ("EmployeeID", typeof(int)));
-			// dt.Columns.Add (new DataColumn ("EmployeeAchievementID", typeof(int)));
 			dt.Columns.Add (new DataColumn ("Year(s)", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
-			//dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
-			//dt.Columns.Add (new DataColumn ("Description", typeof(string)));
-			//dt.Columns.Add (new DataColumn ("DocumentURL", typeof(string)));
 			dt.Columns.Add (new DataColumn ("IsTitle", typeof(bool)));
 			dt.Columns.Add (new DataColumn ("AchievementType", typeof(string)));
-
+			dt.Columns.Add (new DataColumn ("Description"));
+			
 			// TODO: Add column for DocumentURL
 
 			var atTheMoment = LocalizeString("AtTheMoment.Text");
@@ -691,11 +694,9 @@ namespace R7.University.Employee
 				dr [col++] = achievement.ItemID;
 				dr [col++] = achievement.FormatYears.Replace ("{ATM}", atTheMoment);
 				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
-				//dr [col++] = achievement.ShortTitle;
-				//dr [col++] = achievement.Description;
-				//dr [col++] = achievement.DocumentURL;
 				dr [col++] = achievement.IsTitle;
 				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
+				dr [col++] = achievement.Description;
 				dt.Rows.Add (dr);
 			}
 
