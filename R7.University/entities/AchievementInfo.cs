@@ -59,6 +59,12 @@ namespace R7.University
 			get { return (AchievementType)AchievementTypeString [0]; }
 			set { AchievementTypeString = ((char)value).ToString (); }
 		}
+		
+		[IgnoreColumn]
+		public string DisplayShortTitle
+		{
+			get { return !string.IsNullOrWhiteSpace(ShortTitle)? ShortTitle : Title; } 
+		}
 	}
 }
 

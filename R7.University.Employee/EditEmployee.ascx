@@ -221,7 +221,7 @@
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" Suffix=":" />
 					<dnn:DnnComboBox id="comboAchievements" runat="server" AutoPostBack="true"
-						DataTextField="ShortTitle"
+						DataTextField="DisplayShortTitle"
 						DataValueField="AchievementID"
 						SelectedIndexChanged="comboAchievements_SelectedIndexChanged"
 					/>
