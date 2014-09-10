@@ -275,6 +275,7 @@ namespace R7.University.Employee
 			// experience years
 			var exp1 = false;
 			var exp2 = false;
+			var noExpYears = false;
 			
 			// Общий стаж работы (лет): {0}
 			// Общий стаж работы по специальности (лет): {0}
@@ -304,8 +305,11 @@ namespace R7.University.Employee
 			}
 			else
 			{
-				// hide Experience tab
-				linkExperience.Visible = false;
+				// hide label for experience years
+				labelExperienceYears.Visible = false;
+				
+				// about to hide Experience tab
+				noExpYears = true;
 			}
 
 			// get all empoyee achievements
@@ -314,7 +318,7 @@ namespace R7.University.Employee
 				                   employee.EmployeeID);
 	
 			// employee titles
-			var titles = achievements.Where (ach => ach.IsTitle).Select(ach => Utils.FirstCharToLower(ach.DisplayShortTitle)).ToList();
+			var titles = achievements.Where (ach => ach.IsTitle).Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle)).ToList ();
 
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);
@@ -322,7 +326,7 @@ namespace R7.University.Employee
 
 			var strTitles = Utils.FormatList (", ", titles);
 			if (!string.IsNullOrWhiteSpace (strTitles))
-				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper(strTitles);
+				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper (strTitles);
 			else
 				labelAcademicDegreeAndTitle.Visible = false;
 
@@ -336,7 +340,12 @@ namespace R7.University.Employee
 				gridExperience.DataSource = AchievementsDataTable (experiences.OrderByDescending (exp => exp.YearBegin));
 				gridExperience.DataBind ();
 			}
-			
+			else if (noExpYears)
+			{
+				// hide experience tab
+				linkExperience.Visible = false;
+			}
+		
 			// get all other achievements
 			achievements = achievements.Where (ach => ach.AchievementType == AchievementType.Achievement);
 			if (achievements != null && achievements.Any ())
@@ -345,10 +354,10 @@ namespace R7.University.Employee
 				gridAchievements.DataBind ();
 			}
 			else
+			{	
+				// hide achievements tab
 				linkAchievements.Visible = false;
-			
-			
-
+			}
 		}
 
 		private DataTable AchievementsDataTable (IEnumerable<EmployeeAchievementInfo> achievements)
