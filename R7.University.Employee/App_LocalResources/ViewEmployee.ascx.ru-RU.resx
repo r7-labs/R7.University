@@ -9,8 +9,4 @@
 	<data name="NothingToDisplay.Text" xml:space="preserve">
   	<value>Нечего отображать, добавьте элементы.</value>
   </data>
-   
- <data name="Fax.Format" xml:space="preserve">
-    <value>{0} (факс)</value>
-  </data>
 </root>

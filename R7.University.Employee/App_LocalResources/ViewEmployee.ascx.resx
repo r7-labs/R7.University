@@ -15,8 +15,4 @@
 	<data name="EmployeeNotPublished.Text" xml:space="preserve">
   	<value>Selected employee not published.</value>
   </data>
- 
-  <data name="Fax.Format" xml:space="preserve">
-    <value>{0} (fax)</value>
-  </data>
 </root>

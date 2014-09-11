@@ -50,5 +50,8 @@
     </data>
     <data name="AtTheMoment.Text">
         <value>н/в</value>
+    </data> 
+    <data name="Fax.Format" xml:space="preserve">
+        <value>{0} (факс)</value>
     </data>
 </root>
