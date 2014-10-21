@@ -55,6 +55,7 @@
     <None Include="InstallPackage.targets" />
     <None Include="SourcePackage.targets" />
     <None Include="SqlDataProvider\01.01.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.01.01.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SqlDataProvider\" />
