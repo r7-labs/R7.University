@@ -15,4 +15,7 @@
 	<data name="EmployeeNotPublished.Text" xml:space="preserve">
   	<value>Selected employee not published.</value>
   </data>
+    <data name="EmployeeNotFound.Text" xml:space="preserve">
+    <value>No employee record found for current user.</value>
+  </data>
 </root>

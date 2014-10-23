@@ -29,7 +29,8 @@ namespace R7.University.Employee
 						comboEmployees.Select (EmployeeSettings.EmployeeID.ToString (), false);
 
 					checkAutoTitle.Checked = EmployeeSettings.AutoTitle;
-
+					checkShowCurrentUser.Checked = EmployeeSettings.ShowCurrentUser;
+					
 					if (!Null.IsNull (EmployeeSettings.PhotoWidth))
 						textPhotoWidth.Text = EmployeeSettings.PhotoWidth.ToString ();
 					
@@ -50,7 +51,10 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				EmployeeSettings.ShowCurrentUser = checkShowCurrentUser.Checked;
+
 				EmployeeSettings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
+
 				EmployeeSettings.AutoTitle = checkAutoTitle.Checked;
 
 				if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))

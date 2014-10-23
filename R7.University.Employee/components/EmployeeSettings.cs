@@ -39,6 +39,12 @@ namespace R7.University.Employee
 			}
 		}
 
+		public bool ShowCurrentUser
+		{
+			get { return ReadSetting<bool> ("Employee_ShowCurrentUser", false, false); }
+			set { WriteSetting<bool> ("Employee_ShowCurrentUser", value, false); }
+		}
+
 		public bool AutoTitle
 		{
 			get { return ReadSetting<bool> ("Employee_AutoTitle", true, false); }

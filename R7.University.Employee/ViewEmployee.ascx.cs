@@ -27,6 +27,18 @@ namespace R7.University.Employee
 
 		#region Handlers
 
+		public int GetEmployeeID ()
+		{
+			EmployeeInfo employee;
+
+			if (UserInfo != null && EmployeeSettings.ShowCurrentUser)
+				employee = EmployeeController.GetEmployeeByUserId (UserInfo.UserID);
+			else 
+				employee = EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
+
+			return (employee != null) ? employee.EmployeeID : Null.NullInteger;
+		}
+
 		/*
 		/// <summary>
 		/// Handles Init event for a control
@@ -55,18 +67,24 @@ namespace R7.University.Employee
 				{
 					if (Cache_OnLoad ()) return;
 					
-					var hasData = true;
-					
 					EmployeeInfo employee = null;
 					IEnumerable<EmployeeAchievementInfo> achievements = null;
 
+					if (UserInfo != null && EmployeeSettings.ShowCurrentUser)
+					{
+						employee = EmployeeController.GetEmployeeByUserId (UserInfo.UserID);
+
+						if (employee == null)
+						{
+							if (IsEditable)
+								Utils.Message (this, "EmployeeNotFound.Text", MessageType.Warning, true);
+						}
+					}
 					// check if we have something to display
-					if (Null.IsNull (EmployeeSettings.EmployeeID))
+					else if (Null.IsNull (EmployeeSettings.EmployeeID))
 					{
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
-
-						hasData = false;
 					}
 					else
 					{
@@ -77,40 +95,26 @@ namespace R7.University.Employee
 							// employee is hard-deleted!
 							if (IsEditable)
 								Utils.Message (this, "EmployeeHardDeleted.Text", MessageType.Error, true);
-
-							// were is nothing to display
-							hasData = false;
 						}
-						else
-						{
-							/*
-							if (employee.IsDeleted)
-							{
-								// employee is soft-deleted
-								if (IsEditable)
-									Utils.Message (this, MessageSeverity.Warning, "EmployeeSoftDeleted.Text", true);
+					}
 
-								// display only in edit mode
-								display = IsEditable;
-							}*/
+					var hasData = employee != null;
 
-							if (!employee.IsPublished)
-							{
-								// employee isn't published
-								if (IsEditable)
-									Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
-							}
-						}
+					if (hasData && !employee.IsPublished)
+					{
+						// employee isn't published
+						if (IsEditable)
+							Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
 					}
 					
 					// if we have something published to display
-					// the display module to common users
+					// then display module to common users
 					Cache_SetContainerVisible (hasData && employee.IsPublished);
-										
+											
 					// display module only in edit mode
 					// only if we have published data to display
 					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);
-										
+											
 					// display module content only if it exists
 					// and if publshed or in edit mode
 					var displayContent = hasData && (IsEditable || employee.IsPublished);
@@ -123,7 +127,7 @@ namespace R7.University.Employee
 						
 						// get employee achievements (titles) only then it about to display
 						achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
-							CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", EmployeeSettings.EmployeeID);
+							CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
 
 						// display employee info
 						Display (employee, achievements);
@@ -217,7 +221,7 @@ namespace R7.University.Employee
 			if (imageVisible)
 			{
 				// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
-				var popupUrl = Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ());
+				var popupUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ());
 				
 				// alter popup window height
 				linkPhoto.NavigateUrl = popupUrl.Replace ("550,950", "450,950");
@@ -367,8 +371,9 @@ namespace R7.University.Employee
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
-				var existingEmployee = !Null.IsNull (EmployeeSettings.EmployeeID);
-
+				var employeeId = GetEmployeeID ();
+				var existingEmployee = !Null.IsNull (employeeId);
+			
 				actions.Add (
 					GetNextActionID (), 
 					Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
@@ -389,7 +394,7 @@ namespace R7.University.Employee
 					ModuleActionType.EditContent, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Edit", "employee_id", EmployeeSettings.EmployeeID.ToString ()),
+					Utils.EditUrl (this, "Edit", "employee_id", employeeId.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					existingEmployee, 
@@ -402,7 +407,7 @@ namespace R7.University.Employee
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Details", "employee_id", EmployeeSettings.EmployeeID.ToString ()).Replace ("550,950", "450,950"),
+					Utils.EditUrl (this, "Details", "employee_id", employeeId.ToString ()).Replace ("550,950", "450,950"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
 					existingEmployee, 
@@ -415,7 +420,7 @@ namespace R7.University.Employee
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "VCard", "employee_id", EmployeeSettings.EmployeeID.ToString ()),
+					Utils.EditUrl (this, "VCard", "employee_id", employeeId.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
 					existingEmployee, 

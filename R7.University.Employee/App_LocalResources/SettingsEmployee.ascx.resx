@@ -12,6 +12,12 @@
 	<data name="labelEmployee.Help" xml:space="preserve">
     	<value>Select an employee to display in this module.</value>
   	</data>
+    <data name="labelShowCurrentUser.Text" xml:space="preserve">
+        <value>Show Current User</value>
+    </data>
+    <data name="labelShowCurrentUser.Help" xml:space="preserve">
+        <value>If checked, module will try to display employee record, associated with current logged in user. If no employee record exist, module hides ifself.</value>
+    </data>
 	<data name="labelAutoTitle.Text" xml:space="preserve">
     	<value>Auto Title</value>
   	</data>
