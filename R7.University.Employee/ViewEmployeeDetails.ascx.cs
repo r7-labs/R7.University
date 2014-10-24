@@ -53,34 +53,39 @@ namespace R7.University.Employee
 					// try get EmployeeID from querysting
 					var employeeId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
 			
-					// if not, use module settings
-					if (employeeId == null && !Null.IsNull (EmployeeSettings.EmployeeID))
-						employeeId = EmployeeSettings.EmployeeID;
-					
+					EmployeeInfo employee = null;
+
 					if (employeeId != null)
 					{
-						var employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
-					
-						if (employee != null)
+						// get employee by querystring param
+						employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
+					}
+					else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
+					{
+						// if not, try to use Employee module settings
+						employee = GetEmployee ();
+					}
+
+					if (employee != null)
+					{
+						if (IsEditable || employee.IsPublished)
 						{
-							if (IsEditable || employee.IsPublished)
+							Display (employee);
+							
+							if (IsEditable)
 							{
-								Display (employee);
-								
-								if (IsEditable)
-								{
-									linkVCard.Visible = true;
-									linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString ());
-								}
+								linkVCard.Visible = true;
+								linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString ());
 							}
-							else
-								// can show only published
-								Response.Redirect (Globals.NavigateURL (), true);
 						}
-						else 
-							// nothing to show
+						else
+							// can show only published
 							Response.Redirect (Globals.NavigateURL (), true);
 					}
+					else 
+						// nothing to show
+						Response.Redirect (Globals.NavigateURL (), true);
+
 				} // if (!IsPostBack)
 			}
 			catch (Exception ex)

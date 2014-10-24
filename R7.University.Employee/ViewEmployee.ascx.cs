@@ -27,18 +27,6 @@ namespace R7.University.Employee
 
 		#region Handlers
 
-		public int GetEmployeeID ()
-		{
-			EmployeeInfo employee;
-
-			if (UserInfo != null && EmployeeSettings.ShowCurrentUser)
-				employee = EmployeeController.GetEmployeeByUserId (UserInfo.UserID);
-			else 
-				employee = EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
-
-			return (employee != null) ? employee.EmployeeID : Null.NullInteger;
-		}
-
 		/*
 		/// <summary>
 		/// Handles Init event for a control
@@ -67,46 +55,24 @@ namespace R7.University.Employee
 				{
 					if (Cache_OnLoad ()) return;
 					
-					EmployeeInfo employee = null;
 					IEnumerable<EmployeeAchievementInfo> achievements = null;
 
-					if (UserInfo != null && EmployeeSettings.ShowCurrentUser)
+					var employee = GetEmployee ();
+					if (employee == null)
 					{
-						employee = EmployeeController.GetEmployeeByUserId (UserInfo.UserID);
-
-						if (employee == null)
-						{
-							if (IsEditable)
-								Utils.Message (this, "EmployeeNotFound.Text", MessageType.Warning, true);
-						}
-					}
-					// check if we have something to display
-					else if (Null.IsNull (EmployeeSettings.EmployeeID))
-					{
+						// employee isn't set or not found
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 					}
-					else
-					{
-						employee = EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
-
-						if (employee == null)
-						{
-							// employee is hard-deleted!
-							if (IsEditable)
-								Utils.Message (this, "EmployeeHardDeleted.Text", MessageType.Error, true);
-						}
-					}
-
-					var hasData = employee != null;
-
-					if (hasData && !employee.IsPublished)
+					else if (!employee.IsPublished)
 					{
 						// employee isn't published
 						if (IsEditable)
 							Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
 					}
-					
+
+					var hasData = employee != null;
+
 					// if we have something published to display
 					// then display module to common users
 					Cache_SetContainerVisible (hasData && employee.IsPublished);
@@ -118,6 +84,7 @@ namespace R7.University.Employee
 					// display module content only if it exists
 					// and if publshed or in edit mode
 					var displayContent = hasData && (IsEditable || employee.IsPublished);
+
 					panelEmployee.Visible = displayContent;
 					
 					if (displayContent)
@@ -240,7 +207,7 @@ namespace R7.University.Employee
 			*/
 			
 			// Employee titles
-			var titles = achievements.Select (ach => Utils.FirstCharToLower(ach.DisplayShortTitle)).ToList ();
+			var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle)).ToList ();
 			
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);
@@ -371,9 +338,9 @@ namespace R7.University.Employee
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
-				var employeeId = GetEmployeeID ();
-				var existingEmployee = !Null.IsNull (employeeId);
-			
+
+				var employeeId = GetEmployeeId ();
+
 				actions.Add (
 					GetNextActionID (), 
 					Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
@@ -383,7 +350,7 @@ namespace R7.University.Employee
 					Utils.EditUrl (this, "Edit"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
-					!existingEmployee, 
+					employeeId == null, 
 					false
 				);
 
@@ -397,7 +364,7 @@ namespace R7.University.Employee
 					Utils.EditUrl (this, "Edit", "employee_id", employeeId.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
-					existingEmployee, 
+					employeeId != null, 
 					false
 				);
 
@@ -410,7 +377,7 @@ namespace R7.University.Employee
 					Utils.EditUrl (this, "Details", "employee_id", employeeId.ToString ()).Replace ("550,950", "450,950"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
-					existingEmployee, 
+					employeeId != null, 
 					false
 				);
 
@@ -421,10 +388,10 @@ namespace R7.University.Employee
 					"", 
 					"", 
 					Utils.EditUrl (this, "VCard", "employee_id", employeeId.ToString ()),
-					false, 
+					false,
 					DotNetNuke.Security.SecurityAccessLevel.View,
-					existingEmployee, 
-					true // open in new window
+					employeeId != null,
+					true
 				);
 
 				/*
@@ -492,5 +459,5 @@ namespace R7.University.Employee
 	}
 	// class
 }
- // namespace
+// namespace
 
