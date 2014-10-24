@@ -2,6 +2,13 @@
 -- replace {databaseOwner} and {objectQualifier} with real values. 
 -- Defaults is "dbo." for database owner and "" for object qualifier 
 
+-- Alter tables
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'DocumentUrl')
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions]
+		ADD [DocumentUrl] [nvarchar](250) NULL
+GO
+
 -- Drop existing view
 
 IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]') and OBJECTPROPERTY(id, N'IsView') = 1)
