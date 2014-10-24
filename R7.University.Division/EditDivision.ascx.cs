@@ -151,6 +151,13 @@ namespace R7.University.Division
 								// or set to "None", if Url is empty
 								urlHomePage.UrlType = "N";
 
+							// set Document url
+							if (!string.IsNullOrWhiteSpace (item.DocumentUrl))
+								urlDocumentUrl.Url = item.DocumentUrl;
+							else
+								// or set to "None", if url is empty
+								urlDocumentUrl.UrlType = "N";
+
 							// setup audit control
 							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString ("System.Text"));
 							ctlAudit.CreatedDate = item.CreatedOnDate.ToLongDateString ();
@@ -214,6 +221,7 @@ namespace R7.University.Division
 				item.ParentDivisionID = Utils.ParseToNullableInt (comboParentDivisions.SelectedValue);
 				item.DivisionTermID = Utils.ParseToNullableInt (treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;
+				item.DocumentUrl = urlDocumentUrl.Url;
 
 				// update working hours
 				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
