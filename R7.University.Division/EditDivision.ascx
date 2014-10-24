@@ -69,6 +69,15 @@
 			<asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" />
 			<asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
 		</div>
+		<div class="dnnFormItem">
+			<dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" Suffix=":" />
+			<dnn:Url id="urlDocumentUrl" runat="server" UrlType="N" 
+					IncludeActiveTab="true"
+			        ShowFiles="true" ShowTabs="true"
+			        ShowUrls="true" ShowUsers="false"
+					ShowLog="false" ShowTrack="false"
+					ShowNone="true" ShowNewWindow="false" />      
+		</div>
 		<%-- <div class="dnnFormItem">
 			<dnn:Label id="lblWorkingHours" runat="server" ControlName="txtWorkingHours" Suffix=":" />
 			<asp:TextBox id="txtWorkingHours" runat="server" />

@@ -30,6 +30,12 @@
 	<data name="lblHomePage.Help" xml:space="preserve">
     <value>Specify a home page for this division.</value>
   </data>
+    <data name="labelDocumentUrl.Text" xml:space="preserve">
+    <value>Document</value>
+  </data>
+    <data name="labelDocumentUrl.Help" xml:space="preserve">
+    <value>Specify main / regualations document for this division.</value>
+  </data>
 	<data name="lblWebSite.Text" xml:space="preserve">
     <value>Website</value>
   </data>

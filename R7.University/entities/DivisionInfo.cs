@@ -61,6 +61,8 @@ namespace R7.University
 
 		public string WorkingHours { get; set; }
 
+		public string DocumentUrl { get; set; }
+
 		#endregion
 
 		[IgnoreColumn]
