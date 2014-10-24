@@ -47,6 +47,27 @@ namespace R7.University.Employee
 		{
 			get { return settings ?? (settings = new EmployeeSettings (this)); }
 		}
+
+		#region Methods to get associated employee
+
+		protected EmployeeInfo GetEmployee ()
+		{
+			if (UserInfo != null && EmployeeSettings.ShowCurrentUser)
+				return EmployeeController.GetEmployeeByUserId (UserInfo.UserID);
+
+			return EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
+		}
+
+		protected int? GetEmployeeId ()
+		{
+			var employee = GetEmployee ();
+			if (employee != null)
+				return Utils.ToNullable (employee.EmployeeID);
+
+			return null;
+		}
+
+		#endregion
 	}
 
 	/// <summary>

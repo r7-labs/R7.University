@@ -278,6 +278,19 @@ namespace R7.University
 
 		#region Custom methods
 
+		public EmployeeInfo GetEmployeeByUserId (int userId)
+		{
+			EmployeeInfo employee;
+
+			using (var ctx = DataContext.Instance ())
+			{
+				var repo = ctx.GetRepository<EmployeeInfo> ();
+				employee = repo.Find ("WHERE UserId = @0", userId).FirstOrDefault ();
+			}
+
+			return employee;
+		}
+
 		public void AddEmployee (EmployeeInfo employee, 
 		                        List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
