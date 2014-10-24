@@ -23,6 +23,13 @@ namespace R7.University.Employee
 
 		private int? employeeId;
 
+		/// <summary>
+		/// Gets or sets the EmployeeID setting value. 
+		/// Use <see cref="EmployeePortalModuleBase.GetEmployee()"/> 
+		/// and <see cref="EmployeePortalModuleBase.GetEmployeeId()"/>
+		/// to get employee info in the view contols.
+		/// </summary>
+		/// <value>The employee Id.</value>
 		public int EmployeeID
 		{
 			get
