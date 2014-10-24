@@ -16,7 +16,7 @@
         <value>Show Current User</value>
     </data>
     <data name="labelShowCurrentUser.Help" xml:space="preserve">
-        <value>If checked, module will try to display employee record, associated with current logged in user. If no employee record exist, module hides ifself.</value>
+        <value>If checked, module will try to display employee record, associated with current logged in user. If no employee record exist, module hides ifself. Consider enabling this setting with &quot;Auto Title&quot; enabled and &quot;Data Cache Duration&quot; set to 0.</value>
     </data>
 	<data name="labelAutoTitle.Text" xml:space="preserve">
     	<value>Auto Title</value>
