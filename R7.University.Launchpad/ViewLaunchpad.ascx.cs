@@ -351,9 +351,10 @@ namespace R7.University.Launchpad
 			dt.Columns.Add (new DataColumn ("DivisionID", typeof(int)));
 			dt.Columns.Add (new DataColumn ("ParentDivisionID", typeof(int)));
 			dt.Columns.Add (new DataColumn ("DivisionTermID", typeof(int)));
-			dt.Columns.Add (new DataColumn ("HomePage", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
 			dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
+			dt.Columns.Add (new DataColumn ("HomePage", typeof(string)));
+			dt.Columns.Add (new DataColumn ("DocumentUrl", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Location", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Phone", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Fax", typeof(string)));
@@ -376,9 +377,10 @@ namespace R7.University.Launchpad
 				dr [i++] = division.DivisionID;
 				dr [i++] = division.ParentDivisionID ?? Null.NullInteger;
 				dr [i++] = division.DivisionTermID ?? Null.NullInteger;
-				dr [i++] = division.HomePage;
 				dr [i++] = division.Title;
 				dr [i++] = division.ShortTitle;
+				dr [i++] = division.HomePage;
+				dr [i++] = division.DocumentUrl;
 				dr [i++] = division.Location;
 				dr [i++] = division.Phone;
 				dr [i++] = division.Fax;
