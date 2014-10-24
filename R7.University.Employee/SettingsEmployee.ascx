@@ -10,12 +10,12 @@
 			<dnn:DnnComboBox id="comboEmployees" runat="server" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" Suffix=":" />
-			<asp:CheckBox id="checkShowCurrentUser" runat="server" Checked="false" />
-		</div>
-		<div class="dnnFormItem">
 			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" Suffix=":" />
 			<asp:TextBox id="textPhotoWidth" runat="server" Style="width:100px" />
+		</div>
+		<div class="dnnFormItem">
+			<dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" Suffix=":" />
+			<asp:CheckBox id="checkShowCurrentUser" runat="server" Checked="false" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" Suffix=":" />
