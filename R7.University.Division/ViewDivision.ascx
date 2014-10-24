@@ -6,6 +6,8 @@
 
 	<asp:HyperLink id="linkSearchByTerm" runat="server" resourcekey="linkSearchByTerm" CssClass="_section tag" />
 
+	<asp:HyperLink id="linkDocumentUrl" runat="server" CssClass="_section email" />
+
 	<div class="_section">
 		<asp:Label id="labelPhone" runat="server" CssClass="_label" />
 		<asp:Label id="labelFax" runat="server" CssClass="_label" />

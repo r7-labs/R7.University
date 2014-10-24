@@ -21,4 +21,7 @@
   <data name="linkSearchByTerm.Text" xml:space="preserve">
     <value>Связанные ресурсы</value>
   </data>
+  <data name="DocumentUrl.Text" xml:space="preserve">
+    <value>Положение</value>
+  </data>
 </root>

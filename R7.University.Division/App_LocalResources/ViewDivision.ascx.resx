@@ -20,5 +20,8 @@
   </data>
   <data name="linkSearchByTerm.Text" xml:space="preserve">
     <value>Linked resources</value>
+  </data>  
+  <data name="DocumentUrl.Text" xml:space="preserve">
+    <value>Regulations</value>
   </data>
 </root>
