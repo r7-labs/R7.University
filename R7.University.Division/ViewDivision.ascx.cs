@@ -200,7 +200,9 @@ namespace R7.University.Division
 					var file = FileManager.Instance.GetFile (int.Parse (division.DocumentUrl.Remove (0, "FileID=".Length)));
 					linkDocumentUrl.CssClass += " " + file.Extension.ToLowerInvariant ();
 				}
-				else
+				else if (urlType == TabType.Tab)
+					linkDocumentUrl.CssClass += " page";
+				else 
 					linkDocumentUrl.CssClass += " url";
 
 				linkDocumentUrl.Text = LocalizeString ("DocumentUrl.Text");
