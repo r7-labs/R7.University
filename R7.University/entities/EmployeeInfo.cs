@@ -84,13 +84,25 @@ namespace R7.University
 		[IgnoreColumn]
 		public string AbbrName
 		{
-			get { return string.Format ("{0} {1}.{2}.", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); }
+			get 
+			{
+				if (!string.IsNullOrWhiteSpace (OtherName))
+					return string.Format ("{0} {1}.{2}.", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); 
+
+				return string.Format ("{0} {1}.", LastName, FirstName.Substring (0, 1));
+			}
 		}
 
 		[IgnoreColumn]
 		public string FileName
 		{
-			get { return string.Format ("{0}_{1}{2}", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); }
+			get 
+			{ 
+				if (!string.IsNullOrWhiteSpace (OtherName))
+					return string.Format ("{0}_{1}{2}", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); 
+
+				return string.Format ("{0}_{1}", LastName, FirstName.Substring (0, 1)); 
+			}
 		}
 
 		[IgnoreColumn]
