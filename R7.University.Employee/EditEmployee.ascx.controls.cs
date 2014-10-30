@@ -46,6 +46,8 @@ namespace R7.University.Employee
 		protected TextBox textSecondaryEmail;
 		protected LabelControl labelWebSite;
 		protected TextBox textWebSite;
+		protected LabelControl labelWebSiteLabel;
+		protected TextBox textWebSiteLabel;
 		protected LabelControl labelMessenger;
 		protected TextBox textMessenger;
 		protected LabelControl labelCustomWorkingHours;

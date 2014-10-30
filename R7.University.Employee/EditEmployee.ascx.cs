@@ -175,6 +175,7 @@ namespace R7.University.Employee
 							textEmail.Text = item.Email;
 							textSecondaryEmail.Text = item.SecondaryEmail;
 							textWebSite.Text = item.WebSite;
+							textWebSiteLabel.Text = item.WebSiteLabel;
 							textMessenger.Text = item.Messenger;
 							textWorkingPlace.Text = item.WorkingPlace;
 							textBiography.Text = item.Biography;
@@ -324,6 +325,7 @@ namespace R7.University.Employee
 				item.Email = textEmail.Text.Trim ().ToLowerInvariant ();
 				item.SecondaryEmail = textSecondaryEmail.Text.Trim ().ToLowerInvariant ();
 				item.WebSite = textWebSite.Text.Trim ();
+				item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
 				item.Messenger = textMessenger.Text.Trim ();
 				item.WorkingPlace = textWorkingPlace.Text.Trim ();
 				item.Biography = textBiography.Text.Trim ();

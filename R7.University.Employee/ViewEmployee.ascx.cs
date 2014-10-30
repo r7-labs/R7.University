@@ -279,26 +279,11 @@ namespace R7.University.Employee
 			// WebSite
 			if (!string.IsNullOrWhiteSpace (employee.WebSite))
 			{
-				// REVIEW: Less optimistic protocol detection?
-				var lowerWebSite = employee.WebSite.ToLowerInvariant ();
-				if (lowerWebSite.StartsWith ("http://") || lowerWebSite.StartsWith ("https://"))
-				{
-					linkWebSite.NavigateUrl = employee.WebSite;
-					// 01234567890
-					// http://www.volgau.com
-					// https://www.volgau.com
-					linkWebSite.Text = employee.WebSite.Remove (0, employee.WebSite.IndexOf ("://") + 3); 
-				}
-				else
-				{
-					// add http by default
-					linkWebSite.NavigateUrl = "http://" + employee.WebSite;
-					linkWebSite.Text = employee.WebSite; 
-				}
+				linkWebSite.NavigateUrl = employee.FormatWebSiteUrl;
+				linkWebSite.Text = employee.FormatWebSiteLabel;
 			}
 			else
 				linkWebSite.Visible = false;
-
 
 			// Email
 			if (!string.IsNullOrWhiteSpace (employee.Email))

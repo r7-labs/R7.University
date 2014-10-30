@@ -450,7 +450,7 @@ namespace R7.University.Launchpad
 				dr [i++] = employee.OtherName;
 				dr [i++] = employee.Email;
 				dr [i++] = employee.SecondaryEmail;
-				dr [i++] = employee.WebSite;
+				dr [i++] = Utils.FormatList (": ", employee.WebSiteLabel, employee.WebSite);
 				dr [i++] = employee.Messenger;
 				dr [i++] = employee.AcademicDegree;
 				dr [i++] = employee.AcademicTitle;

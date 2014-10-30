@@ -89,6 +89,10 @@
 					<asp:TextBox id="textWebSite" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
+					<dnn:Label id="labelWebSiteLabel" runat="server" ControlName="textWebSiteLabel" Suffix=":" />
+					<asp:TextBox id="textWebSiteLabel" runat="server" MaxLength="64" />
+				</div>
+				<div class="dnnFormItem">
 					<dnn:Label id="labelMessenger" runat="server" ControlName="textMessenger" Suffix=":" />
 					<asp:TextBox id="textMessenger" runat="server" MaxLength="250" />
 				</div>

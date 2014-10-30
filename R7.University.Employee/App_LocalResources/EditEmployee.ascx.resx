@@ -96,6 +96,12 @@
 	<data name="labelWebSite.Help">
 		<value>Enter personal website address</value>
 	</data>
+    <data name="labelWebSiteLabel.Text">
+        <value>Website Label</value>
+    </data>
+    <data name="labelWebSiteLabel.Help">
+        <value>Optional label for personal website. If not specified, website URL will be used instead.</value>
+    </data>
 	<data name="labelMessenger.Text">
 		<value>Instant messenger</value>
 	</data>

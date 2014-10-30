@@ -53,6 +53,8 @@ namespace R7.University
 
 		public string WebSite { get; set; }
 
+		public string WebSiteLabel { get; set; }
+
 		public string Messenger { get; set; }
 
 		public string AcademicDegree { get; set; }
@@ -121,6 +123,26 @@ namespace R7.University
 				// TODO: Add positions to the index
 
 				return text;
+			}
+		}
+
+		[IgnoreColumn]
+		public string FormatWebSiteLabel 
+		{
+			get
+			{
+				return (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
+					WebSite.Contains("://") ? WebSite.Remove (0, WebSite.IndexOf ("://") + 3) : WebSite;
+			}
+		}
+
+		[IgnoreColumn]
+		public string FormatWebSiteUrl
+		{
+			get
+			{
+				return WebSite.Contains ("://") ? WebSite.ToLowerInvariant () : 
+					"http://" + WebSite.ToLowerInvariant ();
 			}
 		}
 
