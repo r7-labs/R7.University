@@ -18,7 +18,7 @@
 		    <li><a href="#employeeAchievements">Achievements</a></li>
 		    <li><a href="#employeeAbout">About</a></li>
 		</ul>
-		<br /><br />
+		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
 		<div id="employeeCommon">
 			<fieldset>
 				<div class="dnnFormItem">
@@ -39,20 +39,18 @@
 				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelLastName" runat="server" ControlName="textLastName" Suffix=":" />
 					<asp:TextBox id="textLastName" runat="server" MaxLength="50" />
-					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLastName" 
+					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLastName" Display="Dynamic"
 						CssClass="dnnFormMessage dnnFormError" resourcekey="LastName.Required" />
 				</div>
 				<div class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelFirstName" runat="server" ControlName="textFirstName" Suffix=":" />
 					<asp:TextBox id="textFirstName" runat="server" MaxLength="50" />
-					<asp:RequiredFieldValidator runat="server" ControlToValidate="textFirstName" 
+					<asp:RequiredFieldValidator runat="server" ControlToValidate="textFirstName" Display="Dynamic"
 						CssClass="dnnFormMessage dnnFormError" resourcekey="FirstName.Required" />
 				</div>
-				<div class="dnnFormItem dnnFormRequired">
+				<div class="dnnFormItem">
 					<dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" Suffix=":" />
 					<asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
-					<asp:RequiredFieldValidator runat="server" ControlToValidate="textOtherName" 
-						CssClass="dnnFormMessage dnnFormError" resourcekey="OtherName.Required" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelAcademicDegree" runat="server" ControlName="textAcademicDegree" Suffix=":" />

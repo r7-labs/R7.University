@@ -42,9 +42,6 @@
 	<data name="labelOtherName.Help">
 		<value>Specify employee other name</value>
 	</data>
-	<data name="OtherName.Required">
-		<value>Other name is required</value>
-	</data>
 	<data name="labelAcademicDegree.Text">
 		<value>Academic degree</value>
 	</data>
