@@ -70,21 +70,11 @@
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
     <None Include="App_LocalResources\ViewLaunchpad.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\EditLaunchpad.ascx.resx" />
-    <None Include="App_LocalResources\EditLaunchpad.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SettingsLaunchpad.ascx.resx" />
     <None Include="App_LocalResources\SettingsLaunchpad.ascx.ru-RU.resx" />
     <None Include="doc\install.txt" />
     <None Include="App_LocalResources\EditPosition.ascx.resx" />
-    <None Include="App_LocalResources\Common.ti" />
     <None Include="App_LocalResources\SharedResources.resx" />
-    <None Include="App_LocalResources\__EditEmployee.ascx.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>__EditEmployee.ascx.resx</LastGenOutput>
-    </None>
-    <None Include="App_LocalResources\__EditEmployee.ascx.resx">
-      <DependentUpon>__EditEmployee.ascx.tt</DependentUpon>
-    </None>
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.resx" />
   </ItemGroup>
