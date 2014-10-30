@@ -1,89 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Build">
 	<Target Name="MakeInstallPackage" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<!-- Read package version from the manifest -->
-		<XmlRead Prefix="n" Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
-			 XPath="/dotnetnuke/packages/package[1]/@version" XmlFileName="$(PackageName).dnn">
+		<XmlRead Prefix="n" Namespace="http://schemas.microsoft.com/developer/msbuild/2003" XPath="/dotnetnuke/packages/package[1]/@version" XmlFileName="..\R7.University\R7.University.dnn">
 			<Output TaskParameter="Value" PropertyName="Version" />
 		</XmlRead>
+		<!-- Declare binaries -->
 		<ItemGroup>
-			<DefaultExclude Include="**\.git\**" />
-			<DefaultExclude Include="**\bin\**" />
-			<DefaultExclude Include="**\obj\**" />
-			<DefaultExclude Include="**\Release\**" />
-			<DefaultExclude Include="**\Debug\**" />
-			<DefaultExclude Include="**\Test\**" />
-			<DefaultExclude Include="**\TestResults\**" />
-			<DefaultExclude Include="**\doc\**" />
-			<DefaultExclude Include="**\www\**" />
-			<DefaultExclude Include="**\*.user" />
-			<DefaultExclude Include="**\*.suo" />
-			<DefaultExclude Include="**\*.zip" />
-			<DefaultExclude Include="**\*.txt" />
-			<DefaultExclude Include="**\*ReSharper.*\**" />
-		</ItemGroup>
-		<ItemGroup>
-			<InstallInclude Include="..\**\*.ascx" />
-			<InstallInclude Include="..\**\*.asmx" />
-			<InstallInclude Include="..\**\*.ashx" />
-			<InstallInclude Include="..\**\*.css" />
-			<InstallInclude Include="..\**\*.html" />
-			<InstallInclude Include="..\**\*.htm" />
-			<InstallInclude Include="..\**\*.resx" />
-			<InstallInclude Include="..\**\*.aspx" />
-			<InstallInclude Include="..\**\*.js" />
-			<InstallInclude Include="..\**\images\*.*" />
+			<InstallBinaryFiles Include="$(MSBuildDnnBinPath)\R7.University*.dll" />
 		</ItemGroup>
 		<!-- Declare manifest files -->
-		<CreateItem Include="$(PackageName).dnn;License.txt;ReleaseNotes.txt">
-			<Output TaskParameter="Include" ItemName="PackageManifestFiles" />
-		</CreateItem>
-		<!-- Declare  files -->
-		<CreateItem Include="**\*.sqldataprovider">
-			<Output TaskParameter="Include" ItemName="SqlDataProviderFiles" />
-		</CreateItem>
+		<ItemGroup>
+			<InstallManifestFiles Include="..\R7.University\*.dnn" />
+			<InstallManifestFiles Include="..\R7.University\License.txt" />
+			<InstallManifestFiles Include="..\R7.University\ReleaseNotes.txt" />
+		</ItemGroup>
+		<!-- Declare SqlDataProvider files -->
+		<ItemGroup>
+			<InstallSqlDataProviderFiles Include="..\R7.University\SqlDataProvider\*.sqldataprovider" />
+		</ItemGroup>
+		<!-- Declare resource files -->
+		<ItemGroup>
+			<InstallResourceFiles Include="..\**\*.ascx" />
+			<InstallResourceFiles Include="..\**\*.aspx" />
+			<InstallResourceFiles Include="..\**\*.asmx" />
+			<InstallResourceFiles Include="..\**\*.ashx" />
+			<InstallResourceFiles Include="..\**\*.resx" />
+			<InstallResourceFiles Include="..\**\*.css" />
+			<InstallResourceFiles Include="..\**\*.html" />
+			<InstallResourceFiles Include="..\**\*.htm" />
+			<InstallResourceFiles Include="..\**\*.xml" />
+			<InstallResourceFiles Include="..\**\*.xsl" />
+			<InstallResourceFiles Include="..\**\*.xslt" />
+			<InstallResourceFiles Include="..\**\*.resx" />
+			<InstallResourceFiles Include="..\**\*.js" />
+			<InstallResourceFiles Include="..\**\*.jpg" />
+			<InstallResourceFiles Include="..\**\*.png" />
+			<InstallResourceFiles Include="..\**\*.gif" />
+		</ItemGroup>
+		<!-- Declare excluded files -->
+		<ItemGroup>
+			<InstallExcludeFiles Include="..\Packages\**" />
+			<InstallExcludeFiles Include="..\**\bin\**" />
+			<InstallExcludeFiles Include="..\**\obj\**" />
+			<InstallExcludeFiles Include="..\**\.git\**" />
+			<InstallExcludeFiles Include="..\**\.svn\**" />
+			<InstallExcludeFiles Include="..\**\_ReSharper*\**" />
+		</ItemGroup>
+		<!-- Apply excluded files filters -->
+		<ItemGroup>
+			<InstallResourceFilteredFiles Include="@(InstallResourceFiles)" Exclude="@(InstallExcludeFiles)" />
+		</ItemGroup>
 		<!-- Copy binaries -->
-		<Copy SourceFiles="$(MSBuildDnnBinPath)\$(PackageName).dll"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\bin" />
-		<Copy SourceFiles="$(MSBuildDnnBinPath)\$(PackageName).Employee.dll"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\bin" />
-		<Copy SourceFiles="$(MSBuildDnnBinPath)\$(PackageName).Division.dll"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\bin" />
-		<Copy SourceFiles="$(MSBuildDnnBinPath)\$(PackageName).Launchpad.dll"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\bin" />
-		<Copy SourceFiles="$(MSBuildDnnBinPath)\$(PackageName).EmployeeList.dll"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\bin" />
-		<!-- Copy manifest and SqlDataProvider files -->
-		<Copy SourceFiles="@(SqlDataProviderFiles)"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\%(RecursiveDir)" />
-		<Copy SourceFiles="@(PackageManifestFiles)" DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package" />
-		<!-- Create the Resources.zip file -->
-		<Copy SourceFiles="@(InstallInclude)"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Resources\%(RecursiveDir)" />
-		<!-- Declare resources folder -->
-		<CreateItem Include="$(MSBuildProjectDirectory)\tmp_Resources\**\*.*">
-			<Output TaskParameter="Include" ItemName="ResourcesContent" />
-		</CreateItem>
+		<Copy SourceFiles="@(InstallBinaryFiles)" DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\bin" />
+		<!-- Copy manifest files -->
+		<Copy SourceFiles="@(InstallManifestFiles)" DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package" />
+		<!-- Copy SqlDataProvider files -->
+		<Copy SourceFiles="@(InstallSqlDataProviderFiles)" DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package\SqlDataProvider" />
+		<!-- Copy filtered Resource files to tmp_Resources dir -->
+		<Copy SourceFiles="@(InstallResourceFilteredFiles)" DestinationFolder="$(MSBuildProjectDirectory)\tmp_Resources\%(RecursiveDir)" />
+		<!-- Declare files to zip -->
+		<ItemGroup>
+			<InstallResourceZipFiles Include="$(MSBuildProjectDirectory)\tmp_Resources\**\*.*" />
+		</ItemGroup>
 		<!-- Create Resources.zip -->
-		<Zip Files="@(ResourcesContent)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp_Resources"
-			 ZipFileName="Resources.$(PackageExtension)" />
-		<!--- Copy Resources.zip to tmp_Package folder -->
-		<Copy SourceFiles="$(MSBuildProjectDirectory)\Resources.$(PackageExtension)"
-			 DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package/" />
-		<!-- Declare tmp package folder -->
-		<CreateItem Include="$(MSBuildProjectDirectory)\tmp_Package\**\*.*">
-			<Output TaskParameter="Include" ItemName="OutputContent" />
-		</CreateItem>
+		<Zip Files="@(InstallResourceZipFiles)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp_Resources" ZipFileName="Resources.$(PackageExtension)" />
+		<!-- Move Resources.zip to tmp_Package dir -->
+		<Move SourceFiles="$(MSBuildProjectDirectory)\Resources.$(PackageExtension)" DestinationFolder="$(MSBuildProjectDirectory)\tmp_Package/" />
+		<!-- Declare install package files -->
+		<ItemGroup>
+			<InstallPackageFiles Include="$(MSBuildProjectDirectory)\tmp_Package\**\*.*" />
+		</ItemGroup>
 		<!-- Create the install package -->
-		<Zip Files="@(OutputContent)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp_Package"
-			 ZipFileName="$(PackageName)-$(Version)-Install.$(PackageExtension)" />
+		<Zip Files="@(InstallPackageFiles)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp_Package" ZipFileName="$(PackageName)-$(Version)-Install.$(PackageExtension)" />
 		<!-- Copy the install package to the output directory -->
-		<Copy SourceFiles="$(MSBuildProjectDirectory)\$(PackageName)-$(Version)-Install.$(PackageExtension)"
-			 DestinationFolder="$(PackageOutputPath)/" />
+		<Move SourceFiles="$(MSBuildProjectDirectory)\$(PackageName)-$(Version)-Install.$(PackageExtension)" DestinationFolder="$(PackageOutputPath)/" />
 		<!-- Cleanup -->
-		<RemoveDir Directories="$(MSBuildProjectDirectory)\tmp_Package" />
 		<RemoveDir Directories="$(MSBuildProjectDirectory)\tmp_Resources" />
-		<Delete Files="$(MSBuildProjectDirectory)\Resources.$(PackageExtension)" />
-		<Delete Files="$(MSBuildProjectDirectory)\$(PackageName)-$(Version)-Install.$(PackageExtension)" />
+		<RemoveDir Directories="$(MSBuildProjectDirectory)\tmp_Package" />
 	</Target>
 </Project>

@@ -41,23 +41,8 @@
   <Import Project="SourcePackage.targets" />
   <Target Name="AfterBuild" DependsOnTargets="MakeInstallPackage;MakeSourcePackage" />
   <ItemGroup>
-    <None Include="R7.University.dnn" />
-    <None Include="License.txt" />
-    <None Include="ReleaseNotes.txt" />
-    <None Include="SqlDataProvider\01.00.00.SqlDataProvider" />
-    <None Include="SqlDataProvider\01.00.02.SqlDataProvider" />
-    <None Include="SqlDataProvider\01.00.04.SqlDataProvider" />
-    <None Include="SqlDataProvider\01.00.05.SqlDataProvider" />
-    <None Include="SqlDataProvider\01.00.07.SqlDataProvider" />
-    <None Include="SqlDataProvider\Tweaks.SqlDataProvider" />
-    <None Include="SqlDataProvider\Uninstall.SqlDataProvider" />
     <None Include="Packages.csproj" />
     <None Include="InstallPackage.targets" />
     <None Include="SourcePackage.targets" />
-    <None Include="SqlDataProvider\01.01.00.SqlDataProvider" />
-    <None Include="SqlDataProvider\01.01.01.SqlDataProvider" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SqlDataProvider\" />
   </ItemGroup>
 </Project>
