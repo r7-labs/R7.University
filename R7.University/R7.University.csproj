@@ -76,4 +76,18 @@
     <Folder Include="entities\" />
     <Folder Include="components\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="R7.University.dnn" />
+    <None Include="SqlDataProvider\01.00.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.00.02.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.00.04.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.00.05.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.00.07.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.01.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.01.01.SqlDataProvider" />
+    <None Include="SqlDataProvider\Tweaks.SqlDataProvider" />
+    <None Include="SqlDataProvider\Uninstall.SqlDataProvider" />
+    <None Include="ReleaseNotes.txt" />
+    <None Include="License.txt" />
+  </ItemGroup>
 </Project>
