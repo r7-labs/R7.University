@@ -785,8 +785,12 @@ namespace R7.University.Employee
 						textYearBegin.Text = achievement.YearBegin.ToString ();
 						textYearEnd.Text = achievement.YearEnd.ToString ();
 						checkIsTitle.Checked = achievement.IsTitle;
-						urlDocumentURL.Url = achievement.DocumentURL;
-					
+
+						if (!string.IsNullOrWhiteSpace (achievement.DocumentURL))
+							urlDocumentURL.Url = achievement.DocumentURL;
+						else
+							urlDocumentURL.UrlType = "N";
+
 						// show update and cancel buttons (enter edit mode)
 						buttonAddAchievement.Visible = false;
 						buttonUpdateAchievement.Visible = true;
