@@ -115,6 +115,7 @@ namespace R7.University.Division
 							txtTitle.Text = item.Title;
 							txtShortTitle.Text = item.ShortTitle;
 							txtWebSite.Text = item.WebSite;
+							textWebSiteLabel.Text = item.WebSiteLabel;
 							txtEmail.Text = item.Email;
 							txtSecondaryEmail.Text = item.SecondaryEmail;
 							txtLocation.Text = item.Location;
@@ -218,6 +219,7 @@ namespace R7.University.Division
 				item.Fax = txtFax.Text.Trim ();
 				item.Location = txtLocation.Text.Trim ();
 				item.WebSite = txtWebSite.Text.Trim ();
+				item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
 				item.ParentDivisionID = Utils.ParseToNullableInt (comboParentDivisions.SelectedValue);
 				item.DivisionTermID = Utils.ParseToNullableInt (treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;

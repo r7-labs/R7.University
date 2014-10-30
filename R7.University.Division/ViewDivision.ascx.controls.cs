@@ -17,6 +17,7 @@ namespace R7.University.Division
 		protected HyperLink linkSearchByTerm;
 		protected HyperLink linkHomePage;
 		protected HyperLink linkEmail;
+		protected HyperLink linkWebSite;
 		protected HyperLink linkSecondaryEmail;
 		protected HyperLink linkDocumentUrl;
 		protected Label labelPhone;

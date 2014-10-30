@@ -16,6 +16,7 @@
 	<div class="_section">
 		<asp:HyperLink id="linkEmail" runat="server" CssClass="_label email" />
 		<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="_label email" />
+		<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_label email" />
 	</div>
 
 	<div class="_section">

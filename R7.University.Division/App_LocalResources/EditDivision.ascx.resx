@@ -42,6 +42,12 @@
 	<data name="lblWebSite.Help" xml:space="preserve">
     <value>A separate website for this division, if available</value>
   </data>
+    <data name="labelWebSiteLabel.Text" xml:space="preserve">
+    <value>Website Label</value>
+  </data>
+    <data name="labelWebSiteLabel.Help" xml:space="preserve">
+    <value>Optional label for division website. If not specified, website URL will be used instead.</value>
+  </data>
 	<data name="lblPhone.Text" xml:space="preserve">
     <value>Phone</value>
   </data>

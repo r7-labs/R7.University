@@ -148,6 +148,15 @@ namespace R7.University.Division
 			if (!displaySearchByTerm)
 				linkSearchByTerm.Visible = false;
 
+			// WebSite
+			if (!string.IsNullOrWhiteSpace (division.WebSite))
+			{
+				linkWebSite.NavigateUrl = division.FormatWebSiteUrl;
+				linkWebSite.Text = division.FormatWebSiteLabel;
+			}
+			else
+				linkWebSite.Visible = false;
+				
 			// email
 			if (!string.IsNullOrWhiteSpace (division.Email))
 			{

@@ -9,6 +9,11 @@ IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{database
 		ADD [DocumentUrl] [nvarchar](250) NULL
 GO
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'WebSiteLabel')
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions]
+		ADD [WebSiteLabel] [nvarchar](64) NULL
+GO
+
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'WebSiteLabel')
 	ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
 		ADD [WebSiteLabel] [nvarchar](64) NULL

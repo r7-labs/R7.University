@@ -49,6 +49,8 @@ namespace R7.University
 
 		public string WebSite { get; set; }
 
+		public string WebSiteLabel { get; set; }
+
 		public string Phone { get; set; }
 
 		public string Fax { get; set; }
@@ -71,6 +73,26 @@ namespace R7.University
 			// replace all non-word character with spaces, 
 			// trim resulting string and then replace all spaces with single underscore
 			get { return Regex.Replace (Regex.Replace (ShortTitle, @"\W", " ").Trim (), @"\s+", "_"); } 
+		}
+
+		[IgnoreColumn]
+		public string FormatWebSiteLabel 
+		{
+			get
+			{
+				return (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
+					WebSite.Contains("://") ? WebSite.Remove (0, WebSite.IndexOf ("://") + 3) : WebSite;
+			}
+		}
+
+		[IgnoreColumn]
+		public string FormatWebSiteUrl
+		{
+			get
+			{
+				return WebSite.Contains ("://") ? WebSite.ToLowerInvariant () : 
+					"http://" + WebSite.ToLowerInvariant ();
+			}
 		}
 
 		[IgnoreColumn]

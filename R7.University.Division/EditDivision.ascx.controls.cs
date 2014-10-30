@@ -30,6 +30,8 @@ namespace R7.University.Division
 		protected UrlControl urlHomePage;
 		protected LabelControl lblWebSite;
 		protected TextBox txtWebSite;
+		protected LabelControl labelWebSiteLabel;
+		protected TextBox textWebSiteLabel;
 		protected LabelControl labelDocumentUrl;
 		protected UrlControl urlDocumentUrl;
 		protected LabelControl lblPhone;
