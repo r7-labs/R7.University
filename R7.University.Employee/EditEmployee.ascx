@@ -7,7 +7,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 
 <script type="text/javascript">
-	$(function() { $( "#employeeTabs" ).dnnTabs( <%= (!IsPostBack)? "{selected: 0}" : "" %>  ); });
+	$(function() { $("#employeeTabs").dnnTabs({selected: <%= (int)SelectedTab %>}); });
 </script>
 
 <div class="dnnForm dnnClear">

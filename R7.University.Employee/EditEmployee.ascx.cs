@@ -22,10 +22,26 @@ namespace R7.University.Employee
 {
 	public partial class EditEmployee : EmployeePortalModuleBase
 	{
+		#region Types
+
+		public enum EditEmployeeTab { Common, Positions, Achievements, About };
+
+		#endregion
+
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
 
 		#region Properties
+
+		public EditEmployeeTab SelectedTab
+		{
+			get 
+			{
+				var obj = ViewState ["SelectedTab"];
+				return (obj != null) ? (EditEmployeeTab)obj : EditEmployeeTab.Common;
+			}
+			set { ViewState ["SelectedTab"] = value; }
+		}
 
 		private List<AchievementInfo> CommonAchievements
 		{
@@ -420,6 +436,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Common;
+
 				var term = textUserLookup.Text.Trim ();
 				var includeDeleted = checkIncludeDeletedUsers.Checked;
 
@@ -473,6 +491,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Positions;
+
 				// restore default buttons visibility (quit edit mode)
 				buttonAddPosition.Visible = true;
 				buttonUpdatePosition.Visible = false;
@@ -488,6 +508,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Positions;
+
 				var positionID = int.Parse (comboPositions.SelectedValue);
 				var divisionID = int.Parse (treeDivisions.SelectedValue);
 
@@ -586,6 +608,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Positions;
+
 				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
 				if (occupiedPositions != null)
 				{
@@ -623,6 +647,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Positions;
+
 				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
 				if (occupiedPositions != null)
 				{
@@ -710,6 +736,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Achievements;
+
 				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
 				if (achievements != null)
 				{
@@ -747,6 +775,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Achievements;
+
 				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
 				if (achievements != null)
 				{
@@ -811,6 +841,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Achievements;
+
 				// restore default buttons visibility (quit edit mode)
 				buttonAddAchievement.Visible = true;
 				buttonUpdateAchievement.Visible = false;
@@ -826,6 +858,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Achievements;
+
 				EmployeeAchievementView achievement;
 
 				// get achievements list from viewstate
@@ -902,6 +936,8 @@ namespace R7.University.Employee
 		{
 			try
 			{
+				SelectedTab = EditEmployeeTab.Achievements;
+
 				if (e.Value == "-1")
 				{
 					panelAchievementTitle.Visible = true;
