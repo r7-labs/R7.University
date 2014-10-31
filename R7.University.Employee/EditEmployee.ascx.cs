@@ -28,9 +28,8 @@ namespace R7.University.Employee
 
 		#endregion
 
-		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
-
+	
 		#region Properties
 
 		public EditEmployeeTab SelectedTab
@@ -495,15 +494,30 @@ namespace R7.University.Employee
 			{
 				SelectedTab = EditEmployeeTab.Positions;
 
-				// restore default buttons visibility (quit edit mode)
-				buttonAddPosition.Visible = true;
-				buttonUpdatePosition.Visible = false;
-				buttonCancelUpdatePosition.Visible = false;
+				ResetEditPositionForm ();
 			}
 			catch (Exception ex)
 			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
+		}
+
+		private void ResetEditPositionForm ()
+		{
+			// restore default buttons visibility
+			buttonAddPosition.Visible = true;
+			buttonUpdatePosition.Visible = false;
+			buttonCancelUpdatePosition.Visible = false;
+
+			// reset divisions treeview
+			var divisionId = Request.QueryString ["division_id"];
+			Utils.SelectAndExpandByValue (treeDivisions, 
+				!string.IsNullOrWhiteSpace (divisionId)? divisionId : Null.NullInteger.ToString ());
+		
+			// reset other controls
+			comboPositions.SelectedIndex = 0;
+			textPositionTitleSuffix.Text = "";
+			checkIsPrime.Checked = false;
 		}
 
 		protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
@@ -549,14 +563,9 @@ namespace R7.University.Employee
 					{
 						occupiedPositions.Add (occupiedPosition);
 					}
-					else // update
-					{
-						// restore default buttons visibility (quit edit mode)
-						buttonAddPosition.Visible = true;
-						buttonUpdatePosition.Visible = false;
-						buttonCancelUpdatePosition.Visible = false;
-					}
-			
+
+					ResetEditPositionForm ();
+
 					ViewState ["occupiedPositions"] = occupiedPositions;
 					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
 					gridOccupiedPositions.DataBind ();
@@ -845,15 +854,37 @@ namespace R7.University.Employee
 			{
 				SelectedTab = EditEmployeeTab.Achievements;
 
-				// restore default buttons visibility (quit edit mode)
-				buttonAddAchievement.Visible = true;
-				buttonUpdateAchievement.Visible = false;
-				buttonCancelUpdateAchievement.Visible = false;
+				ResetEditAchivementForm ();
 			}
 			catch (Exception ex)
 			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
+		}
+
+		private void ResetEditAchivementForm ()
+		{
+			// restore default buttons visibility
+			buttonAddAchievement.Visible = true;
+			buttonUpdateAchievement.Visible = false;
+			buttonCancelUpdateAchievement.Visible = false;
+
+			// restore default panels visibility
+			panelAchievementTitle.Visible = true;
+			panelAchievementShortTitle.Visible = true;
+			panelAchievementTypes.Visible = true;
+
+			// reset controls
+			comboAchievements.SelectedIndex = 0;
+			comboAchievementTypes.SelectedIndex = 0;
+			textAchievementTitle.Text = "";
+			textAchievementShortTitle.Text = "";
+			textAchievementTitleSuffix.Text = "";
+			textAchievementDescription.Text = "";
+			textYearBegin.Text = "";
+			textYearEnd.Text = "";
+			checkIsTitle.Checked = false;
+			urlDocumentURL.UrlType = "N";
 		}
 
 		protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
@@ -911,15 +942,8 @@ namespace R7.University.Employee
 				{
 					achievements.Add (achievement);
 				}
-				else
-				{
-					// update: already done
-					
-					// restore default buttons visibility (quit edit mode)
-					buttonAddAchievement.Visible = true;
-					buttonUpdateAchievement.Visible = false;
-					buttonCancelUpdateAchievement.Visible = false;
-				}
+
+				ResetEditAchivementForm ();
 
 				// refresh viewstate
 				ViewState ["achievements"] = achievements;
@@ -940,7 +964,7 @@ namespace R7.University.Employee
 			{
 				SelectedTab = EditEmployeeTab.Achievements;
 
-				if (e.Value == "-1")
+				if (e.Value == Null.NullInteger.ToString())
 				{
 					panelAchievementTitle.Visible = true;
 					panelAchievementShortTitle.Visible = true;
