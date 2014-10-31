@@ -32,7 +32,7 @@ namespace R7.University.Employee
 	
 		#region Properties
 
-		public EditEmployeeTab SelectedTab
+		protected EditEmployeeTab SelectedTab
 		{
 			get 
 			{
