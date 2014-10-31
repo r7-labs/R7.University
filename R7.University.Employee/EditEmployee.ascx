@@ -185,8 +185,8 @@
 						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command"  CommandArgument="Add" />
 					<asp:LinkButton id="buttonUpdatePosition" runat="server" resourcekey="buttonUpdatePosition" 
 						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command" Visible="false" CommandArgument="Update" />
-					<asp:LinkButton id="buttonCancelUpdatePosition" runat="server" resourcekey="buttonCancelUpdatePosition" 
-						CssClass="dnnSecondaryAction" OnClick="buttonCancelUpdatePosition_Click" Visible="false" />
+					<asp:LinkButton id="buttonCancelEditPosition" runat="server" resourcekey="buttonCancelEditPosition" 
+								CssClass="dnnSecondaryAction" OnClick="buttonCancelEditPosition_Click" />
 				</div>
 				<asp:HiddenField id="hiddenOccupiedPositionItemID" runat="server" />
 			</fieldset>
@@ -278,8 +278,8 @@
 						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" CommandArgument="Add" />
 					<asp:LinkButton id="buttonUpdateAchievement" runat="server" resourcekey="buttonUpdateAchievement" 
 						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" Visible="false" CommandArgument="Update" />
-					<asp:LinkButton id="buttonCancelUpdateAchievement" runat="server" resourcekey="buttonCancelUpdateAchievement" 
-						CssClass="dnnSecondaryAction" OnClick="buttonCancelUpdateAchievement_Click" Visible="false" />
+					<asp:LinkButton id="buttonCancelEditAchievement" runat="server" resourcekey="buttonCancelEditAchievement" 
+						CssClass="dnnSecondaryAction" OnClick="buttonCancelEditAchievement_Click" />
 				</div>
 				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>

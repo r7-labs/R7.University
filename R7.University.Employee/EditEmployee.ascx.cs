@@ -488,7 +488,7 @@ namespace R7.University.Employee
 			}
 		}
 
-		protected void buttonCancelUpdatePosition_Click (object sender, EventArgs e)
+		protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
 		{
 			try
 			{
@@ -507,7 +507,6 @@ namespace R7.University.Employee
 			// restore default buttons visibility
 			buttonAddPosition.Visible = true;
 			buttonUpdatePosition.Visible = false;
-			buttonCancelUpdatePosition.Visible = false;
 
 			// reset divisions treeview
 			var divisionId = Request.QueryString ["division_id"];
@@ -518,6 +517,7 @@ namespace R7.University.Employee
 			comboPositions.SelectedIndex = 0;
 			textPositionTitleSuffix.Text = "";
 			checkIsPrime.Checked = false;
+			hiddenOccupiedPositionItemID.Value = "";
 		}
 
 		protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
@@ -644,7 +644,6 @@ namespace R7.University.Employee
 						// show / hide buttonss
 						buttonAddPosition.Visible = false;
 						buttonUpdatePosition.Visible = true;
-						buttonCancelUpdatePosition.Visible = true;
 					}
 				}
 			}
@@ -679,6 +678,10 @@ namespace R7.University.Employee
 	
 						gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
 						gridOccupiedPositions.DataBind ();
+
+						// reset form if we deleting currently edited position
+						if (buttonUpdatePosition.Visible && hiddenOccupiedPositionItemID.Value == itemID)
+							ResetEditPositionForm ();
 					}
 				}
 			}
@@ -768,11 +771,10 @@ namespace R7.University.Employee
 						// bind achievements to the gridview
 						gridAchievements.DataSource = AchievementsDataTable (achievements);
 						gridAchievements.DataBind ();
-	
-						// restore default buttons visibility (quit edit mode)
-						buttonAddAchievement.Visible = true;
-						buttonUpdateAchievement.Visible = false;
-						buttonCancelUpdateAchievement.Visible = false;
+
+						// reset form if we deleting currently edited achievement
+						if (buttonUpdateAchievement.Visible && hiddenAchievementItemID.Value == itemID)
+							ResetEditAchievementForm ();
 					}
 				}
 			}
@@ -835,8 +837,7 @@ namespace R7.University.Employee
 						// show update and cancel buttons (enter edit mode)
 						buttonAddAchievement.Visible = false;
 						buttonUpdateAchievement.Visible = true;
-						buttonCancelUpdateAchievement.Visible = true;
-	
+
 						// store ItemID in the hidden field
 						hiddenAchievementItemID.Value = achievement.ItemID.ToString ();
 					}
@@ -848,13 +849,13 @@ namespace R7.University.Employee
 			}
 		}
 
-		protected void buttonCancelUpdateAchievement_Click (object sender, EventArgs e)
+		protected void buttonCancelEditAchievement_Click (object sender, EventArgs e)
 		{
 			try
 			{
 				SelectedTab = EditEmployeeTab.Achievements;
 
-				ResetEditAchivementForm ();
+				ResetEditAchievementForm ();
 			}
 			catch (Exception ex)
 			{
@@ -862,12 +863,11 @@ namespace R7.University.Employee
 			}
 		}
 
-		private void ResetEditAchivementForm ()
+		private void ResetEditAchievementForm ()
 		{
 			// restore default buttons visibility
 			buttonAddAchievement.Visible = true;
 			buttonUpdateAchievement.Visible = false;
-			buttonCancelUpdateAchievement.Visible = false;
 
 			// restore default panels visibility
 			panelAchievementTitle.Visible = true;
@@ -885,6 +885,7 @@ namespace R7.University.Employee
 			textYearEnd.Text = "";
 			checkIsTitle.Checked = false;
 			urlDocumentURL.UrlType = "N";
+			hiddenAchievementItemID.Value = "";
 		}
 
 		protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
@@ -943,7 +944,7 @@ namespace R7.University.Employee
 					achievements.Add (achievement);
 				}
 
-				ResetEditAchivementForm ();
+				ResetEditAchievementForm ();
 
 				// refresh viewstate
 				ViewState ["achievements"] = achievements;

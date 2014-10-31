@@ -86,7 +86,7 @@ namespace R7.University.Employee
 		protected CheckBox checkIsPrime;
 		protected LinkButton buttonAddPosition;
 		protected LinkButton buttonUpdatePosition;
-		protected LinkButton buttonCancelUpdatePosition;
+		protected LinkButton buttonCancelEditPosition;
 		protected HiddenField hiddenOccupiedPositionItemID;
 
 		protected GridView gridAchievements;
@@ -97,7 +97,7 @@ namespace R7.University.Employee
 		protected TextBox textYearEnd;
 		protected LinkButton buttonAddAchievement;
 		protected LinkButton buttonUpdateAchievement;
-		protected LinkButton buttonCancelUpdateAchievement;
+		protected LinkButton buttonCancelEditAchievement;
 
 		protected LabelControl labelAchievementTitle;
 		protected TextBox textAchievementTitle;
