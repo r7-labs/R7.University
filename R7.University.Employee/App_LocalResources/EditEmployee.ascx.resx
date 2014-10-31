@@ -186,7 +186,7 @@
     <data name="buttonUpdatePosition.Text">
         <value>Update position</value>
     </data>
-    <data name="buttonCancelUpdatePosition.Text">
+    <data name="buttonCancelEditPosition.Text">
         <value>Cancel</value>
     </data>
 	<data name="labelIsPrime.Text">
@@ -213,7 +213,7 @@
 	<data name="buttonUpdateAchievement.Text">
 		<value>Update achivement</value>
 	</data>
-	<data name="buttonCancelUpdateAchievement.Text">
+	<data name="buttonCancelEditAchievement.Text">
 		<value>Cancel</value>
 	</data>
 	<data name="labelYearBegin.Text">
