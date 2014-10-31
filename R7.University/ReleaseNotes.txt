@@ -1,9 +1,27 @@
-﻿<h3>Version 01.01.00</h3>
+﻿<h3>Version 1.1.1</h3>
+<p>This release brings some feature changes and stabilization fixes for 1.1.0.</p>
+<ul>
+	<li>EmployeeList module: Better employee sorting by adding some weight to the prime positions in the current division (applies to sorting by max. weight only).</li>
+	<li>Employee module: Shows edit / details actions only when employee exists, not just defined in module settings.</li>
+	<li>Employee entity: OtherName now optional.</li>
+	<li>EditEmployee control: Employee name fields now properly validated.</li>
+	<li>EditEmployee control: Cancel buttons in position and achievement edit forms always visible now.</li>
+	<li>Implemented #10: Employee, Division entities: Added WebSiteLabel field to make website links more readable.</li>
+	<li>Implemented #36: Employee module: Ability to display employee info of the currently logged in user.</li>
+	<li>Implemented #38: Division entity: Added DocumentURL field for the division's main (regulations) document.</li>
+	<li>Implemented #44: EditEmployee control: Clear achievement form when editing is done.</li>
+	<li>Fixed #42: EditEmployee control: Document URL doesn't always set properly when editing employee achievements.</li>
+	<li>Fixed #43: EditEmployee control: Missing currently selected tab on postback.</li>
+	<li>Other small improvements and fixes.</li>
+</ul>
+
+<h3>Version 1.1.0</h3>
 <p>This is the minor release that dedicated mostly to implementing employee achievements / experience features.</p>
 <ul>
 	<li>Added DB shema, edit and view UI for employee achievements, including common achievement types.</li>
 	<li>As a result, AcademicTitle and AcademicDegree fields marked as obsolete, but still can be used.</li>
 	<li>Fix for issue #23: View controls was empty on repeating postbacks.</li>
+	<li>Fix for issue #35: ViewEmployeeDetails crashes with "Value cannot be undefined" for format argument in the string.Format() method.</li>
 	<li>Allow select division schedule from the list (like an employee shedule).</li>
 	<li>Division module now searchable (preview, not all data exposed).</li>	
 	<li>MSBuild is used to create install and source packages instead of Package.cmd.</li>
@@ -16,8 +34,8 @@
 	<li>Other small optimizations, improvements and fixes.</li>
 </ul>
 
-<h3>Version 01.00.07</h3>
-<p>This release brings some new features and more stabilization fixes for 01.00.00.</p>
+<h3>Version 1.0.7</h3>
+<p>This release brings some new features and more stabilization fixes for 1.0.0.</p>
 <ul>
 	<li>Solution for global issue #17: Employee and EmployeeList modules now use custom data cache.</li>
 	<li>Added popup with details about employee to the Employee and EmployeeList modules.</li>
@@ -32,8 +50,8 @@
 	<li>Other small fixes and improvements.</li>
 </ul>
 
-<h3>Version 01.00.06</h3>
-<p>This release brings some new features and more stabilization fixes for 01.00.00.</p>
+<h3>Version 1.0.6</h3>
+<p>This release brings some new features and more stabilization fixes for 1.0.0.</p>
 <ul>
 	<li>Added Division module to display information about specified division.</li>
 	<li>EditDivision control moved to Division module from Launchpad.</li>
@@ -48,8 +66,8 @@
 	<li>Other small fixed and improvements.</li>
 </ul>
 
-<h3>Version 01.00.05</h3>
-<p>This is stabilization release for 01.00.00.</p>
+<h3>Version 1.0.5</h3>
+<p>This is stabilization release for 1.0.0.</p>
 <ul>
 	<li>Added basic search by employee data in Employee and EmployeeList modules.</li>
 	<li>Possible fix for issue #5: EditEmployee crashes if photo file was deleted.</li>
@@ -68,8 +86,8 @@
 	<li>Other small fixed and improvements.</li>
 </ul>
 
-<h3>Version 01.00.04</h3>
-<p>This is stabilization release for 01.00.00.</p>
+<h3>Version 1.0.4</h3>
+<p>This is stabilization release for 1.0.0.</p>
 <ul>
 	<li>Photo thumbnails now generated with R7.ImageHandler.</li>
 	<li>Added settings to photo thumbnail width to Employee and EmployeeList modules.</li>
@@ -77,8 +95,8 @@
 </ul>
 <p><strong>Note:</strong> R7.ImageHandler is not required if photo width settings in Employee and EmployeeList modules is not set - original photos are used instead.</p>
 
-<h3>Version 01.00.03</h3>
-<p>This is stabilization release for 01.00.00.</p>
+<h3>Version 1.0.3</h3>
+<p>This is stabilization release for 1.0.0.</p>
 <ul>
 	<li>Make setting and realize ability to select tables to display in Launchpad module.</li>
 	<li>Added page size option for Launchpad module.</li>
@@ -89,8 +107,8 @@
 	<li>Added package script.</li>
 </ul>
 
-<h3>Version 01.00.02</h3>
-<p>This is stabilization release for 01.00.00.</p>
+<h3>Version 1.0.2</h3>
+<p>This is stabilization release for 1.0.0.</p>
 <ul>
 	<li>Fix for issue #1 - DnnFilePickerUploader misses it's state between postbacks.</li>
 	<li>Fix for issue #2 - DivisionsHierarchy table function returns wrong results.</li>
@@ -98,8 +116,8 @@
 	<li>Cut biography string to 16 chars max.</li>
 </ul>
 
-<h3>Version 01.00.01</h3>
-<p>This is stabilization release for 01.00.00.</p>
+<h3>Version 1.0.1</h3>
+<p>This is stabilization release for 1.0.0.</p>
 <ul>
 	<li>Then edit employee positions, select division from a tree instead of combobox.</li>
 	<li>Employee about / biography moved to a separate tab.</li>
@@ -108,5 +126,5 @@
 	<li>Allow update employee if no occupied positions defined.</li>
 </ul>
 
-<h3>Version 01.00.00</h3>
+<h3>Version 1.0.0</h3>
 <p>This is the initial release.</p>
