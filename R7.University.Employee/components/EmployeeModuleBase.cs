@@ -52,8 +52,12 @@ namespace R7.University.Employee
 
 		protected EmployeeInfo GetEmployee ()
 		{
-			if (UserInfo != null && EmployeeSettings.ShowCurrentUser)
-				return EmployeeController.GetEmployeeByUserId (UserInfo.UserID);
+			if (EmployeeSettings.ShowCurrentUser)
+			{
+				var userId = Utils.ParseToNullableInt (Request.QueryString ["userid"]);
+				if (userId != null)
+					return EmployeeController.GetEmployeeByUserId (userId.Value);
+			}
 
 			return EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
 		}
