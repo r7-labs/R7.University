@@ -24,5 +24,8 @@ namespace R7.University.Launchpad
 		protected GridView gridAchievements;
 		protected HyperLink buttonAddAchievement;
 		protected Repeater repeatTabs;
+        protected TextBox textEmployeeSearch;
+        protected Button buttonEmployeeSearch;
+        protected Button buttonEmployeeResetSearch;
 	}
 }

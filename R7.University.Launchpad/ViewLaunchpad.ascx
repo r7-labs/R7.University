@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.ViewLaunchpad" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ViewLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.ViewLaunchpad" %>
 
 <div class="dnnForm">
 	<asp:Repeater id="repeatTabs" runat="server" OnItemDataBound="repeatTabs_ItemDataBound">
@@ -73,8 +73,11 @@
 		</asp:View>
 		<asp:View id="viewEmployees" runat="server">
 			<div id="employees" style="overflow:auto">
-				<asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink><br />
-				<asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" 
+                <asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink>
+				<asp:TextBox id="textEmployeeSearch" runat="server" Style="margin-left:1em" />
+                <asp:Button id="buttonEmployeeSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="Search.Text" OnClick="buttonEmployeeSearch_Click" />
+                <asp:Button id="buttonEmployeeResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonEmployeeSearch_Click" /><br />
+                <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" 
 				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"

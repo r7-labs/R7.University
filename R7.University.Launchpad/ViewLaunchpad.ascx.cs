@@ -50,7 +50,7 @@ namespace R7.University.Launchpad
 						session = DivisionsDataSource ();
 						break;
 					case "gridEmployees": 
-						session = EmployeesDataSource ();
+                        session = EmployeesDataSource ((string) Session ["EmployeeSearch"]);
 						break;
 					case "gridAchievements": 
 						session = AchievementsDataSource ();
@@ -92,6 +92,9 @@ namespace R7.University.Launchpad
 			buttonAddEmployee.NavigateUrl = Utils.EditUrl (this, "EditEmployee");
 			buttonAddAchievement.NavigateUrl = Utils.EditUrl (this, "EditAchievement");
 
+            // bind employee search handlers
+            buttonEmployeeSearch.Click += buttonEmployeeSearch_Click;
+
 			// show first view if no session info available
 			if (Session ["Launchpad_ActiveView_" + TabModuleId] == null)
 			{
@@ -103,6 +106,10 @@ namespace R7.University.Launchpad
 				}
 			}
 
+            // restore employee search text from session
+            if (Session ["EmployeeSearch"] != null)
+                textEmployeeSearch.Text = (string) Session ["EmployeeSearch"];
+           
 			// apply page size setting to gridview's
 			var pageSize = LaunchpadSettings.PageSize;
 			gridPositions.PageSize = pageSize;
@@ -147,7 +154,7 @@ namespace R7.University.Launchpad
 						
 					if (LaunchpadSettings.Tables.Contains (LaunchpadTableInfo.TableEmployees))
 					{
-						gridEmployees.DataSource = EmployeesDataSource ();
+                        gridEmployees.DataSource = EmployeesDataSource ( (string) Session ["EmployeeSearch"]);
 						Session [gridEmployees.ID] = gridEmployees.DataSource;
 						gridEmployees.DataBind ();
 					}
@@ -401,7 +408,7 @@ namespace R7.University.Launchpad
 			return dt;
 		}
 
-		private DataTable EmployeesDataSource ()
+        private DataTable EmployeesDataSource (string filter = null)
 		{
 			var dt = new DataTable ();
 			DataRow dr;
@@ -438,7 +445,16 @@ namespace R7.University.Launchpad
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
 
-			foreach (var employee in LaunchpadController.GetObjects<EmployeeInfo>())
+            var employees = string.IsNullOrWhiteSpace (filter) ? 
+                LaunchpadController.GetObjects<EmployeeInfo> () :
+                LaunchpadController.GetObjects<EmployeeInfo> ( 
+                    string.Format (@"WHERE [LastName] + ' ' + 
+                                    [FirstName] + ' ' +
+                                    [Phone] + ' ' + 
+                                    [CellPhone] + ' ' +
+                                    [Email] LIKE N'%{0}%'", filter));
+
+            foreach (var employee in employees)
 			{
 				dr = dt.NewRow ();
 				var i = 0;
@@ -634,6 +650,28 @@ namespace R7.University.Launchpad
 			multiView.SetActiveView (FindView (tabName));
 			SelectTab (tabName);
 		}
+
+        protected void buttonEmployeeSearch_Click (object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender == buttonEmployeeResetSearch)
+                {
+                    textEmployeeSearch.Text = string.Empty;
+                    Session ["EmployeeSearch"] = null;
+                }
+                else
+                    Session ["EmployeeSearch"] = textEmployeeSearch.Text.Trim ();
+
+                gridEmployees.DataSource = EmployeesDataSource (textEmployeeSearch.Text.Trim ());
+                Session [gridEmployees.ID] = gridEmployees.DataSource;
+                gridEmployees.DataBind ();
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+        }
 	}
 	// class
 }

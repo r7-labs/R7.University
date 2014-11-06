@@ -18,4 +18,10 @@
 	<data name="AchievementTypeW.Text">
 		<value>Work</value>
 	</data>
+    <data name="Search.Text">
+        <value>Search</value>
+    </data>
+    <data name="ResetSearch.Text">
+        <value>Reset</value>
+    </data>
 </root>
