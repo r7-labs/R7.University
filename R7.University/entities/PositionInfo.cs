@@ -42,6 +42,8 @@ namespace R7.University
 
 		public int Weight { get; set; }
 
+		public bool IsTeacher { get; set; }
+
 		#endregion
 	}
 }

@@ -67,6 +67,7 @@ namespace R7.University.Launchpad
 							txtTitle.Text = item.Title;
 							txtShortTitle.Text = item.ShortTitle;
 							txtWeight.Text = item.Weight.ToString ();
+							checkIsTeacher.Checked = item.IsTeacher;
 														
 						}
 						else
@@ -115,7 +116,8 @@ namespace R7.University.Launchpad
 				// fill the object
 				item.Title = txtTitle.Text.Trim ();
 				item.ShortTitle = txtShortTitle.Text.Trim ();
-				item.Weight = int.Parse (txtWeight.Text);				
+				item.Weight = int.Parse (txtWeight.Text);		
+				item.IsTeacher = checkIsTeacher.Checked;
 
 				if (!itemId.HasValue)
 					LaunchpadController.Add<PositionInfo> (item);

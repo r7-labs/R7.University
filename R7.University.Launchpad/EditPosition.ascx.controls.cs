@@ -13,12 +13,13 @@ namespace R7.University.Launchpad
 		protected LinkButton buttonUpdate;
 		protected LinkButton buttonDelete;
 		protected HyperLink linkCancel;
-
 		protected LabelControl lblTitle;
 		protected TextBox txtTitle;
 		protected LabelControl lblShortTitle;
 		protected TextBox txtShortTitle;
 		protected LabelControl lblWeight;
 		protected TextBox txtWeight;
+		protected LabelControl labelIsTeacher;
+		protected CheckBox checkIsTeacher;
 	}
 }

@@ -18,6 +18,12 @@
 	<data name="lblWeight.Help" xml:space="preserve">
     <value>Enter position weight as integral value. The more weight value, the more important this position is.</value>
   </data>
+    <data name="labelIsTeacher.Text" xml:space="preserve">
+    <value>Is Teacher</value>
+  </data>
+    <data name="labelIsTeacher.Help" xml:space="preserve">
+    <value>Check if this position is a teacher position. This will be used to distinct teachers from other employees.</value>
+  </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;P&gt;A Edit position module&lt;/P&gt;</value>
   </data>

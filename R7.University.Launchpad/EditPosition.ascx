@@ -16,6 +16,10 @@
 			<dnn:Label ID="lblWeight" runat="server" ControlName="lblWeight" Suffix=":" />
 			<asp:TextBox ID="txtWeight" runat="server" />
 		</div>
+		<div class="dnnFormItem">
+			<dnn:Label id="labelIsTeacher" runat="server" ControlName="checkIsTeacher" Suffix="?" />
+			<asp:CheckBox id="checkIsTeacher" runat="server" />
+		</div>
 	</fieldset>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
