@@ -69,6 +69,8 @@ namespace R7.University
 
 		public string Biography { get; set; }
 
+		public string Disciplines { get; set; }
+
 		// NOTE: Employee stage may be not continuous, so using starting date is not possible
 		public int? ExperienceYears { get; set; }
 		// NOTE: Employee ExpYearsBySpec even more unbinded to dates

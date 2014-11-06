@@ -89,5 +89,6 @@
     <None Include="SqlDataProvider\Uninstall.SqlDataProvider" />
     <None Include="ReleaseNotes.txt" />
     <None Include="License.txt" />
+    <None Include="SqlDataProvider\01.01.02.SqlDataProvider" />
   </ItemGroup>
 </Project>
