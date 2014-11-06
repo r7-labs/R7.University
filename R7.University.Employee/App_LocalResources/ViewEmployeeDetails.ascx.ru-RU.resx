@@ -9,6 +9,9 @@
 	<data name="ExperienceTab.Text" xml:space="preserve">
     <value>Образование и опыт работы</value>
   </data>
+    <data name="DisciplinesTab.Text" xml:space="preserve">
+    <value>Дисциплины</value>
+  </data>
 	<data name="AboutTab.Text" xml:space="preserve">
     <value>О себе</value>
   </data>

@@ -185,8 +185,7 @@ namespace R7.University.Employee
 			}
 			else
 				linkUserProfile.Visible = false;
-			
-			
+
 			// about
 			if (!string.IsNullOrWhiteSpace (employee.Biography))
 				litAbout.Text = Server.HtmlDecode (employee.Biography);
@@ -195,7 +194,16 @@ namespace R7.University.Employee
 				// hide entire About tab
 				linkAbout.Visible = false;
 			}
-			
+
+			// disciplines
+			if (!string.IsNullOrWhiteSpace (employee.Disciplines))
+				litDisciplines.Text = Server.HtmlDecode (employee.Disciplines);
+			else
+			{
+				// hide entire Disciplines tab
+				linkDisciplines.Visible = false;
+			}
+
 			Experience (employee);
 			
 		}

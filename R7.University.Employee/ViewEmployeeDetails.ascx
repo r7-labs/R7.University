@@ -16,7 +16,8 @@
 		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
 			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("ExperienceTab.Text") %></asp:HyperLink></li>
 			<li><asp:HyperLink id="linkAchievements" runat="server" href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></asp:HyperLink></li>
-		  	<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></asp:HyperLink></li>
+			<li><asp:HyperLink id="linkDisciplines" runat="server" href="#employeeDisciplines"><%= LocalizeString("DisciplinesTab.Text") %></asp:HyperLink></li>
+			<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></asp:HyperLink></li>
 			<li><a href="#employeeBarcode"><%= LocalizeString("BarcodeTab.Text") %></a></li>
 		</ul>
 
@@ -83,6 +84,10 @@
 				        <FooterStyle CssClass="dnnGridFooter" />
 			    </asp:GridView>
 			</div>		
+		</div>
+
+		<div id="employeeDisciplines" class="_tab">
+			<asp:Literal id="litDisciplines" runat="server" />
 		</div>
 
 		<div id="employeeAbout" class="_tab">

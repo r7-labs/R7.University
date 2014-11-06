@@ -9,6 +9,9 @@
 	<data name="ExperienceTab.Text" xml:space="preserve">
     <value>Experience</value>
   </data>
+    <data name="DisciplinesTab.Text" xml:space="preserve">
+    <value>Disciplines</value>
+  </data>
 	<data name="AboutTab.Text" xml:space="preserve">
     <value>About</value>
   </data>

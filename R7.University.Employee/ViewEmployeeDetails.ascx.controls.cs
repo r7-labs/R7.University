@@ -20,7 +20,9 @@ namespace R7.University.Employee
 		protected Label labelCellPhone;
 		protected Label labelWorkingPlaceAndHours;
 		protected Literal litAbout;
+		protected Literal litDisciplines;
 		protected HyperLink linkAbout;
+		protected HyperLink linkDisciplines;
 		protected HyperLink linkAchievements;
 		protected HyperLink linkExperience;
 		protected HyperLink linkEmail;
