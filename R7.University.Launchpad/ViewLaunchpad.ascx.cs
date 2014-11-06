@@ -325,6 +325,7 @@ namespace R7.University.Launchpad
 			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
 			dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Weight", typeof(int)));
+			dt.Columns.Add (new DataColumn ("IsTeacher", typeof(bool)));
 
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
@@ -336,6 +337,7 @@ namespace R7.University.Launchpad
 				dr [1] = position.Title;
 				dr [2] = position.ShortTitle;
 				dr [3] = position.Weight;
+				dr [4] = position.IsTeacher;
 
 				dt.Rows.Add (dr);
 			}
@@ -423,6 +425,7 @@ namespace R7.University.Launchpad
 			dt.Columns.Add (new DataColumn ("WorkingPlace", typeof(string)));
 			dt.Columns.Add (new DataColumn ("WorkingHours", typeof(string)));
 			dt.Columns.Add (new DataColumn ("Biography", typeof(string)));
+			dt.Columns.Add (new DataColumn ("Disciplines", typeof(string)));
 			dt.Columns.Add (new DataColumn ("ExperienceYears", typeof(int)));
 			dt.Columns.Add (new DataColumn ("ExperienceYearsBySpec", typeof(int)));
 			dt.Columns.Add (new DataColumn ("IsPublished", typeof(bool)));
@@ -457,8 +460,13 @@ namespace R7.University.Launchpad
 				dr [i++] = employee.NamePrefix;
 				dr [i++] = employee.WorkingPlace;
 				dr [i++] = employee.WorkingHours;
-				dr [i++] = string.IsNullOrWhiteSpace (employee.Biography) ? 
-					string.Empty : employee.Biography.Substring (0, Math.Min (employee.Biography.Length, 16));
+
+				dr [i++] = !string.IsNullOrWhiteSpace (employee.Biography) ? 
+					HtmlUtils.Shorten (employee.Biography, 16, "...") : string.Empty;
+
+				dr [i++] = !string.IsNullOrWhiteSpace (employee.Disciplines) ? 
+					HtmlUtils.Shorten (employee.Disciplines, 16, "...") : string.Empty;
+
 				dr [i++] = employee.ExperienceYears ?? Null.NullInteger;
 				dr [i++] = employee.ExperienceYearsBySpec ?? Null.NullInteger;
 				dr [i++] = employee.IsPublished;
