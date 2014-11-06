@@ -17,7 +17,7 @@ BEGIN
 		) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
-	ALTER TABLE {databaseOwner}[{objectQualifier}University_Positions] ADD  CONSTRAINT [DF_{objectQualifier}University_Duties_Weight] DEFAULT ((1)) FOR [Weight]
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_Positions] ADD  CONSTRAINT [DF_{objectQualifier}University_Positions_Weight] DEFAULT ((1)) FOR [Weight]
 
 END
 GO
