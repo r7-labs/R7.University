@@ -16,6 +16,7 @@
 		    <li><a href="#employeeCommon">Common</a></li>
 		    <li><a href="#employeePositions">Positions</a></li>
 		    <li><a href="#employeeAchievements">Achievements</a></li>
+		    <li><a href="#employeeDisciplines">Disciplines</a></li>
 		    <li><a href="#employeeAbout">About</a></li>
 		</ul>
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
@@ -284,17 +285,28 @@
 				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>
 		</div>
-	
+
+		<div id="employeeDisciplines">
+			<fieldset>
+				<div class="dnnFormItem">
+					<div style="margin-right:20px">
+						<dnn:TextEditor id="textDisciplines" runat="server" Width="100%" Height="300px" />
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
 		<div id="employeeAbout">
 			<fieldset>
 				<div class="dnnFormItem">
-					<%-- <dnn:Label id="labelBiography" runat="server" ControlName="textBiography" Suffix=":" /> --%>
 					<div style="margin-right:20px">
 						<dnn:TextEditor id="textBiography" runat="server" Width="100%" Height="300px" />
 					</div>
 				</div>
 			</fieldset>
 		</div>
+
+
 	</div>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>

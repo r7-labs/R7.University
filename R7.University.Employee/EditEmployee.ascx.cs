@@ -178,6 +178,7 @@ namespace R7.University.Employee
 							textMessenger.Text = item.Messenger;
 							textWorkingPlace.Text = item.WorkingPlace;
 							textBiography.Text = item.Biography;
+							textDisciplines.Text = item.Disciplines;
 							
 							// load working hours
 							SharedLogic.WorkingHours.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
@@ -328,6 +329,7 @@ namespace R7.University.Employee
 				item.Messenger = textMessenger.Text.Trim ();
 				item.WorkingPlace = textWorkingPlace.Text.Trim ();
 				item.Biography = textBiography.Text.Trim ();
+				item.Disciplines = textDisciplines.Text.Trim ();
 
 				// update working hours
 				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);

@@ -61,8 +61,8 @@ namespace R7.University.Employee
 		protected TextBox textExperienceYears;
 		protected LabelControl labelExperienceYearsBySpec;
 		protected TextBox textExperienceYearsBySpec;
-		protected LabelControl labelBiography;
 		protected TextEditor textBiography;
+		protected TextEditor textDisciplines;
 		protected LabelControl labelIsPublished;
 		protected CheckBox checkIsPublished;
 		// protected LabelControl labelIsDeleted;
