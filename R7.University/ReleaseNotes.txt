@@ -7,7 +7,7 @@
 	<li>EditEmployee control: Employee name fields now properly validated.</li>
 	<li>EditEmployee control: Cancel buttons in position and achievement edit forms always visible now.</li>
 	<li>Implemented #10: Employee, Division entities: Added WebSiteLabel field to make website links more readable.</li>
-	<li>Implemented #36: Employee module: Ability to display employee info of the currently logged in user.</li>
+	<li>Implemented #36: Employee module: Ability to display employee info by userid querystring param on the profile page.</li>
 	<li>Implemented #38: Division entity: Added DocumentURL field for the division's main (regulations) document.</li>
 	<li>Implemented #44: EditEmployee control: Clear achievement form when editing is done.</li>
 	<li>Fixed #42: EditEmployee control: Document URL doesn't always set properly when editing employee achievements.</li>
