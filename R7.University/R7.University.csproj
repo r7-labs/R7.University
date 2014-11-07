@@ -90,5 +90,10 @@
     <None Include="ReleaseNotes.txt" />
     <None Include="License.txt" />
     <None Include="SqlDataProvider\01.01.02.SqlDataProvider" />
+    <None Include="images\nophoto_en.png" />
+    <None Include="images\nophoto_en_square.png" />
+    <None Include="images\nophoto_ru.png" />
+    <None Include="images\nophoto_ru_square.png" />
+    <None Include="images\nophoto_template.svg" />
   </ItemGroup>
 </Project>

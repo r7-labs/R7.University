@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="nophoto_template.svg"
+   inkscape:export-filename="/home/common/Сайт/Моя графика/NoPhoto/nophoto_en_square.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <filter
+       id="filter3914"
+       y="-0.5"
+       height="2"
+       inkscape:label="Chalk and sponge"
+       inkscape:menu="Distort"
+       inkscape:menu-tooltip="Low turbulence gives sponge look and high turbulence chalk"
+       color-interpolation-filters="sRGB"
+       width="1.6"
+       x="-0.30000001">
+      <feMorphology
+         id="feMorphology3916"
+         radius="7"
+         operator="dilate"
+         result="result8"
+         in="SourceGraphic" />
+      <feComposite
+         id="feComposite3918"
+         in2="result8"
+         result="result10"
+         in="SourceGraphic"
+         operator="arithmetic"
+         k1="0.5"
+         k3="0.5"
+         k2="0"
+         k4="0" />
+      <feTurbulence
+         id="feTurbulence3920"
+         result="result11"
+         type="fractalNoise"
+         numOctaves="3"
+         baseFrequency="0.07" />
+      <feDisplacementMap
+         id="feDisplacementMap3922"
+         in2="result11"
+         result="result12"
+         in="result10"
+         xChannelSelector="R"
+         scale="10"
+         yChannelSelector="A" />
+      <feComposite
+         id="feComposite3924"
+         in2="result12"
+         operator="arithmetic"
+         result="fbSourceGraphic"
+         in="SourceGraphic"
+         k1="0.25"
+         k2="0.25"
+         k3="0.75"
+         k4="0" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix3926" />
+      <feTurbulence
+         id="feTurbulence3928"
+         baseFrequency="0.4"
+         type="fractalNoise"
+         seed="0"
+         numOctaves="5"
+         result="result1" />
+      <feOffset
+         id="feOffset3930"
+         dx="-5"
+         dy="-5"
+         result="result2" />
+      <feDisplacementMap
+         id="feDisplacementMap3932"
+         in2="result1"
+         xChannelSelector="R"
+         yChannelSelector="G"
+         scale="30"
+         in="fbSourceGraphic" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#eeeeee"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.80253906"
+     inkscape:cx="-135.63061"
+     inkscape:cy="13.33855"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="718"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-796.36218)">
+    <g
+       id="g3803">
+      <path
+         transform="translate(30.808472,795.11613)"
+         d="m 148.27938,95.260162 c 0,27.526878 -22.87281,49.841808 -51.087852,49.841808 -28.215044,0 -51.087856,-22.31493 -51.087856,-49.841808 0,-27.526872 22.872812,-49.841812 51.087856,-49.841812 28.215042,0 51.087852,22.31494 51.087852,49.841812 z"
+         sodipodi:ry="49.841812"
+         sodipodi:rx="51.087856"
+         sodipodi:cy="95.260162"
+         sodipodi:cx="97.191528"
+         id="path3934"
+         style="fill:#ffffff;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="matrix(2.3519074,0,0,4.1124999,-100.58547,753.43514)"
+         d="m 148.27938,95.260162 c 0,27.526878 -22.87281,49.841808 -51.087852,49.841808 -28.215044,0 -51.087856,-22.31493 -51.087856,-49.841808 0,-27.526872 22.872812,-49.841812 51.087856,-49.841812 28.215042,0 51.087852,22.31494 51.087852,49.841812 z"
+         sodipodi:ry="49.841812"
+         sodipodi:rx="51.087856"
+         sodipodi:cy="95.260162"
+         sodipodi:cx="97.191528"
+         id="path3934-1"
+         style="fill:#ffffff;stroke:#999999;stroke-width:1.28616570999999991;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3972"
+         y="1019.7348"
+         x="66.941406"
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+         xml:space="preserve"><tspan
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#999999;font-family:Droid Sans;-inkscape-font-specification:Droid Sans Bold"
+           y="1019.7348"
+           x="66.941406"
+           id="tspan3974"
+           sodipodi:role="line">no photo</tspan></text>
+    </g>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3972-5"
+       y="1105.7393"
+       x="65.054688"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+       xml:space="preserve"><tspan
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#999999;font-family:Droid Sans;-inkscape-font-specification:Droid Sans Bold"
+         y="1105.7393"
+         x="65.054688"
+         id="tspan3974-2"
+         sodipodi:role="line">нет фото</tspan></text>
+  </g>
+</svg>
