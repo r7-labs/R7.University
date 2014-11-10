@@ -90,10 +90,10 @@ namespace R7.University.Employee
 			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 
 			// setup filepicker
-			pickerPhoto.FileFilter = Globals.glbImageFileTypes;
-			// TODO: Get default faces folder from global / portal settings 
-			pickerPhoto.FilePath = "Images/faces/";
-
+            pickerPhoto.FileFilter = Globals.glbImageFileTypes;
+            // TODO: Get default faces folder from global / portal settings 
+            pickerPhoto.FilePath = "Images/faces/";
+           
 			// add default item to user list
 			comboUsers.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
 
@@ -146,7 +146,7 @@ namespace R7.University.Employee
 
 			try
 			{
-				// parse querystring parameters
+                // parse querystring parameters
 				itemId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
       
 				if (!IsPostBack)
@@ -179,7 +179,7 @@ namespace R7.University.Employee
 							textWorkingPlace.Text = item.WorkingPlace;
 							textBiography.Text = item.Biography;
 							textDisciplines.Text = item.Disciplines;
-							
+					
 							// load working hours
 							SharedLogic.WorkingHours.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
@@ -192,7 +192,7 @@ namespace R7.University.Employee
 							checkIsPublished.Checked = item.IsPublished;
 
 							// set photo
-							if (!Utils.IsNull (item.PhotoFileID))
+                            if (!Utils.IsNull (item.PhotoFileID))
 							{
 								var photo = FileManager.Instance.GetFile (item.PhotoFileID.Value);
 								if (photo != null)
@@ -269,7 +269,7 @@ namespace R7.University.Employee
 					if (treeDivisions.SelectedNode == null)
 						treeDivisions.Nodes [0].Selected = true;
 				}
-				else
+                else // if (IsPostBack)
 				{
 					// NOTE: Fix for issue #1 - just update FilePath every postback
 					if (pickerPhoto.FileID > 0)
