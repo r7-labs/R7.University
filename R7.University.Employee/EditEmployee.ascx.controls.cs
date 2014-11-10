@@ -20,6 +20,7 @@ namespace R7.University.Employee
 
 		protected LabelControl labelPhoto;
 		protected DnnFilePickerUploader pickerPhoto;
+        protected LinkButton buttonPhotoLookup;
 		protected LabelControl labelUser;
 		protected UrlControl urlUser;
 		protected LabelControl labelLastName;

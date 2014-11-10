@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using System.Linq;
@@ -489,6 +490,41 @@ namespace R7.University.Employee
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
+
+        protected void buttonPhotoLookup_Click (object sender, EventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEmployeeTab.Common;
+
+                var folderPath = "Images/faces/";
+                var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
+
+                if (folder != null)
+                {
+                    var abbrName = EmployeeInfo.GetFileName (textFirstName.Text, textLastName.Text, textOtherName.Text);
+
+                    // TODO: EmployeeInfo should contain culture data
+                    var fileName = TextUtils.Transliterate (abbrName, TextUtils.RuTranslitTable).ToLowerInvariant ();
+
+                    // get files from default folder recursively
+                    foreach (var file in FolderManager.Instance.GetFiles (folder, true))
+                    {
+                        if (Path.GetFileNameWithoutExtension (file.FileName).ToLowerInvariant () == fileName)
+                        {
+                            // setting FileID for picker is sufficent, 
+                            // as we update FilePath on each postback anyway
+                            pickerPhoto.FileID = file.FileId;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
 		protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
 		{

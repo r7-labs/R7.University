@@ -175,8 +175,11 @@
 		<value>Specify division for this employee</value>
 	</data>
 	<data name="buttonUserLookup.Text">
-		<value>Lookup</value>
+		<value>User Lookup</value>
 	</data>
+    <data name="buttonPhotoLookup.Text">
+        <value>Photo Lookup</value>
+    </data>
 	<data name="checkIncludeDeletedUsers.Text">
 		<value>Include deleted?</value>
 	</data>

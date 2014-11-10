@@ -22,9 +22,27 @@
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
 		<div id="employeeCommon">
 			<fieldset>
+                <div class="dnnFormItem dnnFormRequired">
+                    <dnn:Label id="labelLastName" runat="server" ControlName="textLastName" Suffix=":" />
+                    <asp:TextBox id="textLastName" runat="server" MaxLength="50" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="textLastName" Display="Dynamic"
+                        CssClass="dnnFormMessage dnnFormError" resourcekey="LastName.Required" />
+                </div>
+                <div class="dnnFormItem dnnFormRequired">
+                    <dnn:Label id="labelFirstName" runat="server" ControlName="textFirstName" Suffix=":" />
+                    <asp:TextBox id="textFirstName" runat="server" MaxLength="50" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="textFirstName" Display="Dynamic"
+                        CssClass="dnnFormMessage dnnFormError" resourcekey="FirstName.Required" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" Suffix=":" />
+                    <asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
+                </div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" Suffix=":" />
-					<dnn:Picker id="pickerPhoto" runat="server" Required="true" />
+                    <asp:LinkButton id="buttonPhotoLookup" runat="server" resourcekey="buttonPhotoLookup"
+                            CssClass="dnnSecondaryAction" OnClick="buttonPhotoLookup_Click" />
+                    <dnn:Picker id="pickerPhoto" runat="server" Required="true" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" Suffix=":" />
@@ -32,28 +50,16 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" Suffix=":" /> 
-					<asp:TextBox id="textUserLookup" runat="server" Style="width:200px" />
-					<asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup" 
-						CssClass="dnnSecondaryAction" OnClick="buttonUserLookup_Click" />
-					<asp:CheckBox id="checkIncludeDeletedUsers" runat="server" resourcekey="checkIncludeDeletedUsers" />
+                    <asp:TextBox id="textUserLookup" runat="server" Style="margin-bottom:0" />
+                    <asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup" 
+                        CssClass="dnnSecondaryAction" OnClick="buttonUserLookup_Click" Style="margin-bottom:0"  />
 				</div>
-				<div class="dnnFormItem dnnFormRequired">
-					<dnn:Label id="labelLastName" runat="server" ControlName="textLastName" Suffix=":" />
-					<asp:TextBox id="textLastName" runat="server" MaxLength="50" />
-					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLastName" Display="Dynamic"
-						CssClass="dnnFormMessage dnnFormError" resourcekey="LastName.Required" />
-				</div>
-				<div class="dnnFormItem dnnFormRequired">
-					<dnn:Label id="labelFirstName" runat="server" ControlName="textFirstName" Suffix=":" />
-					<asp:TextBox id="textFirstName" runat="server" MaxLength="50" />
-					<asp:RequiredFieldValidator runat="server" ControlToValidate="textFirstName" Display="Dynamic"
-						CssClass="dnnFormMessage dnnFormError" resourcekey="FirstName.Required" />
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" Suffix=":" />
-					<asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
-				</div>
-				<div class="dnnFormItem">
+                <div class="dnnFormItem">
+                    <div class="dnnLabel"></div>
+                    <asp:CheckBox id="checkIncludeDeletedUsers" runat="server" 
+                        resourcekey="checkIncludeDeletedUsers" Style="margin-bottom:1em" />
+                </div>
+                <div class="dnnFormItem">
 					<dnn:Label id="labelAcademicDegree" runat="server" ControlName="textAcademicDegree" Suffix=":" />
 					<asp:TextBox id="textAcademicDegree" runat="server" MaxLength="250" />
 				</div>
