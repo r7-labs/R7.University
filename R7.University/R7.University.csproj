@@ -71,6 +71,7 @@
     <Compile Include="entities\AchievementInfo.cs" />
     <Compile Include="components\EmployeePhotoLogic.cs" />
     <Compile Include="components\WorkingHoursLogic.cs" />
+    <Compile Include="components\TextUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
