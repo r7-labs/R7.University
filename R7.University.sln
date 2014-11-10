@@ -77,12 +77,11 @@ Global
 		$2.ArrayInitializerWrapping = DoNotChange
 		$2.ArrayInitializerBraceStyle = NextLine
 		$2.BeforeMethodCallParentheses = False
-		$2.BeforeConstructorDeclarationParentheses = False
 		$2.NewLineBeforeConstructorInitializerColon = NewLine
 		$2.NewLineAfterConstructorInitializerColon = SameLine
-		$2.BeforeDelegateDeclarationParentheses = False
-		$2.NewParentheses = False
-		$2.SpacesBeforeBrackets = False
+		$2.SpacesAfterTypecast = True
+		$2.SpacesBeforeArrayDeclarationBrackets = True
+		$2.BlankLinesBeforeUsings = 1
 		$2.inheritsSet = Mono
 		$2.inheritsScope = text/x-csharp
 		$2.scope = text/x-csharp
@@ -126,6 +125,6 @@ Global
 		$0.XmlFormattingPolicy = $14
 		$14.inheritsSet = null
 		$14.scope = application/x-msbuild
-		version = 1.1.1
+		version = 1.1.2
 	EndGlobalSection
 EndGlobal
