@@ -37,6 +37,17 @@ namespace R7.University.Employee
 		{
 			get 
 			{
+                // get postback initiator
+                var eventTarget = Request.Form ["__EVENTTARGET"];
+
+                // urlDocumentURL control is on Achievements tab
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$urlDocumentURL$"))
+                {
+                    ViewState ["SelectedTab"] = EditEmployeeTab.Achievements;
+                    return EditEmployeeTab.Achievements;
+                }
+
+                // otherwise, get current tab from viewstate
 				var obj = ViewState ["SelectedTab"];
 				return (obj != null) ? (EditEmployeeTab)obj : EditEmployeeTab.Common;
 			}
@@ -147,6 +158,12 @@ namespace R7.University.Employee
 
 			try
 			{
+
+                var eventTarget = Request.Form ["__EVENTTARGET"];
+                if (!string.IsNullOrEmpty (eventTarget))
+                    Utils.Message (this, eventTarget);
+
+
                 // parse querystring parameters
 				itemId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
       
