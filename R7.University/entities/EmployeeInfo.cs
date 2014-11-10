@@ -95,16 +95,18 @@ namespace R7.University
 			}
 		}
 
+        public static string GetFileName (string firstName, string lastName, string otherName)
+        {
+            if (!string.IsNullOrWhiteSpace (otherName))
+                return string.Format ("{0}_{1}{2}", lastName, firstName.Substring (0, 1), otherName.Substring (0, 1)); 
+
+            return string.Format ("{0}_{1}", lastName, firstName.Substring (0, 1)); 
+        }
+
 		[IgnoreColumn]
 		public string FileName
 		{
-			get 
-			{ 
-				if (!string.IsNullOrWhiteSpace (OtherName))
-					return string.Format ("{0}_{1}{2}", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); 
-
-				return string.Format ("{0}_{1}", LastName, FirstName.Substring (0, 1)); 
-			}
+            get { return GetFileName(FirstName, LastName, OtherName); }
 		}
 
 		[IgnoreColumn]
