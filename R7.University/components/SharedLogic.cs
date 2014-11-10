@@ -24,9 +24,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.IO;
 using System.Linq;
+using System.Globalization;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Web.UI.WebControls;
@@ -84,6 +88,80 @@ namespace R7.University
 			}
 		}
 		
+        public static class EmployeePhoto 
+        {
+            public static void Bind (EmployeeInfo employee, Image imagePhoto, int photoWidth, bool square = false)
+            {
+                IFileInfo image = null;
+                var imageHeight = 0;
+                var imageWidth = 0;
+               
+                if (!Utils.IsNull (employee.PhotoFileID))
+                {
+                    // REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
+
+                    image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
+
+                    if (image != null && square)
+                    {
+                        // trying to get square image
+                        // FIXME: Remove hard-coded photo filename options
+                        var squareImage = FileManager.Instance.GetFile(
+                            FolderManager.Instance.GetFolder (image.FolderId), 
+                            Path.GetFileNameWithoutExtension (image.FileName) + "_square" + Path.GetExtension(image.FileName));
+
+                        if (squareImage != null)
+                            image = squareImage;
+                    }
+                }
+
+                if (image != null)
+                {
+                    imageHeight = image.Height;
+                    imageWidth = image.Width;
+
+                    // do we need to scale image?
+                    if (!Null.IsNull (photoWidth) && photoWidth != imageWidth)
+                    {
+                        imagePhoto.ImageUrl = string.Format (
+                            "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth);
+                    }
+                    else
+                    {
+                        // use original image
+                        imagePhoto.ImageUrl = FileManager.Instance.GetUrl(image);
+                    }
+                }
+                else
+                {
+                    // if not photo specified, or not found, use fallback image
+                    imageWidth = square ? 120 : 192;
+                    imageHeight = square ? 120 : 256;
+
+                    // TODO: Make fallback image resizable through image handler
+                    imagePhoto.ImageUrl = string.Format ("/DesktopModules/R7.University/R7.University/images/nophoto_{0}{1}.png", 
+                        CultureInfo.CurrentCulture.TwoLetterISOLanguageName, square ? "_square" : "");
+                }
+
+                // do we need to scale image dimensions?
+                if (!Null.IsNull (photoWidth) && photoWidth != imageWidth)
+                {
+                    imagePhoto.Width = photoWidth;
+                    imagePhoto.Height = (int)(imageHeight * (float)photoWidth / imageWidth);
+                }
+                else
+                {
+                    imagePhoto.Width = imageWidth;
+                    imagePhoto.Height = imageHeight;
+                }
+
+                // set alt & title for photo
+                var fullName = employee.FullName;
+                imagePhoto.AlternateText = fullName;
+                imagePhoto.ToolTip = fullName;
+            }
+
+        }
 	}
 	// class
 }

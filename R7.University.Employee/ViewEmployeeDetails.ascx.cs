@@ -114,7 +114,7 @@ namespace R7.University.Employee
 			else
 				repeaterPositions.Visible = false;
 			
-			Photo (employee, fullname);
+            SharedLogic.EmployeePhoto.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
 			
 			Barcode (employee);
 					
@@ -206,51 +206,6 @@ namespace R7.University.Employee
 
 			Experience (employee);
 			
-		}
-
-		void Photo (EmployeeInfo employee, string fullname)
-		{
-			var imageVisible = false;
-			
-			// Photo
-			if (!Utils.IsNull<int> (employee.PhotoFileID))
-			{
-				// REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
-
-				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-				if (image != null)
-				{
-					// TODO: Then opening from EmployeeList module, default PhotoWidth value is used
-					// as no Employee_PhotoWidth setting exists for this module
-					
-					var photoWidth = EmployeeSettings.PhotoWidth;
-
-					if (!Null.IsNull (photoWidth))
-					{
-						imagePhoto.Width = photoWidth;
-						imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
-
-						imagePhoto.ImageUrl = string.Format (
-							"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
-					}
-					else
-					{
-						// use original image
-						imagePhoto.Width = image.Width;
-						imagePhoto.Height = image.Height;
-						imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
-					}
-
-					// set alt & title for photo
-					imagePhoto.AlternateText = fullname;
-					imagePhoto.ToolTip = fullname;
-
-					// make image visible
-					imageVisible = true;
-				}
-			}
-
-			imagePhoto.Visible = imageVisible;
 		}
 
 		void Barcode (EmployeeInfo employee)

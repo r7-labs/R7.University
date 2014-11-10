@@ -179,55 +179,7 @@ namespace R7.University.EmployeeList
 
 			// fill the controls
 
-			// photo
-			if (!Utils.IsNull (employee.PhotoFileID))
-			{
-				var photo = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-				if (photo != null)
-				{
-					/*
-					var miniPhoto = FileManager.Instance.GetFile (
-						// FIXME: Remove hard-coded photo filename replace options
-						FolderManager.Instance.GetFolder (photo.FolderId), photo.FileName.Replace ("_prev.", "_square_prev."));
-
-					if (miniPhoto != null && miniPhoto.FileId != photo.FileId)
-					{
-						imagePhoto.ImageUrl = Utils.FormatURL (this, "FileID=" + miniPhoto.FileId, false);
-						imagePhoto.Width = miniPhoto.Width;
-						imagePhoto.Height = miniPhoto.Height;
-					}*/
-				
-					var squarePhoto = FileManager.Instance.GetFile (
-						// FIXME: Remove hard-coded photo filename options
-						                  FolderManager.Instance.GetFolder (photo.FolderId), 
-						                  Path.GetFileNameWithoutExtension (photo.FileName) + "_square" + Path.GetExtension (photo.FileName));
-
-					var photoWidth = EmployeeListSettings.PhotoWidth;
-
-					if (squarePhoto != null)
-					{
-						if (!Null.IsNull (photoWidth))
-						{
-							imagePhoto.ImageUrl = string.Format (
-								"/imagehandler.ashx?fileid={0}&width={1}", squarePhoto.FileId, photoWidth);
-							imagePhoto.Width = photoWidth;
-							imagePhoto.Height = photoWidth;
-						}
-						else
-						{
-							imagePhoto.ImageUrl = FileManager.Instance.GetUrl (squarePhoto);
-							imagePhoto.Width = squarePhoto.Width;
-							imagePhoto.Height = squarePhoto.Height;
-						}
-					}
-					else if (squarePhoto == null)
-					{
-						imagePhoto.ImageUrl = FileManager.Instance.GetUrl (photo);
-						imagePhoto.Width = photo.Width;
-						imagePhoto.Height = photo.Height;
-					}
-				}
-			}
+            SharedLogic.EmployeePhoto.Bind (employee, imagePhoto, EmployeeListSettings.PhotoWidth, true);
 
 			// photo fallback
 			if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl))

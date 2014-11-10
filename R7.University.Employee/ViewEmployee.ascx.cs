@@ -16,6 +16,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.University;
+using System.Globalization;
 
 namespace R7.University.Employee
 {
@@ -144,59 +145,13 @@ namespace R7.University.Employee
 			var fullName = employee.FullName;
 			labelFullName.Text = fullName;
 
-			var imageVisible = false;
-			// Photo
-			if (!Utils.IsNull<int> (employee.PhotoFileID))
-			{
-				// imagePhoto.ImageUrl = Utils.FormatURL (this, "FileID=" + employee.PhotoFileID, false);
-				// var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-				// imagePhoto.Width = image.Width;
-				// imagePhoto.Height = image.Height;
+            SharedLogic.EmployeePhoto.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
 
-				// REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
-
-				var image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-				if (image != null)
-				{
-					var photoWidth = EmployeeSettings.PhotoWidth;
-
-					if (!Null.IsNull (photoWidth))
-					{
-						imagePhoto.Width = photoWidth;
-						imagePhoto.Height = (int)(image.Height * (float)photoWidth / image.Width);
-
-						imagePhoto.ImageUrl = string.Format (
-							"/imagehandler.ashx?fileid={0}&width={1}", employee.PhotoFileID, photoWidth);
-					}
-					else
-					{
-						// use original image
-						imagePhoto.Width = image.Width;
-						imagePhoto.Height = image.Height;
-						imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
-					}
-
-					// set alt & title for photo
-					imagePhoto.AlternateText = fullName;
-					imagePhoto.ToolTip = fullName;
-
-					// make image visible
-					imageVisible = true;
-				}
-			}
-
-			if (imageVisible)
-			{
-				// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
-				var popupUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ());
+			// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
+			var popupUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ());
 				
-				// alter popup window height
-				linkPhoto.NavigateUrl = popupUrl.Replace ("550,950", "450,950");
-			}
-
-			// REVIEW: Need to add fallback image?
-			linkPhoto.Visible = imageVisible;
-			// imagePhoto.Visible = imageVisible;
+			// alter popup window height
+			linkPhoto.NavigateUrl = popupUrl.Replace ("550,950", "450,950");
 
 			/* // Old academic degree & title
 			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
