@@ -502,15 +502,16 @@ namespace R7.University.Employee
 
                 if (folder != null)
                 {
-                    var abbrName = EmployeeInfo.GetFileName (textFirstName.Text, textLastName.Text, textOtherName.Text);
+                    var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, textLastName.Text, textOtherName.Text);
 
-                    // TODO: EmployeeInfo should contain culture data
-                    var fileName = TextUtils.Transliterate (abbrName, TextUtils.RuTranslitTable).ToLowerInvariant ();
+                    // TODO: EmployeeInfo should contain culture data?
+                    var employeeNameTL = TextUtils.Transliterate (employeeName, TextUtils.RuTranslitTable).ToLowerInvariant ();
 
                     // get files from default folder recursively
                     foreach (var file in FolderManager.Instance.GetFiles (folder, true))
                     {
-                        if (Path.GetFileNameWithoutExtension (file.FileName).ToLowerInvariant () == fileName)
+                        var fileName = Path.GetFileNameWithoutExtension (file.FileName).ToLowerInvariant ();
+                        if (fileName == employeeName || fileName == employeeNameTL)
                         {
                             // setting FileID for picker is sufficent, 
                             // as we update FilePath on each postback anyway

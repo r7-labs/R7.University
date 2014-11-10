@@ -76,7 +76,6 @@ Global
 		$2.WhileNewLinePlacement = DoNotCare
 		$2.ArrayInitializerWrapping = DoNotChange
 		$2.ArrayInitializerBraceStyle = NextLine
-		$2.BeforeMethodDeclarationParentheses = False
 		$2.BeforeMethodCallParentheses = False
 		$2.BeforeConstructorDeclarationParentheses = False
 		$2.NewLineBeforeConstructorInitializerColon = NewLine

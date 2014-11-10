@@ -1,7 +1,11 @@
 ﻿<h3>Version 1.1.2</h3>
 <p>This release brings some feature changes and stabilization fixes for 1.1.0.</p>
 <ul>
+    <li>Ability to lookup for photo by employee name (also supports transliteration for cyrillic (russian) names).</li>
+	<li>Implemented #39: Position entity: Added IsTeacher field and corresponding UI.</li>
 	<li>Implemented #45: Employee entity: Added Disciplines field and corresponding UI.</li>
+    <li>Implemented #47: Employee entity: Default employee photo images.</li>
+    <li>Partially implemented #46: Launchpad: Search / filter functionality by employees.</li>
 	<li>Other small improvements and fixes.</li>
 </ul>
 
