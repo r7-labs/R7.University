@@ -52,7 +52,7 @@
 					<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" Suffix=":" /> 
                     <asp:TextBox id="textUserLookup" runat="server" Style="margin-bottom:0" />
                     <asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup" 
-                        CssClass="dnnSecondaryAction" OnClick="buttonUserLookup_Click" Style="margin-bottom:0"  />
+                        CssClass="dnnSecondaryAction" OnClick="buttonUserLookup_Click" Style="margin-bottom:0" CausesValidation="false" />
 				</div>
                 <div class="dnnFormItem">
                     <div class="dnnLabel"></div>
