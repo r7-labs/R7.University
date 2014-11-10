@@ -52,7 +52,7 @@ namespace R7.University.Division
 			}
 
 			// init working hours
-			SharedLogic.WorkingHours.Init (this, comboWorkingHours);
+			WorkingHoursLogic.Init (this, comboWorkingHours);
 			
 			// Fill terms list
 			// TODO: Org. structure vocabulary name must be set in settings
@@ -123,7 +123,7 @@ namespace R7.University.Division
 							txtFax.Text = item.Fax;
 							
 							// load working hours
-							SharedLogic.WorkingHours.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
+							WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 							
 							// select parent division
 							comboParentDivisions.Select (item.ParentDivisionID.ToString (), false);
@@ -226,7 +226,7 @@ namespace R7.University.Division
 				item.DocumentUrl = urlDocumentUrl.Url;
 
 				// update working hours
-				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
+				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
 				
 				if (!itemId.HasValue)
 				{

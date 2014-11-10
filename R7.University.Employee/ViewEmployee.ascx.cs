@@ -145,7 +145,7 @@ namespace R7.University.Employee
 			var fullName = employee.FullName;
 			labelFullName.Text = fullName;
 
-            SharedLogic.EmployeePhoto.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
+            EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
 
 			// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
 			var popupUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ());

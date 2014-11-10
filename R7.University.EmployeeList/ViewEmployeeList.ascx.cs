@@ -179,7 +179,7 @@ namespace R7.University.EmployeeList
 
 			// fill the controls
 
-            SharedLogic.EmployeePhoto.Bind (employee, imagePhoto, EmployeeListSettings.PhotoWidth, true);
+            EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeListSettings.PhotoWidth, true);
 
 			// photo fallback
 			if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl))

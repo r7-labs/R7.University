@@ -98,7 +98,7 @@ namespace R7.University.Employee
 			comboUsers.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
 
 			// init working hours
-			SharedLogic.WorkingHours.Init (this, comboWorkingHours);
+			WorkingHoursLogic.Init (this, comboWorkingHours);
 
 			// if results are null or empty, lists were empty too
 			var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
@@ -181,7 +181,7 @@ namespace R7.University.Employee
 							textDisciplines.Text = item.Disciplines;
 					
 							// load working hours
-							SharedLogic.WorkingHours.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
+							WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
 							if (!Null.IsNull (item.ExperienceYears))
 								textExperienceYears.Text = item.ExperienceYears.ToString ();
@@ -332,7 +332,7 @@ namespace R7.University.Employee
 				item.Disciplines = textDisciplines.Text.Trim ();
 
 				// update working hours
-				item.WorkingHours = SharedLogic.WorkingHours.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
+				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
 
 				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
 				item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);

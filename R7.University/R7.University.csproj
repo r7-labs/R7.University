@@ -65,11 +65,12 @@
     <Compile Include="components\VCardPhone.cs" />
     <Compile Include="components\QuotedPrintable.cs" />
     <Compile Include="components\CacheHelper.cs" />
-    <Compile Include="components\SharedLogic.cs" />
     <Compile Include="entities\EmployeeAchievementInfo.cs" />
     <Compile Include="entities\AchievementTypeInfo.cs" />
     <Compile Include="entities\Delegates.cs" />
     <Compile Include="entities\AchievementInfo.cs" />
+    <Compile Include="components\EmployeePhotoLogic.cs" />
+    <Compile Include="components\WorkingHoursLogic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

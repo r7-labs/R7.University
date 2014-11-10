@@ -114,7 +114,7 @@ namespace R7.University.Employee
 			else
 				repeaterPositions.Visible = false;
 			
-            SharedLogic.EmployeePhoto.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
+            EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
 			
 			Barcode (employee);
 					
