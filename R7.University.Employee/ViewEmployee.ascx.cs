@@ -357,43 +357,7 @@ namespace R7.University.Employee
 
 		protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)
 		{
-			// exclude header & footer
-			if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-			{
-				var opex = e.Item.DataItem as OccupiedPositionInfoEx;
-
-				var labelPosition = e.Item.FindControl ("labelPosition") as Label;
-				var labelDivision = e.Item.FindControl ("labelDivision") as Label;
-				var linkDivision = e.Item.FindControl ("linkDivision") as HyperLink;
-
-				// opex.PositionShortTitle is a comma-separated 
-				// list of positions, including TitleSuffix
-				labelPosition.Text = opex.PositionShortTitle;
-
-				// don't display division title for highest level divisions
-				if (Utils.IsNull (opex.ParentDivisionID))
-				{
-					labelDivision.Visible = false;
-					linkDivision.Visible = false;
-				}
-				else
-				{
-					if (!string.IsNullOrWhiteSpace (opex.HomePage))
-					{
-						// link to division's homepage
-						labelDivision.Visible = false;
-						linkDivision.NavigateUrl = Utils.FormatURL (this, opex.HomePage, false);
-					}
-					else
-					{	
-						// only division title
-						linkDivision.Visible = false;
-					}
-
-					labelPosition.Text += ": "; // to prev label!
-					linkDivision.Text = opex.DivisionShortTitle;
-				}
-			}
+            RepeaterPositionsLogic.ItemDataBound (this, sender, e);
 		}
 
 	}
