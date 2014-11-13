@@ -62,7 +62,7 @@
 		<div id="employeeExperience" class="_tab">	
 			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
 			<div class="_section" style="margin-bottom:10px">
-				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="true" 
+				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 						OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
 						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
@@ -75,7 +75,7 @@
 
 		<div id="employeeAchievements" class="_tab">
 			<div class="_section" style="margin-bottom:10px">
-				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
+				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 						OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
 						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
