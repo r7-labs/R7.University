@@ -16,11 +16,11 @@
 		<asp:View id="viewPositions" runat="server">
 			<div id="positions" style="overflow:auto">
 					<asp:HyperLink runat="server" id="buttonAddPosition" CssClass="dnnPrimaryAction">Add position</asp:HyperLink><br />
-					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="true"
+					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 					AllowPaging="true" AllowSorting="true" GridLines="None"
 					OnSorting="gridView_Sorting" 
 					OnPageIndexChanging="gridView_PageIndexChanging"
-					OnRowDataBound="gridView_RowDataBound" CssClass="dnnGrid">
+					OnRowDataBound="gridView_RowDataBound">
 						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
 				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -45,7 +45,7 @@
 		<asp:View id="viewDivisions" runat="server"> 
 			<div id="divisions" style="overflow:auto">
 				<asp:HyperLink runat="server" id="buttonAddDivision" CssClass="dnnPrimaryAction">Add division</asp:HyperLink><br />
-				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="true" 
+				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None"
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
@@ -77,7 +77,7 @@
 				<asp:TextBox id="textEmployeeSearch" runat="server" Style="margin-left:1em" />
                 <asp:Button id="buttonEmployeeSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="Search.Text" OnClick="buttonEmployeeSearch_Click" />
                 <asp:Button id="buttonEmployeeResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonEmployeeSearch_Click" /><br />
-                <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" 
+                <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
@@ -106,7 +106,7 @@
 		<asp:View id="viewAchievements" runat="server">
 			<div id="achievements" style="overflow:auto">
 				<asp:HyperLink runat="server" id="buttonAddAchievement" CssClass="dnnPrimaryAction">Add achievement</asp:HyperLink><br />
-				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" 
+				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
