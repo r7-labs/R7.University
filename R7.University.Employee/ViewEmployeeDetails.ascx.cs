@@ -102,8 +102,9 @@ namespace R7.University.Employee
 			
 			// set popup title
 			((DotNetNuke.Framework.CDefault)this.Page).Title = fullname;
-			
-			
+
+            // TODO: Set control title in non-popup mode or use hidden label & check popup querystring param
+
 			// occupied positions
 			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
 			if (occupiedPositions != null && occupiedPositions.Any ())
