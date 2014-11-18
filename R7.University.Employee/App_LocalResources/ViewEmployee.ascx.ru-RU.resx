@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>&lt;P&gt; Модуль Employee&lt;/P&gt;</value>
+    <value>&lt;p&gt;О модуле Employee&lt;/p&gt;</value>
   </data>
 	<!-- <data name="DefaultContent.Text" xml:space="preserve">
     <value>Что-то вместо содержимого</value>

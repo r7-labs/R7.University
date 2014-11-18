@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+    <data name="ControlTitle_details.Text">
+        <value>Employee Details</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;About Employee Details module&lt;/p&gt;</value>
+    </data>
 	<data name="BarcodeScan.Text" xml:space="preserve">
     <value>Use your mobile device barcode scanning application to add this employee vCard to your address book.</value>
   </data>

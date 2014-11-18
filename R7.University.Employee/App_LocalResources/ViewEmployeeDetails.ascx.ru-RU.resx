@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+    <data name="ControlTitle_details.Text">
+        <value>Подробно о сотруднике</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;О модуле Employee Details&lt;/p&gt;</value>
+    </data>
 	<data name="BarcodeScan.Text" xml:space="preserve">
     <value>Используйте приложение "сканер штрих-кодов", установленное в Вашем мобильном устройстве, для того, чтобы добавить визитку этого сотрудника в адресную книгу.</value>
   </data>

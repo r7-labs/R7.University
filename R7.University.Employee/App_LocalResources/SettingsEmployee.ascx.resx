@@ -4,7 +4,7 @@
     	<value>Employee Settings</value>
   	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    	<value>About Employee Settings</value>
+    	<value>&lt;p&gt;About Employee module settings&lt;/p&gt;</value>
  	</data>
     <data name="labelEmployee.Text" xml:space="preserve">
     	<value>Employee</value>

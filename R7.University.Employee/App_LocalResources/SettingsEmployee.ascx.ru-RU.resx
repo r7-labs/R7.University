@@ -7,10 +7,10 @@
     	<value>Выберите сотрудника для отображения в данном модуле.</value>
   	</data>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
-   		<value>Настройки Employee</value>
+   		<value>Настройки модуля Employee</value>
   	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    	<value>О настройках Employee</value>
+    	<value>&lt;p&gt;О настройках модуля Employee&lt;/p&gt;</value>
   </data>
 	<data name="DataCache.Text" xml:space="preserve">
 		<value>Кеш данных</value>

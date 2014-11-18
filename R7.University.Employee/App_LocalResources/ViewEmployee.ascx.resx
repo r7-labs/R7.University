@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>&lt;P&gt;A Employee module&lt;/P&gt;</value>
+    <value>&lt;p&gt;About Employee module&lt;/p&gt;</value>
   </data>
 	<data name="DefaultContent.Text" xml:space="preserve">
     <value>Here is some sample content</value>

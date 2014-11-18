@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="ModuleHelp.Text">
-		<value>&lt;P&gt;A Edit employee module&lt;/P&gt;</value>
+		<value>&lt;p&gt;About Edit Employee module&lt;/p&gt;</value>
 	</data>
 	<data name="ControlTitle_edit.Text">
 		<value>Edit Employee</value>
