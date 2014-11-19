@@ -34,8 +34,13 @@ namespace R7.University.Employee
 		{
 			base.OnInit (e);
 
-			linkReturn.Attributes.Add ("onclick", "javascript:return " +
-			UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
+            if (Request.QueryString ["popup"] != null)
+            {
+                linkReturn.Attributes.Add ("onclick", "javascript:return " +
+                    UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
+            }
+            else
+                linkReturn.NavigateUrl = Globals.NavigateURL ();
 		}
 
 		/// <summary>
