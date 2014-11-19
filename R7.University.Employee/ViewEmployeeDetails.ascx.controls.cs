@@ -13,6 +13,7 @@ namespace R7.University.Employee
 	{
 		protected Image imagePhoto;
 		protected Image imageBarcode;
+        protected Literal literalFullName;
 		protected Label labelAcademicDegreeAndTitle;
 		protected Label labelMessenger;
 		protected Label labelPhone;

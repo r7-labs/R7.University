@@ -100,10 +100,16 @@ namespace R7.University.Employee
 		{
 			var fullname = employee.FullName;
 			
-			// set popup title
-			((DotNetNuke.Framework.CDefault)this.Page).Title = fullname;
-
-            // TODO: Set control title in non-popup mode or use hidden label & check popup querystring param
+            if (Request.QueryString ["popup"] != null)
+            {
+                // set popup title to employee name
+                ((DotNetNuke.Framework.CDefault) this.Page).Title = fullname;
+            }
+            else
+            {
+                // display employee name in label
+                literalFullName.Text = "<h2>" + fullname + "</h2>";
+            }
 
 			// occupied positions
 			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);

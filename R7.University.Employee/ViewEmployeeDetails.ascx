@@ -12,6 +12,9 @@
 	<asp:Image id="imagePhoto" runat="server" CssClass="_photo" />	
 	
 	<div id="employeeTabs" class="dnnForm dnnClear _tabs">
+        
+        <asp:Literal id="literalFullName" runat="server" />
+
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
 			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("ExperienceTab.Text") %></asp:HyperLink></li>
@@ -22,7 +25,7 @@
 		</ul>
 
 		<div id="employeeCommon" class="_tab">
-
+  
 			<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
 
 			<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
