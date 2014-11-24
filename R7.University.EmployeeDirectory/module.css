@@ -1,0 +1,9 @@
+﻿/* Place CSS for view control here */
+
+.EmployeeDirectory_ContentList { width:100% }             
+.EmployeeDirectory_ContentListItem { text-align: left }
+.EmployeeDirectory_UserName { font-weight:bold }
+.EmployeeDirectory_CreateOnDate { font-style:italic }
+.EmployeeDirectory_Content { clear:both }
+
+
