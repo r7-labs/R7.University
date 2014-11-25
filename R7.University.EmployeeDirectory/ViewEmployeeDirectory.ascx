@@ -18,31 +18,41 @@
         <PagerStyle CssClass="dnnGridPager" />
         <Columns>
             <asp:TemplateField>
-                <HeaderTemplate>AbbrName</HeaderTemplate>
+                <HeaderTemplate>
+                    <%# LocalizeString ("Name.Header") %>
+                </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:HyperLink id="linkFullName" runat="server" />
+                    <asp:HyperLink id="linkName" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
-                <HeaderTemplate>Position</HeaderTemplate>
+                <HeaderTemplate>
+                    <%# LocalizeString ("Position.Header") %>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <asp:Literal id="literalPosition" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
-                <HeaderTemplate>Phone</HeaderTemplate>
+                 <HeaderTemplate>
+                    <%# LocalizeString ("Phone.Header") %>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <asp:Literal id="literalPhone" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
-                <HeaderTemplate>Email</HeaderTemplate>
+                 <HeaderTemplate>
+                    <%# LocalizeString ("Email.Header") %>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <asp:HyperLink id="linkEmail" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
-                <HeaderTemplate>WorkingPlace</HeaderTemplate>
+                 <HeaderTemplate>
+                    <%# LocalizeString ("WorkingPlace.Header") %>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <asp:Literal id="literalWorkingPlace" runat="server" />
                 </ItemTemplate>

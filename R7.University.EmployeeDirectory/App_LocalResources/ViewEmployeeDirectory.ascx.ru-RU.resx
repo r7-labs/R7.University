@@ -1,15 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
     <data xml:space="preserve" name="AddContent.Action">
-    <value>Добавить содержимое</value>
-  </data>
+        <value>Добавить содержимое</value>
+    </data>
     <data xml:space="preserve" name="ModuleHelp.Text">
-    <value>&lt;P&gt; Модуль R7.EmployeeDirectory&lt;/P&gt;</value>
-  </data>
+        <value>&lt;P&gt; Модуль R7.EmployeeDirectory&lt;/P&gt;</value>
+    </data>
     <data xml:space="preserve" name="DefaultContent.Text">
-    <value>Что-то вместо содержимого</value>
-  </data>
+        <value>Что-то вместо содержимого</value>
+    </data>
     <data xml:space="preserve" name="NothingToDisplay.Text">
-      <value>Нечего отображать, добавьте элементы.</value>
-  </data>
+        <value>Нечего отображать, добавьте элементы.</value>
+    </data>
+    <data xml:space="preserve" name="Name.Header">
+        <value>Имя</value>
+    </data>
+    <data xml:space="preserve" name="Position.Header">
+        <value>Должность</value>
+    </data>
+    <data xml:space="preserve" name="Email.Header">
+        <value>Эл. почта</value>
+    </data>
+    <data xml:space="preserve" name="Phone.Header">
+        <value>Телефон</value>
+    </data>
+    <data xml:space="preserve" name="WorkingPlace.Header">
+        <value>Рабочее место</value>
+    </data>
 </root>
