@@ -27,4 +27,7 @@
     <data xml:space="preserve" name="WorkingPlace.Header">
         <value>Рабочее место</value>
     </data>
+    <data xml:space="preserve" name="NotSelected.Text">
+        <value>&lt; Не выбрано &gt;</value>
+    </data>
 </root>

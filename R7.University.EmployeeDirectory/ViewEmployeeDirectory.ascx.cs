@@ -37,6 +37,7 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University;
+using System.Diagnostics;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -51,6 +52,17 @@ namespace R7.University.EmployeeDirectory
         protected override void OnInit(EventArgs e)
         {
             base.OnInit (e);
+
+            var ctrl = new EmployeeDirectoryController ();
+
+            var divisions = ctrl.GetObjects <DivisionInfo> ("ORDER BY [Title]").ToList ();
+            divisions.Insert (0, new DivisionInfo () { 
+                DivisionID = Null.NullInteger, 
+                Title = LocalizeString ("NotSelected.Text") 
+            });
+            
+            comboDivisions.DataSource = divisions;
+            comboDivisions.DataBind ();
         }
                 
         /// <summary>
@@ -108,12 +120,39 @@ namespace R7.University.EmployeeDirectory
         {
             var ctrl = new EmployeeDirectoryController ();
 
-            var employees = ctrl.GetObjects<EmployeeInfo> (
-                                string.Format ("WHERE [FirstName] LIKE '%{0}%'", textSearch.Text));
+            var searchText = textSearch.Text.ToLower ();
 
-            if (employees != null && employees.Any ())
+            IEnumerable<EmployeeInfo> employees = null;
+            IEnumerable<EmployeeInfo> filteredEmployees = null;
+            var recursive = false;
+
+            // REVIEW: Unified filtering in both cases
+
+            if (comboDivisions.SelectedIndex > 0)
             {
-                gridEmployees.DataSource = employees;
+                employees = ctrl.GetObjects<EmployeeInfo>(System.Data.CommandType.StoredProcedure, 
+                    recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
+                    comboDivisions.SelectedValue, 0, false
+                );
+
+                if (employees != null && employees.Any())
+                {
+                    filteredEmployees = employees.Where (em => 
+                        em.FirstName.ToLower().Contains (searchText) || 
+                        em.LastName.ToLower().Contains (searchText) || 
+                        em.Email.ToLower().Contains (searchText) || 
+                        em.Phone.ToLower().Contains (searchText) ||
+                        em.WorkingPlace.ToLower().Contains (searchText)
+                    );
+                }
+            }
+            else
+                filteredEmployees = ctrl.GetObjects<EmployeeInfo>(
+                    string.Format("WHERE [LastName] LIKE N'%{0}%'", searchText));
+
+            if (filteredEmployees != null && filteredEmployees.Any ())
+            {
+                gridEmployees.DataSource = filteredEmployees;
                 gridEmployees.DataBind ();
             }
         }

@@ -7,9 +7,12 @@
 .EmployeeDirectory_Content { clear:both }
 
 .ViewEmployeeDirectory .gridEmployees { width:100%; }
-}
 
-.ViewEmployeeDirectory .textSearch { }
+.ViewEmployeeDirectory .textSearch { float:left;margin-right:0.5em }
+
+.ViewEmployeeDirectory .comboDivisions { float:left;margin-right:0.5em;width:200px!important }
+
+.ViewEmployeeDirectory .linkSearch { float:left }
 
 /* dnnGridHeader fix */
 .ViewEmployeeDirectory .dnnGridHeader th
@@ -20,4 +23,3 @@
     background: linear-gradient(top, #fff 0%,#f0f2f1 100%);
     padding: 5px;
 }
- 
