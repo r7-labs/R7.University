@@ -124,13 +124,15 @@ namespace R7.University.EmployeeDirectory
             {
                 var employee = (EmployeeInfo) e.Row.DataItem;
 
-                var fullName = (HyperLink) e.Row.FindControl ("linkFullName");
+                var name = (HyperLink) e.Row.FindControl ("linkName");
                 var position = (Literal) e.Row.FindControl ("literalPosition");
                 var phone = (Literal) e.Row.FindControl ("literalPhone");
                 var email = (HyperLink) e.Row.FindControl ("linkEmail");
                 var workingPlace = (Literal) e.Row.FindControl ("literalWorkingPlace");
 
-                fullName.Text = employee.AbbrName;
+                name.Text = employee.AbbrName;
+                name.ToolTip = employee.FullName;
+
                 phone.Text = employee.Phone;
 
                 if (!string.IsNullOrWhiteSpace (employee.Email))
@@ -138,7 +140,8 @@ namespace R7.University.EmployeeDirectory
                     email.Text = employee.Email;
                     email.NavigateUrl = "mailto:" + employee.Email;
                 }
-                email.Visible = false;
+                else
+                    email.Visible = false;
 
                 workingPlace.Text = employee.WorkingPlace;
 
