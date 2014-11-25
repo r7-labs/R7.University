@@ -6,4 +6,18 @@
 .EmployeeDirectory_CreateOnDate { font-style:italic }
 .EmployeeDirectory_Content { clear:both }
 
+.ViewEmployeeDirectory .gridEmployees { width:100%; }
+}
 
+.ViewEmployeeDirectory .textSearch { }
+
+/* dnnGridHeader fix */
+.ViewEmployeeDirectory .dnnGridHeader th
+{
+    border-bottom: 1px solid #c9c9c9;
+    border-right: 1px solid #c9c9c9;
+    background: #f0f2f1;
+    background: linear-gradient(top, #fff 0%,#f0f2f1 100%);
+    padding: 5px;
+}
+ 
