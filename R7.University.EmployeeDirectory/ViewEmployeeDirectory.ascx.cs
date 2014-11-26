@@ -55,14 +55,18 @@ namespace R7.University.EmployeeDirectory
 
             var ctrl = new EmployeeDirectoryController ();
 
-            var divisions = ctrl.GetObjects <DivisionInfo> ("ORDER BY [Title]").ToList ();
+            var divisions = ctrl.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
             divisions.Insert (0, new DivisionInfo () { 
                 DivisionID = Null.NullInteger, 
                 Title = LocalizeString ("NotSelected.Text") 
             });
             
-            comboDivisions.DataSource = divisions;
-            comboDivisions.DataBind ();
+            // comboDivisions.DataSource = divisions;
+            // comboDivisions.DataBind ();
+
+            treeDivisions.DataSource = divisions;
+            treeDivisions.DataBind ();
+
         }
                 
         /// <summary>
@@ -128,11 +132,11 @@ namespace R7.University.EmployeeDirectory
 
             // REVIEW: Unified filtering in both cases
 
-            if (comboDivisions.SelectedIndex > 0)
+            if (treeDivisions.SelectedNode != null &&  treeDivisions.SelectedNode.Value != Null.NullInteger.ToString())
             {
                 employees = ctrl.GetObjects<EmployeeInfo>(System.Data.CommandType.StoredProcedure, 
                     recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-                    comboDivisions.SelectedValue, 0, false
+                    treeDivisions.SelectedValue, 0, false
                 );
 
                 if (employees != null && employees.Any())

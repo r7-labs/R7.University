@@ -15,6 +15,7 @@ namespace R7.University.EmployeeDirectory
         protected GridView gridEmployees;
         protected TextBox textSearch;
         protected LinkButton linkSearch;
-        protected DnnComboBox comboDivisions;
+        // protected DnnComboBox comboDivisions;
+        protected DnnTreeView treeDivisions;
     }
 }

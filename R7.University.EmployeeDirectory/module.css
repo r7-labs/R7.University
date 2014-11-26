@@ -10,7 +10,17 @@
 
 .ViewEmployeeDirectory .textSearch { float:left;margin-right:0.5em }
 
-.ViewEmployeeDirectory .comboDivisions { float:left;margin-right:0.5em;width:200px!important }
+/* .ViewEmployeeDirectory .comboDivisions { float:left;margin-right:0.5em;width:200px!important } */
+
+.ViewEmployeeDirectory .linkDivisions 
+{ 
+    float:left;margin-right:0.5em;
+    width:200px;
+    max-height:18px;
+    overflow:hidden;
+    line-height:20px; /* hide all lines except first */
+    font-weight:normal 
+}
 
 .ViewEmployeeDirectory .linkSearch { float:left }
 
