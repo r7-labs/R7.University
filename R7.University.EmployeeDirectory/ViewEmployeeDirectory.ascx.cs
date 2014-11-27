@@ -37,7 +37,6 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University;
-using System.Diagnostics;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -92,44 +91,69 @@ namespace R7.University.EmployeeDirectory
         
         #endregion        
 
-        protected void linkSearch_Click (object sender, EventArgs e)
+        protected IEnumerable<EmployeeInfo> FindEmployees (int divisionId, string searchText)
+        {
+            var ctrl = new EmployeeDirectoryController ();
+            const bool recursive = false;
+
+            var employees = ctrl.GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
+                recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
+                divisionId, 0 /* sort type */, false /* show unpublished */
+            );
+
+            if (employees != null)
+            {
+                return employees.Where (em => 
+                    em.FullName.ToLower().Contains (searchText) || 
+                    em.Email.ToLower().Contains (searchText) || 
+                    em.SecondaryEmail.ToLower().Contains (searchText) || 
+                    em.Phone.ToLower().Contains (searchText) ||
+                    em.CellPhone.ToLower().Contains (searchText) ||
+                    em.WorkingPlace.ToLower().Contains (searchText)
+                );
+            }
+
+            return employees;
+        }
+
+        protected IEnumerable<EmployeeInfo> FindEmployees (string searchText)
         {
             var ctrl = new EmployeeDirectoryController ();
 
+            var employees = ctrl.GetObjects<EmployeeInfo>(
+                string.Format(@"WHERE [FirstName] + ' ' + [LastName] + ' ' + [OtherName] LIKE N'%{0}%' 
+                                   OR [Email] LIKE N'%{0}%' OR [SecondaryEmail] LIKE N'%{0}%'
+                                   OR [Phone] LIKE N'%{0}%' OR [CellPhone] LIKE N'%{0}%'
+                                   OR [WorkingPlace] LIKE N'%{0}%'
+                                   ORDER BY [LastName]", searchText));
+
+            // REVIEW: Should also sort by the position weight! (INNER JOIN OccupiedPositions)
+
+            return employees;
+        }
+
+        protected void linkSearch_Click (object sender, EventArgs e)
+        {
             var searchText = textSearch.Text.ToLower ();
 
-            IEnumerable<EmployeeInfo> employees = null;
-            IEnumerable<EmployeeInfo> filteredEmployees = null;
-            var recursive = false;
+            IEnumerable<EmployeeInfo> employees;
 
-            // REVIEW: Unified filtering in both cases
+            if (treeDivisions.SelectedNode != null && treeDivisions.SelectedNode.Value != Null.NullInteger.ToString())
+                employees = FindEmployees (int.Parse (treeDivisions.SelectedNode.Value), searchText); 
+            else
+                employees = FindEmployees (searchText); 
 
-            if (treeDivisions.SelectedNode != null &&  treeDivisions.SelectedNode.Value != Null.NullInteger.ToString())
+            if (employees != null && employees.Any())
             {
-                employees = ctrl.GetObjects<EmployeeInfo>(System.Data.CommandType.StoredProcedure, 
-                    recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-                    treeDivisions.SelectedValue, 0, false
-                );
-
-                if (employees != null && employees.Any())
-                {
-                    filteredEmployees = employees.Where (em => 
-                        em.FirstName.ToLower().Contains (searchText) || 
-                        em.LastName.ToLower().Contains (searchText) || 
-                        em.Email.ToLower().Contains (searchText) || 
-                        em.Phone.ToLower().Contains (searchText) ||
-                        em.WorkingPlace.ToLower().Contains (searchText)
-                    );
-                }
+                gridEmployees.DataSource = employees;
+                gridEmployees.DataBind();
             }
             else
-                filteredEmployees = ctrl.GetObjects<EmployeeInfo>(
-                    string.Format("WHERE [LastName] LIKE N'%{0}%'", searchText));
-
-            if (filteredEmployees != null && filteredEmployees.Any ())
             {
-                gridEmployees.DataSource = filteredEmployees;
-                gridEmployees.DataBind ();
+                // REVIEW: Show message
+
+                // nothing found
+                gridEmployees.Visible = false;
             }
         }
 
