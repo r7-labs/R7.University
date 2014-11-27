@@ -5,22 +5,23 @@
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
 
 <script type="text/javascript">
-function employeeDirectoryDivisionNodeClicked (sender, eventArgs)
-{
-    var node = eventArgs.get_node ();
-    $("#linkDivisions").text (node.get_text ());
-    $("#linkDivisions").attr ("title", node.get_text ());
+function ed_shorten (n, text) {
+    return (text.length > n) ? text.substring (0, n-1) + "\u2026" : text;
+}
+
+function ed_treeNodeClicked (sender, eventArgs) {
+    var nodeText = eventArgs.get_node ().get_text ();
+    $("#linkDivisions").text (ed_shorten (25, nodeText));
+    $("#linkDivisions").attr ("title", nodeText);
     $("#hiddenDivisions").hide ();
 }
 
-function employeeDirectoryDivisionLoad (sender, eventArgs)
-{
-    // set #linkDivisions text and tooltip by current treeview selection
+function ed_treeLoad (sender, eventArgs) {
     var nodes = sender.get_selectedNodes ();
-    if (nodes.length > 0)
-    {
-         $("#linkDivisions").text (nodes [0].get_text ());
-         $("#linkDivisions").attr ("title", nodes [0].get_text ());
+    if (nodes.length > 0) {
+        var nodeText = nodes [0].get_text ();
+         $("#linkDivisions").text (ed_shorten (25, nodeText));
+         $("#linkDivisions").attr ("title", nodeText);
     }
 }
 </script>
@@ -30,19 +31,22 @@ function employeeDirectoryDivisionLoad (sender, eventArgs)
     <div class="dnnFormItem dnnClear">
         <asp:TextBox id="textSearch" runat="server" CssClass="textSearch" />
         <%-- <dnn:DnnComboBox id="comboDivisions" runat="server" DataTextField="Title" DataValueField="DivisionID" CssClass="comboDivisions" /> --%>
-        <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("NotSelected.Text") %></a>
+        <div id="wrapperDivisions">
+            <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("NotSelected.Text") %></a>
+            <div id="hiddenDivisions">
+                <dnn:DnnTreeView id="treeDivisions" runat="server" 
+                    OnClientLoad="ed_treeLoad"
+                    OnClientNodeClicked="ed_treeNodeClicked" 
+                    DataTextField="Title"
+                    DataValueField="DivisionID"
+                    DataFieldID = "DivisionID"
+                    DataFieldParentID="ParentDivisionID"
+                />
+            </div>
+        </div>
         <asp:LinkButton id="linkSearch" runat="server" OnClick="linkSearch_Click" Text="Search" CssClass="dnnPrimaryAction linkSearch" />
     </div>
-    <div id="hiddenDivisions" style="display:none">
-        <dnn:DnnTreeView id="treeDivisions" runat="server" 
-            OnClientLoad="employeeDirectoryDivisionLoad"
-            OnClientNodeClicked="employeeDirectoryDivisionNodeClicked" 
-            DataTextField="Title"
-            DataValueField="DivisionID"
-            DataFieldID = "DivisionID"
-            DataFieldParentID="ParentDivisionID"
-        />
-    </div>
+
 
     <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid gridEmployees"
     GridLines="None" OnRowDataBound="gridEmployees_RowDataBound">
