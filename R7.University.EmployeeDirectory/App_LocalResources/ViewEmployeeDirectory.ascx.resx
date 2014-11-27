@@ -27,10 +27,10 @@
     <data xml:space="preserve" name="WorkingPlace.Header">
         <value>Working Place</value>
     </data>
+    <data xml:space="preserve" name="SelectDivision.Text">
+        <value>&lt; Select Division &gt;</value>
+    </data>
     <data xml:space="preserve" name="NotSelected.Text">
         <value>&lt; Not Selected &gt;</value>
-    </data>
-    <data xml:space="preserve" name="Divisions.Section">
-        <value>Divisions</value>
     </data>
 </root>

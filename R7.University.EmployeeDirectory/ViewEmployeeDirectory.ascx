@@ -32,7 +32,7 @@ function ed_treeLoad (sender, eventArgs) {
         <asp:TextBox id="textSearch" runat="server" CssClass="textSearch" />
         <%-- <dnn:DnnComboBox id="comboDivisions" runat="server" DataTextField="Title" DataValueField="DivisionID" CssClass="comboDivisions" /> --%>
         <div id="wrapperDivisions">
-            <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("NotSelected.Text") %></a>
+            <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("SelectDivision.Text") %></a>
             <div id="hiddenDivisions">
                 <dnn:DnnTreeView id="treeDivisions" runat="server" 
                     OnClientLoad="ed_treeLoad"
