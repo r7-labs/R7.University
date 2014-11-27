@@ -45,9 +45,8 @@ function ed_treeLoad (sender, eventArgs) {
                 />
             </div>
         </div>
-        <asp:LinkButton id="linkSearch" runat="server" OnClick="linkSearch_Click" Text="Search" CssClass="dnnPrimaryAction linkSearch" />
+        <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
     </div>
-
 
     <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid gridEmployees"
     GridLines="None" OnRowDataBound="gridEmployees_RowDataBound">
