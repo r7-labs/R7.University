@@ -41,7 +41,7 @@ using System.Diagnostics;
 
 namespace R7.University.EmployeeDirectory
 {
-    public partial class ViewEmployeeDirectory : PortalModuleBase, IActionable
+    public partial class ViewEmployeeDirectory : PortalModuleBase
     {
         #region Handlers 
         
@@ -91,34 +91,6 @@ namespace R7.University.EmployeeDirectory
         }
         
         #endregion        
-            
-        #region IActionable implementation
-        
-        public DotNetNuke.Entities.Modules.Actions.ModuleActionCollection ModuleActions
-        {
-            get
-            {
-                // create a new action to add an item, this will be added 
-                // to the controls dropdown menu
-                var actions = new ModuleActionCollection ();
-                actions.Add (
-                    GetNextActionID (), 
-                    Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
-                    ModuleActionType.AddContent, 
-                    "", 
-                    "", 
-                    Utils.EditUrl (this, "Edit"),
-                    false, 
-                    DotNetNuke.Security.SecurityAccessLevel.Edit,
-                    true, 
-                    false
-                );
-
-                return actions;
-            }
-        }
-
-        #endregion
 
         protected void linkSearch_Click (object sender, EventArgs e)
         {
