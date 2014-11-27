@@ -33,4 +33,10 @@
     <data xml:space="preserve" name="NotSelected.Text">
         <value>&lt; Not Selected &gt;</value>
     </data>
+    <data xml:space="preserve" name="labelInfo.Text">
+        <value>This form provides search for employees info. Enter any name, 
+        phone number, cabinet (working place) or email address part and (or)
+        select a division, then press &quot;Search&quot;. Employee details 
+        are available by the link with his(her) name.</value>
+    </data>
 </root>
