@@ -168,6 +168,7 @@ namespace R7.University.EmployeeDirectory
 
                 name.Text = employee.AbbrName;
                 name.ToolTip = employee.FullName;
+                name.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
 
                 phone.Text = employee.Phone;
 
