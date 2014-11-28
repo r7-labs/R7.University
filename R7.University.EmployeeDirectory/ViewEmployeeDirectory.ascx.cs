@@ -59,10 +59,7 @@ namespace R7.University.EmployeeDirectory
                 DivisionID = Null.NullInteger, 
                 Title = LocalizeString ("NotSelected.Text") 
             });
-            
-            // comboDivisions.DataSource = divisions;
-            // comboDivisions.DataBind ();
-
+           
             treeDivisions.DataSource = divisions;
             treeDivisions.DataBind ();
 
