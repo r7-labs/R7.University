@@ -3,28 +3,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
-
-<script type="text/javascript">
-function ed_shorten (n, text) {
-    return (text.length > n) ? text.substring (0, n-1) + "\u2026" : text;
-}
-
-function ed_treeNodeClicked (sender, eventArgs) {
-    var nodeText = eventArgs.get_node ().get_text ();
-    $("#linkDivisions").text (ed_shorten (25, nodeText));
-    $("#linkDivisions").attr ("title", nodeText);
-    $("#hiddenDivisions").hide ();
-}
-
-function ed_treeLoad (sender, eventArgs) {
-    var nodes = sender.get_selectedNodes ();
-    if (nodes.length > 0) {
-        var nodeText = nodes [0].get_text ();
-         $("#linkDivisions").text (ed_shorten (25, nodeText));
-         $("#linkDivisions").attr ("title", nodeText);
-    }
-}
-</script>
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.EmployeeDirectory/js/tree.js" />
 
 <div class="dnnForm dnnClear ViewEmployeeDirectory">
 <fieldset>
