@@ -45,20 +45,6 @@ namespace R7.University.EmployeeDirectory
 
         #region Properties for settings
 
-        /// <summary>
-        /// Template used to render the module content
-        /// </summary>
-        public string Template
-        {
-            get 
-            { 
-                return ReadSetting<string> ("template", 
-                    "<i>[CREATEDONDATE]<i> <b>[CREATEDBYUSERNAME]</b>:<br />[CONTENT]", 
-                    true); 
-            }
-            set { WriteSetting<string> ("template", value, true); }
-        }
-
         #endregion
     }
 }

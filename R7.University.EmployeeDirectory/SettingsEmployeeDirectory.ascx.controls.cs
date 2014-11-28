@@ -10,7 +10,5 @@ namespace R7.University.EmployeeDirectory
 {
     public partial class SettingsEmployeeDirectory
     {    
-        protected LabelControl lblTemplate;
-        protected TextBox txtTemplate;
     }
 }

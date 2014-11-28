@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <data xml:space="preserve" name="lblTemplate.Text">
-    <value>Template</value>
-  </data>
-    <data xml:space="preserve" name="lblTemplate.Help">
-    <value>Allows you to provide a custom template for displaying the items. Use parameters for dynamic substitution ( ie. [CONTENT] [CREATEDONDATE] [CREATEDBYUSER] [CREATEDBYUSERNAME] )</value>
-  </data>
     <data xml:space="preserve" name="ControlTitle_settings.Text">
     <value>EmployeeDirectory Settings</value>
   </data>

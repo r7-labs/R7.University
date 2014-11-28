@@ -46,11 +46,6 @@ namespace R7.University.EmployeeDirectory
                 if (!IsPostBack)
                 {
                     var settings = new EmployeeDirectorySettings (this);
-                                        
-                    if (!string.IsNullOrWhiteSpace (settings.Template))
-                    {
-                        txtTemplate.Text = settings.Template;
-                    }
                 }
             }
             catch (Exception ex)
@@ -67,8 +62,6 @@ namespace R7.University.EmployeeDirectory
             try
             {
                 var settings = new EmployeeDirectorySettings (this);
-                
-                settings.Template = txtTemplate.Text;
 
                 Utils.SynchronizeModule(this);
             }
