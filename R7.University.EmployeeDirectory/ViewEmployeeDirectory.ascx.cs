@@ -37,11 +37,52 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University;
+using System.Resources;
+using System.Threading;
 
 namespace R7.University.EmployeeDirectory
 {
     public partial class ViewEmployeeDirectory : PortalModuleBase
     {
+        #region Properties
+
+        // REVIEW: Use TabModuleId in session variable name
+
+        protected string SearchText 
+        {
+            get 
+            { 
+                var objSearchText = Session ["EmployeeDirectory.SearchText"];
+                if (objSearchText != null)
+                    return (string) objSearchText;
+
+                return string.Empty;
+            }
+            set 
+            { 
+                Session ["EmployeeDirectory.SearchText"] = value;
+            }
+        }
+
+        protected string SearchDivision
+        {
+            get 
+            { 
+                var objSearchDivision = Session ["EmployeeDirectory.SearchDivision"];
+                if (objSearchDivision != null)
+                    return (string) objSearchDivision;
+
+                return Null.NullInteger.ToString ();
+            }
+            set 
+            { 
+                Session ["EmployeeDirectory.SearchDivision"] = value;
+            }
+        }
+
+
+        #endregion
+
         #region Handlers 
         
         /// <summary>
@@ -62,7 +103,6 @@ namespace R7.University.EmployeeDirectory
            
             treeDivisions.DataSource = divisions;
             treeDivisions.DataBind ();
-
         }
                 
         /// <summary>
@@ -77,7 +117,14 @@ namespace R7.University.EmployeeDirectory
             {
                 if (!IsPostBack)
                 {
+                    if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
+                    {
+                        // restore current search
+                        textSearch.Text = SearchText;
+                        Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
 
+                        DoSearch (SearchText, SearchDivision);
+                    }
                 }
             }
             catch (Exception ex)
@@ -88,7 +135,7 @@ namespace R7.University.EmployeeDirectory
         
         #endregion        
 
-        protected IEnumerable<EmployeeInfo> FindEmployees (int divisionId, string searchText)
+        protected IEnumerable<EmployeeInfo> FindEmployees (string searchText, string divisionId)
         {
             var ctrl = new EmployeeDirectoryController ();
             const bool recursive = false;
@@ -98,8 +145,10 @@ namespace R7.University.EmployeeDirectory
                 divisionId, 0 /* sort type */, false /* show unpublished */
             );
 
-            if (employees != null)
+            if (employees != null && !string.IsNullOrWhiteSpace (searchText))
             {
+                searchText = searchText.ToLower ();
+
                 return employees.Where (em => 
                     em.FullName.ToLower().Contains (searchText) || 
                     em.Email.ToLower().Contains (searchText) || 
@@ -119,9 +168,9 @@ namespace R7.University.EmployeeDirectory
 
             var employees = ctrl.GetObjects<EmployeeInfo>(
                 string.Format(@"WHERE [FirstName] + ' ' + [LastName] + ' ' + [OtherName] LIKE N'%{0}%' 
-                                   OR [Email] LIKE N'%{0}%' OR [SecondaryEmail] LIKE N'%{0}%'
-                                   OR [Phone] LIKE N'%{0}%' OR [CellPhone] LIKE N'%{0}%'
-                                   OR [WorkingPlace] LIKE N'%{0}%'
+                                   OR [Email] LIKE N'%{0}%' OR [SecondaryEmail] LIKE N'%{0}%' 
+                                   OR [Phone] LIKE N'%{0}%' OR [CellPhone] LIKE N'%{0}%' 
+                                   OR [WorkingPlace] LIKE N'%{0}%' 
                                    ORDER BY [LastName]", searchText));
 
             // REVIEW: Should also sort by the position weight! (INNER JOIN OccupiedPositions)
@@ -129,19 +178,18 @@ namespace R7.University.EmployeeDirectory
             return employees;
         }
 
-        protected void linkSearch_Click (object sender, EventArgs e)
+        protected void DoSearch (string searchText, string searchDivision)
         {
-            var searchText = textSearch.Text.ToLower ();
+            IEnumerable<EmployeeInfo> employees = null;
 
-            IEnumerable<EmployeeInfo> employees;
-
-            if (treeDivisions.SelectedNode != null && treeDivisions.SelectedNode.Value != Null.NullInteger.ToString())
-                employees = FindEmployees (int.Parse (treeDivisions.SelectedNode.Value), searchText); 
-            else
+            if (Utils.ParseToNullableInt (searchDivision) != null)
+                employees = FindEmployees (searchText, searchDivision); 
+            else if (!string.IsNullOrEmpty (searchText))
                 employees = FindEmployees (searchText); 
 
             if (employees != null && employees.Any())
             {
+                gridEmployees.Visible = true;
                 gridEmployees.DataSource = employees;
                 gridEmployees.DataBind();
             }
@@ -152,6 +200,16 @@ namespace R7.University.EmployeeDirectory
                 // nothing found
                 gridEmployees.Visible = false;
             }
+        }
+
+        protected void linkSearch_Click (object sender, EventArgs e)
+        {
+            // save current search
+            SearchText = textSearch.Text;
+            SearchDivision = (treeDivisions.SelectedNode != null) ? 
+                treeDivisions.SelectedNode.Value : Null.NullInteger.ToString ();
+
+            DoSearch (SearchText, SearchDivision);
         }
 
         protected void gridEmployees_RowDataBound (object sender, GridViewRowEventArgs e)
