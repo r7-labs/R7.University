@@ -74,6 +74,31 @@ namespace R7.University.EmployeeDirectory
             set { Session ["EmployeeDirectory.SearchDivision." + TabModuleId] = value; }
         }
 
+        protected bool SearchIncludeSubdivisions
+        {
+            get 
+            { 
+                var objSearchIncludeSubdivisions = Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId];
+                if (objSearchIncludeSubdivisions != null)
+                    return (bool) objSearchIncludeSubdivisions;
+
+                return false;
+            }
+            set { Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId] = value; }
+        }
+
+        protected bool SearchTeachersOnly
+        {
+            get 
+            { 
+                var objSearchTeachersOnly = Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId];
+                if (objSearchTeachersOnly != null)
+                    return (bool) objSearchTeachersOnly;
+
+                return false;
+            }
+            set { Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId] = value; }
+        }
 
         #endregion
 
@@ -119,8 +144,10 @@ namespace R7.University.EmployeeDirectory
                         // restore current search
                         textSearch.Text = SearchText;
                         Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
+                        checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
+                        checkTeachersOnly.Checked = SearchTeachersOnly;
 
-                        DoSearch (SearchText, SearchDivision);
+                        DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions);
                     }
                 }
             }
@@ -132,10 +159,9 @@ namespace R7.University.EmployeeDirectory
         
         #endregion        
 
-        protected IEnumerable<EmployeeInfo> FindEmployees (string searchText, string divisionId)
+        protected IEnumerable<EmployeeInfo> FindEmployees (string searchText, string divisionId, bool recursive)
         {
             var ctrl = new EmployeeDirectoryController ();
-            const bool recursive = false;
 
             var employees = ctrl.GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
                 recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
@@ -175,12 +201,12 @@ namespace R7.University.EmployeeDirectory
             return employees;
         }
 
-        protected void DoSearch (string searchText, string searchDivision)
+        protected void DoSearch (string searchText, string searchDivision, bool recursive)
         {
             IEnumerable<EmployeeInfo> employees = null;
 
             if (Utils.ParseToNullableInt (searchDivision) != null)
-                employees = FindEmployees (searchText, searchDivision); 
+                employees = FindEmployees (searchText, searchDivision, recursive); 
             else if (!string.IsNullOrEmpty (searchText))
                 employees = FindEmployees (searchText); 
 
@@ -204,11 +230,16 @@ namespace R7.University.EmployeeDirectory
             // reset controls
             textSearch.Text = string.Empty;
             Utils.SelectAndExpandByValue (treeDivisions, Null.NullInteger.ToString ());
+            checkIncludeSubdivisions.Checked = false;
+            checkTeachersOnly.Checked = false;
+
             gridEmployees.Visible = false;
 
             // reset saved search
             SearchText = string.Empty;
             SearchDivision = Null.NullInteger.ToString ();
+            SearchIncludeSubdivisions = false;
+            SearchTeachersOnly = false;
         }
 
         protected void linkSearch_Click (object sender, EventArgs e)
@@ -230,7 +261,10 @@ namespace R7.University.EmployeeDirectory
                 SearchDivision = (treeDivisions.SelectedNode != null) ? 
                 treeDivisions.SelectedNode.Value : Null.NullInteger.ToString();
 
-                DoSearch(SearchText, SearchDivision);
+                SearchIncludeSubdivisions = checkIncludeSubdivisions.Checked;
+                SearchTeachersOnly = checkTeachersOnly.Checked;
+
+                DoSearch(SearchText, SearchDivision, SearchIncludeSubdivisions);
             }
         }
 

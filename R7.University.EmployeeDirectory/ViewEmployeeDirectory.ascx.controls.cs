@@ -16,5 +16,7 @@ namespace R7.University.EmployeeDirectory
         protected TextBox textSearch;
         protected LinkButton linkSearch;
         protected DnnTreeView treeDivisions;
+        protected CheckBox checkTeachersOnly;
+        protected CheckBox checkIncludeSubdivisions;
     }
 }
