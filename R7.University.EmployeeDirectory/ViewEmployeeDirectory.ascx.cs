@@ -52,32 +52,26 @@ namespace R7.University.EmployeeDirectory
         {
             get 
             { 
-                var objSearchText = Session ["EmployeeDirectory.SearchText"];
+                var objSearchText = Session ["EmployeeDirectory.SearchText." + TabModuleId];
                 if (objSearchText != null)
                     return (string) objSearchText;
 
                 return string.Empty;
             }
-            set 
-            { 
-                Session ["EmployeeDirectory.SearchText"] = value;
-            }
+            set { Session ["EmployeeDirectory.SearchText." + TabModuleId] = value; }
         }
 
         protected string SearchDivision
         {
             get 
             { 
-                var objSearchDivision = Session ["EmployeeDirectory.SearchDivision"];
+                var objSearchDivision = Session ["EmployeeDirectory.SearchDivision." + TabModuleId];
                 if (objSearchDivision != null)
                     return (string) objSearchDivision;
 
                 return Null.NullInteger.ToString ();
             }
-            set 
-            { 
-                Session ["EmployeeDirectory.SearchDivision"] = value;
-            }
+            set { Session ["EmployeeDirectory.SearchDivision." + TabModuleId] = value; }
         }
 
 
