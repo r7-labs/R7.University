@@ -27,11 +27,8 @@
     <data xml:space="preserve" name="WorkingPlace.Header">
         <value>Рабочее место</value>
     </data>
-    <data xml:space="preserve" name="SelectDivision.Text">
-        <value>&lt; Выберите подразделение &gt;</value>
-    </data>
-    <data xml:space="preserve" name="NotSelected.Text">
-        <value>&lt; Не выбрано &gt;</value>
+    <data xml:space="preserve" name="AllDivisions.Text">
+        <value>&lt; Все подразделения &gt;</value>
     </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Поиск</value>

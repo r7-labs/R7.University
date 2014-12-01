@@ -11,7 +11,7 @@
         <asp:Label id="labelInfo" runat="server" CssClass="dnnFormMessage dnnFormInfo" resourcekey="labelInfo.Text" />
         <asp:TextBox id="textSearch" runat="server" CssClass="textSearch" />
         <div id="wrapperDivisions">
-            <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("SelectDivision.Text") %></a>
+            <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("AllDivisions.Text") %></a>
             <div id="hiddenDivisions">
                 <dnn:DnnTreeView id="treeDivisions" runat="server" 
                     OnClientLoad="ed_treeLoad"

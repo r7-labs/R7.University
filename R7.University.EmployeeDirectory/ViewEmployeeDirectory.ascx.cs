@@ -98,7 +98,7 @@ namespace R7.University.EmployeeDirectory
             var divisions = ctrl.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
             divisions.Insert (0, new DivisionInfo () { 
                 DivisionID = Null.NullInteger, 
-                Title = LocalizeString ("NotSelected.Text") 
+                Title = LocalizeString ("AllDivisions.Text") 
             });
            
             treeDivisions.DataSource = divisions;
