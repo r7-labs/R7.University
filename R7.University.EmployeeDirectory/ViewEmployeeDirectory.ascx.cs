@@ -87,6 +87,9 @@ namespace R7.University.EmployeeDirectory
         {
             base.OnInit (e);
 
+            // display search hint
+            Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
+
             var ctrl = new EmployeeDirectoryController ();
 
             var divisions = ctrl.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();

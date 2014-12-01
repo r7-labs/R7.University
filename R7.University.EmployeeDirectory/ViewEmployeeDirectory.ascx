@@ -8,7 +8,6 @@
 <div class="dnnForm dnnClear ViewEmployeeDirectory">
 <fieldset>
     <div class="dnnFormItem dnnClear">
-        <asp:Label id="labelInfo" runat="server" CssClass="dnnFormMessage dnnFormInfo" resourcekey="labelInfo.Text" />
         <asp:TextBox id="textSearch" runat="server" CssClass="textSearch" />
         <div id="wrapperDivisions">
             <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("AllDivisions.Text") %></a>
