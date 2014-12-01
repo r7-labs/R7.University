@@ -36,6 +36,12 @@
     <data xml:space="preserve" name="SearchPhrase.Warning">
         <value>Search phrase should be at least 3 characters long, if no division specified.</value>
     </data>
+    <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
+        <value>Include Subdivisions</value>
+    </data>
+    <data xml:space="preserve" name="checkTeachersOnly.Text">
+        <value>Teachers Only</value>
+    </data>
     <data xml:space="preserve" name="SearchHint.Info">
         <value>This form provides search for employees info. Enter any name, 
         phone number, cabinet (working place) or email address part and (or)

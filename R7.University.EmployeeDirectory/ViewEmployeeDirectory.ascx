@@ -8,6 +8,8 @@
 <div class="dnnForm dnnClear ViewEmployeeDirectory">
 <fieldset>
     <div class="dnnFormItem dnnClear">
+        <asp:CheckBox id="checkTeachersOnly" runat="server" resourcekey="checkTeachersOnly.Text" />
+        <asp:CheckBox id="checkIncludeSubdivisions" runat="server" resourcekey="checkIncludeSubdivisions.Text" /><br />
         <asp:TextBox id="textSearch" runat="server" CssClass="textSearch" />
         <div id="wrapperDivisions">
             <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("AllDivisions.Text") %></a>
@@ -22,7 +24,7 @@
                 />
             </div>
         </div>
-        <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
+        <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction li-nkSearch" OnClick="linkSearch_Click" />
     </div>
 
     <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid gridEmployees"
