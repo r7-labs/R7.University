@@ -202,14 +202,39 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
+        protected void ResetSearch ()
+        {
+            // reset controls
+            textSearch.Text = string.Empty;
+            Utils.SelectAndExpandByValue (treeDivisions, Null.NullInteger.ToString ());
+            gridEmployees.Visible = false;
+
+            // reset saved search
+            SearchText = string.Empty;
+            SearchDivision = Null.NullInteger.ToString ();
+        }
+
         protected void linkSearch_Click (object sender, EventArgs e)
         {
-            // save current search
-            SearchText = textSearch.Text;
-            SearchDivision = (treeDivisions.SelectedNode != null) ? 
-                treeDivisions.SelectedNode.Value : Null.NullInteger.ToString ();
+            var searchText = textSearch.Text.Trim ();
 
-            DoSearch (SearchText, SearchDivision);
+            // if no division selected, check for search phrase length
+            if (treeDivisions.SelectedNode.Value == Null.NullInteger.ToString () && 
+                (searchText == null || searchText.Length < 3))
+            {
+                Utils.Message (this, "SearchPhrase.Warning", MessageType.Warning, true);
+
+                ResetSearch ();
+            }
+            else
+            {
+                // save current search
+                SearchText = searchText;
+                SearchDivision = (treeDivisions.SelectedNode != null) ? 
+                treeDivisions.SelectedNode.Value : Null.NullInteger.ToString();
+
+                DoSearch(SearchText, SearchDivision);
+            }
         }
 
         protected void gridEmployees_RowDataBound (object sender, GridViewRowEventArgs e)
