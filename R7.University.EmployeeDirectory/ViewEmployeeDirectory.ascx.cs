@@ -42,11 +42,11 @@ using System.Threading;
 
 namespace R7.University.EmployeeDirectory
 {
+    // TODO: Make module instances co-exist on same page
+
     public partial class ViewEmployeeDirectory : PortalModuleBase
     {
         #region Properties
-
-        // REVIEW: Use TabModuleId in session variable name
 
         protected string SearchText 
         {
