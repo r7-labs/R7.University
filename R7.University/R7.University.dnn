@@ -486,5 +486,85 @@
 				</component>
 			</components>
 		</package>
+		<package name="R7.University.EmployeeDirectory" type="Module" version="01.01.02">
+			<friendlyName>_EmployeeDirectory</friendlyName>
+			<description>This is a module to display information about employees.</description>
+			<owner>
+				<name>Roman M. Yagodin</name>
+				<organization>R7.Solutions</organization>
+				<url>http://www.r7space.ru</url>
+				<email>roman.yagodin@gmail.com</email>
+			</owner>
+			<license src="License.txt" />
+			<releaseNotes src="ReleaseNotes.txt" />
+			<dependencies>
+				<dependency type="CoreVersion">07.01.02</dependency>
+			</dependencies>
+			<components>
+				<component type="Module">
+					<desktopModule>
+				   		<moduleName>R7.University.EmployeeDirectory</moduleName>
+				   		<foldername>R7.University.EmployeeDirectory</foldername>
+				   		<businessControllerClass>R7.University.EmployeeDirectory.EmployeeDirectoryController</businessControllerClass>
+				   		<supportedFeatures>
+				     		<!-- <supportedFeature type="Portable" />
+				    		<supportedFeature type="Searchable" /> -->
+				   		</supportedFeatures>
+				   		<moduleDefinitions>
+				     		<moduleDefinition>
+				       			<friendlyName>R7.University.EmployeeDirectory</friendlyName>
+				       			<definitionName>R7.University.EmployeeDirectory</definitionName>
+				       			<defaultCacheTime>0</defaultCacheTime>
+				       			<moduleControls>
+				         			<moduleControl>
+					           			<controlKey />
+				           				<controlSrc>DesktopModules/R7.University/R7.University.EmployeeDirectory/ViewEmployeeDirectory.ascx</controlSrc>
+				           				<controlTitle />
+				           				<controlType>View</controlType>
+				          				<iconFile />
+				           				<helpUrl />
+				           				<supportsPartialRendering>False</supportsPartialRendering>
+				           				<supportsPopUps>False</supportsPopUps>
+				           				<viewOrder>0</viewOrder>
+					         		</moduleControl>
+									<moduleControl>
+										<controlKey>Details</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlTitle>Employee Details</controlTitle>
+										<controlType>View</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+				         			<moduleControl>
+						           		<controlKey>Settings</controlKey>
+						           		<controlSrc>DesktopModules/R7.University/R7.University.EmployeeDirectory/SettingsEmployeeDirectory.ascx</controlSrc>
+						          		<supportsPartialRendering>False</supportsPartialRendering>
+						           		<controlTitle>Settings</controlTitle>
+						           		<controlType>Edit</controlType>
+						           		<iconFile />
+						           		<helpUrl />
+						           		<supportsPartialRendering>False</supportsPartialRendering>
+						           		<supportsPopUps>False</supportsPopUps>
+						           		<viewOrder>0</viewOrder>
+				         			</moduleControl>
+				       			</moduleControls>
+				     		</moduleDefinition>
+				   		</moduleDefinitions>
+				 	</desktopModule>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<basePath>bin</basePath>
+						<assembly>
+							<path>bin</path>
+							<name>R7.University.EmployeeDirectory.dll</name>
+						</assembly>
+					</assemblies>
+				</component>
+			</components>
+		</package>
 	</packages>
 </dotnetnuke>

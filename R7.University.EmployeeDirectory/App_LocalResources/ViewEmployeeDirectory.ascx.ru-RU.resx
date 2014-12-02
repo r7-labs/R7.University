@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data xml:space="preserve" name="AddContent.Action">
+        <value>Добавить содержимое</value>
+    </data>
+    <data xml:space="preserve" name="ModuleHelp.Text">
+        <value>&lt;P&gt; Модуль R7.EmployeeDirectory&lt;/P&gt;</value>
+    </data>
+    <data xml:space="preserve" name="DefaultContent.Text">
+        <value>Что-то вместо содержимого</value>
+    </data>
+    <data xml:space="preserve" name="NothingToDisplay.Text">
+        <value>Нечего отображать, добавьте элементы.</value>
+    </data>
+    <data xml:space="preserve" name="Name.Header">
+        <value>Имя</value>
+    </data>
+    <data xml:space="preserve" name="Position.Header">
+        <value>Должность</value>
+    </data>
+    <data xml:space="preserve" name="Email.Header">
+        <value>Эл. почта</value>
+    </data>
+    <data xml:space="preserve" name="Phone.Header">
+        <value>Телефон</value>
+    </data>
+    <data xml:space="preserve" name="WorkingPlace.Header">
+        <value>Рабочее место</value>
+    </data>
+    <data xml:space="preserve" name="AllDivisions.Text">
+        <value>&lt; Все подразделения &gt;</value>
+    </data>
+    <data xml:space="preserve" name="linkSearch.Text">
+        <value>Поиск</value>
+    </data>
+    <data xml:space="preserve" name="SearchPhrase.Warning">
+        <value>Длина поисковой фразы должна быть не менее 3-х символов в том случае,
+        если поиск производится по всем подразделениям или с включением подчиненных подразделений.</value>
+    </data>
+    <data xml:space="preserve" name="SearchParams.Warning">
+        <value>Введите поисковую фразу и (или) выберите подразделение.</value>
+    </data>
+    <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
+        <value>Включая подчиненные</value>
+    </data>
+    <data xml:space="preserve" name="checkTeachersOnly.Text">
+        <value>Только ППС</value>
+    </data>
+    <data xml:space="preserve" name="NoEmployeesFound.Text">
+        <value>Не найдены записи о сотрудниках, удовлетворяющие заданным условиям поиска.</value>
+    </data>
+    <data xml:space="preserve" name="SearchHint.Info">
+        <value>Данная форма позволяет осуществлять поиск информации о сотрудниках. Введите любую часть имени, 
+        номера телефона, названия кабинета (рабочего места) или адреса электронной почты
+        и (или) выберите подразделение, затем нажмите &quot;Поиск&quot;. Подробная информация 
+        о сотруднике доступна по ссылке с его(ее) именем.</value>
+    </data>
+</root>

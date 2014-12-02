@@ -291,6 +291,13 @@ namespace R7.University
 			return employee;
 		}
 
+        public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool includeNonPublished, 
+            bool teachersOnly, bool includeSubdivisions, string divisionId)
+        {
+            return GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
+                "University_FindEmployees", searchText, includeNonPublished, teachersOnly, includeSubdivisions, divisionId);
+        }
+
 		public void AddEmployee (EmployeeInfo employee, 
 		                        List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
 		{
