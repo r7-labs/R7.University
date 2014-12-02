@@ -58,7 +58,7 @@ namespace R7.University.EmployeeDirectory
         {
             var employees = GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
                 recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-                divisionId, 0 /* sort by max weight */, includeNonPublished
+                divisionId, 0 /* sort by max weight */, includeNonPublished, 0 /* don't modify position weight */ 
             );
 
             if (employees != null && !string.IsNullOrWhiteSpace (searchText))
