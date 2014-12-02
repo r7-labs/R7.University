@@ -26,11 +26,11 @@
                 />
             </div>
         </div>
-        <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction li-nkSearch" OnClick="linkSearch_Click" />
+        <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
     </div>
 
-    <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid gridEmployees"
-    GridLines="None" OnRowDataBound="gridEmployees_RowDataBound">
+    <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false" CssClass="dnnGrid gridEmployees"
+        GridLines="None" OnRowDataBound="gridEmployees_RowDataBound">
         <HeaderStyle CssClass="dnnGridHeader" />
         <RowStyle CssClass="dnnGridItem" />
         <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -38,6 +38,12 @@
         <EditRowStyle CssClass="dnnFormInput" />
         <FooterStyle CssClass="dnnGridFooter" />
         <PagerStyle CssClass="dnnGridPager" />
+        <%--
+        <EmptyDataRowStyle CssClass="dnnFormMessage dnnFormInfo" />
+        <EmptyDataTemplate>
+            <%# LocalizeString ("NoEmployeesFound.Text") %>
+        </EmptyDataTemplate>
+        --%>
         <Columns>
             <asp:TemplateField>
                 <HeaderTemplate>
