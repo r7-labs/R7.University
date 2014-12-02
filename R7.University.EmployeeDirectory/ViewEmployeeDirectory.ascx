@@ -12,7 +12,7 @@
             <asp:CheckBox id="checkTeachersOnly" runat="server" resourcekey="checkTeachersOnly.Text" />
             <asp:CheckBox id="checkIncludeSubdivisions" runat="server" resourcekey="checkIncludeSubdivisions.Text" />
         </div>
-        <asp:TextBox id="textSearch" runat="server" CssClass="textSearch" />
+        <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
         <div class="wrapperDivisions">
             <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("AllDivisions.Text") %></a>
             <div id="hiddenDivisions">
