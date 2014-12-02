@@ -70,5 +70,8 @@ GO
 DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]
 GO
 
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
+GO
+
 DROP FUNCTION {databaseOwner}[{objectQualifier}University_DivisionsHierarchy]
 GO
