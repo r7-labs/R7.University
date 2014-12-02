@@ -34,7 +34,8 @@
         <value>Поиск</value>
     </data>
     <data xml:space="preserve" name="SearchPhrase.Warning">
-        <value>В том случае, если не указано подразделение, длина поисковой фразы должна быть не менее 3-х символов.</value>
+        <value>Длина поисковой фразы должна быть не менее 3-х символов в том случае,
+        если поиск производится по всем подразделениям или с включением подчиненных подразделений.</value>
     </data>
     <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
         <value>Включая подчиненные</value>

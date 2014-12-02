@@ -34,7 +34,8 @@
         <value>Search</value>
     </data>
     <data xml:space="preserve" name="SearchPhrase.Warning">
-        <value>Search phrase should be at least 3 characters long, if no division specified.</value>
+        <value>Search phrase should be at least 3 characters long 
+        when searching in all divisions (or including subdivisions).</value>
     </data>
     <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
         <value>Include Subdivisions</value>
