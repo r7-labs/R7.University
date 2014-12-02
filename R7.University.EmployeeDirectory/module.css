@@ -1,18 +1,8 @@
-﻿/* Place CSS for view control here */
+﻿.employeeDirectory .gridEmployees { width:100%; }
 
-.EmployeeDirectory_ContentList { width:100% }             
-.EmployeeDirectory_ContentListItem { text-align: left }
-.EmployeeDirectory_UserName { font-weight:bold }
-.EmployeeDirectory_CreateOnDate { font-style:italic }
-.EmployeeDirectory_Content { clear:both }
+.employeeDirectory .textSearch { float:left;margin-right:0.5em }
 
-.ViewEmployeeDirectory .gridEmployees { width:100%; }
-
-.ViewEmployeeDirectory .textSearch { float:left;margin-right:0.5em }
-
-/* .ViewEmployeeDirectory .comboDivisions { float:left;margin-right:0.5em;width:200px!important } */
-
-.ViewEmployeeDirectory .linkDivisions 
+.employeeDirectory .linkDivisions 
 { 
     width:15em;
     max-height:18px;
@@ -22,16 +12,16 @@
     text-shadow:none; 
 }
 
-.ViewEmployeeDirectory .linkSearch { float:left }
+.employeeDirectory .linkSearch { float:left }
 
-.ViewEmployeeDirectory #wrapperDivisions
+.employeeDirectory .wrapperDivisions
 {
     position:relative;
     float:left;
     margin-right:0.5em
 }
 
-.ViewEmployeeDirectory #hiddenDivisions
+.employeeDirectory #hiddenDivisions
 {
     display:none;
     position:absolute;
@@ -48,7 +38,7 @@
 }
 
 /* dnnGridHeader fix */
-.ViewEmployeeDirectory .dnnGridHeader th
+.employeeDirectory .dnnGridHeader th
 {
     border-bottom: 1px solid #c9c9c9;
     border-right: 1px solid #c9c9c9;
