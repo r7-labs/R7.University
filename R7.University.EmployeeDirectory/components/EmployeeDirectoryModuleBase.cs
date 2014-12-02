@@ -38,7 +38,7 @@ namespace R7.University.EmployeeDirectory
 
         protected EmployeeDirectoryController EmployeeDirectoryController
         {
-            get { return ctrl ?? (ctrl = new EmployeeDirectoryController  ()); }
+            get { return ctrl ?? (ctrl = new EmployeeDirectoryController ()); }
         }
 
         private EmployeeDirectorySettings settings = null;

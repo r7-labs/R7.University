@@ -1,5 +1,5 @@
 ﻿//
-// R7.EmployeeDirectoryController.cs
+// EmployeeDirectoryController.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -23,6 +23,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,16 +44,17 @@ namespace R7.University.EmployeeDirectory
         /// <summary>
         /// Initializes a new instance of the <see cref="R7.EmployeeDirectory.R7.EmployeeDirectoryController"/> class.
         /// </summary>
-        public EmployeeDirectoryController () : base ()
+        public EmployeeDirectoryController ()
+            : base ()
         { 
 
         }
 
         #region ModuleSearchBase implementaion
 
-        public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)
+        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
         {
-            var searchDocs = new List<SearchDocument>();
+            var searchDocs = new List<SearchDocument> ();
 
             // TODO: Realize GetModifiedSearchDocuments()
 

@@ -82,9 +82,11 @@ Global
 		$2.WhileNewLinePlacement = DoNotCare
 		$2.ArrayInitializerWrapping = DoNotChange
 		$2.ArrayInitializerBraceStyle = NextLine
-		$2.BeforeMethodCallParentheses = False
 		$2.NewLineBeforeConstructorInitializerColon = NewLine
 		$2.NewLineAfterConstructorInitializerColon = SameLine
+		$2.AfterDelegateDeclarationParameterComma = True
+		$2.BeforeSizeOfParentheses = True
+		$2.BeforeTypeOfParentheses = True
 		$2.SpacesAfterTypecast = True
 		$2.SpacesBeforeArrayDeclarationBrackets = True
 		$2.BlankLinesBeforeUsings = 1

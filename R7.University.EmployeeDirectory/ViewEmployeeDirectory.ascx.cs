@@ -1,5 +1,5 @@
 ﻿//
-// ViewR7.EmployeeDirectory.ascx.cs
+// ViewEmployeeDirectory.ascx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -23,6 +23,7 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,8 +38,6 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University;
-using System.Resources;
-using System.Threading;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -48,67 +47,58 @@ namespace R7.University.EmployeeDirectory
     {
         #region Properties
 
-        protected string SearchText 
+        protected string SearchText
         {
-            get 
+            get
             { 
                 var objSearchText = Session ["EmployeeDirectory.SearchText." + TabModuleId];
-                if (objSearchText != null)
-                    return (string) objSearchText;
-
-                return string.Empty;
+                return (string) objSearchText ?? string.Empty;
             }
             set { Session ["EmployeeDirectory.SearchText." + TabModuleId] = value; }
         }
 
         protected string SearchDivision
         {
-            get 
+            get
             { 
                 var objSearchDivision = Session ["EmployeeDirectory.SearchDivision." + TabModuleId];
-                if (objSearchDivision != null)
-                    return (string) objSearchDivision;
+                return (string) objSearchDivision ?? Null.NullInteger.ToString ();
 
-                return Null.NullInteger.ToString ();
             }
             set { Session ["EmployeeDirectory.SearchDivision." + TabModuleId] = value; }
         }
 
         protected bool SearchIncludeSubdivisions
         {
-            get 
+            get
             { 
                 var objSearchIncludeSubdivisions = Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId];
-                if (objSearchIncludeSubdivisions != null)
-                    return (bool) objSearchIncludeSubdivisions;
+                return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : false;
 
-                return false;
             }
             set { Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId] = value; }
         }
 
         protected bool SearchTeachersOnly
         {
-            get 
+            get
             { 
                 var objSearchTeachersOnly = Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId];
-                if (objSearchTeachersOnly != null)
-                    return (bool) objSearchTeachersOnly;
+                return objSearchTeachersOnly != null ? (bool) objSearchTeachersOnly : false;
 
-                return false;
             }
             set { Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId] = value; }
         }
-        
+
         #endregion
 
-        #region Handlers 
-        
+        #region Handlers
+
         /// <summary>
         /// Handles Init event for a control
         /// </summary>
         /// <param name="e">Event args.</param>
-        protected override void OnInit(EventArgs e)
+        protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
@@ -116,7 +106,7 @@ namespace R7.University.EmployeeDirectory
             Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
 
             var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
-            divisions.Insert (0, new DivisionInfo () { 
+            divisions.Insert (0, new DivisionInfo {
                 DivisionID = Null.NullInteger, 
                 Title = LocalizeString ("AllDivisions.Text") 
             });
@@ -124,14 +114,14 @@ namespace R7.University.EmployeeDirectory
             treeDivisions.DataSource = divisions;
             treeDivisions.DataBind ();
         }
-                
+
         /// <summary>
         /// Handles Load event for a control
         /// </summary>
         /// <param name="e">Event args.</param>
         protected override void OnLoad (EventArgs e)
         {
-            base.OnLoad(e);
+            base.OnLoad (e);
             
             try
             {
@@ -156,8 +146,8 @@ namespace R7.University.EmployeeDirectory
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
-        
-        #endregion        
+
+        #endregion
 
         protected bool SearchParamsOK (string searchText, string searchDivision, bool includeSubdivisions, bool showMessages = true)
         {
@@ -192,7 +182,7 @@ namespace R7.University.EmployeeDirectory
         protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions, bool teachersOnly)
         {
             var employees = EmployeeDirectoryController.FindEmployees (searchText,
-                IsEditable, teachersOnly, includeSubdivisions, searchDivision); 
+                                IsEditable, teachersOnly, includeSubdivisions, searchDivision); 
 
             if (employees == null || !employees.Any ())
             {
@@ -200,7 +190,7 @@ namespace R7.University.EmployeeDirectory
             }
 
             gridEmployees.DataSource = employees;
-            gridEmployees.DataBind();
+            gridEmployees.DataBind ();
 
             // make employees grid visible anyway
             gridEmployees.Visible = true;
@@ -229,7 +219,7 @@ namespace R7.University.EmployeeDirectory
         {
             var searchText = textSearch.Text.Trim ();
             var searchDivision = (treeDivisions.SelectedNode != null) ? 
-                treeDivisions.SelectedNode.Value : Null.NullInteger.ToString();
+                treeDivisions.SelectedNode.Value : Null.NullInteger.ToString ();
             var includeSubdivisions = checkIncludeSubdivisions.Checked;
             var teachersOnly = checkTeachersOnly.Checked;
 
@@ -242,7 +232,7 @@ namespace R7.University.EmployeeDirectory
                 SearchTeachersOnly = teachersOnly;
 
                 // perform search
-                DoSearch(SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
+                DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
             }
         }
 
@@ -252,19 +242,19 @@ namespace R7.University.EmployeeDirectory
             {
                 var employee = (EmployeeInfo) e.Row.DataItem;
 
-                var name = (HyperLink) e.Row.FindControl("linkName");
-                var position = (Literal) e.Row.FindControl("literalPosition");
-                var phone = (Literal) e.Row.FindControl("literalPhone");
-                var email = (HyperLink) e.Row.FindControl("linkEmail");
-                var workingPlace = (Literal) e.Row.FindControl("literalWorkingPlace");
+                var name = (HyperLink) e.Row.FindControl ("linkName");
+                var position = (Literal) e.Row.FindControl ("literalPosition");
+                var phone = (Literal) e.Row.FindControl ("literalPhone");
+                var email = (HyperLink) e.Row.FindControl ("linkEmail");
+                var workingPlace = (Literal) e.Row.FindControl ("literalWorkingPlace");
 
                 name.Text = employee.AbbrName;
                 name.ToolTip = employee.FullName;
-                name.NavigateUrl = Utils.EditUrl(this, "Details", "employee_id", employee.EmployeeID.ToString()).Replace("550,950", "450,950");
+                name.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
 
                 phone.Text = employee.Phone;
 
-                if (!string.IsNullOrWhiteSpace(employee.Email))
+                if (!string.IsNullOrWhiteSpace (employee.Email))
                 {
                     email.Text = employee.Email;
                     email.NavigateUrl = "mailto:" + employee.Email;
@@ -275,12 +265,12 @@ namespace R7.University.EmployeeDirectory
                 workingPlace.Text = employee.WorkingPlace;
 
                 // try to get prime position:
-                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx>(
-                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault();
+                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> (
+                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
 
                 if (primePosition != null)
                 {
-                    position.Text = Utils.FormatList(" ", primePosition.PositionShortTitle, primePosition.TitleSuffix);
+                    position.Text = Utils.FormatList (" ", primePosition.PositionShortTitle, primePosition.TitleSuffix);
                 }
 
             }
