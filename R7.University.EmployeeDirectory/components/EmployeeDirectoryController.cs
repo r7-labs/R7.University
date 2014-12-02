@@ -48,6 +48,36 @@ namespace R7.University.EmployeeDirectory
 
         }
 
+        public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool includeNonPublished)
+        {
+            return GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
+                "University_FindEmployees", searchText, includeNonPublished);
+        }
+
+        public IEnumerable<EmployeeInfo> FindEmployeesInDivision (string searchText, string divisionId, bool recursive, bool includeNonPublished)
+        {
+            var employees = GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
+                recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
+                divisionId, 0 /* sort by max weight */, includeNonPublished
+            );
+
+            if (employees != null && !string.IsNullOrWhiteSpace (searchText))
+            {
+                searchText = searchText.ToLower ();
+
+                return employees.Where (em => 
+                    em.FullName.ToLower().Contains (searchText) || 
+                    em.Email.ToLower().Contains (searchText) || 
+                    em.SecondaryEmail.ToLower().Contains (searchText) || 
+                    em.Phone.ToLower().Contains (searchText) ||
+                    em.CellPhone.ToLower().Contains (searchText) ||
+                    em.WorkingPlace.ToLower().Contains (searchText)
+                );
+            }
+
+            return employees;
+        }
+
         #region ModuleSearchBase implementaion
 
         public override IList<SearchDocument> GetModifiedSearchDocuments(ModuleInfo modInfo, DateTime beginDate)

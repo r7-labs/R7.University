@@ -157,52 +157,14 @@ namespace R7.University.EmployeeDirectory
         
         #endregion        
 
-        protected IEnumerable<EmployeeInfo> FindEmployees (string searchText, string divisionId, bool recursive)
-        {
-            var employees = EmployeeDirectoryController.GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
-                recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-                divisionId, 0 /* sort type */, false /* show unpublished */
-            );
-
-            if (employees != null && !string.IsNullOrWhiteSpace (searchText))
-            {
-                searchText = searchText.ToLower ();
-
-                return employees.Where (em => 
-                    em.FullName.ToLower().Contains (searchText) || 
-                    em.Email.ToLower().Contains (searchText) || 
-                    em.SecondaryEmail.ToLower().Contains (searchText) || 
-                    em.Phone.ToLower().Contains (searchText) ||
-                    em.CellPhone.ToLower().Contains (searchText) ||
-                    em.WorkingPlace.ToLower().Contains (searchText)
-                );
-            }
-
-            return employees;
-        }
-
-        protected IEnumerable<EmployeeInfo> FindEmployees (string searchText)
-        {
-            var employees = EmployeeDirectoryController.GetObjects<EmployeeInfo>(
-                string.Format(@"WHERE [FirstName] + ' ' + [LastName] + ' ' + [OtherName] LIKE N'%{0}%' 
-                                   OR [Email] LIKE N'%{0}%' OR [SecondaryEmail] LIKE N'%{0}%' 
-                                   OR [Phone] LIKE N'%{0}%' OR [CellPhone] LIKE N'%{0}%' 
-                                   OR [WorkingPlace] LIKE N'%{0}%' 
-                                   ORDER BY [LastName]", searchText));
-
-            // REVIEW: Should also sort by the position weight! (INNER JOIN OccupiedPositions)
-
-            return employees;
-        }
-
         protected void DoSearch (string searchText, string searchDivision, bool recursive)
         {
             IEnumerable<EmployeeInfo> employees = null;
 
             if (Utils.ParseToNullableInt (searchDivision) != null)
-                employees = FindEmployees (searchText, searchDivision, recursive); 
+                employees = EmployeeDirectoryController.FindEmployeesInDivision (searchText, searchDivision, recursive, IsEditable); 
             else if (!string.IsNullOrEmpty (searchText))
-                employees = FindEmployees (searchText); 
+                employees = EmployeeDirectoryController.FindEmployees (searchText, IsEditable); 
 
             if (employees != null && employees.Any())
             {
@@ -291,7 +253,8 @@ namespace R7.University.EmployeeDirectory
                 workingPlace.Text = employee.WorkingPlace;
 
                 // try to get prime position:
-                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
+                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> (
+                    "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
 
                 if (primePosition != null)
                 {

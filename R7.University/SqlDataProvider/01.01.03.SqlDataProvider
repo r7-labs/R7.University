@@ -1,0 +1,35 @@
+﻿-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+-- Drop existing stored procedures
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_FindEmployees]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+	DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
+GO
+
+-- Create stored procedures
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees] 
+	@searchText nvarchar (50),
+	@includeNonPublished bit
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	SET @searchText = N'%' + @searchText + '%';
+	
+	-- Sort by max weight of all employee positions (by default)
+	SELECT E.* FROM {databaseOwner}[{objectQualifier}University_Employees] AS E  
+		INNER JOIN {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight] AS EW
+			ON E.EmployeeID = EW.EmployeeID
+	WHERE (E.FirstName + ' ' + E.LastName + ' ' + E.OtherName LIKE @searchText
+          OR E.Email LIKE @searchText OR E.SecondaryEmail LIKE @searchText 
+          OR E.Phone LIKE @searchText OR E.CellPhone LIKE @searchText 
+          OR E.WorkingPlace LIKE @searchText)
+		  AND (E.IsPublished = 1 OR @includeNonPublished = 1) 
+	ORDER BY EW.MaxWeight DESC, E.LastName;
+END
+GO
