@@ -1,5 +1,5 @@
 ﻿//
-// SettingsR7.EmployeeDirectory.ascx.cs
+// EmployeeDirectoryModuleBase.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -23,50 +23,49 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using System.Web.UI.WebControls;
-using System.Linq;
 
+using System;
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Exceptions;
-using DotNetNuke.UI.UserControls;
-using R7.University;
 
 namespace R7.University.EmployeeDirectory
-{    
-    public partial class SettingsEmployeeDirectory : EmployeeDirectoryModuleSettingsBase
+{
+    /// <summary>
+    /// Employee directory module base.
+    /// </summary>
+    public class EmployeeDirectoryPortalModuleBase : PortalModuleBase
     {
-        /// <summary>
-        /// Handles the loading of the module setting for this control
-        /// </summary>
-        public override void LoadSettings ()
+        private EmployeeDirectoryController ctrl = null;
+
+        protected EmployeeDirectoryController EmployeeDirectoryController
         {
-            try
-            {
-                if (!IsPostBack)
-                {
-                }
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
+            get { return ctrl ?? (ctrl = new EmployeeDirectoryController  ()); }
         }
-      
-        /// <summary>
-        /// handles updating the module settings for this control
-        /// </summary>
-        public override void UpdateSettings ()
+
+        private EmployeeDirectorySettings settings = null;
+
+        protected EmployeeDirectorySettings EmployeeDirectorySettings
         {
-            try
-            {
-                Utils.SynchronizeModule(this);
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
+            get { return settings ?? (settings = new EmployeeDirectorySettings (this)); }
+        }
+    }
+
+    /// <summary>
+    /// Employee directory module settings base.
+    /// </summary>
+    public class EmployeeDirectoryModuleSettingsBase : ModuleSettingsBase
+    {
+        private EmployeeDirectoryController ctrl = null;
+
+        protected EmployeeDirectoryController EmployeeDirectoryController
+        {
+            get { return ctrl ?? (ctrl = new EmployeeDirectoryController ()); }
+        }
+
+        private EmployeeDirectorySettings settings = null;
+
+        protected EmployeeDirectorySettings EmployeeDirectorySettings
+        {
+            get { return settings ?? (settings = new EmployeeDirectorySettings (this)); }
         }
     }
 }
-

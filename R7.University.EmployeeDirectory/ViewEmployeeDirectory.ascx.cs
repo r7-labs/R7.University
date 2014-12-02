@@ -44,7 +44,7 @@ namespace R7.University.EmployeeDirectory
 {
     // TODO: Make module instances co-exist on same page
 
-    public partial class ViewEmployeeDirectory : PortalModuleBase
+    public partial class ViewEmployeeDirectory : EmployeeDirectoryPortalModuleBase
     {
         #region Properties
 
@@ -115,9 +115,7 @@ namespace R7.University.EmployeeDirectory
             // display search hint
             Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
 
-            var ctrl = new EmployeeDirectoryController ();
-
-            var divisions = ctrl.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
+            var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
             divisions.Insert (0, new DivisionInfo () { 
                 DivisionID = Null.NullInteger, 
                 Title = LocalizeString ("AllDivisions.Text") 
@@ -161,9 +159,7 @@ namespace R7.University.EmployeeDirectory
 
         protected IEnumerable<EmployeeInfo> FindEmployees (string searchText, string divisionId, bool recursive)
         {
-            var ctrl = new EmployeeDirectoryController ();
-
-            var employees = ctrl.GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
+            var employees = EmployeeDirectoryController.GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
                 recursive ? "University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
                 divisionId, 0 /* sort type */, false /* show unpublished */
             );
@@ -187,9 +183,7 @@ namespace R7.University.EmployeeDirectory
 
         protected IEnumerable<EmployeeInfo> FindEmployees (string searchText)
         {
-            var ctrl = new EmployeeDirectoryController ();
-
-            var employees = ctrl.GetObjects<EmployeeInfo>(
+            var employees = EmployeeDirectoryController.GetObjects<EmployeeInfo>(
                 string.Format(@"WHERE [FirstName] + ' ' + [LastName] + ' ' + [OtherName] LIKE N'%{0}%' 
                                    OR [Email] LIKE N'%{0}%' OR [SecondaryEmail] LIKE N'%{0}%' 
                                    OR [Phone] LIKE N'%{0}%' OR [CellPhone] LIKE N'%{0}%' 
@@ -296,9 +290,8 @@ namespace R7.University.EmployeeDirectory
 
                 workingPlace.Text = employee.WorkingPlace;
 
-                // get prime position:
-                var ctrl = new EmployeeDirectoryController ();
-                var primePosition = ctrl.GetObjects <OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
+                // try to get prime position:
+                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
 
                 if (primePosition != null)
                 {
