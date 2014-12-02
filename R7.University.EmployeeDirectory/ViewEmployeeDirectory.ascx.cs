@@ -146,7 +146,7 @@ namespace R7.University.EmployeeDirectory
                         checkTeachersOnly.Checked = SearchTeachersOnly;
 
                         // perform search
-                        if (CheckSearchParams (SearchText, SearchDivision, SearchIncludeSubdivisions))
+                        if (SearchParamsOK (SearchText, SearchDivision, SearchIncludeSubdivisions, false))
                             DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
                     }
                 }
@@ -159,7 +159,7 @@ namespace R7.University.EmployeeDirectory
         
         #endregion        
 
-        protected bool CheckSearchParams (string searchText, string searchDivision, bool includeSubdivisions)
+        protected bool SearchParamsOK (string searchText, string searchDivision, bool includeSubdivisions, bool showMessages = true)
         {
             var divisionIsSpecified = Utils.ParseToNullableInt (searchDivision) != null;
             var searchTextIsEmpty = string.IsNullOrWhiteSpace (searchText);
@@ -167,6 +167,10 @@ namespace R7.University.EmployeeDirectory
             // no search params - shouldn't perform search
             if (searchTextIsEmpty && !divisionIsSpecified)
             {
+                if (showMessages)
+                    Utils.Message (this, "SearchParams.Warning", MessageType.Warning, true);
+
+                gridEmployees.Visible = false;
                 return false;
             }
 
@@ -175,9 +179,10 @@ namespace R7.University.EmployeeDirectory
             if ((!divisionIsSpecified || (divisionIsSpecified && includeSubdivisions)) &&
                 (!searchTextIsEmpty && searchText.Length < 3))
             {
-                Utils.Message (this, "SearchPhrase.Warning", MessageType.Warning, true);
-                // ResetSearch ();
+                if (showMessages)
+                    Utils.Message (this, "SearchPhrase.Warning", MessageType.Warning, true);
 
+                gridEmployees.Visible = false;
                 return false;
             }
 
@@ -189,21 +194,19 @@ namespace R7.University.EmployeeDirectory
             var employees = EmployeeDirectoryController.FindEmployees (searchText,
                 IsEditable, teachersOnly, includeSubdivisions, searchDivision); 
 
-            if (employees != null && employees.Any())
+            if (employees == null || !employees.Any ())
             {
-                gridEmployees.Visible = true;
-                gridEmployees.DataSource = employees;
-                gridEmployees.DataBind();
+                Utils.Message (this, "NoEmployeesFound.Text", MessageType.Info, true);
             }
-            else
-            {
-                // REVIEW: Show message
 
-                // nothing found
-                gridEmployees.Visible = false;
-            }
+            gridEmployees.DataSource = employees;
+            gridEmployees.DataBind();
+
+            // make employees grid visible anyway
+            gridEmployees.Visible = true;
         }
 
+        /*
         protected void ResetSearch ()
         {
             // reset controls
@@ -212,6 +215,7 @@ namespace R7.University.EmployeeDirectory
             checkIncludeSubdivisions.Checked = false;
             checkTeachersOnly.Checked = false;
 
+            // hide employees grid
             gridEmployees.Visible = false;
 
             // reset saved search
@@ -219,7 +223,7 @@ namespace R7.University.EmployeeDirectory
             SearchDivision = Null.NullInteger.ToString ();
             SearchIncludeSubdivisions = false;
             SearchTeachersOnly = false;
-        }
+        }*/
 
         protected void linkSearch_Click (object sender, EventArgs e)
         {
@@ -229,7 +233,7 @@ namespace R7.University.EmployeeDirectory
             var includeSubdivisions = checkIncludeSubdivisions.Checked;
             var teachersOnly = checkTeachersOnly.Checked;
 
-            if (CheckSearchParams (searchText, searchDivision, includeSubdivisions))
+            if (SearchParamsOK (searchText, searchDivision, includeSubdivisions))
             {
                 // save current search
                 SearchText = searchText;
@@ -248,19 +252,19 @@ namespace R7.University.EmployeeDirectory
             {
                 var employee = (EmployeeInfo) e.Row.DataItem;
 
-                var name = (HyperLink) e.Row.FindControl ("linkName");
-                var position = (Literal) e.Row.FindControl ("literalPosition");
-                var phone = (Literal) e.Row.FindControl ("literalPhone");
-                var email = (HyperLink) e.Row.FindControl ("linkEmail");
-                var workingPlace = (Literal) e.Row.FindControl ("literalWorkingPlace");
+                var name = (HyperLink) e.Row.FindControl("linkName");
+                var position = (Literal) e.Row.FindControl("literalPosition");
+                var phone = (Literal) e.Row.FindControl("literalPhone");
+                var email = (HyperLink) e.Row.FindControl("linkEmail");
+                var workingPlace = (Literal) e.Row.FindControl("literalWorkingPlace");
 
                 name.Text = employee.AbbrName;
                 name.ToolTip = employee.FullName;
-                name.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
+                name.NavigateUrl = Utils.EditUrl(this, "Details", "employee_id", employee.EmployeeID.ToString()).Replace("550,950", "450,950");
 
                 phone.Text = employee.Phone;
 
-                if (!string.IsNullOrWhiteSpace (employee.Email))
+                if (!string.IsNullOrWhiteSpace(employee.Email))
                 {
                     email.Text = employee.Email;
                     email.NavigateUrl = "mailto:" + employee.Email;
@@ -271,15 +275,25 @@ namespace R7.University.EmployeeDirectory
                 workingPlace.Text = employee.WorkingPlace;
 
                 // try to get prime position:
-                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> (
-                    "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
+                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx>(
+                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault();
 
                 if (primePosition != null)
                 {
-                    position.Text = Utils.FormatList (" ", primePosition.PositionShortTitle, primePosition.TitleSuffix);
+                    position.Text = Utils.FormatList(" ", primePosition.PositionShortTitle, primePosition.TitleSuffix);
                 }
 
             }
+            /* HACK: Set empty CssClass for gridEmployees to remove borders around empty data message
+            else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
+            {
+                gridEmployees.CssClass = string.Empty;
+            }
+            else if (e.Row.RowType == DataControlRowType.Header)
+            {
+                gridEmployees.CssClass = "dnnGrid";
+            }
+            */
         }
     }
 }

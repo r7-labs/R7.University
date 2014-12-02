@@ -37,11 +37,17 @@
         <value>Search phrase should be at least 3 characters long 
         when searching in all divisions (or including subdivisions).</value>
     </data>
+    <data xml:space="preserve" name="SearchParams.Warning">
+        <value>Please enter search phrase and (or) select division.</value>
+    </data>
     <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
         <value>Include Subdivisions</value>
     </data>
     <data xml:space="preserve" name="checkTeachersOnly.Text">
         <value>Teachers Only</value>
+    </data>
+    <data xml:space="preserve" name="NoEmployeesFound.Text">
+        <value>No employee records found matching the specified search parameters.</value>
     </data>
     <data xml:space="preserve" name="SearchHint.Info">
         <value>This form provides search for employees info. Enter any name, 
