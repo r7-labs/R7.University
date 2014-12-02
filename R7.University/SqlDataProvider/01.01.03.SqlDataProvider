@@ -101,7 +101,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployeesByDivis
 	@divisionId int,
 	@sortType int,
 	@includeNonPublished bit,
-	@weightMod = 10
+	@weightMod int = 10
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -155,7 +155,7 @@ CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_GetRecursiveEmploye
 	@divisionId int,
 	@sortType int,
 	@includeNonPublished bit,
-	@weightMod = 10
+	@weightMod int = 10
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
