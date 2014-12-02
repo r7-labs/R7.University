@@ -44,6 +44,8 @@ namespace R7.University
 
 		public int? ParentDivisionID { get; set; }
 
+        public bool IsTeacher { get; set; }
+
 		#endregion
 
 		/// <summary>
