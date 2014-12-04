@@ -7,7 +7,7 @@
 
 <div class="dnnForm dnnClear employeeDirectory">
 <fieldset>
-    <div class="dnnFormItem dnnClear">
+    <asp:Panel runat="server" DefaultButton="linkSearch" CssClass="dnnFormItem dnnClear">
         <div class="wrapperSearchFlags">
             <asp:CheckBox id="checkTeachersOnly" runat="server" resourcekey="checkTeachersOnly.Text" />
             <asp:CheckBox id="checkIncludeSubdivisions" runat="server" resourcekey="checkIncludeSubdivisions.Text" />
@@ -27,7 +27,7 @@
             </div>
         </div>
         <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
-    </div>
+    </asp:Panel>
 
     <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false" CssClass="dnnGrid gridEmployees"
         GridLines="None" OnRowDataBound="gridEmployees_RowDataBound">

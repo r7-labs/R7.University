@@ -73,10 +73,12 @@
 		</asp:View>
 		<asp:View id="viewEmployees" runat="server">
 			<div id="employees" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink>
-				<asp:TextBox id="textEmployeeSearch" runat="server" Style="margin-left:1em" />
-                <asp:Button id="buttonEmployeeSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="Search.Text" OnClick="buttonEmployeeSearch_Click" />
-                <asp:Button id="buttonEmployeeResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonEmployeeSearch_Click" /><br />
+                <asp:Panel runat="server" DefaultButton="buttonEmployeeSearch">
+                    <asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink>
+    				<asp:TextBox id="textEmployeeSearch" runat="server" Style="margin-left:1em" />
+                    <asp:Button id="buttonEmployeeSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="Search.Text" OnClick="buttonEmployeeSearch_Click" />
+                    <asp:Button id="buttonEmployeeResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonEmployeeSearch_Click" /><br />
+                </asp:Panel>
                 <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
