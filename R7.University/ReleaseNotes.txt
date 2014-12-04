@@ -1,4 +1,13 @@
-﻿<h3>Version 1.1.3</h3>
+﻿<h3>Version 1.1.4</h3>
+<p>This release brings some feature changes and stabilization fixes for 1.1.0.</p>
+<ul>
+    <li>Fixed #52: Pressing Enter in the search entry should activate search.</li>
+    <li>Fixed #54: EmployeeDirectory: Could search with empty search phrase including subdivisions.</li>
+    <li>Implemented #51: EmployeeDirectory: Search by position titles.</li>
+    <li>Other small improvements and fixes.</li>
+</ul>
+
+<h3>Version 1.1.3</h3>
 <p>This release brings some feature changes and stabilization fixes for 1.1.0.</p>
 <ul>
     <li>New EmployeeDirectory module provides search for employees.</li>
