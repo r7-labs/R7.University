@@ -98,5 +98,6 @@
     <None Include="images\nophoto_ru_square.png" />
     <None Include="images\nophoto_template.svg" />
     <None Include="SqlDataProvider\01.01.03.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.01.04.SqlDataProvider" />
   </ItemGroup>
 </Project>
