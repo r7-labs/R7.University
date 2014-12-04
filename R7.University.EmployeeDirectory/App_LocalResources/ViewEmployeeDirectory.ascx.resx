@@ -6,17 +6,11 @@
     <data xml:space="preserve" name="ModuleHelp.Text">
         <value>&lt;P&gt;A R7.EmployeeDirectory module&lt;/P&gt;</value>
     </data>
-    <data xml:space="preserve" name="DefaultContent.Text">  
-        <value>Here is some sample content</value>
-    </data>
-    <data xml:space="preserve" name="NothingToDisplay.Text">
-        <value>Nothing to display, add some items.</value>
-    </data>
     <data xml:space="preserve" name="Name.Header">
         <value>Name</value>
     </data>
     <data xml:space="preserve" name="Position.Header">
-        <value>Position</value>
+        <value>Prime Position</value>
     </data>
     <data xml:space="preserve" name="Email.Header">
         <value>Email</value>
