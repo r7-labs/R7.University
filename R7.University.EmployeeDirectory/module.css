@@ -1,13 +1,18 @@
-﻿.employeeDirectory .gridEmployees { width:100%; }
+﻿.employeeDirectory .gridEmployees { width:100% }
 
-.employeeDirectory .textSearch { float:left;margin-right:0.5em }
+.employeeDirectory .textSearch 
+{ 
+    float:left;
+    width:33%!important;
+    margin-right:0.5em 
+}
 
 .employeeDirectory .linkDivisions 
 { 
-    width:15em;
+    width:20em;
     max-height:18px;
     overflow:hidden;
-    line-height:20px; /* hide all lines except first */
+    line-height:20px; /* hide all lines except 1st */
     font-weight:normal;
     text-shadow:none; 
 }
@@ -44,5 +49,5 @@
     border-right: 1px solid #c9c9c9;
     background: #f0f2f1;
     background: linear-gradient(top, #fff 0%,#f0f2f1 100%);
-    padding: 5px;
+    padding: 5px
 }
