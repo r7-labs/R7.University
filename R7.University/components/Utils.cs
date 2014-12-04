@@ -142,6 +142,23 @@ namespace R7.University
 			}
 		}
 
+        public static void ExpandToLevel (Telerik.Web.UI.RadTreeView tree, int maxLevel)
+        {
+            foreach (Telerik.Web.UI.RadTreeNode node in tree.Nodes)
+                ExpandNodeToLevel (node, 0, maxLevel);
+        }
+
+        private static void ExpandNodeToLevel (Telerik.Web.UI.RadTreeNode node, int level, int maxLevel)
+        {
+            if (level < maxLevel)
+            {
+                node.Expanded = true;
+                if (node.Nodes != null)
+                    foreach (Telerik.Web.UI.RadTreeNode child in node.Nodes)
+                        ExpandNodeToLevel (child, level + 1, maxLevel);
+            }
+        }
+
 		/// <summary>
 		/// Displays a message of messageType for specified module with heading, with optional localization.
 		/// </summary>

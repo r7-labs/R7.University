@@ -113,6 +113,9 @@ namespace R7.University.EmployeeDirectory
            
             treeDivisions.DataSource = divisions;
             treeDivisions.DataBind ();
+
+            // REVIEW: Level should be set in settings?
+            Utils.ExpandToLevel (treeDivisions, 2);
         }
 
         /// <summary>
