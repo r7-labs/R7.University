@@ -186,7 +186,7 @@ namespace R7.University.EmployeeDirectory
 
             if (employees == null || !employees.Any ())
             {
-                Utils.Message (this, "NoEmployeesFound.Text", MessageType.Info, true);
+                Utils.Message (this, "NoEmployeesFound.Warning", MessageType.Warning, true);
             }
 
             gridEmployees.DataSource = employees;
