@@ -9,7 +9,7 @@
 
 .employeeDirectory .linkDivisions 
 { 
-    width:20em;
+    min-width:15em;
     max-height:18px;
     overflow:hidden;
     line-height:20px; /* hide all lines except 1st */
