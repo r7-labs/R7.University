@@ -163,11 +163,11 @@ namespace R7.University.EmployeeDirectory
                 gridEmployees.Visible = false;
                 return false;
             }
-
-            // check for search phrase length 
-            // only if no division specified, or includeSubdivisions is set
-            if ((!divisionIsSpecified || (divisionIsSpecified && includeSubdivisions)) &&
-                (!searchTextIsEmpty && searchText.Length < 3))
+                
+            if ((!divisionIsSpecified || // no division specified
+                (divisionIsSpecified && includeSubdivisions)) && // division specified, but subdivisions flag is set
+                (searchTextIsEmpty || // search phrase is empty
+                (!searchTextIsEmpty && searchText.Length < 3))) // search phrase is too short
             {
                 if (showMessages)
                     Utils.Message (this, "SearchPhrase.Warning", MessageType.Warning, true);
