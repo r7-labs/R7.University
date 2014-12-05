@@ -72,6 +72,7 @@
     <Compile Include="components\EmployeePhotoLogic.cs" />
     <Compile Include="components\WorkingHoursLogic.cs" />
     <Compile Include="components\TextUtils.cs" />
+    <Compile Include="components\EmployeeEqualityComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -10,6 +10,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search;
 using R7.University;
+using DotNetNuke.Entities.Tabs;
 
 namespace R7.University
 {
@@ -294,8 +295,13 @@ namespace R7.University
         public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool includeNonPublished, 
             bool teachersOnly, bool includeSubdivisions, string divisionId)
         {
+            // University_FindEmployees SP could return some duplicate records - 
+            // not many, so using Distinct() extension method to get rid of them 
+            // is looking more sane than further SP SQL code complication.
+
             return GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
-                "University_FindEmployees", searchText, includeNonPublished, teachersOnly, includeSubdivisions, divisionId);
+                "University_FindEmployees", searchText, includeNonPublished, teachersOnly, includeSubdivisions, divisionId)
+                    .Distinct (new EmployeeEqualityComparer ());
         }
 
 		public void AddEmployee (EmployeeInfo employee, 
