@@ -42,6 +42,8 @@
     box-shadow:0 0 5px #ccc
 }
 
+.employeeDirectory ._nonpublished { background-color:#ffc }
+
 /* dnnGridHeader fix */
 .employeeDirectory .dnnGridHeader th
 {
