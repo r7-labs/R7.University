@@ -235,6 +235,13 @@
 						SelectedIndexChanged="comboAchievements_SelectedIndexChanged"
 					/>
 				</div>
+                <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
+                    <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
+                    <dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
+                        DataTextField="LocalizedAchivementType"
+                        DataValueField="AchievementType"
+                    />
+                </asp:Panel>
 				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
 					<asp:TextBox id="textAchievementTitle" runat="server" MaxLength="250" />
@@ -243,14 +250,7 @@
 					<dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
 					<asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
 				</asp:Panel>
-				<asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
-					<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
-					<dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
-						DataTextField="LocalizedAchivementType"
-						DataValueField="AchievementType"
-					/>
-				</asp:Panel>
-				<div class="dnnFormItem">
+                <div class="dnnFormItem">
 					<dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" Suffix=":" />
 					<asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
 				</div>
