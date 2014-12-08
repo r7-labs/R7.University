@@ -108,7 +108,7 @@ namespace R7.University.EmployeeList
 				var actions = new ModuleActionCollection ();
 				actions.Add (
 					GetNextActionID (), 
-					Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
+					Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
 					ModuleActionType.AddContent, 
 					"", 
 					"", 

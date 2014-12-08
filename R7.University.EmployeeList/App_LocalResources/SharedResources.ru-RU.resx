@@ -3,7 +3,7 @@
 	<data name="NotSelected.Text" xml:space="preserve">
     <value>-- не выбрано --</value>
   </data>
-	<data name="AddContent.Action" xml:space="preserve">
-    <value>Добавить содержимое</value>
+	<data name="AddEmployee.Action" xml:space="preserve">
+    <value>Добавить сотрудника</value>
   </data>
 </root>
