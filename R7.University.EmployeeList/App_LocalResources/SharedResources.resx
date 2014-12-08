@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<data name="NotSelected.Text" xml:space="preserve">
-    <value>&lt;Not Selected&gt;</value>
+    <value>&lt; Not Selected &gt;</value>
   </data>
 	<data name="AddEmployee.Action" xml:space="preserve">
     <value>Add Employee</value>
