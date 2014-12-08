@@ -374,6 +374,7 @@ namespace R7.University.Employee
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
+                // make link to the document
 				// WTF: empty DocumentURL's cells contains non-breakable spaces?
 				var documentUrl = e.Row.Cells [3].Text.Replace ("&nbsp;", "");
 				if (!string.IsNullOrWhiteSpace (documentUrl))

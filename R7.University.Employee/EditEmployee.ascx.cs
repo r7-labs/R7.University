@@ -641,17 +641,31 @@ namespace R7.University.Employee
 		{
 			// hide ItemID column, also in header
 			e.Row.Cells [1].Visible = false;
-			
-			if (sender == gridAchievements)
-			{
-				// description
-				e.Row.Cells [6].Visible = false;
-				e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [6].Text);
-			}
-	
+
+            if (sender == gridAchievements)
+            {
+                // hide description
+                e.Row.Cells [6].Visible = false;
+
+                // exclude header
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    // add description as row tooltip
+                    e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [6].Text);
+
+                    // make link to the document
+                    // WTF: empty DocumentURL's cells contains non-breakable spaces?
+                    var documentUrl = e.Row.Cells [7].Text.Replace ("&nbsp;", "");
+                    if (!string.IsNullOrWhiteSpace (documentUrl))
+                        e.Row.Cells [7].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
+                            Globals.LinkClick (documentUrl, TabId, ModuleId), LocalizeString ("DocumentUrl.Text"));
+                }
+            }
+
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
+
 				// find edit and delete linkbuttons
 				var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
 				var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
@@ -774,10 +788,9 @@ namespace R7.University.Employee
 			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
 			dt.Columns.Add (new DataColumn ("IsTitle", typeof(bool)));
 			dt.Columns.Add (new DataColumn ("AchievementType", typeof(string)));
-			dt.Columns.Add (new DataColumn ("Description"));
-			
-			// TODO: Add column for DocumentURL
-
+            dt.Columns.Add (new DataColumn ("Description", typeof(string)));
+            dt.Columns.Add (new DataColumn ("DocumentUrl", typeof(string)));
+           
 			var atTheMoment = LocalizeString("AtTheMoment.Text");
 
 			foreach (var achievement in achievements)
@@ -790,6 +803,7 @@ namespace R7.University.Employee
 				dr [col++] = achievement.IsTitle;
 				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
 				dr [col++] = achievement.Description;
+                dr [col++] = achievement.DocumentURL;
 				dt.Rows.Add (dr);
 			}
 
