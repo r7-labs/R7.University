@@ -22,7 +22,7 @@
         <value>Рабочее место</value>
     </data>
     <data xml:space="preserve" name="AllDivisions.Text">
-        <value>&lt;Все подразделения&gt;</value>
+        <value>&lt; Все подразделения &gt;</value>
     </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Поиск</value>
