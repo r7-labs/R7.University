@@ -1,4 +1,14 @@
-﻿<h3>Version 1.1.4</h3>
+﻿<h3>Version 1.1.5</h3>
+<p>This release brings some feature changes and stabilization fixes for 1.1.0.</p>
+<ul>
+    <li>EditEmployee: Control now fully localizable.</li>
+    <li>EditEmployee: Added russian localization resources.</li>
+    <li>EditEmployee: Display document URL in achivements edit form.<li>
+    <li>Implemented #55: ViewEmployeeDetails: Added edit button.</li>
+    <li>Other small improvements and fixes.</li>
+</ul>
+
+<h3>Version 1.1.4</h3>
 <p>This release brings some feature changes and stabilization fixes for 1.1.0.</p>
 <ul>
     <li>Fixed #52: Pressing Enter in the search entry should activate search.</li>
