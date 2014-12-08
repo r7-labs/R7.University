@@ -107,7 +107,7 @@ namespace R7.University.Employee
             pickerPhoto.FilePath = "Images/faces/";
            
 			// add default item to user list
-			comboUsers.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
+            comboUsers.AddItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ());
 
 			// init working hours
 			WorkingHoursLogic.Init (this, comboWorkingHours);
@@ -121,16 +121,13 @@ namespace R7.University.Employee
 
 			// add default items
 			positions.Insert (0, new PositionInfo () {
-				ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile),
-				PositionID = Null.NullInteger
+				ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
 			});
 			divisions.Insert (0, new DivisionInfo () {
-				ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile),
-				DivisionID = Null.NullInteger
+                ShortTitle = LocalizeString ("NotSelected.Text"), DivisionID = Null.NullInteger
 			});
 			commonAchievements.Insert (0, new AchievementInfo () {
-				ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile),
-				AchievementID = Null.NullInteger
+                ShortTitle = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
 			});
 
 			comboPositions.DataSource = positions;
@@ -481,7 +478,7 @@ namespace R7.University.Employee
 
 				// clear user combox & add default item
 				comboUsers.Items.Clear ();
-				comboUsers.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
+				comboUsers.AddItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ());
 
 				if (usersFoundTotal > 0)
 				{
@@ -761,9 +758,9 @@ namespace R7.University.Employee
 			DataRow dr;
 
 			dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
-			dt.Columns.Add (new DataColumn ("Division", typeof(string)));
-			dt.Columns.Add (new DataColumn ("Position", typeof(string)));
-			dt.Columns.Add (new DataColumn ("IsPrime", typeof(bool)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("Division.Column"), typeof(string)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("Position.Column"), typeof(string)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("IsPrime.Column"), typeof(bool)));
 
 			foreach (var op in occupiedPositions)
 			{
@@ -783,15 +780,15 @@ namespace R7.University.Employee
 			var dt = new DataTable ();
 			DataRow dr;
 			
-			dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
-			dt.Columns.Add (new DataColumn ("Year(s)", typeof(string)));
-			dt.Columns.Add (new DataColumn ("Title", typeof(string)));
-			dt.Columns.Add (new DataColumn ("IsTitle", typeof(bool)));
-			dt.Columns.Add (new DataColumn ("AchievementType", typeof(string)));
+            dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("Years.Column"), typeof(string)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("Title.Column"), typeof(string)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("IsTitle.Column"), typeof(bool)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("AchievementType.Column"), typeof(string)));
             dt.Columns.Add (new DataColumn ("Description", typeof(string)));
-            dt.Columns.Add (new DataColumn ("DocumentUrl", typeof(string)));
+            dt.Columns.Add (new DataColumn (LocalizeString ("DocumentUrl.Column"), typeof(string)));
            
-			var atTheMoment = LocalizeString("AtTheMoment.Text");
+			var atTheMoment = LocalizeString ("AtTheMoment.Text");
 
 			foreach (var achievement in achievements)
 			{

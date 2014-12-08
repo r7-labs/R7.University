@@ -13,11 +13,11 @@
 <div class="dnnForm dnnClear">
 	<div id="employeeTabs" class="dnnForm dnnClear">
 		<ul class="dnnAdminTabNav dnnClear">
-		    <li><a href="#employeeCommon">Common</a></li>
-		    <li><a href="#employeePositions">Positions</a></li>
-		    <li><a href="#employeeAchievements">Achievements</a></li>
-		    <li><a href="#employeeDisciplines">Disciplines</a></li>
-		    <li><a href="#employeeAbout">About</a></li>
+		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
+		    <li><a href="#employeePositions"><%= LocalizeString("PositionsTab.Text") %></a></li>
+		    <li><a href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></a></li>
+		    <li><a href="#employeeDisciplines"><%= LocalizeString("DisciplinesTab.Text") %></a></li>
+		    <li><a href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></a></li>
 		</ul>
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
 		<div id="employeeCommon">

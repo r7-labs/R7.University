@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
     <data name="NotSelected.Text" xml:space="preserve">
-        <value>&lt;Не выбрано&gt;</value>
+        <value>&lt; Не выбрано &gt;</value>
     </data>
     <data name="System.Text" xml:space="preserve">
         <value>Система</value>
@@ -37,7 +37,10 @@
         <value>Год(ы)</value>
     </data>
     <data name="Title.Column">
-        <value>Звание (роль)</value>
+        <value>Название (роль)</value>
+    </data>
+    <data name="IsTitle.Column">
+        <value>Титульное</value>
     </data>
     <data name="AchievementType.Column">
         <value>Тип</value>
@@ -53,5 +56,23 @@
     </data> 
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (факс)</value>
+    </data>
+    <data name="CommonTab.Text" xml:space="preserve">
+       <value>Общие</value>
+    </data>
+    <data name="ExperienceTab.Text" xml:space="preserve">
+        <value>Образование и опыт работы</value>
+    </data>
+    <data name="DisciplinesTab.Text" xml:space="preserve">
+        <value>Дисциплины</value>
+    </data>
+    <data name="AboutTab.Text" xml:space="preserve">
+        <value>О себе</value>
+    </data>
+    <data name="AchievementsTab.Text" xml:space="preserve">
+        <value>Достижения</value>
+    </data>
+    <data name="PositionsTab.Text" xml:space="preserve">
+        <value>Должности</value>
     </data>
 </root>

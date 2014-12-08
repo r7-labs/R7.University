@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <root>
     <data name="NotSelected.Text" xml:space="preserve">
-        <value>&lt;Not Selected&gt;</value>
+        <value>&lt; Not Selected &gt;</value>
     </data>
     <data name="System.Text" xml:space="preserve">
         <value>System</value>
@@ -39,6 +39,9 @@
     <data name="Title.Column">
         <value>Title (role)</value>
     </data>
+    <data name="IsTitle.Column">
+        <value>Is Title</value>
+    </data>
     <data name="AchievementType.Column">
         <value>Type</value>
     </data>
@@ -53,5 +56,23 @@
     </data>
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (fax)</value>
+    </data>
+    <data name="CommonTab.Text" xml:space="preserve">
+        <value>Common</value>
+    </data>
+    <data name="ExperienceTab.Text" xml:space="preserve">
+        <value>Experience</value>
+    </data>
+    <data name="DisciplinesTab.Text" xml:space="preserve">
+        <value>Disciplines</value>
+    </data>
+    <data name="AboutTab.Text" xml:space="preserve">
+        <value>About</value>
+    </data>
+    <data name="AchievementsTab.Text" xml:space="preserve">
+        <value>Achievements</value>
+    </data>
+    <data name="PositionsTab.Text" xml:space="preserve">
+        <value>Positions</value>
     </data>
 </root>

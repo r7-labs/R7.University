@@ -145,7 +145,7 @@
 		<value>Check to make employee record published.</value>
 	</data>
 	<data name="labelUserLookup.Text">
-		<value>User</value>
+		<value>User Lookup</value>
 	</data>
 	<data name="labelUserLookup.Help">
 		<value>Enter user email address or username and press User Lookup to find users.</value>
@@ -264,4 +264,13 @@
 	<data name="labelAchievements.Help">
 		<value>Select the achievement from dropdown by title or select achivement type and set full and short titles manually.</value>
 	</data>
+    <data name="Division.Column">
+        <value>Division</value>
+    </data>
+    <data name="Position.Column">
+        <value>Position</value>
+    </data>
+    <data name="IsPrime.Column">
+        <value>Is Prime</value>
+    </data>
 </root>

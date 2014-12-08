@@ -145,7 +145,7 @@
 		<value>Установите флажок, чтобы опубликовать сведения о сотруднике.</value>
 	</data>
 	<data name="labelUserLookup.Text">
-		<value>Пользователь</value>
+		<value>Найти пользователя</value>
 	</data>
 	<data name="labelUserLookup.Help">
 		<value>Введите адрес эл. почты или имя пользователя и нажмите Найти пользователя.</value>
@@ -264,4 +264,13 @@
 	<data name="labelAchievements.Help">
 		<value>Выберите достижение из списка по названию, или выберите тип достижения и введите полное и сокращенное названия достижения вручную.</value>
 	</data>
+    <data name="Division.Column">
+        <value>Подразделение</value>
+    </data>
+    <data name="Position.Column">
+        <value>Должность</value>
+    </data>
+    <data name="IsPrime.Column">
+        <value>Основная</value>
+    </data>
 </root>
