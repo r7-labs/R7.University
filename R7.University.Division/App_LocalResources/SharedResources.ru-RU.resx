@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <root>
 	<data name="NotSelected.Text" xml:space="preserve">
-    <value>-- не выбрано --</value>
+    <value>&lt;Не выбрано&gt;</value>
   </data>
 <data name="System.Text" xml:space="preserve">
     <value>Система</value>
