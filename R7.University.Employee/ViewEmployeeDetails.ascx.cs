@@ -81,6 +81,12 @@ namespace R7.University.Employee
 							{
 								linkVCard.Visible = true;
 								linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString ());
+                            }
+
+                            if (IsEditable)
+                            {
+                                linkEdit.Visible = true;
+                                linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employeeId.Value.ToString ());
 							}
 						}
 						else
