@@ -32,10 +32,6 @@ namespace R7.University.Division
 			// set url for Cancel link
 			linkCancel.NavigateUrl = Globals.NavigateURL ();
 
-			// wireup event handlers
-			buttonUpdate.Click += buttonUpdate_Click;
-			buttonDelete.Click += buttonDelete_Click;
-
 			// add confirmation dialog to delete button
 			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 
