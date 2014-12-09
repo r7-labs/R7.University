@@ -547,7 +547,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>EditEmployee</controlKey>
+										<controlKey>Edit</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
