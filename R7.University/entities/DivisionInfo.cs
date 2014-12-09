@@ -4,6 +4,7 @@ using DotNetNuke.Data;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Users;
+using DotNetNuke.Common.Utilities;
 
 namespace R7.University
 {
@@ -28,6 +29,19 @@ namespace R7.University
 		public DivisionInfo ()
 		{
 		}
+
+        /// <summary>
+        /// Empty division to use as default item with lists and treeviews
+        /// </summary>
+        /// <param name="title">Title.</param>
+        public static DivisionInfo DefaultItem (string title = "")
+        {
+            return new DivisionInfo { 
+                Title = title,
+                DivisionID = Null.NullInteger,
+                ParentDivisionID = null
+            };
+        }
 
 		#region IReferenceEntity implementation
 

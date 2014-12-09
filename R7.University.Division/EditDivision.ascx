@@ -17,11 +17,21 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblParentDivision" runat="server" ControlName="comboParentDivisions" Suffix=":" />
-			<dnn:DnnComboBox id="comboParentDivisions" runat="server" />
+            <dnn:DnnTreeView id="treeParentDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+                DataFieldID="DivisionID"
+                DataFieldParentID="ParentDivisionID"
+                DataValueField="DivisionID"
+                DataTextField="DisplayShortTitle"
+            />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblDivisionTerm" runat="server" ControlName="tsDivisionTerm" Suffix=":" />
-			<dnn:DnnTreeView ID="treeDivisionTerms" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE" />
+			<dnn:DnnTreeView ID="treeDivisionTerms" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE" 
+                DataFieldID="TermId"
+                DataFieldParentID="ParentTermId"
+                DataTextField="Name"
+                DataValueField="TermId"
+            />
 			<br /><br />
 		</div>
 		<div class="dnnFormItem">

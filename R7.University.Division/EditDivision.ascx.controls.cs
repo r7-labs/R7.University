@@ -22,7 +22,7 @@ namespace R7.University.Division
 		protected TextBox txtShortTitle;
 
 		protected LabelControl lblParentDivision;
-		protected DnnComboBox comboParentDivisions;
+        protected DnnTreeView treeParentDivisions;
 		protected LabelControl lblDivisionTerm;
 		protected DnnTreeView treeDivisionTerms;
 

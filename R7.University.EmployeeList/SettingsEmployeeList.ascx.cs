@@ -12,6 +12,26 @@ namespace R7.University.EmployeeList
 {
 	public partial class SettingsEmployeeList : EmployeeListModuleSettingsBase
 	{
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            // get divisions
+            var divisions = EmployeeListController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
+
+            // insert default item
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            // bind divisions to the tree
+            treeDivisions.DataSource = divisions;
+            treeDivisions.DataBind ();
+
+            // sort type
+            comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeight.Text"), "0");
+            comboSortType.AddItem (LocalizeString ("SortTypeByTotalWeight.Text"), "1");
+            comboSortType.AddItem (LocalizeString ("SortTypeByName.Text"), "2");
+        }
+
 		/// <summary>
 		/// Handles the loading of the module setting for this control
 		/// </summary>
@@ -21,43 +41,11 @@ namespace R7.University.EmployeeList
 			{
 				if (!IsPostBack)
 				{
-					// get divisions
-					var divisions = EmployeeListController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
-
-					// insert default item
-					divisions.Insert (0, new DivisionInfo () { 
-						DivisionID = Null.NullInteger, 
-						ParentDivisionID = null,
-						Title = Localization.GetString ("NotSelected.Text", LocalResourceFile),
-						ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile)
-					});
-
-					// bind list to a tree
-					treeDivisions.DataSource = divisions;
-					treeDivisions.DataBind ();
-
-					// select currently stored value
-					var treeNode = treeDivisions.FindNodeByValue (EmployeeListSettings.DivisionID.ToString ());
-					if (treeNode != null)
-					{
-						treeNode.Selected = true;
-
-						// expand all parent nodes
-						treeNode = treeNode.ParentNode;
-						while (treeNode != null)
-						{
-							treeNode.Expanded = true;
-							treeNode = treeNode.ParentNode;
-						} 
-					}
+			        // select node and expand tree to it
+                    Utils.SelectAndExpandByValue (treeDivisions, EmployeeListSettings.DivisionID.ToString ());
 
 					// check / uncheck IncludeSubdivisions
 					checkIncludeSubdivisions.Checked = EmployeeListSettings.IncludeSubdivisions;
-
-					// sort type
-					comboSortType.AddItem (Localization.GetString ("SortTypeByMaxWeight.Text", LocalResourceFile), "0");
-					comboSortType.AddItem (Localization.GetString ("SortTypeByTotalWeight.Text", LocalResourceFile), "1");
-					comboSortType.AddItem (Localization.GetString ("SortTypeByName.Text", LocalResourceFile), "2");
 
 					comboSortType.Select (EmployeeListSettings.SortType.ToString (), false);
 

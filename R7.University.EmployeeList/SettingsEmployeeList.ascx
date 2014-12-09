@@ -11,7 +11,7 @@
 				DataFieldID="DivisionID"
 				DataFieldParentID="ParentDivisionID"
 				DataValueField="DivisionID"
-				DataTextField="ShortTitle"
+				DataTextField="DisplayShortTitle"
 			/> 
 		</div>
 		<div class="dnnFormItem">

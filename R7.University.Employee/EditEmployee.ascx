@@ -165,7 +165,7 @@
 				<div class="dnnFormItem">
 					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" Suffix=":" />
 					<dnn:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
-						DataTextField="ShortTitle"
+						DataTextField="DisplayShortTitle"
 						DataValueField="DivisionID"
 						DataFieldID = "DivisionID"
 						DataFieldParentID="ParentDivisionID"

@@ -6,6 +6,7 @@
     <li>EditEmployee: Display document URL in achivements edit form.<li>
     <li>Implemented #55: ViewEmployeeDetails: Added edit button.</li>
     <li>Implemented #56: EmployeeDirectory: Mark unpublished employees.</li>
+    <li>Implemented #58: ViewEmployeeDetails: Paint tables with dnnGrid classes.</li>
     <li>Other small improvements and fixes.</li>
 </ul>
 

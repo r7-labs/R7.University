@@ -49,33 +49,16 @@ namespace R7.University.Division
 					// get divisions
 					var divisions = DivisionController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
 
-					// insert default item
-					divisions.Insert (0, new DivisionInfo () { 
-						DivisionID = Null.NullInteger, 
-						ParentDivisionID = null,
-						Title = Localization.GetString ("NotSelected.Text", LocalResourceFile),
-						ShortTitle = Localization.GetString ("NotSelected.Text", LocalResourceFile)
-					});
+                    // insert default item
+                    divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
-					// bind list to a tree
+					// bind divisions to the tree
 					treeDivisions.DataSource = divisions;
 					treeDivisions.DataBind ();
 
-					// select currently stored value
-					var treeNode = treeDivisions.FindNodeByValue (DivisionSettings.DivisionID.ToString ());
-					if (treeNode != null)
-					{
-						treeNode.Selected = true;
-
-						// expand all parent nodes
-						treeNode = treeNode.ParentNode;
-						while (treeNode != null)
-						{
-							treeNode.Expanded = true;
-							treeNode = treeNode.ParentNode;
-						} 
-					}
-
+                    // select node and expand tree to it
+                    Utils.SelectAndExpandByValue (treeDivisions, DivisionSettings.DivisionID.ToString ());
+					
 					textBarcodeWidth.Text = DivisionSettings.BarcodeWidth.ToString ();
 				}
 			}

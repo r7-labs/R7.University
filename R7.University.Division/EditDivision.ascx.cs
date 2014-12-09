@@ -39,13 +39,16 @@ namespace R7.University.Division
 			itemId = Utils.ParseToNullableInt (Request.QueryString ["division_id"]);
 		
 			// fill divisions dropdown
-			comboParentDivisions.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
-			foreach (var division in DivisionController.GetObjects<DivisionInfo>("ORDER BY [Title] ASC"))
-			{
-				// remove current division from a list
-				if (itemId == null || itemId != division.DivisionID)
-					comboParentDivisions.AddItem (division.ShortTitle, division.DivisionID.ToString ());
-			}
+            var divisions = DivisionController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").
+                // exclude current division
+                Where (d => (itemId == null || itemId != d.DivisionID)).ToList ();
+
+            // insert default item
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            // bind divisions to the tree
+            treeParentDivisions.DataSource = divisions;
+            treeParentDivisions.DataBind ();
 
 			// init working hours
 			WorkingHoursLogic.Init (this, comboWorkingHours);
@@ -57,27 +60,11 @@ namespace R7.University.Division
 
 			// add default term, 
 			// TermId = Null.NullInteger is set in cstor
-			
 			terms.Insert (0, new Term (Localization.GetString ("NotSelected.Text", LocalResourceFile)));
 
-			// setup treeview (from TermsList.cs)
-			treeDivisionTerms.DataTextField = "Name";
-			treeDivisionTerms.DataValueField = "TermId";
-			treeDivisionTerms.DataFieldID = "TermId";
-			treeDivisionTerms.DataFieldParentID = "ParentTermId";
-
-			treeDivisionTerms.DataSource = terms;
-			treeDivisionTerms.DataBind ();
-
-			/*
-			// fill terms dropdown
-			ddlDivisionTerm.Items.Add (new ListItem (Localization.GetString("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString()));
-
-
-			foreach (var term in new TermController ().GetTermsByVocabulary("Structure")) 
-				ddlDivisionTerm.Items.Add (new ListItem (term.Name, term.TermId.ToString()));
-			*/
-
+            // bind terms to the tree
+            treeDivisionTerms.DataSource = terms;
+            treeDivisionTerms.DataBind ();
 		}
 
 		/// <summary>
@@ -122,7 +109,7 @@ namespace R7.University.Division
 							WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 							
 							// select parent division
-							comboParentDivisions.Select (item.ParentDivisionID.ToString (), false);
+                            Utils.SelectAndExpandByValue (treeParentDivisions, item.ParentDivisionID.ToString ());
 
 							// select taxonomy term
 							var treeNode = treeDivisionTerms.FindNodeByValue (item.DivisionTermID.ToString ());
@@ -216,7 +203,7 @@ namespace R7.University.Division
 				item.Location = txtLocation.Text.Trim ();
 				item.WebSite = txtWebSite.Text.Trim ();
 				item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
-				item.ParentDivisionID = Utils.ParseToNullableInt (comboParentDivisions.SelectedValue);
+				item.ParentDivisionID = Utils.ParseToNullableInt (treeParentDivisions.SelectedValue);
 				item.DivisionTermID = Utils.ParseToNullableInt (treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;
 				item.DocumentUrl = urlDocumentUrl.Url;

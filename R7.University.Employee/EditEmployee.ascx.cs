@@ -119,20 +119,23 @@ namespace R7.University.Employee
 			positions.Insert (0, new PositionInfo () {
 				ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
 			});
-			divisions.Insert (0, new DivisionInfo () {
-                ShortTitle = LocalizeString ("NotSelected.Text"), DivisionID = Null.NullInteger
-			});
+
 			commonAchievements.Insert (0, new AchievementInfo () {
                 ShortTitle = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
 			});
 
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            // bind positions
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
 
+            // bind achievements
 			comboAchievements.SelectedIndexChanged += comboAchievements_SelectedIndexChanged;
 			comboAchievements.DataSource = commonAchievements;
 			comboAchievements.DataBind ();
 
+            // bind divisions
 			treeDivisions.DataSource = divisions;
 			treeDivisions.DataBind ();
 
