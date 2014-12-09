@@ -3,7 +3,7 @@
 <ul>
     <li>EditEmployee: Control now fully localizable.</li>
     <li>EditEmployee: Added russian localization resources.</li>
-    <li>EditEmployee: Display document URL in achievements edit form.<li>
+    <li>EditEmployee: Display document URL in achievements edit form.</li>
     <li>Implemented #55: ViewEmployeeDetails: Added edit button.</li>
     <li>Implemented #56: EmployeeDirectory: Mark unpublished employees.</li>
     <li>Implemented #58: ViewEmployeeDetails: Paint tables with dnnGrid classes.</li>
