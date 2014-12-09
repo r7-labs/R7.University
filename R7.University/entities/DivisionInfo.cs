@@ -35,6 +35,15 @@ namespace R7.University
 
 		public string ShortTitle { get; set; }
 
+        [IgnoreColumn]
+        public string DisplayShortTitle
+        {
+            get 
+            { 
+                return !string.IsNullOrWhiteSpace (ShortTitle)? ShortTitle : Title;
+            } 
+        }
+
 		#endregion
 
 		#region Properties
@@ -149,6 +158,7 @@ namespace R7.University
 				!Title.StartsWith (ShortTitle);
 			}
 		}
+
 
 		[IgnoreColumn]
 		public string SearchDocumentText

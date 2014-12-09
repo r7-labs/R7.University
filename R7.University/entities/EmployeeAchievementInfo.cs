@@ -16,7 +16,7 @@ namespace R7.University
 	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
 	[TableName ("University_EmployeeAchievements")]
 	[PrimaryKey ("EmployeeAchievementID", AutoIncrement = true)]
-	public class EmployeeAchievementInfo : IReferenceEntity
+	public class EmployeeAchievementInfo : ReferenceEntityBase
 	{
 		#region Fields
 
@@ -31,9 +31,15 @@ namespace R7.University
 
 		#region IReferenceEntity implementation
 
-		public string Title { get; set; }
-
-		public string ShortTitle { get; set; }
+        [IgnoreColumn]
+        public new string DisplayShortTitle
+        {
+            get 
+            { 
+                var shortTitle = !string.IsNullOrWhiteSpace (ShortTitle)? ShortTitle : Title;
+                return !string.IsNullOrWhiteSpace (TitleSuffix) ? shortTitle + " " + TitleSuffix : shortTitle; 
+            } 
+        }
 
 		#endregion
 
@@ -79,16 +85,6 @@ namespace R7.University
 				else
 					AchievementTypeString = null;
 			}
-		}
-
-		[IgnoreColumn]
-		public string DisplayShortTitle
-		{
-			get 
-			{ 
-				var shortTitle = !string.IsNullOrWhiteSpace(ShortTitle)? ShortTitle : Title;
-				return !string.IsNullOrWhiteSpace (TitleSuffix) ? shortTitle + " " + TitleSuffix : shortTitle; 
-			} 
 		}
 
 		[IgnoreColumn]

@@ -7,6 +7,8 @@ namespace R7.University
 		string Title { get; set; }
 
 		string ShortTitle { get; set; }
+
+        string DisplayShortTitle { get; }
 	}
 }
 

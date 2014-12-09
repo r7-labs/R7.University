@@ -34,21 +34,13 @@ namespace R7.University
 {
 	[TableName ("University_Achievements")]
 	[PrimaryKey ("AchievementID", AutoIncrement = true)]
-	public class AchievementInfo : IReferenceEntity
+	public class AchievementInfo : ReferenceEntityBase
 	{
 		public AchievementInfo ()
 		{
 		}
 
 		public int AchievementID { get; set; }
-
-		#region IReferenceEntity implementation
-
-		public string Title { get; set; }
-
-		public string ShortTitle { get; set; }
-
-		#endregion
 
 		[ColumnName ("AchievementType")]
 		public string AchievementTypeString { get; set; }
@@ -58,12 +50,6 @@ namespace R7.University
 		{
 			get { return (AchievementType)AchievementTypeString [0]; }
 			set { AchievementTypeString = ((char)value).ToString (); }
-		}
-		
-		[IgnoreColumn]
-		public string DisplayShortTitle
-		{
-			get { return !string.IsNullOrWhiteSpace(ShortTitle)? ShortTitle : Title; } 
 		}
 	}
 }
