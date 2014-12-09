@@ -12,9 +12,9 @@ namespace R7.University.Employee
 
 		public int DivisionID { get; set; }
 
-		public string PositionShortTitle { get; set; }
+        public string PositionShortTitle { get; set; }
 
-		public string DivisionShortTitle { get; set; }
+        public string DivisionShortTitle { get; set; }
 
 		public bool IsPrime { get; set; }
 
@@ -48,22 +48,24 @@ namespace R7.University.Employee
 		{
 			PositionID = opex.PositionID;
 			DivisionID = opex.DivisionID;
-			PositionShortTitle = opex.PositionShortTitle;
-			DivisionShortTitle = opex.DivisionShortTitle;
+            PositionShortTitle = PositionInfo.FormatShortTitle (opex.PositionTitle, opex.PositionShortTitle);
+            DivisionShortTitle = DivisionInfo.FormatShortTitle (opex.DivisionTitle, opex.DivisionShortTitle);
 			IsPrime = opex.IsPrime;
 			TitleSuffix = opex.TitleSuffix;
 		}
 
+        /*
 		public OccupiedPositionView (int positionID, string positionShortTitle, 
 		                              int divisionID, string divisionShortTitle, bool isPrime, string titleSuffix) : this ()
 		{
 			PositionID = positionID;
 			DivisionID = divisionID;
-			PositionShortTitle = positionShortTitle;
+            PositionShortTitle = positionShortTitle;
 			DivisionShortTitle = divisionShortTitle;
 			IsPrime = isPrime;
 			TitleSuffix = titleSuffix;
-		}
+        }
+        */
 
 		// NOTE: if [Serializable] is set, all *fields* serialized by default
 

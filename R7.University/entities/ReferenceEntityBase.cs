@@ -18,7 +18,12 @@ namespace R7.University
         [IgnoreColumn]
         public string DisplayShortTitle
         {
-            get { return !string.IsNullOrWhiteSpace (ShortTitle)? ShortTitle : Title; } 
+            get { return FormatShortTitle (Title, ShortTitle); } 
+        }
+
+        public static string FormatShortTitle (string title, string shortTitle)
+        {
+            return !string.IsNullOrWhiteSpace (shortTitle)? shortTitle : title;
         }
 
 		#endregion
