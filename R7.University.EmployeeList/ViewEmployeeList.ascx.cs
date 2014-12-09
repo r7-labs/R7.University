@@ -42,6 +42,10 @@ namespace R7.University.EmployeeList
 			base.OnInit (e);
 		}*/
 		
+        protected IEnumerable<EmployeeAchievementInfo> CommonTitleAchievements;
+
+        protected IEnumerable<OccupiedPositionInfoEx> CommonOccupiedPositions;
+
 		/// <summary>
 		/// Handles Load event for a control
 		/// </summary>
@@ -80,9 +84,26 @@ namespace R7.University.EmployeeList
 					}
 					else
 					{
-						// set container control visibility to common users
-						Cache_SetContainerVisible (true);
-						
+				        var employeeIds = Utils.FormatList (", ", items.Select (em => em.EmployeeID));
+
+                        // get title achievements for all selected employees
+                        // TODO: Use {databaseOwner} and {objectQualifier} 
+                        CommonTitleAchievements = EmployeeListController.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
+                            string.Format ("SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] IN ({0}) AND [IsTitle] = 1", 
+                                employeeIds)
+                        );
+
+                        // get occupied positions for all selected employees
+                        // NOTE: Current division positions go first, then checks IsPrime, then PositionWeight
+                        // REVIEW: add "AND [DivisionID] = @1" to display employee positions only from current division
+                        CommonOccupiedPositions = EmployeeListController.GetObjects<OccupiedPositionInfoEx> (
+                            string.Format ("WHERE [EmployeeID] IN ({0}) ORDER BY (CASE WHEN [DivisionID]={1} THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
+                                employeeIds, EmployeeListSettings.DivisionID)
+                        );
+
+                        // set container control visibility to common users
+                        Cache_SetContainerVisible (true);
+
 						// bind the data
 						listEmployees.DataSource = items;
 						listEmployees.DataBind ();
@@ -205,9 +226,8 @@ namespace R7.University.EmployeeList
 				labelAcademicDegreeAndTitle.Visible = false;
 			*/
 
-			// Employee titles
-			var achievements = EmployeeListController.GetObjects<EmployeeAchievementInfo> (
-				                   CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
+			// get current employee title achievements
+			var achievements = CommonTitleAchievements.Where (ach => ach.EmployeeID == employee.EmployeeID);
 
 			var titles = achievements.Select (ach => Utils.FirstCharToLower(ach.DisplayShortTitle)).ToList ();
 			
@@ -265,14 +285,8 @@ namespace R7.University.EmployeeList
 			else
 				linkUserProfile.Visible = false;
 
-			// occupied positions
-			// NOTE: Current division positions go first, then checks IsPrime, then PositionWeight
-			// TODO: Need to retrieve occupied positions more effectively, e.g. preload them
-			// REVIEW: add "AND [DivisionID] = @1" to display employee positions only from current division
-			var ops = EmployeeListController.GetObjects<OccupiedPositionInfoEx> (
-				          "WHERE [EmployeeID] = @0 ORDER BY (CASE WHEN [DivisionID]=@1 THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
-				          employee.EmployeeID, EmployeeListSettings.DivisionID
-			          );
+			// get current employee occupied positions
+			var ops = CommonOccupiedPositions.Where (op => op.EmployeeID == employee.EmployeeID);
 
 			// build positions value
 			var positionsVisible = false;
