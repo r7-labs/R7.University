@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/js/module.js" />
 
 <script type="text/javascript">
 	$(function() { $( "#employeeTabs" ).dnnTabs( <%= (!IsPostBack)? "{selected: 0}" : "" %>  ); });
