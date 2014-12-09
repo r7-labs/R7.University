@@ -34,44 +34,44 @@
 
 /* Employee details styles */
 
-.EmployeeDetails ._section,
-.EmployeeDetails ._positions,
-.EmployeeDetails ._website
+.employeeDetails ._section,
+.employeeDetails ._positions,
+.employeeDetails ._website
 {
 	display:block
 }
 
-.EmployeeDetails ._section,
-.EmployeeDetails ._positions
+.employeeDetails ._section,
+.employeeDetails ._positions
 {
 	margin-top:8px
 }
 
-.EmployeeDetails ._tabs,
-.EmployeeDetails ._label,
-.EmployeeDetails ._email,
-.EmployeeDetails ._barcode
+.employeeDetails ._tabs,
+.employeeDetails ._label,
+.employeeDetails ._email,
+.employeeDetails ._barcode
 {
 	display:inline-block
 }
-.EmployeeDetails ._label,
-.EmployeeDetails ._email
+.employeeDetails ._label,
+.employeeDetails ._email
 {
 	margin-right:8px
 }
 
-.EmployeeDetails ._photo
+.employeeDetails ._photo
 {
 	vertical-align:top;
 	margin-right:10px;
 	margin-top:2px
 }
 
-.EmployeeDetails ._tabs { width:auto }
+.employeeDetails ._tabs { width:auto }
 
-.EmployeeDetails ._tab { max-width:700px }
+.employeeDetails ._tab { max-width:700px }
 
-.EmployeeDetails ._barcode { border:5px solid #eee }
+.employeeDetails ._barcode { border:5px solid #eee }
 
 /* dnnGridHeader fix */
 .dnnGridHeader th 

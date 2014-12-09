@@ -7,7 +7,7 @@
 	$(function() { $( "#employeeTabs" ).dnnTabs( <%= (!IsPostBack)? "{selected: 0}" : "" %>  ); });
 </script>
 
-<div class="dnnForm dnnClear EmployeeDetails">
+<div class="dnnForm dnnClear employeeDetails">
 	
 	<asp:Image id="imagePhoto" runat="server" CssClass="_photo" />	
 	
