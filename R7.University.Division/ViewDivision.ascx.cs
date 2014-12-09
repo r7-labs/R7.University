@@ -304,10 +304,11 @@ namespace R7.University.Division
 			// exclude header & footer
 			if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
 			{
-				var division = e.Item.DataItem as DivisionInfo;
+                var division = (DivisionInfo) e.Item.DataItem;
 
-				var labelSubDivision = e.Item.FindControl ("labelSubDivision") as Label;
-				var linkSubDivision = e.Item.FindControl ("linkSubDivision") as HyperLink;
+                // find controls
+                var labelSubDivision = (Label) e.Item.FindControl ("labelSubDivision");
+                var linkSubDivision = (HyperLink) e.Item.FindControl ("linkSubDivision");
 
 				// home page 
 				int homeTabId;

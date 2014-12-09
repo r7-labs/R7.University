@@ -155,27 +155,23 @@ namespace R7.University.EmployeeList
 		/// <param name="e"></param>
 		protected void listEmployees_ItemDataBound (object sender, System.Web.UI.WebControls.DataListItemEventArgs e)
 		{
-			// use e.Item.DataItem as object of EmployeeListInfo class,
-			// as we really know it is:
-			var employee = e.Item.DataItem as EmployeeInfo;
+			// e.Item.DataItem is of EmployeeListInfo class
+		    var employee = (EmployeeInfo) e.Item.DataItem;
 			
 			// find controls in DataList item template
-			var linkEdit = e.Item.FindControl ("linkEdit") as HyperLink;
-			var imageEdit = e.Item.FindControl ("imageEdit") as Image;
-			var imagePhoto = e.Item.FindControl ("imagePhoto") as Image;
-			var linkDetails = e.Item.FindControl ("linkDetails") as HyperLink; 
-			var labelFullName = e.Item.FindControl ("labelFullName") as Label;
-			var labelAcademicDegreeAndTitle = e.Item.FindControl ("labelAcademicDegreeAndTitle") as Label;
-			var labelPositions = e.Item.FindControl ("labelPositions") as Label;
-			var labelPhones = e.Item.FindControl ("labelPhones") as Label;
-			var linkEmail = e.Item.FindControl ("linkEmail") as HyperLink;
-			var linkSecondaryEmail = e.Item.FindControl ("linkSecondaryEmail") as HyperLink;
-			var linkWebSite = e.Item.FindControl ("linkWebSite") as HyperLink;
-			var linkUserProfile = e.Item.FindControl ("linkUserProfile") as HyperLink;
+            var linkEdit = (HyperLink) e.Item.FindControl ("linkEdit");
+            var imageEdit = (Image) e.Item.FindControl ("imageEdit");
+            var imagePhoto = (Image) e.Item.FindControl ("imagePhoto");
+            var linkDetails = (HyperLink) e.Item.FindControl ("linkDetails"); 
+            var labelFullName = (Label) e.Item.FindControl ("labelFullName");
+            var labelAcademicDegreeAndTitle = (Label) e.Item.FindControl ("labelAcademicDegreeAndTitle");
+            var labelPositions = (Label) e.Item.FindControl ("labelPositions");
+            var labelPhones = (Label) e.Item.FindControl ("labelPhones");
+            var linkEmail = (HyperLink) e.Item.FindControl ("linkEmail");
+            var linkSecondaryEmail = (HyperLink) e.Item.FindControl ("linkSecondaryEmail");
+            var linkWebSite = (HyperLink) e.Item.FindControl ("linkWebSite");
+            var linkUserProfile = (HyperLink) e.Item.FindControl ("linkUserProfile");
 
-			// read module settings (may be useful in a future)
-			// var settings = new EmployeeListSettings (this);            
-            
 			// edit link
 			if (IsEditable)
 			{
@@ -184,7 +180,6 @@ namespace R7.University.EmployeeList
 				else
 					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString (), 
 						"division_id", EmployeeListSettings.DivisionID.ToString ());
-				// WTF: iconEdit.NavigateUrl = Utils.FormatURL (this, image.Url, false);
 			}
 
 			// make edit link visible in edit mode
@@ -192,21 +187,22 @@ namespace R7.University.EmployeeList
 			imageEdit.Visible = IsEditable;
             
 			// mark non-published employees, as they visible only to editors
-			if (!employee.IsPublished)
-			if (e.Item.ItemType == ListItemType.Item)
-				e.Item.CssClass = listEmployees.ItemStyle.CssClass + " _nonpublished";
-			else
-				e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " _nonpublished";
+            if (!employee.IsPublished)
+            {
+                if (e.Item.ItemType == ListItemType.Item)
+                    e.Item.CssClass = listEmployees.ItemStyle.CssClass + " _nonpublished";
+                else
+                    e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " _nonpublished";
+            }
 
 			// fill the controls
 
+            // employee photo
             EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeListSettings.PhotoWidth, true);
 
 			// photo fallback
 			if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl))
 			{
-				// TODO: Add fallback mini photo here
-				// imagePhoto.Visible = false;
 				linkDetails.Visible = false;
 			}
 			else
@@ -235,6 +231,7 @@ namespace R7.University.EmployeeList
 			titles.Add (employee.AcademicDegree);
 			titles.Add (employee.AcademicTitle);
 	
+            // employee title achievements
 			var strTitles = Utils.FormatList (", ", titles);
 			if (!string.IsNullOrWhiteSpace (strTitles))
 				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
@@ -266,7 +263,7 @@ namespace R7.University.EmployeeList
 			else
 				linkSecondaryEmail.Visible = false;
 
-			// WebSite
+			// webSite
 			if (!string.IsNullOrWhiteSpace (employee.WebSite))
 			{
 				linkWebSite.NavigateUrl = employee.FormatWebSiteUrl;
@@ -275,7 +272,7 @@ namespace R7.University.EmployeeList
 			else
 				linkWebSite.Visible = false;
 
-			// Profile link
+			// profile link
 			if (!Utils.IsNull<int> (employee.UserID))
 			{
 				linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
@@ -308,7 +305,7 @@ namespace R7.University.EmployeeList
 								Utils.FormatURL (this, op.HomePage, false), 
                                 DivisionInfo.FormatShortTitle (op.DivisionTitle, op.DivisionShortTitle));
 						else
-							strDivision = op.DivisionShortTitle;
+                            strDivision = DivisionInfo.FormatShortTitle (op.DivisionTitle, op.DivisionShortTitle);
 
 						// op.PositionShortTitle is a comma-separated 
 						// list of positions, including TitleSuffix

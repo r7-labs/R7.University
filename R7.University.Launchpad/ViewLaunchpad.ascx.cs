@@ -201,8 +201,8 @@ namespace R7.University.Launchpad
 		{
 			if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
 			{
-				var link = e.Item.FindControl ("linkTab") as LinkButton;
-				var tabName = e.Item.DataItem as string;
+                var link = (LinkButton) e.Item.FindControl ("linkTab");
+                var tabName = (string) e.Item.DataItem;
 				link.Text = Utils.FirstCharToUpperInvariant (tabName);
 				link.CommandArgument = tabName;
 			}
@@ -561,45 +561,6 @@ namespace R7.University.Launchpad
 				else if (sender == gridAchievements)
 					link.NavigateUrl = Utils.EditUrl (this, "EditAchievement", "achievement_id", e.Row.Cells [1].Text);
 			}
-		}
-
-		/// <summary>
-		/// Handles the items being bound to the datalist control. In this method we merge the data with the
-		/// template defined for this control to produce the result to display to the user
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		protected void lstContent_ItemDataBound (object sender, System.Web.UI.WebControls.DataListItemEventArgs e)
-		{
-			// use e.Item.DataItem as object of LaunchpadInfo class,
-			// as we really know it is:
-			var item = e.Item.DataItem as LaunchpadInfo;
-			
-			// find controls in DataList item template
-			var lblUserName = e.Item.FindControl ("lblUserName") as Label;
-			var lblCreatedOnDate = e.Item.FindControl ("lblCreatedOnDate") as Label;
-			var lblContent = e.Item.FindControl ("lblContent") as Label;
-			var linkEdit = e.Item.FindControl ("linkEdit") as HyperLink;
-			var iconEdit = e.Item.FindControl ("imageEdit") as Image;
-			
-			// read module settings (may be useful in a future)
-			// var settings = new LaunchpadSettings (this);            
-            
-			// edit link
-			if (IsEditable)
-			{
-				linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "launchpad_id", item.LaunchpadID.ToString ());
-				// WTF: iconEdit.NavigateUrl = Utils.FormatURL (this, image.Url, false);
-			}
-
-			// make edit link visible in edit mode
-			linkEdit.Visible = IsEditable;
-			iconEdit.Visible = IsEditable;
-            
-			// fill the controls
-			lblUserName.Text = item.CreatedByUserName;
-			lblCreatedOnDate.Text = item.CreatedOnDate.ToShortDateString ();
-			lblContent.Text = Server.HtmlDecode (item.Content);
 		}
 
 		/// <summary>
