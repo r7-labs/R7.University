@@ -37,7 +37,7 @@
 		<value>Укажите имя сотрудника.</value>
 	</data>
 	<data name="labelOtherName.Text">
-		<value>Отчетство</value>
+		<value>Отчество</value>
 	</data>
 	<data name="labelOtherName.Help">
 		<value>Введите отчество сотрудника.</value>
