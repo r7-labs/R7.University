@@ -3,10 +3,13 @@
 <ul>
     <li>EditEmployee: Control now fully localizable.</li>
     <li>EditEmployee: Added russian localization resources.</li>
-    <li>EditEmployee: Display document URL in achivements edit form.<li>
+    <li>EditEmployee: Display document URL in achievements edit form.<li>
     <li>Implemented #55: ViewEmployeeDetails: Added edit button.</li>
     <li>Implemented #56: EmployeeDirectory: Mark unpublished employees.</li>
     <li>Implemented #58: ViewEmployeeDetails: Paint tables with dnnGrid classes.</li>
+    <li>Implemented #32: Now short titles also optional for division and position entities.</li>
+    <li>EmployeeList: DB requests reduced from (1 + 2*NEmployees) to 3.</li>
+    <li>EditDivision: Use treeview to select parent division.</li>
     <li>Other small improvements and fixes.</li>
 </ul>
 
