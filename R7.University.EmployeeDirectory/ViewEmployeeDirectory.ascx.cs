@@ -282,7 +282,8 @@ namespace R7.University.EmployeeDirectory
 
                 if (primePosition != null)
                 {
-                    position.Text = Utils.FormatList (" ", primePosition.PositionShortTitle, primePosition.TitleSuffix);
+                    position.Text = Utils.FormatList (" ", PositionInfo.FormatShortTitle (primePosition.PositionTitle, 
+                        primePosition.PositionShortTitle), primePosition.TitleSuffix);
                 }
 
             }
