@@ -174,7 +174,7 @@
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" Suffix=":" />
 					<dnn:DnnComboBox id="comboPositions" runat="server" 
-						DataTextField="ShortTitle"
+						DataTextField="DisplayShortTitle"
 						DataValueField="PositionID"
 					/>
 				</div>

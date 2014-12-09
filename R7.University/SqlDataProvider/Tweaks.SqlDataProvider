@@ -15,3 +15,11 @@ GO
 ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
 ALTER COLUMN [AcademicTitle] [nvarchar](250) NULL
 GO
+
+UPDATE {databaseOwner}[{objectQualifier}University_Divisions]
+	SET [ShortTitle] = NULL WHERE [ShortTitle] = [Title]
+GO
+
+UPDATE {databaseOwner}[{objectQualifier}University_Positions]
+	SET [ShortTitle] = NULL WHERE [ShortTitle] = [Title]
+GO  

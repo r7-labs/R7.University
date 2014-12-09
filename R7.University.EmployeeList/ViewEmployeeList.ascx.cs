@@ -283,21 +283,25 @@ namespace R7.University.EmployeeList
 				{
 					// do not display division title for high-level divisions AND current division
 					if (op.DivisionID == EmployeeListSettings.DivisionID || op.ParentDivisionID == null)
-						strOps = Utils.FormatList ("; ", strOps, op.PositionShortTitle);
+                        strOps = Utils.FormatList ("; ", strOps, 
+                            PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle));
 					else
 					{
 						// division name or link
 						var strDivision = "";
 						if (!string.IsNullOrWhiteSpace (op.HomePage))
 							strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
-								Utils.FormatURL (this, op.HomePage, false), op.DivisionShortTitle);
+								Utils.FormatURL (this, op.HomePage, false), 
+                                DivisionInfo.FormatShortTitle (op.DivisionTitle, op.DivisionShortTitle));
 						else
 							strDivision = op.DivisionShortTitle;
 
 						// op.PositionShortTitle is a comma-separated 
 						// list of positions, including TitleSuffix
 						strOps = Utils.FormatList ("; ", strOps, 
-							Utils.FormatList (": ", op.PositionShortTitle, strDivision));
+                            Utils.FormatList (": ", 
+                                PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle), 
+                                strDivision));
 					}
 				}
 

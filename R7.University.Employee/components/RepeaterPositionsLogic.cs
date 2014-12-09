@@ -43,7 +43,7 @@ namespace R7.University.Employee
                 var labelDivision = (Label) e.Item.FindControl ("labelDivision");
                 var linkDivision = (HyperLink) e.Item.FindControl ("linkDivision");
 
-                labelPosition.Text = opex.PositionShortTitle;
+                labelPosition.Text = PositionInfo.FormatShortTitle (opex.PositionTitle, opex.PositionShortTitle);
 
                 // don't display division title for highest level divisions
                 if (Utils.IsNull (opex.ParentDivisionID))
@@ -53,18 +53,20 @@ namespace R7.University.Employee
                 }
                 else
                 {
+                    var divisionShortTitle = DivisionInfo.FormatShortTitle (opex.DivisionTitle, opex.DivisionShortTitle);
+
                     if (!string.IsNullOrWhiteSpace (opex.HomePage))
                     {
                         // link to division's homepage
                         labelDivision.Visible = false;
                         linkDivision.NavigateUrl = Utils.FormatURL (module, opex.HomePage, false);
-                        linkDivision.Text = opex.DivisionShortTitle;
+                        linkDivision.Text = divisionShortTitle;
                     }
                     else
                     {   
                         // only division title
                         linkDivision.Visible = false;
-                        labelDivision.Text = opex.DivisionShortTitle;
+                        labelDivision.Text = divisionShortTitle;
                     }
 
                     labelPosition.Text += ": "; // to prev label!
