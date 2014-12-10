@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data xml:space="preserve" name="ModuleHelp.Text">
+        <value>&lt;P&gt;A R7.DivisionDirectory module&lt;/P&gt;</value>
+    </data>
+    <data xml:space="preserve" name="Title.Header">
+        <value>Division</value>
+    </data>
+    <data xml:space="preserve" name="Email.Header">
+        <value>Email</value>
+    </data>
+    <data xml:space="preserve" name="Phone.Header">
+        <value>Phone</value>
+    </data>
+    <data xml:space="preserve" name="Location.Header">
+        <value>Location</value>
+    </data>
+    <data xml:space="preserve" name="Document.Header">
+        <value>Regulations</value>
+    </data>
+    <data xml:space="preserve" name="DocumentUrl.Text">
+        <value>Open</value>
+    </data>
+    <data xml:space="preserve" name="AllDivisions.Text">
+        <value>&lt; All Divisions &gt;</value>
+    </data>
+    <data xml:space="preserve" name="linkSearch.Text">
+        <value>Search</value>
+    </data>
+    <data xml:space="preserve" name="SearchPhrase.Warning">
+        <value>Search phrase should be at least 3 characters long 
+        when searching in all divisions (or including subdivisions).</value>
+    </data>
+    <data xml:space="preserve" name="SearchParams.Warning">
+        <value>Please enter search phrase and (or) select division.</value>
+    </data>
+    <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
+        <value>Include Subdivisions</value>
+    </data>
+    <data xml:space="preserve" name="NoDivisionsFound.Warning">
+        <value>No division records found matching the specified search parameters.</value>
+    </data>
+    <data xml:space="preserve" name="SearchHint.Info">
+        <value>This form provides search for division info. Enter any title, 
+        phone or fax number, cabinet (location) or email address part and (or)
+        select a division, then press &quot;Search&quot;. Division details 
+        are available on division's homepage by the link with its title.</value>
+    </data>
+</root>
