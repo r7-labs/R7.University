@@ -282,10 +282,10 @@ namespace R7.University.EmployeeDirectory
 
                 if (primePosition != null)
                 {
-                    position.Text = Utils.FormatList (" ", PositionInfo.FormatShortTitle (primePosition.PositionTitle, 
-                        primePosition.PositionShortTitle), primePosition.TitleSuffix);
+                    position.Text = Utils.FormatList (": ", Utils.FormatList (" ", 
+                        PositionInfo.FormatShortTitle (primePosition.PositionTitle, primePosition.PositionShortTitle), 
+                        primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }
-
             }
             /* HACK: Set empty CssClass for gridEmployees to remove borders around empty data message
             else if (e.Row.RowType == DataControlRowType.EmptyDataRow)

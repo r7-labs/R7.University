@@ -292,28 +292,12 @@ namespace R7.University.EmployeeList
 				var strOps = string.Empty;
 				foreach (var op in OccupiedPositionInfoEx.GroupByDivision (ops))
 				{
-					// do not display division title for high-level divisions AND current division
-					if (op.DivisionID == EmployeeListSettings.DivisionID || op.ParentDivisionID == null)
-                        strOps = Utils.FormatList ("; ", strOps, 
-                            PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle));
-					else
-					{
-						// division name or link
-						var strDivision = "";
-						if (!string.IsNullOrWhiteSpace (op.HomePage))
-							strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
-								Utils.FormatURL (this, op.HomePage, false), 
-                                DivisionInfo.FormatShortTitle (op.DivisionTitle, op.DivisionShortTitle));
-						else
-                            strDivision = DivisionInfo.FormatShortTitle (op.DivisionTitle, op.DivisionShortTitle);
+                    var strOp = PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle);
 
-						// op.PositionShortTitle is a comma-separated 
-						// list of positions, including TitleSuffix
-						strOps = Utils.FormatList ("; ", strOps, 
-                            Utils.FormatList (": ", 
-                                PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle), 
-                                strDivision));
-					}
+					// op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
+					strOps = Utils.FormatList ("; ", strOps, Utils.FormatList (": ", strOp, 
+                        // do not display division title also for current division
+                        (op.DivisionID != EmployeeListSettings.DivisionID) ? op.FormatDivisionLink (this) : string.Empty));
 				}
 
 				if (!string.IsNullOrWhiteSpace (strOps))

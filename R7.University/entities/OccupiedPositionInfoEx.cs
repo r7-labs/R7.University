@@ -5,6 +5,7 @@ using DotNetNuke.Data;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Users;
+using DotNetNuke.UI.Modules;
 
 namespace R7.University
 {
@@ -47,6 +48,22 @@ namespace R7.University
         public bool IsTeacher { get; set; }
 
 		#endregion
+
+        public string FormatDivisionLink (IModuleControl module)
+        {
+            // do not display division title for high-level divisions
+            if (ParentDivisionID != null)
+            {
+                var strDivision = DivisionInfo.FormatShortTitle (DivisionTitle, DivisionShortTitle);
+                if (!string.IsNullOrWhiteSpace (HomePage))
+                    strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
+                        Utils.FormatURL (module, HomePage, false), strDivision);
+
+                return strDivision;
+            }
+              
+            return string.Empty;
+        }
 
 		/// <summary>
 		/// Groups the occupied positions in same division
