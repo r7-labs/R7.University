@@ -139,7 +139,7 @@
 		<value>Введите биографию сотрудника / предоставленные им сведения о себе.</value>
 	</data>
 	<data name="labelIsPublished.Text">
-		<value>Опубликован</value>
+		<value>Опубликовано</value>
 	</data>
 	<data name="labelIsPublished.Help">
 		<value>Установите флажок, чтобы опубликовать сведения о сотруднике.</value>
@@ -223,7 +223,7 @@
 		<value>Введите конечный год достижения. Введите 0 для указания настоящего времени; если же таковой не существует или неизвестен, оставьте поле пустым или введите -1.</value>
 	</data>
 	<data name="labelAchievementTitle.Text">
-		<value>Название</value>
+		<value>Название (роль)</value>
 	</data>
 	<data name="labelAchievementTitle.Help">
 		<value>Введите название описываемого достижения.</value>

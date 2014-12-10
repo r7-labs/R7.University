@@ -128,7 +128,7 @@
 					<asp:TextBox id="textExperienceYearsBySpec" runat="server" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelIsPublished" runat="server" ControlName="checkIsPublished" Suffix=":" />
+					<dnn:Label id="labelIsPublished" runat="server" ControlName="checkIsPublished" Suffix="?" />
 					<asp:CheckBox id="checkIsPublished" runat="server" />
 				</div>
 			</fieldset>
