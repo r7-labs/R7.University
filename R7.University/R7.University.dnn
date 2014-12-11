@@ -633,6 +633,30 @@
 				           				<viewOrder>0</viewOrder>
 					         		</moduleControl>
 									<moduleControl>
+										<controlKey>EmployeeDetails</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlTitle>Employee Details</controlTitle>
+										<controlType>View</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
+										<controlKey>Edit</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Employee</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
 						           		<controlKey>Settings</controlKey>
 						           		<controlSrc>DesktopModules/R7.University/R7.University.DivisionDirectory/SettingsDivisionDirectory.ascx</controlSrc>
 						          		<supportsPartialRendering>False</supportsPartialRendering>

@@ -275,7 +275,7 @@ namespace R7.University.DivisionDirectory
                 {
                     linkHeadEmployee.Text = headEmployee.AbbrName;
                     linkHeadEmployee.ToolTip = headEmployee.FullName;
-                    linkHeadEmployee.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", headEmployee.EmployeeID.ToString ());
+                    linkHeadEmployee.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", headEmployee.EmployeeID.ToString ());
                 }
             }
         }
