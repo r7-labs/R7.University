@@ -18,8 +18,11 @@
     <data xml:space="preserve" name="Document.Header">
         <value>Regulations</value>
     </data>
+    <data xml:space="preserve" name="HeadEmployee.Header">
+        <value>Head</value>
+    </data>
     <data xml:space="preserve" name="DocumentUrl.Text">
-        <value>Open</value>
+        <value>Link</value>
     </data>
     <data xml:space="preserve" name="AllDivisions.Text">
         <value>&lt; All Divisions &gt;</value>

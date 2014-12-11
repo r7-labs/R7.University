@@ -157,6 +157,8 @@ namespace R7.University.DivisionDirectory
                 return false;
             }
                 
+            // There are not much divisions as employees, so it's OK to don't check search phrase length
+            /*
             if ((!divisionIsSpecified || // no division specified
                 (divisionIsSpecified && includeSubdivisions)) && // division specified, but subdivisions flag is set
                 (searchTextIsEmpty || // search phrase is empty
@@ -167,8 +169,8 @@ namespace R7.University.DivisionDirectory
 
                 gridDivisions.Visible = false;
                 return false;
-            }
-
+            }*/
+           
             return true;
         }
 
@@ -216,10 +218,11 @@ namespace R7.University.DivisionDirectory
 
                 var labelTitle = (Label) e.Row.FindControl ("labelTitle");
                 var linkTitle = (HyperLink) e.Row.FindControl ("linkTitle");
-                var phone = (Literal) e.Row.FindControl ("literalPhone");
-                var email = (HyperLink) e.Row.FindControl ("linkEmail");
-                var location = (Literal) e.Row.FindControl ("literalLocation");
-                var document =  (HyperLink) e.Row.FindControl ("linkDocument");
+                var literalPhone = (Literal) e.Row.FindControl ("literalPhone");
+                var linkEmail = (HyperLink) e.Row.FindControl ("linkEmail");
+                var literalLocation = (Literal) e.Row.FindControl ("literalLocation");
+                var linkDocument =  (HyperLink) e.Row.FindControl ("linkDocument");
+                var linkHeadEmployee =  (HyperLink) e.Row.FindControl ("linkHeadEmployee");
 
                 if (!string.IsNullOrWhiteSpace (division.HomePage))
                 {
@@ -235,26 +238,35 @@ namespace R7.University.DivisionDirectory
                     linkTitle.Visible = false;
                 }
 
-                phone.Text = division.Phone;
-                location.Text = division.Location;
+                literalPhone.Text = division.Phone;
+                literalLocation.Text = division.Location;
 
                 // email
                 if (!string.IsNullOrWhiteSpace (division.Email))
                 {
-                    email.Text = division.Email;
-                    email.NavigateUrl = "mailto:" + division.Email;
+                    linkEmail.Text = division.Email;
+                    linkEmail.NavigateUrl = "mailto:" + division.Email;
                 }
                 else
-                    email.Visible = false;
+                    linkEmail.Visible = false;
 
                 // (main) document
                 if (!string.IsNullOrWhiteSpace (division.DocumentUrl))
                 {
-                    document.Text = LocalizeString ("DocumentUrl.Text");
-                    document.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
+                    linkDocument.Text = LocalizeString ("DocumentUrl.Text");
+                    linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
                 }
                 else
-                    document.Visible = false;
+                    linkDocument.Visible = false;
+
+                // head employee
+                var headEmployee = DivisionDirectoryController.GetHeadEmployee (division.DivisionID);
+                if (headEmployee != null)
+                {
+                    linkHeadEmployee.Text = headEmployee.AbbrName;
+                    linkHeadEmployee.ToolTip = headEmployee.FullName;
+                    linkHeadEmployee.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", headEmployee.EmployeeID.ToString ());
+                }
             }
         }
     }

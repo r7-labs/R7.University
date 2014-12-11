@@ -425,6 +425,13 @@ namespace R7.University
             return GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
                 "University_FindDivisions", searchText, includeSubdivisions, divisionId);
         }
+
+        public EmployeeInfo GetHeadEmployee (int divisionId)
+        {
+            return GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+                "University_GetHeadEmployee", divisionId).FirstOrDefault ();
+        }
+
 		#endregion
 	}
 }
