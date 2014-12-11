@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data xml:space="preserve" name="ModuleHelp.Text">
+        <value>&lt;P&gt; Модуль R7.DivisionDirectory&lt;/P&gt;</value>
+    </data>
+    <data xml:space="preserve" name="Title.Header">
+        <value>Подразделение</value>
+    </data>
+    <data xml:space="preserve" name="Email.Header">
+        <value>Эл. почта</value>
+    </data>
+    <data xml:space="preserve" name="Phone.Header">
+        <value>Телефон</value>
+    </data>
+    <data xml:space="preserve" name="Location.Header">
+        <value>Местоположение</value>
+    </data>
+    <data xml:space="preserve" name="Document.Header">
+        <value>Ссылка</value>
+    </data>
+    <data xml:space="preserve" name="HeadEmployee.Header">
+        <value>Руководитель</value>
+    </data>
+    <data xml:space="preserve" name="DocumentUrl.Text">
+        <value>Открыть</value>
+    </data>
+    <data xml:space="preserve" name="AllDivisions.Text">
+        <value>&lt; Все подразделения &gt;</value>
+    </data>
+    <data xml:space="preserve" name="linkSearch.Text">
+        <value>Поиск</value>
+    </data>
+    <data xml:space="preserve" name="SearchPhrase.Warning">
+        <value>Длина поисковой фразы должна быть не менее 3-х символов в том случае,
+        если поиск производится по всем подразделениям или с включением подчиненных подразделений.</value>
+    </data>
+    <data xml:space="preserve" name="SearchParams.Warning">
+        <value>Введите поисковую фразу и (или) выберите подразделение.</value>
+    </data>
+    <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
+        <value>Включая подчиненные</value>
+    </data>
+    <data xml:space="preserve" name="checkTeachersOnly.Text">
+        <value>Только ППС</value>
+    </data>
+    <data xml:space="preserve" name="NoDivisionsFound.Warning">
+        <value>Не найдены записи о подразделениях, удовлетворяющие заданным условиям поиска.</value>
+    </data>
+    <data xml:space="preserve" name="SearchHint.Info">
+        <value>Данная форма позволяет осуществлять поиск информации о подразделениях. Введите любую часть названия, 
+        номера телефона или факса, названия кабинета (местоположения) или адреса электронной почты
+        и (или) выберите подразделение, затем нажмите &quot;Поиск&quot;. Подробная информация 
+        о подразделении доступна на странице подразделения по ссылке с его названием.</value>
+    </data>
+</root>

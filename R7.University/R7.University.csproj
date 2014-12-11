@@ -100,5 +100,6 @@
     <None Include="images\nophoto_template.svg" />
     <None Include="SqlDataProvider\01.01.03.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.04.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.01.06.SqlDataProvider" />
   </ItemGroup>
 </Project>

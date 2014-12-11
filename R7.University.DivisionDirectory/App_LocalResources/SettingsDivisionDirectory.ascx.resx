@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data xml:space="preserve" name="ControlTitle_settings.Text">
+    <value>DivisionDirectory Settings</value>
+  </data>
+    <data xml:space="preserve" name="ModuleHelp.Text">
+    <value>About DivisionDirectory Settings</value>
+  </data>
+</root>

@@ -299,7 +299,7 @@ namespace R7.University
             // not many, so using Distinct() extension method to get rid of them 
             // is looking more sane than further SP SQL code complication.
 
-            return GetObjects<EmployeeInfo> (System.Data.CommandType.StoredProcedure, 
+            return GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
                 "University_FindEmployees", searchText, includeNonPublished, teachersOnly, includeSubdivisions, divisionId)
                     .Distinct (new EmployeeEqualityComparer ());
         }
@@ -419,6 +419,18 @@ namespace R7.University
 				}
 			}
 		}
+
+        public IEnumerable<DivisionInfo> FindDivisions (string searchText, bool includeSubdivisions, string divisionId)
+        {
+            return GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
+                "University_FindDivisions", searchText, includeSubdivisions, divisionId);
+        }
+
+        public EmployeeInfo GetHeadEmployee (int divisionId)
+        {
+            return GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+                "University_GetHeadEmployee", divisionId).FirstOrDefault ();
+        }
 
 		#endregion
 	}
