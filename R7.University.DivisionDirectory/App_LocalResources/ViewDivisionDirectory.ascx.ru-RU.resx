@@ -16,13 +16,13 @@
         <value>Местоположение</value>
     </data>
     <data xml:space="preserve" name="Document.Header">
-        <value>Ссылка</value>
+        <value>Положение</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Header">
         <value>Руководитель</value>
     </data>
     <data xml:space="preserve" name="DocumentUrl.Text">
-        <value>Открыть</value>
+        <value>Положение</value>
     </data>
     <data xml:space="preserve" name="AllDivisions.Text">
         <value>&lt; Все подразделения &gt;</value>
