@@ -31,15 +31,15 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
-
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.Services.FileSystem;
 using R7.University;
-using DotNetNuke.Common;
-using Telerik.Web.UI.GridExcelBuilder.Abstract;
 
 namespace R7.University.DivisionDirectory
 {
@@ -255,6 +255,16 @@ namespace R7.University.DivisionDirectory
                 {
                     linkDocument.Text = LocalizeString ("DocumentUrl.Text");
                     linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
+
+                    // REVIEW: Add GetUrlCssClass() method to the utils
+                    // set link CSS class according to file extension
+                    if (Globals.GetURLType (division.DocumentUrl) == TabType.File)
+                    {
+                        var fileId = int.Parse (division.DocumentUrl.Remove (0, "FileId=".Length));
+                        var file = FileManager.Instance.GetFile (fileId);
+                        if (file != null)
+                            linkDocument.CssClass = file.Extension.ToLowerInvariant ();
+                    }
                 }
                 else
                     linkDocument.Visible = false;

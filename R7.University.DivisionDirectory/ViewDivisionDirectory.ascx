@@ -84,7 +84,7 @@
                     <%# LocalizeString ("Document.Header") %>
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:HyperLink id="linkDocument" runat="server" />
+                    <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
