@@ -38,7 +38,7 @@ BEGIN
 	        OR D.Email LIKE @searchPattern OR D.SecondaryEmail LIKE @searchPattern
 	        OR D.Phone LIKE @searchPattern OR D.Fax LIKE @searchPattern 
 	        OR D.Location LIKE @searchPattern)
-       	ORDER BY DH.Level DESC, D.Title
+       	ORDER BY DH.Level, D.Title
     END
     ELSE
     BEGIN
