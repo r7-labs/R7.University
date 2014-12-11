@@ -8,8 +8,8 @@ IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindDivisions]
 GO
 
-IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetPrimeEmployee]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetPrimeEmployee]
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetHeadEmployee]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
 GO
 
 -- Create stored procedures
