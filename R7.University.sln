@@ -37,12 +37,8 @@ Global
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -143,6 +139,6 @@ Global
 		$0.XmlFormattingPolicy = $14
 		$14.inheritsSet = null
 		$14.scope = application/x-msbuild
-		version = 1.1.5
+		version = 1.1.6
 	EndGlobalSection
 EndGlobal
