@@ -5,7 +5,6 @@
     <li>Make sure that shared employee / division controls have same key names in different modules.</li>
     <li>Other small improvements and fixes.</li>
 </ul>
-<p>Known issue: DivisionDirectory and EmployeeDirectory modules should not be placed on the same page.</p>
 
 <h3>Version 1.1.5</h3>
 <ul>
