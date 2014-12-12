@@ -224,17 +224,16 @@ namespace R7.University.DivisionDirectory
                 var linkDocument =  (HyperLink) e.Row.FindControl ("linkDocument");
                 var linkContactPerson =  (HyperLink) e.Row.FindControl ("linkContactPerson");
 
+                var divisionTitle = division.Title + ((division.HasUniqueShortTitle)? string.Format (" ({0})", division.ShortTitle) : string.Empty);
                 if (!string.IsNullOrWhiteSpace (division.HomePage))
                 {
                     linkTitle.NavigateUrl = Utils.FormatURL (this, division.HomePage, false);
-                    linkTitle.Text = division.DisplayShortTitle;
-                    linkTitle.ToolTip = division.Title;
+                    linkTitle.Text = divisionTitle;
                     labelTitle.Visible = false;
                 }
                 else
                 {
-                    labelTitle.Text = division.DisplayShortTitle;
-                    labelTitle.ToolTip = division.Title;
+                    labelTitle.Text = divisionTitle;
                     linkTitle.Visible = false;
                 }
 
