@@ -39,6 +39,13 @@
         <PagerStyle CssClass="dnnGridPager" />
         <Columns>
             <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:HyperLink id="linkEdit" runat="server">
+                        <asp:Image id="iconEdit" runat="server" />
+                    </asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField>
                 <HeaderTemplate>
                     <%# LocalizeString ("Title.Header") %>
                 </HeaderTemplate>

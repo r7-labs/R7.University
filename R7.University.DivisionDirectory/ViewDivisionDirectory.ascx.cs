@@ -40,6 +40,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
 using R7.University;
+using DotNetNuke.Entities.Icons;
 
 namespace R7.University.DivisionDirectory
 {
@@ -212,9 +213,23 @@ namespace R7.University.DivisionDirectory
 
         protected void gridDivisions_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            // show / hide edit column
+            e.Row.Cells [0].Visible = IsEditable;
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var division = (DivisionInfo) e.Row.DataItem;
+
+                if (IsEditable)
+                {
+                    // get edit link controls
+                    var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
+                    var iconEdit = (Image) e.Row.FindControl ("iconEdit");
+
+                    // fill edit link controls
+                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditDivision", "division_id", division.DivisionID.ToString ());
+                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                }
 
                 var labelTitle = (Label) e.Row.FindControl ("labelTitle");
                 var linkTitle = (HyperLink) e.Row.FindControl ("linkTitle");
@@ -224,6 +239,7 @@ namespace R7.University.DivisionDirectory
                 var linkDocument =  (HyperLink) e.Row.FindControl ("linkDocument");
                 var linkContactPerson =  (HyperLink) e.Row.FindControl ("linkContactPerson");
 
+                // division label / link
                 var divisionTitle = division.Title + ((division.HasUniqueShortTitle)? string.Format (" ({0})", division.ShortTitle) : string.Empty);
                 if (!string.IsNullOrWhiteSpace (division.HomePage))
                 {

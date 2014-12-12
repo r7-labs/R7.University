@@ -657,6 +657,19 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
+										<controlKey>EditDivision</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Division</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
 						           		<controlKey>Settings</controlKey>
 						           		<controlSrc>DesktopModules/R7.University/R7.University.DivisionDirectory/SettingsDivisionDirectory.ascx</controlSrc>
 						          		<supportsPartialRendering>False</supportsPartialRendering>
