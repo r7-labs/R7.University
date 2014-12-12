@@ -253,7 +253,7 @@ namespace R7.University.DivisionDirectory
                 // (main) document
                 if (!string.IsNullOrWhiteSpace (division.DocumentUrl))
                 {
-                    linkDocument.Text = LocalizeString ("DocumentUrl.Text");
+                    linkDocument.Text = LocalizeString ("Regulations.Text");
                     linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
 
                     // REVIEW: Add GetUrlCssClass() method to the utils

@@ -16,12 +16,12 @@
         <value>Местоположение</value>
     </data>
     <data xml:space="preserve" name="Document.Header">
-        <value>Положение</value>
+        <value>Документ</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Header">
         <value>Руководитель</value>
     </data>
-    <data xml:space="preserve" name="DocumentUrl.Text">
+    <data xml:space="preserve" name="Regulations.Text">
         <value>Положение</value>
     </data>
     <data xml:space="preserve" name="AllDivisions.Text">
