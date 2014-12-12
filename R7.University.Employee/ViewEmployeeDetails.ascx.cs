@@ -86,7 +86,7 @@ namespace R7.University.Employee
                             if (IsEditable || UserInfo.IsSuperUser) 
                             {
                                 linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employeeId.Value.ToString ());
+                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.Value.ToString ());
 							}
 						}
 						else

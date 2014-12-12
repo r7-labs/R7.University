@@ -134,7 +134,7 @@ namespace R7.University.EmployeeList
 					"", 
 					"", 
 					Null.IsNull (EmployeeListSettings.DivisionID) ?
-					Utils.EditUrl (this, "Edit") : Utils.EditUrl (this, "Edit", "division_id", EmployeeListSettings.DivisionID.ToString ()),
+					Utils.EditUrl (this, "EditDivision") : Utils.EditUrl (this, "EditDivision", "division_id", EmployeeListSettings.DivisionID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
@@ -176,9 +176,9 @@ namespace R7.University.EmployeeList
 			if (IsEditable)
 			{
 				if (Null.IsNull (EmployeeListSettings.DivisionID))
-					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString ());
+					linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
 				else
-					linkEdit.NavigateUrl = Utils.EditUrl (this, "Edit", "employee_id", employee.EmployeeID.ToString (), 
+					linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString (), 
 						"division_id", EmployeeListSettings.DivisionID.ToString ());
 			}
 
@@ -208,7 +208,7 @@ namespace R7.University.EmployeeList
 			else
 			{
 				// link to employee details
-				linkDetails.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
+				linkDetails.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
 			}
 
 			// employee fullname

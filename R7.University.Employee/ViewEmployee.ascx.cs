@@ -147,8 +147,8 @@ namespace R7.University.Employee
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
 
-			// imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "Details", "employee_id", EmployeeID.ToString ()));
-			var popupUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ());
+            // imagePhoto.Attributes.Add("onclick", Utils.EditUrl (this, "EmployeeDetails", "employee_id", EmployeeID.ToString ()));
+			var popupUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", employee.EmployeeID.ToString ());
 				
 			// alter popup window height
 			linkPhoto.NavigateUrl = popupUrl.Replace ("550,950", "450,950");
@@ -287,7 +287,7 @@ namespace R7.University.Employee
 					ModuleActionType.AddContent, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Edit"),
+					Utils.EditUrl (this, "EditEmployee"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					employeeId == null, 
@@ -301,7 +301,7 @@ namespace R7.University.Employee
 					ModuleActionType.EditContent, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Edit", "employee_id", employeeId.ToString ()),
+					Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					employeeId != null, 
@@ -314,7 +314,7 @@ namespace R7.University.Employee
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-					Utils.EditUrl (this, "Details", "employee_id", employeeId.ToString ()).Replace ("550,950", "450,950"),
+					Utils.EditUrl (this, "EmployeeDetails", "employee_id", employeeId.ToString ()).Replace ("550,950", "450,950"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.View,
 					employeeId != null, 

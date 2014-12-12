@@ -36,11 +36,11 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
 using R7.University;
-using DotNetNuke.Entities.Icons;
 
 namespace R7.University.DivisionDirectory
 {
@@ -290,7 +290,7 @@ namespace R7.University.DivisionDirectory
                 {
                     linkContactPerson.Text = contactPerson.AbbrName;
                     linkContactPerson.ToolTip = contactPerson.FullName;
-                    linkContactPerson.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", contactPerson.EmployeeID.ToString ());
+                    linkContactPerson.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", contactPerson.EmployeeID.ToString ()).Replace ("550,950", "450,950");
                 }
             }
         }

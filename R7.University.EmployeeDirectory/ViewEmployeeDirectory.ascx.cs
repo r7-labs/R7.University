@@ -31,13 +31,14 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
-
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University;
+
 
 namespace R7.University.EmployeeDirectory
 {
@@ -241,9 +242,23 @@ namespace R7.University.EmployeeDirectory
 
         protected void gridEmployees_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            // show / hide edit column
+            e.Row.Cells [0].Visible = IsEditable;
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var employee = (EmployeeInfo) e.Row.DataItem;
+
+                if (IsEditable)
+                {
+                    // get edit link controls
+                    var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
+                    var iconEdit = (Image) e.Row.FindControl ("iconEdit");
+
+                    // fill edit link controls
+                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
+                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                }
 
                 var name = (HyperLink) e.Row.FindControl ("linkName");
                 var position = (Literal) e.Row.FindControl ("literalPosition");
@@ -262,7 +277,7 @@ namespace R7.University.EmployeeDirectory
 
                 name.Text = employee.AbbrName;
                 name.ToolTip = employee.FullName;
-                name.NavigateUrl = Utils.EditUrl (this, "Details", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
+                name.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
 
                 phone.Text = employee.Phone;
 

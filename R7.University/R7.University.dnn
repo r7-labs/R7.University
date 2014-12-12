@@ -250,7 +250,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>Details</controlKey>
+										<controlKey>EmployeeDetails</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
@@ -272,7 +272,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>Edit</controlKey>
+										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
@@ -354,7 +354,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>Edit</controlKey>
+										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
@@ -367,7 +367,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>Details</controlKey>
+										<controlKey>EmployeeDetails</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
@@ -458,7 +458,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>Edit</controlKey>
+										<controlKey>EditDivision</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
@@ -540,7 +540,7 @@
 				           				<viewOrder>0</viewOrder>
 					         		</moduleControl>
 									<moduleControl>
-										<controlKey>Details</controlKey>
+										<controlKey>EmployeeDetails</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
@@ -551,7 +551,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>Edit</controlKey>
+										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>
@@ -644,7 +644,7 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
-										<controlKey>Edit</controlKey>
+										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
 										<supportsPartialRendering>False</supportsPartialRendering>
 										<supportsPopUps>True</supportsPopUps>

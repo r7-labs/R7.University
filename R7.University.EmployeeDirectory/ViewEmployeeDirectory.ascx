@@ -38,13 +38,14 @@
         <EditRowStyle CssClass="dnnFormInput" />
         <FooterStyle CssClass="dnnGridFooter" />
         <PagerStyle CssClass="dnnGridPager" />
-        <%--
-        <EmptyDataRowStyle CssClass="dnnFormMessage dnnFormInfo" />
-        <EmptyDataTemplate>
-            <%# LocalizeString ("NoEmployeesFound.Text") %>
-        </EmptyDataTemplate>
-        --%>
         <Columns>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:HyperLink id="linkEdit" runat="server">
+                        <asp:Image id="iconEdit" runat="server" />
+                    </asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField>
                 <HeaderTemplate>
                     <%# LocalizeString ("Name.Header") %>
