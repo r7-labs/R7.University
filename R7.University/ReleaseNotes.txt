@@ -1,7 +1,7 @@
 ﻿<h3>Version 1.1.6</h3>
 <ul>
     <li>New DivisionDirectory module.</li>
-    <li>EmployeeDirectory, DivisionDirectory: Added edit links to the grid.</li>
+    <li>EmployeeDirectory, DivisionDirectory: Added edit links to the search results.</li>
     <li>Make sure that shared employee / division controls have same key names in different modules.</li>
     <li>Other small improvements and fixes.</li>
 </ul>
