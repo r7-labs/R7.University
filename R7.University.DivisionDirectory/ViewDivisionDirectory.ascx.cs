@@ -75,7 +75,7 @@ namespace R7.University.DivisionDirectory
             get
             { 
                 var objSearchIncludeSubdivisions = Session ["DivisionDirectory.SearchIncludeSubdivisions." + TabModuleId];
-                return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : false;
+                return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : true;
 
             }
             set { Session ["DivisionDirectory.SearchIncludeSubdivisions." + TabModuleId] = value; }
