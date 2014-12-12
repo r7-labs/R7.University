@@ -222,7 +222,7 @@ namespace R7.University.DivisionDirectory
                 var linkEmail = (HyperLink) e.Row.FindControl ("linkEmail");
                 var literalLocation = (Literal) e.Row.FindControl ("literalLocation");
                 var linkDocument =  (HyperLink) e.Row.FindControl ("linkDocument");
-                var linkHeadEmployee =  (HyperLink) e.Row.FindControl ("linkHeadEmployee");
+                var linkContactPerson =  (HyperLink) e.Row.FindControl ("linkContactPerson");
 
                 if (!string.IsNullOrWhiteSpace (division.HomePage))
                 {
@@ -269,13 +269,13 @@ namespace R7.University.DivisionDirectory
                 else
                     linkDocument.Visible = false;
 
-                // head employee
-                var headEmployee = DivisionDirectoryController.GetHeadEmployee (division.DivisionID);
-                if (headEmployee != null)
+                // contact person (head employee)
+                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID);
+                if (contactPerson != null)
                 {
-                    linkHeadEmployee.Text = headEmployee.AbbrName;
-                    linkHeadEmployee.ToolTip = headEmployee.FullName;
-                    linkHeadEmployee.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", headEmployee.EmployeeID.ToString ());
+                    linkContactPerson.Text = contactPerson.AbbrName;
+                    linkContactPerson.ToolTip = contactPerson.FullName;
+                    linkContactPerson.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", contactPerson.EmployeeID.ToString ());
                 }
             }
         }

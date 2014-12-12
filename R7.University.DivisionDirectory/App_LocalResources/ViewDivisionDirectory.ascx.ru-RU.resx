@@ -18,8 +18,8 @@
     <data xml:space="preserve" name="Document.Header">
         <value>Документ</value>
     </data>
-    <data xml:space="preserve" name="HeadEmployee.Header">
-        <value>Руководитель</value>
+    <data xml:space="preserve" name="ContactPerson.Header">
+        <value>Контактное лицо (руководитель)</value>
     </data>
     <data xml:space="preserve" name="Regulations.Text">
         <value>Положение</value>

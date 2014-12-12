@@ -48,14 +48,6 @@
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
-                <HeaderTemplate>
-                    <%# LocalizeString ("HeadEmployee.Header") %>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <asp:HyperLink id="linkHeadEmployee" runat="server" />
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField>
                  <HeaderTemplate>
                     <%# LocalizeString ("Phone.Header") %>
                 </HeaderTemplate>
@@ -77,6 +69,14 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <asp:Literal id="literalLocation" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField>
+                <HeaderTemplate>
+                    <%# LocalizeString ("ContactPerson.Header") %>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <asp:HyperLink id="linkContactPerson" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
