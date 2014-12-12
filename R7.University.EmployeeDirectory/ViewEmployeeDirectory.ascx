@@ -14,7 +14,7 @@
         </div>
         <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
         <div class="wrapperDivisions">
-            <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('#hiddenDivisions').toggle ()"><%= LocalizeString ("AllDivisions.Text") %></a>
+            <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('.employeeDirectory #hiddenDivisions').toggle ()"><%= LocalizeString ("AllDivisions.Text") %></a>
             <div id="hiddenDivisions">
                 <dnn:DnnTreeView id="treeDivisions" runat="server" 
                     OnClientLoad="ed_treeLoad"
