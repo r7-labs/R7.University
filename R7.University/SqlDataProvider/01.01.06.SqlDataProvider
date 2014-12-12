@@ -64,6 +64,6 @@ BEGIN
     SELECT TOP (1) E.* FROM {databaseOwner}[{objectQualifier}University_Employees] AS E
 		INNER JOIN {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS VOP
 			ON E.EmployeeID = VOP.EmployeeID AND VOP.DivisionID = @divisionId
-	ORDER BY VOP.IsPrime DESC, VOP.PositionWeight DESC
+	ORDER BY VOP.PositionWeight DESC
 END
 GO
