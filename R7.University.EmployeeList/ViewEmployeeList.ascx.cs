@@ -134,7 +134,8 @@ namespace R7.University.EmployeeList
 					"", 
 					"", 
 					Null.IsNull (EmployeeListSettings.DivisionID) ?
-					Utils.EditUrl (this, "EditDivision") : Utils.EditUrl (this, "EditDivision", "division_id", EmployeeListSettings.DivisionID.ToString ()),
+                    // pass division_id to select division in which to add employee
+                    Utils.EditUrl (this, "EditEmployee") : Utils.EditUrl (this, "EditEmployee", "division_id", EmployeeListSettings.DivisionID.ToString ()),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
