@@ -41,9 +41,9 @@ namespace R7.University.EmployeeList
 				                settings.DivisionID, settings.SortType, false
 			                );
 
-			foreach (var employee in employees)
+            foreach (var employee in employees ?? Enumerable.Empty<EmployeeInfo> ())
 			{
-				if (employee != null && employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
+				if (employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
 				{
 					var aboutEmployee = employee.SearchDocumentText;
 					var sd = new SearchDocument () {
