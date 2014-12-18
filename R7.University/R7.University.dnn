@@ -108,7 +108,7 @@
 						<foldername>R7.University.Launchpad</foldername>
 						<businessControllerClass>R7.University.Launchpad.LaunchpadController</businessControllerClass>
 						<supportedFeatures>
-							<supportedFeature type="Portable" />
+							<!-- <supportedFeature type="Portable" /> -->
 							<!-- <supportedFeature type="Searchable" /> -->
 						</supportedFeatures>
 						<moduleDefinitions>
@@ -229,7 +229,7 @@
 						<foldername>R7.University.Employee</foldername>
 						<businessControllerClass>R7.University.Employee.EmployeeController</businessControllerClass>
 						<supportedFeatures>
-							<supportedFeature type="Portable" />
+							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
 						</supportedFeatures>
 						<moduleDefinitions>
@@ -333,7 +333,7 @@
 						<foldername>R7.University.EmployeeList</foldername>
 						<businessControllerClass>R7.University.EmployeeList.EmployeeListController</businessControllerClass>
 						<supportedFeatures>
-							<supportedFeature type="Portable" />
+							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
 						</supportedFeatures>
 						<moduleDefinitions>
@@ -426,7 +426,7 @@
 						<foldername>R7.University.Division</foldername>
 						<businessControllerClass>R7.University.Division.DivisionController</businessControllerClass>
 						<supportedFeatures>
-							<supportedFeature type="Portable" />
+							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
 						</supportedFeatures>
 						<moduleDefinitions>
@@ -519,8 +519,8 @@
 				   		<foldername>R7.University.EmployeeDirectory</foldername>
 				   		<businessControllerClass>R7.University.EmployeeDirectory.EmployeeDirectoryController</businessControllerClass>
 				   		<supportedFeatures>
-				     		<!-- <supportedFeature type="Portable" />
-				    		<supportedFeature type="Searchable" /> -->
+				     		<!-- <supportedFeature type="Portable" /> -->
+				    		<!-- <supportedFeature type="Searchable" /> -->
 				   		</supportedFeatures>
 				   		<moduleDefinitions>
 				     		<moduleDefinition>
@@ -612,8 +612,8 @@
 				   		<foldername>R7.University.DivisionDirectory</foldername>
 				   		<businessControllerClass>R7.University.DivisionDirectory.DivisionDirectoryController</businessControllerClass>
 				   		<supportedFeatures>
-				     		<!-- <supportedFeature type="Portable" />
-				    		<supportedFeature type="Searchable" /> -->
+				     		<!-- <supportedFeature type="Portable" /> -->
+				    		<!-- <supportedFeature type="Searchable" /> -->
 				   		</supportedFeatures>
 				   		<moduleDefinitions>
 				     		<moduleDefinition>
