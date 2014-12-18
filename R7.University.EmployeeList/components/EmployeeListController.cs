@@ -54,6 +54,7 @@ namespace R7.University.EmployeeList
 						Body = aboutEmployee,
 						ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
 						UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
+                        Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
 						IsActive = employee.IsPublished
 					};
 

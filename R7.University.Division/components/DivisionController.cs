@@ -67,7 +67,8 @@ namespace R7.University.Division
 					Body = aboutDivision,
 					ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),
 					UniqueKey = string.Format ("University_Division_{0}", division.DivisionID),
-					IsActive = true /* division.IsPublished */
+                    Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
+					IsActive = true // division.IsPublished
 				};
 	
 				searchDocs.Add (sd);
