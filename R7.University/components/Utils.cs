@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.IO;
 using System.Text;
@@ -13,6 +14,8 @@ using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.Entities.Portals.Internal;
+using DotNetNuke.Entities.Tabs;
 
 namespace R7.University
 {
@@ -64,6 +67,36 @@ namespace R7.University
 			return Globals.LinkClick 
 				(link, module.ModuleContext.TabId, module.ModuleContext.ModuleId, trackClicks);
 		}
+
+        public static string FormatCrossPortalTabUrl (IModuleControl module, int tabId, bool trackClicks)
+        {
+            try 
+            {
+                // get tab info by tabId
+                var tab = new TabController ().GetTab (tabId, Null.NullInteger, false);
+
+                // check if this tab belongs to another portal
+                if (tab.PortalID != module.ModuleContext.PortalId)
+                {
+                    // get portal alias, primary first (we don't know exactly,
+                    // which portal aliases are globally-available, and which are not)
+                    var portalAlias = TestablePortalAliasController.Instance.GetPortalAliasesByPortalId (tab.PortalID)
+                        .OrderBy (pa => !pa.IsPrimary).First ();
+
+                    // target portal URL (let target portal use right protocol and do URL rewriting)
+                    return "http://" + portalAlias.HTTPAlias + (trackClicks ?   
+                        string.Format ("/LinkClick.aspx?link={0}&tabid={1}", tabId, module.ModuleContext.TabId) :
+                        string.Format ("/Default.aspx?tabid={0}", tabId));
+                }
+
+                // tab is on same portal
+                return FormatURL (module, tabId.ToString (), trackClicks);
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
 
 		/// <summary>
 		/// Formats the Edit control URL by DNN rules (popups supported).

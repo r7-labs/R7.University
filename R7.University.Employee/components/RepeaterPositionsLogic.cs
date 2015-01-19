@@ -59,7 +59,7 @@ namespace R7.University.Employee
                     {
                         // link to division's homepage
                         labelDivision.Visible = false;
-                        linkDivision.NavigateUrl = Utils.FormatURL (module, opex.HomePage, false);
+                        linkDivision.NavigateUrl = Utils.FormatCrossPortalTabUrl (module, int.Parse (opex.HomePage), false);
                         linkDivision.Text = divisionShortTitle;
                     }
                     else
