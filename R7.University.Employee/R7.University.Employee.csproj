@@ -67,6 +67,7 @@
     <Content Include="ViewVCard.ascx" />
     <Content Include="ViewEmployeeDetails.ascx" />
     <Content Include="EditEmployee.ascx" />
+    <Content Include="admin.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewEmployee.ascx.resx" />

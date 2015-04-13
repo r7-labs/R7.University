@@ -62,6 +62,7 @@
     <Content Include="ViewEmployeeList.ascx" />
     <Content Include="SettingsEmployeeList.ascx" />
     <Content Include="js\module.js" />
+    <Content Include="admin.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewEmployeeList.ascx.resx" />

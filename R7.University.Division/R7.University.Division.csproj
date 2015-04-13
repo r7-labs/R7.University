@@ -64,6 +64,7 @@
     <Content Include="SettingsDivision.ascx" />
     <Content Include="ViewVCard.ascx" />
     <Content Include="EditDivision.ascx" />
+    <Content Include="admin.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewDivision.ascx.resx" />
