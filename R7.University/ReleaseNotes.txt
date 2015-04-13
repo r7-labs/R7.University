@@ -1,12 +1,15 @@
 ﻿<h3>Version 1.1.7</h3>
 <ul>
     <li>Fixed #65: DivisionDirectory shows unpublished head employees.</li>
+    <li>Implemented / fixed #64: Employee: Cross-portal Tab URLs.</li>
     <li>EditEmployee: Fixes and some refactoring of the UI.</li>
+    <li>EmployeeList: Fix wrong edit control invoked.</li>
+    <li>Employee, EmployeeList, Division: Added module URL to the search.</li>
     <li>Use separate CSS files for view and edit/settings controls.</li>
     <li>Packaging project renamed to avoid conflicts with NuGet.</li>
 </ul>
 
-<h3>Version 1.1.6</h3>
+<h3>Version 1.1.6 RC</h3>
 <ul>
     <li>New DivisionDirectory module.</li>
     <li>EmployeeDirectory, DivisionDirectory: Added edit links to the search results.</li>
