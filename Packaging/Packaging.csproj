@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0497C4E5-75E1-4835-9C35-2B35F84AF212}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Packages</RootNamespace>
-    <AssemblyName>Packages</AssemblyName>
+    <RootNamespace>Packaging</RootNamespace>
+    <AssemblyName>Packaging</AssemblyName>
     <ReleaseVersion>1.1.6</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,7 +41,7 @@
   <Import Project="SourcePackage.targets" />
   <Target Name="AfterBuild" DependsOnTargets="MakeInstallPackage;MakeSourcePackage" />
   <ItemGroup>
-    <None Include="Packages.csproj" />
+    <None Include="Packaging.csproj" />
     <None Include="InstallPackage.targets" />
     <None Include="SourcePackage.targets" />
   </ItemGroup>

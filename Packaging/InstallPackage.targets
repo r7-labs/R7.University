@@ -40,7 +40,7 @@
 		</ItemGroup>
 		<!-- Declare excluded files -->
 		<ItemGroup>
-			<InstallExcludeFiles Include="..\Packages\**" />
+			<InstallExcludeFiles Include="..\Packaging\**" />
 			<InstallExcludeFiles Include="..\**\bin\**" />
 			<InstallExcludeFiles Include="..\**\obj\**" />
 			<InstallExcludeFiles Include="..\**\.git\**" />
