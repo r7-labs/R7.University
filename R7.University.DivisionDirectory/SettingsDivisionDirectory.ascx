@@ -3,7 +3,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.DivisionDirectory/R7.DivisionDirectory/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.DivisionDirectory/admin.css" Priority="200" />
 <div class="dnnForm dnnClear">
  <h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
  <fieldset>  
