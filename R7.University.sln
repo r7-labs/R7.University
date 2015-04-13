@@ -64,7 +64,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = R7.University.Launchpad\R7.University.Launchpad.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.NoTabsAfterNonTabs = True

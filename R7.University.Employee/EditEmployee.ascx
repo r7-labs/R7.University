@@ -38,27 +38,28 @@
                     <dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" Suffix=":" />
                     <asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
                 </div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" Suffix=":" />
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelPhotoLookup" runat="server" ControlName="buttonPhotoLookup" />
                     <asp:LinkButton id="buttonPhotoLookup" runat="server" resourcekey="buttonPhotoLookup"
-                            CssClass="dnnSecondaryAction" OnClick="buttonPhotoLookup_Click" />
+                        CssClass="dnnSecondaryAction" OnClick="buttonPhotoLookup_Click" />
+                </div>
+            	<div class="dnnFormItem">
+					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" Suffix=":" />
                     <dnn:Picker id="pickerPhoto" runat="server" Required="true" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" Suffix=":" />
 					<dnn:DnnComboBox id="comboUsers" runat="server" />
 				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" Suffix=":" /> 
-                    <asp:TextBox id="textUserLookup" runat="server" Style="margin-bottom:0" />
-                    <asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup" 
-                        CssClass="dnnSecondaryAction" OnClick="buttonUserLookup_Click" Style="margin-bottom:0" CausesValidation="false" />
-				</div>
                 <div class="dnnFormItem">
-                    <div class="dnnLabel"></div>
-                    <asp:CheckBox id="checkIncludeDeletedUsers" runat="server" 
-                        resourcekey="checkIncludeDeletedUsers" Style="margin-bottom:1em" />
-                </div>
+					<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" Suffix=":" />
+                    <div style="float:left;width:45%;margin-bottom:1em">
+                        <asp:TextBox id="textUserLookup" runat="server" Style="display:block;width:100%;margin-bottom:1em" />
+                        <asp:CheckBox id="checkIncludeDeletedUsers" runat="server" resourcekey="checkIncludeDeletedUsers" />
+                        <asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup" 
+                            CssClass="dnnSecondaryAction" Style="margin-left:1em" OnClick="buttonUserLookup_Click" CausesValidation="false" />
+                    </div>
+				</div>
                 <div class="dnnFormItem">
 					<dnn:Label id="labelAcademicDegree" runat="server" ControlName="textAcademicDegree" Suffix=":" />
 					<asp:TextBox id="textAcademicDegree" runat="server" MaxLength="250" />
@@ -116,10 +117,13 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
-					<asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" MaxLength="100" />
-					<asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
+					<asp:TextBox id="textWorkingHours" runat="server" MaxLength="100" Style="margin-bottom:0" />
 				</div>
-				<div class="dnnFormItem">
+                <div class="dnnFormItem">
+                    <div class="dnnLabel"></div>
+                    <asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
+				</div>
+                <div class="dnnFormItem">
 					<dnn:Label id="labelExperienceYears" runat="server" ControlName="textExperienceYears" Suffix=":" />
 					<asp:TextBox id="textExperienceYears" runat="server" />
 				</div>

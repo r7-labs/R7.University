@@ -6,6 +6,12 @@
 	<data name="ControlTitle_edit.Text">
 		<value>Edit Employee</value>
 	</data>
+    <data name="labelPhotoLookup.Text">
+        <value>Photo Lookup:</value>
+    </data>
+    <data name="labelPhotoLookup.Help">
+        <value>Press to try lookup the photo by employee name in default folder.</value>
+    </data>
 	<data name="labelPhoto.Text">
 		<value>Photo</value>
 	</data>
@@ -175,7 +181,7 @@
         <value>Photo Lookup</value>
     </data>
 	<data name="checkIncludeDeletedUsers.Text">
-		<value>Include deleted?</value>
+		<value>Include deleted users?</value>
 	</data>
 	<data name="buttonAddPosition.Text">
 		<value>Add Position</value>

@@ -6,6 +6,12 @@
 	<data name="ControlTitle_edit.Text">
 		<value>Редактировать сотрудника</value>
 	</data>
+    <data name="labelPhotoLookup.Text">
+        <value>Найти фото:</value>
+    </data>
+    <data name="labelPhotoLookup.Help">
+        <value>Нажмите, чтобы попытаться найти фото сотрудника по его имени в папке по-умолчанию.</value>
+    </data>
 	<data name="labelPhoto.Text">
 		<value>Фото</value>
 	</data>
@@ -175,7 +181,7 @@
         <value>Найти фото</value>
     </data>
 	<data name="checkIncludeDeletedUsers.Text">
-		<value>Включая удаленных?</value>
+		<value>Включая удаленных пользователей?</value>
 	</data>
 	<data name="buttonAddPosition.Text">
 		<value>Добавить должность</value>
