@@ -22,6 +22,16 @@ namespace R7.University.Employee
 	{
 		#region Properties
 
+        protected bool InPopup 
+        {
+            get { return Request.QueryString ["popup"] != null; }
+        }
+
+        protected bool InViewModule 
+        {
+            get { return ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails"; }
+        }
+
 		#endregion
 
 		#region Handlers
@@ -34,13 +44,19 @@ namespace R7.University.Employee
 		{
 			base.OnInit (e);
 
-            if (Request.QueryString ["popup"] != null)
+            if (InPopup)
             {
                 linkReturn.Attributes.Add ("onclick", "javascript:return " +
                     UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
             }
+            else if (InViewModule)
+            {
+                linkReturn.Visible = false;
+            }
             else
+            {
                 linkReturn.NavigateUrl = Globals.NavigateURL ();
+            }
 		}
 
 		/// <summary>
@@ -65,8 +81,8 @@ namespace R7.University.Employee
 						// get employee by querystring param
 						employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
 					}
-					else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
-					{
+                    else if (InViewModule || ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
+                    {
 						// if not, try to use Employee module settings
 						employee = GetEmployee ();
 					}
@@ -80,22 +96,32 @@ namespace R7.University.Employee
 							if (IsEditable)
 							{
 								linkVCard.Visible = true;
-								linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString ());
+                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employee.EmployeeID.ToString ());
                             }
 
                             if (IsEditable || UserInfo.IsSuperUser) 
                             {
                                 linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.Value.ToString ());
+                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
 							}
 						}
-						else
+                        else 
+                        {
 							// can show only published
-							Response.Redirect (Globals.NavigateURL (), true);
+                            if (InPopup)
+                                Response.Redirect (Globals.NavigateURL (), true);
+
+                            // TODO: else show message
+                        }
 					}
 					else 
+                    {
 						// nothing to show
-						Response.Redirect (Globals.NavigateURL (), true);
+                        if (InPopup)
+                            Response.Redirect (Globals.NavigateURL (), true);
+
+                        // TODO: else show message
+                    }
 
 				} // if (!IsPostBack)
 			}
@@ -111,10 +137,15 @@ namespace R7.University.Employee
 		{
 			var fullname = employee.FullName;
 			
-            if (Request.QueryString ["popup"] != null)
+            if (InPopup)
             {
                 // set popup title to employee name
                 ((DotNetNuke.Framework.CDefault) this.Page).Title = fullname;
+            }
+            else if (InViewModule)
+            {
+                if (EmployeeSettings.AutoTitle)
+                    AutoTitle (employee);
             }
             else
             {

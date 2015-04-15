@@ -111,20 +111,6 @@ namespace R7.University.Employee
 
 		#endregion
 
-		
-
-		protected void AutoTitle (EmployeeInfo employee)
-		{
-			// replace module title
-			var mctrl = new ModuleController ();
-			var module = mctrl.GetModule (ModuleId);
-			if (module.ModuleTitle != employee.AbbrName)
-			{
-				module.ModuleTitle = employee.AbbrName;
-				mctrl.UpdateModule (module);
-			}
-		}
-
 		/// <summary>
 		/// Displays the specified employee.
 		/// </summary>
