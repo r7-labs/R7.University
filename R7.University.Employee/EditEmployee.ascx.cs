@@ -360,12 +360,11 @@ namespace R7.University.Employee
 					// add employee
 					EmployeeController.AddEmployee (item, GetOccupiedPositions (), GetEmployeeAchievements ());
 
-					// then adding new employee from Employee module, 
+					// then adding new employee from Employee or EmployeeDetails modules, 
 					// set calling module to display new employee
-					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
+					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" || 
+                        ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails")
 					{
-						//var mctrl = new ModuleController();
-						//mctrl.UpdateModuleSetting (ModuleId, "Employee_EmployeeID", item.EmployeeID.ToString());
 						EmployeeSettings.EmployeeID = item.EmployeeID;
 
 						// we adding new employee, so he/she should be displayed in the module

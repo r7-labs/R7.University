@@ -18,7 +18,7 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public partial class ViewEmployeeDetails : EmployeePortalModuleBase
+    public partial class ViewEmployeeDetails : EmployeePortalModuleBase, IActionable
 	{
 		#region Properties
 
@@ -33,6 +33,64 @@ namespace R7.University.Employee
         }
 
 		#endregion
+
+        #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions
+        {
+            get
+            {
+                // create a new action to add an item, this will be added 
+                // to the controls dropdown menu
+                var actions = new ModuleActionCollection ();
+
+                var employeeId = GetEmployeeId ();
+
+                actions.Add (
+                    GetNextActionID (), 
+                    Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
+                    ModuleActionType.AddContent, 
+                    "", 
+                    "", 
+                    Utils.EditUrl (this, "EditEmployee"),
+                    false, 
+                    DotNetNuke.Security.SecurityAccessLevel.Edit,
+                    employeeId == null, 
+                    false
+                );
+
+                // otherwise, add "edit" action
+                actions.Add (
+                    GetNextActionID (), 
+                    Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
+                    ModuleActionType.EditContent, 
+                    "", 
+                    "", 
+                    Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.ToString ()),
+                    false, 
+                    DotNetNuke.Security.SecurityAccessLevel.Edit,
+                    employeeId != null, 
+                    false
+                );
+
+                actions.Add (
+                    GetNextActionID (), 
+                    Localization.GetString ("VCard.Action", this.LocalResourceFile),
+                    ModuleActionType.ContentOptions, 
+                    "", 
+                    "", 
+                    Utils.EditUrl (this, "VCard", "employee_id", employeeId.ToString ()),
+                    false,
+                    DotNetNuke.Security.SecurityAccessLevel.View,
+                    employeeId != null,
+                    true
+                );
+
+                return actions;
+            }
+        }
+
+        #endregion
 
 		#region Handlers
 
