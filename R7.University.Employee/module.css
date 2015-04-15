@@ -34,6 +34,12 @@
 
 /* Employee details styles */
 
+.employeeDetails 
+{ 
+    display:table;
+    width:100%
+}
+
 .employeeDetails ._section,
 .employeeDetails ._positions,
 .employeeDetails ._website
@@ -46,8 +52,7 @@
 {
 	margin-top:8px
 }
-
-.employeeDetails ._tabs,
+    
 .employeeDetails ._label,
 .employeeDetails ._email,
 .employeeDetails ._barcode
@@ -62,12 +67,16 @@
 
 .employeeDetails ._photo
 {
-	vertical-align:top;
+    display:table-cell;
 	margin-right:10px;
-	margin-top:2px
+	margin-top:3px
 }
 
-.employeeDetails ._tabs { width:auto }
+.employeeDetails ._tabs 
+{ 
+    display:table-cell;
+    vertical-align:top;
+}
 
 .employeeDetails ._tab { max-width:700px }
 
