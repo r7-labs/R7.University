@@ -145,46 +145,64 @@ namespace R7.University.Employee
 						employee = GetEmployee ();
 					}
 
-					if (employee != null)
-					{
-						if (IsEditable || employee.IsPublished)
-						{
-							Display (employee);
-							
-                            // don't show action buttons in view module
-                            if (!InViewModule)
-                            {
-                                // show vCard button only for editors
-                                if (IsEditable)
-    							{
-    								linkVCard.Visible = true;
-                                    linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employee.EmployeeID.ToString ());
-                                }
-
-                                // show edit button only for editors or superusers (in popup)
-                                if (IsEditable || UserInfo.IsSuperUser) 
-                                {
-                                    linkEdit.Visible = true;
-                                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
-    							}
-                            }
-						}
-                        else 
-                        {
-							// can show only published
-                            if (InPopup)
-                                Response.Redirect (Globals.NavigateURL (), true);
-
-                            // TODO: else show message
-                        }
-					}
-					else 
+                    // something went wrong in popup mode - reload page
+                    if (InPopup && !IsEditable) 
                     {
-						// nothing to show
-                        if (InPopup)
-                            Response.Redirect (Globals.NavigateURL (), true);
+                        if (employee == null || !employee.IsPublished)
+                        {
+                            ReloadPage ();
+                            return;
+                        }
+                    }
 
-                        // TODO: else show message
+                    // display messages
+                    if (IsEditable)
+                    {
+                        if (employee == null)
+                        {
+                            // employee isn't set or not found
+                            Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
+                        }
+                        else if (!employee.IsPublished)
+                        {
+                            // employee don't published
+                            Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
+                        }
+                    }
+
+                    if (InViewModule)
+                    {
+                        // display module only in edit mode
+                        // only if we have published data to display
+                        ContainerControl.Visible = IsEditable || (employee != null && employee.IsPublished);
+                    }
+
+                    // display module content only if it exists and published (or in edit mode)
+                    var displayContent = employee != null && (IsEditable || employee.IsPublished);
+
+                    panelEmployeeDetails.Visible = displayContent;
+
+                    if (displayContent)
+                    {
+                        Display (employee);
+						
+                        // don't show action buttons in view module
+                        if (!InViewModule)
+                        {
+                            // show vCard button only for editors
+                            if (IsEditable)
+							{
+								linkVCard.Visible = true;
+                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employee.EmployeeID.ToString ());
+                            }
+
+                            // show edit button only for editors or superusers (in popup)
+                            if (IsEditable || UserInfo.IsSuperUser) 
+                            {
+                                linkEdit.Visible = true;
+                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
+							}
+                        }
                     }
 
 				} // if (!IsPostBack)
@@ -196,6 +214,16 @@ namespace R7.University.Employee
 		}
 
 		#endregion
+
+        /// <summary>
+        /// Reloads the page.
+        /// </summary>
+        protected void ReloadPage ()
+        {
+            // TODO: Move to extension methods
+            Response.Redirect (Globals.NavigateURL (), false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
 
 		protected void Display (EmployeeInfo employee)
 		{
