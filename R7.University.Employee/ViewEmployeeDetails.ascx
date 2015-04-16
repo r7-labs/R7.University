@@ -45,6 +45,7 @@
 				<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
 				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
 				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
+                <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" CssClass="_userprofile more" />
 			</div>
 
 			<div class="_section">
@@ -109,7 +110,6 @@
 <ul class="dnnActions dnnClear">
     <hr />
     <li><asp:HyperLink id="linkReturn" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdReturn" /></li>
-    <li><asp:HyperLink id="linkUserProfile" runat="server" CssClass="dnnSecondaryAction" ResourceKey="VisitProfile.Text" /></li>
     <li><asp:HyperLink id="linkVCard" runat="server" CssClass="dnnSecondaryAction" ResourceKey="VCard.Action" Visible="false" /></li>
     <li><asp:HyperLink id="linkEdit" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdEdit" Visible="false" /></li>
 </ul>

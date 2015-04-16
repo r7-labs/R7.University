@@ -42,13 +42,15 @@
 
 .employeeDetails ._section,
 .employeeDetails ._positions,
-.employeeDetails ._website
+.employeeDetails ._website,
+.employeeDetails ._userprofile
 {
 	display:block
 }
 
 .employeeDetails ._section,
-.employeeDetails ._positions
+.employeeDetails ._positions,
+.employeeDetails ._userprofile
 {
 	margin-top:8px
 }
@@ -59,8 +61,10 @@
 {
 	display:inline-block
 }
+
 .employeeDetails ._label,
-.employeeDetails ._email
+.employeeDetails ._email,
+.employeeDetails ._website
 {
 	margin-right:8px
 }

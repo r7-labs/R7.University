@@ -35,5 +35,5 @@
 		<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
 		<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
 	</div>
-	<asp:HyperLink id="linkUserProfile" runat="server" CssClass="more _userprofile" />
+	<asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" CssClass="_userprofile more" />
 </asp:Panel>
