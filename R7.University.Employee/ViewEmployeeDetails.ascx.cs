@@ -151,17 +151,23 @@ namespace R7.University.Employee
 						{
 							Display (employee);
 							
-							if (IsEditable)
-							{
-								linkVCard.Visible = true;
-                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employee.EmployeeID.ToString ());
-                            }
-
-                            if (IsEditable || UserInfo.IsSuperUser) 
+                            // don't show action buttons in view module
+                            if (!InViewModule)
                             {
-                                linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
-							}
+                                // show vCard button only for editors
+                                if (IsEditable)
+    							{
+    								linkVCard.Visible = true;
+                                    linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employee.EmployeeID.ToString ());
+                                }
+
+                                // show edit button only for editors or superusers (in popup)
+                                if (IsEditable || UserInfo.IsSuperUser) 
+                                {
+                                    linkEdit.Visible = true;
+                                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
+    							}
+                            }
 						}
                         else 
                         {
