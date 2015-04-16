@@ -82,8 +82,7 @@ namespace R7.University.Employee
 					// only if we have published data to display
 					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);
 											
-					// display module content only if it exists
-					// and if publshed or in edit mode
+                    // display module content only if it exists and published (or in edit mode)
 					var displayContent = hasData && (IsEditable || employee.IsPublished);
 
 					panelEmployee.Visible = displayContent;
