@@ -11,25 +11,23 @@
 		<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
 	</div>
 	<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
-		<HeaderTemplate><ul class="_positions"></HeaderTemplate>
+        <HeaderTemplate><ul class="_positions"></HeaderTemplate>
 		<ItemTemplate>
 			<li>
 				<asp:Label id="labelPosition" runat="server" />
 				<asp:Label id="labelDivision" runat="server" />
 				<asp:HyperLink id="linkDivision" runat="server" />
 			</li>
-		</ItemTemplate>
-		<FooterTemplate></ul></FooterTemplate>
+        </ItemTemplate>
+        <FooterTemplate></ul></FooterTemplate>
 	</asp:Repeater>
-
-	<div class="_section">
+    <div class="_section">
 		<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
 		<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
 		<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_label" />
 		<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
 	</div>
-
-	<div class="_section">
+    <div class="_section">
 		<asp:Label id="labelPhone" runat="server" CssClass="_label" />
 		<asp:Label id="labelFax" runat="server" CssClass="_label" />
 		<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />

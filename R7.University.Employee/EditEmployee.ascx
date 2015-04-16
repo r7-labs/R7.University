@@ -11,7 +11,6 @@
 <script type="text/javascript">
 	$(function() { $("#employeeTabs").dnnTabs({selected: <%= (int)SelectedTab %>}); });
 </script>
-
 <div class="dnnForm dnnClear">
 	<div id="employeeTabs" class="dnnForm dnnClear">
 		<ul class="dnnAdminTabNav dnnClear">
@@ -139,7 +138,6 @@
 				</div>
 			</fieldset>
 		</div>
-	
 		<div id="employeePositions">
 			<fieldset>
 				<div class="dnnFormItem">
@@ -204,7 +202,6 @@
 				<asp:HiddenField id="hiddenOccupiedPositionItemID" runat="server" />
 			</fieldset>
 		</div>
-	
 		<div id="employeeAchievements">
 			<fieldset>
 				<div class="dnnFormItem">
@@ -297,7 +294,6 @@
 				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>
 		</div>
-
 		<div id="employeeDisciplines">
 			<fieldset>
 				<div class="dnnFormItem">
@@ -307,7 +303,6 @@
 				</div>
 			</fieldset>
 		</div>
-
 		<div id="employeeAbout">
 			<fieldset>
 				<div class="dnnFormItem">
@@ -317,8 +312,6 @@
 				</div>
 			</fieldset>
 		</div>
-
-
 	</div>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" OnClick="buttonUpdate_Click" /></li>
@@ -328,4 +321,3 @@
 	<hr />
 	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
-
