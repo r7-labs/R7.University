@@ -145,14 +145,24 @@ namespace R7.University.Employee
 						employee = GetEmployee ();
 					}
 
+                    // can we display module content?
+                    var displayContent = employee != null && (IsEditable || employee.IsPublished);
+
+                    // can we display something (content or messages)?
+                    var displaySomething = IsEditable || (employee != null && employee.IsPublished);
+
                     // something went wrong in popup mode - reload page
-                    if (InPopup && !IsEditable) 
+                    if (InPopup && !displaySomething)
                     {
-                        if (employee == null || !employee.IsPublished)
-                        {
-                            ReloadPage ();
-                            return;
-                        }
+                        ReloadPage ();
+                        return;
+                    }
+
+                    if (InViewModule)
+                    {
+                        // display module only in edit mode
+                        // only if we have published data to display
+                        ContainerControl.Visible = displaySomething;
                     }
 
                     // display messages
@@ -169,16 +179,6 @@ namespace R7.University.Employee
                             Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
                         }
                     }
-
-                    if (InViewModule)
-                    {
-                        // display module only in edit mode
-                        // only if we have published data to display
-                        ContainerControl.Visible = IsEditable || (employee != null && employee.IsPublished);
-                    }
-
-                    // display module content only if it exists and published (or in edit mode)
-                    var displayContent = employee != null && (IsEditable || employee.IsPublished);
 
                     panelEmployeeDetails.Visible = displayContent;
 
