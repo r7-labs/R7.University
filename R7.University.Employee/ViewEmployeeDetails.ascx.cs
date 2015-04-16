@@ -378,7 +378,8 @@ namespace R7.University.Employee
 				                   employee.EmployeeID);
 	
 			// employee titles
-			var titles = achievements.Where (ach => ach.IsTitle).Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle)).ToList ();
+            var titles = achievements.Where (ach => ach.IsTitle)
+                .Select (ach => Utils.FirstCharToLower (ach.Title)).ToList ();
 
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);
