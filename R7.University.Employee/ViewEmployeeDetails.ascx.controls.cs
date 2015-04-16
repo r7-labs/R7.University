@@ -11,6 +11,7 @@ namespace R7.University.Employee
 {
 	public partial class ViewEmployeeDetails
 	{
+        protected Panel panelEmployeeDetails;
 		protected Image imagePhoto;
 		protected Image imageBarcode;
         protected Literal literalFullName;

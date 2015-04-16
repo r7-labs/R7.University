@@ -34,7 +34,7 @@
 
 /* Employee details styles */
 
-.employeeDetails 
+.employeeDetails .employeeDetailsTable 
 { 
     display:table;
     width:100%
@@ -85,6 +85,8 @@
 .employeeDetails ._tab { max-width:700px }
 
 .employeeDetails ._barcode { border:5px solid #eee }
+
+.employeeDetails ul.dnnActions { display:block }
 
 /* dnnGridHeader fix */
 .dnnGridHeader th 
