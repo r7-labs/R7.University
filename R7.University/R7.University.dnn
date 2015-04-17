@@ -91,7 +91,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.01.07">
+		<package name="R7.University.Launchpad" type="Module" version="01.01.08">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
