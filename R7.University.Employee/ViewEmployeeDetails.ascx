@@ -4,12 +4,12 @@
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/js/module.js" />
 <script type="text/javascript">
-	$(function() { $( "#employeeTabs" ).dnnTabs( <%= (!IsPostBack)? "{selected: 0}" : "" %>  ); });
+	$(function() { $( "#employeeTabs_<%= ModuleId %>" ).dnnTabs( <%= (!IsPostBack)? "{selected: 0}" : "" %>  ); });
 </script>
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear employeeDetails">
     <div class="employeeDetailsTable">
     	<asp:Image id="imagePhoto" runat="server" CssClass="_photo" />	
-    	<div id="employeeTabs" class="dnnForm dnnClear _tabs">
+    	<div id="employeeTabs_<%= ModuleId %>" class="dnnForm dnnClear _tabs">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="dnnAdminTabNav dnnClear">
     		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
