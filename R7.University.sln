@@ -138,6 +138,6 @@ Global
 		$0.XmlFormattingPolicy = $14
 		$14.inheritsSet = null
 		$14.scope = application/x-msbuild
-		version = 1.1.7
+		version = 1.1.8
 	EndGlobalSection
 EndGlobal
