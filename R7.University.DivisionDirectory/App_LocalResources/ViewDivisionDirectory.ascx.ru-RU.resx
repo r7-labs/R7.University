@@ -38,7 +38,7 @@
         <value>Введите поисковую фразу и (или) выберите подразделение.</value>
     </data>
     <data xml:space="preserve" name="checkIncludeSubdivisions.Text">
-        <value>Включая подчиненные</value>
+        <value>Включая подчиненные подразделения</value>
     </data>
     <data xml:space="preserve" name="checkTeachersOnly.Text">
         <value>Только ППС</value>
