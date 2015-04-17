@@ -82,8 +82,7 @@ namespace R7.University.Employee
 					// only if we have published data to display
 					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);
 											
-					// display module content only if it exists
-					// and if publshed or in edit mode
+                    // display module content only if it exists and published (or in edit mode)
 					var displayContent = hasData && (IsEditable || employee.IsPublished);
 
 					panelEmployee.Visible = displayContent;
@@ -110,20 +109,6 @@ namespace R7.University.Employee
 		}
 
 		#endregion
-
-		
-
-		protected void AutoTitle (EmployeeInfo employee)
-		{
-			// replace module title
-			var mctrl = new ModuleController ();
-			var module = mctrl.GetModule (ModuleId);
-			if (module.ModuleTitle != employee.AbbrName)
-			{
-				module.ModuleTitle = employee.AbbrName;
-				mctrl.UpdateModule (module);
-			}
-		}
 
 		/// <summary>
 		/// Displays the specified employee.
@@ -260,11 +245,7 @@ namespace R7.University.Employee
 
 			// Profile link
 			if (!Utils.IsNull<int> (employee.UserID))
-			{
 				linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
-				// TODO: Replace profile text with something more sane
-				linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
-			}
 			else
 				linkUserProfile.Visible = false;
 		}

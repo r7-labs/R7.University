@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>&lt;p&gt;О модуле Employee&lt;/p&gt;</value>
-  </data>
-	<!-- <data name="DefaultContent.Text" xml:space="preserve">
-    <value>Что-то вместо содержимого</value>
-  </data> -->
-	<data name="NothingToDisplay.Text" xml:space="preserve">
-  	<value>Нечего отображать, добавьте элементы.</value>
-  </data>
-    <!-- <data name="EmployeeNotFound.Text" xml:space="preserve">
-    <value>Не найдено записи о сотруднике, связанной с текущим пользователем.</value>
-  </data> -->
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;О модуле Employee&lt;/p&gt;</value>
+    </data>
 </root>

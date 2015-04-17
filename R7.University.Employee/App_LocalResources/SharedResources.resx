@@ -75,4 +75,10 @@
     <data name="PositionsTab.Text" xml:space="preserve">
         <value>Positions</value>
     </data>
+    <data name="EmployeeNotPublished.Text" xml:space="preserve">
+        <value>Selected employee not published.</value>
+    </data>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Please select employee to display.</value>
+    </data>
 </root>

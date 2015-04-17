@@ -48,6 +48,18 @@ namespace R7.University.Employee
 			get { return settings ?? (settings = new EmployeeSettings (this)); }
 		}
 
+        protected void AutoTitle (EmployeeInfo employee)
+        {
+            // replace module title
+            var mctrl = new ModuleController ();
+            var module = mctrl.GetModule (ModuleId);
+            if (module.ModuleTitle != employee.AbbrName)
+            {
+                module.ModuleTitle = employee.AbbrName;
+                mctrl.UpdateModule (module);
+            }
+        }
+
 		#region Methods to get associated employee
 
 		protected EmployeeInfo GetEmployee ()

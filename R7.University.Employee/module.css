@@ -34,47 +34,60 @@
 
 /* Employee details styles */
 
+.employeeDetails .employeeDetailsTable 
+{ 
+    display:table;
+    width:100%
+}
+
 .employeeDetails ._section,
 .employeeDetails ._positions,
-.employeeDetails ._website
+.employeeDetails ._website,
+.employeeDetails ._userprofile
 {
 	display:block
 }
 
 .employeeDetails ._section,
-.employeeDetails ._positions
+.employeeDetails ._positions,
+.employeeDetails ._userprofile
 {
 	margin-top:8px
 }
-
-.employeeDetails ._tabs,
+    
 .employeeDetails ._label,
 .employeeDetails ._email,
 .employeeDetails ._barcode
 {
 	display:inline-block
 }
+
 .employeeDetails ._label,
-.employeeDetails ._email
+.employeeDetails ._email,
+.employeeDetails ._website
 {
 	margin-right:8px
 }
 
 .employeeDetails ._photo
 {
-	vertical-align:top;
+    display:table-cell;
 	margin-right:10px;
-	margin-top:2px
+	margin-top:3px
 }
 
-.employeeDetails ._tabs { width:auto }
-
-.employeeDetails ._tab { max-width:700px }
+.employeeDetails ._tabs 
+{ 
+    display:table-cell;
+    vertical-align:top;
+}
 
 .employeeDetails ._barcode { border:5px solid #eee }
 
+.employeeDetails ul.dnnActions { display:block }
+
 /* dnnGridHeader fix */
-.dnnGridHeader th 
+.employeeDetails .dnnGridHeader th 
 {
     border-bottom: 1px solid #c9c9c9;
     border-right: 1px solid #c9c9c9;

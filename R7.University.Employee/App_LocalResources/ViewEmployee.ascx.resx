@@ -1,21 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>&lt;p&gt;About Employee module&lt;/p&gt;</value>
-  </data>
-	<data name="DefaultContent.Text" xml:space="preserve">
-    <value>Here is some sample content</value>
-  </data>
-	<data name="NothingToDisplay.Text" xml:space="preserve">
-  	<value>Please select employee to display.</value>
-  </data>
-	<!-- <data name="EmployeeHardDeleted.Text" xml:space="preserve">
-  	<value>Selected employee doesn't exist!</value>
-  </data> -->
-	<data name="EmployeeNotPublished.Text" xml:space="preserve">
-  	<value>Selected employee not published.</value>
-  </data>
-    <!-- <data name="EmployeeNotFound.Text" xml:space="preserve">
-    <value>No employee record found for current user.</value>
-  </data> -->
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;About Employee module&lt;/p&gt;</value>
+    </data>
 </root>

@@ -18,11 +18,79 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public partial class ViewEmployeeDetails : EmployeePortalModuleBase
+    public partial class ViewEmployeeDetails : EmployeePortalModuleBase, IActionable
 	{
 		#region Properties
 
+        protected bool InPopup 
+        {
+            get { return Request.QueryString ["popup"] != null; }
+        }
+
+        protected bool InViewModule 
+        {
+            get { return ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails"; }
+        }
+
 		#endregion
+
+        #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions
+        {
+            get
+            {
+                // create a new action to add an item, this will be added 
+                // to the controls dropdown menu
+                var actions = new ModuleActionCollection ();
+
+                var employeeId = GetEmployeeId ();
+
+                actions.Add (
+                    GetNextActionID (), 
+                    Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
+                    ModuleActionType.AddContent, 
+                    "", 
+                    "", 
+                    Utils.EditUrl (this, "EditEmployee"),
+                    false, 
+                    DotNetNuke.Security.SecurityAccessLevel.Edit,
+                    employeeId == null, 
+                    false
+                );
+
+                // otherwise, add "edit" action
+                actions.Add (
+                    GetNextActionID (), 
+                    Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
+                    ModuleActionType.EditContent, 
+                    "", 
+                    "", 
+                    Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.ToString ()),
+                    false, 
+                    DotNetNuke.Security.SecurityAccessLevel.Edit,
+                    employeeId != null, 
+                    false
+                );
+
+                actions.Add (
+                    GetNextActionID (), 
+                    Localization.GetString ("VCard.Action", this.LocalResourceFile),
+                    ModuleActionType.ContentOptions, 
+                    "", 
+                    "", 
+                    Utils.EditUrl (this, "VCard", "employee_id", employeeId.ToString ()),
+                    false,
+                    DotNetNuke.Security.SecurityAccessLevel.View,
+                    employeeId != null,
+                    true
+                );
+
+                return actions;
+            }
+        }
+
+        #endregion
 
 		#region Handlers
 
@@ -34,13 +102,19 @@ namespace R7.University.Employee
 		{
 			base.OnInit (e);
 
-            if (Request.QueryString ["popup"] != null)
+            if (InPopup)
             {
                 linkReturn.Attributes.Add ("onclick", "javascript:return " +
                     UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
             }
+            else if (InViewModule)
+            {
+                linkReturn.Visible = false;
+            }
             else
+            {
                 linkReturn.NavigateUrl = Globals.NavigateURL ();
+            }
 		}
 
 		/// <summary>
@@ -65,37 +139,71 @@ namespace R7.University.Employee
 						// get employee by querystring param
 						employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
 					}
-					else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
-					{
+                    else if (InViewModule || ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
+                    {
 						// if not, try to use Employee module settings
 						employee = GetEmployee ();
 					}
 
-					if (employee != null)
-					{
-						if (IsEditable || employee.IsPublished)
-						{
-							Display (employee);
-							
-							if (IsEditable)
+                    // can we display module content?
+                    var displayContent = employee != null && (IsEditable || employee.IsPublished);
+
+                    // can we display something (content or messages)?
+                    var displaySomething = IsEditable || (employee != null && employee.IsPublished);
+
+                    // something went wrong in popup mode - reload page
+                    if (InPopup && !displaySomething)
+                    {
+                        ReloadPage ();
+                        return;
+                    }
+
+                    if (InViewModule)
+                    {
+                        // display module only in edit mode
+                        // only if we have published data to display
+                        ContainerControl.Visible = displaySomething;
+                    }
+
+                    // display messages
+                    if (IsEditable)
+                    {
+                        if (employee == null)
+                        {
+                            // employee isn't set or not found
+                            Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
+                        }
+                        else if (!employee.IsPublished)
+                        {
+                            // employee don't published
+                            Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
+                        }
+                    }
+
+                    panelEmployeeDetails.Visible = displayContent;
+
+                    if (displayContent)
+                    {
+                        Display (employee);
+						
+                        // don't show action buttons in view module
+                        if (!InViewModule)
+                        {
+                            // show vCard button only for editors
+                            if (IsEditable)
 							{
 								linkVCard.Visible = true;
-								linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employeeId.Value.ToString ());
+                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employee.EmployeeID.ToString ());
                             }
 
+                            // show edit button only for editors or superusers (in popup)
                             if (IsEditable || UserInfo.IsSuperUser) 
                             {
                                 linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.Value.ToString ());
+                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
 							}
-						}
-						else
-							// can show only published
-							Response.Redirect (Globals.NavigateURL (), true);
-					}
-					else 
-						// nothing to show
-						Response.Redirect (Globals.NavigateURL (), true);
+                        }
+                    }
 
 				} // if (!IsPostBack)
 			}
@@ -107,14 +215,29 @@ namespace R7.University.Employee
 
 		#endregion
 
+        /// <summary>
+        /// Reloads the page.
+        /// </summary>
+        protected void ReloadPage ()
+        {
+            // TODO: Move to extension methods
+            Response.Redirect (Globals.NavigateURL (), false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
 		protected void Display (EmployeeInfo employee)
 		{
 			var fullname = employee.FullName;
 			
-            if (Request.QueryString ["popup"] != null)
+            if (InPopup)
             {
                 // set popup title to employee name
                 ((DotNetNuke.Framework.CDefault) this.Page).Title = fullname;
+            }
+            else if (InViewModule)
+            {
+                if (EmployeeSettings.AutoTitle)
+                    AutoTitle (employee);
             }
             else
             {
@@ -196,11 +319,7 @@ namespace R7.University.Employee
 
 			// Profile link
 			if (!Utils.IsNull<int> (employee.UserID))
-			{
 				linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
-				// TODO: Replace profile text with something more sane
-				linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
-			}
 			else
 				linkUserProfile.Visible = false;
 
@@ -289,7 +408,8 @@ namespace R7.University.Employee
 				                   employee.EmployeeID);
 	
 			// employee titles
-			var titles = achievements.Where (ach => ach.IsTitle).Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle)).ToList ();
+            var titles = achievements.Where (ach => ach.IsTitle)
+                .Select (ach => Utils.FirstCharToLower (ach.Title)).ToList ();
 
 			// add academic degree and title for backward compatibility
 			titles.Add (employee.AcademicDegree);
