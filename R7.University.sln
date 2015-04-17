@@ -21,7 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		LICENSE.md = LICENSE.md
-		01.01.06.SqlDataProvider = 01.01.06.SqlDataProvider
 	EndProjectSection
 EndProject
 Global
