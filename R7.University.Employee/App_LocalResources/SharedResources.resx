@@ -37,13 +37,13 @@
         <value>Year(s)</value>
     </data>
     <data name="Title.Column">
-        <value>Title (role)</value>
+        <value>Title</value>
     </data>
     <data name="IsTitle.Column">
         <value>Is Title</value>
     </data>
     <data name="AchievementType.Column">
-        <value>Type</value>
+        <value>Category</value>
     </data>
     <data name="DocumentUrl.Column">
         <value>Document</value>

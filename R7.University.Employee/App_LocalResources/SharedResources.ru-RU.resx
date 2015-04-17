@@ -37,13 +37,13 @@
         <value>Год(ы)</value>
     </data>
     <data name="Title.Column">
-        <value>Название (роль)</value>
+        <value>Наименование</value>
     </data>
     <data name="IsTitle.Column">
         <value>Титульное</value>
     </data>
     <data name="AchievementType.Column">
-        <value>Тип</value>
+        <value>Категория</value>
     </data>
     <data name="DocumentUrl.Column">
         <value>Документ</value>

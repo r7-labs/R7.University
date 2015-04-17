@@ -7,7 +7,7 @@
         <value>&lt;p&gt;О модуле Employee Details&lt;/p&gt;</value>
     </data>
 	<data name="BarcodeScan.Text" xml:space="preserve">
-    <value>Используйте приложение "сканер штрих-кодов", установленное в Вашем мобильном устройстве, для того, чтобы добавить визитку этого сотрудника в адресную книгу.</value>
+    <value>Используйте приложение "сканер штрих-кодов", установленное в Вашем мобильном устройстве, для того, чтобы добавить визитку в свою адресную книгу.</value>
   </data>
 	<data name="BarcodeTab.Text" xml:space="preserve">
     <value>QR-код</value>

@@ -7,7 +7,7 @@
         <value>&lt;p&gt;About Employee Details module&lt;/p&gt;</value>
     </data>
 	<data name="BarcodeScan.Text" xml:space="preserve">
-    <value>Use your mobile device barcode scanning application to add this employee vCard to your address book.</value>
+    <value>Use your mobile device barcode scanning application to add the vCard to your address book.</value>
   </data>
 	<data name="BarcodeTab.Text" xml:space="preserve">
     <value>QR-code</value>
