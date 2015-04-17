@@ -105,7 +105,7 @@ namespace R7.University.Employee
 					if (displayContent)
 					{
 						if (EmployeeSettings.AutoTitle)
-							AutoTitle (Employee);
+                            UpdateModuleTitle (Employee.AbbrName);
 						
 						// get employee achievements (titles) only then it about to display
 						achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (

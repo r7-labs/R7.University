@@ -48,14 +48,15 @@ namespace R7.University.Employee
 			get { return settings ?? (settings = new EmployeeSettings (this)); }
 		}
 
-        protected void AutoTitle (EmployeeInfo employee)
+        protected void UpdateModuleTitle (string title)
         {
             // replace module title
             var mctrl = new ModuleController ();
             var module = mctrl.GetModule (ModuleId);
-            if (module.ModuleTitle != employee.AbbrName)
+
+            if (module.ModuleTitle != title)
             {
-                module.ModuleTitle = employee.AbbrName;
+                module.ModuleTitle = title;
                 mctrl.UpdateModule (module);
             }
         }

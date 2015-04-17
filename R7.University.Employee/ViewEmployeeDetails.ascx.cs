@@ -258,7 +258,7 @@ namespace R7.University.Employee
             else if (InViewModule)
             {
                 if (EmployeeSettings.AutoTitle)
-                    AutoTitle (employee);
+                    UpdateModuleTitle (employee.FullName);
             }
             else
             {
