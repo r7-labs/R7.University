@@ -24,6 +24,22 @@ namespace R7.University.Employee
 	{
 		#region Properties
 
+        private EmployeeInfo _employee;
+
+        public EmployeeInfo Employee
+        {
+            get
+            {
+                if (_employee == null)
+                {
+                    // use module settings
+                    _employee = GetEmployee ();
+                }
+
+                return _employee;
+            }
+        }
+
 		#endregion
 
 		#region Handlers
@@ -58,46 +74,45 @@ namespace R7.University.Employee
 					
 					IEnumerable<EmployeeAchievementInfo> achievements = null;
 
-					var employee = GetEmployee ();
-					if (employee == null)
+					if (Employee == null)
 					{
 						// employee isn't set or not found
 						if (IsEditable)
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 					}
-					else if (!employee.IsPublished)
+					else if (!Employee.IsPublished)
 					{
 						// employee isn't published
 						if (IsEditable)
 							Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
 					}
 
-					var hasData = employee != null;
+					var hasData = Employee != null;
 
 					// if we have something published to display
 					// then display module to common users
-					Cache_SetContainerVisible (hasData && employee.IsPublished);
+					Cache_SetContainerVisible (hasData && Employee.IsPublished);
 											
 					// display module only in edit mode
 					// only if we have published data to display
-					ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished);
+					ContainerControl.Visible = IsEditable || (hasData && Employee.IsPublished);
 											
                     // display module content only if it exists and published (or in edit mode)
-					var displayContent = hasData && (IsEditable || employee.IsPublished);
+					var displayContent = hasData && (IsEditable || Employee.IsPublished);
 
 					panelEmployee.Visible = displayContent;
 					
 					if (displayContent)
 					{
 						if (EmployeeSettings.AutoTitle)
-							AutoTitle (employee);
+							AutoTitle (Employee);
 						
 						// get employee achievements (titles) only then it about to display
 						achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
-							CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", employee.EmployeeID);
+							CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0 AND [IsTitle] = 1", Employee.EmployeeID);
 
 						// display employee info
-						Display (employee, achievements);
+						Display (Employee, achievements);
 					}
 
 				} // if (!IsPostBack)
@@ -260,8 +275,6 @@ namespace R7.University.Employee
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
 
-				var employeeId = GetEmployeeId ();
-
 				actions.Add (
 					GetNextActionID (), 
 					Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
@@ -271,49 +284,52 @@ namespace R7.University.Employee
 					Utils.EditUrl (this, "EditEmployee"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
-					employeeId == null, 
+					Employee == null,
 					false
 				);
 
-				// otherwise, add "edit" action
-				actions.Add (
-					GetNextActionID (), 
-					Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
-					ModuleActionType.EditContent, 
-					"", 
-					"", 
-					Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.ToString ()),
-					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
-					employeeId != null, 
-					false
-				);
+                if (Employee != null)
+                {
+                    // otherwise, add "edit" action
+                    actions.Add (
+                        GetNextActionID (), 
+                        Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
+                        ModuleActionType.EditContent, 
+                        "", 
+                        "", 
+                        Utils.EditUrl (this, "EditEmployee", "employee_id", Employee.EmployeeID.ToString ()),
+                        false, 
+                        DotNetNuke.Security.SecurityAccessLevel.Edit,
+                        true, 
+                        false
+                    );
 
-				actions.Add (
-					GetNextActionID (), 
-					Localization.GetString ("Details.Action", this.LocalResourceFile),
-					ModuleActionType.ContentOptions, 
-					"", 
-					"", 
-					Utils.EditUrl (this, "EmployeeDetails", "employee_id", employeeId.ToString ()).Replace ("550,950", "450,950"),
-					false, 
-					DotNetNuke.Security.SecurityAccessLevel.View,
-					employeeId != null, 
-					false
-				);
+                    actions.Add (
+                        GetNextActionID (), 
+                        Localization.GetString ("Details.Action", this.LocalResourceFile),
+                        ModuleActionType.ContentOptions, 
+                        "", 
+                        "", 
+                        Utils.EditUrl (this, "EmployeeDetails", "employee_id", Employee.EmployeeID.ToString ()).Replace ("550,950", "450,950"),
+                        false, 
+                        DotNetNuke.Security.SecurityAccessLevel.View,
+                        true, 
+                        false
+                    );
 
-				actions.Add (
-					GetNextActionID (), 
-					Localization.GetString ("VCard.Action", this.LocalResourceFile),
-					ModuleActionType.ContentOptions, 
-					"", 
-					"", 
-					Utils.EditUrl (this, "VCard", "employee_id", employeeId.ToString ()),
-					false,
-					DotNetNuke.Security.SecurityAccessLevel.View,
-					employeeId != null,
-					true
-				);
+                    actions.Add (
+                        GetNextActionID (), 
+                        Localization.GetString ("VCard.Action", this.LocalResourceFile),
+                        ModuleActionType.ContentOptions, 
+                        "", 
+                        "", 
+                        Utils.EditUrl (this, "VCard", "employee_id", Employee.EmployeeID.ToString ()),
+                        false,
+                        DotNetNuke.Security.SecurityAccessLevel.View,
+                        true,
+                        true
+                    );
+                }
 
 				/*
 				#if (DATACACHE)

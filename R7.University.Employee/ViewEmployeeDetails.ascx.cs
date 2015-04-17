@@ -32,6 +32,42 @@ namespace R7.University.Employee
             get { return ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails"; }
         }
 
+        private EmployeeInfo _employee;
+
+        public EmployeeInfo Employee
+        {
+            get
+            {
+                if (_employee == null)
+                {
+                    if (InViewModule)
+                    {
+                        // use module settings
+                        _employee = GetEmployee ();
+                    }
+                    else
+                    {
+                        // try get employee id from querystring first
+                        var employeeId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
+
+                        if (employeeId != null)
+                        {
+                            // get employee by querystring param
+                            _employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
+                        }
+                        else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
+                        {
+                            // if employee id is not in the querystring, 
+                            // use module settings (Employee module only)
+                            _employee = GetEmployee ();
+                        }
+                    }
+                }
+
+                return _employee;
+            }
+        }
+
 		#endregion
 
         #region IActionable implementation
@@ -44,47 +80,48 @@ namespace R7.University.Employee
                 // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
 
-                var employeeId = GetEmployeeId ();
-
                 actions.Add (
                     GetNextActionID (), 
-                    Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
-                    ModuleActionType.AddContent, 
-                    "", 
+                    LocalizeString ("AddEmployee.Action"),
+                    ModuleActionType.AddContent,
+                    "",
                     "", 
                     Utils.EditUrl (this, "EditEmployee"),
                     false, 
                     DotNetNuke.Security.SecurityAccessLevel.Edit,
-                    employeeId == null, 
+                    Employee == null, 
                     false
                 );
 
-                // otherwise, add "edit" action
-                actions.Add (
-                    GetNextActionID (), 
-                    Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
-                    ModuleActionType.EditContent, 
-                    "", 
-                    "", 
-                    Utils.EditUrl (this, "EditEmployee", "employee_id", employeeId.ToString ()),
-                    false, 
-                    DotNetNuke.Security.SecurityAccessLevel.Edit,
-                    employeeId != null, 
-                    false
-                );
+                if (Employee != null)
+                {
+                    // otherwise, add "edit" action
+                    actions.Add (
+                        GetNextActionID (), 
+                        LocalizeString ("EditEmployee.Action"),
+                        ModuleActionType.EditContent, 
+                        "", 
+                        "", 
+                        Utils.EditUrl (this, "EditEmployee", "employee_id", Employee.EmployeeID.ToString ()),
+                        false, 
+                        DotNetNuke.Security.SecurityAccessLevel.Edit,
+                        true, 
+                        false
+                    );
 
-                actions.Add (
-                    GetNextActionID (), 
-                    Localization.GetString ("VCard.Action", this.LocalResourceFile),
-                    ModuleActionType.ContentOptions, 
-                    "", 
-                    "", 
-                    Utils.EditUrl (this, "VCard", "employee_id", employeeId.ToString ()),
-                    false,
-                    DotNetNuke.Security.SecurityAccessLevel.View,
-                    employeeId != null,
-                    true
-                );
+                    actions.Add (
+                        GetNextActionID (), 
+                        LocalizeString ("VCard.Action"),
+                        ModuleActionType.ContentOptions, 
+                        "", 
+                        "", 
+                        Utils.EditUrl (this, "VCard", "employee_id", Employee.EmployeeID.ToString ()),
+                        false,
+                        DotNetNuke.Security.SecurityAccessLevel.View,
+                        true,
+                        true
+                    );
+                }
 
                 return actions;
             }
@@ -129,27 +166,11 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					// try get EmployeeID from querysting
-					var employeeId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
-			
-					EmployeeInfo employee = null;
-
-					if (employeeId != null)
-					{
-						// get employee by querystring param
-						employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
-					}
-                    else if (InViewModule || ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
-                    {
-						// if not, try to use Employee module settings
-						employee = GetEmployee ();
-					}
-
-                    // can we display module content?
-                    var displayContent = employee != null && (IsEditable || employee.IsPublished);
+					// can we display module content?
+                    var displayContent = Employee != null && (IsEditable || Employee.IsPublished);
 
                     // can we display something (content or messages)?
-                    var displaySomething = IsEditable || (employee != null && employee.IsPublished);
+                    var displaySomething = IsEditable || (Employee != null && Employee.IsPublished);
 
                     // something went wrong in popup mode - reload page
                     if (InPopup && !displaySomething)
@@ -168,12 +189,12 @@ namespace R7.University.Employee
                     // display messages
                     if (IsEditable)
                     {
-                        if (employee == null)
+                        if (Employee == null)
                         {
                             // employee isn't set or not found
                             Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
                         }
-                        else if (!employee.IsPublished)
+                        else if (!Employee.IsPublished)
                         {
                             // employee don't published
                             Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
@@ -184,7 +205,7 @@ namespace R7.University.Employee
 
                     if (displayContent)
                     {
-                        Display (employee);
+                        Display (Employee);
 						
                         // don't show action buttons in view module
                         if (!InViewModule)
@@ -193,14 +214,14 @@ namespace R7.University.Employee
                             if (IsEditable)
 							{
 								linkVCard.Visible = true;
-                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", employee.EmployeeID.ToString ());
+                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", Employee.EmployeeID.ToString ());
                             }
 
                             // show edit button only for editors or superusers (in popup)
                             if (IsEditable || UserInfo.IsSuperUser) 
                             {
                                 linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
+                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", Employee.EmployeeID.ToString ());
 							}
                         }
                     }

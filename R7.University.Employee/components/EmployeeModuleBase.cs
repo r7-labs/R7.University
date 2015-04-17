@@ -62,26 +62,17 @@ namespace R7.University.Employee
 
 		#region Methods to get associated employee
 
-		protected EmployeeInfo GetEmployee ()
-		{
-			if (EmployeeSettings.ShowCurrentUser)
-			{
-				var userId = Utils.ParseToNullableInt (Request.QueryString ["userid"]);
-				if (userId != null)
-					return EmployeeController.GetEmployeeByUserId (userId.Value);
-			}
+        protected EmployeeInfo GetEmployee ()
+        {
+            if (EmployeeSettings.ShowCurrentUser)
+            {
+                var userId = Utils.ParseToNullableInt (Request.QueryString ["userid"]);
+                if (userId != null)
+                    return EmployeeController.GetEmployeeByUserId (userId.Value);
+            }
 
-			return EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
-		}
-
-		protected int? GetEmployeeId ()
-		{
-			var employee = GetEmployee ();
-			if (employee != null)
-				return Utils.ToNullable (employee.EmployeeID);
-
-			return null;
-		}
+            return EmployeeController.Get<EmployeeInfo> (EmployeeSettings.EmployeeID);
+        }
 
 		#endregion
 	}
