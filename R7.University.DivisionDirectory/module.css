@@ -10,7 +10,7 @@
 .divisionDirectory .linkDivisions 
 { 
     min-width:15em;
-    max-height:18px;
+    padding:6px;
     overflow:hidden;
     line-height:20px; /* hide all lines except 1st */
     font-weight:normal;
