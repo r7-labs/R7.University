@@ -73,6 +73,9 @@
     <Compile Include="components\WorkingHoursLogic.cs" />
     <Compile Include="components\TextUtils.cs" />
     <Compile Include="components\EmployeeEqualityComparer.cs" />
+    <Compile Include="entities\EduLevelInfo.cs" />
+    <Compile Include="entities\EduProgramInfo.cs" />
+    <Compile Include="entities\EmployeeEduProgramInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
