@@ -29,7 +29,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    public enum EduLevelType
+    public enum EduType
     {
         School = 'S',
         Intermediate = 'I',
@@ -46,13 +46,13 @@ namespace R7.University
         public int EduLevelID { get; set; }
 
         [ColumnName ("Type")]
-        public string TypeString { get; set; }
+        public string EduTypeString { get; set; }
 
         [IgnoreColumn]
-        public EduLevelType Type
+        public EduType EduType
         {
-            get { return (EduLevelType)TypeString [0]; }
-            set { TypeString = ((char)value).ToString (); }
+            get { return (EduType)EduTypeString [0]; }
+            set { EduTypeString = ((char)value).ToString (); }
         }
 
         #endregion
