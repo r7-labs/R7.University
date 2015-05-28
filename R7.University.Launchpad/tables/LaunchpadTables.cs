@@ -38,7 +38,8 @@ namespace R7.University.Launchpad
             new DivisionsTable (),
             new EmployeesTable (),
             new AchievementsTable (),
-            new EduLevelsTable ()
+            new EduLevelsTable (),
+            new EduProgramsTable ()
         };
 
         public List<string> TableNames 
