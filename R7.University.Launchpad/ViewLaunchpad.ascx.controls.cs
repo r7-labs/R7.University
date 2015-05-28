@@ -23,6 +23,8 @@ namespace R7.University.Launchpad
 		protected HyperLink buttonAddEmployee;
 		protected GridView gridAchievements;
 		protected HyperLink buttonAddAchievement;
+        protected GridView gridEduLevels;
+        protected HyperLink buttonAddEduLevel;
 		protected Repeater repeatTabs;
         protected TextBox textEmployeeSearch;
         protected Button buttonEmployeeSearch;

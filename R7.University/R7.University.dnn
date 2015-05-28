@@ -196,6 +196,19 @@
 										<supportsPopUps>True</supportsPopUps>
 										<viewOrder>0</viewOrder>
 									</moduleControl>
+									<moduleControl>
+										<controlKey>EditEduLevel</controlKey>
+										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduLevel.ascx</controlSrc>
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<controlTitle>Edit Education Level</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
 								</moduleControls>
 							</moduleDefinition>
 						</moduleDefinitions>

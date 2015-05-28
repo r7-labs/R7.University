@@ -55,10 +55,13 @@ namespace R7.University.Launchpad
 					case "gridAchievements": 
 						session = AchievementsDataSource ();
 						break;
+                    case "gridEduLevels": 
+                        session = EduLevelsDataSource ();
+                        break;
 				}
 				Session [gridviewId] = session;
 			}
-			return session as DataTable;
+            return (DataTable) session;
 		}
 
 		/// <summary>
@@ -91,6 +94,7 @@ namespace R7.University.Launchpad
 			buttonAddDivision.NavigateUrl = Utils.EditUrl (this, "EditDivision");
 			buttonAddEmployee.NavigateUrl = Utils.EditUrl (this, "EditEmployee");
 			buttonAddAchievement.NavigateUrl = Utils.EditUrl (this, "EditAchievement");
+            buttonAddEduLevel.NavigateUrl = Utils.EditUrl (this, "EditEduLevel");
 
             // bind employee search handlers
             buttonEmployeeSearch.Click += buttonEmployeeSearch_Click;
@@ -116,15 +120,7 @@ namespace R7.University.Launchpad
 			gridDivisions.PageSize = pageSize;
 			gridEmployees.PageSize = pageSize;
 			gridAchievements.PageSize = pageSize;
-		}
-
-		/// <summary>
-		/// Handles Load event for a control
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnLoad (EventArgs e)
-		{
-			base.OnLoad (e);
+            gridEduLevels.PageSize = pageSize;
 		}
 
 		/// <summary>
@@ -172,6 +168,13 @@ namespace R7.University.Launchpad
 						Session [gridAchievements.ID] = gridAchievements.DataSource;
 						gridAchievements.DataBind ();
 					}
+
+                    if (LaunchpadSettings.Tables.Contains (LaunchpadTableInfo.TableEduLevels))
+                    {
+                        gridEduLevels.DataSource = EduLevelsDataSource ();
+                        Session [gridEduLevels.ID] = gridEduLevels.DataSource;
+                        gridEduLevels.DataBind ();
+                    }
 				}
 			}
 			catch (Exception ex)
@@ -268,6 +271,18 @@ namespace R7.University.Launchpad
 					true, 
 					false
 				);
+                actions.Add (
+                    GetNextActionID (), 
+                    "Add Education Level",
+                    ModuleActionType.AddContent, 
+                    "", 
+                    "", 
+                    Utils.EditUrl (this, "EditEduLevel"),
+                    false, 
+                    DotNetNuke.Security.SecurityAccessLevel.Edit,
+                    true, 
+                    false
+                );
 
 				return actions;
 			}
@@ -279,38 +294,38 @@ namespace R7.University.Launchpad
 		{
 			var gv = sender as GridView;
 
-			//Retrieve the table from the session object.
+			// retrieve the table from the session object
 			var dt = GetDataTable (gv.ID);
 
 			if (dt != null)
 			{
-				// Sort the data.
-				dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection (gv.ID, e.SortExpression);
+				// sort the data 
+                dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection (gv.ID, e.SortExpression);
 				gv.DataSource = dt;
 				gv.DataBind ();
 			}
 		}
 
-		private string GetSortDirection (string controlID, string column)
+        private string GetSortDirection (string controlID, string column)
 		{
+			// by default, set the sort direction to ascending
+            var sortDirection = "ASC";
 
-			// By default, set the sort direction to ascending.
-			var sortDirection = "ASC";
-
-			// Retrieve the last column that was sorted.
+			// retrieve the last column that was sorted
 			var sortExpression = ViewState [controlID + "SortExpression"] as string;
 
 			if (sortExpression != null)
 			{
-				// Check if the same column is being sorted.
-				// Otherwise, the default value can be returned.
-				if (sortExpression == column)
-				{
-					var lastDirection = ViewState ["SortDirection"] as string;
-					if ((lastDirection != null) && (lastDirection == "ASC"))
-					{
-						sortDirection = "DESC";
-					}
+				// check if the same column is being sorted
+				// otherwise, the default value can be returned
+                if (sortExpression == column)
+                {
+                    if (ViewState ["SortDirection"] != null)
+                    {
+                        var lastDirection = (string) ViewState ["SortDirection"];
+                        if (lastDirection == "ASC")
+                            sortDirection = "DESC";
+                    }
 				}
 			}
 
@@ -527,6 +542,11 @@ namespace R7.University.Launchpad
 			return dt;
 		}
 
+        private DataTable EduLevelsDataSource ()
+        {
+            return DataTableConstructor.FromIEnumerable (LaunchpadController.GetObjects<EduLevelInfo> ());
+        }
+
 		protected void gridView_PageIndexChanging (object sender, GridViewPageEventArgs e)
 		{
 			var gv = sender as GridView;
@@ -551,8 +571,8 @@ namespace R7.University.Launchpad
 				// find edit hyperlink
 				var link = e.Row.Cells [0].FindControl ("linkEdit") as HyperLink;
 
+                // assuming e.Row.Cells[1] contains ID
 				if (sender == gridPositions)
-					// assuming e.Row.Cells[1] contains ID
 					link.NavigateUrl = Utils.EditUrl (this, "EditPosition", "position_id", e.Row.Cells [1].Text);
 				else if (sender == gridDivisions)
 					link.NavigateUrl = Utils.EditUrl (this, "EditDivision", "division_id", e.Row.Cells [1].Text);
@@ -560,6 +580,8 @@ namespace R7.University.Launchpad
 					link.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", e.Row.Cells [1].Text);
 				else if (sender == gridAchievements)
 					link.NavigateUrl = Utils.EditUrl (this, "EditAchievement", "achievement_id", e.Row.Cells [1].Text);
+                else if (sender == gridEduLevels)
+                    link.NavigateUrl = Utils.EditUrl (this, "EditEduLevel", "edulevel_id", e.Row.Cells [1].Text);
 			}
 		}
 

@@ -23,24 +23,22 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 using System.Collections.Generic;
 
 namespace R7.University.Launchpad
 {
-	public class LaunchpadTableInfo
+	public static class LaunchpadTableInfo
 	{
-		public LaunchpadTableInfo ()
-		{
-		}
-
 		public static string TablePositions = "positions";
 		public static string TableDivisions = "divisions";
 		public static string TableEmployees = "employees";
 		public static string TableAchievements = "achievements";
+        public static string TableEduLevels = "edulevels";
 
 		public static List<string> AvailableTables = 
-			new List<string> { TablePositions, TableDivisions, TableEmployees, TableAchievements };
+            new List<string> { TablePositions, TableDivisions, TableEmployees, TableAchievements, TableEduLevels };
 	}
 }
 
