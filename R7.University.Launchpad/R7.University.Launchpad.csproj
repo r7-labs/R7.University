@@ -58,6 +58,7 @@
   <ItemGroup>
     <Folder Include="js\" />
     <Folder Include="entities\" />
+    <Folder Include="tables\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -103,7 +104,6 @@
       <DependentUpon>EditPosition.ascx</DependentUpon>
     </Compile>
     <Compile Include="entities\UserView.cs" />
-    <Compile Include="entities\LaunchpadTableInfo.cs" />
     <Compile Include="EditAchievement.ascx.cs">
       <DependentUpon>EditAchievement.ascx</DependentUpon>
     </Compile>
@@ -117,6 +117,13 @@
     <Compile Include="EditEduLevel.ascx.controls.cs">
       <DependentUpon>EditEduLevel.ascx</DependentUpon>
     </Compile>
+    <Compile Include="tables\LaunchpadTables.cs" />
+    <Compile Include="tables\AchievementsTable.cs" />
+    <Compile Include="tables\DivisionsTable.cs" />
+    <Compile Include="tables\EduLevelsTable.cs" />
+    <Compile Include="tables\EmployeesTable.cs" />
+    <Compile Include="tables\LaunchpadTableBase.cs" />
+    <Compile Include="tables\PositionsTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

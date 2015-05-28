@@ -1,10 +1,10 @@
 ﻿//
-// LaunchpadTableInfo.cs
+// EduLevelsTable.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,20 +25,19 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
+using System.Data;
 
 namespace R7.University.Launchpad
 {
-	public static class LaunchpadTableInfo
-	{
-		public static string TablePositions = "positions";
-		public static string TableDivisions = "divisions";
-		public static string TableEmployees = "employees";
-		public static string TableAchievements = "achievements";
-        public static string TableEduLevels = "edulevels";
+    public class EduLevelsTable: LaunchpadTableBase
+    {
+        public EduLevelsTable (): base ("edulevels")
+        {
+        }
 
-		public static List<string> AvailableTables = 
-            new List<string> { TablePositions, TableDivisions, TableEmployees, TableAchievements, TableEduLevels };
-	}
+        public override DataTable GetDataTable (string filter)
+        {
+            return DataTableConstructor.FromIEnumerable (Module.LaunchpadController.GetObjects<EduLevelInfo> ());
+        }
+    }
 }
-
