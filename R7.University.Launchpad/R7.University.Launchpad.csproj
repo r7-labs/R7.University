@@ -66,6 +66,7 @@
     <Content Include="js\module.js" />
     <Content Include="EditPosition.ascx" />
     <Content Include="EditAchievement.ascx" />
+    <Content Include="EditEduLevel.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
@@ -110,6 +111,12 @@
       <DependentUpon>EditAchievement.ascx</DependentUpon>
     </Compile>
     <Compile Include="components\LaunchpadModuleBase.cs" />
+    <Compile Include="EditEduLevel.ascx.cs">
+      <DependentUpon>EditEduLevel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduLevel.ascx.controls.cs">
+      <DependentUpon>EditEduLevel.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -125,5 +132,11 @@
       <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
       <Name>R7.University</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\EditEduLevel.ascx.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

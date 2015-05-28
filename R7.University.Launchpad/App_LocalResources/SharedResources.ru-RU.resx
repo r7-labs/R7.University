@@ -12,4 +12,16 @@
     <data name="ResetSearch.Text">
         <value>Сбросить</value>
     </data>
+    <data name="EduTypeHigh.Text">
+        <value>Высшее</value>
+    </data>
+    <data name="EduTypeSchool.Text">
+        <value>Среднее</value>
+    </data>
+    <data name="EduTypeIntermediate.Text">
+        <value>Среднее профессиональное</value>
+    </data>
+    <data name="EduTypeAdditional.Text">
+        <value>Дополнительное</value>
+    </data>
 </root>

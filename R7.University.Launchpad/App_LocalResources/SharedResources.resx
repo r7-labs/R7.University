@@ -18,6 +18,18 @@
 	<data name="AchievementTypeW.Text">
 		<value>Work</value>
 	</data>
+    <data name="EduTypeHigh.Text">
+        <value>High</value>
+    </data>
+    <data name="EduTypeSchool.Text">
+        <value>School</value>
+    </data>
+    <data name="EduTypeIntermediate.Text">
+        <value>Intermediate</value>
+    </data>
+    <data name="EduTypeAdditional.Text">
+        <value>Additional</value>
+    </data>
     <data name="Search.Text">
         <value>Search</value>
     </data>
