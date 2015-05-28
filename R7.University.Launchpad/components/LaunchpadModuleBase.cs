@@ -35,7 +35,7 @@ namespace R7.University.Launchpad
 	{
 		private LaunchpadController ctrl = null;
 
-		protected LaunchpadController LaunchpadController
+		public LaunchpadController LaunchpadController
 		{
 			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
 		}
@@ -55,7 +55,7 @@ namespace R7.University.Launchpad
 	{
 		private LaunchpadController ctrl = null;
 
-		protected LaunchpadController LaunchpadController
+		public LaunchpadController LaunchpadController
 		{
 			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
 		}
