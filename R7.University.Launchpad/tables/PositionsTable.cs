@@ -42,7 +42,7 @@ namespace R7.University.Launchpad
 
         }
 
-        public override DataTable GetDataTable (string filter)
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter)
         {
             var dt = new DataTable ();
             DataRow dr;
@@ -56,7 +56,7 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            foreach (var position in Module.LaunchpadController.GetObjects<PositionInfo>())
+            foreach (var position in module.LaunchpadController.GetObjects<PositionInfo>())
             {
                 dr = dt.NewRow ();
                 dr [0] = position.PositionID;

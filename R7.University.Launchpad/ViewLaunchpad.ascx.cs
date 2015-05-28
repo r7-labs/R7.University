@@ -43,7 +43,7 @@ namespace R7.University.Launchpad
 			var session = Session [gridviewId];
 			if (session == null)
 			{
-                session = Tables.GridsDictionary [gridviewId].GetDataTable ((string) Session ["EmployeeSearch"]);
+                session = Tables.GridsDictionary [gridviewId].GetDataTable (this, (string) Session ["EmployeeSearch"]);
                 Session [gridviewId] = session;
 			}
             return (DataTable) session;
@@ -149,7 +149,7 @@ namespace R7.University.Launchpad
                     // bind data to selected tables
                     foreach (var table in Tables.Tables)
                         if (LaunchpadSettings.Tables.Contains (table.Name))
-                            table.DataBind ();
+                            table.DataBind (this);
 				}
 			}
 			catch (Exception ex)
@@ -279,7 +279,7 @@ namespace R7.University.Launchpad
 				var link = e.Row.Cells [0].FindControl ("linkEdit") as HyperLink;
 
                 // assuming e.Row.Cells[1] contains ID
-                Tables.GridsDictionary [((GridView) sender).ID].SetEditLink (link, e.Row.Cells [1].Text);
+                Tables.GridsDictionary [((GridView) sender).ID].SetEditLink (this, link, e.Row.Cells [1].Text);
 			}
 		}
 
@@ -346,7 +346,7 @@ namespace R7.University.Launchpad
                 else
                     Session ["EmployeeSearch"] = textEmployeeSearch.Text.Trim ();
 
-                Tables.NamesDictionary ["employees"].DataBind (textEmployeeSearch.Text.Trim ());
+                Tables.NamesDictionary ["employees"].DataBind (this, textEmployeeSearch.Text.Trim ());
             }
             catch (Exception ex)
             {

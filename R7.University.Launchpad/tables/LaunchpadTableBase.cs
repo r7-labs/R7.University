@@ -43,8 +43,6 @@ namespace R7.University.Launchpad
 
         public string EditQueryKey { get; protected set; }
 
-        public LaunchpadPortalModuleBase Module { get; protected set; }
-
         public GridView Grid { get; protected set; }
 
         public HyperLink AddButton { get; protected set; }
@@ -61,27 +59,26 @@ namespace R7.University.Launchpad
             EditQueryKey = baseName.Replace ("s\n", "_id");
         }
 
-        public virtual void Init (LaunchpadPortalModuleBase module, GridView gridView, HyperLink addButton, int pageSize)
+        public virtual void Init (PortalModuleBase module, GridView gridView, HyperLink addButton, int pageSize)
         {
-            Module = module;
             Grid = gridView;
             Grid.PageSize = pageSize;
             AddButton = addButton;
-            AddButton.NavigateUrl = Utils.EditUrl (Module, EditKey);
+            AddButton.NavigateUrl = Utils.EditUrl (module, EditKey);
         }
 
-        public virtual void DataBind (string filter = null)
+        public virtual void DataBind (LaunchpadPortalModuleBase module, string filter = null)
         {
-            Grid.DataSource = GetDataTable (filter);
-            Module.Session [Grid.ID] = Grid.DataSource;
+            Grid.DataSource = GetDataTable (module, filter);
+            module.Session [Grid.ID] = Grid.DataSource;
             Grid.DataBind ();
         }
 
-        public abstract DataTable GetDataTable (string filter);
+        public abstract DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter);
 
-        public virtual void SetEditLink (HyperLink link, string id)
+        public virtual void SetEditLink (PortalModuleBase module, HyperLink link, string id)
         {
-            link.NavigateUrl = Utils.EditUrl (Module, EditKey, EditQueryKey, id);
+            link.NavigateUrl = Utils.EditUrl (module, EditKey, EditQueryKey, id);
         }
 
         public virtual ModuleAction GetAction (PortalModuleBase module)

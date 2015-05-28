@@ -42,7 +42,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (string filter)
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter)
         {
             var dt = new DataTable ();
             DataRow dr;
@@ -80,8 +80,8 @@ namespace R7.University.Launchpad
                 column.AllowDBNull = true;
 
             var employees = string.IsNullOrWhiteSpace (filter) ? 
-                Module.LaunchpadController.GetObjects<EmployeeInfo> () :
-                Module.LaunchpadController.GetObjects<EmployeeInfo> ( 
+                module.LaunchpadController.GetObjects<EmployeeInfo> () :
+                module.LaunchpadController.GetObjects<EmployeeInfo> ( 
                     string.Format (@"WHERE [LastName] + ' ' + 
                                 [FirstName] + ' ' +
                                 [Phone] + ' ' + 

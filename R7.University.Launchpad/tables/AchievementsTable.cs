@@ -36,7 +36,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (string filter)
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter)
         {
             var dt = new DataTable ();
             DataRow dr;
@@ -49,7 +49,7 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            foreach (var achievement in Module.LaunchpadController.GetObjects<AchievementInfo>())
+            foreach (var achievement in module.LaunchpadController.GetObjects<AchievementInfo>())
             {
                 var col = 0;
                 dr = dt.NewRow ();
@@ -57,7 +57,7 @@ namespace R7.University.Launchpad
                 dr [col++] = achievement.AchievementID;
                 dr [col++] = achievement.Title;
                 dr [col++] = achievement.ShortTitle;
-                dr [col++] = Localization.GetString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType), Module.LocalResourceFile);
+                dr [col++] = Localization.GetString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType), module.LocalResourceFile);
 
                 dt.Rows.Add (dr);
             }
