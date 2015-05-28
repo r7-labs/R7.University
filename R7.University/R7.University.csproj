@@ -77,6 +77,7 @@
     <Compile Include="entities\EduProgramInfo.cs" />
     <Compile Include="entities\EmployeeEduProgramInfo.cs" />
     <Compile Include="entities\CharEnumInfo.cs" />
+    <Compile Include="components\DataTableConstructor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
