@@ -54,8 +54,11 @@ namespace R7.University.Launchpad
         protected LaunchpadTableBase (string name)
         {
             Name = name;
-            EditKey = "Edit" + name;
-            EditQueryKey = EditKey.ToLowerInvariant () + "_id";
+
+            // remove ending "s" and add "_id"
+            var baseName = name + "\n";
+            EditKey = "edit" + baseName.Replace ("s\n", string.Empty);
+            EditQueryKey = baseName.Replace ("s\n", "_id");
         }
 
         public virtual void Init (LaunchpadPortalModuleBase module, GridView gridView, HyperLink addButton, int pageSize)
