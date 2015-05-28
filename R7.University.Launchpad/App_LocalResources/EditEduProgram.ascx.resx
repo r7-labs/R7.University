@@ -13,19 +13,19 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="labelCode.Text" xml:space="preserve">
-        <value>Code</value>
+        <value>Code:</value>
     </data>
     <data name="labelCode.Help" xml:space="preserve">
         <value>Enter the code of an educational program according to standard.</value>
     </data>
     <data name="labelTitle.Text" xml:space="preserve">
-        <value>Title</value>
+        <value>Title:</value>
     </data>
     <data name="labelTitle.Help" xml:space="preserve">
         <value>Enter the title for an educational program, defined in standard.</value>
     </data>
     <data name="labelEduLevel.Text">
-        <value>Education Level</value>
+        <value>Education Level:</value>
     </data>
     <data name="labelEduLevel.Help">
         <value>Select the level of educational program.</value>
