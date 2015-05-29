@@ -60,3 +60,17 @@ BEGIN
 		[UN_{objectQualifier}University_EmployeeEduPrograms] UNIQUE NONCLUSTERED ([EmployeeID], [EduProgramID])
 END
 GO
+
+-- Drop views
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]') and OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]
+GO
+
+-- Create views
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms] AS
+	SELECT EEP.*, EP.Code, EP.Title FROM {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] AS EEP
+		INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
+			ON EEP.EduProgramID = EP.EduProgramID
+GO
