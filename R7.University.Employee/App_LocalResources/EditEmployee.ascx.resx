@@ -279,4 +279,25 @@
     <data name="IsPrime.Column">
         <value>Is Prime</value>
     </data>
+    <data name="labelEduProgram.Text">
+        <value>Educational Program:</value>
+    </data>
+    <data name="labelEduProgram.Help">
+        <value>Select educational program from list.</value>
+    </data>
+    <data name="labelDisciplines.Text">
+        <value>Disciplines:</value>
+    </data>
+    <data name="labelDisciplines.Help">
+        <value>Enter disciplines for selected educational program.</value>
+    </data>
+    <data name="buttonAddEduProgram.Text">
+        <value>Add Program</value>
+    </data>
+    <data name="buttonUpdateEduProgram.Text">
+        <value>Update Program</value>
+    </data>
+    <data name="buttonCancelEditEduProgram.Text">
+        <value>Cancel</value>
+    </data>
 </root>

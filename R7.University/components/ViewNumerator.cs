@@ -1,10 +1,10 @@
 ﻿//
-// LaunchpadTableInfo.cs
+// ViewEnumerator.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,21 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
-using System.Collections.Generic;
+using System.Threading;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-	public class LaunchpadTableInfo
-	{
-		public LaunchpadTableInfo ()
-		{
-		}
+    public static class ViewNumerator
+    {
+        private static int nextItemID = 0;
 
-		public static string TablePositions = "positions";
-		public static string TableDivisions = "divisions";
-		public static string TableEmployees = "employees";
-		public static string TableAchievements = "achievements";
-
-		public static List<string> AvailableTables = 
-			new List<string> { TablePositions, TableDivisions, TableEmployees, TableAchievements };
-	}
+        public static int GetNextItemID ()
+        {
+            Interlocked.Increment(ref nextItemID);
+            return nextItemID;
+        }
+    }
 }
 

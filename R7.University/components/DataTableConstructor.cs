@@ -1,10 +1,10 @@
 ﻿//
-// LaunchpadModuleBase.cs
+// DataTableConstructor.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,48 +23,44 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
+// based on: 
+// http://www.c-sharpcorner.com/UploadFile/1a81c5/list-to-datatable-converter-using-C-Sharp/
+
 using System;
-using DotNetNuke.Entities.Modules;
+using System.Data;
+using System.Reflection;
+using System.Collections.Generic;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-	/// <summary>
-	/// Launchpad module base.
-	/// </summary>
-	public class LaunchpadPortalModuleBase : PortalModuleBase
-	{
-		private LaunchpadController ctrl = null;
+    public static class DataTableConstructor
+    {
+        public static DataTable FromIEnumerable<T> (IEnumerable<T> items)
+        {
+            var dataTable = new DataTable (typeof (T).Name);
 
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
+            // get all the properties
+            var props = typeof (T).GetProperties (BindingFlags.Public | BindingFlags.Instance);
 
-		private LaunchpadSettings settings = null;
+            foreach (var prop in props)
+                dataTable.Columns.Add (prop.Name);
 
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
+            foreach (T item in items)
+            {
+                var values = new object [props.Length];
 
-	/// <summary>
-	/// Launchpad module settings base.
-	/// </summary>
-	public class LaunchpadModuleSettingsBase : ModuleSettingsBase
-	{
-		private LaunchpadController ctrl = null;
+                for (var i = 0; i < props.Length; i++)
+                {
+                    // inserting property values to datatable rows
+                    values [i] = props [i].GetValue (item, null);
+                }
 
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
+                dataTable.Rows.Add (values);
+            }
 
-		private LaunchpadSettings settings = null;
-
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
+            return dataTable;
+        }
+    }
 }
+

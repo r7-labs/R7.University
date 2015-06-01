@@ -198,6 +198,18 @@
     <data name="labelIsPrime.Help">
         <value>Если флажок отмечен, занимаемая должность будет рассматриваться как основная для этого сотрудника.</value>
     </data>
+    <data name="labelEduProgram.Text">
+        <value>Образовательная программа:</value>
+    </data>
+    <data name="labelEduProgram.Help">
+        <value>Выберите образовательную программу из списка.</value>
+    </data>
+    <data name="labelDisciplines.Text">
+        <value>Дисципины:</value>
+    </data>
+    <data name="labelDisciplines.Help">
+        <value>Перечислите преподаваемые дисциплины.</value>
+    </data>
 	<data name="checkAddToVocabulary.Text">
 		<value>Добавить в словарь</value>
 	</data>
@@ -278,5 +290,14 @@
     </data>
     <data name="IsPrime.Column">
         <value>Основная</value>
+    </data>
+    <data name="buttonAddEduProgram.Text">
+        <value>Добавить программу</value>
+    </data>
+    <data name="buttonUpdateEduProgram.Text">
+        <value>Сохранить программу</value>
+    </data>
+    <data name="buttonCancelEditEduProgram.Text">
+        <value>Отмена</value>
     </data>
 </root>

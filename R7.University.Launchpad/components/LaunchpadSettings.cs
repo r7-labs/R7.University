@@ -35,7 +35,7 @@ namespace R7.University.Launchpad
 				{
 					tables = new List<string> ();
 					tables.AddRange (
-						ReadSetting<string> ("Launchpad_Tables", LaunchpadTableInfo.TablePositions, true)
+                        ReadSetting<string> ("Launchpad_Tables", string.Empty, true)
 						.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 				}
 				

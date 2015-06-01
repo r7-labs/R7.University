@@ -25,7 +25,7 @@ namespace R7.University.Employee
 	{
 		#region Types
 
-		public enum EditEmployeeTab { Common, Positions, Achievements, About };
+		public enum EditEmployeeTab { Common, Positions, Achievements, EduPrograms, Disciplines, About };
 
 		#endregion
 
@@ -142,6 +142,21 @@ namespace R7.University.Employee
 			// bind achievement types
 			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
 			comboAchievementTypes.DataBind ();
+
+            // get edu programs
+            var eduPrograms = EmployeeController.GetObjects<EduProgramInfo> ().ToList ();
+
+            // add default value
+            eduPrograms.Insert (0, new EduProgramInfo { 
+                Title = LocalizeString ("NotSelected.Text"), EduProgramID = Null.NullInteger 
+            });
+
+            // bind edu programs
+            comboEduProgram.DataSource = eduPrograms;
+            comboEduProgram.DataBind ();
+
+            // localize bounded gridviews
+            gridEduPrograms.LocalizeColumns (LocalResourceFile);
 		}
 
 		/// <summary>
@@ -252,7 +267,20 @@ namespace R7.University.Employee
 							gridAchievements.DataSource = AchievementsDataTable (achievements);
 							gridAchievements.DataBind ();
 
-							// setup audit control
+                            // read employee educational programs 
+                            var eduprogramInfos = EmployeeController.GetObjects<EmployeeEduProgramInfoEx> ("WHERE [EmployeeID] = @0", itemId.Value);
+
+                            // fill edu programs list
+                            var eduprograms = new List<EmployeeEduProgramView> ();
+                            foreach (var eduprogram in eduprogramInfos)
+                                eduprograms.Add (new EmployeeEduProgramView (eduprogram));
+
+                            // bind edu programs
+                            ViewState ["eduprograms"] = eduprograms;
+                            gridEduPrograms.DataSource = EduProgramsDataTable (eduprograms);
+                            gridEduPrograms.DataBind ();
+
+                            // setup audit control
 							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString ("System.Text"));
 							ctlAudit.CreatedDate = item.CreatedOnDate.ToLongDateString ();
 							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, LocalizeString ("System.Text"));
@@ -378,7 +406,8 @@ namespace R7.University.Employee
 					item.LastModifiedOnDate = DateTime.Now;
 
 					// update employee
-					EmployeeController.UpdateEmployee (item, GetOccupiedPositions (), GetEmployeeAchievements ());
+                    EmployeeController.UpdateEmployee (item, GetOccupiedPositions (), 
+                        GetEmployeeAchievements (), GetEmployeeEduPrograms());
 				}
 
 				Utils.SynchronizeModule (this);
@@ -415,6 +444,18 @@ namespace R7.University.Employee
 
 			return achievementInfos;
 		}
+
+        private List<EmployeeEduProgramInfo> GetEmployeeEduPrograms ()
+        {
+            var eduPrograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
+
+            var eduProgramInfos = new List<EmployeeEduProgramInfo> ();
+            if (eduPrograms != null)
+                foreach (var ep in eduPrograms)
+                    eduProgramInfos.Add (ep.NewEmployeeEduProgramInfo ());
+
+            return eduProgramInfos;
+        }
 
 		/// <summary>
 		/// Handles Click event for Delete button
@@ -533,6 +574,20 @@ namespace R7.University.Employee
             }
         }
 
+        protected void buttonCancelEditEduProgram_Click (object sender, EventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEmployeeTab.EduPrograms;
+
+                ResetEditEduProgramForm ();
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
 		protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
 		{
 			try
@@ -546,6 +601,16 @@ namespace R7.University.Employee
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
+
+        private void ResetEditEduProgramForm ()
+        {
+            // restore default buttons visibility
+            buttonAddEduProgram.Visible = true;
+            buttonUpdateEduProgram.Visible = false;
+
+            comboEduProgram.SelectedIndex = 0;
+            textProgramDisciplines.Text = string.Empty;
+        }
 
 		private void ResetEditPositionForm ()
 		{
@@ -631,12 +696,18 @@ namespace R7.University.Employee
 		{
 			grids_RowDataBound (sender, e);
 		}
+
+        protected void gridEduPrograms_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            grids_RowDataBound (sender, e);
+        }
 		
 		private void grids_RowDataBound (object sender, GridViewRowEventArgs e)
 		{
 			// hide ItemID column, also in header
 			e.Row.Cells [1].Visible = false;
 
+            // TODO: Move to gridAchievements_RowDataBound()
             if (sender == gridAchievements)
             {
                 // hide description
@@ -804,6 +875,11 @@ namespace R7.University.Employee
 
 			return dt;
 		}
+
+        private DataTable EduProgramsDataTable (List<EmployeeEduProgramView> eduPrograms)
+        {
+            return DataTableConstructor.FromIEnumerable (eduPrograms);
+        }
 
 		protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
 		{
@@ -1017,6 +1093,136 @@ namespace R7.University.Employee
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
+
+        protected void buttonAddEduProgram_Command (object sender, CommandEventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEmployeeTab.EduPrograms;
+
+                if (!Null.IsNull (int.Parse (comboEduProgram.SelectedValue)))
+                {
+                    EmployeeEduProgramView eduprogram;
+
+                    // get achievements list from viewstate
+                    var eduPrograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
+
+                    // creating new list, if none
+                    if (eduPrograms == null)
+                        eduPrograms = new List<EmployeeEduProgramView>();
+
+                    var command = e.CommandArgument.ToString ();
+                    if (command == "Add")
+                    {
+                        eduprogram = new EmployeeEduProgramView ();
+                    }
+                    else
+                    {
+                        // restore ItemID from hidden field
+                        var hiddenItemID = int.Parse (hiddenEduProgramItemID.Value);
+                        eduprogram = eduPrograms.Find (ep1 => ep1.ItemID == hiddenItemID);
+                    }
+
+                    eduprogram.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
+                    eduprogram.Disciplines = textProgramDisciplines.Text.Trim ();
+
+                    var ep = EmployeeController.Get<EduProgramInfo> (eduprogram.EduProgramID);
+                    eduprogram.Code = ep.Code;
+                    eduprogram.Title = ep.Title;
+
+                    if (command == "Add")
+                    {
+                        eduPrograms.Add (eduprogram);
+                    }
+
+                    ResetEditEduProgramForm ();
+
+                    // refresh viewstate
+                    ViewState ["eduprograms"] = eduPrograms;
+
+                    // bind items to the gridview
+                    gridEduPrograms.DataSource = EduProgramsDataTable (eduPrograms);
+                    gridEduPrograms.DataBind ();
+                }
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
+        protected void linkEditEduProgram_Command (object sender, CommandEventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEmployeeTab.EduPrograms;
+
+                var eduprograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
+                if (eduprograms != null)
+                {
+                    var itemID = e.CommandArgument.ToString ();
+
+                    // find position in a list
+                    var eduprogram = eduprograms.Find (ach => ach.ItemID.ToString () == itemID);
+
+                    if (eduprogram != null)
+                    {
+                        // fill achievements form
+                        Utils.SelectByValue (comboEduProgram, eduprogram.EduProgramID.ToString ());
+                        textProgramDisciplines.Text = eduprogram.Disciplines;
+
+                        // store ItemID in the hidden field
+                        hiddenEduProgramItemID.Value = eduprogram.ItemID.ToString ();
+
+                        // show / hide buttons
+                        buttonAddEduProgram.Visible = false;
+                        buttonUpdateEduProgram.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
+        protected void linkDeleteEduProgram_Command (object sender, CommandEventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEmployeeTab.EduPrograms;
+
+                var eduprograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
+                if (eduprograms != null)
+                {
+                    var itemID = e.CommandArgument.ToString ();
+
+                    // find position in a list
+                    var eduprogramIndex = eduprograms.FindIndex (ep => ep.ItemID.ToString () == itemID);
+
+                    if (eduprogramIndex >= 0)
+                    {
+                        // remove edu program
+                        eduprograms.RemoveAt (eduprogramIndex);
+
+                        // refresh viewstate
+                        ViewState ["eduprograms"] = eduprograms;
+
+                        // bind edu programs to the gridview
+                        gridEduPrograms.DataSource = EduProgramsDataTable (eduprograms);
+                        gridEduPrograms.DataBind ();
+
+                        // reset form if we deleting currently edited edu program
+                        if (buttonUpdateEduProgram.Visible && hiddenEduProgramItemID.Value == itemID)
+                            ResetEditEduProgramForm ();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
 		protected void comboAchievements_SelectedIndexChanged (object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
 		{

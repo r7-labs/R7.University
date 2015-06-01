@@ -73,6 +73,14 @@
     <Compile Include="components\WorkingHoursLogic.cs" />
     <Compile Include="components\TextUtils.cs" />
     <Compile Include="components\EmployeeEqualityComparer.cs" />
+    <Compile Include="entities\EduLevelInfo.cs" />
+    <Compile Include="entities\EduProgramInfo.cs" />
+    <Compile Include="entities\EmployeeEduProgramInfo.cs" />
+    <Compile Include="entities\CharEnumInfo.cs" />
+    <Compile Include="components\DataTableConstructor.cs" />
+    <Compile Include="components\ViewNumerator.cs" />
+    <Compile Include="entities\EmployeeEduProgramInfoEx.cs" />
+    <Compile Include="components\GridViewExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -102,5 +110,6 @@
     <None Include="SqlDataProvider\01.01.04.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.06.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.07.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.02.00.SqlDataProvider" />
   </ItemGroup>
 </Project>

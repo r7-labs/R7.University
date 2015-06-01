@@ -1,10 +1,10 @@
 ﻿//
-// LaunchpadModuleBase.cs
+// EmployeeEduProgramInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,48 +23,29 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
-using DotNetNuke.Entities.Modules;
+using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-	/// <summary>
-	/// Launchpad module base.
-	/// </summary>
-	public class LaunchpadPortalModuleBase : PortalModuleBase
-	{
-		private LaunchpadController ctrl = null;
+    [TableName ("vw_University_EmployeeEduPrograms")]
+    [Scope ("EmployeeID")]
+    [Serializable]
+    public class EmployeeEduProgramInfoEx: EmployeeEduProgramInfo
+    {
+        #region External (EduProgram) properties
 
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
+        public string Code { get; set; }
 
-		private LaunchpadSettings settings = null;
+        public string Title { get; set; }
 
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
+        #endregion
 
-	/// <summary>
-	/// Launchpad module settings base.
-	/// </summary>
-	public class LaunchpadModuleSettingsBase : ModuleSettingsBase
-	{
-		private LaunchpadController ctrl = null;
-
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
-
-		private LaunchpadSettings settings = null;
-
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
+        [IgnoreColumn]
+        public string EduProgram
+        {
+            get { return Utils.FormatList (" ", Code, Title); }
+        }
+    }
 }

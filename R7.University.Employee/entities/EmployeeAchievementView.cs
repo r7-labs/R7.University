@@ -20,10 +20,8 @@ namespace R7.University.Employee
 			ItemID = GetNextItemID ();
 		}
 
-		public EmployeeAchievementView (EmployeeAchievementInfo achievement)
+        public EmployeeAchievementView (EmployeeAchievementInfo achievement): this ()
 		{
-			ItemID = GetNextItemID ();
-			
 			EmployeeAchievementID = achievement.EmployeeAchievementID;
 			EmployeeID = achievement.EmployeeID;
 			AchievementID = achievement.AchievementID;

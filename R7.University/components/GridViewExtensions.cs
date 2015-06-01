@@ -1,10 +1,10 @@
 ﻿//
-// LaunchpadModuleBase.cs
+// GridViewExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,48 +23,21 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
+using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services.Localization;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-	/// <summary>
-	/// Launchpad module base.
-	/// </summary>
-	public class LaunchpadPortalModuleBase : PortalModuleBase
-	{
-		private LaunchpadController ctrl = null;
-
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
-
-		private LaunchpadSettings settings = null;
-
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
-
-	/// <summary>
-	/// Launchpad module settings base.
-	/// </summary>
-	public class LaunchpadModuleSettingsBase : ModuleSettingsBase
-	{
-		private LaunchpadController ctrl = null;
-
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
-
-		private LaunchpadSettings settings = null;
-
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
+    public static class GridViewExtensions
+    {
+        public static void LocalizeColumns (this GridView gv, string resourceFile)
+        {
+            foreach (DataControlField column in gv.Columns)
+                column.HeaderText = Localization.GetString (column.HeaderText + ".Column", resourceFile);
+        }
+    }
 }
+

@@ -1,10 +1,10 @@
 ﻿//
-// LaunchpadModuleBase.cs
+// EduProgramInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,48 +23,35 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
-using DotNetNuke.Entities.Modules;
+using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-	/// <summary>
-	/// Launchpad module base.
-	/// </summary>
-	public class LaunchpadPortalModuleBase : PortalModuleBase
-	{
-		private LaunchpadController ctrl = null;
+    // TODO: Inherit from EnityBase
 
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
+    [TableName ("University_EduPrograms")]
+    [PrimaryKey ("EduProgramID", AutoIncrement = true)]
+    public class EduProgramInfo
+    {
+        #region Properties
 
-		private LaunchpadSettings settings = null;
+        public int EduProgramID { get; set; }
 
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
+        public int EduLevelID { get; set; }
 
-	/// <summary>
-	/// Launchpad module settings base.
-	/// </summary>
-	public class LaunchpadModuleSettingsBase : ModuleSettingsBase
-	{
-		private LaunchpadController ctrl = null;
+        public string Title { get; set; }
 
-		public LaunchpadController LaunchpadController
-		{
-			get { return ctrl ?? (ctrl = new LaunchpadController ()); }
-		}
+        public string Code { get; set; }
 
-		private LaunchpadSettings settings = null;
+        #endregion
 
-		protected LaunchpadSettings LaunchpadSettings
-		{
-			get { return settings ?? (settings = new LaunchpadSettings (this)); }
-		}
-	}
+        [IgnoreColumn]
+        public string EduProgram
+        {
+            get { return Utils.FormatList (" ", Code, Title); }
+        }
+    }
 }
+

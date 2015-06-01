@@ -10,6 +10,12 @@ namespace R7.University.Launchpad
 {
 	public partial class SettingsLaunchpad : LaunchpadModuleSettingsBase
 	{
+        #region Properties
+
+        protected LaunchpadTables LaunchpadTables = new LaunchpadTables ();
+
+        #endregion
+
 		public void Page_Init ()
 		{
 			// fill PageSize combobox
@@ -19,8 +25,8 @@ namespace R7.University.Launchpad
 			comboPageSize.AddItem ("100", "100");
 
 			// fill tables list
-			foreach (var table in LaunchpadTableInfo.AvailableTables)
-				listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (Utils.FirstCharToUpperInvariant (table), table));
+            foreach (var table in LaunchpadTables.NamesDictionary.Keys)
+                listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (Utils.FirstCharToUpperInvariant (table), table));
 		}
 
 		/// <summary>
