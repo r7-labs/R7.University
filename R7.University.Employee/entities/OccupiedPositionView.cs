@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace R7.University.Employee
 {
 	[Serializable]
-	public class OccupiedPositionView : ISerializable
+	public class OccupiedPositionView
 	{
 		public int ItemID { get; set; }
 
@@ -20,16 +19,14 @@ namespace R7.University.Employee
 
 		public string TitleSuffix { get; set; }
 
-		private static int nextItemID = 0;
-
-		public static int GetNextItemID ()
-		{
-			return nextItemID++;
-		}
+        public string PositionShortTitleWithSuffix
+        {
+            get { return PositionShortTitle + " " + TitleSuffix; }
+        }
 
 		public OccupiedPositionView ()
 		{
-			ItemID = GetNextItemID ();
+			ItemID = ViewNumerator.GetNextItemID ();
 		}
 
 		public OccupiedPositionInfo NewOccupiedPositionInfo ()
@@ -53,50 +50,5 @@ namespace R7.University.Employee
 			IsPrime = opex.IsPrime;
 			TitleSuffix = opex.TitleSuffix;
 		}
-
-        /*
-		public OccupiedPositionView (int positionID, string positionShortTitle, 
-		                              int divisionID, string divisionShortTitle, bool isPrime, string titleSuffix) : this ()
-		{
-			PositionID = positionID;
-			DivisionID = divisionID;
-            PositionShortTitle = positionShortTitle;
-			DivisionShortTitle = divisionShortTitle;
-			IsPrime = isPrime;
-			TitleSuffix = titleSuffix;
-        }
-        */
-
-		// NOTE: if [Serializable] is set, all *fields* serialized by default
-
-		#region ISerializable implementation
-
-		protected OccupiedPositionView (SerializationInfo info, StreamingContext context)
-		{ 
-			ItemID = info.GetInt32 ("ItemID");
-			PositionID = info.GetInt32 ("PositionID");
-			DivisionID = info.GetInt32 ("DivisionID");
-			PositionShortTitle = info.GetString ("PositionShortTitle");
-			DivisionShortTitle = info.GetString ("DivisionShortTitle");
-			IsPrime = info.GetBoolean ("IsPrime");
-			TitleSuffix = info.GetString ("TitleSuffix");
-		}
-
-		public void GetObjectData (SerializationInfo info, StreamingContext context)
-		{
-			info.AddValue ("ItemID", ItemID);
-			info.AddValue ("PositionID", PositionID);
-			info.AddValue ("DivisionID", DivisionID);
-			info.AddValue ("PositionShortTitle", PositionShortTitle);
-			info.AddValue ("DivisionShortTitle", DivisionShortTitle);
-			info.AddValue ("IsPrime", IsPrime);
-			info.AddValue ("TitleSuffix", TitleSuffix);
-		}
-
-		#endregion
-
 	}
-	// class
 }
- // namespace
-
