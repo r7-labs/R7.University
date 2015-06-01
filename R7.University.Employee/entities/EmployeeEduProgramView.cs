@@ -55,13 +55,6 @@ namespace R7.University.Employee
                 Disciplines = Disciplines
             };
         }
-
-        public override string ToString ()
-        {
-            return string.Format ("EmployeeEduProgramID={0},ItemID={1},Code={2},Title={3},EmployeeID={4},EduProgramID={5},Disciplines={6}",
-                EmployeeEduProgramID, ItemID, Code, Title, EmployeeID, EduProgramID, Disciplines
-            );
-        }
 	}
 }
 
