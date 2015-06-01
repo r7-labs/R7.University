@@ -44,7 +44,7 @@ namespace R7.University
             var props = typeof (T).GetProperties (BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var prop in props)
-                dataTable.Columns.Add (prop.Name);
+                dataTable.Columns.Add (prop.Name, prop.PropertyType);
 
             foreach (T item in items)
             {
