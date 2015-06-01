@@ -142,7 +142,7 @@
 		<div id="employeePositions">
 			<fieldset>
 				<div class="dnnFormItem">
-					<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
+					<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
 						GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound" Style="margin-bottom:30px;width:775px">
 							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
@@ -164,6 +164,10 @@
 										</span>
 					               </ItemTemplate>
 					        	</asp:TemplateField>
+                                <asp:BoundField DataField="ItemID" />
+                                <asp:BoundField DataField="DivisionShortTitle" HeaderText="Division" />
+                                <asp:BoundField DataField="PositionShortTitleWithSuffix" HeaderText="Position" />
+                                <asp:CheckBoxField DataField="IsPrime" HeaderText="IsPrime" />
 							</Columns>
 				        </asp:GridView>
 				</div>

@@ -156,6 +156,7 @@ namespace R7.University.Employee
             comboEduProgram.DataBind ();
 
             // localize bounded gridviews
+            gridOccupiedPositions.LocalizeColumns (LocalResourceFile);
             gridEduPrograms.LocalizeColumns (LocalResourceFile);
 		}
 
@@ -823,25 +824,7 @@ namespace R7.University.Employee
 
 		private DataTable OccupiedPositionsDataTable (List<OccupiedPositionView> occupiedPositions)
 		{
-			var dt = new DataTable ();
-			DataRow dr;
-
-			dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("Division.Column"), typeof(string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("Position.Column"), typeof(string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("IsPrime.Column"), typeof(bool)));
-
-			foreach (var op in occupiedPositions)
-			{
-				dr = dt.NewRow ();
-				dr [0] = op.ItemID;
-				dr [1] = op.DivisionShortTitle;
-				dr [2] = op.PositionShortTitle + " " + op.TitleSuffix;
-				dr [3] = op.IsPrime;
-				dt.Rows.Add (dr);
-			}
-
-			return dt;
+            return DataTableConstructor.FromIEnumerable (occupiedPositions);
 		}
 
 		private DataTable AchievementsDataTable (List<EmployeeAchievementView> achievements)
