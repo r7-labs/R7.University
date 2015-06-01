@@ -48,6 +48,12 @@
     <data name="DocumentUrl.Column">
         <value>Документ</value>
     </data>
+    <data name="EduProgram.Column">
+        <value>Образовательная программа</value>
+    </data>
+    <data name="Disciplines.Column">
+        <value>Дисциплины</value>
+    </data>
     <data name="DocumentUrl.Text">
         <value>Просмотр</value>
     </data>
@@ -71,6 +77,9 @@
     </data>
     <data name="AchievementsTab.Text" xml:space="preserve">
         <value>Достижения</value>
+    </data>
+    <data name="EduProgramsTab.Text" xml:space="preserve">
+        <value>Образовательные программы</value>
     </data>
     <data name="PositionsTab.Text" xml:space="preserve">
         <value>Должности</value>

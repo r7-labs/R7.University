@@ -342,8 +342,10 @@ namespace R7.University
 		}
 
 		public void UpdateEmployee (EmployeeInfo employee, 
-		                           List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
-		{
+		    List<OccupiedPositionInfo> occupiedPositions, 
+            List<EmployeeAchievementInfo> achievements,
+            List<EmployeeEduProgramInfo> eduPrograms)
+        {
 			using (var ctx = DataContext.Instance ())
 			{
 				ctx.BeginTransaction ();
@@ -409,6 +411,31 @@ namespace R7.University
 						else
 							Update<EmployeeAchievementInfo> (ach);
 					}
+
+                    var employeeEduProgramIDs = eduPrograms.Select (a => a.EmployeeEduProgramID.ToString ());
+                    if (employeeEduProgramIDs.Any())
+                    {
+                        // delete those not in current list
+                        Delete<EmployeeEduProgramInfo> (
+                            string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeEduProgramID] NOT IN ({1})", 
+                                employee.EmployeeID, Utils.FormatList (", ", employeeEduProgramIDs))); 
+                    }
+                    else
+                    {
+                        // delete all employee edu programs
+                        Delete<EmployeeEduProgramInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
+                    }
+
+                    // add new employee edu programs
+                    foreach (var ep in eduPrograms)
+                    {
+                        ep.EmployeeID = employee.EmployeeID;
+
+                        if (ep.EmployeeEduProgramID <= 0)
+                            Add<EmployeeEduProgramInfo> (ep);
+                        else
+                            Update<EmployeeEduProgramInfo> (ep);
+                    }
 
 					ctx.Commit ();
 				}

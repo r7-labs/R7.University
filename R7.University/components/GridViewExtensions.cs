@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramInfo.cs
+// GridViewExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,32 +25,18 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Web.UI.WebControls;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services.Localization;
 
 namespace R7.University
 {
-    // TODO: Inherit from EnityBase
-
-    [TableName ("University_EduPrograms")]
-    [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo
+    public static class GridViewExtensions
     {
-        #region Properties
-
-        public int EduProgramID { get; set; }
-
-        public int EduLevelID { get; set; }
-
-        public string Title { get; set; }
-
-        public string Code { get; set; }
-
-        #endregion
-
-        [IgnoreColumn]
-        public string EduProgram
+        public static void LocalizeColumns (this GridView gv, string resourceFile)
         {
-            get { return Utils.FormatList (" ", Code, Title); }
+            foreach (DataControlField column in gv.Columns)
+                column.HeaderText = Localization.GetString (column.HeaderText + ".Column", resourceFile);
         }
     }
 }

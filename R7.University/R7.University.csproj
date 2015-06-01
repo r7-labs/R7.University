@@ -78,6 +78,9 @@
     <Compile Include="entities\EmployeeEduProgramInfo.cs" />
     <Compile Include="entities\CharEnumInfo.cs" />
     <Compile Include="components\DataTableConstructor.cs" />
+    <Compile Include="components\ViewNumerator.cs" />
+    <Compile Include="entities\EmployeeEduProgramInfoEx.cs" />
+    <Compile Include="components\GridViewExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

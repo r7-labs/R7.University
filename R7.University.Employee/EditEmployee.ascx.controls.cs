@@ -118,5 +118,13 @@ namespace R7.University.Employee
 		protected Panel panelAchievementTypes;
 		protected LabelControl labelAchievementTitleSuffix;
 		protected TextBox textAchievementTitleSuffix;
+
+        protected GridView gridEduPrograms;
+        protected TextBox textProgramDisciplines;
+        protected DropDownList comboEduProgram;
+        protected LinkButton buttonAddEduProgram;
+        protected LinkButton buttonUpdateEduProgram;
+        protected LinkButton buttonCancelEditEduProgram;
+        protected HiddenField hiddenEduProgramItemID;
 	}
 }

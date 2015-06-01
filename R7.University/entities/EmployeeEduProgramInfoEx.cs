@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramInfo.cs
+// EmployeeEduProgramInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -29,21 +29,16 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    // TODO: Inherit from EnityBase
-
-    [TableName ("University_EduPrograms")]
-    [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo
+    [TableName ("vw_University_EmployeeEduPrograms")]
+    [Scope ("EmployeeID")]
+    [Serializable]
+    public class EmployeeEduProgramInfoEx: EmployeeEduProgramInfo
     {
-        #region Properties
-
-        public int EduProgramID { get; set; }
-
-        public int EduLevelID { get; set; }
-
-        public string Title { get; set; }
+        #region External (EduProgram) properties
 
         public string Code { get; set; }
+
+        public string Title { get; set; }
 
         #endregion
 
@@ -54,4 +49,3 @@ namespace R7.University
         }
     }
 }
-

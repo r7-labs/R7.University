@@ -17,6 +17,7 @@
 		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
 		    <li><a href="#employeePositions"><%= LocalizeString("PositionsTab.Text") %></a></li>
 		    <li><a href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></a></li>
+            <li><a href="#employeeEduPrograms"><%= LocalizeString("EduProgramsTab.Text") %></a></li>
 		    <li><a href="#employeeDisciplines"><%= LocalizeString("DisciplinesTab.Text") %></a></li>
 		    <li><a href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></a></li>
 		</ul>
@@ -294,15 +295,69 @@
 				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>
 		</div>
-		<div id="employeeDisciplines">
+		<div id="employeeEduPrograms">
 			<fieldset>
-				<div class="dnnFormItem">
-					<div style="margin-right:20px">
-						<dnn:TextEditor id="textDisciplines" runat="server" Width="100%" Height="300px" />
-					</div>
-				</div>
+                <div class="dnnFormItem">
+                    <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                        GridLines="None" OnRowDataBound="gridEduPrograms_RowDataBound" Style="margin-bottom:30px;width:775px">
+                            <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                            <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                            <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                            <SelectedRowStyle CssClass="dnnFormError" />
+                            <EditRowStyle CssClass="dnnFormInput" />
+                            <FooterStyle CssClass="dnnGridFooter" />
+                            <PagerStyle CssClass="dnnGridPager" />
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <span style="white-space:nowrap">
+                                            <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditEduProgram_Command" >
+                                                <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                            </asp:LinkButton>
+                                            <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteEduProgram_Command" >
+                                                <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
+                                            </asp:LinkButton>
+                                        </span>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="ItemID" />
+                                <asp:BoundField DataField="EduProgram" HeaderText="EduProgram" />
+                                <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                            </Columns>
+                    </asp:GridView>
+                    <asp:HiddenField id="hiddenEduProgramItemID" runat="server" />
+                </div>
+   	            <div class="dnnFormItem">
+                    <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
+                    <asp:DropDownList id="comboEduProgram" runat="server"
+                        DataValueField="EduProgramID"
+                        DataTextField="EduProgram"
+                    />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />
+                    <asp:TextBox id="textProgramDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
+                </div>
+                <div class="dnnFormItem">
+                    <div class="dnnLabel"></div>
+                    <asp:LinkButton id="buttonAddEduProgram" runat="server" resourcekey="buttonAddEduProgram" 
+                        CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" CommandArgument="Add" />
+                    <asp:LinkButton id="buttonUpdateEduProgram" runat="server" resourcekey="buttonUpdateEduProgram" 
+                        CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" Visible="false" CommandArgument="Update" />
+                    <asp:LinkButton id="buttonCancelEditEduProgram" runat="server" resourcekey="buttonCancelEditEduProgram" 
+                        CssClass="dnnSecondaryAction" OnClick="buttonCancelEditEduProgram_Click" />
+                </div>
 			</fieldset>
 		</div>
+        <div id="employeeDisciplines">
+            <fieldset>
+                <div class="dnnFormItem">
+                    <div style="margin-right:20px">
+                        <dnn:TextEditor id="textDisciplines" runat="server" Width="100%" Height="300px" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
 		<div id="employeeAbout">
 			<fieldset>
 				<div class="dnnFormItem">

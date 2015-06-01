@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramInfo.cs
+// ViewEnumerator.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,32 +25,18 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Threading;
 
 namespace R7.University
 {
-    // TODO: Inherit from EnityBase
-
-    [TableName ("University_EduPrograms")]
-    [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo
+    public static class ViewNumerator
     {
-        #region Properties
+        private static int nextItemID = 0;
 
-        public int EduProgramID { get; set; }
-
-        public int EduLevelID { get; set; }
-
-        public string Title { get; set; }
-
-        public string Code { get; set; }
-
-        #endregion
-
-        [IgnoreColumn]
-        public string EduProgram
+        public static int GetNextItemID ()
         {
-            get { return Utils.FormatList (" ", Code, Title); }
+            Interlocked.Increment(ref nextItemID);
+            return nextItemID;
         }
     }
 }

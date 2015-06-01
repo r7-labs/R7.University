@@ -31,6 +31,8 @@ namespace R7.University
 {
     [TableName ("University_EmployeeEduPrograms")]
     [PrimaryKey ("EmployeeEduProgramID", AutoIncrement = true)]
+    [Scope ("EmployeeID")]
+    [Serializable]
     public class EmployeeEduProgramInfo
     {
         #region Properties
