@@ -160,7 +160,7 @@
                         <asp:BoundField DataField="EduLevelID" SortExpression="EduLevelID" HeaderText="EduLevelID" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" ConvertEmptyStringToNull="false" />
-                        <asp:BoundField DataField="EduType" SortExpression="EduType" HeaderText="EduType" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="EduTypeString" SortExpression="EduType" HeaderText="EduType" ConvertEmptyStringToNull="false" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>
