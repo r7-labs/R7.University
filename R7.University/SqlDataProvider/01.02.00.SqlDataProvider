@@ -23,7 +23,7 @@ BEGIN
 	CREATE TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] (
 		[EduProgramID] int IDENTITY(1,1) NOT NULL,
 		[EduLevelID] int NOT NULL,
-		[Code] nvarchar(16) NOT NULL,
+		[Code] nvarchar(64) NOT NULL,
 		[Title] nvarchar(250) NOT NULL
 	) 
 

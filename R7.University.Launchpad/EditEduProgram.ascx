@@ -6,7 +6,7 @@
 	<fieldset>
 		<div class="dnnFormItem">
             <dnn:Label ID="labelCode" runat="server" ControlName="textCode" />
-            <asp:TextBox ID="textCode" runat="server" MaxLength="16" />
+            <asp:TextBox ID="textCode" runat="server" MaxLength="64" />
         </div>
         <div class="dnnFormItem">
 			<dnn:Label ID="labelTitle" runat="server" ControlName="textTitle" />
