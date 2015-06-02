@@ -146,7 +146,7 @@ namespace R7.University.Launchpad
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue)
 				{
-                    LaunchpadController.Delete<EduLevelInfo> (itemId.Value);
+                    LaunchpadController.Delete<EduProgramInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}
