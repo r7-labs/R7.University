@@ -62,11 +62,11 @@
                             CssClass="dnnSecondaryAction" Style="margin-left:1em" OnClick="buttonUserLookup_Click" CausesValidation="false" />
                     </div>
 				</div>
-                <div class="dnnFormItem">
+                <div class="dnnFormItem" style="display:none">
 					<dnn:Label id="labelAcademicDegree" runat="server" ControlName="textAcademicDegree" Suffix=":" />
 					<asp:TextBox id="textAcademicDegree" runat="server" MaxLength="250" />
 				</div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem" style="display:none">
 					<dnn:Label id="labelAcademicTitle" runat="server" ControlName="textAcademicTitle" Suffix=":" />
 					<asp:TextBox id="textAcademicTitle" runat="server" MaxLength="250" />
 				</div>
