@@ -152,6 +152,8 @@ namespace R7.University.Employee
             {
                 linkReturn.NavigateUrl = Globals.NavigateURL ();
             }
+
+            gridEduPrograms.LocalizeColumns (LocalResourceFile);
 		}
 
 		/// <summary>
@@ -352,21 +354,43 @@ namespace R7.University.Employee
 				// hide entire About tab
 				linkAbout.Visible = false;
 			}
-
-			// disciplines
-			if (!string.IsNullOrWhiteSpace (employee.Disciplines))
-				litDisciplines.Text = Server.HtmlDecode (employee.Disciplines);
-			else
-			{
-				// hide entire Disciplines tab
-				linkDisciplines.Visible = false;
-			}
-
-			Experience (employee);
 			
+            Experience (employee);
+            EduPrograms (employee);
 		}
 
-		void Barcode (EmployeeInfo employee)
+        void EduPrograms (EmployeeInfo employee)
+        {
+            // get employee edu programs
+            var eduPrograms = EmployeeController.GetObjects<EmployeeEduProgramInfoEx> (
+                                  "WHERE [EmployeeID] = @0", employee.EmployeeID);
+
+            if (eduPrograms != null && eduPrograms.Any ())
+            {
+                gridEduPrograms.DataSource = EduProgramsTable (eduPrograms.OrderBy (ep => ep.Code));
+                gridEduPrograms.DataBind ();
+            }
+            else
+            {
+                gridEduPrograms.Visible = false;
+
+                // disciplines
+                if (!string.IsNullOrWhiteSpace (employee.Disciplines))
+                    litDisciplines.Text = Server.HtmlDecode (employee.Disciplines);
+                else
+                {
+                    // hide entire Disciplines tab
+                    linkDisciplines.Visible = false;
+                }
+            }
+        }
+
+        private DataTable EduProgramsTable (IEnumerable<EmployeeEduProgramInfoEx> eduPrograms)
+        {
+            return DataTableConstructor.FromIEnumerable (eduPrograms);
+        }
+
+        void Barcode (EmployeeInfo employee)
 		{
 			// barcode image test
 			var barcodeWidth = 150;
@@ -380,6 +404,8 @@ namespace R7.University.Employee
 			imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
 			imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
 		}
+
+
 
 		void Experience (EmployeeInfo employee)
 		{

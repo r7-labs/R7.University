@@ -76,6 +76,19 @@
     			</div>		
     		</div>
     		<div id="employeeDisciplines" class="_tab">
+                <div class="_section">
+                    <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid" GridLines="None">
+                        <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                        <SelectedRowStyle CssClass="dnnFormError" />
+                        <FooterStyle CssClass="dnnGridFooter" />
+                        <Columns>
+                            <asp:BoundField DataField="EduProgram" HeaderText="EduProgram" />
+                            <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
     			<asp:Literal id="litDisciplines" runat="server" />
     		</div>
     		<div id="employeeAbout" class="_tab">
