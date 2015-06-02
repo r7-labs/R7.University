@@ -113,7 +113,7 @@ namespace R7.University.Employee
 			var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
 			var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ("ORDER BY [Title] ASC"));
 
-			ViewState ["commonAchievements"] = commonAchievements;
+            ViewState ["commonAchievements"] = commonAchievements;
 
 			// add default items
 			positions.Insert (0, new PositionInfo () {
@@ -156,6 +156,7 @@ namespace R7.University.Employee
             comboEduProgram.DataBind ();
 
             // localize bounded gridviews
+            gridAchievements.LocalizeColumns (LocalResourceFile);
             gridOccupiedPositions.LocalizeColumns (LocalResourceFile);
             gridEduPrograms.LocalizeColumns (LocalResourceFile);
 		}
@@ -261,7 +262,11 @@ namespace R7.University.Employee
 							// fill achievements list
 							var achievements = new List<EmployeeAchievementView> ();
 							foreach (var achievement in achievementInfos)
-								achievements.Add (new EmployeeAchievementView (achievement));
+                            {
+                                var achView = new EmployeeAchievementView (achievement);
+                                achView.Localize (LocalResourceFile);
+								achievements.Add (achView);
+                            }
 
 							// bind achievements
 							ViewState ["achievements"] = achievements;
@@ -829,34 +834,7 @@ namespace R7.University.Employee
 
 		private DataTable AchievementsDataTable (List<EmployeeAchievementView> achievements)
 		{
-			var dt = new DataTable ();
-			DataRow dr;
-			
-            dt.Columns.Add (new DataColumn ("ItemID", typeof(int)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("Years.Column"), typeof(string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("Title.Column"), typeof(string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("IsTitle.Column"), typeof(bool)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("AchievementType.Column"), typeof(string)));
-            dt.Columns.Add (new DataColumn ("Description", typeof(string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("DocumentUrl.Column"), typeof(string)));
-           
-			var atTheMoment = LocalizeString ("AtTheMoment.Text");
-
-			foreach (var achievement in achievements)
-			{
-				var col = 0;
-				dr = dt.NewRow ();
-				dr [col++] = achievement.ItemID;
-				dr [col++] = achievement.FormatYears.Replace ("{ATM}", atTheMoment);
-				dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
-				dr [col++] = achievement.IsTitle;
-				dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
-				dr [col++] = achievement.Description;
-                dr [col++] = achievement.DocumentURL;
-				dt.Rows.Add (dr);
-			}
-
-			return dt;
+            return DataTableConstructor.FromIEnumerable (achievements);
 		}
 
         private DataTable EduProgramsDataTable (List<EmployeeEduProgramView> eduPrograms)
@@ -1025,6 +1003,7 @@ namespace R7.University.Employee
 				if (command == "Add")
 				{
 					achievement = new EmployeeAchievementView ();
+                    achievement.Localize (LocalResourceFile);
 				}
 				else
 				{

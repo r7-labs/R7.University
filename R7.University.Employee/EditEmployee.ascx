@@ -210,7 +210,7 @@
 		<div id="employeeAchievements">
 			<fieldset>
 				<div class="dnnFormItem">
-					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
+					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
 						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound" Style="margin-bottom:30px;width:775px">
 							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
@@ -232,6 +232,13 @@
 										</span>
 					               </ItemTemplate>
 					        	</asp:TemplateField>
+                                <asp:BoundField DataField="ItemID" />
+                                <asp:BoundField DataField="ViewYears" HeaderText="Years" />
+                                <asp:BoundField DataField="ViewTitle" HeaderText="Title" />
+                                <asp:BoundField DataField="ViewAchievementType" HeaderText="AchievementType" />
+                                <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle" />
+                                <asp:BoundField DataField="Description" HeaderText="AchievementType" />
+                                <asp:BoundField DataField="DocumentUrl" HeaderText="DocumentUrl" />
 							</Columns>
 				    </asp:GridView>
 				</div>
