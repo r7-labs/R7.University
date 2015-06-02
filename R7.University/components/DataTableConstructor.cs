@@ -26,6 +26,7 @@
 
 // based on: 
 // http://www.c-sharpcorner.com/UploadFile/1a81c5/list-to-datatable-converter-using-C-Sharp/
+// http://stackoverflow.com/questions/701223/net-convert-generic-collection-to-datatable
 
 using System;
 using System.Data;
@@ -44,7 +45,10 @@ namespace R7.University
             var props = typeof (T).GetProperties (BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var prop in props)
-                dataTable.Columns.Add (prop.Name, prop.PropertyType);
+            {
+                dataTable.Columns.Add (prop.Name, Nullable.GetUnderlyingType (
+                    prop.PropertyType) ?? prop.PropertyType);
+            }
 
             foreach (T item in items)
             {
@@ -53,7 +57,7 @@ namespace R7.University
                 for (var i = 0; i < props.Length; i++)
                 {
                     // inserting property values to datatable rows
-                    values [i] = props [i].GetValue (item, null);
+                    values [i] = props [i].GetValue (item, null) ?? DBNull.Value;
                 }
 
                 dataTable.Rows.Add (values);
