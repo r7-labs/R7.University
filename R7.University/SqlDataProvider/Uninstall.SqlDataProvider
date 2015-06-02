@@ -24,8 +24,20 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Positions] 
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] 
 	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Achievements] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+	DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]
+	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeEduPrograms_Employees]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] 
+	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeEduPrograms_EduPrograms] 
 GO
 
 -- Drop tables
@@ -45,6 +57,15 @@ GO
 DROP TABLE {databaseOwner}[{objectQualifier}University_Achievements] 
 GO
 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduLevels] 
+GO
+
 -- DROP TABLE {databaseOwner}[{objectQualifier}University_Employees] 
 -- GO
 
@@ -60,6 +81,9 @@ DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]
 GO
 
 DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]
 GO
 
 -- Drop stored procedures & functions

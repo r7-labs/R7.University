@@ -1,4 +1,9 @@
-﻿<h3>Version 1.1.8</h3>
+﻿<h3>Version 1.2.0</h3>
+<ul>
+    <li>Editing support for employee and educational programs binding.</li>
+</ul>
+
+<h3>Version 1.1.8</h3>
 <ul>
     <li>Implemented #63: Added EmployeeDetails module.</li>
     <li>EmployeeDetails: Optimize & fix table painting script.</li>
