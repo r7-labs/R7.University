@@ -3,9 +3,10 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
+    [Serializable]
 	public abstract class ReferenceEntityBase : IReferenceEntity
 	{
-		public ReferenceEntityBase ()
+        public ReferenceEntityBase ()
 		{
 		}
 
