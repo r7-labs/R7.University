@@ -33,6 +33,12 @@
     <data name="AchievementTypeW.Text">
     	<value>Work</value>
     </data>
+    <data name="AchievementTypeR.Text">
+        <value>Academic Title</value>
+    </data>
+    <data name="AchievementTypeD.Text">
+        <value>Academic Degree</value>
+    </data>
     <data name="Years.Column">
         <value>Year(s)</value>
     </data>

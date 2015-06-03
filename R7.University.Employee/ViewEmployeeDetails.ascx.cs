@@ -470,8 +470,9 @@ namespace R7.University.Employee
 
 			// get only experience-related achievements
 			var experiences = achievements.Where (ach => ach.AchievementType == AchievementType.Education ||
-			                  ach.AchievementType == AchievementType.Training ||
-			                  ach.AchievementType == AchievementType.Work);
+                ach.AchievementType == AchievementType.AcademicDegree ||
+                ach.AchievementType == AchievementType.Training ||
+			    ach.AchievementType == AchievementType.Work);
 
 			if (experiences != null && experiences.Any ())
 			{
@@ -485,8 +486,13 @@ namespace R7.University.Employee
 			}
 		
 			// get all other achievements
-			achievements = achievements.Where (ach => ach.AchievementType == AchievementType.Achievement);
-			if (achievements != null && achievements.Any ())
+            achievements = achievements.Where (ach => ach.AchievementType != AchievementType.Education &&
+                ach.AchievementType != AchievementType.AcademicDegree &&
+                ach.AchievementType != AchievementType.Training &&
+                ach.AchievementType != AchievementType.Work
+            );
+			
+            if (achievements != null && achievements.Any ())
 			{
 				gridAchievements.DataSource = AchievementsDataTable (achievements.OrderByDescending (ach => ach.YearBegin));
 				gridAchievements.DataBind ();
