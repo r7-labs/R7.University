@@ -26,20 +26,13 @@
 
 using System;
 using System.Data;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Entities.Modules.Actions;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
+using DotNetNuke.Entities.Icons;
 using R7.University;
-
 
 namespace R7.University.EmployeeDirectory
 {
@@ -161,8 +154,14 @@ namespace R7.University.EmployeeDirectory
                     }
                     else if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
                     {
-                        var eduPrograms = EmployeeDirectoryController.GetObjects<EduProgramInfo> ("ORDER BY [Code]");
+                        var eduPrograms = EmployeeDirectoryController.GetObjects<EduProgramInfo> ("ORDER BY [Code]").ToList ();
 
+                        eduPrograms.Add (new EduProgramInfo { 
+                            EduProgramID = Null.NullInteger,
+                            Code = string.Empty,
+                            Title = LocalizeString ("NoEduPrograms.Text")
+                        });
+ 
                         if (eduPrograms != null && eduPrograms.Any ())
                         {
                             repeaterEduPrograms.DataSource = eduPrograms;
@@ -192,19 +191,40 @@ namespace R7.University.EmployeeDirectory
                 var literalEduProgramAnchor = (Literal) e.Item.FindControl ("literalEduProgramAnchor");
                 var gridTeachersByEduProgram = (GridView) e.Item.FindControl ("gridTeachersByEduProgram");
 
-                // create anchor to simplify navigation
-                literalEduProgramAnchor.Text = "<a id=\"eduprogram-" + eduProgram.EduProgramID + "\"" +
-                    " name=\"eduprogram-" + eduProgram.EduProgramID + "\"></a>";
+                IEnumerable<EmployeeInfo> teachers;
+                string anchorName;
 
-                var teachers = EmployeeDirectoryController.GetObjects<EmployeeInfo> (CommandType.Text,
-                    @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
-                        INNER JOIN dbo.vw_University_OccupiedPositions AS OP
-                            ON E.EmployeeID = OP.EmployeeID
-                        INNER JOIN dbo.University_EmployeeEduPrograms AS EEP
-                            ON E.EmployeeID = EEP.EmployeeID
-                    WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
-                    ORDER BY E.LastName, E.FirstName", eduProgram.EduProgramID);
-                           
+                if (Null.IsNull (eduProgram.EduProgramID))
+                {
+                    anchorName = "empty";
+
+                    // select all teachers w/o edu programs
+                    teachers = EmployeeDirectoryController.GetObjects<EmployeeInfo> (CommandType.Text,
+                        @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
+                            INNER JOIN dbo.vw_University_OccupiedPositions AS OP
+                                ON E.EmployeeID = OP.EmployeeID
+                        WHERE OP.IsTeacher = 1 AND E.IsPublished = 1 AND E.EmployeeID NOT IN 
+                            (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeEduPrograms)");
+                }
+                else
+                {
+                    anchorName = eduProgram.EduProgramID.ToString ();
+
+                    // select teachers for current edu program
+                    teachers = EmployeeDirectoryController.GetObjects<EmployeeInfo> (CommandType.Text,
+                        @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
+                            INNER JOIN dbo.vw_University_OccupiedPositions AS OP
+                                ON E.EmployeeID = OP.EmployeeID
+                            INNER JOIN dbo.University_EmployeeEduPrograms AS EEP
+                                ON E.EmployeeID = EEP.EmployeeID
+                        WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
+                        ORDER BY E.LastName, E.FirstName", eduProgram.EduProgramID);
+                }
+
+                // create anchor to simplify navigation
+                literalEduProgramAnchor.Text = "<a id=\"eduprogram-" + anchorName + "\"" +
+                    " name=\"eduprogram-" + anchorName + "\"></a>";
+
                 if (teachers != null && teachers.Any ())
                 {
                     // pass eduProgramId to gridTeachersByEduProgram_RowDataBound()
@@ -252,13 +272,15 @@ namespace R7.University.EmployeeDirectory
 
                 #region Disciplines
 
-                var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
+                if (!Null.IsNull (eduProgramId))
+                {
+                    var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
 
-                var eepi = EmployeeDirectoryController.GetObjects <EmployeeEduProgramInfo> (
-                    "WHERE [EmployeeID] = @0 AND [EduProgramID] = @1", teacher.EmployeeID, eduProgramId).FirstOrDefault ();
+                    var eepi = EmployeeDirectoryController.GetObjects <EmployeeEduProgramInfo> (
+                        "WHERE [EmployeeID] = @0 AND [EduProgramID] = @1", teacher.EmployeeID, eduProgramId).FirstOrDefault ();
 
-                if (eepi != null)
-                    literalDisciplines.Text = eepi.Disciplines;
+                    if (eepi != null) literalDisciplines.Text = eepi.Disciplines;
+                }
 
                 #endregion
 

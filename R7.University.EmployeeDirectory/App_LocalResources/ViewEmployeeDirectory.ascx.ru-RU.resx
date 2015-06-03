@@ -51,6 +51,9 @@
     <data name="ExperienceYearsBySpec.Column" xml:space="preserve">
         <value>Стаж работы по специальности (лет)</value>
     </data>
+    <data name="NoEduPrograms.Text" xml:space="preserve">
+        <value>Образовательные программы не указаны</value>
+    </data>
     <data xml:space="preserve" name="AllDivisions.Text">
         <value>&lt; Все подразделения &gt;</value>
     </data>
