@@ -21,6 +21,36 @@
     <data xml:space="preserve" name="WorkingPlace.Header">
         <value>Working Place</value>
     </data>
+    <data name="Order.Column" xml:space="preserve">
+        <value>#</value>
+    </data>
+    <data name="FullName.Column" xml:space="preserve">
+        <value>Name</value>
+    </data>
+    <data name="Positions.Column" xml:space="preserve">
+        <value>Positions</value>
+    </data>
+    <data name="Disciplines.Column" xml:space="preserve">
+        <value>Disciplines</value>
+    </data>
+    <data name="AcademicDegrees.Column" xml:space="preserve">
+        <value>Academic Degrees</value>
+    </data>
+    <data name="AcademicTitles.Column" xml:space="preserve">
+        <value>Academic Titles</value>
+    </data>
+    <data name="Education.Column" xml:space="preserve">
+        <value>Education</value>
+    </data>
+    <data name="Training.Column" xml:space="preserve">
+        <value>Training</value>
+    </data>
+    <data name="ExperienceYears.Column" xml:space="preserve">
+        <value>Total Experience (years)</value>
+    </data>
+    <data name="ExperienceYearsBySpec.Column" xml:space="preserve">
+        <value>Experience by Speciality (years)</value>
+    </data>
     <data xml:space="preserve" name="AllDivisions.Text">
         <value>&lt; All Divisions &gt;</value>
     </data>

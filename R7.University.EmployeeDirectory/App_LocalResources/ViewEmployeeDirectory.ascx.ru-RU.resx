@@ -21,6 +21,36 @@
     <data xml:space="preserve" name="WorkingPlace.Header">
         <value>Рабочее место</value>
     </data>
+    <data name="Order.Column" xml:space="preserve">
+        <value>N п/п</value>
+    </data>
+    <data name="FullName.Column" xml:space="preserve">
+        <value>Ф.И.О.</value>
+    </data>
+    <data name="Positions.Column" xml:space="preserve">
+        <value>Должность</value>
+    </data>
+    <data name="Disciplines.Column" xml:space="preserve">
+        <value>Преподаваемые дисциплины</value>
+    </data>
+    <data name="AcademicDegrees.Column" xml:space="preserve">
+        <value>Ученая степень</value>
+    </data>
+    <data name="AcademicTitles.Column" xml:space="preserve">
+        <value>Ученое звание</value>
+    </data>
+    <data name="Education.Column" xml:space="preserve">
+        <value>Направление подготовки или специальность (образование)</value>
+    </data>
+    <data name="Training.Column" xml:space="preserve">
+        <value>Повышение квалификации (или) профессиональная переподготовка</value>
+    </data>
+    <data name="ExperienceYears.Column" xml:space="preserve">
+        <value>Общий стаж работы (лет)</value>
+    </data>
+    <data name="ExperienceYearsBySpec.Column" xml:space="preserve">
+        <value>Стаж работы по специальности (лет)</value>
+    </data>
     <data xml:space="preserve" name="AllDivisions.Text">
         <value>&lt; Все подразделения &gt;</value>
     </data>

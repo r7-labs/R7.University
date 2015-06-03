@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -75,7 +76,6 @@ namespace R7.University.EmployeeDirectory
             { 
                 var objSearchIncludeSubdivisions = Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId];
                 return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : false;
-
             }
             set { Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId] = value; }
         }
@@ -86,7 +86,6 @@ namespace R7.University.EmployeeDirectory
             { 
                 var objSearchTeachersOnly = Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId];
                 return objSearchTeachersOnly != null ? (bool) objSearchTeachersOnly : false;
-
             }
             set { Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId] = value; }
         }
@@ -94,6 +93,15 @@ namespace R7.University.EmployeeDirectory
         #endregion
 
         #region Handlers
+
+        private int GetActiveViewIndex ()
+        {
+            for (var i = 0; i < mviewEmployeeDirectory.Views.Count; i++)
+                if (mviewEmployeeDirectory.Views [i].ID == "view" + EmployeeDirectorySettings.Mode)
+                    return i;
+
+            return -1;
+        }
 
         /// <summary>
         /// Handles Init event for a control
@@ -103,20 +111,25 @@ namespace R7.University.EmployeeDirectory
         {
             base.OnInit (e);
 
-            // display search hint
-            Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
+            mviewEmployeeDirectory.ActiveViewIndex = GetActiveViewIndex ();
 
-            var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
-            divisions.Insert (0, new DivisionInfo {
-                DivisionID = Null.NullInteger, 
-                Title = LocalizeString ("AllDivisions.Text") 
-            });
-           
-            treeDivisions.DataSource = divisions;
-            treeDivisions.DataBind ();
+            if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.Search)
+            {
+                // display search hint
+                Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
 
-            // REVIEW: Level should be set in settings?
-            Utils.ExpandToLevel (treeDivisions, 2);
+                var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
+                divisions.Insert (0, new DivisionInfo {
+                        DivisionID = Null.NullInteger, 
+                        Title = LocalizeString ("AllDivisions.Text") 
+                    });
+               
+                treeDivisions.DataSource = divisions;
+                treeDivisions.DataBind ();
+
+                // REVIEW: Level should be set in settings?
+                Utils.ExpandToLevel (treeDivisions, 2);
+            }
         }
 
         /// <summary>
@@ -131,17 +144,30 @@ namespace R7.University.EmployeeDirectory
             {
                 if (!IsPostBack)
                 {
-                    if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
+                    if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.Search)
                     {
-                        // restore current search
-                        textSearch.Text = SearchText;
-                        Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
-                        checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
-                        checkTeachersOnly.Checked = SearchTeachersOnly;
+                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
+                        {
+                            // restore current search
+                            textSearch.Text = SearchText;
+                            Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
+                            checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
+                            checkTeachersOnly.Checked = SearchTeachersOnly;
 
-                        // perform search
-                        if (SearchParamsOK (SearchText, SearchDivision, SearchIncludeSubdivisions, false))
-                            DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
+                            // perform search
+                            if (SearchParamsOK (SearchText, SearchDivision, SearchIncludeSubdivisions, false))
+                                DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
+                        }
+                    }
+                    else if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
+                    {
+                        var eduPrograms = EmployeeDirectoryController.GetObjects<EduProgramInfo> ("ORDER BY [Code]");
+
+                        if (eduPrograms != null && eduPrograms.Any ())
+                        {
+                            repeaterEduPrograms.DataSource = eduPrograms;
+                            repeaterEduPrograms.DataBind ();
+                        }
                     }
                 }
             }
@@ -152,6 +178,140 @@ namespace R7.University.EmployeeDirectory
         }
 
         #endregion
+
+        private int eduProgramId;
+
+        protected void repeaterEduPrograms_ItemDataBound (object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var eduProgram = (EduProgramInfo) e.Item.DataItem;
+
+                // find controls in the template
+                var labelEduProgram = (Label) e.Item.FindControl ("labelEduProgram");
+                var literalEduProgramAnchor = (Literal) e.Item.FindControl ("literalEduProgramAnchor");
+                var gridTeachersByEduProgram = (GridView) e.Item.FindControl ("gridTeachersByEduProgram");
+
+                // create anchor to simplify navigation
+                literalEduProgramAnchor.Text = "<a id=\"eduprogram-" + eduProgram.EduProgramID + "\"" +
+                    " name=\"eduprogram-" + eduProgram.EduProgramID + "\"></a>";
+
+                var teachers = EmployeeDirectoryController.GetObjects<EmployeeInfo> (CommandType.Text,
+                    @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
+                        INNER JOIN dbo.vw_University_OccupiedPositions AS OP
+                            ON E.EmployeeID = OP.EmployeeID
+                        INNER JOIN dbo.University_EmployeeEduPrograms AS EEP
+                            ON E.EmployeeID = EEP.EmployeeID
+                    WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
+                    ORDER BY E.LastName, E.FirstName", eduProgram.EduProgramID);
+                           
+                if (teachers != null && teachers.Any ())
+                {
+                    // pass eduProgramId to gridTeachersByEduProgram_RowDataBound()
+                    eduProgramId = eduProgram.EduProgramID;
+
+                    gridTeachersByEduProgram.LocalizeColumns (LocalResourceFile);
+
+                    gridTeachersByEduProgram.DataSource = teachers;
+                    gridTeachersByEduProgram.DataBind ();
+                }
+                else
+                {
+                    labelEduProgram.Visible = false;
+                    gridTeachersByEduProgram.Visible = false;
+                }
+            }
+        }
+
+        protected void gridTeachersByEduProgram_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            // show / hide edit column
+            e.Row.Cells [0].Visible = IsEditable;
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var teacher = (EmployeeInfo) e.Row.DataItem;
+
+                if (IsEditable)
+                {
+                    // get edit link controls
+                    var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
+                    var iconEdit = (Image) e.Row.FindControl ("iconEdit");
+
+                    // fill edit link controls
+                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", teacher.EmployeeID.ToString ());
+                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                }
+
+                #region Order
+
+                var literalOrder = (Literal) e.Row.FindControl ("literalOrder");
+                literalOrder.Text = (e.Row.RowIndex + 1) + ".";
+
+                #endregion
+
+                #region Disciplines
+
+                var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
+
+                var eepi = EmployeeDirectoryController.GetObjects <EmployeeEduProgramInfo> (
+                    "WHERE [EmployeeID] = @0 AND [EduProgramID] = @1", teacher.EmployeeID, eduProgramId).FirstOrDefault ();
+
+                if (eepi != null)
+                    literalDisciplines.Text = eepi.Disciplines;
+
+                #endregion
+
+                #region Positions
+
+                var literalPositions = (Literal) e.Row.FindControl ("literalPositions");
+
+                var positions = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> (
+                    "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", teacher.EmployeeID).Select (op => Utils.FormatList (": ", op.PositionTitle, op.DivisionTitle));
+
+                // TODO: Use OccupiedPositionInfoEx.GroupByDivision ();
+
+                literalPositions.Text = Utils.FormatList ("; ", positions);
+
+                #endregion
+
+                #region AcademicDegree, AcademicTitle, Education, Training
+
+                // get all empoyee achievements
+                var achievements = EmployeeDirectoryController.GetObjects<EmployeeAchievementInfo> (
+                    CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
+                    teacher.EmployeeID).ToList ();
+
+                var literalEducation = (Literal) e.Row.FindControl ("literalEducation");
+                var literalTraining = (Literal) e.Row.FindControl ("literalTraining");
+                var literalAcademicDegrees = (Literal) e.Row.FindControl ("literalAcademicDegrees");
+                var literalAcademicTitles = (Literal) e.Row.FindControl ("literalAcademicTitles");
+
+                var education = achievements.Where (ach => ach.AchievementType == AchievementType.Education).Select (ed => ed.DisplayShortTitle);
+                var training = achievements.Where (ach => ach.AchievementType == AchievementType.Training).Select (ed => ed.DisplayShortTitle);
+                var academicDegrees = achievements.Where (ach => ach.AchievementType == AchievementType.AcademicDegree).Select (ed => ed.DisplayShortTitle);
+                var academicTitles = achievements.Where (ach => ach.AchievementType == AchievementType.AcademicTitle).Select (ed => ed.DisplayShortTitle);
+
+                literalEducation.Text = Utils.FormatList ("; ", education);
+                literalTraining.Text = Utils.FormatList ("; ", training);
+                literalAcademicDegrees.Text = Utils.FormatList ("; ", academicDegrees);
+                literalAcademicTitles.Text = Utils.FormatList ("; ", academicTitles);
+
+                #endregion
+
+                // apply obrnadzor.gov.ru microdata
+                e.Row.Cells [2].Attributes.Add ("itemprop", "fio");
+                e.Row.Cells [3].Attributes.Add ("itemprop", "Post");
+                e.Row.Cells [4].Attributes.Add ("itemprop", "TeachingDiscipline");
+                e.Row.Cells [5].Attributes.Add ("itemprop", "Degree");
+                e.Row.Cells [6].Attributes.Add ("itemprop", "AcademStat");
+                e.Row.Cells [7].Attributes.Add ("itemprop", "EmployeeQualification");
+                e.Row.Cells [8].Attributes.Add ("itemprop", "ProfDevelopment");
+                e.Row.Cells [9].Attributes.Add ("itemprop", "GenExperience");
+                e.Row.Cells [10].Attributes.Add ("itemprop", "SpecExperience");
+
+            }
+        }
 
         protected bool SearchParamsOK (string searchText, string searchDivision, bool includeSubdivisions, bool showMessages = true)
         {
@@ -315,4 +475,3 @@ namespace R7.University.EmployeeDirectory
         }
     }
 }
-
