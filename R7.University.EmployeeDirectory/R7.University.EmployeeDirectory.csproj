@@ -82,6 +82,7 @@
       <DependentUpon>SettingsEmployeeDirectory.ascx</DependentUpon>
     </Compile>
     <Compile Include="components\EmployeeDirectoryModuleBase.cs" />
+    <Compile Include="components\EmployeeDirectoryMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

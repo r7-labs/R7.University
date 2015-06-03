@@ -5,10 +5,11 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.EmployeeDirectory/admin.css" Priority="200" />
 <div class="dnnForm dnnClear">
- <h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
- <fieldset>  
-     <div class="dnnFormItem">
-     </div>
- </fieldset> 
+    <fieldset>  
+        <div class="dnnFormItem">
+            <dnn:Label id="labelMode" runat="server" ControlName="comboMode" />
+            <asp:DropDownList id="comboMode" runat="server" />
+        </div>
+    </fieldset>
 </div>
 
