@@ -100,7 +100,7 @@
                     </h3>
                     <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
                             OnRowDataBound="gridTeachersByEduProgram_RowDataBound"
-                            CssClass="table table-bordered table-stripped table-hover" GridLines="None" Width="100%">
+                            CssClass="table table-bordered table-stripped table-hover small" GridLines="None" Width="100%">
                         <HeaderStyle CssClass="dnnGridHeader" />
                         <RowStyle CssClass="dnnGridItem" />
                         <AlternatingRowStyle CssClass="dnnGridAltItem" />
