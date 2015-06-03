@@ -1,10 +1,10 @@
 ﻿//
-// EmployeeDirectorySettings.cs
+// EmployeeDirectoryMode.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,34 +25,14 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.UI.Modules;
-using R7.University;
 
 namespace R7.University.EmployeeDirectory
 {
-    /// <summary>
-    /// Provides strong typed access to settings used by module
-    /// </summary>
-    public class EmployeeDirectorySettings : SettingsWrapper
+    public enum EmployeeDirectoryMode
     {
-        public EmployeeDirectorySettings (IModuleControl module): base (module)
-        {
-        }
-
-        public EmployeeDirectorySettings (ModuleInfo module): base (module)
-        {
-        }
-
-        #region Module settings
-
-        public EmployeeDirectoryMode Mode
-        {
-            get { return ReadSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", EmployeeDirectoryMode.Search, false); }
-            set { WriteSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", value, false); }
-        }
-
-        #endregion
+        Search,
+        TeachersByEduProgram,
+        // HeadEmployees
     }
 }
 

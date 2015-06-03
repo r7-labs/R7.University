@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2015
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,18 +25,22 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI.WebControls;
-using System.Linq;
-
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.UI.UserControls;
 using R7.University;
 
 namespace R7.University.EmployeeDirectory
 {    
     public partial class SettingsEmployeeDirectory : EmployeeDirectoryModuleSettingsBase
     {
+
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            comboMode.DataSource = Enum.GetNames (typeof (EmployeeDirectoryMode));
+            comboMode.DataBind ();
+        }
+
         /// <summary>
         /// Handles the loading of the module setting for this control
         /// </summary>
@@ -46,6 +50,7 @@ namespace R7.University.EmployeeDirectory
             {
                 if (!IsPostBack)
                 {
+                    Utils.SelectByValue (comboMode, EmployeeDirectorySettings.Mode.ToString ());
                 }
             }
             catch (Exception ex)
@@ -61,7 +66,9 @@ namespace R7.University.EmployeeDirectory
         {
             try
             {
-                Utils.SynchronizeModule(this);
+                EmployeeDirectorySettings.Mode = (EmployeeDirectoryMode) Enum.Parse (typeof (EmployeeDirectoryMode), comboMode.SelectedValue);
+
+                Utils.SynchronizeModule (this);
             }
             catch (Exception ex)
             {

@@ -33,7 +33,9 @@ namespace R7.University
 		Achievement = 'A',
 		Education = 'E',
 		Training = 'T',
-		Work = 'W'
+		Work = 'W',
+        AcademicTitle = 'R', // от 'Rank'
+        AcademicDegree = 'D'
 	}
 
 	public class AchievementTypeInfo
