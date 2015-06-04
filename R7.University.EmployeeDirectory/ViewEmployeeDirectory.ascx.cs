@@ -87,15 +87,6 @@ namespace R7.University.EmployeeDirectory
 
         #region Handlers
 
-        private int GetActiveViewIndex ()
-        {
-            for (var i = 0; i < mviewEmployeeDirectory.Views.Count; i++)
-                if (mviewEmployeeDirectory.Views [i].ID == "view" + EmployeeDirectorySettings.Mode)
-                    return i;
-
-            return -1;
-        }
-
         /// <summary>
         /// Handles Init event for a control
         /// </summary>
@@ -104,7 +95,7 @@ namespace R7.University.EmployeeDirectory
         {
             base.OnInit (e);
 
-            mviewEmployeeDirectory.ActiveViewIndex = GetActiveViewIndex ();
+            mviewEmployeeDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewEmployeeDirectory, "view" + EmployeeDirectorySettings.Mode.ToString ());
 
             if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.Search)
             {

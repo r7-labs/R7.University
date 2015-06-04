@@ -41,6 +41,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
 using R7.University;
+using System.Runtime.InteropServices;
 
 namespace R7.University.DivisionDirectory
 {
@@ -94,20 +95,32 @@ namespace R7.University.DivisionDirectory
         {
             base.OnInit (e);
 
-            // display search hint
-            Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
+            mviewDivisionDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewDivisionDirectory, "view" + DivisionDirectorySettings.Mode.ToString ());
 
-            var divisions = DivisionDirectoryController.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
-            divisions.Insert (0, new DivisionInfo {
-                DivisionID = Null.NullInteger, 
-                Title = LocalizeString ("AllDivisions.Text") 
-            });
+            if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.Search)
+            {
+                // display search hint
+                Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
+
+                var divisions = DivisionDirectoryController.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
+                divisions.Insert (0, new DivisionInfo
+                    {
+                        DivisionID = Null.NullInteger, 
+                        Title = LocalizeString ("AllDivisions.Text") 
+                    });
            
-            treeDivisions.DataSource = divisions;
-            treeDivisions.DataBind ();
+                treeDivisions.DataSource = divisions;
+                treeDivisions.DataBind ();
 
-            // REVIEW: Level should be set in settings?
-            Utils.ExpandToLevel (treeDivisions, 2);
+                // REVIEW: Level should be set in settings?
+                Utils.ExpandToLevel (treeDivisions, 2);
+
+                gridDivisions.LocalizeColumns (LocalResourceFile);
+            }
+            else if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
+            {
+                gridObrnadzorDivisions.LocalizeColumns (LocalResourceFile);
+            }
         }
 
         /// <summary>
@@ -122,16 +135,28 @@ namespace R7.University.DivisionDirectory
             {
                 if (!IsPostBack)
                 {
-                    if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
+                    if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.Search)
                     {
-                        // restore current search
-                        textSearch.Text = SearchText;
-                        Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
-                        checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
+                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
+                        {
+                            // restore current search
+                            textSearch.Text = SearchText;
+                            Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
+                            checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
 
-                        // perform search
-                        if (SearchParamsOK (SearchText, SearchDivision, SearchIncludeSubdivisions, false))
-                            DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions);
+                            // perform search
+                            if (SearchParamsOK (SearchText, SearchDivision, SearchIncludeSubdivisions, false))
+                                DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions);
+                        }
+                    }
+                    else if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
+                    {
+                        var divisions = DivisionDirectoryController.GetObjects<DivisionInfo> (
+                            "WHERE [ParentDivisionID] IS NOT NULL ORDER BY [ParentDivisionID], [Title]" 
+                        );
+
+                        gridObrnadzorDivisions.DataSource = divisions;
+                        gridObrnadzorDivisions.DataBind ();
                     }
                 }
             }
@@ -260,7 +285,7 @@ namespace R7.University.DivisionDirectory
                 if (!string.IsNullOrWhiteSpace (division.Email))
                 {
                     linkEmail.Text = division.Email;
-                    linkEmail.NavigateUrl = "mailto:" + division.Email;
+                    linkEmail.NavigateUrl = division.FormatEmailUrl;
                 }
                 else
                     linkEmail.Visible = false;
@@ -292,6 +317,105 @@ namespace R7.University.DivisionDirectory
                     linkContactPerson.ToolTip = contactPerson.FullName;
                     linkContactPerson.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", contactPerson.EmployeeID.ToString ()).Replace ("550,950", "450,950");
                 }
+            }
+        }
+
+        protected void gridObrnadzorDivisions_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            // show / hide edit column
+            e.Row.Cells [0].Visible = IsEditable;
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var division = (DivisionInfo) e.Row.DataItem;
+
+                if (IsEditable)
+                {
+                    // get edit link controls
+                    var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
+                    var iconEdit = (Image) e.Row.FindControl ("iconEdit");
+
+                    // fill edit link controls
+                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditDivision", "division_id", division.DivisionID.ToString ());
+                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                }
+
+                var literalOrder = (Literal) e.Row.FindControl ("literalOrder");
+                literalOrder.Text = (e.Row.RowIndex + 1) + ".";
+
+                #region Contact person
+
+                var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
+
+                // contact person (head employee)
+                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID);
+                if (contactPerson != null)
+                {
+                    literalContactPerson.Text = contactPerson.FullName;
+                }
+
+                #endregion
+
+                #region Email
+
+                var linkEmail =  (HyperLink) e.Row.FindControl ("linkEmail");
+
+                if (!string.IsNullOrWhiteSpace (division.Email))
+                {
+                    linkEmail.Text = division.Email;
+                    linkEmail.NavigateUrl = division.FormatEmailUrl;
+                    linkEmail.Attributes.Add ("itemprop", "E-mail");
+                }
+                else
+                    linkEmail.Visible = false;
+
+                #endregion
+
+                #region WebSite
+
+                var linkWebSite =  (HyperLink) e.Row.FindControl ("linkWebSite");
+
+                if (!string.IsNullOrWhiteSpace (division.WebSite))
+                {
+                    linkWebSite.Text = division.FormatWebSiteLabel;
+                    linkWebSite.NavigateUrl = division.FormatWebSiteUrl;
+                    linkWebSite.Attributes.Add ("itemprop", "Site");
+                }
+                else
+                    linkWebSite.Visible = false;
+
+                #endregion
+
+                #region Document
+
+                var linkDocument =  (HyperLink) e.Row.FindControl ("linkDocument");
+
+                // (main) document
+                if (!string.IsNullOrWhiteSpace (division.DocumentUrl))
+                {
+                    linkDocument.Text = LocalizeString ("Regulations.Text");
+                    linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
+                    linkDocument.Attributes.Add ("itemprop", "DivisionClause_DocLink");
+
+                    // REVIEW: Add GetUrlCssClass() method to the utils
+                    // set link CSS class according to file extension
+                    if (Globals.GetURLType (division.DocumentUrl) == TabType.File)
+                    {
+                        var fileId = int.Parse (division.DocumentUrl.Remove (0, "FileId=".Length));
+                        var file = FileManager.Instance.GetFile (fileId);
+                        if (file != null)
+                            linkDocument.CssClass = file.Extension.ToLowerInvariant ();
+                    }
+                }
+                else
+                    linkDocument.Visible = false;
+
+                #endregion
+
+                // apply obrnadzor.gov.ru microdata to bounded fields
+                e.Row.Cells [2].Attributes.Add ("itemprop", "Name");
+                e.Row.Cells [3].Attributes.Add ("itemprop", "Fio");
+                e.Row.Cells [4].Attributes.Add ("itemprop", "AddressStr");
             }
         }
     }

@@ -120,6 +120,12 @@ namespace R7.University
 			}
 		}
 
+        [IgnoreColumn]
+        public string FormatEmailUrl
+        {
+            get { return "mailto:" + Email; }
+        }
+
 		[IgnoreColumn]
 		public VCard VCard
 		{
@@ -196,7 +202,6 @@ namespace R7.University
 				return text;
 			}
 		}
-
 	}
 }
 

@@ -347,6 +347,15 @@ namespace R7.University
 			moduleController.ClearCache (module.ModuleContext.TabId);
 
 		}
+
+        public static int GetViewIndexByID (MultiView mview, string viewName)
+        {
+            for (var i = 0; i < mview.Views.Count; i++)
+                if (mview.Views [i].ID == viewName)
+                    return i;
+
+            return -1;
+        }
 	}
 	// class
 }

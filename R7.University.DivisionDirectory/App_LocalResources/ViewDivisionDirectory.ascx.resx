@@ -3,23 +3,38 @@
     <data xml:space="preserve" name="ModuleHelp.Text">
         <value>&lt;P&gt;A R7.DivisionDirectory module&lt;/P&gt;</value>
     </data>
-    <data xml:space="preserve" name="Title.Header">
+    <data xml:space="preserve" name="Title.Column">
         <value>Division</value>
     </data>
-    <data xml:space="preserve" name="Email.Header">
+    <data xml:space="preserve" name="TitleObrnadzor.Column">
+        <value>Division's title</value>
+    </data>
+    <data xml:space="preserve" name="Email.Column">
         <value>Email</value>
     </data>
-    <data xml:space="preserve" name="Phone.Header">
+    <data xml:space="preserve" name="EmailObrnadzor.Column">
+        <value>Email address</value>
+    </data>
+    <data xml:space="preserve" name="Phone.Column">
         <value>Phone</value>
     </data>
-    <data xml:space="preserve" name="Location.Header">
+    <data xml:space="preserve" name="WebSite.Column">
+        <value>Website</value>
+    </data>
+    <data xml:space="preserve" name="WebSiteObrnadzor.Column">
+        <value>Official website address in the Internet</value>
+    </data>
+    <data xml:space="preserve" name="Location.Column">
         <value>Location</value>
     </data>
-    <data xml:space="preserve" name="Document.Header">
+    <data xml:space="preserve" name="Document.Column">
         <value>Document</value>
     </data>
-    <data xml:space="preserve" name="ContactPerson.Header">
+    <data xml:space="preserve" name="ContactPerson.Column">
         <value>Contact Person (Head)</value>
+    </data>
+    <data name="Order.Column" xml:space="preserve">
+        <value>#</value>
     </data>
     <data xml:space="preserve" name="Regulations.Text">
         <value>Regulations</value>

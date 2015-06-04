@@ -82,6 +82,7 @@
       <DependentUpon>SettingsDivisionDirectory.ascx</DependentUpon>
     </Compile>
     <Compile Include="components\DivisionDirectoryModuleBase.cs" />
+    <Compile Include="components\DivisionDirectoryMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
