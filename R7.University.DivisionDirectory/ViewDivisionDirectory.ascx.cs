@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -41,7 +42,6 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
 using R7.University;
-using System.Runtime.InteropServices;
 
 namespace R7.University.DivisionDirectory
 {
@@ -151,12 +151,29 @@ namespace R7.University.DivisionDirectory
                     }
                     else if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
                     {
-                        var divisions = DivisionDirectoryController.GetObjects<DivisionInfo> (
-                            "WHERE [ParentDivisionID] IS NOT NULL ORDER BY [ParentDivisionID], [Title]" 
-                        );
+                        var rootDivisions = DivisionDirectoryController.GetObjects<DivisionInfo>(
+                            "WHERE [ParentDivisionID] IS NULL");
 
-                        gridObrnadzorDivisions.DataSource = divisions;
-                        gridObrnadzorDivisions.DataBind ();
+                        if (rootDivisions != null)
+                        {
+                            var divisions = new List<DivisionInfo> ();
+
+                            foreach (var rootDivision in rootDivisions)
+                            {
+                                var subDivisions = DivisionDirectoryController.GetObjects<DivisionInfo> (CommandType.Text,
+                                    @"SELECT DISTINCT D.*, DH.[Level] FROM dbo.University_Divisions AS D 
+                                        INNER JOIN dbo.University_DivisionsHierarchy (@0) AS DH
+                                            ON D.DivisionID = DH.DivisionID
+                                        ORDER BY DH.[Level], D.Title", rootDivision.DivisionID
+                                );
+
+                                divisions.AddRange (subDivisions);
+                            }
+
+                            gridObrnadzorDivisions.DataSource = divisions;
+                            gridObrnadzorDivisions.DataBind ();
+
+                        }
                     }
                 }
             }
