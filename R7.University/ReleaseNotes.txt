@@ -1,6 +1,10 @@
 ﻿<h3>Version 1.2.0</h3>
 <ul>
-    <li>Editing support for employee and educational programs binding.</li>
+    <li>Support for employee and educational programs / disciplines binding.</li>
+    <li>EditEmployee: AcademicTitle & AcademicDegree field now hidden.</li>
+    <li>AcademicTitle & AcademicDegree implemented as separate achievement types.</li>
+    <li>EmployeeDirectory: New display mode to show all teachers groupped by educational programs (obrnadzor.gov.ru requirements).</li>
+    <li>DivisionDirectory: New display mode to show all divisions (obrnadzor.gov.ru requirements).</li>
 </ul>
 
 <h3>Version 1.1.8</h3>
