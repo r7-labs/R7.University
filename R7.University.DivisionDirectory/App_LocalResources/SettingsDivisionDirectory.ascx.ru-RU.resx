@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
     <data xml:space="preserve" name="ControlTitle_settings.Text">
-    <value>Настройки DivisionDirectory</value>
-  </data>
+        <value>Настройки DivisionDirectory</value>
+    </data>
     <data xml:space="preserve" name="ModuleHelp.Text">
-    <value>О настройках DivisionDirectory</value>
-  </data>
+        <value>О настройках DivisionDirectory</value>
+    </data>
+    <data name="labelMode.Text" xml:space="preserve">
+        <value>Режим:</value>
+    </data>
+    <data name="labelMode.Help" xml:space="preserve">
+        <value>Выберите режим работы модуля из списка.</value>
+    </data>
 </root>

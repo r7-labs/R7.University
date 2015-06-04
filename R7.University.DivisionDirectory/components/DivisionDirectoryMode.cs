@@ -1,10 +1,10 @@
 ﻿//
-// DivisionDirectorySettings.cs
+// DivisionDirectoryMode.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,34 +25,12 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.UI.Modules;
-using R7.University;
 
 namespace R7.University.DivisionDirectory
 {
-    /// <summary>
-    /// Provides strong typed access to settings used by module
-    /// </summary>
-    public class DivisionDirectorySettings : SettingsWrapper
+    public enum DivisionDirectoryMode
     {
-        public DivisionDirectorySettings (IModuleControl module): base (module)
-        {
-        }
-
-        public DivisionDirectorySettings (ModuleInfo module): base (module)
-        {
-        }
-
-        #region Module settings
-
-        public DivisionDirectoryMode Mode
-        {
-            get { return ReadSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", DivisionDirectoryMode.Search, false); }
-            set { WriteSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", value, false); }
-        }
-
-        #endregion
+        Search,
+        ObrnadzorDivisions
     }
 }
-

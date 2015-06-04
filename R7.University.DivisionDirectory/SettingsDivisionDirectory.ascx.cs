@@ -37,6 +37,14 @@ namespace R7.University.DivisionDirectory
 {    
     public partial class SettingsDivisionDirectory : DivisionDirectoryModuleSettingsBase
     {
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            comboMode.DataSource = Enum.GetNames (typeof (DivisionDirectoryMode));
+            comboMode.DataBind ();
+        }
+
         /// <summary>
         /// Handles the loading of the module setting for this control
         /// </summary>
@@ -46,6 +54,7 @@ namespace R7.University.DivisionDirectory
             {
                 if (!IsPostBack)
                 {
+                    Utils.SelectByValue (comboMode, DivisionDirectorySettings.Mode.ToString ());
                 }
             }
             catch (Exception ex)
@@ -61,6 +70,8 @@ namespace R7.University.DivisionDirectory
         {
             try
             {
+                DivisionDirectorySettings.Mode = (DivisionDirectoryMode) Enum.Parse (typeof (DivisionDirectoryMode), comboMode.SelectedValue);
+
                 Utils.SynchronizeModule(this);
             }
             catch (Exception ex)
