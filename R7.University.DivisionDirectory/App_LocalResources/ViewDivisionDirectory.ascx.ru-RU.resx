@@ -3,23 +3,38 @@
     <data xml:space="preserve" name="ModuleHelp.Text">
         <value>&lt;P&gt; Модуль R7.DivisionDirectory&lt;/P&gt;</value>
     </data>
-    <data xml:space="preserve" name="Title.Header">
+    <data xml:space="preserve" name="Title.Column">
         <value>Подразделение</value>
     </data>
-    <data xml:space="preserve" name="Email.Header">
+    <data xml:space="preserve" name="TitleObrnadzor.Column">
+        <value>Наименование подразделения</value>
+    </data>
+    <data xml:space="preserve" name="Email.Column">
         <value>Эл. почта</value>
     </data>
-    <data xml:space="preserve" name="Phone.Header">
+    <data xml:space="preserve" name="EmailObrnadzor.Column">
+        <value>Адрес электронной почты</value>
+    </data>
+    <data xml:space="preserve" name="Phone.Column">
         <value>Телефон</value>
     </data>
-    <data xml:space="preserve" name="Location.Header">
-        <value>Местоположение</value>
+    <data xml:space="preserve" name="WebSite.Column">
+        <value>Сайт</value>
     </data>
-    <data xml:space="preserve" name="Document.Header">
-        <value>Документ</value>
+    <data xml:space="preserve" name="WebSiteObrnadzor.Column">
+        <value>Адрес официального сайта в сети &quot;Интернет&quot;</value>
     </data>
-    <data xml:space="preserve" name="ContactPerson.Header">
-        <value>Контактное лицо (руководитель)</value>
+    <data xml:space="preserve" name="Location.Column">
+        <value>Место нахождения</value>
+    </data>
+    <data xml:space="preserve" name="Document.Column">
+        <value>Положение</value>
+    </data>
+    <data xml:space="preserve" name="ContactPerson.Column">
+        <value>Руководитель (контактное лицо)</value>
+    </data>
+    <data name="Order.Column" xml:space="preserve">
+        <value>N п/п</value>
     </data>
     <data xml:space="preserve" name="Regulations.Text">
         <value>Положение</value>
