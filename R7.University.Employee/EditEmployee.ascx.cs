@@ -144,7 +144,7 @@ namespace R7.University.Employee
 			comboAchievementTypes.DataBind ();
 
             // get edu programs
-            var eduPrograms = EmployeeController.GetObjects<EduProgramInfo> ().ToList ();
+            var eduPrograms = EmployeeController.GetObjects<EduProgramInfo> ("ORDER BY [EduLevelID], [Code]").ToList ();
 
             // add default value
             eduPrograms.Insert (0, new EduProgramInfo { 
