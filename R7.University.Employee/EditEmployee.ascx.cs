@@ -1003,7 +1003,6 @@ namespace R7.University.Employee
 				if (command == "Add")
 				{
 					achievement = new EmployeeAchievementView ();
-                    achievement.Localize (LocalResourceFile);
 				}
 				else
 				{
@@ -1033,9 +1032,10 @@ namespace R7.University.Employee
 				achievement.IsTitle = checkIsTitle.Checked;
 				achievement.YearBegin = Utils.ParseToNullableInt (textYearBegin.Text);
 				achievement.YearEnd = Utils.ParseToNullableInt (textYearEnd.Text);
-				
 				achievement.DocumentURL = urlDocumentURL.Url;
-				
+
+                achievement.Localize (LocalResourceFile);
+
 				if (command == "Add")
 				{
 					achievements.Add (achievement);
