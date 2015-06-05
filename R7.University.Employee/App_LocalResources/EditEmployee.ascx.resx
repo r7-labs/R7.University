@@ -234,6 +234,9 @@
 	<data name="labelAchievementTitle.Help">
 		<value>Enter the title for the described achievement.</value>
 	</data>
+    <data name="AchievementTitle.MaxLength">
+        <value>Achievement title is too long.</value>
+    </data>  
 	<data name="labelAchievementShortTitle.Text">
 		<value>Short Title</value>
 	</data>

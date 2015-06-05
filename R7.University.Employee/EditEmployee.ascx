@@ -259,7 +259,12 @@
                 </asp:Panel>
 				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
-					<asp:TextBox id="textAchievementTitle" runat="server" MaxLength="250" />
+					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
+                    <asp:RegularExpressionValidator runat="server"
+                        CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
+                        ControlToValidate="textAchievementTitle" Display="Dynamic"
+                        ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements">
+                    </asp:RegularExpressionValidator>
 				</asp:Panel>
 				<asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
@@ -297,9 +302,11 @@
 				<div class="dnnFormItem">
 					<div class="dnnLabel"></div>
 					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
-						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" CommandArgument="Add" />
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" CommandArgument="Add" 
+                        CausesValidation="true" ValidationGroup="Achievements" />
 					<asp:LinkButton id="buttonUpdateAchievement" runat="server" resourcekey="buttonUpdateAchievement" 
-						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" Visible="false" CommandArgument="Update" />
+						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" Visible="false"
+                        CommandArgument="Update" CausesValidation="true" ValidationGroup="Achievements" />
 					<asp:LinkButton id="buttonCancelEditAchievement" runat="server" resourcekey="buttonCancelEditAchievement" 
 						CssClass="dnnSecondaryAction" OnClick="buttonCancelEditAchievement_Click" />
 				</div>

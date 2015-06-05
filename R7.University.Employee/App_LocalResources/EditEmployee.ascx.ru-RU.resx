@@ -246,6 +246,9 @@
 	<data name="labelAchievementTitle.Help">
 		<value>Введите название описываемого достижения.</value>
 	</data>
+    <data name="AchievementTitle.MaxLength">
+        <value>Название достижения слишком длинное.</value>
+    </data>
 	<data name="labelAchievementShortTitle.Text">
 		<value>Сокращенное название</value>
 	</data>
