@@ -40,12 +40,16 @@ namespace R7.University
 
         public string Title { get; set; }
 
+        public string ProfileCode { get; set; }
+
+        public string ProfileTitle { get; set; }
+
         #endregion
 
         [IgnoreColumn]
         public string EduProgram
         {
-            get { return Utils.FormatList (" ", Code, Title); }
+            get { return EduProgramInfo.FormatEduProgram (Code, Title, ProfileCode, ProfileTitle); }
         }
     }
 }

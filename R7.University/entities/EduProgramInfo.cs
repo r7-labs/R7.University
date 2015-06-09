@@ -41,16 +41,27 @@ namespace R7.University
 
         public int EduLevelID { get; set; }
 
+        public string Code { get; set; }
+
         public string Title { get; set; }
 
-        public string Code { get; set; }
+        public string ProfileCode { get; set; }
+
+        public string ProfileTitle { get; set; }
 
         #endregion
 
         [IgnoreColumn]
         public string EduProgram
         {
-            get { return Utils.FormatList (" ", Code, Title); }
+            get { return FormatEduProgram (Code, Title, ProfileCode, ProfileTitle); }
+        }
+
+        public static string FormatEduProgram (string code, string title, string profileCode, string profileTitle)
+        {
+            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
+            return Utils.FormatList (" ", code, title) +
+                (!string.IsNullOrWhiteSpace (profileString)? " (" + profileString + ")" : string.Empty);
         }
     }
 }

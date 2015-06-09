@@ -24,6 +24,18 @@
     <data name="labelTitle.Help" xml:space="preserve">
         <value>Enter the title for an educational program, defined in standard.</value>
     </data>
+    <data name="labelProfileCode.Text" xml:space="preserve">
+        <value>Profile Code:</value>
+    </data>
+    <data name="labelProfile Code.Help" xml:space="preserve">
+        <value>Enter the code of an educational program profile according to standard.</value>
+    </data>
+    <data name="labelProfileTitle.Text" xml:space="preserve">
+        <value>Profile Title:</value>
+    </data>
+    <data name="labelProfileTitle.Help" xml:space="preserve">
+        <value>Enter the title for an educational program profile, defined in standard.</value>
+    </data>
     <data name="labelEduLevel.Text">
         <value>Education Level:</value>
     </data>
