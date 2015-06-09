@@ -1091,6 +1091,8 @@ namespace R7.University.Employee
                     var ep = EmployeeController.Get<EduProgramInfo> (eduprogram.EduProgramID);
                     eduprogram.Code = ep.Code;
                     eduprogram.Title = ep.Title;
+                    eduprogram.ProfileCode = ep.ProfileCode;
+                    eduprogram.ProfileTitle = ep.ProfileTitle;
 
                     if (command == "Add")
                     {
