@@ -392,7 +392,8 @@ namespace R7.University.Employee
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
 					// add employee
-					EmployeeController.AddEmployee (item, GetOccupiedPositions (), GetEmployeeAchievements ());
+                    EmployeeController.AddEmployee (item, GetOccupiedPositions (), 
+                        GetEmployeeAchievements (), GetEmployeeEduPrograms());
 
 					// then adding new employee from Employee or EmployeeDetails modules, 
 					// set calling module to display new employee

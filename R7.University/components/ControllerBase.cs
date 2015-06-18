@@ -298,8 +298,10 @@ namespace R7.University
         }
 
 		public void AddEmployee (EmployeeInfo employee, 
-		                        List<OccupiedPositionInfo> occupiedPositions, List<EmployeeAchievementInfo> achievements)
-		{
+		    List<OccupiedPositionInfo> occupiedPositions, 
+            List<EmployeeAchievementInfo> achievements,
+            List<EmployeeEduProgramInfo> eduPrograms)
+        {
 			using (var ctx = DataContext.Instance ())
 			{
 				ctx.BeginTransaction ();
@@ -322,6 +324,13 @@ namespace R7.University
 						ach.EmployeeID = employee.EmployeeID;
 						Add<EmployeeAchievementInfo> (ach);
 					}
+
+                    // add new EmployeeEduPrograms
+                    foreach (var ep in eduPrograms)
+                    {
+                        ep.EmployeeID = employee.EmployeeID;
+                        Add<EmployeeEduProgramInfo> (ep);
+                    }
 				
 					ctx.Commit ();
 				}
