@@ -113,7 +113,7 @@ namespace R7.University
 				// infos = repo.Find ("WHERE ModuleID = @0", moduleId);
 			}
 
-			return infos;
+            return infos ?? Enumerable.Empty<T> ();
 		}
 
 		/// <summary>
@@ -130,7 +130,7 @@ namespace R7.University
 				infos = repo.Get ();
 			}
 
-			return infos;
+            return infos ?? Enumerable.Empty<T> ();
 		}
 
 		/// <summary>
@@ -150,7 +150,7 @@ namespace R7.University
 				infos = repo.Find (sqlConditon, args);
 			}
 			
-			return infos;
+            return infos ?? Enumerable.Empty<T> ();
 		}
 
 		/// <summary>
@@ -170,7 +170,7 @@ namespace R7.University
 				infos = ctx.ExecuteQuery<T>	(cmdType, sql, args);
 			}
 			
-			return infos;
+            return infos ?? Enumerable.Empty<T> ();
 		}
 
 		/// <summary>
@@ -182,7 +182,7 @@ namespace R7.University
 		/// <returns>A paged list of T objects</returns>
 		public IPagedList<T> GetPage<T> (int scopeId, int index, int size) where T: class
 		{
-			IPagedList<T> infos;
+            IPagedList<T> infos = null;
 
 			using (var ctx = DataContext.Instance ())
 			{
@@ -190,7 +190,8 @@ namespace R7.University
 				infos = repo.GetPage (scopeId, index, size);
 			}
 
-			return infos;
+            // REVIEW: Need to return empty collection?
+            return infos;
 		}
 
 		/// <summary>
@@ -209,6 +210,7 @@ namespace R7.University
 				infos = repo.GetPage (index, size);
 			}
 
+            // REVIEW: Need to return empty collection?
 			return infos;
 		}
 
@@ -222,7 +224,6 @@ namespace R7.University
 			{
 				var repo = ctx.GetRepository<T> ();
 				repo.Delete (info);
-		
 			}
 		}
 
@@ -453,7 +454,7 @@ namespace R7.University
 
         public IEnumerable<EmployeeInfo> GetTeachersByEduProgram (int eduProgramId)
         {
-            var teachers = GetObjects<EmployeeInfo> (CommandType.Text,
+            return GetObjects<EmployeeInfo> (CommandType.Text,
                 @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
@@ -461,37 +462,30 @@ namespace R7.University
                         ON E.EmployeeID = EEP.EmployeeID
                 WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
                 ORDER BY E.LastName, E.FirstName", eduProgramId);
-
-            return teachers ?? Enumerable.Empty<EmployeeInfo> ();
         }
 
         public IEnumerable<EmployeeInfo> GetTeachersWithoutEduPrograms ()
         {
-            var teachers = GetObjects<EmployeeInfo> (CommandType.Text,
+            return GetObjects<EmployeeInfo> (CommandType.Text,
                 @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
                     WHERE OP.IsTeacher = 1 AND E.IsPublished = 1 AND E.EmployeeID NOT IN 
                         (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeEduPrograms)");
-
-            return teachers ?? Enumerable.Empty<EmployeeInfo> ();
         }
 
         public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)
         {
-            var subDivisions = GetObjects<DivisionInfo> (CommandType.Text,
+            return GetObjects<DivisionInfo> (CommandType.Text,
                 @"SELECT DISTINCT D.*, DH.[Level] FROM dbo.University_Divisions AS D 
                     INNER JOIN dbo.University_DivisionsHierarchy (@0) AS DH
                         ON D.DivisionID = DH.DivisionID
                     ORDER BY DH.[Level], D.Title", divisionId);
-
-            return subDivisions ?? Enumerable.Empty<DivisionInfo> ();
         }
 
         public IEnumerable<DivisionInfo> GetRootDivisions ()
         {
-            var rootDivisions = GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
-            return rootDivisions ?? Enumerable.Empty<DivisionInfo> ();
+            return GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
         }
 
 		#endregion
