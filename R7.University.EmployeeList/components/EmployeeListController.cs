@@ -41,7 +41,7 @@ namespace R7.University.EmployeeList
 				                settings.DivisionID, settings.SortType, false
 			                );
 
-            foreach (var employee in employees ?? Enumerable.Empty<EmployeeInfo> ())
+            foreach (var employee in employees)
 			{
 				if (employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
 				{
@@ -81,7 +81,7 @@ namespace R7.University.EmployeeList
 			var sb = new StringBuilder ();
 			var infos = GetObjects<EmployeeInfo> (moduleId);
 
-			if (infos != null)
+            if (infos.Any ())
 			{
 				sb.Append ("<EmployeeLists>");
 				foreach (var info in infos)

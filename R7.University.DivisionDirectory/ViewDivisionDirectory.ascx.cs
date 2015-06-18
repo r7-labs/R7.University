@@ -213,7 +213,7 @@ namespace R7.University.DivisionDirectory
             var divisions = DivisionDirectoryController.FindDivisions (searchText,
                 includeSubdivisions, searchDivision); 
 
-            if (divisions == null || !divisions.Any ())
+            if (!divisions.Any ())
             {
                 Utils.Message (this, "NoDivisionsFound.Warning", MessageType.Warning, true);
             }

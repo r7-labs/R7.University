@@ -236,7 +236,8 @@ namespace R7.University.Division
 			// get & bind subdivisions
 			var subDivisions = DivisionController.GetObjects<DivisionInfo> (
 				                   "WHERE [ParentDivisionID] = @0 ORDER BY [Title]", division.DivisionID); 
-			if (subDivisions != null && subDivisions.Any ())
+			
+            if (subDivisions.Any ())
 			{
 				repeatSubDivisions.DataSource = subDivisions;
 				repeatSubDivisions.DataBind ();

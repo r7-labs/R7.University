@@ -91,7 +91,7 @@ namespace R7.University.Division
 			var sb = new StringBuilder ();
 			var infos = GetObjects<DivisionInfo> (moduleId);
 
-			if (infos != null)
+            if (infos.Any ())
 			{
 				sb.Append ("<Divisions>");
 				foreach (var info in infos)

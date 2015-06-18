@@ -71,7 +71,7 @@ namespace R7.University.EmployeeList
 
 					// check if we have some content to display, 
 					// otherwise display a message for module editors or hide module from regular users
-					if (items == null || !items.Any ())
+					if (!items.Any ())
 					{
 						// set container control visibility to common users
 						Cache_SetContainerVisible (false);

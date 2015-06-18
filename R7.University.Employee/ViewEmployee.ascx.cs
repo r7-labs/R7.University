@@ -133,7 +133,7 @@ namespace R7.University.Employee
 		{
 			// occupied positions
 			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-			if (occupiedPositions != null && occupiedPositions.Any ())
+			if (occupiedPositions.Any ())
 			{
 				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
 				repeaterPositions.DataBind ();

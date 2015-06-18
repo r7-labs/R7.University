@@ -153,7 +153,7 @@ namespace R7.University.EmployeeDirectory
                             Title = LocalizeString ("NoEduPrograms.Text")
                         });
  
-                        if (eduPrograms != null && eduPrograms.Any ())
+                        if (eduPrograms.Count > 0)
                         {
                             repeaterEduPrograms.DataSource = eduPrograms;
                             repeaterEduPrograms.DataBind ();

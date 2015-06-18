@@ -70,7 +70,7 @@ namespace R7.University.Employee
 			var sb = new StringBuilder ();
 			var infos = GetObjects<EmployeeInfo> (moduleId);
 
-			if (infos != null)
+            if (infos.Any ())
 			{
 				sb.Append ("<Employees>");
 				foreach (var info in infos)

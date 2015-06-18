@@ -270,7 +270,7 @@ namespace R7.University.Employee
 
 			// occupied positions
 			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-			if (occupiedPositions != null && occupiedPositions.Any ())
+			if (occupiedPositions.Any ())
 			{
 				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
 				repeaterPositions.DataBind ();
@@ -365,7 +365,7 @@ namespace R7.University.Employee
             var eduPrograms = EmployeeController.GetObjects<EmployeeEduProgramInfoEx> (
                                   "WHERE [EmployeeID] = @0", employee.EmployeeID);
 
-            if (eduPrograms != null && eduPrograms.Any ())
+            if (eduPrograms.Any ())
             {
                 gridEduPrograms.DataSource = EduProgramsTable (eduPrograms.OrderBy (ep => ep.Code));
                 gridEduPrograms.DataBind ();
@@ -474,7 +474,7 @@ namespace R7.University.Employee
                 ach.AchievementType == AchievementType.Training ||
 			    ach.AchievementType == AchievementType.Work);
 
-			if (experiences != null && experiences.Any ())
+			if (experiences.Any ())
 			{
 				gridExperience.DataSource = AchievementsDataTable (experiences.OrderByDescending (exp => exp.YearBegin));
 				gridExperience.DataBind ();
@@ -492,7 +492,7 @@ namespace R7.University.Employee
                 ach.AchievementType != AchievementType.Work
             );
 			
-            if (achievements != null && achievements.Any ())
+            if (achievements.Any ())
 			{
 				gridAchievements.DataSource = AchievementsDataTable (achievements.OrderByDescending (ach => ach.YearBegin));
 				gridAchievements.DataBind ();

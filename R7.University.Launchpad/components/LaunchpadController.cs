@@ -56,7 +56,7 @@ namespace R7.University.Launchpad
 			var sb = new StringBuilder ();
 			var infos = GetObjects<LaunchpadInfo> (moduleId);
 
-			if (infos != null)
+            if (infos.Any ())
 			{
 				sb.Append ("<Launchpads>");
 				foreach (var info in infos)
