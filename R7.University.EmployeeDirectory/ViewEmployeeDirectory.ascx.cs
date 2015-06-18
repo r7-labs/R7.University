@@ -190,33 +190,21 @@ namespace R7.University.EmployeeDirectory
                     anchorName = "empty";
 
                     // select all teachers w/o edu programs
-                    teachers = EmployeeDirectoryController.GetObjects<EmployeeInfo> (CommandType.Text,
-                        @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
-                            INNER JOIN dbo.vw_University_OccupiedPositions AS OP
-                                ON E.EmployeeID = OP.EmployeeID
-                        WHERE OP.IsTeacher = 1 AND E.IsPublished = 1 AND E.EmployeeID NOT IN 
-                            (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeEduPrograms)");
+                    teachers = EmployeeDirectoryController.GetTeachersWithoutEduPrograms ();
                 }
                 else
                 {
                     anchorName = eduProgram.EduProgramID.ToString ();
 
                     // select teachers for current edu program
-                    teachers = EmployeeDirectoryController.GetObjects<EmployeeInfo> (CommandType.Text,
-                        @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
-                            INNER JOIN dbo.vw_University_OccupiedPositions AS OP
-                                ON E.EmployeeID = OP.EmployeeID
-                            INNER JOIN dbo.University_EmployeeEduPrograms AS EEP
-                                ON E.EmployeeID = EEP.EmployeeID
-                        WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
-                        ORDER BY E.LastName, E.FirstName", eduProgram.EduProgramID);
+                    teachers = EmployeeDirectoryController.GetTeachersByEduProgram (eduProgram.EduProgramID);
                 }
 
                 // create anchor to simplify navigation
                 literalEduProgramAnchor.Text = "<a id=\"eduprogram-" + anchorName + "\"" +
                     " name=\"eduprogram-" + anchorName + "\"></a>";
 
-                if (teachers != null && teachers.Any ())
+                if (teachers.Any ())
                 {
                     // pass eduProgramId to gridTeachersByEduProgram_RowDataBound()
                     eduProgramId = eduProgram.EduProgramID;

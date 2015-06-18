@@ -459,6 +459,32 @@ namespace R7.University
                 "University_GetHeadEmployee", divisionId).FirstOrDefault ();
         }
 
+        public IEnumerable<EmployeeInfo> GetTeachersByEduProgram (int eduProgramId)
+        {
+            var teachers = GetObjects<EmployeeInfo> (CommandType.Text,
+                @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
+                    INNER JOIN dbo.vw_University_OccupiedPositions AS OP
+                        ON E.EmployeeID = OP.EmployeeID
+                    INNER JOIN dbo.University_EmployeeEduPrograms AS EEP
+                        ON E.EmployeeID = EEP.EmployeeID
+                WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
+                ORDER BY E.LastName, E.FirstName", eduProgramId);
+
+            return teachers ?? Enumerable.Empty<EmployeeInfo> ();
+        }
+
+        public IEnumerable<EmployeeInfo> GetTeachersWithoutEduPrograms ()
+        {
+            var teachers = GetObjects<EmployeeInfo> (CommandType.Text,
+                @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
+                    INNER JOIN dbo.vw_University_OccupiedPositions AS OP
+                        ON E.EmployeeID = OP.EmployeeID
+                    WHERE OP.IsTeacher = 1 AND E.IsPublished = 1 AND E.EmployeeID NOT IN 
+                        (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeEduPrograms)");
+
+            return teachers ?? Enumerable.Empty<EmployeeInfo> ();
+        }
+
 		#endregion
 	}
 }
