@@ -57,20 +57,14 @@ namespace R7.University.Employee
 
         public EmployeeAchievementView (EmployeeAchievementInfo achievement): this ()
 		{
-            foreach (var pi in typeof (EmployeeAchievementInfo).GetProperties ())
-                if (pi.GetSetMethod () != null)
-                    pi.SetValue (this, pi.GetValue(achievement, null), null);
+            CopyCstor.Copy<EmployeeAchievementInfo> (achievement, this);
 		}
 
 		public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
 		{
-			var achInfo = new EmployeeAchievementInfo ();
-
-            foreach (var pi in typeof (EmployeeAchievementInfo).GetProperties ())
-                if (pi.GetSetMethod () != null)
-                    pi.SetValue (achInfo, pi.GetValue(this, null), null);
-
-			return achInfo;
+            var achievement = new EmployeeAchievementInfo ();
+            CopyCstor.Copy<EmployeeAchievementInfo> (this, achievement);
+            return achievement;
 		}
 	}
 }

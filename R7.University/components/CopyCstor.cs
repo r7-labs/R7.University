@@ -1,5 +1,5 @@
-//
-// EmployeeEduProgramView.cs
+﻿//
+// CopyCstor.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,34 +25,27 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
+using System.Runtime.CompilerServices;
+using System.CodeDom;
+using System.Web.Services.Description;
+using Telerik.Web.UI;
 
-namespace R7.University.Employee
+namespace R7.University
 {
-    [Serializable]
-    public class EmployeeEduProgramView: EmployeeEduProgramInfoEx
-	{
-        public int ItemID { get; set; }
-
-        public EmployeeEduProgramView ()
+    public static class CopyCstor
+    {
+        /// <summary>
+        /// Copy the specified src object properties to dest object.
+        /// </summary>
+        /// <param name="src">Source object.</param>
+        /// <param name="dest">Destination object.</param>
+        /// <typeparam name="T">Common base type for src and dest objects.</typeparam>
+        public static void Copy<T> (T src, T dest)
         {
-            ItemID = ViewNumerator.GetNextItemID ();
+            foreach (var pi in typeof (T).GetProperties ())
+                if (pi.GetSetMethod () != null)
+                    pi.SetValue (dest, pi.GetValue (src, null), null);
         }
-
-        public EmployeeEduProgramView (EmployeeEduProgramInfoEx program): this ()
-        {
-            CopyCstor.Copy<EmployeeEduProgramInfoEx> (program, this);
-        }
-
-        public EmployeeEduProgramInfo NewEmployeeEduProgramInfo ()
-        {
-            return new EmployeeEduProgramInfo {
-                EmployeeEduProgramID = EmployeeEduProgramID,
-                EmployeeID = EmployeeID,
-                EduProgramID = EduProgramID,
-                Disciplines = Disciplines
-            };
-        }
-	}
+    }
 }
 

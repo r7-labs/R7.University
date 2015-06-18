@@ -81,6 +81,7 @@
     <Compile Include="components\ViewNumerator.cs" />
     <Compile Include="entities\EmployeeEduProgramInfoEx.cs" />
     <Compile Include="components\GridViewExtensions.cs" />
+    <Compile Include="components\CopyCstor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
