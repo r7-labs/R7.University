@@ -151,28 +151,19 @@ namespace R7.University.DivisionDirectory
                     }
                     else if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
                     {
-                        var rootDivisions = DivisionDirectoryController.GetObjects<DivisionInfo>(
-                            "WHERE [ParentDivisionID] IS NULL");
+                        var rootDivisions = DivisionDirectoryController.GetRootDivisions ();
 
-                        if (rootDivisions != null)
+                        if (rootDivisions.Any ())
                         {
                             var divisions = new List<DivisionInfo> ();
 
                             foreach (var rootDivision in rootDivisions)
                             {
-                                var subDivisions = DivisionDirectoryController.GetObjects<DivisionInfo> (CommandType.Text,
-                                    @"SELECT DISTINCT D.*, DH.[Level] FROM dbo.University_Divisions AS D 
-                                        INNER JOIN dbo.University_DivisionsHierarchy (@0) AS DH
-                                            ON D.DivisionID = DH.DivisionID
-                                        ORDER BY DH.[Level], D.Title", rootDivision.DivisionID
-                                );
-
-                                divisions.AddRange (subDivisions);
+                                divisions.AddRange (DivisionDirectoryController.GetSubDivisions (rootDivision.DivisionID));
                             }
 
                             gridObrnadzorDivisions.DataSource = divisions;
                             gridObrnadzorDivisions.DataBind ();
-
                         }
                     }
                 }

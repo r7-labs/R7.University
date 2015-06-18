@@ -485,6 +485,23 @@ namespace R7.University
             return teachers ?? Enumerable.Empty<EmployeeInfo> ();
         }
 
+        public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)
+        {
+            var subDivisions = GetObjects<DivisionInfo> (CommandType.Text,
+                @"SELECT DISTINCT D.*, DH.[Level] FROM dbo.University_Divisions AS D 
+                    INNER JOIN dbo.University_DivisionsHierarchy (@0) AS DH
+                        ON D.DivisionID = DH.DivisionID
+                    ORDER BY DH.[Level], D.Title", divisionId);
+
+            return subDivisions ?? Enumerable.Empty<DivisionInfo> ();
+        }
+
+        public IEnumerable<DivisionInfo> GetRootDivisions ()
+        {
+            var rootDivisions = GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
+            return rootDivisions ?? Enumerable.Empty<DivisionInfo> ();
+        }
+
 		#endregion
 	}
 }
