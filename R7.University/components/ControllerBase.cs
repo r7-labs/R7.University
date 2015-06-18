@@ -19,14 +19,6 @@ namespace R7.University
 		#region Common methods
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Launchpad.LaunchpadController"/> class.
-		/// </summary>
-		public ControllerBase ()
-		{ 
-
-		}
-
-		/// <summary>
 		/// Adds a new T object into the database
 		/// </summary>
 		/// <param name='info'></param>
