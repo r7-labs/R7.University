@@ -1,6 +1,7 @@
 ﻿<h3>Version 1.2.1</h3>
 <ul>
     <li>Support for educational program profiles.</li>
+    <li>Implement #46: Launchpad: Added text search for all tables.</li>
 </ul>
 
 <h3>Version 1.2.0</h3>
