@@ -82,11 +82,10 @@ namespace R7.University.Launchpad
             var employees = string.IsNullOrWhiteSpace (search) ? 
                 module.LaunchpadController.GetObjects<EmployeeInfo> () :
                 module.LaunchpadController.GetObjects<EmployeeInfo> ( 
-                    string.Format (@"WHERE [LastName] + ' ' + 
-                                [FirstName] + ' ' +
-                                [Phone] + ' ' + 
-                                [CellPhone] + ' ' +
-                                [Email] LIKE N'%{0}%'", search));
+                    string.Format (@"WHERE [LastName] + ' ' + [FirstName] + ' ' + [OtherName] + ' ' +
+                        [Phone] + ' ' + [CellPhone] + ' ' + [Fax] + ' ' + 
+                        [Email] + ' ' + [SecondaryEmail] + ' ' + [WebSite] + ' ' +
+                        [WorkingHours] LIKE N'%{0}%'", search));
 
             foreach (var employee in employees)
             {

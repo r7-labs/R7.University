@@ -70,7 +70,11 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            foreach (var division in module.LaunchpadController.GetObjects<DivisionInfo>())
+            foreach (var division in module.LaunchpadController.GetObjects<DivisionInfo>(
+                string.Format (@"WHERE [Title] + ' ' + [ShortTitle] + ' ' + [Location] + ' ' + [Phone] + ' ' +
+                    [Fax] + ' ' + [Email] + ' ' + [SecondaryEmail] + ' ' + [WebSite] + ' ' + [WorkingHours] 
+                    LIKE N'%{0}%'", search)
+            ))
             {
                 dr = dt.NewRow ();
                 var i = 0;

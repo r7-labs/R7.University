@@ -49,7 +49,9 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            foreach (var achievement in module.LaunchpadController.GetObjects<AchievementInfo>())
+            foreach (var achievement in module.LaunchpadController.GetObjects<AchievementInfo>(
+                string.Format (@"WHERE [Title] + ' ' + [ShortTitle] LIKE N'%{0}%'", search)
+            ))
             {
                 var col = 0;
                 dr = dt.NewRow ();

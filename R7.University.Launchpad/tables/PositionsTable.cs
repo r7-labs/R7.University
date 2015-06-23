@@ -56,7 +56,9 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            foreach (var position in module.LaunchpadController.GetObjects<PositionInfo>())
+            foreach (var position in module.LaunchpadController.GetObjects<PositionInfo>(
+                string.Format (@"WHERE [Title] + ' ' + [ShortTitle] LIKE N'%{0}%'", search)
+            ))
             {
                 dr = dt.NewRow ();
                 dr [0] = position.PositionID;
