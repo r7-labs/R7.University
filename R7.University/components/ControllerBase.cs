@@ -11,6 +11,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search;
 using R7.University;
 using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Web.UI.WebControls;
 
 namespace R7.University
 {
@@ -172,6 +173,21 @@ namespace R7.University
 			
             return infos ?? Enumerable.Empty<T> ();
 		}
+
+        /// <summary>
+        /// Finds the objects of type T
+        /// </summary>
+        /// <returns>Enumerable with objects of type T matching sqlCondition. If searchText is null or whitespace, all objects of type T returned.</returns>
+        /// <param name="dynamicSql">If set to <c>true</c> use dynamic sql arguments with @, otherwize string.Format().</param>
+        /// <param name="sqlConditon">SQL conditon.</param>
+        /// <param name="searchText">Search text.</param>
+        /// <typeparam name="T">TType of objects.</typeparam>
+        public IEnumerable<T> FindObjects<T> (bool dynamicSql, string sqlConditon, string searchText) where T: class
+        {
+            return string.IsNullOrWhiteSpace (searchText) ? GetObjects<T> ()
+                : dynamicSql ? GetObjects<T> (sqlConditon, searchText)
+                : GetObjects<T> (string.Format (sqlConditon, searchText)); 
+        }
 
 		/// <summary>
 		/// Gets one page of objects of type T

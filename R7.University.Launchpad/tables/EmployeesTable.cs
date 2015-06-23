@@ -79,13 +79,11 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var employees = string.IsNullOrWhiteSpace (search) ? 
-                module.LaunchpadController.GetObjects<EmployeeInfo> () :
-                module.LaunchpadController.GetObjects<EmployeeInfo> ( 
-                    string.Format (@"WHERE [LastName] + ' ' + [FirstName] + ' ' + [OtherName] + ' ' +
-                        [Phone] + ' ' + [CellPhone] + ' ' + [Fax] + ' ' + 
-                        [Email] + ' ' + [SecondaryEmail] + ' ' + [WebSite] + ' ' +
-                        [WorkingHours] LIKE N'%{0}%'", search));
+            var employees = module.LaunchpadController.FindObjects<EmployeeInfo> (false,
+                @"WHERE [LastName] + ' ' + [FirstName] + ' ' + [OtherName] + ' ' +
+                [Phone] + ' ' + [CellPhone] + ' ' + [Fax] + ' ' + 
+                [Email] + ' ' + [SecondaryEmail] + ' ' + [WebSite] + ' ' +
+                [WorkingHours] LIKE N'%{0}%'", search);
 
             foreach (var employee in employees)
             {
