@@ -43,7 +43,8 @@ namespace R7.University.Launchpad
 			var session = Session [gridviewId];
 			if (session == null)
 			{
-                session = Tables.GridsDictionary [gridviewId].GetDataTable (this, (string) Session ["EmployeeSearch"]);
+                var tabName = GetActiveTabName ();
+                session = Tables.GridsDictionary [gridviewId].GetDataTable (this, (string) Session [tabName + "_Search"]);
                 Session [gridviewId] = session;
 			}
             return (DataTable) session;
@@ -74,9 +75,6 @@ namespace R7.University.Launchpad
 			// wireup LoadComplete handler 
 			Page.LoadComplete += new EventHandler (OnLoadComplete);
 
-            // bind employee search handlers
-            buttonEmployeeSearch.Click += buttonEmployeeSearch_Click;
-
 			// show first view if no session info available
 			if (Session ["Launchpad_ActiveView_" + TabModuleId] == null)
 			{
@@ -88,10 +86,13 @@ namespace R7.University.Launchpad
 				}
 			}
 
-            // restore employee search text from session
-            if (Session ["EmployeeSearch"] != null)
-                textEmployeeSearch.Text = (string) Session ["EmployeeSearch"];
-           
+            /*
+            // restore search phrase from session
+            var tabName = GetActiveTabName ();
+            if (Session [tabName + "_Search"] != null)
+                textSearch.Text = (string) Session [tabName + "_Search"];
+           */
+
             // initialize Launchpad tables
             InitTables ();
         }
@@ -144,6 +145,11 @@ namespace R7.University.Launchpad
 					{
 						multiView.SetActiveView (FindView ((string)Session ["Launchpad_ActiveView_" + TabModuleId]));
 						SelectTab ((string)Session ["Launchpad_ActiveView_" + TabModuleId]);
+
+                        // restore search phrase from session
+                        var tabName = GetActiveTabName ();
+                        if (Session [tabName + "_Search"] != null)
+                            textSearch.Text = (string) Session [tabName + "_Search"];
 					}
 
                     // bind data to selected tables
@@ -322,6 +328,12 @@ namespace R7.University.Launchpad
 			return null;
 		}
 
+        protected string GetActiveTabName ()
+        {
+            return multiView.Views [multiView.ActiveViewIndex].ID
+                .ToLowerInvariant ().Replace ("view", "");
+        }
+
 		/// <summary>
 		/// Handles click on tab linkbutton
 		/// </summary>
@@ -332,21 +344,38 @@ namespace R7.University.Launchpad
 			var tabName = (sender as LinkButton).CommandArgument;
 			multiView.SetActiveView (FindView (tabName));
 			SelectTab (tabName);
+
+            // restore search phrase
+            textSearch.Text = Session [tabName + "_Search"] != null ? 
+                (string) Session [tabName + "_Search"] : string.Empty;
 		}
 
-        protected void buttonEmployeeSearch_Click (object sender, EventArgs e)
+        protected void buttonSearch_Click (object sender, EventArgs e)
         {
             try
             {
-                if (sender == buttonEmployeeResetSearch)
-                {
-                    textEmployeeSearch.Text = string.Empty;
-                    Session ["EmployeeSearch"] = null;
-                }
-                else
-                    Session ["EmployeeSearch"] = textEmployeeSearch.Text.Trim ();
+                var tabName = GetActiveTabName ();
 
-                Tables.NamesDictionary ["employees"].DataBind (this, textEmployeeSearch.Text.Trim ());
+                Session [tabName + "_Search"] = textSearch.Text.Trim ();
+
+                Tables.NamesDictionary [tabName].DataBind (this, textSearch.Text.Trim ());
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+        }
+
+        protected void buttonResetSearch_Click (object sender, EventArgs e)
+        {
+            try
+            {
+                var tabName = GetActiveTabName ();
+
+                textSearch.Text = string.Empty;
+                Session [tabName + "_Search"] =  null;
+
+                Tables.NamesDictionary [tabName].DataBind (this, textSearch.Text.Trim ());
             }
             catch (Exception ex)
             {

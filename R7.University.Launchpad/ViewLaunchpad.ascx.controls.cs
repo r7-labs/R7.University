@@ -15,6 +15,9 @@ namespace R7.University.Launchpad
 		protected LinkButton linkPositions;
 		protected LinkButton linkDivisions;
 		protected LinkButton linkEmployees;
+        protected TextBox textSearch;
+        protected Button buttonSearch;
+        protected Button buttonResetSearch;
 		protected GridView gridPositions;
 		protected HyperLink buttonAddPosition;
 		protected GridView gridDivisions;
@@ -28,8 +31,5 @@ namespace R7.University.Launchpad
         protected GridView gridEduPrograms;
         protected HyperLink buttonAddEduProgram;
 		protected Repeater repeatTabs;
-        protected TextBox textEmployeeSearch;
-        protected Button buttonEmployeeSearch;
-        protected Button buttonEmployeeResetSearch;
 	}
 }

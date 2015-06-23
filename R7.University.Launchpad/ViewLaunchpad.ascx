@@ -12,6 +12,11 @@
 			</ul>
 		</FooterTemplate>
 	</asp:Repeater>
+    <asp:Panel runat="server" DefaultButton="buttonSearch">
+        <asp:TextBox id="textSearch" runat="server" />
+        <asp:Button id="buttonSearch" runat="server" CssClass="dnnPrimaryAction" resourcekey="Search.Text" OnClick="buttonSearch_Click" />
+        <asp:Button id="buttonResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonResetSearch_Click" /><br />
+    </asp:Panel>
 	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged">
 		<asp:View id="viewPositions" runat="server">
 			<div id="positions" style="overflow:auto">
@@ -73,13 +78,8 @@
 		</asp:View>
 		<asp:View id="viewEmployees" runat="server">
 			<div id="employees" style="overflow:auto">
-                <asp:Panel runat="server" DefaultButton="buttonEmployeeSearch">
-                    <asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink>
-    				<asp:TextBox id="textEmployeeSearch" runat="server" Style="margin-left:1em" />
-                    <asp:Button id="buttonEmployeeSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="Search.Text" OnClick="buttonEmployeeSearch_Click" />
-                    <asp:Button id="buttonEmployeeResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonEmployeeSearch_Click" /><br />
-                </asp:Panel>
-                <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
+                <asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink>
+    			<asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
