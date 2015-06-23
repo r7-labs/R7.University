@@ -42,7 +42,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter)
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
             var dt = new DataTable ();
             DataRow dr;
@@ -79,14 +79,14 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var employees = string.IsNullOrWhiteSpace (filter) ? 
+            var employees = string.IsNullOrWhiteSpace (search) ? 
                 module.LaunchpadController.GetObjects<EmployeeInfo> () :
                 module.LaunchpadController.GetObjects<EmployeeInfo> ( 
                     string.Format (@"WHERE [LastName] + ' ' + 
                                 [FirstName] + ' ' +
                                 [Phone] + ' ' + 
                                 [CellPhone] + ' ' +
-                                [Email] LIKE N'%{0}%'", filter));
+                                [Email] LIKE N'%{0}%'", search));
 
             foreach (var employee in employees)
             {

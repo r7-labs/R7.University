@@ -42,7 +42,7 @@ namespace R7.University.Launchpad
 
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter)
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
             var dt = new DataTable ();
             DataRow dr;

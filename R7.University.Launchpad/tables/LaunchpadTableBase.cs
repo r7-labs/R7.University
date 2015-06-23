@@ -67,14 +67,14 @@ namespace R7.University.Launchpad
             AddButton.NavigateUrl = Utils.EditUrl (module, EditKey);
         }
 
-        public virtual void DataBind (LaunchpadPortalModuleBase module, string filter = null)
+        public virtual void DataBind (LaunchpadPortalModuleBase module, string search = null)
         {
-            Grid.DataSource = GetDataTable (module, filter);
+            Grid.DataSource = GetDataTable (module, search);
             module.Session [Grid.ID] = Grid.DataSource;
             Grid.DataBind ();
         }
 
-        public abstract DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter);
+        public abstract DataTable GetDataTable (LaunchpadPortalModuleBase module, string search);
 
         public virtual void SetEditLink (PortalModuleBase module, HyperLink link, string id)
         {

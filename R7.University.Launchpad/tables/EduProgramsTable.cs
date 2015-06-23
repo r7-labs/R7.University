@@ -35,7 +35,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string filter)
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
             return DataTableConstructor.FromIEnumerable (module.LaunchpadController.GetObjects<EduProgramInfo> ());
         }
