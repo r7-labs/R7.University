@@ -80,10 +80,10 @@ namespace R7.University.Launchpad
                 column.AllowDBNull = true;
 
             var employees = module.LaunchpadController.FindObjects<EmployeeInfo> (false,
-                @"WHERE [LastName] + ' ' + [FirstName] + ' ' + [OtherName] + ' ' +
-                [Phone] + ' ' + [CellPhone] + ' ' + [Fax] + ' ' + 
-                [Email] + ' ' + [SecondaryEmail] + ' ' + [WebSite] + ' ' +
-                [WorkingHours] LIKE N'%{0}%'", search);
+                @"WHERE CONCAT([LastName], ' ', [FirstName], ' ', [OtherName], ' ',
+                [Phone], ' ', [CellPhone], ' ', [Fax], ' ', 
+                [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ',
+                [WorkingHours]) LIKE N'%{0}%'", search);
 
             foreach (var employee in employees)
             {

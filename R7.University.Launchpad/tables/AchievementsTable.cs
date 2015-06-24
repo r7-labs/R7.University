@@ -50,7 +50,7 @@ namespace R7.University.Launchpad
                 column.AllowDBNull = true;
 
             var achievements =  module.LaunchpadController.FindObjects<AchievementInfo> (false,
-                @"WHERE [Title] + ' ' + [ShortTitle] LIKE N'%{0}%'", search
+                @"WHERE CONCAT ([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search
             );
 
             foreach (var achievement in achievements)

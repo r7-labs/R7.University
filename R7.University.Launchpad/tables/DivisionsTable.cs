@@ -71,8 +71,8 @@ namespace R7.University.Launchpad
                 column.AllowDBNull = true;
 
             var divisions = module.LaunchpadController.FindObjects<DivisionInfo> (false,
-                @"WHERE [Title] + ' ' + [ShortTitle] + ' ' + [Location] + ' ' + [Phone] + ' ' +
-                [Fax] + ' ' + [Email] + ' ' + [SecondaryEmail] + ' ' + [WebSite] + ' ' + [WorkingHours] 
+                @"WHERE CONCAT([Title], ' ', [ShortTitle], ' ', [Location], ' ', [Phone], ' ',
+                [Fax], ' ', [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ', [WorkingHours])
                 LIKE N'%{0}%'", search);
 
             foreach (var division in divisions)
