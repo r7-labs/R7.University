@@ -394,12 +394,12 @@ namespace R7.University.Employee
 		{
 			// barcode image test
 			var barcodeWidth = 150;
-			imageBarcode.ImageUrl = 
-				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
+            imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
+                "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
 				barcodeWidth, barcodeWidth, 
 				Server.UrlEncode (employee.VCard.ToString ()
 						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
-			);
+            ));
 
 			imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
 			imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");

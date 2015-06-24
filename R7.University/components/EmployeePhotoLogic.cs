@@ -26,15 +26,10 @@
 
 using System;
 using System.IO;
-using System.Linq;
 using System.Globalization;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Entities.Content.Taxonomy;
-using DotNetNuke.Web.UI.WebControls;
 
 namespace R7.University
 {
@@ -73,8 +68,8 @@ namespace R7.University
                 // do we need to scale image?
                 if (!Null.IsNull (photoWidth) && photoWidth != imageWidth)
                 {
-                    imagePhoto.ImageUrl = string.Format (
-                        "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth);
+                    imagePhoto.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
+                        "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth));
                 }
                 else
                 {

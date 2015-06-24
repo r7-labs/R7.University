@@ -223,12 +223,12 @@ namespace R7.University.Division
 
 			// barcode image test
 			var barcodeWidth = DivisionSettings.BarcodeWidth;
-			imageBarcode.ImageUrl = 
-				string.Format ("/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
+            imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
+                "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
 				barcodeWidth, barcodeWidth, 
 				Server.UrlEncode (division.VCard.ToString ()
 						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
-			);
+            ));
 
 			imageBarcode.ToolTip = Localization.GetString ("imageBarcode.ToolTip", LocalResourceFile);
 			imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
