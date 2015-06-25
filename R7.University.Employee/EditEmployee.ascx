@@ -6,6 +6,7 @@
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
 <script type="text/javascript">
@@ -347,7 +348,8 @@
                 </div>
    	            <div class="dnnFormItem">
                     <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-                    <asp:DropDownList id="comboEduProgram" runat="server"
+                    <act:ComboBox id="comboEduProgram" runat="server"
+                        AutoCompleteMode="SuggestAppend"
                         DataValueField="EduProgramID"
                         DataTextField="EduProgram"
                     />
