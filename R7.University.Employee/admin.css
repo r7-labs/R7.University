@@ -22,7 +22,12 @@
 {
     position:relative;
     left:25px;
-    top:-9px
+    top:-10px
+}
+
+.act_combobox .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button
+{
+    min-width:0
 }
 
 .act_combobox .ajax__combobox_itemlist
