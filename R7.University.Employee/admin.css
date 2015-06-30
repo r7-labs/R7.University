@@ -1,1 +1,31 @@
-﻿/* Place CSS for edit / settings controls here */
+﻿/* AjaxControlToolkit patches to fit DNN forms style */
+
+.act_combobox
+{
+    width:45%;
+    max-width:445px
+}
+
+.act_combobox .ajax__combobox_inputcontainer,
+.act_combobox .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer,
+.act_combobox .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input
+{
+    width:100%
+}
+
+.act_combobox .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input
+{
+    margin:0 0 18px 0!important
+}
+
+.act_combobox .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer
+{
+    position:relative;
+    left:25px;
+    top:-9px
+}
+
+.act_combobox .ajax__combobox_itemlist
+{
+    top:38px!important
+}
