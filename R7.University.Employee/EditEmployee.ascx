@@ -402,12 +402,3 @@
 	<hr />
 	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
-
-<script type="text/javascript">
-jQuery(document).ready(function () {
-    jQuery('.act_combobox').keypress(function (e) {
-        if (e.which == 13) return false;
-        // if (e.which == 13) e.preventDefault();
-    });
-});
-</script>
