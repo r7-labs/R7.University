@@ -348,13 +348,17 @@
                 </div>
    	            <div class="dnnFormItem">
                     <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-                    <act:ComboBox id="comboEduProgram" runat="server" CssClass="act_combobox"
-                        DropDownStyle="DropDownList"
-                        AutoCompleteMode="Suggest"
-                        CaseSensitive="false"
-                        DataValueField="EduProgramID"
-                        DataTextField="EduProgram"
-                    />
+                    <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
+                        <ContentTemplate>
+                            <act:ComboBox id="comboEduProgram" runat="server" CssClass="act_combobox"
+                                DropDownStyle="DropDownList"
+                                AutoCompleteMode="SuggestAppend"
+                                CaseSensitive="false"
+                                DataValueField="EduProgramID"
+                                DataTextField="EduProgram"
+                            />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />
