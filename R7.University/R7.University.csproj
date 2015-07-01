@@ -88,6 +88,7 @@
   <ItemGroup>
     <Folder Include="entities\" />
     <Folder Include="components\" />
+    <Folder Include="css\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -114,5 +115,6 @@
     <None Include="SqlDataProvider\01.01.07.SqlDataProvider" />
     <None Include="SqlDataProvider\01.02.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.02.01.SqlDataProvider" />
+    <None Include="css\act.css" />
   </ItemGroup>
 </Project>

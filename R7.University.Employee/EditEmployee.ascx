@@ -6,8 +6,10 @@
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
 <script type="text/javascript">
 	$(function() { $("#employeeTabs").dnnTabs({selected: <%= (int)SelectedTab %>}); });
 </script>
@@ -347,10 +349,17 @@
                 </div>
    	            <div class="dnnFormItem">
                     <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-                    <asp:DropDownList id="comboEduProgram" runat="server"
-                        DataValueField="EduProgramID"
-                        DataTextField="EduProgram"
-                    />
+                    <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
+                        <ContentTemplate>
+                            <act:ComboBox id="comboEduProgram" runat="server" CssClass="act_combobox"
+                                DropDownStyle="DropDownList"
+                                AutoCompleteMode="SuggestAppend"
+                                CaseSensitive="false"
+                                DataValueField="EduProgramID"
+                                DataTextField="EduProgram"
+                            />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />

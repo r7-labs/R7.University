@@ -13,6 +13,7 @@
 			<releaseNotes src="ReleaseNotes.txt" />
 			<dependencies>
 				<dependency type="CoreVersion">07.01.02</dependency>
+				<!-- <dependency type="type">AjaxControlToolkit.ComboBox</dependency> -->
 			</dependencies>
 			<components>
 				<component type="Script">
@@ -86,6 +87,15 @@
 						<assembly>
 							<path>bin</path>
 							<name>R7.University.dll</name>
+						</assembly>
+					</assemblies>
+				</component>
+				<component type="Assembly">
+					<assemblies>
+						<basePath>bin</basePath>
+						<assembly>
+							<path>bin</path>
+							<name>AjaxControlToolkit.dll</name>
 						</assembly>
 					</assemblies>
 				</component>

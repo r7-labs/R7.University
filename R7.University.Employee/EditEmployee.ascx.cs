@@ -154,6 +154,7 @@ namespace R7.University.Employee
             // bind edu programs
             comboEduProgram.DataSource = eduPrograms;
             comboEduProgram.DataBind ();
+            comboEduProgram.SelectedIndex = 0;
 
             // localize bounded gridviews
             gridAchievements.LocalizeColumns (LocalResourceFile);
@@ -169,6 +170,9 @@ namespace R7.University.Employee
 		{
 			base.OnLoad (e);
 
+            if (DotNetNuke.Framework.AJAX.IsInstalled ())
+                DotNetNuke.Framework.AJAX.RegisterScriptManager ();
+            
 			try
 			{
                 // parse querystring parameters

@@ -8,6 +8,7 @@
 		<!-- Declare binaries -->
 		<ItemGroup>
 			<InstallBinaryFiles Include="$(MSBuildDnnBinPath)\R7.University*.dll" />
+            <InstallBinaryFiles Include="$(MSBuildDnnBinPath)\AjaxControlToolkit.dll" />
 		</ItemGroup>
 		<!-- Declare manifest files -->
 		<ItemGroup>

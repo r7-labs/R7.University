@@ -121,7 +121,7 @@ namespace R7.University.Employee
 
         protected GridView gridEduPrograms;
         protected TextBox textProgramDisciplines;
-        protected DropDownList comboEduProgram;
+        protected AjaxControlToolkit.ComboBox comboEduProgram;
         protected LinkButton buttonAddEduProgram;
         protected LinkButton buttonUpdateEduProgram;
         protected LinkButton buttonCancelEditEduProgram;
