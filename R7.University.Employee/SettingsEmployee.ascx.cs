@@ -12,6 +12,18 @@ namespace R7.University.Employee
 {
 	public partial class SettingsEmployee : EmployeeModuleSettingsBase
 	{
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            // bind employees to the combobox
+            comboEmployees.DataSource = EmployeeController.GetObjects<EmployeeInfo> ("ORDER BY [LastName]");
+            comboEmployees.DataBind ();
+
+            // add default item
+            comboEmployees.Items.Insert (0, new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
+        }
+
 		/// <summary>
 		/// Handles the loading of the module setting for this control
 		/// </summary>
@@ -19,14 +31,15 @@ namespace R7.University.Employee
 		{
 			try
 			{
+                if (DotNetNuke.Framework.AJAX.IsInstalled ())
+                    DotNetNuke.Framework.AJAX.RegisterScriptManager ();
+
 				if (!IsPostBack)
 				{
-					comboEmployees.AddItem (Localization.GetString ("NotSelected.Text", LocalResourceFile), Null.NullInteger.ToString ());
-					foreach (var employee in EmployeeController.GetObjects<EmployeeInfo>("ORDER BY [LastName]"))
-						comboEmployees.AddItem (employee.AbbrName, employee.EmployeeID.ToString ());
-				
 					if (!Null.IsNull (EmployeeSettings.EmployeeID))
-						comboEmployees.Select (EmployeeSettings.EmployeeID.ToString (), false);
+                        Utils.SelectByValue (comboEmployees, EmployeeSettings.EmployeeID);
+                    else
+                        comboEmployees.SelectedIndex = 0;
 
 					checkAutoTitle.Checked = EmployeeSettings.AutoTitle;
 					checkShowCurrentUser.Checked = EmployeeSettings.ShowCurrentUser;

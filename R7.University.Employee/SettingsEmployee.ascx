@@ -2,14 +2,27 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
+
 <div class="dnnForm dnnClear">
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
 	<fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label id="labelEmployee" runat="server" ControlName="comboEmployees" Suffix=":" />
-			<dnn:DnnComboBox id="comboEmployees" runat="server" />
+            <asp:UpdatePanel id="updatePanelEmployees" runat="server">
+                <ContentTemplate>
+                    <act:ComboBox id="comboEmployees" runat="server" CssClass="act_combobox"
+                        DropDownStyle="DropDownList"
+                        AutoCompleteMode="SuggestAppend"
+                        CaseSensitive="false"
+                        DataValueField="EmployeeID"
+                        DataTextField="AbbrName"
+                    />
+                </ContentTemplate>
+            </asp:UpdatePanel>
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" Suffix=":" />
