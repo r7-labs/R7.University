@@ -184,10 +184,17 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" Suffix=":" />
-					<dnn:DnnComboBox id="comboPositions" runat="server" 
-						DataTextField="DisplayShortTitle"
-						DataValueField="PositionID"
-					/>
+                    <asp:UpdatePanel id="updatePanelPositions" runat="server">
+                        <ContentTemplate>
+                            <act:ComboBox id="comboPositions" runat="server" CssClass="act_combobox"
+                                DropDownStyle="DropDownList"
+                                AutoCompleteMode="SuggestAppend"
+                                CaseSensitive="false"
+                                DataValueField="PositionID"
+                                DataTextField="DisplayShortTitle"
+                            />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" Suffix=":" />

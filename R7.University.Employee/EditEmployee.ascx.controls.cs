@@ -79,7 +79,7 @@ namespace R7.University.Employee
 		protected GridView gridOccupiedPositions;
 		protected LabelControl labelPositions;
 		protected LabelControl labelDivisions;
-		protected DnnComboBox comboPositions;
+        protected AjaxControlToolkit.ComboBox comboPositions;
 		protected LabelControl labelPositionTitleSuffix;
 		protected TextBox textPositionTitleSuffix;
 		protected DnnTreeView treeDivisions;

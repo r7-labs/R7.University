@@ -129,6 +129,7 @@ namespace R7.University.Employee
             // bind positions
 			comboPositions.DataSource = positions;
 			comboPositions.DataBind ();
+            comboPositions.SelectedIndex = 0;
 
             // bind achievements
 			comboAchievements.SelectedIndexChanged += comboAchievements_SelectedIndexChanged;
@@ -675,7 +676,7 @@ namespace R7.University.Employee
 					// fill the object
 					occupiedPosition.PositionID = positionID;
 					occupiedPosition.DivisionID = divisionID;
-					occupiedPosition.PositionShortTitle = comboPositions.Text;
+                    occupiedPosition.PositionShortTitle = comboPositions.SelectedItem.Text;
 					occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
 					occupiedPosition.IsPrime = checkIsPrime.Checked;
 					occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text.Trim();
@@ -775,8 +776,8 @@ namespace R7.University.Employee
 						// fill the form
 						treeDivisions.CollapseAllNodes ();
 						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString ());
-						comboPositions.Select (occupiedPosition.PositionID.ToString (), false);
-						checkIsPrime.Checked = occupiedPosition.IsPrime;
+						Utils.SelectByValue (comboPositions, occupiedPosition.PositionID);
+                        checkIsPrime.Checked = occupiedPosition.IsPrime;
 						textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
 						
 						// set hidden field value to ItemID of edited item
