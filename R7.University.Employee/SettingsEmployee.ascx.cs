@@ -17,7 +17,7 @@ namespace R7.University.Employee
             base.OnInit (e);
 
             // bind employees to the combobox
-            comboEmployees.DataSource = EmployeeController.GetObjects<EmployeeInfo> ("ORDER BY [LastName]");
+            comboEmployees.DataSource = EmployeeController.GetObjects<EmployeeInfo> ().OrderBy (em => em.LastName);
             comboEmployees.DataBind ();
 
             // add default item

@@ -39,9 +39,9 @@ namespace R7.University.Division
 			itemId = Utils.ParseToNullableInt (Request.QueryString ["division_id"]);
 		
 			// fill divisions dropdown
-            var divisions = DivisionController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").
+            var divisions = DivisionController.GetObjects<DivisionInfo> ()
                 // exclude current division
-                Where (d => (itemId == null || itemId != d.DivisionID)).ToList ();
+                .Where (d => (itemId == null || itemId != d.DivisionID)).OrderBy (dd => dd.Title).ToList ();
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

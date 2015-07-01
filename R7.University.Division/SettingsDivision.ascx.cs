@@ -47,7 +47,7 @@ namespace R7.University.Division
 				if (!IsPostBack)
 				{
 					// get divisions
-					var divisions = DivisionController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
+                    var divisions = DivisionController.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
 
                     // insert default item
                     divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

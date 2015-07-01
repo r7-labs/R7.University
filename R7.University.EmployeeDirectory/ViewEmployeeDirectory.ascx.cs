@@ -102,7 +102,7 @@ namespace R7.University.EmployeeDirectory
                 // display search hint
                 Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
+                var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ().OrderBy (d => d.Title).ToList ();
                 divisions.Insert (0, new DivisionInfo {
                         DivisionID = Null.NullInteger, 
                         Title = LocalizeString ("AllDivisions.Text") 
@@ -145,7 +145,7 @@ namespace R7.University.EmployeeDirectory
                     }
                     else if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
                     {
-                        var eduPrograms = EmployeeDirectoryController.GetObjects<EduProgramInfo> ("ORDER BY [Code]").ToList ();
+                        var eduPrograms = EmployeeDirectoryController.GetObjects<EduProgramInfo> ().OrderBy (ep => ep.Code).ToList ();
 
                         eduPrograms.Add (new EduProgramInfo { 
                             EduProgramID = Null.NullInteger,

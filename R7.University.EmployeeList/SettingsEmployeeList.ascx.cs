@@ -17,7 +17,7 @@ namespace R7.University.EmployeeList
             base.OnInit (e);
 
             // get divisions
-            var divisions = EmployeeListController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC").ToList ();
+            var divisions = EmployeeListController.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

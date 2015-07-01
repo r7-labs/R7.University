@@ -109,9 +109,9 @@ namespace R7.University.Employee
 			WorkingHoursLogic.Init (this, comboWorkingHours);
 
 			// if results are null or empty, lists were empty too
-			var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ("ORDER BY [Title] ASC"));
-			var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ("ORDER BY [Title] ASC"));
-			var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ("ORDER BY [Title] ASC"));
+            var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ().OrderBy (p => p.Title));
+            var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ().OrderBy (d => d.Title));
+            var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ().OrderBy (a => a.Title));
 
             ViewState ["commonAchievements"] = commonAchievements;
 
