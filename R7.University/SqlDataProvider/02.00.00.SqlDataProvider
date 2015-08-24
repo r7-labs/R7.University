@@ -1,0 +1,113 @@
+﻿-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+-- EduPrograms
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'Generation')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+        ADD [Generation] nvarchar (16) NULL,
+        [AccreditedTo] datetime NULL
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduForms] (
+        [EduFormID] int IDENTITY(1,1) NOT NULL,
+        [Title] nvarchar(250) NOT NULL,
+        [ShortTitle] nvarchar(64) NOT NULL
+        CONSTRAINT [PK_{objectQualifier}University_EduForms] PRIMARY KEY CLUSTERED (EduFormID)
+    )
+END
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramForms]') and type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramForms] (
+        [EduProgramID] int NOT NULL,
+        [EduFormID] int NOT NULL,
+        [TimeToLearn] int
+        CONSTRAINT [PK_{objectQualifier}University_EduProgramForms] PRIMARY KEY CLUSTERED (EduProgramID, EduFormID)
+    )
+END
+GO
+
+-- EduProfiles
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProfiles]') and type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProfiles] (
+        [EduProfileID] int IDENTITY(1,1) NOT NULL,
+        [EduProgramID] int NOT NULL,
+        [OldEduProgramID] int,
+        [ProfileCode] nvarchar (64) NULL,
+        [ProfileTitle] nvarchar (250) NULL,
+        [DivisionID] int NULL
+        CONSTRAINT [PK_{objectQualifier}University_EduProfiles] PRIMARY KEY CLUSTERED (EduProfileID)
+        CONSTRAINT [FK_{objectQualifier}University_EduProfiles_EduPrograms] FOREIGN KEY (EduProgramID) 
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE
+    )
+
+    INSERT INTO {databaseOwner}[{objectQualifier}University_EduProfiles] SELECT 
+        (SELECT TOP(1) EduProgramID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] WHERE Code = EP.Code ORDER BY EduProgramID ASC) AS EduProgramID,
+        EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle, NULL FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
+END
+GO
+
+-- Documents
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduDocuments]') and type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduDocuments] (
+        [EduDocumentID] int IDENTITY(1,1) NOT NULL,
+        [EduProgramID] int NULL,
+        [EduProfileID] int NULL,
+        [Type] nvarchar (64),
+        [Title] nvarchar (255),
+        [Url] nvarchar (255)
+        CONSTRAINT [PK_{objectQualifier}University_EduDocuments] PRIMARY KEY CLUSTERED (EduDocumentID)
+        /*CONSTRAINT [FK_University_EduDocuments_EduPrograms] FOREIGN KEY (EduProgramID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms](EduProgramID) ON DELETE SET NULL,
+        CONSTRAINT [FK_University_EduDocuments_EduProfiles] FOREIGN KEY (EduProfileID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduProfiles](EduProfileID) ON DELETE SET NULL*/
+)
+END
+GO
+
+-- EmployeeDisciplines
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeDisciplines]') and type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] (
+        [EmployeeID] int NOT NULL,
+        [EduProfileID] int NOT NULL,
+        [Disciplines] nvarchar(max) NULL
+        CONSTRAINT [PK_{objectQualifier}University_EmployeeDisciplines] PRIMARY KEY CLUSTERED ([EmployeeID], [EduProfileID])
+        CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_Employees] FOREIGN KEY([EmployeeID])
+            REFERENCES {databaseOwner}[{objectQualifier}University_Employees]([EmployeeID]) ON DELETE CASCADE,
+        CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_EduProfiles] FOREIGN KEY([EduProfileID])
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduProfiles]([EduProfileID]) ON DELETE CASCADE,
+        -- CONSTRAINT [UN_University_EmployeeDisciplines] UNIQUE NONCLUSTERED ([EmployeeID], [EduProfileID])
+    ) 
+
+    INSERT INTO {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] SELECT EEP.EmployeeID, 
+        (SELECT EPF.EduProfileID FROM dbo.University_EduProfiles AS EPF WHERE EPF.OldEduProgramID = EEP.EduProgramID) AS EduProfileID,
+        EEP.Disciplines FROM dbo.University_EmployeeEduPrograms AS EEP
+END
+GO
+
+-- Cleanup
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'ProfileCode')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+        DROP COLUMN ProfileCode, ProfileTitle
+GO
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProfiles]') and name = N'OldEduProgramID')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProfiles]
+        DROP COLUMN OldEduProgramID
+GO
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]') and type in (N'U'))
+    DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]
+GO
