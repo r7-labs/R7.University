@@ -9,6 +9,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
@@ -733,10 +734,13 @@ namespace R7.University.Employee
 
                     // make link to the document
                     // WTF: empty DocumentURL's cells contains non-breakable spaces?
-                    var documentUrl = e.Row.Cells [7].Text.Replace ("&nbsp;", "");
+                    var documentUrl = Server.HtmlDecode (e.Row.Cells [7].Text.Replace ("&nbsp;", ""));
                     if (!string.IsNullOrWhiteSpace (documentUrl))
                         e.Row.Cells [7].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                            Globals.LinkClick (documentUrl, TabId, ModuleId), LocalizeString ("DocumentUrl.Text"));
+                            // HACK: Use raw (untrackable) URL
+                            (Globals.GetURLType (documentUrl) == TabType.Url)?
+                            documentUrl : Globals.LinkClick (documentUrl, TabId, ModuleId), 
+                            LocalizeString ("DocumentUrl.Text"));
                 }
             }
 
