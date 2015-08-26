@@ -33,7 +33,7 @@ namespace R7.University
     [PrimaryKey ("EmployeeID,EduProfileID")]
     [Scope ("EmployeeID")]
     [Serializable]
-    public class EmployeeDisciplinesInfo
+    public class EmployeeDisciplineInfo
     {
         #region Properties
 

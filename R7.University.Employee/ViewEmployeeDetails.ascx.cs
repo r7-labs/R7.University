@@ -362,7 +362,7 @@ namespace R7.University.Employee
         void EduPrograms (EmployeeInfo employee)
         {
             // get employee edu programs
-            var disciplines = EmployeeController.GetObjects<EmployeeDisciplinesInfoEx> (
+            var disciplines = EmployeeController.GetObjects<EmployeeDisciplineInfoEx> (
                                   "WHERE [EmployeeID] = @0", employee.EmployeeID);
 
             if (disciplines.Any ())
@@ -385,7 +385,7 @@ namespace R7.University.Employee
             }
         }
 
-        private DataTable EduProgramsTable (IEnumerable<EmployeeDisciplinesInfoEx> disciplines)
+        private DataTable EduProgramsTable (IEnumerable<EmployeeDisciplineInfoEx> disciplines)
         {
             return DataTableConstructor.FromIEnumerable (disciplines);
         }

@@ -255,10 +255,10 @@ namespace R7.University.EmployeeDirectory
                 {
                     var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
 
-                    var eepi = EmployeeDirectoryController.GetObjects <EmployeeDisciplinesInfo> (
+                    var discipline = EmployeeDirectoryController.GetObjects <EmployeeDisciplineInfo> (
                         "WHERE [EmployeeID] = @0 AND [EduProgramID] = @1", teacher.EmployeeID, eduProgramId).FirstOrDefault ();
 
-                    if (eepi != null) literalDisciplines.Text = eepi.Disciplines;
+                    if (discipline != null) literalDisciplines.Text = discipline.Disciplines;
                 }
 
                 #endregion

@@ -316,7 +316,7 @@ namespace R7.University
 		public void AddEmployee (EmployeeInfo employee, 
 		    List<OccupiedPositionInfo> occupiedPositions, 
             List<EmployeeAchievementInfo> achievements,
-            List<EmployeeDisciplinesInfo> eduPrograms)
+            List<EmployeeDisciplineInfo> eduPrograms)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -345,7 +345,7 @@ namespace R7.University
                     foreach (var ep in eduPrograms)
                     {
                         ep.EmployeeID = employee.EmployeeID;
-                        Add<EmployeeDisciplinesInfo> (ep);
+                        Add<EmployeeDisciplineInfo> (ep);
                     }
 				
 					ctx.Commit ();
@@ -362,7 +362,7 @@ namespace R7.University
 		public void UpdateEmployee (EmployeeInfo employee, 
 		    List<OccupiedPositionInfo> occupiedPositions, 
             List<EmployeeAchievementInfo> achievements,
-            List<EmployeeDisciplinesInfo> disciplines)
+            List<EmployeeDisciplineInfo> disciplines)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -434,14 +434,14 @@ namespace R7.University
                     if (employeeEduProfileIDs.Any ())
                     {
                         // delete those not in current list
-                        Delete<EmployeeDisciplinesInfo> (
+                        Delete<EmployeeDisciplineInfo> (
                             string.Format ("WHERE [EmployeeID] = {0} AND [EduProfileID] NOT IN ({1})", 
                                 employee.EmployeeID, Utils.FormatList (", ", employeeEduProfileIDs))); 
                     }
                     else
                     {
                         // delete all employee disciplines
-                        Delete<EmployeeDisciplinesInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
+                        Delete<EmployeeDisciplineInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
                     }
 
                     // add new employee disciplines
@@ -450,10 +450,10 @@ namespace R7.University
                         if (discipline.EmployeeID <= 0)
                         {
                             discipline.EmployeeID = employee.EmployeeID;
-                            Add<EmployeeDisciplinesInfo> (discipline);
+                            Add<EmployeeDisciplineInfo> (discipline);
                         }
                         else
-                            Update<EmployeeDisciplinesInfo> (discipline);
+                            Update<EmployeeDisciplineInfo> (discipline);
                     }
 
 					ctx.Commit ();

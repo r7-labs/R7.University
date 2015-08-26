@@ -279,12 +279,12 @@ namespace R7.University.Employee
 							gridAchievements.DataBind ();
 
                             // read employee educational programs 
-                            var disciplineInfos = EmployeeController.GetObjects<EmployeeDisciplinesInfoEx> ("WHERE [EmployeeID] = @0", itemId.Value);
+                            var disciplineInfos = EmployeeController.GetObjects<EmployeeDisciplineInfoEx> ("WHERE [EmployeeID] = @0", itemId.Value);
 
                             // fill disciplines list
-                            var disciplines = new List<EmployeeDisciplinesView> ();
+                            var disciplines = new List<EmployeeDisciplineView> ();
                             foreach (var eduprogram in disciplineInfos)
-                                disciplines.Add (new EmployeeDisciplinesView (eduprogram));
+                                disciplines.Add (new EmployeeDisciplineView (eduprogram));
 
                             // bind disciplines
                             ViewState ["disciplines"] = disciplines;
@@ -457,16 +457,16 @@ namespace R7.University.Employee
 			return achievementInfos;
 		}
 
-        private List<EmployeeDisciplinesInfo> GetEmployeeDisciplines ()
+        private List<EmployeeDisciplineInfo> GetEmployeeDisciplines ()
         {
-            var eduPrograms = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
+            var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
 
-            var eduProgramInfos = new List<EmployeeDisciplinesInfo> ();
-            if (eduPrograms != null)
-                foreach (var ep in eduPrograms)
-                    eduProgramInfos.Add (ep.NewEmployeeDisciplinesInfo ());
+            var disciplineInfos = new List<EmployeeDisciplineInfo> ();
+            if (disciplines != null)
+                foreach (var ep in disciplines)
+                    disciplineInfos.Add (ep.NewEmployeeDisciplineInfo ());
 
-            return eduProgramInfos;
+            return disciplineInfos;
         }
 
 		/// <summary>
@@ -843,7 +843,7 @@ namespace R7.University.Employee
             return DataTableConstructor.FromIEnumerable (achievements);
 		}
 
-        private DataTable EduProgramsDataTable (List<EmployeeDisciplinesView> eduPrograms)
+        private DataTable EduProgramsDataTable (List<EmployeeDisciplineView> eduPrograms)
         {
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
@@ -1070,19 +1070,19 @@ namespace R7.University.Employee
 
                 if (!Null.IsNull (int.Parse (comboEduProgram.SelectedValue)))
                 {
-                    EmployeeDisciplinesView discipline;
+                    EmployeeDisciplineView discipline;
 
                     // get disciplines list from viewstate
-                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
+                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
 
                     // creating new list, if none
                     if (disciplines == null)
-                        disciplines = new List<EmployeeDisciplinesView>();
+                        disciplines = new List<EmployeeDisciplineView>();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add")
                     {
-                        discipline = new EmployeeDisciplinesView ();
+                        discipline = new EmployeeDisciplineView ();
                     }
                     else
                     {
@@ -1127,7 +1127,7 @@ namespace R7.University.Employee
             {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
+                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
                 if (disciplines != null)
                 {
                     var itemID = e.CommandArgument.ToString ();
@@ -1162,7 +1162,7 @@ namespace R7.University.Employee
             {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
+                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
                 if (disciplines != null)
                 {
                     var itemID = e.CommandArgument.ToString ();
