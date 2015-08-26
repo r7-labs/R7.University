@@ -144,16 +144,16 @@ namespace R7.University.Employee
 			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
 			comboAchievementTypes.DataBind ();
 
-            // get edu programs
-            var eduPrograms = EmployeeController.GetObjects<EduProgramInfo> ("ORDER BY [EduLevelID], [Code]").ToList ();
+            // get edu profiles
+            var eduProfiles = EmployeeController.GetObjects<EduProfileInfo> ("ORDER BY [EduLevelID], [Code]").ToList ();
 
             // add default value
-            eduPrograms.Insert (0, new EduProgramInfo { 
-                Title = LocalizeString ("NotSelected.Text"), EduProgramID = Null.NullInteger 
+            eduProfiles.Insert (0, new EduProfileInfo { 
+                ProfileTitle = LocalizeString ("NotSelected.Text"), EduProfileID = Null.NullInteger 
             });
 
             // bind edu programs
-            comboEduProgram.DataSource = eduPrograms;
+            comboEduProgram.DataSource = eduProfiles;
             comboEduProgram.DataBind ();
             comboEduProgram.SelectedIndex = 0;
 
@@ -279,16 +279,16 @@ namespace R7.University.Employee
 							gridAchievements.DataBind ();
 
                             // read employee educational programs 
-                            var eduprogramInfos = EmployeeController.GetObjects<EmployeeEduProgramInfoEx> ("WHERE [EmployeeID] = @0", itemId.Value);
+                            var disciplineInfos = EmployeeController.GetObjects<EmployeeDisciplinesInfoEx> ("WHERE [EmployeeID] = @0", itemId.Value);
 
-                            // fill edu programs list
-                            var eduprograms = new List<EmployeeEduProgramView> ();
-                            foreach (var eduprogram in eduprogramInfos)
-                                eduprograms.Add (new EmployeeEduProgramView (eduprogram));
+                            // fill disciplines list
+                            var disciplines = new List<EmployeeDisciplinesView> ();
+                            foreach (var eduprogram in disciplineInfos)
+                                disciplines.Add (new EmployeeDisciplinesView (eduprogram));
 
-                            // bind edu programs
-                            ViewState ["eduprograms"] = eduprograms;
-                            gridEduPrograms.DataSource = EduProgramsDataTable (eduprograms);
+                            // bind disciplines
+                            ViewState ["disciplines"] = disciplines;
+                            gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
                             gridEduPrograms.DataBind ();
 
                             // setup audit control
@@ -398,7 +398,7 @@ namespace R7.University.Employee
 	
 					// add employee
                     EmployeeController.AddEmployee (item, GetOccupiedPositions (), 
-                        GetEmployeeAchievements (), GetEmployeeEduPrograms());
+                        GetEmployeeAchievements (), GetEmployeeDisciplines());
 
 					// then adding new employee from Employee or EmployeeDetails modules, 
 					// set calling module to display new employee
@@ -419,7 +419,7 @@ namespace R7.University.Employee
 
 					// update employee
                     EmployeeController.UpdateEmployee (item, GetOccupiedPositions (), 
-                        GetEmployeeAchievements (), GetEmployeeEduPrograms());
+                        GetEmployeeAchievements (), GetEmployeeDisciplines());
 				}
 
 				Utils.SynchronizeModule (this);
@@ -457,14 +457,14 @@ namespace R7.University.Employee
 			return achievementInfos;
 		}
 
-        private List<EmployeeEduProgramInfo> GetEmployeeEduPrograms ()
+        private List<EmployeeDisciplinesInfo> GetEmployeeDisciplines ()
         {
-            var eduPrograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
+            var eduPrograms = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
 
-            var eduProgramInfos = new List<EmployeeEduProgramInfo> ();
+            var eduProgramInfos = new List<EmployeeDisciplinesInfo> ();
             if (eduPrograms != null)
                 foreach (var ep in eduPrograms)
-                    eduProgramInfos.Add (ep.NewEmployeeEduProgramInfo ());
+                    eduProgramInfos.Add (ep.NewEmployeeDisciplinesInfo ());
 
             return eduProgramInfos;
         }
@@ -843,7 +843,7 @@ namespace R7.University.Employee
             return DataTableConstructor.FromIEnumerable (achievements);
 		}
 
-        private DataTable EduProgramsDataTable (List<EmployeeEduProgramView> eduPrograms)
+        private DataTable EduProgramsDataTable (List<EmployeeDisciplinesView> eduPrograms)
         {
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
@@ -1070,48 +1070,48 @@ namespace R7.University.Employee
 
                 if (!Null.IsNull (int.Parse (comboEduProgram.SelectedValue)))
                 {
-                    EmployeeEduProgramView eduprogram;
+                    EmployeeDisciplinesView discipline;
 
-                    // get achievements list from viewstate
-                    var eduPrograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
+                    // get disciplines list from viewstate
+                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
 
                     // creating new list, if none
-                    if (eduPrograms == null)
-                        eduPrograms = new List<EmployeeEduProgramView>();
+                    if (disciplines == null)
+                        disciplines = new List<EmployeeDisciplinesView>();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add")
                     {
-                        eduprogram = new EmployeeEduProgramView ();
+                        discipline = new EmployeeDisciplinesView ();
                     }
                     else
                     {
                         // restore ItemID from hidden field
                         var hiddenItemID = int.Parse (hiddenEduProgramItemID.Value);
-                        eduprogram = eduPrograms.Find (ep1 => ep1.ItemID == hiddenItemID);
+                        discipline = disciplines.Find (ep1 => ep1.ItemID == hiddenItemID);
                     }
 
-                    eduprogram.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
-                    eduprogram.Disciplines = textProgramDisciplines.Text.Trim ();
+                    discipline.EduProfileID = int.Parse (comboEduProgram.SelectedValue);
+                    discipline.Disciplines = textProgramDisciplines.Text.Trim ();
 
-                    var ep = EmployeeController.Get<EduProgramInfo> (eduprogram.EduProgramID);
-                    eduprogram.Code = ep.Code;
-                    eduprogram.Title = ep.Title;
-                    eduprogram.ProfileCode = ep.ProfileCode;
-                    eduprogram.ProfileTitle = ep.ProfileTitle;
+                    var profile = EmployeeController.Get<EduProfileInfo> (discipline.EduProfileID);
+                    //discipline.Code = ep.Code;
+                    //discipline.Title = ep.Title;
+                    discipline.ProfileCode = profile.ProfileCode;
+                    discipline.ProfileTitle = profile.ProfileTitle;
 
                     if (command == "Add")
                     {
-                        eduPrograms.Add (eduprogram);
+                        disciplines.Add (discipline);
                     }
 
                     ResetEditEduProgramForm ();
 
                     // refresh viewstate
-                    ViewState ["eduprograms"] = eduPrograms;
+                    ViewState ["disciplines"] = disciplines;
 
                     // bind items to the gridview
-                    gridEduPrograms.DataSource = EduProgramsDataTable (eduPrograms);
+                    gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
                     gridEduPrograms.DataBind ();
                 }
             }
@@ -1127,22 +1127,22 @@ namespace R7.University.Employee
             {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
-                var eduprograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
-                if (eduprograms != null)
+                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
+                if (disciplines != null)
                 {
                     var itemID = e.CommandArgument.ToString ();
 
                     // find position in a list
-                    var eduprogram = eduprograms.Find (ach => ach.ItemID.ToString () == itemID);
+                    var discipline = disciplines.Find (d => d.ItemID.ToString () == itemID);
 
-                    if (eduprogram != null)
+                    if (discipline != null)
                     {
                         // fill achievements form
-                        Utils.SelectByValue (comboEduProgram, eduprogram.EduProgramID.ToString ());
-                        textProgramDisciplines.Text = eduprogram.Disciplines;
+                        Utils.SelectByValue (comboEduProgram, discipline.EduProfileID.ToString ());
+                        textProgramDisciplines.Text = discipline.Disciplines;
 
                         // store ItemID in the hidden field
-                        hiddenEduProgramItemID.Value = eduprogram.ItemID.ToString ();
+                        hiddenEduProgramItemID.Value = discipline.ItemID.ToString ();
 
                         // show / hide buttons
                         buttonAddEduProgram.Visible = false;
@@ -1162,27 +1162,27 @@ namespace R7.University.Employee
             {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
-                var eduprograms = ViewState ["eduprograms"] as List<EmployeeEduProgramView>;
-                if (eduprograms != null)
+                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplinesView>;
+                if (disciplines != null)
                 {
                     var itemID = e.CommandArgument.ToString ();
 
                     // find position in a list
-                    var eduprogramIndex = eduprograms.FindIndex (ep => ep.ItemID.ToString () == itemID);
+                    var disciplinesIndex = disciplines.FindIndex (ep => ep.ItemID.ToString () == itemID);
 
-                    if (eduprogramIndex >= 0)
+                    if (disciplinesIndex >= 0)
                     {
                         // remove edu program
-                        eduprograms.RemoveAt (eduprogramIndex);
+                        disciplines.RemoveAt (disciplinesIndex);
 
                         // refresh viewstate
-                        ViewState ["eduprograms"] = eduprograms;
+                        ViewState ["disciplines"] = disciplines;
 
-                        // bind edu programs to the gridview
-                        gridEduPrograms.DataSource = EduProgramsDataTable (eduprograms);
+                        // bind edu discipline to the gridview
+                        gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
                         gridEduPrograms.DataBind ();
 
-                        // reset form if we deleting currently edited edu program
+                        // reset form if we deleting currently edited discipline
                         if (buttonUpdateEduProgram.Visible && hiddenEduProgramItemID.Value == itemID)
                             ResetEditEduProgramForm ();
                     }

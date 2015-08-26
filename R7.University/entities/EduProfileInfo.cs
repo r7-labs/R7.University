@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramInfo.cs
+// EduProfileInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -31,19 +31,16 @@ namespace R7.University
 {
     // TODO: Inherit from EnityBase
 
-    [TableName ("University_EduPrograms")]
-    [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo
+    [TableName ("University_EduProfiles")]
+    [PrimaryKey ("EduProfileID", AutoIncrement = true)]
+    [Scope ("EduProgramID")]
+    public class EduProfileInfo
     {
         #region Properties
 
+        public int EduProfileID { get; set; }
+
         public int EduProgramID { get; set; }
-
-        public int EduLevelID { get; set; }
-
-        public string Code { get; set; }
-
-        public string Title { get; set; }
 
         public string ProfileCode { get; set; }
 
@@ -52,9 +49,9 @@ namespace R7.University
         #endregion
 
         [IgnoreColumn]
-        public string EduProgram
+        public string EduProfile
         {
-            get { return FormatEduProfile (Code, Title, ProfileCode, ProfileTitle); }
+            get { return FormatEduProfile ("dummmy code", "dummy title", ProfileCode, ProfileTitle); }
         }
 
         public static string FormatEduProfile (string code, string title, string profileCode, string profileTitle)

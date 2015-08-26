@@ -316,7 +316,7 @@ namespace R7.University
 		public void AddEmployee (EmployeeInfo employee, 
 		    List<OccupiedPositionInfo> occupiedPositions, 
             List<EmployeeAchievementInfo> achievements,
-            List<EmployeeEduProgramInfo> eduPrograms)
+            List<EmployeeDisciplinesInfo> eduPrograms)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -345,7 +345,7 @@ namespace R7.University
                     foreach (var ep in eduPrograms)
                     {
                         ep.EmployeeID = employee.EmployeeID;
-                        Add<EmployeeEduProgramInfo> (ep);
+                        Add<EmployeeDisciplinesInfo> (ep);
                     }
 				
 					ctx.Commit ();
@@ -362,7 +362,7 @@ namespace R7.University
 		public void UpdateEmployee (EmployeeInfo employee, 
 		    List<OccupiedPositionInfo> occupiedPositions, 
             List<EmployeeAchievementInfo> achievements,
-            List<EmployeeEduProgramInfo> eduPrograms)
+            List<EmployeeDisciplinesInfo> disciplines)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -430,29 +430,30 @@ namespace R7.University
 							Update<EmployeeAchievementInfo> (ach);
 					}
 
-                    var employeeEduProgramIDs = eduPrograms.Select (a => a.EmployeeEduProgramID.ToString ());
-                    if (employeeEduProgramIDs.Any())
+                    var employeeEduProfileIDs = disciplines.Select (a => a.EduProfileID.ToString ());
+                    if (employeeEduProfileIDs.Any ())
                     {
                         // delete those not in current list
-                        Delete<EmployeeEduProgramInfo> (
-                            string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeEduProgramID] NOT IN ({1})", 
-                                employee.EmployeeID, Utils.FormatList (", ", employeeEduProgramIDs))); 
+                        Delete<EmployeeDisciplinesInfo> (
+                            string.Format ("WHERE [EmployeeID] = {0} AND [EduProfileID] NOT IN ({1})", 
+                                employee.EmployeeID, Utils.FormatList (", ", employeeEduProfileIDs))); 
                     }
                     else
                     {
-                        // delete all employee edu programs
-                        Delete<EmployeeEduProgramInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
+                        // delete all employee disciplines
+                        Delete<EmployeeDisciplinesInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
                     }
 
-                    // add new employee edu programs
-                    foreach (var ep in eduPrograms)
+                    // add new employee disciplines
+                    foreach (var discipline in disciplines)
                     {
-                        ep.EmployeeID = employee.EmployeeID;
-
-                        if (ep.EmployeeEduProgramID <= 0)
-                            Add<EmployeeEduProgramInfo> (ep);
+                        if (discipline.EmployeeID <= 0)
+                        {
+                            discipline.EmployeeID = employee.EmployeeID;
+                            Add<EmployeeDisciplinesInfo> (discipline);
+                        }
                         else
-                            Update<EmployeeEduProgramInfo> (ep);
+                            Update<EmployeeDisciplinesInfo> (discipline);
                     }
 
 					ctx.Commit ();

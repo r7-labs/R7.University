@@ -75,14 +75,15 @@
     <Compile Include="components\EmployeeEqualityComparer.cs" />
     <Compile Include="entities\EduLevelInfo.cs" />
     <Compile Include="entities\EduProgramInfo.cs" />
-    <Compile Include="entities\EmployeeEduProgramInfo.cs" />
     <Compile Include="entities\CharEnumInfo.cs" />
     <Compile Include="components\DataTableConstructor.cs" />
     <Compile Include="components\ViewNumerator.cs" />
-    <Compile Include="entities\EmployeeEduProgramInfoEx.cs" />
     <Compile Include="components\GridViewExtensions.cs" />
     <Compile Include="components\CopyCstor.cs" />
     <Compile Include="components\UrlUtils.cs" />
+    <Compile Include="entities\EmployeeDisciplinesInfo.cs" />
+    <Compile Include="entities\EmployeeDisciplinesInfoEx.cs" />
+    <Compile Include="entities\EduProfileInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

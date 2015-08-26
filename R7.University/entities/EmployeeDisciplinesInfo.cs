@@ -1,5 +1,5 @@
 ﻿//
-// EmployeeEduProgramInfoEx.cs
+// EmployeeEduProgramInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -29,27 +29,21 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    [TableName ("vw_University_EmployeeEduPrograms")]
+    [TableName ("University_EmployeeDisciplines")]
+    [PrimaryKey ("EmployeeID,EduProfileID")]
     [Scope ("EmployeeID")]
     [Serializable]
-    public class EmployeeEduProgramInfoEx: EmployeeEduProgramInfo
+    public class EmployeeDisciplinesInfo
     {
-        #region External (EduProgram) properties
+        #region Properties
 
-        public string Code { get; set; }
+        public int EmployeeID { get; set; }
 
-        public string Title { get; set; }
+        public int EduProfileID { get; set; }
 
-        public string ProfileCode { get; set; }
-
-        public string ProfileTitle { get; set; }
+        public string Disciplines { get; set; }
 
         #endregion
-
-        [IgnoreColumn]
-        public string EduProgram
-        {
-            get { return EduProgramInfo.FormatEduProgram (Code, Title, ProfileCode, ProfileTitle); }
-        }
     }
 }
+

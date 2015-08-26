@@ -362,12 +362,12 @@ namespace R7.University.Employee
         void EduPrograms (EmployeeInfo employee)
         {
             // get employee edu programs
-            var eduPrograms = EmployeeController.GetObjects<EmployeeEduProgramInfoEx> (
+            var disciplines = EmployeeController.GetObjects<EmployeeDisciplinesInfoEx> (
                                   "WHERE [EmployeeID] = @0", employee.EmployeeID);
 
-            if (eduPrograms.Any ())
+            if (disciplines.Any ())
             {
-                gridEduPrograms.DataSource = EduProgramsTable (eduPrograms.OrderBy (ep => ep.Code));
+                gridEduPrograms.DataSource = EduProgramsTable (disciplines.OrderBy (d => d.Code));
                 gridEduPrograms.DataBind ();
             }
             else
@@ -385,9 +385,9 @@ namespace R7.University.Employee
             }
         }
 
-        private DataTable EduProgramsTable (IEnumerable<EmployeeEduProgramInfoEx> eduPrograms)
+        private DataTable EduProgramsTable (IEnumerable<EmployeeDisciplinesInfoEx> disciplines)
         {
-            return DataTableConstructor.FromIEnumerable (eduPrograms);
+            return DataTableConstructor.FromIEnumerable (disciplines);
         }
 
         void Barcode (EmployeeInfo employee)

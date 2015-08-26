@@ -1,5 +1,5 @@
-﻿//
-// EmployeeEduProgramInfo.cs
+//
+// EmployeeEduProgramView.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,27 +25,33 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University;
 
-namespace R7.University
+namespace R7.University.Employee
 {
-    [TableName ("University_EmployeeEduPrograms")]
-    [PrimaryKey ("EmployeeEduProgramID", AutoIncrement = true)]
-    [Scope ("EmployeeID")]
     [Serializable]
-    public class EmployeeEduProgramInfo
-    {
-        #region Properties
+    public class EmployeeDisciplinesView: EmployeeDisciplinesInfoEx
+	{
+        public int ItemID { get; set; }
 
-        public int EmployeeEduProgramID { get; set; }
+        public EmployeeDisciplinesView ()
+        {
+            ItemID = ViewNumerator.GetNextItemID ();
+        }
 
-        public int EmployeeID { get; set; }
+        public EmployeeDisciplinesView (EmployeeDisciplinesInfoEx program): this ()
+        {
+            CopyCstor.Copy<EmployeeDisciplinesInfoEx> (program, this);
+        }
 
-        public int EduProgramID { get; set; }
-
-        public string Disciplines { get; set; }
-
-        #endregion
-    }
+        public EmployeeDisciplinesInfo NewEmployeeDisciplinesInfo ()
+        {
+            return new EmployeeDisciplinesInfo {
+                EmployeeID = EmployeeID,
+                EduProfileID = EduProfileID,
+                Disciplines = Disciplines
+            };
+        }
+	}
 }
 

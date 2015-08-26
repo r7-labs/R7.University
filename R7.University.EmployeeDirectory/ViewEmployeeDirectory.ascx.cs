@@ -255,7 +255,7 @@ namespace R7.University.EmployeeDirectory
                 {
                     var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
 
-                    var eepi = EmployeeDirectoryController.GetObjects <EmployeeEduProgramInfo> (
+                    var eepi = EmployeeDirectoryController.GetObjects <EmployeeDisciplinesInfo> (
                         "WHERE [EmployeeID] = @0 AND [EduProgramID] = @1", teacher.EmployeeID, eduProgramId).FirstOrDefault ();
 
                     if (eepi != null) literalDisciplines.Text = eepi.Disciplines;
