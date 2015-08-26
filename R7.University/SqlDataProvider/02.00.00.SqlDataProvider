@@ -111,3 +111,23 @@ GO
 IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]') and type in (N'U'))
     DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]
 GO
+
+-- Drop views
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]') and type in (N'V'))
+    DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]
+GO
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]') and type in (N'V'))
+    DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
+GO
+
+-- Create views
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines] AS
+    SELECT ED.*, EP.Code, EP.Title, EPF.ProfileCode, EPF.ProfileTitle FROM {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] AS ED
+        INNER JOIN {databaseOwner}[{objectQualifier}University_EduProfiles] AS EPF 
+            ON ED.EduProfileID = EPF.EduProfileID
+        INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
+            ON EPF.EduProgramID = EP.EduProgramID
+GO
