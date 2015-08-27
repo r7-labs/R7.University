@@ -1,5 +1,5 @@
 ﻿//
-// EduProfileInfo.cs
+// EduProfileInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,27 +26,35 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Threading;
 
 namespace R7.University
 {
     // TODO: Inherit from EnityBase
 
-    [TableName ("University_EduProfiles")]
-    [PrimaryKey ("EduProfileID", AutoIncrement = true)]
-    [Scope ("EduProgramID")]
-    public class EduProfileInfo
+    [TableName ("vw_University_EduProgramProfiles")]
+    public class EduProfileInfoEx: EduProfileInfo
     {
-        #region Properties
+        #region External properties
 
-        public int EduProfileID { get; set; }
+        public string Code { get; set; }
 
-        public int EduProgramID { get; set; }
-
-        public string ProfileCode { get; set; }
-
-        public string ProfileTitle { get; set; }
+        public string Title { get; set; }
 
         #endregion
+
+        [IgnoreColumn]
+        public string EduProfileString
+        {
+            get { return FormatEduProfile (Code, Title, ProfileCode, ProfileTitle); }
+        }
+
+        public static string FormatEduProfile (string code, string title, string profileCode, string profileTitle)
+        {
+            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
+            return Utils.FormatList (" ", code, title) +
+                (!string.IsNullOrWhiteSpace (profileString)? " (" + profileString + ")" : string.Empty);
+        }
     }
 }
 

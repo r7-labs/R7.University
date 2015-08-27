@@ -478,16 +478,18 @@ namespace R7.University
                 "University_GetHeadEmployee", divisionId).FirstOrDefault ();
         }
 
-        public IEnumerable<EmployeeInfo> GetTeachersByEduProgram (int eduProgramId)
+        public IEnumerable<EmployeeInfo> GetTeachersByEduProgramProfile (int eduProfileId)
         {
+            // TODO: Convert to stored procedure
+            
             return GetObjects<EmployeeInfo> (CommandType.Text,
                 @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
-                    INNER JOIN dbo.University_EmployeeEduPrograms AS EEP
-                        ON E.EmployeeID = EEP.EmployeeID
-                WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
-                ORDER BY E.LastName, E.FirstName", eduProgramId);
+                    INNER JOIN dbo.University_EmployeeDisciplines AS ED
+                        ON E.EmployeeID = ED.EmployeeID
+                WHERE ED.EduProfileID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
+                ORDER BY E.LastName, E.FirstName", eduProfileId);
         }
 
         public IEnumerable<EmployeeInfo> GetTeachersWithoutEduPrograms ()
@@ -497,7 +499,7 @@ namespace R7.University
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
                     WHERE OP.IsTeacher = 1 AND E.IsPublished = 1 AND E.EmployeeID NOT IN 
-                        (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeEduPrograms)");
+                        (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeDisciplines)");
         }
 
         public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)

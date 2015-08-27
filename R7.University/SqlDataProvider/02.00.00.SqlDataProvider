@@ -122,6 +122,10 @@ IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwne
     DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
 GO
 
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]') and type in (N'V'))
+    DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]
+GO
+
 -- Create views
 
 CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines] AS
@@ -130,4 +134,10 @@ CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines] 
             ON ED.EduProfileID = EPF.EduProfileID
         INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
             ON EPF.EduProgramID = EP.EduProgramID
+GO
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles] AS
+    SELECT EPP.*, EP.Code, EP.Title FROM {databaseOwner}[{objectQualifier}University_EduProfiles] AS EPP
+        INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
+            ON EPP.EduProgramID = EP.EduProgramID
 GO

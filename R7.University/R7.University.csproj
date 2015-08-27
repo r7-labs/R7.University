@@ -84,6 +84,7 @@
     <Compile Include="entities\EduProfileInfo.cs" />
     <Compile Include="entities\EmployeeDisciplineInfo.cs" />
     <Compile Include="entities\EmployeeDisciplineInfoEx.cs" />
+    <Compile Include="entities\EduProfileInfoEx.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
