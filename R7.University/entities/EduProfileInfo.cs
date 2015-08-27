@@ -49,7 +49,7 @@ namespace R7.University
         #endregion
 
         [IgnoreColumn]
-        public string EduProfile
+        public string EduProfileString
         {
             get { return FormatEduProfile ("dummmy code", "dummy title", ProfileCode, ProfileTitle); }
         }
