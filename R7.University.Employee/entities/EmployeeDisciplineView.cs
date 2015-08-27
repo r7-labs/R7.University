@@ -48,7 +48,7 @@ namespace R7.University.Employee
         {
             return new EmployeeDisciplineInfo {
                 EmployeeID = EmployeeID,
-                EduProfileID = EduProfileID,
+                EduProgramProfileID = EduProgramProfileID,
                 Disciplines = Disciplines
             };
         }

@@ -145,11 +145,12 @@ namespace R7.University.Employee
 			comboAchievementTypes.DataBind ();
 
             // get edu profiles
-            var eduProfiles = EmployeeController.GetObjects<EduProfileInfo> ("ORDER BY [ProfileCode]").ToList ();
+            // TODO: Sort or filter by EduLevelID first!
+            var eduProfiles = EmployeeController.GetObjects<EduProgramProfileInfoEx> ("ORDER BY [Code]").ToList ();
 
             // add default value
-            eduProfiles.Insert (0, new EduProfileInfo { 
-                ProfileTitle = LocalizeString ("NotSelected.Text"), EduProfileID = Null.NullInteger 
+            eduProfiles.Insert (0, new EduProgramProfileInfoEx { 
+                ProfileTitle = LocalizeString ("NotSelected.Text"), EduProgramProfileID = Null.NullInteger 
             });
 
             // bind edu programs
@@ -1091,10 +1092,10 @@ namespace R7.University.Employee
                         discipline = disciplines.Find (ep1 => ep1.ItemID == hiddenItemID);
                     }
 
-                    discipline.EduProfileID = int.Parse (comboEduProgram.SelectedValue);
+                    discipline.EduProgramProfileID = int.Parse (comboEduProgram.SelectedValue);
                     discipline.Disciplines = textProgramDisciplines.Text.Trim ();
 
-                    var profile = EmployeeController.Get<EduProfileInfo> (discipline.EduProfileID);
+                    var profile = EmployeeController.Get<EduProgramProfileInfo> (discipline.EduProgramProfileID);
                     //discipline.Code = ep.Code;
                     //discipline.Title = ep.Title;
                     discipline.ProfileCode = profile.ProfileCode;
@@ -1138,7 +1139,7 @@ namespace R7.University.Employee
                     if (discipline != null)
                     {
                         // fill achievements form
-                        Utils.SelectByValue (comboEduProgram, discipline.EduProfileID.ToString ());
+                        Utils.SelectByValue (comboEduProgram, discipline.EduProgramProfileID.ToString ());
                         textProgramDisciplines.Text = discipline.Disciplines;
 
                         // store ItemID in the hidden field

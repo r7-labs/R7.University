@@ -430,12 +430,12 @@ namespace R7.University
 							Update<EmployeeAchievementInfo> (ach);
 					}
 
-                    var employeeEduProfileIDs = disciplines.Select (a => a.EduProfileID.ToString ());
+                    var employeeEduProfileIDs = disciplines.Select (a => a.EduProgramProfileID.ToString ());
                     if (employeeEduProfileIDs.Any ())
                     {
                         // delete those not in current list
                         Delete<EmployeeDisciplineInfo> (
-                            string.Format ("WHERE [EmployeeID] = {0} AND [EduProfileID] NOT IN ({1})", 
+                            string.Format ("WHERE [EmployeeID] = {0} AND [EduProgramProfileID] NOT IN ({1})", 
                                 employee.EmployeeID, Utils.FormatList (", ", employeeEduProfileIDs))); 
                     }
                     else
@@ -488,7 +488,7 @@ namespace R7.University
                         ON E.EmployeeID = OP.EmployeeID
                     INNER JOIN dbo.University_EmployeeDisciplines AS ED
                         ON E.EmployeeID = ED.EmployeeID
-                WHERE ED.EduProfileID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
+                WHERE ED.EduProgramProfileID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
                 ORDER BY E.LastName, E.FirstName", eduProfileId);
         }
 

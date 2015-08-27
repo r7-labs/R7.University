@@ -362,7 +362,7 @@
                                 DropDownStyle="DropDownList"
                                 AutoCompleteMode="SuggestAppend"
                                 CaseSensitive="false"
-                                DataValueField="EduProfileID"
+                                DataValueField="EduProgramProfileID"
                                 DataTextField="EduProfileString"
                             />
                         </ContentTemplate>

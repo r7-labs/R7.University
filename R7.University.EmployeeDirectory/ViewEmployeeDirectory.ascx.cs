@@ -145,10 +145,10 @@ namespace R7.University.EmployeeDirectory
                     }
                     else if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
                     {
-                        var eduProfiles = EmployeeDirectoryController.GetObjects<EduProfileInfoEx> ().OrderBy (epp => epp.Code).ToList ();
+                        var eduProfiles = EmployeeDirectoryController.GetObjects<EduProgramProfileInfoEx> ().OrderBy (epp => epp.Code).ToList ();
 
-                        eduProfiles.Add (new EduProfileInfoEx { 
-                            EduProfileID = Null.NullInteger,
+                        eduProfiles.Add (new EduProgramProfileInfoEx { 
+                            EduProgramProfileID = Null.NullInteger,
                             Code = string.Empty,
                             Title = LocalizeString ("NoEduPrograms.Text")
                         });
@@ -175,7 +175,7 @@ namespace R7.University.EmployeeDirectory
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var eduProfile = (EduProfileInfoEx) e.Item.DataItem;
+                var eduProfile = (EduProgramProfileInfoEx) e.Item.DataItem;
 
                 // find controls in the template
                 var labelEduProgram = (Label) e.Item.FindControl ("labelEduProgram");
@@ -185,7 +185,7 @@ namespace R7.University.EmployeeDirectory
                 IEnumerable<EmployeeInfo> teachers;
                 string anchorName;
 
-                if (Null.IsNull (eduProfile.EduProfileID))
+                if (Null.IsNull (eduProfile.EduProgramProfileID))
                 {
                     anchorName = "empty";
 
@@ -194,10 +194,10 @@ namespace R7.University.EmployeeDirectory
                 }
                 else
                 {
-                    anchorName = eduProfile.EduProfileID.ToString ();
+                    anchorName = eduProfile.EduProgramProfileID.ToString ();
 
                     // select teachers for current edu program
-                    teachers = EmployeeDirectoryController.GetTeachersByEduProgramProfile (eduProfile.EduProfileID);
+                    teachers = EmployeeDirectoryController.GetTeachersByEduProgramProfile (eduProfile.EduProgramProfileID);
                 }
 
                 // create anchor to simplify navigation
@@ -207,7 +207,7 @@ namespace R7.University.EmployeeDirectory
                 if (teachers.Any ())
                 {
                     // pass eduProfileId to gridTeachersByEduProgram_RowDataBound()
-                    eduProfileId = eduProfile.EduProfileID;
+                    eduProfileId = eduProfile.EduProgramProfileID;
 
                     gridTeachersByEduProgram.LocalizeColumns (LocalResourceFile);
 
@@ -256,7 +256,7 @@ namespace R7.University.EmployeeDirectory
                     var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
 
                     var discipline = EmployeeDirectoryController.GetObjects <EmployeeDisciplineInfo> (
-                        "WHERE [EmployeeID] = @0 AND [EduProfileID] = @1", teacher.EmployeeID, eduProfileId).FirstOrDefault ();
+                        "WHERE [EmployeeID] = @0 AND [EduProgramProfileID] = @1", teacher.EmployeeID, eduProfileId).FirstOrDefault ();
 
                     if (discipline != null) literalDisciplines.Text = discipline.Disciplines;
                 }

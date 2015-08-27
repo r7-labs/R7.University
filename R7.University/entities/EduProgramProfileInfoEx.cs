@@ -1,5 +1,5 @@
 ﻿//
-// EduProfileInfoEx.cs
+// EduProgramProfileInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -33,7 +33,7 @@ namespace R7.University
     // TODO: Inherit from EnityBase
 
     [TableName ("vw_University_EduProgramProfiles")]
-    public class EduProfileInfoEx: EduProfileInfo
+    public class EduProgramProfileInfoEx: EduProgramProfileInfo
     {
         #region External properties
 

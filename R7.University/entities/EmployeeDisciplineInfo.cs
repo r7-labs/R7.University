@@ -30,7 +30,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 namespace R7.University
 {
     [TableName ("University_EmployeeDisciplines")]
-    [PrimaryKey ("EmployeeID,EduProfileID")]
+    [PrimaryKey ("EmployeeID,EduProgramProfileID")]
     [Scope ("EmployeeID")]
     [Serializable]
     public class EmployeeDisciplineInfo
@@ -39,7 +39,7 @@ namespace R7.University
 
         public int EmployeeID { get; set; }
 
-        public int EduProfileID { get; set; }
+        public int EduProgramProfileID { get; set; }
 
         public string Disciplines { get; set; }
 

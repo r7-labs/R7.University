@@ -32,23 +32,23 @@ BEGIN
 END
 GO
 
--- EduProfiles
+-- EduProgramProfiles
 
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProfiles]') and type in (N'U'))
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and type in (N'U'))
 BEGIN
-    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProfiles] (
-        [EduProfileID] int IDENTITY(1,1) NOT NULL,
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (
+        [EduProgramProfileID] int IDENTITY(1,1) NOT NULL,
         [EduProgramID] int NOT NULL,
         [OldEduProgramID] int,
         [ProfileCode] nvarchar (64) NULL,
         [ProfileTitle] nvarchar (250) NULL,
         [DivisionID] int NULL
-        CONSTRAINT [PK_{objectQualifier}University_EduProfiles] PRIMARY KEY CLUSTERED (EduProfileID)
-        CONSTRAINT [FK_{objectQualifier}University_EduProfiles_EduPrograms] FOREIGN KEY (EduProgramID) 
+        CONSTRAINT [PK_{objectQualifier}University_EduProgramProfiles] PRIMARY KEY CLUSTERED (EduProgramProfileID)
+        CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduPrograms] FOREIGN KEY (EduProgramID) 
             REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE
     )
 
-    INSERT INTO {databaseOwner}[{objectQualifier}University_EduProfiles] SELECT 
+    INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramProfiles] SELECT 
         (SELECT TOP(1) EduProgramID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] WHERE Code = EP.Code ORDER BY EduProgramID ASC) AS EduProgramID,
         EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle, NULL FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
 END
@@ -61,15 +61,11 @@ BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EduDocuments] (
         [EduDocumentID] int IDENTITY(1,1) NOT NULL,
         [EduProgramID] int NULL,
-        [EduProfileID] int NULL,
+        [EduProgramProfileID] int NULL,
         [Type] nvarchar (64),
         [Title] nvarchar (255),
         [Url] nvarchar (255)
         CONSTRAINT [PK_{objectQualifier}University_EduDocuments] PRIMARY KEY CLUSTERED (EduDocumentID)
-        /*CONSTRAINT [FK_University_EduDocuments_EduPrograms] FOREIGN KEY (EduProgramID)
-            REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms](EduProgramID) ON DELETE SET NULL,
-        CONSTRAINT [FK_University_EduDocuments_EduProfiles] FOREIGN KEY (EduProfileID)
-            REFERENCES {databaseOwner}[{objectQualifier}University_EduProfiles](EduProfileID) ON DELETE SET NULL*/
 )
 END
 GO
@@ -80,18 +76,17 @@ IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{database
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] (
         [EmployeeID] int NOT NULL,
-        [EduProfileID] int NOT NULL,
+        [EduProgramProfileID] int NOT NULL,
         [Disciplines] nvarchar(max) NULL
-        CONSTRAINT [PK_{objectQualifier}University_EmployeeDisciplines] PRIMARY KEY CLUSTERED ([EmployeeID], [EduProfileID])
+        CONSTRAINT [PK_{objectQualifier}University_EmployeeDisciplines] PRIMARY KEY CLUSTERED ([EmployeeID], [EduProgramProfileID])
         CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_Employees] FOREIGN KEY([EmployeeID])
             REFERENCES {databaseOwner}[{objectQualifier}University_Employees]([EmployeeID]) ON DELETE CASCADE,
-        CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_EduProfiles] FOREIGN KEY([EduProfileID])
-            REFERENCES {databaseOwner}[{objectQualifier}University_EduProfiles]([EduProfileID]) ON DELETE CASCADE,
-        -- CONSTRAINT [UN_University_EmployeeDisciplines] UNIQUE NONCLUSTERED ([EmployeeID], [EduProfileID])
+        CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_EduProgramProfiles] FOREIGN KEY([EduProgramProfileID])
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfiles]([EduProgramProfileID]) ON DELETE CASCADE,
     ) 
 
     INSERT INTO {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] SELECT EEP.EmployeeID, 
-        (SELECT EPF.EduProfileID FROM dbo.University_EduProfiles AS EPF WHERE EPF.OldEduProgramID = EEP.EduProgramID) AS EduProfileID,
+        (SELECT EPP.EduProgramProfileID FROM dbo.University_EduProgramProfiles AS EPP WHERE EPP.OldEduProgramID = EEP.EduProgramID) AS EduProgramProfileID,
         EEP.Disciplines FROM dbo.University_EmployeeEduPrograms AS EEP
 END
 GO
@@ -103,8 +98,8 @@ IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwne
         DROP COLUMN ProfileCode, ProfileTitle
 GO
 
-IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProfiles]') and name = N'OldEduProgramID')
-    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProfiles]
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'OldEduProgramID')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
         DROP COLUMN OldEduProgramID
 GO
 
@@ -129,15 +124,15 @@ GO
 -- Create views
 
 CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines] AS
-    SELECT ED.*, EP.Code, EP.Title, EPF.ProfileCode, EPF.ProfileTitle FROM {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] AS ED
-        INNER JOIN {databaseOwner}[{objectQualifier}University_EduProfiles] AS EPF 
-            ON ED.EduProfileID = EPF.EduProfileID
+    SELECT ED.*, EP.Code, EP.Title, EPP.ProfileCode, EPP.ProfileTitle FROM {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] AS ED
+        INNER JOIN {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP 
+            ON ED.EduProgramProfileID = EPP.EduProgramProfileID
         INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
-            ON EPF.EduProgramID = EP.EduProgramID
+            ON EPP.EduProgramID = EP.EduProgramID
 GO
 
 CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles] AS
-    SELECT EPP.*, EP.Code, EP.Title FROM {databaseOwner}[{objectQualifier}University_EduProfiles] AS EPP
+    SELECT EPP.*, EP.Code, EP.Title FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP
         INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
             ON EPP.EduProgramID = EP.EduProgramID
 GO
