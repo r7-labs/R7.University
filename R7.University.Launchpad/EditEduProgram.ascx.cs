@@ -65,8 +65,8 @@ namespace R7.University.Launchpad
 						{
 							textCode.Text = item.Code;
 							textTitle.Text = item.Title;
-                            textProfileCode.Text = item.ProfileCode;
-                            textProfileTitle.Text = item.ProfileTitle;
+                            // textProfileCode.Text = item.ProfileCode;
+                            // textProfileTitle.Text = item.ProfileTitle;
                                
                             Utils.SelectByValue (comboEduLevel, item.EduLevelID.ToString ());
 						}
@@ -116,8 +116,8 @@ namespace R7.University.Launchpad
 				// fill the object
 				item.Code = textCode.Text.Trim ();
 				item.Title = textTitle.Text.Trim ();
-                item.ProfileCode = textProfileCode.Text.Trim ();
-                item.ProfileTitle = textProfileTitle.Text.Trim ();
+                // item.ProfileCode = textProfileCode.Text.Trim ();
+                // item.ProfileTitle = textProfileTitle.Text.Trim ();
 
                 item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
 

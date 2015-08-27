@@ -12,6 +12,7 @@
 			<dnn:Label ID="labelTitle" runat="server" ControlName="textTitle" />
 			<asp:TextBox ID="textTitle" runat="server" MaxLength="250" />
 		</div>
+        <%--
         <div class="dnnFormItem">
             <dnn:Label ID="labelProfileCode" runat="server" ControlName="textProfileCode" />
             <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />
@@ -20,6 +21,7 @@
             <dnn:Label ID="labelProfileTitle" runat="server" ControlName="textProfileTitle" />
             <asp:TextBox ID="textProfileTitle" runat="server" MaxLength="250" />
         </div>
+        --%>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
 			<asp:DropDownList id="comboEduLevel" runat="server" 

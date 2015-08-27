@@ -194,8 +194,6 @@
                         <asp:BoundField DataField="EduLevelID" SortExpression="EduLevelID" HeaderText="EduLevelID" />
                         <asp:BoundField DataField="Code" SortExpression="Code" HeaderText="Code" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" ConvertEmptyStringToNull="false" />
-                        <asp:BoundField DataField="ProfileCode" SortExpression="ProfileCode" HeaderText="ProfileCode" ConvertEmptyStringToNull="false" />
-                        <asp:BoundField DataField="ProfileTitle" SortExpression="ProfileTitle" HeaderText="ProfileTitle" ConvertEmptyStringToNull="false" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>
