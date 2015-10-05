@@ -206,7 +206,7 @@ namespace R7.University
 				infos = repo.GetPage (scopeId, index, size);
 			}
 
-            // REVIEW: Need to return empty collection?
+            // REVIEW: How to return empty collection?
             return infos;
 		}
 
@@ -218,7 +218,7 @@ namespace R7.University
 		/// <returns>A paged list of T objects</returns>
 		public IPagedList<T> GetPage<T> (int index, int size) where T: class
 		{
-			IPagedList<T> infos;
+            IPagedList<T> infos;
 
 			using (var ctx = DataContext.Instance ())
 			{
@@ -226,7 +226,7 @@ namespace R7.University
 				infos = repo.GetPage (index, size);
 			}
 
-            // REVIEW: Need to return empty collection?
+            // REVIEW: How to return empty collection?
 			return infos;
 		}
 

@@ -87,6 +87,7 @@ namespace R7.University.EmployeeList
 				        var employeeIds = Utils.FormatList (", ", items.Select (em => em.EmployeeID));
 
                         // get title achievements for all selected employees
+                        // TODO: Move to dataprovider
                         // TODO: Use {databaseOwner} and {objectQualifier} 
                         CommonTitleAchievements = EmployeeListController.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
                             string.Format ("SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] IN ({0}) AND [IsTitle] = 1", 

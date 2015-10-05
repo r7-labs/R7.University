@@ -30,8 +30,6 @@ using System.Threading;
 
 namespace R7.University
 {
-    // TODO: Inherit from EnityBase
-
     [TableName ("vw_University_EduProgramProfiles")]
     public class EduProgramProfileInfoEx: EduProgramProfileInfo
     {

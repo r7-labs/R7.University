@@ -18,8 +18,6 @@ using DotNetNuke.Web.UI.WebControls;
 using R7.University;
 using R7.University.Extensions;
 
-// TODO: ModuleAuditControl not saving label content in a ViewState!
-
 namespace R7.University.Employee
 {
 	public partial class EditEmployee : EmployeePortalModuleBase
@@ -509,7 +507,6 @@ namespace R7.University.Employee
 				var usersFound = 0;
 				var usersFoundTotal = 0;
 			
-
 				// TODO: Link to open admin users interface in a separate tab
 				var users = UserController.GetUsersByEmail (PortalId, term, -1, -1, ref usersFound, includeDeleted, false);
 				usersFoundTotal += usersFound;
@@ -562,7 +559,7 @@ namespace R7.University.Employee
                 {
                     var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, textLastName.Text, textOtherName.Text);
 
-                    // TODO: EmployeeInfo should contain culture data?
+                    // REVIEW: EmployeeInfo should contain culture data?
                     var employeeNameTL = TextUtils.Transliterate (employeeName, TextUtils.RuTranslitTable).ToLowerInvariant ();
 
                     // get files from default folder recursively

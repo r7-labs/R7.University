@@ -55,7 +55,7 @@ namespace R7.University.Division
 			WorkingHoursLogic.Init (this, comboWorkingHours);
 			
 			// Fill terms list
-			// TODO: Org. structure vocabulary name must be set in settings
+			// REVIEW: Org. structure vocabulary name must be set in settings?
 			var termCtrl = new TermController ();
 			var terms = termCtrl.GetTermsByVocabulary ("University_Structure").ToList (); 
 
