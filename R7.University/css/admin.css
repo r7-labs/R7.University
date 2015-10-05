@@ -1,0 +1,16 @@
+﻿/* DnnDatePicker & DnnDateTimePicker style fix */
+
+.dnnForm .RadPicker_Default,
+.dnnForm .RadPicker_Input  
+{   
+    /* override inline style */
+    height:33px!important;
+}
+
+.dnnForm .RadPicker_Input .riTextBox,
+.dnnForm .RadPicker_Default .riTextBox 
+{ 
+    height:33px 
+}
+
+/* end fix */

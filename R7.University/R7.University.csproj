@@ -120,4 +120,7 @@
     <None Include="SqlDataProvider\01.02.00.SqlDataProvider" />
     <None Include="SqlDataProvider\02.00.00.SqlDataProvider" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\admin.css" />
+  </ItemGroup>
 </Project>
