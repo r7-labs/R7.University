@@ -52,7 +52,6 @@
     <Compile Include="components\SettingsWrapper.cs" />
     <Compile Include="entities\EmployeeInfo.cs" />
     <Compile Include="entities\DivisionInfo.cs" />
-    <Compile Include="entities\EntityBase.cs" />
     <Compile Include="entities\PositionInfo.cs" />
     <Compile Include="entities\IAuditable.cs" />
     <Compile Include="entities\ReferenceEntityBase.cs" />
@@ -85,6 +84,7 @@
     <Compile Include="entities\EmployeeDisciplineInfoEx.cs" />
     <Compile Include="entities\EduProgramProfileInfo.cs" />
     <Compile Include="entities\EduProgramProfileInfoEx.cs" />
+    <Compile Include="entities\UniversityEntityBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

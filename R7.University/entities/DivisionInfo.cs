@@ -17,7 +17,7 @@ namespace R7.University
 	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
 	[TableName ("University_Divisions")]
 	[PrimaryKey ("DivisionID", AutoIncrement = true)]
-	public class DivisionInfo : EntityBase, IReferenceEntity
+	public class DivisionInfo : UniversityEntityBase, IReferenceEntity
 	{
 		#region Fields
 

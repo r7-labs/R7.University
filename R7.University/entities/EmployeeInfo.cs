@@ -18,7 +18,7 @@ namespace R7.University
 	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
 	[TableName ("University_Employees")]
 	[PrimaryKey ("EmployeeID", AutoIncrement = true)]
-	public class EmployeeInfo : EntityBase
+	public class EmployeeInfo : UniversityEntityBase
 	{
 		/// <summary>
 		/// Empty default cstor
