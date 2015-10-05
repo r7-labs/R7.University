@@ -43,6 +43,16 @@ namespace R7.University
 
         public string Title { get; set; }
 
+        public string Generation { get; set; }
+
+        public DateTime? AccreditedToDate { get; set; }
+
+        // TODO: Move this to UniversityEntityBase and use it instead of IsPublished
+
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
         #endregion
 
         [IgnoreColumn]

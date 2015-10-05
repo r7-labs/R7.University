@@ -7,11 +7,13 @@
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'Generation')
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
         ADD [Generation] nvarchar (16) NULL,
-        [AccreditedTo] datetime NULL,
+        [AccreditedToDate] datetime NULL,
         [CreatedOnDate] datetime NULL,
         [CreatedByUserID] int NULL,
         [LastModifiedOnDate] datetime NULL,
-        [LastModifiedByUserID] int NULL
+        [LastModifiedByUserID] int NULL,
+        [StartDate] datetime NULL,
+        [EndDate] datetime NULL
 GO
 
 IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and type in (N'U'))
@@ -30,7 +32,8 @@ BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramForms] (
         [EduProgramID] int NOT NULL,
         [EduFormID] int NOT NULL,
-        [TimeToLearn] int
+        [TimeToLearn] int,
+        [LastYearOfAcceptance] int
         CONSTRAINT [PK_{objectQualifier}University_EduProgramForms] PRIMARY KEY CLUSTERED (EduProgramID, EduFormID)
     )
 END
@@ -50,7 +53,9 @@ BEGIN
         [CreatedOnDate] datetime NULL,
         [CreatedByUserID] int NULL,
         [LastModifiedOnDate] datetime NULL,
-        [LastModifiedByUserID] int NULL
+        [LastModifiedByUserID] int NULL,
+        [StartDate] datetime NULL,
+        [EndDate] datetime NULL
         CONSTRAINT [PK_{objectQualifier}University_EduProgramProfiles] PRIMARY KEY CLUSTERED (EduProgramProfileID)
         CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduPrograms] FOREIGN KEY (EduProgramID) 
             REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE
@@ -58,7 +63,7 @@ BEGIN
 
     INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramProfiles] SELECT 
         (SELECT TOP(1) EduProgramID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] WHERE Code = EP.Code ORDER BY EduProgramID ASC) AS EduProgramID,
-        EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle, NULL, GETDATE(), 1, GETDATE(), 1 
+        EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle, NULL, GETDATE(), 1, GETDATE(), 1, NULL, NULL
             FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
 END
 GO
@@ -145,3 +150,5 @@ CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles] A
         INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
             ON EPP.EduProgramID = EP.EduProgramID
 GO
+
+-- Do cleanup after upgrade to 2.0.0 version

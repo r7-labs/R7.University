@@ -44,6 +44,10 @@ namespace R7.University
 
         public string ProfileTitle { get; set; }
 
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
         #endregion
     }
 }
