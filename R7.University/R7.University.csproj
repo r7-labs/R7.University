@@ -85,12 +85,14 @@
     <Compile Include="entities\EduProgramProfileInfo.cs" />
     <Compile Include="entities\EduProgramProfileInfoEx.cs" />
     <Compile Include="entities\UniversityEntityBase.cs" />
+    <Compile Include="Extensions\ModuleAuditControlExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="entities\" />
     <Folder Include="components\" />
     <Folder Include="css\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
