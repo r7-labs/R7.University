@@ -77,7 +77,6 @@
     <Compile Include="entities\CharEnumInfo.cs" />
     <Compile Include="components\DataTableConstructor.cs" />
     <Compile Include="components\ViewNumerator.cs" />
-    <Compile Include="components\GridViewExtensions.cs" />
     <Compile Include="components\CopyCstor.cs" />
     <Compile Include="components\UrlUtils.cs" />
     <Compile Include="entities\EmployeeDisciplineInfo.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="entities\EduProgramProfileInfoEx.cs" />
     <Compile Include="entities\UniversityEntityBase.cs" />
     <Compile Include="Extensions\ModuleAuditControlExtensions.cs" />
+    <Compile Include="Extensions\GridViewExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
