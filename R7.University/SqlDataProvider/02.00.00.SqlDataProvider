@@ -7,7 +7,11 @@
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'Generation')
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
         ADD [Generation] nvarchar (16) NULL,
-        [AccreditedTo] datetime NULL
+        [AccreditedTo] datetime NULL,
+        [CreatedOnDate] datetime NULL,
+        [CreatedByUserID] int NULL,
+        [LastModifiedOnDate] datetime NULL,
+        [LastModifiedByUserID] int NULL
 GO
 
 IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and type in (N'U'))
@@ -42,7 +46,11 @@ BEGIN
         [OldEduProgramID] int,
         [ProfileCode] nvarchar (64) NULL,
         [ProfileTitle] nvarchar (250) NULL,
-        [DivisionID] int NULL
+        [DivisionID] int NULL,
+        [CreatedOnDate] datetime NULL,
+        [CreatedByUserID] int NULL,
+        [LastModifiedOnDate] datetime NULL,
+        [LastModifiedByUserID] int NULL
         CONSTRAINT [PK_{objectQualifier}University_EduProgramProfiles] PRIMARY KEY CLUSTERED (EduProgramProfileID)
         CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduPrograms] FOREIGN KEY (EduProgramID) 
             REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE
@@ -50,7 +58,8 @@ BEGIN
 
     INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramProfiles] SELECT 
         (SELECT TOP(1) EduProgramID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] WHERE Code = EP.Code ORDER BY EduProgramID ASC) AS EduProgramID,
-        EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle, NULL FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
+        EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle, NULL, GETDATE(), 1, GETDATE(), 1 
+            FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
 END
 GO
 

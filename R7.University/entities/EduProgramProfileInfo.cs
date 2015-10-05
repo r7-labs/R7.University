@@ -29,12 +29,10 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    // TODO: Inherit from EnityBase
-
     [TableName ("University_EduProgramProfiles")]
     [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
     [Scope ("EduProgramID")]
-    public class EduProgramProfileInfo
+    public class EduProgramProfileInfo: UniversityEntityBase
     {
         #region Properties
 
