@@ -35,9 +35,9 @@ namespace R7.University.Extensions
     {
         public static void Bind (this ModuleAuditControl auditControl, IAuditable item)
         {
-            auditControl.CreatedDate = item.CreatedOnDate.ToString ();
+            auditControl.CreatedDate = item.CreatedOnDate.ToLongDateString ();
             auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID);
-            auditControl.LastModifiedDate = item.LastModifiedOnDate.ToString ();
+            auditControl.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
             auditControl.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID);
         }
     }

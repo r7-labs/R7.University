@@ -8,6 +8,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.UI.UserControls;
 using R7.University;
+using R7.University.Extensions;
 
 namespace R7.University.Launchpad
 {
@@ -74,11 +75,7 @@ namespace R7.University.Launchpad
                             // textProfileCode.Text = item.ProfileCode;
                             // textProfileTitle.Text = item.ProfileTitle;
 
-                            // fill audit control
-                            auditControl.CreatedDate = item.CreatedOnDate.ToString ();
-                            auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, "System");
-                            auditControl.LastModifiedDate = item.LastModifiedOnDate.ToString ();
-                            auditControl.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, "System");
+                            auditControl.Bind (item);
 						}
 						else
 							Response.Redirect (Globals.NavigateURL (), true);

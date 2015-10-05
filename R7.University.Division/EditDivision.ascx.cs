@@ -11,6 +11,7 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University;
+using R7.University.Extensions;
 
 namespace R7.University.Division
 {
@@ -142,12 +143,7 @@ namespace R7.University.Division
 								// or set to "None", if url is empty
 								urlDocumentUrl.UrlType = "N";
 
-							// setup audit control
-							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString ("System.Text"));
-							ctlAudit.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, LocalizeString ("System.Text"));
-							ctlAudit.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
-
+                            ctlAudit.Bind (item);
 						}
 						else
 							Response.Redirect (Globals.NavigateURL (), true);

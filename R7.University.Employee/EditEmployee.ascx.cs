@@ -16,6 +16,7 @@ using DotNetNuke.Services.FileSystem;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University;
+using R7.University.Extensions;
 
 // TODO: ModuleAuditControl not saving label content in a ViewState!
 
@@ -293,10 +294,7 @@ namespace R7.University.Employee
                             gridEduPrograms.DataBind ();
 
                             // setup audit control
-							ctlAudit.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, LocalizeString ("System.Text"));
-							ctlAudit.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-							ctlAudit.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, LocalizeString ("System.Text"));
-							ctlAudit.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
+                            ctlAudit.Bind (item);
 						}
 						else
 							Response.Redirect (Globals.NavigateURL (), true);
