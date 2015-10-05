@@ -80,6 +80,12 @@
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.resx" />
+    <None Include="App_LocalResources\EditEduLevel.ascx.resx">
+      <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="App_LocalResources\EditEduProgram.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\LaunchpadInfo.cs" />
@@ -147,15 +153,5 @@
       <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
       <Name>R7.University</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="App_LocalResources\EditEduLevel.ascx.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_LocalResources\EditEduProgram.ascx.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>

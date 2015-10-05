@@ -42,6 +42,30 @@
     <data name="labelEduLevel.Help">
         <value>Select the level of educational program.</value>
     </data>
+    <data name="labelGeneration.Text">
+        <value>Generation:</value>
+    </data>
+    <data name="labelGeneration.Help">
+        <value>Enter the generation code for educational program, e.g. '3+'.</value>
+    </data>
+    <data name="labelAccreditedToDate.Text">
+        <value>Accredited To:</value>
+    </data>
+    <data name="labelAccreditedToDate.Help">
+        <value>Enter the date current educational program is accredited to, or leave empty.</value>
+    </data>
+    <data name="labelStartDate.Text">
+        <value>Start Publication:</value>
+    </data>
+    <data name="labelStartDate.Help">
+        <value>Enter the date from current educational program should be published on the site.</value>
+    </data>
+    <data name="labelEndDate.Text">
+        <value>End Publication:</value>
+    </data>
+    <data name="labelEndDate.Help">
+        <value>Enter the date from current educational program should be removed from publication on the site.</value>
+    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;An Edit education program module&lt;/P&gt;</value>
     </data>

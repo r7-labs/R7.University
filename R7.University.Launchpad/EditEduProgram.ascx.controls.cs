@@ -16,8 +16,14 @@ namespace R7.University.Launchpad
 		protected HyperLink linkCancel;
         protected TextBox textCode;
 		protected TextBox textTitle;
+        protected TextBox textGeneration;
+        protected DnnDatePicker dateAccreditedToDate;
+        protected DnnDateTimePicker datetimeStartDate;
+        protected DnnDateTimePicker datetimeEndDate;
+        protected DropDownList comboEduLevel;
+        protected ModuleAuditControl auditControl;
+
         //protected TextBox textProfileCode;
         //protected TextBox textProfileTitle;
-        protected DropDownList comboEduLevel;
 	}
 }

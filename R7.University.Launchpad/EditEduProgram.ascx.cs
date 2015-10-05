@@ -65,16 +65,27 @@ namespace R7.University.Launchpad
 						{
 							textCode.Text = item.Code;
 							textTitle.Text = item.Title;
+                            textGeneration.Text = item.Generation;
+                            dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
+                            datetimeStartDate.SelectedDate = item.StartDate;
+                            datetimeEndDate.SelectedDate = item.EndDate;
+                            Utils.SelectByValue (comboEduLevel, item.EduLevelID.ToString ());
+
                             // textProfileCode.Text = item.ProfileCode;
                             // textProfileTitle.Text = item.ProfileTitle;
-                               
-                            Utils.SelectByValue (comboEduLevel, item.EduLevelID.ToString ());
+
+                            // fill audit control
+                            auditControl.CreatedDate = item.CreatedOnDate.ToString ();
+                            auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, "System");
+                            auditControl.LastModifiedDate = item.LastModifiedOnDate.ToString ();
+                            auditControl.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, "System");
 						}
 						else
 							Response.Redirect (Globals.NavigateURL (), true);
 					}
 					else
 					{
+                        auditControl.Visible = false;
 						buttonDelete.Visible = false;
 					}
 				}
@@ -116,15 +127,37 @@ namespace R7.University.Launchpad
 				// fill the object
 				item.Code = textCode.Text.Trim ();
 				item.Title = textTitle.Text.Trim ();
+                item.Generation = textGeneration.Text.Trim ();
+                item.AccreditedToDate = dateAccreditedToDate.SelectedDate;
+                item.StartDate = datetimeStartDate.SelectedDate;
+                item.EndDate = datetimeEndDate.SelectedDate;
+                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
+
                 // item.ProfileCode = textProfileCode.Text.Trim ();
                 // item.ProfileTitle = textProfileTitle.Text.Trim ();
 
-                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
-
 				if (!itemId.HasValue)
+                {
+                    item.CreatedOnDate = DateTime.Now;
+                    item.LastModifiedOnDate = item.CreatedOnDate;
+                    item.CreatedByUserID = UserInfo.UserID;
+                    item.LastModifiedByUserID = item.CreatedByUserID;
                     LaunchpadController.Add<EduProgramInfo> (item);
+                }
 				else
+                {
+                    item.LastModifiedOnDate = DateTime.Now;
+                    item.LastModifiedByUserID = UserInfo.UserID;
+
+                    // REVIEW: Solve on SqlDataProvider level on upgrage to 2.0.0?
+                    if (item.CreatedOnDate == default (DateTime)) 
+                    {
+                        item.CreatedOnDate = item.LastModifiedOnDate;
+                        item.CreatedByUserID = item.LastModifiedByUserID;
+                    }
+
                     LaunchpadController.Update<EduProgramInfo> (item);
+                }
 
 				Utils.SynchronizeModule (this);
 
