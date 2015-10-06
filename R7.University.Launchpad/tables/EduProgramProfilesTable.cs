@@ -1,5 +1,5 @@
 ﻿//
-// GridViewExtensions.cs
+// EduProgramProfilesTable.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,19 +25,22 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI.WebControls;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Localization;
+using System.Data;
 
-namespace R7.University
+namespace R7.University.Launchpad
 {
-    public static class GridViewExtensions
+    public class EduProgramProfilesTable: LaunchpadTableBase
     {
-        public static void LocalizeColumns (this GridView gv, string resourceFile)
+        public EduProgramProfilesTable (): base ("eduprogramprofiles")
         {
-            foreach (DataControlField column in gv.Columns)
-                column.HeaderText = Localization.GetString (column.HeaderText + ".Column", resourceFile);
+        }
+
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
+        {
+            var eduProgramProfiles = module.LaunchpadController.FindObjects<EduProgramProfileInfo> (false,
+                @"WHERE CONCAT([ProfileCode], ' ', [ProfileTitle]) LIKE N'%{0}%'", search);
+
+            return DataTableConstructor.FromIEnumerable (eduProgramProfiles);
         }
     }
 }
-

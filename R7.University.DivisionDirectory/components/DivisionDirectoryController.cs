@@ -56,7 +56,7 @@ namespace R7.University.DivisionDirectory
         {
             var searchDocs = new List<SearchDocument> ();
 
-            // TODO: Realize GetModifiedSearchDocuments()
+            // TODO: Implement GetModifiedSearchDocuments()
 
             /* var sd = new SearchDocument();
             searchDocs.Add(searchDoc);

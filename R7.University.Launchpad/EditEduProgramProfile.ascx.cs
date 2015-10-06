@@ -12,7 +12,7 @@ using R7.University.Extensions;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditEduProgram : LaunchpadPortalModuleBase
+	public partial class EditEduProgramProfile : LaunchpadPortalModuleBase
 	{
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
@@ -33,9 +33,10 @@ namespace R7.University.Launchpad
 			// add confirmation dialog to delete button
 			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 
-			// bind education levels
-            comboEduLevel.DataSource = LaunchpadController.GetObjects<EduLevelInfo> ();
-            comboEduLevel.DataBind ();
+			// bind education program profiles
+            comboEduProgram.DataSource = LaunchpadController.GetObjects<EduProgramInfo> ();
+            comboEduProgram.DataBind ();
+            comboEduProgram.SelectedIndex = 0;
 		}
 
 		/// <summary>
@@ -49,7 +50,7 @@ namespace R7.University.Launchpad
 			try
 			{
 				// parse querystring parameters
-				itemId = Utils.ParseToNullableInt (Request.QueryString ["eduprogram_id"]);
+				itemId = Utils.ParseToNullableInt (Request.QueryString ["eduprogramprofile_id"]);
       
 				if (!IsPostBack)
 				{
@@ -60,17 +61,15 @@ namespace R7.University.Launchpad
 					if (itemId.HasValue)
 					{
 						// load the item
-						var item = LaunchpadController.Get<EduProgramInfo> (itemId.Value);
+						var item = LaunchpadController.Get<EduProgramProfileInfo> (itemId.Value);
 
 						if (item != null)
 						{
-							textCode.Text = item.Code;
-							textTitle.Text = item.Title;
-                            textGeneration.Text = item.Generation;
-                            dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
+							textProfileCode.Text = item.ProfileCode;
+							textProfileTitle.Text = item.ProfileTitle;
                             datetimeStartDate.SelectedDate = item.StartDate;
                             datetimeEndDate.SelectedDate = item.EndDate;
-                            Utils.SelectByValue (comboEduLevel, item.EduLevelID.ToString ());
+                            Utils.SelectByValue (comboEduProgram, item.EduProgramID.ToString ());
 
                             auditControl.Bind (item);
 						}
@@ -103,29 +102,27 @@ namespace R7.University.Launchpad
 		{
 			try
 			{
-				EduProgramInfo item;
+				EduProgramProfileInfo item;
 
 				// determine if we are adding or updating
 				// ALT: if (Null.IsNull (itemId))
 				if (!itemId.HasValue)
 				{
 					// add new record
-					item = new EduProgramInfo ();
+                    item = new EduProgramProfileInfo ();
 				}
 				else
 				{
 					// update existing record
-					item = LaunchpadController.Get<EduProgramInfo> (itemId.Value);
+                    item = LaunchpadController.Get<EduProgramProfileInfo> (itemId.Value);
 				}
 
 				// fill the object
-				item.Code = textCode.Text.Trim ();
-				item.Title = textTitle.Text.Trim ();
-                item.Generation = textGeneration.Text.Trim ();
-                item.AccreditedToDate = dateAccreditedToDate.SelectedDate;
+				item.ProfileCode = textProfileCode.Text.Trim ();
+				item.ProfileTitle = textProfileTitle.Text.Trim ();
                 item.StartDate = datetimeStartDate.SelectedDate;
                 item.EndDate = datetimeEndDate.SelectedDate;
-                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
+                item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
 
 				if (!itemId.HasValue)
                 {
@@ -133,7 +130,7 @@ namespace R7.University.Launchpad
                     item.LastModifiedOnDate = item.CreatedOnDate;
                     item.CreatedByUserID = UserInfo.UserID;
                     item.LastModifiedByUserID = item.CreatedByUserID;
-                    LaunchpadController.Add<EduProgramInfo> (item);
+                    LaunchpadController.Add<EduProgramProfileInfo> (item);
                 }
 				else
                 {
@@ -147,7 +144,7 @@ namespace R7.University.Launchpad
                         item.CreatedByUserID = item.LastModifiedByUserID;
                     }
 
-                    LaunchpadController.Update<EduProgramInfo> (item);
+                    LaunchpadController.Update<EduProgramProfileInfo> (item);
                 }
 
 				Utils.SynchronizeModule (this);
@@ -176,7 +173,7 @@ namespace R7.University.Launchpad
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue)
 				{
-                    LaunchpadController.Delete<EduProgramInfo> (itemId.Value);
+                    LaunchpadController.Delete<EduProgramProfileInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}

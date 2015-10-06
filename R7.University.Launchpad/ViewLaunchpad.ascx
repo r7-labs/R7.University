@@ -194,8 +194,45 @@
                         <asp:BoundField DataField="EduLevelID" SortExpression="EduLevelID" HeaderText="EduLevelID" />
                         <asp:BoundField DataField="Code" SortExpression="Code" HeaderText="Code" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="Generation" SortExpression="Generation" HeaderText="Generation" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="AccreditedToDate" SortExpression="AccreditedToDate" HeaderText="AccreditedToDate" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="StartDate" SortExpression="StartDate" HeaderText="StartDate" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="EndDate" SortExpression="EndDate" HeaderText="EndDate" ConvertEmptyStringToNull="false" />
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" Visible="true" />
+                </asp:GridView>
+                <br />
+            </div>
+        </asp:View>
+        <asp:View id="viewEduProgramProfiles" runat="server">
+            <div id="eduprogramprofiles" style="overflow:auto">
+                <asp:HyperLink runat="server" id="buttonAddEduProgramProfile" CssClass="dnnPrimaryAction">Add Educational Program Profile</asp:HyperLink><br />
+                <asp:GridView id="gridEduProgramProfiles" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None" 
+                    OnSorting="gridView_Sorting" 
+                    OnPageIndexChanging="gridView_PageIndexChanging"
+                    OnRowDataBound="gridView_RowDataBound">
+                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                    <SelectedRowStyle CssClass="dnnFormError" />
+                    <EditRowStyle CssClass="dnnFormInput" />
+                    <FooterStyle CssClass="dnnGridFooter" />
+                    <PagerStyle CssClass="dnnGridPager" />
+                    <Columns>
+                        <asp:TemplateField>
+                           <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                </asp:HyperLink>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="EduProgramProfileID" SortExpression="EduProgramProfileID" HeaderText="EduProgramProfileID" />
+                        <asp:BoundField DataField="EduProgramID" SortExpression="EduProgramID" HeaderText="EduProgramID" />
                         <asp:BoundField DataField="ProfileCode" SortExpression="ProfileCode" HeaderText="ProfileCode" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="ProfileTitle" SortExpression="ProfileTitle" HeaderText="ProfileTitle" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="StartDate" SortExpression="StartDate" HeaderText="StartDate" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="EndDate" SortExpression="EndDate" HeaderText="EndDate" ConvertEmptyStringToNull="false" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>

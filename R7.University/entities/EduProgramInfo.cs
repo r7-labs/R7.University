@@ -29,11 +29,9 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    // TODO: Inherit from EnityBase
-
     [TableName ("University_EduPrograms")]
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo
+    public class EduProgramInfo: UniversityEntityBase
     {
         #region Properties
 
@@ -45,23 +43,22 @@ namespace R7.University
 
         public string Title { get; set; }
 
-        public string ProfileCode { get; set; }
+        public string Generation { get; set; }
 
-        public string ProfileTitle { get; set; }
+        public DateTime? AccreditedToDate { get; set; }
+
+        // TODO: Move this to UniversityEntityBase and use it instead of IsPublished
+
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
 
         #endregion
 
         [IgnoreColumn]
-        public string EduProgram
+        public string EduProgramString
         {
-            get { return FormatEduProgram (Code, Title, ProfileCode, ProfileTitle); }
-        }
-
-        public static string FormatEduProgram (string code, string title, string profileCode, string profileTitle)
-        {
-            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
-            return Utils.FormatList (" ", code, title) +
-                (!string.IsNullOrWhiteSpace (profileString)? " (" + profileString + ")" : string.Empty);
+            get { return Utils.FormatList (" ", Code, Title); }
         }
     }
 }

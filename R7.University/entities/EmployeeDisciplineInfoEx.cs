@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramsTable.cs
+// EmployeeEduProgramInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,22 +25,36 @@
 // THE SOFTWARE.
 
 using System;
-using System.Data;
+using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-    public class EduProgramsTable: LaunchpadTableBase
+    [TableName ("vw_University_EmployeeDisciplines")]
+    [Scope ("EmployeeID")]
+    [Serializable]
+    public class EmployeeDisciplineInfoEx: EmployeeDisciplineInfo
     {
-        public EduProgramsTable (): base ("eduprograms")
-        {
-        }
+        #region External properties
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
-        {
-            var eduPrograms = module.LaunchpadController.FindObjects<EduProgramInfo> (false,
-                @"WHERE CONCAT([Code], ' ', [Title]) LIKE N'%{0}%'", search);
+        public string Code { get; set; }
 
-            return DataTableConstructor.FromIEnumerable (eduPrograms);
+        public string Title { get; set; }
+
+        public string ProfileCode { get; set; }
+
+        public string ProfileTitle { get; set; }
+
+        #endregion
+
+        [IgnoreColumn]
+        public string EduProfileString
+        {
+            get
+            {
+                var profileString = Utils.FormatList (" ", ProfileCode, ProfileTitle);
+                return Utils.FormatList (" ", Code, Title) +
+                    (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
+            }
         }
     }
 }

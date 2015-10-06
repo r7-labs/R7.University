@@ -96,7 +96,7 @@
                 <ItemTemplate>
                     <h3>
                         <asp:Literal id="literalEduProgramAnchor" runat="server" />
-                        <asp:Label id="labelEduProgram" runat="server" Text='<%# Eval ("EduProgram") %>' />
+                        <asp:Label id="labelEduProgram" runat="server" Text='<%# Eval ("EduProfileString") %>' />
                     </h3>
                     <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
                             OnRowDataBound="gridTeachersByEduProgram_RowDataBound"

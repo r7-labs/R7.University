@@ -33,6 +33,12 @@ namespace R7.University
 
 	public static class Utils
 	{
+        /// <summary>
+        /// Gets the display name of specified user.
+        /// </summary>
+        /// <returns>The user display name.</returns>
+        /// <param name="userId">User identifier.</param>
+        /// <param name="defName">Default user display name. Pass Null.NullInteger string to use with ModuleAuditControl.</param>
 		public static string GetUserDisplayName (int userId, string defName)
 		{
 			var portalId = PortalController.GetCurrentPortalSettings ().PortalId;

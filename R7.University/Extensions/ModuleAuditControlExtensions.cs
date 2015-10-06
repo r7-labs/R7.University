@@ -1,5 +1,5 @@
-//
-// EmployeeEduProgramView.cs
+﻿//
+// ModuleAuditControlExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,34 +25,21 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
+using DotNetNuke.UI.UserControls;
+using DotNetNuke.Services.Localization;
+using DotNetNuke.Common.Utilities;
 
-namespace R7.University.Employee
+namespace R7.University.Extensions
 {
-    [Serializable]
-    public class EmployeeEduProgramView: EmployeeEduProgramInfoEx
-	{
-        public int ItemID { get; set; }
-
-        public EmployeeEduProgramView ()
+    public static class ModuleAuditControlExtensions
+    {
+        public static void Bind (this ModuleAuditControl auditControl, IAuditable item)
         {
-            ItemID = ViewNumerator.GetNextItemID ();
+            auditControl.CreatedDate = item.CreatedOnDate.ToLongDateString ();
+            auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, Null.NullInteger.ToString ());
+            auditControl.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
+            auditControl.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, Null.NullInteger.ToString ());
         }
-
-        public EmployeeEduProgramView (EmployeeEduProgramInfoEx program): this ()
-        {
-            CopyCstor.Copy<EmployeeEduProgramInfoEx> (program, this);
-        }
-
-        public EmployeeEduProgramInfo NewEmployeeEduProgramInfo ()
-        {
-            return new EmployeeEduProgramInfo {
-                EmployeeEduProgramID = EmployeeEduProgramID,
-                EmployeeID = EmployeeID,
-                EduProgramID = EduProgramID,
-                Disciplines = Disciplines
-            };
-        }
-	}
+    }
 }
 

@@ -54,8 +54,8 @@
     <data name="DocumentUrl.Column">
         <value>Документ</value>
     </data>
-    <data name="EduProgram.Column">
-        <value>Образовательная программа</value>
+    <data name="EduProfile.Column">
+        <value>Профиль подготовки (специализация)</value>
     </data>
     <data name="Disciplines.Column">
         <value>Дисциплины</value>

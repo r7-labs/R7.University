@@ -1,5 +1,5 @@
 ﻿//
-// EmployeeEduProgramInfoEx.cs
+// GridViewExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,31 +25,19 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Web.UI.WebControls;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services.Localization;
 
-namespace R7.University
+namespace R7.University.Extensions
 {
-    [TableName ("vw_University_EmployeeEduPrograms")]
-    [Scope ("EmployeeID")]
-    [Serializable]
-    public class EmployeeEduProgramInfoEx: EmployeeEduProgramInfo
+    public static class GridViewExtensions
     {
-        #region External (EduProgram) properties
-
-        public string Code { get; set; }
-
-        public string Title { get; set; }
-
-        public string ProfileCode { get; set; }
-
-        public string ProfileTitle { get; set; }
-
-        #endregion
-
-        [IgnoreColumn]
-        public string EduProgram
+        public static void LocalizeColumns (this GridView gv, string resourceFile)
         {
-            get { return EduProgramInfo.FormatEduProgram (Code, Title, ProfileCode, ProfileTitle); }
+            foreach (DataControlField column in gv.Columns)
+                column.HeaderText = Localization.GetString (column.HeaderText + ".Column", resourceFile);
         }
     }
 }
+

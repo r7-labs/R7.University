@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2015
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Entities.Icons;
 using R7.University;
+using R7.University.Extensions;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -145,17 +146,17 @@ namespace R7.University.EmployeeDirectory
                     }
                     else if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
                     {
-                        var eduPrograms = EmployeeDirectoryController.GetObjects<EduProgramInfo> ().OrderBy (ep => ep.Code).ToList ();
+                        var eduProfiles = EmployeeDirectoryController.GetObjects<EduProgramProfileInfoEx> ().OrderBy (epp => epp.Code).ToList ();
 
-                        eduPrograms.Add (new EduProgramInfo { 
-                            EduProgramID = Null.NullInteger,
+                        eduProfiles.Add (new EduProgramProfileInfoEx { 
+                            EduProgramProfileID = Null.NullInteger,
                             Code = string.Empty,
                             Title = LocalizeString ("NoEduPrograms.Text")
                         });
  
-                        if (eduPrograms.Count > 0)
+                        if (eduProfiles.Count > 0)
                         {
-                            repeaterEduPrograms.DataSource = eduPrograms;
+                            repeaterEduPrograms.DataSource = eduProfiles;
                             repeaterEduPrograms.DataBind ();
                         }
                     }
@@ -169,13 +170,13 @@ namespace R7.University.EmployeeDirectory
 
         #endregion
 
-        private int eduProgramId;
+        private int eduProfileId;
 
         protected void repeaterEduPrograms_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var eduProgram = (EduProgramInfo) e.Item.DataItem;
+                var eduProfile = (EduProgramProfileInfoEx) e.Item.DataItem;
 
                 // find controls in the template
                 var labelEduProgram = (Label) e.Item.FindControl ("labelEduProgram");
@@ -185,7 +186,7 @@ namespace R7.University.EmployeeDirectory
                 IEnumerable<EmployeeInfo> teachers;
                 string anchorName;
 
-                if (Null.IsNull (eduProgram.EduProgramID))
+                if (Null.IsNull (eduProfile.EduProgramProfileID))
                 {
                     anchorName = "empty";
 
@@ -194,10 +195,10 @@ namespace R7.University.EmployeeDirectory
                 }
                 else
                 {
-                    anchorName = eduProgram.EduProgramID.ToString ();
+                    anchorName = eduProfile.EduProgramProfileID.ToString ();
 
                     // select teachers for current edu program
-                    teachers = EmployeeDirectoryController.GetTeachersByEduProgram (eduProgram.EduProgramID);
+                    teachers = EmployeeDirectoryController.GetTeachersByEduProgramProfile (eduProfile.EduProgramProfileID);
                 }
 
                 // create anchor to simplify navigation
@@ -206,8 +207,8 @@ namespace R7.University.EmployeeDirectory
 
                 if (teachers.Any ())
                 {
-                    // pass eduProgramId to gridTeachersByEduProgram_RowDataBound()
-                    eduProgramId = eduProgram.EduProgramID;
+                    // pass eduProfileId to gridTeachersByEduProgram_RowDataBound()
+                    eduProfileId = eduProfile.EduProgramProfileID;
 
                     gridTeachersByEduProgram.LocalizeColumns (LocalResourceFile);
 
@@ -251,14 +252,14 @@ namespace R7.University.EmployeeDirectory
 
                 #region Disciplines
 
-                if (!Null.IsNull (eduProgramId))
+                if (!Null.IsNull (eduProfileId))
                 {
                     var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
 
-                    var eepi = EmployeeDirectoryController.GetObjects <EmployeeEduProgramInfo> (
-                        "WHERE [EmployeeID] = @0 AND [EduProgramID] = @1", teacher.EmployeeID, eduProgramId).FirstOrDefault ();
+                    var discipline = EmployeeDirectoryController.GetObjects <EmployeeDisciplineInfo> (
+                        "WHERE [EmployeeID] = @0 AND [EduProgramProfileID] = @1", teacher.EmployeeID, eduProfileId).FirstOrDefault ();
 
-                    if (eepi != null) literalDisciplines.Text = eepi.Disciplines;
+                    if (discipline != null) literalDisciplines.Text = discipline.Disciplines;
                 }
 
                 #endregion

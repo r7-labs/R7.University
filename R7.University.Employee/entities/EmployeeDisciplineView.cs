@@ -1,5 +1,5 @@
-﻿//
-// EduProgramsTable.cs
+//
+// EmployeeEduProgramView.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,22 +25,33 @@
 // THE SOFTWARE.
 
 using System;
-using System.Data;
+using R7.University;
 
-namespace R7.University.Launchpad
+namespace R7.University.Employee
 {
-    public class EduProgramsTable: LaunchpadTableBase
-    {
-        public EduProgramsTable (): base ("eduprograms")
+    [Serializable]
+    public class EmployeeDisciplineView: EmployeeDisciplineInfoEx
+	{
+        public int ItemID { get; set; }
+
+        public EmployeeDisciplineView ()
         {
+            ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
+        public EmployeeDisciplineView (EmployeeDisciplineInfoEx program): this ()
         {
-            var eduPrograms = module.LaunchpadController.FindObjects<EduProgramInfo> (false,
-                @"WHERE CONCAT([Code], ' ', [Title]) LIKE N'%{0}%'", search);
-
-            return DataTableConstructor.FromIEnumerable (eduPrograms);
+            CopyCstor.Copy<EmployeeDisciplineInfoEx> (program, this);
         }
-    }
+
+        public EmployeeDisciplineInfo NewEmployeeDisciplineInfo ()
+        {
+            return new EmployeeDisciplineInfo {
+                EmployeeID = EmployeeID,
+                EduProgramProfileID = EduProgramProfileID,
+                Disciplines = Disciplines
+            };
+        }
+	}
 }
+

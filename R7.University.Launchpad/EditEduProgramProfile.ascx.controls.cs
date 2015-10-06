@@ -9,15 +9,14 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditEduProgram
+	public partial class EditEduProgramProfile
 	{
 		protected LinkButton buttonUpdate;
 		protected LinkButton buttonDelete;
 		protected HyperLink linkCancel;
-        protected TextBox textCode;
-		protected TextBox textTitle;
-        protected TextBox textGeneration;
-        protected DnnDatePicker dateAccreditedToDate;
+        protected AjaxControlToolkit.ComboBox comboEduProgram;
+        protected TextBox textProfileCode;
+		protected TextBox textProfileTitle;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected DropDownList comboEduLevel;

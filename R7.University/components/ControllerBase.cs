@@ -206,7 +206,7 @@ namespace R7.University
 				infos = repo.GetPage (scopeId, index, size);
 			}
 
-            // REVIEW: Need to return empty collection?
+            // REVIEW: How to return empty collection?
             return infos;
 		}
 
@@ -218,7 +218,7 @@ namespace R7.University
 		/// <returns>A paged list of T objects</returns>
 		public IPagedList<T> GetPage<T> (int index, int size) where T: class
 		{
-			IPagedList<T> infos;
+            IPagedList<T> infos;
 
 			using (var ctx = DataContext.Instance ())
 			{
@@ -226,7 +226,7 @@ namespace R7.University
 				infos = repo.GetPage (index, size);
 			}
 
-            // REVIEW: Need to return empty collection?
+            // REVIEW: How to return empty collection?
 			return infos;
 		}
 
@@ -316,7 +316,7 @@ namespace R7.University
 		public void AddEmployee (EmployeeInfo employee, 
 		    List<OccupiedPositionInfo> occupiedPositions, 
             List<EmployeeAchievementInfo> achievements,
-            List<EmployeeEduProgramInfo> eduPrograms)
+            List<EmployeeDisciplineInfo> eduPrograms)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -345,7 +345,7 @@ namespace R7.University
                     foreach (var ep in eduPrograms)
                     {
                         ep.EmployeeID = employee.EmployeeID;
-                        Add<EmployeeEduProgramInfo> (ep);
+                        Add<EmployeeDisciplineInfo> (ep);
                     }
 				
 					ctx.Commit ();
@@ -362,7 +362,7 @@ namespace R7.University
 		public void UpdateEmployee (EmployeeInfo employee, 
 		    List<OccupiedPositionInfo> occupiedPositions, 
             List<EmployeeAchievementInfo> achievements,
-            List<EmployeeEduProgramInfo> eduPrograms)
+            List<EmployeeDisciplineInfo> disciplines)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -430,29 +430,30 @@ namespace R7.University
 							Update<EmployeeAchievementInfo> (ach);
 					}
 
-                    var employeeEduProgramIDs = eduPrograms.Select (a => a.EmployeeEduProgramID.ToString ());
-                    if (employeeEduProgramIDs.Any())
+                    var employeeEduProfileIDs = disciplines.Select (a => a.EduProgramProfileID.ToString ());
+                    if (employeeEduProfileIDs.Any ())
                     {
                         // delete those not in current list
-                        Delete<EmployeeEduProgramInfo> (
-                            string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeEduProgramID] NOT IN ({1})", 
-                                employee.EmployeeID, Utils.FormatList (", ", employeeEduProgramIDs))); 
+                        Delete<EmployeeDisciplineInfo> (
+                            string.Format ("WHERE [EmployeeID] = {0} AND [EduProgramProfileID] NOT IN ({1})", 
+                                employee.EmployeeID, Utils.FormatList (", ", employeeEduProfileIDs))); 
                     }
                     else
                     {
-                        // delete all employee edu programs
-                        Delete<EmployeeEduProgramInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
+                        // delete all employee disciplines
+                        Delete<EmployeeDisciplineInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
                     }
 
-                    // add new employee edu programs
-                    foreach (var ep in eduPrograms)
+                    // add new employee disciplines
+                    foreach (var discipline in disciplines)
                     {
-                        ep.EmployeeID = employee.EmployeeID;
-
-                        if (ep.EmployeeEduProgramID <= 0)
-                            Add<EmployeeEduProgramInfo> (ep);
+                        if (discipline.EmployeeID <= 0)
+                        {
+                            discipline.EmployeeID = employee.EmployeeID;
+                            Add<EmployeeDisciplineInfo> (discipline);
+                        }
                         else
-                            Update<EmployeeEduProgramInfo> (ep);
+                            Update<EmployeeDisciplineInfo> (discipline);
                     }
 
 					ctx.Commit ();
@@ -477,16 +478,18 @@ namespace R7.University
                 "University_GetHeadEmployee", divisionId).FirstOrDefault ();
         }
 
-        public IEnumerable<EmployeeInfo> GetTeachersByEduProgram (int eduProgramId)
+        public IEnumerable<EmployeeInfo> GetTeachersByEduProgramProfile (int eduProfileId)
         {
+            // TODO: Convert to stored procedure
+            
             return GetObjects<EmployeeInfo> (CommandType.Text,
                 @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
-                    INNER JOIN dbo.University_EmployeeEduPrograms AS EEP
-                        ON E.EmployeeID = EEP.EmployeeID
-                WHERE EEP.EduProgramID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
-                ORDER BY E.LastName, E.FirstName", eduProgramId);
+                    INNER JOIN dbo.University_EmployeeDisciplines AS ED
+                        ON E.EmployeeID = ED.EmployeeID
+                WHERE ED.EduProgramProfileID = @0 AND OP.IsTeacher = 1 AND E.IsPublished = 1
+                ORDER BY E.LastName, E.FirstName", eduProfileId);
         }
 
         public IEnumerable<EmployeeInfo> GetTeachersWithoutEduPrograms ()
@@ -496,7 +499,7 @@ namespace R7.University
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
                     WHERE OP.IsTeacher = 1 AND E.IsPublished = 1 AND E.EmployeeID NOT IN 
-                        (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeEduPrograms)");
+                        (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeDisciplines)");
         }
 
         public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)

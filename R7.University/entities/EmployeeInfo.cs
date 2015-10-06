@@ -18,7 +18,7 @@ namespace R7.University
 	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
 	[TableName ("University_Employees")]
 	[PrimaryKey ("EmployeeID", AutoIncrement = true)]
-	public class EmployeeInfo : EntityBase
+	public class EmployeeInfo : UniversityEntityBase
 	{
 		/// <summary>
 		/// Empty default cstor
@@ -57,18 +57,22 @@ namespace R7.University
 
 		public string Messenger { get; set; }
 
+        [Obsolete]
 		public string AcademicDegree { get; set; }
 
+        [Obsolete]
 		public string AcademicTitle { get; set; }
 
+        [Obsolete]
 		public string NamePrefix { get; set; }
-		// REVIEW: Use Academic Degree & Title, of just NamePrefix?
+		
 		public string WorkingPlace { get; set; }
 
 		public string WorkingHours { get; set; }
 
 		public string Biography { get; set; }
 
+        [Obsolete]
 		public string Disciplines { get; set; }
 
 		// NOTE: Employee stage may be not continuous, so using starting date is not possible
@@ -136,7 +140,7 @@ namespace R7.University
 					           HtmlUtils.ConvertToText (Biography)
 				           );
 
-				// TODO: Add positions to the index
+				// TODO: Add positions to the search index
 
 				return text;
 			}

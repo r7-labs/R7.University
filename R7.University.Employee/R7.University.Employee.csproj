@@ -124,7 +124,7 @@
     <Compile Include="entities\OccupiedPositionView.cs" />
     <Compile Include="entities\EmployeeAchievementView.cs" />
     <Compile Include="components\RepeaterPositionsLogic.cs" />
-    <Compile Include="entities\EmployeeEduProgramView.cs" />
+    <Compile Include="entities\EmployeeDisciplineView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
