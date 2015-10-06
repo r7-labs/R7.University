@@ -16,30 +16,6 @@ IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{database
         [EndDate] datetime NULL
 GO
 
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and type in (N'U'))
-BEGIN
-    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduForms] (
-        [EduFormID] int IDENTITY(1,1) NOT NULL,
-        [Title] nvarchar(250) NOT NULL,
-        [ShortTitle] nvarchar(64) NOT NULL
-        CONSTRAINT [PK_{objectQualifier}University_EduForms] PRIMARY KEY CLUSTERED (EduFormID)
-    )
-END
-GO
-
--- REVIEW: Should TimeToLearn relate to EduLevelForms and LastYearOfAcceptance to EduProgramProfileForms?
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramForms]') and type in (N'U'))
-BEGIN
-    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramForms] (
-        [EduProgramID] int NOT NULL,
-        [EduFormID] int NOT NULL,
-        [TimeToLearn] int,
-        [LastYearOfAcceptance] int
-        CONSTRAINT [PK_{objectQualifier}University_EduProgramForms] PRIMARY KEY CLUSTERED (EduProgramID, EduFormID)
-    )
-END
-GO
-
 -- EduProgramProfiles
 
 IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and type in (N'U'))
@@ -66,22 +42,6 @@ BEGIN
         (SELECT TOP(1) EduProgramID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] WHERE Code = EP.Code ORDER BY EduProgramID ASC) AS EduProgramID,
         EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle, NULL, GETDATE(), 1, GETDATE(), 1, NULL, NULL
             FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
-END
-GO
-
--- Documents
-
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduDocuments]') and type in (N'U'))
-BEGIN
-    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduDocuments] (
-        [EduDocumentID] int IDENTITY(1,1) NOT NULL,
-        [EduProgramID] int NULL,
-        [EduProgramProfileID] int NULL,
-        [Type] nvarchar (64),
-        [Title] nvarchar (255),
-        [Url] nvarchar (255)
-        CONSTRAINT [PK_{objectQualifier}University_EduDocuments] PRIMARY KEY CLUSTERED (EduDocumentID)
-)
 END
 GO
 
