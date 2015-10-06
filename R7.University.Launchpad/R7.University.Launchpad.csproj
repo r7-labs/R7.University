@@ -73,6 +73,7 @@
     <Content Include="EditEduLevel.ascx" />
     <Content Include="EditEduProgram.ascx" />
     <Content Include="packages.config" />
+    <Content Include="EditEduProgramProfile.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
@@ -84,6 +85,7 @@
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.resx" />
+    <None Include="App_LocalResources\EditEduProgramProfile.ascx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\LaunchpadInfo.cs" />
@@ -135,6 +137,13 @@
     </Compile>
     <Compile Include="EditEduProgram.ascx.controls.cs">
       <DependentUpon>EditEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="tables\EduProgramProfilesTable.cs" />
+    <Compile Include="EditEduProgramProfile.ascx.controls.cs">
+      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgramProfile.ascx.cs">
+      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
