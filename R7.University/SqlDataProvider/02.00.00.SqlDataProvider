@@ -27,6 +27,7 @@ BEGIN
 END
 GO
 
+-- REVIEW: Should TimeToLearn relate to EduLevelForms and LastYearOfAcceptance to EduProgramProfileForms?
 IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramForms]') and type in (N'U'))
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramForms] (
