@@ -33,9 +33,10 @@ namespace R7.University.Launchpad
 			// add confirmation dialog to delete button
 			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
 
-			// bind education levels
+			// bind education program profiles
             comboEduProgram.DataSource = LaunchpadController.GetObjects<EduProgramInfo> ();
             comboEduProgram.DataBind ();
+            comboEduProgram.SelectedIndex = 0;
 		}
 
 		/// <summary>

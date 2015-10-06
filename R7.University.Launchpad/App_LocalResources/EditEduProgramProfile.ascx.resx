@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="labelProfileCode.Text" xml:space="preserve">
+        <value>Profile Code:</value>
+    </data>
+    <data name="labelProfileCode.Help" xml:space="preserve">
+        <value>Enter the code of an educational program profile according to standard.</value>
+    </data>
+    <data name="labelProfileTitle.Text" xml:space="preserve">
+        <value>Profile Title:</value>
+    </data>
+    <data name="labelProfileTitle.Help" xml:space="preserve">
+        <value>Enter the title for an educational program profile, defined in standard.</value>
+    </data>
+    <data name="labelEduProgram.Text">
+        <value>Educational Program:</value>
+    </data>
+    <data name="labelEduProgram.Help">
+        <value>Select the educational program to which the profile belongs.</value>
+    </data>
+    <data name="labelStartDate.Text">
+        <value>Start Publication:</value>
+    </data>
+    <data name="labelStartDate.Help">
+        <value>Enter the date from current educational program profile should be published on the site.</value>
+    </data>
+    <data name="labelEndDate.Text">
+        <value>End Publication:</value>
+    </data>
+    <data name="labelEndDate.Help">
+        <value>Enter the date from current educational program profile should be removed from publication on the site.</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;A module to edit education program profile&lt;/P&gt;</value>
+    </data>
+    <data name="ControlTitle_edit.Text" xml:space="preserve">
+        <value>Edit Education Program Profile</value>
+    </data>
+</root>

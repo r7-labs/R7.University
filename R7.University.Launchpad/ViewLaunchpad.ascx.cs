@@ -122,6 +122,9 @@ namespace R7.University.Launchpad
                     case "eduprograms":
                         table.Init (this, gridEduPrograms, buttonAddEduProgram, pageSize);
                         break;
+                    case "eduprogramprofiles":
+                        table.Init (this, gridEduProgramProfiles, buttonAddEduProgramProfile, pageSize);
+                        break;
                 }
             }
 

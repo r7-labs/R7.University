@@ -30,6 +30,8 @@ namespace R7.University.Launchpad
         protected HyperLink buttonAddEduLevel;
         protected GridView gridEduPrograms;
         protected HyperLink buttonAddEduProgram;
+        protected GridView gridEduProgramProfiles;
+        protected HyperLink buttonAddEduProgramProfile;
 		protected Repeater repeatTabs;
 	}
 }

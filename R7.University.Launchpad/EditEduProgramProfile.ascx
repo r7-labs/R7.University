@@ -28,8 +28,8 @@
             <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />
         </div>
         <div class="dnnFormItem">
-			<dnn:Label ID="labelProfileTitle" runat="server" ControlName="textTitle" />
-			<asp:TextBox ID="textTitle" runat="server" MaxLength="250" />
+			<dnn:Label ID="labelProfileTitle" runat="server" ControlName="textProfileTitle" />
+			<asp:TextBox ID="textProfileTitle" runat="server" MaxLength="250" />
 		</div>
         <div class="dnnFormItem">
             <dnn:Label ID="labelStartDate" runat="server" ControlName="datetimeStartDate" />
