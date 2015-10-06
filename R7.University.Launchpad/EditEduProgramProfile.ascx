@@ -1,35 +1,36 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditEduProgram.ascx.cs" Inherits="R7.University.Launchpad.EditEduProgram" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditEduProgramProfile.ascx.cs" Inherits="R7.University.Launchpad.EditEduProgramProfile" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
+<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
 <div class="dnnForm dnnClear">
 	<fieldset>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
+            <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
+                <ContentTemplate>
+                    <act:ComboBox id="comboEduProgram" runat="server" CssClass="act_combobox"
+                        DropDownStyle="DropDownList"
+                        AutoCompleteMode="SuggestAppend"
+                        CaseSensitive="false"
+                        DataValueField="EduProgramID"
+                        DataTextField="EduProgramString"
+                    />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
 		<div class="dnnFormItem">
-            <dnn:Label ID="labelCode" runat="server" ControlName="textCode" />
-            <asp:TextBox ID="textCode" runat="server" MaxLength="64" />
+            <dnn:Label ID="labelProfileCode" runat="server" ControlName="textProfileCode" />
+            <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />
         </div>
         <div class="dnnFormItem">
-			<dnn:Label ID="labelTitle" runat="server" ControlName="textTitle" />
+			<dnn:Label ID="labelProfileTitle" runat="server" ControlName="textTitle" />
 			<asp:TextBox ID="textTitle" runat="server" MaxLength="250" />
 		</div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-            <asp:DropDownList id="comboEduLevel" runat="server" 
-                DataTextField="DisplayShortTitle"
-                DataValueField="EduLevelID"
-            />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label ID="labelGeneration" runat="server" ControlName="textGeneration" />
-            <asp:TextBox ID="textGeneration" runat="server" MaxLength="16" />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label ID="labelAccreditedToDate" runat="server" ControlName="dateAccreditedToDate" />
-            <dnn:DnnDatePicker id="dateAccreditedToDate" runat="server" />
-        </div>
         <div class="dnnFormItem">
             <dnn:Label ID="labelStartDate" runat="server" ControlName="datetimeStartDate" />
             <dnn:DnnDateTimePicker id="datetimeStartDate" runat="server" />

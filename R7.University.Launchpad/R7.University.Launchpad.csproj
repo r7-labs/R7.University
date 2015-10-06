@@ -54,6 +54,9 @@
       <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\packages\AjaxControlToolkit.15.1.2.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="js\" />
@@ -69,6 +72,8 @@
     <Content Include="EditAchievement.ascx" />
     <Content Include="EditEduLevel.ascx" />
     <Content Include="EditEduProgram.ascx" />
+    <Content Include="EditEduProgramProfile.ascx" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
@@ -137,6 +142,12 @@
     </Compile>
     <Compile Include="EditEduProgram.ascx.controls.cs">
       <DependentUpon>EditEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgramProfile.ascx.cs">
+      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgramProfile.ascx.controls.cs">
+      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
