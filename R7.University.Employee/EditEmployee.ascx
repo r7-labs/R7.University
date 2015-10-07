@@ -20,7 +20,6 @@
 		    <li><a href="#employeePositions"><%= LocalizeString("PositionsTab.Text") %></a></li>
 		    <li><a href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></a></li>
             <li><a href="#employeeEduPrograms"><%= LocalizeString("EduProgramsTab.Text") %></a></li>
-		    <li><a href="#employeeDisciplines"><%= LocalizeString("DisciplinesTab.Text") %></a></li>
 		    <li><a href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></a></li>
 		</ul>
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
@@ -64,19 +63,7 @@
                             CssClass="dnnSecondaryAction" Style="margin-left:1em" OnClick="buttonUserLookup_Click" CausesValidation="false" />
                     </div>
 				</div>
-                <div class="dnnFormItem" style="display:none">
-					<dnn:Label id="labelAcademicDegree" runat="server" ControlName="textAcademicDegree" Suffix=":" />
-					<asp:TextBox id="textAcademicDegree" runat="server" MaxLength="250" />
-				</div>
-				<div class="dnnFormItem" style="display:none">
-					<dnn:Label id="labelAcademicTitle" runat="server" ControlName="textAcademicTitle" Suffix=":" />
-					<asp:TextBox id="textAcademicTitle" runat="server" MaxLength="250" />
-				</div>
-				<%-- <div class="dnnFormItem">
-					<dnn:Label id="labelNamePrefix" runat="server" ControlName="textNamePrefix" Suffix=":" />
-					<asp:TextBox id="textNamePrefix" runat="server" />
-				</div> --%>
-				<div class="dnnFormItem">
+                <div class="dnnFormItem">
 					<dnn:Label id="labelPhone" runat="server" ControlName="textPhone" Suffix=":" />
 					<asp:TextBox id="textPhone" runat="server" MaxLength="64" />
 				</div>
@@ -383,16 +370,7 @@
                 </div>
 			</fieldset>
 		</div>
-        <div id="employeeDisciplines">
-            <fieldset>
-                <div class="dnnFormItem">
-                    <div style="margin-right:20px">
-                        <dnn:TextEditor id="textDisciplines" runat="server" Width="100%" Height="300px" />
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-		<div id="employeeAbout">
+        <div id="employeeAbout">
 			<fieldset>
 				<div class="dnnFormItem">
 					<div style="margin-right:20px">

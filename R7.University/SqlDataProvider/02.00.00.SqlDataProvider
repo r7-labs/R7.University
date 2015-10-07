@@ -78,6 +78,11 @@ IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwne
         DROP COLUMN OldEduProgramID
 GO
 
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'NamePrefix')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+        DROP COLUMN NamePrefix, Disciplines, AcademicTitle, AcademicDegree
+GO
+
 IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]') and type in (N'U'))
     DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]
 GO

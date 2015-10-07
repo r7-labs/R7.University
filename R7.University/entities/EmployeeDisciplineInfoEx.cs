@@ -1,5 +1,5 @@
 ﻿//
-// EmployeeEduProgramInfoEx.cs
+// EmployeeDisciplineInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>

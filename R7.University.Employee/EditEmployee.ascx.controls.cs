@@ -29,12 +29,6 @@ namespace R7.University.Employee
 		protected TextBox textFirstName;
 		protected LabelControl labelOtherName;
 		protected TextBox textOtherName;
-		protected LabelControl labelAcademicDegree;
-		protected TextBox textAcademicDegree;
-		protected LabelControl labelAcademicTitle;
-		protected TextBox textAcademicTitle;
-		//protected LabelControl labelNamePrefix;
-		// protected TextBox textNamePrefix;
 		protected LabelControl labelPhone;
 		protected TextBox textPhone;
 		protected LabelControl labelCellPhone;
@@ -63,7 +57,6 @@ namespace R7.University.Employee
 		protected LabelControl labelExperienceYearsBySpec;
 		protected TextBox textExperienceYearsBySpec;
 		protected TextEditor textBiography;
-		protected TextEditor textDisciplines;
 		protected LabelControl labelIsPublished;
 		protected CheckBox checkIsPublished;
 		// protected LabelControl labelIsDeleted;

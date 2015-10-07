@@ -16,9 +16,7 @@ namespace R7.University.Employee
 		protected HyperLink linkPhoto;
 		protected Label labelFullName;
 		protected Label labelPositions;
-		protected Label labelAcademicDegreeAndTitle;
-		// protected Label labelAcademicTitle;
-		// protected Label labelAcademicDegree;
+        protected Label labelAcademicDegreeAndTitle;
 		protected Label labelPhone;
 		protected Label labelCellPhone;
 		protected Label labelFax;

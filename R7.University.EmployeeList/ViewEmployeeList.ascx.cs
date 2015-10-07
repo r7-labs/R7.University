@@ -216,23 +216,11 @@ namespace R7.University.EmployeeList
 			// employee fullname
 			labelFullName.Text = employee.FullName;
 
-			/* // Old academic degree and title
-			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
-			if (!string.IsNullOrWhiteSpace (degreeAndTitle))
-				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + degreeAndTitle;
-			else
-				labelAcademicDegreeAndTitle.Visible = false;
-			*/
-
 			// get current employee title achievements
 			var achievements = CommonTitleAchievements.Where (ach => ach.EmployeeID == employee.EmployeeID);
 
-			var titles = achievements.Select (ach => Utils.FirstCharToLower(ach.DisplayShortTitle)).ToList ();
+			var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle));
 			
-			// add academic degree and title for backward compatibility
-			titles.Add (employee.AcademicDegree);
-			titles.Add (employee.AcademicTitle);
-	
             // employee title achievements
 			var strTitles = Utils.FormatList (", ", titles);
 			if (!string.IsNullOrWhiteSpace (strTitles))

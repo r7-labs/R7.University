@@ -153,21 +153,9 @@ namespace R7.University.Employee
 			// alter popup window height
 			linkPhoto.NavigateUrl = popupUrl.Replace ("550,950", "450,950");
 
-			/* // Old academic degree & title
-			var degreeAndTitle = Utils.FormatList (", ", employee.AcademicDegree, employee.AcademicTitle);
-			if (!string.IsNullOrWhiteSpace (degreeAndTitle))
-				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + degreeAndTitle;
-			else
-				labelAcademicDegreeAndTitle.Visible = false;
-			*/
-			
 			// Employee titles
-			var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle)).ToList ();
+			var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle));
 			
-			// add academic degree and title for backward compatibility
-			titles.Add (employee.AcademicDegree);
-			titles.Add (employee.AcademicTitle);
-	
 			var strTitles = Utils.FormatList (", ", titles);
 			if (!string.IsNullOrWhiteSpace (strTitles))
 				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;

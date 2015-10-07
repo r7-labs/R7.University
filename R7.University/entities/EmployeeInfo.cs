@@ -56,24 +56,12 @@ namespace R7.University
 		public string WebSiteLabel { get; set; }
 
 		public string Messenger { get; set; }
-
-        [Obsolete]
-		public string AcademicDegree { get; set; }
-
-        [Obsolete]
-		public string AcademicTitle { get; set; }
-
-        [Obsolete]
-		public string NamePrefix { get; set; }
 		
 		public string WorkingPlace { get; set; }
 
 		public string WorkingHours { get; set; }
 
 		public string Biography { get; set; }
-
-        [Obsolete]
-		public string Disciplines { get; set; }
 
 		// NOTE: Employee stage may be not continuous, so using starting date is not possible
 		public int? ExperienceYears { get; set; }
@@ -126,8 +114,6 @@ namespace R7.University
 			{
 				var text = Utils.FormatList (", ",
 					           FullName,
-					           AcademicDegree,
-					           AcademicTitle,
 					           Phone,
 					           CellPhone,
 					           Fax,
@@ -140,7 +126,7 @@ namespace R7.University
 					           HtmlUtils.ConvertToText (Biography)
 				           );
 
-				// TODO: Add positions to the search index
+				// TODO: Add positions and achievements to the search index
 
 				return text;
 			}
@@ -179,12 +165,13 @@ namespace R7.University
 				vcard.Names = new List<string> () {
 					LastName,
 					FirstName,
-					OtherName,
-					Utils.FormatList (", ", AcademicDegree, AcademicTitle)
+                    OtherName
+                    // TODO: Add title achievements here
 				};
 
 				// formatted name
-				vcard.FormattedName = Utils.FormatList (", ", AcademicDegree, AcademicTitle) + " " + FullName;
+                // TODO: Add title achievements here
+				vcard.FormattedName = FullName;
 
 				// email
 				if (!string.IsNullOrWhiteSpace (Email))

@@ -447,11 +447,9 @@ namespace R7.University
                     // add new employee disciplines
                     foreach (var discipline in disciplines)
                     {
+                        discipline.EmployeeID = employee.EmployeeID;
                         if (discipline.EmployeeID <= 0)
-                        {
-                            discipline.EmployeeID = employee.EmployeeID;
                             Add<EmployeeDisciplineInfo> (discipline);
-                        }
                         else
                             Update<EmployeeDisciplineInfo> (discipline);
                     }

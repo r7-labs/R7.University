@@ -277,7 +277,7 @@ namespace R7.University.EmployeeDirectory
 
                 #endregion
 
-                #region AcademicDegree, AcademicTitle, Education, Training
+                #region Academic degrees, Academic titles, Education, Training
 
                 // get all empoyee achievements
                 var achievements = EmployeeDirectoryController.GetObjects<EmployeeAchievementInfo> (

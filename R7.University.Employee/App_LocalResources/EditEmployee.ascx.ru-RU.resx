@@ -48,18 +48,6 @@
 	<data name="labelOtherName.Help">
 		<value>Введите отчество сотрудника.</value>
 	</data>
-	<data name="labelAcademicDegree.Text">
-		<value>Ученая степень</value>
-	</data>
-	<data name="labelAcademicDegree.Help">
-		<value>Укажите ученую степень. Это поле устарело - ученые степени сотрудника следует ввести на вкладке Достижения.</value>
-	</data>
-	<data name="labelAcademicTitle.Text">
-		<value>Ученое звание</value>
-	</data>
-	<data name="labelAcademicTitle.Help">
-		<value>Укажите ученое звание. Это поле устарело - ученые звания сотрудника следует ввести на вкладке Достижения.</value>
-	</data>
     <data name="labelPhone.Text">
 		<value>Телефон</value>
 	</data>

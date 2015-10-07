@@ -25,7 +25,7 @@ namespace R7.University.Employee
 	{
 		#region Types
 
-		public enum EditEmployeeTab { Common, Positions, Achievements, EduPrograms, Disciplines, About };
+		public enum EditEmployeeTab { Common, Positions, Achievements, EduPrograms, About };
 
 		#endregion
 
@@ -196,9 +196,6 @@ namespace R7.University.Employee
 							textLastName.Text = item.LastName;
 							textFirstName.Text = item.FirstName;
 							textOtherName.Text = item.OtherName;
-							//textNamePrefix.Text = item.NamePrefix;
-							textAcademicTitle.Text = item.AcademicTitle;
-							textAcademicDegree.Text = item.AcademicDegree;
 							textPhone.Text = item.Phone;
 							textCellPhone.Text = item.CellPhone;
 							textFax.Text = item.Fax;
@@ -209,8 +206,7 @@ namespace R7.University.Employee
 							textMessenger.Text = item.Messenger;
 							textWorkingPlace.Text = item.WorkingPlace;
 							textBiography.Text = item.Biography;
-							textDisciplines.Text = item.Disciplines;
-					
+							
 							// load working hours
 							WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
@@ -361,9 +357,6 @@ namespace R7.University.Employee
 				item.LastName = textLastName.Text.Trim ();
 				item.FirstName = textFirstName.Text.Trim ();
 				item.OtherName = textOtherName.Text.Trim ();
-				//item.NamePrefix = textNamePrefix.Text.Trim();
-				item.AcademicTitle = textAcademicTitle.Text.Trim ();
-				item.AcademicDegree = textAcademicDegree.Text.Trim ();
 				item.Phone = textPhone.Text.Trim ();
 				item.CellPhone = textCellPhone.Text.Trim ();
 				item.Fax = textFax.Text.Trim ();
@@ -374,8 +367,7 @@ namespace R7.University.Employee
 				item.Messenger = textMessenger.Text.Trim ();
 				item.WorkingPlace = textWorkingPlace.Text.Trim ();
 				item.Biography = textBiography.Text.Trim ();
-				item.Disciplines = textDisciplines.Text.Trim ();
-
+				
 				// update working hours
 				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
 
@@ -415,15 +407,17 @@ namespace R7.University.Employee
 					item.LastModifiedByUserID = this.UserId;
 					item.LastModifiedOnDate = DateTime.Now;
 
+                    // Utils.Message (this, Utils.FormatList (" ", GetEmployeeDisciplines ().Select (d => d.ToString ()).ToArray ()));
+                    
 					// update employee
                     EmployeeController.UpdateEmployee (item, GetOccupiedPositions (), 
                         GetEmployeeAchievements (), GetEmployeeDisciplines());
 				}
 
-				Utils.SynchronizeModule (this);
-				DataCache.RemoveCache ("Employee_" + TabModuleId + "_RenderedContent");
+                Utils.SynchronizeModule (this);
+                DataCache.RemoveCache ("Employee_" + TabModuleId + "_RenderedContent");
 
-				Response.Redirect (Globals.NavigateURL (), true);
+                Response.Redirect (Globals.NavigateURL (), true);
 			}
 			catch (Exception ex)
 			{

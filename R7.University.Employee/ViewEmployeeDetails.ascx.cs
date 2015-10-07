@@ -401,15 +401,6 @@ namespace R7.University.Employee
             else
             {
                 gridEduPrograms.Visible = false;
-
-                // disciplines
-                if (!string.IsNullOrWhiteSpace (employee.Disciplines))
-                    litDisciplines.Text = Server.HtmlDecode (employee.Disciplines);
-                else
-                {
-                    // hide entire Disciplines tab
-                    linkDisciplines.Visible = false;
-                }
             }
         }
 
@@ -484,12 +475,8 @@ namespace R7.University.Employee
 	
 			// employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
-                .Select (ach => Utils.FirstCharToLower (ach.Title)).ToList ();
-
-			// add academic degree and title for backward compatibility
-			titles.Add (employee.AcademicDegree);
-			titles.Add (employee.AcademicTitle);
-
+                .Select (ach => Utils.FirstCharToLower (ach.Title));
+            
 			var strTitles = Utils.FormatList (", ", titles);
 			if (!string.IsNullOrWhiteSpace (strTitles))
 				labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper (strTitles);

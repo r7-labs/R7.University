@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿/*$(function () {
     // paint tables with dnnGrid classes
     var table = $(".employeeDetails #employeeDisciplines table:not(.dnnGrid)");
     if (table)
@@ -13,4 +13,4 @@
         // paint headers
         table.find ("tr th").parent ().addClass ("dnnGridHeader").attr ("align", "left");
     }
-});
+});*/

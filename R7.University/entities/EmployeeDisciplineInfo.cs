@@ -1,5 +1,5 @@
 ﻿//
-// EmployeeEduProgramInfo.cs
+// EmployeeDisciplineInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -44,6 +44,11 @@ namespace R7.University
         public string Disciplines { get; set; }
 
         #endregion
+
+        public override string ToString ()
+        {
+            return string.Format ("[EmployeeDisciplineInfo: EmployeeID={0}, EduProgramProfileID={1}, Disciplines={2}]", EmployeeID, EduProgramProfileID, Disciplines);
+        }
     }
 }
 

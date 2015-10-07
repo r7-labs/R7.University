@@ -60,17 +60,15 @@ namespace R7.University.Launchpad
             dt.Columns.Add (new DataColumn ("SecondaryEmail", typeof(string)));
             dt.Columns.Add (new DataColumn ("WebSite", typeof(string)));
             dt.Columns.Add (new DataColumn ("Messenger", typeof(string)));
-            dt.Columns.Add (new DataColumn ("AcademicDegree", typeof(string)));
-            dt.Columns.Add (new DataColumn ("AcademicTitle", typeof(string)));
-            dt.Columns.Add (new DataColumn ("NamePrefix", typeof(string)));
             dt.Columns.Add (new DataColumn ("WorkingPlace", typeof(string)));
             dt.Columns.Add (new DataColumn ("WorkingHours", typeof(string)));
             dt.Columns.Add (new DataColumn ("Biography", typeof(string)));
-            dt.Columns.Add (new DataColumn ("Disciplines", typeof(string)));
             dt.Columns.Add (new DataColumn ("ExperienceYears", typeof(int)));
             dt.Columns.Add (new DataColumn ("ExperienceYearsBySpec", typeof(int)));
             dt.Columns.Add (new DataColumn ("IsPublished", typeof(bool)));
             //dt.Columns.Add (new DataColumn ("IsDeleted", typeof(bool)));
+
+            // TODO: Remove audit fields
             dt.Columns.Add (new DataColumn ("CreatedByUserID", typeof(int)));
             dt.Columns.Add (new DataColumn ("CreatedOnDate", typeof(DateTime)));
             dt.Columns.Add (new DataColumn ("LastModifiedByUserID", typeof(int)));
@@ -102,22 +100,18 @@ namespace R7.University.Launchpad
                 dr [i++] = employee.SecondaryEmail;
                 dr [i++] = Utils.FormatList (": ", employee.WebSiteLabel, employee.WebSite);
                 dr [i++] = employee.Messenger;
-                dr [i++] = employee.AcademicDegree;
-                dr [i++] = employee.AcademicTitle;
-                dr [i++] = employee.NamePrefix;
                 dr [i++] = employee.WorkingPlace;
                 dr [i++] = employee.WorkingHours;
 
                 dr [i++] = !string.IsNullOrWhiteSpace (employee.Biography) ? 
                     HtmlUtils.Shorten (employee.Biography, 16, "...") : string.Empty;
-
-                dr [i++] = !string.IsNullOrWhiteSpace (employee.Disciplines) ? 
-                    HtmlUtils.Shorten (employee.Disciplines, 16, "...") : string.Empty;
-
+                
                 dr [i++] = employee.ExperienceYears ?? Null.NullInteger;
                 dr [i++] = employee.ExperienceYearsBySpec ?? Null.NullInteger;
                 dr [i++] = employee.IsPublished;
                 //dr [i++] = employee.IsDeleted;
+
+                // TODO: Remove audit fields
                 dr [i++] = employee.CreatedByUserID;
                 dr [i++] = employee.CreatedOnDate;
                 dr [i++] = employee.LastModifiedByUserID;
