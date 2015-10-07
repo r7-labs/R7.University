@@ -229,6 +229,8 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="EduProgramProfileID" SortExpression="EduProgramProfileID" HeaderText="EduProgramProfileID" />
                         <asp:BoundField DataField="EduProgramID" SortExpression="EduProgramID" HeaderText="EduProgramID" />
+                        <asp:BoundField DataField="Code" SortExpression="Code" HeaderText="Code" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="ProfileCode" SortExpression="ProfileCode" HeaderText="ProfileCode" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="ProfileTitle" SortExpression="ProfileTitle" HeaderText="ProfileTitle" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="StartDate" SortExpression="StartDate" HeaderText="StartDate" ConvertEmptyStringToNull="false" />
