@@ -1,8 +1,24 @@
-﻿<h3>Version 1.2.1</h3>
+﻿<h3>Version 1.3.0</h3>
+<p><strong>Important change:</strong> Educational programs and educational profiles were separated. 
+Install script perform DB schema change and also safely move data between new tables.</p>
+<p><strong>Before upgrade:</strong> Make sure, what University_EduProgram table don't have any records
+with null or empty Code field and what there are no records with same Code value, which not define 
+just different profiles in one educational program. Also make database backup before upgrading!</p>
+</p>
+<ul>
+    <li>Add audit and StartDate/EndDate properties to educational program.</li>
+    <li>Removed obsolete employee properties: NamePrefix, Disciplines, AcademicDegree, AcademicTitle and corresponding UI/code parts.</li>
+    <li>Workaround for #74: External links in achievements not working.</li>
+    <li>AjaxControlToolkit.ComboBox upgraded to 15.3.1.</li>
+    <li>Code and DB schema refactoring.</li>
+</ul>
+
+<h3>Version 1.2.1</h3>
 <ul>
     <li>Support for educational program profiles.</li>
     <li>Implement #46: Launchpad: Added text search for all tables.</li>
     <li>EditEmployee: Use AjaxControlToolkit.ComboBox for educational program dropdown.</li>
+
 </ul>
 
 <h3>Version 1.2.0</h3>
