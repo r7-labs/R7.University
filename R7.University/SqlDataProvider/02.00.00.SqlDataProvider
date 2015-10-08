@@ -11,15 +11,10 @@ BEGIN
         [AccreditedToDate] datetime NULL,
         [StartDate] datetime NULL,
         [EndDate] datetime NULL,
-        [CreatedOnDate] datetime NOT NULL,
-        [CreatedByUserID] int NOT NULL,
-        [LastModifiedOnDate] datetime NOT NULL,
-        [LastModifiedByUserID] int NOT NULL
-
-        ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] ADD CONSTRAINT [DF_{objectQualifier}University_EduPrograms_CreatedOnDate] DEFAULT ((GETDATE())) FOR [CreatedOnDate]
-        ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] ADD CONSTRAINT [DF_{objectQualifier}University_EduPrograms_CreatedByUserID] DEFAULT ((-1)) FOR [CreatedByUserID]
-        ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] ADD CONSTRAINT [DF_{objectQualifier}University_EduPrograms_LastModifiedOnDate] DEFAULT ((GETDATE())) FOR [LastModifiedOnDate]
-        ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] ADD CONSTRAINT [DF_{objectQualifier}University_EduPrograms_LastModifiedByUserID] DEFAULT ((-1)) FOR [LastModifiedByUserID]
+        [CreatedOnDate] datetime NOT NULL DEFAULT ((GETDATE())),
+        [CreatedByUserID] int NOT NULL DEFAULT ((-1)),
+        [LastModifiedOnDate] datetime NOT NULL DEFAULT ((GETDATE())),
+        [LastModifiedByUserID] int NOT NULL DEFAULT ((-1))
 END
 GO
 
@@ -36,21 +31,16 @@ BEGIN
         [DivisionID] int NULL,
         [StartDate] datetime NULL,
         [EndDate] datetime NULL,
-        [CreatedOnDate] datetime NOT NULL,
-        [CreatedByUserID] int NOT NULL,
-        [LastModifiedOnDate] datetime NOT NULL,
-        [LastModifiedByUserID] int NOT NULL
+        [CreatedOnDate] datetime NOT NULL DEFAULT ((GETDATE())),
+        [CreatedByUserID] int NOT NULL DEFAULT ((-1)),
+        [LastModifiedOnDate] datetime NOT NULL DEFAULT ((GETDATE())),
+        [LastModifiedByUserID] int NOT NULL DEFAULT ((-1))
         CONSTRAINT [PK_{objectQualifier}University_EduProgramProfiles] PRIMARY KEY CLUSTERED (EduProgramProfileID)
         CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduPrograms] FOREIGN KEY (EduProgramID) 
             REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE
     )
 
-    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] ADD CONSTRAINT [DF_{objectQualifier}University_EduProgramProfiles_CreatedOnDate] DEFAULT ((GETDATE())) FOR [CreatedOnDate]
-    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] ADD CONSTRAINT [DF_{objectQualifier}University_EduProgramProfiles_CreatedByUserID] DEFAULT ((-1)) FOR [CreatedByUserID]
-    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] ADD CONSTRAINT [DF_{objectQualifier}University_EduProgramProfiles_LastModifiedOnDate] DEFAULT ((GETDATE())) FOR [LastModifiedOnDate]
-    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] ADD CONSTRAINT [DF_{objectQualifier}University_EduProgramProfiles_LastModifiedByUserID] DEFAULT ((-1)) FOR [LastModifiedByUserID]
-
-    INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramProfiles] SELECT 
+    INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramProfiles] ([EduProgramID], [OldEduProgramID], [ProfileCode], [ProfileTitle]) SELECT 
         (SELECT TOP(1) EduProgramID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] WHERE Code = EP.Code ORDER BY EduProgramID ASC) AS EduProgramID,
         EP.EduProgramID AS OldEduProgramID, EP.ProfileCode, EP.ProfileTitle
             FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
@@ -130,5 +120,3 @@ CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles] A
         INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
             ON EPP.EduProgramID = EP.EduProgramID
 GO
-
--- Do cleanup after upgrade to 2.0.0 version
