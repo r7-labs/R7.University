@@ -1088,9 +1088,9 @@ namespace R7.University.Employee
                     discipline.EduProgramProfileID = int.Parse (comboEduProgram.SelectedValue);
                     discipline.Disciplines = textProgramDisciplines.Text.Trim ();
 
-                    var profile = EmployeeController.Get<EduProgramProfileInfo> (discipline.EduProgramProfileID);
-                    //discipline.Code = ep.Code;
-                    //discipline.Title = ep.Title;
+                    var profile = EmployeeController.Get<EduProgramProfileInfoEx> (discipline.EduProgramProfileID);
+                    discipline.Code = profile.Code;
+                    discipline.Title = profile.Title;
                     discipline.ProfileCode = profile.ProfileCode;
                     discipline.ProfileTitle = profile.ProfileTitle;
 
