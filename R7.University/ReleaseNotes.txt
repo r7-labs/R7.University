@@ -2,8 +2,8 @@
 <p><strong>Important change:</strong> Educational programs and educational profiles were separated. 
 Install script perform DB schema change and also safely move data between new tables.</p>
 <p><strong>Before upgrade:</strong> Make sure, what University_EduProgram table don't have any records
-with null or empty Code field and what there are no records with same Code value, which not define 
-just different profiles in one educational program. Also make database backup before upgrading!</p>
+with null or empty Code field and all Code values strictly relate to certain educational program. 
+Also make database backup before upgrading!</p>
 </p>
 <ul>
     <li>Add audit and StartDate/EndDate properties to educational program.</li>
