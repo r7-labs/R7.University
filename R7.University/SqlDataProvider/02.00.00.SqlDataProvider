@@ -50,14 +50,16 @@ GO
 IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeDisciplines]') and type in (N'U'))
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] (
+        [EmployeeDisciplineID] bigint IDENTITY(1,1) NOT NULL,
         [EmployeeID] int NOT NULL,
         [EduProgramProfileID] int NOT NULL,
         [Disciplines] nvarchar(max) NULL
-        CONSTRAINT [PK_{objectQualifier}University_EmployeeDisciplines] PRIMARY KEY CLUSTERED ([EmployeeID], [EduProgramProfileID])
+        CONSTRAINT [PK_{objectQualifier}University_EmployeeDisciplines] PRIMARY KEY CLUSTERED ([EmployeeDisciplineID])
         CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_Employees] FOREIGN KEY([EmployeeID])
             REFERENCES {databaseOwner}[{objectQualifier}University_Employees]([EmployeeID]) ON DELETE CASCADE,
         CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_EduProgramProfiles] FOREIGN KEY([EduProgramProfileID])
             REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfiles]([EduProgramProfileID]) ON DELETE CASCADE,
+        CONSTRAINT [UN_{objectQualifier}University_EmployeeDisciplines] UNIQUE ([EmployeeID], [EduProgramProfileID])
     ) 
 
     INSERT INTO {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] SELECT EEP.EmployeeID, 

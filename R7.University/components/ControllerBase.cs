@@ -430,13 +430,13 @@ namespace R7.University
 							Update<EmployeeAchievementInfo> (ach);
 					}
 
-                    var employeeEduProfileIDs = disciplines.Select (a => a.EduProgramProfileID.ToString ());
-                    if (employeeEduProfileIDs.Any ())
+                    var employeeDisciplineIDs = disciplines.Select (a => a.EmployeeDisciplineID.ToString ());
+                    if (employeeDisciplineIDs.Any ())
                     {
                         // delete those not in current list
                         Delete<EmployeeDisciplineInfo> (
-                            string.Format ("WHERE [EmployeeID] = {0} AND [EduProgramProfileID] NOT IN ({1})", 
-                                employee.EmployeeID, Utils.FormatList (", ", employeeEduProfileIDs))); 
+                            string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeDisciplineID] NOT IN ({1})", 
+                                employee.EmployeeID, Utils.FormatList (", ", employeeDisciplineIDs))); 
                     }
                     else
                     {
@@ -448,7 +448,7 @@ namespace R7.University
                     foreach (var discipline in disciplines)
                     {
                         discipline.EmployeeID = employee.EmployeeID;
-                        if (discipline.EmployeeID <= 0)
+                        if (discipline.EmployeeDisciplineID <= 0)
                             Add<EmployeeDisciplineInfo> (discipline);
                         else
                             Update<EmployeeDisciplineInfo> (discipline);

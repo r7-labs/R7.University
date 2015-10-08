@@ -30,12 +30,14 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 namespace R7.University
 {
     [TableName ("University_EmployeeDisciplines")]
-    [PrimaryKey ("EmployeeID,EduProgramProfileID")]
+    [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
     [Scope ("EmployeeID")]
     [Serializable]
     public class EmployeeDisciplineInfo
     {
         #region Properties
+
+        public long EmployeeDisciplineID { get; set; }
 
         public int EmployeeID { get; set; }
 
@@ -47,7 +49,7 @@ namespace R7.University
 
         public override string ToString ()
         {
-            return string.Format ("[EmployeeDisciplineInfo: EmployeeID={0}, EduProgramProfileID={1}, Disciplines={2}]", EmployeeID, EduProgramProfileID, Disciplines);
+            return string.Format ("[EmployeeDisciplineInfo: EmployeeDisciplineID={0}, EmployeeID={1}, EduProgramProfileID={2}, Disciplines={3}]", EmployeeDisciplineID, EmployeeID, EduProgramProfileID, Disciplines);
         }
     }
 }
