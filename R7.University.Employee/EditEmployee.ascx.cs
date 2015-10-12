@@ -100,8 +100,9 @@ namespace R7.University.Employee
 			// setup filepicker
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
             // TODO: Get default faces folder from global / portal settings 
-            pickerPhoto.FilePath = "Images/faces/";
-           
+            // FIXME: Causes crash on DNN versions after 7.1.2 (tested only on 7.4.1 and 7.4.2)
+            // pickerPhoto.FilePath = "Images/faces/";
+
 			// add default item to user list
             comboUsers.AddItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ());
 
@@ -224,8 +225,7 @@ namespace R7.University.Employee
 								var photo = FileManager.Instance.GetFile (item.PhotoFileID.Value);
 								if (photo != null)
 								{
-									pickerPhoto.FilePath = FileManager.Instance.GetUrl (photo)
-										.Remove (0, PortalSettings.HomeDirectory.Length);
+                                    pickerPhoto.FileID = photo.FileId;
 								}
 							}
 
@@ -309,14 +309,6 @@ namespace R7.University.Employee
 					// fix for issue #8
 					if (treeDivisions.SelectedNode == null)
 						treeDivisions.Nodes [0].Selected = true;
-				}
-                else // if (IsPostBack)
-				{
-					// NOTE: Fix for issue #1 - just update FilePath every postback
-					if (pickerPhoto.FileID > 0)
-						pickerPhoto.FilePath = FileManager.Instance.GetUrl (
-							FileManager.Instance.GetFile (pickerPhoto.FileID))
-								.Remove (0, PortalSettings.HomeDirectory.Length);
 				}
 			}
 			catch (Exception ex)
@@ -563,8 +555,6 @@ namespace R7.University.Employee
                         var fileName = Path.GetFileNameWithoutExtension (file.FileName).ToLowerInvariant ();
                         if (fileName == employeeName || fileName == employeeNameTL)
                         {
-                            // setting FileID for picker is sufficent, 
-                            // as we update FilePath on each postback anyway
                             pickerPhoto.FileID = file.FileId;
                             break;
                         }
