@@ -57,7 +57,10 @@ GO
 DROP TABLE {databaseOwner}[{objectQualifier}University_Achievements] 
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] 
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] 
@@ -83,7 +86,10 @@ GO
 DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
 GO
 
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]
 GO
 
 -- Drop stored procedures & functions
