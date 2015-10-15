@@ -35,14 +35,17 @@
     <PackageExtension>zip</PackageExtension>
     <PackageName>R7.University</PackageName>
     <PackageOutputPath>output</PackageOutputPath>
+    <DnnBinPath Condition="'$(DnnBinPath)' == ''">..\..\..\bin</DnnBinPath>
     <MainProjectOutputPath Condition="'$(MainProjectOutputPath)' == ''">..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
   </PropertyGroup>
   <Import Project="InstallPackage.targets" />
   <Import Project="SourcePackage.targets" />
-  <Target Name="AfterBuild" DependsOnTargets="MakeInstallPackage;MakeSourcePackage" />
+  <Import Project="LocalDeploy.targets" />
+  <Target Name="AfterBuild" DependsOnTargets="DoLocalDeploy;MakeInstallPackage;MakeSourcePackage" />
   <ItemGroup>
     <None Include="Packaging.csproj" />
     <None Include="InstallPackage.targets" />
     <None Include="SourcePackage.targets" />
+    <None Include="LocalDeploy.targets" />
   </ItemGroup>
 </Project>

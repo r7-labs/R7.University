@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Build">
+	<Target Name="DoLocalDeploy" Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<!-- Declare binaries -->
+		<ItemGroup>
+			<LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.dll" />
+            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\DotNetNuke.R7.dll" />
+            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\AjaxControlToolkit.dll" />
+		</ItemGroup>
+        <!-- Copy binaries -->
+		<Copy SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnBinPath)" />
+	</Target>
+</Project>
