@@ -9,15 +9,15 @@ using DotNetNuke.Data;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search;
-using R7.University;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Web.UI.WebControls;
+using R7.University;
 
 namespace R7.University
 {
-	public abstract class ControllerBase : ModuleSearchBase
+    public abstract class UniversityControllerBase: ModuleSearchBase
 	{
-		#region Common methods
+        #region Common methods
 
 		/// <summary>
 		/// Adds a new T object into the database
@@ -269,20 +269,6 @@ namespace R7.University
 				repo.Delete (sqlConditon, args);
 			}
 		}
-
-		/*
-		public T ExecReader <T> (string spName, params object [] args) where T: class
-		{
-			using (var ctx = DataContext.Instance ())
-				return ctx.ExecuteQuery<T> (CommandType.StoredProcedure, spName, args);
-		}
-
-		public T ExecScalar <T> (string spName, params object [] args) where T: class
-		{
-			using (var ctx = DataContext.Instance ())
-				return ctx.ExecuteQuery<T> (CommandType.StoredProcedure, spName, args);
-		}
-		*/
 
 		#endregion
 

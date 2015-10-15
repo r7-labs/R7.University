@@ -13,7 +13,7 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public partial class EmployeeController : ControllerBase, IPortable
+	public partial class EmployeeController : UniversityControllerBase, IPortable
 	{
 		#region Public methods
 

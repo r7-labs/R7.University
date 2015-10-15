@@ -39,7 +39,7 @@ using R7.University;
 
 namespace R7.University.DivisionDirectory
 {
-    public partial class DivisionDirectoryController : ControllerBase
+    public partial class DivisionDirectoryController : UniversityControllerBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="R7.DivisionDirectory.R7.DivisionDirectoryController"/> class.

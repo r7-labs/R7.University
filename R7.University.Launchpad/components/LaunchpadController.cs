@@ -13,7 +13,7 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class LaunchpadController : ControllerBase, IPortable
+	public partial class LaunchpadController : UniversityControllerBase, IPortable
 	{
 		#region Public methods
 

@@ -47,13 +47,31 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="DotNetNuke">
-      <HintPath>..\..\..\bin\DotNetNuke.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.Core.7.3.1.20\lib\net40\DotNetNuke.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.Web">
-      <HintPath>..\..\..\bin\DotNetNuke.Web.dll</HintPath>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\packages\DotNetNuke.Core.7.3.1.20\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>..\packages\DotNetNuke.Web.7.3.1.20\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI">
-      <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.Web.7.3.1.20\lib\net40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\packages\DotNetNuke.WebApi.7.3.1.20\lib\net40\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http" />
+    <Reference Include="DotNetNuke.R7">
+      <HintPath>..\packages\DotNetNuke.R7.0.1.1.24492\lib\net45\DotNetNuke.R7.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +84,7 @@
     <Content Include="ViewVCard.ascx" />
     <Content Include="EditDivision.ascx" />
     <Content Include="admin.css" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewDivision.ascx.resx" />

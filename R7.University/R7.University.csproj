@@ -47,6 +47,9 @@
       <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="DotNetNuke.R7">
+      <HintPath>..\packages\DotNetNuke.R7.0.1.1.24492\lib\net45\DotNetNuke.R7.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\Utils.cs" />
@@ -57,7 +60,6 @@
     <Compile Include="entities\IAuditable.cs" />
     <Compile Include="entities\ReferenceEntityBase.cs" />
     <Compile Include="entities\OccupiedPositionInfo.cs" />
-    <Compile Include="components\ControllerBase.cs" />
     <Compile Include="entities\IReferenceEntity.cs" />
     <Compile Include="entities\OccupiedPositionInfoEx.cs" />
     <Compile Include="AssemblyInfo.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="entities\UniversityEntityBase.cs" />
     <Compile Include="Extensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="Extensions\GridViewExtensions.cs" />
+    <Compile Include="components\UniversityControllerBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -123,6 +126,7 @@
     <None Include="SqlDataProvider\01.02.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.03.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.04.00.SqlDataProvider" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

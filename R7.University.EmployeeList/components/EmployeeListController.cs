@@ -14,7 +14,7 @@ using R7.University;
 
 namespace R7.University.EmployeeList
 {
-	public partial class EmployeeListController : ControllerBase, IPortable
+	public partial class EmployeeListController : UniversityControllerBase, IPortable
 	{
 		#region Public methods
 

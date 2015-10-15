@@ -38,7 +38,7 @@ using R7.University;
 
 namespace R7.University.Division
 {
-	public partial class DivisionController : ControllerBase, IPortable
+	public partial class DivisionController : UniversityControllerBase, IPortable
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="R7.University.Division.DivisionController"/> class.
