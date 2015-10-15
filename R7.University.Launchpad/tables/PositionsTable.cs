@@ -56,8 +56,8 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var positions = module.LaunchpadController.FindObjects<PositionInfo> (false,
-                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search);
+            var positions = module.LaunchpadController.FindObjects<PositionInfo> (
+                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
 
             foreach (var position in positions)
             {

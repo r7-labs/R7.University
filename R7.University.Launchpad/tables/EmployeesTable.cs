@@ -77,11 +77,11 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var employees = module.LaunchpadController.FindObjects<EmployeeInfo> (false,
+            var employees = module.LaunchpadController.FindObjects<EmployeeInfo> (
                 @"WHERE CONCAT([LastName], ' ', [FirstName], ' ', [OtherName], ' ',
                 [Phone], ' ', [CellPhone], ' ', [Fax], ' ', 
                 [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ',
-                [WorkingHours]) LIKE N'%{0}%'", search);
+                [WorkingHours]) LIKE N'%{0}%'", search, false);
 
             foreach (var employee in employees)
             {

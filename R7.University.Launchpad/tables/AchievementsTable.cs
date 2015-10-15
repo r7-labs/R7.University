@@ -49,8 +49,8 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var achievements =  module.LaunchpadController.FindObjects<AchievementInfo> (false,
-                @"WHERE CONCAT ([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search
+            var achievements =  module.LaunchpadController.FindObjects<AchievementInfo> (
+                @"WHERE CONCAT ([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false
             );
 
             foreach (var achievement in achievements)

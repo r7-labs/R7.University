@@ -37,8 +37,8 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
-            var eduLevels = module.LaunchpadController.FindObjects<EduLevelInfo> (false, 
-                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search);
+            var eduLevels = module.LaunchpadController.FindObjects<EduLevelInfo> ( 
+                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
 
             return DataTableConstructor.FromIEnumerable (eduLevels);
         }

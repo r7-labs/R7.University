@@ -70,10 +70,10 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var divisions = module.LaunchpadController.FindObjects<DivisionInfo> (false,
+            var divisions = module.LaunchpadController.FindObjects<DivisionInfo> (
                 @"WHERE CONCAT([Title], ' ', [ShortTitle], ' ', [Location], ' ', [Phone], ' ',
                 [Fax], ' ', [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ', [WorkingHours])
-                LIKE N'%{0}%'", search);
+                LIKE N'%{0}%'", search, false);
 
             foreach (var division in divisions)
             {
