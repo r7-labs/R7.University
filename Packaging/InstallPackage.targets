@@ -7,8 +7,9 @@
 		</XmlRead>
 		<!-- Declare binaries -->
 		<ItemGroup>
-			<InstallBinaryFiles Include="$(MSBuildDnnBinPath)\R7.University*.dll" />
-            <InstallBinaryFiles Include="$(MSBuildDnnBinPath)\AjaxControlToolkit.dll" />
+			<InstallBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.dll" />
+            <InstallBinaryFiles Include="$(MainProjectOutputPath)\DotNetNuke.R7.dll" />
+            <InstallBinaryFiles Include="$(MainProjectOutputPath)\AjaxControlToolkit.dll" />
 		</ItemGroup>
 		<!-- Declare manifest files -->
 		<ItemGroup>

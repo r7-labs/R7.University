@@ -35,7 +35,7 @@
     <PackageExtension>zip</PackageExtension>
     <PackageName>R7.University</PackageName>
     <PackageOutputPath>output</PackageOutputPath>
-    <MSBuildDnnBinPath Condition="'$(MSBuildDnnBinPath)' == ''">..\..\..\bin</MSBuildDnnBinPath>
+    <MainProjectOutputPath Condition="'$(MainProjectOutputPath)' == ''">..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
   </PropertyGroup>
   <Import Project="InstallPackage.targets" />
   <Import Project="SourcePackage.targets" />
