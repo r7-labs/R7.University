@@ -94,6 +94,15 @@
 						</assembly>
 					</assemblies>
 				</component>
+                <component type="Assembly">
+                    <assemblies>
+                        <basePath>bin</basePath>
+                        <assembly>
+                            <path>bin</path>
+                            <name>DotNetNuke.R7.dll</name>
+                        </assembly>
+                    </assemblies>
+                </component>
 				<component type="Assembly">
 					<assemblies>
 						<basePath>bin</basePath>
