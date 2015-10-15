@@ -53,7 +53,7 @@ namespace R7.University.Launchpad
 			{
 				if (createdByUserName == null)
 				{
-					var portalId = PortalController.GetCurrentPortalSettings ().PortalId;
+					var portalId = PortalController.Instance.GetCurrentPortalSettings ().PortalId;
 					var user = UserController.GetUserById (portalId, CreatedByUser);
 					createdByUserName = user.DisplayName;
 				}
