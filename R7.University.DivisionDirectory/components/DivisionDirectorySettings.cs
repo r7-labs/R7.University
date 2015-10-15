@@ -27,6 +27,7 @@
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.DivisionDirectory
@@ -48,8 +49,8 @@ namespace R7.University.DivisionDirectory
 
         public DivisionDirectoryMode Mode
         {
-            get { return ReadSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", DivisionDirectoryMode.Search, false); }
-            set { WriteSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", value, false); }
+            get { return ReadSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", DivisionDirectoryMode.Search); }
+            set { WriteModuleSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", value); }
         }
 
         #endregion

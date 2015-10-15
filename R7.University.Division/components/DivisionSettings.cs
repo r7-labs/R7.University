@@ -27,6 +27,7 @@ using System;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.Division
@@ -56,13 +57,13 @@ namespace R7.University.Division
 			get
 			{
 				if (divisionId == null)
-					divisionId = ReadSetting<int> ("Division_DivisionID", Null.NullInteger, false); 
+					divisionId = ReadSetting<int> ("Division_DivisionID", Null.NullInteger); 
 			
 				return divisionId.Value;
 			}
 			set
 			{ 
-				WriteSetting<int> ("Division_DivisionID", value, false); 
+				WriteModuleSetting<int> ("Division_DivisionID", value); 
 				divisionId = value;
 			}
 		}
@@ -73,8 +74,8 @@ namespace R7.University.Division
 		/// <value>The width of the bar code.</value>
 		public int BarcodeWidth
 		{
-			get { return ReadSetting<int> ("Division_BarcodeWidth", 120, true); }
-			set { WriteSetting<int> ("Division_BarcodeWidth", value, true); }
+			get { return ReadSetting<int> ("Division_BarcodeWidth", 120); }
+			set { WriteTabModuleSetting<int> ("Division_BarcodeWidth", value); }
 		}
 
 		#endregion

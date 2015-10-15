@@ -2,6 +2,7 @@
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.Employee
@@ -35,34 +36,34 @@ namespace R7.University.Employee
 			get
 			{ 
 				if (employeeId == null)
-					employeeId = ReadSetting<int> ("Employee_EmployeeID", Null.NullInteger, false); 
+					employeeId = ReadSetting<int> ("Employee_EmployeeID", Null.NullInteger); 
 				
 				return employeeId.Value;
 			}
 			set
 			{ 
-				WriteSetting<int> ("Employee_EmployeeID", value, false); 
+				WriteModuleSetting<int> ("Employee_EmployeeID", value); 
 				employeeId = value;
 			}
 		}
 
 		public bool ShowCurrentUser
 		{
-			get { return ReadSetting<bool> ("Employee_ShowCurrentUser", false, false); }
-			set { WriteSetting<bool> ("Employee_ShowCurrentUser", value, false); }
+			get { return ReadSetting<bool> ("Employee_ShowCurrentUser", false); }
+			set { WriteModuleSetting<bool> ("Employee_ShowCurrentUser", value); }
 		}
 
 		public bool AutoTitle
 		{
-			get { return ReadSetting<bool> ("Employee_AutoTitle", true, false); }
-			set { WriteSetting<bool> ("Employee_AutoTitle", value, false); }
+			get { return ReadSetting<bool> ("Employee_AutoTitle", true); }
+			set { WriteModuleSetting<bool> ("Employee_AutoTitle", value); }
 		}
 
 		public int PhotoWidth
 		{
 			// REVIEW: Need a way to customize default settings like PhotoWidth
-			get { return ReadSetting<int> ("Employee_PhotoWidth", 192, true); }
-			set { WriteSetting<int> ("Employee_PhotoWidth", value, true); }
+			get { return ReadSetting<int> ("Employee_PhotoWidth", 192); }
+			set { WriteTabModuleSetting<int> ("Employee_PhotoWidth", value); }
 		}
 
 		private int? dataCacheTime;
@@ -72,13 +73,13 @@ namespace R7.University.Employee
 			get
 			{ 
 				if (dataCacheTime == null)
-					dataCacheTime = ReadSetting<int> ("Employee_DataCacheTime", 1200, true);
+					dataCacheTime = ReadSetting<int> ("Employee_DataCacheTime", 1200);
 				
 				return dataCacheTime.Value;
 			}
 			set
 			{ 
-				WriteSetting<int> ("Employee_DataCacheTime", value, true); 
+				WriteTabModuleSetting<int> ("Employee_DataCacheTime", value); 
 				dataCacheTime = value;
 			}
 		}

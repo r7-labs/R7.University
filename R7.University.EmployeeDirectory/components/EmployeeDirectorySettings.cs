@@ -27,6 +27,7 @@
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.EmployeeDirectory
@@ -48,8 +49,8 @@ namespace R7.University.EmployeeDirectory
 
         public EmployeeDirectoryMode Mode
         {
-            get { return ReadSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", EmployeeDirectoryMode.Search, false); }
-            set { WriteSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", value, false); }
+            get { return ReadSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", EmployeeDirectoryMode.Search); }
+            set { WriteModuleSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", value); }
         }
 
         #endregion

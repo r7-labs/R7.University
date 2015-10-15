@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.Launchpad
@@ -21,8 +22,8 @@ namespace R7.University.Launchpad
 
 		public int PageSize
 		{
-			get { return ReadSetting<int> ("Launchpad_PageSize", 20, true); }
-			set { WriteSetting<int> ("Launchpad_PageSize", value, true); }
+			get { return ReadSetting<int> ("Launchpad_PageSize", 20); }
+			set { WriteTabModuleSetting<int> ("Launchpad_PageSize", value); }
 		}
 
 		private List<string> tables;
@@ -35,7 +36,7 @@ namespace R7.University.Launchpad
 				{
 					tables = new List<string> ();
 					tables.AddRange (
-                        ReadSetting<string> ("Launchpad_Tables", string.Empty, true)
+                        ReadSetting<string> ("Launchpad_Tables", string.Empty)
 						.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 				}
 				
@@ -43,7 +44,7 @@ namespace R7.University.Launchpad
 			}
 			set
 			{ 
-				WriteSetting<string> ("Launchpad_Tables", Utils.FormatList (";", value.ToArray ()), true); 
+				WriteTabModuleSetting<string> ("Launchpad_Tables", Utils.FormatList (";", value.ToArray ())); 
 			}
 		}
 

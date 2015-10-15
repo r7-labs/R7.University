@@ -2,6 +2,7 @@
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.EmployeeList
@@ -34,13 +35,13 @@ namespace R7.University.EmployeeList
 			get
 			{ 
 				if (divisionId == null)
-					divisionId = ReadSetting<int> ("EmployeeList_DivisionID", Null.NullInteger, false);
+					divisionId = ReadSetting<int> ("EmployeeList_DivisionID", Null.NullInteger);
 
 				return divisionId.Value;
 			}
 			set
 			{ 
-				WriteSetting<int> ("EmployeeList_DivisionID", value, false);
+				WriteModuleSetting<int> ("EmployeeList_DivisionID", value);
 				divisionId = value;
 			}
 		}
@@ -51,8 +52,8 @@ namespace R7.University.EmployeeList
 		/// <value><c>true</c> if resursively include employees from subordinate divisions; otherwise, <c>false</c>.</value>
 		public bool IncludeSubdivisions
 		{
-			get { return ReadSetting<bool> ("EmployeeList_IncludeSubdivisions", false, false); }
-			set { WriteSetting<bool> ("EmployeeList_IncludeSubdivisions", value, false); }
+			get { return ReadSetting<bool> ("EmployeeList_IncludeSubdivisions", false); }
+			set { WriteModuleSetting<bool> ("EmployeeList_IncludeSubdivisions", value); }
 		}
 
 		/// <summary>
@@ -61,15 +62,15 @@ namespace R7.University.EmployeeList
 		/// <value>The type of the sort.</value>
 		public int SortType
 		{
-			get { return ReadSetting<int> ("EmployeeList_SortType", 0, true); }
-			set { WriteSetting<int> ("EmployeeList_SortType", value, true); }
+			get { return ReadSetting<int> ("EmployeeList_SortType", 0); }
+			set { WriteTabModuleSetting<int> ("EmployeeList_SortType", value); }
 		}
 
 		public int PhotoWidth
 		{
 			// REVIEW: Need a way to customize default settings like PhotoWidth
-			get { return ReadSetting<int> ("EmployeeList_PhotoWidth", 120, true); }
-			set { WriteSetting<int> ("EmployeeList_PhotoWidth", value, true); }
+			get { return ReadSetting<int> ("EmployeeList_PhotoWidth", 120); }
+			set { WriteTabModuleSetting<int> ("EmployeeList_PhotoWidth", value); }
 		}
 
 		private int? dataCacheTime;
@@ -79,13 +80,13 @@ namespace R7.University.EmployeeList
 			get
 			{ 
 				if (dataCacheTime == null)
-					dataCacheTime = ReadSetting<int> ("EmployeeList_DataCacheTime", 1200, true);
+					dataCacheTime = ReadSetting<int> ("EmployeeList_DataCacheTime", 1200);
 				
 				return dataCacheTime.Value;
 			}
 			set
 			{ 
-				WriteSetting<int> ("EmployeeList_DataCacheTime", value, true); 
+				WriteTabModuleSetting<int> ("EmployeeList_DataCacheTime", value); 
 				dataCacheTime = value;
 			}
 		}
