@@ -2,44 +2,56 @@
 -- replace {databaseOwner} and {objectQualifier} with real values. 
 -- Defaults is "dbo." for database owner and "" for object qualifier 
 
--- EduPrograms
+-- DocumentTypes
 
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and type in (N'U'))
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_DocumentTypes]') and type in (N'U'))
 BEGIN
-    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduForms] (
-        [EduFormID] int IDENTITY(1,1) NOT NULL,
-        [Title] nvarchar(250) NOT NULL,
-        [ShortTitle] nvarchar(64) NOT NULL
-        CONSTRAINT [PK_{objectQualifier}University_EduForms] PRIMARY KEY CLUSTERED (EduFormID)
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_DocumentTypes] (
+        [DocumentTypeID] int IDENTITY (1,1) NOT NULL,
+        [Type] nvarchar (64) NOT NULL,
+        [Description] nvarchar (255),
+        [IsSystem] bit NOT NULL DEFAULT ((0))
+        CONSTRAINT [PK_{objectQualifier}University_DocumentTypes] PRIMARY KEY CLUSTERED (DocumentTypeID)
     )
-END
-GO
 
--- REVIEW: Should TimeToLearn relate to EduLevelForms and LastYearOfAcceptance to EduProgramProfileForms?
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramForms]') and type in (N'U'))
-BEGIN
-    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramForms] (
-        [EduProgramID] int NOT NULL,
-        [EduFormID] int NOT NULL,
-        [TimeToLearn] int,
-        [LastYearOfAcceptance] int
-        CONSTRAINT [PK_{objectQualifier}University_EduProgramForms] PRIMARY KEY CLUSTERED (EduProgramID, EduFormID)
-    )
+    INSERT INTO {databaseOwner}[{objectQualifier}University_DocumentTypes] (Type, IsSystem) VALUES
+        (N'Prikaz_Priem', 1),
+        (N'Prikaz_Otch', 1),
+        (N'Prikaz_Vosst', 1),
+        (N'Prikaz_Perevod', 1),
+        (N'Prikaz_Academ', 1),
+        (N'EduStandart', 1),
+        (N'Oop', 1),
+        (N'Graf', 1),
+        (N'UchebPlan', 1),
+        (N'Metod', 1),
+        (N'Annot', 1),
+        (N'Rp_Praktika', 1),
+        (N'Chislen', 1),
+        (N'Perevod', 1),
+        (N'Nir', 1)
 END
 GO
 
 -- Documents
 
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduDocuments]') and type in (N'U'))
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Documents]') and type in (N'U'))
 BEGIN
-    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduDocuments] (
-        [EduDocumentID] int IDENTITY(1,1) NOT NULL,
-        [EduProgramID] int NULL,
-        [EduProgramProfileID] int NULL,
-        [Type] nvarchar (64),
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_Documents] (
+        [DocumentID] int IDENTITY(1,1) NOT NULL,
+        [DocumentTypeID] int,
+        [ItemID] nvarchar (64) NOT NULL,
         [Title] nvarchar (255),
-        [Url] nvarchar (255)
-        CONSTRAINT [PK_{objectQualifier}University_EduDocuments] PRIMARY KEY CLUSTERED (EduDocumentID)
-)
+        [Url] nvarchar (255),
+        [SortIndex] int NOT NULL DEFAULT ((0)),
+        [StartDate] datetime,
+        [EndDate] datetime
+        CONSTRAINT [PK_{objectQualifier}University_Documents] PRIMARY KEY CLUSTERED (DocumentID)
+        CONSTRAINT [FK_{objectQualifier}University_Documents_DocumentTypes] FOREIGN KEY (DocumentTypeID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_DocumentTypes] (DocumentTypeID) ON DELETE SET NULL
+    )   
+
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_Items] 
+        ON {databaseOwner}[{objectQualifier}University_Documents] ([ItemID])
 END
 GO
