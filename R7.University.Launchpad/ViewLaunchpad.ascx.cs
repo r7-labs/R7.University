@@ -128,6 +128,9 @@ namespace R7.University.Launchpad
                     case "documenttypes":
                         table.Init (this, gridDocumentTypes, buttonAddDocumentType, pageSize);
                         break;
+                    case "documents":
+                        table.Init (this, gridDocuments, buttonAddDocument, pageSize);
+                        break;
                 }
             }
 

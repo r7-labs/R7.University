@@ -1,5 +1,5 @@
 ﻿//
-// DocumentTypesTable.cs
+// DocumentsTable.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -29,18 +29,18 @@ using System.Data;
 
 namespace R7.University.Launchpad
 {
-    public class DocumentTypesTable: LaunchpadTableBase
+    public class DocumentsTable: LaunchpadTableBase
     {
-        public DocumentTypesTable (): base ("documenttypes")
+        public DocumentsTable (): base ("documents")
         {
         }
 
         public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
-            var documentTypes = module.LaunchpadController.FindObjects<DocumentTypeInfo> (
-                @"WHERE CONCAT([Type], ' ', [Description]) LIKE N'%{0}%'", search, false);
+            var documents = module.LaunchpadController.FindObjects<DocumentInfo> (
+                @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
 
-            return DataTableConstructor.FromIEnumerable (documentTypes);
+            return DataTableConstructor.FromIEnumerable (documents);
         }
     }
 }
