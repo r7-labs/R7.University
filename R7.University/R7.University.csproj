@@ -140,6 +140,7 @@
     <None Include="SqlDataProvider\01.03.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.04.00.SqlDataProvider" />
     <None Include="packages.config" />
+    <None Include="SqlDataProvider\01.04.01.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
