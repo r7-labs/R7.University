@@ -14,19 +14,20 @@ BEGIN
         CONSTRAINT [PK_{objectQualifier}University_DocumentTypes] PRIMARY KEY CLUSTERED (DocumentTypeID)
     )
 
+    -- must be same as SystemDocumentType enum members
     INSERT INTO {databaseOwner}[{objectQualifier}University_DocumentTypes] (Type, IsSystem) VALUES
-        (N'Prikaz_Priem', 1),
-        (N'Prikaz_Otch', 1),
-        (N'Prikaz_Vosst', 1),
-        (N'Prikaz_Perevod', 1),
-        (N'Prikaz_Academ', 1),
+        (N'PrikazPriem', 1),
+        (N'PrikazOtch', 1),
+        (N'PrikazVosst', 1),
+        (N'PrikazPerevod', 1),
+        (N'PrikazAcadem', 1),
         (N'EduStandart', 1),
         (N'Oop', 1),
         (N'Graf', 1),
         (N'UchebPlan', 1),
         (N'Metod', 1),
         (N'Annot', 1),
-        (N'Rp_Praktika', 1),
+        (N'RpPraktika', 1),
         (N'Chislen', 1),
         (N'Perevod', 1),
         (N'Nir', 1)
