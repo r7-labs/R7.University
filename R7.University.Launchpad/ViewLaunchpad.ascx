@@ -241,5 +241,38 @@
                 <br />
             </div>
         </asp:View>
+        <asp:View id="viewDocumentTypes" runat="server">
+            <div id="documenttypes" style="overflow:auto">
+                <asp:HyperLink runat="server" id="buttonAddDocumentType" CssClass="dnnPrimaryAction">Add Document Type</asp:HyperLink><br />
+                <asp:GridView id="gridDocumentTypes" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None" 
+                    OnSorting="gridView_Sorting" 
+                    OnPageIndexChanging="gridView_PageIndexChanging"
+                    OnRowDataBound="gridView_RowDataBound">
+                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                    <SelectedRowStyle CssClass="dnnFormError" />
+                    <EditRowStyle CssClass="dnnFormInput" />
+                    <FooterStyle CssClass="dnnGridFooter" />
+                    <PagerStyle CssClass="dnnGridPager" />
+                    <Columns>
+                        <asp:TemplateField>
+                           <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                </asp:HyperLink>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="DocumentTypeID" SortExpression="DocumentTypeID" HeaderText="DocumentTypeID" />
+                        <asp:BoundField DataField="Type" SortExpression="Type" HeaderText="Type" />
+                        <asp:BoundField DataField="Description" SortExpression="Description" HeaderText="Description" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" Visible="true" />
+                </asp:GridView>
+                <br />
+            </div>
+        </asp:View>
 	</asp:MultiView>
 </div>

@@ -32,6 +32,8 @@ namespace R7.University.Launchpad
         protected HyperLink buttonAddEduProgram;
         protected GridView gridEduProgramProfiles;
         protected HyperLink buttonAddEduProgramProfile;
+        protected GridView gridDocumentTypes;
+        protected HyperLink buttonAddDocumentType;
 		protected Repeater repeatTabs;
 	}
 }
