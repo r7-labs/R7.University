@@ -103,6 +103,9 @@
     <Compile Include="Extensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="Extensions\GridViewExtensions.cs" />
     <Compile Include="components\UniversityControllerBase.cs" />
+    <Compile Include="entities\DocumentInfo.cs" />
+    <Compile Include="entities\DocumentTypeInfo.cs" />
+    <Compile Include="entities\SystemDocumentType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
