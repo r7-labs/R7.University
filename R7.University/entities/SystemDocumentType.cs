@@ -33,21 +33,21 @@ namespace R7.University
     /// </summary>
     public enum SystemDocumentType
     {
-        PrikazPriem,
-        PrikazOtch,
-        PrikazVosst,
-        PrikazPerevod,
-        PrikazAcadem,
-        EduStandart,
-        Oop,
-        Graf,
-        UchebPlan,
-        Metod,
-        Annot,
-        RpPraktika,
-        Chislen,
-        Perevod,
-        Nir,
+        OrderEnrollment,       // ru-RU: приказ о зачислении (приеме)
+        OrderExpulsion,        // ru-RU: приказ об отчислении
+        OrderRestoration,      // ru-RU: приказ о восстановлении
+        OrderTransfer,         // ru-RU: приказ о переводе
+        OrderAcademicLeave,    // ru-RU: приказ об академическом отпуске
+        EduStandard,           // ru-RU: образовательный стандарт
+        EduProgram,            // ru-RU: образовательная программа
+        EduSchedule,           // ru-RU: календарный график
+        EduPlan,               // ru-RU: учебный план
+        EduMaterial,           // ru-RU: методический материал
+        WorkProgramAnnotation, // ru-RU: аннотация (аннотации) рабочей программы
+        WorkProgramOfPractice, // ru-RU: рабочая программа практики
+        Contingent,            // ru-RU: сведения о численности обучающихся
+        ContingentMovement,    // ru-RU: сведения о результатах перевода, восстановления и отчисления
+        ScienceInfo,           // ru-RU: сведения о направлениях и результатах НИР
         Custom
     }
 }

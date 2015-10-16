@@ -16,21 +16,21 @@ BEGIN
 
     -- must be same as SystemDocumentType enum members
     INSERT INTO {databaseOwner}[{objectQualifier}University_DocumentTypes] (Type, IsSystem) VALUES
-        (N'PrikazPriem', 1),
-        (N'PrikazOtch', 1),
-        (N'PrikazVosst', 1),
-        (N'PrikazPerevod', 1),
-        (N'PrikazAcadem', 1),
-        (N'EduStandart', 1),
-        (N'Oop', 1),
-        (N'Graf', 1),
-        (N'UchebPlan', 1),
-        (N'Metod', 1),
-        (N'Annot', 1),
-        (N'RpPraktika', 1),
-        (N'Chislen', 1),
-        (N'Perevod', 1),
-        (N'Nir', 1)
+        (N'OrderEnrollment', 1),
+        (N'OrderExpulsion', 1),
+        (N'OrderRestoration', 1),
+        (N'OrderTransfer', 1),
+        (N'OrderAcademicLeave', 1),
+        (N'EduStandard', 1),
+        (N'EduProgram', 1),
+        (N'EduSchedule', 1),
+        (N'EduPlan', 1),
+        (N'EduMaterial', 1),
+        (N'WorkProgramAnnotation', 1),
+        (N'WorkProgramOfPractice', 1),
+        (N'Contingent', 1),
+        (N'ContingentMovement', 1),
+        (N'ScienceInfo', 1)
 END
 GO
 
