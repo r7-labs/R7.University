@@ -266,6 +266,19 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditDocumentType</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDocumentType.ascx</controlSrc>
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <controlTitle>Edit Document Type</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
 								</moduleControls>
 							</moduleDefinition>
 						</moduleDefinitions>
