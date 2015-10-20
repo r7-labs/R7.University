@@ -14,6 +14,10 @@ namespace R7.University.Launchpad
 	/// </summary>
 	public class LaunchpadSettings : SettingsWrapper
 	{
+        public LaunchpadSettings ()
+        {
+        }
+
 		public LaunchpadSettings (IModuleControl module) : base (module)
 		{
 		}

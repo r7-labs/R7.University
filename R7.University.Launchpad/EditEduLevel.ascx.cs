@@ -1,162 +1,67 @@
-﻿using System;
-using System.Web.UI.WebControls;
-using System.Linq;
-using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
+﻿//
+// EditEduLevel.ascx.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2015 
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using R7.University;
+using DotNetNuke.R7;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditEduLevel : LaunchpadPortalModuleBase
+    public partial class EditEduLevel: EditModuleBase<LaunchpadController,LaunchpadSettings,EduLevelInfo>
 	{
-		// ALT: private int itemId = Null.NullInteger;
-		private int? itemId = null;
+        protected EditEduLevel (): base ("edulevel_id")
+        {}
 
-		#region Handlers
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
 
-		/// <summary>
-		/// Handles Init event for a control.
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnInit (EventArgs e)
-		{
-			base.OnInit (e);
-
-			// set url for Cancel link
-			linkCancel.NavigateUrl = Globals.NavigateURL ();
-
-			// add confirmation dialog to delete button
-			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
-
-			// bind achievement types
+            // bind achievement types
             comboEduTypes.DataSource = CharEnumInfo<EduType>.GetLocalizedTypes (LocalizeString);
             comboEduTypes.DataBind ();
-		}
+        }
 
-		/// <summary>
-		/// Handles Load event for a control.
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnLoad (EventArgs e)
-		{
-			base.OnLoad (e);
-			
-			try
-			{
-				// parse querystring parameters
-				itemId = Utils.ParseToNullableInt (Request.QueryString ["edulevel_id"]);
-      
-				if (!IsPostBack)
-				{
-					// load the data into the control the first time we hit this page
+        protected override void OnInitControls () 
+        {
+            InitControls (buttonUpdate, buttonDelete, linkCancel);
+        }
 
-					// check we have an item to lookup
-					// ALT: if (!Null.IsNull (itemId) 
-					if (itemId.HasValue)
-					{
-						// load the item
-						var item = LaunchpadController.Get<EduLevelInfo> (itemId.Value);
+        protected override void OnLoadItem (EduLevelInfo item)
+        {
+            textTitle.Text = item.Title;
+            textShortTitle.Text = item.ShortTitle;
+            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
+        }
 
-						if (item != null)
-						{
-							textTitle.Text = item.Title;
-							textShortTitle.Text = item.ShortTitle;
-                            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
-						}
-						else
-							Response.Redirect (Globals.NavigateURL (), true);
-					}
-					else
-					{
-						buttonDelete.Visible = false;
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
-
-		/// <summary>
-		/// Handles Click event for Update button
-		/// </summary>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		/// <param name='e'>
-		/// Event args.
-		/// </param>
-		protected void buttonUpdate_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				EduLevelInfo item;
-
-				// determine if we are adding or updating
-				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue)
-				{
-					// add new record
-					item = new EduLevelInfo ();
-				}
-				else
-				{
-					// update existing record
-					item = LaunchpadController.Get<EduLevelInfo> (itemId.Value);
-				}
-
-				// fill the object
-				item.Title = textTitle.Text.Trim ();
-				item.ShortTitle = textShortTitle.Text.Trim ();
-                item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
-
-				if (!itemId.HasValue)
-                    LaunchpadController.Add<EduLevelInfo> (item);
-				else
-                    LaunchpadController.Update<EduLevelInfo> (item);
-
-				Utils.SynchronizeModule (this);
-
-				Response.Redirect (Globals.NavigateURL (), true);
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
-
-		/// <summary>
-		/// Handles Click event for Delete button
-		/// </summary>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		/// <param name='e'>
-		/// Event args.
-		/// </param>
-		protected void buttonDelete_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				// ALT: if (!Null.IsNull (itemId))
-				if (itemId.HasValue)
-				{
-                    LaunchpadController.Delete<EduLevelInfo> (itemId.Value);
-					Response.Redirect (Globals.NavigateURL (), true);
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
-
-		#endregion
+        protected override void OnUpdateItem (EduLevelInfo item)
+        {
+            item.Title = textTitle.Text.Trim ();
+            item.ShortTitle = textShortTitle.Text.Trim ();
+            item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
+        }
 	}
 }
 
