@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Web.UI.WebControls;
 using System.Linq;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
+using DotNetNuke.Entities.Icons;
 using R7.University;
 using R7.University.Extensions;
 
@@ -14,6 +13,37 @@ namespace R7.University.Launchpad
 {
 	public partial class EditEduProgram : LaunchpadPortalModuleBase
 	{
+        #region Types
+
+        public enum EditEduProgramTab { Common, Documents };
+
+        #endregion
+
+        #region Bindable icons
+
+        protected string EditIconUrl
+        {
+            get { return IconController.IconURL ("Edit"); }
+        }
+
+        protected string DeleteIconUrl
+        {
+            get { return IconController.IconURL ("Delete"); }
+        }
+
+        #endregion
+
+        protected EditEduProgramTab SelectedTab
+        {
+            get 
+            {
+                // otherwise, get current tab from viewstate
+                var obj = ViewState ["SelectedTab"];
+                return (obj != null) ? (EditEduProgramTab) obj : EditEduProgramTab.Common;
+            }
+            set { ViewState ["SelectedTab"] = value; }
+        }
+
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
 
@@ -36,6 +66,12 @@ namespace R7.University.Launchpad
 			// bind education levels
             comboEduLevel.DataSource = LaunchpadController.GetObjects<EduLevelInfo> ();
             comboEduLevel.DataBind ();
+
+            // bind document types
+            comboDocumentType.DataSource = LaunchpadController.GetObjects<DocumentTypeInfo> ();
+            comboDocumentType.DataBind ();
+
+            gridDocuments.LocalizeColumns (LocalResourceFile);
 		}
 
 		/// <summary>
@@ -45,7 +81,7 @@ namespace R7.University.Launchpad
 		protected override void OnLoad (EventArgs e)
 		{
 			base.OnLoad (e);
-			
+            	
 			try
 			{
 				// parse querystring parameters
@@ -73,6 +109,13 @@ namespace R7.University.Launchpad
                             Utils.SelectByValue (comboEduLevel, item.EduLevelID.ToString ());
 
                             auditControl.Bind (item);
+
+                            var documents = LaunchpadController.GetObjects<DocumentInfo> (string.Format (
+                                "WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID)).Select (d => new DocumentView (d)).ToList ();
+
+                            ViewState ["documents"] = documents;
+                            gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
+                            gridDocuments.DataBind ();
 						}
 						else
 							Response.Redirect (Globals.NavigateURL (), true);
@@ -187,6 +230,191 @@ namespace R7.University.Launchpad
 		}
 
 		#endregion
+       
+        #region Documents
+
+        protected void buttonAddDocument_Command (object sender, CommandEventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEduProgramTab.Documents;
+
+                DocumentView document;
+
+                // get documents list from viewstate
+                var documents = ViewState ["documents"] as List<DocumentView>;
+
+                // creating new list, if none
+                if (documents == null)
+                    documents = new List<DocumentView> ();
+
+                var command = e.CommandArgument.ToString ();
+                if (command == "Add")
+                {
+                    document = new DocumentView ();
+                }
+                else
+                {
+                    // restore ItemID from hidden field
+                    var hiddenItemID = int.Parse (hiddenDocumentItemID.Value);
+                    document = documents.Find (d => d.ViewItemID == hiddenItemID);
+                }
+
+                document.Title = textDocumentTitle.Text.Trim ();
+                document.DocumentTypeID = int.Parse (comboDocumentType.SelectedValue);
+                document.SortIndex = int.Parse (textDocumentSortIndex.Text);
+                document.StartDate = datetimeDocumentStartDate.SelectedDate;
+                document.EndDate = datetimeDocumentEndDate.SelectedDate;
+                document.Url = urlDocumentUrl.Url;
+               
+                if (command == "Add")
+                {
+                    document.ItemID = "EduProgramID=" + itemId.Value;
+                    documents.Add (document);
+                }
+
+                ResetEditDocumentForm ();
+
+                // refresh viewstate
+                ViewState ["documents"] = documents;
+
+                // bind items to the gridview
+                gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
+                gridDocuments.DataBind ();
+                
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
+        protected void linkEditDocument_Command (object sender, CommandEventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEduProgramTab.Documents;
+
+                var documents = ViewState ["documents"] as List<DocumentView>;
+                if (documents != null)
+                {
+                    var itemID = e.CommandArgument.ToString ();
+
+                    // find document in a list
+                    var document = documents.Find (d => d.ViewItemID.ToString () == itemID);
+
+                    if (document != null)
+                    {
+                        // fill form
+                        Utils.SelectByValue (comboDocumentType, document.DocumentTypeID.ToString ());
+                        textDocumentTitle.Text = document.Title;
+                        textDocumentSortIndex.Text = document.SortIndex.ToString ();
+                        datetimeDocumentStartDate.SelectedDate = document.StartDate;
+                        datetimeDocumentEndDate.SelectedDate = document.EndDate;
+                        urlDocumentUrl.Url = document.Url;
+
+                        // store ItemID in the hidden field
+                        hiddenDocumentItemID.Value = document.ViewItemID.ToString ();
+
+                        // show / hide buttons
+                        buttonAddDocument.Visible = false;
+                        buttonUpdateDocument.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
+        protected void linkDeleteDocument_Command (object sender, CommandEventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEduProgramTab.Documents;
+
+                var documents = ViewState ["documents"] as List<DocumentView>;
+                if (documents != null)
+                {
+                    var itemID = e.CommandArgument.ToString ();
+
+                    // find position in a list
+                    var documentIndex = documents.FindIndex (d => d.ViewItemID.ToString () == itemID);
+
+                    if (documentIndex >= 0)
+                    {
+                        // remove item
+                        documents.RemoveAt (documentIndex);
+
+                        // refresh viewstate
+                        ViewState ["documents"] = documents;
+
+                        // bind to the gridview
+                        gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
+                        gridDocuments.DataBind ();
+
+                        // reset form if we deleting currently edited item
+                        if (buttonUpdateDocument.Visible && hiddenDocumentItemID.Value == itemID)
+                            ResetEditDocumentForm ();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
+        protected void buttonCancelEditDocument_Click (object sender, EventArgs e)
+        {
+            try
+            {
+                SelectedTab = EditEduProgramTab.Documents;
+
+                ResetEditDocumentForm ();
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
+        void ResetEditDocumentForm ()
+        {
+            // restore default buttons visibility
+            buttonAddDocument.Visible = true;
+            buttonUpdateDocument.Visible = false;
+
+            comboDocumentType.SelectedIndex = 0;
+            textDocumentTitle.Text = string.Empty;
+            textDocumentSortIndex.Text = "0";
+            datetimeDocumentStartDate.SelectedDate = null;
+            datetimeDocumentEndDate.SelectedDate = null;
+            urlDocumentUrl.UrlType = "N";
+        }
+
+        protected void gridDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            // hide ViewItemID column, also in header
+            e.Row.Cells [1].Visible = false;
+
+            // exclude header
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // find edit and delete linkbuttons
+                var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
+                var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
+
+                // set recordId to delete
+                linkEdit.CommandArgument = e.Row.Cells [1].Text;
+                linkDelete.CommandArgument = e.Row.Cells [1].Text;
+
+                // add confirmation dialog to delete link
+                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
+            }
+        }
+        #endregion
 	}
 }
 

@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="CommonTab.Text" xml:space="preserve">
+        <value>Educational Program</value>
+    </data>
+    <data name="DocumentsTab.Text" xml:space="preserve">
+        <value>Documents</value>
+    </data>
     <data name="labelCode.Text" xml:space="preserve">
         <value>Code:</value>
     </data>
@@ -53,6 +59,66 @@
     </data>
     <data name="labelEndDate.Help">
         <value>Enter the date from current educational program should be removed from publication on the site.</value>
+    </data>
+    <data name="labelDocumentTitle.Text">
+        <value>Title:</value>
+    </data>
+    <data name="labelDocumentTitle.Help">
+        <value>Enter title for the document.</value>
+    </data>
+    <data name="labelDocumentType.Text">
+        <value>Type:</value>
+    </data>
+    <data name="labelDocumentType.Help">
+        <value>Select document type from the dropdown.</value>
+    </data>
+    <data name="labelDocumentSortIndex.Text">
+        <value>Sort Index:</value>
+    </data>
+    <data name="labelDocumentSortIndex.Help">
+        <value>Enter sort index for the document. It can be used to give specific order to the documents in some views.</value>
+    </data>
+    <data name="labelDocumentUrl.Text">
+        <value>Link:</value>
+    </data>
+    <data name="labelDocumentUrl.Help">
+        <value>Provide link to the document.</value>
+    </data>
+    <data name="labelDocumentStartDate.Text">
+        <value>Start Publication:</value>
+    </data>
+    <data name="labelDocumentStartDate.Help">
+        <value>Enter the date from current document should be published on the site.</value>
+    </data>
+    <data name="labelDocumentEndDate.Text">
+        <value>End Publication:</value>
+    </data>
+    <data name="labelDocumentEndDate.Help">
+        <value>Enter the date from current document should be removed from publication on the site.</value>
+    </data>
+    <data name="buttonAddDocument.Text">
+        <value>Add Document</value>
+    </data>
+    <data name="buttonUpdateDocument.Text">
+        <value>Update Document</value>
+    </data>
+    <data name="buttonCancelEditDocument.Text">
+        <value>Cancel Edit</value>
+    </data>
+    <data name="DocumentTitle.Column">
+        <value>Title</value>
+    </data>
+    <data name="DocumentUrl.Column">
+        <value>Link</value>
+    </data>
+    <data name="DocumentSortIndex.Column">
+        <value>Sort Index</value>
+    </data>
+    <data name="DocumentStartDate.Column">
+        <value>Start Date</value>
+    </data>
+    <data name="DocumentEndDate.Column">
+        <value>End Date</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;An Edit education program module&lt;/P&gt;</value>

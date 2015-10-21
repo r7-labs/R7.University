@@ -1,5 +1,5 @@
 ﻿//
-// DocumentInfo.cs
+// DocumentView.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,35 +25,36 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University
+namespace R7.University.Launchpad
 {
-    [TableName ("University_Documents")]
-    [PrimaryKey ("DocumentID", AutoIncrement = true)]
-    [Scope ("ItemID")]
     [Serializable]
-    public class DocumentInfo
+    public class DocumentView: DocumentInfo
     {
-        #region Properties
+        public int ViewItemID { get; set; }
 
-        public int DocumentID { get; set; }
+        public DocumentView ()
+        {
+            ViewItemID = ViewNumerator.GetNextItemID ();
+        }
 
-        public int? DocumentTypeID { get; set; }
+        public DocumentView (DocumentInfo document): this ()
+        {
+            CopyCstor.Copy<DocumentInfo> (document, this);
+        }
 
-        public string ItemID { get; set; }
-
-        public string Title { get; set; }
-
-        public string Url { get; set; }
-
-        public int SortIndex { get; set; }
-
-        public DateTime? StartDate { get; set; }
-
-        public DateTime? EndDate { get; set; }
-
-        #endregion
+        public DocumentInfo NewDocumentInfo ()
+        {
+            return new DocumentInfo {
+                Title = Title,
+                DocumentTypeID = DocumentTypeID,
+                ItemID = ItemID,
+                Url = Url,
+                SortIndex = SortIndex,
+                StartDate = StartDate,
+                EndDate = EndDate
+            };
+        }
     }
 }
 
