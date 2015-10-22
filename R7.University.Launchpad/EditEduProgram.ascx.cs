@@ -8,6 +8,7 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Icons;
 using R7.University;
 using R7.University.Extensions;
+using DotNetNuke.Common.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -89,10 +90,13 @@ namespace R7.University.Launchpad
 
             // bind document types
             var documentTypes = LaunchpadController.GetObjects<DocumentTypeInfo> ();
-            comboDocumentType.DataSource = documentTypes;
-            comboDocumentType.DataBind ();
             RememberDocumentTypes (documentTypes);
 
+            var documentTypesList = documentTypes.ToList ();
+            documentTypesList.Insert (0, new DocumentTypeInfo { Type = LocalizeString ("NotSelected.Text"), DocumentTypeID = Null.NullInteger });
+            comboDocumentType.DataSource = documentTypesList;
+            comboDocumentType.DataBind ();
+           
             gridDocuments.LocalizeColumns (LocalResourceFile);
 		}
 
@@ -283,8 +287,9 @@ namespace R7.University.Launchpad
                 }
 
                 document.Title = textDocumentTitle.Text.Trim ();
-                document.DocumentTypeID = int.Parse (comboDocumentType.SelectedValue);
+                document.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
                 document.Type = GetDocumentType (document.DocumentTypeID);
+
                 document.SortIndex = int.Parse (textDocumentSortIndex.Text);
                 document.StartDate = datetimeDocumentStartDate.SelectedDate;
                 document.EndDate = datetimeDocumentEndDate.SelectedDate;
@@ -329,7 +334,7 @@ namespace R7.University.Launchpad
                     if (document != null)
                     {
                         // fill form
-                        Utils.SelectByValue (comboDocumentType, document.DocumentTypeID.ToString ());
+                        Utils.SelectByValue (comboDocumentType, document.DocumentTypeID);
                         textDocumentTitle.Text = document.Title;
                         textDocumentSortIndex.Text = document.SortIndex.ToString ();
                         datetimeDocumentStartDate.SelectedDate = document.StartDate;
