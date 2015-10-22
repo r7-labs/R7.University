@@ -29,7 +29,7 @@ using System;
 namespace R7.University.Launchpad
 {
     [Serializable]
-    public class DocumentView: DocumentInfo
+    public class DocumentView: DocumentInfoEx
     {
         public int ViewItemID { get; set; }
 
@@ -38,9 +38,9 @@ namespace R7.University.Launchpad
             ViewItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public DocumentView (DocumentInfo document): this ()
+        public DocumentView (DocumentInfoEx document): this ()
         {
-            CopyCstor.Copy<DocumentInfo> (document, this);
+            CopyCstor.Copy<DocumentInfoEx> (document, this);
         }
 
         public DocumentInfo NewDocumentInfo ()

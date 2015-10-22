@@ -78,10 +78,11 @@
                             </asp:TemplateField>
                             <asp:BoundField DataField="ViewItemID" />
                             <asp:BoundField DataField="Title" HeaderText="DocumentTitle" />
-                            <asp:BoundField DataField="Url" HeaderText="DocumentUrl" />
+                            <asp:BoundField DataField="Type" HeaderText="DocumentType" />
                             <asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex" />
                             <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate" />
                             <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate" />
+                            <asp:BoundField DataField="Url" HeaderText="DocumentUrl" />
                         </Columns>
                     </asp:GridView>
                 </div>

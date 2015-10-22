@@ -47,6 +47,26 @@ namespace R7.University.Launchpad
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
 
+        #region DocumentTypes
+
+        protected void RememberDocumentTypes (IEnumerable<DocumentTypeInfo> documentTypes)
+        {
+            ViewState ["documentTypes"] = documentTypes.ToList ();
+        }
+
+        protected string GetDocumentType (int? documentTypeId)
+        {
+            if (documentTypeId != null)
+            {
+                var documentTypes = (List<DocumentTypeInfo>) ViewState ["documentTypes"];
+                return documentTypes.Single (dt => dt.DocumentTypeID == documentTypeId.Value).Type;
+            }
+
+            return string.Empty;
+        }
+
+        #endregion
+
 		#region Handlers
 
 		/// <summary>
@@ -68,8 +88,10 @@ namespace R7.University.Launchpad
             comboEduLevel.DataBind ();
 
             // bind document types
-            comboDocumentType.DataSource = LaunchpadController.GetObjects<DocumentTypeInfo> ();
+            var documentTypes = LaunchpadController.GetObjects<DocumentTypeInfo> ();
+            comboDocumentType.DataSource = documentTypes;
             comboDocumentType.DataBind ();
+            RememberDocumentTypes (documentTypes);
 
             gridDocuments.LocalizeColumns (LocalResourceFile);
 		}
@@ -110,7 +132,7 @@ namespace R7.University.Launchpad
 
                             auditControl.Bind (item);
 
-                            var documents = LaunchpadController.GetObjects<DocumentInfo> (string.Format (
+                            var documents = LaunchpadController.GetObjects<DocumentInfoEx> (string.Format (
                                 "WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID)).Select (d => new DocumentView (d)).ToList ();
 
                             ViewState ["documents"] = documents;
@@ -262,11 +284,12 @@ namespace R7.University.Launchpad
 
                 document.Title = textDocumentTitle.Text.Trim ();
                 document.DocumentTypeID = int.Parse (comboDocumentType.SelectedValue);
+                document.Type = GetDocumentType (document.DocumentTypeID);
                 document.SortIndex = int.Parse (textDocumentSortIndex.Text);
                 document.StartDate = datetimeDocumentStartDate.SelectedDate;
                 document.EndDate = datetimeDocumentEndDate.SelectedDate;
                 document.Url = urlDocumentUrl.Url;
-               
+
                 if (command == "Add")
                 {
                     document.ItemID = "EduProgramID=" + itemId.Value;

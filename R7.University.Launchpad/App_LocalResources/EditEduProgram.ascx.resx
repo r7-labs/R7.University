@@ -108,6 +108,9 @@
     <data name="DocumentTitle.Column">
         <value>Title</value>
     </data>
+     <data name="DocumentType.Column">
+        <value>Type</value>
+    </data>
     <data name="DocumentUrl.Column">
         <value>Link</value>
     </data>
