@@ -103,7 +103,7 @@
         <value>Update Document</value>
     </data>
     <data name="buttonCancelEditDocument.Text">
-        <value>Cancel Edit</value>
+        <value>Cancel</value>
     </data>
     <data name="DocumentTitle.Column">
         <value>Title</value>
