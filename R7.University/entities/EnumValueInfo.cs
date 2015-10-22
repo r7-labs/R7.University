@@ -88,7 +88,7 @@ namespace R7.University
         public static string GetResourceKey (T? value)
         {
             if (value != null)
-                return value.GetType ().Name + value.Value + ".Text";
+                return value.GetType ().Name + "_" + value.Value + ".Text";
 
             return value.GetType ().Name + "_Default.Text";
         }
