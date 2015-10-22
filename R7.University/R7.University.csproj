@@ -107,6 +107,7 @@
     <Compile Include="entities\DocumentTypeInfo.cs" />
     <Compile Include="entities\SystemDocumentType.cs" />
     <Compile Include="entities\DocumentInfoEx.cs" />
+    <Compile Include="entities\EnumValueInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

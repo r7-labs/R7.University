@@ -29,6 +29,7 @@ using System.Collections.Generic;
 
 namespace R7.University
 {
+    // TODO: Replace with EnumValueInfo class
     public class CharEnumInfo<T> where T: struct
 	{
         public CharEnumInfo (T type)
