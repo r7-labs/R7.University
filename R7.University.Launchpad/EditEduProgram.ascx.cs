@@ -92,9 +92,7 @@ namespace R7.University.Launchpad
             var documentTypes = LaunchpadController.GetObjects<DocumentTypeInfo> ();
             RememberDocumentTypes (documentTypes);
 
-            var documentTypesList = documentTypes.ToList ();
-            documentTypesList.Insert (0, new DocumentTypeInfo { Type = LocalizeString ("NotSelected.Text"), DocumentTypeID = Null.NullInteger });
-            comboDocumentType.DataSource = documentTypesList;
+            comboDocumentType.DataSource = DocumentTypeViewModel.GetBindableList (documentTypes, LocalResourceFile, true);
             comboDocumentType.DataBind ();
            
             gridDocuments.LocalizeColumns (LocalResourceFile);
@@ -137,7 +135,7 @@ namespace R7.University.Launchpad
                             auditControl.Bind (item);
 
                             var documents = LaunchpadController.GetObjects<DocumentInfoEx> (string.Format (
-                                "WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID)).Select (d => new DocumentView (d)).ToList ();
+                                "WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID)).Select (d => new DocumentView (d, LocalResourceFile)).ToList ();
 
                             ViewState ["documents"] = documents;
                             gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
@@ -289,11 +287,13 @@ namespace R7.University.Launchpad
                 document.Title = textDocumentTitle.Text.Trim ();
                 document.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
                 document.Type = GetDocumentType (document.DocumentTypeID);
-
                 document.SortIndex = int.Parse (textDocumentSortIndex.Text);
                 document.StartDate = datetimeDocumentStartDate.SelectedDate;
                 document.EndDate = datetimeDocumentEndDate.SelectedDate;
                 document.Url = urlDocumentUrl.Url;
+
+                // TODO: Need a way to localize items automatically
+                document.Localize (LocalResourceFile);
 
                 if (command == "Add")
                 {

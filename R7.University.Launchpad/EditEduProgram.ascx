@@ -77,8 +77,8 @@
                                </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="ViewItemID" />
+                            <asp:BoundField DataField="LocalizedType" HeaderText="DocumentType" />
                             <asp:BoundField DataField="Title" HeaderText="DocumentTitle" />
-                            <asp:BoundField DataField="Type" HeaderText="DocumentType" />
                             <asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex" />
                             <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate" />
                             <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate" />
@@ -89,7 +89,7 @@
                 <div class="dnnFormItem">
                     <dnn:Label id="labelDocumentType" runat="server" ControlName="comboDocumentType" />
                     <asp:DropDownList id="comboDocumentType" runat="server" 
-                        DataTextField="Type"
+                        DataTextField="LocalizedType"
                         DataValueField="DocumentTypeID"
                     />
                 </div>

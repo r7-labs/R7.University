@@ -1,5 +1,5 @@
 ﻿//
-// DocumentView.cs
+// DocumentTypeViewModel.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,25 +25,23 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.Common.Utilities;
+using System.Collections.Generic;
 
 namespace R7.University.Launchpad
 {
-    [Serializable]
-    public class DocumentView: DocumentInfoEx
+    public class DocumentTypeViewModel: DocumentTypeInfo
     {
-        public int ViewItemID { get; set; }
-
         public string LocalizedType { get; set; }
 
-        public DocumentView ()
-        {
-            ViewItemID = ViewNumerator.GetNextItemID ();
-        }
+        public DocumentTypeViewModel ()
+        {}
 
-        public DocumentView (DocumentInfoEx document, string resourceFile): this ()
+        public DocumentTypeViewModel (DocumentTypeInfo documentType, string resourceFile)
         {
-            CopyCstor.Copy<DocumentInfoEx> (document, this);
+            CopyCstor.Copy<DocumentTypeInfo> (documentType, this);
             Localize (resourceFile);
         }
 
@@ -53,17 +51,27 @@ namespace R7.University.Launchpad
             LocalizedType = (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
         }
 
-        public DocumentInfo NewDocumentInfo ()
+        public static DocumentTypeViewModel GetDefaultItem (string resourceFile)
         {
-            return new DocumentInfo {
-                Title = Title,
-                DocumentTypeID = DocumentTypeID,
-                ItemID = ItemID,
-                Url = Url,
-                SortIndex = SortIndex,
-                StartDate = StartDate,
-                EndDate = EndDate
+            var defaultItem = new DocumentTypeViewModel { 
+                DocumentTypeID = Null.NullInteger,
+                Type = "Default"
             };
+
+            defaultItem.Localize (resourceFile);
+            return defaultItem;
+        }
+
+        public static List<DocumentTypeViewModel> GetBindableList (IEnumerable<DocumentTypeInfo> documentTypes, string resourceFile, bool withDefaultItem)
+        {
+            var documentTypeVms = documentTypes.Select (dt => new DocumentTypeViewModel (dt, resourceFile)).ToList ();
+
+            if (withDefaultItem) 
+            {
+                documentTypeVms.Insert (0, DocumentTypeViewModel.GetDefaultItem (resourceFile));
+            }
+
+            return documentTypeVms;
         }
     }
 }
