@@ -33,7 +33,7 @@ namespace R7.University
     /// </summary>
     public enum SystemDocumentType
     {
-        OrderEnrollment,       // ru-RU: приказ о зачислении (приеме)
+        OrderEnrollment,       // ru-RU: приказ о приеме (зачислении)
         OrderExpulsion,        // ru-RU: приказ об отчислении
         OrderRestoration,      // ru-RU: приказ о восстановлении
         OrderTransfer,         // ru-RU: приказ о переводе
