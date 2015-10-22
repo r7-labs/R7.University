@@ -56,3 +56,17 @@ BEGIN
         ON {databaseOwner}[{objectQualifier}University_Documents] ([ItemID])
 END
 GO
+
+-- Drop views
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_Documents]') and type in (N'V'))
+    DROP VIEW {databaseOwner}[{objectQualifier}vw_University_Documents]
+GO
+
+-- Create views
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_Documents] AS
+    SELECT D.*, DT.Type, DT.IsSystem, DT.Description FROM {databaseOwner}[{objectQualifier}University_Documents] AS D
+        INNER JOIN {databaseOwner}[{objectQualifier}University_DocumentTypes] AS DT 
+            ON D.DocumentTypeID = DT.DocumentTypeID
+GO

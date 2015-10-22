@@ -1,5 +1,5 @@
 ﻿//
-// DocumentTypeInfo.cs
+// DocumentInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -29,41 +29,23 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    public interface IDocumentTypeInfo
-    {
-        string Type { get; }
-
-        string Description { get; }
-
-        bool IsSystem { get; }
-    }
-
-    [TableName ("University_DocumentTypes")]
-    [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
+    [TableName ("vw_University_Documents")]
+    [Scope ("ItemID")]
     [Serializable]
-    public class DocumentTypeInfo: IDocumentTypeInfo
+    public class DocumentInfoEx: DocumentInfo, IDocumentTypeInfo
     {
-        public int DocumentTypeID { get; set; }
-
         #region IDocumentTypeInfo implementation
 
+        [ReadOnlyColumn]
         public string Type { get; set; }
 
+        [ReadOnlyColumn]
         public string Description { get; set; }
 
+        [ReadOnlyColumn]
         public bool IsSystem { get; set; }
 
         #endregion
-
-        [IgnoreColumn]
-        public SystemDocumentType SystemDocumentType
-        {
-            get
-            {
-                SystemDocumentType result;
-                return Enum.TryParse<SystemDocumentType> (Type, out result) ? result : SystemDocumentType.Custom;
-            }
-        }
     }
 }
 
