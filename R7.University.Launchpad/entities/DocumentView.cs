@@ -62,7 +62,6 @@ namespace R7.University.Launchpad
                 SortIndex = SortIndex,
                 StartDate = StartDate,
                 EndDate = EndDate,
-                // FIXME: Serialization issue with nullable fields? Why not with dates?
                 DocumentTypeID = DocumentTypeID
             };
         }

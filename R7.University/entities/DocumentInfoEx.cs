@@ -32,17 +32,9 @@ namespace R7.University
     [TableName ("vw_University_Documents")]
     [Scope ("ItemID")]
     [Serializable]
-    public class DocumentInfoEx: DocumentInfo, IDocumentTypeInfo
+    public class DocumentInfoEx: DocumentInfo
     {
-        #region IDocumentTypeInfo implementation
-
         public string Type { get; set; }
-
-        public string Description { get; set; }
-
-        public bool IsSystem { get; set; }
-
-        #endregion
     }
 }
 
