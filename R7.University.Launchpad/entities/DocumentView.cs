@@ -57,12 +57,13 @@ namespace R7.University.Launchpad
         {
             return new DocumentInfo {
                 Title = Title,
-                DocumentTypeID = DocumentTypeID,
                 ItemID = ItemID,
                 Url = Url,
                 SortIndex = SortIndex,
                 StartDate = StartDate,
-                EndDate = EndDate
+                EndDate = EndDate,
+                // FIXME: Serialization issue with nullable fields? Why not with dates?
+                DocumentTypeID = DocumentTypeID
             };
         }
     }

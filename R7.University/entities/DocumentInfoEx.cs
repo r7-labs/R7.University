@@ -36,13 +36,10 @@ namespace R7.University
     {
         #region IDocumentTypeInfo implementation
 
-        [ReadOnlyColumn]
         public string Type { get; set; }
 
-        [ReadOnlyColumn]
         public string Description { get; set; }
 
-        [ReadOnlyColumn]
         public bool IsSystem { get; set; }
 
         #endregion

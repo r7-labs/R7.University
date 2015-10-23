@@ -8,7 +8,6 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Icons;
 using R7.University;
 using R7.University.Extensions;
-using DotNetNuke.Common.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -48,7 +47,7 @@ namespace R7.University.Launchpad
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
 
-        #region DocumentTypes
+        #region Documents & document types
 
         protected void RememberDocumentTypes (IEnumerable<DocumentTypeInfo> documentTypes)
         {
@@ -64,6 +63,17 @@ namespace R7.University.Launchpad
             }
 
             return string.Empty;
+        }
+
+        private List<DocumentInfo> GetDocuments ()
+        {
+            var documents = ViewState ["documents"];
+            if (documents != null)
+            {
+                return ((List<DocumentView>) documents).Select (dvm => dvm.NewDocumentInfo ()).ToList ();
+            }
+
+            return new List<DocumentInfo> ();
         }
 
         #endregion
@@ -194,13 +204,13 @@ namespace R7.University.Launchpad
                 item.EndDate = datetimeEndDate.SelectedDate;
                 item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
 
-				if (!itemId.HasValue)
+                if (itemId == null)
                 {
                     item.CreatedOnDate = DateTime.Now;
                     item.LastModifiedOnDate = item.CreatedOnDate;
                     item.CreatedByUserID = UserInfo.UserID;
                     item.LastModifiedByUserID = item.CreatedByUserID;
-                    LaunchpadController.Add<EduProgramInfo> (item);
+                    LaunchpadController.AddEduProgram (item, GetDocuments ());
                 }
 				else
                 {
@@ -214,7 +224,7 @@ namespace R7.University.Launchpad
                         item.CreatedByUserID = item.LastModifiedByUserID;
                     }
 
-                    LaunchpadController.Update<EduProgramInfo> (item);
+                    LaunchpadController.UpdateEduProgram (item, GetDocuments ());
                 }
 
 				Utils.SynchronizeModule (this);
@@ -226,7 +236,7 @@ namespace R7.University.Launchpad
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
-
+         
 		/// <summary>
 		/// Handles Click event for Delete button
 		/// </summary>
@@ -240,10 +250,9 @@ namespace R7.University.Launchpad
 		{
 			try
 			{
-				// ALT: if (!Null.IsNull (itemId))
-				if (itemId.HasValue)
+				if (itemId != null)
 				{
-                    LaunchpadController.Delete<EduProgramInfo> (itemId.Value);
+                    LaunchpadController.DeleteEduProgram (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}

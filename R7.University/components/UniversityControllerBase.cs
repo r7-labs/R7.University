@@ -88,7 +88,6 @@ namespace R7.University
 					throw;
 				}
 			}
-
 		}
 
 		public void UpdateEmployee (EmployeeInfo employee, 
@@ -244,6 +243,104 @@ namespace R7.University
         public IEnumerable<DivisionInfo> GetRootDivisions ()
         {
             return GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
+        }
+
+        public void AddEduProgram (EduProgramInfo eduProgram, List<DocumentInfo> documents)
+        {
+            using (var ctx = DataContext.Instance ())
+            {
+                ctx.BeginTransaction ();
+
+                try
+                {
+                    // add edu program
+                    Add<EduProgramInfo> (eduProgram);
+
+                    // add new documents
+                    foreach (var document in documents)
+                    {
+                        document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
+                        Add<DocumentInfo> (document);
+                    }
+
+                    ctx.Commit ();
+                }
+                catch
+                {
+                    ctx.RollbackTransaction ();
+                    throw;
+                }
+            }
+        }
+
+        public void UpdateEduProgram (EduProgramInfo eduProgram, List<DocumentInfo> documents)
+        {
+            using (var ctx = DataContext.Instance ())
+            {
+                ctx.BeginTransaction ();
+
+                try
+                {
+                    // update edu program
+                    Update<EduProgramInfo> (eduProgram);
+
+                    var documentIds = documents.Select (d => d.DocumentID.ToString ());
+                    if (documentIds.Any ())
+                    {
+                        // delete specific documents
+                        Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'{0}' AND [DocumentID] NOT IN ({1})", 
+                            "EduProgramID=" + eduProgram.EduProgramID,
+                            Utils.FormatList (", ", documentIds))); 
+                    }
+                    else
+                    {
+                        // delete all edu program documents
+                        Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'EduProgramID={0}'", eduProgram.EduProgramID)); 
+                    }
+
+                    // add new documents
+                    foreach (var document in documents)
+                    {
+                        document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
+                        if (document.DocumentID <= 0)
+                            Add<DocumentInfo> (document);
+                        else
+                            Update<DocumentInfo> (document);
+                    }
+
+                    ctx.Commit ();
+                }
+                catch
+                {
+                    ctx.RollbackTransaction ();
+                    throw;
+                }
+            }
+        }
+
+        public void DeleteEduProgram (int eduProgramId)
+        {
+            using (var ctx = DataContext.Instance ())
+            {
+                ctx.BeginTransaction ();
+
+                try
+                {
+                    // delete documents
+                    Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'EduProgramID={0}'", eduProgramId));
+
+                    // delete edu program
+                    Delete<EduProgramInfo> (eduProgramId);
+                  
+                    ctx.Commit ();
+                }
+                catch
+                {
+                    ctx.RollbackTransaction ();
+                    throw;
+                }
+            }
+
         }
 
 		#endregion
