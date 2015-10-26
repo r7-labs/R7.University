@@ -1,5 +1,5 @@
 ﻿//
-// DocumentView.cs
+// DocumentViewModel.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,32 +25,65 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 
 namespace R7.University.Launchpad
 {
     [Serializable]
-    public class DocumentView: DocumentInfoEx
+    public class DocumentViewModel: DocumentInfoEx
     {
         public int ViewItemID { get; set; }
 
-        public string LocalizedType { get; set; }
+        [XmlIgnore]
+        protected ViewModelContext Context { get; set; }
 
-        public DocumentView ()
+        [XmlIgnore]
+        public string LocalizedType
+        { 
+            get
+            { 
+                var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", Context.Control.LocalResourceFile);
+                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
+            }
+        }
+
+        [XmlIgnore]
+        public string FormattedUrl
+        {
+            get
+            { 
+                if (!string.IsNullOrWhiteSpace (Url))
+                {
+                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
+                        Globals.LinkClick (Url, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
+                        Localization.GetString ("DocumentUrlLabel.Text", Context.Control.LocalResourceFile)
+                    );
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public DocumentViewModel ()
         {
             ViewItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public DocumentView (DocumentInfoEx document, string resourceFile): this ()
+        public DocumentViewModel (DocumentInfoEx document, ViewModelContext viewContext): this ()
         {
             CopyCstor.Copy<DocumentInfoEx> (document, this);
-            Localize (resourceFile);
+            Context = viewContext;
         }
 
-        public void Localize (string resourceFile)
+        public static void BindToView (IEnumerable<DocumentViewModel> documents, ViewModelContext context)
         {
-            var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", resourceFile);
-            LocalizedType = (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
+            foreach (var document in documents)
+            {
+                document.Context = context;
+            }
         }
 
         public DocumentInfo NewDocumentInfo ()

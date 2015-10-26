@@ -114,6 +114,9 @@
     <data name="DocumentUrl.Column">
         <value>Link</value>
     </data>
+    <data name="DocumentUrlLabel.Text">
+        <value>Open</value>
+    </data>
     <data name="DocumentSortIndex.Column">
         <value>Sort Index</value>
     </data>

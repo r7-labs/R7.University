@@ -82,7 +82,7 @@
                             <asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex" />
                             <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate" />
                             <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate" />
-                            <asp:BoundField DataField="Url" HeaderText="DocumentUrl" />
+                            <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl" HtmlEncode="false" />
                         </Columns>
                     </asp:GridView>
                 </div>

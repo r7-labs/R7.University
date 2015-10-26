@@ -44,6 +44,12 @@ namespace R7.University.Launchpad
             set { ViewState ["SelectedTab"] = value; }
         }
 
+        private ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
+        }
+
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
 
@@ -67,13 +73,18 @@ namespace R7.University.Launchpad
 
         private List<DocumentInfo> GetDocuments ()
         {
-            var documents = ViewState ["documents"];
-            if (documents != null)
+            if (ViewStateDocuments != null)
             {
-                return ((List<DocumentView>) documents).Select (dvm => dvm.NewDocumentInfo ()).ToList ();
+                return ViewStateDocuments.Select (dvm => dvm.NewDocumentInfo ()).ToList ();
             }
 
             return new List<DocumentInfo> ();
+        }
+
+        protected List<DocumentViewModel> ViewStateDocuments
+        {
+            get { return XmlSerializationHelper.Deserialize<List<DocumentViewModel>> (ViewState ["documents"]); }
+            set { ViewState ["documents"] = XmlSerializationHelper.Serialize<List<DocumentViewModel>> (value); }
         }
 
         #endregion
@@ -145,9 +156,9 @@ namespace R7.University.Launchpad
                             auditControl.Bind (item);
 
                             var documents = LaunchpadController.GetObjects<DocumentInfoEx> (string.Format (
-                                "WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID)).Select (d => new DocumentView (d, LocalResourceFile)).ToList ();
+                                "WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID)).Select (d => new DocumentViewModel (d, ViewModelContext)).ToList ();
 
-                            ViewState ["documents"] = documents;
+                            ViewStateDocuments = documents;
                             gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
                             gridDocuments.DataBind ();
 						}
@@ -272,19 +283,19 @@ namespace R7.University.Launchpad
             {
                 SelectedTab = EditEduProgramTab.Documents;
 
-                DocumentView document;
+                DocumentViewModel document;
 
                 // get documents list from viewstate
-                var documents = ViewState ["documents"] as List<DocumentView>;
+                var documents = ViewStateDocuments;
 
                 // creating new list, if none
                 if (documents == null)
-                    documents = new List<DocumentView> ();
+                    documents = new List<DocumentViewModel> ();
 
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add")
                 {
-                    document = new DocumentView ();
+                    document = new DocumentViewModel ();
                 }
                 else
                 {
@@ -301,9 +312,6 @@ namespace R7.University.Launchpad
                 document.EndDate = datetimeDocumentEndDate.SelectedDate;
                 document.Url = urlDocumentUrl.Url;
 
-                // TODO: Need a way to localize items automatically
-                document.Localize (LocalResourceFile);
-
                 if (command == "Add")
                 {
                     document.ItemID = "EduProgramID=" + itemId.Value;
@@ -313,9 +321,10 @@ namespace R7.University.Launchpad
                 ResetEditDocumentForm ();
 
                 // refresh viewstate
-                ViewState ["documents"] = documents;
+                ViewStateDocuments = documents;
 
                 // bind items to the gridview
+                DocumentViewModel.BindToView (documents, ViewModelContext);
                 gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
                 gridDocuments.DataBind ();
                 
@@ -332,7 +341,7 @@ namespace R7.University.Launchpad
             {
                 SelectedTab = EditEduProgramTab.Documents;
 
-                var documents = ViewState ["documents"] as List<DocumentView>;
+                var documents = ViewStateDocuments;
                 if (documents != null)
                 {
                     var itemID = e.CommandArgument.ToString ();
@@ -371,7 +380,7 @@ namespace R7.University.Launchpad
             {
                 SelectedTab = EditEduProgramTab.Documents;
 
-                var documents = ViewState ["documents"] as List<DocumentView>;
+                var documents = ViewStateDocuments;
                 if (documents != null)
                 {
                     var itemID = e.CommandArgument.ToString ();
@@ -385,9 +394,10 @@ namespace R7.University.Launchpad
                         documents.RemoveAt (documentIndex);
 
                         // refresh viewstate
-                        ViewState ["documents"] = documents;
+                        ViewStateDocuments = documents;
 
                         // bind to the gridview
+                        DocumentViewModel.BindToView (documents, ViewModelContext);
                         gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
                         gridDocuments.DataBind ();
 

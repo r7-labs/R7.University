@@ -177,8 +177,8 @@
     <Compile Include="EditDocumentType.ascx.controls.cs">
       <DependentUpon>EditDocumentType.ascx</DependentUpon>
     </Compile>
-    <Compile Include="entities\DocumentView.cs" />
     <Compile Include="entities\DocumentTypeViewModel.cs" />
+    <Compile Include="entities\DocumentViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
