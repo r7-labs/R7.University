@@ -108,6 +108,8 @@
     <Compile Include="entities\SystemDocumentType.cs" />
     <Compile Include="entities\DocumentInfoEx.cs" />
     <Compile Include="entities\EnumValueInfo.cs" />
+    <Compile Include="components\XmlSerializationHelper.cs" />
+    <Compile Include="components\ViewModelContext.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
