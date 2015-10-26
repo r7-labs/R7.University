@@ -1,5 +1,5 @@
 ﻿//
-// EditEduLevel.ascx.cs
+// XmlSerializationHelper.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,43 +25,32 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
-using DotNetNuke.R7;
+using System.IO;
+using System.Xml.Serialization;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-    public partial class EditEduLevel: EditModuleBase<LaunchpadController,LaunchpadSettings,EduLevelInfo>
-	{
-        protected EditEduLevel (): base ("edulevel_id")
-        {}
-
-        protected override void OnInit (EventArgs e)
+    public static class XmlSerializationHelper
+    {
+        public static string Serialize<T> (T value) where T: class, new()
         {
-            base.OnInit (e);
-
-            // bind achievement types
-            comboEduTypes.DataSource = CharEnumInfo<EduType>.GetLocalizedTypes (LocalizeString);
-            comboEduTypes.DataBind ();
+            var xmlSerializer = new XmlSerializer (typeof (T));
+            var stringWritter = new StringWriter ();
+            xmlSerializer.Serialize (stringWritter, value);
+            return stringWritter.ToString (); 
         }
 
-        protected override void OnInitControls () 
+        public static T Deserialize<T> (object value) where T: class, new()
         {
-            InitControls (buttonUpdate, buttonDelete, linkCancel);
-        }
+            if (!string.IsNullOrEmpty (value.ToString ()))
+            {
+                var xmlSerializer = new XmlSerializer (typeof (T));
+                var stringReader = new StringReader (value.ToString ());
+                return xmlSerializer.Deserialize (stringReader) as T;
+            }
 
-        protected override void OnLoadItem (EduLevelInfo item)
-        {
-            textTitle.Text = item.Title;
-            textShortTitle.Text = item.ShortTitle;
-            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
+            return null;
         }
-
-        protected override void OnUpdateItem (EduLevelInfo item)
-        {
-            item.Title = textTitle.Text.Trim ();
-            item.ShortTitle = textShortTitle.Text.Trim ();
-            item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
-        }
-	}
+    }
 }
 

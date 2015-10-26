@@ -1,5 +1,5 @@
 ﻿//
-// EditEduLevel.ascx.cs
+// ViewModelContext.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,43 +25,23 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
-using DotNetNuke.R7;
+using DotNetNuke.UI.Modules;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-    public partial class EditEduLevel: EditModuleBase<LaunchpadController,LaunchpadSettings,EduLevelInfo>
-	{
-        protected EditEduLevel (): base ("edulevel_id")
-        {}
+    public class ViewModelContext
+    {
+        public IModuleControl Control { get; protected set; }
 
-        protected override void OnInit (EventArgs e)
+        public ModuleInstanceContext ModuleContext
         {
-            base.OnInit (e);
-
-            // bind achievement types
-            comboEduTypes.DataSource = CharEnumInfo<EduType>.GetLocalizedTypes (LocalizeString);
-            comboEduTypes.DataBind ();
+            get { return Control.ModuleContext; }
         }
 
-        protected override void OnInitControls () 
+        public ViewModelContext (IModuleControl control)
         {
-            InitControls (buttonUpdate, buttonDelete, linkCancel);
+            Control = control;
         }
-
-        protected override void OnLoadItem (EduLevelInfo item)
-        {
-            textTitle.Text = item.Title;
-            textShortTitle.Text = item.ShortTitle;
-            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
-        }
-
-        protected override void OnUpdateItem (EduLevelInfo item)
-        {
-            item.Title = textTitle.Text.Trim ();
-            item.ShortTitle = textShortTitle.Text.Trim ();
-            item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
-        }
-	}
+    }
 }
 

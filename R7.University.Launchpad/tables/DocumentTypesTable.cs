@@ -1,5 +1,5 @@
 ﻿//
-// EditEduLevel.ascx.cs
+// DocumentTypesTable.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,43 +25,22 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
-using DotNetNuke.R7;
+using System.Data;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduLevel: EditModuleBase<LaunchpadController,LaunchpadSettings,EduLevelInfo>
-	{
-        protected EditEduLevel (): base ("edulevel_id")
-        {}
-
-        protected override void OnInit (EventArgs e)
+    public class DocumentTypesTable: LaunchpadTableBase
+    {
+        public DocumentTypesTable (): base ("documenttypes")
         {
-            base.OnInit (e);
-
-            // bind achievement types
-            comboEduTypes.DataSource = CharEnumInfo<EduType>.GetLocalizedTypes (LocalizeString);
-            comboEduTypes.DataBind ();
         }
 
-        protected override void OnInitControls () 
+        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
-            InitControls (buttonUpdate, buttonDelete, linkCancel);
-        }
+            var documentTypes = module.LaunchpadController.FindObjects<DocumentTypeInfo> (
+                @"WHERE CONCAT([Type], ' ', [Description]) LIKE N'%{0}%'", search, false);
 
-        protected override void OnLoadItem (EduLevelInfo item)
-        {
-            textTitle.Text = item.Title;
-            textShortTitle.Text = item.ShortTitle;
-            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
+            return DataTableConstructor.FromIEnumerable (documentTypes);
         }
-
-        protected override void OnUpdateItem (EduLevelInfo item)
-        {
-            item.Title = textTitle.Text.Trim ();
-            item.ShortTitle = textShortTitle.Text.Trim ();
-            item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
-        }
-	}
+    }
 }
-

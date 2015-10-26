@@ -1,5 +1,5 @@
 ﻿//
-// EditEduLevel.ascx.cs
+// DocumentTypeInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,43 +25,32 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
-using DotNetNuke.R7;
+using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University.Launchpad
+namespace R7.University
 {
-    public partial class EditEduLevel: EditModuleBase<LaunchpadController,LaunchpadSettings,EduLevelInfo>
-	{
-        protected EditEduLevel (): base ("edulevel_id")
-        {}
+    [TableName ("University_DocumentTypes")]
+    [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
+    [Serializable]
+    public class DocumentTypeInfo
+    {
+        public int DocumentTypeID { get; set; }
 
-        protected override void OnInit (EventArgs e)
+        public string Type { get; set; }
+
+        public string Description { get; set; }
+
+        public bool IsSystem { get; set; }
+
+        [IgnoreColumn]
+        public SystemDocumentType SystemDocumentType
         {
-            base.OnInit (e);
-
-            // bind achievement types
-            comboEduTypes.DataSource = CharEnumInfo<EduType>.GetLocalizedTypes (LocalizeString);
-            comboEduTypes.DataBind ();
+            get
+            {
+                SystemDocumentType result;
+                return Enum.TryParse<SystemDocumentType> (Type, out result) ? result : SystemDocumentType.Custom;
+            }
         }
-
-        protected override void OnInitControls () 
-        {
-            InitControls (buttonUpdate, buttonDelete, linkCancel);
-        }
-
-        protected override void OnLoadItem (EduLevelInfo item)
-        {
-            textTitle.Text = item.Title;
-            textShortTitle.Text = item.ShortTitle;
-            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
-        }
-
-        protected override void OnUpdateItem (EduLevelInfo item)
-        {
-            item.Title = textTitle.Text.Trim ();
-            item.ShortTitle = textShortTitle.Text.Trim ();
-            item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
-        }
-	}
+    }
 }
 

@@ -69,6 +69,12 @@ GO
 DROP TABLE {databaseOwner}[{objectQualifier}University_EduLevels] 
 GO
 
+DROP TABLE {databaseOwner}[{objectQualifier}University_Documents] 
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_DocumentTypes] 
+GO
+
 -- DROP TABLE {databaseOwner}[{objectQualifier}University_Employees] 
 -- GO
 

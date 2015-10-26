@@ -74,7 +74,7 @@
       <HintPath>..\packages\DotNetNuke.Core.7.4.1.280\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.1.2.25108\lib\net45\DotNetNuke.R7.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.R7.0.2.0.28342\lib\net45\DotNetNuke.R7.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

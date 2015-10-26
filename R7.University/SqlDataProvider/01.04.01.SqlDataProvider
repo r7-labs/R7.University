@@ -1,0 +1,31 @@
+﻿-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+-- EduForms
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduForms] (
+        [EduFormID] int IDENTITY(1,1) NOT NULL,
+        [Title] nvarchar(250) NOT NULL,
+        [ShortTitle] nvarchar(64) NOT NULL
+        CONSTRAINT [PK_{objectQualifier}University_EduForms] PRIMARY KEY CLUSTERED (EduFormID)
+    )
+END
+GO
+
+-- EduProgramForms
+
+-- REVIEW: Should TimeToLearn relate to EduLevelForms and LastYearOfAcceptance to EduProgramProfileForms?
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramForms]') and type in (N'U'))
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramForms] (
+        [EduProgramID] int NOT NULL,
+        [EduFormID] int NOT NULL,
+        [TimeToLearn] int,
+        [LastYearOfAcceptance] int
+        CONSTRAINT [PK_{objectQualifier}University_EduProgramForms] PRIMARY KEY CLUSTERED (EduProgramID, EduFormID)
+    )
+END
+GO

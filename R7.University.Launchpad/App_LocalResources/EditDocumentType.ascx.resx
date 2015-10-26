@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="labelType.Text" xml:space="preserve">
+        <value>Type:</value>
+    </data>
+    <data name="labelType.Help" xml:space="preserve">
+        <value>Enter document type name.</value>
+    </data>
+    <data name="Type.Required" xml:space="preserve">
+        <value>Please specify the document type name.</value>
+    </data>
+    <data name="labelDescription.Text" xml:space="preserve">
+        <value>Description:</value>
+    </data>
+    <data name="labelDescription.Help" xml:space="preserve">
+        <value>Enter document type description.</value>
+    </data>
+    <data name="Description.MaxLength" xml:space="preserve">
+        <value>Description length must be less or equal to 255 characters.</value>
+    </data>
+    <data name="labelIsSystem.Text">
+        <value>Is System:</value>
+    </data>
+    <data name="labelIsSystem.Help">
+        <value>System document types have special meaning inside the system, therefore cannot be deleted, and only description can be changed for them.</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;A Edit document type module&lt;/P&gt;</value>
+    </data>
+    <data name="ControlTitle_edit.Text" xml:space="preserve">
+        <value>Edit Education Level</value>
+    </data>
+</root>

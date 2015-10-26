@@ -41,7 +41,7 @@ namespace R7.University.Employee
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
                 // urlDocumentURL control is on Achievements tab
-                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$urlDocumentURL$"))
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentURL.ID +"$"))
                 {
                     ViewState ["SelectedTab"] = EditEmployeeTab.Achievements;
                     return EditEmployeeTab.Achievements;

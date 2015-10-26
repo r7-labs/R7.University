@@ -1,5 +1,5 @@
 ﻿//
-// EditEduLevel.ascx.cs
+// EditDocumentType.ascx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -30,37 +30,42 @@ using DotNetNuke.R7;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduLevel: EditModuleBase<LaunchpadController,LaunchpadSettings,EduLevelInfo>
+    public partial class EditDocumentType: EditModuleBase<LaunchpadController,LaunchpadSettings,DocumentTypeInfo>
 	{
-        protected EditEduLevel (): base ("edulevel_id")
+        protected EditDocumentType (): base ("documenttype_id")
         {}
 
-        protected override void OnInit (EventArgs e)
-        {
-            base.OnInit (e);
-
-            // bind achievement types
-            comboEduTypes.DataSource = CharEnumInfo<EduType>.GetLocalizedTypes (LocalizeString);
-            comboEduTypes.DataBind ();
-        }
-
-        protected override void OnInitControls () 
+        protected override void OnInitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
-        protected override void OnLoadItem (EduLevelInfo item)
+        protected override bool CanDeleteItem (DocumentTypeInfo item)
         {
-            textTitle.Text = item.Title;
-            textShortTitle.Text = item.ShortTitle;
-            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
+            return !item.IsSystem;
         }
 
-        protected override void OnUpdateItem (EduLevelInfo item)
+        protected override void OnLoadItem (DocumentTypeInfo item)
         {
-            item.Title = textTitle.Text.Trim ();
-            item.ShortTitle = textShortTitle.Text.Trim ();
-            item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
+            textType.Text = item.Type;
+            textDescription.Text = item.Description;
+            checkIsSystem.Checked = item.IsSystem;
+
+            // disable textType for system types
+            textType.Enabled = !item.IsSystem;
+        }
+
+        protected override void OnUpdateItem (DocumentTypeInfo item)
+        {
+            // don't update Type for system types,
+            // also don't update IsSystem value at all
+
+            if (!item.IsSystem)
+            {
+                item.Type = textType.Text.Trim ();
+            }
+
+            item.Description = textDescription.Text.Trim ();
         }
 	}
 }

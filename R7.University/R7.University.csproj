@@ -62,7 +62,7 @@
       <HintPath>..\packages\DotNetNuke.Core.7.4.1.280\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.1.2.25108\lib\net45\DotNetNuke.R7.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.R7.0.2.0.28342\lib\net45\DotNetNuke.R7.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +103,13 @@
     <Compile Include="Extensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="Extensions\GridViewExtensions.cs" />
     <Compile Include="components\UniversityControllerBase.cs" />
+    <Compile Include="entities\DocumentInfo.cs" />
+    <Compile Include="entities\DocumentTypeInfo.cs" />
+    <Compile Include="entities\SystemDocumentType.cs" />
+    <Compile Include="entities\DocumentInfoEx.cs" />
+    <Compile Include="entities\EnumValueInfo.cs" />
+    <Compile Include="components\XmlSerializationHelper.cs" />
+    <Compile Include="components\ViewModelContext.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -140,6 +147,7 @@
     <None Include="SqlDataProvider\01.03.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.04.00.SqlDataProvider" />
     <None Include="packages.config" />
+    <None Include="SqlDataProvider\01.04.01.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
