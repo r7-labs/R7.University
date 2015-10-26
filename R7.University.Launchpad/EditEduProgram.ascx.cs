@@ -137,6 +137,9 @@ namespace R7.University.Launchpad
 		{
 			base.OnLoad (e);
             	
+            if (DotNetNuke.Framework.AJAX.IsInstalled ())
+                DotNetNuke.Framework.AJAX.RegisterScriptManager ();
+            
 			try
 			{
 				// parse querystring parameters
