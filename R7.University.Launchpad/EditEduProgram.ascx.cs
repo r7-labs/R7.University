@@ -37,6 +37,16 @@ namespace R7.University.Launchpad
         {
             get 
             {
+                // get postback initiator
+                var eventTarget = Request.Form ["__EVENTTARGET"];
+
+                // document URL control is on Documents tab
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentUrl.ID +"$"))
+                {
+                    ViewState ["SelectedTab"] = EditEduProgramTab.Documents;
+                    return EditEduProgramTab.Documents;
+                }
+
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
                 return (obj != null) ? (EditEduProgramTab) obj : EditEduProgramTab.Common;
