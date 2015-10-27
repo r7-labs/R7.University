@@ -104,6 +104,7 @@ namespace R7.University.DivisionDirectory
                 Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
 
                 var divisions = DivisionDirectoryController.GetObjects <DivisionInfo> ().OrderBy (d => d.Title).ToList ();
+                
                 divisions.Insert (0, new DivisionInfo
                     {
                         DivisionID = Null.NullInteger, 
@@ -152,7 +153,8 @@ namespace R7.University.DivisionDirectory
                     }
                     else if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
                     {
-                        var rootDivisions = DivisionDirectoryController.GetRootDivisions ();
+                        // getting all root divisions
+                        var rootDivisions = DivisionDirectoryController.GetRootDivisions ().OrderBy (d => d.Title);
 
                         if (rootDivisions.Any ())
                         {
@@ -163,6 +165,7 @@ namespace R7.University.DivisionDirectory
                                 divisions.AddRange (DivisionDirectoryController.GetSubDivisions (rootDivision.DivisionID));
                             }
 
+                            // bind givisions to the grid
                             gridObrnadzorDivisions.DataSource = divisions;
                             gridObrnadzorDivisions.DataBind ();
                         }
@@ -357,10 +360,15 @@ namespace R7.University.DivisionDirectory
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
                 // contact person (head employee)
-                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID);
+                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
                 if (contactPerson != null)
                 {
-                    literalContactPerson.Text = contactPerson.FullName;
+                    var headPosition = DivisionDirectoryController.GetObjects<OccupiedPositionInfoEx> (
+                        "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
+                        contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
+                    
+                    literalContactPerson.Text = contactPerson.FullName
+                        + "<br /> <em>" + headPosition.PositionShortTitle + " " + headPosition.TitleSuffix + "</em>";
                 }
 
                 #endregion
