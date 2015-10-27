@@ -37,6 +37,10 @@ namespace R7.University.Division
 	/// </summary>
 	public class DivisionSettings : SettingsWrapper
 	{
+        public DivisionSettings ()
+        {
+        }
+
 		public DivisionSettings (IModuleControl module) : base (module)
 		{
 		}
