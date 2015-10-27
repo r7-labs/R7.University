@@ -322,7 +322,7 @@ namespace R7.University.DivisionDirectory
                     linkDocument.Visible = false;
 
                 // contact person (head employee)
-                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID);
+                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
                 if (contactPerson != null)
                 {
                     linkContactPerson.Text = contactPerson.AbbrName;
