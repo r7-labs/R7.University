@@ -53,15 +53,22 @@ namespace R7.University.DivisionDirectory
             get
             {
                 var divisionTitle = Title + ((HasUniqueShortTitle)? string.Format (" ({0})", ShortTitle) : string.Empty);
+                var divisionLink = divisionTitle;
 
                 if (!string.IsNullOrWhiteSpace (HomePage))
                 {
-                    return string.Format (linkFormat, 
+                    divisionLink = string.Format (linkFormat, 
                         Globals.LinkClick (HomePage, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
                         divisionTitle, string.Empty);
                 }
 
-                return divisionTitle;
+                if (IsVirtual)
+                {
+                    // distinct virtual divisions 
+                    divisionLink = "<strong>" + divisionLink + "</strong>";
+                }
+
+                return divisionLink;
             }
         }
 
@@ -89,7 +96,7 @@ namespace R7.University.DivisionDirectory
             { 
                 if (!string.IsNullOrWhiteSpace (Email))
                 {
-                    return string.Format (linkFormat, Email, "mailto:" + Email, "itemprop=\"E-mail\"");
+                    return string.Format (linkFormat, "mailto:" + Email, Email, "itemprop=\"E-mail\"");
                 }
 
                 return string.Empty;
