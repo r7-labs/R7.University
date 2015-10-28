@@ -61,6 +61,13 @@ namespace R7.University.Division
             // bind terms to the tree
             treeDivisionTerms.DataSource = terms;
             treeDivisionTerms.DataBind ();
+
+            // bind positions
+            var positions = Controller.GetObjects<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            positions.Insert (0, new PositionInfo { ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger });
+            comboHeadPosition.DataSource = positions;
+            comboHeadPosition.DataBind ();
+            comboHeadPosition.SelectedIndex = 0;
         }
 
         protected override void OnInitControls ()
@@ -70,6 +77,10 @@ namespace R7.University.Division
 
         protected override void OnLoadItem (DivisionInfo item)
         {
+            // FIXME: Need support in EditModuleBase to drop this on top of OnLoad method
+            // if (DotNetNuke.Framework.AJAX.IsInstalled ())
+            //    DotNetNuke.Framework.AJAX.RegisterScriptManager ();
+            
             txtTitle.Text = item.Title;
             txtShortTitle.Text = item.ShortTitle;
             txtWebSite.Text = item.WebSite;
@@ -79,6 +90,10 @@ namespace R7.University.Division
             txtLocation.Text = item.Location;
             txtPhone.Text = item.Phone;
             txtFax.Text = item.Fax;
+            datetimeStartDate.SelectedDate = item.StartDate;
+            datetimeEndDate.SelectedDate = item.EndDate;
+            checkIsVirtual.Checked = item.IsVirtual;
+            Utils.SelectByValue (comboHeadPosition, item.HeadPositionID);
 
             // load working hours
             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
@@ -122,7 +137,7 @@ namespace R7.University.Division
 
         protected override void OnUpdateItem (DivisionInfo item)
         {
-            // nothing here, complete OnButtonUpdateClick is overriden
+            // nothing here, entire OnButtonUpdateClick is overriden
         }
 
 		#region Handlers
@@ -169,6 +184,10 @@ namespace R7.University.Division
 				item.DivisionTermID = Utils.ParseToNullableInt (treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;
 				item.DocumentUrl = urlDocumentUrl.Url;
+                item.StartDate = datetimeStartDate.SelectedDate;
+                item.EndDate = datetimeEndDate.SelectedDate;
+                item.IsVirtual = checkIsVirtual.Checked;
+                item.HeadPositionID = Utils.ParseToNullableInt (comboHeadPosition.SelectedValue);
 
 				// update working hours
 				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
