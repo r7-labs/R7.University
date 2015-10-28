@@ -96,16 +96,16 @@
                     </asp:TemplateField>
                     <asp:BoundField DataField="Order" HeaderText="Order" />
                     <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor" HtmlEncode="false" />
-                    <asp:TemplateField HeaderText="ContactPerson">
-                        <ItemTemplate>
-                            <asp:Literal id="literalContactPerson" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
                     <asp:BoundField DataField="Location" HeaderText="Location" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" />
                     <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor" HtmlEncode="false" />
                     <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor" HtmlEncode="false" />
                     <asp:BoundField DataField="DocumentLink" HeaderText="Document" HtmlEncode="false" />
+                    <asp:TemplateField HeaderText="ContactPerson">
+                        <ItemTemplate>
+                            <asp:Literal id="literalContactPerson" runat="server" /> 
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </asp:View>
