@@ -49,5 +49,9 @@ namespace R7.University.Division
 		protected DnnComboBox comboWorkingHours;
 		protected TextBox textWorkingHours;
 		protected CheckBox checkAddToVocabulary;
+        protected DnnDateTimePicker datetimeStartDate;
+        protected DnnDateTimePicker datetimeEndDate;
+        protected CheckBox checkIsVirtual;
+        protected AjaxControlToolkit.ComboBox comboHeadPosition;
 	}
 }

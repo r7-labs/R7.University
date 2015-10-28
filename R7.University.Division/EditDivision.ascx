@@ -4,8 +4,10 @@
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/URLControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
 <div class="dnnForm dnnClear">
 	<br /><br />
 	<fieldset>	
@@ -94,14 +96,36 @@
 					ShowLog="false" ShowTrack="false"
 					ShowNone="true" ShowNewWindow="false" />      
 		</div>
-		<%-- <div class="dnnFormItem">
-			<dnn:Label id="lblWorkingHours" runat="server" ControlName="txtWorkingHours" Suffix=":" />
-			<asp:TextBox id="txtWorkingHours" runat="server" />
-		</div> --%>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelHeadPosition" runat="server" ControlName="comboHeadPosition" />
+            <asp:UpdatePanel id="updatePanelHeadPosition" runat="server">
+                <ContentTemplate>
+                    <act:ComboBox id="comboHeadPosition" runat="server" CssClass="act_combobox"
+                        DropDownStyle="DropDownList"
+                        AutoCompleteMode="SuggestAppend"
+                        CaseSensitive="false"
+                        DataValueField="PositionID"
+                        DataTextField="DisplayShortTitle"
+                    />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelStartDate" runat="server" ControlName="datetimeStartDate" />
+            <dnn:DnnDateTimePicker id="datetimeStartDate" runat="server" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelEndDate" runat="server" ControlName="datetimeEndDate" />
+            <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelIsVirtual" runat="server" ControlName="checkIsVirtual" />
+            <asp:CheckBox id="checkIsVirtual" runat="server" />
+        </div>
 	</fieldset>
 	<ul class="dnnActions dnnClear">
-		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" OnClick="buttonUpdate_Click" /></li>
-		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" OnClick="buttonDelete_Click" /></li>
+		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
+		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
 	<hr />

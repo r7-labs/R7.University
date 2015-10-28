@@ -53,6 +53,11 @@
                                 <asp:HyperLink id="linkTitle" runat="server" target="_blank" />
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Location">
+                            <ItemTemplate>
+                                <asp:Literal id="literalLocation" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Phone">
                             <ItemTemplate>
                                 <asp:Literal id="literalPhone" runat="server" />
@@ -63,19 +68,14 @@
                                 <asp:HyperLink id="linkEmail" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Location">
+                        <asp:TemplateField HeaderText="Document">
                             <ItemTemplate>
-                                <asp:Literal id="literalLocation" runat="server" />
+                                <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ContactPerson">
                             <ItemTemplate>
                                 <asp:HyperLink id="linkContactPerson" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Document">
-                            <ItemTemplate>
-                                <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -94,34 +94,16 @@
                             </asp:HyperLink>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Order">
-                        <ItemTemplate>
-                            <asp:Literal id="literalOrder" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="Title" HeaderText="TitleObrnadzor" />
+                    <asp:BoundField DataField="Order" HeaderText="Order" />
+                    <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor" HtmlEncode="false" />
+                    <asp:BoundField DataField="LocationString" HeaderText="Location" HtmlEncode="false" />
+                    <asp:BoundField DataField="Phone" HeaderText="Phone" />
+                    <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor" HtmlEncode="false" />
+                    <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor" HtmlEncode="false" />
+                    <asp:BoundField DataField="DocumentLink" HeaderText="Document" HtmlEncode="false" />
                     <asp:TemplateField HeaderText="ContactPerson">
                         <ItemTemplate>
                             <asp:Literal id="literalContactPerson" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="Location" HeaderText="Location" />
-                    <%-- <asp:HyperLinkField DataNavigateUrlFields="FormatWebSiteUrl" DataTextField="FormatWebSiteLabel" Target="_blank" HeaderText="WebSiteObrnadzor" /> --%>
-                    <%-- -<asp:HyperLinkField DataNavigateUrlFields="FormatEmailUrl" DataTextField="Email" HeaderText="EmailObrnadzor" /> --%>
-
-                    <asp:TemplateField HeaderText="WebSiteObrnadzor">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkWebSite" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="EmailObrnadzor">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkEmail" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Document">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkDocument" runat="server" /> 
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

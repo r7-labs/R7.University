@@ -201,10 +201,15 @@ namespace R7.University
                 "University_FindDivisions", searchText, includeSubdivisions, divisionId);
         }
 
-        public EmployeeInfo GetHeadEmployee (int divisionId)
+        public EmployeeInfo GetHeadEmployee (int divisionId, int? headPositionId)
         {
-            return GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-                "University_GetHeadEmployee", divisionId).FirstOrDefault ();
+            if (headPositionId != null)
+            {
+                return GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+                    "University_GetHeadEmployee", divisionId, headPositionId.Value).FirstOrDefault ();
+            }
+        
+            return null;
         }
 
         public IEnumerable<EmployeeInfo> GetTeachersByEduProgramProfile (int eduProfileId)
@@ -234,10 +239,10 @@ namespace R7.University
         public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)
         {
             return GetObjects<DivisionInfo> (CommandType.Text,
-                @"SELECT DISTINCT D.*, DH.[Level] FROM dbo.University_Divisions AS D 
+                @"SELECT DISTINCT D.*, DH.[Level], DH.[Path] FROM dbo.University_Divisions AS D 
                     INNER JOIN dbo.University_DivisionsHierarchy (@0) AS DH
                         ON D.DivisionID = DH.DivisionID
-                    ORDER BY DH.[Level], D.Title", divisionId);
+                    ORDER BY DH.[Path], D.Title", divisionId);
         }
 
         public IEnumerable<DivisionInfo> GetRootDivisions ()
