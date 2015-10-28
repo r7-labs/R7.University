@@ -96,7 +96,7 @@
                     </asp:TemplateField>
                     <asp:BoundField DataField="Order" HeaderText="Order" />
                     <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor" HtmlEncode="false" />
-                    <asp:BoundField DataField="Location" HeaderText="Location" />
+                    <asp:BoundField DataField="LocationString" HeaderText="Location" HtmlEncode="false" />
                     <asp:BoundField DataField="Phone" HeaderText="Phone" />
                     <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor" HtmlEncode="false" />
                     <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor" HtmlEncode="false" />

@@ -48,27 +48,27 @@ namespace R7.University.DivisionDirectory
         //      get { throw new NotImplementedException (); }
         // }
 
-        public string TitleLink 
+        public string TitleLink
         {
             get
             {
                 var divisionTitle = Title + ((HasUniqueShortTitle)? string.Format (" ({0})", ShortTitle) : string.Empty);
-                var divisionLink = divisionTitle;
+                var divisionString = "<span itemprop=\"Name\">" + divisionTitle + "</span>";
 
                 if (!string.IsNullOrWhiteSpace (HomePage))
                 {
-                    divisionLink = string.Format (linkFormat, 
+                    divisionString = string.Format (linkFormat, 
                         Globals.LinkClick (HomePage, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
-                        divisionTitle, string.Empty);
+                        divisionString, string.Empty);
                 }
 
                 if (IsVirtual)
                 {
                     // distinct virtual divisions 
-                    divisionLink = "<strong>" + divisionLink + "</strong>";
+                    divisionString = "<strong>" + divisionString + "</strong>";
                 }
 
-                return divisionLink;
+                return divisionString;
             }
         }
 
@@ -116,6 +116,17 @@ namespace R7.University.DivisionDirectory
                         "itemprop=\"DivisionClause_DocLink\""
                     );
                 }
+
+                return string.Empty;
+            }
+        }
+
+        public string LocationString
+        {
+            get
+            { 
+                if (!string.IsNullOrWhiteSpace (Location))
+                    return "<span itemprop=\"AddressStr\">" + Location + "</span>";
 
                 return string.Empty;
             }
