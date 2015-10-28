@@ -367,7 +367,8 @@ namespace R7.University.DivisionDirectory
 
                 #region Contact person
 
-                // TODO: Should not access database here! 
+                // REVIEW: Should not access database here, maybe in the model? 
+                // TODO: Add link to open employee details
 
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
@@ -379,8 +380,8 @@ namespace R7.University.DivisionDirectory
                         "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
                         contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
                     
-                    literalContactPerson.Text = contactPerson.FullName
-                        + "<br /> <em>" + headPosition.PositionShortTitle + " " + headPosition.TitleSuffix + "</em>";
+                    literalContactPerson.Text = "<strong itemprop=\"Fio\">" + contactPerson.FullName + "</strong><br />"
+                        + headPosition.PositionShortTitle + " " + headPosition.TitleSuffix;
                 }
 
                 #endregion
