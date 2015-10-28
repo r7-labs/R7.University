@@ -53,6 +53,11 @@
                                 <asp:HyperLink id="linkTitle" runat="server" target="_blank" />
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Location">
+                            <ItemTemplate>
+                                <asp:Literal id="literalLocation" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Phone">
                             <ItemTemplate>
                                 <asp:Literal id="literalPhone" runat="server" />
@@ -63,19 +68,14 @@
                                 <asp:HyperLink id="linkEmail" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Location">
+                        <asp:TemplateField HeaderText="Document">
                             <ItemTemplate>
-                                <asp:Literal id="literalLocation" runat="server" />
+                                <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ContactPerson">
                             <ItemTemplate>
                                 <asp:HyperLink id="linkContactPerson" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Document">
-                            <ItemTemplate>
-                                <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
