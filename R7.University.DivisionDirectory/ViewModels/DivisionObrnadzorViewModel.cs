@@ -25,32 +25,94 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
-using DotNetNuke.ExtensionPoints;
-using System.Data.Odbc;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
+using DotNetNuke.Common;
+using DotNetNuke.Services.Localization;
 
 namespace R7.University.DivisionDirectory
 {
     public class DivisionObrnadzorViewModel: DivisionInfo
     {
+        private const string linkFormat = "<a href=\"{0}\" {2}>{1}</a>";
+
         #region Properties
             
         protected ViewModelContext Context { get; set; }
 
         public string Order { get; protected set; }
 
-        public string TitleLink { get; set; }
+        // TODO: Implement this
+        // public string HeadEmployee
+        // {
+        //      get { throw new NotImplementedException (); }
+        // }
 
-        public string HeadEmployee { get; set; }
+        public string TitleLink 
+        {
+            get
+            {
+                var divisionTitle = Title + ((HasUniqueShortTitle)? string.Format (" ({0})", ShortTitle) : string.Empty);
 
-        public string WebSiteLink { get; set; }
+                if (!string.IsNullOrWhiteSpace (HomePage))
+                {
+                    return string.Format (linkFormat, 
+                        Globals.LinkClick (HomePage, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
+                        divisionTitle, string.Empty);
+                }
 
-        public string EmailLink { get; set; }
+                return divisionTitle;
+            }
+        }
 
-        public string DocumentUrlLink { get; set; }
+        public string WebSiteLink
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace (WebSite))
+                {
+                    var webSiteUrl = WebSite.Contains ("://") ? WebSite.ToLowerInvariant () : 
+                        "http://" + WebSite.ToLowerInvariant ();
+                    var webSiteLabel = (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
+                        WebSite.Contains ("://") ? WebSite.Remove (0, WebSite.IndexOf ("://") + 3) : WebSite;
+                    
+                    return string.Format (linkFormat, webSiteUrl, webSiteLabel, "itemprop=\"Site\"");
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string EmailLink 
+        { 
+            get
+            { 
+                if (!string.IsNullOrWhiteSpace (Email))
+                {
+                    return string.Format (linkFormat, Email, "mailto:" + Email, "itemprop=\"E-mail\"");
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string DocumentLink
+        {
+            get
+            {
+                // (main) document
+                if (!string.IsNullOrWhiteSpace (DocumentUrl))
+                {
+                    return string.Format (linkFormat, 
+                        Globals.LinkClick (DocumentUrl, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
+                        Localization.GetString ("Regulations.Text", Context.Control.LocalResourceFile),
+                        "itemprop=\"DivisionClause_DocLink\""
+                    );
+                }
+
+                return string.Empty;
+            }
+        }
 
         #endregion
 
@@ -60,11 +122,19 @@ namespace R7.University.DivisionDirectory
             Context = context;
         }
 
+        public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext viewModelContext)
+        {
+            var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext)).ToList ();
+            CalculateOrder (divisionViewModels);
+
+            return divisionViewModels;
+        }
+
         /// <summary>
         /// Calculates the hierarchical order of divisions.
         /// </summary>
-        /// <param name="divisions">Divisions. Must be sorted properly.</param>
-        public static void CalculateOrder (IEnumerable<DivisionObrnadzorViewModel> divisions)
+        /// <param name="divisions">Divisions. Must be properly sorted before the call.</param>
+        protected static void CalculateOrder (IList<DivisionObrnadzorViewModel> divisions)
         {
             const string separator = ".";
             var orderCounter = 1;

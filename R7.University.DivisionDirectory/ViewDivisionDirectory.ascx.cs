@@ -86,6 +86,18 @@ namespace R7.University.DivisionDirectory
 
         #endregion
 
+        private ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get
+            { 
+                if (viewModelContext == null)
+                    viewModelContext = new ViewModelContext (this);
+
+                return viewModelContext;
+            }
+        }
+
         #region Handlers
 
         /// <summary>
@@ -165,8 +177,9 @@ namespace R7.University.DivisionDirectory
                                 divisions.AddRange (DivisionDirectoryController.GetSubDivisions (rootDivision.DivisionID));
                             }
 
-                            // bind givisions to the grid
-                            gridObrnadzorDivisions.DataSource = divisions;
+                            // bind divisions to the grid
+                            var divisionViewModels = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
+                            gridObrnadzorDivisions.DataSource = divisionViewModels;
                             gridObrnadzorDivisions.DataBind ();
                         }
                     }
@@ -339,7 +352,7 @@ namespace R7.University.DivisionDirectory
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var division = (DivisionInfo) e.Row.DataItem;
+                var division = (DivisionObrnadzorViewModel) e.Row.DataItem;
 
                 if (IsEditable)
                 {
@@ -352,10 +365,9 @@ namespace R7.University.DivisionDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                var literalOrder = (Literal) e.Row.FindControl ("literalOrder");
-                literalOrder.Text = (e.Row.RowIndex + 1) + ".";
-
                 #region Contact person
+
+                // TODO: Should not access database here! 
 
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
@@ -372,67 +384,6 @@ namespace R7.University.DivisionDirectory
                 }
 
                 #endregion
-
-                #region Email
-
-                var linkEmail =  (HyperLink) e.Row.FindControl ("linkEmail");
-
-                if (!string.IsNullOrWhiteSpace (division.Email))
-                {
-                    linkEmail.Text = division.Email;
-                    linkEmail.NavigateUrl = division.FormatEmailUrl;
-                    linkEmail.Attributes.Add ("itemprop", "E-mail");
-                }
-                else
-                    linkEmail.Visible = false;
-
-                #endregion
-
-                #region WebSite
-
-                var linkWebSite =  (HyperLink) e.Row.FindControl ("linkWebSite");
-
-                if (!string.IsNullOrWhiteSpace (division.WebSite))
-                {
-                    linkWebSite.Text = division.FormatWebSiteLabel;
-                    linkWebSite.NavigateUrl = division.FormatWebSiteUrl;
-                    linkWebSite.Attributes.Add ("itemprop", "Site");
-                }
-                else
-                    linkWebSite.Visible = false;
-
-                #endregion
-
-                #region Document
-
-                var linkDocument =  (HyperLink) e.Row.FindControl ("linkDocument");
-
-                // (main) document
-                if (!string.IsNullOrWhiteSpace (division.DocumentUrl))
-                {
-                    linkDocument.Text = LocalizeString ("Regulations.Text");
-                    linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
-                    linkDocument.Attributes.Add ("itemprop", "DivisionClause_DocLink");
-
-                    // REVIEW: Add GetUrlCssClass() method to the utils
-                    // set link CSS class according to file extension
-                    if (Globals.GetURLType (division.DocumentUrl) == TabType.File)
-                    {
-                        var fileId = int.Parse (division.DocumentUrl.Remove (0, "FileId=".Length));
-                        var file = FileManager.Instance.GetFile (fileId);
-                        if (file != null)
-                            linkDocument.CssClass = file.Extension.ToLowerInvariant ();
-                    }
-                }
-                else
-                    linkDocument.Visible = false;
-
-                #endregion
-
-                // apply obrnadzor.gov.ru microdata to bounded fields
-                e.Row.Cells [2].Attributes.Add ("itemprop", "Name");
-                e.Row.Cells [3].Attributes.Add ("itemprop", "Fio");
-                e.Row.Cells [4].Attributes.Add ("itemprop", "AddressStr");
             }
         }
     }

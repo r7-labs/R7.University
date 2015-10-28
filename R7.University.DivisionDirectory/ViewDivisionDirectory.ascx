@@ -94,36 +94,18 @@
                             </asp:HyperLink>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Order">
-                        <ItemTemplate>
-                            <asp:Literal id="literalOrder" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="Title" HeaderText="TitleObrnadzor" />
+                    <asp:BoundField DataField="Order" HeaderText="Order" />
+                    <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor" HtmlEncode="false" />
                     <asp:TemplateField HeaderText="ContactPerson">
                         <ItemTemplate>
                             <asp:Literal id="literalContactPerson" runat="server" /> 
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Location" HeaderText="Location" />
-                    <%-- <asp:HyperLinkField DataNavigateUrlFields="FormatWebSiteUrl" DataTextField="FormatWebSiteLabel" Target="_blank" HeaderText="WebSiteObrnadzor" /> --%>
-                    <%-- -<asp:HyperLinkField DataNavigateUrlFields="FormatEmailUrl" DataTextField="Email" HeaderText="EmailObrnadzor" /> --%>
-
-                    <asp:TemplateField HeaderText="WebSiteObrnadzor">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkWebSite" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="EmailObrnadzor">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkEmail" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Document">
-                        <ItemTemplate>
-                            <asp:HyperLink id="linkDocument" runat="server" /> 
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    <asp:BoundField DataField="Phone" HeaderText="Phone" />
+                    <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor" HtmlEncode="false" />
+                    <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor" HtmlEncode="false" />
+                    <asp:BoundField DataField="DocumentLink" HeaderText="Document" HtmlEncode="false" />
                 </Columns>
             </asp:GridView>
         </asp:View>
