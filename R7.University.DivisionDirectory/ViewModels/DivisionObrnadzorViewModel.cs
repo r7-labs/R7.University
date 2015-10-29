@@ -162,15 +162,12 @@ namespace R7.University.DivisionDirectory
             var orderCounter = 1;
             var level = 0;
             var orderStack = new List<int> ();
-            var returnStack = new Stack<int> ();
-
-            DivisionObrnadzorViewModel division;
+            var returnStack = new Stack<DivisionObrnadzorViewModel> ();
+           
             DivisionObrnadzorViewModel prevDivision = null;
            
-            for (var i = 0; i < divisions.Count; i++)
+            foreach (var division in divisions)
             {
-                division = divisions [i];
-                    
                 if (prevDivision != null)
                 {
                     if (division.ParentDivisionID == prevDivision.ParentDivisionID)
@@ -182,7 +179,7 @@ namespace R7.University.DivisionDirectory
                     {
                         // moving down
                         orderStack.Add (orderCounter);
-                        returnStack.Push (i);
+                        returnStack.Push (prevDivision);
                         orderCounter = 1;
                         level++;
                     }
@@ -195,7 +192,7 @@ namespace R7.University.DivisionDirectory
                             orderStack.RemoveAt (orderStack.Count - 1);
                             level--;
 
-                            if (division.ParentDivisionID == divisions [returnStack.Pop ()].DivisionID) {
+                            if (division.ParentDivisionID == returnStack.Pop ().ParentDivisionID) {
                                 break;
                             }
                         }
