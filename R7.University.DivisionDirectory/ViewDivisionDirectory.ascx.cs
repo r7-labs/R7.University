@@ -345,6 +345,8 @@ namespace R7.University.DivisionDirectory
             }
         }
 
+        private int prevLevel = -1;
+
         protected void gridObrnadzorDivisions_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             // show / hide edit column
@@ -383,6 +385,23 @@ namespace R7.University.DivisionDirectory
                         + "\" itemprop=\"Fio\">" + contactPerson.FullName + "</a></strong><br />"
                         + headPosition.PositionShortTitle + " " + headPosition.TitleSuffix;
                 }
+
+                #endregion
+
+                #region Beautify (Bootstrap-specific)
+
+                if (division.Level > 0) {
+                    e.Row.Cells [2].CssClass = "indent-" + division.Level;
+                }
+
+                if (prevLevel >= 0)
+                {
+                    if (division.Level < prevLevel) {
+                        e.Row.CssClass = "return return-" + (prevLevel - division.Level);
+                    }
+                }
+
+                prevLevel = division.Level;
 
                 #endregion
             }
