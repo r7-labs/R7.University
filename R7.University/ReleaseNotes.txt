@@ -1,10 +1,11 @@
 ﻿<h3>Version 1.5.0</h3>
-<p>Main goal: Enchance DivisionDirectory module obrnadzor.gov.ru mode.</p>
+<p>Main goal: Enhance DivisionDirectory module obrnadzor.gov.ru mode.</p>
 <ul>
     <li>Add ability loose-link divisions and head employees by specifying required position.</li>
     <li>Partial support for virtual divisions (which generally w/o employees).</li>
     <li>EditDivision: support for new division properties.</li>
     <li>Implement hierarchical sorting of divisions.</li>
+    <li>Some visual enhancements - indents, block dividers.</li>
     <li>Other small updates and fixes.</li>
 </ul>
 
