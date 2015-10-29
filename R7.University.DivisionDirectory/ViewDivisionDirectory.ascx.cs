@@ -391,7 +391,7 @@ namespace R7.University.DivisionDirectory
                 #region Beautify (Bootstrap-specific)
 
                 if (division.Level > 0) {
-                    e.Row.Cells [2].CssClass = "indent-" + division.Level;
+                    e.Row.Cells [2].CssClass = "level-" + division.Level;
                 }
 
                 if (prevLevel >= 0)

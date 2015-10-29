@@ -55,17 +55,17 @@
 }
 
 /* add more here for deeper hierarchies */
-/* first 3 levels w/o indent (base 8px), next + 6px per level */
-.divisionDirectory table td.indent-1 { }
-.divisionDirectory table td.indent-2 { }
-.divisionDirectory table td.indent-3 { padding-left: 14px }
-.divisionDirectory table td.indent-4 { padding-left: 20px }
-.divisionDirectory table td.indent-5 { padding-left: 26px }
-.divisionDirectory table td.indent-6 { padding-left: 32px }
-.divisionDirectory table td.indent-7 { padding-left: 38px }
-.divisionDirectory table td.indent-8 { padding-left: 44px }
-.divisionDirectory table td.indent-9 { padding-left: 50px }
-.divisionDirectory table td.indent-10 { padding-left: 56px }
+/* first 2 levels w/o indent (base 8px), next + 6px per level */
+.divisionDirectory table td.level-1 { }
+.divisionDirectory table td.level-2 { padding-left: 14px }
+.divisionDirectory table td.level-3 { padding-left: 20px }
+.divisionDirectory table td.level-4 { padding-left: 26px }
+.divisionDirectory table td.level-5 { padding-left: 32px }
+.divisionDirectory table td.level-6 { padding-left: 38px }
+.divisionDirectory table td.level-7 { padding-left: 44px }
+.divisionDirectory table td.level-8 { padding-left: 50px }
+.divisionDirectory table td.level-9 { padding-left: 56px }
+.divisionDirectory table td.level-10 { padding-left: 62px }
 
 .divisionDirectory table tr.return {
     border-top-style: solid;
