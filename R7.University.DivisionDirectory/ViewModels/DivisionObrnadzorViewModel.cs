@@ -42,6 +42,8 @@ namespace R7.University.DivisionDirectory
 
         public string Order { get; protected set; }
 
+        public int Level { get; protected set; }
+
         // TODO: Implement this
         // public string HeadEmployee
         // {
@@ -143,43 +145,61 @@ namespace R7.University.DivisionDirectory
         public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext viewModelContext)
         {
             var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext)).ToList ();
-            CalculateOrder (divisionViewModels);
+            CalculateOrderAndLevel (divisionViewModels);
 
             return divisionViewModels;
         }
 
         /// <summary>
-        /// Calculates the hierarchical order of divisions.
+        /// Calculates the hierarchical order and level of divisions.
         /// </summary>
         /// <param name="divisions">Divisions. Must be properly sorted before the call.</param>
-        protected static void CalculateOrder (IList<DivisionObrnadzorViewModel> divisions)
+        protected static void CalculateOrderAndLevel (IList<DivisionObrnadzorViewModel> divisions)
         {
+            // TODO: Get hierarchical data from DB, without recalculating it
+
             const string separator = ".";
             var orderCounter = 1;
+            var level = 0;
             var orderStack = new List<int> ();
-           
-            DivisionObrnadzorViewModel prevDivision = null;
+            var returnStack = new Stack<int> ();
 
-            foreach (var division in divisions)
+            DivisionObrnadzorViewModel division;
+            DivisionObrnadzorViewModel prevDivision = null;
+           
+            for (var i = 0; i < divisions.Count; i++)
             {
+                division = divisions [i];
+                    
                 if (prevDivision != null)
                 {
-                    // moving on same level
                     if (division.ParentDivisionID == prevDivision.ParentDivisionID)
                     {
+                        // moving on same level
                         orderCounter++;
                     }
-                    // moving down
                     else if (division.ParentDivisionID == prevDivision.DivisionID)
                     {
+                        // moving down
                         orderStack.Add (orderCounter);
+                        returnStack.Push (i);
                         orderCounter = 1;
+                        level++;
                     }
-                    // moving up
                     else
                     {
-                        orderCounter = orderStack [orderStack.Count - 1];
-                        orderStack.RemoveAt (orderStack.Count - 1);
+                        // moving up
+                        while (returnStack.Count > 0 && orderStack.Count > 0) 
+                        {
+                            orderCounter = orderStack [orderStack.Count - 1];
+                            orderStack.RemoveAt (orderStack.Count - 1);
+                            level--;
+
+                            if (division.ParentDivisionID == divisions [returnStack.Pop ()].DivisionID) {
+                                break;
+                            }
+                        }
+
                         orderCounter++;
                     }
                 }
@@ -188,10 +208,12 @@ namespace R7.University.DivisionDirectory
                 if (orderStack.Count == 0)
                 {
                     division.Order = orderCounter + separator;
+                    division.Level = 0;
                 }
                 else
                 {
                     division.Order = Utils.FormatList (separator, orderStack) + separator + orderCounter + separator;
+                    division.Level = level;
                 }
 
                 prevDivision = division;
