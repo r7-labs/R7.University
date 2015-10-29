@@ -85,7 +85,7 @@
         <asp:View id="viewObrnadzorDivisions" runat="server">
             <asp:GridView id="gridObrnadzorDivisions" runat="server" AutoGenerateColumns="false" 
                     OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
-                    CssClass="table table-bordered table-stripped table-hover small" GridLines="None" Width="100%">
+                    CssClass="table table-bordered table-stripped table-hover" GridLines="None" Width="100%">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
