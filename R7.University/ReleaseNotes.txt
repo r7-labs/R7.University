@@ -1,4 +1,9 @@
-﻿<h3>Version 1.5.0</h3>
+﻿<h3>Version 1.5.1</h3>
+<ul>
+    <li>Fix null reference exception then accessing empty viewstate.</li>
+</ul>
+
+<h3>Version 1.5.0</h3>
 <p>Main goal: Enhance DivisionDirectory module obrnadzor.gov.ru mode.</p>
 <ul>
     <li>Add ability loose-link divisions and head employees by specifying required position.</li>
