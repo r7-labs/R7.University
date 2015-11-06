@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C6B64609-D737-435C-8C58-5BF0CE1C9F51}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>R7.University.EduProgramDirectory</RootNamespace>
+    <AssemblyName>R7.University.EduProgramDirectory</AssemblyName>
+    <ReleaseVersion>1.5.1</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\R7.University\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AspNet>
+      <AspNet DisableCodeBehindGeneration="True" />
+    </AspNet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>..\R7.University\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AspNet>
+      <AspNet DisableCodeBehindGeneration="True" />
+    </AspNet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Http" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.1.280\lib\net40\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.1.280\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.1.280\lib\net40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke">
+      <HintPath>..\packages\DotNetNuke.Core.7.4.1.280\lib\net40\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\packages\DotNetNuke.Core.7.4.1.280\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.R7">
+      <HintPath>..\packages\DotNetNuke.R7.0.2.0.28342\lib\net45\DotNetNuke.R7.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="js\" />
+    <Folder Include="doc\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="module.css" />
+    <Content Include="js\module.js" />
+    <Content Include="admin.css" />
+    <Content Include="packages.config" />
+    <Content Include="SettingsEduProgramDirectory.ascx" />
+    <Content Include="ViewEduProgramDirectory.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_LocalResources\SharedResources.resx" />
+    <None Include="App_LocalResources\SettingsEduProgramDirectory.ascx.resx" />
+    <None Include="App_LocalResources\ViewEduProgramDirectory.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="components\EduProgramDirectoryController.cs" />
+    <Compile Include="components\EduProgramDirectorySettings.cs" />
+    <Compile Include="SettingsEduProgramDirectory.ascx.cs">
+      <DependentUpon>SettingsEduProgramDirectory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsEduProgramDirectory.ascx.controls.cs">
+      <DependentUpon>SettingsEduProgramDirectory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEduProgramDirectory.ascx.cs">
+      <DependentUpon>ViewEduProgramDirectory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEduProgramDirectory.ascx.controls.cs">
+      <DependentUpon>ViewEduProgramDirectory.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\R7.University\R7.University.csproj">
+      <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
+      <Name>R7.University</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

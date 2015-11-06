@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;P&gt;A EduProgramDirectory module&lt;/P&gt;</value>
+  </data>
+	<data name="NothingToDisplay.Text" xml:space="preserve">
+  	<value>No employees found to display.</value>
+  </data>
+  <data name="VisitProfile.Text" xml:space="preserve">
+    <value>Visit profile</value>
+  </data>
+</root>
