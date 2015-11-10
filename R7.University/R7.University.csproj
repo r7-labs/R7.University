@@ -110,6 +110,8 @@
     <Compile Include="entities\EnumValueInfo.cs" />
     <Compile Include="components\XmlSerializationHelper.cs" />
     <Compile Include="components\ViewModelContext.cs" />
+    <Compile Include="entities\ModelBinder.cs" />
+    <Compile Include="entities\IBindableModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
