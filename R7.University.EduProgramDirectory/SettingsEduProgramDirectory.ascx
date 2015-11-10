@@ -7,9 +7,5 @@
 <div class="dnnForm dnnClear">
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
     <fieldset>
-		<div class="dnnFormItem">
-			<dnn:Label id="labelDataCacheTime" runat="server" ControlName="textDataTime" Suffix=":" />
-			<asp:TextBox id="textDataCacheTime" runat="server" Style="width:100px" />
-		</div>
 	</fieldset>	
 </div>

@@ -13,11 +13,6 @@ namespace R7.University.EduProgramDirectory
 {
     public partial class SettingsEduProgramDirectory : ExtendedModuleSettingsBase<EduProgramDirectoryController, EduProgramDirectorySettings>
     {
-        protected override void OnInit (EventArgs e)
-        {
-            base.OnInit (e);
-        }
-
         /// <summary>
         /// Handles the loading of the module setting for this control
         /// </summary>
