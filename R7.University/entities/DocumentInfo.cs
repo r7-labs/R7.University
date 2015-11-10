@@ -26,6 +26,7 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using DotNetNuke.R7;
 
 namespace R7.University
 {
@@ -33,7 +34,7 @@ namespace R7.University
     [PrimaryKey ("DocumentID", AutoIncrement = true)]
     [Scope ("ItemID")]
     [Serializable]
-    public class DocumentInfo
+    public class DocumentInfo: IBindableModel
     {
         #region Properties
 
@@ -52,6 +53,21 @@ namespace R7.University
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        #endregion
+
+        [IgnoreColumn]
+        public DocumentTypeInfo DocumentType { get; set; }
+
+        #region IBindableModel implementation
+
+        public void Bind (ControllerBase controller)
+        {
+            if (DocumentTypeID != null) 
+            {
+                DocumentType = controller.Get<DocumentTypeInfo> (DocumentTypeID.Value);
+            }
+        }
 
         #endregion
     }

@@ -26,13 +26,22 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using DotNetNuke.R7;
 
 namespace R7.University
 {
     [TableName ("University_EduPrograms")]
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo: UniversityEntityBase
+    public class EduProgramInfo: UniversityEntityBase, IBindableModel
     {
+        public EduProgramInfo ()
+        {
+            Documents = new List<DocumentInfo> ();
+        }
+
         #region Properties
 
         public int EduProgramID { get; set; }
@@ -55,11 +64,36 @@ namespace R7.University
 
         #endregion
 
+        // TODO: Move to viewmodel
         [IgnoreColumn]
         public string EduProgramString
         {
             get { return Utils.FormatList (" ", Code, Title); }
         }
+
+        [IgnoreColumn]
+        public IList<DocumentInfo> Documents { get; set; }
+
+        [IgnoreColumn]
+        public IList<DocumentInfo> EduStandardDocuments
+        {
+            get
+            { 
+                return Documents.Where (d => d.DocumentType != null 
+                    && d.DocumentType.SystemDocumentType == SystemDocumentType.EduStandard).ToList ();
+            }
+        }
+
+        #region IBindableModel implementation
+
+        public void Bind (ControllerBase controller)
+        {
+            Documents = controller.GetObjects<DocumentInfo> (
+               "WHERE [ItemID] = @0", "EduProgramID=" + EduProgramID).ToList ();
+            
+            Documents.Bind (controller);
+        }
+
+        #endregion
     }
 }
-
