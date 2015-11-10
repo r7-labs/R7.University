@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
     <data name="ModuleHelp.Text" xml:space="preserve">
-       <value>&lt;p&gt;About EduProgramDirectory module&lt;/p&gt;</value>
+       <value>&lt;p&gt;О модуле EduProgramDirectory&lt;/p&gt;</value>
     </data>
     <data name="AddEduProgram.Action" xml:space="preserve">
-        <value>Add Educational Program</value>
+        <value>Новая обр. программа</value>
     </data>
     <data name="EduProgramCode.Column" xml:space="preserve">
-        <value>Code</value>
+        <value>Код</value>
     </data>
     <data name="EduProgramTitle.Column" xml:space="preserve">
-        <value>Title</value>
+        <value>Наименование</value>
     </data>
     <data name="EduProgramStandard.Column" xml:space="preserve">
-        <value>Educational Standard</value>
+        <value>Стандарт</value>
     </data>
     <data name="EduProgramStandardLink.Text" xml:space="preserve">
-        <value>open</value>
+        <value>открыть</value>
     </data>
 </root>

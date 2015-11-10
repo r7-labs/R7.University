@@ -76,6 +76,7 @@
   <ItemGroup>
     <Folder Include="js\" />
     <Folder Include="doc\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -86,9 +87,9 @@
     <Content Include="ViewEduProgramDirectory.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SettingsEduProgramDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEduProgramDirectory.ascx.resx" />
+    <None Include="App_LocalResources\ViewEduProgramDirectory.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="ViewEduProgramDirectory.ascx.controls.cs">
       <DependentUpon>ViewEduProgramDirectory.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EduProgramStandardObrnadzorViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -15,12 +15,15 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
+using DotNetNuke.Security;
 using DotNetNuke.R7;
 using R7.University;
+using R7.University.Extensions;
 
 namespace R7.University.EduProgramDirectory
 {
-    public partial class ViewEduProgramDirectory : ExtendedPortalModuleBase<EduProgramDirectoryController, EduProgramDirectorySettings>, IActionable
+    public partial class ViewEduProgramDirectory 
+        : ExtendedPortalModuleBase<EduProgramDirectoryController, EduProgramDirectorySettings>, IActionable
 	{
 		#region Properties
 
@@ -29,9 +32,28 @@ namespace R7.University.EduProgramDirectory
 			get { return IconController.IconURL ("Edit"); }
 		}
 
+        private ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get
+            { 
+                if (viewModelContext == null)
+                    viewModelContext = new ViewModelContext (this);
+
+                return viewModelContext;
+            }
+        }
+
 		#endregion
 
 		#region Handlers
+
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            gridEduStandards.LocalizeColumns (LocalResourceFile);
+        }
 
 		/// <summary>
 		/// Handles Load event for a control
@@ -45,6 +67,14 @@ namespace R7.University.EduProgramDirectory
 			{
                 if (!IsPostBack)
 				{
+                    // REVIEW: Order / group by edu level first?
+                    var eduPrograms = Controller.GetObjects<EduProgramInfo> ()
+                        .OrderBy (ep => ep.Code)
+                        .Bind (Controller)
+                        .Select (ep => new EduProgramStandardObrnadzorViewModel (ep, ViewModelContext));
+                    
+                    gridEduStandards.DataSource = eduPrograms;
+                    gridEduStandards.DataBind ();
 				}
 			}
 			catch (Exception ex)
@@ -57,22 +87,21 @@ namespace R7.University.EduProgramDirectory
 
 		#region IActionable implementation
 
-		public DotNetNuke.Entities.Modules.Actions.ModuleActionCollection ModuleActions
+		public ModuleActionCollection ModuleActions
 		{
 			get
 			{
-				// create a new action to add an item, this will be added 
-				// to the controls dropdown menu
+				// create a new action to add an item, 
+                // this will be added to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
 				actions.Add (
 					GetNextActionID (), 
-					Localization.GetString ("AddEduProgram.Action", this.LocalResourceFile),
+					LocalizeString ("AddEduProgram.Action"),
 					ModuleActionType.AddContent, 
-					"", 
-					"", 
-					Utils.EditUrl (this, "EditEduProgram"),
+					"", "", 
+					EditUrl ("EditEduProgram"),
 					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					SecurityAccessLevel.Edit,
 					true, 
 					false
 				);
@@ -99,7 +128,7 @@ namespace R7.University.EduProgramDirectory
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEduProgram", "eduprogram_id", eduProgram.EduProgramID.ToString ());
+                    linkEdit.NavigateUrl = EditUrl ("eduprogram_id", eduProgram.EduProgramID.ToString (), "EditEduProgram");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
             }
