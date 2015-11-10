@@ -68,7 +68,7 @@ namespace R7.University.EduProgramDirectory
                 if (!IsPostBack)
 				{
                     // REVIEW: Order / group by edu level first?
-                    var eduPrograms = Controller.GetObjects<EduProgramInfo> ()
+                    var eduPrograms = Controller.GetEduPrograms (IsEditable)
                         .OrderBy (ep => ep.Code)
                         .Bind (Controller)
                         .Select (ep => new EduProgramStandardObrnadzorViewModel (ep, ViewModelContext));
@@ -130,6 +130,11 @@ namespace R7.University.EduProgramDirectory
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("eduprogram_id", eduProgram.EduProgramID.ToString (), "EditEduProgram");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                }
+
+                if (!eduProgram.IsPublished)
+                {
+                    e.Row.CssClass = "not-published";
                 }
             }
         }
