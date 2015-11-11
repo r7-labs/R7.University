@@ -58,6 +58,9 @@ namespace R7.University
 
         #endregion
 
+        [IgnoreColumn]
+        public int Weight { get; set; }
+
         #region IReferenceEntity implementation
 
         public string Title { get; set; }
