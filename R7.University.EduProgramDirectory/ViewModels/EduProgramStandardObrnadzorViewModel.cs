@@ -57,16 +57,20 @@ namespace R7.University.EduProgramDirectory
                 var eduStandardDocuments = EduStandardDocuments
                     .Where (d => d.IsPublished || Context.ModuleContext.IsEditable).ToList ();
                 
-                if (eduStandardDocuments != null 
-                    && eduStandardDocuments.Count > 0
-                    && !string.IsNullOrWhiteSpace (eduStandardDocuments [0].Url))
+                if (eduStandardDocuments != null && eduStandardDocuments.Count > 0)
                 {
-                    return string.Format ("<a href=\"{0}\"{1}{2} itemprop=\"EduStandartDoc\">{3}</a>",
-                        Globals.LinkClick (eduStandardDocuments [0].Url, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId), 
-                        Globals.GetURLType (eduStandardDocuments [0].Url) == TabType.Url? " target=\"_blank\"" : string.Empty,
-                        !eduStandardDocuments [0].IsPublished? " class=\"not-published-document\"" : string.Empty,
-                        Localization.GetString ("EduProgramStandardLink.Text", Context.Control.LocalResourceFile)
-                    );
+                    var eduStandardDocument = eduStandardDocuments [0];
+
+                    if (!string.IsNullOrWhiteSpace (eduStandardDocument.Url))
+                    {
+                        return string.Format ("<a href=\"{0}\"{1}{2} itemprop=\"EduStandartDoc\">{3}</a>",
+                            Globals.LinkClick (eduStandardDocument.Url, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId), 
+                            Globals.GetURLType (eduStandardDocument.Url) == TabType.Url ? " target=\"_blank\"" : string.Empty,
+                            !eduStandardDocument.IsPublished ? " class=\"not-published-document\"" : string.Empty,
+                            !string.IsNullOrWhiteSpace (eduStandardDocument.Title) ? eduStandardDocument.Title 
+                        : Localization.GetString ("EduProgramStandardLink.Text", Context.Control.LocalResourceFile)
+                        );
+                    }
                 }
 
                 return string.Empty;
