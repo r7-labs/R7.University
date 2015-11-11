@@ -39,6 +39,7 @@ namespace R7.University
 
     [TableName ("University_EduLevels")]
     [PrimaryKey ("EduLevelID", AutoIncrement = true)]
+    [Cacheable]
     public class EduLevelInfo: IReferenceEntity
     {
         #region Properties
