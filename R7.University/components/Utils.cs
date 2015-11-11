@@ -41,7 +41,7 @@ namespace R7.University
         /// <param name="defName">Default user display name. Pass Null.NullInteger string to use with ModuleAuditControl.</param>
 		public static string GetUserDisplayName (int userId, string defName)
 		{
-			var portalId = PortalController.GetCurrentPortalSettings ().PortalId;
+			var portalId = PortalController.Instance.GetCurrentPortalSettings ().PortalId;
 			var user = UserController.GetUserById (portalId, userId);
 	
 			return (user != null) ? user.DisplayName : defName;
@@ -86,7 +86,7 @@ namespace R7.University
                 {
                     // get portal alias, primary first (we don't know exactly,
                     // which portal aliases are globally-available, and which are not)
-                    var portalAlias = TestablePortalAliasController.Instance.GetPortalAliasesByPortalId (tab.PortalID)
+                    var portalAlias = PortalAliasController.Instance.GetPortalAliasesByPortalId (tab.PortalID)
                         .OrderBy (pa => !pa.IsPrimary).First ();
 
                     // target portal URL (let target portal use right protocol and do URL rewriting)
