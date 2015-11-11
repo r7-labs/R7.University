@@ -24,6 +24,12 @@
     <data name="labelShortTitle.Help" xml:space="preserve">
         <value>Enter the short title for an education level.</value>
     </data>
+    <data name="labelSortIndex.Text" xml:space="preserve">
+        <value>Sort Index:</value>
+    </data>
+    <data name="labelSortIndex.Help" xml:space="preserve">
+        <value>Enter the numeric index for the educational level. It will be used in sorting.</value>
+    </data>
     <data name="labelEduTypes.Text">
         <value>Education Type:</value>
     </data>

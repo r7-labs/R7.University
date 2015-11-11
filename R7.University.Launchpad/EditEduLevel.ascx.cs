@@ -53,6 +53,7 @@ namespace R7.University.Launchpad
         {
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
+            textSortIndex.Text = item.SortIndex.ToString ();
             Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
         }
 
@@ -60,6 +61,7 @@ namespace R7.University.Launchpad
         {
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
+            item.SortIndex = int.Parse (textSortIndex.Text);
             item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
         }
 	}
