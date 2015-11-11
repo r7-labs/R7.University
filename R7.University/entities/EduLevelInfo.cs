@@ -39,6 +39,7 @@ namespace R7.University
 
     [TableName ("University_EduLevels")]
     [PrimaryKey ("EduLevelID", AutoIncrement = true)]
+    [Cacheable]
     public class EduLevelInfo: IReferenceEntity
     {
         #region Properties
@@ -54,6 +55,8 @@ namespace R7.University
             get { return (EduType)EduTypeString [0]; }
             set { EduTypeString = ((char)value).ToString (); }
         }
+
+        public int SortIndex { get; set; }
 
         #endregion
 

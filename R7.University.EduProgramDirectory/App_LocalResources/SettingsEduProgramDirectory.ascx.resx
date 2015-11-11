@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>EduProgramDirectory Settings</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;About EduProgramDirectory settings module&lt;/p&gt;</value>
+    </data>
+    <data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Not Selected &gt;</value>
+    </data>
+</root>

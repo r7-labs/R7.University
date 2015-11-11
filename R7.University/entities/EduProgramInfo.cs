@@ -26,6 +26,8 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace R7.University
 {
@@ -33,6 +35,11 @@ namespace R7.University
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
     public class EduProgramInfo: UniversityEntityBase
     {
+        public EduProgramInfo ()
+        {
+            Documents = new List<DocumentInfo> ();
+        }
+
         #region Properties
 
         public int EduProgramID { get; set; }
@@ -55,11 +62,37 @@ namespace R7.University
 
         #endregion
 
+        // TODO: Move to viewmodel
         [IgnoreColumn]
         public string EduProgramString
         {
             get { return Utils.FormatList (" ", Code, Title); }
         }
+
+        [IgnoreColumn]
+        public bool IsPublished
+        {
+            get
+            {
+                var now = DateTime.Now;
+                return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
+            }
+        }
+
+        [IgnoreColumn]
+        public EduLevelInfo EduLevel { get; set; }
+
+        [IgnoreColumn]
+        public IList<DocumentInfo> Documents { get; set; }
+
+        [IgnoreColumn]
+        public IList<DocumentInfo> EduStandardDocuments
+        {
+            get
+            { 
+                return Documents.Where (d => d.DocumentType != null 
+                    && d.DocumentType.SystemDocumentType == SystemDocumentType.EduStandard).ToList ();
+            }
+        }
     }
 }
-

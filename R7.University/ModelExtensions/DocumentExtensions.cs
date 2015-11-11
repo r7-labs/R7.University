@@ -1,10 +1,10 @@
 ﻿//
-// AssemblyInfo.cs
+// DocumentExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +23,34 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System.Reflection;
-using System.Runtime.CompilerServices;
 
-// Information about this assembly is defined by the following attributes.
-// Change them to the values specific to your project.
+using System;
+using DotNetNuke.R7;
+using System.Collections.Generic;
 
-[assembly: AssemblyTitle("R7.University.EmployeeDirectory")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("R7.Solutions")]
-[assembly: AssemblyProduct("R7.University")]
-[assembly: AssemblyCopyright("Roman M. Yagodin")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+namespace R7.University
+{
+    public static class DocumentExtensions
+    {
+        public static DocumentInfo WithDocumentType (this DocumentInfo document, ControllerBase controller)
+        {
+            if (document.DocumentTypeID != null) 
+            {
+                document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID.Value);
+            }
 
-// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
-// The form "{Major}.{Minor}.*" will automatically update the build and revision,
-// and "{Major}.{Minor}.{Build}.*" will update just the revision.
+            return document;
+        }
 
-[assembly: AssemblyVersion("1.6.0.*")]
+        public static IEnumerable<DocumentInfo> WithDocumentType (this IEnumerable<DocumentInfo> documents, ControllerBase controller)
+        {
+            foreach (var document in documents)
+            {
+                document.WithDocumentType (controller);
+            }
 
-// The following attributes are used to specify the signing key for the assembly,
-// if desired. See the Mono documentation for more information about signing.
-
-//[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile("")]
+            return documents;
+        }
+    }
+}
 

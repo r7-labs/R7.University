@@ -31,6 +31,7 @@ namespace R7.University
 {
     [TableName ("University_DocumentTypes")]
     [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
+    [Cacheable]
     [Serializable]
     public class DocumentTypeInfo
     {

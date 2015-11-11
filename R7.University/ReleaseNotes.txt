@@ -1,4 +1,11 @@
-﻿<h3>Version 1.5.1</h3>
+﻿<h3>Version 1.6.0</h3>
+<ul>
+    <li>Add EduProgramDirectory module.</li>
+    <li>Add sort index to the educational level model.</li>
+    <li>Educational level and document type models now cacheable.</li>
+</ul>
+
+<h3>Version 1.5.1</h3>
 <ul>
     <li>Fix null reference exception then accessing empty viewstate.</li>
 </ul>

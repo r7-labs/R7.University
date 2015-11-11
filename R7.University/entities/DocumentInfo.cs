@@ -54,6 +54,19 @@ namespace R7.University
         public DateTime? EndDate { get; set; }
 
         #endregion
+
+        [IgnoreColumn]
+        public bool IsPublished
+        {
+            get
+            {
+                var now = DateTime.Now;
+                return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
+            }
+        }
+
+        [IgnoreColumn]
+        public DocumentTypeInfo DocumentType { get; set; }
     }
 }
 

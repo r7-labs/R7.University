@@ -1,10 +1,10 @@
 ﻿//
-// AssemblyInfo.cs
+// EduProgramComparer.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +23,38 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System.Reflection;
-using System.Runtime.CompilerServices;
 
-// Information about this assembly is defined by the following attributes.
-// Change them to the values specific to your project.
+using System;
+using System.Collections.Generic;
 
-[assembly: AssemblyTitle("R7.University.EmployeeDirectory")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("R7.Solutions")]
-[assembly: AssemblyProduct("R7.University")]
-[assembly: AssemblyCopyright("Roman M. Yagodin")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+namespace R7.University.EduProgramDirectory
+{
+    public class EduProgramComparer: IComparer<EduProgramInfo>
+    {
+        #region IComparer implementation
 
-// The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
-// The form "{Major}.{Minor}.*" will automatically update the build and revision,
-// and "{Major}.{Minor}.{Build}.*" will update just the revision.
+        public int Compare (EduProgramInfo x, EduProgramInfo y)
+        {
+            if (x.EduLevel.SortIndex > y.EduLevel.SortIndex)
+                return 1;
 
-[assembly: AssemblyVersion("1.6.0.*")]
+            if (x.EduLevel.SortIndex < y.EduLevel.SortIndex)
+                return -1;
 
-// The following attributes are used to specify the signing key for the assembly,
-// if desired. See the Mono documentation for more information about signing.
+            int delta;
+            delta = string.Compare (x.Code, y.Code, StringComparison.InvariantCulture);
+            if (delta != 0)
+                return delta;
 
-//[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile("")]
+            delta = string.Compare (x.Title, y.Title, StringComparison.CurrentCulture);
+            if (delta != 0)
+                return delta;
+           
+            return 0;
+        }
+
+        #endregion
+        
+    }
+}
 

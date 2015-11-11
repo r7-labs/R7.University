@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
-    <ReleaseVersion>1.5.1</ReleaseVersion>
+    <ReleaseVersion>1.6.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -110,6 +110,8 @@
     <Compile Include="entities\EnumValueInfo.cs" />
     <Compile Include="components\XmlSerializationHelper.cs" />
     <Compile Include="components\ViewModelContext.cs" />
+    <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
+    <Compile Include="ModelExtensions\DocumentExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -117,6 +119,7 @@
     <Folder Include="components\" />
     <Folder Include="css\" />
     <Folder Include="Extensions\" />
+    <Folder Include="ModelExtensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -149,6 +152,7 @@
     <None Include="packages.config" />
     <None Include="SqlDataProvider\01.07.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

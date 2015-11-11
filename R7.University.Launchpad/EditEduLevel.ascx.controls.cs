@@ -16,6 +16,7 @@ namespace R7.University.Launchpad
 		protected HyperLink linkCancel;
         protected TextBox textTitle;
 		protected TextBox textShortTitle;
+        protected TextBox textSortIndex;
         protected DropDownList comboEduTypes;
 	}
 }

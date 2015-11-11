@@ -19,6 +19,10 @@
 				DataValueField="Type"
 			/>
 		</div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelSortIndex" runat="server" ControlName="textSortIndex" />
+            <asp:TextBox id="textSortIndex" runat="server" />
+        </div>
 	</fieldset>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>

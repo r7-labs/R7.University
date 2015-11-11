@@ -250,6 +250,18 @@ namespace R7.University
             return GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
         }
 
+        public IEnumerable<EduProgramInfo> GetEduPrograms (bool getAll)
+        {
+            if (getAll)
+            {
+                return GetObjects<EduProgramInfo> ();
+            }    
+
+            return GetObjects<EduProgramInfo> ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
+                "AND (EndDate IS NULL OR @0 < EndDate)", DateTime.Now
+            );
+        }
+
         public void AddEduProgram (EduProgramInfo eduProgram, List<DocumentInfo> documents)
         {
             using (var ctx = DataContext.Instance ())

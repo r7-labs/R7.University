@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+       <value>&lt;p&gt;О модуле EduProgramDirectory&lt;/p&gt;</value>
+    </data>
+    <data name="AddEduProgram.Action" xml:space="preserve">
+        <value>Новая обр. программа</value>
+    </data>
+    <data name="EduProgramOrder.Column" xml:space="preserve">
+        <value>№ п/п</value>
+    </data>
+    <data name="EduProgramCode.Column" xml:space="preserve">
+        <value>Код</value>
+    </data>
+    <data name="EduProgramTitle.Column" xml:space="preserve">
+        <value>Наименование</value>
+    </data>
+    <data name="EduProgramEduLevel.Column" xml:space="preserve">
+        <value>Уровень образования</value>
+    </data>
+    <data name="EduProgramStandard.Column" xml:space="preserve">
+        <value>Стандарт</value>
+    </data>
+    <data name="EduProgramStandardLink.Text" xml:space="preserve">
+        <value>открыть</value>
+    </data>
+</root>
