@@ -87,10 +87,10 @@
                             <name>SqlDataProvider\01.05.00.SqlDataProvider</name>
                             <version>01.05.00</version>
                         </script>
-						<script type="UnInstall">
-							<name>SqlDataProvider\Uninstall.SqlDataProvider</name>
-							<version>01.05.01</version>
-						</script>
+                        <script type="UnInstall">
+                            <name>SqlDataProvider\Uninstall.SqlDataProvider</name>
+                            <version>01.05.01</version>
+                        </script>
 					</scripts>
 				</component>
 				<component type="Assembly">
@@ -772,7 +772,7 @@
 		</package>
 		<package name="R7.University.DivisionDirectory" type="Module" version="01.05.01">
 			<friendlyName>R7.University.DivisionDirectory</friendlyName>
-			<description>This is a module to display information about employees.</description>
+			<description>This is a module to display information about divisions.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
 				<organization>R7.Solutions</organization>
@@ -875,6 +875,88 @@
 					</assemblies>
 				</component>
 			</components>
-		</package>	
+		</package>
+        <package name="R7.University.EduProgramDirectory" type="Module" version="01.05.01">
+            <friendlyName>R7.University.EduProgramDirectory</friendlyName>
+            <description>This is a module to display information about educational programs.</description>
+            <owner>
+                <name>Roman M. Yagodin</name>
+                <organization>R7.Solutions</organization>
+                <url>https://github.com/roman-yagodin/R7.University</url>
+                <email>roman.yagodin@gmail.com</email>
+            </owner>
+            <license src="License.txt" />
+            <releaseNotes src="ReleaseNotes.txt" />
+            <dependencies>
+                <dependency type="CoreVersion">07.04.00</dependency>
+            </dependencies>
+            <components>
+                <component type="Module">
+                    <desktopModule>
+                        <moduleName>R7.University.EduProgramDirectory</moduleName>
+                        <foldername>R7.University.EduProgramDirectory</foldername>
+                        <businessControllerClass>R7.University.EduProgramDirectory.EduProgramDirectoryController</businessControllerClass>
+                        <supportedFeatures>
+                            <!-- <supportedFeature type="Portable" /> -->
+                            <!-- <supportedFeature type="Searchable" /> -->
+                        </supportedFeatures>
+                        <moduleDefinitions>
+                            <moduleDefinition>
+                                <friendlyName>R7.University.EduProgramDirectory</friendlyName>
+                                <definitionName>R7.University.EduProgramDirectory</definitionName>
+                                <defaultCacheTime>0</defaultCacheTime>
+                                <moduleControls>
+                                    <moduleControl>
+                                        <controlKey />
+                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramDirectory/ViewEduProgramDirectory.ascx</controlSrc>
+                                        <controlTitle />
+                                        <controlType>View</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditEduProgram</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgram.ascx</controlSrc>
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <controlTitle>Edit Educational Program</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>Settings</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramDirectory/SettingsEduProgramDirectory.ascx</controlSrc>
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <controlTitle>Settings</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                </moduleControls>
+                            </moduleDefinition>
+                        </moduleDefinitions>
+                    </desktopModule>
+                </component>
+                <component type="Assembly">
+                    <assemblies>
+                        <basePath>bin</basePath>
+                        <assembly>
+                            <path>bin</path>
+                            <name>R7.University.EduProgramDirectory.dll</name>
+                        </assembly>
+                    </assemblies>
+                </component>
+            </components>
+        </package>  
 	</packages>
 </dotnetnuke>
