@@ -35,10 +35,10 @@ namespace R7.University.EduProgramDirectory
 
         public int Compare (EduProgramInfo x, EduProgramInfo y)
         {
-            if (x.EduLevel.Weight > y.EduLevel.Weight)
+            if (x.EduLevel.SortIndex > y.EduLevel.SortIndex)
                 return 1;
 
-            if (x.EduLevel.Weight < y.EduLevel.Weight)
+            if (x.EduLevel.SortIndex < y.EduLevel.SortIndex)
                 return -1;
 
             int delta;

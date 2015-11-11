@@ -4,9 +4,9 @@
 
 -- Divisions
 
-IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduLevels]') and name = N'Weight')
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduLevels]') and name = N'SortIndex')
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduLevels]
-        ADD [Weight] int NOT NULL DEFAULT ((0))
+        ADD [SortIndex] int NOT NULL DEFAULT ((0))
 END
 GO

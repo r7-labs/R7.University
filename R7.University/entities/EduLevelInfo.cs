@@ -56,10 +56,9 @@ namespace R7.University
             set { EduTypeString = ((char)value).ToString (); }
         }
 
-        #endregion
+        public int SortIndex { get; set; }
 
-        [IgnoreColumn]
-        public int Weight { get; set; }
+        #endregion
 
         #region IReferenceEntity implementation
 
