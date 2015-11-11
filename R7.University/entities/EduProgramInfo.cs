@@ -26,16 +26,14 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DotNetNuke.R7;
 
 namespace R7.University
 {
     [TableName ("University_EduPrograms")]
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo: UniversityEntityBase, IBindableModel
+    public class EduProgramInfo: UniversityEntityBase
     {
         public EduProgramInfo ()
         {
@@ -82,6 +80,9 @@ namespace R7.University
         }
 
         [IgnoreColumn]
+        public EduLevelInfo EduLevel { get; set; }
+
+        [IgnoreColumn]
         public IList<DocumentInfo> Documents { get; set; }
 
         [IgnoreColumn]
@@ -93,17 +94,5 @@ namespace R7.University
                     && d.DocumentType.SystemDocumentType == SystemDocumentType.EduStandard).ToList ();
             }
         }
-
-        #region IBindableModel implementation
-
-        public void Bind (ControllerBase controller)
-        {
-            Documents = controller.GetObjects<DocumentInfo> (
-               "WHERE [ItemID] = @0", "EduProgramID=" + EduProgramID).ToList ();
-            
-            Documents.Bind (controller);
-        }
-
-        #endregion
     }
 }

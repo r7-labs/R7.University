@@ -1,5 +1,5 @@
 ﻿//
-// IBindableModel.cs
+// DocumentExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,15 +25,32 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.Web.UI.WebControls;
-using System.Reflection;
 using DotNetNuke.R7;
+using System.Collections.Generic;
 
 namespace R7.University
 {
-    public interface IBindableModel
+    public static class DocumentExtensions
     {
-        void Bind (ControllerBase controller);
+        public static DocumentInfo WithDocumentType (this DocumentInfo document, ControllerBase controller)
+        {
+            if (document.DocumentTypeID != null) 
+            {
+                document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID.Value);
+            }
+
+            return document;
+        }
+
+        public static IEnumerable<DocumentInfo> WithDocumentType (this IEnumerable<DocumentInfo> documents, ControllerBase controller)
+        {
+            foreach (var document in documents)
+            {
+                document.WithDocumentType (controller);
+            }
+
+            return documents;
+        }
     }
 }
 

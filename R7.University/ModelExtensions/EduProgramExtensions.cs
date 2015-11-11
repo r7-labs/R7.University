@@ -1,5 +1,5 @@
 ﻿//
-// ModelBinder.cs
+// EduProgramExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -31,17 +31,42 @@ using DotNetNuke.R7;
 
 namespace R7.University
 {
-    public static class ModelBinder
+    public static class EduProgramExtensions
     {
-        public static IEnumerable<T> Bind<T> (this IEnumerable<T> items, ControllerBase controller)
-            where T: IBindableModel
+        public static EduProgramInfo WithEduLevel (this EduProgramInfo eduProgram, ControllerBase controller)
         {
-            foreach (var item in items)
+            eduProgram.EduLevel = controller.Get<EduLevelInfo> (eduProgram.EduLevelID);
+            return eduProgram;
+        }
+
+        public static IEnumerable<EduProgramInfo> WithEduLevel (this IEnumerable<EduProgramInfo> eduPrograms, ControllerBase controller)
+        {
+            foreach (var eduProgram in eduPrograms)
             {
-                item.Bind (controller);
+                eduProgram.WithEduLevel (controller);
             }
 
-            return items;
+            return eduPrograms;
+        }
+
+        public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram, ControllerBase controller)
+        {
+            eduProgram.Documents = controller.GetObjects<DocumentInfo> (
+                "WHERE [ItemID] = @0", "EduProgramID=" + eduProgram.EduProgramID).ToList ();
+
+            eduProgram.Documents.WithDocumentType (controller);
+
+            return eduProgram;
+        }
+
+        public static IEnumerable<EduProgramInfo> WithDocuments (this IEnumerable<EduProgramInfo> eduPrograms, ControllerBase controller)
+        {
+            foreach (var eduProgram in eduPrograms)
+            {
+                eduProgram.WithDocuments (controller);
+            }
+
+            return eduPrograms;
         }
     }
 }

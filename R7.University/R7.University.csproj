@@ -110,8 +110,8 @@
     <Compile Include="entities\EnumValueInfo.cs" />
     <Compile Include="components\XmlSerializationHelper.cs" />
     <Compile Include="components\ViewModelContext.cs" />
-    <Compile Include="entities\ModelBinder.cs" />
-    <Compile Include="entities\IBindableModel.cs" />
+    <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
+    <Compile Include="ModelExtensions\DocumentExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -119,6 +119,7 @@
     <Folder Include="components\" />
     <Folder Include="css\" />
     <Folder Include="Extensions\" />
+    <Folder Include="ModelExtensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

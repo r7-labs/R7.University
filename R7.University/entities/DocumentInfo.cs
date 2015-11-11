@@ -26,7 +26,6 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using DotNetNuke.R7;
 
 namespace R7.University
 {
@@ -34,7 +33,7 @@ namespace R7.University
     [PrimaryKey ("DocumentID", AutoIncrement = true)]
     [Scope ("ItemID")]
     [Serializable]
-    public class DocumentInfo: IBindableModel
+    public class DocumentInfo
     {
         #region Properties
 
@@ -68,18 +67,6 @@ namespace R7.University
 
         [IgnoreColumn]
         public DocumentTypeInfo DocumentType { get; set; }
-
-        #region IBindableModel implementation
-
-        public void Bind (ControllerBase controller)
-        {
-            if (DocumentTypeID != null) 
-            {
-                DocumentType = controller.Get<DocumentTypeInfo> (DocumentTypeID.Value);
-            }
-        }
-
-        #endregion
     }
 }
 
