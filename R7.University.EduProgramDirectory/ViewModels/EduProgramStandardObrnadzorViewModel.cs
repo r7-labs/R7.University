@@ -44,7 +44,12 @@ namespace R7.University.EduProgramDirectory
             CopyCstor.Copy<EduProgramInfo> (ep, this);
             Context = context;
         }
-             
+            
+        public string EduLevelString
+        {
+            get { return EduLevel.DisplayShortTitle; }
+        }
+
         public string EduStandardLink
         {
             get

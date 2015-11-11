@@ -16,6 +16,7 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="Code" HeaderText="EduProgramCode" />
                         <asp:BoundField DataField="Title" HeaderText="EduProgramTitle" />
+                        <asp:BoundField DataField="EduLevelString" HeaderText="EduProgramEduLevel" />
                         <asp:BoundField DataField="EduStandardLink" HeaderText="EduProgramStandard" HtmlEncode="false">
                             <ItemStyle CssClass="edustandard-link"></ItemStyle>
                         </asp:BoundField>

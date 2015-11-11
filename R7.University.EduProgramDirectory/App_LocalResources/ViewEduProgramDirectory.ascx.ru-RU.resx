@@ -12,6 +12,9 @@
     <data name="EduProgramTitle.Column" xml:space="preserve">
         <value>Наименование</value>
     </data>
+    <data name="EduProgramEduLevel.Column" xml:space="preserve">
+        <value>Уровень образования</value>
+    </data>
     <data name="EduProgramStandard.Column" xml:space="preserve">
         <value>Стандарт</value>
     </data>
