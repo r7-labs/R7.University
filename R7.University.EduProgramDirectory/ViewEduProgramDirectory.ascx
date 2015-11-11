@@ -14,6 +14,7 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="OrderString" HeaderText="EduProgramOrder" />
                         <asp:BoundField DataField="Code" HeaderText="EduProgramCode" />
                         <asp:BoundField DataField="Title" HeaderText="EduProgramTitle" />
                         <asp:BoundField DataField="EduLevelString" HeaderText="EduProgramEduLevel" />

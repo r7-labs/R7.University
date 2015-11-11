@@ -6,6 +6,9 @@
     <data name="AddEduProgram.Action" xml:space="preserve">
         <value>Новая обр. программа</value>
     </data>
+    <data name="EduProgramOrder.Column" xml:space="preserve">
+        <value>№ п/п</value>
+    </data>
     <data name="EduProgramCode.Column" xml:space="preserve">
         <value>Код</value>
     </data>

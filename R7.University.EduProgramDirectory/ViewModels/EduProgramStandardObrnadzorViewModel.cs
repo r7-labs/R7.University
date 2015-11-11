@@ -26,11 +26,8 @@
 
 using System;
 using System.Linq;
-using System.Threading;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.R7;
-using DotNetNuke.Entities.Urls;
 using DotNetNuke.Entities.Tabs;
 
 namespace R7.University.EduProgramDirectory
@@ -39,12 +36,15 @@ namespace R7.University.EduProgramDirectory
     {
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramStandardObrnadzorViewModel (EduProgramInfo ep, ViewModelContext context)
+        public EduProgramStandardObrnadzorViewModel (EduProgramInfo ep, ViewModelContext context, ref int order)
         {
             CopyCstor.Copy<EduProgramInfo> (ep, this);
             Context = context;
+            OrderString = (++order) + ".";
         }
-            
+
+        public string OrderString { get; protected set; }
+
         public string EduLevelString
         {
             get { return EduLevel.DisplayShortTitle; }
