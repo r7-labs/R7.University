@@ -91,6 +91,12 @@ IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwne
     DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]
 GO
 
+-- Clean orphaned educational programs
+
+DELETE FROM {databaseOwner}[{objectQualifier}University_EduPrograms]
+    WHERE EduProgramID NOT IN (SELECT DISTINCT EduProgramID FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles])
+GO
+
 -- Drop views
 
 IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]') and type in (N'V'))
