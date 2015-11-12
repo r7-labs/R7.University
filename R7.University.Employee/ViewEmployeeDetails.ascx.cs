@@ -42,7 +42,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.University;
-using R7.University.Extensions;
+using R7.University.ControlExtensions;
 
 namespace R7.University.Employee
 {

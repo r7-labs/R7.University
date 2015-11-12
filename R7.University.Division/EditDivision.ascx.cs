@@ -11,7 +11,7 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University;
-using R7.University.Extensions;
+using R7.University.ControlExtensions;
 using DotNetNuke.R7;
 
 namespace R7.University.Division

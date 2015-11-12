@@ -18,7 +18,8 @@ using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Security;
 using DotNetNuke.R7;
 using R7.University;
-using R7.University.Extensions;
+using R7.University.ModelExtensions;
+using R7.University.ControlExtensions;
 
 namespace R7.University.EduProgramDirectory
 {

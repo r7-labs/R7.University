@@ -28,7 +28,7 @@ using System;
 using DotNetNuke.R7;
 using System.Collections.Generic;
 
-namespace R7.University
+namespace R7.University.ModelExtensions
 {
     public static class DocumentExtensions
     {

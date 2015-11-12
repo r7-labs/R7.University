@@ -29,7 +29,7 @@ using DotNetNuke.UI.UserControls;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
 
-namespace R7.University.Extensions
+namespace R7.University.ControlExtensions
 {
     public static class ModuleAuditControlExtensions
     {

@@ -29,7 +29,7 @@ using System.Linq;
 using System.Collections.Generic;
 using DotNetNuke.R7;
 
-namespace R7.University
+namespace R7.University.ModelExtensions
 {
     public static class EduProgramExtensions
     {

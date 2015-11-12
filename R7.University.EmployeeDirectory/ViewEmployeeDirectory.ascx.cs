@@ -33,7 +33,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Entities.Icons;
 using R7.University;
-using R7.University.Extensions;
+using R7.University.ControlExtensions;
 
 namespace R7.University.EmployeeDirectory
 {

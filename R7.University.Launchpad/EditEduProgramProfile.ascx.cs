@@ -8,7 +8,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.UI.UserControls;
 using R7.University;
-using R7.University.Extensions;
+using R7.University.ControlExtensions;
 
 namespace R7.University.Launchpad
 {
