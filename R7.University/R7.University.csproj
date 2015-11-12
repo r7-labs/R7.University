@@ -70,7 +70,6 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="components\VCard.cs" />
     <Compile Include="components\VCardPhone.cs" />
-    <Compile Include="components\QuotedPrintable.cs" />
     <Compile Include="components\CacheHelper.cs" />
     <Compile Include="components\EmployeePhotoLogic.cs" />
     <Compile Include="components\WorkingHoursLogic.cs" />
