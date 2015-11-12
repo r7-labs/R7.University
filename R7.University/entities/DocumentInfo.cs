@@ -31,7 +31,6 @@ namespace R7.University
 {
     [TableName ("University_Documents")]
     [PrimaryKey ("DocumentID", AutoIncrement = true)]
-    [Scope ("ItemID")]
     [Serializable]
     public class DocumentInfo
     {

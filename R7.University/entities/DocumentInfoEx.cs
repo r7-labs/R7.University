@@ -30,7 +30,6 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 namespace R7.University
 {
     [TableName ("vw_University_Documents")]
-    [Scope ("ItemID")]
     [Serializable]
     public class DocumentInfoEx: DocumentInfo
     {

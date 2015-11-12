@@ -30,7 +30,6 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 namespace R7.University
 {
     [TableName ("vw_University_EmployeeDisciplines")]
-    [Scope ("EmployeeID")]
     [Serializable]
     public class EmployeeDisciplineInfoEx: EmployeeDisciplineInfo
     {

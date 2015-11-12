@@ -17,7 +17,6 @@ namespace R7.University
 	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
 	[TableName ("University_OccupiedPositions")]
 	[PrimaryKey ("OccupiedPositionID", AutoIncrement = true)]
-	[Scope ("DivisionID")]
 	public class OccupiedPositionInfo
 	{
 		#region Fields

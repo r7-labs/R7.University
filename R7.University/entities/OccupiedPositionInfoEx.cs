@@ -18,7 +18,6 @@ namespace R7.University
 	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
 	[TableName ("vw_University_OccupiedPositions")]
 	[PrimaryKey ("OccupiedPositionID", AutoIncrement = false)]
-	[Scope ("DivisionID")]
 	public class OccupiedPositionInfoEx : OccupiedPositionInfo
 	{
 		/// <summary>

@@ -31,7 +31,6 @@ namespace R7.University
 {
     [TableName ("University_EmployeeDisciplines")]
     [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
-    [Scope ("EmployeeID")]
     [Serializable]
     public class EmployeeDisciplineInfo
     {
