@@ -250,15 +250,18 @@ namespace R7.University
             return GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
         }
 
-        public IEnumerable<EduProgramInfo> GetEduPrograms (bool getAll)
+        public IEnumerable<EduProgramInfo> GetEduPrograms (bool getAll, IEnumerable<string> eduLevelIds)
         {
             if (getAll)
             {
-                return GetObjects<EduProgramInfo> ();
-            }    
+                return GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
+                    Utils.FormatList (",", eduLevelIds))
+                );
+            }
 
-            return GetObjects<EduProgramInfo> ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
-                "AND (EndDate IS NULL OR @0 < EndDate)", DateTime.Now
+            return GetObjects<EduProgramInfo> (string.Format ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
+                "AND (EndDate IS NULL OR @0 < EndDate) AND EduLevelID IN ({0})",
+                Utils.FormatList (",", eduLevelIds)), DateTime.Now
             );
         }
 

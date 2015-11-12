@@ -71,7 +71,7 @@ namespace R7.University.EduProgramDirectory
                     var eduProgramComparer = new EduProgramComparer ();
 
                     // REVIEW: Order / group by edu level first?
-                    var eduPrograms = Controller.GetEduPrograms (IsEditable)
+                    var eduPrograms = Controller.GetEduPrograms (IsEditable, Settings.EduLevels)
                         .WithDocuments (Controller)
                         .WithEduLevel (Controller)
                         .OrderBy (ep => ep, eduProgramComparer)
