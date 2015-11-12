@@ -78,9 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="module.css" />
     <Content Include="ViewDivision.ascx" />
     <Content Include="SettingsDivision.ascx" />

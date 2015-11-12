@@ -74,13 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="module.css" />
     <Content Include="ViewEmployeeList.ascx" />
     <Content Include="SettingsEmployeeList.ascx" />
-    <Content Include="js\module.js" />
     <Content Include="admin.css" />
     <Content Include="packages.config" />
   </ItemGroup>

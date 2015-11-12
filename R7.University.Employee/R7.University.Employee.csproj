@@ -78,14 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
     <Content Include="ViewEmployee.ascx" />
     <Content Include="SettingsEmployee.ascx" />
-    <Content Include="js\module.js" />
     <Content Include="ViewVCard.ascx" />
     <Content Include="ViewEmployeeDetails.ascx" />
     <Content Include="EditEmployee.ascx" />

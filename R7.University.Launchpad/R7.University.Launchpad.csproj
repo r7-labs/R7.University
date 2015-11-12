@@ -78,7 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\" />
     <Folder Include="tables\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
@@ -86,7 +85,6 @@
     <Content Include="module.css" />
     <Content Include="ViewLaunchpad.ascx" />
     <Content Include="SettingsLaunchpad.ascx" />
-    <Content Include="js\module.js" />
     <Content Include="EditPosition.ascx" />
     <Content Include="EditAchievement.ascx" />
     <Content Include="EditEduLevel.ascx" />
