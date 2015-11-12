@@ -44,16 +44,6 @@
 
 .divisionDirectory ._nonpublished { background-color:#ffc }
 
-/* dnnGridHeader fix */
-.divisionDirectory .dnnGridHeader th
-{
-    border-bottom: 1px solid #c9c9c9;
-    border-right: 1px solid #c9c9c9;
-    background: #f0f2f1;
-    background: linear-gradient(top, #fff 0%,#f0f2f1 100%);
-    padding: 5px
-}
-
 /* add more here for deeper hierarchies */
 /* first 2 levels w/o indent (base 8px), next + 6px per level */
 .divisionDirectory table td.level-1 { }

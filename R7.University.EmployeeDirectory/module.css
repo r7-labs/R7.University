@@ -43,13 +43,3 @@
 }
 
 .employeeDirectory ._nonpublished { background-color:#ffc }
-
-/* dnnGridHeader fix */
-.employeeDirectory .dnnGridHeader th
-{
-    border-bottom: 1px solid #c9c9c9;
-    border-right: 1px solid #c9c9c9;
-    background: #f0f2f1;
-    background: linear-gradient(top, #fff 0%,#f0f2f1 100%);
-    padding: 5px
-}
