@@ -58,7 +58,7 @@ namespace R7.University.Launchpad
                 if (!string.IsNullOrWhiteSpace (Url))
                 {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                        Globals.LinkClick (Url, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
+                        Globals.LinkClick (Url, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrlLabel.Text", Context.Control.LocalResourceFile)
                     );
                 }

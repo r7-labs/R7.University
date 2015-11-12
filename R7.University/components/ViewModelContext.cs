@@ -33,7 +33,7 @@ namespace R7.University
     {
         public IModuleControl Control { get; protected set; }
 
-        public ModuleInstanceContext ModuleContext
+        public ModuleInstanceContext Module
         {
             get { return Control.ModuleContext; }
         }

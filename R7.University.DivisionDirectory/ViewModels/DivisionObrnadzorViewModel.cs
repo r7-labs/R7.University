@@ -60,7 +60,7 @@ namespace R7.University.DivisionDirectory
                 if (!string.IsNullOrWhiteSpace (HomePage))
                 {
                     divisionString = string.Format (linkFormat, 
-                        Globals.LinkClick (HomePage, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
+                        Globals.LinkClick (HomePage, Context.Module.TabId, Context.Module.ModuleId),
                         divisionString, string.Empty);
                 }
 
@@ -113,7 +113,7 @@ namespace R7.University.DivisionDirectory
                 if (!string.IsNullOrWhiteSpace (DocumentUrl))
                 {
                     return string.Format (linkFormat, 
-                        Globals.LinkClick (DocumentUrl, Context.ModuleContext.TabId, Context.ModuleContext.ModuleId),
+                        Globals.LinkClick (DocumentUrl, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("Regulations.Text", Context.Control.LocalResourceFile),
                         "itemprop=\"DivisionClause_DocLink\""
                     );
