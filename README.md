@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/roman-yagodin/R7.University](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/roman-yagodin/R7.University?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Modules and base library for DNN Platfrom CMS designed to present and manage various assets 
-(e.g. divisions, employees) for high school educational organization website.
+(e.g. divisions, employees, educational programs) for high school educational organization website.
 
 ## Dependencies
 
@@ -23,5 +23,3 @@ On [this page](http://www.volgau.com/LinkClick.aspx?link=284) you could see *Emp
 * Support http://schema.org formats
 * Allow manage multiple organizations
 * Add organization-level configuration options
-* Add modules to manage educational programs
-* Many, many other things...
