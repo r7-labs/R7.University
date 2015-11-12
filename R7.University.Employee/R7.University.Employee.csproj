@@ -97,7 +97,6 @@
     <None Include="App_LocalResources\ViewEmployee.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SettingsEmployee.ascx.resx" />
     <None Include="App_LocalResources\SettingsEmployee.ascx.ru-RU.resx" />
-    <None Include="doc\install.txt" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditEmployee.ascx.resx" />

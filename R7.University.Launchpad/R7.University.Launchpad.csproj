@@ -100,7 +100,6 @@
     <None Include="App_LocalResources\ViewLaunchpad.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SettingsLaunchpad.ascx.resx" />
     <None Include="App_LocalResources\SettingsLaunchpad.ascx.ru-RU.resx" />
-    <None Include="doc\install.txt" />
     <None Include="App_LocalResources\EditPosition.ascx.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />

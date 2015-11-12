@@ -75,7 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="js\" />
-    <Folder Include="doc\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
