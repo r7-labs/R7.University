@@ -71,14 +71,21 @@ namespace R7.University.EduProgramDirectory
                     var eduProgramComparer = new EduProgramComparer ();
 
                     // REVIEW: Order / group by edu level first?
-                    var eduPrograms = Controller.GetEduPrograms (IsEditable, Settings.EduLevels)
+                    var eduPrograms = Controller.GetEduPrograms (Settings.EduLevels, IsEditable)
                         .WithDocuments (Controller)
                         .WithEduLevel (Controller)
                         .OrderBy (ep => ep, eduProgramComparer)
                         .Select (ep => new EduProgramStandardObrnadzorViewModel (ep, ViewModelContext, ref order));
                     
-                    gridEduStandards.DataSource = eduPrograms;
-                    gridEduStandards.DataBind ();
+                    if (eduPrograms.Any ())
+                    {
+                        gridEduStandards.DataSource = eduPrograms;
+                        gridEduStandards.DataBind ();
+                    }
+                    else
+                    {
+                        Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true); 
+                    }
 				}
 			}
 			catch (Exception ex)

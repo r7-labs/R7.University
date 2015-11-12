@@ -33,7 +33,7 @@ namespace R7.University.EduProgramDirectory
             get
             {
                 return ReadSetting<string> ("EduProgramDirectory_EduLevels", string.Empty)
-                    .Split (';').ToList ();
+                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries).ToList ();
             }
             set
             {

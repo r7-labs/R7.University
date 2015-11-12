@@ -250,19 +250,24 @@ namespace R7.University
             return GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
         }
 
-        public IEnumerable<EduProgramInfo> GetEduPrograms (bool getAll, IEnumerable<string> eduLevelIds)
+        public IEnumerable<EduProgramInfo> GetEduPrograms (IEnumerable<string> eduLevelIds, bool getAll)
         {
-            if (getAll)
+            if (eduLevelIds.Any ())
             {
-                return GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
-                    Utils.FormatList (",", eduLevelIds))
+                if (getAll)
+                {
+                    return GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
+                            Utils.FormatList (",", eduLevelIds))
+                    );
+                }
+
+                return GetObjects<EduProgramInfo> (string.Format ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
+                        "AND (EndDate IS NULL OR @0 < EndDate) AND EduLevelID IN ({0})",
+                        Utils.FormatList (",", eduLevelIds)), DateTime.Now
                 );
             }
 
-            return GetObjects<EduProgramInfo> (string.Format ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
-                "AND (EndDate IS NULL OR @0 < EndDate) AND EduLevelID IN ({0})",
-                Utils.FormatList (",", eduLevelIds)), DateTime.Now
-            );
+            return Enumerable.Empty<EduProgramInfo> ();
         }
 
         public void AddEduProgram (EduProgramInfo eduProgram, List<DocumentInfo> documents)

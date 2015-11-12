@@ -24,4 +24,7 @@
     <data name="EduProgramStandardLink.Text" xml:space="preserve">
         <value>open</value>
     </data>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Nothing to display. Please add some educational programs and use module setting to set view options.</value>
+    </data>
 </root>

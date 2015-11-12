@@ -24,4 +24,7 @@
     <data name="EduProgramStandardLink.Text" xml:space="preserve">
         <value>открыть</value>
     </data>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Нечего отображать. Добавьте образовательные программы и воспользуйтесь настройками модуля для установки параметров отображения.</value>
+    </data>
 </root>
