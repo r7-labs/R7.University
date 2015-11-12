@@ -80,8 +80,6 @@
     <Compile Include="components\ViewNumerator.cs" />
     <Compile Include="components\CopyCstor.cs" />
     <Compile Include="components\UrlUtils.cs" />
-    <Compile Include="Extensions\ModuleAuditControlExtensions.cs" />
-    <Compile Include="Extensions\GridViewExtensions.cs" />
     <Compile Include="components\UniversityControllerBase.cs" />
     <Compile Include="components\XmlSerializationHelper.cs" />
     <Compile Include="components\ViewModelContext.cs" />
@@ -112,14 +110,16 @@
     <Compile Include="Models\ReferenceEntityBase.cs" />
     <Compile Include="Models\SystemDocumentType.cs" />
     <Compile Include="Models\UniversityEntityBase.cs" />
+    <Compile Include="ControlExtensions\GridViewExtensions.cs" />
+    <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="components\" />
     <Folder Include="css\" />
-    <Folder Include="Extensions\" />
     <Folder Include="ModelExtensions\" />
     <Folder Include="Models\" />
+    <Folder Include="ControlExtensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
