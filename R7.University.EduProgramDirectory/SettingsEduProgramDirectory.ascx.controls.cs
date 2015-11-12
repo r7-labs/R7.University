@@ -11,5 +11,6 @@ namespace R7.University.EduProgramDirectory
 {
 	public partial class SettingsEduProgramDirectory
 	{
+        protected DnnListBox listEduLevels;
 	}
 }
