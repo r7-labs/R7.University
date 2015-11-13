@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
+using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -58,7 +59,7 @@ namespace R7.University.Launchpad
                 if (!string.IsNullOrWhiteSpace (Url))
                 {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                        Globals.LinkClick (Url, Context.Module.TabId, Context.Module.ModuleId),
+                        UrlUtils.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrlLabel.Text", Context.Control.LocalResourceFile)
                     );
                 }

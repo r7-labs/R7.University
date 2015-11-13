@@ -717,9 +717,7 @@ namespace R7.University.Employee
                     var documentUrl = Server.HtmlDecode (e.Row.Cells [7].Text.Replace ("&nbsp;", ""));
                     if (!string.IsNullOrWhiteSpace (documentUrl))
                         e.Row.Cells [7].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                            // HACK: Use raw (untrackable) URL
-                            (Globals.GetURLType (documentUrl) == TabType.Url)?
-                            documentUrl : Globals.LinkClick (documentUrl, TabId, ModuleId), 
+                            R7.University.Utilities.UrlUtils.LinkClickIdnHack (documentUrl, TabId, ModuleId),
                             LocalizeString ("DocumentUrl.Text"));
                 }
             }

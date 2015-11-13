@@ -27,6 +27,8 @@
 using System;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Portals;
+using DotNetNuke.Entities.Tabs;
+using System.Web.UI.WebControls;
 
 namespace R7.University.Utilities
 {
@@ -36,6 +38,24 @@ namespace R7.University.Utilities
         {
             return Globals.AddHTTP (PortalSettings.Current.PortalAlias.HTTPAlias + url);
         }
+
+        /// <summary>
+        /// Temp workaround for LinkClick and internationalized domain names (IDN) issue:
+        /// https://dnntracker.atlassian.net/browse/DNN-7919
+        /// </summary>
+        /// <returns>Return raw (untrackable) URL for external URLs.</returns>
+        public static string LinkClickIdnHack (string url, int tabId, int moduleId)
+        {
+            switch (Globals.GetURLType (url))
+            {
+                case TabType.Url:
+                    return url;
+                    
+                default:
+                    return Globals.LinkClick (url, tabId, moduleId);
+            }
+        }
+
     }
 }
 

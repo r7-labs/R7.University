@@ -29,6 +29,7 @@ using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Tabs;
+using R7.University.Utilities;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -64,7 +65,7 @@ namespace R7.University.EduProgramDirectory
                     if (!string.IsNullOrWhiteSpace (eduStandardDocument.Url))
                     {
                         return string.Format ("<a href=\"{0}\"{1}{2} itemprop=\"EduStandartDoc\">{3}</a>",
-                            Globals.LinkClick (eduStandardDocument.Url, Context.Module.TabId, Context.Module.ModuleId), 
+                            UrlUtils.LinkClickIdnHack (eduStandardDocument.Url, Context.Module.TabId, Context.Module.ModuleId), 
                             Globals.GetURLType (eduStandardDocument.Url) == TabType.Url ? " target=\"_blank\"" : string.Empty,
                             !eduStandardDocument.IsPublished ? " class=\"not-published-document\"" : string.Empty,
                             !string.IsNullOrWhiteSpace (eduStandardDocument.Title) ? eduStandardDocument.Title 
