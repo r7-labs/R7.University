@@ -68,17 +68,18 @@ namespace R7.University.EduProgramDirectory
 			{
                 if (!IsPostBack)
 				{
-                    var order = 0;
                     var eduProgramComparer = new EduProgramComparer ();
+                    var viewModelIndexer = new ViewModelIndexer (1);
 
                     // REVIEW: Order / group by edu level first?
                     var eduPrograms = Controller.GetEduPrograms (Settings.EduLevels, IsEditable)
                         .WithDocuments (Controller)
                         .WithEduLevel (Controller)
                         .OrderBy (ep => ep, eduProgramComparer)
-                        .Select (ep => new EduProgramStandardObrnadzorViewModel (ep, ViewModelContext, ref order));
+                        .Select (ep => new EduProgramStandardObrnadzorViewModel (ep, ViewModelContext, viewModelIndexer))
+                        .ToList ();
                     
-                    if (eduPrograms.Any ())
+                    if (eduPrograms.Count > 0)
                     {
                         gridEduStandards.DataSource = eduPrograms;
                         gridEduStandards.DataBind ();

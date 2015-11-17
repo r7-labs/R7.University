@@ -37,15 +37,15 @@ namespace R7.University.EduProgramDirectory
     {
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramStandardObrnadzorViewModel (EduProgramInfo ep, ViewModelContext context, ref int order)
+        public EduProgramStandardObrnadzorViewModel (EduProgramInfo ep, ViewModelContext context, ViewModelIndexer indexer)
         {
             CopyCstor.Copy<EduProgramInfo> (ep, this);
             Context = context;
-            OrderString = (++order) + ".";
+            Order = indexer.GetNextIndex ();
         }
 
-        public string OrderString { get; protected set; }
-
+        public int Order { get; protected set; }
+       
         public string EduLevelString
         {
             get { return EduLevel.DisplayShortTitle; }
