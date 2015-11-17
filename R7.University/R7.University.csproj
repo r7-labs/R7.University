@@ -111,6 +111,7 @@
     <Compile Include="Models\UniversityEntityBase.cs" />
     <Compile Include="ControlExtensions\GridViewExtensions.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
+    <Compile Include="components\ViewModelIndexer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
