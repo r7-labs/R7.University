@@ -30,15 +30,9 @@
                     <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
                 </asp:Panel>
 
-                <asp:GridView id="gridDivisions" runat="server" Visible="false" AutoGenerateColumns="false" CssClass="dnnGrid gridDivisions"
-                    GridLines="None" OnRowDataBound="gridDivisions_RowDataBound">
-                    <HeaderStyle CssClass="dnnGridHeader" />
-                    <RowStyle CssClass="dnnGridItem" />
-                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
-                    <SelectedRowStyle CssClass="dnnFormError" />
-                    <EditRowStyle CssClass="dnnFormInput" />
-                    <FooterStyle CssClass="dnnGridFooter" />
-                    <PagerStyle CssClass="dnnGridPager" />
+                <asp:GridView id="gridDivisions" runat="server" Visible="false" AutoGenerateColumns="false" 
+                    CssClass="table table-stripped table-bordered table-hover gridDivisions" GridLines="None" 
+                    OnRowDataBound="gridDivisions_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
