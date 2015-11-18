@@ -40,13 +40,11 @@
     <MainProjectOutputPath>..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
   </PropertyGroup>
   <Import Project="InstallPackage.targets" />
-  <Import Project="SourcePackage.targets" />
   <Import Project="LocalDeploy.targets" />
   <Target Name="AfterBuild" DependsOnTargets="DoLocalDeploy;MakeInstallPackage" />
   <ItemGroup>
     <None Include="Packaging.csproj" />
     <None Include="InstallPackage.targets" />
-    <None Include="SourcePackage.targets" />
     <None Include="LocalDeploy.targets" />
     <None Include="packages.config" />
   </ItemGroup>
