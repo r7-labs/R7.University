@@ -30,22 +30,27 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildProgramFiles32)\MSBuild\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+  <Import Project="..\packages\MSBuildTasks.1.4.0.128\tools\MSBuild.Community.Tasks.Targets" />
   <PropertyGroup>
     <PackageExtension>zip</PackageExtension>
     <PackageName>R7.University</PackageName>
     <PackageOutputPath>output</PackageOutputPath>
-    <DnnBinPath Condition="'$(DnnBinPath)' == ''">..\..\..\bin</DnnBinPath>
-    <MainProjectOutputPath Condition="'$(MainProjectOutputPath)' == ''">..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
+    <DnnLocalDeployPath Condition="'$(OS)' == 'Unix'">/home/redhound/mnt/dnn</DnnLocalDeployPath>
+    <DnnLocalDeployPath Condition="'$(OS)' != 'Unix'">C:\Dotnetnuke7</DnnLocalDeployPath>
+    <MainProjectOutputPath>..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
   </PropertyGroup>
   <Import Project="InstallPackage.targets" />
   <Import Project="SourcePackage.targets" />
   <Import Project="LocalDeploy.targets" />
-  <Target Name="AfterBuild" DependsOnTargets="DoLocalDeploy;MakeInstallPackage;MakeSourcePackage" />
+  <Target Name="AfterBuild" DependsOnTargets="DoLocalDeploy;MakeInstallPackage" />
   <ItemGroup>
     <None Include="Packaging.csproj" />
     <None Include="InstallPackage.targets" />
     <None Include="SourcePackage.targets" />
     <None Include="LocalDeploy.targets" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dummy.cs" />
   </ItemGroup>
 </Project>
