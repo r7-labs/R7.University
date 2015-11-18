@@ -35,8 +35,9 @@
     <PackageExtension>zip</PackageExtension>
     <PackageName>R7.University</PackageName>
     <PackageOutputPath>output</PackageOutputPath>
-    <DnnBinPath Condition="'$(DnnBinPath)' == ''">..\..\..\bin</DnnBinPath>
-    <MainProjectOutputPath Condition="'$(MainProjectOutputPath)' == ''">..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
+    <DnnLocalDeployPath Condition="'$(OS)' == 'Unix'">/home/redhound/mnt/dnn</DnnLocalDeployPath>
+    <DnnLocalDeployPath Condition="'$(OS)' != 'Unix'">C:\Dotnetnuke7</DnnLocalDeployPath>
+    <MainProjectOutputPath>..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
   </PropertyGroup>
   <Import Project="InstallPackage.targets" />
   <Import Project="SourcePackage.targets" />
