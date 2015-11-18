@@ -227,8 +227,10 @@ namespace R7.University.DivisionDirectory
 
         protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions)
         {
-            var divisions = DivisionDirectoryController.FindDivisions (searchText,
-                includeSubdivisions, searchDivision); 
+            // REVIEW: If division is not published, it's child divisions also should not
+            var divisions = DivisionDirectoryController
+                .FindDivisions (searchText, includeSubdivisions, searchDivision)
+                .Where (d => d.IsPublished || IsEditable); 
 
             if (!divisions.Any ())
             {
@@ -279,6 +281,11 @@ namespace R7.University.DivisionDirectory
                     // fill edit link controls
                     linkEdit.NavigateUrl = Utils.EditUrl (this, "EditDivision", "division_id", division.DivisionID.ToString ());
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                }
+
+                if (!division.IsPublished)
+                {
+                    e.Row.CssClass = "not-published";
                 }
 
                 var labelTitle = (Label) e.Row.FindControl ("labelTitle");
@@ -390,6 +397,11 @@ namespace R7.University.DivisionDirectory
                 }
 
                 #endregion
+
+                if (!division.IsPublished)
+                {
+                    e.Row.CssClass = "not-published";
+                }
 
                 #region Beautify (Bootstrap-specific)
 

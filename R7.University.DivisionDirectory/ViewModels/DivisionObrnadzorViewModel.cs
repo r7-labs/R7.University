@@ -144,7 +144,11 @@ namespace R7.University.DivisionDirectory
 
         public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext viewModelContext)
         {
-            var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext)).ToList ();
+            // REVIEW: If division is not published, it's child divisions also should not
+            var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext))
+                .Where (d => d.IsPublished || viewModelContext.Module.IsEditable)
+                .ToList ();
+            
             CalculateOrderAndLevel (divisionViewModels);
 
             return divisionViewModels;
