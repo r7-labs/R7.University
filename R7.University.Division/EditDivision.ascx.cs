@@ -204,7 +204,6 @@ namespace R7.University.Division
 					// set calling module to display new division info
 					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division")
 					{
-						var mctrl = new ModuleController ();
 						Settings.DivisionID = item.DivisionID;
 					}
 				}
