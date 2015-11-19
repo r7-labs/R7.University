@@ -73,7 +73,7 @@
 			<InstallResourceZipFiles Include="$(MSBuildProjectDirectory)\tmp\Resources\**\*.*" />
 		</ItemGroup>
         <!-- Create Resources.zip -->
-		<Zip Condition=" '$(OS)' != 'Unix' " Files="@(InstallResourceZipFiles)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp\Resources" ZipFileName="Resources.$(PackageExtension)" /> -->
+		<Zip Condition=" '$(OS)' != 'Unix' " Files="@(InstallResourceZipFiles)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp\Resources" ZipFileName="Resources.$(PackageExtension)" />
         <Exec Condition=" '$(OS)' == 'Unix' " Command="zip -r -6 -UN=UTF8 &quot;$(MSBuildProjectDirectory)\Resources.$(PackageExtension)&quot; ." WorkingDirectory="$(MSBuildProjectDirectory)/tmp/Resources" />
         <!-- Move Resources.zip to tmp\Package dir -->
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\Resources.$(PackageExtension)" DestinationFolder="$(MSBuildProjectDirectory)\tmp\Package\" />
