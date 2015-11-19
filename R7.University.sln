@@ -275,6 +275,6 @@ Global
 		$38.NamingStyle = PascalCase
 		$38.IncludeInstanceMembers = True
 		$38.IncludeStaticEntities = True
-		version = 1.6.0
+		version = 1.6.1
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,14 @@
-﻿<h3>Version 1.6.0</h3>
+﻿<h3>Version 1.6.1</h3>
+<ul>
+    <li>DivisionDirectory, EmployeeDirectory: Use Bootstrap styles for grids in search mode.</li>
+    <li>DivisionDirectory, EmployeeDirectory: Hide not published divisions in search treeviews.</li>
+    <li>DivisionDirectory: Hide not published divisions from regular users, mark them for editors.</li>
+    <li>MSBuild.Community.Tasks dependency resolved via NuGet.</li>
+    <li>Changes to allow build project using xbuild on Mono 4.</li>
+    <li>Include module controls and resources in local deploy (project source files now relocatable).</li>
+</ul>
+
+<h3>Version 1.6.0</h3>
 <ul>
     <li>Add EduProgramDirectory module.</li>
     <li>Add sort index to the educational level model.</li>
