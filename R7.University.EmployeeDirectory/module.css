@@ -42,4 +42,4 @@
     box-shadow:0 0 5px #ccc
 }
 
-.employeeDirectory ._nonpublished { background-color:#ffc }
+.employeeDirectory .not-published { background-color:#ffc }

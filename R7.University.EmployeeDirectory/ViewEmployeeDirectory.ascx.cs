@@ -431,15 +431,6 @@ namespace R7.University.EmployeeDirectory
                 var email = (HyperLink) e.Row.FindControl ("linkEmail");
                 var workingPlace = (Literal) e.Row.FindControl ("literalWorkingPlace");
 
-                // mark non-published employees, as they visible only to editors
-                if (!employee.IsPublished)
-                {
-                    if (e.Row.DataItemIndex % 2 == 0)
-                        e.Row.CssClass = gridEmployees.RowStyle.CssClass + " _nonpublished";
-                    else
-                        e.Row.CssClass = gridEmployees.AlternatingRowStyle.CssClass + " _nonpublished";
-                }
-
                 name.Text = employee.AbbrName;
                 name.ToolTip = employee.FullName;
                 name.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
@@ -466,6 +457,13 @@ namespace R7.University.EmployeeDirectory
                         PositionInfo.FormatShortTitle (primePosition.PositionTitle, primePosition.PositionShortTitle), 
                         primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }
+
+                // mark not published employees, as they visible only to editors
+                if (!employee.IsPublished)
+                {
+                    e.Row.CssClass = "not-published";
+                }
+
             }
             /* HACK: Set empty CssClass for gridEmployees to remove borders around empty data message
             else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
