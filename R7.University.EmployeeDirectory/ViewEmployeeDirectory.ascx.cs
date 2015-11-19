@@ -103,7 +103,10 @@ namespace R7.University.EmployeeDirectory
                 // display search hint
                 Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ().OrderBy (d => d.Title).ToList ();
+                var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ()
+                    .Where (d => d.IsPublished || IsEditable)
+                    .OrderBy (d => d.Title).ToList ();
+                
                 divisions.Insert (0, new DivisionInfo {
                         DivisionID = Null.NullInteger, 
                         Title = LocalizeString ("AllDivisions.Text") 

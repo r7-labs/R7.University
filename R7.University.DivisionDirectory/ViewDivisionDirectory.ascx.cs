@@ -115,7 +115,9 @@ namespace R7.University.DivisionDirectory
                 // display search hint
                 Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = DivisionDirectoryController.GetObjects <DivisionInfo> ().OrderBy (d => d.Title).ToList ();
+                var divisions = DivisionDirectoryController.GetObjects <DivisionInfo> ()
+                    .Where (d => d.IsPublished || IsEditable)
+                    .OrderBy (d => d.Title).ToList ();
                 
                 divisions.Insert (0, new DivisionInfo
                     {
