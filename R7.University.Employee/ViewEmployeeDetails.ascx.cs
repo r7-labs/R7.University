@@ -395,18 +395,13 @@ namespace R7.University.Employee
 
             if (disciplines.Any ())
             {
-                gridEduPrograms.DataSource = EduProgramsTable (disciplines);
+                gridEduPrograms.DataSource = DataTableConstructor.FromIEnumerable (disciplines);
                 gridEduPrograms.DataBind ();
             }
             else
             {
                 linkDisciplines.Visible = false;
             }
-        }
-
-        private DataTable EduProgramsTable (IEnumerable<EmployeeDisciplineInfoEx> disciplines)
-        {
-            return DataTableConstructor.FromIEnumerable (disciplines);
         }
 
         void Barcode (EmployeeInfo employee)
