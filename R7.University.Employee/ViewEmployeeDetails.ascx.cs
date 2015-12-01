@@ -533,7 +533,7 @@ namespace R7.University.Employee
 			dt.Columns.Add (new DataColumn (LocalizeString ("DocumentUrl.Column"), typeof(string)));
 		
 			// add description column (no need to localize as it's hidden)
-			dt.Columns.Add (new DataColumn ("Description.Column", typeof(string)));
+            dt.Columns.Add (new DataColumn ("Description.Column", typeof(string)));
 					
 			foreach (DataColumn column in dt.Columns)
 				column.AllowDBNull = true;
@@ -560,11 +560,12 @@ namespace R7.University.Employee
 		{
 			// description
 			e.Row.Cells [4].Visible = false;
-			e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [4].Text);
-
+			
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
+                e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [4].Text);
+
                 // make link to the document
 				// WTF: empty DocumentURL's cells contains non-breakable spaces?
                 var documentUrl = Server.HtmlDecode (e.Row.Cells [3].Text.Replace ("&nbsp;", ""));
