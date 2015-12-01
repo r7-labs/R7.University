@@ -400,7 +400,7 @@ namespace R7.University.Employee
             }
             else
             {
-                gridEduPrograms.Visible = false;
+                linkDisciplines.Visible = false;
             }
         }
 
