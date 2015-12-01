@@ -391,11 +391,11 @@ namespace R7.University.Employee
         {
             // get employee edu programs
             var disciplines = EmployeeController.GetObjects<EmployeeDisciplineInfoEx> (
-                                  "WHERE [EmployeeID] = @0", employee.EmployeeID);
+                "WHERE [EmployeeID] = @0", employee.EmployeeID).OrderBy (d => d.Code);
 
             if (disciplines.Any ())
             {
-                gridEduPrograms.DataSource = EduProgramsTable (disciplines.OrderBy (d => d.Code));
+                gridEduPrograms.DataSource = EduProgramsTable (disciplines);
                 gridEduPrograms.DataBind ();
             }
             else
@@ -484,14 +484,16 @@ namespace R7.University.Employee
 				labelAcademicDegreeAndTitle.Visible = false;
 
 			// get only experience-related achievements
-			var experiences = achievements.Where (ach => ach.AchievementType == AchievementType.Education ||
-                ach.AchievementType == AchievementType.AcademicDegree ||
-                ach.AchievementType == AchievementType.Training ||
-			    ach.AchievementType == AchievementType.Work);
+            var experiences = achievements
+                .Where (ach => ach.AchievementType == AchievementType.Education ||
+                    ach.AchievementType == AchievementType.AcademicDegree ||
+                    ach.AchievementType == AchievementType.Training ||
+                    ach.AchievementType == AchievementType.Work)
+                .OrderByDescending (exp => exp.YearBegin);
 
 			if (experiences.Any ())
 			{
-				gridExperience.DataSource = AchievementsDataTable (experiences.OrderByDescending (exp => exp.YearBegin));
+				gridExperience.DataSource = AchievementsDataTable (experiences);
 				gridExperience.DataBind ();
 			}
 			else if (noExpYears)
@@ -501,15 +503,16 @@ namespace R7.University.Employee
 			}
 		
 			// get all other achievements
-            achievements = achievements.Where (ach => ach.AchievementType != AchievementType.Education &&
-                ach.AchievementType != AchievementType.AcademicDegree &&
-                ach.AchievementType != AchievementType.Training &&
-                ach.AchievementType != AchievementType.Work
-            );
+            achievements = achievements
+                .Where (ach => ach.AchievementType != AchievementType.Education &&
+                    ach.AchievementType != AchievementType.AcademicDegree &&
+                    ach.AchievementType != AchievementType.Training &&
+                    ach.AchievementType != AchievementType.Work)
+                .OrderByDescending (ach => ach.YearBegin);
 			
             if (achievements.Any ())
 			{
-				gridAchievements.DataSource = AchievementsDataTable (achievements.OrderByDescending (ach => ach.YearBegin));
+				gridAchievements.DataSource = AchievementsDataTable (achievements);
 				gridAchievements.DataBind ();
 			}
 			else
