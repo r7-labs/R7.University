@@ -1,4 +1,30 @@
-﻿using System;
+﻿//
+// EditEmployee.ascx.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2014-2015 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
@@ -6,16 +32,11 @@ using System.Linq;
 using System.Data;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Entities.Icons;
-using DotNetNuke.Entities.Tabs;
-using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.Web.UI.WebControls;
 using R7.University;
 using R7.University.ControlExtensions;
 
@@ -95,7 +116,8 @@ namespace R7.University.Employee
 			linkCancel.NavigateUrl = Globals.NavigateURL ();
 
 			// add confirmation dialog to delete button
-			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
+			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + 
+                Localization.GetString ("DeleteItem") + "');");
 
 			// setup filepicker
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
@@ -110,9 +132,14 @@ namespace R7.University.Employee
 			WorkingHoursLogic.Init (this, comboWorkingHours);
 
 			// if results are null or empty, lists were empty too
-            var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ().OrderBy (p => p.Title));
-            var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ().OrderBy (d => d.Title));
-            var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ().OrderBy (a => a.Title));
+            var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ()
+                .OrderBy (p => p.Title));
+
+            var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ()
+                .OrderBy (d => d.Title));
+            
+            var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ()
+                .OrderBy (a => a.Title));
 
             ViewState ["commonAchievements"] = commonAchievements;
 
@@ -245,7 +272,7 @@ namespace R7.University.Employee
 
 							// read OccupiedPositions data
 							var occupiedPositionInfoExs = EmployeeController.GetObjects<OccupiedPositionInfoEx> (
-								                              "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
+						        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
 
 							// fill view list
 							var occupiedPositions = new List<OccupiedPositionView> ();
@@ -259,7 +286,9 @@ namespace R7.University.Employee
 
 							// read employee achievements
 							var achievementInfos = EmployeeController.GetObjects<EmployeeAchievementInfo> (
-								                       CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", itemId.Value);
+						        CommandType.Text, 
+                                "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", 
+                                itemId.Value);
 
 							// fill achievements list
 							var achievements = new List<EmployeeAchievementView> ();
@@ -276,7 +305,8 @@ namespace R7.University.Employee
 							gridAchievements.DataBind ();
 
                             // read employee educational programs 
-                            var disciplineInfos = EmployeeController.GetObjects<EmployeeDisciplineInfoEx> ("WHERE [EmployeeID] = @0", itemId.Value);
+                            var disciplineInfos = EmployeeController.GetObjects<EmployeeDisciplineInfoEx> (
+                                "WHERE [EmployeeID] = @0", itemId.Value);
 
                             // fill disciplines list
                             var disciplines = new List<EmployeeDisciplineView> ();
@@ -361,7 +391,8 @@ namespace R7.University.Employee
 				item.Biography = textBiography.Text.Trim ();
 				
 				// update working hours
-				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
+				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, 
+                    checkAddToVocabulary.Checked);
 
 				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
 				item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);
@@ -399,8 +430,6 @@ namespace R7.University.Employee
 					item.LastModifiedByUserID = this.UserId;
 					item.LastModifiedOnDate = DateTime.Now;
 
-                    // Utils.Message (this, Utils.FormatList (" ", GetEmployeeDisciplines ().Select (d => d.ToString ()).ToArray ()));
-                    
 					// update employee
                     EmployeeController.UpdateEmployee (item, GetOccupiedPositions (), 
                         GetEmployeeAchievements (), GetEmployeeDisciplines());
@@ -495,19 +524,23 @@ namespace R7.University.Employee
 				var usersFoundTotal = 0;
 			
 				// TODO: Link to open admin users interface in a separate tab
-				var users = UserController.GetUsersByEmail (PortalId, term, -1, -1, ref usersFound, includeDeleted, false);
+				var users = UserController.GetUsersByEmail (PortalId, term, -1, -1, 
+                    ref usersFound, includeDeleted, false);
 				usersFoundTotal += usersFound;
 
 				// find cross-portal users (host & others) by email
-				users.AddRange (UserController.GetUsersByEmail (Null.NullInteger, term, -1, -1, ref usersFound, includeDeleted, false));
+				users.AddRange (UserController.GetUsersByEmail (Null.NullInteger, term, -1, -1, 
+                    ref usersFound, includeDeleted, false));
 				usersFoundTotal += usersFound;
 
 				// combine email lookup results with lookup by username
-				users.AddRange (UserController.GetUsersByUserName (PortalId, term, -1, -1, ref usersFound, includeDeleted, false));
+				users.AddRange (UserController.GetUsersByUserName (PortalId, term, -1, -1, 
+                    ref usersFound, includeDeleted, false));
 				usersFoundTotal += usersFound;
 
 				// find cross-portal users  by username
-				users.AddRange (UserController.GetUsersByUserName (Null.NullInteger, term, -1, -1, ref usersFound, includeDeleted, false));
+				users.AddRange (UserController.GetUsersByUserName (Null.NullInteger, term, -1, -1, 
+                    ref usersFound, includeDeleted, false));
 				usersFoundTotal += usersFound;
 
 				// clear user combox & add default item
@@ -544,10 +577,12 @@ namespace R7.University.Employee
 
                 if (folder != null)
                 {
-                    var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, textLastName.Text, textOtherName.Text);
+                    var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, 
+                        textLastName.Text, textOtherName.Text);
 
                     // REVIEW: EmployeeInfo should contain culture data?
-                    var employeeNameTL = TextUtils.Transliterate (employeeName, TextUtils.RuTranslitTable).ToLowerInvariant ();
+                    var employeeNameTL = TextUtils.Transliterate (employeeName, TextUtils.RuTranslitTable)
+                        .ToLowerInvariant ();
 
                     // get files from default folder recursively
                     foreach (var file in FolderManager.Instance.GetFiles (folder, true))
@@ -735,7 +770,8 @@ namespace R7.University.Employee
 				linkDelete.CommandArgument = e.Row.Cells [1].Text;
 
 				// add confirmation dialog to delete link
-				linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
+				linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" +
+                    Localization.GetString ("DeleteItem") + "');");
 			}
 		}
 
@@ -1004,11 +1040,13 @@ namespace R7.University.Employee
 				{
 					achievement.Title = textAchievementTitle.Text.Trim();
 					achievement.ShortTitle = textAchievementShortTitle.Text.Trim();
-					achievement.AchievementType = (AchievementType)Enum.Parse (typeof(AchievementType), comboAchievementTypes.SelectedValue);
+					achievement.AchievementType = (AchievementType)Enum.Parse (typeof(AchievementType), 
+                        comboAchievementTypes.SelectedValue);
 				}
 				else
 				{
-					var ach = CommonAchievements.Find (a => a.AchievementID.ToString () == comboAchievements.SelectedValue);
+					var ach = CommonAchievements.Find (a => a.AchievementID.ToString () == 
+                        comboAchievements.SelectedValue);
 
 					achievement.Title = ach.Title;
 					achievement.ShortTitle = ach.ShortTitle;
@@ -1176,7 +1214,8 @@ namespace R7.University.Employee
             }
         }
 
-		protected void comboAchievements_SelectedIndexChanged (object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
+		protected void comboAchievements_SelectedIndexChanged (object sender, 
+            Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
 		{
 			try
 			{

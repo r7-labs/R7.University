@@ -47,7 +47,8 @@ namespace R7.University.Employee
         public void Localize (string resourceFile)
         {
             ViewYears = FormatYears.Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
-            ViewAchievementType = Localization.GetString (AchievementTypeInfo.GetResourceKey (AchievementType), resourceFile);
+            ViewAchievementType = Localization.GetString (
+                AchievementTypeInfo.GetResourceKey (AchievementType), resourceFile);
         }
 
         public EmployeeAchievementView ()

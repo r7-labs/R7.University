@@ -25,21 +25,15 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
 using System.Data;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Entities.Users;
-using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.University;
 using R7.University.ControlExtensions;
@@ -244,14 +238,16 @@ namespace R7.University.Employee
                             if (IsEditable)
 							{
 								linkVCard.Visible = true;
-                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", Employee.EmployeeID.ToString ());
+                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", 
+                                    Employee.EmployeeID.ToString ());
                             }
 
                             // show edit button only for editors or superusers (in popup)
                             if (IsEditable || UserInfo.IsSuperUser) 
                             {
                                 linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", Employee.EmployeeID.ToString ());
+                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", 
+                                    Employee.EmployeeID.ToString ());
 							}
                         }
                     }
@@ -297,7 +293,9 @@ namespace R7.University.Employee
             }
 
 			// occupied positions
-			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
+			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> (
+                "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
+            
 			if (occupiedPositions.Any ())
 			{
 				repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
@@ -464,9 +462,8 @@ namespace R7.University.Employee
 			}
 
 			// get all empoyee achievements
-			var achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (
-				                   CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
-				                   employee.EmployeeID);
+			var achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
+                "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", employee.EmployeeID);
 	
 			// employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
