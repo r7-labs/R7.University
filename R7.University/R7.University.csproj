@@ -112,6 +112,7 @@
     <Compile Include="ControlExtensions\GridViewExtensions.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="components\ViewModelIndexer.cs" />
+    <Compile Include="ModelExtensions\EduProgramProfileExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

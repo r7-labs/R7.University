@@ -44,14 +44,7 @@ namespace R7.University
         [IgnoreColumn]
         public string EduProfileString
         {
-            get { return FormatEduProfile (Code, Title, ProfileCode, ProfileTitle); }
-        }
-
-        public static string FormatEduProfile (string code, string title, string profileCode, string profileTitle)
-        {
-            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
-            return Utils.FormatList (" ", code, title) +
-                (!string.IsNullOrWhiteSpace (profileString)? " (" + profileString + ")" : string.Empty);
+            get { return EduProgramProfileInfo.FormatEduProgramProfile (Code, Title, ProfileCode, ProfileTitle); }
         }
     }
 }

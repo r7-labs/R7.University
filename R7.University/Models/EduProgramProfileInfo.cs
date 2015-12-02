@@ -48,6 +48,33 @@ namespace R7.University
         public DateTime? EndDate { get; set; }
 
         #endregion
+
+        [IgnoreColumn]
+        public EduProgramInfo EduProgram { get; set; }
+
+        [IgnoreColumn]
+        public string EduProgramProfileString
+        {
+            get 
+            {
+                if (EduProgram != null)
+                {
+                    return FormatEduProgramProfile (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle); 
+                }
+
+                return FormatEduProgramProfile (string.Empty, string.Empty, ProfileCode, ProfileTitle);
+            }
+        }
+
+        public static string FormatEduProgramProfile (string code, string title, 
+            string profileCode, string profileTitle)
+        {
+            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
+            var profileStringInBrackets = 
+                !string.IsNullOrWhiteSpace (profileString)? "(" + profileString + ")" : string.Empty;
+                
+            return Utils.FormatList (" ", code, title, profileStringInBrackets);
+        }
     }
 }
 
