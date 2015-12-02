@@ -433,7 +433,7 @@ namespace R7.University.EmployeeDirectory
 
                 name.Text = employee.AbbrName;
                 name.ToolTip = employee.FullName;
-                name.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
+                name.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
 
                 phone.Text = employee.Phone;
 

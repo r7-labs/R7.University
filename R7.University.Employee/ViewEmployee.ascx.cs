@@ -168,10 +168,10 @@ namespace R7.University.Employee
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
 
-            var popupUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", employee.EmployeeID.ToString ());
+            var popupUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
 				
 			// alter popup window height
-			linkPhoto.NavigateUrl = popupUrl.Replace ("550,950", "450,950");
+            linkPhoto.NavigateUrl = popupUrl;
 
 			// Employee titles
 			var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle));
@@ -318,8 +318,7 @@ namespace R7.University.Employee
                         ModuleActionType.ContentOptions, 
                         "", 
                         "", 
-                        Utils.EditUrl (this, "EmployeeDetails", "employee_id", Employee.EmployeeID.ToString ())
-                            .Replace ("550,950", "450,950"),
+                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EmployeeDetails"),
                         false, 
                         DotNetNuke.Security.SecurityAccessLevel.View,
                         true, 

@@ -349,7 +349,7 @@ namespace R7.University.DivisionDirectory
                 {
                     linkContactPerson.Text = contactPerson.AbbrName;
                     linkContactPerson.ToolTip = contactPerson.FullName;
-                    linkContactPerson.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", contactPerson.EmployeeID.ToString ()).Replace ("550,950", "450,950");
+                    linkContactPerson.NavigateUrl = EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails");
                 }
             }
         }
@@ -393,7 +393,8 @@ namespace R7.University.DivisionDirectory
                     var positionTitle = (!string.IsNullOrWhiteSpace (headPosition.PositionShortTitle))?
                         headPosition.PositionShortTitle : headPosition.PositionTitle;
 
-                    literalContactPerson.Text = "<strong><a href=\"" + Utils.EditUrl (this, "EmployeeDetails", "employee_id", contactPerson.EmployeeID.ToString ()).Replace ("550,950", "450,950") 
+                    literalContactPerson.Text = "<strong><a href=\"" 
+                        + EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails")
                         + "\" itemprop=\"Fio\">" + contactPerson.FullName + "</a></strong><br />"
                         + Utils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
                 }
