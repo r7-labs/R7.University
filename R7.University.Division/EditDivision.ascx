@@ -8,6 +8,7 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
 <div class="dnnForm dnnClear">
 	<br /><br />
 	<fieldset>	
@@ -21,7 +22,7 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblParentDivision" runat="server" ControlName="comboParentDivisions" Suffix=":" />
-            <dnn:DnnTreeView id="treeParentDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+            <dnn:DnnTreeView id="treeParentDivisions" runat="server"
                 DataFieldID="DivisionID"
                 DataFieldParentID="ParentDivisionID"
                 DataValueField="DivisionID"
@@ -30,7 +31,7 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblDivisionTerm" runat="server" ControlName="tsDivisionTerm" Suffix=":" />
-			<dnn:DnnTreeView ID="treeDivisionTerms" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE" 
+			<dnn:DnnTreeView ID="treeDivisionTerms" runat="server" 
                 DataFieldID="TermId"
                 DataFieldParentID="ParentTermId"
                 DataTextField="Name"

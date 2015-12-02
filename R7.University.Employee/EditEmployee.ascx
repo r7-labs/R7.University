@@ -10,6 +10,7 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
 <script type="text/javascript">
 	$(function() { $("#employeeTabs").dnnTabs({selected: <%= (int)SelectedTab %>}); });
 </script>
@@ -162,7 +163,7 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" Suffix=":" />
-					<dnn:DnnTreeView id="treeDivisions" runat="server" Style="float:left;display:block;margin-bottom:10px;padding:10px;background-color:#EEE"
+					<dnn:DnnTreeView id="treeDivisions" runat="server"
 						DataTextField="DisplayShortTitle"
 						DataValueField="DivisionID"
 						DataFieldID = "DivisionID"
