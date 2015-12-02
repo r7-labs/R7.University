@@ -10,7 +10,7 @@
 				<asp:HyperLink id="linkEdit" runat="server" CssClass="_editlink">
 					<asp:Image id="imageEdit" runat="server" ImageUrl="<%# EditIconUrl %>" AlternateText="Edit" ResourceKey="Edit" />
 				</asp:HyperLink>
-				<asp:Label id="labelFullName" runat="server" CssClass="_fullname"  />
+				<asp:HyperLink id="linkFullName" runat="server" CssClass="_fullname" />
 				<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
 				<asp:Label id="labelPositions" runat="server" CssClass="_positions" />
 				<asp:HyperLink id="linkEmail" runat="server" CssClass="_email email" />

@@ -165,7 +165,7 @@ namespace R7.University.EmployeeList
             var imageEdit = (Image) e.Item.FindControl ("imageEdit");
             var imagePhoto = (Image) e.Item.FindControl ("imagePhoto");
             var linkDetails = (HyperLink) e.Item.FindControl ("linkDetails"); 
-            var labelFullName = (Label) e.Item.FindControl ("labelFullName");
+            var linkFullName = (HyperLink) e.Item.FindControl ("linkFullName");
             var labelAcademicDegreeAndTitle = (Label) e.Item.FindControl ("labelAcademicDegreeAndTitle");
             var labelPositions = (Label) e.Item.FindControl ("labelPositions");
             var labelPhones = (Label) e.Item.FindControl ("labelPhones");
@@ -202,6 +202,8 @@ namespace R7.University.EmployeeList
             // employee photo
             EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeListSettings.PhotoWidth, true);
 
+            var employeeDetailsUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
+                
 			// photo fallback
 			if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl))
 			{
@@ -210,11 +212,12 @@ namespace R7.University.EmployeeList
 			else
 			{
 				// link to employee details
-				linkDetails.NavigateUrl = Utils.EditUrl (this, "EmployeeDetails", "employee_id", employee.EmployeeID.ToString ()).Replace ("550,950", "450,950");
+                linkDetails.NavigateUrl = employeeDetailsUrl;
 			}
 
 			// employee fullname
-			labelFullName.Text = employee.FullName;
+			linkFullName.Text = employee.FullName;
+            linkFullName.NavigateUrl = employeeDetailsUrl;
 
 			// get current employee title achievements
 			var achievements = CommonTitleAchievements.Where (ach => ach.EmployeeID == employee.EmployeeID);
