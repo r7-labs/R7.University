@@ -553,24 +553,29 @@ namespace R7.University.Employee
 
 		protected void gridExperience_RowDataBound (object sender, GridViewRowEventArgs e)
 		{
-			// description
+			// hide description column
 			e.Row.Cells [4].Visible = false;
 			
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
-                e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [4].Text);
+                var description = Server.HtmlDecode (e.Row.Cells [4].Text);
+                if (!string.IsNullOrWhiteSpace (description))
+                {
+                    e.Row.Cells [1].CssClass = "has-description";
+                    e.Row.Cells [1].Attributes.Add ("data-description", description);
+                    e.Row.Cells [1].Attributes.Add ("onclick", "showDescription(this)");
+                }
 
                 // make link to the document
 				// WTF: empty DocumentURL's cells contains non-breakable spaces?
                 var documentUrl = Server.HtmlDecode (e.Row.Cells [3].Text.Replace ("&nbsp;", ""));
                 if (!string.IsNullOrWhiteSpace (documentUrl))
-					e.Row.Cells [3].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
+                {
+                    e.Row.Cells [3].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
                         R7.University.Utilities.UrlUtils.LinkClickIdnHack (documentUrl, TabId, ModuleId),
                         LocalizeString ("DocumentUrl.Text"));
-
-				// e.Row.Cells [4].Text = "...";
-				// e.Row.Cells [4].Attributes.Add("onclick", "javascript:confirm('" + description + "')");
+                }
 			}
 		}
 

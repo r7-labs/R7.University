@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -89,6 +90,7 @@
     <Content Include="EditEmployee.ascx" />
     <Content Include="admin.css" />
     <Content Include="packages.config" />
+    <Content Include="js\module.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewEmployee.ascx.resx" />
