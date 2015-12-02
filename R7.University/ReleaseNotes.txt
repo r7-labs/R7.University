@@ -6,6 +6,7 @@
     <li>EmployeeDetails: Hide disciplines tab if there are no records.</li>
     <li>EmployeeDetails: Use default popup window height.</li>
     <li>EmployeeList: Show employee name as link to details popup.</li>
+    <li>Fix treeview width issues in admin UI parts.</li>
 </ul>
 
 <h3>Version 1.6.1</h3>
