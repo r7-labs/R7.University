@@ -305,8 +305,6 @@ namespace R7.University.Employee
 				repeaterPositions.Visible = false;
 			
             EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
-			
-			Barcode (employee);
 					
 			// Phone
 			if (!string.IsNullOrWhiteSpace (employee.Phone))
@@ -383,6 +381,7 @@ namespace R7.University.Employee
 			
             Experience (employee);
             EduPrograms (employee);
+            Barcode (employee);
 		}
 
         void EduPrograms (EmployeeInfo employee)
