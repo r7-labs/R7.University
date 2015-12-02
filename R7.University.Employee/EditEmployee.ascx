@@ -350,7 +350,7 @@
                                 AutoCompleteMode="SuggestAppend"
                                 CaseSensitive="false"
                                 DataValueField="EduProgramProfileID"
-                                DataTextField="EduProfileString"
+                                DataTextField="EduProgramProfileString"
                             />
                         </ContentTemplate>
                     </asp:UpdatePanel>

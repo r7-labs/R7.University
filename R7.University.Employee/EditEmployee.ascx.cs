@@ -39,6 +39,7 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
 using R7.University;
 using R7.University.ControlExtensions;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee
 {
@@ -173,11 +174,15 @@ namespace R7.University.Employee
 			comboAchievementTypes.DataBind ();
 
             // get edu profiles
-            // TODO: Sort or filter by EduLevelID first!
-            var eduProfiles = EmployeeController.GetObjects<EduProgramProfileInfoEx> ("ORDER BY [Code]").ToList ();
+            var eduProfiles = EmployeeController.GetObjects<EduProgramProfileInfo> ()
+                .WithEduPrograms (EmployeeController)
+                .OrderBy (epp => epp.EduProgram.EduLevelID)
+                .ThenBy (epp => epp.EduProgram.Code)
+                .ThenBy (epp => epp.ProfileTitle)
+                .ToList ();
 
             // add default value
-            eduProfiles.Insert (0, new EduProgramProfileInfoEx { 
+            eduProfiles.Insert (0, new EduProgramProfileInfo {
                 ProfileTitle = LocalizeString ("NotSelected.Text"), EduProgramProfileID = Null.NullInteger 
             });
 
