@@ -6,6 +6,7 @@ using DotNetNuke.UI.UserControls;
 using DotNetNuke.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University;
+using R7.University.Controls;
 
 namespace R7.University.Launchpad
 {
@@ -16,28 +17,12 @@ namespace R7.University.Launchpad
         protected HyperLink linkCancel;
         protected ModuleAuditControl auditControl;
         protected TextBox textCode;
-		protected TextBox textTitle;
+        protected TextBox textTitle;
         protected TextBox textGeneration;
         protected DnnDatePicker dateAccreditedToDate;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected DropDownList comboEduLevel;
-       
-        #region Documents
-
-        protected GridView gridDocuments;
-        protected TextBox textDocumentTitle;
-        protected DropDownList comboDocumentType;
-        protected UrlControl urlDocumentUrl;
-        protected TextBox textDocumentSortIndex;
-        protected DnnDateTimePicker datetimeDocumentStartDate;
-        protected DnnDateTimePicker datetimeDocumentEndDate;
-        protected HiddenField hiddenDocumentItemID;
-        protected LinkButton buttonAddDocument;
-        protected LinkButton buttonUpdateDocument;
-        protected LinkButton buttonCancelEditDocument;
-
-        #endregion
-       
+        protected EditDocuments formEditDocuments;
 	}
 }

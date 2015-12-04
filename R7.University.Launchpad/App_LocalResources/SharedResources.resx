@@ -36,54 +36,6 @@
     <data name="EduTypeAdditional.Text">
         <value>Additional</value>
     </data>
-    <data name="SystemDocumentType_Default.Text">
-        <value>&lt; Select Document Type &gt;</value>
-    </data>
-    <data name="SystemDocumentType_OrderEnrollment.Text">
-        <value>Enrollment Order</value>
-    </data>
-    <data name="SystemDocumentType_OrderExpulsion.Text">
-        <value>Expulsion Order</value>
-    </data>
-    <data name="SystemDocumentType_OrderRestoration.Text">
-        <value>Restoration Order</value>
-    </data>
-    <data name="SystemDocumentType_OrderTransfer.Text">
-        <value>Transfer Order</value>
-    </data>
-    <data name="SystemDocumentType_OrderAcademicLeave.Text">
-        <value>Academic Leave Order</value>
-    </data>
-    <data name="SystemDocumentType_EduStandard.Text">
-        <value>Educational Standard</value>
-    </data>
-    <data name="SystemDocumentType_EduProgram.Text">
-        <value>Educational Program</value>
-    </data>
-    <data name="SystemDocumentType_EduSchedule.Text">
-        <value>Календарный график</value>
-    </data>
-    <data name="SystemDocumentType_EduPlan.Text">
-        <value>Education Plan</value>
-    </data>
-    <data name="SystemDocumentType_EduMaterial.Text">
-        <value>Educational Material</value>
-    </data>
-    <data name="SystemDocumentType_WorkProgramAnnotation.Text">
-        <value>Work Program Annotation</value>
-    </data>
-    <data name="SystemDocumentType_WorkProgramOfPractice.Text">
-        <value>Work Program Of Practice</value>
-    </data>
-    <data name="SystemDocumentType_Contingent.Text">
-        <value>Contingent Info</value>
-    </data>
-    <data name="SystemDocumentType_ContingentMovement.Text">
-        <value>Contingent Movement Info</value>
-    </data>
-    <data name="SystemDocumentType_ScienceInfo.Text">
-        <value>Science Info</value>
-    </data>
     <data name="Search.Text">
         <value>Search</value>
     </data>

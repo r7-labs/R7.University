@@ -6,54 +6,6 @@
 	<data name="AddContent.Action" xml:space="preserve">
         <value>Добавить содержимое</value>
     </data>
-    <data name="SystemDocumentType_Default.Text">
-        <value>&lt; Выберите тип документа &gt;</value>
-    </data>
-    <data name="SystemDocumentType_OrderEnrollment.Text">
-        <value>Приказ о приеме (зачислении)</value>
-    </data>
-    <data name="SystemDocumentType_OrderExpulsion.Text">
-        <value>Приказ об отчислении</value>
-    </data>
-    <data name="SystemDocumentType_OrderRestoration.Text">
-        <value>Приказ о восстановлениии</value>
-    </data>
-    <data name="SystemDocumentType_OrderTransfer.Text">
-        <value>Приказ о переводе</value>
-    </data>
-    <data name="SystemDocumentType_OrderAcademicLeave.Text">
-        <value>Приказ об академическом отпуске</value>
-    </data>
-    <data name="SystemDocumentType_EduStandard.Text">
-        <value>Образовательный стандарт</value>
-    </data>
-    <data name="SystemDocumentType_EduProgram.Text">
-        <value>Образовательная программа</value>
-    </data>
-    <data name="SystemDocumentType_EduSchedule.Text">
-        <value>Календарный график</value>
-    </data>
-    <data name="SystemDocumentType_EduPlan.Text">
-        <value>Учебный план</value>
-    </data>
-    <data name="SystemDocumentType_EduMaterial.Text">
-        <value>Методический материал</value>
-    </data>
-    <data name="SystemDocumentType_WorkProgramAnnotation.Text">
-        <value>Аннотация (аннотации) рабочей программы</value>
-    </data>
-    <data name="SystemDocumentType_WorkProgramOfPractice.Text">
-        <value>Рабочая программа практики</value>
-    </data>
-    <data name="SystemDocumentType_Contingent.Text">
-        <value>Сведения о численности обучающихся</value>
-    </data>
-    <data name="SystemDocumentType_ContingentMovement.Text">
-        <value>Сведения о результатах перевода, восстановления и отчисления</value>
-    </data>
-    <data name="SystemDocumentType_ScienceInfo.Text">
-        <value>Сведения о направлениях и результатах НИР</value>
-    </data>
     <data name="Search.Text">
         <value>Поиск</value>
     </data>

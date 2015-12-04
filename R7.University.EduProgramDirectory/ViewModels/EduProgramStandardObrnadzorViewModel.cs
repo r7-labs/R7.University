@@ -69,7 +69,7 @@ namespace R7.University.EduProgramDirectory
                             Globals.GetURLType (eduStandardDocument.Url) == TabType.Url ? " target=\"_blank\"" : string.Empty,
                             !eduStandardDocument.IsPublished ? " class=\"not-published-document\"" : string.Empty,
                             !string.IsNullOrWhiteSpace (eduStandardDocument.Title) ? eduStandardDocument.Title 
-                            : Localization.GetString ("EduProgramStandardLink.Text", Context.Control.LocalResourceFile)
+                            : Localization.GetString ("EduProgramStandardLink.Text", Context.LocalResourceFile)
                         );
                     }
                 }

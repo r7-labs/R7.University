@@ -114,7 +114,7 @@ namespace R7.University.DivisionDirectory
                 {
                     return string.Format (linkFormat, 
                         Globals.LinkClick (DocumentUrl, Context.Module.TabId, Context.Module.ModuleId),
-                        Localization.GetString ("Regulations.Text", Context.Control.LocalResourceFile),
+                        Localization.GetString ("Regulations.Text", Context.LocalResourceFile),
                         "itemprop=\"DivisionClause_DocLink\""
                     );
                 }

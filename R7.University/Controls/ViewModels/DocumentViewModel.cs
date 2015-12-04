@@ -31,7 +31,7 @@ using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.University.Utilities;
 
-namespace R7.University.Launchpad
+namespace R7.University.Controls
 {
     [Serializable]
     public class DocumentViewModel: DocumentInfoEx

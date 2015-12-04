@@ -113,6 +113,10 @@
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="components\ViewModelIndexer.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileExtensions.cs" />
+    <Compile Include="Controls\EditDocuments.ascx.cs" />
+    <Compile Include="Controls\ViewModels\DocumentViewModel.cs" />
+    <Compile Include="Controls\ViewModels\DocumentTypeViewModel.cs" />
+    <Compile Include="Controls\EditDocuments.ascx.controls.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -121,6 +125,9 @@
     <Folder Include="ModelExtensions\" />
     <Folder Include="Models\" />
     <Folder Include="ControlExtensions\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Controls\App_LocalResources\" />
+    <Folder Include="Controls\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -154,6 +161,13 @@
     <None Include="SqlDataProvider\01.07.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
+    <None Include="Controls\EditDocuments.ascx" />
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
