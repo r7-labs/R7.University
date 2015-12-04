@@ -43,8 +43,6 @@ namespace R7.University.Controls
 
         public string ForModel { get; set; }
 
-        public bool IsActive { get; protected set; }
-
         #endregion
 
         #region Bindable icons
@@ -60,6 +58,7 @@ namespace R7.University.Controls
         }
 
         #endregion
+
 
         private string localResourceFile;
         public string LocalResourceFile
@@ -139,26 +138,12 @@ namespace R7.University.Controls
             return string.Empty;
         }
 
-        #region Overrides
-
-        protected override void OnLoad (EventArgs e)
-        {
-            base.OnLoad (e);
-
-            // reset activity flag
-            IsActive = false;
-        }
-
-        #endregion
-
         #region Handlers
 
         protected void buttonAddDocument_Command (object sender, CommandEventArgs e)
         {
             try
             {
-                IsActive = true;
-
                 DocumentViewModel document;
 
                 // get documents list from viewstate
@@ -215,8 +200,6 @@ namespace R7.University.Controls
         {
             try
             {
-                IsActive = true;
-
                 var documents = ViewStateDocuments;
                 if (documents != null)
                 {
@@ -254,8 +237,6 @@ namespace R7.University.Controls
         {
             try
             {
-                IsActive = true;
-
                 var documents = ViewStateDocuments;
                 if (documents != null)
                 {
@@ -293,8 +274,6 @@ namespace R7.University.Controls
         {
             try
             {
-                IsActive = true;
-
                 ResetEditDocumentForm ();
             }
             catch (Exception ex)

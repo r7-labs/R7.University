@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.Entities.Icons;
 using R7.University;
 using R7.University.ControlExtensions;
 
@@ -20,19 +18,27 @@ namespace R7.University.Launchpad
         {
             get 
             {
-                // get postback initiator
+                // get postback initiator control
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
-                // document URL control is on Documents tab
-                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$urlDocumentUrl$"))
+                if (!string.IsNullOrEmpty (eventTarget))
                 {
-                    ViewState ["SelectedTab"] = EditEduProgramTab.Documents;
-                    return EditEduProgramTab.Documents;
+                    // check if postback initiator is on Documents tab
+                    if (eventTarget.Contains ("$" + formEditDocuments.ID))
+                    {
+                        ViewState ["SelectedTab"] = EditEduProgramTab.Documents;
+                        return EditEduProgramTab.Documents;
+                    }
                 }
 
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
-                return (obj != null) ? (EditEduProgramTab) obj : EditEduProgramTab.Common;
+                if (obj != null) 
+                {
+                    return (EditEduProgramTab) obj;
+                }
+
+                return EditEduProgramTab.Common;
             }
             set { ViewState ["SelectedTab"] = value; }
         }
@@ -43,7 +49,6 @@ namespace R7.University.Launchpad
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
         }
 
-		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
 
 		#region Overrides
@@ -84,7 +89,7 @@ namespace R7.University.Launchpad
             
 			try
 			{
-				// parse querystring parameters
+                // parse querystring parameters
 				itemId = Utils.ParseToNullableInt (Request.QueryString ["eduprogram_id"]);
       
 				if (!IsPostBack)
@@ -129,16 +134,6 @@ namespace R7.University.Launchpad
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
-
-        protected override void OnUnload (EventArgs e)
-        {
-            base.OnUnload (e);
-
-            if (formEditDocuments.IsActive)
-            {
-                SelectedTab = EditEduProgramTab.Documents;
-            }
-        }
 
         #endregion
 
