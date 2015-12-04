@@ -32,16 +32,12 @@ namespace R7.University
 {
     public class ViewModelContext
     {
-        [Obsolete]
-        public IModuleControl Control { get; protected set; }
-
         public string LocalResourceFile { get; protected set; }
 
         public ModuleInstanceContext Module { get; protected set; }
        
         public ViewModelContext (IModuleControl module)
         {
-            Control = module;
             Module = module.ModuleContext;
             LocalResourceFile = module.LocalResourceFile;
         }
