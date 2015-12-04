@@ -46,9 +46,9 @@ namespace R7.University
         }
 
 		public void AddEmployee (EmployeeInfo employee, 
-		    List<OccupiedPositionInfo> occupiedPositions, 
-            List<EmployeeAchievementInfo> achievements,
-            List<EmployeeDisciplineInfo> eduPrograms)
+		    IList<OccupiedPositionInfo> occupiedPositions, 
+            IList<EmployeeAchievementInfo> achievements,
+            IList<EmployeeDisciplineInfo> eduPrograms)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -91,9 +91,9 @@ namespace R7.University
 		}
 
 		public void UpdateEmployee (EmployeeInfo employee, 
-		    List<OccupiedPositionInfo> occupiedPositions, 
-            List<EmployeeAchievementInfo> achievements,
-            List<EmployeeDisciplineInfo> disciplines)
+		    IList<OccupiedPositionInfo> occupiedPositions, 
+            IList<EmployeeAchievementInfo> achievements,
+            IList<EmployeeDisciplineInfo> disciplines)
         {
 			using (var ctx = DataContext.Instance ())
 			{
@@ -270,7 +270,7 @@ namespace R7.University
             return Enumerable.Empty<EduProgramInfo> ();
         }
 
-        public void AddEduProgram (EduProgramInfo eduProgram, List<DocumentInfo> documents)
+        public void AddEduProgram (EduProgramInfo eduProgram, IList<DocumentInfo> documents)
         {
             using (var ctx = DataContext.Instance ())
             {
@@ -298,7 +298,7 @@ namespace R7.University
             }
         }
 
-        public void UpdateEduProgram (EduProgramInfo eduProgram, List<DocumentInfo> documents)
+        public void UpdateEduProgram (EduProgramInfo eduProgram, IList<DocumentInfo> documents)
         {
             using (var ctx = DataContext.Instance ())
             {
