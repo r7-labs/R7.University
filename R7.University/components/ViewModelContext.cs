@@ -25,22 +25,31 @@
 // THE SOFTWARE.
 
 using System;
+using System.Web.UI;
 using DotNetNuke.UI.Modules;
 
 namespace R7.University
 {
     public class ViewModelContext
     {
+        [Obsolete]
         public IModuleControl Control { get; protected set; }
 
-        public ModuleInstanceContext Module
+        public string LocalResourceFile { get; protected set; }
+
+        public ModuleInstanceContext Module { get; protected set; }
+       
+        public ViewModelContext (IModuleControl module)
         {
-            get { return Control.ModuleContext; }
+            Control = module;
+            Module = module.ModuleContext;
+            LocalResourceFile = module.LocalResourceFile;
         }
 
-        public ViewModelContext (IModuleControl control)
+        public ViewModelContext (Control control, IModuleControl module)
         {
-            Control = control;
+            Module = module.ModuleContext;
+            LocalResourceFile = DotNetNuke.Web.UI.Utilities.GetLocalResourceFile (control);
         }
     }
 }
