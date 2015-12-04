@@ -30,7 +30,7 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
 using System.Collections.Generic;
 
-namespace R7.University.Launchpad
+namespace R7.University.Controls
 {
     public class DocumentTypeViewModel: DocumentTypeInfo
     {

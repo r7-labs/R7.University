@@ -12,54 +12,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="CommonTab.Text" xml:space="preserve">
-        <value>Educational Program</value>
-    </data>
-    <data name="DocumentsTab.Text" xml:space="preserve">
-        <value>Documents</value>
-    </data>
-    <data name="labelCode.Text" xml:space="preserve">
-        <value>Code:</value>
-    </data>
-    <data name="labelCode.Help" xml:space="preserve">
-        <value>Enter the code of an educational program according to standard.</value>
-    </data>
-    <data name="labelTitle.Text" xml:space="preserve">
-        <value>Title:</value>
-    </data>
-    <data name="labelTitle.Help" xml:space="preserve">
-        <value>Enter the title for an educational program, defined in standard.</value>
-    </data>
-    <data name="labelEduLevel.Text">
-        <value>Education Level:</value>
-    </data>
-    <data name="labelEduLevel.Help">
-        <value>Select the level of educational program.</value>
-    </data>
-    <data name="labelGeneration.Text">
-        <value>Generation:</value>
-    </data>
-    <data name="labelGeneration.Help">
-        <value>Enter the generation code for educational program, e.g. '3+'.</value>
-    </data>
-    <data name="labelAccreditedToDate.Text">
-        <value>Accredited To:</value>
-    </data>
-    <data name="labelAccreditedToDate.Help">
-        <value>Enter the date current educational program is accredited to, or leave empty.</value>
-    </data>
-    <data name="labelStartDate.Text">
-        <value>Start Publication:</value>
-    </data>
-    <data name="labelStartDate.Help">
-        <value>Enter the date from current educational program should be published on the site.</value>
-    </data>
-    <data name="labelEndDate.Text">
-        <value>End Publication:</value>
-    </data>
-    <data name="labelEndDate.Help">
-        <value>Enter the date from current educational program should be removed from publication on the site.</value>
-    </data>
     <data name="labelDocumentTitle.Text">
         <value>Title:</value>
     </data>
@@ -108,7 +60,7 @@
     <data name="DocumentTitle.Column">
         <value>Title</value>
     </data>
-     <data name="DocumentType.Column">
+    <data name="DocumentType.Column">
         <value>Type</value>
     </data>
     <data name="DocumentUrl.Column">
@@ -125,11 +77,5 @@
     </data>
     <data name="DocumentEndDate.Column">
         <value>End Date</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;An Edit education program module&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Education Program</value>
     </data>
 </root>
