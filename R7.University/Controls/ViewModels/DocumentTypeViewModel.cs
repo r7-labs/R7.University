@@ -34,41 +34,40 @@ namespace R7.University.Controls
 {
     public class DocumentTypeViewModel: DocumentTypeInfo
     {
-        public string LocalizedType { get; set; }
+        protected ViewModelContext Context { get; set; }
+
+        public string LocalizedType
+        { 
+            get
+            { 
+                var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", 
+                    Context.LocalResourceFile);
+                
+                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
+            }
+        }
 
         public DocumentTypeViewModel ()
         {}
 
-        public DocumentTypeViewModel (DocumentTypeInfo documentType, string resourceFile)
+        public DocumentTypeViewModel (DocumentTypeInfo documentType, ViewModelContext context)
         {
             CopyCstor.Copy<DocumentTypeInfo> (documentType, this);
-            Localize (resourceFile);
+            Context = context;
         }
 
-        public void Localize (string resourceFile)
+        public static IList<DocumentTypeViewModel> GetBindableList (IEnumerable<DocumentTypeInfo> documentTypes, 
+            ViewModelContext context, bool withDefaultItem)
         {
-            var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", resourceFile);
-            LocalizedType = (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
-        }
-
-        public static DocumentTypeViewModel GetDefaultItem (string resourceFile)
-        {
-            var defaultItem = new DocumentTypeViewModel { 
-                DocumentTypeID = Null.NullInteger,
-                Type = "Default"
-            };
-
-            defaultItem.Localize (resourceFile);
-            return defaultItem;
-        }
-
-        public static List<DocumentTypeViewModel> GetBindableList (IEnumerable<DocumentTypeInfo> documentTypes, string resourceFile, bool withDefaultItem)
-        {
-            var documentTypeVms = documentTypes.Select (dt => new DocumentTypeViewModel (dt, resourceFile)).ToList ();
+            var documentTypeVms = documentTypes.Select (dt => new DocumentTypeViewModel (dt, context)).ToList ();
 
             if (withDefaultItem) 
             {
-                documentTypeVms.Insert (0, DocumentTypeViewModel.GetDefaultItem (resourceFile));
+                documentTypeVms.Insert (0, new DocumentTypeViewModel {
+                    DocumentTypeID = Null.NullInteger,
+                    Type = "Default",
+                    Context = context
+                });
             }
 
             return documentTypeVms;

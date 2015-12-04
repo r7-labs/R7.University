@@ -96,7 +96,7 @@ namespace R7.University.Controls
 
             SetDocumentTypes (documentTypes);
 
-            comboDocumentType.DataSource = DocumentTypeViewModel.GetBindableList (documentTypes, LocalResourceFile, true);
+            comboDocumentType.DataSource = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext, true);
             comboDocumentType.DataBind ();
 
             gridDocuments.LocalizeColumns (LocalResourceFile);
