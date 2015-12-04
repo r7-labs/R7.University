@@ -61,7 +61,7 @@
         <value>Educational Program</value>
     </data>
     <data name="SystemDocumentType_EduSchedule.Text">
-        <value>Календарный график</value>
+        <value>Education Schedule</value>
     </data>
     <data name="SystemDocumentType_EduPlan.Text">
         <value>Education Plan</value>
