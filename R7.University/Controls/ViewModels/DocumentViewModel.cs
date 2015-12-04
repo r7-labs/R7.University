@@ -46,7 +46,7 @@ namespace R7.University.Controls
         { 
             get
             { 
-                var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", Context.Control.LocalResourceFile);
+                var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", Context.LocalResourceFile);
                 return (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
             }
         }
@@ -60,7 +60,7 @@ namespace R7.University.Controls
                 {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
                         UrlUtils.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId),
-                        Localization.GetString ("DocumentUrlLabel.Text", Context.Control.LocalResourceFile)
+                        Localization.GetString ("DocumentUrlLabel.Text", Context.LocalResourceFile)
                     );
                 }
 

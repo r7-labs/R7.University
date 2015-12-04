@@ -81,7 +81,7 @@ namespace R7.University.Controls
         private ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
         {
-            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (Module)); }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this, Module)); }
         }
 
         protected List<DocumentViewModel> ViewStateDocuments
