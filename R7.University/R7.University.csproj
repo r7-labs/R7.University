@@ -114,9 +114,9 @@
     <Compile Include="components\ViewModelIndexer.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileExtensions.cs" />
     <Compile Include="Controls\EditDocuments.ascx.cs" />
-    <Compile Include="Controls\EditDocuments.ascx.control.cs" />
     <Compile Include="Controls\ViewModels\DocumentViewModel.cs" />
     <Compile Include="Controls\ViewModels\DocumentTypeViewModel.cs" />
+    <Compile Include="Controls\EditDocuments.ascx.controls.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
