@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="SystemDocumentType_Default.Text">
+        <value>&lt; Выберите тип документа &gt;</value>
+    </data>
+    <data name="SystemDocumentType_OrderEnrollment.Text">
+        <value>Приказ о приеме (зачислении)</value>
+    </data>
+    <data name="SystemDocumentType_OrderExpulsion.Text">
+        <value>Приказ об отчислении</value>
+    </data>
+    <data name="SystemDocumentType_OrderRestoration.Text">
+        <value>Приказ о восстановлениии</value>
+    </data>
+    <data name="SystemDocumentType_OrderTransfer.Text">
+        <value>Приказ о переводе</value>
+    </data>
+    <data name="SystemDocumentType_OrderAcademicLeave.Text">
+        <value>Приказ об академическом отпуске</value>
+    </data>
+    <data name="SystemDocumentType_EduStandard.Text">
+        <value>Образовательный стандарт</value>
+    </data>
+    <data name="SystemDocumentType_EduProgram.Text">
+        <value>Образовательная программа</value>
+    </data>
+    <data name="SystemDocumentType_EduSchedule.Text">
+        <value>Календарный график</value>
+    </data>
+    <data name="SystemDocumentType_EduPlan.Text">
+        <value>Учебный план</value>
+    </data>
+    <data name="SystemDocumentType_EduMaterial.Text">
+        <value>Методический материал</value>
+    </data>
+    <data name="SystemDocumentType_WorkProgramAnnotation.Text">
+        <value>Аннотация (аннотации) рабочей программы</value>
+    </data>
+    <data name="SystemDocumentType_WorkProgramOfPractice.Text">
+        <value>Рабочая программа практики</value>
+    </data>
+    <data name="SystemDocumentType_Contingent.Text">
+        <value>Сведения о численности обучающихся</value>
+    </data>
+    <data name="SystemDocumentType_ContingentMovement.Text">
+        <value>Сведения о результатах перевода, восстановления и отчисления</value>
+    </data>
+    <data name="SystemDocumentType_ScienceInfo.Text">
+        <value>Сведения о направлениях и результатах НИР</value>
+    </data>
+    <data name="labelDocumentTitle.Text">
+        <value>Название:</value>
+    </data>
+    <data name="labelDocumentTitle.Help">
+        <value>Введите название документа.</value>
+    </data>
+    <data name="labelDocumentType.Text">
+        <value>Тип документа:</value>
+    </data>
+    <data name="labelDocumentType.Help">
+        <value>Выберите тип документа из выпадающего списка.</value>
+    </data>
+    <data name="labelDocumentSortIndex.Text">
+        <value>Индекс сортировки:</value>
+    </data>
+    <data name="labelDocumentSortIndex.Help">
+        <value>Введите значение индекса сортировки для документа. Оно может быть использовано для задания порядка следования документов в различных представлениях.</value>
+    </data>
+    <data name="labelDocumentUrl.Text">
+        <value>Ссылка:</value>
+    </data>
+    <data name="labelDocumentUrl.Help">
+        <value>Дайте ссылку на документ.</value>
+    </data>
+    <data name="labelDocumentStartDate.Text">
+        <value>Начало публикации:</value>
+    </data>
+    <data name="labelDocumentStartDate.Help">
+        <value>Введите дату, с которой документ должен быть опубликован на сайте.</value>
+    </data>
+    <data name="labelDocumentEndDate.Text">
+        <value>Окончание публикации:</value>
+    </data>
+    <data name="labelDocumentEndDate.Help">
+        <value>Введите дату, начиная с которой документ должен быть снят с публикации на сайте.</value>
+    </data>
+    <data name="buttonAddDocument.Text">
+        <value>Добавить документ</value>
+    </data>
+    <data name="buttonUpdateDocument.Text">
+        <value>Сохранить документ</value>
+    </data>
+    <data name="buttonCancelEditDocument.Text">
+        <value>Отмена</value>
+    </data>
+    <data name="DocumentTitle.Column">
+        <value>Название</value>
+    </data>
+    <data name="DocumentType.Column">
+        <value>Тип</value>
+    </data>
+    <data name="DocumentUrl.Column">
+        <value>Ссылка</value>
+    </data>
+    <data name="DocumentUrlLabel.Text">
+        <value>Открыть</value>
+    </data>
+    <data name="DocumentSortIndex.Column">
+        <value>Индекс</value>
+    </data>
+    <data name="DocumentStartDate.Column">
+        <value>Начало</value>
+    </data>
+    <data name="DocumentEndDate.Column">
+        <value>Окончание</value>
+    </data>
+</root>

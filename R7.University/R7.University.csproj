@@ -162,7 +162,10 @@
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
     <None Include="Controls\EditDocuments.ascx" />
-    <None Include="Controls\App_LocalResources\EditEduProgram.ascx.resx">
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
