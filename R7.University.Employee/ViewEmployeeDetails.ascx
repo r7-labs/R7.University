@@ -18,7 +18,6 @@
     			<li><asp:HyperLink id="linkAchievements" runat="server" href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></asp:HyperLink></li>
     			<li><asp:HyperLink id="linkDisciplines" runat="server" href="#employeeDisciplines"><%= LocalizeString("DisciplinesTab.Text") %></asp:HyperLink></li>
     			<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></asp:HyperLink></li>
-    			<li><a href="#employeeBarcode"><%= LocalizeString("BarcodeTab.Text") %></a></li>
     		</ul>
     		<div id="employeeCommon" class="_tab">
     			<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
@@ -95,16 +94,19 @@
     		<div id="employeeAbout" class="_tab">
     			<asp:Literal id="litAbout" runat="server" />
     		</div>
-    		<div id="employeeBarcode" class="_tab">
-    			<asp:Label runat="server" resourcekey="BarcodeScan.Text" CssClass="dnnFormMessage" />
-    			<asp:Image id="imageBarcode" runat="server" CssClass="_barcode" />
-    		</div>
     	</div>
     </div>
     <ul class="dnnActions dnnClear">
         <li><asp:HyperLink id="linkReturn" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdReturn" /></li>
         <li><asp:HyperLink id="linkVCard" runat="server" CssClass="dnnSecondaryAction" ResourceKey="VCard.Action" Visible="false" /></li>
         <li><asp:HyperLink id="linkEdit" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdEdit" Visible="false" /></li>
+        <li><asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" 
+            CssClass="dnnSecondaryAction" onclick="showEmployeeBarcodeDialog(this)" />
+        </li>
     </ul>
 </asp:Panel>
 <div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%= ModuleId %>"></div>
+<div class="dialog-employee-barcode" id="dialog-employee-barcode-<%= ModuleId %>">
+    <asp:Label runat="server" resourcekey="BarcodeScan.Text" CssClass="dnnFormMessage" />
+    <asp:Image id="imageBarcode" runat="server" />
+</div>

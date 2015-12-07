@@ -12,6 +12,9 @@
 	<data name="BarcodeTab.Text" xml:space="preserve">
     <value>QR-code</value>
   </data>
+  <data name="Barcode.Action" xml:space="preserve">
+    <value>Show QR-code</value>
+  </data>
 	<data name="ExperienceYears.Format1" xml:space="preserve">
     <value>Total work experience (years): {0}</value>
   </data>

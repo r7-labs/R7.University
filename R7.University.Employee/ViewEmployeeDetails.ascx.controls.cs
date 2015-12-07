@@ -39,5 +39,6 @@ namespace R7.University.Employee
 		protected GridView gridExperience;
 		protected GridView gridAchievements;
         protected GridView gridEduPrograms;
+        protected HyperLink linkBarcode;
 	}
 }

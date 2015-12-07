@@ -274,8 +274,8 @@ namespace R7.University.Employee
 
 		protected void Display (EmployeeInfo employee)
 		{
-			var fullname = employee.FullName;
-			
+        	var fullname = employee.FullName;
+
             if (InPopup)
             {
                 // set popup title to employee name
@@ -403,8 +403,11 @@ namespace R7.University.Employee
 
         void Barcode (EmployeeInfo employee)
 		{
-			// barcode image test
-			var barcodeWidth = 150;
+            linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
+            linkBarcode.Attributes.Add ("data-dialog-title", employee.FullName);
+
+			// barcode image
+			const int barcodeWidth = 192;
             imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
                 "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
 				barcodeWidth, barcodeWidth, 
@@ -415,8 +418,6 @@ namespace R7.University.Employee
 			imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
 			imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
 		}
-
-
 
 		void Experience (EmployeeInfo employee)
 		{

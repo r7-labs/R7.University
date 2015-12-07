@@ -12,6 +12,9 @@
 	<data name="BarcodeTab.Text" xml:space="preserve">
     <value>QR-код</value>
   </data>
+  <data name="Barcode.Action" xml:space="preserve">
+    <value>Показать QR-код</value>
+  </data>
 	<data name="ExperienceYears.Format1" xml:space="preserve">
     <value>Общий стаж работы (лет): {0}</value>
   </data>
