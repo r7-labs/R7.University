@@ -23,12 +23,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -45,6 +42,18 @@ namespace R7.University.Division
 {
 	public partial class ViewDivision : DivisionPortalModuleBase, IActionable
 	{
+        private ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get
+            { 
+                if (viewModelContext == null)
+                    viewModelContext = new ViewModelContext (this);
+
+                return viewModelContext;
+            }
+        }
+
 		#region Handlers
 
 		/*
@@ -235,7 +244,10 @@ namespace R7.University.Division
 
 			// get & bind subdivisions
 			var subDivisions = DivisionController.GetObjects<DivisionInfo> (
-				                   "WHERE [ParentDivisionID] = @0 ORDER BY [Title]", division.DivisionID); 
+                "WHERE [ParentDivisionID] = @0", division.DivisionID)
+                .Where (d => IsEditable || d.IsPublished)
+                .OrderBy (d => d.Title)
+                .Select (d => new SubDivisionViewModel (d, ViewModelContext)); 
 			
             if (subDivisions.Any ())
 			{
@@ -299,36 +311,5 @@ namespace R7.University.Division
 		}
 
 		#endregion
-
-		protected void repeaterSubDivisions_ItemDataBound (object sender, RepeaterItemEventArgs e)
-		{
-			// exclude header & footer
-			if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-			{
-                var division = (DivisionInfo) e.Item.DataItem;
-
-                // find controls
-                var labelSubDivision = (Label) e.Item.FindControl ("labelSubDivision");
-                var linkSubDivision = (HyperLink) e.Item.FindControl ("linkSubDivision");
-
-				// home page 
-				int homeTabId;
-				if (int.TryParse (division.HomePage, out homeTabId) && TabId != homeTabId)
-				{
-					// has home page, display as link 
-					linkSubDivision.NavigateUrl = Globals.NavigateURL (homeTabId);
-					linkSubDivision.Text = division.Title;
-					labelSubDivision.Visible = false;
-				}
-				else
-				{
-					// no home page, display as label
-					labelSubDivision.Text = division.Title;
-					linkSubDivision.Visible = false;
-				}	
-			}
-		}
-
-	}
+    }
 }
-

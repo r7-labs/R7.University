@@ -20,3 +20,6 @@
 	margin-bottom:4px;
 	border:5px solid #eee
 }
+
+.Division li.not-published-division { color:#ddd }
+.Division li.not-published-division a { color:#ddd }

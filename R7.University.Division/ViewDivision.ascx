@@ -26,12 +26,11 @@
 		<asp:Label id="labelWorkingHours" runat="server" CssClass="_label" />
 	</div>
 
-	<asp:Repeater id="repeatSubDivisions" runat="server" OnItemDataBound="repeaterSubDivisions_ItemDataBound">
+	<asp:Repeater id="repeatSubDivisions" runat="server">
 		<HeaderTemplate><ul class="_section"></HeaderTemplate>
 		<ItemTemplate>
-			<li>
-				<asp:HyperLink id="linkSubDivision" runat="server" />
-				<asp:Label id="labelSubDivision" runat="server" />
+			<li class='<%# DataBinder.Eval(Container.DataItem, "CssClass") %>'>
+                <%# DataBinder.Eval(Container.DataItem, "HomePageLink") %>
 			</li>
 		</ItemTemplate>
 		<FooterTemplate></ul></FooterTemplate>
