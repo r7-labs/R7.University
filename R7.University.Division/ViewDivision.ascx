@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewDivision.ascx.cs" Inherits="R7.University.Division.ViewDivision" %>
 
-<asp:Panel id="panelDivision" runat="server" CssClass="Division">
+<asp:Panel id="panelDivision" runat="server" CssClass="university-division">
 	<asp:Label id="labelTitle" runat="server" CssClass="_section" />
 	<asp:HyperLink id="linkHomePage" runat="server" CssClass="_section" />
 
