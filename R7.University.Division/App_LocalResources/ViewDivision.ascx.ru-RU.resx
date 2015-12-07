@@ -24,4 +24,7 @@
   <data name="DocumentUrl.Text" xml:space="preserve">
     <value>Положение</value>
   </data>
+  <data name="labelSubDivisions.Text" xml:space="preserve">
+    <value>Подчиненные подразделения:</value>
+  </data>
 </root>

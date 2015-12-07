@@ -250,10 +250,14 @@ namespace R7.University.Division
                 .Select (d => new SubDivisionViewModel (d, ViewModelContext)); 
 			
             if (subDivisions.Any ())
-			{
-				repeatSubDivisions.DataSource = subDivisions;
-				repeatSubDivisions.DataBind ();
-			}
+            {
+                repeatSubDivisions.DataSource = subDivisions;
+                repeatSubDivisions.DataBind ();
+            }
+            else
+            {
+                panelSubDivisions.Visible = false;
+            }
 		}
 
 		#region IActionable implementation

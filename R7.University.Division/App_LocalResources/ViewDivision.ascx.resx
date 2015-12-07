@@ -24,4 +24,7 @@
   <data name="DocumentUrl.Text" xml:space="preserve">
     <value>Regulations</value>
   </data>
+  <data name="labelSubDivisions.Text" xml:space="preserve">
+    <value>Subdivisions:</value>
+  </data>
 </root>

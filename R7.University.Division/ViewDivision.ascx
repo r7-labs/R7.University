@@ -26,15 +26,20 @@
 		<asp:Label id="labelWorkingHours" runat="server" CssClass="_label" />
 	</div>
 
-	<asp:Repeater id="repeatSubDivisions" runat="server">
-		<HeaderTemplate><ul class="_section"></HeaderTemplate>
-		<ItemTemplate>
-			<li class='<%# DataBinder.Eval(Container.DataItem, "CssClass") %>'>
-                <%# DataBinder.Eval(Container.DataItem, "HomePageLink") %>
-			</li>
-		</ItemTemplate>
-		<FooterTemplate></ul></FooterTemplate>
-	</asp:Repeater>
+    <asp:Panel id="panelSubDivisions" runat="server" CssClass="panel-subdivisions">
+        <p>
+            <asp:Label id="labelSubDivisions" runat="server" resourcekey="labelSubDivisions" />
+        </p>
+        <asp:Repeater id="repeatSubDivisions" runat="server">
+    		<HeaderTemplate><ul></HeaderTemplate>
+    		<ItemTemplate>
+    			<li class='<%# DataBinder.Eval(Container.DataItem, "CssClass") %>'>
+                    <%# DataBinder.Eval(Container.DataItem, "HomePageLink") %>
+    			</li>
+    		</ItemTemplate>
+    		<FooterTemplate></ul></FooterTemplate>
+    	</asp:Repeater>
+    </asp:Panel>
 
 	<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" CssClass="_barcode" />
 </asp:Panel>
