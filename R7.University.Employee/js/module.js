@@ -1,14 +1,17 @@
 ﻿$(function () {
     // init description dialog
-    $("#dialog-description").dialog({
+    $(".dialog-employee-achievement-description").dialog({
         dialogClass:"dnnFormPopup",
-        autoOpen: false
+        modal: true,
+        autoOpen: false,
+        resizable: false
     });
 });
 
-function showDescription(element) {
-    $("#dialog-description").html("<p>" + element.getAttribute("data-description") + "</p>");
-    $("#dialog-description")
-        .dialog("option", "title", element.innerHTML)
+function showEmployeeAchievementDescriptionDialog(element) {
+    var dialogSelector = "#dialog-employee-achievement-description-" + element.getAttribute("data-module-id");
+    $(dialogSelector).html("<p>" + element.getAttribute("data-description") + "</p>");
+    $(dialogSelector)
+        .dialog("option", "title", element.getAttribute("data-dialog-title"))
         .dialog("open");
 }

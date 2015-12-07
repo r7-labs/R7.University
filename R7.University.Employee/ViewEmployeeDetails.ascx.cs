@@ -555,12 +555,16 @@ namespace R7.University.Employee
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
-                var description = Server.HtmlDecode (e.Row.Cells [4].Text);
-                if (!string.IsNullOrWhiteSpace (description))
+                var description = e.Row.Cells [4].Text;
+                if (!string.IsNullOrWhiteSpace (Server.HtmlDecode (description)))
                 {
-                    e.Row.Cells [1].CssClass = "has-description";
-                    e.Row.Cells [1].Attributes.Add ("data-description", description);
-                    e.Row.Cells [1].Attributes.Add ("onclick", "showDescription(this)");
+                    // convert to hyperlink
+                    e.Row.Cells [1].Text = string.Format ("<a href=\"#\" "
+                        + "data-module-id=\"{2}\" "
+                        + "data-description=\"{1}\" " 
+                        + "data-dialog-title=\"{0}\" "
+                        + "onclick=\"showEmployeeAchievementDescriptionDialog(this)\">{0}</a>", 
+                        e.Row.Cells [1].Text, description, ModuleId);
                 }
 
                 // make link to the document

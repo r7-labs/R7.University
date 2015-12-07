@@ -107,4 +107,4 @@
         <li><asp:HyperLink id="linkEdit" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdEdit" Visible="false" /></li>
     </ul>
 </asp:Panel>
-<div id="dialog-description"></div>
+<div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%= ModuleId %>"></div>

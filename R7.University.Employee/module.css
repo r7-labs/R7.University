@@ -85,6 +85,3 @@
 .employeeDetails ._barcode { border:5px solid #eee }
 
 .employeeDetails ul.dnnActions { display:block }
-
-.employeeDetails .grid-achievements td.has-description,
-.employeeDetails .grid-experience td.has-description { cursor:help }
