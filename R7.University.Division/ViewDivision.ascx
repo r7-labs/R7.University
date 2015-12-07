@@ -1,5 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewDivision.ascx.cs" Inherits="R7.University.Division.ViewDivision" %>
+<%@ Register TagPrefix="dnn" TagName="jQuery" Src="~/Admin/Skins/jQuery.ascx" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
+<dnn:jQuery runat="server" jQueryUI="true" DnnjQueryPlugins="true" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/js/module.js" />
 <asp:Panel id="panelDivision" runat="server" CssClass="university-division">
 	<asp:Label id="labelTitle" runat="server" CssClass="_section" />
 	<asp:HyperLink id="linkHomePage" runat="server" CssClass="_section" />
@@ -41,5 +45,10 @@
     	</asp:Repeater>
     </asp:Panel>
 
-	<asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" CssClass="_barcode" />
+    <asp:HyperLink id="linkBarcode" runat="server" resourcekey="linkBarcode"
+        CssClass="btn btn-default link-barcode" onclick="showDivisionBarcodeDialog(this)" />
+
+    <div class="dialog-division-barcode" id="dialog-division-barcode-<%= ModuleId %>">
+        <asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" Style="margin-top:10px" />
+    </div>
 </asp:Panel>

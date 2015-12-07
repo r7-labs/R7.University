@@ -85,6 +85,7 @@
     <Content Include="EditDivision.ascx" />
     <Content Include="admin.css" />
     <Content Include="packages.config" />
+    <Content Include="js\module.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewDivision.ascx.resx" />
@@ -140,5 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="js\" />
   </ItemGroup>
 </Project>

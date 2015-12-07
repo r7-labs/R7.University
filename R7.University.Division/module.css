@@ -5,9 +5,10 @@
 
 .university-division .panel-subdivisions,
 .university-division ._section, 
-.university-division ._barcode
+.university-division ._barcode,
+.university-division .link-barcode
 { 
-	margin-top:8px 
+	margin-top:8px
 }	
 
 .university-division ._label 
@@ -16,11 +17,7 @@
 	margin-right:8px
 }
 
-.university-division ._barcode 
-{
-	margin-bottom:4px;
-	border:5px solid #eee
-}
-
 .university-division li.not-published-division { color:#ddd }
 .university-division li.not-published-division a { color:#ddd }
+
+.university-division .dialog-division-barcode { display:none }

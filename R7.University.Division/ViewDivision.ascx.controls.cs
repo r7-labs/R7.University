@@ -28,5 +28,6 @@ namespace R7.University.Division
         protected Panel panelSubDivisions;
         protected Label labelSubDivisions;
         protected Repeater repeatSubDivisions;
+        protected HyperLink linkBarcode;
 	}
 }

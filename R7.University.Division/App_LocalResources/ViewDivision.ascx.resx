@@ -27,4 +27,7 @@
   <data name="labelSubDivisions.Text" xml:space="preserve">
     <value>Subdivisions:</value>
   </data>
+  <data name="linkBarcode.Text" xml:space="preserve">
+    <value><![CDATA[<span class="glyphicon glyphicon-qrcode"></span> Show QR-code]]></value>
+  </data>
 </root>

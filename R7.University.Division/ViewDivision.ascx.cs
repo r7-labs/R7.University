@@ -229,9 +229,13 @@ namespace R7.University.Division
 			}
 			else
 				linkDocumentUrl.Visible = false;
+            
+            // setup barcode button
+            linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
+            linkBarcode.Attributes.Add ("data-dialog-title", division.Title);
 
 			// barcode image test
-			var barcodeWidth = DivisionSettings.BarcodeWidth;
+            var barcodeWidth = 192; // DivisionSettings.BarcodeWidth;
             imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
                 "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
 				barcodeWidth, barcodeWidth, 
