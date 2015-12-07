@@ -176,8 +176,6 @@
     <Compile Include="EditDocumentType.ascx.controls.cs">
       <DependentUpon>EditDocumentType.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\DocumentTypeViewModel.cs" />
-    <Compile Include="ViewModels\DocumentViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

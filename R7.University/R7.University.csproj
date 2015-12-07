@@ -90,7 +90,6 @@
     <Compile Include="Models\Delegates.cs" />
     <Compile Include="Models\DivisionInfo.cs" />
     <Compile Include="Models\DocumentInfo.cs" />
-    <Compile Include="Models\DocumentInfoEx.cs" />
     <Compile Include="Models\DocumentTypeInfo.cs" />
     <Compile Include="Models\EduLevelInfo.cs" />
     <Compile Include="Models\EduProgramInfo.cs" />
