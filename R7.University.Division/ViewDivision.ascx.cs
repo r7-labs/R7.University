@@ -234,13 +234,14 @@ namespace R7.University.Division
             linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
             linkBarcode.Attributes.Add ("data-dialog-title", division.Title);
 
-			// barcode image test
-            var barcodeWidth = 192; // DivisionSettings.BarcodeWidth;
+			// barcode image
+            // TODO: Move barcode width to global settings
+            const int barcodeWidth = 192;
             imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
                 "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
-				barcodeWidth, barcodeWidth, 
+                barcodeWidth, barcodeWidth,
 				Server.UrlEncode (division.VCard.ToString ()
-						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
+				    .Replace ("+", "%2b")) // fix for "+" signs in phone numbers
             ));
 
 			imageBarcode.ToolTip = Localization.GetString ("imageBarcode.ToolTip", LocalResourceFile);
