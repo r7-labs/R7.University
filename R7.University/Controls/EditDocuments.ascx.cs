@@ -34,6 +34,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Localization;
 using R7.University.ControlExtensions;
+using DotNetNuke.Common.Utilities;
 
 namespace R7.University.Controls
 {
@@ -102,11 +103,11 @@ namespace R7.University.Controls
             gridDocuments.LocalizeColumns (LocalResourceFile);
         }
 
-        public void SetDocuments (int itemId, IEnumerable<DocumentInfoEx> documents)
+        public void SetDocuments (int itemId, IEnumerable<DocumentInfo> documentsWithType)
         { 
             ItemId = itemId;
 
-            var documentViewModels = documents.Select (d => new DocumentViewModel (d, ViewModelContext)).ToList ();
+            var documentViewModels = documentsWithType.Select (d => new DocumentViewModel (d, ViewModelContext)).ToList ();
             ViewStateDocuments = documentViewModels;
             gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documentViewModels);
             gridDocuments.DataBind ();
@@ -127,15 +128,18 @@ namespace R7.University.Controls
             ViewState ["documentTypes"] = documentTypes.ToList ();
         }
 
-        protected string GetDocumentType (int? documentTypeId)
+        protected DocumentTypeInfo GetDocumentType (int? documentTypeId)
         {
             if (documentTypeId != null)
             {
                 var documentTypes = (List<DocumentTypeInfo>) ViewState ["documentTypes"];
-                return documentTypes.Single (dt => dt.DocumentTypeID == documentTypeId.Value).Type;
+                return documentTypes.Single (dt => dt.DocumentTypeID == documentTypeId.Value);
             }
 
-            return string.Empty;
+            return new DocumentTypeInfo { 
+                Type = string.Empty,
+                DocumentTypeID = Null.NullInteger
+            };
         }
 
         #region Handlers
@@ -167,7 +171,7 @@ namespace R7.University.Controls
 
                 document.Title = textDocumentTitle.Text.Trim ();
                 document.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
-                document.Type = GetDocumentType (document.DocumentTypeID);
+                document.DocumentType = GetDocumentType (document.DocumentTypeID);
                 document.SortIndex = int.Parse (textDocumentSortIndex.Text);
                 document.StartDate = datetimeDocumentStartDate.SelectedDate;
                 document.EndDate = datetimeDocumentEndDate.SelectedDate;

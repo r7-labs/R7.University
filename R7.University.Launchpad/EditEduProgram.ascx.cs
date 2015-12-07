@@ -6,6 +6,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University;
 using R7.University.ControlExtensions;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Launchpad
 {
@@ -115,8 +116,11 @@ namespace R7.University.Launchpad
 
                             auditControl.Bind (item);
 
-                            var documents = LaunchpadController.GetObjects<DocumentInfoEx> (string.Format (
-                                "WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID)).ToList ();
+                            var documents = LaunchpadController.GetObjects<DocumentInfo> (
+                                string.Format ("WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID))
+                                .WithDocumentType (LaunchpadController)
+                                .ToList ();
+                            
                             formEditDocuments.SetDocuments (item.EduProgramID, documents);
 						}
 						else

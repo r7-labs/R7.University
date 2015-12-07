@@ -27,14 +27,13 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.University.Utilities;
 
 namespace R7.University.Controls
 {
     [Serializable]
-    public class DocumentViewModel: DocumentInfoEx
+    public class DocumentViewModel: DocumentInfo
     {
         public int ViewItemID { get; set; }
 
@@ -45,9 +44,16 @@ namespace R7.University.Controls
         public string LocalizedType
         { 
             get
-            { 
-                var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", Context.LocalResourceFile);
-                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
+            {
+                if (DocumentType != null)
+                {
+                    var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentType.Type + ".Text", 
+                        Context.LocalResourceFile);
+                    
+                    return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentType.Type;
+                }
+
+                return string.Empty;
             }
         }
 
@@ -73,9 +79,9 @@ namespace R7.University.Controls
             ViewItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public DocumentViewModel (DocumentInfoEx document, ViewModelContext viewContext): this ()
+        public DocumentViewModel (DocumentInfo document, ViewModelContext viewContext): this ()
         {
-            CopyCstor.Copy<DocumentInfoEx> (document, this);
+            CopyCstor.Copy<DocumentInfo> (document, this);
             Context = viewContext;
         }
 
