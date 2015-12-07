@@ -58,8 +58,6 @@ namespace R7.University.Division
 
                     // select node and expand tree to it
                     Utils.SelectAndExpandByValue (treeDivisions, DivisionSettings.DivisionID.ToString ());
-					
-					textBarcodeWidth.Text = DivisionSettings.BarcodeWidth.ToString ();
 				}
 			}
 			catch (Exception ex)
@@ -76,7 +74,6 @@ namespace R7.University.Division
 			try
 			{
 				DivisionSettings.DivisionID = int.Parse (treeDivisions.SelectedValue);
-				DivisionSettings.BarcodeWidth = int.Parse (textBarcodeWidth.Text);
 
 				Utils.SynchronizeModule (this);
 			}

@@ -72,16 +72,6 @@ namespace R7.University.Division
 			}
 		}
 
-		/// <summary>
-		/// Gets or sets the width of the bar code.
-		/// </summary>
-		/// <value>The width of the bar code.</value>
-		public int BarcodeWidth
-		{
-			get { return ReadSetting<int> ("Division_BarcodeWidth", 120); }
-			set { WriteTabModuleSetting<int> ("Division_BarcodeWidth", value); }
-		}
-
 		#endregion
 	}
 }
