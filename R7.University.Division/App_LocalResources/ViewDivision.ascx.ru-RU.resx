@@ -16,8 +16,11 @@
     <value>Отсканируй меня!</value>
   </data>
  <data name="imageBarcode.AlternateText" xml:space="preserve">
-    <value>Штрих-код</value>
+    <value>QR-код</value>
   </data>  
+  <data name="BarcodeScan.Text" xml:space="preserve">
+    <value>Используйте приложение "сканер штрих-кодов" Вашего мобильного устройства для того, чтобы добавить контакты подразделения в свою адресную книгу.</value>
+  </data>
   <data name="linkSearchByTerm.Text" xml:space="preserve">
     <value>Связанные ресурсы</value>
   </data>

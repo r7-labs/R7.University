@@ -16,7 +16,10 @@
     <value>Scan me!</value>
   </data>
  <data name="imageBarcode.AlternateText" xml:space="preserve">
-    <value>Barcode</value>
+    <value>QR-code</value>
+  </data>
+  <data name="BarcodeScan.Text" xml:space="preserve">
+    <value>Use your mobile device barcode scanning application to add division's contacts to your address book.</value>
   </data>
   <data name="linkSearchByTerm.Text" xml:space="preserve">
     <value>Linked resources</value>

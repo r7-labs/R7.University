@@ -47,6 +47,8 @@
     <asp:HyperLink id="linkBarcode" runat="server" resourcekey="linkBarcode"
         CssClass="btn btn-default link-barcode" onclick="showDivisionBarcodeDialog(this)" />
     <div class="dialog-division-barcode" id="dialog-division-barcode-<%= ModuleId %>">
-        <asp:Image id="imageBarcode" runat="server" resourcekey="imageBarcode" Style="margin-top:10px" />
+        <asp:Image id="imageBarcode" runat="server" Style="margin-top:10px" />
+        <asp:Label runat="server" resourcekey="BarcodeScan.Text" 
+            CssClass="dnnFormMessage" Style="margin-top:10px;margin-bottom:0" />
     </div>
 </asp:Panel>
