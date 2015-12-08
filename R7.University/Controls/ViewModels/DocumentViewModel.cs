@@ -96,13 +96,14 @@ namespace R7.University.Controls
         public DocumentInfo NewDocumentInfo ()
         {
             return new DocumentInfo {
-                Title = Title,
+                DocumentID = DocumentID,
+                DocumentTypeID = DocumentTypeID,
                 ItemID = ItemID,
+                Title = Title,
                 Url = Url,
                 SortIndex = SortIndex,
                 StartDate = StartDate,
-                EndDate = EndDate,
-                DocumentTypeID = DocumentTypeID
+                EndDate = EndDate
             };
         }
     }
