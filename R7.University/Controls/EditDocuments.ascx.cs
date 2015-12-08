@@ -77,7 +77,15 @@ namespace R7.University.Controls
 
         protected PortalModuleBase Module;
 
-        protected int ItemId;
+        protected int ItemId
+        {
+            get 
+            { 
+                var obj = ViewState ["itemId"];
+                return (obj != null) ? (int) obj : 0;
+            }
+            set { ViewState ["itemId"] = value; }
+        }
 
         private ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
