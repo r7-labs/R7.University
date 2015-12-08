@@ -139,8 +139,6 @@
     <None Include="SqlDataProvider\01.01.01.SqlDataProvider" />
     <None Include="SqlDataProvider\Tweaks.SqlDataProvider" />
     <None Include="SqlDataProvider\Uninstall.SqlDataProvider" />
-    <None Include="ReleaseNotes.txt" />
-    <None Include="License.txt" />
     <None Include="SqlDataProvider\01.01.02.SqlDataProvider" />
     <None Include="images\nophoto_en.png" />
     <None Include="images\nophoto_en_square.png" />
@@ -167,6 +165,8 @@
     <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="license.txt" />
+    <None Include="releaseNotes.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

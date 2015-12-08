@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="01.06.02">
+		<package name="R7.University" type="Library" version="01.06.03">
 			<friendlyName>R7.University</friendlyName>
 			<description>This is a common library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Division, Employee, EmployeeList, etc.</description>
 			<owner>
@@ -9,8 +9,8 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
+			<license src="license.txt" />
+			<releaseNotes src="releaseNotes.txt" />
 			<dependencies>
 				<dependency type="CoreVersion">07.04.00</dependency>
 				<!-- <dependency type="type">AjaxControlToolkit.ComboBox</dependency> -->
@@ -134,7 +134,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.06.02">
+		<package name="R7.University.Launchpad" type="Module" version="01.06.03">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -143,11 +143,9 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
-			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-			</dependencies>
+			<license />
+			<releaseNotes />
+			<dependencies />
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -307,7 +305,7 @@
 				</component>
       		</components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="01.06.02">
+		<package name="R7.University.Employee" type="Module" version="01.06.03">
 			<friendlyName>_Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -316,11 +314,9 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
-			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-			</dependencies>
+            <license />
+            <releaseNotes />
+            <dependencies />
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -411,7 +407,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDetails" type="Module" version="01.06.02">
+		<package name="R7.University.EmployeeDetails" type="Module" version="01.06.03">
 			<friendlyName>_EmployeeDetails</friendlyName>
 			<description>This is a module to display detailed information about single employee.</description>
 			<owner>
@@ -420,11 +416,9 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
-			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-			</dependencies>
+            <license />
+            <releaseNotes />
+            <dependencies />
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -495,7 +489,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="01.06.02">
+		<package name="R7.University.EmployeeList" type="Module" version="01.06.03">
 			<friendlyName>_EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
@@ -504,11 +498,9 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
-			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-			</dependencies>
+            <license />
+            <releaseNotes />
+            <dependencies />
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -588,7 +580,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Division" type="Module" version="01.06.02">
+		<package name="R7.University.Division" type="Module" version="01.06.03">
 			<friendlyName>_Division</friendlyName>
 			<description>This is a module to display information about single division.</description>
 			<owner>
@@ -597,11 +589,9 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
-			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-			</dependencies>
+            <license />
+            <releaseNotes />
+            <dependencies />
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -681,7 +671,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDirectory" type="Module" version="01.06.02">
+		<package name="R7.University.EmployeeDirectory" type="Module" version="01.06.03">
 			<friendlyName>R7.University.EmployeeDirectory</friendlyName>
 			<description>This is a module to display information about employees.</description>
 			<owner>
@@ -690,11 +680,9 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
-			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-			</dependencies>
+            <license />
+            <releaseNotes />
+            <dependencies />
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -774,7 +762,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.DivisionDirectory" type="Module" version="01.06.02">
+		<package name="R7.University.DivisionDirectory" type="Module" version="01.06.03">
 			<friendlyName>R7.University.DivisionDirectory</friendlyName>
 			<description>This is a module to display information about divisions.</description>
 			<owner>
@@ -783,11 +771,9 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="License.txt" />
-			<releaseNotes src="ReleaseNotes.txt" />
-			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-			</dependencies>
+            <license />
+            <releaseNotes />
+            <dependencies />
 			<components>
 				<component type="Module">
 					<desktopModule>
@@ -880,7 +866,7 @@
 				</component>
 			</components>
 		</package>
-        <package name="R7.University.EduProgramDirectory" type="Module" version="01.06.02">
+        <package name="R7.University.EduProgramDirectory" type="Module" version="01.06.03">
             <friendlyName>R7.University.EduProgramDirectory</friendlyName>
             <description>This is a module to display information about educational programs.</description>
             <owner>
@@ -889,11 +875,9 @@
                 <url>https://github.com/roman-yagodin/R7.University</url>
                 <email>roman.yagodin@gmail.com</email>
             </owner>
-            <license src="License.txt" />
-            <releaseNotes src="ReleaseNotes.txt" />
-            <dependencies>
-                <dependency type="CoreVersion">07.04.00</dependency>
-            </dependencies>
+            <license />
+            <releaseNotes />
+            <dependencies />
             <components>
                 <component type="Module">
                     <desktopModule>
