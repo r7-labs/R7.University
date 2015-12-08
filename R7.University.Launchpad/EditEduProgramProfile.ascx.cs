@@ -10,6 +10,7 @@ using DotNetNuke.UI.UserControls;
 using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Launchpad
 {
@@ -39,6 +40,8 @@ namespace R7.University.Launchpad
             
             comboEduProgram.DataBind ();
             comboEduProgram.SelectedIndex = 0;
+
+            formEditDocuments.OnInit (this, Controller.GetObjects<DocumentTypeInfo> ());
         }
 
         protected override void OnLoadItem (EduProgramProfileInfo item)
@@ -50,6 +53,13 @@ namespace R7.University.Launchpad
             comboEduProgram.SelectByValue (item.EduProgramID);
 
             auditControl.Bind (item);
+
+            var documents = Controller.GetObjects<DocumentInfo> (
+                string.Format ("WHERE ItemID = N'EduProgramProfileID={0}'", item.EduProgramProfileID))
+                .WithDocumentType (Controller)
+                .ToList ();
+
+            formEditDocuments.SetDocuments (item.EduProgramProfileID, documents);
         }
 
         protected override void OnUpdateItem (EduProgramProfileInfo item)
@@ -81,6 +91,38 @@ namespace R7.University.Launchpad
                     item.CreatedByUserID = item.LastModifiedByUserID;
                 }
             }
+
+            Controller.UpdateDocuments (formEditDocuments.GetDocuments (), 
+                "EduProgramProfileID", item.EduProgramProfileID);
+        }
+
+        protected int SelectedTab
+        {
+            get 
+            {
+                // get postback initiator control
+                var eventTarget = Request.Form ["__EVENTTARGET"];
+
+                if (!string.IsNullOrEmpty (eventTarget))
+                {
+                    // check if postback initiator is on Documents tab
+                    if (eventTarget.Contains ("$" + formEditDocuments.ID))
+                    {
+                        ViewState ["SelectedTab"] = 1;
+                        return 1;
+                    }
+                }
+
+                // otherwise, get current tab from viewstate
+                var obj = ViewState ["SelectedTab"];
+                if (obj != null)
+                {
+                    return (int) obj;
+                }
+
+                return 0;
+            }
+            set { ViewState ["SelectedTab"] = value; }
         }
 	}
 }

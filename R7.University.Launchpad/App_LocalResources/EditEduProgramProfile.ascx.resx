@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="CommonTab.Text" xml:space="preserve">
+        <value>Educational Program Profile</value>
+    </data>
+    <data name="DocumentsTab.Text" xml:space="preserve">
+        <value>Documents</value>
+    </data>
     <data name="labelProfileCode.Text" xml:space="preserve">
         <value>Profile Code:</value>
     </data>

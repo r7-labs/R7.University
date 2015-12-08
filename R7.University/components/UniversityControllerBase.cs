@@ -365,7 +365,63 @@ namespace R7.University
                     throw;
                 }
             }
+        }
 
+        public void UpdateDocuments (IList<DocumentInfo> documents, string itemKey, int itemId)
+        {
+            using (var ctx = DataContext.Instance ())
+            {
+                ctx.BeginTransaction ();
+
+                try
+                {
+                    IList<DocumentInfo> originalDocuments = null;
+                    var allNew = documents.All (d => d.DocumentID <= 0);
+
+                    if (!allNew)
+                    {
+                        originalDocuments = GetObjects<DocumentInfo> (string.Format (
+                            "WHERE ItemID = N'{0}={1}'", itemKey, itemId)).ToList ();
+                    }
+
+                    foreach (var document in documents)
+                    {
+                        if (document.DocumentID <= 0)
+                        {
+                            // document.ItemID = itemKey + "=" + itemId;
+                            Add<DocumentInfo> (document);
+                        }
+                        else
+                        {
+                            Update<DocumentInfo> (document);
+
+                            // documents with same ID could be different objects!
+                            var updatedDocument = originalDocuments.FirstOrDefault (d => d.DocumentID == document.DocumentID);
+                            if (updatedDocument != null)
+                            {
+                                // do not delete this document later
+                                originalDocuments.Remove (updatedDocument);
+                            }
+                        }
+                    }
+
+                    if (!allNew)
+                    {
+                        // delete remaining documents
+                        foreach (var document in originalDocuments)
+                        {
+                            Delete<DocumentInfo> (document);
+                        }
+                    }
+
+                    ctx.Commit ();
+                }
+                catch
+                {
+                    ctx.RollbackTransaction ();
+                    throw;
+                }
+            }
         }
 
 		#endregion
