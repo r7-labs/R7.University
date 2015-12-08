@@ -55,9 +55,6 @@
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.2.0.28342\lib\net45\DotNetNuke.R7.dll</HintPath>
-    </Reference>
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\packages\AjaxControlToolkit.15.1.3.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
@@ -75,6 +72,9 @@
     </Reference>
     <Reference Include="DotNetNuke.Web">
       <HintPath>..\packages\DotNetNuke.WebApi.7.4.2.216\lib\net40\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.R7">
+      <HintPath>..\packages\DotNetNuke.R7.0.2.1\lib\net45\DotNetNuke.R7.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
