@@ -285,6 +285,6 @@ Global
 		$0.XmlFormattingPolicy = $43
 		$43.inheritsSet = null
 		$43.scope = application/config+xml
-		version = 1.6.2
+		version = 1.6.3
 	EndGlobalSection
 EndGlobal

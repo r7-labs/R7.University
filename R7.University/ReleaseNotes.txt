@@ -1,4 +1,21 @@
-﻿<h3>Version 1.6.2</h3>
+﻿<h3>Version 1.6.3</h3>
+<p>End-user changes:</p>
+<ul>
+    <li>Display employee and division barcodes in jQuery UI popups.</li>
+    <li>EmployeeDetails: Remove barcode tab.</li>
+    <li>EmployeeDetails: Use hyperlink as available description indicator for achiements.</li>
+    <li>Division: Remove Division_BarcodeWidth setting.</li>
+    <li>Fix #87: Division module shows not published subdivisions.</li>
+    <li>Add label for subdivisions list, hide subdivisions panel if there are no items to display.</li>
+</ul>
+<p>Developer changes:</p>
+<ul>
+    <li>Implement document editing as user control.</li>
+    <li>Allow use viewmodel context in custom controls.</li>
+    <li>Include .pdb's in local deploy to allow debugging (.NET only).</li>
+</ul>
+
+<h3>Version 1.6.2</h3>
 <ul>
     <li>EditEmployee: Better sorting for edu. program profiles dropdown.</li>
     <li>EmployeeDetails: Show achivement description in the jQuery UI popup.</li>

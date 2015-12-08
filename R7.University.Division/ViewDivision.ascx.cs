@@ -93,6 +93,8 @@ namespace R7.University.Division
 					{
 						if (IsEditable)
 						{
+                            // REVIEW: If division not published, hide module for non-editors?
+
 							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
 							// hide only module content
 							panelDivision.Visible = false;
