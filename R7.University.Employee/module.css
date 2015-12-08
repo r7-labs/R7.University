@@ -34,52 +34,46 @@
 
 /* Employee details styles */
 
-.employeeDetails .employeeDetailsTable 
+.university-employee-details .employeeDetailsTable 
 { 
     display:table;
     width:100%
 }
 
-.employeeDetails ._section,
-.employeeDetails ._positions,
-.employeeDetails ._website,
-.employeeDetails ._userprofile
+.university-employee-details ._section,
+.university-employee-details ._positions,
+.university-employee-details ._website,
+.university-employee-details ._userprofile
 {
 	display:block
 }
 
-.employeeDetails ._section,
-.employeeDetails ._positions,
-.employeeDetails ._userprofile
-{
-	margin-top:8px
-}
+.university-employee-details ._section,
+.university-employee-details ._positions,
+.university-employee-details ._userprofile { margin-top:8px }
     
-.employeeDetails ._label,
-.employeeDetails ._email,
-.employeeDetails ._barcode
-{
-	display:inline-block
+.university-employee-details ._label,
+.university-employee-details ._email { display:inline-block }
 }
 
-.employeeDetails ._label,
-.employeeDetails ._email,
-.employeeDetails ._website
-{
-	margin-right:8px
-}
+.university-employee-details ._label,
+.university-employee-details ._email,
+.university-employee-details ._website { margin-right:8px }
 
-.employeeDetails ._photo
+.university-employee-details ._photo
 {
     display:table-cell;
 	margin-right:10px;
 	margin-top:3px
 }
 
-.employeeDetails ._tabs 
+.university-employee-details ._tabs 
 { 
     display:table-cell;
     vertical-align:top;
 }
 
-.employeeDetails ul.dnnActions { display:block }
+.university-employee-details ul.dnnActions { display:block }
+
+.university-employee-details .dialog-employee-barcode, 
+.university-employee-details .dialog-employee-achievement-description { display:none }
