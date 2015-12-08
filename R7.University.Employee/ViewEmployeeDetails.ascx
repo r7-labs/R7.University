@@ -99,14 +99,15 @@
     <ul class="dnnActions dnnClear">
         <li><asp:HyperLink id="linkReturn" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdReturn" /></li>
         <li><asp:HyperLink id="linkVCard" runat="server" CssClass="dnnSecondaryAction" ResourceKey="VCard.Action" Visible="false" /></li>
-        <li><asp:HyperLink id="linkEdit" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdEdit" Visible="false" /></li>
         <li><asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" 
             CssClass="dnnSecondaryAction" onclick="showEmployeeBarcodeDialog(this)" />
         </li>
+        <li><asp:HyperLink id="linkEdit" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdEdit" Visible="false" /></li>
     </ul>
 </asp:Panel>
 <div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%= ModuleId %>"></div>
 <div class="dialog-employee-barcode" id="dialog-employee-barcode-<%= ModuleId %>">
-    <asp:Label runat="server" resourcekey="BarcodeScan.Text" CssClass="dnnFormMessage" />
-    <asp:Image id="imageBarcode" runat="server" />
+    <asp:Image id="imageBarcode" runat="server" Style="margin-top:10px" />
+    <asp:Label runat="server" resourcekey="BarcodeScan.Text" 
+        CssClass="dnnFormMessage" Style="margin-top:10px;margin-bottom:0" />
 </div>

@@ -6,14 +6,17 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;О модуле Employee Details&lt;/p&gt;</value>
     </data>
+    <data name="imageBarcode.ToolTip" xml:space="preserve">
+        <value>Отсканируй меня!</value>
+    </data>
+    <data name="imageBarcode.AlternateText" xml:space="preserve">
+        <value>QR-код</value>
+    </data>  
 	<data name="BarcodeScan.Text" xml:space="preserve">
-    <value>Используйте приложение "сканер штрих-кодов", установленное в Вашем мобильном устройстве, для того, чтобы добавить визитку в свою адресную книгу.</value>
+    <value>Используйте приложение "сканер штрих-кодов" Вашего мобильного устройства для того, чтобы добавить контакты сотрудника в свою адресную книгу.</value>
   </data>
-	<data name="BarcodeTab.Text" xml:space="preserve">
+	<data name="Barcode.Action" xml:space="preserve">
     <value>QR-код</value>
-  </data>
-  <data name="Barcode.Action" xml:space="preserve">
-    <value>Показать QR-код</value>
   </data>
 	<data name="ExperienceYears.Format1" xml:space="preserve">
     <value>Общий стаж работы (лет): {0}</value>
