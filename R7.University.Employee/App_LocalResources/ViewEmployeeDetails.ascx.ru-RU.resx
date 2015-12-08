@@ -11,20 +11,20 @@
     </data>
     <data name="imageBarcode.AlternateText" xml:space="preserve">
         <value>QR-код</value>
-    </data>  
-	<data name="BarcodeScan.Text" xml:space="preserve">
-    <value>Используйте приложение "сканер штрих-кодов" Вашего мобильного устройства для того, чтобы добавить контакты сотрудника в свою адресную книгу.</value>
-  </data>
-	<data name="Barcode.Action" xml:space="preserve">
-    <value><![CDATA[<span class="glyphicon glyphicon-qrcode"></span> Показать QR-код]]></value>
-  </data>
-	<data name="ExperienceYears.Format1" xml:space="preserve">
-    <value>Общий стаж работы (лет): {0}</value>
-  </data>
-	<data name="ExperienceYears.Format2" xml:space="preserve">
-    <value>Стаж работы по специальности (лет): {0}</value>
-  </data>
-	<data name="ExperienceYears.Format3" xml:space="preserve">
-    <value>Общий стаж работы (лет): {0}, из них {1} по специальности</value>
-  </data>
+    </data>
+    <data name="BarcodeScan.Text" xml:space="preserve">
+        <value>Используйте приложение "сканер штрих-кодов" Вашего мобильного устройства для того, чтобы добавить контакты сотрудника в свою адресную книгу.</value>
+    </data>
+    <data name="Barcode.Action" xml:space="preserve">
+        <value><![CDATA[<span class="glyphicon glyphicon-qrcode"></span> Показать QR-код]]></value>
+    </data>
+    <data name="ExperienceYears.Format1" xml:space="preserve">
+        <value>Общий стаж работы (лет): {0}</value>
+    </data>
+    <data name="ExperienceYears.Format2" xml:space="preserve">
+        <value>Стаж работы по специальности (лет): {0}</value>
+    </data>
+    <data name="ExperienceYears.Format3" xml:space="preserve">
+        <value>Общий стаж работы (лет): {0}, из них {1} по специальности</value>
+    </data>
 </root>
