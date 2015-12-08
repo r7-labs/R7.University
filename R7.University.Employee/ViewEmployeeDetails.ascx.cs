@@ -560,8 +560,7 @@ namespace R7.University.Employee
                 if (!string.IsNullOrWhiteSpace (Server.HtmlDecode (description)))
                 {
                     // convert to hyperlink
-                    e.Row.Cells [1].Text = string.Format ("<a href=\"#\" "
-                        + "data-module-id=\"{2}\" "
+                    e.Row.Cells [1].Text = string.Format ("<a data-module-id=\"{2}\" "
                         + "data-description=\"{1}\" " 
                         + "data-dialog-title=\"{0}\" "
                         + "onclick=\"showEmployeeAchievementDescriptionDialog(this)\">{0}</a>", 
