@@ -1,19 +1,13 @@
-﻿.university-division ._section
-{ 
-	display:block 
-}
+﻿.university-division ._section { display:block }
 
+.university-division ._section,
 .university-division .panel-subdivisions,
-.university-division ._section, 
-.university-division ._barcode,
-.university-division .link-barcode
-{ 
-	margin-top:8px
+.university-division .link-barcode { margin-top:8px }
 }	
 
-.university-division ._label 
+.university-division ._label
 { 
-	display:inline-block;	
+	display:inline-block;
 	margin-right:8px
 }
 
