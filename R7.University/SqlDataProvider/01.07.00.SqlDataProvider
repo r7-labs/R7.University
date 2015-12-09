@@ -55,3 +55,7 @@ BEGIN
 END
 GO
 
+-- Refresh views
+
+EXECUTE sp_refreshview N'{databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]';
+GO
