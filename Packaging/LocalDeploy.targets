@@ -42,8 +42,8 @@
             <LocalDeployResourceFilteredFiles Include="@(LocalDeployResourceFiles)" Exclude="@(LocalDeployExcludeFiles)" />
         </ItemGroup>
         <!-- Copy binaries -->
-        <Copy SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnLocalDeployPath)\bin" />
+        <Copy SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnLocalDeployPath)\bin" SkipUnchangedFiles="true" />
         <!-- Copy filtered Resource files to tmp\Resources dir -->
-        <Copy SourceFiles="@(LocalDeployResourceFilteredFiles)" DestinationFolder="$(DnnLocalDeployPath)\DesktopModules\R7.University\%(RecursiveDir)" />
+        <Copy SourceFiles="@(LocalDeployResourceFilteredFiles)" DestinationFolder="$(DnnLocalDeployPath)\DesktopModules\R7.University\%(RecursiveDir)" SkipUnchangedFiles="true" />
     </Target>
 </Project>
