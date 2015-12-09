@@ -48,6 +48,8 @@ namespace R7.University.Launchpad
         {
             textProfileCode.Text = item.ProfileCode;
             textProfileTitle.Text = item.ProfileTitle;
+            dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
+            dateCommunityAccreditedToDate.SelectedDate = item.CommunityAccreditedToDate;
             datetimeStartDate.SelectedDate = item.StartDate;
             datetimeEndDate.SelectedDate = item.EndDate;
             comboEduProgram.SelectByValue (item.EduProgramID);
@@ -67,6 +69,8 @@ namespace R7.University.Launchpad
             // fill the object
             item.ProfileCode = textProfileCode.Text.Trim ();
             item.ProfileTitle = textProfileTitle.Text.Trim ();
+            item.AccreditedToDate = dateAccreditedToDate.SelectedDate;
+            item.CommunityAccreditedToDate = dateCommunityAccreditedToDate.SelectedDate;
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
             item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);

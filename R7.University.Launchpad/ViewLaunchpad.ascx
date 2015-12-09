@@ -236,6 +236,8 @@
                         <asp:BoundField DataField="ProfileTitle" SortExpression="ProfileTitle" HeaderText="ProfileTitle" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="StartDate" SortExpression="StartDate" HeaderText="StartDate" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="EndDate" SortExpression="EndDate" HeaderText="EndDate" ConvertEmptyStringToNull="false" />
+                        <asp:BoundField DataField="AccreditedToDate" SortExpression="AccreditedToDate" HeaderText="AccreditedToDate" />
+                        <asp:BoundField DataField="CommunityAccreditedToDate" SortExpression="CommunityAccreditedToDate" HeaderText="CommunityAccreditedToDate" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>

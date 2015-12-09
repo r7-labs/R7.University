@@ -36,6 +36,18 @@
     <data name="labelEduProgram.Help">
         <value>Select the educational program to which the profile belongs.</value>
     </data>
+    <data name="labelAccreditedToDate.Text">
+        <value>Accredited to:</value>
+    </data>
+    <data name="labelAccreditedToDate.Help">
+        <value>Enter the date until current educational was accredited to.</value>
+    </data>
+    <data name="labelCommunityAccreditedToDate.Text">
+        <value>Accredited by Community to:</value>
+    </data>
+    <data name="labelCommunityAccreditedToDate.Help">
+        <value>Enter the date until current educational was accredited to by community.</value>
+    </data>
     <data name="labelStartDate.Text">
         <value>Start Publication:</value>
     </data>
