@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramProfileExtensions.cs
+// EduProgramProfileFormExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -31,37 +31,26 @@ using DotNetNuke.R7;
 
 namespace R7.University.ModelExtensions
 {
-    public static class EduProgramProfileExtensions
+    public static class EduProgramProfileFormExtensions
     {
-        public static EduProgramProfileInfo WithEduProgram (
-            this EduProgramProfileInfo eduProfile, ControllerBase controller)
+        public static EduProgramProfileFormInfo WithEduForm (
+            this EduProgramProfileFormInfo eduProgramProfileForm, ControllerBase controller)
         {
-            eduProfile.EduProgram = controller.Get<EduProgramInfo> (eduProfile.EduProgramID);
+            eduProgramProfileForm.EduForm = controller.Get<EduFormInfo> (eduProgramProfileForm.EduFormID);
 
-            return eduProfile;
+            return eduProgramProfileForm;
         }
 
-        public static IEnumerable<EduProgramProfileInfo> WithEduPrograms (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+        public static IEnumerable<EduProgramProfileFormInfo> WithEduForms (
+            this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, ControllerBase controller)
         {
-            var eduPrograms = controller.GetObjects<EduProgramInfo> ();
+            foreach (var eduProgramProfileForm in eduProgramProfileForms)
+            {
+                eduProgramProfileForm.WithEduForm (controller);
+            }
 
-            return eduProgramProfiles.Join (eduPrograms, epp => epp.EduProgramID, ep => ep.EduProgramID, 
-                delegate (EduProgramProfileInfo epp, EduProgramInfo ep) {
-                    epp.EduProgram = ep;
-                    return epp;
-                });
-        }
-
-        public static EduProgramProfileInfo WithEduForms (
-            this EduProgramProfileInfo eduProfile, ControllerBase controller)
-        {
-            eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
-                "WHERE [EduProgramProfileID] = @0", eduProfile.EduProgramProfileID)
-                .WithEduForms (controller)
-                .ToList ();
-
-            return eduProfile;
+            return eduProgramProfileForms;
         }
     }
 }
+
