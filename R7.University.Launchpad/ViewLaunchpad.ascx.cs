@@ -145,16 +145,16 @@ namespace R7.University.Launchpad
 		{
 			try
 			{
-                var tabName = GetActiveTabName ();
-
-				if (!IsPostBack)
+            	if (!IsPostBack)
 				{
 					// restore multiview state from session on first load
 					if (Session ["Launchpad_ActiveView_" + TabModuleId] != null)
 					{
-						multiView.SetActiveView (FindView ((string)Session ["Launchpad_ActiveView_" + TabModuleId]));
+						multiView.SetActiveView (FindView ((string) Session ["Launchpad_ActiveView_" + TabModuleId]));
 						SelectTab ((string) Session ["Launchpad_ActiveView_" + TabModuleId]);
 					}
+
+                    var tabName = GetActiveTabName ();
 
                     // restore search phrase from session
                     if (Session [tabName + "_Search"] != null)
@@ -172,7 +172,7 @@ namespace R7.University.Launchpad
                     // check if tab was switched
                     if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$linkTab"))
                     {
-                        BindTab (tabName);
+                        BindTab (GetActiveTabName ());
                     }
                 }
 			}
@@ -220,7 +220,7 @@ namespace R7.University.Launchpad
 			{
                 var link = (LinkButton) e.Item.FindControl ("linkTab");
                 var tabName = (string) e.Item.DataItem;
-				link.Text = Utils.FirstCharToUpperInvariant (tabName);
+                link.Text = Utils.FirstCharToUpperInvariant (tabName);
 				link.CommandArgument = tabName;
 			}
 		}
@@ -363,8 +363,7 @@ namespace R7.University.Launchpad
 
         protected string GetActiveTabName ()
         {
-            return multiView.Views [multiView.ActiveViewIndex].ID
-                .ToLowerInvariant ().Replace ("view", "");
+            return multiView.GetActiveView ().ID.ToLowerInvariant ().Replace ("view", "");
         }
 
 		/// <summary>
