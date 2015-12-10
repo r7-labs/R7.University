@@ -39,7 +39,7 @@ namespace R7.University.Launchpad
 
         public string Name { get; protected set; }
 
-        public string EditKey { get; protected set; }
+        public string EditControlKey { get; protected set; }
 
         public string EditQueryKey { get; protected set; }
 
@@ -55,7 +55,7 @@ namespace R7.University.Launchpad
 
             // remove ending "s" and add "_id"
             var baseName = name + "\n";
-            EditKey = "edit" + baseName.Replace ("s\n", string.Empty);
+            EditControlKey = "edit" + baseName.Replace ("s\n", string.Empty);
             EditQueryKey = baseName.Replace ("s\n", "_id");
         }
 
@@ -64,7 +64,7 @@ namespace R7.University.Launchpad
             Grid = gridView;
             Grid.PageSize = pageSize;
             AddButton = addButton;
-            AddButton.NavigateUrl = Utils.EditUrl (module, EditKey);
+            AddButton.NavigateUrl = module.EditUrl (EditControlKey);
         }
 
         public virtual void DataBind (LaunchpadPortalModuleBase module, string search = null)
@@ -78,7 +78,7 @@ namespace R7.University.Launchpad
 
         public virtual void SetEditLink (PortalModuleBase module, HyperLink link, string id)
         {
-            link.NavigateUrl = Utils.EditUrl (module, EditKey, EditQueryKey, id);
+            link.NavigateUrl = module.EditUrl (EditQueryKey, id, EditControlKey);
         }
 
         public virtual ModuleAction GetAction (PortalModuleBase module)
@@ -89,10 +89,10 @@ namespace R7.University.Launchpad
             return new ModuleAction (
                 module.GetNextActionID (),
                 // TODO: Action labels require localization
-                EditKey.Replace ("Edit", "Add "),
+                EditControlKey.Replace ("Edit", "Add "),
                 ModuleActionType.AddContent, 
                 "", "",
-                Utils.EditUrl (module, EditKey),
+                module.EditUrl (EditControlKey),
                 "",
                 false, 
                 SecurityAccessLevel.Edit,
