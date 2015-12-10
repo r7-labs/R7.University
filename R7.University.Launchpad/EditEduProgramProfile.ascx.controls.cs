@@ -20,6 +20,8 @@ namespace R7.University.Launchpad
 		protected TextBox textProfileTitle;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
+        protected DnnDatePicker dateAccreditedToDate;
+        protected DnnDatePicker dateCommunityAccreditedToDate;
         protected DropDownList comboEduLevel;
         protected EditDocuments formEditDocuments;
         protected ModuleAuditControl auditControl;

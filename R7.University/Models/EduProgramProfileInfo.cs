@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
@@ -33,6 +34,10 @@ namespace R7.University
     [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
     public class EduProgramProfileInfo: UniversityEntityBase
     {
+        public EduProgramProfileInfo ()
+        {
+        }
+
         #region Properties
 
         public int EduProgramProfileID { get; set; }
@@ -42,6 +47,10 @@ namespace R7.University
         public string ProfileCode { get; set; }
 
         public string ProfileTitle { get; set; }
+
+        public DateTime? AccreditedToDate { get; set; }
+
+        public DateTime? CommunityAccreditedToDate { get; set; }
 
         public DateTime? StartDate { get; set; }
 
@@ -75,6 +84,9 @@ namespace R7.University
                 
             return Utils.FormatList (" ", code, title, profileStringInBrackets);
         }
+
+        [IgnoreColumn] 
+        public IList<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
     }
 }
 

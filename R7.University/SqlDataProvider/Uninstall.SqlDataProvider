@@ -2,81 +2,103 @@
 -- replace {databaseOwner} and {objectQualifier} with real values. 
 -- Defaults is "dbo." for database owner and "" for object qualifier 
 
--- Drop constraints
+-- Drop foreign key constraints
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions] 
-	DROP CONSTRAINT [FK_{objectQualifier}University_Divisions_Taxonomy_Terms] 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions]
+	DROP CONSTRAINT [FK_{objectQualifier}University_Divisions_Taxonomy_Terms]
 GO
 
--- ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
---	DROP CONSTRAINT [FK_{objectQualifier}University_Employees_Users]
--- GO
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions]
+    DROP CONSTRAINT [FK_{objectQualifier}University_Divisions_Positions]
+GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]  
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+    DROP CONSTRAINT [FK_{objectQualifier}University_Employees_Users]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Divisions]
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Employees]
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Positions] 
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
 	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Achievements] 
 GO
 
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
-	DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels] 
+	DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels]
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]
-	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeEduPrograms_Employees]
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduPrograms] 
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] 
-	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeEduPrograms_EduPrograms] 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileForms_EduForms] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileForms_EduProgramProfiles] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines]
+	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_Employees]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines]
+	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_EduProgramProfiles] 
 GO
 
 -- Drop tables
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_Positions] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_Positions]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_Divisions] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_Achievements]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_Achievements] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduForms]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduLevels]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_Documents]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_EduLevels] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_DocumentTypes]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_Documents] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_DocumentTypes] 
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
 GO
 
--- DROP TABLE {databaseOwner}[{objectQualifier}University_Employees] 
--- GO
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_Divisions]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_Employees]
+GO
 
 -- Drop views
  

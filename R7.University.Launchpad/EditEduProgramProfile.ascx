@@ -43,6 +43,14 @@
         			<asp:TextBox ID="textProfileTitle" runat="server" MaxLength="250" />
         		</div>
                 <div class="dnnFormItem">
+                    <dnn:Label ID="labelAccreditedToDate" runat="server" ControlName="dateAccreditedToDate" />
+                    <dnn:DnnDatePicker id="dateAccreditedToDate" runat="server" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label ID="labelCommunityAccreditedToDate" runat="server" ControlName="dateCommunityAccreditedToDate" />
+                    <dnn:DnnDatePicker id="dateCommunityAccreditedToDate" runat="server" />
+                </div>
+                <div class="dnnFormItem">
                     <dnn:Label ID="labelStartDate" runat="server" ControlName="datetimeStartDate" />
                     <dnn:DnnDateTimePicker id="datetimeStartDate" runat="server" />
                 </div>
