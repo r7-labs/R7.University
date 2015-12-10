@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ViewLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.ViewLaunchpad" %>
 
-<div class="dnnForm">
+<div class="dnnForm dnnClear university-launchpad">
 	<asp:Repeater id="repeatTabs" runat="server" OnItemDataBound="repeatTabs_ItemDataBound">
 		<HeaderTemplate>
 			<ul class="dnnAdminTabNav dnnClear">
@@ -12,15 +12,15 @@
 			</ul>
 		</FooterTemplate>
 	</asp:Repeater>
-    <asp:Panel runat="server" DefaultButton="buttonSearch">
+    <asp:Panel runat="server" CssClass="dnnFormItem" DefaultButton="buttonSearch">
+        <asp:HyperLink id="linkAddItem" runat="server" CssClass="dnnSecondaryAction link-add-item" resourcekey="AddItem.Text" />
         <asp:TextBox id="textSearch" runat="server" />
-        <asp:Button id="buttonSearch" runat="server" CssClass="dnnPrimaryAction" resourcekey="Search.Text" OnClick="buttonSearch_Click" />
-        <asp:Button id="buttonResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonResetSearch_Click" /><br />
+        <asp:LinkButton id="buttonSearch" runat="server" CssClass="dnnPrimaryAction" resourcekey="Search.Text" OnClick="buttonSearch_Click" />
+        <asp:LinkButton id="buttonResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonResetSearch_Click" />
     </asp:Panel>
 	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged">
 		<asp:View id="viewPositions" runat="server">
 			<div id="positions" style="overflow:auto">
-					<asp:HyperLink runat="server" id="buttonAddPosition" CssClass="dnnPrimaryAction">Add position</asp:HyperLink><br />
 					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 					AllowPaging="true" AllowSorting="true" GridLines="None"
 					OnSorting="gridView_Sorting" 
@@ -49,7 +49,6 @@
 		</asp:View>
 		<asp:View id="viewDivisions" runat="server"> 
 			<div id="divisions" style="overflow:auto">
-				<asp:HyperLink runat="server" id="buttonAddDivision" CssClass="dnnPrimaryAction">Add division</asp:HyperLink><br />
 				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None"
 				OnSorting="gridView_Sorting" 
@@ -78,8 +77,7 @@
 		</asp:View>
 		<asp:View id="viewEmployees" runat="server">
 			<div id="employees" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddEmployee" CssClass="dnnPrimaryAction">Add employee</asp:HyperLink>
-    			<asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
+                <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
@@ -107,7 +105,6 @@
 		</asp:View>
 		<asp:View id="viewAchievements" runat="server">
 			<div id="achievements" style="overflow:auto">
-				<asp:HyperLink runat="server" id="buttonAddAchievement" CssClass="dnnPrimaryAction">Add achievement</asp:HyperLink><br />
 				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None" 
 				OnSorting="gridView_Sorting" 
@@ -136,7 +133,6 @@
 		</asp:View>
         <asp:View id="viewEduLevels" runat="server">
             <div id="edulevels" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddEduLevel" CssClass="dnnPrimaryAction">Add Education Level</asp:HyperLink><br />
                 <asp:GridView id="gridEduLevels" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None" 
                     OnSorting="gridView_Sorting" 
@@ -170,7 +166,6 @@
         </asp:View>
         <asp:View id="viewEduPrograms" runat="server">
             <div id="eduprograms" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddEduProgram" CssClass="dnnPrimaryAction">Add Educational Program</asp:HyperLink><br />
                 <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None" 
                     OnSorting="gridView_Sorting" 
@@ -207,7 +202,6 @@
         </asp:View>
         <asp:View id="viewEduProgramProfiles" runat="server">
             <div id="eduprogramprofiles" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddEduProgramProfile" CssClass="dnnPrimaryAction">Add Educational Program Profile</asp:HyperLink><br />
                 <asp:GridView id="gridEduProgramProfiles" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None" 
                     OnSorting="gridView_Sorting" 
@@ -246,7 +240,6 @@
         </asp:View>
         <asp:View id="viewDocumentTypes" runat="server">
             <div id="documenttypes" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddDocumentType" CssClass="dnnPrimaryAction">Add Document Type</asp:HyperLink><br />
                 <asp:GridView id="gridDocumentTypes" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None" 
                     OnSorting="gridView_Sorting" 
@@ -279,7 +272,6 @@
         </asp:View>
         <asp:View id="viewDocuments" runat="server">
             <div id="documents" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddDocument" CssClass="dnnPrimaryAction">Add Document</asp:HyperLink><br />
                 <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None" 
                     OnSorting="gridView_Sorting" 
@@ -316,7 +308,6 @@
         </asp:View>
         <asp:View id="viewEduForms" runat="server">
             <div id="eduforms" style="overflow:auto">
-                <asp:HyperLink runat="server" id="buttonAddEduForm" CssClass="dnnPrimaryAction">Add Educational Form</asp:HyperLink><br />
                 <asp:GridView id="gridEduForms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None" 
                     OnSorting="gridView_Sorting" 

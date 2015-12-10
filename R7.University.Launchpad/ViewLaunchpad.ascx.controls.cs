@@ -15,29 +15,20 @@ namespace R7.University.Launchpad
 		protected LinkButton linkPositions;
 		protected LinkButton linkDivisions;
 		protected LinkButton linkEmployees;
+        protected HyperLink linkAddItem;
         protected TextBox textSearch;
-        protected Button buttonSearch;
-        protected Button buttonResetSearch;
+        protected LinkButton buttonSearch;
+        protected LinkButton buttonResetSearch;
 		protected GridView gridPositions;
-		protected HyperLink buttonAddPosition;
 		protected GridView gridDivisions;
-		protected HyperLink buttonAddDivision;
 		protected GridView gridEmployees;
-		protected HyperLink buttonAddEmployee;
 		protected GridView gridAchievements;
-		protected HyperLink buttonAddAchievement;
-        protected GridView gridEduLevels;
-        protected HyperLink buttonAddEduLevel;
+		protected GridView gridEduLevels;
         protected GridView gridEduPrograms;
-        protected HyperLink buttonAddEduProgram;
         protected GridView gridEduProgramProfiles;
-        protected HyperLink buttonAddEduProgramProfile;
         protected GridView gridDocumentTypes;
-        protected HyperLink buttonAddDocumentType;
         protected GridView gridDocuments;
-        protected HyperLink buttonAddDocument;
         protected GridView gridEduForms;
-        protected HyperLink buttonAddEduForm;
-		protected Repeater repeatTabs;
+        protected Repeater repeatTabs;
 	}
 }

@@ -81,13 +81,6 @@ namespace R7.University.Launchpad
 				}
 			}
 
-            /*
-            // restore search phrase from session
-            var tabName = GetActiveTabName ();
-            if (Session [tabName + "_Search"] != null)
-                textSearch.Text = (string) Session [tabName + "_Search"];
-           */
-
             // initialize Launchpad tables
             InitTables ();
         }
@@ -100,34 +93,34 @@ namespace R7.University.Launchpad
                 switch (table.Name)
                 {
                     case "achievements":
-                        table.Init (this, gridAchievements, buttonAddAchievement, pageSize);
+                        table.Init (this, gridAchievements, pageSize);
                         break;
                     case "positions":
-                        table.Init (this, gridPositions, buttonAddPosition, pageSize);
+                        table.Init (this, gridPositions, pageSize);
                         break;
                     case "divisions":
-                        table.Init (this, gridDivisions, buttonAddDivision, pageSize);
+                        table.Init (this, gridDivisions, pageSize);
                         break;
                     case "employees":
-                        table.Init (this, gridEmployees, buttonAddEmployee, pageSize);
+                        table.Init (this, gridEmployees, pageSize);
                         break;
                     case "edulevels":
-                        table.Init (this, gridEduLevels, buttonAddEduLevel, pageSize);
+                        table.Init (this, gridEduLevels, pageSize);
                         break;
                     case "eduprograms":
-                        table.Init (this, gridEduPrograms, buttonAddEduProgram, pageSize);
+                        table.Init (this, gridEduPrograms, pageSize);
                         break;
                     case "eduprogramprofiles":
-                        table.Init (this, gridEduProgramProfiles, buttonAddEduProgramProfile, pageSize);
+                        table.Init (this, gridEduProgramProfiles, pageSize);
                         break;
                     case "documenttypes":
-                        table.Init (this, gridDocumentTypes, buttonAddDocumentType, pageSize);
+                        table.Init (this, gridDocumentTypes, pageSize);
                         break;
                     case "documents":
-                        table.Init (this, gridDocuments, buttonAddDocument, pageSize);
+                        table.Init (this, gridDocuments, pageSize);
                         break;
                     case "eduforms":
-                        table.Init (this, gridEduForms, buttonAddEduForm, pageSize);
+                        table.Init (this, gridEduForms, pageSize);
                         break;
                 }
             }
@@ -186,6 +179,7 @@ namespace R7.University.Launchpad
         {
             // bind active table
             var table = Tables.GetByName (tabName);
+
             var searchText = textSearch.Text;
             if (!string.IsNullOrWhiteSpace (searchText))
             {
@@ -195,6 +189,9 @@ namespace R7.University.Launchpad
             {
                 table.DataBind (this);
             }
+
+            // set URL to add new item
+            linkAddItem.NavigateUrl = table.GetAddUrl (this);
         }
 
 		/// <summary>
@@ -318,7 +315,7 @@ namespace R7.University.Launchpad
 				var link = e.Row.Cells [0].FindControl ("linkEdit") as HyperLink;
 
                 // assuming e.Row.Cells[1] contains ID
-                Tables.GetByGridId (((GridView) sender).ID).SetEditLink (this, link, e.Row.Cells [1].Text);
+                link.NavigateUrl = Tables.GetByGridId (((GridView) sender).ID).GetEditUrl (this, e.Row.Cells [1].Text);
 			}
 		}
 

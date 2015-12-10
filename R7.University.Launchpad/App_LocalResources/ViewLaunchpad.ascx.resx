@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>&lt;P&gt;A Launchpad module&lt;/P&gt;</value>
-  </data>
-	<data name="DefaultContent.Text" xml:space="preserve">
-    <value>Here is some sample content</value>
-  </data>
-  <data name="NotConfigured.Text" xml:space="preserve">
-    <value>Please select tables to display in module settings.</value>
-  </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;A Launchpad module&lt;/P&gt;</value>
+    </data>
+    <data name="NotConfigured.Text" xml:space="preserve">
+        <value>Please select tables to display in module settings.</value>
+    </data>
+    <data name="AddItem.Text" xml:space="preserve">
+        <value>Add Item</value>
+    </data>
 </root>

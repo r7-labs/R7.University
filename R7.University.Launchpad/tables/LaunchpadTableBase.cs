@@ -47,8 +47,6 @@ namespace R7.University.Launchpad
 
         public GridView Grid { get; protected set; }
 
-        public HyperLink AddButton { get; protected set; }
-
         #endregion
 
         protected LaunchpadTableBase (string name)
@@ -62,12 +60,10 @@ namespace R7.University.Launchpad
             EditQueryKey = baseName.Replace ("s\n", "_id");
         }
 
-        public virtual void Init (PortalModuleBase module, GridView gridView, HyperLink addButton, int pageSize)
+        public virtual void Init (PortalModuleBase module, GridView gridView, int pageSize)
         {
             Grid = gridView;
             Grid.PageSize = pageSize;
-            AddButton = addButton;
-            AddButton.NavigateUrl = module.EditUrl (EditControlKey);
         }
 
         public virtual void DataBind (LaunchpadPortalModuleBase module, string search = null)
@@ -79,9 +75,14 @@ namespace R7.University.Launchpad
 
         public abstract DataTable GetDataTable (LaunchpadPortalModuleBase module, string search);
 
-        public virtual void SetEditLink (PortalModuleBase module, HyperLink link, string id)
+        public virtual string GetAddUrl (PortalModuleBase module)
         {
-            link.NavigateUrl = module.EditUrl (EditQueryKey, id, EditControlKey);
+            return module.EditUrl (EditControlKey);
+        }
+
+        public virtual string GetEditUrl (PortalModuleBase module, string id)
+        {
+            return module.EditUrl (EditQueryKey, id, EditControlKey);
         }
 
         public virtual ModuleAction GetAction (PortalModuleBase module)
