@@ -145,31 +145,57 @@ namespace R7.University.Launchpad
 		{
 			try
 			{
+                var tabName = GetActiveTabName ();
+
 				if (!IsPostBack)
 				{
 					// restore multiview state from session on first load
 					if (Session ["Launchpad_ActiveView_" + TabModuleId] != null)
 					{
 						multiView.SetActiveView (FindView ((string)Session ["Launchpad_ActiveView_" + TabModuleId]));
-						SelectTab ((string)Session ["Launchpad_ActiveView_" + TabModuleId]);
-
-                        // restore search phrase from session
-                        var tabName = GetActiveTabName ();
-                        if (Session [tabName + "_Search"] != null)
-                            textSearch.Text = (string) Session [tabName + "_Search"];
+						SelectTab ((string) Session ["Launchpad_ActiveView_" + TabModuleId]);
 					}
 
-                    // bind data to selected tables
-                    foreach (var table in Tables.Tables)
-                        if (LaunchpadSettings.Tables.Contains (table.Name))
-                            table.DataBind (this);
+                    // restore search phrase from session
+                    if (Session [tabName + "_Search"] != null)
+                    {
+                        textSearch.Text = (string) Session [tabName + "_Search"];
+                    }
+
+                    BindTab (tabName);
 				}
+                else
+                {
+                    // get postback initiator
+                    var eventTarget = Request.Form ["__EVENTTARGET"];
+
+                    // check if tab was switched
+                    if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$linkTab"))
+                    {
+                        BindTab (tabName);
+                    }
+                }
 			}
 			catch (Exception ex)
 			{
 				Exceptions.ProcessModuleLoadException (this, ex);
 			}
 		}
+
+        protected void BindTab (string tabName)
+        {
+            // bind active table
+            var table = Tables.NamesDictionary [tabName];
+            var searchText = textSearch.Text;
+            if (!string.IsNullOrWhiteSpace (searchText))
+            {
+                table.DataBind (this, searchText);
+            }
+            else
+            {
+                table.DataBind (this);
+            }
+        }
 
 		/// <summary>
 		/// Mirrors multiview ActiveViewIndex changes in session variable
