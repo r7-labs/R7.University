@@ -38,7 +38,7 @@ namespace R7.University.Launchpad
 			if (session == null)
 			{
                 var tabName = GetActiveTabName ();
-                session = Tables.GridsDictionary [gridviewId].GetDataTable (this, (string) Session [tabName + "_Search"]);
+                session = Tables.GetByGridId (gridviewId).GetDataTable (this, (string) Session [tabName + "_Search"]);
                 Session [gridviewId] = session;
 			}
             return (DataTable) session;
@@ -185,7 +185,7 @@ namespace R7.University.Launchpad
         protected void BindTab (string tabName)
         {
             // bind active table
-            var table = Tables.NamesDictionary [tabName];
+            var table = Tables.GetByName (tabName);
             var searchText = textSearch.Text;
             if (!string.IsNullOrWhiteSpace (searchText))
             {
@@ -220,7 +220,7 @@ namespace R7.University.Launchpad
 			{
                 var link = (LinkButton) e.Item.FindControl ("linkTab");
                 var tabName = (string) e.Item.DataItem;
-                link.Text = LocalizeString (Tables.NamesDictionary [tabName].ResourceKey);
+                link.Text = LocalizeString (Tables.GetByName (tabName).ResourceKey);
 				link.CommandArgument = tabName;
 			}
 		}
@@ -318,7 +318,7 @@ namespace R7.University.Launchpad
 				var link = e.Row.Cells [0].FindControl ("linkEdit") as HyperLink;
 
                 // assuming e.Row.Cells[1] contains ID
-                Tables.GridsDictionary [((GridView) sender).ID].SetEditLink (this, link, e.Row.Cells [1].Text);
+                Tables.GetByGridId (((GridView) sender).ID).SetEditLink (this, link, e.Row.Cells [1].Text);
 			}
 		}
 
@@ -390,7 +390,7 @@ namespace R7.University.Launchpad
 
                 Session [tabName + "_Search"] = textSearch.Text.Trim ();
 
-                Tables.NamesDictionary [tabName].DataBind (this, textSearch.Text.Trim ());
+                Tables.GetByName (tabName).DataBind (this, textSearch.Text.Trim ());
             }
             catch (Exception ex)
             {
@@ -407,11 +407,11 @@ namespace R7.University.Launchpad
                 textSearch.Text = string.Empty;
                 Session [tabName + "_Search"] =  null;
 
-                Tables.NamesDictionary [tabName].DataBind (this, textSearch.Text.Trim ());
+                Tables.GetByName (tabName).DataBind (this);
             }
             catch (Exception ex)
             {
-                Exceptions.ProcessModuleLoadException(this, ex);
+                Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
 	}

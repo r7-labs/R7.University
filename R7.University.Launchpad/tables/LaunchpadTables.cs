@@ -51,9 +51,9 @@ namespace R7.University.Launchpad
             get { return Tables.Select (t => t.Name).ToList (); }
         }
 
-        public Dictionary<string, LaunchpadTableBase> GridsDictionary;
+        protected Dictionary<string, LaunchpadTableBase> GridsDictionary;
 
-        public Dictionary<string, LaunchpadTableBase> NamesDictionary;
+        protected Dictionary<string, LaunchpadTableBase> NamesDictionary;
        
         public LaunchpadTables ()
         {
@@ -72,6 +72,16 @@ namespace R7.University.Launchpad
 
                 GridsDictionary.Add (table.Grid.ID, table);
             }
+        }
+
+        public LaunchpadTableBase GetByName (string name)
+        {
+            return NamesDictionary [name];
+        }
+
+        public LaunchpadTableBase GetByGridId (string gridId)
+        {
+            return GridsDictionary [gridId];
         }
     }
 }
