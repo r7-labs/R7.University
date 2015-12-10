@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2015
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -44,34 +44,10 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
-            var dt = new DataTable ();
-            DataRow dr;
-
-            dt.Columns.Add (new DataColumn ("PositionID", typeof(int)));
-            dt.Columns.Add (new DataColumn ("Title", typeof(string)));
-            dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
-            dt.Columns.Add (new DataColumn ("Weight", typeof(int)));
-            dt.Columns.Add (new DataColumn ("IsTeacher", typeof(bool)));
-
-            foreach (DataColumn column in dt.Columns)
-                column.AllowDBNull = true;
-
             var positions = module.LaunchpadController.FindObjects<PositionInfo> (
                 @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
 
-            foreach (var position in positions)
-            {
-                dr = dt.NewRow ();
-                dr [0] = position.PositionID;
-                dr [1] = position.Title;
-                dr [2] = position.ShortTitle;
-                dr [3] = position.Weight;
-                dr [4] = position.IsTeacher;
-
-                dt.Rows.Add (dr);
-            }
-
-            return dt;
+            return DataTableConstructor.FromIEnumerable (positions);
         }
 	}
 }

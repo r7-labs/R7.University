@@ -21,7 +21,7 @@
 	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged">
 		<asp:View id="viewPositions" runat="server">
 			<div id="positions" style="overflow:auto">
-					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
+					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
 					AllowPaging="true" AllowSorting="true" GridLines="None"
 					OnSorting="gridView_Sorting" 
 					OnPageIndexChanging="gridView_PageIndexChanging"
@@ -41,6 +41,11 @@
 					                	</asp:HyperLink>
 					            </ItemTemplate>
 					        </asp:TemplateField>
+                            <asp:BoundField DataField="PositionID" SortExpression="PositionID" HeaderText="PositionID" />
+                            <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
+                            <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
+                            <asp:BoundField DataField="Weight" SortExpression="Weight" HeaderText="Weight" />
+                            <asp:BoundField DataField="IsTeacher" SortExpression="IsTeacher" HeaderText="IsTeacher" />
 						</Columns>
 						<PagerSettings Mode="NumericFirstLast" Visible="true" />
 			        </asp:GridView>
