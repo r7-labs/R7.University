@@ -9,4 +9,10 @@
     <data name="AddItem.Text" xml:space="preserve">
         <value>Добавить</value>
     </data>
+    <data name="Search.Text" xml:space="preserve">
+        <value>Поиск</value>
+    </data>
+    <data name="ResetSearch.Text" xml:space="preserve">
+        <value>Сброс</value>
+    </data>
 </root>

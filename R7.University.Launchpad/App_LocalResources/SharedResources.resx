@@ -36,12 +36,6 @@
     <data name="EduTypeAdditional.Text">
         <value>Additional</value>
     </data>
-    <data name="Search.Text">
-        <value>Search</value>
-    </data>
-    <data name="ResetSearch.Text">
-        <value>Reset</value>
-    </data>
     <data name="Employees.Text" xml:space="preserve">
         <value>Employees</value>
     </data>

@@ -6,12 +6,6 @@
 	<data name="AddContent.Action" xml:space="preserve">
         <value>Добавить содержимое</value>
     </data>
-    <data name="Search.Text">
-        <value>Поиск</value>
-    </data>
-    <data name="ResetSearch.Text">
-        <value>Сбросить</value>
-    </data>
     <data name="EduTypeHigh.Text">
         <value>Высшее</value>
     </data>
