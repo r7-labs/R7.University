@@ -250,6 +250,19 @@
 										<supportsPopUps>True</supportsPopUps>
 										<viewOrder>0</viewOrder>
 									</moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditEduForm</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduForm.ascx</controlSrc>
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <controlTitle>Edit Educational Form</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
 									<moduleControl>
 										<controlKey>EditEduProgram</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgram.ascx</controlSrc>

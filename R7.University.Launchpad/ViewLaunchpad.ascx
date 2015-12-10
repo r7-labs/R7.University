@@ -314,5 +314,38 @@
                 <br />
             </div>
         </asp:View>
+        <asp:View id="viewEduForms" runat="server">
+            <div id="eduforms" style="overflow:auto">
+                <asp:HyperLink runat="server" id="buttonAddEduForm" CssClass="dnnPrimaryAction">Add Educational Form</asp:HyperLink><br />
+                <asp:GridView id="gridEduForms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None" 
+                    OnSorting="gridView_Sorting" 
+                    OnPageIndexChanging="gridView_PageIndexChanging"
+                    OnRowDataBound="gridView_RowDataBound">
+                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                    <SelectedRowStyle CssClass="dnnFormError" />
+                    <EditRowStyle CssClass="dnnFormInput" />
+                    <FooterStyle CssClass="dnnGridFooter" />
+                    <PagerStyle CssClass="dnnGridPager" />
+                    <Columns>
+                        <asp:TemplateField>
+                           <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                </asp:HyperLink>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="EduFormID" SortExpression="EduFormID" HeaderText="EduFormID" />
+                        <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
+                        <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
+                        <asp:BoundField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" Visible="true" />
+                </asp:GridView>
+                <br />
+            </div>
+        </asp:View>
 	</asp:MultiView>
 </div>

@@ -131,6 +131,9 @@ namespace R7.University.Launchpad
                     case "documents":
                         table.Init (this, gridDocuments, buttonAddDocument, pageSize);
                         break;
+                    case "eduforms":
+                        table.Init (this, gridEduForms, buttonAddEduForm, pageSize);
+                        break;
                 }
             }
 
