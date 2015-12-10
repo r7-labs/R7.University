@@ -192,6 +192,7 @@ namespace R7.University.Launchpad
 
             // set URL to add new item
             linkAddItem.NavigateUrl = table.GetAddUrl (this);
+            linkAddItem.Enabled = table.IsEditable;
         }
 
 		/// <summary>
@@ -312,10 +313,12 @@ namespace R7.University.Launchpad
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
 				// find edit hyperlink
-				var link = e.Row.Cells [0].FindControl ("linkEdit") as HyperLink;
+                var linkEdit = (HyperLink) e.Row.Cells [0].FindControl ("linkEdit");
+                var table = Tables.GetByGridId (((GridView) sender).ID);
 
-                // assuming e.Row.Cells[1] contains ID
-                link.NavigateUrl = Tables.GetByGridId (((GridView) sender).ID).GetEditUrl (this, e.Row.Cells [1].Text);
+                // assuming what e.Row.Cells[1] contains item ID
+                linkEdit.NavigateUrl = table.GetEditUrl (this, e.Row.Cells [1].Text);
+                linkEdit.Enabled = table.IsEditable;
 			}
 		}
 

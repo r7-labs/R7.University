@@ -31,6 +31,11 @@ namespace R7.University.Launchpad
 {
     public class DocumentsTable: LaunchpadTableBase
     {
+        public override bool IsEditable
+        {
+            get { return false; }
+        }
+        
         public DocumentsTable (): base ("Documents")
         {
         }

@@ -47,6 +47,11 @@ namespace R7.University.Launchpad
 
         public GridView Grid { get; protected set; }
 
+        public virtual bool IsEditable
+        { 
+            get { return true; }
+        }
+
         #endregion
 
         protected LaunchpadTableBase (string name)
