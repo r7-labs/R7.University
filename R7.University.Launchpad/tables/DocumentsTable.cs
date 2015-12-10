@@ -31,7 +31,7 @@ namespace R7.University.Launchpad
 {
     public class DocumentsTable: LaunchpadTableBase
     {
-        public DocumentsTable (): base ("documents")
+        public DocumentsTable (): base ("Documents")
         {
         }
 

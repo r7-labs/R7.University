@@ -31,7 +31,7 @@ namespace R7.University.Launchpad
 {
     public class EduLevelsTable: LaunchpadTableBase
     {
-        public EduLevelsTable (): base ("edulevels")
+        public EduLevelsTable (): base ("EduLevels")
         {
         }
 

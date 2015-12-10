@@ -39,6 +39,8 @@ namespace R7.University.Launchpad
 
         public string Name { get; protected set; }
 
+        public string ResourceKey { get; protected set; }
+
         public string EditControlKey { get; protected set; }
 
         public string EditQueryKey { get; protected set; }
@@ -51,7 +53,8 @@ namespace R7.University.Launchpad
 
         protected LaunchpadTableBase (string name)
         {
-            Name = name;
+            Name = name.ToLowerInvariant ();
+            ResourceKey = name + ".Text";
 
             // remove ending "s" and add "_id"
             var baseName = name + "\n";

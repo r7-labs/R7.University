@@ -25,8 +25,9 @@ namespace R7.University.Launchpad
 			comboPageSize.AddItem ("100", "100");
 
 			// fill tables list
-            foreach (var table in LaunchpadTables.NamesDictionary.Keys)
-                listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (Utils.FirstCharToUpperInvariant (table), table));
+            foreach (var table in LaunchpadTables.Tables)
+                listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (
+                    LocalizeString (table.ResourceKey), table.Name));
 		}
 
 		/// <summary>
@@ -47,7 +48,6 @@ namespace R7.University.Launchpad
 						var item = listTables.FindItemByValue (table);
 						if (item != null) item.Checked = true;
 					}
-
 				}
 			}
 			catch (Exception ex)

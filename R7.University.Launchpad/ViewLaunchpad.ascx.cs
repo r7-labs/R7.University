@@ -220,7 +220,7 @@ namespace R7.University.Launchpad
 			{
                 var link = (LinkButton) e.Item.FindControl ("linkTab");
                 var tabName = (string) e.Item.DataItem;
-                link.Text = Utils.FirstCharToUpperInvariant (tabName);
+                link.Text = LocalizeString (Tables.NamesDictionary [tabName].ResourceKey);
 				link.CommandArgument = tabName;
 			}
 		}

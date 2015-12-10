@@ -38,7 +38,7 @@ namespace R7.University.Launchpad
 {
     public class DivisionsTable: LaunchpadTableBase
 	{
-        public DivisionsTable (): base ("divisions")
+        public DivisionsTable (): base ("Divisions")
         {
 
         }

@@ -31,7 +31,7 @@ namespace R7.University.Launchpad
 {
     public class EduProgramProfilesTable: LaunchpadTableBase
     {
-        public EduProgramProfilesTable (): base ("eduprogramprofiles")
+        public EduProgramProfilesTable (): base ("EduProgramProfiles")
         {
         }
 

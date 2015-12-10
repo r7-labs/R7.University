@@ -32,7 +32,7 @@ namespace R7.University.Launchpad
 {
     public class AchievementsTable: LaunchpadTableBase
     {
-        public AchievementsTable (): base ("achievements")
+        public AchievementsTable (): base ("Achievements")
         {
         }
 

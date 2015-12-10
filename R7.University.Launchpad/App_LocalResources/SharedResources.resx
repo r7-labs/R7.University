@@ -42,4 +42,34 @@
     <data name="ResetSearch.Text">
         <value>Reset</value>
     </data>
+    <data name="Employees.Text" xml:space="preserve">
+        <value>Employees</value>
+    </data>
+    <data name="Divisions.Text" xml:space="preserve">
+        <value>Divisions</value>
+    </data>
+    <data name="Positions.Text" xml:space="preserve">
+        <value>Positions</value>
+    </data>
+    <data name="Achievements.Text" xml:space="preserve">
+        <value>Achievements</value>
+    </data>
+    <data name="EduPrograms.Text" xml:space="preserve">
+        <value>Educational Programs</value>
+    </data>
+    <data name="EduProgramProfiles.Text" xml:space="preserve">
+        <value>Educational Profiles</value>
+    </data>
+    <data name="EduForms.Text" xml:space="preserve">
+        <value>Educational Forms</value>
+    </data>
+    <data name="EduLevels.Text" xml:space="preserve">
+        <value>Education Levels</value>
+    </data>
+    <data name="Documents.Text" xml:space="preserve">
+        <value>Documents</value>
+    </data>
+    <data name="DocumentTypes.Text" xml:space="preserve">
+        <value>Document Types</value>
+    </data>
 </root>
