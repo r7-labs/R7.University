@@ -54,7 +54,7 @@
 		</asp:View>
 		<asp:View id="viewDivisions" runat="server"> 
 			<div id="divisions" style="overflow:auto">
-				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid"
+				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None"
 				OnSorting="gridView_Sorting" 
 				OnPageIndexChanging="gridView_PageIndexChanging"
@@ -74,6 +74,28 @@
 			                	</asp:HyperLink>
 			               </ItemTemplate>
 			        	</asp:TemplateField>
+                        <asp:BoundField DataField="DivisionID" SortExpression="DivisionID" HeaderText="DivisionID" />
+                        <asp:BoundField DataField="ParentDivisionID" SortExpression="ParentDivisionID" HeaderText="ParentDivisionID" />
+                        <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
+                        <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
+                        <asp:BoundField DataField="IsVirtual" SortExpression="IsVirtual" HeaderText="IsVirtual" />
+                        <asp:BoundField DataField="DocumentUrl" SortExpression="DocumentUrl" HeaderText="DocumentUrl" />
+                        <asp:BoundField DataField="HomePage" SortExpression="HomePage" HeaderText="HomePage" />
+                        <asp:BoundField DataField="Location" SortExpression="Location" HeaderText="Location" />
+                        <asp:BoundField DataField="Phone" SortExpression="Phone" HeaderText="Phone" />
+                        <asp:BoundField DataField="Fax" SortExpression="Fax" HeaderText="Fax" />
+                        <asp:BoundField DataField="Email" SortExpression="Email" HeaderText="Email" />
+                        <asp:BoundField DataField="SecondaryEmail" SortExpression="SecondaryEmail" HeaderText="SecondaryEmail" />
+                        <asp:BoundField DataField="WebSite" SortExpression="WebSite" HeaderText="WebSite" />
+                        <asp:BoundField DataField="WorkingHours" SortExpression="WorkingHours" HeaderText="WorkingHours" />
+                        <asp:BoundField DataField="StartDate" SortExpression="StartDate" HeaderText="StartDate" />
+                        <asp:BoundField DataField="EndDate" SortExpression="EndDate" HeaderText="EndDate" />
+                        <asp:BoundField DataField="DivisionTermID" SortExpression="DivisionTermID" HeaderText="DivisionTermID" />
+                        <asp:BoundField DataField="HeadPositionID" SortExpression="HeadPositionID" HeaderText="HeadPositionID" />
+                        <asp:BoundField DataField="CreatedByUserID" SortExpression="CreatedByUserID" HeaderText="CreatedByUserID" />
+                        <asp:BoundField DataField="CreatedOnDate" SortExpression="CreatedOnDate" HeaderText="CreatedOnDate" />
+                        <asp:BoundField DataField="LastModifiedByUserID" SortExpression="LastModifiedByUserID" HeaderText="LastModifiedByUserID" />
+                        <asp:BoundField DataField="LastModifiedOnDate" SortExpression="LastModifiedOnDate" HeaderText="LastModifiedOnDate" />
 					</Columns>
 					<PagerSettings Mode="NumericFirstLast" Visible="true" />
 		        </asp:GridView>

@@ -40,68 +40,16 @@ namespace R7.University.Launchpad
 	{
         public DivisionsTable (): base ("Divisions")
         {
-
         }
 
         public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
         {
-            var dt = new DataTable ();
-            DataRow dr;
-
-            dt.Columns.Add (new DataColumn ("DivisionID", typeof(int)));
-            dt.Columns.Add (new DataColumn ("ParentDivisionID", typeof(int)));
-            dt.Columns.Add (new DataColumn ("DivisionTermID", typeof(int)));
-            dt.Columns.Add (new DataColumn ("Title", typeof(string)));
-            dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
-            dt.Columns.Add (new DataColumn ("HomePage", typeof(string)));
-            dt.Columns.Add (new DataColumn ("DocumentUrl", typeof(string)));
-            dt.Columns.Add (new DataColumn ("Location", typeof(string)));
-            dt.Columns.Add (new DataColumn ("Phone", typeof(string)));
-            dt.Columns.Add (new DataColumn ("Fax", typeof(string)));
-            dt.Columns.Add (new DataColumn ("Email", typeof(string)));
-            dt.Columns.Add (new DataColumn ("SecondaryEmail", typeof(string)));
-            dt.Columns.Add (new DataColumn ("WebSite", typeof(string)));
-            dt.Columns.Add (new DataColumn ("WorkingHours", typeof(string)));
-            dt.Columns.Add (new DataColumn ("CreatedByUserID", typeof(int)));
-            dt.Columns.Add (new DataColumn ("CreatedOnDate", typeof(DateTime)));
-            dt.Columns.Add (new DataColumn ("LastModifiedByUserID", typeof(int)));
-            dt.Columns.Add (new DataColumn ("LastModifiedOnDate", typeof(DateTime)));
-
-            foreach (DataColumn column in dt.Columns)
-                column.AllowDBNull = true;
-
             var divisions = module.LaunchpadController.FindObjects<DivisionInfo> (
                 @"WHERE CONCAT([Title], ' ', [ShortTitle], ' ', [Location], ' ', [Phone], ' ',
                 [Fax], ' ', [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ', [WorkingHours])
                 LIKE N'%{0}%'", search, false);
-
-            foreach (var division in divisions)
-            {
-                dr = dt.NewRow ();
-                var i = 0;
-                dr [i++] = division.DivisionID;
-                dr [i++] = division.ParentDivisionID ?? Null.NullInteger;
-                dr [i++] = division.DivisionTermID ?? Null.NullInteger;
-                dr [i++] = division.Title;
-                dr [i++] = division.ShortTitle;
-                dr [i++] = division.HomePage;
-                dr [i++] = division.DocumentUrl;
-                dr [i++] = division.Location;
-                dr [i++] = division.Phone;
-                dr [i++] = division.Fax;
-                dr [i++] = division.Email;
-                dr [i++] = division.SecondaryEmail;
-                dr [i++] = division.WebSite;
-                dr [i++] = division.WorkingHours;
-                dr [i++] = division.CreatedByUserID;
-                dr [i++] = division.CreatedOnDate;
-                dr [i++] = division.LastModifiedByUserID;
-                dr [i++] = division.LastModifiedOnDate;
-
-                dt.Rows.Add (dr);
-            }
-
-            return dt;
+            
+            return DataTableConstructor.FromIEnumerable (divisions);
         }
 	}
 }
