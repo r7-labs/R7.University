@@ -24,4 +24,34 @@
     <data name="EduTypeAdditional.Text">
         <value>Дополнительное</value>
     </data>
+     <data name="Employees.Text" xml:space="preserve">
+        <value>Employees</value>
+    </data>
+    <data name="Divisions.Text" xml:space="preserve">
+        <value>Divisions</value>
+    </data>
+    <data name="Positions.Text" xml:space="preserve">
+        <value>Positions</value>
+    </data>
+    <data name="Achievements.Text" xml:space="preserve">
+        <value>Достижения</value>
+    </data>
+    <data name="EduPrograms.Text" xml:space="preserve">
+        <value>Образовательные программы</value>
+    </data>
+    <data name="EduProgramProfiles.Text" xml:space="preserve">
+        <value>Профили образовательных программ</value>
+    </data>
+    <data name="EduForms.Text" xml:space="preserve">
+        <value>Формы обучения</value>
+    </data>
+    <data name="EduLevels.Text" xml:space="preserve">
+        <value>Уровни образования</value>
+    </data>
+    <data name="Documents.Text" xml:space="preserve">
+        <value>Документы</value>
+    </data>
+    <data name="DocumentTypes.Text" xml:space="preserve">
+        <value>Типы документов</value>
+    </data>
 </root>
