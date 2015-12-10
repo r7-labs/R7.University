@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using System.Linq;
-using DotNetNuke.Data;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Entities.Icons;
@@ -65,7 +59,8 @@ namespace R7.University.Launchpad
 				Utils.Message (this, "NotConfigured.Text", MessageType.Info, true);
 				return;
 			}
-			else if (tables.Count > 1)
+			
+            if (tables.Count > 1)
 			{
 				// bind tabs
 				repeatTabs.DataSource = tables;
@@ -73,7 +68,7 @@ namespace R7.University.Launchpad
 			}
 
 			// wireup LoadComplete handler 
-			Page.LoadComplete += new EventHandler (OnLoadComplete);
+			Page.LoadComplete += OnLoadComplete;
 
 			// show first view if no session info available
 			if (Session ["Launchpad_ActiveView_" + TabModuleId] == null)
