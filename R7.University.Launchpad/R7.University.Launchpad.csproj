@@ -93,6 +93,7 @@
     <Content Include="EditEduProgramProfile.ascx" />
     <Content Include="EditDocumentType.ascx" />
     <Content Include="EditEduForm.ascx" />
+    <Content Include="admin.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
