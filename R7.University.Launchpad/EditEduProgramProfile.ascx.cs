@@ -41,6 +41,8 @@ namespace R7.University.Launchpad
             comboEduProgram.DataBind ();
             comboEduProgram.SelectedIndex = 0;
 
+            // init edit forms
+            formEditEduForms.OnInit (this, Controller.GetObjects<EduFormInfo> ());
             formEditDocuments.OnInit (this, Controller.GetObjects<DocumentTypeInfo> ());
         }
 
@@ -62,6 +64,13 @@ namespace R7.University.Launchpad
                 .ToList ();
 
             formEditDocuments.SetDocuments (item.EduProgramProfileID, documents);
+
+            var eppForms = Controller.GetObjects<EduProgramProfileFormInfo> (
+                "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
+                .WithEduForms (Controller)
+                .ToList ();
+            
+            formEditEduForms.SetEduProgramProfileForms (item.EduProgramProfileID, eppForms);
         }
 
         protected override void OnUpdateItem (EduProgramProfileInfo item)
@@ -98,6 +107,10 @@ namespace R7.University.Launchpad
 
             Controller.UpdateDocuments (formEditDocuments.GetDocuments (), 
                 "EduProgramProfileID", item.EduProgramProfileID);
+
+            // TODO: Need to implement this
+            // Controller.UpdateEduProgramProfileForms (formEditEduForms.GetEduProgramProfileForms (), 
+            //    item.EduProgramProfileID);
         }
 
         protected int SelectedTab

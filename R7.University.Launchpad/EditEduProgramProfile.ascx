@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditEduProgramProfile.ascx.cs" Inherits="R7.University.Launchpad.EditEduProgramProfile" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
+<%@ Register TagPrefix="controls" TagName="EditEduForms" Src="../R7.University/Controls/EditEduForms.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="../R7.University/Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
@@ -15,6 +16,7 @@
     <div id="eduProgramProfileTabs">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduProgramProfileCommon"><%= LocalizeString ("CommonTab.Text") %></a></li>
+            <li><a href="#eduProgramProfileForms"><%= LocalizeString ("EduFormsTab.Text") %></a></li>
             <li><a href="#eduProgramProfileDocuments"><%= LocalizeString ("DocumentsTab.Text") %></a></li>
         </ul>
         <asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
@@ -59,6 +61,9 @@
                     <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
                 </div>
         	</fieldset>
+        </div>
+        <div id="eduProgramProfileForms">
+            <controls:EditEduForms id="formEditEduForms" runat="server" />
         </div>
         <div id="eduProgramProfileDocuments">
             <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgramProfile" />
