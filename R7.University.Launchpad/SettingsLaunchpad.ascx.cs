@@ -16,8 +16,10 @@ namespace R7.University.Launchpad
 
         #endregion
 
-		public void Page_Init ()
+        public override void OnInit (EventArgs e)
 		{
+            base.OnInit (e);
+
 			// fill PageSize combobox
 			comboPageSize.AddItem ("10", "10");
 			comboPageSize.AddItem ("25", "25");
