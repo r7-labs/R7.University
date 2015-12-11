@@ -33,12 +33,42 @@ using R7.University.Utilities;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class EduProgramProfileFormViewModel: EduProgramProfileFormInfo
+    public class EduProgramProfileFormViewModel: 
+        EduProgramProfileFormInfo, IEditControlViewModel<EduProgramProfileFormInfo>
     {
+        #region IEditControlViewModel implementation
+
         public int ViewItemID { get; set; }
 
+        public int TargetItemID
+        {
+            get { return EduProgramProfileID; }
+            set { EduProgramProfileID = value; }
+        }
+
         [XmlIgnore]
-        protected ViewModelContext Context { get; set; }
+        public ViewModelContext Context { get; set; }
+
+        public IEditControlViewModel<EduProgramProfileFormInfo> FromModel (
+            EduProgramProfileFormInfo model, ViewModelContext context)
+        {
+            var viewModel = new EduProgramProfileFormViewModel ();
+            CopyCstor.Copy<EduProgramProfileFormInfo> (model, viewModel);
+            viewModel.Context = context;
+
+            return viewModel;
+        }
+
+        public EduProgramProfileFormInfo ToModel ()
+        {
+            // REVIEW: Use typecast instead?
+            var model = new EduProgramProfileFormInfo ();
+            CopyCstor.Copy<EduProgramProfileFormInfo> (this, model);
+
+            return model;
+        }
+
+        #endregion
 
         [XmlIgnore]
         public string TitleLocalized
@@ -56,30 +86,5 @@ namespace R7.University.Controls
         {
             ViewItemID = ViewNumerator.GetNextItemID ();
         }
-
-        public EduProgramProfileFormViewModel (
-            EduProgramProfileFormInfo eduProfileForm, ViewModelContext viewContext): this ()
-        {
-            CopyCstor.Copy<EduProgramProfileFormInfo> (eduProfileForm, this);
-            Context = viewContext;
-        }
-
-        public static void BindToView (
-            IEnumerable<EduProgramProfileFormViewModel> eduProfileForms, ViewModelContext context)
-        {
-            foreach (var eduProfileForm in eduProfileForms)
-            {
-                eduProfileForm.Context = context;
-            }
-        }
-
-        public EduProgramProfileFormInfo NewEduProgramProfileFormInfo ()
-        {
-            var eduProfileForm = new EduProgramProfileFormInfo ();
-            CopyCstor.Copy<EduProgramProfileFormInfo> (this, eduProfileForm);
-
-            return eduProfileForm;
-        }
     }
 }
-

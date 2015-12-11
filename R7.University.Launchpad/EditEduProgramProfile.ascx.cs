@@ -70,7 +70,7 @@ namespace R7.University.Launchpad
                 .WithEduForms (Controller)
                 .ToList ();
             
-            formEditEduForms.SetEduProgramProfileForms (item.EduProgramProfileID, eppForms);
+            formEditEduForms.SetData (eppForms, item.EduProgramProfileID);
         }
 
         protected override void OnUpdateItem (EduProgramProfileInfo item)
