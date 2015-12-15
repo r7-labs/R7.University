@@ -29,27 +29,31 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
+    interface IEduForm
+    {
+        int EduFormID { get; set; }
+
+        bool IsSystem { get; set; }
+
+        string Title { get; set; }
+
+        string ShortTitle { get; set; }
+    }
+
     [TableName ("University_EduForms")]
     [PrimaryKey ("EduFormID", AutoIncrement = true)]
     [Cacheable ("University_EduForms")]
-    [Serializable]
-    public class EduFormInfo: IReferenceEntity
+    public class EduFormInfo: IEduForm
     {
+        #region IEduForm implementation
+
         public int EduFormID { get; set; }
 
         public bool IsSystem { get; set; }
 
-        #region IReferenceEntity implementation
-
         public string Title { get; set; }
 
         public string ShortTitle { get; set; }
-
-        [IgnoreColumn]
-        public string DisplayShortTitle
-        {
-            get { return !string.IsNullOrWhiteSpace (ShortTitle) ? ShortTitle : Title; }
-        }
 
         #endregion
 

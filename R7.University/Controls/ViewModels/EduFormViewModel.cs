@@ -26,15 +26,30 @@
 
 using System;
 using System.Linq;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
-using System.Collections.Generic;
 
 namespace R7.University.Controls
 {
-    public class EduFormViewModel: EduFormInfo
+    [Serializable]
+    public class EduFormViewModel: IEduForm
     {
+        [XmlIgnore]
         protected ViewModelContext Context { get; set; }
+
+        #region IEduForm implementation
+
+        public int EduFormID { get; set; }
+
+        public bool IsSystem { get; set; }
+
+        public string Title { get; set; }
+
+        public string ShortTitle { get; set; }
+
+        #endregion
 
         public string TitleLocalized
         { 
@@ -52,11 +67,11 @@ namespace R7.University.Controls
 
         public EduFormViewModel (EduFormInfo eduForm, ViewModelContext context)
         {
-            CopyCstor.Copy<EduFormInfo> (eduForm, this);
+            CopyCstor.Copy<IEduForm> (eduForm, this);
             Context = context;
         }
 
-        public static IList<EduFormViewModel> GetBindableList (IEnumerable<EduFormInfo> eduForms, 
+        public static List<EduFormViewModel> GetBindableList (IEnumerable<EduFormInfo> eduForms, 
             ViewModelContext context, bool withDefaultItem)
         {
             var eduFormVms = eduForms.Select (ef => new EduFormViewModel (ef, context)).ToList ();
