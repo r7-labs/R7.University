@@ -31,7 +31,8 @@ namespace R7.University
 {
     [TableName ("University_EduForms")]
     [PrimaryKey ("EduFormID", AutoIncrement = true)]
-    [Cacheable ("University_EduForms")] 
+    [Cacheable ("University_EduForms")]
+    [Serializable]
     public class EduFormInfo: IReferenceEntity
     {
         public int EduFormID { get; set; }
