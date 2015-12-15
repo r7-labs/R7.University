@@ -46,20 +46,17 @@ namespace R7.University.Controls
         {
             Module = module;
 
-            SetEduForms (eduForms);
+            var eduFormViewModels = EduFormViewModel.GetBindableList (eduForms, ViewModelContext, false);
 
-            comboEduForm.DataSource = EduFormViewModel.GetBindableList (eduForms, ViewModelContext, false);
+            ViewState ["eduForms"] = XmlSerializationHelper.Serialize (eduFormViewModels.ToList ());
+
+            comboEduForm.DataSource = eduFormViewModels;
             comboEduForm.DataBind ();
         }
 
-        protected void SetEduForms (IEnumerable<EduFormInfo> eduForms)
+        protected EduFormViewModel GetEduForm (int eduFormId)
         {
-            ViewState ["eduForms"] = eduForms.ToList ();
-        }
-
-        protected EduFormInfo GetEduForm (int eduFormId)
-        {
-            var eduForms = (List<EduFormInfo>) ViewState ["eduForms"];
+            var eduForms = XmlSerializationHelper.Deserialize<List<EduFormViewModel>> (ViewState ["eduForms"]);
             return eduForms.Single (ef => ef.EduFormID == eduFormId);
         }
 
