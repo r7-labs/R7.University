@@ -12,118 +12,55 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="SystemDocumentType_Default.Text">
-        <value>&lt; Select Document Type &gt;</value>
+    <data name="labelEduForm.Text">
+        <value>Education Form:</value>
     </data>
-    <data name="SystemDocumentType_OrderEnrollment.Text">
-        <value>Enrollment Order</value>
+    <data name="labelEduForm.Help">
+        <value>Select education form.</value>
     </data>
-    <data name="SystemDocumentType_OrderExpulsion.Text">
-        <value>Expulsion Order</value>
+    <data name="labelTimeToLearn.Text">
+        <value>Time to Learn:</value>
     </data>
-    <data name="SystemDocumentType_OrderRestoration.Text">
-        <value>Restoration Order</value>
+    <data name="labelTimeToLearn.Help">
+        <value>Enter time to learn in years and months.</value>
     </data>
-    <data name="SystemDocumentType_OrderTransfer.Text">
-        <value>Transfer Order</value>
+    <data name="labelIsAdmissive.Text">
+        <value>Is Admissive:</value>
     </data>
-    <data name="SystemDocumentType_OrderAcademicLeave.Text">
-        <value>Academic Leave Order</value>
+    <data name="labelIsAdmissive.Help">
+        <value>Check if current educational profile form is available to enroll.</value>
     </data>
-    <data name="SystemDocumentType_EduStandard.Text">
-        <value>Educational Standard</value>
+    <data name="buttonAddEduForm.Text">
+        <value>Add</value>
     </data>
-    <data name="SystemDocumentType_EduProgram.Text">
-        <value>Educational Program</value>
+    <data name="buttonUpdateEduForm.Text">
+        <value>Update</value>
     </data>
-    <data name="SystemDocumentType_EduSchedule.Text">
-        <value>Education Schedule</value>
-    </data>
-    <data name="SystemDocumentType_EduPlan.Text">
-        <value>Education Plan</value>
-    </data>
-    <data name="SystemDocumentType_EduMaterial.Text">
-        <value>Educational Material</value>
-    </data>
-    <data name="SystemDocumentType_WorkProgramAnnotation.Text">
-        <value>Work Program Annotation</value>
-    </data>
-    <data name="SystemDocumentType_WorkProgramOfPractice.Text">
-        <value>Work Program Of Practice</value>
-    </data>
-    <data name="SystemDocumentType_Contingent.Text">
-        <value>Contingent Info</value>
-    </data>
-    <data name="SystemDocumentType_ContingentMovement.Text">
-        <value>Contingent Movement Info</value>
-    </data>
-    <data name="SystemDocumentType_ScienceInfo.Text">
-        <value>Science Info</value>
-    </data>
-    <data name="labelDocumentTitle.Text">
-        <value>Title:</value>
-    </data>
-    <data name="labelDocumentTitle.Help">
-        <value>Enter title for the document.</value>
-    </data>
-    <data name="labelDocumentType.Text">
-        <value>Type:</value>
-    </data>
-    <data name="labelDocumentType.Help">
-        <value>Select document type from the dropdown.</value>
-    </data>
-    <data name="labelDocumentSortIndex.Text">
-        <value>Sort Index:</value>
-    </data>
-    <data name="labelDocumentSortIndex.Help">
-        <value>Enter sort index for the document. It can be used to give specific order to the documents in some views.</value>
-    </data>
-    <data name="labelDocumentUrl.Text">
-        <value>Link:</value>
-    </data>
-    <data name="labelDocumentUrl.Help">
-        <value>Provide link to the document.</value>
-    </data>
-    <data name="labelDocumentStartDate.Text">
-        <value>Start Publication:</value>
-    </data>
-    <data name="labelDocumentStartDate.Help">
-        <value>Enter the date from current document should be published on the site.</value>
-    </data>
-    <data name="labelDocumentEndDate.Text">
-        <value>End Publication:</value>
-    </data>
-    <data name="labelDocumentEndDate.Help">
-        <value>Enter the date from current document should be removed from publication on the site.</value>
-    </data>
-    <data name="buttonAddDocument.Text">
-        <value>Add Document</value>
-    </data>
-    <data name="buttonUpdateDocument.Text">
-        <value>Update Document</value>
-    </data>
-    <data name="buttonCancelEditDocument.Text">
+    <data name="buttonCancelEditEduForm.Text">
         <value>Cancel</value>
     </data>
-    <data name="DocumentTitle.Column">
-        <value>Title</value>
+    <data name="TimeToLearn.Format">
+        <value>{0} years {1} months</value>
     </data>
-    <data name="DocumentType.Column">
-        <value>Type</value>
+    <data name="SystemEduForm_Default.Text">
+        <value></value>
     </data>
-    <data name="DocumentUrl.Column">
-        <value>Link</value>
+    <data name="SystemEduForm_FullTime.Text">
+        <value>Full Time</value>
     </data>
-    <data name="DocumentUrlLabel.Text">
-        <value>Open</value>
+    <data name="SystemEduForm_PartTime.Text">
+        <value>Part Time</value>
     </data>
-    <data name="DocumentSortIndex.Column">
-        <value>Sort Index</value>
+    <data name="SystemEduForm_Extramural.Text">
+        <value>Extramural</value>
     </data>
-    <data name="DocumentStartDate.Column">
-        <value>Start Date</value>
+    <data name="EduFormTitle.Column">
+        <value>Edu Form</value>
     </data>
-    <data name="DocumentEndDate.Column">
-        <value>End Date</value>
+    <data name="TimeToLearn.Column">
+        <value>Time to Learn</value>
+    </data>
+    <data name="IsAdmissive.Column">
+        <value>Is Admissive</value>
     </data>
 </root>

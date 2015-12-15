@@ -189,6 +189,9 @@
     <None Include="license.txt" />
     <None Include="releaseNotes.txt" />
     <None Include="Controls\EditEduForms.ascx" />
+    <None Include="Controls\App_LocalResources\EditEduForms.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
