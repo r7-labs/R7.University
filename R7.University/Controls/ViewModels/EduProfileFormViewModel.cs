@@ -28,13 +28,11 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
-using R7.University.Utilities;
 
 namespace R7.University.Controls
 {
     [Serializable]
-    public class EduProgramProfileFormViewModel: 
-        EduProgramProfileFormInfo, IEditControlViewModel<EduProgramProfileFormInfo>
+    public class EduProgramProfileFormViewModel: IEduProgramProfileForm, IEditControlViewModel<EduProgramProfileFormInfo>
     {
         #region IEditControlViewModel implementation
 
@@ -53,7 +51,8 @@ namespace R7.University.Controls
             EduProgramProfileFormInfo model, ViewModelContext context)
         {
             var viewModel = new EduProgramProfileFormViewModel ();
-            CopyCstor.Copy<EduProgramProfileFormInfo> (model, viewModel);
+            CopyCstor.Copy<IEduProgramProfileForm> (model, this);
+            viewModel.EduFormTitle = model.EduForm.Title;
             viewModel.Context = context;
 
             return viewModel;
@@ -61,30 +60,55 @@ namespace R7.University.Controls
 
         public EduProgramProfileFormInfo ToModel ()
         {
-            // REVIEW: Use typecast instead?
             var model = new EduProgramProfileFormInfo ();
-            CopyCstor.Copy<EduProgramProfileFormInfo> (this, model);
+            CopyCstor.Copy<IEduProgramProfileForm> (this, model);
 
             return model;
         }
 
         #endregion
 
-        [XmlIgnore]
-        public string TitleLocalized
-        { 
-            get
-            {
-                var titleLocalized = Localization.GetString ("SystemEduForm_" + EduForm.Title + ".Text", 
-                    Context.LocalResourceFile);
-                    
-                return (!string.IsNullOrEmpty (titleLocalized)) ? titleLocalized : EduForm.Title;
-            }
-        }
-
         public EduProgramProfileFormViewModel ()
         {
             ViewItemID = ViewNumerator.GetNextItemID ();
+        }
+
+        #region IEduProgramProfileForm implementation
+
+        public long EduProgramProfileFormID { get; set; }
+       
+        public int EduProgramProfileID { get; set; }
+
+        public int EduFormID { get; set; }
+
+        public int TimeToLearn { get; set; }
+
+        public bool IsAdmissive { get; set; }
+
+        #endregion
+
+        public string EduFormTitle { get; set; }
+
+        [XmlIgnore]
+        public string EduFormTitleLocalized
+        {
+            get
+            {
+                var title = Localization.GetString ("SystemEduForm_" + EduFormTitle + ".Text", 
+                    Context.LocalResourceFile);
+                    
+                return (!string.IsNullOrEmpty (title)) ? title : EduFormTitle;
+            }
+        }
+
+        [XmlIgnore]
+        public string TimeToLearnString
+        {
+            get
+            { 
+                return string.Format (Localization.GetString ("TimeToLearn.Format", Context.LocalResourceFile),
+                    TimeToLearn / 12, TimeToLearn % 12, TimeToLearn);
+            }
         }
     }
 }
