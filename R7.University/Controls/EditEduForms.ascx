@@ -7,7 +7,7 @@
     <fieldset>
         <div class="dnnFormItem">
             <asp:GridView id="gridEduForms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                GridLines="None" OnRowDataBound="gridEduForms_RowDataBound" Style="margin-bottom:30px;width:775px">
+                GridLines="None" Style="margin-bottom:30px;width:775px">
                 <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                 <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -19,17 +19,17 @@
                     <asp:TemplateField>
                        <ItemTemplate>
                             <span style="white-space:nowrap">
-                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditEduForm_Command" >
+                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
                                 </asp:LinkButton>
-                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteEduForm_Command" >
+                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="OnDeleteItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
                                 </asp:LinkButton>
                             </span>
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="TitleLocalized" HeaderText="Title" />
+                    <asp:BoundField DataField="EduFormTitleLocalized" HeaderText="EduFormTitle" />
                     <asp:BoundField DataField="TimeToLearnString" HeaderText="TimeToLearn" />
                     <asp:BoundField DataField="IsAdmissive" HeaderText="IsAdmissive" />
                 </Columns>
@@ -38,14 +38,17 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelEduForm" runat="server" ControlName="comboEduForm" />
             <asp:DropDownList id="comboEduForm" runat="server"
-                DataTextField="EduFormID"
-                DataValueField="Title"
+                DataTextField="TitleLocalized"
+                DataValueField="EduFormID"
             /> 
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelTimeToLearn" runat="server" ControlName="textTimeToLearnYears" />
-            <asp:TextBox id="textTimeToLearnYears" runat="server" />
-            <asp:TextBox id="textTimeToLearnMonths" runat="server" />
+            <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
+        </div>
+        <div class="dnnFormItem">
+            <div class="dnnLabel"></div>
+            <asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsAdmissive" runat="server" ControlName="checkIsAdmissive" />
@@ -54,11 +57,11 @@
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <asp:LinkButton id="buttonAddEduForm" runat="server" resourcekey="buttonAddEduForm" 
-                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduForm_Command"  CommandArgument="Add" />
+                CssClass="dnnPrimaryAction" CommandArgument="Add" />
             <asp:LinkButton id="buttonUpdateEduForm" runat="server" resourcekey="buttonUpdateEduForm" 
-                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduForm_Command" Visible="false" CommandArgument="Update" />
+                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update" />
             <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="buttonCancelEditEduForm" 
-                        CssClass="dnnSecondaryAction" OnClick="buttonCancelEditEduForm_Click" />
+                        CssClass="dnnSecondaryAction" />
         </div>
         <asp:HiddenField id="hiddenEduFormItemID" runat="server" />
     </fieldset>
