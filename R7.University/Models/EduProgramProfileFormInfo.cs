@@ -30,10 +30,25 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
+    interface IEduProgramProfileForm
+    {
+        long EduProgramProfileFormID { get; set; }
+
+        int EduProgramProfileID { get; set; }
+
+        int EduFormID { get; set; }
+
+        int TimeToLearn { get; set; }
+
+        bool IsAdmissive { get; set; }
+    }
+
     [TableName ("University_EduProgramProfileForms")]
     [PrimaryKey ("EduProgramProfileFormID", AutoIncrement = true)]
-    public class EduProgramProfileFormInfo
+    public class EduProgramProfileFormInfo: IEduProgramProfileForm
     {
+        #region IEduProgramProfileForm implementation
+
         public long EduProgramProfileFormID { get; set; }
 
         public int EduProgramProfileID { get; set; }
@@ -42,7 +57,10 @@ namespace R7.University
 
         public int TimeToLearn { get; set; }
 
+        // TODO: Rename to IsAppliable
         public bool IsAdmissive { get; set; }
+
+        #endregion
 
         [IgnoreColumn]
         public EduProgramProfileInfo EduProgramProfile { get; set; }
