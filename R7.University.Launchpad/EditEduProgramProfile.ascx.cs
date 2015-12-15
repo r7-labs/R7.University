@@ -105,12 +105,9 @@ namespace R7.University.Launchpad
                 }
             }
 
-            Controller.UpdateDocuments (formEditDocuments.GetDocuments (), 
-                "EduProgramProfileID", item.EduProgramProfileID);
-
-            // TODO: Need to implement this
-            // Controller.UpdateEduProgramProfileForms (formEditEduForms.GetEduProgramProfileForms (), 
-            //    item.EduProgramProfileID);
+            // update referenced items
+            Controller.UpdateDocuments (formEditDocuments.GetDocuments (), "EduProgramProfileID", item.EduProgramProfileID);
+            Controller.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
         }
 
         protected int SelectedTab
