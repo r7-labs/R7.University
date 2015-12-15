@@ -57,7 +57,7 @@ namespace R7.University
 
         public int TimeToLearn { get; set; }
 
-        // TODO: Rename to IsAppliable
+        // TODO: Rename to IsEnrollable
         public bool IsAdmissive { get; set; }
 
         #endregion
