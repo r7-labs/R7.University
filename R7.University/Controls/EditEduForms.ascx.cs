@@ -48,10 +48,8 @@ namespace R7.University.Controls
 
             SetEduForms (eduForms);
 
-            comboEduForm.DataSource = EduFormViewModel.GetBindableList (eduForms, ViewModelContext, true);
+            comboEduForm.DataSource = EduFormViewModel.GetBindableList (eduForms, ViewModelContext, false);
             comboEduForm.DataBind ();
-
-            gridEduForms.LocalizeColumns (LocalResourceFile);
         }
 
         protected void SetEduForms (IEnumerable<EduFormInfo> eduForms)
@@ -59,21 +57,19 @@ namespace R7.University.Controls
             ViewState ["eduForms"] = eduForms.ToList ();
         }
 
-        protected EduFormInfo GetEduForm (int? eduFormId)
+        protected EduFormInfo GetEduForm (int eduFormId)
         {
-            if (eduFormId != null)
-            {
-                var eduForms = (List<EduFormInfo>) ViewState ["eduForms"];
-                return eduForms.Single (ef => ef.EduFormID == eduFormId.Value);
-            }
-
-            return new EduFormInfo {
-                EduFormID = Null.NullInteger,
-                Title = string.Empty
-            };
+            var eduForms = (List<EduFormInfo>) ViewState ["eduForms"];
+            return eduForms.Single (ef => ef.EduFormID == eduFormId);
         }
 
         #region implemented abstract members of GridAndFormEditControlBase
+
+        protected override void OnInitControls ()
+        {
+            InitControls (gridEduForms, hiddenEduFormItemID, 
+                buttonAddEduForm, buttonUpdateEduForm, buttonCancelEditEduForm);
+        }
 
         protected override void OnLoadItem (EduProgramProfileFormViewModel item)
         {
@@ -85,7 +81,8 @@ namespace R7.University.Controls
 
         protected override void OnUpdateItem (EduProgramProfileFormViewModel item)
         {
-            item.EduFormID = comboEduForm.SelectedIndex;
+            item.EduFormID = int.Parse (comboEduForm.SelectedValue);
+            item.EduFormTitle = GetEduForm (item.EduFormID).Title;
             item.IsAdmissive = checkIsAdmissive.Checked;
             item.TimeToLearn = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
         }
