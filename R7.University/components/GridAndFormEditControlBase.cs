@@ -25,15 +25,15 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using System.Web.UI;
-using DotNetNuke.Entities.Icons;
-using DotNetNuke.Entities.Modules;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using System.Linq;
-using Telerik.Charting.Styles;
+using R7.University.ControlExtensions;
 
 namespace R7.University
 {
@@ -42,11 +42,11 @@ namespace R7.University
     {
         #region Controls
 
-        protected GridView gridItems;
-        protected HiddenField hiddenViewItemID;
-        protected LinkButton buttonAddItem;
-        protected LinkButton buttonUpdateItem;
-        protected LinkButton buttonCancelEditItem;
+        protected GridView GridItems;
+        protected HiddenField HiddenViewItemID;
+        protected LinkButton ButtonAddItem;
+        protected LinkButton ButtonUpdateItem;
+        protected LinkButton ButtonCancelEditItem;
 
         #endregion
 
@@ -58,7 +58,19 @@ namespace R7.University
 
         protected abstract void OnResetForm ();
 
+        protected abstract void OnInitControls ();
+
         #endregion
+
+        protected void InitControls (GridView gridItems, HiddenField hiddenViewItemId, LinkButton buttonAddItem, 
+            LinkButton buttonUpdateItem, LinkButton buttonCancelEditItem)
+        {
+            GridItems = gridItems;
+            HiddenViewItemID = hiddenViewItemId;
+            ButtonAddItem = buttonAddItem;
+            ButtonUpdateItem = buttonUpdateItem;
+            ButtonCancelEditItem = buttonCancelEditItem;
+        }
 
         #region Bindable icons
 
@@ -124,8 +136,8 @@ namespace R7.University
             var viewModels = items.Select (i => (TViewModel) convertor.FromModel (i, ViewModelContext)).ToList ();
             ViewStateItems = viewModels;
 
-            gridItems.DataSource = DataTableConstructor.FromIEnumerable (viewModels);
-            gridItems.DataBind ();
+            GridItems.DataSource = DataTableConstructor.FromIEnumerable (viewModels);
+            GridItems.DataBind ();
         }
 
         #endregion
@@ -164,7 +176,7 @@ namespace R7.University
 
         #region Handlers
 
-        protected void buttonAddItem_Command (object sender, CommandEventArgs e)
+        protected void OnUpdateItemCommand (object sender, CommandEventArgs e)
         {
             try
             {
@@ -185,7 +197,7 @@ namespace R7.University
                 else
                 {
                     // restore ItemID from hidden field
-                    var hiddenViewItemId = int.Parse (hiddenViewItemID.Value);
+                    var hiddenViewItemId = int.Parse (HiddenViewItemID.Value);
                     item = items.Find (i => i.ViewItemID == hiddenViewItemId);
                 }
 
@@ -209,8 +221,8 @@ namespace R7.University
                 }
 
                 // bind items to the gridview
-                gridItems.DataSource = DataTableConstructor.FromIEnumerable (items);
-                gridItems.DataBind ();
+                GridItems.DataSource = DataTableConstructor.FromIEnumerable (items);
+                GridItems.DataBind ();
 
             }
             catch (Exception ex)
@@ -219,7 +231,50 @@ namespace R7.University
             }
         }
 
-        protected void linkEditItem_Command (object sender, CommandEventArgs e)
+        protected void OnCancelEditItemClick (object sender, EventArgs e)
+        {
+            try
+            {
+                ResetForm ();
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException (Module, ex);
+            }
+        }
+
+        void ResetForm ()
+        {
+            // restore default buttons visibility
+            ButtonAddItem.Visible = true;
+            ButtonUpdateItem.Visible = false;
+
+            OnResetForm ();
+        }
+
+        protected void OnGridItemsRowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            // hide ViewItemID column, also in header
+            e.Row.Cells [1].Visible = false;
+
+            // exclude header
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // find edit and delete linkbuttons
+                var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
+                var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
+
+                // set record Id to delete
+                linkEdit.CommandArgument = e.Row.Cells [1].Text;
+                linkDelete.CommandArgument = e.Row.Cells [1].Text;
+
+                // add confirmation dialog to delete link
+                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" 
+                    + Localization.GetString ("DeleteItem") + "');");
+            }
+        }
+
+        protected void OnEditItemCommand (object sender, CommandEventArgs e)
         {
             try
             {
@@ -234,13 +289,13 @@ namespace R7.University
                     {
                         // fill form
                         OnLoadItem (item);
-                       
+
                         // store ViewItemID in the hidden field
-                        hiddenViewItemID.Value = item.ViewItemID.ToString ();
+                        HiddenViewItemID.Value = item.ViewItemID.ToString ();
 
                         // show / hide buttons
-                        buttonAddItem.Visible = false;
-                        buttonUpdateItem.Visible = true;
+                        ButtonAddItem.Visible = false;
+                        ButtonUpdateItem.Visible = true;
                     }
                 }
             }
@@ -250,7 +305,7 @@ namespace R7.University
             }
         }
 
-        protected void linkDeleteItem_Command (object sender, CommandEventArgs e)
+        protected void OnDeleteItemCommand (object sender, CommandEventArgs e)
         {
             try
             {
@@ -277,11 +332,11 @@ namespace R7.University
                         }
 
                         // bind items to the gridview
-                        gridItems.DataSource = DataTableConstructor.FromIEnumerable (items);
-                        gridItems.DataBind ();
+                        GridItems.DataSource = DataTableConstructor.FromIEnumerable (items);
+                        GridItems.DataBind ();
 
                         // reset form if we deleting currently edited item
-                        if (buttonUpdateItem.Visible && hiddenViewItemID.Value == itemId)
+                        if (ButtonUpdateItem.Visible && HiddenViewItemID.Value == itemId)
                         {
                             ResetForm ();
                         }
@@ -291,49 +346,6 @@ namespace R7.University
             catch (Exception ex)
             {
                 Exceptions.ProcessModuleLoadException (Module, ex);
-            }
-        }
-
-        protected void buttonCancelEditItem_Click (object sender, EventArgs e)
-        {
-            try
-            {
-                ResetForm ();
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException (Module, ex);
-            }
-        }
-
-        void ResetForm ()
-        {
-            // restore default buttons visibility
-            buttonAddItem.Visible = true;
-            buttonUpdateItem.Visible = false;
-
-            OnResetForm ();
-        }
-
-        protected void gridItems_RowDataBound (object sender, GridViewRowEventArgs e)
-        {
-            // hide ViewItemID column, also in header
-            e.Row.Cells [1].Visible = false;
-
-            // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                // find edit and delete linkbuttons
-                var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
-                var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
-
-                // set record Id to delete
-                linkEdit.CommandArgument = e.Row.Cells [1].Text;
-                linkDelete.CommandArgument = e.Row.Cells [1].Text;
-
-                // add confirmation dialog to delete link
-                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" 
-                    + Localization.GetString ("DeleteItem") + "');");
             }
         }
 
