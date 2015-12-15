@@ -122,11 +122,18 @@ namespace R7.University.Launchpad
 
                 if (!string.IsNullOrEmpty (eventTarget))
                 {
-                    // check if postback initiator is on Documents tab
-                    if (eventTarget.Contains ("$" + formEditDocuments.ID))
+                    // check if postback initiator is on EduForms tab
+                    if (eventTarget.Contains ("$" + formEditEduForms.ID))
                     {
                         ViewState ["SelectedTab"] = 1;
                         return 1;
+                    }
+
+                    // check if postback initiator is on Documents tab
+                    if (eventTarget.Contains ("$" + formEditDocuments.ID))
+                    {
+                        ViewState ["SelectedTab"] = 2;
+                        return 2;
                     }
                 }
 

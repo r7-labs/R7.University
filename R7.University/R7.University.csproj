@@ -192,6 +192,7 @@
     <None Include="Controls\App_LocalResources\EditEduForms.ascx.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Controls\App_LocalResources\EditEduForms.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
