@@ -50,7 +50,6 @@ namespace R7.University
 
     [TableName ("University_Documents")]
     [PrimaryKey ("DocumentID", AutoIncrement = true)]
-    [Serializable]
     public class DocumentInfo: IDocument
     {
         #region IDocument implementation

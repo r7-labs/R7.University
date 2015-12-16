@@ -116,7 +116,8 @@ namespace R7.University.Controls
         { 
             ItemId = itemId;
 
-            var documentViewModels = documentsWithType.Select (d => new DocumentViewModel (d, ViewModelContext)).ToList ();
+            var convertor = new DocumentViewModel ();
+            var documentViewModels = documentsWithType.Select (d => (DocumentViewModel) convertor.FromModel (d, ViewModelContext)).ToList ();
             ViewStateDocuments = documentViewModels;
             gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documentViewModels);
             gridDocuments.DataBind ();
@@ -126,7 +127,7 @@ namespace R7.University.Controls
         {
             if (ViewStateDocuments != null)
             {
-                return ViewStateDocuments.Select (dvm => dvm.NewDocumentInfo ()).ToList ();
+                return ViewStateDocuments.Select (dvm => dvm.ToModel ()).ToList ();
             }
 
             return new List<DocumentInfo> ();    
@@ -180,7 +181,7 @@ namespace R7.University.Controls
 
                 document.Title = textDocumentTitle.Text.Trim ();
                 document.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
-                document.DocumentType = GetDocumentType (document.DocumentTypeID).ToModel ();
+                document.DocumentTypeType = GetDocumentType (document.DocumentTypeID).Type;
                 document.SortIndex = int.Parse (textDocumentSortIndex.Text);
                 document.StartDate = datetimeDocumentStartDate.SelectedDate;
                 document.EndDate = datetimeDocumentEndDate.SelectedDate;
@@ -197,8 +198,13 @@ namespace R7.University.Controls
                 // refresh viewstate
                 ViewStateDocuments = documents;
 
-                // bind items to the gridview
-                DocumentViewModel.BindToView (documents, ViewModelContext);
+                // rebind viewmodels to the context
+                foreach (var doc in documents)
+                {
+                    doc.Context = ViewModelContext;
+                }
+
+                // bind items to the gridview  
                 gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
                 gridDocuments.DataBind ();
 
@@ -266,8 +272,13 @@ namespace R7.University.Controls
                         // refresh viewstate
                         ViewStateDocuments = documents;
 
+                        // rebind viewmodels to the context
+                        foreach (var doc in documents)
+                        {
+                            doc.Context = ViewModelContext;
+                        }
+
                         // bind to the gridview
-                        DocumentViewModel.BindToView (documents, ViewModelContext);
                         gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
                         gridDocuments.DataBind ();
 

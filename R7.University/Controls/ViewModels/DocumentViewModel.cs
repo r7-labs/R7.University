@@ -33,24 +33,41 @@ using R7.University.Utilities;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class DocumentViewModel: DocumentInfo
+    public class DocumentViewModel: IDocument, IEditControlViewModel<DocumentInfo>
     {
-        public int ViewItemID { get; set; }
+        #region IDocument implementation
 
-        [XmlIgnore]
-        protected ViewModelContext Context { get; set; }
+        public int DocumentID { get; set; }
+
+        public int? DocumentTypeID { get; set; }
+
+        public string ItemID { get; set; }
+
+        public string Title { get; set; }
+
+        public string Url { get; set; }
+
+        public int SortIndex { get; set; }
+
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
+        #endregion
+
+        public string DocumentTypeType { get; set; }
 
         [XmlIgnore]
         public string LocalizedType
         { 
             get
             {
-                if (DocumentType != null)
+                if (DocumentTypeType != null)
                 {
-                    var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentType.Type + ".Text", 
+                    var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentTypeType + ".Text", 
                         Context.LocalResourceFile);
                     
-                    return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentType.Type;
+                    return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentTypeType;
                 }
 
                 return string.Empty;
@@ -74,38 +91,49 @@ namespace R7.University.Controls
             }
         }
 
+        #region IEditControlViewModel implementation
+
+        public int ViewItemID { get; set; }
+
+        // dummy
+        public int TargetItemID { get; set; }
+
+        [XmlIgnore]
+        public ViewModelContext Context { get; set; }
+
+        public IEditControlViewModel<DocumentInfo> FromModel (DocumentInfo model, ViewModelContext viewContext)
+        {
+            var viewModel = new DocumentViewModel ();
+            CopyCstor.Copy<IDocument> (model, viewModel);
+            viewModel.DocumentTypeType = model.DocumentType.Type;
+            viewModel.Context = viewContext;
+
+            return viewModel;
+        }
+
+        public DocumentInfo ToModel ()
+        {
+            var model = new DocumentInfo ();
+            CopyCstor.Copy<IDocument> (this, model);
+
+            return model;
+        }
+
+        #endregion
+
         public DocumentViewModel ()
         {
             ViewItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public DocumentViewModel (DocumentInfo document, ViewModelContext viewContext): this ()
-        {
-            CopyCstor.Copy<DocumentInfo> (document, this);
-            Context = viewContext;
-        }
-
+        /*
         public static void BindToView (IEnumerable<DocumentViewModel> documents, ViewModelContext context)
         {
             foreach (var document in documents)
             {
                 document.Context = context;
             }
-        }
-
-        public DocumentInfo NewDocumentInfo ()
-        {
-            return new DocumentInfo {
-                DocumentID = DocumentID,
-                DocumentTypeID = DocumentTypeID,
-                ItemID = ItemID,
-                Title = Title,
-                Url = Url,
-                SortIndex = SortIndex,
-                StartDate = StartDate,
-                EndDate = EndDate
-            };
-        }
+        }*/
     }
 }
 
