@@ -66,7 +66,7 @@ namespace R7.University.Controls
         public DocumentTypeViewModel ()
         {}
 
-        public DocumentTypeViewModel (DocumentTypeInfo documentType, ViewModelContext context)
+        public DocumentTypeViewModel (IDocumentType documentType, ViewModelContext context)
         {
             CopyCstor.Copy<IDocumentType> (documentType, this);
             Context = context;

@@ -29,7 +29,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    interface IDocument
+    public interface IDocument
     {
         int DocumentID { get; set; }
 
@@ -46,6 +46,8 @@ namespace R7.University
         DateTime? StartDate { get; set; }
 
         DateTime? EndDate { get; set; }
+
+        IDocumentType DocumentType { get; set; }
     }
 
     [TableName ("University_Documents")]
@@ -70,20 +72,10 @@ namespace R7.University
 
         public DateTime? EndDate { get; set; }
 
+        [IgnoreColumn]
+        public IDocumentType DocumentType { get; set; }
+
         #endregion
-
-        [IgnoreColumn]
-        public bool IsPublished
-        {
-            get
-            {
-                var now = DateTime.Now;
-                return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
-            }
-        }
-
-        [IgnoreColumn]
-        public DocumentTypeInfo DocumentType { get; set; }
     }
 }
 

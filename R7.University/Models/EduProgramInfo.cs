@@ -91,7 +91,7 @@ namespace R7.University
             get
             { 
                 return Documents.Where (d => d.DocumentType != null 
-                    && d.DocumentType.SystemDocumentType == SystemDocumentType.EduStandard).ToList ();
+                    && d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduStandard).ToList ();
             }
         }
     }

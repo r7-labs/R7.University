@@ -93,7 +93,7 @@ namespace R7.University.Controls
         {
             item.Title = textDocumentTitle.Text.Trim ();
             item.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
-            item.DocumentTypeType = GetDocumentType (item.DocumentTypeID).Type;
+            item.DocumentType = GetDocumentType (item.DocumentTypeID);
             item.SortIndex = int.Parse (textDocumentSortIndex.Text);
             item.StartDate = datetimeDocumentStartDate.SelectedDate;
             item.EndDate = datetimeDocumentEndDate.SelectedDate;

@@ -29,7 +29,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    interface IDocumentType
+    public interface IDocumentType
     {
         int DocumentTypeID { get; set; }
 
@@ -56,16 +56,6 @@ namespace R7.University
         public bool IsSystem { get; set; }
 
         #endregion
-
-        [IgnoreColumn]
-        public SystemDocumentType SystemDocumentType
-        {
-            get
-            {
-                SystemDocumentType result;
-                return Enum.TryParse<SystemDocumentType> (Type, out result) ? result : SystemDocumentType.Custom;
-            }
-        }
     }
 }
 

@@ -56,7 +56,7 @@ namespace R7.University.EduProgramDirectory
             get
             {
                 var eduStandardDocuments = EduStandardDocuments
-                    .Where (d => d.IsPublished || Context.Module.IsEditable).ToList ();
+                    .Where (d => d.IsPublished () || Context.Module.IsEditable).ToList ();
                 
                 if (eduStandardDocuments != null && eduStandardDocuments.Count > 0)
                 {
@@ -67,7 +67,7 @@ namespace R7.University.EduProgramDirectory
                         return string.Format ("<a href=\"{0}\"{1}{2} itemprop=\"EduStandartDoc\">{3}</a>",
                             UrlUtils.LinkClickIdnHack (eduStandardDocument.Url, Context.Module.TabId, Context.Module.ModuleId), 
                             Globals.GetURLType (eduStandardDocument.Url) == TabType.Url ? " target=\"_blank\"" : string.Empty,
-                            !eduStandardDocument.IsPublished ? " class=\"not-published-document\"" : string.Empty,
+                            !eduStandardDocument.IsPublished () ? " class=\"not-published-document\"" : string.Empty,
                             !string.IsNullOrWhiteSpace (eduStandardDocument.Title) ? eduStandardDocument.Title 
                             : Localization.GetString ("EduProgramStandardLink.Text", Context.LocalResourceFile)
                         );

@@ -41,6 +41,19 @@ namespace R7.University.Controls
 
         public int? DocumentTypeID { get; set; }
 
+        [XmlIgnore]
+        public IDocumentType DocumentType { get; set; }
+
+        /// <summary>
+        /// XML-serializeable boilerplate for <see cref="DocumentViewModel.DocumentType" /> property
+        /// </summary>
+        /// <value>The document type view model.</value>
+        public DocumentTypeViewModel DocumentTypeViewModel
+        {
+            get { return (DocumentTypeViewModel) DocumentType; }
+            set { DocumentType = value; }
+        }
+
         public string ItemID { get; set; }
 
         public string Title { get; set; }
@@ -55,19 +68,17 @@ namespace R7.University.Controls
 
         #endregion
 
-        public string DocumentTypeType { get; set; }
-
         [XmlIgnore]
         public string LocalizedType
         { 
             get
             {
-                if (DocumentTypeType != null)
+                if (DocumentType != null)
                 {
-                    var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentTypeType + ".Text", 
+                    var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentType.Type + ".Text", 
                         Context.LocalResourceFile);
                     
-                    return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentTypeType;
+                    return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentType.Type;
                 }
 
                 return string.Empty;
@@ -102,7 +113,9 @@ namespace R7.University.Controls
         {
             var viewModel = new DocumentViewModel ();
             CopyCstor.Copy<IDocument> (model, viewModel);
-            viewModel.DocumentTypeType = model.DocumentType.Type;
+
+            // FIXME: Context not updated for referenced viewmodels
+            viewModel.DocumentType = new DocumentTypeViewModel (model.DocumentType, viewContext);
             viewModel.Context = viewContext;
 
             return viewModel;
