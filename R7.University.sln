@@ -285,6 +285,13 @@ Global
 		$0.XmlFormattingPolicy = $43
 		$43.inheritsSet = null
 		$43.scope = application/config+xml
+		$0.VersionControlPolicy = $44
+		$44.CommitMessageStyle = $45
+		$45.FileSeparator = ", "
+		$45.LastFilePostfix = @:\n
+		$45.LineAlign = 0
+		$45.IncludeDirectoryPaths = True
+		$44.inheritsSet = Mono
 		version = 1.6.3
 	EndGlobalSection
 EndGlobal
