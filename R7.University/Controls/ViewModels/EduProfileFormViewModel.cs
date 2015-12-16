@@ -38,12 +38,6 @@ namespace R7.University.Controls
 
         public int ViewItemID { get; set; }
 
-        public int TargetItemID
-        {
-            get { return EduProgramProfileID; }
-            set { EduProgramProfileID = value; }
-        }
-
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
@@ -64,6 +58,11 @@ namespace R7.University.Controls
             CopyCstor.Copy<IEduProgramProfileForm> (this, model);
 
             return model;
+        }
+
+        public void SetTargetItemId (int targetItemId, string targetItemKey)
+        {
+            EduProgramProfileID = targetItemId;
         }
 
         #endregion

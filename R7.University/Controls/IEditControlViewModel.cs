@@ -32,12 +32,12 @@ namespace R7.University.Controls
     {
         int ViewItemID { get; set; }
 
-        int TargetItemID { get; set; }
-
         ViewModelContext Context { get; set; }
 
         TModel ToModel ();
 
         IEditControlViewModel<TModel> FromModel (TModel model, ViewModelContext context);
+
+        void SetTargetItemId (int targetItemId, string targetItemKey);
     }
 }

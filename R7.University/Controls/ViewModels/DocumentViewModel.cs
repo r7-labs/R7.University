@@ -95,9 +95,6 @@ namespace R7.University.Controls
 
         public int ViewItemID { get; set; }
 
-        // dummy
-        public int TargetItemID { get; set; }
-
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
@@ -117,6 +114,11 @@ namespace R7.University.Controls
             CopyCstor.Copy<IDocument> (this, model);
 
             return model;
+        }
+
+        public void SetTargetItemId (int targetItemId, string targetItemKey)
+        {
+            ItemID = targetItemKey + targetItemId;
         }
 
         #endregion

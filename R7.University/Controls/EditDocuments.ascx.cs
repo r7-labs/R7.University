@@ -189,7 +189,7 @@ namespace R7.University.Controls
 
                 if (command == "Add")
                 {
-                    document.ItemID = ForModel + "ID=" + ItemId;
+                    document.SetTargetItemId (ItemId, ForModel + "ID=");
                     documents.Add (document);
                 }
 

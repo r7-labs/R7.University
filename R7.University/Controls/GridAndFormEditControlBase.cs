@@ -104,14 +104,19 @@ namespace R7.University.Controls
 
         protected PortalModuleBase Module;
 
-        protected int ItemId
+        protected int TargetItemId
         {
-            get 
+            get
             { 
-                var itemId = ViewState ["itemId"];
-                return (itemId != null) ? (int) itemId : 0;
+                var targetItemId = ViewState ["targetItemId"];
+                return (targetItemId != null) ? (int) targetItemId : 0;
             }
-            set { ViewState ["itemId"] = value; }
+            set { ViewState ["targetItemId"] = value; }
+        }
+
+        protected virtual string TargetItemKey
+        {
+            get { return string.Empty; }
         }
 
         #endregion
@@ -129,9 +134,10 @@ namespace R7.University.Controls
             return new List<TModel> ();
         }
 
-        public void SetData (List<TModel> items, int itemId)
+        public void SetData (List<TModel> items, int targetItemId)
         {
-            ItemId = itemId;
+            TargetItemId = targetItemId;
+
             var convertor = new TViewModel ();
             var viewModels = items.Select (i => (TViewModel) convertor.FromModel (i, ViewModelContext)).ToList ();
             ViewStateItems = viewModels;
@@ -205,7 +211,7 @@ namespace R7.University.Controls
 
                 if (command == "Add")
                 {
-                    item.TargetItemID = ItemId;
+                    item.SetTargetItemId (TargetItemId, TargetItemKey);
                     items.Add (item);
                 }
 
