@@ -7,7 +7,7 @@
     <fieldset>
         <div class="dnnFormItem">
             <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                GridLines="None" OnRowDataBound="gridDocuments_RowDataBound" Style="margin-bottom:30px;width:775px">
+                GridLines="None" Style="margin-bottom:30px;width:775px">
                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                 <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -19,10 +19,10 @@
                     <asp:TemplateField>
                        <ItemTemplate>
                             <span style="white-space:nowrap">
-                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditDocument_Command" >
+                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
                                 </asp:LinkButton>
-                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteDocument_Command" >
+                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="OnDeleteItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
                                 </asp:LinkButton>
                             </span>
@@ -74,11 +74,11 @@
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <asp:LinkButton id="buttonAddDocument" runat="server" resourcekey="buttonAddDocument" 
-                CssClass="dnnPrimaryAction" OnCommand="buttonAddDocument_Command"  CommandArgument="Add" />
+                CssClass="dnnPrimaryAction" CommandArgument="Add" />
             <asp:LinkButton id="buttonUpdateDocument" runat="server" resourcekey="buttonUpdateDocument" 
-                CssClass="dnnPrimaryAction" OnCommand="buttonAddDocument_Command" Visible="false" CommandArgument="Update" />
+                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update" />
             <asp:LinkButton id="buttonCancelEditDocument" runat="server" resourcekey="buttonCancelEditDocument" 
-                        CssClass="dnnSecondaryAction" OnClick="buttonCancelEditDocument_Click" />
+                        CssClass="dnnSecondaryAction" />
         </div>
         <asp:HiddenField id="hiddenDocumentItemID" runat="server" />
     </fieldset>

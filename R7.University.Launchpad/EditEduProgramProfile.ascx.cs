@@ -63,7 +63,7 @@ namespace R7.University.Launchpad
                 .WithDocumentType (Controller)
                 .ToList ();
 
-            formEditDocuments.SetDocuments (item.EduProgramProfileID, documents);
+            formEditDocuments.SetData (documents, item.EduProgramProfileID);
 
             var eppForms = Controller.GetObjects<EduProgramProfileFormInfo> (
                 "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
@@ -106,7 +106,7 @@ namespace R7.University.Launchpad
             }
 
             // update referenced items
-            Controller.UpdateDocuments (formEditDocuments.GetDocuments (), "EduProgramProfileID", item.EduProgramProfileID);
+            Controller.UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfileID", item.EduProgramProfileID);
             Controller.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
         }
 

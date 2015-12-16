@@ -25,20 +25,15 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Collections.Generic;
 using System.Linq;
-using DotNetNuke.Services.Exceptions;
+using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Entities.Icons;
-using DotNetNuke.Services.Localization;
-using R7.University.ControlExtensions;
 using DotNetNuke.Common.Utilities;
 
 namespace R7.University.Controls
 {
-    public partial class EditDocuments: UserControl
+    public partial class EditDocuments: 
+        GridAndFormEditControlBase<DocumentInfo,DocumentViewModel>
     {
         #region Control properties
 
@@ -46,57 +41,9 @@ namespace R7.University.Controls
 
         #endregion
 
-        #region Bindable icons
-
-        protected string EditIconUrl
+        protected override string TargetItemKey
         {
-            get { return IconController.IconURL ("Edit"); }
-        }
-
-        protected string DeleteIconUrl
-        {
-            get { return IconController.IconURL ("Delete"); }
-        }
-
-        #endregion
-
-
-        private string localResourceFile;
-        public string LocalResourceFile
-        {
-            get
-            {
-                if (localResourceFile == null)
-                {
-                    localResourceFile = DotNetNuke.Web.UI.Utilities.GetLocalResourceFile (this);
-                }
-
-                return localResourceFile;
-            }
-        }
-
-        protected PortalModuleBase Module;
-
-        protected int ItemId
-        {
-            get 
-            { 
-                var obj = ViewState ["itemId"];
-                return (obj != null) ? (int) obj : 0;
-            }
-            set { ViewState ["itemId"] = value; }
-        }
-
-        private ViewModelContext viewModelContext;
-        protected ViewModelContext ViewModelContext
-        {
-            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this, Module)); }
-        }
-
-        protected List<DocumentViewModel> ViewStateDocuments
-        {
-            get { return XmlSerializationHelper.Deserialize<List<DocumentViewModel>> (ViewState ["documents"]); }
-            set { ViewState ["documents"] = XmlSerializationHelper.Serialize<List<DocumentViewModel>> (value); }
+            get { return ForModel + "ID="; }
         }
 
         public void OnInit (PortalModuleBase module, IEnumerable<DocumentTypeInfo> documentTypes)
@@ -104,38 +51,10 @@ namespace R7.University.Controls
             Module = module;
 
             var documentTypeViewModels = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext, true);
-            SetDocumentTypes (documentTypeViewModels);
+            ViewState ["documentTypes"] = XmlSerializationHelper.Serialize (documentTypeViewModels);
 
             comboDocumentType.DataSource = documentTypeViewModels;
             comboDocumentType.DataBind ();
-
-            gridDocuments.LocalizeColumns (LocalResourceFile);
-        }
-
-        public void SetDocuments (int itemId, IEnumerable<DocumentInfo> documentsWithType)
-        { 
-            ItemId = itemId;
-
-            var convertor = new DocumentViewModel ();
-            var documentViewModels = documentsWithType.Select (d => (DocumentViewModel) convertor.FromModel (d, ViewModelContext)).ToList ();
-            ViewStateDocuments = documentViewModels;
-            gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documentViewModels);
-            gridDocuments.DataBind ();
-        }
-
-        public IList<DocumentInfo> GetDocuments ()
-        {
-            if (ViewStateDocuments != null)
-            {
-                return ViewStateDocuments.Select (dvm => dvm.ToModel ()).ToList ();
-            }
-
-            return new List<DocumentInfo> ();    
-        }
-       
-        protected void SetDocumentTypes (IEnumerable<DocumentTypeViewModel> documentTypes)
-        {
-            ViewState ["documentTypes"] = XmlSerializationHelper.Serialize (documentTypes.ToList ());
         }
 
         protected DocumentTypeViewModel GetDocumentType (int? documentTypeId)
@@ -152,194 +71,43 @@ namespace R7.University.Controls
             };
         }
 
-        #region Handlers
+        #region implemented abstract members of GridAndFormEditControlBase
 
-        protected void buttonAddDocument_Command (object sender, CommandEventArgs e)
+        protected override void OnInitControls ()
         {
-            try
-            {
-                DocumentViewModel document;
-
-                // get documents list from viewstate
-                var documents = ViewStateDocuments;
-
-                // creating new list, if none
-                if (documents == null)
-                    documents = new List<DocumentViewModel> ();
-
-                var command = e.CommandArgument.ToString ();
-                if (command == "Add")
-                {
-                    document = new DocumentViewModel ();
-                }
-                else
-                {
-                    // restore ItemID from hidden field
-                    var hiddenItemID = int.Parse (hiddenDocumentItemID.Value);
-                    document = documents.Find (d => d.ViewItemID == hiddenItemID);
-                }
-
-                document.Title = textDocumentTitle.Text.Trim ();
-                document.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
-                document.DocumentTypeType = GetDocumentType (document.DocumentTypeID).Type;
-                document.SortIndex = int.Parse (textDocumentSortIndex.Text);
-                document.StartDate = datetimeDocumentStartDate.SelectedDate;
-                document.EndDate = datetimeDocumentEndDate.SelectedDate;
-                document.Url = urlDocumentUrl.Url;
-
-                if (command == "Add")
-                {
-                    document.SetTargetItemId (ItemId, ForModel + "ID=");
-                    documents.Add (document);
-                }
-
-                ResetEditDocumentForm ();
-
-                // refresh viewstate
-                ViewStateDocuments = documents;
-
-                // rebind viewmodels to the context
-                foreach (var doc in documents)
-                {
-                    doc.Context = ViewModelContext;
-                }
-
-                // bind items to the gridview  
-                gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
-                gridDocuments.DataBind ();
-
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException (Module, ex);
-            }
+            InitControls (gridDocuments, hiddenDocumentItemID, 
+                buttonAddDocument, buttonUpdateDocument, buttonCancelEditDocument);
         }
 
-        protected void linkEditDocument_Command (object sender, CommandEventArgs e)
+        protected override void OnLoadItem (DocumentViewModel item)
         {
-            try
-            {
-                var documents = ViewStateDocuments;
-                if (documents != null)
-                {
-                    var itemID = e.CommandArgument.ToString ();
-
-                    // find document in a list
-                    var document = documents.Find (d => d.ViewItemID.ToString () == itemID);
-
-                    if (document != null)
-                    {
-                        // fill form
-                        Utils.SelectByValue (comboDocumentType, document.DocumentTypeID);
-                        textDocumentTitle.Text = document.Title;
-                        textDocumentSortIndex.Text = document.SortIndex.ToString ();
-                        datetimeDocumentStartDate.SelectedDate = document.StartDate;
-                        datetimeDocumentEndDate.SelectedDate = document.EndDate;
-                        urlDocumentUrl.Url = document.Url;
-
-                        // store ItemID in the hidden field
-                        hiddenDocumentItemID.Value = document.ViewItemID.ToString ();
-
-                        // show / hide buttons
-                        buttonAddDocument.Visible = false;
-                        buttonUpdateDocument.Visible = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException (Module, ex);
-            }
+            Utils.SelectByValue (comboDocumentType, item.DocumentTypeID);
+            textDocumentTitle.Text = item.Title;
+            textDocumentSortIndex.Text = item.SortIndex.ToString ();
+            datetimeDocumentStartDate.SelectedDate = item.StartDate;
+            datetimeDocumentEndDate.SelectedDate = item.EndDate;
+            urlDocumentUrl.Url = item.Url;;
         }
 
-        protected void linkDeleteDocument_Command (object sender, CommandEventArgs e)
+        protected override void OnUpdateItem (DocumentViewModel item)
         {
-            try
-            {
-                var documents = ViewStateDocuments;
-                if (documents != null)
-                {
-                    var itemID = e.CommandArgument.ToString ();
-
-                    // find position in a list
-                    var documentIndex = documents.FindIndex (d => d.ViewItemID.ToString () == itemID);
-
-                    if (documentIndex >= 0)
-                    {
-                        // remove item
-                        documents.RemoveAt (documentIndex);
-
-                        // refresh viewstate
-                        ViewStateDocuments = documents;
-
-                        // rebind viewmodels to the context
-                        foreach (var doc in documents)
-                        {
-                            doc.Context = ViewModelContext;
-                        }
-
-                        // bind to the gridview
-                        gridDocuments.DataSource = DataTableConstructor.FromIEnumerable (documents);
-                        gridDocuments.DataBind ();
-
-                        // reset form if we deleting currently edited item
-                        if (buttonUpdateDocument.Visible && hiddenDocumentItemID.Value == itemID)
-                            ResetEditDocumentForm ();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException (Module, ex);
-            }
+            item.Title = textDocumentTitle.Text.Trim ();
+            item.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
+            item.DocumentTypeType = GetDocumentType (item.DocumentTypeID).Type;
+            item.SortIndex = int.Parse (textDocumentSortIndex.Text);
+            item.StartDate = datetimeDocumentStartDate.SelectedDate;
+            item.EndDate = datetimeDocumentEndDate.SelectedDate;
+            item.Url = urlDocumentUrl.Url;
         }
 
-        protected void buttonCancelEditDocument_Click (object sender, EventArgs e)
+        protected override void OnResetForm ()
         {
-            try
-            {
-                ResetEditDocumentForm ();
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException (Module, ex);
-            }
-        }
-
-        void ResetEditDocumentForm ()
-        {
-            // restore default buttons visibility
-            buttonAddDocument.Visible = true;
-            buttonUpdateDocument.Visible = false;
-
             comboDocumentType.SelectedIndex = 0;
             textDocumentTitle.Text = string.Empty;
             textDocumentSortIndex.Text = "0";
             datetimeDocumentStartDate.SelectedDate = null;
             datetimeDocumentEndDate.SelectedDate = null;
             urlDocumentUrl.UrlType = "N";
-        }
-
-        protected void gridDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
-        {
-            // hide ViewItemID column, also in header
-            e.Row.Cells [1].Visible = false;
-
-            // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                // find edit and delete linkbuttons
-                var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
-                var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
-
-                // set recordId to delete
-                linkEdit.CommandArgument = e.Row.Cells [1].Text;
-                linkDelete.CommandArgument = e.Row.Cells [1].Text;
-
-                // add confirmation dialog to delete link
-                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" 
-                    + Localization.GetString ("DeleteItem") + "');");
-            }
         }
 
         #endregion

@@ -121,7 +121,7 @@ namespace R7.University.Launchpad
                                 .WithDocumentType (LaunchpadController)
                                 .ToList ();
                             
-                            formEditDocuments.SetDocuments (item.EduProgramID, documents);
+                            formEditDocuments.SetData (documents, item.EduProgramID);
 						}
 						else
 							Response.Redirect (Globals.NavigateURL (), true);
@@ -186,7 +186,7 @@ namespace R7.University.Launchpad
                     item.LastModifiedOnDate = item.CreatedOnDate;
                     item.CreatedByUserID = UserInfo.UserID;
                     item.LastModifiedByUserID = item.CreatedByUserID;
-                    LaunchpadController.AddEduProgram (item, formEditDocuments.GetDocuments ());
+                    LaunchpadController.AddEduProgram (item, formEditDocuments.GetData ());
                 }
 				else
                 {
@@ -200,7 +200,7 @@ namespace R7.University.Launchpad
                         item.CreatedByUserID = item.LastModifiedByUserID;
                     }
 
-                    LaunchpadController.UpdateEduProgram (item, formEditDocuments.GetDocuments ());
+                    LaunchpadController.UpdateEduProgram (item, formEditDocuments.GetData ());
                 }
 
 				Utils.SynchronizeModule (this);

@@ -72,7 +72,7 @@ namespace R7.University.Controls
             Context = context;
         }
 
-        public static IList<DocumentTypeViewModel> GetBindableList (IEnumerable<DocumentTypeInfo> documentTypes, 
+        public static List<DocumentTypeViewModel> GetBindableList (IEnumerable<DocumentTypeInfo> documentTypes, 
             ViewModelContext context, bool withDefaultItem)
         {
             var documentTypeVms = documentTypes.Select (dt => new DocumentTypeViewModel (dt, context)).ToList ();
