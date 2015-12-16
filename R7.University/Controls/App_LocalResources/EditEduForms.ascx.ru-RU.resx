@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="labelEduForm.Text">
+        <value>Форма обучения:</value>
+    </data>
+    <data name="labelEduForm.Help">
+        <value>Выберите форму обучения.</value>
+    </data>
+    <data name="labelTimeToLearn.Text">
+        <value>Срок обучения:</value>
+    </data>
+    <data name="labelTimeToLearn.Help">
+        <value>Введите нормативный срок обучения в годах и месяцах.</value>
+    </data>
+    <data name="labelIsAdmissive.Text">
+        <value>Ведется прием:</value>
+    </data>
+    <data name="labelIsAdmissive.Help">
+        <value>Отметьте, если на эту форму обучения в текущем профиле ведется прием абитуриентов.</value>
+    </data>
+    <data name="buttonAddEduForm.Text">
+        <value>Добавить</value>
+    </data>
+    <data name="buttonUpdateEduForm.Text">
+        <value>Сохранить</value>
+    </data>
+    <data name="buttonCancelEditEduForm.Text">
+        <value>Отмена</value>
+    </data>
+    <data name="TimeToLearn.Format">
+        <value>{0} г. {1} мес.</value>
+    </data>
+    <data name="SystemEduForm_Default.Text">
+        <value></value>
+    </data>
+    <data name="SystemEduForm_FullTime.Text">
+        <value>Очная</value>
+    </data>
+    <data name="SystemEduForm_PartTime.Text">
+        <value>Очно-заочная</value>
+    </data>
+    <data name="SystemEduForm_Extramural.Text">
+        <value>Заочная</value>
+    </data>
+    <data name="EduFormTitle.Column">
+        <value>Форма обучения</value>
+    </data>
+    <data name="TimeToLearn.Column">
+        <value>Срок обучения</value>
+    </data>
+    <data name="IsAdmissive.Column">
+        <value>Ведется прием</value>
+    </data>
+</root>

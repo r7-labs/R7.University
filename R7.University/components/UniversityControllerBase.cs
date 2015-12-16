@@ -424,6 +424,64 @@ namespace R7.University
             }
         }
 
+        public void UpdateEduProgramProfileForms (IList<EduProgramProfileFormInfo> eduForms, int eduProgramProfileId)
+        {
+            using (var ctx = DataContext.Instance ())
+            {
+                ctx.BeginTransaction ();
+
+                try
+                {
+                    IList<EduProgramProfileFormInfo> originalEduForms = null;
+                    var allNew = eduForms.All (ef => ef.EduProgramProfileFormID <= 0);
+
+                    if (!allNew)
+                    {
+                        originalEduForms = GetObjects<EduProgramProfileFormInfo> (
+                            "WHERE EduProgramProfileID = @0", eduProgramProfileId).ToList ();
+                    }
+
+                    foreach (var eduForm in eduForms)
+                    {
+                        if (eduForm.EduProgramProfileFormID <= 0)
+                        {
+                            Add<EduProgramProfileFormInfo> (eduForm);
+                        }
+                        else
+                        {
+                            Update<EduProgramProfileFormInfo> (eduForm);
+
+                            // objects with same ID could be different!
+                            var updatedEduForm = originalEduForms.FirstOrDefault (ef => 
+                                ef.EduProgramProfileFormID == eduForm.EduProgramProfileFormID);
+                            
+                            if (updatedEduForm != null)
+                            {
+                                // do not delete this object later
+                                originalEduForms.Remove (updatedEduForm);
+                            }
+                        }
+                    }
+
+                    if (!allNew)
+                    {
+                        // delete remaining items
+                        foreach (var eduForm in originalEduForms)
+                        {
+                            Delete<EduProgramProfileFormInfo> (eduForm);
+                        }
+                    }
+
+                    ctx.Commit ();
+                }
+                catch
+                {
+                    ctx.RollbackTransaction ();
+                    throw;
+                }
+            }
+        }
+
 		#endregion
 	}
 }

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="labelEduForm.Text">
+        <value>Education Form:</value>
+    </data>
+    <data name="labelEduForm.Help">
+        <value>Select education form.</value>
+    </data>
+    <data name="labelTimeToLearn.Text">
+        <value>Time to Learn:</value>
+    </data>
+    <data name="labelTimeToLearn.Help">
+        <value>Enter time to learn in years and months.</value>
+    </data>
+    <data name="labelIsAdmissive.Text">
+        <value>Is Admissive:</value>
+    </data>
+    <data name="labelIsAdmissive.Help">
+        <value>Check if current educational profile form is available to enroll.</value>
+    </data>
+    <data name="buttonAddEduForm.Text">
+        <value>Add</value>
+    </data>
+    <data name="buttonUpdateEduForm.Text">
+        <value>Update</value>
+    </data>
+    <data name="buttonCancelEditEduForm.Text">
+        <value>Cancel</value>
+    </data>
+    <data name="TimeToLearn.Format">
+        <value>{0} years {1} months</value>
+    </data>
+    <data name="SystemEduForm_Default.Text">
+        <value></value>
+    </data>
+    <data name="SystemEduForm_FullTime.Text">
+        <value>Full Time</value>
+    </data>
+    <data name="SystemEduForm_PartTime.Text">
+        <value>Part Time</value>
+    </data>
+    <data name="SystemEduForm_Extramural.Text">
+        <value>Extramural</value>
+    </data>
+    <data name="EduFormTitle.Column">
+        <value>Edu Form</value>
+    </data>
+    <data name="TimeToLearn.Column">
+        <value>Time to Learn</value>
+    </data>
+    <data name="IsAdmissive.Column">
+        <value>Is Admissive</value>
+    </data>
+</root>

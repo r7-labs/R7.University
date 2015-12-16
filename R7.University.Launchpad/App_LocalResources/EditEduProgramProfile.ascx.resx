@@ -15,6 +15,9 @@
     <data name="CommonTab.Text" xml:space="preserve">
         <value>Educational Program Profile</value>
     </data>
+    <data name="EduFormsTab.Text" xml:space="preserve">
+        <value>Education Forms</value>
+    </data>
     <data name="DocumentsTab.Text" xml:space="preserve">
         <value>Documents</value>
     </data>

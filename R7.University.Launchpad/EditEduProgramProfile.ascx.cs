@@ -41,6 +41,8 @@ namespace R7.University.Launchpad
             comboEduProgram.DataBind ();
             comboEduProgram.SelectedIndex = 0;
 
+            // init edit forms
+            formEditEduForms.OnInit (this, Controller.GetObjects<EduFormInfo> ());
             formEditDocuments.OnInit (this, Controller.GetObjects<DocumentTypeInfo> ());
         }
 
@@ -62,6 +64,13 @@ namespace R7.University.Launchpad
                 .ToList ();
 
             formEditDocuments.SetDocuments (item.EduProgramProfileID, documents);
+
+            var eppForms = Controller.GetObjects<EduProgramProfileFormInfo> (
+                "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
+                .WithEduForms (Controller)
+                .ToList ();
+            
+            formEditEduForms.SetData (eppForms, item.EduProgramProfileID);
         }
 
         protected override void OnUpdateItem (EduProgramProfileInfo item)
@@ -96,8 +105,9 @@ namespace R7.University.Launchpad
                 }
             }
 
-            Controller.UpdateDocuments (formEditDocuments.GetDocuments (), 
-                "EduProgramProfileID", item.EduProgramProfileID);
+            // update referenced items
+            Controller.UpdateDocuments (formEditDocuments.GetDocuments (), "EduProgramProfileID", item.EduProgramProfileID);
+            Controller.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
         }
 
         protected int SelectedTab
@@ -109,11 +119,18 @@ namespace R7.University.Launchpad
 
                 if (!string.IsNullOrEmpty (eventTarget))
                 {
-                    // check if postback initiator is on Documents tab
-                    if (eventTarget.Contains ("$" + formEditDocuments.ID))
+                    // check if postback initiator is on EduForms tab
+                    if (eventTarget.Contains ("$" + formEditEduForms.ID))
                     {
                         ViewState ["SelectedTab"] = 1;
                         return 1;
+                    }
+
+                    // check if postback initiator is on Documents tab
+                    if (eventTarget.Contains ("$" + formEditDocuments.ID))
+                    {
+                        ViewState ["SelectedTab"] = 2;
+                        return 2;
                     }
                 }
 

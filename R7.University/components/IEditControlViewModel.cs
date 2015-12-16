@@ -1,5 +1,5 @@
 ﻿//
-// EduForm.cs
+// IEditControlViewModel.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,47 +25,19 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    interface IEduForm
+    public interface IEditControlViewModel<TModel>
     {
-        int EduFormID { get; set; }
+        int ViewItemID { get; set; }
 
-        bool IsSystem { get; set; }
+        int TargetItemID { get; set; }
 
-        string Title { get; set; }
+        ViewModelContext Context { get; set; }
 
-        string ShortTitle { get; set; }
-    }
+        TModel ToModel ();
 
-    [TableName ("University_EduForms")]
-    [PrimaryKey ("EduFormID", AutoIncrement = true)]
-    [Cacheable ("University_EduForms")]
-    public class EduFormInfo: IEduForm
-    {
-        #region IEduForm implementation
-
-        public int EduFormID { get; set; }
-
-        public bool IsSystem { get; set; }
-
-        public string Title { get; set; }
-
-        public string ShortTitle { get; set; }
-
-        #endregion
-
-        [IgnoreColumn]
-        public SystemEduForm SystemEduForm
-        {
-            get
-            {
-                SystemEduForm result;
-                return Enum.TryParse<SystemEduForm> (Title, out result) ? result : SystemEduForm.Custom;
-            }
-        }
+        IEditControlViewModel<TModel> FromModel (TModel model, ViewModelContext context);
     }
 }
-

@@ -16,7 +16,7 @@ namespace R7.University.Launchpad
 
         #endregion
 
-        public override void OnInit (EventArgs e)
+        protected override void OnInit (EventArgs e)
 		{
             base.OnInit (e);
 
