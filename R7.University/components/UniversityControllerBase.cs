@@ -466,7 +466,7 @@ namespace R7.University
                     if (!allNew)
                     {
                         // delete remaining items
-                        foreach (var eduForm in eduForms)
+                        foreach (var eduForm in originalEduForms)
                         {
                             Delete<EduProgramProfileFormInfo> (eduForm);
                         }
