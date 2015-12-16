@@ -29,7 +29,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    interface IEduForm
+    public interface IEduForm
     {
         int EduFormID { get; set; }
 

@@ -46,7 +46,7 @@ namespace R7.University.Controls
         {
             var viewModel = new EduProgramProfileFormViewModel ();
             CopyCstor.Copy<IEduProgramProfileForm> (model, viewModel);
-            viewModel.EduFormTitle = model.EduForm.Title;
+            viewModel.EduForm = new EduFormViewModel (model.EduForm, context);
             viewModel.Context = context;
 
             return viewModel;
@@ -84,19 +84,24 @@ namespace R7.University.Controls
 
         public bool IsAdmissive { get; set; }
 
-        #endregion
+        [XmlIgnore]
+        public IEduForm EduForm { get; set; }
 
-        public string EduFormTitle { get; set; }
+        public EduFormViewModel EduFormViewModel
+        {
+            get { return (EduFormViewModel) EduForm; }
+            set { EduForm = value; }
+        }
+
+        #endregion
 
         [XmlIgnore]
         public string EduFormTitleLocalized
         {
             get
             {
-                var title = Localization.GetString ("SystemEduForm_" + EduFormTitle + ".Text", 
-                    Context.LocalResourceFile);
-                    
-                return (!string.IsNullOrEmpty (title)) ? title : EduFormTitle;
+                EduFormViewModel.Context = Context;
+                return EduFormViewModel.TitleLocalized;
             }
         }
 

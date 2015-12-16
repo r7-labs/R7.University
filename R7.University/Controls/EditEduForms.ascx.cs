@@ -79,7 +79,7 @@ namespace R7.University.Controls
         protected override void OnUpdateItem (EduProgramProfileFormViewModel item)
         {
             item.EduFormID = int.Parse (comboEduForm.SelectedValue);
-            item.EduFormTitle = GetEduForm (item.EduFormID).Title;
+            item.EduForm = GetEduForm (item.EduFormID);
             item.IsAdmissive = checkIsAdmissive.Checked;
             item.TimeToLearn = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
         }

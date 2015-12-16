@@ -37,7 +37,7 @@ namespace R7.University.Controls
     public class EduFormViewModel: IEduForm
     {
         [XmlIgnore]
-        protected ViewModelContext Context { get; set; }
+        public ViewModelContext Context { get; set; }
 
         #region IEduForm implementation
 
@@ -65,7 +65,7 @@ namespace R7.University.Controls
         public EduFormViewModel ()
         {}
 
-        public EduFormViewModel (EduFormInfo eduForm, ViewModelContext context)
+        public EduFormViewModel (IEduForm eduForm, ViewModelContext context)
         {
             CopyCstor.Copy<IEduForm> (eduForm, this);
             Context = context;

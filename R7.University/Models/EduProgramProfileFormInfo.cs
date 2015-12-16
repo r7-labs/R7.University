@@ -30,7 +30,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    interface IEduProgramProfileForm
+    public interface IEduProgramProfileForm
     {
         long EduProgramProfileFormID { get; set; }
 
@@ -41,6 +41,8 @@ namespace R7.University
         int TimeToLearn { get; set; }
 
         bool IsAdmissive { get; set; }
+
+        IEduForm EduForm { get; set; }
     }
 
     [TableName ("University_EduProgramProfileForms")]
@@ -60,13 +62,13 @@ namespace R7.University
         // TODO: Rename to IsEnrollable
         public bool IsAdmissive { get; set; }
 
+        [IgnoreColumn]
+        public IEduForm EduForm { get; set; }
+
         #endregion
 
         [IgnoreColumn]
         public EduProgramProfileInfo EduProgramProfile { get; set; }
-
-        [IgnoreColumn]
-        public EduFormInfo EduForm { get; set; }
 
         public void SetTimeToLearn (int years, int months)
         {
