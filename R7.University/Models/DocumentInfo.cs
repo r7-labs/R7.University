@@ -29,12 +29,31 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
+    interface IDocument
+    {
+        int DocumentID { get; set; }
+
+        int? DocumentTypeID { get; set; }
+
+        string ItemID { get; set; }
+
+        string Title { get; set; }
+
+        string Url { get; set; }
+
+        int SortIndex { get; set; }
+
+        DateTime? StartDate { get; set; }
+
+        DateTime? EndDate { get; set; }
+    }
+
     [TableName ("University_Documents")]
     [PrimaryKey ("DocumentID", AutoIncrement = true)]
     [Serializable]
-    public class DocumentInfo
+    public class DocumentInfo: IDocument
     {
-        #region Properties
+        #region IDocument implementation
 
         public int DocumentID { get; set; }
 
