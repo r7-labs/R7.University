@@ -44,11 +44,13 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelTimeToLearn" runat="server" ControlName="textTimeToLearnYears" />
-            <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
+            <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" Style="margin-right:0.5em" />
+            <asp:Label runat="server" resourcekey="Years.Text" />
         </div>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
-            <asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" />
+            <asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" Style="margin-right:0.5em" />
+            <asp:Label runat="server" resourcekey="Months.Text" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsAdmissive" runat="server" ControlName="checkIsAdmissive" />
@@ -61,7 +63,7 @@
             <asp:LinkButton id="buttonUpdateEduForm" runat="server" resourcekey="buttonUpdateEduForm" 
                 CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update" />
             <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="buttonCancelEditEduForm" 
-                        CssClass="dnnSecondaryAction" />
+                CssClass="dnnSecondaryAction" />
         </div>
         <asp:HiddenField id="hiddenEduFormItemID" runat="server" />
     </fieldset>

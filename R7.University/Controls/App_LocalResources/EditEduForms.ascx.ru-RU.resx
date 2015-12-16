@@ -42,6 +42,12 @@
     <data name="TimeToLearn.Format">
         <value>{0} г. {1} мес.</value>
     </data>
+    <data name="Years.Text">
+        <value>Лет</value>
+    </data>
+    <data name="Months.Text">
+        <value>Месяцев</value>
+    </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>
     </data>

@@ -42,6 +42,12 @@
     <data name="TimeToLearn.Format">
         <value>{0} years {1} months</value>
     </data>
+    <data name="Years.Text">
+        <value>Years</value>
+    </data>
+    <data name="Months.Text">
+        <value>Months</value>
+    </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>
     </data>
