@@ -48,6 +48,12 @@
     <data name="Months.Text">
         <value>Months</value>
     </data>
+    <data name="TimeToLearnYears.Invalid">
+        <value>Years should be integer value from 0 to 7.</value>
+    </data>
+    <data name="TimeToLearnMonths.Invalid">
+        <value>Months should be integer value from 0 to 11.</value>
+    </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>
     </data>

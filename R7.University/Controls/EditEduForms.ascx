@@ -46,11 +46,19 @@
             <dnn:Label id="labelTimeToLearn" runat="server" ControlName="textTimeToLearnYears" />
             <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" Style="margin-right:0.5em" />
             <asp:Label runat="server" resourcekey="Years.Text" />
+            <asp:RangeValidator runat="server" resourcekey="TimeToLearnYears.Invalid"
+                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
+                Type="Integer" MinimumValue="0" MaximumValue="7"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         </div>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" Style="margin-right:0.5em" />
             <asp:Label runat="server" resourcekey="Months.Text" />
+            <asp:RangeValidator runat="server" resourcekey="TimeToLearnMonths.Invalid"
+                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
+                Type="Integer" MinimumValue="0" MaximumValue="11"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsAdmissive" runat="server" ControlName="checkIsAdmissive" />
@@ -59,9 +67,11 @@
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <asp:LinkButton id="buttonAddEduForm" runat="server" resourcekey="buttonAddEduForm" 
-                CssClass="dnnPrimaryAction" CommandArgument="Add" />
+                CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
             <asp:LinkButton id="buttonUpdateEduForm" runat="server" resourcekey="buttonUpdateEduForm" 
-                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update" />
+                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update" 
+                CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
             <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="buttonCancelEditEduForm" 
                 CssClass="dnnSecondaryAction" />
         </div>
