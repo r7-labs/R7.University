@@ -35,7 +35,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University.ControlExtensions;
 
-namespace R7.University
+namespace R7.University.Controls
 {
     public abstract class GridAndFormEditControlBase<TModel,TViewModel>: UserControl
         where TViewModel: class, IEditControlViewModel<TModel>, new ()

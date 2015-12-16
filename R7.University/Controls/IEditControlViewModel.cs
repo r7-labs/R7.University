@@ -26,7 +26,7 @@
 
 using System;
 
-namespace R7.University
+namespace R7.University.Controls
 {
     public interface IEditControlViewModel<TModel>
     {
