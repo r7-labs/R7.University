@@ -103,9 +103,10 @@ namespace R7.University.Controls
         {
             Module = module;
 
-            SetDocumentTypes (documentTypes);
+            var documentTypeViewModels = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext, true);
+            SetDocumentTypes (documentTypeViewModels);
 
-            comboDocumentType.DataSource = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext, true);
+            comboDocumentType.DataSource = documentTypeViewModels;
             comboDocumentType.DataBind ();
 
             gridDocuments.LocalizeColumns (LocalResourceFile);
@@ -131,20 +132,20 @@ namespace R7.University.Controls
             return new List<DocumentInfo> ();    
         }
        
-        protected void SetDocumentTypes (IEnumerable<DocumentTypeInfo> documentTypes)
+        protected void SetDocumentTypes (IEnumerable<DocumentTypeViewModel> documentTypes)
         {
-            ViewState ["documentTypes"] = documentTypes.ToList ();
+            ViewState ["documentTypes"] = XmlSerializationHelper.Serialize (documentTypes.ToList ());
         }
 
-        protected DocumentTypeInfo GetDocumentType (int? documentTypeId)
+        protected DocumentTypeViewModel GetDocumentType (int? documentTypeId)
         {
             if (documentTypeId != null)
             {
-                var documentTypes = (List<DocumentTypeInfo>) ViewState ["documentTypes"];
+                var documentTypes = XmlSerializationHelper.Deserialize<List<DocumentTypeViewModel>> (ViewState ["documentTypes"]);
                 return documentTypes.Single (dt => dt.DocumentTypeID == documentTypeId.Value);
             }
 
-            return new DocumentTypeInfo { 
+            return new DocumentTypeViewModel {
                 Type = string.Empty,
                 DocumentTypeID = Null.NullInteger
             };
@@ -179,7 +180,7 @@ namespace R7.University.Controls
 
                 document.Title = textDocumentTitle.Text.Trim ();
                 document.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
-                document.DocumentType = GetDocumentType (document.DocumentTypeID);
+                document.DocumentType = GetDocumentType (document.DocumentTypeID).ToModel ();
                 document.SortIndex = int.Parse (textDocumentSortIndex.Text);
                 document.StartDate = datetimeDocumentStartDate.SelectedDate;
                 document.EndDate = datetimeDocumentEndDate.SelectedDate;

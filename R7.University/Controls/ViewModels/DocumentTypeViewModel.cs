@@ -26,16 +26,32 @@
 
 using System;
 using System.Linq;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
-using System.Collections.Generic;
 
 namespace R7.University.Controls
 {
-    public class DocumentTypeViewModel: DocumentTypeInfo
+    [Serializable]
+    public class DocumentTypeViewModel: IDocumentType
     {
+        [XmlIgnore]
         protected ViewModelContext Context { get; set; }
 
+        #region IDocumentType implementation
+
+        public int DocumentTypeID { get; set; }
+
+        public string Type { get; set; }
+
+        public string Description { get; set; }
+
+        public bool IsSystem { get; set; }
+
+        #endregion
+
+        [XmlIgnore]
         public string LocalizedType
         { 
             get
@@ -52,7 +68,7 @@ namespace R7.University.Controls
 
         public DocumentTypeViewModel (DocumentTypeInfo documentType, ViewModelContext context)
         {
-            CopyCstor.Copy<DocumentTypeInfo> (documentType, this);
+            CopyCstor.Copy<IDocumentType> (documentType, this);
             Context = context;
         }
 
@@ -72,6 +88,13 @@ namespace R7.University.Controls
 
             return documentTypeVms;
         }
+
+        public DocumentTypeInfo ToModel ()
+        {
+            var document = new DocumentTypeInfo ();
+            CopyCstor.Copy<IDocumentType> (this, document);
+
+            return document;
+        }
     }
 }
-

@@ -29,12 +29,24 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
+    interface IDocumentType
+    {
+        int DocumentTypeID { get; set; }
+
+        string Type { get; set; }
+
+        string Description { get; set; }
+
+        bool IsSystem { get; set; }
+    }
+    
     [TableName ("University_DocumentTypes")]
     [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
     [Cacheable ("University_DocumentTypes")]
-    [Serializable]
-    public class DocumentTypeInfo
+    public class DocumentTypeInfo: IDocumentType
     {
+        #region IDocumentType implementation
+
         public int DocumentTypeID { get; set; }
 
         public string Type { get; set; }
@@ -42,6 +54,8 @@ namespace R7.University
         public string Description { get; set; }
 
         public bool IsSystem { get; set; }
+
+        #endregion
 
         [IgnoreColumn]
         public SystemDocumentType SystemDocumentType
