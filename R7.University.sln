@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.DivisionDirec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramDirectory", "R7.University.EduProgramDirectory\R7.University.EduProgramDirectory.csproj", "{C6B64609-D737-435C-8C58-5BF0CE1C9F51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfileDirectory", "R7.University.EduProgramProfileDirectory\R7.University.EduProgramProfileDirectory.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packaging", "Packaging\Packaging.csproj", "{0497C4E5-75E1-4835-9C35-2B35F84AF212}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2BE5786-FE07-495C-8F22-7E4405D6966E}"
@@ -43,6 +45,10 @@ Global
 		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
