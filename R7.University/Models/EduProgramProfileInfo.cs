@@ -30,15 +30,35 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
+    public interface IEduProgramProfile
+    {
+        int EduProgramProfileID { get; set; }
+
+        int EduProgramID { get; set; }
+
+        string ProfileCode { get; set; }
+
+        string ProfileTitle { get; set; }
+
+        DateTime? AccreditedToDate { get; set; }
+
+        DateTime? CommunityAccreditedToDate { get; set; }
+
+        DateTime? StartDate { get; set; }
+
+        DateTime? EndDate { get; set; }
+
+        // TODO: Use IEduProgram interface here
+        EduProgramInfo EduProgram { get; set; }
+
+        IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+    }
+
     [TableName ("University_EduProgramProfiles")]
     [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
-    public class EduProgramProfileInfo: UniversityEntityBase
+    public class EduProgramProfileInfo: UniversityEntityBase, IEduProgramProfile
     {
-        public EduProgramProfileInfo ()
-        {
-        }
-
-        #region Properties
+        #region IEduProgramProfile implementation
 
         public int EduProgramProfileID { get; set; }
 
@@ -56,10 +76,13 @@ namespace R7.University
 
         public DateTime? EndDate { get; set; }
 
-        #endregion
-
         [IgnoreColumn]
         public EduProgramInfo EduProgram { get; set; }
+
+        [IgnoreColumn] 
+        public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+
+        #endregion
 
         [IgnoreColumn]
         public string EduProgramProfileString
@@ -84,9 +107,6 @@ namespace R7.University
                 
             return Utils.FormatList (" ", code, title, profileStringInBrackets);
         }
-
-        [IgnoreColumn] 
-        public IList<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
     }
 }
 

@@ -59,6 +59,7 @@ namespace R7.University.ModelExtensions
             eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
                 "WHERE [EduProgramProfileID] = @0", eduProfile.EduProgramProfileID)
                 .WithEduForms (controller)
+                .Cast<IEduProgramProfileForm> ()
                 .ToList ();
 
             return eduProfile;
