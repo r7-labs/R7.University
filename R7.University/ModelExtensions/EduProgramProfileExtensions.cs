@@ -53,7 +53,7 @@ namespace R7.University.ModelExtensions
                 });
         }
 
-        public static EduProgramProfileInfo WithEduForms (
+        public static EduProgramProfileInfo WithEduProgramProfileForms (
             this EduProgramProfileInfo eduProfile, ControllerBase controller)
         {
             eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
@@ -62,6 +62,14 @@ namespace R7.University.ModelExtensions
                 .ToList ();
 
             return eduProfile;
+        }
+
+        public static IEnumerable<EduProgramProfileInfo> WithEduProgramProfileForms (
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+        {
+            foreach (var eduProgramProfile in eduProgramProfiles) {
+                yield return eduProgramProfile.WithEduProgramProfileForms (controller);
+            }
         }
     }
 }
