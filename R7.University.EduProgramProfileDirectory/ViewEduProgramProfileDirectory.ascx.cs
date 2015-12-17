@@ -94,7 +94,16 @@ namespace R7.University.EduProgramProfileDirectory
 			{
                 if (!IsPostBack)
 				{
-                    var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ().ToList ();
+                    var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
+                        .WithEduPrograms (Controller)
+                        .WithEduLevel (Controller)
+                        .WithEduProgramProfileForms (Controller)
+                        .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
+                        .ThenBy (epp => epp.EduProgram.Code)
+                        .ThenBy (epp => epp.EduProgram.Title)
+                        .ThenBy (epp => epp.ProfileTitle)
+                        .Select (epp => new EduProgramProfileObrnadzorViewModel (epp, ViewModelContext))
+                        .ToList ();
 
                     if (eduProgramProfiles.Count > 0)
                     {
@@ -161,7 +170,7 @@ namespace R7.University.EduProgramProfileDirectory
                 // show / hide edit column
                 e.Row.Cells [0].Visible = IsEditable;
 
-                var eduProgramProfile = (EduProgramProfileInfo) e.Row.DataItem;
+                var eduProgramProfile = (EduProgramProfileObrnadzorViewModel) e.Row.DataItem;
 
                 if (IsEditable)
                 {
