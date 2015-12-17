@@ -144,11 +144,23 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void gridEduProgramProfiles_RowDataBound (object sender, GridViewRowEventArgs e)
         {
-            // show / hide edit column
-            e.Row.Cells [0].Visible = IsEditable;
+            // hiding the columns of second row header (created on binding)
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                // FIXME: Don't hardcode cell indexes
+                e.Row.Cells [0].Visible = false;
+                e.Row.Cells [1].Visible = false;
+                e.Row.Cells [2].Visible = false;
+                e.Row.Cells [3].Visible = false;
+                e.Row.Cells [7].Visible = false;
+                e.Row.Cells [8].Visible = false;
+            }
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                // show / hide edit column
+                e.Row.Cells [0].Visible = IsEditable;
+
                 var eduProgramProfile = (EduProgramProfileInfo) e.Row.DataItem;
 
                 if (IsEditable)
@@ -162,6 +174,53 @@ namespace R7.University.EduProgramProfileDirectory
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
+            }
+        }
+
+        protected void gridEduProgramProfiles_RowCreated (object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                // create cells for first row
+                var cellsRow1 = new [] {
+                    new TableHeaderCell {
+                        RowSpan = 2,
+                        Visible = IsEditable
+                    },
+                    new TableHeaderCell {
+                        RowSpan = 2,
+                        Text = "ProfileCode.Column"
+                    },
+                    new TableHeaderCell {
+                        RowSpan = 2,
+                        Text = "Title.Column"
+                    },
+                    new TableHeaderCell {
+                        RowSpan = 2,
+                        Text = "EduLevel.Column"
+                    },
+                    new TableHeaderCell {
+                        ColumnSpan = 3,
+                        Text = "TimeToLearn.Column"
+                    },
+                    new TableHeaderCell {
+                        RowSpan = 2,
+                        Text = "AccreditedToDate.Column"
+                    },
+                    new TableHeaderCell {
+                        RowSpan = 2,
+                        Text = "CommunityAccreditedToDate.Column"
+                    }
+                };
+
+                var grid = (GridView) sender;
+
+                // create header row
+                var headerRow = new GridViewRow (0, -1, DataControlRowType.Header, DataControlRowState.Normal);
+                headerRow.Cells.AddRange (cellsRow1);
+
+                // add new header row to the grid table
+                ((Table) grid.Controls [0]).Rows.AddAt (0, headerRow);
             }
         }
 	}
