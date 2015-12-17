@@ -50,7 +50,17 @@ namespace R7.University.ModelExtensions
                 delegate (EduProgramProfileInfo epp, EduProgramInfo ep) {
                     epp.EduProgram = ep;
                     return epp;
-                });
+                }
+            );
+        }
+
+        public static IEnumerable<EduProgramProfileInfo> WithEduLevel (
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+        {
+            foreach (var eduProgramProfile in eduProgramProfiles) {
+                var eduProgram = eduProgramProfile.EduProgram.WithEduLevel (controller);
+                yield return eduProgramProfile;
+            }
         }
 
         public static EduProgramProfileInfo WithEduProgramProfileForms (
