@@ -138,6 +138,7 @@
     <Compile Include="Controls\GridAndFormEditControlBase.cs" />
     <Compile Include="Controls\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelHelper.cs" />
+    <Compile Include="Models\FormatHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

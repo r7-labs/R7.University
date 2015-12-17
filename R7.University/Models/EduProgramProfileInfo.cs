@@ -98,6 +98,7 @@ namespace R7.University
             }
         }
 
+        [Obsolete ("Use FormatHelper.FormatEduProgramProfileTitle method instead")]
         public static string FormatEduProgramProfile (string code, string title, 
             string profileCode, string profileTitle)
         {
