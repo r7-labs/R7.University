@@ -9,4 +9,31 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Nothing to display. Please add some educational program profiles and use module setting to set view options.</value>
     </data>
+    <data name="ProfileCode.Column" xml:space="preserve">
+        <value>Code</value>
+    </data>
+    <data name="Title.Column" xml:space="preserve">
+        <value>Educational Program</value>
+    </data>
+    <data name="EduLevel.Column" xml:space="preserve">
+        <value>Education Level</value>
+    </data>
+    <data name="TimeToLearn.Column" xml:space="preserve">
+        <value>Time to Learn</value>
+    </data>
+    <data name="TimeToLearnFullTime.Column" xml:space="preserve">
+        <value>Full Time</value>
+    </data>
+    <data name="TimeToLearnPartTime.Column" xml:space="preserve">
+        <value>Part Time</value>
+    </data>
+    <data name="TimeToLearnExtramural.Column" xml:space="preserve">
+        <value>Extramural</value>
+    </data>
+    <data name="AccreditedToDate.Column" xml:space="preserve">
+        <value>Accredited to</value>
+    </data>
+    <data name="CommunityAccreditedToDate.Column" xml:space="preserve">
+        <value>Accredited by Community to</value>
+    </data>
 </root>
