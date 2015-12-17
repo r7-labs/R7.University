@@ -26,6 +26,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using DotNetNuke.Services.Localization;
 
 namespace R7.University.EduProgramProfileDirectory
 {
@@ -36,48 +38,62 @@ namespace R7.University.EduProgramProfileDirectory
         public int EduProgramProfileID 
         { 
             get { return Model.EduProgramProfileID; }
-            set { Model.EduProgramProfileID = value; }
+            set {}
         }
 
         public int EduProgramID 
         { 
             get { return Model.EduProgramID; }
-            set { Model.EduProgramID = value; }
+            set {}
         }
       
         public string ProfileCode 
         { 
             get { return Model.ProfileCode; }
-            set { Model.ProfileCode = value; }
+            set {}
         }
 
         public string ProfileTitle 
         { 
             get { return Model.ProfileTitle; }
-            set { Model.ProfileTitle = value; }
+            set {}
         }
 
         public DateTime? AccreditedToDate 
         { 
             get { return Model.AccreditedToDate; }
-            set { Model.AccreditedToDate = value; }
+            set {}
         }
 
         public DateTime? CommunityAccreditedToDate 
         { 
             get { return Model.CommunityAccreditedToDate; }
-            set { Model.CommunityAccreditedToDate = value; }
+            set { }
         }
 
-        //...
+        public DateTime? StartDate
+        { 
+            get { return Model.StartDate; }
+            set {}
+        }
 
-        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate 
+        {
+            get { return Model.EndDate; }
+            set {}
+        }
 
-        public DateTime? EndDate { get; set; }
-
-        public EduProgramInfo EduProgram { get; set; }
+        public EduProgramInfo EduProgram
+        {
+            get { return Model.EduProgram; }
+            set {}
+        }
        
-        public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+        public IList<IEduProgramProfileForm> EduProgramProfileForms
+        {
+            get { return Model.EduProgramProfileForms; }
+            set {}
+        }
 
         #endregion
 
@@ -89,6 +105,96 @@ namespace R7.University.EduProgramProfileDirectory
         {
             Model = model;
             Context = context;
+        }
+
+        protected IEduProgramProfileForm FullTimeForm
+        {
+            get 
+            { 
+                return EduProgramProfileForms.FirstOrDefault (eppf => 
+                    eppf.EduForm.GetSystemEduForm () == SystemEduForm.FullTime); 
+            }
+        }
+
+        protected IEduProgramProfileForm PartTimeForm
+        {
+            get 
+            { 
+                return EduProgramProfileForms.FirstOrDefault (eppf => 
+                    eppf.EduForm.GetSystemEduForm () == SystemEduForm.PartTime); 
+            }
+        }
+
+        protected IEduProgramProfileForm ExtramuralForm
+        {
+            get 
+            { 
+                return EduProgramProfileForms.FirstOrDefault (eppf => 
+                    eppf.EduForm.GetSystemEduForm () == SystemEduForm.Extramural); 
+            }
+        }
+
+        public string TimeToLearnFullTimeString
+        {
+            get
+            { 
+                if (FullTimeForm == null) {
+                    return string.Empty; 
+                }
+
+                return FormatHelper.FormatTimeToLearn (FullTimeForm.TimeToLearn,
+                    Localization.GetString ("TimeToLearnFull.Format", Context.LocalResourceFile),
+                    Localization.GetString ("TimeToLearnYears.Format", Context.LocalResourceFile),
+                    Localization.GetString ("TimeToLearnMonths.Format", Context.LocalResourceFile)
+                );
+            }
+        }
+
+        public string TimeToLearnPartTimeString
+        {
+            get
+            {
+                if (PartTimeForm == null) {
+                    return string.Empty; 
+                }
+
+                return FormatHelper.FormatTimeToLearn (PartTimeForm.TimeToLearn,
+                    Localization.GetString ("TimeToLearnFull.Format", Context.LocalResourceFile),
+                    Localization.GetString ("TimeToLearnYears.Format", Context.LocalResourceFile),
+                    Localization.GetString ("TimeToLearnMonths.Format", Context.LocalResourceFile)
+                );
+            }
+        }
+
+        public string TimeToLearnExtramuralString
+        {
+            get
+            {
+                if (ExtramuralForm == null) {
+                    return string.Empty; 
+                }
+
+                return FormatHelper.FormatTimeToLearn (ExtramuralForm.TimeToLearn,
+                    Localization.GetString ("TimeToLearnFull.Format", Context.LocalResourceFile),
+                    Localization.GetString ("TimeToLearnYears.Format", Context.LocalResourceFile),
+                    Localization.GetString ("TimeToLearnMonths.Format", Context.LocalResourceFile)
+                );
+            }
+        }
+
+        public string Code
+        {
+            get { return EduProgram.Code; }
+        }
+
+        public string Title
+        {
+            get { return FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle); }
+        }
+
+        public string EduLevelString
+        {
+            get { return EduProgram.EduLevel.Title; }
         }
     }
 }

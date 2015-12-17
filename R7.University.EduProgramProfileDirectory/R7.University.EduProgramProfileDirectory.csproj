@@ -97,10 +97,12 @@
     <Compile Include="SettingsEduProgramProfileDirectory.ascx.controls.cs">
       <DependentUpon>SettingsEduProgramProfileDirectory.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EduProgramProfileObrnadzorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="App_LocalResources\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\SettingsEduProgramProfileDirectory.ascx.resx" />

@@ -36,4 +36,13 @@
     <data name="CommunityAccreditedToDate.Column" xml:space="preserve">
         <value>Accredited by Community to</value>
     </data>
+    <data name="TimeToLearnFull.Format" xml:space="preserve">
+        <value>{0} year(s) {1} month(s)</value>
+    </data>
+    <data name="TimeToLearnYears.Format" xml:space="preserve">
+        <value>{0} year(s)</value>
+    </data>
+    <data name="TimeToLearnMonths.Format" xml:space="preserve">
+        <value>{0} month(s)</value>
+    </data>
 </root>
