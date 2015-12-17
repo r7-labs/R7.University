@@ -198,27 +198,27 @@ namespace R7.University.EduProgramProfileDirectory
                     },
                     new TableHeaderCell {
                         RowSpan = 2,
-                        Text = "ProfileCode.Column"
+                        Text = Localization.GetString ("ProfileCode.Column", LocalResourceFile)
                     },
                     new TableHeaderCell {
                         RowSpan = 2,
-                        Text = "Title.Column"
+                        Text = Localization.GetString ("Title.Column", LocalResourceFile)
                     },
                     new TableHeaderCell {
                         RowSpan = 2,
-                        Text = "EduLevel.Column"
+                        Text = Localization.GetString ("EduLevel.Column", LocalResourceFile)
                     },
                     new TableHeaderCell {
                         ColumnSpan = 3,
-                        Text = "TimeToLearn.Column"
+                        Text = Localization.GetString ("TimeToLearn.Column", LocalResourceFile)
                     },
                     new TableHeaderCell {
                         RowSpan = 2,
-                        Text = "AccreditedToDate.Column"
+                        Text = Localization.GetString ("AccreditedToDate.Column", LocalResourceFile)
                     },
                     new TableHeaderCell {
                         RowSpan = 2,
-                        Text = "CommunityAccreditedToDate.Column"
+                        Text = Localization.GetString ("CommunityAccreditedToDate.Column", LocalResourceFile)
                     }
                 };
 
