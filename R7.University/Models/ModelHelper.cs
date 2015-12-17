@@ -49,6 +49,12 @@ namespace R7.University
             return Enum.TryParse<SystemDocumentType> (documentType.Type, out result)? result : SystemDocumentType.Custom;
         }
 
+        public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)
+        {
+            SystemEduForm result;
+            return Enum.TryParse<SystemEduForm> (eduForm.Title, out result)? result : SystemEduForm.Custom;
+        }
+
         #endregion
     }
 }
