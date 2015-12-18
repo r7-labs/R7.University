@@ -58,7 +58,7 @@ namespace R7.University.ModelExtensions
             this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
         {
             foreach (var eduProgramProfile in eduProgramProfiles) {
-                var eduProgram = eduProgramProfile.EduProgram.WithEduLevel (controller);
+                eduProgramProfile.EduProgram.WithEduLevel (controller);
                 yield return eduProgramProfile;
             }
         }
