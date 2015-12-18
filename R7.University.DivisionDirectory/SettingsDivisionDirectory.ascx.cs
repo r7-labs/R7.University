@@ -27,10 +27,10 @@
 using System;
 using System.Web.UI.WebControls;
 using System.Linq;
-
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.UI.UserControls;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.DivisionDirectory
@@ -54,7 +54,7 @@ namespace R7.University.DivisionDirectory
             {
                 if (!IsPostBack)
                 {
-                    Utils.SelectByValue (comboMode, DivisionDirectorySettings.Mode.ToString ());
+                    comboMode.SelectByValue (DivisionDirectorySettings.Mode);
                 }
             }
             catch (Exception ex)

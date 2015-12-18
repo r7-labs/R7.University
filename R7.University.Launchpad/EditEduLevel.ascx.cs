@@ -54,7 +54,7 @@ namespace R7.University.Launchpad
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
             textSortIndex.Text = item.SortIndex.ToString ();
-            Utils.SelectByValue (comboEduTypes, item.EduType.ToString ());
+            comboEduTypes.SelectByValue (item.EduType);
         }
 
         protected override void OnUpdateItem (EduLevelInfo item)

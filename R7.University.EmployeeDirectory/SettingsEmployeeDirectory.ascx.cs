@@ -26,6 +26,7 @@
 
 using System;
 using DotNetNuke.Services.Exceptions;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.EmployeeDirectory
@@ -50,7 +51,7 @@ namespace R7.University.EmployeeDirectory
             {
                 if (!IsPostBack)
                 {
-                    Utils.SelectByValue (comboMode, EmployeeDirectorySettings.Mode.ToString ());
+                    comboMode.SelectByValue (EmployeeDirectorySettings.Mode);
                 }
             }
             catch (Exception ex)

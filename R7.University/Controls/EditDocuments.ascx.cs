@@ -29,6 +29,7 @@ using System.Linq;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.R7;
 
 namespace R7.University.Controls
 {
@@ -81,7 +82,7 @@ namespace R7.University.Controls
 
         protected override void OnLoadItem (DocumentViewModel item)
         {
-            Utils.SelectByValue (comboDocumentType, item.DocumentTypeID);
+            comboDocumentType.SelectByValue (item.DocumentTypeID);
             textDocumentTitle.Text = item.Title;
             textDocumentSortIndex.Text = item.SortIndex.ToString ();
             datetimeDocumentStartDate.SelectedDate = item.StartDate;

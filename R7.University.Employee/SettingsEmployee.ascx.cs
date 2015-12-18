@@ -29,6 +29,7 @@ using System.Web.UI.WebControls;
 using System.Linq;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.Employee
@@ -60,7 +61,7 @@ namespace R7.University.Employee
 				if (!IsPostBack)
 				{
 					if (!Null.IsNull (EmployeeSettings.EmployeeID))
-                        Utils.SelectByValue (comboEmployees, EmployeeSettings.EmployeeID);
+                        comboEmployees.SelectByValue (EmployeeSettings.EmployeeID);
                     else
                         comboEmployees.SelectedIndex = 0;
 

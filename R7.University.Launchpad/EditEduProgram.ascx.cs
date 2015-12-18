@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.ModelExtensions;
@@ -112,7 +113,7 @@ namespace R7.University.Launchpad
                             dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
                             datetimeStartDate.SelectedDate = item.StartDate;
                             datetimeEndDate.SelectedDate = item.EndDate;
-                            Utils.SelectByValue (comboEduLevel, item.EduLevelID.ToString ());
+                            comboEduLevel.SelectByValue (item.EduLevelID);
 
                             auditControl.Bind (item);
 

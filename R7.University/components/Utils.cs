@@ -105,47 +105,12 @@ namespace R7.University
         }
 
 		/// <summary>
-		/// Finds the item index by it's value in ListControl-type list.
-		/// </summary>
-		/// <returns>Item index.</returns>
-		/// <param name="list">List control.</param>
-		/// <param name="value">A value.</param>
-		/// <param name="defaultIndex">Default index (in case item not found).</param>
-		public static int FindIndexByValue (ListControl list, object value, int defaultIndex = 0)
-		{ 
-			if (value != null)
-			{
-				var index = 0;
-				var strvalue = value.ToString ();
-				foreach (ListItem item in list.Items)
-				{
-					if (item.Value == strvalue)
-						return index;
-					index++;
-				}
-			}
-
-			return defaultIndex; 
-		}
-
-		/// <summary>
-		/// Sets the selected index of ListControl-type list.
-		/// </summary>
-		/// <param name="list">List control.</param>
-		/// <param name="value">A value.</param>
-		/// <param name="defaultIndex">Default index (in case item not found).</param>
-		public static void SelectByValue (ListControl list, object value, int defaultIndex = 0)
-		{
-			list.SelectedIndex = FindIndexByValue (list, value, defaultIndex);
-		}
-
-		/// <summary>
 		/// Expands node with specified value and all it's parent nodes
 		/// </summary>
 		/// <param name="treeview">DNN or RAD treeview.</param>
 		/// <param name="value">Value of the node.</param>
 		/// <param name="ignoreCase">If set to <c>true</c> ignore value case.</param>
-		public static void SelectAndExpandByValue (Telerik.Web.UI.RadTreeView treeview, string value, bool ignoreCase = false)
+        public static void SelectAndExpandByValue (Telerik.Web.UI.RadTreeView treeview, string value, bool ignoreCase = false)
 		{
 			if (!string.IsNullOrWhiteSpace (value))
 			{

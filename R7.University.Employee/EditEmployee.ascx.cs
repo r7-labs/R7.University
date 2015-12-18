@@ -37,6 +37,7 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
+using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.ModelExtensions;
@@ -799,7 +800,7 @@ namespace R7.University.Employee
 						// fill the form
 						treeDivisions.CollapseAllNodes ();
 						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString ());
-						Utils.SelectByValue (comboPositions, occupiedPosition.PositionID);
+                        comboPositions.SelectByValue (occupiedPosition.PositionID);
                         checkIsPrime.Checked = occupiedPosition.IsPrime;
 						textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
 						
@@ -1163,7 +1164,7 @@ namespace R7.University.Employee
                     if (discipline != null)
                     {
                         // fill achievements form
-                        Utils.SelectByValue (comboEduProgram, discipline.EduProgramProfileID.ToString ());
+                        comboEduProgram.SelectByValue (discipline.EduProgramProfileID);
                         textProgramDisciplines.Text = discipline.Disciplines;
 
                         // store ItemID in the hidden field

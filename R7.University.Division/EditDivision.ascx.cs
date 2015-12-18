@@ -93,7 +93,7 @@ namespace R7.University.Division
             datetimeStartDate.SelectedDate = item.StartDate;
             datetimeEndDate.SelectedDate = item.EndDate;
             checkIsVirtual.Checked = item.IsVirtual;
-            Utils.SelectByValue (comboHeadPosition, item.HeadPositionID);
+            comboHeadPosition.SelectByValue (item.HeadPositionID);
 
             // load working hours
             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
