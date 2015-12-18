@@ -66,9 +66,9 @@ namespace R7.University.EduProgramProfileDirectory
                 if (!IsPostBack)
                 {
                     // check edulevels list items
-                    foreach (var eduLevelIdString in Settings.EduLevels)
+                    foreach (var eduLevelId in Settings.EduLevels)
                     {
-                        var item = listEduLevels.FindItemByValue (eduLevelIdString);
+                        var item = listEduLevels.FindItemByValue (eduLevelId.ToString ());
                         if (item != null)
                         {
                             item.Checked = true;
@@ -89,7 +89,7 @@ namespace R7.University.EduProgramProfileDirectory
         {
             try
             {
-                Settings.EduLevels = listEduLevels.CheckedItems.Select (i => i.Value).ToList ();
+                Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
 
                 ModuleController.SynchronizeModule (ModuleId);
             }

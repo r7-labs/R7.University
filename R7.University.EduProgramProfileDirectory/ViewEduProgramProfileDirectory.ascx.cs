@@ -100,7 +100,7 @@ namespace R7.University.EduProgramProfileDirectory
                     var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
                         .Where (epp => epp.IsPublished () || IsEditable)
                         .WithEduPrograms (Controller)
-                        .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID.ToString ()))
+                        .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
                         .WithEduLevel (Controller)
                         .WithEduProgramProfileForms (Controller)
                         .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)

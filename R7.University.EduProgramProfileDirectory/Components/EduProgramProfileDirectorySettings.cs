@@ -28,12 +28,14 @@ namespace R7.University.EduProgramProfileDirectory
 
         #region Properties for settings
 
-        public IList<string> EduLevels
+        public IList<int> EduLevels
         {
             get
             {
                 return ReadSetting<string> ("EduProgramProfileDirectory_EduLevels", string.Empty)
-                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries).ToList ();
+                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList ()
+                    .ConvertAll (s => int.Parse (s));
             }
             set
             {
