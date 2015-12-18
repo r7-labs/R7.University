@@ -44,7 +44,7 @@ namespace R7.University
         [IgnoreColumn]
         public string EduProfileString
         {
-            get { return EduProgramProfileInfo.FormatEduProgramProfile (Code, Title, ProfileCode, ProfileTitle); }
+            get { return FormatHelper.FormatEduProgramProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
         }
     }
 }

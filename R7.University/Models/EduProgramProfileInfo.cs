@@ -91,22 +91,11 @@ namespace R7.University
             {
                 if (EduProgram != null)
                 {
-                    return FormatEduProgramProfile (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle); 
+                    return FormatHelper.FormatEduProgramProfileTitle (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle); 
                 }
 
-                return FormatEduProgramProfile (string.Empty, string.Empty, ProfileCode, ProfileTitle);
+                return FormatHelper.FormatEduProgramProfileTitle (string.Empty, string.Empty, ProfileCode, ProfileTitle);
             }
-        }
-
-        [Obsolete ("Use FormatHelper.FormatEduProgramProfileTitle method instead")]
-        public static string FormatEduProgramProfile (string code, string title, 
-            string profileCode, string profileTitle)
-        {
-            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
-            var profileStringInBrackets = 
-                !string.IsNullOrWhiteSpace (profileString)? "(" + profileString + ")" : string.Empty;
-                
-            return Utils.FormatList (" ", code, title, profileStringInBrackets);
         }
     }
 }
