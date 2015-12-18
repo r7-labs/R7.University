@@ -144,9 +144,7 @@ namespace R7.University.EduProgramProfileDirectory
                 }
 
                 return FormatHelper.FormatTimeToLearn (FullTimeForm.TimeToLearn,
-                    Localization.GetString ("TimeToLearnFull.Format", Context.LocalResourceFile),
-                    Localization.GetString ("TimeToLearnYears.Format", Context.LocalResourceFile),
-                    Localization.GetString ("TimeToLearnMonths.Format", Context.LocalResourceFile)
+                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile
                 );
             }
         }
@@ -160,9 +158,7 @@ namespace R7.University.EduProgramProfileDirectory
                 }
 
                 return FormatHelper.FormatTimeToLearn (PartTimeForm.TimeToLearn,
-                    Localization.GetString ("TimeToLearnFull.Format", Context.LocalResourceFile),
-                    Localization.GetString ("TimeToLearnYears.Format", Context.LocalResourceFile),
-                    Localization.GetString ("TimeToLearnMonths.Format", Context.LocalResourceFile)
+                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile
                 );
             }
         }
@@ -176,9 +172,7 @@ namespace R7.University.EduProgramProfileDirectory
                 }
 
                 return FormatHelper.FormatTimeToLearn (ExtramuralForm.TimeToLearn,
-                    Localization.GetString ("TimeToLearnFull.Format", Context.LocalResourceFile),
-                    Localization.GetString ("TimeToLearnYears.Format", Context.LocalResourceFile),
-                    Localization.GetString ("TimeToLearnMonths.Format", Context.LocalResourceFile)
+                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile
                 );
             }
         }

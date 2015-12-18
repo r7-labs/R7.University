@@ -36,13 +36,22 @@
     <data name="CommunityAccreditedToDate.Column" xml:space="preserve">
         <value>Срок действия общественно-профессиональной аккредитации образовательной программы</value>
     </data>
-    <data name="TimeToLearnFull.Format" xml:space="preserve">
-        <value>{0} г. {1} мес.</value>
+    <data name="TimeToLearnYears.Format1" xml:space="preserve">
+        <value>{0} год</value>
     </data>
-    <data name="TimeToLearnYears.Format" xml:space="preserve">
-        <value>{0} г.</value>
+    <data name="TimeToLearnYears.Format2" xml:space="preserve">
+        <value>{0} года</value>
     </data>
-    <data name="TimeToLearnMonths.Format" xml:space="preserve">
-        <value>{0} мес.</value>
+    <data name="TimeToLearnYears.Format3" xml:space="preserve">
+        <value>{0} лет</value>
+    </data>
+    <data name="TimeToLearnMonths.Format1" xml:space="preserve">
+        <value>{0} месяц</value>
+    </data>
+    <data name="TimeToLearnMonths.Format2" xml:space="preserve">
+        <value>{0} месяца</value>
+    </data>
+    <data name="TimeToLearnMonths.Format3" xml:space="preserve">
+        <value>{0} месяцев</value>
     </data>
 </root>

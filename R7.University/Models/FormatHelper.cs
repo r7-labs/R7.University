@@ -25,26 +25,48 @@
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
+using DotNetNuke.Services.Localization;
 
 namespace R7.University
 {
     public static class FormatHelper
     {
-        public static string FormatTimeToLearn (int timeToLearn, 
-            string fullFormat, string yearsFormat, string monthsFormat)
+        private static int getPlural (int n, CultureInfo culture)
         {
+            // http://localization-guide.readthedocs.org/en/latest/l10n/pluralforms.html
+
+            // TODO: Add more languages here
+            if (culture.TwoLetterISOLanguageName == "ru")
+            {   
+                // nplurals=3;
+                return (n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);
+            }
+
+            // nplurals=2;
+            return (n != 1) ? 1 : 0;
+        }
+
+        public static string FormatTimeToLearn (int timeToLearn, string yearsKeyBase, string monthsKeyBase, string resourceFile)
+        {
+            var culture = CultureInfo.CurrentUICulture;
+
             var years = timeToLearn / 12;
             var months = timeToLearn % 12;
 
+            var yearsPlural = getPlural (years, culture) + 1;
+            var monthsPlural = getPlural (months, culture) + 1;
+
             if (months == 0) {
-                return string.Format (yearsFormat, years);
+                return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years);
             }
 
             if (years == 0) {
-                return string.Format (monthsFormat, months);
+                return string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
             }
 
-            return string.Format (fullFormat, years, months);
+            return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years) 
+                + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
         }
 
         public static string FormatEduProgramProfileTitle (string title, 
