@@ -95,9 +95,12 @@ namespace R7.University.EduProgramProfileDirectory
                 if (!IsPostBack)
 				{
                     var indexer = new ViewModelIndexer (1);
+                    var eduLevelIds = Settings.EduLevels;
 
                     var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
+                        .Where (epp => epp.IsPublished () || IsEditable)
                         .WithEduPrograms (Controller)
+                        .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID.ToString ()))
                         .WithEduLevel (Controller)
                         .WithEduProgramProfileForms (Controller)
                         .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)

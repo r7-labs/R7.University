@@ -43,6 +43,11 @@ namespace R7.University
             return IsPublished (document.StartDate, document.EndDate);
         }
 
+        public static bool IsPublished (this IEduProgramProfile eduProgramProfile)
+        {
+            return IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
+        }
+
         public static SystemDocumentType GetSystemDocumentType (this IDocumentType documentType)
         {
             SystemDocumentType result;
