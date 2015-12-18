@@ -34,6 +34,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.Employee
@@ -96,13 +97,13 @@ namespace R7.University.Employee
 					{
 						// employee isn't set or not found
 						if (IsEditable)
-							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
+							this.Message ("NothingToDisplay.Text", MessageType.Info, true);
 					}
 					else if (!Employee.IsPublished)
 					{
 						// employee isn't published
 						if (IsEditable)
-							Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
+							this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
 					}
 
 					var hasData = Employee != null;

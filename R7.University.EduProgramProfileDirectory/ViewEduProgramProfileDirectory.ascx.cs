@@ -117,7 +117,7 @@ namespace R7.University.EduProgramProfileDirectory
                     }
                     else
                     {
-                        Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true); 
+                        this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
                     }
 				}
 			}

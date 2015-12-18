@@ -8,6 +8,7 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.Launchpad
@@ -56,7 +57,7 @@ namespace R7.University.Launchpad
 			var tables = LaunchpadSettings.Tables;
 			if (tables == null || tables.Count == 0)
 			{
-				Utils.Message (this, "NotConfigured.Text", MessageType.Info, true);
+                this.Message ("NotConfigured.Text", MessageType.Info, true);
 				return;
 			}
 			

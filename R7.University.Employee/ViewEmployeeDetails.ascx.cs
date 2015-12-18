@@ -35,6 +35,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 
@@ -216,12 +217,12 @@ namespace R7.University.Employee
                         if (Employee == null)
                         {
                             // employee isn't set or not found
-                            Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
+                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                         }
                         else if (!Employee.IsPublished)
                         {
                             // employee don't published
-                            Utils.Message (this, "EmployeeNotPublished.Text", MessageType.Warning, true);
+                            this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
                         }
                     }
 

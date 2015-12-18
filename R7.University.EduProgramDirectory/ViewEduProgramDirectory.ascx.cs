@@ -86,7 +86,7 @@ namespace R7.University.EduProgramDirectory
                     }
                     else
                     {
-                        Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true); 
+                        this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
                     }
 				}
 			}

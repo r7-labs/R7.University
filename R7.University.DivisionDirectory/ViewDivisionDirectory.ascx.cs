@@ -41,6 +41,7 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
+using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 
@@ -113,7 +114,7 @@ namespace R7.University.DivisionDirectory
             if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.Search)
             {
                 // display search hint
-                Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
+                this.Message ("SearchHint.Info", MessageType.Info, true); 
 
                 var divisions = DivisionDirectoryController.GetObjects <DivisionInfo> ()
                     .Where (d => d.IsPublished || IsEditable)
@@ -204,7 +205,7 @@ namespace R7.University.DivisionDirectory
             if (searchTextIsEmpty && !divisionIsSpecified)
             {
                 if (showMessages)
-                    Utils.Message (this, "SearchParams.Warning", MessageType.Warning, true);
+                    this.Message ("SearchParams.Warning", MessageType.Warning, true);
 
                 gridDivisions.Visible = false;
                 return false;
@@ -236,7 +237,7 @@ namespace R7.University.DivisionDirectory
 
             if (!divisions.Any ())
             {
-                Utils.Message (this, "NoDivisionsFound.Warning", MessageType.Warning, true);
+                this.Message ("NoDivisionsFound.Warning", MessageType.Warning, true);
             }
 
             gridDivisions.DataSource = divisions;

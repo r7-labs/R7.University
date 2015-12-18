@@ -15,6 +15,7 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.EmployeeList
@@ -77,7 +78,7 @@ namespace R7.University.EmployeeList
 						Cache_SetContainerVisible (false);
 						
 						if (IsEditable)
-							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
+							this.Message ("NothingToDisplay.Text", MessageType.Info, true);
 						else
 							// hide entire module
 							ContainerControl.Visible = false;

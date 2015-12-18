@@ -32,6 +32,7 @@ using System.Linq;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 
@@ -101,7 +102,7 @@ namespace R7.University.EmployeeDirectory
             if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.Search)
             {
                 // display search hint
-                Utils.Message (this, "SearchHint.Info", MessageType.Info, true); 
+                this.Message ("SearchHint.Info", MessageType.Info, true); 
 
                 var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ()
                     .Where (d => d.IsPublished || IsEditable)
@@ -327,7 +328,7 @@ namespace R7.University.EmployeeDirectory
             if (searchTextIsEmpty && !divisionIsSpecified)
             {
                 if (showMessages)
-                    Utils.Message (this, "SearchParams.Warning", MessageType.Warning, true);
+                    this.Message ("SearchParams.Warning", MessageType.Warning, true);
 
                 gridEmployees.Visible = false;
                 return false;
@@ -339,7 +340,7 @@ namespace R7.University.EmployeeDirectory
                 (!searchTextIsEmpty && searchText.Length < 3))) // search phrase is too short
             {
                 if (showMessages)
-                    Utils.Message (this, "SearchPhrase.Warning", MessageType.Warning, true);
+                    this.Message ("SearchPhrase.Warning", MessageType.Warning, true);
 
                 gridEmployees.Visible = false;
                 return false;
@@ -355,7 +356,7 @@ namespace R7.University.EmployeeDirectory
 
             if (employees == null || !employees.Any ())
             {
-                Utils.Message (this, "NoEmployeesFound.Warning", MessageType.Warning, true);
+                this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
             }
 
             gridEmployees.DataSource = employees;

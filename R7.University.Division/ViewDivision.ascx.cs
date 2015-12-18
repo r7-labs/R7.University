@@ -36,6 +36,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.FileSystem;
+using DotNetNuke.R7;
 using R7.University;
 
 namespace R7.University.Division
@@ -95,7 +96,7 @@ namespace R7.University.Division
 						{
                             // REVIEW: If division not published, hide module for non-editors?
 
-							Utils.Message (this, "NothingToDisplay.Text", MessageType.Info, true);
+							this.Message ("NothingToDisplay.Text", MessageType.Info, true);
 							// hide only module content
 							panelDivision.Visible = false;
 						}
