@@ -23,8 +23,8 @@
                         <asp:BoundField DataField="TimeToLearnFullTimeString" HeaderText="TimeToLearnFullTime" />
                         <asp:BoundField DataField="TimeToLearnPartTimeString" HeaderText="TimeToLearnPartTime" />
                         <asp:BoundField DataField="TimeToLearnExtramuralString" HeaderText="TimeToLearnExtramural" />
-                        <asp:BoundField DataField="AccreditedToDate" HeaderText="AccreditedToDate" />
-                        <asp:BoundField DataField="CommunityAccreditedToDate" HeaderText="CommunityAccreditedToDate" />
+                        <asp:BoundField DataField="AccreditedToDate" DataFormatString="{0:d}" HeaderText="AccreditedToDate" />
+                        <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate" />
                     </Columns>
                 </asp:GridView>
             </fieldset>
