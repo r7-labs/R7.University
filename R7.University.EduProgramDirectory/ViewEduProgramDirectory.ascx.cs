@@ -68,14 +68,15 @@ namespace R7.University.EduProgramDirectory
 			{
                 if (!IsPostBack)
 				{
-                    var eduProgramComparer = new EduProgramComparer ();
                     var viewModelIndexer = new ViewModelIndexer (1);
 
                     // REVIEW: Order / group by edu level first?
                     var eduPrograms = Controller.GetEduPrograms (Settings.EduLevels, IsEditable)
                         .WithDocuments (Controller)
                         .WithEduLevel (Controller)
-                        .OrderBy (ep => ep, eduProgramComparer)
+                        .OrderBy (ep => ep.EduLevel.SortIndex)
+                        .ThenBy (ep => ep.Code)
+                        .ThenBy (ep => ep.Title)
                         .Select (ep => new EduProgramStandardObrnadzorViewModel (ep, ViewModelContext, viewModelIndexer))
                         .ToList ();
                     
