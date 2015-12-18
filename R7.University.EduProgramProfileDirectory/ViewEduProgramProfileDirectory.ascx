@@ -18,13 +18,13 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="IndexString" />
-                        <asp:BoundField DataField="Code" />
+                        <asp:BoundField DataField="Code" HtmlEncode="false" />
                         <asp:BoundField DataField="Title" />
-                        <asp:BoundField DataField="EduLevelString" />
-                        <asp:BoundField DataField="TimeToLearnFullTimeString" HeaderText="TimeToLearnFullTime" />
-                        <asp:BoundField DataField="TimeToLearnPartTimeString" HeaderText="TimeToLearnPartTime" />
-                        <asp:BoundField DataField="TimeToLearnExtramuralString" HeaderText="TimeToLearnExtramural" />
-                        <asp:BoundField DataField="AccreditedToDate" DataFormatString="{0:d}" HeaderText="AccreditedToDate" />
+                        <asp:BoundField DataField="EduLevelString" HtmlEncode="false" />
+                        <asp:BoundField DataField="TimeToLearnFullTimeString" HtmlEncode="false" HeaderText="TimeToLearnFullTime" />
+                        <asp:BoundField DataField="TimeToLearnPartTimeString" HtmlEncode="false" HeaderText="TimeToLearnPartTime" />
+                        <asp:BoundField DataField="TimeToLearnExtramuralString" HtmlEncode="false" HeaderText="TimeToLearnExtramural" />
+                        <asp:BoundField DataField="AccreditedToDateString" HtmlEncode="false" HeaderText="AccreditedToDate" />
                         <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate" />
                     </Columns>
                 </asp:GridView>

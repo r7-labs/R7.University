@@ -135,6 +135,13 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
+        protected string TimeToLearnApplyMarkup (string eduFormResourceKey, string timeToLearn)
+        {
+            return "<span class=\"hidden\" itemprop=\"EduForm\">" 
+                + Localization.GetString (eduFormResourceKey, Context.LocalResourceFile) 
+                + "</span>" + "<span itemprop=\"LearningTerm\">" + timeToLearn + "</span>";
+        }
+
         public string TimeToLearnFullTimeString
         {
             get
@@ -143,8 +150,9 @@ namespace R7.University.EduProgramProfileDirectory
                     return string.Empty; 
                 }
 
-                return FormatHelper.FormatTimeToLearn (FullTimeForm.TimeToLearn,
-                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile
+                return TimeToLearnApplyMarkup ("TimeToLearnFullTime.Column",
+                    FormatHelper.FormatTimeToLearn (FullTimeForm.TimeToLearn,
+                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
                 );
             }
         }
@@ -157,8 +165,9 @@ namespace R7.University.EduProgramProfileDirectory
                     return string.Empty; 
                 }
 
-                return FormatHelper.FormatTimeToLearn (PartTimeForm.TimeToLearn,
-                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile
+                return TimeToLearnApplyMarkup ("TimeToLearnPartTime.Column",
+                    FormatHelper.FormatTimeToLearn (PartTimeForm.TimeToLearn,
+                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
                 );
             }
         }
@@ -171,8 +180,9 @@ namespace R7.University.EduProgramProfileDirectory
                     return string.Empty; 
                 }
 
-                return FormatHelper.FormatTimeToLearn (ExtramuralForm.TimeToLearn,
-                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile
+                return TimeToLearnApplyMarkup ("TimeToLearnExtramural.Column",
+                    FormatHelper.FormatTimeToLearn (ExtramuralForm.TimeToLearn,
+                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
                 );
             }
         }
@@ -186,7 +196,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         public string Code
         {
-            get { return EduProgram.Code; }
+            get { return "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>"; }
         }
 
         public string Title
@@ -196,7 +206,20 @@ namespace R7.University.EduProgramProfileDirectory
 
         public string EduLevelString
         {
-            get { return EduProgram.EduLevel.Title; }
+            get { return "<span itemprop=\"EduLevel\">" + EduProgram.EduLevel.Title + "</span>"; }
+        }
+
+        public string AccreditedToDateString
+        {
+            get
+            { 
+                if (AccreditedToDate != null) 
+                {
+                    return "<span itemprop=\"DateEnd\">" + AccreditedToDate.Value.ToShortDateString () + "</span>";
+                }
+
+                return string.Empty;
+            }
         }
     }
 }
