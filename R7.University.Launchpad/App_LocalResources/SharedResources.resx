@@ -24,18 +24,6 @@
     <data name="AchievementTypeD.Text">
         <value>Academic Degree</value>
     </data>
-    <data name="EduTypeHigh.Text">
-        <value>High</value>
-    </data>
-    <data name="EduTypeSchool.Text">
-        <value>School</value>
-    </data>
-    <data name="EduTypeIntermediate.Text">
-        <value>Intermediate</value>
-    </data>
-    <data name="EduTypeAdditional.Text">
-        <value>Additional</value>
-    </data>
     <data name="Employees.Text" xml:space="preserve">
         <value>Employees</value>
     </data>

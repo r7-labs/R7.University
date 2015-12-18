@@ -29,14 +29,6 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University
 {
-    public enum EduType
-    {
-        School = 'S',
-        Intermediate = 'I',
-        High = 'H',
-        Additional = 'A'
-    }
-
     [TableName ("University_EduLevels")]
     [PrimaryKey ("EduLevelID", AutoIncrement = true)]
     [Cacheable ("University_EduLevels")]
@@ -45,16 +37,6 @@ namespace R7.University
         #region Properties
 
         public int EduLevelID { get; set; }
-
-        [ColumnName ("Type")]
-        public string EduTypeString { get; set; }
-
-        [IgnoreColumn]
-        public EduType EduType
-        {
-            get { return (EduType)EduTypeString [0]; }
-            set { EduTypeString = ((char)value).ToString (); }
-        }
 
         public int SortIndex { get; set; }
 
