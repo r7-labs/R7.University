@@ -105,23 +105,6 @@ namespace R7.University
         }
 
 		/// <summary>
-		/// Formats the Edit control URL by DNN rules (popups supported).
-        /// </summary>
-		/// <returns>Formatted Edit control URL.</returns>
-		/// <param name="module">A module reference.</param>
-		/// <param name="controlKey">Edit control key.</param>
-		/// <param name="args">Additional parameters.</param>
-        [Obsolete ("Use DotNetNuke.Entities.Modules.PortalModuleBase.EditUrl instead")]
-        public static string EditUrl (IModuleControl module, string controlKey, params string[] args)
-		{
-			var argList = new List<string> (args); 
-			argList.Add ("mid");
-			argList.Add (module.ModuleContext.ModuleId.ToString ());
-
-			return module.ModuleContext.NavigateUrl (module.ModuleContext.TabId, controlKey, false, argList.ToArray ());
-		}
-
-		/// <summary>
 		/// Finds the item index by it's value in ListControl-type list.
 		/// </summary>
 		/// <returns>Item index.</returns>

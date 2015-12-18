@@ -281,7 +281,7 @@ namespace R7.University.DivisionDirectory
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditDivision", "division_id", division.DivisionID.ToString ());
+                    linkEdit.NavigateUrl = EditUrl ("division_id", division.DivisionID.ToString (), "EditDivision");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
@@ -372,7 +372,7 @@ namespace R7.University.DivisionDirectory
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditDivision", "division_id", division.DivisionID.ToString ());
+                    linkEdit.NavigateUrl = EditUrl ("division_id", division.DivisionID.ToString (), "EditDivision");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 

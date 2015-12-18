@@ -135,8 +135,9 @@ namespace R7.University.EmployeeList
 					"", 
 					"", 
 					Null.IsNull (EmployeeListSettings.DivisionID) ?
-                    // pass division_id to select division in which to add employee
-                    Utils.EditUrl (this, "EditEmployee") : Utils.EditUrl (this, "EditEmployee", "division_id", EmployeeListSettings.DivisionID.ToString ()),
+                        EditUrl ("EditEmployee")
+                        // pass division_id to select division in which to add employee
+                        : EditUrl ("division_id", EmployeeListSettings.DivisionID.ToString (), "EditEmployee"),
 					false, 
 					DotNetNuke.Security.SecurityAccessLevel.Edit,
 					true, 
@@ -178,10 +179,10 @@ namespace R7.University.EmployeeList
 			if (IsEditable)
 			{
 				if (Null.IsNull (EmployeeListSettings.DivisionID))
-					linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
+                    linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee");
 				else
-					linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString (), 
-						"division_id", EmployeeListSettings.DivisionID.ToString ());
+					linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (),
+                        "EditEmployee", "division_id", EmployeeListSettings.DivisionID.ToString ());
 			}
 
 			// make edit link visible in edit mode

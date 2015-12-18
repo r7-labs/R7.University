@@ -242,7 +242,7 @@ namespace R7.University.EmployeeDirectory
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", teacher.EmployeeID.ToString ());
+                    linkEdit.NavigateUrl = EditUrl ("employee_id", teacher.EmployeeID.ToString (), "EditEmployee");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
@@ -421,7 +421,7 @@ namespace R7.University.EmployeeDirectory
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", employee.EmployeeID.ToString ());
+                    linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 

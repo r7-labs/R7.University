@@ -108,7 +108,7 @@ namespace R7.University.Employee
                     ModuleActionType.AddContent,
                     "",
                     "", 
-                    Utils.EditUrl (this, "EditEmployee"),
+                    EditUrl ("EditEmployee"),
                     false, 
                     DotNetNuke.Security.SecurityAccessLevel.Edit,
                     Employee == null, 
@@ -124,7 +124,7 @@ namespace R7.University.Employee
                         ModuleActionType.EditContent, 
                         "", 
                         "", 
-                        Utils.EditUrl (this, "EditEmployee", "employee_id", Employee.EmployeeID.ToString ()),
+                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee"),
                         false, 
                         DotNetNuke.Security.SecurityAccessLevel.Edit,
                         true, 
@@ -137,7 +137,7 @@ namespace R7.University.Employee
                         ModuleActionType.ContentOptions, 
                         "", 
                         "", 
-                        Utils.EditUrl (this, "VCard", "employee_id", Employee.EmployeeID.ToString ()),
+                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard"),
                         false,
                         DotNetNuke.Security.SecurityAccessLevel.View,
                         true,
@@ -238,16 +238,14 @@ namespace R7.University.Employee
                             if (IsEditable)
 							{
 								linkVCard.Visible = true;
-                                linkVCard.NavigateUrl = Utils.EditUrl (this, "VCard", "employee_id", 
-                                    Employee.EmployeeID.ToString ());
+                                linkVCard.NavigateUrl = EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard");
                             }
 
                             // show edit button only for editors or superusers (in popup)
                             if (IsEditable || UserInfo.IsSuperUser) 
                             {
                                 linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = Utils.EditUrl (this, "EditEmployee", "employee_id", 
-                                    Employee.EmployeeID.ToString ());
+                                linkEdit.NavigateUrl = EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee");
 							}
                         }
                     }
