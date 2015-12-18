@@ -198,10 +198,7 @@ namespace R7.University.EduProgramProfileDirectory
                     },
                     new TableHeaderCell {
                         RowSpan = 2,
-                        Text = Localization.GetString ("ProfileCode.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell {
-                        RowSpan = 2,
+                        ColumnSpan = 2,
                         Text = Localization.GetString ("Title.Column", LocalResourceFile)
                     },
                     new TableHeaderCell {

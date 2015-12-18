@@ -9,9 +9,6 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Nothing to display. Please add some educational program profiles and use module setting to set view options.</value>
     </data>
-    <data name="ProfileCode.Column" xml:space="preserve">
-        <value>Code</value>
-    </data>
     <data name="Title.Column" xml:space="preserve">
         <value>Educational Program</value>
     </data>
