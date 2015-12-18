@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+       <value>&lt;p&gt;О модуле EduProgramProfileDirectory&lt;/p&gt;</value>
+    </data>
+    <data name="AddEduProgramProfile.Action" xml:space="preserve">
+        <value>Новый профиль обр. программы</value>
+    </data>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Нечего отображать. Добавьте профили образовательных программ и воспользуйтесь настройками модуля для установки параметров отображения.</value>
+    </data>
+    <data name="Index.Column" xml:space="preserve">
+        <value>№ п/п</value>
+    </data>
+    <data name="Title.Column" xml:space="preserve">
+        <value>Образовательная программа</value>
+    </data>
+    <data name="EduLevel.Column" xml:space="preserve">
+        <value>Уровень образования</value>
+    </data>
+    <data name="TimeToLearn.Column" xml:space="preserve">
+        <value>Нормативный срок обучения</value>
+    </data>
+    <data name="TimeToLearnFullTime.Column" xml:space="preserve">
+        <value>Очная форма обучения</value>
+    </data>
+    <data name="TimeToLearnPartTime.Column" xml:space="preserve">
+        <value>Очно-заочная форма обучения</value>
+    </data>
+    <data name="TimeToLearnExtramural.Column" xml:space="preserve">
+        <value>Заочная форма обучения</value>
+    </data>
+    <data name="AccreditedToDate.Column" xml:space="preserve">
+        <value>Срок действия государственной аккредитации образовательной программы</value>
+    </data>
+    <data name="CommunityAccreditedToDate.Column" xml:space="preserve">
+        <value>Срок действия общественно-профессиональной аккредитации образовательной программы</value>
+    </data>
+    <data name="TimeToLearnYears.Format1" xml:space="preserve">
+        <value>{0} год</value>
+    </data>
+    <data name="TimeToLearnYears.Format2" xml:space="preserve">
+        <value>{0} года</value>
+    </data>
+    <data name="TimeToLearnYears.Format3" xml:space="preserve">
+        <value>{0} лет</value>
+    </data>
+    <data name="TimeToLearnMonths.Format1" xml:space="preserve">
+        <value>{0} месяц</value>
+    </data>
+    <data name="TimeToLearnMonths.Format2" xml:space="preserve">
+        <value>{0} месяца</value>
+    </data>
+    <data name="TimeToLearnMonths.Format3" xml:space="preserve">
+        <value>{0} месяцев</value>
+    </data>
+</root>

@@ -50,18 +50,37 @@ namespace R7.University.ModelExtensions
                 delegate (EduProgramProfileInfo epp, EduProgramInfo ep) {
                     epp.EduProgram = ep;
                     return epp;
-                });
+                }
+            );
         }
 
-        public static EduProgramProfileInfo WithEduForms (
+        public static IEnumerable<EduProgramProfileInfo> WithEduLevel (
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+        {
+            foreach (var eduProgramProfile in eduProgramProfiles) {
+                var eduProgram = eduProgramProfile.EduProgram.WithEduLevel (controller);
+                yield return eduProgramProfile;
+            }
+        }
+
+        public static EduProgramProfileInfo WithEduProgramProfileForms (
             this EduProgramProfileInfo eduProfile, ControllerBase controller)
         {
             eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
                 "WHERE [EduProgramProfileID] = @0", eduProfile.EduProgramProfileID)
                 .WithEduForms (controller)
+                .Cast<IEduProgramProfileForm> ()
                 .ToList ();
 
             return eduProfile;
+        }
+
+        public static IEnumerable<EduProgramProfileInfo> WithEduProgramProfileForms (
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+        {
+            foreach (var eduProgramProfile in eduProgramProfiles) {
+                yield return eduProgramProfile.WithEduProgramProfileForms (controller);
+            }
         }
     }
 }

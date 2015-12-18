@@ -958,6 +958,86 @@
                     </assemblies>
                 </component>
             </components>
+        </package>
+        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="01.06.03">
+            <friendlyName>R7.University.EduProgramProfileDirectory</friendlyName>
+            <description>This is a module to display information about educational program profiles.</description>
+            <owner>
+                <name>Roman M. Yagodin</name>
+                <organization>R7.Solutions</organization>
+                <url>https://github.com/roman-yagodin/R7.University</url>
+                <email>roman.yagodin@gmail.com</email>
+            </owner>
+            <license />
+            <releaseNotes />
+            <dependencies />
+            <components>
+                <component type="Module">
+                    <desktopModule>
+                        <moduleName>R7.University.EduProgramProfileDirectory</moduleName>
+                        <foldername>R7.University.EduProgramProfileDirectory</foldername>
+                        <businessControllerClass>R7.University.EduProgramProfileDirectory.EduProgramProfileDirectoryController</businessControllerClass>
+                        <supportedFeatures>
+                            <!-- <supportedFeature type="Portable" /> -->
+                            <!-- <supportedFeature type="Searchable" /> -->
+                        </supportedFeatures>
+                        <moduleDefinitions>
+                            <moduleDefinition>
+                                <friendlyName>R7.University.EduProgramProfileDirectory</friendlyName>
+                                <definitionName>R7.University.EduProgramProfileDirectory</definitionName>
+                                <defaultCacheTime>0</defaultCacheTime>
+                                <moduleControls>
+                                    <moduleControl>
+                                        <controlKey />
+                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramProfileDirectory/ViewEduProgramProfileDirectory.ascx</controlSrc>
+                                        <controlTitle />
+                                        <controlType>View</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditEduProgramProfile</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <controlTitle>Edit Educational Program Profile</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>Settings</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramProfileDirectory/SettingsEduProgramProfileDirectory.ascx</controlSrc>
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <controlTitle>Settings</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                </moduleControls>
+                            </moduleDefinition>
+                        </moduleDefinitions>
+                    </desktopModule>
+                </component>
+                <component type="Assembly">
+                    <assemblies>
+                        <basePath>bin</basePath>
+                        <assembly>
+                            <path>bin</path>
+                            <name>R7.University.EduProgramDirectory.dll</name>
+                        </assembly>
+                    </assemblies>
+                </component>
+            </components>
         </package>  
 	</packages>
 </dotnetnuke>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>EduProgramProfileDirectory Settings</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;About EduProgramProfileDirectory settings module&lt;/p&gt;</value>
+    </data>
+    <data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Not Selected &gt;</value>
+    </data>
+    <data name="labelEduLevels.Text" xml:space="preserve">
+        <value>Educational Levels:</value>
+    </data>
+    <data name="labelEduLevels.Help" xml:space="preserve">
+        <value>Check educational levels the module should display.</value>
+    </data>
+</root>

@@ -43,10 +43,21 @@ namespace R7.University
             return IsPublished (document.StartDate, document.EndDate);
         }
 
+        public static bool IsPublished (this IEduProgramProfile eduProgramProfile)
+        {
+            return IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
+        }
+
         public static SystemDocumentType GetSystemDocumentType (this IDocumentType documentType)
         {
             SystemDocumentType result;
             return Enum.TryParse<SystemDocumentType> (documentType.Type, out result)? result : SystemDocumentType.Custom;
+        }
+
+        public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)
+        {
+            SystemEduForm result;
+            return Enum.TryParse<SystemEduForm> (eduForm.Title, out result)? result : SystemEduForm.Custom;
         }
 
         #endregion
