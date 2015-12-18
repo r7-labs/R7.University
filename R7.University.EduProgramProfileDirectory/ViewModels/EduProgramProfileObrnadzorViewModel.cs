@@ -101,10 +101,11 @@ namespace R7.University.EduProgramProfileDirectory
 
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramProfileObrnadzorViewModel (IEduProgramProfile model, ViewModelContext context)
+        public EduProgramProfileObrnadzorViewModel (IEduProgramProfile model, ViewModelContext context, ViewModelIndexer indexer)
         {
             Model = model;
             Context = context;
+            Index = indexer.GetNextIndex ();
         }
 
         protected IEduProgramProfileForm FullTimeForm
@@ -180,6 +181,13 @@ namespace R7.University.EduProgramProfileDirectory
                     Localization.GetString ("TimeToLearnMonths.Format", Context.LocalResourceFile)
                 );
             }
+        }
+
+        public int Index { get; protected set; }
+
+        public string IndexString
+        {
+            get { return Index + "."; }
         }
 
         public string Code

@@ -94,6 +94,8 @@ namespace R7.University.EduProgramProfileDirectory
 			{
                 if (!IsPostBack)
 				{
+                    var indexer = new ViewModelIndexer (1);
+
                     var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
                         .WithEduPrograms (Controller)
                         .WithEduLevel (Controller)
@@ -102,7 +104,7 @@ namespace R7.University.EduProgramProfileDirectory
                         .ThenBy (epp => epp.EduProgram.Code)
                         .ThenBy (epp => epp.EduProgram.Title)
                         .ThenBy (epp => epp.ProfileTitle)
-                        .Select (epp => new EduProgramProfileObrnadzorViewModel (epp, ViewModelContext))
+                        .Select (epp => new EduProgramProfileObrnadzorViewModel (epp, ViewModelContext, indexer))
                         .ToList ();
 
                     if (eduProgramProfiles.Count > 0)
@@ -161,8 +163,9 @@ namespace R7.University.EduProgramProfileDirectory
                 e.Row.Cells [1].Visible = false;
                 e.Row.Cells [2].Visible = false;
                 e.Row.Cells [3].Visible = false;
-                e.Row.Cells [7].Visible = false;
+                e.Row.Cells [4].Visible = false;
                 e.Row.Cells [8].Visible = false;
+                e.Row.Cells [9].Visible = false;
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -195,6 +198,10 @@ namespace R7.University.EduProgramProfileDirectory
                     new TableHeaderCell {
                         RowSpan = 2,
                         Visible = IsEditable
+                    },
+                    new TableHeaderCell {
+                        RowSpan = 2,
+                        Text = Localization.GetString ("Index.Column", LocalResourceFile)
                     },
                     new TableHeaderCell {
                         RowSpan = 2,
