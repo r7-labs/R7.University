@@ -189,6 +189,11 @@ namespace R7.University.EduProgramProfileDirectory
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
+
+                if (!eduProgramProfile.IsPublished ())
+                {
+                    e.Row.CssClass = "not-published";
+                }
             }
         }
 
