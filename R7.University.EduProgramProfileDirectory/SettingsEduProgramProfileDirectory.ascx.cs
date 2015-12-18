@@ -43,6 +43,17 @@ namespace R7.University.EduProgramProfileDirectory
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
+
+            // fill edulevels list
+            var eduLevels = Controller.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
+
+            foreach (var eduLevel in eduLevels)
+            {
+                listEduLevels.Items.Add (new DnnListBoxItem { 
+                    Text = eduLevel.DisplayShortTitle, 
+                    Value = eduLevel.EduLevelID.ToString ()
+                });
+            }
         }
 
         /// <summary>
@@ -54,6 +65,15 @@ namespace R7.University.EduProgramProfileDirectory
             {
                 if (!IsPostBack)
                 {
+                    // check edulevels list items
+                    foreach (var eduLevelIdString in Settings.EduLevels)
+                    {
+                        var item = listEduLevels.FindItemByValue (eduLevelIdString);
+                        if (item != null)
+                        {
+                            item.Checked = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -69,6 +89,8 @@ namespace R7.University.EduProgramProfileDirectory
         {
             try
             {
+                Settings.EduLevels = listEduLevels.CheckedItems.Select (i => i.Value).ToList ();
+
                 ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex)

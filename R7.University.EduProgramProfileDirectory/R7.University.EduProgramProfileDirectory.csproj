@@ -65,6 +65,7 @@
     <Reference Include="DotNetNuke.R7">
       <HintPath>..\packages\DotNetNuke.R7.0.2.3\lib\net45\DotNetNuke.R7.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

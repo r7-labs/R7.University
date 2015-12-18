@@ -25,6 +25,23 @@ namespace R7.University.EduProgramProfileDirectory
         public EduProgramProfileDirectorySettings (ModuleInfo module) : base (module)
 		{
 		}
+
+        #region Properties for settings
+
+        public IList<string> EduLevels
+        {
+            get
+            {
+                return ReadSetting<string> ("EduProgramProfileDirectory_EduLevels", string.Empty)
+                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries).ToList ();
+            }
+            set
+            {
+                WriteModuleSetting<string> ("EduProgramProfileDirectory_EduLevels", string.Join (";", value));
+            }
+        }
+
+        #endregion
 	}
 }
 
