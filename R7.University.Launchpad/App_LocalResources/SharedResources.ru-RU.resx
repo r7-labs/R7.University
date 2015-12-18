@@ -6,19 +6,7 @@
 	<data name="AddContent.Action" xml:space="preserve">
         <value>Добавить содержимое</value>
     </data>
-    <data name="EduTypeHigh.Text">
-        <value>Высшее</value>
-    </data>
-    <data name="EduTypeSchool.Text">
-        <value>Среднее</value>
-    </data>
-    <data name="EduTypeIntermediate.Text">
-        <value>Среднее профессиональное</value>
-    </data>
-    <data name="EduTypeAdditional.Text">
-        <value>Дополнительное</value>
-    </data>
-     <data name="Employees.Text" xml:space="preserve">
+    <data name="Employees.Text" xml:space="preserve">
         <value>Employees</value>
     </data>
     <data name="Divisions.Text" xml:space="preserve">

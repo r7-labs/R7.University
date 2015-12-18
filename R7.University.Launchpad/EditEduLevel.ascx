@@ -12,13 +12,6 @@
 			<dnn:Label ID="labelShortTitle" runat="server" ControlName="textShortTitle" />
 			<asp:TextBox ID="textShortTitle" runat="server" MaxLength="64" />
 		</div>
-		<div class="dnnFormItem">
-			<dnn:Label id="labelEduTypes" runat="server" ControlName="comboEduTypes" />
-			<asp:DropDownList id="comboEduTypes" runat="server" 
-				DataTextField="LocalizedType"
-				DataValueField="Type"
-			/>
-		</div>
         <div class="dnnFormItem">
             <dnn:Label id="labelSortIndex" runat="server" ControlName="textSortIndex" />
             <asp:TextBox id="textSortIndex" runat="server" />

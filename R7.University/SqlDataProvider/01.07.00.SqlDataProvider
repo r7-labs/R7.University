@@ -15,6 +15,15 @@ BEGIN
 END
 GO
 
+-- EduLevels
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduLevels]') and name = N'Type')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduLevels]
+        DROP COLUMN [Type]
+END
+GO
+
 -- EduForms
 
 IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and type in (N'U'))

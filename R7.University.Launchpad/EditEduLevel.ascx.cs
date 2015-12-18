@@ -35,15 +35,6 @@ namespace R7.University.Launchpad
         protected EditEduLevel (): base ("edulevel_id")
         {}
 
-        protected override void OnInit (EventArgs e)
-        {
-            base.OnInit (e);
-
-            // bind achievement types
-            comboEduTypes.DataSource = CharEnumInfo<EduType>.GetLocalizedTypes (LocalizeString);
-            comboEduTypes.DataBind ();
-        }
-
         protected override void OnInitControls () 
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
@@ -54,7 +45,6 @@ namespace R7.University.Launchpad
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
             textSortIndex.Text = item.SortIndex.ToString ();
-            comboEduTypes.SelectByValue (item.EduType);
         }
 
         protected override void OnUpdateItem (EduLevelInfo item)
@@ -62,7 +52,6 @@ namespace R7.University.Launchpad
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
             item.SortIndex = int.Parse (textSortIndex.Text);
-            item.EduType = (EduType)Enum.Parse (typeof(EduType), comboEduTypes.SelectedValue);
         }
 	}
 }

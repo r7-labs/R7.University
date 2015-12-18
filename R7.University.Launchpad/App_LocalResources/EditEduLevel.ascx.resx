@@ -30,12 +30,6 @@
     <data name="labelSortIndex.Help" xml:space="preserve">
         <value>Enter the numeric index for the educational level. It will be used in sorting.</value>
     </data>
-    <data name="labelEduTypes.Text">
-        <value>Education Type:</value>
-    </data>
-    <data name="labelEduTypes.Help">
-        <value>Select education type from the list.</value>
-    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;A Edit education level module&lt;/P&gt;</value>
     </data>
