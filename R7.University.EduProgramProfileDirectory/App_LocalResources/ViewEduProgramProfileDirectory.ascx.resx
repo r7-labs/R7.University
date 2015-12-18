@@ -3,8 +3,8 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
        <value>&lt;p&gt;About EduProgramProfileDirectory module&lt;/p&gt;</value>
     </data>
-    <data name="AddEduProgram.Action" xml:space="preserve">
-        <value>Add Educational Program Profile</value>
+    <data name="AddEduProgramProfile.Action" xml:space="preserve">
+        <value>Add Edu. Program Profile</value>
     </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Nothing to display. Please add some educational program profiles and use module setting to set view options.</value>
