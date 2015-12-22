@@ -306,7 +306,13 @@ namespace R7.University.EduProgramProfileDirectory
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                // merge Code header cell into Title
+                e.Row.Cells [2].Visible = false;
+                e.Row.Cells [3].ColumnSpan = 2;
+            }
+            else if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var eduProgramProfile = (EduProgramProfileObrnadzorDocumentsViewModel) e.Row.DataItem;
 
