@@ -43,6 +43,12 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
+        public EduProgramProfileDirectoryMode? Mode
+        {
+            get { return ReadSetting<EduProgramProfileDirectoryMode?> ("EduProgramProfileDirectory_Mode", null); }
+            set { WriteModuleSetting<EduProgramProfileDirectoryMode?> ("EduProgramProfileDirectory_Mode", value); }
+        }
+
         #endregion
 	}
 }

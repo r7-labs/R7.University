@@ -9,6 +9,13 @@
 <div class="dnnForm dnnClear eduprogramprofile-directory-settings">
 	<fieldset>
         <div class="dnnFormItem">
+            <dnn:Label id="labelMode" runat="server" ControlName="comboMode" />
+            <asp:DropDownList id="comboMode" runat="server"
+                DataValueField="Value"
+                DataTextField="ValueLocalized"
+            />
+        </div>
+        <div class="dnnFormItem">
             <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
             <dnn:DnnListBox id="listEduLevels" runat="server" CheckBoxes="true" />
         </div>
