@@ -57,7 +57,7 @@ namespace R7.University.EduProgramProfileDirectory
             base.OnInit (e);
 
             // fill display modes dropdown
-            comboMode.DataSource = EnumValueInfo<EduProgramProfileDirectoryMode>.GetValues (ViewModelContext, true);
+            comboMode.DataSource = EnumViewModel<EduProgramProfileDirectoryMode>.GetValues (ViewModelContext, true);
             comboMode.DataBind ();
 
             // fill edulevels list

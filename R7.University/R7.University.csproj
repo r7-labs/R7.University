@@ -140,7 +140,7 @@
     <Compile Include="Controls\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="Models\FormatHelper.cs" />
-    <Compile Include="components\EnumValueInfo.cs" />
+    <Compile Include="components\EnumViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

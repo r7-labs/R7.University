@@ -1,5 +1,5 @@
 ﻿//
-// EnumValueInfo.cs
+// EnumViewModel.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -30,7 +30,7 @@ using DotNetNuke.Services.Localization;
 
 namespace R7.University
 {
-    public class EnumValueInfo<T> where T: struct
+    public class EnumViewModel<T> where T: struct
     {
         #region Protected members
 
@@ -38,49 +38,49 @@ namespace R7.University
 
         #endregion
 
-        public EnumValueInfo (T? value)
+        public EnumViewModel (T? value)
         {
             // where T: enum
             if (!typeof (T).IsEnum)
             {
-                throw new NotSupportedException ("Type parameter of EnumValueInfo must be enum.");
+                throw new NotSupportedException ("Type parameter of EnumViewModel must be enum.");
             }
 
             Value = value;
         }
 
-        #region Properties
+        #region Public properties
 
         public T? Value { get; protected set; }
 
         public string ValueLocalized
         {
-            get { return Localization.GetString (ResourceKey, Context.LocalResourceFile); }
+            get { return Localization.GetString (ValueResourceKey, Context.LocalResourceFile); }
         }
 
-        public string ResourceKey
+        public string ValueResourceKey
         {
-            get { return GetResourceKey (Value); } 
+            get { return GetValueResourceKey (Value); } 
         }
 
         #endregion
 
         #region Static members
 
-        public static List<EnumValueInfo<T>> GetValues (ViewModelContext context, bool includeDefault)
+        public static List<EnumViewModel<T>> GetValues (ViewModelContext context, bool includeDefault)
         {
-            var values = new List<EnumValueInfo<T>> ();
+            var values = new List<EnumViewModel<T>> ();
 
             if (includeDefault)
             {
-                var v1 = new EnumValueInfo<T> (null);
+                var v1 = new EnumViewModel<T> (null);
                 v1.Context = context;
                 values.Add (v1);
             }
 
             foreach (T value in Enum.GetValues (typeof (T)))
             {   
-                var v1 = new EnumValueInfo<T> (value);
+                var v1 = new EnumViewModel<T> (value);
                 v1.Context = context;
                 values.Add (v1);
             }
@@ -88,7 +88,7 @@ namespace R7.University
             return values;
         }
 
-        public static string GetResourceKey (T? value)
+        public static string GetValueResourceKey (T? value)
         {
             if (value != null)
             {
