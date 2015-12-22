@@ -38,6 +38,7 @@
     <DnnLocalDeployPath Condition="'$(OS)' == 'Unix'">/home/redhound/mnt/dnn</DnnLocalDeployPath>
     <DnnLocalDeployPath Condition="'$(OS)' != 'Unix'">C:\Dotnetnuke7</DnnLocalDeployPath>
     <MainProjectOutputPath>..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
+    <TRAVIS_CI Condition="'$(TRAVIS_CI)' == ''">false</TRAVIS_CI>
   </PropertyGroup>
   <Import Project="InstallPackage.targets" />
   <Import Project="LocalDeploy.targets" />

@@ -1,4 +1,4 @@
 language: csharp
-solution: R7.University.Travis.sln
+solution: R7.University.sln
 install:
-  - nuget restore R7.University.Travis.sln
+  - nuget restore R7.University.sln
