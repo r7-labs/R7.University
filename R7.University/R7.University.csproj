@@ -104,7 +104,6 @@
     <Compile Include="Models\EmployeeDisciplineInfo.cs" />
     <Compile Include="Models\EmployeeDisciplineInfoEx.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
-    <Compile Include="Models\EnumValueInfo.cs" />
     <Compile Include="Models\IAuditable.cs" />
     <Compile Include="Models\IReferenceEntity.cs" />
     <Compile Include="Models\OccupiedPositionInfo.cs" />
@@ -141,6 +140,7 @@
     <Compile Include="Controls\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="Models\FormatHelper.cs" />
+    <Compile Include="components\EnumValueInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
