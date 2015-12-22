@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Components\EduProgramProfileDirectoryMode.cs" />
     <Compile Include="ViewModels\EduProgramProfileObrnadzorEduFormsViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileObrnadzorDocumentsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
