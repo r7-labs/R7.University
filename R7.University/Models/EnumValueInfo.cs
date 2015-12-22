@@ -26,6 +26,7 @@
 
 using System;
 using System.Collections.Generic;
+using DotNetNuke.Services.Localization;
 
 namespace R7.University
 {
@@ -33,7 +34,7 @@ namespace R7.University
     {
         #region Protected members
 
-        protected event LocalizeHandler OnLocalize;
+        protected ViewModelContext Context { get; set; }
 
         #endregion
 
@@ -52,9 +53,9 @@ namespace R7.University
 
         public T? Value { get; protected set; }
 
-        public string LocalizedValue
+        public string ValueLocalized
         {
-            get { return (OnLocalize != null) ? OnLocalize (ResourceKey) : ResourceKey; }
+            get { return Localization.GetString (ResourceKey, Context.LocalResourceFile); }
         }
 
         public string ResourceKey
@@ -66,19 +67,21 @@ namespace R7.University
 
         #region Static members
 
-        public static List<EnumValueInfo<T>> GetLocalizedValues (LocalizeHandler localizeHandler, bool includeDefault)
+        public static List<EnumValueInfo<T>> GetValues (ViewModelContext context, bool includeDefault)
         {
             var values = new List<EnumValueInfo<T>> ();
 
             if (includeDefault)
             {
-                values.Add (new EnumValueInfo<T> (null));
+                var v1 = new EnumValueInfo<T> (null);
+                v1.Context = context;
+                values.Add (v1);
             }
 
-            foreach (T value in Enum.GetValues (typeof(T)))
+            foreach (T value in Enum.GetValues (typeof (T)))
             {   
                 var v1 = new EnumValueInfo<T> (value);
-                v1.OnLocalize = localizeHandler;
+                v1.Context = context;
                 values.Add (v1);
             }
 
@@ -88,9 +91,11 @@ namespace R7.University
         public static string GetResourceKey (T? value)
         {
             if (value != null)
-                return value.GetType ().Name + "_" + value.Value + ".Text";
+            {
+                return typeof (T).Name + "_" + value.Value + ".Text";
+            }
 
-            return value.GetType ().Name + "_Default.Text";
+            return typeof (T).Name + "_Default.Text";
         }
 
         #endregion
