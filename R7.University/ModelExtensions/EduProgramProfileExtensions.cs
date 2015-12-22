@@ -82,5 +82,26 @@ namespace R7.University.ModelExtensions
                 yield return eduProgramProfile.WithEduProgramProfileForms (controller);
             }
         }
+
+        public static IEduProgramProfile WithDocuments (
+            this IEduProgramProfile eduProgramProfile, ControllerBase controller)
+        {
+            eduProgramProfile.Documents = controller.GetObjects<DocumentInfo> (
+                "WHERE [ItemID] = @0", "EduProgramProfileID=" + eduProgramProfile.EduProgramProfileID)
+                .Cast<IDocument> ()
+                .ToList ();
+            
+            eduProgramProfile.Documents.WithDocumentType (controller);
+
+            return eduProgramProfile;
+        }
+
+        public static IEnumerable<IEduProgramProfile> WithDocuments (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, ControllerBase controller)
+        {
+            foreach (var eduProgramProfile in eduProgramProfiles) {
+                yield return eduProgramProfile.WithDocuments (controller);
+            }
+        }
     }
 }

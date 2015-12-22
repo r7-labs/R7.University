@@ -52,6 +52,8 @@ namespace R7.University
         EduProgramInfo EduProgram { get; set; }
 
         IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+
+        IList<IDocument> Documents { get; set; }
     }
 
     [TableName ("University_EduProgramProfiles")]
@@ -81,6 +83,9 @@ namespace R7.University
 
         [IgnoreColumn] 
         public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+
+        [IgnoreColumn] 
+        public IList<IDocument> Documents { get; set; }
 
         #endregion
 

@@ -95,6 +95,12 @@ namespace R7.University.EduProgramProfileDirectory
             set {}
         }
 
+        public IList<IDocument> Documents
+        {
+            get { return Model.Documents; }
+            set {}
+        }
+
         #endregion
 
         public IEduProgramProfile Model { get; protected set; }
