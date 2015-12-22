@@ -106,7 +106,7 @@ namespace R7.University.EduProgramProfileDirectory
                         .ThenBy (epp => epp.EduProgram.Code)
                         .ThenBy (epp => epp.EduProgram.Title)
                         .ThenBy (epp => epp.ProfileTitle)
-                        .Select (epp => new EduProgramProfileObrnadzorViewModel (epp, ViewModelContext, indexer))
+                        .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, ViewModelContext, indexer))
                         .ToList ();
 
                     if (eduProgramProfiles.Count > 0)
@@ -175,7 +175,7 @@ namespace R7.University.EduProgramProfileDirectory
                 // show / hide edit column
                 e.Row.Cells [0].Visible = IsEditable;
 
-                var eduProgramProfile = (EduProgramProfileObrnadzorViewModel) e.Row.DataItem;
+                var eduProgramProfile = (EduProgramProfileObrnadzorEduFormsViewModel) e.Row.DataItem;
 
                 if (IsEditable)
                 {

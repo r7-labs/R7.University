@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramProfileObrnadzorViewModel.cs
+// EduProgramProfileObrnadzorEduFormsViewModel.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -31,7 +31,7 @@ using DotNetNuke.Services.Localization;
 
 namespace R7.University.EduProgramProfileDirectory
 {
-    public class EduProgramProfileObrnadzorViewModel: IEduProgramProfile
+    public class EduProgramProfileObrnadzorEduFormsViewModel: IEduProgramProfile
     {
         #region IEduProgramProfile implementation
 
@@ -101,7 +101,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramProfileObrnadzorViewModel (IEduProgramProfile model, ViewModelContext context, ViewModelIndexer indexer)
+        public EduProgramProfileObrnadzorEduFormsViewModel (IEduProgramProfile model, ViewModelContext context, ViewModelIndexer indexer)
         {
             Model = model;
             Context = context;
