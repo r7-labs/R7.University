@@ -61,6 +61,7 @@ namespace R7.University.Launchpad
             var documents = Controller.GetObjects<DocumentInfo> (
                 string.Format ("WHERE ItemID = N'EduProgramProfileID={0}'", item.EduProgramProfileID))
                 .WithDocumentType (Controller)
+                .Cast<DocumentInfo> ()
                 .ToList ();
 
             formEditDocuments.SetData (documents, item.EduProgramProfileID);

@@ -32,9 +32,9 @@ namespace R7.University.ModelExtensions
 {
     public static class DocumentExtensions
     {
-        public static DocumentInfo WithDocumentType (this DocumentInfo document, ControllerBase controller)
+        public static IDocument WithDocumentType (this IDocument document, ControllerBase controller)
         {
-            if (document.DocumentTypeID != null) 
+            if (document.DocumentTypeID != null)
             {
                 document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID.Value);
             }
@@ -42,7 +42,7 @@ namespace R7.University.ModelExtensions
             return document;
         }
 
-        public static IEnumerable<DocumentInfo> WithDocumentType (this IEnumerable<DocumentInfo> documents, ControllerBase controller)
+        public static IEnumerable<IDocument> WithDocumentType (this IEnumerable<IDocument> documents, ControllerBase controller)
         {
             foreach (var document in documents)
             {
