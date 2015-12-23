@@ -132,15 +132,28 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        protected IDocument EduPlanDocument
+        protected IEnumerable<IDocument> EduPlanDocuments
         {
             get 
             {
-                return Documents.FirstOrDefault (d =>
+                return Documents.Where (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduPlan); 
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduPlan)
+                    .OrderBy (d => d.SortIndex);
             }
         }
+
+        protected IEnumerable<IDocument> EduScheduleDocuments
+        {
+            get 
+            {
+                return Documents.Where (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduSchedule)
+                    .OrderBy (d => d.SortIndex);
+            }
+        }
+
 
         protected IDocument WorkProgramAnnotationDocument
         {
@@ -152,25 +165,14 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        protected IDocument EduScheduleDocument
-        {
-            get 
-            {
-                return Documents.FirstOrDefault (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduSchedule); 
-            }
-        }
-
-        protected IList<IDocument> WorkProgramOfPracticeDocuments
+        protected IEnumerable<IDocument> WorkProgramOfPracticeDocuments
         {
             get 
             {
                 return Documents.Where (d =>
-                        (d.IsPublished () || Context.Module.IsEditable) &&
-                        d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramOfPractice)
-                    .OrderBy (d => d.SortIndex)
-                    .ToList ();
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramOfPractice)
+                    .OrderBy (d => d.SortIndex);
             }
         }
 
@@ -204,6 +206,35 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
+        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata)
+        {
+            var markupBuilder = new StringBuilder ();
+
+            foreach (var document in documents)
+            {
+                var linkMarkup = document.FormatLinkWithMicrodata (
+                    Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
+                    true,
+                    Context.Module.TabId,
+                    Context.Module.ModuleId,
+                    microdata
+                );
+
+                if (!string.IsNullOrEmpty (linkMarkup))
+                {
+                    markupBuilder.AppendLine (linkMarkup);
+                }
+            }
+
+            var markup = markupBuilder.ToString ();
+            if (!string.IsNullOrEmpty (markup))
+            {
+                return markup;
+            }
+
+            return string.Empty;
+        }
+
         public string EduProgramDocumentLink
         {
             get 
@@ -230,28 +261,9 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        public string EduPlanDocumentLink
+        public string EduPlanLinks
         {
-            get 
-            {
-                if (EduPlanDocument != null)
-                {
-                    var linkMarkup = EduPlanDocument.FormatLinkWithMicrodata (
-                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
-                        true,
-                        Context.Module.TabId,
-                        Context.Module.ModuleId,
-                        "itemprop=\"education_plan\""
-                    );
-
-                    if (!string.IsNullOrEmpty (linkMarkup))
-                    {
-                        return linkMarkup;
-                    }
-                }
-
-                return string.Empty;
-            }
+            get { return FormatDocumentLinks (EduPlanDocuments, "itemprop=\"EduPlan\""); }
         }
 
         public string WorkProgramAnnotationDocumentLink
@@ -278,28 +290,9 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        public string EduScheduleDocumentLink
+        public string EduScheduleLinks
         {
-            get 
-            {
-                if (EduScheduleDocument != null)
-                {
-                    var linkMarkup = EduScheduleDocument.FormatLinkWithMicrodata (
-                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
-                        true,
-                        Context.Module.TabId,
-                        Context.Module.ModuleId,
-                        "itemprop=\"education_schedule\""
-                    );
-
-                    if (!string.IsNullOrEmpty (linkMarkup))
-                    {
-                        return linkMarkup;
-                    }
-                }
-
-                return string.Empty;
-            }
+            get { return FormatDocumentLinks (EduScheduleDocuments, "itemprop=\"EduPlan\""); }
         }
 
         public string WorkProgramOfPracticeLinks
