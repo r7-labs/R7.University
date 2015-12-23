@@ -48,7 +48,7 @@
     <data name="WorkProgramAnnotation.Column" xml:space="preserve">
         <value>Аннотации к рабочим программам дисциплин</value>
     </data>
-    <data name="EduLanguages.Column" xml:space="preserve">
+    <data name="Languages.Column" xml:space="preserve">
         <value>Информация о языках, на которых осуществляется образование (обучение)</value>
     </data>
     <data name="WorkProgramOfPractice.Column" xml:space="preserve">

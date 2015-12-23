@@ -28,6 +28,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using DotNetNuke.Services.Localization;
 
 namespace R7.University.EduProgramProfileDirectory
@@ -418,11 +419,27 @@ namespace R7.University.EduProgramProfileDirectory
             get { return "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>"; }
         }
 
-        public string EduLanguages
-        {
-            // TODO: Add language(s) to the IEduProgramProfile model
-            get { return "<span itemprop=\"language\">Русский</span>"; }
-        }
+        private static char [] languageCodeSeparator = { ';' };
 
+        public string LanguagesString
+        {
+            get
+            {
+                if (Languages != null)
+                {
+                    var languages = Languages
+                        .Split (languageCodeSeparator, StringSplitOptions.RemoveEmptyEntries)
+                        .Select (l => CultureInfo.GetCultureInfoByIetfLanguageTag (l).NativeName)
+                        .ToList ();
+
+                    if (languages.Count > 0)
+                    {
+                        return "<span itemprop=\"language\">" + Utils.FormatList (", ", languages) + "</span>";
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
     }
 }
