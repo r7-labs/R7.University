@@ -204,7 +204,7 @@ namespace R7.University.EduProgramProfileDirectory
                 if (EduProgramDocument != null)
                 {
                     var linkMarkup = EduProgramDocument.FormatLinkWithMicrodata (
-                        FormatHelper.FormatEduProgramProfileTitle (Title, ProfileCode, ProfileTitle), 
+                        FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle), 
                         false,
                         Context.Module.TabId,
                         Context.Module.ModuleId,
@@ -218,7 +218,7 @@ namespace R7.University.EduProgramProfileDirectory
                 }
 
                 return "<span itemprop=\"OOP_main\">" 
-                    + FormatHelper.FormatEduProgramProfileTitle (Title, ProfileCode, ProfileTitle)
+                    + FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                     + "</span>";
             }
         }
@@ -410,11 +410,6 @@ namespace R7.University.EduProgramProfileDirectory
         public string Code
         {
             get { return "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>"; }
-        }
-
-        public string Title
-        {
-            get { return FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle); }
         }
 
         public string EduLevelString
