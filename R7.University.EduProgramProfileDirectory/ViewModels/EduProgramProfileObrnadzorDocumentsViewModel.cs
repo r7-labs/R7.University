@@ -114,6 +114,246 @@ namespace R7.University.EduProgramProfileDirectory
             Index = indexer.GetNextIndex ();
         }
 
+        protected IDocument EduProgramDocument
+        {
+            get 
+            { 
+                return Documents.FirstOrDefault (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduProgram); 
+            }
+        }
+
+        protected IDocument EduPlanDocument
+        {
+            get 
+            {
+                return Documents.FirstOrDefault (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduPlan); 
+            }
+        }
+
+        protected IDocument WorkProgramAnnotationDocument
+        {
+            get 
+            {
+                return Documents.FirstOrDefault (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramAnnotation); 
+            }
+        }
+
+        protected IDocument EduScheduleDocument
+        {
+            get 
+            {
+                return Documents.FirstOrDefault (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduSchedule); 
+            }
+        }
+
+        protected IDocument EduMaterialDocument
+        {
+            get 
+            {
+                return Documents.FirstOrDefault (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduMaterial); 
+            }
+        }
+
+        protected IDocument ContingentDocument
+        {
+            get 
+            {
+                return Documents.FirstOrDefault (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.Contingent); 
+            }
+        }
+
+        protected IDocument ContingentMovementDocument
+        {
+            get 
+            {
+                return Documents.FirstOrDefault (d =>
+                    (d.IsPublished () || Context.Module.IsEditable) &&
+                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.ContingentMovement); 
+            }
+        }
+
+        public string EduProgramDocumentLink
+        {
+            get 
+            {
+                if (EduProgramDocument != null)
+                {
+                    var linkMarkup = EduProgramDocument.FormatLinkWithMicrodata (
+                        FormatHelper.FormatEduProgramProfileTitle (Title, ProfileCode, ProfileTitle), 
+                        false,
+                        Context.Module.TabId,
+                        Context.Module.ModuleId,
+                        "itemprop=\"OOP_main\""
+                    );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        return linkMarkup;
+                    }
+                }
+
+                return "<span itemprop=\"OOP_main\">" 
+                    + FormatHelper.FormatEduProgramProfileTitle (Title, ProfileCode, ProfileTitle)
+                    + "</span>";
+            }
+        }
+
+        public string EduPlanDocumentLink
+        {
+            get 
+            {
+                if (EduPlanDocument != null)
+                {
+                    var linkMarkup = EduPlanDocument.FormatLinkWithMicrodata (
+                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
+                        true,
+                        Context.Module.TabId,
+                        Context.Module.ModuleId,
+                        "itemprop=\"education_plan\""
+                    );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        return linkMarkup;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string WorkProgramAnnotationDocumentLink
+        {
+            get 
+            {
+                if (WorkProgramAnnotationDocument != null)
+                {
+                    var linkMarkup = WorkProgramAnnotationDocument.FormatLinkWithMicrodata (
+                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
+                        true,
+                        Context.Module.TabId,
+                        Context.Module.ModuleId,
+                        "itemprop=\"education_annotation\""
+                    );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        return linkMarkup;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string EduScheduleDocumentLink
+        {
+            get 
+            {
+                if (EduScheduleDocument != null)
+                {
+                    var linkMarkup = EduScheduleDocument.FormatLinkWithMicrodata (
+                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
+                        true,
+                        Context.Module.TabId,
+                        Context.Module.ModuleId,
+                        "itemprop=\"education_schedule\""
+                    );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        return linkMarkup;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string EduMaterialDocumentLink
+        {
+            get 
+            {
+                if (EduMaterialDocument != null)
+                {
+                    var linkMarkup = EduMaterialDocument.FormatLinkWithMicrodata (
+                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
+                        true,
+                        Context.Module.TabId,
+                        Context.Module.ModuleId,
+                        "itemprop=\"methodology\""
+                    );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        return linkMarkup;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string ContingentDocumentLink
+        {
+            get 
+            {
+                if (ContingentDocument != null)
+                {
+                    var linkMarkup = ContingentDocument.FormatLinkWithMicrodata (
+                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
+                        true,
+                        Context.Module.TabId,
+                        Context.Module.ModuleId,
+                        "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\""
+                    );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        return linkMarkup;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string ContingentMovementDocumentLink
+        {
+            get 
+            {
+                if (ContingentMovementDocument != null)
+                {
+                    var linkMarkup = ContingentMovementDocument.FormatLinkWithMicrodata (
+                        Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
+                        true,
+                        Context.Module.TabId,
+                        Context.Module.ModuleId,
+                        "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\""
+                    );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        return linkMarkup;
+                    }
+                }
+
+                return string.Empty;
+            }
+        }
+
         public int Index { get; protected set; }
 
         public string IndexString
@@ -135,5 +375,12 @@ namespace R7.University.EduProgramProfileDirectory
         {
             get { return "<span itemprop=\"EduLevel\">" + EduProgram.EduLevel.Title + "</span>"; }
         }
+
+        public string EduLanguages
+        {
+            // TODO: Add language(s) to the IEduProgramProfile model
+            get { return "<span itemprop=\"language\">Русский</span>"; }
+        }
+
     }
 }

@@ -167,6 +167,7 @@ namespace R7.University.EduProgramProfileDirectory
                 .WithEduPrograms (Controller)
                 .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
                 .WithEduLevel (Controller)
+                .WithDocuments (Controller)
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
