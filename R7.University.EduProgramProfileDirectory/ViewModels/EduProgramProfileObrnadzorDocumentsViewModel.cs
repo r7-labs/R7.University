@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Services.Localization;
@@ -154,6 +155,18 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
+        protected IList<IDocument> WorkProgramOfPracticeDocuments
+        {
+            get 
+            {
+                return Documents.Where (d =>
+                        (d.IsPublished () || Context.Module.IsEditable) &&
+                        d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramOfPractice)
+                    .OrderBy (d => d.SortIndex)
+                    .ToList ();
+            }
+        }
+
         protected IDocument EduMaterialDocument
         {
             get 
@@ -276,6 +289,39 @@ namespace R7.University.EduProgramProfileDirectory
                     {
                         return linkMarkup;
                     }
+                }
+
+                return string.Empty;
+            }
+        }
+
+        public string WorkProgramOfPracticeLinks
+        {
+            get
+            {
+                var index = 0;
+                var markupBuilder = new StringBuilder ();
+
+                foreach (var document in WorkProgramOfPracticeDocuments)
+                {
+                    var linkMarkup = document.FormatLinkWithMicrodata (
+                         (++index).ToString (),
+                         false,
+                         Context.Module.TabId,
+                         Context.Module.ModuleId,
+                         "itemprop=\"EduPr\""
+                     );
+
+                    if (!string.IsNullOrEmpty (linkMarkup))
+                    {
+                        markupBuilder.AppendLine (linkMarkup);
+                    }
+                }
+
+                var markup = markupBuilder.ToString ();
+                if (!string.IsNullOrEmpty (markup))
+                {
+                    return markup;
                 }
 
                 return string.Empty;

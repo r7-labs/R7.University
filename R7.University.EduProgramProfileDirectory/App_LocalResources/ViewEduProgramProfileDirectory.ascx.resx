@@ -45,14 +45,17 @@
     <data name="EduSchedule.Column" xml:space="preserve">
         <value>Education Schedule</value>
     </data>
-    <data name="EduLanguages.Column" xml:space="preserve">
-        <value>Education Languages</value>
-    </data>
     <data name="WorkProgramAnnotation.Column" xml:space="preserve">
         <value>Work Program Annotaion</value>
     </data>
+    <data name="EduLanguages.Column" xml:space="preserve">
+        <value>Education Languages</value>
+    </data>
+    <data name="WorkProgramOfPractice.Column" xml:space="preserve">
+        <value>Work Programs of Practice</value>
+    </data>
     <data name="EduMaterial.Column" xml:space="preserve">
-        <value>Educational Material</value>
+        <value>Educational Materials</value>
     </data>
     <data name="Contingent.Column" xml:space="preserve">
         <value>Contingent</value>

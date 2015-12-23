@@ -53,6 +53,7 @@
                         <asp:BoundField DataField="EduPlanDocumentLink" HtmlEncode="false" HeaderText="EduPlan" />
                         <asp:BoundField DataField="WorkProgramAnnotationDocumentLink" HtmlEncode="false" HeaderText="WorkProgramAnnotation" />
                         <asp:BoundField DataField="EduScheduleDocumentLink" HtmlEncode="false" HeaderText="EduSchedule" />
+                        <asp:BoundField DataField="WorkProgramOfPracticeLinks" HtmlEncode="false" HeaderText="WorkProgramOfPractice" />
                         <asp:BoundField DataField="EduMaterialDocumentLink" HtmlEncode="false" HeaderText="EduMaterial" />
                         <asp:BoundField DataField="EduLanguages" HtmlEncode="false" HeaderText="EduLanguages" />
                         <asp:BoundField DataField="ContingentDocumentLink" HtmlEncode="false" HeaderText="Contingent" />
