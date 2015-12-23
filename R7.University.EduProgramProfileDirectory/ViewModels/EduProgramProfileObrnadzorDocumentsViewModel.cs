@@ -412,11 +412,6 @@ namespace R7.University.EduProgramProfileDirectory
             get { return "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>"; }
         }
 
-        public string EduLevelString
-        {
-            get { return "<span itemprop=\"EduLevel\">" + EduProgram.EduLevel.Title + "</span>"; }
-        }
-
         public string EduLanguages
         {
             // TODO: Add language(s) to the IEduProgramProfile model

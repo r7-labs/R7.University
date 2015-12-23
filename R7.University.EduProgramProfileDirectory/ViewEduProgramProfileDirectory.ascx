@@ -49,7 +49,6 @@
                         <asp:BoundField DataField="IndexString" HeaderText="Index" />
                         <asp:BoundField DataField="Code" HtmlEncode="false" />
                         <asp:BoundField DataField="EduProgramDocumentLink" HtmlEncode="false" HeaderText="Title" />
-                        <asp:BoundField DataField="EduLevelString" HtmlEncode="false" HeaderText="EduLevel" />
                         <asp:BoundField DataField="EduPlanDocumentLink" HtmlEncode="false" HeaderText="EduPlan" />
                         <asp:BoundField DataField="WorkProgramAnnotationDocumentLink" HtmlEncode="false" HeaderText="WorkProgramAnnotation" />
                         <asp:BoundField DataField="EduScheduleDocumentLink" HtmlEncode="false" HeaderText="EduSchedule" />
