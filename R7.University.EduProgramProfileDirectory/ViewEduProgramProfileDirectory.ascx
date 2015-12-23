@@ -6,7 +6,7 @@
             <asp:Label runat="server" resourcekey="NotConfigured.Text" CssClass="dnnFormMessage dnnFormInfo" />
         </asp:View>
         <asp:View runat="server">
-            <fieldset>
+            <div class="table-responsive">
                 <asp:GridView id="gridEduProgramProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false" 
                         CssClass="table table-bordered table-stripped table-hover grid-eduprogramprofile-obrnadzor-eduforms"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorEduForms_RowDataBound"
@@ -31,10 +31,10 @@
                         <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate" />
                     </Columns>
                 </asp:GridView>
-            </fieldset>
+            </div>
         </asp:View>
         <asp:View runat="server">
-            <fieldset>
+            <div class="table-responsive">
                 <asp:GridView id="gridEduProgramProfileObrnadzorDocuments" runat="server" AutoGenerateColumns="false" 
                         CssClass="table table-bordered table-stripped table-hover grid-eduprogramprofile-obrnadzor-documents"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorDocuments_RowDataBound">
@@ -59,7 +59,7 @@
                         <asp:BoundField DataField="ContingentMovementDocumentLink" HtmlEncode="false" HeaderText="ContingentMovement" />
                     </Columns>
                 </asp:GridView>
-            </fieldset>
+            </div>
         </asp:View>
     </asp:MultiView>
 </div>
