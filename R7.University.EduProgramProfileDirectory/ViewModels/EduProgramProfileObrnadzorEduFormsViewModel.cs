@@ -59,6 +59,12 @@ namespace R7.University.EduProgramProfileDirectory
             set {}
         }
 
+        public string Languages
+        { 
+            get { return Model.Languages; }
+            set {}
+        }
+
         public DateTime? AccreditedToDate 
         { 
             get { return Model.AccreditedToDate; }

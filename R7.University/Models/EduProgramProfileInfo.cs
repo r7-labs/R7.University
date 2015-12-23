@@ -40,6 +40,8 @@ namespace R7.University
 
         string ProfileTitle { get; set; }
 
+        string Languages { get; set; }
+
         DateTime? AccreditedToDate { get; set; }
 
         DateTime? CommunityAccreditedToDate { get; set; }
@@ -69,6 +71,8 @@ namespace R7.University
         public string ProfileCode { get; set; }
 
         public string ProfileTitle { get; set; }
+
+        public string Languages { get; set; }
 
         public DateTime? AccreditedToDate { get; set; }
 
