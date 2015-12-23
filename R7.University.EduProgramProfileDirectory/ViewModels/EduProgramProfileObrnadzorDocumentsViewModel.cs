@@ -235,7 +235,7 @@ namespace R7.University.EduProgramProfileDirectory
             return string.Empty;
         }
 
-        public string EduProgramDocumentLink
+        public string EduProgramLink
         {
             get 
             {
@@ -266,7 +266,7 @@ namespace R7.University.EduProgramProfileDirectory
             get { return FormatDocumentLinks (EduPlanDocuments, "itemprop=\"EduPlan\""); }
         }
 
-        public string WorkProgramAnnotationDocumentLink
+        public string WorkProgramAnnotationLink
         {
             get 
             {
@@ -328,7 +328,7 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        public string EduMaterialDocumentLink
+        public string EduMaterialLink
         {
             get 
             {
@@ -352,7 +352,7 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        public string ContingentDocumentLink
+        public string ContingentLink
         {
             get 
             {
@@ -376,7 +376,7 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        public string ContingentMovementDocumentLink
+        public string ContingentMovementLink
         {
             get 
             {
