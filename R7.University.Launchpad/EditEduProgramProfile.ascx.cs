@@ -50,6 +50,7 @@ namespace R7.University.Launchpad
         {
             textProfileCode.Text = item.ProfileCode;
             textProfileTitle.Text = item.ProfileTitle;
+            textLanguages.Text = item.Languages;
             dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
             dateCommunityAccreditedToDate.SelectedDate = item.CommunityAccreditedToDate;
             datetimeStartDate.SelectedDate = item.StartDate;
@@ -61,6 +62,7 @@ namespace R7.University.Launchpad
             var documents = Controller.GetObjects<DocumentInfo> (
                 string.Format ("WHERE ItemID = N'EduProgramProfileID={0}'", item.EduProgramProfileID))
                 .WithDocumentType (Controller)
+                .Cast<DocumentInfo> ()
                 .ToList ();
 
             formEditDocuments.SetData (documents, item.EduProgramProfileID);
@@ -78,6 +80,7 @@ namespace R7.University.Launchpad
             // fill the object
             item.ProfileCode = textProfileCode.Text.Trim ();
             item.ProfileTitle = textProfileTitle.Text.Trim ();
+            item.Languages = textLanguages.Text.Replace (" ", string.Empty).Trim ();
             item.AccreditedToDate = dateAccreditedToDate.SelectedDate;
             item.CommunityAccreditedToDate = dateCommunityAccreditedToDate.SelectedDate;
             item.StartDate = datetimeStartDate.SelectedDate;

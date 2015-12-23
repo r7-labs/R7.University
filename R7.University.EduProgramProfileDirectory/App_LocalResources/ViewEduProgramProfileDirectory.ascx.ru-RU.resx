@@ -6,6 +6,9 @@
     <data name="AddEduProgramProfile.Action" xml:space="preserve">
         <value>Новый профиль обр. программы</value>
     </data>
+    <data name="NotConfigured.Text" xml:space="preserve">
+        <value>Модуль не сконфигурирован. Воспользуйтесь настройками модуля для установки режима отображения.</value>
+    </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать. Добавьте профили образовательных программ и воспользуйтесь настройками модуля для установки параметров отображения.</value>
     </data>
@@ -36,6 +39,30 @@
     <data name="CommunityAccreditedToDate.Column" xml:space="preserve">
         <value>Срок действия общественно-профессиональной аккредитации образовательной программы</value>
     </data>
+    <data name="EduPlan.Column" xml:space="preserve">
+        <value>Учебный план</value>
+    </data>
+    <data name="EduSchedule.Column" xml:space="preserve">
+        <value>Календарный учебный график</value>
+    </data>
+    <data name="WorkProgramAnnotation.Column" xml:space="preserve">
+        <value>Аннотации к рабочим программам дисциплин</value>
+    </data>
+    <data name="Languages.Column" xml:space="preserve">
+        <value>Информация о языках, на которых осуществляется образование (обучение)</value>
+    </data>
+    <data name="WorkProgramOfPractice.Column" xml:space="preserve">
+        <value>Практики (рабочие программы)</value>
+    </data>
+    <data name="EduMaterial.Column" xml:space="preserve">
+        <value>Методические и иные документы</value>
+    </data>
+    <data name="Contingent.Column" xml:space="preserve">
+        <value>Информация о результатах приема (численности обучающихся)</value>
+    </data>
+    <data name="ContingentMovement.Column" xml:space="preserve">
+        <value>Информация о результатах перевода, восстановления и отчисления</value>
+    </data>
     <data name="TimeToLearnYears.Format1" xml:space="preserve">
         <value>{0} год</value>
     </data>
@@ -53,5 +80,8 @@
     </data>
     <data name="TimeToLearnMonths.Format3" xml:space="preserve">
         <value>{0} месяцев</value>
+    </data>
+    <data name="LinkOpen.Text" xml:space="preserve">
+        <value>открыть</value>
     </data>
 </root>

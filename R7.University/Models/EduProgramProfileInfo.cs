@@ -40,6 +40,8 @@ namespace R7.University
 
         string ProfileTitle { get; set; }
 
+        string Languages { get; set; }
+
         DateTime? AccreditedToDate { get; set; }
 
         DateTime? CommunityAccreditedToDate { get; set; }
@@ -52,6 +54,8 @@ namespace R7.University
         EduProgramInfo EduProgram { get; set; }
 
         IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+
+        IList<IDocument> Documents { get; set; }
     }
 
     [TableName ("University_EduProgramProfiles")]
@@ -68,6 +72,8 @@ namespace R7.University
 
         public string ProfileTitle { get; set; }
 
+        public string Languages { get; set; }
+
         public DateTime? AccreditedToDate { get; set; }
 
         public DateTime? CommunityAccreditedToDate { get; set; }
@@ -81,6 +87,9 @@ namespace R7.University
 
         [IgnoreColumn] 
         public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+
+        [IgnoreColumn] 
+        public IList<IDocument> Documents { get; set; }
 
         #endregion
 

@@ -1,5 +1,5 @@
 ﻿//
-// EnumValueInfo.cs
+// EnumViewModel.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,71 +26,76 @@
 
 using System;
 using System.Collections.Generic;
+using DotNetNuke.Services.Localization;
 
 namespace R7.University
 {
-    public class EnumValueInfo<T> where T: struct
+    public class EnumViewModel<T> where T: struct
     {
         #region Protected members
 
-        protected event LocalizeHandler OnLocalize;
+        protected ViewModelContext Context { get; set; }
 
         #endregion
 
-        public EnumValueInfo (T? value)
+        public EnumViewModel (T? value)
         {
             // where T: enum
             if (!typeof (T).IsEnum)
             {
-                throw new NotSupportedException ("Type parameter of EnumValueInfo must be enum.");
+                throw new NotSupportedException ("Type parameter of EnumViewModel must be enum.");
             }
 
             Value = value;
         }
 
-        #region Properties
+        #region Public properties
 
         public T? Value { get; protected set; }
 
-        public string LocalizedValue
+        public string ValueLocalized
         {
-            get { return (OnLocalize != null) ? OnLocalize (ResourceKey) : ResourceKey; }
+            get { return Localization.GetString (ValueResourceKey, Context.LocalResourceFile); }
         }
 
-        public string ResourceKey
+        public string ValueResourceKey
         {
-            get { return GetResourceKey (Value); } 
+            get { return GetValueResourceKey (Value); } 
         }
 
         #endregion
 
         #region Static members
 
-        public static List<EnumValueInfo<T>> GetLocalizedValues (LocalizeHandler localizeHandler, bool includeDefault)
+        public static List<EnumViewModel<T>> GetValues (ViewModelContext context, bool includeDefault)
         {
-            var values = new List<EnumValueInfo<T>> ();
+            var values = new List<EnumViewModel<T>> ();
 
             if (includeDefault)
             {
-                values.Add (new EnumValueInfo<T> (null));
+                var v1 = new EnumViewModel<T> (null);
+                v1.Context = context;
+                values.Add (v1);
             }
 
-            foreach (T value in Enum.GetValues (typeof(T)))
+            foreach (T value in Enum.GetValues (typeof (T)))
             {   
-                var v1 = new EnumValueInfo<T> (value);
-                v1.OnLocalize = localizeHandler;
+                var v1 = new EnumViewModel<T> (value);
+                v1.Context = context;
                 values.Add (v1);
             }
 
             return values;
         }
 
-        public static string GetResourceKey (T? value)
+        public static string GetValueResourceKey (T? value)
         {
             if (value != null)
-                return value.GetType ().Name + "_" + value.Value + ".Text";
+            {
+                return typeof (T).Name + "_" + value.Value + ".Text";
+            }
 
-            return value.GetType ().Name + "_Default.Text";
+            return typeof (T).Name + "_Default.Text";
         }
 
         #endregion

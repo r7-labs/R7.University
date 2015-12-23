@@ -99,7 +99,9 @@
     <Compile Include="SettingsEduProgramProfileDirectory.ascx.controls.cs">
       <DependentUpon>SettingsEduProgramProfileDirectory.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EduProgramProfileObrnadzorViewModel.cs" />
+    <Compile Include="Components\EduProgramProfileDirectoryMode.cs" />
+    <Compile Include="ViewModels\EduProgramProfileObrnadzorEduFormsViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileObrnadzorDocumentsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />

@@ -18,6 +18,7 @@ namespace R7.University.Launchpad
         protected AjaxControlToolkit.ComboBox comboEduProgram;
         protected TextBox textProfileCode;
 		protected TextBox textProfileTitle;
+        protected TextBox textLanguages;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected DnnDatePicker dateAccreditedToDate;

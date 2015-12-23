@@ -9,6 +9,21 @@
     <data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Not Selected &gt;</value>
     </data>
+    <data name="EduProgramProfileDirectoryMode_Default.Text" xml:space="preserve">
+        <value>&lt; Not Selected &gt;</value>
+    </data>
+    <data name="EduProgramProfileDirectoryMode_ObrnadzorEduForms.Text" xml:space="preserve">
+        <value>Education Forms</value>
+    </data>
+    <data name="EduProgramProfileDirectoryMode_ObrnadzorDocuments.Text" xml:space="preserve">
+        <value>Documents</value>
+    </data>
+    <data name="labelMode.Text" xml:space="preserve">
+        <value>Mode:</value>
+    </data>
+    <data name="labelMode.Help" xml:space="preserve">
+        <value>Select module display mode.</value>
+    </data>
     <data name="labelEduLevels.Text" xml:space="preserve">
         <value>Educational Levels:</value>
     </data>

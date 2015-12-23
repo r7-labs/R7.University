@@ -120,6 +120,7 @@ namespace R7.University.Launchpad
                             var documents = LaunchpadController.GetObjects<DocumentInfo> (
                                 string.Format ("WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID))
                                 .WithDocumentType (LaunchpadController)
+                                .Cast<DocumentInfo> ()
                                 .ToList ();
                             
                             formEditDocuments.SetData (documents, item.EduProgramID);

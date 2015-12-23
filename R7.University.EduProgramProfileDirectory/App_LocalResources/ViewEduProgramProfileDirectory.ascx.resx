@@ -6,8 +6,11 @@
     <data name="AddEduProgramProfile.Action" xml:space="preserve">
         <value>Add Edu. Program Profile</value>
     </data>
+    <data name="NotConfigured.Text" xml:space="preserve">
+        <value>Module not configured. Please use module settings to set display mode.</value>
+    </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
-        <value>Nothing to display. Please add some educational program profiles and use module setting to set view options.</value>
+        <value>Nothing to display. Please add some educational program profiles and use module settings to set view options.</value>
     </data>
     <data name="Index.Column" xml:space="preserve">
         <value>#</value>
@@ -36,6 +39,30 @@
     <data name="CommunityAccreditedToDate.Column" xml:space="preserve">
         <value>Accredited by Community to</value>
     </data>
+    <data name="EduPlan.Column" xml:space="preserve">
+        <value>Education Plan</value>
+    </data>
+    <data name="EduSchedule.Column" xml:space="preserve">
+        <value>Education Schedule</value>
+    </data>
+    <data name="WorkProgramAnnotation.Column" xml:space="preserve">
+        <value>Work Program Annotaion</value>
+    </data>
+    <data name="Languages.Column" xml:space="preserve">
+        <value>Education Languages</value>
+    </data>
+    <data name="WorkProgramOfPractice.Column" xml:space="preserve">
+        <value>Work Programs of Practice</value>
+    </data>
+    <data name="EduMaterial.Column" xml:space="preserve">
+        <value>Educational Materials</value>
+    </data>
+    <data name="Contingent.Column" xml:space="preserve">
+        <value>Contingent</value>
+    </data>
+    <data name="ContingentMovement.Column" xml:space="preserve">
+        <value>Contingent Movement</value>
+    </data>
     <data name="TimeToLearnYears.Format1" xml:space="preserve">
         <value>{0} year</value>
     </data>
@@ -53,5 +80,8 @@
     </data>
     <data name="TimeToLearnMonths.Format3" xml:space="preserve">
         <value>{0} months</value>
+    </data>
+    <data name="LinkOpen.Text" xml:space="preserve">
+        <value>open</value>
     </data>
 </root>

@@ -10,7 +10,8 @@
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'AccreditedToDate')
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
-        ADD [AccreditedToDate] date NULL,
+        ADD [Languages] nvarchar(250) NULL,
+            [AccreditedToDate] date NULL,
             [CommunityAccreditedToDate] date NULL
 END
 GO

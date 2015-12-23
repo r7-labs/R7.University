@@ -45,6 +45,10 @@
         			<asp:TextBox ID="textProfileTitle" runat="server" MaxLength="250" />
         		</div>
                 <div class="dnnFormItem">
+                    <dnn:Label id="labelLanguages" runat="server" ControlName="textLanguages" />
+                    <asp:TextBox id="textLanguages" runat="server" MaxLength="250" />
+                </div>
+                <div class="dnnFormItem">
                     <dnn:Label ID="labelAccreditedToDate" runat="server" ControlName="dateAccreditedToDate" />
                     <dnn:DnnDatePicker id="dateAccreditedToDate" runat="server" />
                 </div>

@@ -40,9 +40,25 @@ namespace R7.University.EduProgramProfileDirectory
     public partial class SettingsEduProgramProfileDirectory 
         : ExtendedModuleSettingsBase<EduProgramProfileDirectoryController, EduProgramProfileDirectorySettings>
     {
+        private ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get
+            { 
+                if (viewModelContext == null)
+                    viewModelContext = new ViewModelContext (this);
+
+                return viewModelContext;
+            }
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
+
+            // fill display modes dropdown
+            comboMode.DataSource = EnumViewModel<EduProgramProfileDirectoryMode>.GetValues (ViewModelContext, true);
+            comboMode.DataBind ();
 
             // fill edulevels list
             var eduLevels = Controller.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
@@ -65,6 +81,8 @@ namespace R7.University.EduProgramProfileDirectory
             {
                 if (!IsPostBack)
                 {
+                    comboMode.SelectByValue (Settings.Mode);
+
                     // check edulevels list items
                     foreach (var eduLevelId in Settings.EduLevels)
                     {
@@ -89,6 +107,10 @@ namespace R7.University.EduProgramProfileDirectory
         {
             try
             {
+                EduProgramProfileDirectoryMode mode;
+                Settings.Mode = Enum.TryParse<EduProgramProfileDirectoryMode> (comboMode.SelectedValue, out mode)? 
+                    (EduProgramProfileDirectoryMode?) mode : null;
+
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
 
                 ModuleController.SynchronizeModule (ModuleId);
