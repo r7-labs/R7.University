@@ -33,6 +33,12 @@
     <data name="labelProfileTitle.Help" xml:space="preserve">
         <value>Enter the title for an educational program profile, defined in standard.</value>
     </data>
+    <data name="labelLanguages.Text" xml:space="preserve">
+        <value>Languages:</value>
+    </data>
+    <data name="labelLanguages.Help" xml:space="preserve">
+        <value>Enter the list of IETF language tags in 'xx' or 'xx-YY' format, separated by semicolon (;).</value>
+    </data>
     <data name="labelEduProgram.Text">
         <value>Educational Program:</value>
     </data>
