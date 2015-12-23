@@ -48,8 +48,15 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="IndexString" HeaderText="Index" />
                         <asp:BoundField DataField="Code" HtmlEncode="false" />
-                        <asp:BoundField DataField="Title" HeaderText="Title" />
+                        <asp:BoundField DataField="EduProgramDocumentLink" HtmlEncode="false" HeaderText="Title" />
                         <asp:BoundField DataField="EduLevelString" HtmlEncode="false" HeaderText="EduLevel" />
+                        <asp:BoundField DataField="EduPlanDocumentLink" HtmlEncode="false" HeaderText="EduPlan" />
+                        <asp:BoundField DataField="WorkProgramAnnotationDocumentLink" HtmlEncode="false" HeaderText="WorkProgramAnnotation" />
+                        <asp:BoundField DataField="EduScheduleDocumentLink" HtmlEncode="false" HeaderText="EduSchedule" />
+                        <asp:BoundField DataField="EduMaterialDocumentLink" HtmlEncode="false" HeaderText="EduMaterial" />
+                        <asp:BoundField DataField="EduLanguages" HtmlEncode="false" HeaderText="EduLanguages" />
+                        <asp:BoundField DataField="ContingentDocumentLink" HtmlEncode="false" HeaderText="Contingent" />
+                        <asp:BoundField DataField="ContingentMovementDocumentLink" HtmlEncode="false" HeaderText="ContingentMovement" />
                     </Columns>
                 </asp:GridView>
             </fieldset>
