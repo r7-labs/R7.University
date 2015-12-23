@@ -27,6 +27,9 @@
 using System;
 using System.Globalization;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.Common;
+using DotNetNuke.Entities.Tabs;
+using R7.University.Utilities;
 
 namespace R7.University
 {
@@ -89,6 +92,28 @@ namespace R7.University
                 !string.IsNullOrWhiteSpace (profileString)? "(" + profileString + ")" : string.Empty;
 
             return Utils.FormatList (" ", code, title, profileStringInBrackets);
+        }
+
+        public static string FormatLinkWithMicrodata (this IDocument document, 
+            string defaultTitle, bool preferOwnTitle, int tabId, int moduleId, string microdata)
+        {
+            var title = (preferOwnTitle && !string.IsNullOrWhiteSpace (document.Title))? document.Title : defaultTitle;
+                
+            if (!string.IsNullOrWhiteSpace (document.Url))
+            {
+                return "<a href=\"" 
+                    + UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
+                    + "\""
+                    + Utils.FormatList (" ",
+                        Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,
+                        !document.IsPublished ()? "class=\"not-published-document\"" : string.Empty,
+                        microdata)
+                    + ">" 
+                    + title
+                    + "</a>";
+            }
+
+            return string.Empty;
         }
     }
 }
