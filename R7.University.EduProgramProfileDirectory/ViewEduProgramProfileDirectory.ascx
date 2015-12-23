@@ -8,6 +8,7 @@
         <asp:View runat="server">
             <div class="table-responsive">
                 <asp:GridView id="gridEduProgramProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false" 
+                        UseAccessibleHeader="true"
                         CssClass="table table-bordered table-stripped table-hover grid-eduprogramprofile-obrnadzor-eduforms"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorEduForms_RowDataBound"
                         OnRowCreated="gridEduProgramProfileObrnadzorEduForms_RowCreated"
@@ -36,6 +37,7 @@
         <asp:View runat="server">
             <div class="table-responsive">
                 <asp:GridView id="gridEduProgramProfileObrnadzorDocuments" runat="server" AutoGenerateColumns="false" 
+                        UseAccessibleHeader="true"
                         CssClass="table table-bordered table-stripped table-hover grid-eduprogramprofile-obrnadzor-documents"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorDocuments_RowDataBound">
                     <Columns>

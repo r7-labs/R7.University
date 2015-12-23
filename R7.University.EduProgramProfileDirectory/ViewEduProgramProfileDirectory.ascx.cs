@@ -218,6 +218,9 @@ namespace R7.University.EduProgramProfileDirectory
             // hiding the columns of second row header (created on binding)
             if (e.Row.RowType == DataControlRowType.Header)
             {
+                // set right table section for header row
+                e.Row.TableSection = TableRowSection.TableHeader;
+
                 // FIXME: Don't hardcode cell indexes
                 e.Row.Cells [0].Visible = false;
                 e.Row.Cells [1].Visible = false;
@@ -296,6 +299,7 @@ namespace R7.University.EduProgramProfileDirectory
                 // create header row
                 var headerRow = new GridViewRow (0, -1, DataControlRowType.Header, DataControlRowState.Normal);
                 headerRow.Cells.AddRange (cellsRow1);
+                headerRow.TableSection = TableRowSection.TableHeader;
 
                 // add new header row to the grid table
                 ((Table) grid.Controls [0]).Rows.AddAt (0, headerRow);
@@ -309,6 +313,9 @@ namespace R7.University.EduProgramProfileDirectory
 
             if (e.Row.RowType == DataControlRowType.Header)
             {
+                // set right table section for header row
+                e.Row.TableSection = TableRowSection.TableHeader;
+
                 // merge Code header cell into Title
                 e.Row.Cells [2].Visible = false;
                 e.Row.Cells [3].ColumnSpan = 2;
