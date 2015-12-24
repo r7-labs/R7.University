@@ -115,7 +115,11 @@ namespace R7.University.Controls
             CopyCstor.Copy<IDocument> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
-            viewModel.DocumentType = new DocumentTypeViewModel (model.DocumentType, viewContext);
+            if (model.DocumentType != null)
+            {
+                viewModel.DocumentType = new DocumentTypeViewModel (model.DocumentType, viewContext);
+            }
+
             viewModel.Context = viewContext;
 
             return viewModel;
