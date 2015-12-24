@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="01.06.03">
+		<package name="R7.University" type="Library" version="01.07.00">
 			<friendlyName>R7.University</friendlyName>
 			<description>This is a common library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Division, Employee, EmployeeList, etc.</description>
 			<owner>
@@ -91,9 +91,13 @@
                             <name>SqlDataProvider\01.06.00.SqlDataProvider</name>
                             <version>01.06.00</version>
                         </script>
+                        <script type="Install">
+                            <name>SqlDataProvider\01.07.00.SqlDataProvider</name>
+                            <version>01.07.00</version>
+                        </script>
                         <script type="UnInstall">
                             <name>SqlDataProvider\Uninstall.SqlDataProvider</name>
-                            <version>01.06.03</version>
+                            <version>01.07.00</version>
                         </script>
 					</scripts>
 				</component>
@@ -134,7 +138,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.06.03">
+		<package name="R7.University.Launchpad" type="Module" version="01.07.00">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -318,7 +322,7 @@
 				</component>
       		</components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="01.06.03">
+		<package name="R7.University.Employee" type="Module" version="01.07.00">
 			<friendlyName>_Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -420,7 +424,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDetails" type="Module" version="01.06.03">
+		<package name="R7.University.EmployeeDetails" type="Module" version="01.07.00">
 			<friendlyName>_EmployeeDetails</friendlyName>
 			<description>This is a module to display detailed information about single employee.</description>
 			<owner>
@@ -502,7 +506,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="01.06.03">
+		<package name="R7.University.EmployeeList" type="Module" version="01.07.00">
 			<friendlyName>_EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
@@ -593,7 +597,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Division" type="Module" version="01.06.03">
+		<package name="R7.University.Division" type="Module" version="01.07.00">
 			<friendlyName>_Division</friendlyName>
 			<description>This is a module to display information about single division.</description>
 			<owner>
@@ -684,7 +688,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDirectory" type="Module" version="01.06.03">
+		<package name="R7.University.EmployeeDirectory" type="Module" version="01.07.00">
 			<friendlyName>R7.University.EmployeeDirectory</friendlyName>
 			<description>This is a module to display information about employees.</description>
 			<owner>
@@ -775,7 +779,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.DivisionDirectory" type="Module" version="01.06.03">
+		<package name="R7.University.DivisionDirectory" type="Module" version="01.07.00">
 			<friendlyName>R7.University.DivisionDirectory</friendlyName>
 			<description>This is a module to display information about divisions.</description>
 			<owner>
@@ -879,7 +883,7 @@
 				</component>
 			</components>
 		</package>
-        <package name="R7.University.EduProgramDirectory" type="Module" version="01.06.03">
+        <package name="R7.University.EduProgramDirectory" type="Module" version="01.07.00">
             <friendlyName>R7.University.EduProgramDirectory</friendlyName>
             <description>This is a module to display information about educational programs.</description>
             <owner>
@@ -959,7 +963,7 @@
                 </component>
             </components>
         </package>
-        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="01.06.03">
+        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="01.07.00">
             <friendlyName>R7.University.EduProgramProfileDirectory</friendlyName>
             <description>This is a module to display information about educational program profiles.</description>
             <owner>
