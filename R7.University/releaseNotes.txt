@@ -1,4 +1,21 @@
-﻿<h3>Version 1.6.3</h3>
+﻿<h3>Version 1.7.0</h3>
+<p>This release focuses on adding new EduProgramProfileDirectory module.</p>
+<ul>
+    <li>New EduProgramProfileDirectory module with two display modes.</li>
+    <li>Added accreditation dates and languages to educational program profile model.</li>
+    <li>Removed education type from education level model.</li>
+    <li>EditEduProgramProfile: Implemented editing educational program profile documents and forms.</li>
+    <li>Launchpad: Tabs now localizeable, russian translation added.</li>
+    <li>Launchpad: Search results now preserved until cleared.</li>
+    <li>Launchpad: Improved performance by binding only required tab.</li>
+    <li>Launchpad: Use single button to add new items.</li>
+    <li>Launchpad: Disabled editing support for documents table (no edit control).</li>
+    <li>Update and fix unistall script.</li>
+    <li>(dev) Massive code refactoring by using model interfaces and control base classes (more to be done).</li>
+    <li>(dev) Travis CI integration.</li>
+</ul>
+
+<h3>Version 1.6.3</h3>
 <p>End-user changes:</p>
 <ul>
     <li>Display employee and division barcodes in jQuery UI popups.</li>
