@@ -31,16 +31,40 @@ using System.Linq;
 
 namespace R7.University
 {
+    public interface IEduProgram
+    {
+        int EduProgramID { get; set; }
+
+        int EduLevelID { get; set; }
+
+        string Code { get; set; }
+
+        string Title { get; set; }
+
+        string Generation { get; set; }
+
+        DateTime? AccreditedToDate { get; set; }
+
+        DateTime? StartDate { get; set; }
+
+        DateTime? EndDate { get; set; }
+
+        EduLevelInfo EduLevel { get; set; }
+
+        IList<DocumentInfo> Documents { get; set; }
+
+    }
+
     [TableName ("University_EduPrograms")]
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo: UniversityEntityBase
+    public class EduProgramInfo: UniversityEntityBase, IEduProgram
     {
         public EduProgramInfo ()
         {
             Documents = new List<DocumentInfo> ();
         }
 
-        #region Properties
+        #region IEduProgram implementation
 
         public int EduProgramID { get; set; }
 
@@ -54,11 +78,15 @@ namespace R7.University
 
         public DateTime? AccreditedToDate { get; set; }
 
-        // TODO: Move this to UniversityEntityBase and use it instead of IsPublished
-
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        [IgnoreColumn]
+        public EduLevelInfo EduLevel { get; set; }
+
+        [IgnoreColumn]
+        public IList<DocumentInfo> Documents { get; set; }
 
         #endregion
 
@@ -78,12 +106,6 @@ namespace R7.University
                 return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
             }
         }
-
-        [IgnoreColumn]
-        public EduLevelInfo EduLevel { get; set; }
-
-        [IgnoreColumn]
-        public IList<DocumentInfo> Documents { get; set; }
 
         [IgnoreColumn]
         public IList<DocumentInfo> EduStandardDocuments

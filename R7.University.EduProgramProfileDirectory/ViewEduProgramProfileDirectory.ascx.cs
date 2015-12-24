@@ -134,9 +134,9 @@ namespace R7.University.EduProgramProfileDirectory
             var eduLevelIds = Settings.EduLevels;
 
             var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
-                .Where (epp => epp.IsPublished () || IsEditable)
                 .WithEduPrograms (Controller)
                 .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
+                .Where (epp => epp.IsPublished () || IsEditable)
                 .WithEduLevel (Controller)
                 .WithEduProgramProfileForms (Controller)
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
@@ -163,9 +163,9 @@ namespace R7.University.EduProgramProfileDirectory
             var eduLevelIds = Settings.EduLevels;
 
             var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
-                .Where (epp => epp.IsPublished () || IsEditable)
                 .WithEduPrograms (Controller)
                 .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
+                .Where (epp => epp.IsPublished () || IsEditable)
                 .WithEduLevel (Controller)
                 .WithDocuments (Controller)
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
