@@ -1037,7 +1037,7 @@
                         <basePath>bin</basePath>
                         <assembly>
                             <path>bin</path>
-                            <name>R7.University.EduProgramDirectory.dll</name>
+                            <name>R7.University.EduProgramProfileDirectory.dll</name>
                         </assembly>
                     </assemblies>
                 </component>
