@@ -375,15 +375,9 @@ namespace R7.University
 
                 try
                 {
-                    IList<DocumentInfo> originalDocuments = null;
-                    var allNew = documents.All (d => d.DocumentID <= 0);
-
-                    if (!allNew)
-                    {
-                        originalDocuments = GetObjects<DocumentInfo> (string.Format (
-                            "WHERE ItemID = N'{0}={1}'", itemKey, itemId)).ToList ();
-                    }
-
+                    var originalDocuments = GetObjects<DocumentInfo> (string.Format (
+                        "WHERE ItemID = N'{0}={1}'", itemKey, itemId)).ToList ();
+                    
                     foreach (var document in documents)
                     {
                         if (document.DocumentID <= 0)
@@ -405,13 +399,10 @@ namespace R7.University
                         }
                     }
 
-                    if (!allNew)
+                    // delete remaining documents
+                    foreach (var document in originalDocuments)
                     {
-                        // delete remaining documents
-                        foreach (var document in originalDocuments)
-                        {
-                            Delete<DocumentInfo> (document);
-                        }
+                        Delete<DocumentInfo> (document);
                     }
 
                     ctx.Commit ();
@@ -432,15 +423,9 @@ namespace R7.University
 
                 try
                 {
-                    IList<EduProgramProfileFormInfo> originalEduForms = null;
-                    var allNew = eduForms.All (ef => ef.EduProgramProfileFormID <= 0);
-
-                    if (!allNew)
-                    {
-                        originalEduForms = GetObjects<EduProgramProfileFormInfo> (
-                            "WHERE EduProgramProfileID = @0", eduProgramProfileId).ToList ();
-                    }
-
+                    var originalEduForms = GetObjects<EduProgramProfileFormInfo> (
+                        "WHERE EduProgramProfileID = @0", eduProgramProfileId).ToList ();
+                    
                     foreach (var eduForm in eduForms)
                     {
                         if (eduForm.EduProgramProfileFormID <= 0)
@@ -463,13 +448,10 @@ namespace R7.University
                         }
                     }
 
-                    if (!allNew)
+                    // delete remaining items
+                    foreach (var eduForm in originalEduForms)
                     {
-                        // delete remaining items
-                        foreach (var eduForm in originalEduForms)
-                        {
-                            Delete<EduProgramProfileFormInfo> (eduForm);
-                        }
+                        Delete<EduProgramProfileFormInfo> (eduForm);
                     }
 
                     ctx.Commit ();
