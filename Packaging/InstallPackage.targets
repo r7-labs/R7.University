@@ -19,8 +19,8 @@
         <ItemGroup>
             <InstallManifestFiles Include="..\R7.University\*.dnn" />
             <InstallManifestFiles Include="..\R7.University\*.dnn6" />
-            <InstallManifestFiles Include="..\R7.University\license.txt" />
-            <InstallManifestFiles Include="..\R7.University\releaseNotes.txt" />
+            <InstallManifestFiles Include="..\R7.University\license.htm" />
+            <InstallManifestFiles Include="..\R7.University\releaseNotes.htm" />
         </ItemGroup>
         <!-- Declare SqlDataProvider files -->
         <ItemGroup>
@@ -35,7 +35,7 @@
             <InstallResourceFiles Include="..\**\*.resx" />
             <InstallResourceFiles Include="..\**\*.css" />
             <InstallResourceFiles Include="..\**\*.html" />
-            <InstallResourceFiles Include="..\**\*.htm" />
+            <InstallResourceFiles Include="..\**\*.htm" Exclude="..\R7.University\license.htm;..\R7.University\releaseNotes.htm" />
             <InstallResourceFiles Include="..\**\*.xml" />
             <InstallResourceFiles Include="..\**\*.xsl" />
             <InstallResourceFiles Include="..\**\*.xslt" />
