@@ -109,7 +109,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="components\LaunchpadInfo.cs" />
     <Compile Include="ViewLaunchpad.ascx.cs">
       <DependentUpon>ViewLaunchpad.ascx</DependentUpon>
     </Compile>
