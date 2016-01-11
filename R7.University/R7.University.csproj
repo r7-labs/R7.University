@@ -40,34 +40,24 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Net.Http.Formatting">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="DotNetNuke">
       <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data">
       <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.WebUtility">
-      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.Web.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI">
       <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\Telerik.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.Web">
-      <HintPath>..\packages\DotNetNuke.WebApi.7.4.2.216\lib\net40\DotNetNuke.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.2.3\lib\net45\DotNetNuke.R7.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.R7.0.3.0\lib\net45\DotNetNuke.R7.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +169,6 @@
     <None Include="SqlDataProvider\01.02.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.03.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.04.00.SqlDataProvider" />
-    <None Include="packages.config" />
     <None Include="SqlDataProvider\01.07.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
@@ -197,6 +186,7 @@
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
     <None Include="Controls\App_LocalResources\EditEduForms.ascx.ru-RU.resx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
