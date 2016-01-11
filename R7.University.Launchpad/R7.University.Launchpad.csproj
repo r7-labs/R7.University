@@ -25,7 +25,6 @@
     <AspNet>
       <AspNet DisableCodeBehindGeneration="True" />
     </AspNet>
-    <NoWarn>1701</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -36,7 +35,6 @@
     <AspNet>
       <AspNet DisableCodeBehindGeneration="True" />
     </AspNet>
-    <NoWarn>1701</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
