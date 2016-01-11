@@ -9,8 +9,8 @@
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
-			<license src="license.txt" />
-			<releaseNotes src="releaseNotes.txt" />
+			<license src="license.htm" />
+			<releaseNotes src="releaseNotes.htm" />
 			<dependencies>
 				<dependency type="CoreVersion">07.04.00</dependency>
                 <dependency type="managedPackage" version="0.3.0">DotNetNuke.R7</dependency>
