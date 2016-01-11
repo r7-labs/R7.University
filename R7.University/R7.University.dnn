@@ -13,7 +13,8 @@
 			<releaseNotes src="releaseNotes.txt" />
 			<dependencies>
 				<dependency type="CoreVersion">07.04.00</dependency>
-				<!-- <dependency type="type">AjaxControlToolkit.ComboBox</dependency> -->
+                <dependency type="managedPackage" version="0.3.0">DotNetNuke.R7</dependency>
+                <!-- <dependency type="type">AjaxControlToolkit.ComboBox</dependency> -->
 			</dependencies>
 			<components>
 				<component type="Script">
@@ -110,15 +111,6 @@
 						</assembly>
 					</assemblies>
 				</component>
-                <component type="Assembly">
-                    <assemblies>
-                        <basePath>bin</basePath>
-                        <assembly>
-                            <path>bin</path>
-                            <name>DotNetNuke.R7.dll</name>
-                        </assembly>
-                    </assemblies>
-                </component>
 				<component type="Assembly">
 					<assemblies>
 						<basePath>bin</basePath>
