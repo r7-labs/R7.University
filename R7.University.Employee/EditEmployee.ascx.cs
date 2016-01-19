@@ -167,8 +167,10 @@ namespace R7.University.Employee
 			comboAchievements.DataBind ();
 
             // bind divisions
-			treeDivisions.DataSource = divisions;
+            treeDivisions.DataSource = divisions;
 			treeDivisions.DataBind ();
+            // select first (default) node - fix for issue #8
+            treeDivisions.Nodes [0].Selected = true;
 
 			// bind achievement types
 			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
@@ -340,11 +342,6 @@ namespace R7.University.Employee
 					// can be set to current division ID
 					var divisionId = Request.QueryString ["division_id"];
 					Utils.SelectAndExpandByValue (treeDivisions, divisionId);
-				
-					// select first (default) node, if none selected - 
-					// fix for issue #8
-					if (treeDivisions.SelectedNode == null)
-						treeDivisions.Nodes [0].Selected = true;
 				}
 			}
 			catch (Exception ex)
