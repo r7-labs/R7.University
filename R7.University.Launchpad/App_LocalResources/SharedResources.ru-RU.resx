@@ -7,13 +7,13 @@
         <value>Добавить содержимое</value>
     </data>
     <data name="Employees.Text" xml:space="preserve">
-        <value>Employees</value>
+        <value>Сотрудники</value>
     </data>
     <data name="Divisions.Text" xml:space="preserve">
-        <value>Divisions</value>
+        <value>Подразделения</value>
     </data>
     <data name="Positions.Text" xml:space="preserve">
-        <value>Positions</value>
+        <value>Должности</value>
     </data>
     <data name="Achievements.Text" xml:space="preserve">
         <value>Достижения</value>
