@@ -138,7 +138,7 @@ namespace R7.University
 		{
 			// replace all non-word character with spaces, 
 			// trim resulting string and then replace all spaces with single underscore
-			get { return Regex.Replace (Regex.Replace (ShortTitle, @"\W", " ").Trim (), @"\s+", "_"); } 
+			get { return Regex.Replace (Regex.Replace (DisplayShortTitle, @"\W", " ").Trim (), @"\s+", "_"); } 
 		}
 
 		[IgnoreColumn]
