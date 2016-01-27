@@ -107,7 +107,10 @@ namespace R7.University.Launchpad
                     item.CreatedByUserID = item.LastModifiedByUserID;
                 }
             }
+        }
 
+        protected override void AfterUpdateItem (EduProgramProfileInfo item)
+        {
             // update referenced items
             Controller.UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfileID", item.EduProgramProfileID);
             Controller.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);

@@ -382,7 +382,7 @@ namespace R7.University
                     {
                         if (document.DocumentID <= 0)
                         {
-                            // document.ItemID = itemKey + "=" + itemId;
+                            document.ItemID = itemKey + "=" + itemId;
                             Add<DocumentInfo> (document);
                         }
                         else
@@ -430,6 +430,7 @@ namespace R7.University
                     {
                         if (eduForm.EduProgramProfileFormID <= 0)
                         {
+                            eduForm.EduProgramProfileID = eduProgramProfileId;
                             Add<EduProgramProfileFormInfo> (eduForm);
                         }
                         else
