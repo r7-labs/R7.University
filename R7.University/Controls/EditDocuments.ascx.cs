@@ -103,12 +103,12 @@ namespace R7.University.Controls
 
         protected override void OnResetForm ()
         {
-            comboDocumentType.SelectedIndex = 0;
+            // comboDocumentType.SelectedIndex = 0;
             textDocumentTitle.Text = string.Empty;
             textDocumentSortIndex.Text = "0";
             datetimeDocumentStartDate.SelectedDate = null;
             datetimeDocumentEndDate.SelectedDate = null;
-            urlDocumentUrl.UrlType = "N";
+            // urlDocumentUrl.UrlType = "N";
         }
 
         #endregion
