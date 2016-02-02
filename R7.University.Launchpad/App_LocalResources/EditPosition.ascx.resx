@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="lblTitle.Text" xml:space="preserve">
-    <value>Title</value>
+    <value>Title:</value>
   </data>
   <data name="lblTitle.Help" xml:space="preserve">
     <value>Enter a title for job position</value>
   </data>
 	<data name="lblShortTitle.Text" xml:space="preserve">
-    <value>Short title</value>
+    <value>Short Title:</value>
   </data>
 	<data name="lblShortTitle.Help" xml:space="preserve">
     <value>Enter a short title for job position</value>
   </data>
 	<data name="lblWeight.Text" xml:space="preserve">
-    <value>Weight</value>
+    <value>Weight:</value>
   </data>
 	<data name="lblWeight.Help" xml:space="preserve">
     <value>Enter position weight as integral value. The more weight value, the more important this position is.</value>
   </data>
     <data name="labelIsTeacher.Text" xml:space="preserve">
-    <value>Is Teacher</value>
+    <value>Is Teacher?</value>
   </data>
     <data name="labelIsTeacher.Help" xml:space="preserve">
     <value>Check if this position is a teacher position. This will be used to distinct teachers from other employees.</value>
   </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>&lt;P&gt;A Edit position module&lt;/P&gt;</value>
+    <value>&lt;P&gt;An Edit position module&lt;/P&gt;</value>
   </data>
 	<data name="ControlTitle_edit.Text" xml:space="preserve">
     <value>Edit Position</value>
