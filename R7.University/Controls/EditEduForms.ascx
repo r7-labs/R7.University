@@ -2,7 +2,9 @@
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/urlcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" Priority="200" />
 <div class="dnnForm dnnClear university-edit-eduforms">
     <fieldset>
         <div class="dnnFormItem">
@@ -40,7 +42,8 @@
             <asp:RadioButtonList id="radioEduForm" runat="server" 
                 DataTextField="TitleLocalized"
                 DataValueField="EduFormID"
-                RepeatDirection="Horizontal" 
+                RepeatDirection="Horizontal"
+                CssClass="dnn-form-control"
             /> 
         </div>
         <div class="dnnFormItem">
@@ -63,7 +66,7 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsAdmissive" runat="server" ControlName="checkIsAdmissive" />
-            <asp:CheckBox id="checkIsAdmissive" runat="server" />
+            <asp:CheckBox id="checkIsAdmissive" runat="server" CssClass="dnn-form-control" />
         </div>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>

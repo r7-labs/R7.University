@@ -26,3 +26,5 @@
     overflow:hidden;
     background-color:#eee;
 }
+
+.dnnFormItem .dnn-form-control { margin-bottom:18px; }
