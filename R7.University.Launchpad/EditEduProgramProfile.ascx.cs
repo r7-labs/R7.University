@@ -11,6 +11,7 @@ using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.ModelExtensions;
+using System.Text.RegularExpressions;
 
 namespace R7.University.Launchpad
 {
@@ -114,6 +115,13 @@ namespace R7.University.Launchpad
             // update referenced items
             Controller.UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfileID", item.EduProgramProfileID);
             Controller.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+        }
+
+        protected void linkEditEduProgram_Click (object sender, EventArgs e)
+        {
+            var modalEditUrl = EditUrl ("eduprogram_id", int.Parse (comboEduProgram.SelectedValue).ToString (), "EditEduProgram");
+            var rawEditUrl = Regex.Match (modalEditUrl, @"'(.*?)'").Groups [1].ToString ();
+            Response.Redirect (rawEditUrl, true);
         }
 
         protected int SelectedTab

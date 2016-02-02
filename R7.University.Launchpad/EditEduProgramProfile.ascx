@@ -36,6 +36,11 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
+                <div class="dnnFormItem">
+                    <div class="dnnLabel"></div>
+                    <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
+                        OnClick="linkEditEduProgram_Click" CssClass="dnnSecondaryAction dnn-form-control" />
+                </div>
         		<div class="dnnFormItem">
                     <dnn:Label ID="labelProfileCode" runat="server" ControlName="textProfileCode" />
                     <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />

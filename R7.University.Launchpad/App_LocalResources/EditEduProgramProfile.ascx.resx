@@ -45,6 +45,9 @@
     <data name="labelEduProgram.Help">
         <value>Select the educational program to which the profile belongs.</value>
     </data>
+    <data name="linkEditEduProgram.Text">
+        <value>Edit Educational Program</value>
+    </data>
     <data name="labelAccreditedToDate.Text">
         <value>Accredited to:</value>
     </data>
