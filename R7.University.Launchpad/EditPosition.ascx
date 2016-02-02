@@ -14,7 +14,10 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblWeight" runat="server" ControlName="lblWeight" />
-			<asp:TextBox id="txtWeight" runat="server" />
+			<asp:TextBox id="txtWeight" runat="server" Value="0" />
+            <asp:RegularExpressionValidator runat="server" resourcekey="Weight.Invalid"
+                ControlToValidate="txtWeight" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" 
+                ValidationExpression="-?\d+" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelIsTeacher" runat="server" ControlName="checkIsTeacher" />
