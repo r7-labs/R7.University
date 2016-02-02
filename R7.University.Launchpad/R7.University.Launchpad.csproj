@@ -107,6 +107,9 @@
     <None Include="App_LocalResources\EditEduForm.ascx.resx">
       <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="App_LocalResources\EditEduLevel.ascx.ru-RU.resx">
+      <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewLaunchpad.ascx.cs">

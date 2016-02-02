@@ -13,30 +13,30 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="labelTitle.Text" xml:space="preserve">
-        <value>Title:</value>
+        <value>Название:</value>
     </data>
     <data name="labelTitle.Help" xml:space="preserve">
-        <value>Enter the title for an education level.</value>
+        <value>Введите название уровня образования.</value>
     </data>
     <data name="labelShortTitle.Text" xml:space="preserve">
-        <value>Short Title:</value>
+        <value>Сокращенное название:</value>
     </data>
     <data name="labelShortTitle.Help" xml:space="preserve">
-        <value>Enter the short title for an education level.</value>
+        <value>Введите сокращенное название уровня образования.</value>
     </data>
     <data name="labelSortIndex.Text" xml:space="preserve">
-        <value>Sort Index:</value>
+        <value>Индекс сортировки:</value>
     </data>
     <data name="labelSortIndex.Help" xml:space="preserve">
-        <value>Enter the numeric index for the educational level. It will be used in sorting.</value>
+        <value>Введите целочисленный индекс для уровня образования. Это значение будет использоваться при сортировке.</value>
     </data>
     <data name="SortIndex.Invalid" xml:space="preserve">
-        <value>Sort Index must be an integer.</value>
+        <value>Индекс сортировки должен быть целым числом.</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;A Edit education level module&lt;/P&gt;</value>
+        <value>&lt;P&gt;Модуль редактирования уровня образования&lt;/P&gt;</value>
     </data>
     <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Education Level</value>
+        <value>Редактирование уровня образования</value>
     </data>
 </root>
