@@ -62,6 +62,9 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentSortIndex" runat="server" ControlName="textDocumentSortIndex" />
             <asp:TextBox id="textDocumentSortIndex" runat="server" Value="0" />
+            <asp:RegularExpressionValidator runat="server" resourcekey="DocumentSortIndex.Invalid"
+                ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="-?\d+" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label ID="labelDocumentStartDate" runat="server" ControlName="datetimeDocumentStartDate" />
@@ -74,9 +77,11 @@
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <asp:LinkButton id="buttonAddDocument" runat="server" resourcekey="buttonAddDocument" 
-                CssClass="dnnPrimaryAction" CommandArgument="Add" />
+                CssClass="dnnPrimaryAction" CommandArgument="Add"
+                CausesValidation="true" ValidationGroup="Documents" />
             <asp:LinkButton id="buttonUpdateDocument" runat="server" resourcekey="buttonUpdateDocument" 
-                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update" />
+                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update"
+                CausesValidation="true" ValidationGroup="Documents" />
             <asp:LinkButton id="buttonCancelEditDocument" runat="server" resourcekey="buttonCancelEditDocument" 
                         CssClass="dnnSecondaryAction" />
         </div>

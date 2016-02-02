@@ -78,6 +78,9 @@
     <data name="labelDocumentSortIndex.Help">
         <value>Enter sort index for the document. It can be used to give specific order to the documents in some views.</value>
     </data>
+    <data name="DocumentSortIndex.Invalid">
+        <value>Document sort index must be an integer.</value>
+    </data>
     <data name="labelDocumentUrl.Text">
         <value>Link:</value>
     </data>

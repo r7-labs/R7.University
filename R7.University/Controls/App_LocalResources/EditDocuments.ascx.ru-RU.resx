@@ -78,6 +78,9 @@
     <data name="labelDocumentSortIndex.Help">
         <value>Введите значение индекса сортировки для документа. Оно может быть использовано для задания порядка следования документов в различных представлениях.</value>
     </data>
+    <data name="DocumentSortIndex.Invalid">
+        <value>Индекс сортировки документа должен быть целым числом.</value>
+    </data>
     <data name="labelDocumentUrl.Text">
         <value>Ссылка:</value>
     </data>
