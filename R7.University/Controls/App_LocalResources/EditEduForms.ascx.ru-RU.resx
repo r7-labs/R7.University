@@ -31,10 +31,10 @@
         <value>Отметьте, если на эту форму обучения в текущем профиле ведется прием абитуриентов.</value>
     </data>
     <data name="buttonAddEduForm.Text">
-        <value>Добавить</value>
+        <value>Добавить форму</value>
     </data>
     <data name="buttonUpdateEduForm.Text">
-        <value>Сохранить</value>
+        <value>Сохранить форму</value>
     </data>
     <data name="buttonCancelEditEduForm.Text">
         <value>Отмена</value>

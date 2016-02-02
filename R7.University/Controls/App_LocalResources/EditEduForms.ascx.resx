@@ -31,10 +31,10 @@
         <value>Check if current educational profile form is available to enroll.</value>
     </data>
     <data name="buttonAddEduForm.Text">
-        <value>Add</value>
+        <value>Add Form</value>
     </data>
     <data name="buttonUpdateEduForm.Text">
-        <value>Update</value>
+        <value>Update Form</value>
     </data>
     <data name="buttonCancelEditEduForm.Text">
         <value>Cancel</value>
