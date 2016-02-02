@@ -13,36 +13,36 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="lblTitle.Text" xml:space="preserve">
-        <value>Title:</value>
+        <value>Название:</value>
     </data>
     <data name="lblTitle.Help" xml:space="preserve">
-        <value>Enter a title for job position.</value>
+        <value>Введите название должности.</value>
     </data>
     <data name="lblShortTitle.Text" xml:space="preserve">
-        <value>Short Title:</value>
+        <value>Сокращенное название:</value>
     </data>
     <data name="lblShortTitle.Help" xml:space="preserve">
-        <value>Enter a short title for job position.</value>
+        <value>Введите сокращенное название должности.</value>
     </data>
     <data name="lblWeight.Text" xml:space="preserve">
-        <value>Weight:</value>
+        <value>Вес должности:</value>
     </data>
     <data name="lblWeight.Help" xml:space="preserve">
-        <value>Enter position weight as integral value. The more weight value, the more important this position is.</value>
+        <value>Введите целочисленное значение веса должности. Чем больше вес, тем более значимой является должность.</value>
     </data>
     <data name="Weight.Invalid" xml:space="preserve">
-        <value>Position weight must be an integer.</value>
+        <value>Вес должности должен быть целым числом.</value>
     </data>
     <data name="labelIsTeacher.Text" xml:space="preserve">
-        <value>Is Teacher?</value>
+        <value>Преподаватель?</value>
     </data>
     <data name="labelIsTeacher.Help" xml:space="preserve">
-        <value>Check if this position is a teacher position. This flag is used to distinct teachers from other employees.</value>
+        <value>Отметьте, если данная должность относится к должностям преподавателей. Этот флаг используется для выделения преподавателей среди других сотрудников.</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;p&gt;An Edit position module&lt;/p&gt;</value>
+        <value>&lt;p&gt;Модуль редактирования должности&lt;/p&gt;</value>
     </data>
     <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Position</value>
+        <value>Редактирование должности</value>
     </data>
 </root>
