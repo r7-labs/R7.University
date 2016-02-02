@@ -34,7 +34,7 @@
         <value>Sort Index must be an integer.</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;An Edit education level module&lt;/P&gt;</value>
+        <value>&lt;P&gt;A Edit education level module&lt;/P&gt;</value>
     </data>
     <data name="ControlTitle_edit.Text" xml:space="preserve">
         <value>Edit Education Level</value>

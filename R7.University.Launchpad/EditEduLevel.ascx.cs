@@ -51,7 +51,7 @@ namespace R7.University.Launchpad
         {
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
-            item.SortIndex = int.Parse (textSortIndex.Text);
+            item.SortIndex = TypeUtils.ParseToNullableInt (textSortIndex.Text) ?? 0;
         }
 	}
 }
