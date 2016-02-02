@@ -75,4 +75,22 @@
     <data name="IsAdmissive.Column">
         <value>Is Admissive</value>
     </data>
+    <data name="TimeToLearnYears.Format1" xml:space="preserve">
+        <value>{0} year</value>
+    </data>
+    <data name="TimeToLearnYears.Format2" xml:space="preserve">
+        <value>{0} years</value>
+    </data>
+    <data name="TimeToLearnYears.Format3" xml:space="preserve">
+        <value>{0} years</value>
+    </data>
+    <data name="TimeToLearnMonths.Format1" xml:space="preserve">
+        <value>{0} month</value>
+    </data>
+    <data name="TimeToLearnMonths.Format2" xml:space="preserve">
+        <value>{0} months</value>
+    </data>
+    <data name="TimeToLearnMonths.Format3" xml:space="preserve">
+        <value>{0} months</value>
+    </data>
 </root>

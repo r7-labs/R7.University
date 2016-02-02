@@ -75,4 +75,22 @@
     <data name="IsAdmissive.Column">
         <value>Ведется прием</value>
     </data>
+    <data name="TimeToLearnYears.Format1" xml:space="preserve">
+        <value>{0} год</value>
+    </data>
+    <data name="TimeToLearnYears.Format2" xml:space="preserve">
+        <value>{0} года</value>
+    </data>
+    <data name="TimeToLearnYears.Format3" xml:space="preserve">
+        <value>{0} лет</value>
+    </data>
+    <data name="TimeToLearnMonths.Format1" xml:space="preserve">
+        <value>{0} месяц</value>
+    </data>
+    <data name="TimeToLearnMonths.Format2" xml:space="preserve">
+        <value>{0} месяца</value>
+    </data>
+    <data name="TimeToLearnMonths.Format3" xml:space="preserve">
+        <value>{0} месяцев</value>
+    </data>
 </root>

@@ -110,8 +110,8 @@ namespace R7.University.Controls
         {
             get
             { 
-                return string.Format (Localization.GetString ("TimeToLearn.Format", Context.LocalResourceFile),
-                    TimeToLearn / 12, TimeToLearn % 12, TimeToLearn);
+                return FormatHelper.FormatTimeToLearn (TimeToLearn,
+                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile);
             }
         }
     }
