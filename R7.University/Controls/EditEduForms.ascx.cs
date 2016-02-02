@@ -50,8 +50,9 @@ namespace R7.University.Controls
 
             ViewState ["eduForms"] = XmlSerializationHelper.Serialize (eduFormViewModels.ToList ());
 
-            comboEduForm.DataSource = eduFormViewModels;
-            comboEduForm.DataBind ();
+            radioEduForm.DataSource = eduFormViewModels;
+            radioEduForm.DataBind ();
+            radioEduForm.SelectedIndex = 0;
         }
 
         protected EduFormViewModel GetEduForm (int eduFormId)
@@ -70,7 +71,7 @@ namespace R7.University.Controls
 
         protected override void OnLoadItem (EduProgramProfileFormViewModel item)
         {
-            comboEduForm.SelectByValue (item.EduFormID);
+            radioEduForm.SelectByValue (item.EduFormID);
             checkIsAdmissive.Checked = item.IsAdmissive;
             textTimeToLearnYears.Text = (item.TimeToLearn / 12).ToString ();
             textTimeToLearnMonths.Text = (item.TimeToLearn % 12).ToString ();
@@ -78,7 +79,7 @@ namespace R7.University.Controls
 
         protected override void OnUpdateItem (EduProgramProfileFormViewModel item)
         {
-            item.EduFormID = int.Parse (comboEduForm.SelectedValue);
+            item.EduFormID = int.Parse (radioEduForm.SelectedValue);
             item.EduForm = GetEduForm (item.EduFormID);
             item.IsAdmissive = checkIsAdmissive.Checked;
             item.TimeToLearn = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
@@ -86,7 +87,7 @@ namespace R7.University.Controls
 
         protected override void OnResetForm ()
         {
-            comboEduForm.SelectedIndex = 0;
+            radioEduForm.SelectedIndex = 0;
             textTimeToLearnYears.Text = "0";
             textTimeToLearnMonths.Text = "0";
             checkIsAdmissive.Checked = false;

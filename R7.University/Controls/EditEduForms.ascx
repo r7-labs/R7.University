@@ -36,10 +36,11 @@
             </asp:GridView>
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelEduForm" runat="server" ControlName="comboEduForm" />
-            <asp:DropDownList id="comboEduForm" runat="server"
+            <dnn:Label id="labelEduForm" runat="server" ControlName="radioEduForm" />
+            <asp:RadioButtonList id="radioEduForm" runat="server" 
                 DataTextField="TitleLocalized"
                 DataValueField="EduFormID"
+                RepeatDirection="Horizontal" 
             /> 
         </div>
         <div class="dnnFormItem">

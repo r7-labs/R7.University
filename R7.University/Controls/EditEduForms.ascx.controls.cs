@@ -11,7 +11,7 @@ namespace R7.University.Controls
     public partial class EditEduForms
     {
         protected GridView gridEduForms;
-        protected DropDownList comboEduForm;
+        protected RadioButtonList radioEduForm;
         protected CheckBox checkIsAdmissive;
         protected TextBox textTimeToLearnYears;
         protected TextBox textTimeToLearnMonths;
