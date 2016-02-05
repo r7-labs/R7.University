@@ -271,7 +271,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         public string EduPlanLinks
         {
-            get { return FormatDocumentLinks (EduPlanDocuments, "itemprop=\"EduPlan\""); }
+            get { return FormatDocumentLinks (EduPlanDocuments, "itemprop=\"education_plan\""); }
         }
 
         public string WorkProgramAnnotationLink
@@ -300,7 +300,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         public string EduScheduleLinks
         {
-            get { return FormatDocumentLinks (EduScheduleDocuments, "itemprop=\"EduPlan\""); }
+            get { return FormatDocumentLinks (EduScheduleDocuments, "itemprop=\"education_shedule\""); }
         }
 
         public string WorkProgramOfPracticeLinks
