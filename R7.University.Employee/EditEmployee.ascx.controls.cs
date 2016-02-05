@@ -22,7 +22,7 @@ namespace R7.University.Employee
 		protected DnnFilePickerUploader pickerPhoto;
         protected LinkButton buttonPhotoLookup;
 		protected LabelControl labelUser;
-		protected UrlControl urlUser;
+		protected DnnUrlControl urlUser;
 		protected LabelControl labelLastName;
 		protected TextBox textLastName;
 		protected LabelControl labelFirstName;
@@ -102,7 +102,7 @@ namespace R7.University.Employee
 		protected LabelControl labelIsTitle;
 		protected CheckBox checkIsTitle;
 		protected LabelControl labelDocumentURL;
-		protected UrlControl urlDocumentURL;
+		protected DnnUrlControl urlDocumentURL;
 		protected HiddenField hiddenAchievementItemID;
 		protected LabelControl labelAchievements;
 		protected DnnComboBox comboAchievements;

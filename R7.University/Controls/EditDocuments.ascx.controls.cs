@@ -13,7 +13,7 @@ namespace R7.University.Controls
         protected GridView gridDocuments;
         protected TextBox textDocumentTitle;
         protected DropDownList comboDocumentType;
-        protected UrlControl urlDocumentUrl;
+        protected DnnUrlControl urlDocumentUrl;
         protected TextBox textDocumentSortIndex;
         protected DnnDateTimePicker datetimeDocumentStartDate;
         protected DnnDateTimePicker datetimeDocumentEndDate;

@@ -27,13 +27,13 @@ namespace R7.University.Division
 		protected DnnTreeView treeDivisionTerms;
 
 		protected LabelControl lblHomePage;
-		protected UrlControl urlHomePage;
+		protected DnnUrlControl urlHomePage;
 		protected LabelControl lblWebSite;
 		protected TextBox txtWebSite;
 		protected LabelControl labelWebSiteLabel;
 		protected TextBox textWebSiteLabel;
 		protected LabelControl labelDocumentUrl;
-		protected UrlControl urlDocumentUrl;
+		protected DnnUrlControl urlDocumentUrl;
 		protected LabelControl lblPhone;
 		protected TextBox txtPhone;
 		protected LabelControl lblFax;
