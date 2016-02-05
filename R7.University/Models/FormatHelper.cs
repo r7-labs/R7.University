@@ -103,7 +103,7 @@ namespace R7.University
             {
                 return "<a href=\"" 
                     + UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
-                    + "\""
+                    + "\" "
                     + Utils.FormatList (" ",
                         Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,
                         !document.IsPublished ()? "class=\"not-published-document\"" : string.Empty,
