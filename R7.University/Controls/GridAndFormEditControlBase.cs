@@ -100,6 +100,11 @@ namespace R7.University.Controls
             }
         }
 
+        protected string LocalizeString (string value)
+        {
+            return Localization.GetString (value, LocalResourceFile);
+        }
+
         #region Properties to init
 
         protected PortalModuleBase Module;
