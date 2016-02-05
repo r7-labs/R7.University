@@ -99,6 +99,9 @@
     <data name="labelDocumentEndDate.Help">
         <value>Enter the date from current document should be removed from publication on the site.</value>
     </data>
+    <data name="sectionAdvancedProperties.Text">
+        <value>Advanced Document Properties</value>
+    </data>
     <data name="buttonAddDocument.Text">
         <value>Add Document</value>
     </data>

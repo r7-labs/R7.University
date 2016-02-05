@@ -99,6 +99,9 @@
     <data name="labelDocumentEndDate.Help">
         <value>Введите дату, начиная с которой документ должен быть снят с публикации на сайте.</value>
     </data>
+    <data name="sectionAdvancedProperties.Text">
+        <value>Расширенные свойства документа</value>
+    </data>
     <data name="buttonAddDocument.Text">
         <value>Добавить документ</value>
     </data>

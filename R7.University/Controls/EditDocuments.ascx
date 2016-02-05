@@ -3,7 +3,7 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 
-<div class="eduProgramDocuments">
+<div id="eduProgramDocuments" class="eduProgramDocuments">
     <fieldset>
         <div class="dnnFormItem">
             <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
@@ -39,17 +39,6 @@
             </asp:GridView>
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelDocumentType" runat="server" ControlName="comboDocumentType" />
-            <asp:DropDownList id="comboDocumentType" runat="server" 
-                DataTextField="LocalizedType"
-                DataValueField="DocumentTypeID"
-            />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
-            <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
-        </div>
-        <div class="dnnFormItem">
             <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
             <dnn:Url id="urlDocumentUrl" runat="server" UrlType="N" 
                 IncludeActiveTab="true"
@@ -60,20 +49,34 @@
             />   
         </div>
         <div class="dnnFormItem">
+            <dnn:Label id="labelDocumentType" runat="server" ControlName="comboDocumentType" />
+            <asp:DropDownList id="comboDocumentType" runat="server" 
+                DataTextField="LocalizedType"
+                DataValueField="DocumentTypeID"
+            />
+        </div>
+        <div class="dnnFormItem">
             <dnn:Label id="labelDocumentSortIndex" runat="server" ControlName="textDocumentSortIndex" />
             <asp:TextBox id="textDocumentSortIndex" runat="server" Value="0" />
             <asp:RegularExpressionValidator runat="server" resourcekey="DocumentSortIndex.Invalid"
                 ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents" 
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="-?\d+" />
         </div>
-        <div class="dnnFormItem">
-            <dnn:Label ID="labelDocumentStartDate" runat="server" ControlName="datetimeDocumentStartDate" />
-            <dnn:DnnDateTimePicker id="datetimeDocumentStartDate" runat="server" />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label ID="labelDocumentEndDate" runat="server" ControlName="datetimeDocumentEndDate" />
-            <dnn:DnnDateTimePicker id="datetimeDocumentEndDate" runat="server" />
-        </div>
+        <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("sectionAdvancedProperties.Text") %></a></h2>
+        <fieldset>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
+                <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
+            </div>
+            <div class="dnnFormItem">
+                <dnn:Label ID="labelDocumentStartDate" runat="server" ControlName="datetimeDocumentStartDate" />
+                <dnn:DnnDateTimePicker id="datetimeDocumentStartDate" runat="server" />
+            </div>
+            <div class="dnnFormItem">
+                <dnn:Label ID="labelDocumentEndDate" runat="server" ControlName="datetimeDocumentEndDate" />
+                <dnn:DnnDateTimePicker id="datetimeDocumentEndDate" runat="server" />
+            </div>
+        </fieldset>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <asp:LinkButton id="buttonAddDocument" runat="server" resourcekey="buttonAddDocument" 
@@ -88,3 +91,8 @@
         <asp:HiddenField id="hiddenDocumentItemID" runat="server" />
     </fieldset>
 </div>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+    $("#eduProgramDocuments").dnnPanels({defaultState: "closed"});
+});
+</script>
