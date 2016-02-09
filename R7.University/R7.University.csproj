@@ -129,6 +129,7 @@
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="Models\FormatHelper.cs" />
     <Compile Include="components\EnumViewModel.cs" />
+    <Compile Include="ControlExtensions\ListControlExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
