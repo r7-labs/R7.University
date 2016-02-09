@@ -239,66 +239,74 @@
 							</Columns>
 				    </asp:GridView>
 				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" Suffix=":" />
-					<dnn:DnnComboBox id="comboAchievements" runat="server" AutoPostBack="true"
-						DataTextField="DisplayShortTitle"
-						DataValueField="AchievementID"
-						SelectedIndexChanged="comboAchievements_SelectedIndexChanged"
-					/>
-				</div>
-                <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
-                    <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
-                    <asp:DropDownList id="comboAchievementTypes" runat="server" 
-                        DataTextField="LocalizedAchivementType"
-                        DataValueField="AchievementType"
-                    />
-                </asp:Panel>
-				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
-					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
-					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
-                    <asp:RegularExpressionValidator runat="server"
-                        CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
-                        ControlToValidate="textAchievementTitle" Display="Dynamic"
-                        ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements">
-                    </asp:RegularExpressionValidator>
-				</asp:Panel>
-                <div class="dnnFormItem">
-					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" Suffix=":" />
-					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelYearBegin" runat="server" ControlName="textYearBegin" Suffix=":" />
-					<asp:TextBox id="textYearBegin" runat="server" />
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelYearEnd" runat="server" ControlName="textYearEnd" Suffix=":" />
-					<asp:TextBox id="textYearEnd" runat="server" />
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" Suffix="?" />
-					<asp:CheckBox id="checkIsTitle" runat="server" />
-				</div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" Suffix=":" />
-                    <dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
-                        IncludeActiveTab="true"
-                        ShowFiles="true" ShowTabs="true"
-                        ShowUrls="true" ShowUsers="true"
-                        ShowLog="false" ShowTrack="false"
-                        ShowNone="true" ShowNewWindow="false" />      
-                </div>
-                <h2 class="dnnFormSectionHead dnnClear"><a href="#"><%: LocalizeString ("sectionAdvancedAchievementProperties.Text") %></a></h2>
-                <fieldset>
-                    <asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
-                        <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
-                        <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
-                    </asp:Panel>
-                    <div class="dnnFormItem">
-                        <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" Suffix=":" />
-                        <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
-                    </div>
-                </fieldset>
+                <asp:UpdatePanel id="updatePanelAchievement" runat="server">
+                    <ContentTemplate>
+        				<div class="dnnFormItem">
+        					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" Suffix=":" />
+                                    <act:ComboBox id="comboAchievement" runat="server" CssClass="act_combobox"
+                                        DropDownStyle="DropDownList"
+                                        AutoCompleteMode="SuggestAppend"
+                                        CaseSensitive="false"
+                                        DataValueField="AchievementID"
+                                        DataTextField="DisplayShortTitle"
+                                        AutoPostBack="true"
+                                        OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged"
+                                    />
+                        </div>
+                        <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
+                            <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
+                            <asp:DropDownList id="comboAchievementTypes" runat="server" 
+                                DataTextField="LocalizedAchivementType"
+                                DataValueField="AchievementType"
+                            />
+                        </asp:Panel>
+        				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
+        					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
+        					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
+                            <asp:RegularExpressionValidator runat="server"
+                                CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
+                                ControlToValidate="textAchievementTitle" Display="Dynamic"
+                                ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements">
+                            </asp:RegularExpressionValidator>
+        				</asp:Panel>
+                        <div class="dnnFormItem">
+        					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" Suffix=":" />
+        					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
+        				</div>
+        				<div class="dnnFormItem">
+        					<dnn:Label id="labelYearBegin" runat="server" ControlName="textYearBegin" Suffix=":" />
+        					<asp:TextBox id="textYearBegin" runat="server" />
+        				</div>
+        				<div class="dnnFormItem">
+        					<dnn:Label id="labelYearEnd" runat="server" ControlName="textYearEnd" Suffix=":" />
+        					<asp:TextBox id="textYearEnd" runat="server" />
+        				</div>
+        				<div class="dnnFormItem">
+        					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" Suffix="?" />
+        					<asp:CheckBox id="checkIsTitle" runat="server" />
+        				</div>
+                        <div class="dnnFormItem">
+                            <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" Suffix=":" />
+                            <dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
+                                IncludeActiveTab="true"
+                                ShowFiles="true" ShowTabs="true"
+                                ShowUrls="true" ShowUsers="true"
+                                ShowLog="false" ShowTrack="false"
+                                ShowNone="true" ShowNewWindow="false" />      
+                        </div>
+                        <h2 class="dnnFormSectionHead dnnClear"><a href="#"><%: LocalizeString ("sectionAdvancedAchievementProperties.Text") %></a></h2>
+                        <fieldset>
+                            <asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
+                                <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
+                                <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
+                            </asp:Panel>
+                            <div class="dnnFormItem">
+                                <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" Suffix=":" />
+                                <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
+                            </div>
+                        </fieldset>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 				<div class="dnnFormItem">
 					<div class="dnnLabel"></div>
 					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
@@ -393,7 +401,13 @@
 	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
 <script type="text/javascript">
-jQuery(document).ready(function () {
-    $("#employeeAchievements").dnnPanels({defaultState: "closed"});
+jQuery(function ($) {
+    var setupModule = function () {
+        $("#employeeAchievements").dnnPanels({defaultState: "closed"});
+    };
+    setupModule();
+    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+        setupModule();
+    });
 });
 </script>

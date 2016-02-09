@@ -162,9 +162,9 @@ namespace R7.University.Employee
             comboPositions.SelectedIndex = 0;
 
             // bind achievements
-			comboAchievements.SelectedIndexChanged += comboAchievements_SelectedIndexChanged;
-			comboAchievements.DataSource = commonAchievements;
-			comboAchievements.DataBind ();
+			comboAchievement.DataSource = commonAchievements;
+			comboAchievement.DataBind ();
+            comboAchievement.SelectedIndex = 0;
 
             // bind divisions
             treeDivisions.DataSource = divisions;
@@ -924,7 +924,7 @@ namespace R7.University.Employee
 						
 						if (achievement.AchievementID != null)
 						{
-							comboAchievements.Select (achievement.AchievementID.ToString (), false);
+							comboAchievement.SelectByValue (achievement.AchievementID);
 	
 							panelAchievementTitle.Visible = false;
 							panelAchievementShortTitle.Visible = false;
@@ -932,7 +932,7 @@ namespace R7.University.Employee
 						}
 						else
 						{
-							comboAchievements.Select (Null.NullInteger.ToString (), false);
+							comboAchievement.SelectByValue (Null.NullInteger);
 	
 							textAchievementTitle.Text = achievement.Title;
 							textAchievementShortTitle.Text = achievement.ShortTitle;
@@ -995,7 +995,7 @@ namespace R7.University.Employee
 			panelAchievementTypes.Visible = true;
 
 			// reset controls
-			comboAchievements.SelectedIndex = 0;
+			comboAchievement.SelectedIndex = 0;
 			comboAchievementTypes.SelectedIndex = 0;
 			textAchievementTitle.Text = "";
 			textAchievementShortTitle.Text = "";
@@ -1035,7 +1035,7 @@ namespace R7.University.Employee
 					achievement = achievements.Find (ach => ach.ItemID == hiddenItemID);
 				}
 	
-				achievement.AchievementID = Utils.ParseToNullableInt (comboAchievements.SelectedValue);
+				achievement.AchievementID = Utils.ParseToNullableInt (comboAchievement.SelectedValue);
 				if (achievement.AchievementID == null)
 				{
 					achievement.Title = textAchievementTitle.Text.Trim();
@@ -1046,7 +1046,7 @@ namespace R7.University.Employee
 				else
 				{
 					var ach = CommonAchievements.Find (a => a.AchievementID.ToString () == 
-                        comboAchievements.SelectedValue);
+                        comboAchievement.SelectedValue);
 
 					achievement.Title = ach.Title;
 					achievement.ShortTitle = ach.ShortTitle;
@@ -1214,14 +1214,13 @@ namespace R7.University.Employee
             }
         }
 
-		protected void comboAchievements_SelectedIndexChanged (object sender, 
-            Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
+		protected void comboAchievement_SelectedIndexChanged (object sender, EventArgs e)
 		{
 			try
 			{
 				SelectedTab = EditEmployeeTab.Achievements;
 
-				if (e.Value == Null.NullInteger.ToString())
+                if (((AjaxControlToolkit.ComboBox) sender).SelectedValue == Null.NullInteger.ToString())
 				{
 					panelAchievementTitle.Visible = true;
 					panelAchievementShortTitle.Visible = true;
