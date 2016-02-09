@@ -28,3 +28,24 @@
 }
 
 .dnnFormItem .dnn-form-control { margin-bottom:18px; }
+
+.dnnFormItem .dnn-form-control-group
+{
+    display:inline-block;
+    width:45%;
+    max-width:445px;
+}
+
+.dnnFormItem .dnn-form-control-group .dnn-form-control-half-width
+{
+    /* WTF: Cannot override default.css using DnnCssInclude.Priority */
+    width:33%!important;
+    max-width:33%!important;
+}
+
+.dnnFormItem .dnn-form-control-group .dnn-form-control-quarter-width
+{
+    /* WTF: Cannot override default.css using DnnCssInclude.Priority */
+    width:20%!important;
+    max-width:20%!important;
+}

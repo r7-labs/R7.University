@@ -274,16 +274,16 @@
         					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
         				</div>
         				<div class="dnnFormItem">
-        					<dnn:Label id="labelYearBegin" runat="server" ControlName="textYearBegin" Suffix=":" />
-        					<asp:TextBox id="textYearBegin" runat="server" />
+        					<dnn:Label id="labelYears" runat="server" ControlName="textYearBegin" />
+        					<div class="dnn-form-control-group">
+                                <asp:TextBox id="textYearBegin" runat="server" CssClass="dnn-form-control-half-width" />
+                                &ndash;
+                                <asp:TextBox id="textYearEnd" runat="server" CssClass="dnn-form-control-half-width" />
+                            </div>
         				</div>
-        				<div class="dnnFormItem">
-        					<dnn:Label id="labelYearEnd" runat="server" ControlName="textYearEnd" Suffix=":" />
-        					<asp:TextBox id="textYearEnd" runat="server" />
-        				</div>
-        				<div class="dnnFormItem">
+                        <div class="dnnFormItem">
         					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" Suffix="?" />
-        					<asp:CheckBox id="checkIsTitle" runat="server" />
+        					<asp:CheckBox id="checkIsTitle" runat="server" CssClass="dnn-form-control" />
         				</div>
                         <div class="dnnFormItem">
                             <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" Suffix=":" />

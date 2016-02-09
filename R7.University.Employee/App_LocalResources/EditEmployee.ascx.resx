@@ -204,17 +204,11 @@
 	<data name="buttonCancelEditAchievement.Text">
 		<value>Cancel</value>
 	</data>
-	<data name="labelYearBegin.Text">
-		<value>Year Begin</value>
+	<data name="labelYears.Text">
+		<value>Years:</value>
 	</data>
-	<data name="labelYearBegin.Help">
-		<value>Enter starting year of the achievement. If not exists or not known, leave empty or set to -1.</value>
-	</data>
-	<data name="labelYearEnd.Text">
-		<value>Year End</value>
-	</data>
-	<data name="labelYearEnd.Help">
-		<value>Enter final year of achievement. Set to 0 to specify ATM value; if not exists or not known, leave empty or set to -1.</value>
+	<data name="labelYears.Help">
+		<value>Enter starting and ending years of the achievement. If they are not available, leave fields empty or set to -1. Set end year to 0 to specify ATM value.</value>
 	</data>
 	<data name="labelAchievementTitle.Text">
 		<value>Title</value>

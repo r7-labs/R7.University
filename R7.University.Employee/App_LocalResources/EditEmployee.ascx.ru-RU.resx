@@ -216,17 +216,11 @@
 	<data name="buttonCancelEditAchievement.Text">
 		<value>Отмена</value>
 	</data>
-	<data name="labelYearBegin.Text">
-		<value>Год начала</value>
+	<data name="labelYears.Text">
+		<value>Годы:</value>
 	</data>
-	<data name="labelYearBegin.Help">
-		<value>Введите начальный год достижения. Если такой не существует или неизвестен, оставьте поле пустым или введите -1.</value>
-	</data>
-	<data name="labelYearEnd.Text">
-		<value>Год окончания</value>
-	</data>
-	<data name="labelYearEnd.Help">
-		<value>Введите конечный год достижения. Введите 0 для указания настоящего времени; если же таковой не существует или неизвестен, оставьте поле пустым или введите -1.</value>
+	<data name="labelYears.Help">
+		<value>Введите годы начала и окончания для достижения. Если эти значения недоступны, оставьте поля пустыми или введите -1. Введите 0 в поле года окончания для указания настоящего времени.</value>
 	</data>
 	<data name="labelAchievementTitle.Text">
 		<value>Название (роль)</value>
