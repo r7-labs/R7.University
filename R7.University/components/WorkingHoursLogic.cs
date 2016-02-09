@@ -31,12 +31,13 @@ using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Web.UI.WebControls;
+using R7.University.ControlExtensions;
 
 namespace R7.University
 {
     public static class WorkingHoursLogic
     {
-        public static void Init (PortalModuleBase module, DnnComboBox comboWorkingHours)
+        public static void Init (PortalModuleBase module, DropDownList comboWorkingHours)
         {
             // fill working hours terms
             var termCtrl = new TermController ();
@@ -46,15 +47,15 @@ namespace R7.University
             comboWorkingHours.DataBind ();
         }
 
-        public static void Load (DnnComboBox comboWorkingHours, TextBox textWorkingHours, string workingHours)
+        public static void Load (DropDownList comboWorkingHours, TextBox textWorkingHours, string workingHours)
         {
             // search for working hours text in a combo
-            comboWorkingHours.Select (workingHours, true);
+            comboWorkingHours.SelectByText (workingHours, StringComparison.CurrentCultureIgnoreCase);
             if (comboWorkingHours.SelectedIndex <= 0)
                 textWorkingHours.Text = workingHours;
         }
 
-        public static string Update (DnnComboBox comboWorkingHours, string workingHours, bool addToVocabulary)
+        public static string Update (DropDownList comboWorkingHours, string workingHours, bool addToVocabulary)
         {
             workingHours = workingHours.Trim ();
             var workingHoursNonEmpty = !string.IsNullOrWhiteSpace (workingHours);

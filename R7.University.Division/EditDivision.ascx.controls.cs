@@ -46,7 +46,7 @@ namespace R7.University.Division
 		protected TextBox txtLocation;
 		protected LabelControl labelWorkingHours;
 		protected LabelControl labelCustomWorkingHours;
-		protected DnnComboBox comboWorkingHours;
+        protected DropDownList comboWorkingHours;
 		protected TextBox textWorkingHours;
 		protected CheckBox checkAddToVocabulary;
         protected DnnDateTimePicker datetimeStartDate;

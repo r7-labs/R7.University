@@ -78,7 +78,7 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
-			<dnn:DnnComboBox id="comboWorkingHours" runat="server"
+			<asp:DropDownList id="comboWorkingHours" runat="server"
 						DataTextField="Name"
 						DataValueField="TermId"
 				 />

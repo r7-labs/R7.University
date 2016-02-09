@@ -53,7 +53,7 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" Suffix=":" />
-					<dnn:DnnComboBox id="comboUsers" runat="server" />
+					<asp:DropDownList id="comboUsers" runat="server" />
 				</div>
                 <div class="dnnFormItem">
 					<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" Suffix=":" />
@@ -102,7 +102,7 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
-					<dnn:DnnComboBox id="comboWorkingHours" runat="server"
+					<asp:DropDownList id="comboWorkingHours" runat="server"
 								DataTextField="Name"
 								DataValueField="TermId"
 						 />
@@ -249,7 +249,7 @@
 				</div>
                 <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
                     <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
-                    <dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
+                    <asp:DropDownList id="comboAchievementTypes" runat="server" 
                         DataTextField="LocalizedAchivementType"
                         DataValueField="AchievementType"
                     />

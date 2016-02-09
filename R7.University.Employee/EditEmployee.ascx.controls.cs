@@ -49,7 +49,7 @@ namespace R7.University.Employee
 		protected TextBox textWorkingHours;
 		protected CheckBox checkAddToVocabulary;
 		protected LabelControl labelWorkingHours;
-		protected DnnComboBox comboWorkingHours;
+		protected DropDownList comboWorkingHours;
 		protected LabelControl labelWorkingPlace;
 		protected TextBox textWorkingPlace;
 		protected LabelControl labelExperienceYears;
@@ -67,7 +67,7 @@ namespace R7.University.Employee
 		protected TextBox textUserLookup;
 		protected Label labelUserNames;
 		protected LabelControl labelUserLookup;
-		protected DnnComboBox comboUsers;
+		protected DropDownList comboUsers;
 
 		protected GridView gridOccupiedPositions;
 		protected LabelControl labelPositions;
@@ -84,7 +84,7 @@ namespace R7.University.Employee
 		protected HiddenField hiddenOccupiedPositionItemID;
 
 		protected GridView gridAchievements;
-		protected DnnComboBox comboAchievementTypes;
+		protected DropDownList comboAchievementTypes;
 		protected LabelControl labelYearBegin;
 		protected TextBox textYearBegin;
 		protected LabelControl labelYearEnd;

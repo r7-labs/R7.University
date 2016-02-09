@@ -128,7 +128,7 @@ namespace R7.University.Employee
             // pickerPhoto.FilePath = "Images/faces/";
 
 			// add default item to user list
-            comboUsers.AddItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ());
+            comboUsers.Items.Add (new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
 
 			// init working hours
 			WorkingHoursLogic.Init (this, comboWorkingHours);
@@ -270,10 +270,7 @@ namespace R7.University.Employee
 								if (user != null)
 								{
 									// add previously selected user to user list...
-									comboUsers.AddItem (user.Username + " / " + user.Email, user.UserID.ToString ());
-									// listUsers.Items.Add (new ListItem (user.Username + " / " + user.Email, user.UserID.ToString ()));
-									// and select it
-									// listUsers.SelectedIndex = 1;
+                                    comboUsers.Items.Add (new ListItem (user.Username + " / " + user.Email, user.UserID.ToString ()));
 									comboUsers.SelectedIndex = 1;
 								}
 							}
@@ -548,14 +545,14 @@ namespace R7.University.Employee
 
 				// clear user combox & add default item
 				comboUsers.Items.Clear ();
-				comboUsers.AddItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ());
+                comboUsers.Items.Add (new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
 
 				if (usersFoundTotal > 0)
 				{
 					foreach (var userObj in users)
 					{
 						var user = userObj as UserInfo;
-						comboUsers.AddItem (user.Username + " / " + user.Email, user.UserID.ToString ());
+                        comboUsers.Items.Add (new ListItem (user.Username + " / " + user.Email, user.UserID.ToString ()));
 					}
 
 					// at least one user exists, so select first one:
@@ -939,7 +936,7 @@ namespace R7.University.Employee
 	
 							textAchievementTitle.Text = achievement.Title;
 							textAchievementShortTitle.Text = achievement.ShortTitle;
-							comboAchievementTypes.Select (achievement.AchievementType.ToString (), false);
+							comboAchievementTypes.SelectByValue (achievement.AchievementType);
 							
 							panelAchievementTitle.Visible = true;
 							panelAchievementShortTitle.Visible = true;
