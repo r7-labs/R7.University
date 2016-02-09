@@ -261,6 +261,9 @@
 	<data name="labelAchievements.Help">
 		<value>Select the achievement from dropdown by title or select achivement type and set full and short titles manually.</value>
 	</data>
+    <data name="sectionAdvancedAchievementProperties.Text">
+        <value>Advanced Achievement Properties</value>
+    </data>
     <data name="Division.Column">
         <value>Division</value>
     </data>

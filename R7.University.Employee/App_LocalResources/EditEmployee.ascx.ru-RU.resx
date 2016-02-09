@@ -273,6 +273,9 @@
 	<data name="labelAchievements.Help">
 		<value>Выберите достижение из списка по названию, или выберите тип достижения и введите полное и сокращенное названия достижения вручную.</value>
 	</data>
+    <data name="sectionAdvancedAchievementProperties.Text">
+        <value>Расширенные свойства достижения</value>
+    </data>
     <data name="Division.Column">
         <value>Подразделение</value>
     </data>
