@@ -89,8 +89,8 @@
             <asp:Repeater id="repeaterEduPrograms" runat="server" OnItemDataBound="repeaterEduPrograms_ItemDataBound">
                 <ItemTemplate>
                     <h3>
-                        <asp:Literal id="literalEduProgramAnchor" runat="server" />
-                        <asp:Label id="labelEduProgram" runat="server" Text='<%# Eval ("EduProfileString") %>' />
+                        <asp:Literal id="literalEduProgramProfileAnchor" runat="server" />
+                        <asp:Label id="labelEduProgramProfile" runat="server" Text='<%# Eval ("EduProgramProfileString") %>' />
                     </h3>
                     <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
                             OnRowDataBound="gridTeachersByEduProgram_RowDataBound"

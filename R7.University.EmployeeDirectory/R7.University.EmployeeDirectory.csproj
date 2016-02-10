@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="js\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -95,6 +96,7 @@
     </Compile>
     <Compile Include="components\EmployeeDirectoryModuleBase.cs" />
     <Compile Include="components\EmployeeDirectoryMode.cs" />
+    <Compile Include="ViewModels\EduProgramProfileObrnadzorTeachersViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

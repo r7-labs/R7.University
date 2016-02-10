@@ -35,6 +35,7 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
+using R7.University.ModelExtensions;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -43,6 +44,18 @@ namespace R7.University.EmployeeDirectory
     public partial class ViewEmployeeDirectory : EmployeeDirectoryPortalModuleBase
     {
         #region Properties
+
+        private ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get
+            { 
+                if (viewModelContext == null)
+                    viewModelContext = new ViewModelContext (this);
+
+                return viewModelContext;
+            }
+        }
 
         protected string SearchText
         {
@@ -150,14 +163,30 @@ namespace R7.University.EmployeeDirectory
                     }
                     else if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
                     {
-                        var eduProfiles = EmployeeDirectoryController.GetObjects<EduProgramProfileInfoEx> ().OrderBy (epp => epp.Code).ToList ();
+                        var eduLevelIds = EmployeeDirectorySettings.EduLevels;
 
-                        eduProfiles.Add (new EduProgramProfileInfoEx { 
-                            EduProgramProfileID = Null.NullInteger,
-                            Code = string.Empty,
-                            Title = LocalizeString ("NoEduPrograms.Text")
-                        });
- 
+                        var eduProfiles = EmployeeDirectoryController.GetObjects<EduProgramProfileInfo> ()
+                            // .Where (epp => epp.IsPublished () || IsEditable)
+                            .WithEduPrograms (EmployeeDirectoryController)
+                            .Where (epp => eduLevelIds.Contains (epp.EduProgramID))
+                            .WithEduLevel (EmployeeDirectoryController)
+                            .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
+                            .ThenBy (epp => epp.EduProgram.Code)
+                            .ThenBy (epp => epp.EduProgram.Title)
+                            .ThenBy (epp => epp.ProfileTitle)
+                            .Select (epp => new EduProgramProfileObrnadzorTeachersViewModel (epp, ViewModelContext))
+                            .ToList ();
+
+                        eduProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
+                            new EduProgramProfileInfo { 
+                                EduProgramProfileID = Null.NullInteger,
+                                EduProgram = new EduProgramInfo {
+                                    Code = string.Empty,
+                                    Title = LocalizeString ("NoEduPrograms.Text")
+                                }
+                            }, ViewModelContext)
+                        );
+
                         if (eduProfiles.Count > 0)
                         {
                             repeaterEduPrograms.DataSource = eduProfiles;
@@ -180,11 +209,11 @@ namespace R7.University.EmployeeDirectory
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var eduProfile = (EduProgramProfileInfoEx) e.Item.DataItem;
+                var eduProfile = (EduProgramProfileObrnadzorTeachersViewModel) e.Item.DataItem;
 
                 // find controls in the template
-                var labelEduProgram = (Label) e.Item.FindControl ("labelEduProgram");
-                var literalEduProgramAnchor = (Literal) e.Item.FindControl ("literalEduProgramAnchor");
+                var labelEduProgramProfile = (Label) e.Item.FindControl ("labelEduProgramProfile");
+                var literalEduProgramProfileAnchor = (Literal) e.Item.FindControl ("literalEduProgramProfileAnchor");
                 var gridTeachersByEduProgram = (GridView) e.Item.FindControl ("gridTeachersByEduProgram");
 
                 IEnumerable<EmployeeInfo> teachers;
@@ -192,22 +221,20 @@ namespace R7.University.EmployeeDirectory
 
                 if (Null.IsNull (eduProfile.EduProgramProfileID))
                 {
-                    anchorName = "empty";
-
-                    // select all teachers w/o edu programs
+                    // select all teachers w/o edu. program profiles
                     teachers = EmployeeDirectoryController.GetTeachersWithoutEduPrograms ();
+                    anchorName = "empty";
                 }
                 else
                 {
-                    anchorName = eduProfile.EduProgramProfileID.ToString ();
-
-                    // select teachers for current edu program
+                    // select teachers for current edu. program profile
                     teachers = EmployeeDirectoryController.GetTeachersByEduProgramProfile (eduProfile.EduProgramProfileID);
+                    anchorName = eduProfile.EduProgramProfileID.ToString ();
                 }
 
                 // create anchor to simplify navigation
-                literalEduProgramAnchor.Text = "<a id=\"eduprogram-" + anchorName + "\"" +
-                    " name=\"eduprogram-" + anchorName + "\"></a>";
+                literalEduProgramProfileAnchor.Text = "<a id=\"eduprogramprofile-" + anchorName + "\"" +
+                    " name=\"eduprogramprofile-" + anchorName + "\"></a>";
 
                 if (teachers.Any ())
                 {
@@ -221,7 +248,7 @@ namespace R7.University.EmployeeDirectory
                 }
                 else
                 {
-                    labelEduProgram.Visible = false;
+                    labelEduProgramProfile.Visible = false;
                     gridTeachersByEduProgram.Visible = false;
                 }
             }
