@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="labelPageSize.Text" xml:space="preserve">
-    <value>Page Size</value>
+    <value>Page Size:</value>
   </data>
 	<data name="labelPageSize.Help" xml:space="preserve">
     <value>Select preferable page size for data grids of this module.</value>
   </data>
 	<data name="labelTables.Text" xml:space="preserve">
-    <value>Tables</value>
+    <value>Tables:</value>
   </data>
 	<data name="labelTables.Help" xml:space="preserve">
     <value>Select tables to display in this module.</value>

@@ -13,15 +13,15 @@
 	<br /><br />
 	<fieldset>	
 		<div class="dnnFormItem">
-			<dnn:Label id="lblTitle" runat="server" ControlName="txtTitle" Suffix=":" />
+			<dnn:Label id="lblTitle" runat="server" ControlName="txtTitle" />
 			<asp:TextBox id="txtTitle" runat="server" MaxLength="128" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblShortTitle" runat="server" ControlName="txtShortTitle" Suffix=":" />
+			<dnn:Label id="lblShortTitle" runat="server" ControlName="txtShortTitle" />
 			<asp:TextBox id="txtShortTitle" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblParentDivision" runat="server" ControlName="comboParentDivisions" Suffix=":" />
+			<dnn:Label id="lblParentDivision" runat="server" ControlName="comboParentDivisions" />
             <dnn:DnnTreeView id="treeParentDivisions" runat="server"
                 DataFieldID="DivisionID"
                 DataFieldParentID="ParentDivisionID"
@@ -30,7 +30,7 @@
             />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblDivisionTerm" runat="server" ControlName="tsDivisionTerm" Suffix=":" />
+			<dnn:Label id="lblDivisionTerm" runat="server" ControlName="tsDivisionTerm" />
 			<dnn:DnnTreeView ID="treeDivisionTerms" runat="server" 
                 DataFieldID="TermId"
                 DataFieldParentID="ParentTermId"
@@ -40,7 +40,7 @@
 			<br /><br />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblHomePage" runat="server" ControlName="urlHomePage" Suffix=":" />
+			<dnn:Label id="lblHomePage" runat="server" ControlName="urlHomePage" />
 			<dnn:Url id="urlHomePage" runat="server" UrlType="T" 
 					IncludeActiveTab="true"
 			        ShowFiles="false" ShowTabs="true"
@@ -49,47 +49,47 @@
 					ShowNone="true" ShowNewWindow="false" />      
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblWebSite" runat="server" ControlName="txtWebSite" Suffix=":" />
+			<dnn:Label id="lblWebSite" runat="server" ControlName="txtWebSite" />
 			<asp:TextBox id="txtWebSite" runat="server" MaxLength="128" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelWebSiteLabel" runat="server" ControlName="textWebSiteLabel" Suffix=":" />
+			<dnn:Label id="labelWebSiteLabel" runat="server" ControlName="textWebSiteLabel" />
 			<asp:TextBox id="textWebSiteLabel" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblPhone" runat="server" ControlName="txtPhone" Suffix=":" />
+			<dnn:Label id="lblPhone" runat="server" ControlName="txtPhone" />
 			<asp:TextBox id="txtPhone" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblFax" runat="server" ControlName="txtFax" Suffix=":" />
+			<dnn:Label id="lblFax" runat="server" ControlName="txtFax" />
 			<asp:TextBox id="txtFax" runat="server" MaxLength="50" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblEmail" runat="server" ControlName="txtEmail" Suffix=":" />
+			<dnn:Label id="lblEmail" runat="server" ControlName="txtEmail" />
 			<asp:TextBox id="txtEmail" runat="server" MaxLength="250" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblSecondaryEmail" runat="server" ControlName="txtSecondaryEmail" Suffix=":" />
+			<dnn:Label id="lblSecondaryEmail" runat="server" ControlName="txtSecondaryEmail" />
 			<asp:TextBox id="txtSecondaryEmail" runat="server" MaxLength="250" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="lblLocation" runat="server" ControlName="txtLocation" Suffix=":" />
+			<dnn:Label id="lblLocation" runat="server" ControlName="txtLocation" />
 			<asp:TextBox id="txtLocation" runat="server" MaxLength="128" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
+			<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" />
 			<asp:DropDownList id="comboWorkingHours" runat="server"
 						DataTextField="Name"
 						DataValueField="TermId"
 				 />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
+			<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" />
 			<asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" />
 			<asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" Suffix=":" />
+			<dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
 			<dnn:Url id="urlDocumentUrl" runat="server" UrlType="N" 
 					IncludeActiveTab="true"
 			        ShowFiles="true" ShowTabs="true"

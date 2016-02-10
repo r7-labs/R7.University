@@ -9,7 +9,7 @@
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
 	<fieldset>	
 		<div class="dnnFormItem">
-			<dnn:Label id="labelDivision" runat="server" ControlName="treeDivisions" Suffix=":" />
+			<dnn:Label id="labelDivision" runat="server" ControlName="treeDivisions" />
 			<dnn:DnnTreeView id="treeDivisions" runat="server"
 				DataFieldID="DivisionID"
 				DataFieldParentID="ParentDivisionID"

@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="labelTitle.Text" xml:space="preserve">
-    	<value>Title</value>
+    	<value>Title:</value>
   	</data>
 	<data name="labelTitle.Help" xml:space="preserve">
     	<value>Enter the title for an employee achievement.</value>
   	</data>
 	<data name="labelShortTitle.Text" xml:space="preserve">
-    	<value>Short title</value>
+    	<value>Short Title:</value>
  	</data>
 	<data name="labelShortTitle.Help" xml:space="preserve">
     	<value>Enter the short title for employee achievement.</value>
   	</data>
 	<data name="labelAchievementTypes.Text">
-		<value>Achievement Type</value>
+		<value>Achievement Type:</value>
 	</data>
 	<data name="labelAchievementTypes.Help">
 		<value>Select employee achievement type from the list.</value>

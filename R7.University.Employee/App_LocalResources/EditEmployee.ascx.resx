@@ -13,19 +13,19 @@
         <value>Press to try lookup the photo by employee name in default folder.</value>
     </data>
 	<data name="labelPhoto.Text">
-		<value>Photo</value>
+		<value>Photo:</value>
 	</data>
 	<data name="labelPhoto.Help">
 		<value>Add or select photo image for an employee.</value>
 	</data>
 	<data name="labelUser.Text">
-		<value>User</value>
+		<value>User:</value>
 	</data>
 	<data name="labelUser.Help">
 		<value>Optional link to existing website user.</value>
 	</data>
 	<data name="labelLastName.Text">
-		<value>Last Name</value>
+		<value>Last Name:</value>
 	</data>
 	<data name="labelLastName.Help">
 		<value>Specify employee last name.</value>
@@ -34,7 +34,7 @@
 		<value>Last name is required</value>
 	</data>
 	<data name="labelFirstName.Text">
-		<value>First Name</value>
+		<value>First Name:</value>
 	</data>
 	<data name="labelFirstName.Help">
 		<value>Specify employee first name.</value>
@@ -43,121 +43,121 @@
 		<value>First name is required</value>
 	</data>
 	<data name="labelOtherName.Text">
-		<value>Other Name</value>
+		<value>Other Name:</value>
 	</data>
 	<data name="labelOtherName.Help">
 		<value>Specify employee other name.</value>
 	</data>
 	<data name="labelPhone.Text">
-		<value>Phone</value>
+		<value>Phone:</value>
 	</data>
 	<data name="labelPhone.Help">
 		<value>Enter phone number.</value>
 	</data>
 	<data name="labelCellPhone.Text">
-		<value>Cell Phone</value>
+		<value>Cell Phone:</value>
 	</data>
 	<data name="labelCellPhone.Help">
 		<value>Enter second (cellular) phone number.</value>
 	</data>
 	<data name="labelFax.Text">
-		<value>Fax</value>
+		<value>Fax:</value>
 	</data>
 	<data name="labelFax.Help">
 		<value>Enter fax number.</value>
 	</data>
 	<data name="labelEmail.Text">
-		<value>Email</value>
+		<value>Email:</value>
 	</data>
 	<data name="labelEmail.Help">
 		<value>Enter email address.</value>
 	</data>
 	<data name="labelSecondaryEmail.Text">
-		<value>Secondary Email</value>
+		<value>Secondary Email:</value>
 	</data>
 	<data name="labelSecondaryEmail.Help">
 		<value>Enter secondary email address.</value>
 	</data>
 	<data name="labelWebSite.Text">
-		<value>Personal Website</value>
+		<value>Personal Website:</value>
 	</data>
 	<data name="labelWebSite.Help">
 		<value>Enter personal website address.</value>
 	</data>
     <data name="labelWebSiteLabel.Text">
-        <value>Website Label</value>
+        <value>Website Label:</value>
     </data>
     <data name="labelWebSiteLabel.Help">
         <value>Optional label for personal website. If not specified, website URL will be used instead.</value>
     </data>
 	<data name="labelMessenger.Text">
-		<value>Instant Messenger</value>
+		<value>Instant Messenger:</value>
 	</data>
 	<data name="labelMessenger.Help">
 		<value>Enter instant messager kind and number.</value>
 	</data>
 	<data name="labelWorkingHours.Text">
-		<value>Working Hours</value>
+		<value>Working Hours:</value>
 	</data>
 	<data name="labelWorkingHours.Help">
 		<value>Select employee's working hours (schedule) from a list</value>
 	</data>
 	<data name="labelCustomWorkingHours.Text">
-		<value>Custom Working Hours</value>
+		<value>Custom Working Hours:</value>
 	</data>
 	<data name="labelCustomWorkingHours.Help">
 		<value>Enter the employee's custom working hours (schedule) description.</value>
 	</data>
 	<data name="labelWorkingPlace.Text">
-		<value>Working Place</value>
+		<value>Working Place:</value>
 	</data>
 	<data name="labelWorkingPlace.Help">
 		<value>Enter emloyee's working place, e.g. office and cabinet number.</value>
 	</data>
 	<data name="labelExperienceYears.Text">
-		<value>Experience (years)</value>
+		<value>Experience (years):</value>
 	</data>
 	<data name="labelExperienceYears.Help">
 		<value>Enter employee's working experience (years).</value>
 	</data>
 	<data name="labelExperienceYearsBySpec.Text">
-		<value>Experience by Speciality (years)</value>
+		<value>Experience by Speciality (years):</value>
 	</data>
 	<data name="labelExperienceYearsBySpec.Help">
 		<value>Enter employee's working experience by speciality (years).</value>
 	</data>
 	<data name="labelBiography.Text">
-		<value>About</value>
+		<value>About:</value>
 	</data>
 	<data name="labelBiography.Help">
 		<value>Enter employee's biography / about.</value>
 	</data>
 	<data name="labelIsPublished.Text">
-		<value>Published</value>
+		<value>Published?</value>
 	</data>
 	<data name="labelIsPublished.Help">
 		<value>Check to make employee record published.</value>
 	</data>
 	<data name="labelUserLookup.Text">
-		<value>User Lookup</value>
+		<value>User Lookup:</value>
 	</data>
 	<data name="labelUserLookup.Help">
 		<value>Enter user email address or username and press User Lookup to find users.</value>
 	</data>
 	<data name="labelPositions.Text">
-		<value>Position</value>
+		<value>Position:</value>
 	</data>
 	<data name="labelPositions.Help">
 		<value>Specify position for this employee.</value>
 	</data>
     <data name="labelPositionTitleSuffix.Text">
-        <value>Position Suffix</value>
+        <value>Position Suffix:</value>
     </data>
     <data name="labelPositionTitleSuffix.Help">
         <value>Specify a suffix to use along with the position title.</value>
     </data>
 	<data name="labelDivisions.Text">
-		<value>Division</value>
+		<value>Division:</value>
 	</data>
 	<data name="labelDivisions.Help">
 		<value>Specify division for this employee</value>
@@ -166,7 +166,7 @@
 		<value>User Lookup</value>
 	</data>
     <data name="buttonPhotoLookup.Text">
-        <value>Photo Lookup</value>
+        <value>Photo Lookup:</value>
     </data>
 	<data name="checkIncludeDeletedUsers.Text">
 		<value>Include deleted users?</value>
@@ -181,7 +181,7 @@
         <value>Cancel</value>
     </data>
 	<data name="labelIsPrime.Text">
-		<value>Is Prime</value>
+		<value>Is Prime?</value>
 	</data>
     <data name="labelIsPrime.Help">
         <value>If checked, this occupied position will be counted as prime for the employee.</value>
@@ -190,7 +190,7 @@
 		<value>Add to Vocabulary</value>
 	</data>
 	<data name="labelAchievementTypes.Text">
-		<value>Achievement Type</value>
+		<value>Achievement Type:</value>
 	</data>
 	<data name="labelAchievementTypes.Help">
 		<value>Select employee achievement type from the list.</value>
@@ -211,7 +211,7 @@
 		<value>Enter starting and ending years of the achievement. If they are not available, leave fields empty or set to -1. Set end year to 0 to specify ATM value.</value>
 	</data>
 	<data name="labelAchievementTitle.Text">
-		<value>Title</value>
+		<value>Title:</value>
 	</data>
 	<data name="labelAchievementTitle.Help">
 		<value>Enter the title for the described achievement.</value>
@@ -220,37 +220,37 @@
         <value>Achievement title is too long.</value>
     </data>  
 	<data name="labelAchievementShortTitle.Text">
-		<value>Short Title</value>
+		<value>Short Title:</value>
 	</data>
 	<data name="labelAchievementShortTitle.Help">
 		<value>Enter the optional short title for the described achievement.</value>
 	</data>
 	<data name="labelAchievementDescription.Text">
-		<value>Description</value>
+		<value>Description:</value>
 	</data>
 	<data name="labelAchievementDescription.Help">
 		<value>Enter optional description to describe achievement.</value>
 	</data>
 	<data name="labelAchievementTitleSuffix.Text">
-		<value>Title Suffix</value>
+		<value>Title Suffix:</value>
 	</data>
 	<data name="labelAchievementTitleSuffix.Help">
 		<value>Enter the extension suffix for the achievement title.</value>
 	</data>
 	<data name="labelIsTitle.Text">
-		<value>Is Title</value>
+		<value>Is Title?</value>
 	</data>
 	<data name="labelIsTitle.Help">
 		<value>If checked, this achivement will be displayed as one of employee's titles along with his/her name.</value>
 	</data>
 	<data name="labelDocumentURL.Text">
-		<value>Document URL</value>
+		<value>Document URL:</value>
 	</data>
 	<data name="labelDocumentURL.Help">
 		<value>Specify URL for a document, associated with the achievement.</value>
 	</data>
 	<data name="labelAchievements.Text">
-		<value>Achievement</value>
+		<value>Achievement:</value>
 	</data>
 	<data name="labelAchievements.Help">
 		<value>Select the achievement from dropdown by title or select achivement type and set full and short titles manually.</value>

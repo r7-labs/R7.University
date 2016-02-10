@@ -7,19 +7,19 @@
     <value>About EmployeeList Settings</value>
   </data>
 	<data name="labelDivision.Text" xml:space="preserve">
-    <value>Division</value>
+    <value>Division:</value>
   </data>
 	<data name="labelDivision.Help" xml:space="preserve">
     <value>Select a division from a tree to display it's employees.</value>
   </data>
 	<data name="labelIncludeSubdivisions.Text" xml:space="preserve">
-    <value>Include Subdivisions</value>
+    <value>Include Subdivisions?</value>
   </data>
 	<data name="labelIncludeSubdivisions.Help" xml:space="preserve">
     <value>Check to include employees from all subordinate divisions.</value>
   </data>
 	<data name="labelSortType.Text" xml:space="preserve">
-    <value>Sort Type</value>
+    <value>Sort Type:</value>
   </data>
 	<data name="labelIncludeSubdivisions.Help" xml:space="preserve">
     <value>Select a sort type from the list to use with this module.</value>
@@ -34,7 +34,7 @@
     <value>By employee name</value>
   </data>
 	<data name="labelPhotoWidth.Text" xml:space="preserve">
-	<value>Photo Width</value>
+	<value>Photo Width:</value>
   </data>
 	<data name="labelPhotoWidth.Help" xml:space="preserve">
 	<value>Enter photo width in pixels, or leave empty to use original photo size.</value>
@@ -46,7 +46,7 @@
 		<value>&lt;strong&gt;Important note about module caching:&lt;/strong&gt;&lt;br /&gt;This module uses its own custom data cache, so it is recommended to disable module cache on a "Page Settings" tab, and then set appropriate cache duration (in seconds) in a "Data Cache Duration" field below.</value>
 	</data>
 	<data name="labelDataCacheTime.Text" xml:space="preserve">
-		<value>Data Cache Duration (seconds)</value>
+		<value>Data Cache Duration (seconds):</value>
 	</data>
 	<data name="labelDataCacheTime.Help" xml:space="preserve">
 		<value>Enter data cache duration in seconds. Leave empty or set to 0 to disable module data cache.</value>

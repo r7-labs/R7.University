@@ -9,7 +9,7 @@
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
 	<fieldset>	
 		<div class="dnnFormItem">
-			<dnn:Label id="labelDivision" runat="server" ControlName="treeDivisions" Suffix=":" />
+			<dnn:Label id="labelDivision" runat="server" ControlName="treeDivisions" />
 			<dnn:DnnTreeView id="treeDivisions" runat="server"
 				DataFieldID="DivisionID"
 				DataFieldParentID="ParentDivisionID"
@@ -18,15 +18,15 @@
 			/> 
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelIncludeSubdivisions" runat="server" ControlName="checkIncludeSubdivisions" Suffix=":" />
+			<dnn:Label id="labelIncludeSubdivisions" runat="server" ControlName="checkIncludeSubdivisions" />
 			<asp:CheckBox id="checkIncludeSubdivisions" runat="server" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelSortType" runat="server" ControlName="comboSortType" Suffix=":" />
+			<dnn:Label id="labelSortType" runat="server" ControlName="comboSortType" />
 			<dnn:DnnComboBox id="comboSortType" runat="server"/>
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" Suffix=":" />
+			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" />
 			<asp:TextBox id="textPhotoWidth" runat="server" Style="width:100px" />
 		</div>
 	</fieldset>	
@@ -38,7 +38,7 @@
 			<asp:Label id="labelDataCacheInfo" runat="server" resourcekey="labelDataCacheInfo" CssClass="dnnFormMessage" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelDataCacheTime" runat="server" ControlName="textDataTime" Suffix=":" />
+			<dnn:Label id="labelDataCacheTime" runat="server" ControlName="textDataTime" />
 			<asp:TextBox id="textDataCacheTime" runat="server" Style="width:100px" />
 		</div>
 	</fieldset>	

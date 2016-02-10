@@ -11,7 +11,7 @@
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
 	<fieldset>	
 		<div class="dnnFormItem">
-			<dnn:Label id="labelEmployee" runat="server" ControlName="comboEmployees" Suffix=":" />
+			<dnn:Label id="labelEmployee" runat="server" ControlName="comboEmployees" />
             <asp:UpdatePanel id="updatePanelEmployees" runat="server">
                 <ContentTemplate>
                     <act:ComboBox id="comboEmployees" runat="server" CssClass="act_combobox"
@@ -25,15 +25,15 @@
             </asp:UpdatePanel>
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" Suffix=":" />
+			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" />
 			<asp:TextBox id="textPhotoWidth" runat="server" Style="width:100px" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" Suffix=":" />
+			<dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" />
 			<asp:CheckBox id="checkShowCurrentUser" runat="server" Checked="false" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" Suffix=":" />
+			<dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" />
 			<asp:CheckBox id="checkAutoTitle" runat="server" Checked="true" />
 		</div>
 	</fieldset>	
@@ -45,7 +45,7 @@
 			<asp:Label id="labelDataCacheInfo" runat="server" resourcekey="labelDataCacheInfo" CssClass="dnnFormMessage" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelDataCacheTime" runat="server" ControlName="textDataTime" Suffix=":" />
+			<dnn:Label id="labelDataCacheTime" runat="server" ControlName="textDataTime" />
 			<asp:TextBox id="textDataCacheTime" runat="server" Style="width:100px" />
 		</div>
 	</fieldset>	

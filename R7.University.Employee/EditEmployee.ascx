@@ -27,19 +27,19 @@
 		<div id="employeeCommon">
 			<fieldset>
                 <div class="dnnFormItem dnnFormRequired">
-                    <dnn:Label id="labelLastName" runat="server" ControlName="textLastName" Suffix=":" />
+                    <dnn:Label id="labelLastName" runat="server" ControlName="textLastName" />
                     <asp:TextBox id="textLastName" runat="server" MaxLength="50" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="textLastName" Display="Dynamic"
                         CssClass="dnnFormMessage dnnFormError" resourcekey="LastName.Required" />
                 </div>
                 <div class="dnnFormItem dnnFormRequired">
-                    <dnn:Label id="labelFirstName" runat="server" ControlName="textFirstName" Suffix=":" />
+                    <dnn:Label id="labelFirstName" runat="server" ControlName="textFirstName" />
                     <asp:TextBox id="textFirstName" runat="server" MaxLength="50" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="textFirstName" Display="Dynamic"
                         CssClass="dnnFormMessage dnnFormError" resourcekey="FirstName.Required" />
                 </div>
                 <div class="dnnFormItem">
-                    <dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" Suffix=":" />
+                    <dnn:Label id="labelOtherName" runat="server" ControlName="textOtherName" />
                     <asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
                 </div>
                 <div class="dnnFormItem">
@@ -48,15 +48,15 @@
                         CssClass="dnnSecondaryAction" OnClick="buttonPhotoLookup_Click" />
                 </div>
             	<div class="dnnFormItem">
-					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" Suffix=":" />
+					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" />
                     <dnn:Picker id="pickerPhoto" runat="server" Required="true" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" Suffix=":" />
+					<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" />
 					<asp:DropDownList id="comboUsers" runat="server" />
 				</div>
                 <div class="dnnFormItem">
-					<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" Suffix=":" />
+					<dnn:Label id="labelUserLookup" runat="server" ControlName="textUserLookup" />
                     <div style="float:left;width:45%;margin-bottom:1em">
                         <asp:TextBox id="textUserLookup" runat="server" CssClass="dnn-form-control" Style="display:block;width:100%" />
                         <asp:CheckBox id="checkIncludeDeletedUsers" runat="server" resourcekey="checkIncludeDeletedUsers" />
@@ -65,50 +65,50 @@
                     </div>
 				</div>
                 <div class="dnnFormItem">
-					<dnn:Label id="labelPhone" runat="server" ControlName="textPhone" Suffix=":" />
+					<dnn:Label id="labelPhone" runat="server" ControlName="textPhone" />
 					<asp:TextBox id="textPhone" runat="server" MaxLength="64" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelCellPhone" runat="server" ControlName="textCellPhone" Suffix=":" />
+					<dnn:Label id="labelCellPhone" runat="server" ControlName="textCellPhone" />
 					<asp:TextBox id="textCellPhone" runat="server" MaxLength="64"/>
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelFax" runat="server" ControlName="textFax" Suffix=":" />
+					<dnn:Label id="labelFax" runat="server" ControlName="textFax" />
 					<asp:TextBox id="textFax" runat="server" MaxLength="30" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelEmail" runat="server" ControlName="textEmail" Suffix=":" />
+					<dnn:Label id="labelEmail" runat="server" ControlName="textEmail" />
 					<asp:TextBox id="textEmail" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelSecondaryEmail" runat="server" ControlName="textSecondaryEmail" Suffix=":" />
+					<dnn:Label id="labelSecondaryEmail" runat="server" ControlName="textSecondaryEmail" />
 					<asp:TextBox id="textSecondaryEmail" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelWebSite" runat="server" ControlName="textWebSite" Suffix=":" />
+					<dnn:Label id="labelWebSite" runat="server" ControlName="textWebSite" />
 					<asp:TextBox id="textWebSite" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelWebSiteLabel" runat="server" ControlName="textWebSiteLabel" Suffix=":" />
+					<dnn:Label id="labelWebSiteLabel" runat="server" ControlName="textWebSiteLabel" />
 					<asp:TextBox id="textWebSiteLabel" runat="server" MaxLength="64" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelMessenger" runat="server" ControlName="textMessenger" Suffix=":" />
+					<dnn:Label id="labelMessenger" runat="server" ControlName="textMessenger" />
 					<asp:TextBox id="textMessenger" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelWorkingPlace" runat="server" ControlName="textWorkingPlace" Suffix=":" />
+					<dnn:Label id="labelWorkingPlace" runat="server" ControlName="textWorkingPlace" />
 					<asp:TextBox id="textWorkingPlace" runat="server" MaxLength="50" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
+					<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" />
 					<asp:DropDownList id="comboWorkingHours" runat="server"
 								DataTextField="Name"
 								DataValueField="TermId"
 						 />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" Suffix=":" />
+					<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" />
 					<asp:TextBox id="textWorkingHours" runat="server" MaxLength="100" Style="margin-bottom:0" />
 				</div>
                 <div class="dnnFormItem">
@@ -116,15 +116,15 @@
                     <asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
 				</div>
                 <div class="dnnFormItem">
-					<dnn:Label id="labelExperienceYears" runat="server" ControlName="textExperienceYears" Suffix=":" />
+					<dnn:Label id="labelExperienceYears" runat="server" ControlName="textExperienceYears" />
 					<asp:TextBox id="textExperienceYears" runat="server" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelExperienceYearsBySpec" runat="server" ControlName="textExperienceYearsBySpec" Suffix=":" />
+					<dnn:Label id="labelExperienceYearsBySpec" runat="server" ControlName="textExperienceYearsBySpec" />
 					<asp:TextBox id="textExperienceYearsBySpec" runat="server" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelIsPublished" runat="server" ControlName="checkIsPublished" Suffix="?" />
+					<dnn:Label id="labelIsPublished" runat="server" ControlName="checkIsPublished" />
 					<asp:CheckBox id="checkIsPublished" runat="server" />
 				</div>
 			</fieldset>
@@ -162,7 +162,7 @@
 				        </asp:GridView>
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" Suffix=":" />
+					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" />
 					<dnn:DnnTreeView id="treeDivisions" runat="server"
 						DataTextField="DisplayShortTitle"
 						DataValueField="DivisionID"
@@ -171,7 +171,7 @@
 					/>
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" Suffix=":" />
+					<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
                     <asp:UpdatePanel id="updatePanelPositions" runat="server">
                         <ContentTemplate>
                             <act:ComboBox id="comboPositions" runat="server" CssClass="act_combobox"
@@ -185,11 +185,11 @@
                     </asp:UpdatePanel>
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" Suffix=":" />
+					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" />
 					<asp:TextBox id="textPositionTitleSuffix" runat="server" MaxLength="100" />
 				</div>
 				<div class="dnnFormItem" style="margin-bottom:10px">
-					<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" Suffix="?" />
+					<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" />
 					<asp:CheckBox id="checkIsPrime" runat="server" />
 				</div>
 				<div class="dnnFormItem">
@@ -242,7 +242,7 @@
                 <asp:UpdatePanel id="updatePanelAchievement" runat="server">
                     <ContentTemplate>
         				<div class="dnnFormItem">
-        					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" Suffix=":" />
+        					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
                                     <act:ComboBox id="comboAchievement" runat="server" CssClass="act_combobox"
                                         DropDownStyle="DropDownList"
                                         AutoCompleteMode="SuggestAppend"
@@ -254,14 +254,14 @@
                                     />
                         </div>
                         <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
-                            <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" Suffix=":" />
+                            <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
                             <asp:DropDownList id="comboAchievementTypes" runat="server" 
                                 DataTextField="LocalizedAchivementType"
                                 DataValueField="AchievementType"
                             />
                         </asp:Panel>
         				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
-        					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" Suffix=":" />
+        					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
         					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
                             <asp:RegularExpressionValidator runat="server"
                                 CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
@@ -270,7 +270,7 @@
                             </asp:RegularExpressionValidator>
         				</asp:Panel>
                         <div class="dnnFormItem">
-        					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" Suffix=":" />
+        					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
         					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
         				</div>
         				<div class="dnnFormItem">
@@ -282,11 +282,11 @@
                             </div>
         				</div>
                         <div class="dnnFormItem">
-        					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" Suffix="?" />
+        					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />
         					<asp:CheckBox id="checkIsTitle" runat="server" CssClass="dnn-form-control" />
         				</div>
                         <div class="dnnFormItem">
-                            <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" Suffix=":" />
+                            <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" />
                             <dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
                                 IncludeActiveTab="true"
                                 ShowFiles="true" ShowTabs="true"
@@ -297,11 +297,11 @@
                         <h2 class="dnnFormSectionHead dnnClear"><a href="#"><%: LocalizeString ("sectionAdvancedAchievementProperties.Text") %></a></h2>
                         <fieldset>
                             <asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
-                                <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" Suffix=":" />
+                                <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" />
                                 <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
                             </asp:Panel>
                             <div class="dnnFormItem">
-                                <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" Suffix=":" />
+                                <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" />
                                 <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
                             </div>
                         </fieldset>
