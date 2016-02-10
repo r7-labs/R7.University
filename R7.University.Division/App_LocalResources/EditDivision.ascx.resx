@@ -126,4 +126,16 @@
 	<data name="ControlTitle_edit.Text" xml:space="preserve">
     <value>Edit Division</value>
   </data>
+    <data name="Common.Tab">
+        <value>Common</value>
+    </data>
+    <data name="Contacts.Tab">
+        <value>Contacts</value>
+    </data>
+    <data name="Documents.Tab">
+        <value>Documents</value>
+    </data>
+    <data name="Bindings.Tab">
+        <value>Website Bindings</value>
+    </data>
 </root>

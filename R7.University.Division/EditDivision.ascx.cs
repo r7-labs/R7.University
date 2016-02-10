@@ -20,6 +20,42 @@ namespace R7.University.Division
 	{
         private int? itemId;
 
+        #region Types
+
+        public enum EditDivisionTab { Common, Contacts, Documents, Bindings };
+
+        #endregion
+
+        #region Properties
+
+        protected EditDivisionTab SelectedTab
+        {
+            get 
+            {
+                // get postback initiator
+                var eventTarget = Request.Form ["__EVENTTARGET"];
+
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlHomePage.ID +"$"))
+                {
+                    ViewState ["SelectedTab"] = EditDivisionTab.Bindings;
+                    return EditDivisionTab.Bindings;
+                }
+
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentUrl.ID +"$"))
+                {
+                    ViewState ["SelectedTab"] = EditDivisionTab.Documents;
+                    return EditDivisionTab.Documents;
+                }
+
+                // otherwise, get current tab from viewstate
+                var obj = ViewState ["SelectedTab"];
+                return (obj != null) ? (EditDivisionTab)obj : EditDivisionTab.Common;
+            }
+            set { ViewState ["SelectedTab"] = value; }
+        }
+
+        #endregion
+
         protected EditDivision (): base ("division_id")
         {}
 
