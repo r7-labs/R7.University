@@ -14,8 +14,8 @@
 			<asp:TextBox ID="textShortTitle" runat="server" MaxLength="64" />
 		</div>
 		<div class="dnnFormItem">
-			<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
-			<dnn:DnnComboBox id="comboAchievementTypes" runat="server" 
+			<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementType" />
+			<asp:DropDownList id="comboAchievementType" runat="server" 
 				DataTextField="LocalizedAchivementType"
 				DataValueField="AchievementType"
 			/>

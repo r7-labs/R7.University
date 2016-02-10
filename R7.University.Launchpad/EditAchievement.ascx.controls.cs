@@ -20,6 +20,6 @@ namespace R7.University.Launchpad
 		protected LabelControl labelShortTitle;
 		protected TextBox textShortTitle;
 		protected LabelControl labelAchievementType;
-		protected DnnComboBox comboAchievementTypes;
+		protected DropDownList comboAchievementType;
 	}
 }
