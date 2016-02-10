@@ -25,8 +25,10 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.R7;
+using DotNetNuke.Web.UI.WebControls;
 using R7.University;
 
 namespace R7.University.EmployeeDirectory
@@ -40,6 +42,17 @@ namespace R7.University.EmployeeDirectory
 
             comboMode.DataSource = Enum.GetNames (typeof (EmployeeDirectoryMode));
             comboMode.DataBind ();
+
+            // fill edulevels list
+            var eduLevels = EmployeeDirectoryController.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
+
+            foreach (var eduLevel in eduLevels)
+            {
+                listEduLevels.Items.Add (new DnnListBoxItem { 
+                    Text = eduLevel.DisplayShortTitle, 
+                    Value = eduLevel.EduLevelID.ToString ()
+                });
+            }
         }
 
         /// <summary>
@@ -52,6 +65,16 @@ namespace R7.University.EmployeeDirectory
                 if (!IsPostBack)
                 {
                     comboMode.SelectByValue (EmployeeDirectorySettings.Mode);
+
+                    // check edulevels list items
+                    foreach (var eduLevelId in EmployeeDirectorySettings.EduLevels)
+                    {
+                        var item = listEduLevels.FindItemByValue (eduLevelId.ToString ());
+                        if (item != null)
+                        {
+                            item.Checked = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -68,6 +91,7 @@ namespace R7.University.EmployeeDirectory
             try
             {
                 EmployeeDirectorySettings.Mode = (EmployeeDirectoryMode) Enum.Parse (typeof (EmployeeDirectoryMode), comboMode.SelectedValue);
+                EmployeeDirectorySettings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
 
                 Utils.SynchronizeModule (this);
             }

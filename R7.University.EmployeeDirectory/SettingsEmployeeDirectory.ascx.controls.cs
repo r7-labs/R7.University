@@ -11,5 +11,6 @@ namespace R7.University.EmployeeDirectory
     public partial class SettingsEmployeeDirectory
     {    
         protected DropDownList comboMode;
+        protected DnnListBox listEduLevels;
     }
 }

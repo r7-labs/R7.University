@@ -25,6 +25,8 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.R7;
@@ -51,6 +53,21 @@ namespace R7.University.EmployeeDirectory
         {
             get { return ReadSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", EmployeeDirectoryMode.Search); }
             set { WriteModuleSetting<EmployeeDirectoryMode> ("EmployeeDirectory_Mode", value); }
+        }
+
+        public IList<int> EduLevels
+        {
+            get
+            {
+                return ReadSetting<string> ("EmployeeDirectory_EduLevels", string.Empty)
+                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList ()
+                    .ConvertAll (s => int.Parse (s));
+            }
+            set
+            {
+                WriteModuleSetting<string> ("EmployeeDirectory_EduLevels", string.Join (";", value));
+            }
         }
 
         #endregion

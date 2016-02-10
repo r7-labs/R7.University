@@ -12,4 +12,10 @@
     <data name="labelMode.Help" xml:space="preserve">
         <value>Select module mode from the list.</value>
     </data>
+    <data name="labelEduLevels.Text" xml:space="preserve">
+        <value>Educational Levels:</value>
+    </data>
+    <data name="labelEduLevels.Help" xml:space="preserve">
+        <value>Check educational levels the module should display in the 'Teachers by edu. program' mode.</value>
+    </data>
 </root>
