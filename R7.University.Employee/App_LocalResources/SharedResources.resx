@@ -69,25 +69,25 @@
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (fax)</value>
     </data>
-    <data name="CommonTab.Text" xml:space="preserve">
+    <data name="Common.Tab" xml:space="preserve">
         <value>Common</value>
     </data>
-    <data name="ExperienceTab.Text" xml:space="preserve">
+    <data name="Experience.Tab" xml:space="preserve">
         <value>Experience</value>
     </data>
-    <data name="DisciplinesTab.Text" xml:space="preserve">
+    <data name="Disciplines.Tab" xml:space="preserve">
         <value>Disciplines</value>
     </data>
-    <data name="AboutTab.Text" xml:space="preserve">
+    <data name="About.Tab" xml:space="preserve">
         <value>About</value>
     </data>
-    <data name="AchievementsTab.Text" xml:space="preserve">
+    <data name="Achievements.Tab" xml:space="preserve">
         <value>Achievements</value>
     </data>
-    <data name="EduProgramsTab.Text" xml:space="preserve">
+    <data name="EduPrograms.Tab" xml:space="preserve">
         <value>Educational Programs</value>
     </data>
-    <data name="PositionsTab.Text" xml:space="preserve">
+    <data name="Positions.Tab" xml:space="preserve">
         <value>Positions</value>
     </data>
     <data name="EmployeeNotPublished.Text" xml:space="preserve">

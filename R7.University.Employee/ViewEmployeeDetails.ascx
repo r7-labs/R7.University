@@ -13,11 +13,11 @@
     	<div id="employeeTabs_<%= ModuleId %>" class="dnnForm dnnClear _tabs">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="dnnAdminTabNav dnnClear">
-    		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
-    			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("ExperienceTab.Text") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkAchievements" runat="server" href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkDisciplines" runat="server" href="#employeeDisciplines"><%= LocalizeString("DisciplinesTab.Text") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></asp:HyperLink></li>
+    		    <li><a href="#employeeCommon"><%= LocalizeString("Common.Tab") %></a></li>
+    			<li><asp:HyperLink id="linkExperience" runat="server" href="#employeeExperience"><%= LocalizeString("Experience.Tab") %></asp:HyperLink></li>
+    			<li><asp:HyperLink id="linkAchievements" runat="server" href="#employeeAchievements"><%= LocalizeString("Achievements.Tab") %></asp:HyperLink></li>
+    			<li><asp:HyperLink id="linkDisciplines" runat="server" href="#employeeDisciplines"><%= LocalizeString("Disciplines.Tab") %></asp:HyperLink></li>
+    			<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("About.Tab") %></asp:HyperLink></li>
     		</ul>
     		<div id="employeeCommon" class="_tab">
     			<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />

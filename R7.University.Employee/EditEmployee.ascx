@@ -11,20 +11,17 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
-<script type="text/javascript">
-	$(function() { $("#employeeTabs").dnnTabs({selected: <%= (int)SelectedTab %>}); });
-</script>
 <div class="dnnForm dnnClear">
-	<div id="employeeTabs" class="dnnForm dnnClear">
+	<div id="employee-tabs">
 		<ul class="dnnAdminTabNav dnnClear">
-		    <li><a href="#employeeCommon"><%= LocalizeString("CommonTab.Text") %></a></li>
-		    <li><a href="#employeePositions"><%= LocalizeString("PositionsTab.Text") %></a></li>
-		    <li><a href="#employeeAchievements"><%= LocalizeString("AchievementsTab.Text") %></a></li>
-            <li><a href="#employeeEduPrograms"><%= LocalizeString("EduProgramsTab.Text") %></a></li>
-		    <li><a href="#employeeAbout"><%= LocalizeString("AboutTab.Text") %></a></li>
+		    <li><a href="#employee-common-tab"><%= LocalizeString("Common.Tab") %></a></li>
+		    <li><a href="#employee-positions-tab"><%= LocalizeString("Positions.Tab") %></a></li>
+		    <li><a href="#employee-achievements-tab"><%= LocalizeString("Achievements.Tab") %></a></li>
+            <li><a href="#employee-eduprograms-tab"><%= LocalizeString("EduPrograms.Tab") %></a></li>
+		    <li><a href="#employee-about-tab"><%= LocalizeString("About.Tab") %></a></li>
 		</ul>
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
-		<div id="employeeCommon">
+		<div id="employee-common-tab">
 			<fieldset>
                 <div class="dnnFormItem dnnFormRequired">
                     <dnn:Label id="labelLastName" runat="server" ControlName="textLastName" />
@@ -129,7 +126,7 @@
 				</div>
 			</fieldset>
 		</div>
-		<div id="employeePositions">
+		<div id="employee-positions-tab">
 			<fieldset>
 				<div class="dnnFormItem">
 					<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
@@ -204,7 +201,7 @@
 				<asp:HiddenField id="hiddenOccupiedPositionItemID" runat="server" />
 			</fieldset>
 		</div>
-		<div id="employeeAchievements">
+		<div id="employee-achievements-tab">
 			<fieldset>
 				<div class="dnnFormItem">
 					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
@@ -321,7 +318,7 @@
 				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>
 		</div>
-		<div id="employeeEduPrograms">
+		<div id="employee-eduprograms-tab">
 			<fieldset>
                 <div class="dnnFormItem">
                     <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
@@ -382,7 +379,7 @@
                 </div>
 			</fieldset>
 		</div>
-        <div id="employeeAbout">
+        <div id="employee-about-tab">
 			<fieldset>
 				<div class="dnnFormItem">
 					<div style="margin-right:20px">
@@ -403,11 +400,15 @@
 <script type="text/javascript">
 jQuery(function ($) {
     var setupModule = function () {
-        $("#employeeAchievements").dnnPanels({defaultState: "closed"});
+        $("#employee-achievements-tab").dnnPanels({defaultState: "closed"});
+
     };
     setupModule();
     Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
         setupModule();
     });
+});
+jQuery(document).ready(function() {
+    $("#employee-tabs").dnnTabs({selected: <%= (int)SelectedTab %>});
 });
 </script>
