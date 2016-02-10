@@ -30,6 +30,7 @@ using System.Threading;
 
 namespace R7.University
 {
+    // TODO: Remove last use of this class in the EduProgramProfilesTable, then remove db view
     [TableName ("vw_University_EduProgramProfiles")]
     public class EduProgramProfileInfoEx: EduProgramProfileInfo
     {
