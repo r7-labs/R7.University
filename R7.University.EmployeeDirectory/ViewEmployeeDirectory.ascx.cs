@@ -320,10 +320,21 @@ namespace R7.University.EmployeeDirectory
                 var literalAcademicDegrees = (Literal) e.Row.FindControl ("literalAcademicDegrees");
                 var literalAcademicTitles = (Literal) e.Row.FindControl ("literalAcademicTitles");
 
-                var education = achievements.Where (ach => ach.AchievementType == AchievementType.Education).Select (ed => ed.DisplayShortTitle);
-                var training = achievements.Where (ach => ach.AchievementType == AchievementType.Training).Select (ed => ed.DisplayShortTitle);
-                var academicDegrees = achievements.Where (ach => ach.AchievementType == AchievementType.AcademicDegree).Select (ed => ed.DisplayShortTitle);
-                var academicTitles = achievements.Where (ach => ach.AchievementType == AchievementType.AcademicTitle).Select (ed => ed.DisplayShortTitle);
+                var education = achievements
+                    .Where (ach => ach.AchievementType == AchievementType.Education)
+                    .Select (ed => Utils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
+                
+                var training = achievements
+                    .Where (ach => ach.AchievementType == AchievementType.Training)
+                    .Select (ed => Utils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
+                
+                var academicDegrees = achievements
+                    .Where (ach => ach.AchievementType == AchievementType.AcademicDegree)
+                    .Select (ed => ed.DisplayShortTitle);
+                
+                var academicTitles = achievements
+                    .Where (ach => ach.AchievementType == AchievementType.AcademicTitle)
+                    .Select (ed => ed.DisplayShortTitle);
 
                 literalEducation.Text = Utils.FormatList ("; ", education);
                 literalTraining.Text = Utils.FormatList ("; ", training);
