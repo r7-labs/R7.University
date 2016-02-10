@@ -79,7 +79,6 @@
     <Compile Include="ModelExtensions\DocumentExtensions.cs" />
     <Compile Include="Models\AchievementInfo.cs" />
     <Compile Include="Models\AchievementTypeInfo.cs" />
-    <Compile Include="Models\CharEnumInfo.cs" />
     <Compile Include="Models\Delegates.cs" />
     <Compile Include="Models\DivisionInfo.cs" />
     <Compile Include="Models\DocumentInfo.cs" />
