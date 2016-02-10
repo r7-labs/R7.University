@@ -1,4 +1,4 @@
-﻿/* AjaxControlToolkit CSS to match DNN forms style */
+﻿/* adjust AjaxControlToolkit CSS to match DNN forms style */
 
 .act_combobox
 {
@@ -27,7 +27,8 @@
 
 .act_combobox .ajax__combobox_inputcontainer .ajax__combobox_buttoncontainer button
 {
-    min-width:0
+    min-width:0;
+    width:15px!important
 }
 
 .act_combobox .ajax__combobox_itemlist
