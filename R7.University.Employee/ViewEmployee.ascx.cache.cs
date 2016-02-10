@@ -63,12 +63,9 @@ namespace R7.University.Employee
 						// get the content
 						renderCacheContent = stringWriter.ToString ();
 					}
-		
-					// NOTE: For testing purposes
-					// renderCacheContent = string.Concat (renderCacheContent, "<p>" + DateTime.Now.ToShortTimeString () + "</p>");
 
-					// NOTE: Set render cache only in non-edit mode - this give editors 
-					// somethat increased performance and ensures that common users see only allowed content
+					// Set render cache only in non-edit mode - 
+                    // this gives editors somewhat increased performance and ensures that common users see only allowed content
 					
 					if (!IsEditable)
 					{
@@ -131,7 +128,7 @@ namespace R7.University.Employee
 				}
 				else
 				{
-					// NOTE: read cache here, cause it may be too late on render
+					// read cache here, cause it may be too late on render
 					renderCacheContent = CacheHelper.Get<string> (DataCacheKey); 
 				
 					if (renderCacheContent != null)

@@ -96,8 +96,8 @@ namespace R7.University.EmployeeList
                         );
 
                         // get occupied positions for all selected employees
-                        // NOTE: Current division positions go first, then checks IsPrime, then PositionWeight
-                        // REVIEW: add "AND [DivisionID] = @1" to display employee positions only from current division
+                        // current division positions go first, then checks IsPrime, then PositionWeight
+                        // add "AND [DivisionID] = @1" to display employee positions only from current division
                         CommonOccupiedPositions = EmployeeListController.GetObjects<OccupiedPositionInfoEx> (
                             string.Format ("WHERE [EmployeeID] IN ({0}) ORDER BY (CASE WHEN [DivisionID]={1} THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
                                 employeeIds, EmployeeListSettings.DivisionID)

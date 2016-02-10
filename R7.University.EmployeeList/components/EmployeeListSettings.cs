@@ -22,8 +22,6 @@ namespace R7.University.EmployeeList
 
 		#region Properties for settings
 
-		// REVIEW: Use Attributes to describe settings (tabspecific, data type, name, default value)
-
 		// cached DivisionID value for frequent use
 		private int? divisionId = null;
 

@@ -21,8 +21,6 @@ namespace R7.University
 
         public DateTime CreatedOnDate { get; set; }
 
-        // REVIEW: Make CreatedOnDate a [ReadOnlyColumn]?
-
         #endregion
     }
 }

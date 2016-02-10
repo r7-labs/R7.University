@@ -214,7 +214,7 @@ namespace R7.University
 
         public IEnumerable<EmployeeInfo> GetTeachersByEduProgramProfile (int eduProfileId)
         {
-            // TODO: Convert to stored procedure
+            // TODO: Convert to stored procedure or Linq query
             
             return GetObjects<EmployeeInfo> (CommandType.Text,
                 @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E

@@ -137,7 +137,7 @@ namespace R7.University
 
 		public static bool IsNull<T> (T? n) where T: struct
 		{
-			// NOTE: n.HasValue is equvalent to n != null
+			// REVIEW: n.HasValue is equvalent to n != null
 			if (n.HasValue && !Null.IsNull (n.Value))
 				return false;
 
@@ -254,7 +254,7 @@ namespace R7.University
 		{
 			ModuleController.SynchronizeModule (module.ModuleContext.ModuleId);
 
-			// NOTE: update module cache (temporary fix before 7.2.0)?
+			// REVIEW: update module cache (temporary fix before 7.2.0)?
 			// more info: https://github.com/dnnsoftware/Dnn.Platform/pull/21
 			var moduleController = new ModuleController ();
 			moduleController.ClearCache (module.ModuleContext.TabId);

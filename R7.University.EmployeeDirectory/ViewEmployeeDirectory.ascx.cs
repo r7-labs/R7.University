@@ -302,8 +302,7 @@ namespace R7.University.EmployeeDirectory
                 var positions = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> (
                     "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", teacher.EmployeeID).Select (op => Utils.FormatList (": ", op.PositionTitle, op.DivisionTitle));
 
-                // TODO: Use OccupiedPositionInfoEx.GroupByDivision ();
-
+                // TODO: Use OccupiedPositionInfoEx.GroupByDivision () here
                 literalPositions.Text = Utils.FormatList ("; ", positions);
 
                 #endregion

@@ -123,7 +123,7 @@ namespace R7.University
 				vcard.AppendFormat ("FN{0}:{1}\n", charset, FormattedName);
 
 			// names
-			// NOTE: Last element must contain additional names, comma separated
+			// last element must contain additional names, comma separated
 			if (Names.Count > 0)
 				vcard.AppendFormat ("N{0}:{1}\n", charset, Utils.FormatList (";", Names.ToArray ()));
 

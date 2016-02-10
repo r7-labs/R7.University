@@ -221,7 +221,7 @@ namespace R7.University.EduProgramProfileDirectory
                 // set right table section for header row
                 e.Row.TableSection = TableRowSection.TableHeader;
 
-                // FIXME: Don't hardcode cell indexes
+                // TODO: Don't hardcode cell indexes
                 e.Row.Cells [0].Visible = false;
                 e.Row.Cells [1].Visible = false;
                 e.Row.Cells [2].Visible = false;

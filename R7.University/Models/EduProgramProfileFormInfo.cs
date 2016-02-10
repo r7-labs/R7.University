@@ -59,7 +59,7 @@ namespace R7.University
 
         public int TimeToLearn { get; set; }
 
-        // TODO: Rename to IsEnrollable
+        // REVIEW: Rename?
         public bool IsAdmissive { get; set; }
 
         [IgnoreColumn]

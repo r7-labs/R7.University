@@ -11,7 +11,7 @@ namespace R7.University.Employee
 {
 	public partial class EditEmployee
 	{
-		// NOTE: Do not use asp:Button for dnnSecondaryActions - this is not applied
+		// WTF: The dnnSecondaryActions not applied on asp:Button
 
 		protected ModuleAuditControl ctlAudit;
 		protected LinkButton buttonUpdate;

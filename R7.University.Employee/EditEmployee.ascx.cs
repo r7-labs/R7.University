@@ -123,8 +123,10 @@ namespace R7.University.Employee
 
 			// setup filepicker
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
+
             // TODO: Get default faces folder from global / portal settings 
-            // FIXME: Causes crash on DNN versions after 7.1.2 (tested only on 7.4.1 and 7.4.2)
+
+            // FIXME: Causes crash on DNN versions after 7.1.2 (tested only on 7.4.1 and 7.4.2):
             // pickerPhoto.FilePath = "Images/faces/";
 
 			// add default item to user list
@@ -572,6 +574,7 @@ namespace R7.University.Employee
             {
                 SelectedTab = EditEmployeeTab.Common;
 
+                // TODO: Remove hardcoding
                 var folderPath = "Images/faces/";
                 var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
 
@@ -822,11 +825,7 @@ namespace R7.University.Employee
 				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
 				if (occupiedPositions != null)
 				{
-					//var itemID = (sender as LinkButton).CommandArgument;
 					var itemID = e.CommandArgument.ToString ();
-	
-					// NOTE: Adding controls dynamically conflicts with ViewState!
-					// Utils.Message (this, MessageSeverity.Info, itemID);
 	
 					// find position in a list
 					var opFound = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);

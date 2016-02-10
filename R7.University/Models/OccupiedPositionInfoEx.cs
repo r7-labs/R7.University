@@ -29,7 +29,7 @@ namespace R7.University
 
 		#region Extended (external) properties
 
-		// NOTE: [ReadOnlyColumn] attribute prevents data from loading?
+		// WTF: [ReadOnlyColumn] attribute prevents data from loading?
 		public string PositionShortTitle { get; set; }
 
 		public string PositionTitle { get; set; }

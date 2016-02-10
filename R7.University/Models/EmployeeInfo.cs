@@ -63,14 +63,14 @@ namespace R7.University
 
 		public string Biography { get; set; }
 
-		// NOTE: Employee stage may be not continuous, so using starting date is not possible
+		// employee stage may be not continuous, so using starting date is not possible
 		public int? ExperienceYears { get; set; }
-		// NOTE: Employee ExpYearsBySpec even more unbinded to dates
+
+		// employee ExpYearsBySpec even more unbinded to dates
 		public int? ExperienceYearsBySpec { get; set; }
 
 		public bool IsPublished { get; set; }
-		//public bool IsDeleted { get; set; }
-
+		
 		#endregion
 
 		#region Calculated properties
@@ -198,9 +198,11 @@ namespace R7.University
 					vcard.Url = WebSite;
 
 				// working place
-				if (!string.IsNullOrWhiteSpace (WorkingPlace))
-				// TODO: Add division address
-				vcard.DeliveryAddress = WorkingPlace;
+                if (!string.IsNullOrWhiteSpace (WorkingPlace))
+                {
+                    // TODO: Add division address
+                    vcard.DeliveryAddress = WorkingPlace;
+                }
 
 				// revision
 				vcard.LastRevision = LastModifiedOnDate;
