@@ -168,8 +168,8 @@ namespace R7.University.EmployeeDirectory
                         var eduProfiles = EmployeeDirectoryController.GetObjects<EduProgramProfileInfo> ()
                             // .Where (epp => epp.IsPublished () || IsEditable)
                             .WithEduPrograms (EmployeeDirectoryController)
-                            .Where (epp => eduLevelIds.Contains (epp.EduProgramID))
                             .WithEduLevel (EmployeeDirectoryController)
+                            .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
                             .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                             .ThenBy (epp => epp.EduProgram.Code)
                             .ThenBy (epp => epp.EduProgram.Title)
@@ -177,15 +177,18 @@ namespace R7.University.EmployeeDirectory
                             .Select (epp => new EduProgramProfileObrnadzorTeachersViewModel (epp, ViewModelContext))
                             .ToList ();
 
-                        eduProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
-                            new EduProgramProfileInfo { 
-                                EduProgramProfileID = Null.NullInteger,
-                                EduProgram = new EduProgramInfo {
-                                    Code = string.Empty,
-                                    Title = LocalizeString ("NoEduPrograms.Text")
-                                }
-                            }, ViewModelContext)
-                        );
+                        if (EmployeeDirectorySettings.ShowAllTeachers)
+                        {
+                            eduProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
+                                new EduProgramProfileInfo { 
+                                    EduProgramProfileID = Null.NullInteger,
+                                    EduProgram = new EduProgramInfo {
+                                        Code = string.Empty,
+                                        Title = LocalizeString ("NoEduPrograms.Text")
+                                    }
+                                }, ViewModelContext)
+                            );
+                        }
 
                         if (eduProfiles.Count > 0)
                         {
