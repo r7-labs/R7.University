@@ -75,6 +75,8 @@ namespace R7.University.EmployeeDirectory
                             item.Checked = true;
                         }
                     }
+
+                    checkShowAllTeachers.Checked = EmployeeDirectorySettings.ShowAllTeachers;
                 }
             }
             catch (Exception ex)
@@ -92,6 +94,7 @@ namespace R7.University.EmployeeDirectory
             {
                 EmployeeDirectorySettings.Mode = (EmployeeDirectoryMode) Enum.Parse (typeof (EmployeeDirectoryMode), comboMode.SelectedValue);
                 EmployeeDirectorySettings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
+                EmployeeDirectorySettings.ShowAllTeachers = checkShowAllTeachers.Checked;
 
                 Utils.SynchronizeModule (this);
             }

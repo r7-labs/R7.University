@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.EmployeeDirectory/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
 <div class="dnnForm dnnClear employee-directory-settings">
     <fieldset>  
         <div class="dnnFormItem">
@@ -12,7 +13,11 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
-            <dnn:DnnListBox id="listEduLevels" runat="server" CheckBoxes="true" />
+            <dnn:DnnListBox id="listEduLevels" runat="server" CheckBoxes="true" CssClass="dnn-form-control" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelShowAllTeachers" runat="server" ControlName="checkShowAllTeachers" />
+            <asp:CheckBox id="checkShowAllTeachers" runat="server" />
         </div>
     </fieldset>
 </div>

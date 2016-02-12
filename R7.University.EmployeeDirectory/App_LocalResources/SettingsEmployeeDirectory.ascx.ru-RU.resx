@@ -18,4 +18,10 @@
     <data name="labelEduLevels.Help" xml:space="preserve">
         <value>Отметьте уровни образования, информацию о которых должен отображать данный модуль в режиме 'Преподаватели по образовательным программам'.</value>
     </data>
+    <data name="labelShowAllTeachers.Text" xml:space="preserve">
+        <value>Показывать всех преподавателей:</value>
+    </data>
+    <data name="labelShowAllTeachers.Help" xml:space="preserve">
+        <value>Если отмечено, модуль будет отображать также преподавателей, у которых не указаны преподаваемые дисциплины. Эта настройка будет использоваться только в режиме 'Преподаватели по образовательным программам'.</value>
+    </data>
 </root>

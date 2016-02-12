@@ -18,4 +18,10 @@
     <data name="labelEduLevels.Help" xml:space="preserve">
         <value>Check educational levels the module should display in the 'Teachers by edu. program' mode.</value>
     </data>
+    <data name="labelShowAllTeachers.Text" xml:space="preserve">
+        <value>Show All Teachers:</value>
+    </data>
+    <data name="labelShowAllTeachers.Help" xml:space="preserve">
+        <value>If checked, module will also show teachers without associated disciplines. This option will be used in the 'Teachers by edu. program' mode only.</value>
+    </data>
 </root>

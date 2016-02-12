@@ -12,5 +12,6 @@ namespace R7.University.EmployeeDirectory
     {    
         protected DropDownList comboMode;
         protected DnnListBox listEduLevels;
+        protected CheckBox checkShowAllTeachers;
     }
 }

@@ -70,6 +70,12 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
+        public bool ShowAllTeachers
+        {
+            get { return ReadSetting<bool> ("EmployeeDirectory_ShowAllTeachers", false); }
+            set { WriteModuleSetting<bool> ("EmployeeDirectory_ShowAllTeachers", value); }
+        }
+
         #endregion
     }
 }
