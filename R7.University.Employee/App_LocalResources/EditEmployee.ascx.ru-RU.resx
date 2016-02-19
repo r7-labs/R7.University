@@ -151,7 +151,7 @@
 		<value>Укажите должность сотрудника.</value>
 	</data>
     <data name="labelPositionTitleSuffix.Text">
-        <value>Дополнение должности</value>
+        <value>Дополнение должности:</value>
     </data>
     <data name="labelPositionTitleSuffix.Help">
         <value>Введите строку, которая будет использоваться в качестве дополнения к наименованию выбранной должности.</value>
@@ -163,10 +163,10 @@
 		<value>Укажите подразделение, в котором работает сотрудник.</value>
 	</data>
 	<data name="buttonUserLookup.Text">
-		<value>Найти пользователя:</value>
+		<value>Найти пользователя</value>
 	</data>
     <data name="buttonPhotoLookup.Text">
-        <value>Найти фото:</value>
+        <value>Найти фото</value>
     </data>
 	<data name="checkIncludeDeletedUsers.Text">
 		<value>Включая удаленных пользователей?</value>
@@ -202,7 +202,7 @@
 		<value>Добавить в словарь</value>
 	</data>
 	<data name="labelAchievementTypes.Text">
-		<value>Тип достижения</value>
+		<value>Тип достижения:</value>
 	</data>
 	<data name="labelAchievementTypes.Help">
 		<value>Выберите тип достижения сотрудника из списка.</value>
