@@ -236,7 +236,7 @@
 							</Columns>
 				    </asp:GridView>
 				</div>
-                <asp:UpdatePanel id="updatePanelAchievement" runat="server">
+                <asp:UpdatePanel id="updatePanelAchievement" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
         				<div class="dnnFormItem">
         					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
@@ -303,6 +303,9 @@
                             </div>
                         </fieldset>
                     </ContentTemplate>
+                    <Triggers>
+                        <asp:PostBackTrigger ControlID="urlDocumentURL" />
+                    </Triggers>
                 </asp:UpdatePanel>
 				<div class="dnnFormItem">
 					<div class="dnnLabel"></div>
