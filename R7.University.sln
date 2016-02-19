@@ -298,6 +298,6 @@ Global
 		$45.LineAlign = 0
 		$45.IncludeDirectoryPaths = True
 		$44.inheritsSet = Mono
-		version = 1.7.4
+		version = 1.7.5
 	EndGlobalSection
 EndGlobal
