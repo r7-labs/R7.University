@@ -196,10 +196,10 @@
 		<value>Select employee achievement type from the list.</value>
 	</data>
 	<data name="buttonAddAchievement.Text">
-		<value>Add Achivement</value>
+		<value>Add Achievement</value>
 	</data>
 	<data name="buttonUpdateAchievement.Text">
-		<value>Update Achivement</value>
+		<value>Update Achievement</value>
 	</data>
 	<data name="buttonCancelEditAchievement.Text">
 		<value>Cancel</value>
