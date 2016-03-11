@@ -13,7 +13,7 @@
 			<releaseNotes src="releaseNotes.htm" />
 			<dependencies>
 				<dependency type="CoreVersion">07.04.00</dependency>
-                <dependency type="managedPackage" version="0.3.1">DotNetNuke.R7</dependency>
+                <dependency type="managedPackage" version="0.5.0">DotNetNuke.R7</dependency>
                 <!-- <dependency type="type">AjaxControlToolkit.ComboBox</dependency> -->
 			</dependencies>
 			<components>
