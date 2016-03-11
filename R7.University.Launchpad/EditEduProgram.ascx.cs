@@ -92,7 +92,7 @@ namespace R7.University.Launchpad
 			try
 			{
                 // parse querystring parameters
-				itemId = Utils.ParseToNullableInt (Request.QueryString ["eduprogram_id"]);
+				itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
       
 				if (!IsPostBack)
 				{

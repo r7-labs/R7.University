@@ -74,8 +74,8 @@ namespace R7.University.Launchpad
 			try
 			{
 				// parse querystring parameters
-				itemId = Utils.ParseToNullableInt (Request.QueryString ["achievement_id"]);
-      
+				itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["achievement_id"]);
+
 				if (!IsPostBack)
 				{
 					// load the data into the control the first time we hit this page

@@ -68,7 +68,7 @@ namespace R7.University.Division
             base.OnInit (e);
 
             // parse QueryString
-            itemId = Utils.ParseToNullableInt (Request.QueryString ["division_id"]);
+            itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // fill divisions dropdown
             var divisions = Controller.GetObjects<DivisionInfo> ()
@@ -216,14 +216,14 @@ namespace R7.University.Division
 				item.Location = txtLocation.Text.Trim ();
 				item.WebSite = txtWebSite.Text.Trim ();
 				item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
-				item.ParentDivisionID = Utils.ParseToNullableInt (treeParentDivisions.SelectedValue);
-				item.DivisionTermID = Utils.ParseToNullableInt (treeDivisionTerms.SelectedValue);
+				item.ParentDivisionID = TypeUtils.ParseToNullable<int> (treeParentDivisions.SelectedValue);
+				item.DivisionTermID = TypeUtils.ParseToNullable<int> (treeDivisionTerms.SelectedValue);
 				item.HomePage = urlHomePage.Url;
 				item.DocumentUrl = urlDocumentUrl.Url;
                 item.StartDate = datetimeStartDate.SelectedDate;
                 item.EndDate = datetimeEndDate.SelectedDate;
                 item.IsVirtual = checkIsVirtual.Checked;
-                item.HeadPositionID = Utils.ParseToNullableInt (comboHeadPosition.SelectedValue);
+                item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
 
 				// update working hours
 				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);

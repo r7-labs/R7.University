@@ -149,24 +149,6 @@ namespace R7.University
 			return Null.IsNull (n) ? null : (T?)n;
 		}
 
-		/// <summary>
-		/// Parses specified string value to a nullable int, 
-		/// also with convertion of Null.NullInteger to null 
-		/// </summary>
-		/// <returns>The nullable int.</returns>
-		/// <param name="value">String value to parse.</param>
-		public static int? ParseToNullableInt (string value)
-		{
-			// TODO: Make another variant of ParseToNullableInt() without using DNN Null object
-
-			int n;
-
-			if (int.TryParse (value, out n))
-				return Null.IsNull (n) ? null : (int?)n;
-		
-			return null;
-		}
-
 		/*
 		public static Nullable<T> ParseToNullable<T>(string value) where T: struct
 		{

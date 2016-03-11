@@ -93,9 +93,9 @@ namespace R7.University.Controls
         protected override void OnUpdateItem (DocumentViewModel item)
         {
             item.Title = textDocumentTitle.Text.Trim ();
-            item.DocumentTypeID = Utils.ParseToNullableInt (comboDocumentType.SelectedValue);
+            item.DocumentTypeID = TypeUtils.ParseToNullable<int> (comboDocumentType.SelectedValue);
             item.DocumentType = GetDocumentType (item.DocumentTypeID);
-            item.SortIndex = TypeUtils.ParseToNullableInt (textDocumentSortIndex.Text) ?? 0;
+            item.SortIndex = TypeUtils.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
             item.StartDate = datetimeDocumentStartDate.SelectedDate;
             item.EndDate = datetimeDocumentEndDate.SelectedDate;
             item.Url = urlDocumentUrl.Url;

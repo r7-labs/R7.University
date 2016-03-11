@@ -26,6 +26,7 @@
 
 using System;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.R7;
 
 namespace R7.University.Employee
 {
@@ -67,7 +68,7 @@ namespace R7.University.Employee
         {
             if (EmployeeSettings.ShowCurrentUser)
             {
-                var userId = Utils.ParseToNullableInt (Request.QueryString ["userid"]);
+                var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
                 if (userId != null)
                     return EmployeeController.GetEmployeeByUserId (userId.Value);
             }

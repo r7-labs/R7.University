@@ -71,7 +71,7 @@ namespace R7.University.Employee
                     else
                     {
                         // try get employee id from querystring first
-                        var employeeId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
+                        var employeeId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
 
                         if (employeeId != null)
                         {

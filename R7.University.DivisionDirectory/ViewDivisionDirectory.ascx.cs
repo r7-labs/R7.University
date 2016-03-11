@@ -198,7 +198,7 @@ namespace R7.University.DivisionDirectory
 
         protected bool SearchParamsOK (string searchText, string searchDivision, bool includeSubdivisions, bool showMessages = true)
         {
-            var divisionIsSpecified = Utils.ParseToNullableInt (searchDivision) != null;
+            var divisionIsSpecified = TypeUtils.ParseToNullable<int> (searchDivision) != null;
             var searchTextIsEmpty = string.IsNullOrWhiteSpace (searchText);
 
             // no search params - shouldn't perform search

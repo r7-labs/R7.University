@@ -216,7 +216,7 @@ namespace R7.University.Employee
 			try
 			{
                 // parse querystring parameters
-				itemId = Utils.ParseToNullableInt (Request.QueryString ["employee_id"]);
+				itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
       
 				if (!IsPostBack)
 				{
@@ -396,14 +396,14 @@ namespace R7.University.Employee
 				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, 
                     checkAddToVocabulary.Checked);
 
-				item.ExperienceYears = Utils.ParseToNullableInt (textExperienceYears.Text);
-				item.ExperienceYearsBySpec = Utils.ParseToNullableInt (textExperienceYearsBySpec.Text);
+				item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
+				item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
 
 				item.IsPublished = checkIsPublished.Checked;
 
 				// pickerPhoto.FileID may be 0 by default
 				item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?)pickerPhoto.FileID : null;
-				item.UserID = Utils.ParseToNullableInt (comboUsers.SelectedValue);
+				item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
 
 				if (!itemId.HasValue)
 				{		
@@ -1034,7 +1034,7 @@ namespace R7.University.Employee
 					achievement = achievements.Find (ach => ach.ItemID == hiddenItemID);
 				}
 	
-				achievement.AchievementID = Utils.ParseToNullableInt (comboAchievement.SelectedValue);
+				achievement.AchievementID = TypeUtils.ParseToNullable<int> (comboAchievement.SelectedValue);
 				if (achievement.AchievementID == null)
 				{
 					achievement.Title = textAchievementTitle.Text.Trim();
@@ -1055,8 +1055,8 @@ namespace R7.University.Employee
 				achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim();
 				achievement.Description = textAchievementDescription.Text.Trim();
 				achievement.IsTitle = checkIsTitle.Checked;
-				achievement.YearBegin = Utils.ParseToNullableInt (textYearBegin.Text);
-				achievement.YearEnd = Utils.ParseToNullableInt (textYearEnd.Text);
+				achievement.YearBegin = TypeUtils.ParseToNullable<int> (textYearBegin.Text);
+				achievement.YearEnd = TypeUtils.ParseToNullable<int> (textYearEnd.Text);
 				achievement.DocumentURL = urlDocumentURL.Url;
 
                 achievement.Localize (LocalResourceFile);

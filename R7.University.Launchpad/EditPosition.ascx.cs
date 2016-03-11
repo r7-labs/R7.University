@@ -71,7 +71,7 @@ namespace R7.University.Launchpad
 			try
 			{
 				// parse querystring parameters
-				itemId = Utils.ParseToNullableInt (Request.QueryString ["position_id"]);
+				itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["position_id"]);
       
 				if (!IsPostBack)
 				{
@@ -139,7 +139,7 @@ namespace R7.University.Launchpad
 				// fill the object
 				item.Title = txtTitle.Text.Trim ();
 				item.ShortTitle = txtShortTitle.Text.Trim ();
-                item.Weight = TypeUtils.ParseToNullableInt (txtWeight.Text) ?? 0;
+                item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
 				item.IsTeacher = checkIsTeacher.Checked;
 
 				if (!itemId.HasValue)
