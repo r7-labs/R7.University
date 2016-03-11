@@ -36,20 +36,6 @@ namespace R7.University
 		}
 
 		/// <summary>
-		/// Determines if the specified file is an images.
-		/// </summary>
-		/// <returns></returns>
-		/// <param name="fileName">File name.</param>
-		public static bool IsImage (string fileName)
-		{
-			if (!string.IsNullOrWhiteSpace (fileName))
-				return Globals.glbImageFileTypes.Contains (
-					Path.GetExtension (fileName).Substring (1).ToLowerInvariant ());
-
-			return false;
-		}
-
-		/// <summary>
 		/// Formats the URL by DNN rules.
 		/// </summary>
 		/// <returns>Formatted URL.</returns>
@@ -142,11 +128,6 @@ namespace R7.University
 				return false;
 
 			return true;
-		}
-
-		public static T? ToNullable<T> (T n) where T: struct
-		{
-			return Null.IsNull (n) ? null : (T?)n;
 		}
 
 		/*
