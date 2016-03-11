@@ -27,6 +27,7 @@
 using System;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
+using DotNetNuke.R7;
 
 namespace R7.University.Division
 {

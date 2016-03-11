@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.R7;
 using R7.University.Utilities;
 
 namespace R7.University.Controls

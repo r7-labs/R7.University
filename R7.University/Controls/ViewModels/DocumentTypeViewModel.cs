@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.R7;
 
 namespace R7.University.Controls
 {

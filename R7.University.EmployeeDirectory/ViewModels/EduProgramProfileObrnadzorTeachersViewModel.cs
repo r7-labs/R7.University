@@ -27,6 +27,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using DotNetNuke.R7;
 
 namespace R7.University.EmployeeDirectory
 {

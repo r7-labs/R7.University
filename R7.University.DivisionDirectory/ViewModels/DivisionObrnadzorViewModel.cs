@@ -29,6 +29,7 @@ using System.Linq;
 using System.Collections.Generic;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.R7;
 
 namespace R7.University.DivisionDirectory
 {

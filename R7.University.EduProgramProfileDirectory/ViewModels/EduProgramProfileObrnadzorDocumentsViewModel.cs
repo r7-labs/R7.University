@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.R7;
 
 namespace R7.University.EduProgramProfileDirectory
 {

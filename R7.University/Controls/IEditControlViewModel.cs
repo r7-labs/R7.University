@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using DotNetNuke.R7;
 
 namespace R7.University.Controls
 {

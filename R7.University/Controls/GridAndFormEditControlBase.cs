@@ -34,6 +34,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.University.ControlExtensions;
+using DotNetNuke.R7;
 
 namespace R7.University.Controls
 {
