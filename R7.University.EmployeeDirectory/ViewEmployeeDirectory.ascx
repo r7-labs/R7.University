@@ -30,8 +30,8 @@
                     </div>
                     <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
                 </asp:Panel>
-                <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false" 
-                    CssClass="table table-bordered table-stripped table-hover gridEmployees"
+                <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false"
+                    UseAccessibleHeader="true" CssClass="table table-bordered table-stripped table-hover gridEmployees"
                     GridLines="None" OnRowDataBound="gridEmployees_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
@@ -92,57 +92,59 @@
                         <asp:Literal id="literalEduProgramProfileAnchor" runat="server" />
                         <asp:Label id="labelEduProgramProfile" runat="server" Text='<%# Eval ("EduProgramProfileString") %>' />
                     </h3>
-                    <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
-                            OnRowDataBound="gridTeachersByEduProgram_RowDataBound"
-                            CssClass="table table-bordered table-stripped table-hover small" GridLines="None" Width="100%">
-                        <Columns>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:HyperLink id="linkEdit" runat="server">
-                                        <asp:Image id="iconEdit" runat="server" />
-                                    </asp:HyperLink>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Order">
-                                <ItemTemplate>
-                                    <asp:Literal id="literalOrder" runat="server" /> 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="FullName" HeaderText="FullName" />
-                            <asp:TemplateField HeaderText="Positions">
-                                <ItemTemplate>
-                                    <asp:Literal id="literalPositions" runat="server" /> 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Disciplines">
-                                <ItemTemplate>
-                                    <asp:Literal id="literalDisciplines" runat="server" /> 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="AcademicDegrees">
-                                <ItemTemplate>
-                                    <asp:Literal id="literalAcademicDegrees" runat="server" /> 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="AcademicTitles">
-                                <ItemTemplate>
-                                    <asp:Literal id="literalAcademicTitles" runat="server" /> 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Education">
-                                <ItemTemplate>
-                                    <asp:Literal id="literalEducation" runat="server" /> 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Training">
-                                <ItemTemplate>
-                                    <asp:Literal id="literalTraining" runat="server" /> 
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="ExperienceYears" HeaderText="ExperienceYears" />
-                            <asp:BoundField DataField="ExperienceYearsBySpec" HeaderText="ExperienceYearsBySpec" />
-                        </Columns>
-                    </asp:GridView>
+                    <div class="table-responsive">
+                        <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
+                                UseAccessibleHeader="true" OnRowDataBound="gridTeachersByEduProgram_RowDataBound"
+                                CssClass="table table-bordered table-stripped table-hover small" GridLines="None" Width="100%">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:HyperLink id="linkEdit" runat="server">
+                                            <asp:Image id="iconEdit" runat="server" />
+                                        </asp:HyperLink>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Order">
+                                    <ItemTemplate>
+                                        <asp:Literal id="literalOrder" runat="server" /> 
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="FullName" HeaderText="FullName" />
+                                <asp:TemplateField HeaderText="Positions">
+                                    <ItemTemplate>
+                                        <asp:Literal id="literalPositions" runat="server" /> 
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Disciplines">
+                                    <ItemTemplate>
+                                        <asp:Literal id="literalDisciplines" runat="server" /> 
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="AcademicDegrees">
+                                    <ItemTemplate>
+                                        <asp:Literal id="literalAcademicDegrees" runat="server" /> 
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="AcademicTitles">
+                                    <ItemTemplate>
+                                        <asp:Literal id="literalAcademicTitles" runat="server" /> 
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Education">
+                                    <ItemTemplate>
+                                        <asp:Literal id="literalEducation" runat="server" /> 
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Training">
+                                    <ItemTemplate>
+                                        <asp:Literal id="literalTraining" runat="server" /> 
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="ExperienceYears" HeaderText="ExperienceYears" />
+                                <asp:BoundField DataField="ExperienceYearsBySpec" HeaderText="ExperienceYearsBySpec" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
                 </ItemTemplate>
             </asp:Repeater>
         </asp:View>

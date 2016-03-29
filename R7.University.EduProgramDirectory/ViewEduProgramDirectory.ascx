@@ -2,9 +2,9 @@
 <div class="dnnForm dnnClear eduprogram-directory">
     <asp:MultiView id="mviewEduProgramDirectory" runat="server" ActiveViewIndex="0">
         <asp:View id="viewEduStandards" runat="server">
-            <fieldset>
-                <asp:GridView id="gridEduStandards" runat="server" AutoGenerateColumns="false" 
-                    CssClass="table table-bordered table-stripped table-hover grid-edustandards"
+            <div class="table-responsive">
+                <asp:GridView id="gridEduStandards" runat="server" AutoGenerateColumns="false"
+                    UseAccessibleHeader="true" CssClass="table table-bordered table-stripped table-hover grid-edustandards"
                     GridLines="None" OnRowDataBound="gridEduStandards_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
@@ -23,7 +23,7 @@
                         </asp:BoundField>
                     </Columns>
                 </asp:GridView>
-            </fieldset>
+            </div>
         </asp:View>
     </asp:MultiView>
  </div>
