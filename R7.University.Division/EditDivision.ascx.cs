@@ -1,22 +1,45 @@
-﻿using System;
+﻿//
+// EditDivision.ascx.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2014-2016 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
 using System.Linq;
-using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Content.Taxonomy;
-using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.Web.UI.WebControls;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.ControlExtensions;
-using DotNetNuke.R7;
+using R7.University.Data;
 
 namespace R7.University.Division
 {
-    public partial class EditDivision: EditModuleBase<DivisionController, DivisionSettings, DivisionInfo>
+    public partial class EditDivision: EditPortalModuleBase<DivisionInfo,int>
 	{
         private int? itemId;
 
@@ -27,6 +50,12 @@ namespace R7.University.Division
         #endregion
 
         #region Properties
+
+        private DivisionSettings settings;
+        protected new DivisionSettings Settings
+        {
+            get { return settings ?? (settings = new DivisionSettings (this)); }
+        }
 
         protected EditDivisionTab SelectedTab
         {
@@ -71,7 +100,7 @@ namespace R7.University.Division
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // fill divisions dropdown
-            var divisions = Controller.GetObjects<DivisionInfo> ()
+            var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ()
                 // exclude current division
                 .Where (d => (itemId == null || itemId != d.DivisionID)).OrderBy (dd => dd.Title).ToList ();
 
@@ -99,19 +128,19 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            var positions = Controller.GetObjects<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ().OrderBy (p => p.Title).ToList ();
             positions.Insert (0, new PositionInfo { ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger });
             comboHeadPosition.DataSource = positions;
             comboHeadPosition.DataBind ();
             comboHeadPosition.SelectedIndex = 0;
         }
 
-        protected override void OnInitControls ()
+        protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
-        protected override void OnLoadItem (DivisionInfo item)
+        protected override void LoadItem (DivisionInfo item)
         {
             // FIXME: Need support in EditModuleBase to drop this on top of OnLoad method
             // if (DotNetNuke.Framework.AJAX.IsInstalled ())
@@ -171,98 +200,71 @@ namespace R7.University.Division
             ctlAudit.Bind (item);
         }
 
-        protected override void OnUpdateItem (DivisionInfo item)
+        protected override void BeforeUpdateItem (DivisionInfo item)
         {
-            // nothing here, entire OnButtonUpdateClick is overriden
+            // fill the object
+            item.Title = txtTitle.Text.Trim ();
+            item.ShortTitle = txtShortTitle.Text.Trim ();
+            item.Email = txtEmail.Text.Trim ().ToLowerInvariant ();
+            item.SecondaryEmail = txtSecondaryEmail.Text.Trim ().ToLowerInvariant ();
+            item.Phone = txtPhone.Text.Trim ();
+            item.Fax = txtFax.Text.Trim ();
+            item.Location = txtLocation.Text.Trim ();
+            item.WebSite = txtWebSite.Text.Trim ();
+            item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
+            item.ParentDivisionID = TypeUtils.ParseToNullable<int> (treeParentDivisions.SelectedValue);
+            item.DivisionTermID = TypeUtils.ParseToNullable<int> (treeDivisionTerms.SelectedValue);
+            item.HomePage = urlHomePage.Url;
+            item.DocumentUrl = urlDocumentUrl.Url;
+            item.StartDate = datetimeStartDate.SelectedDate;
+            item.EndDate = datetimeEndDate.SelectedDate;
+            item.IsVirtual = checkIsVirtual.Checked;
+            item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
+
+            // update working hours
+            item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
         }
 
-		#region Handlers
+        #region implemented abstract members of EditPortalModuleBase
 
-		/// <summary>
-		/// Handles Click event for Update button
-		/// </summary>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		/// <param name='e'>
-		/// Event args.
-		/// </param>
-        protected override void OnButtonUpdateClick (object sender, EventArgs e)
-		{
-			try
-			{
-				DivisionInfo item;
-		
-				// determine if we are adding or updating
-				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue)
-				{
-					// add new record
-					item = new DivisionInfo ();
-				}
-				else
-				{	
-					// update existing record
-					item = Controller.Get<DivisionInfo> (itemId.Value);
-				}
+        protected override DivisionInfo GetItem (int itemId)
+        {
+            return UniversityRepository.Instance.DataProvider.Get<DivisionInfo> (itemId);
+        }
 
-				// fill the object
-				item.Title = txtTitle.Text.Trim ();
-				item.ShortTitle = txtShortTitle.Text.Trim ();
-				item.Email = txtEmail.Text.Trim ().ToLowerInvariant ();
-				item.SecondaryEmail = txtSecondaryEmail.Text.Trim ().ToLowerInvariant ();
-				item.Phone = txtPhone.Text.Trim ();
-				item.Fax = txtFax.Text.Trim ();
-				item.Location = txtLocation.Text.Trim ();
-				item.WebSite = txtWebSite.Text.Trim ();
-				item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
-				item.ParentDivisionID = TypeUtils.ParseToNullable<int> (treeParentDivisions.SelectedValue);
-				item.DivisionTermID = TypeUtils.ParseToNullable<int> (treeDivisionTerms.SelectedValue);
-				item.HomePage = urlHomePage.Url;
-				item.DocumentUrl = urlDocumentUrl.Url;
-                item.StartDate = datetimeStartDate.SelectedDate;
-                item.EndDate = datetimeEndDate.SelectedDate;
-                item.IsVirtual = checkIsVirtual.Checked;
-                item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
+        protected override int AddItem (DivisionInfo item)
+        {
+            // update audit info
+            item.CreatedByUserID = item.LastModifiedByUserID = UserId;
+            item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 
-				// update working hours
-				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
-				
-				if (!itemId.HasValue)
-				{
-					// update audit info
-					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
-					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
+            UniversityRepository.Instance.DataProvider.Add<DivisionInfo> (item);
 
-					Controller.Add<DivisionInfo> (item);
+            // then adding new division from Division module, 
+            // set calling module to display new division info
+            if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division")
+            {
+                Settings.DivisionID = item.DivisionID;
+            }
 
-					// then adding new division from Division module, 
-					// set calling module to display new division info
-					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division")
-					{
-						Settings.DivisionID = item.DivisionID;
-					}
-				}
-				else
-				{
-					// update audit info
-					item.LastModifiedByUserID = this.UserId;
-					item.LastModifiedOnDate = DateTime.Now;
+            return item.DivisionID;
+        }
 
-					Controller.Update<DivisionInfo> (item);
-				}
+        protected override void UpdateItem (DivisionInfo item)
+        {
+            // update audit info
+            item.LastModifiedByUserID = UserId;
+            item.LastModifiedOnDate = DateTime.Now;
 
-				Utils.SynchronizeModule (this);
+            UniversityRepository.Instance.DataProvider.Update<DivisionInfo> (item);
+        }
 
-				Response.Redirect (Globals.NavigateURL (), true);
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+        protected override void DeleteItem (DivisionInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Delete<DivisionInfo> (item);
+        }
 
-		#endregion
+        #endregion
 	}
 }
 

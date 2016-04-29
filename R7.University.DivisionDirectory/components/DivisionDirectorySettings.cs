@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,7 @@
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
-using DotNetNuke.R7;
-using R7.University;
+using R7.DotNetNuke.Extensions.Modules;
 
 namespace R7.University.DivisionDirectory
 {
@@ -37,6 +36,10 @@ namespace R7.University.DivisionDirectory
     /// </summary>
     public class DivisionDirectorySettings : SettingsWrapper
     {
+        public DivisionDirectorySettings ()
+        {
+        }
+
         public DivisionDirectorySettings (IModuleControl module): base (module)
         {
         }

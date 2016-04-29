@@ -65,8 +65,8 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\packages\AjaxControlToolkit.15.1.4.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.5.0\lib\net45\DotNetNuke.R7.dll</HintPath>
+    <Reference Include="R7.DotNetNuke.Extensions">
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.7.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -124,7 +124,6 @@
     <Compile Include="ViewEmployee.ascx.cache.cs">
       <DependentUpon>ViewEmployee.ascx</DependentUpon>
     </Compile>
-    <Compile Include="components\EmployeeModuleBase.cs" />
     <Compile Include="EditEmployee.ascx.cs">
       <DependentUpon>EditEmployee.ascx</DependentUpon>
     </Compile>
@@ -135,6 +134,7 @@
     <Compile Include="ViewModels\EmployeeAchievementView.cs" />
     <Compile Include="ViewModels\EmployeeDisciplineView.cs" />
     <Compile Include="ViewModels\OccupiedPositionView.cs" />
+    <Compile Include="components\EmployeeModuleHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

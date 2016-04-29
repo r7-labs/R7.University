@@ -25,14 +25,14 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.R7;
 using System.Collections.Generic;
+using R7.DotNetNuke.Extensions.Data;
 
 namespace R7.University.ModelExtensions
 {
     public static class DocumentExtensions
     {
-        public static IDocument WithDocumentType (this IDocument document, ControllerBase controller)
+        public static IDocument WithDocumentType (this IDocument document, Dal2DataProvider controller)
         {
             if (document.DocumentTypeID != null)
             {
@@ -42,7 +42,7 @@ namespace R7.University.ModelExtensions
             return document;
         }
 
-        public static IEnumerable<IDocument> WithDocumentType (this IEnumerable<IDocument> documents, ControllerBase controller)
+        public static IEnumerable<IDocument> WithDocumentType (this IEnumerable<IDocument> documents, Dal2DataProvider controller)
         {
             foreach (var document in documents)
             {

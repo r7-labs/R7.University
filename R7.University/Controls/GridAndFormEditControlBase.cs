@@ -33,8 +33,9 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
-using DotNetNuke.R7;
+using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 
 namespace R7.University.Controls
 {
@@ -94,7 +95,7 @@ namespace R7.University.Controls
             {
                 if (localResourceFile == null)
                 {
-                    localResourceFile = DotNetNuke.Web.UI.Utilities.GetLocalResourceFile (this);
+                    localResourceFile = DnnWebUiUtilities.GetLocalResourceFile (this);
                 }
 
                 return localResourceFile;

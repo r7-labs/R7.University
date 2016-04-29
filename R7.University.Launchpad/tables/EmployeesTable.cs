@@ -33,6 +33,7 @@ using DotNetNuke.Entities.Modules;
 using System.Threading;
 using R7.University;
 using DotNetNuke.Common.Utilities;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
@@ -42,7 +43,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
             var dt = new DataTable ();
             DataRow dr;
@@ -77,7 +78,7 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var employees = module.LaunchpadController.FindObjects<EmployeeInfo> (
+            var employees = UniversityRepository.Instance.DataProvider.FindObjects<EmployeeInfo> (
                 @"WHERE CONCAT([LastName], ' ', [FirstName], ' ', [OtherName], ' ',
                 [Phone], ' ', [CellPhone], ' ', [Fax], ' ', 
                 [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ',

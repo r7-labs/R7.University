@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014-2015 
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,22 +26,27 @@
 
 using System;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
-using System.Linq;
 using System.Data;
+using System.Linq;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.ControlExtensions;
+using R7.University.Data;
+using DotNetNuke.Security;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
+using DotNetNuke.Framework;
 
 namespace R7.University.Employee
 {
-    public partial class ViewEmployeeDetails : EmployeePortalModuleBase, IActionable
+    public partial class ViewEmployeeDetails: PortalModuleBase<EmployeeSettings>, IActionable
 	{
 		#region Properties
 
@@ -76,7 +81,7 @@ namespace R7.University.Employee
                         if (employeeId != null)
                         {
                             // get employee by querystring param
-                            _employee = EmployeeController.Get<EmployeeInfo> (employeeId.Value);
+                            _employee = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (employeeId.Value);
                         }
                         else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee")
                         {
@@ -92,6 +97,19 @@ namespace R7.University.Employee
         }
 
 		#endregion
+
+        protected EmployeeInfo GetEmployee ()
+        {
+            if (Settings.ShowCurrentUser)
+            {
+                var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+                if (userId != null)
+                    return UniversityRepository.Instance.GetEmployeeByUserId (userId.Value);
+            }
+
+            return UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (Settings.EmployeeID);
+        }
+
 
         #region IActionable implementation
 
@@ -111,7 +129,7 @@ namespace R7.University.Employee
                     "", 
                     EditUrl ("EditEmployee"),
                     false, 
-                    DotNetNuke.Security.SecurityAccessLevel.Edit,
+                    SecurityAccessLevel.Edit,
                     Employee == null, 
                     false
                 );
@@ -127,7 +145,7 @@ namespace R7.University.Employee
                         "", 
                         EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee"),
                         false, 
-                        DotNetNuke.Security.SecurityAccessLevel.Edit,
+                        SecurityAccessLevel.Edit,
                         true, 
                         false
                     );
@@ -140,7 +158,7 @@ namespace R7.University.Employee
                         "", 
                         EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard"),
                         false,
-                        DotNetNuke.Security.SecurityAccessLevel.View,
+                        SecurityAccessLevel.View,
                         true,
                         true
                     );
@@ -278,12 +296,12 @@ namespace R7.University.Employee
             if (InPopup)
             {
                 // set popup title to employee name
-                ((DotNetNuke.Framework.CDefault) this.Page).Title = fullname;
+                ((CDefault) this.Page).Title = fullname;
             }
             else if (InViewModule)
             {
-                if (EmployeeSettings.AutoTitle)
-                    UpdateModuleTitle (employee.FullName);
+                if (Settings.AutoTitle)
+                    EmployeeModuleHelper.UpdateModuleTitle (ModuleId, employee.FullName);
             }
             else
             {
@@ -292,7 +310,7 @@ namespace R7.University.Employee
             }
 
 			// occupied positions
-			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> (
+            var occupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
                 "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
             
 			if (occupiedPositions.Any ())
@@ -303,7 +321,7 @@ namespace R7.University.Employee
 			else
 				repeaterPositions.Visible = false;
 			
-            EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
+            EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth);
 					
 			// Phone
 			if (!string.IsNullOrWhiteSpace (employee.Phone))
@@ -386,7 +404,7 @@ namespace R7.University.Employee
         void EduPrograms (EmployeeInfo employee)
         {
             // get employee edu programs
-            var disciplines = EmployeeController.GetObjects<EmployeeDisciplineInfoEx> (
+            var disciplines = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeDisciplineInfoEx> (
                 "WHERE [EmployeeID] = @0", employee.EmployeeID).OrderBy (d => d.Code);
 
             if (disciplines.Any ())
@@ -461,7 +479,7 @@ namespace R7.University.Employee
 			}
 
 			// get all empoyee achievements
-			var achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
+            var achievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
                 "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", employee.EmployeeID);
 	
 			// employee titles

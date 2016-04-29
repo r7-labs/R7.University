@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,19 +27,19 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.Data;
 
 namespace R7.University.ModelExtensions
 {
     public static class EduProgramExtensions
     {
-        public static EduProgramInfo WithEduLevel (this EduProgramInfo eduProgram, ControllerBase controller)
+        public static EduProgramInfo WithEduLevel (this EduProgramInfo eduProgram, Dal2DataProvider controller)
         {
             eduProgram.EduLevel = controller.Get<EduLevelInfo> (eduProgram.EduLevelID);
             return eduProgram;
         }
 
-        public static IEnumerable<EduProgramInfo> WithEduLevel (this IEnumerable<EduProgramInfo> eduPrograms, ControllerBase controller)
+        public static IEnumerable<EduProgramInfo> WithEduLevel (this IEnumerable<EduProgramInfo> eduPrograms, Dal2DataProvider controller)
         {
             foreach (var eduProgram in eduPrograms)
             {
@@ -49,7 +49,7 @@ namespace R7.University.ModelExtensions
             return eduPrograms;
         }
 
-        public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram, ControllerBase controller)
+        public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram, Dal2DataProvider controller)
         {
             eduProgram.Documents = controller.GetObjects<DocumentInfo> (
                 "WHERE [ItemID] = @0", "EduProgramID=" + eduProgram.EduProgramID).ToList ();
@@ -59,7 +59,7 @@ namespace R7.University.ModelExtensions
             return eduProgram;
         }
 
-        public static IEnumerable<EduProgramInfo> WithDocuments (this IEnumerable<EduProgramInfo> eduPrograms, ControllerBase controller)
+        public static IEnumerable<EduProgramInfo> WithDocuments (this IEnumerable<EduProgramInfo> eduPrograms, Dal2DataProvider controller)
         {
             foreach (var eduProgram in eduPrograms)
             {

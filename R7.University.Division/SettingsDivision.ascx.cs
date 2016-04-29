@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,17 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
-using System.Web.UI.WebControls;
 using System.Linq;
-using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
+using R7.University.Data;
 
 namespace R7.University.Division
 {
-	public partial class SettingsDivision : DivisionModuleSettingsBase
+    public partial class SettingsDivision : ModuleSettingsBase<DivisionSettings>
 	{
 		/// <summary>
 		/// Handles the loading of the module setting for this control
@@ -47,7 +45,7 @@ namespace R7.University.Division
 				if (!IsPostBack)
 				{
 					// get divisions
-                    var divisions = DivisionController.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
+                    var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
 
                     // insert default item
                     divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
@@ -57,7 +55,7 @@ namespace R7.University.Division
 					treeDivisions.DataBind ();
 
                     // select node and expand tree to it
-                    Utils.SelectAndExpandByValue (treeDivisions, DivisionSettings.DivisionID.ToString ());
+                    Utils.SelectAndExpandByValue (treeDivisions, Settings.DivisionID.ToString ());
 				}
 			}
 			catch (Exception ex)
@@ -73,7 +71,7 @@ namespace R7.University.Division
 		{
 			try
 			{
-				DivisionSettings.DivisionID = int.Parse (treeDivisions.SelectedValue);
+				Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
 
 				Utils.SynchronizeModule (this);
 			}

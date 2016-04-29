@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,16 +26,17 @@
 
 using System;
 using R7.University;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.Modules;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditDocumentType: EditModuleBase<LaunchpadController,LaunchpadSettings,DocumentTypeInfo>
+    public partial class EditDocumentType: EditPortalModuleBase<DocumentTypeInfo,int>
 	{
         protected EditDocumentType (): base ("documenttype_id")
         {}
 
-        protected override void OnInitControls ()
+        protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
@@ -45,7 +46,7 @@ namespace R7.University.Launchpad
             return !item.IsSystem;
         }
 
-        protected override void OnLoadItem (DocumentTypeInfo item)
+        protected override void LoadItem (DocumentTypeInfo item)
         {
             textType.Text = item.Type;
             textDescription.Text = item.Description;
@@ -55,7 +56,7 @@ namespace R7.University.Launchpad
             textType.Enabled = !item.IsSystem;
         }
 
-        protected override void OnUpdateItem (DocumentTypeInfo item)
+        protected override void BeforeUpdateItem (DocumentTypeInfo item)
         {
             // don't update Type for system types,
             // also don't update IsSystem value at all
@@ -67,6 +68,31 @@ namespace R7.University.Launchpad
 
             item.Description = textDescription.Text.Trim ();
         }
+
+        #region implemented abstract members of EditPortalModuleBase
+
+        protected override DocumentTypeInfo GetItem (int itemId)
+        {
+            return UniversityRepository.Instance.DataProvider.Get<DocumentTypeInfo> (itemId);
+        }
+
+        protected override int AddItem (DocumentTypeInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Add<DocumentTypeInfo> (item);
+            return item.DocumentTypeID;
+        }
+
+        protected override void UpdateItem (DocumentTypeInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Update<DocumentTypeInfo> (item);
+        }
+
+        protected override void DeleteItem (DocumentTypeInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Delete<DocumentTypeInfo> (item);
+        }
+
+        #endregion
 	}
 }
 

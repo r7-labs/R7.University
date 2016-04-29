@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014-2015 Roman M. Yagodin
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,12 +34,16 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.R7;
+using DotNetNuke.Security;
 using R7.University;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Data;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
 
 namespace R7.University.Employee
 {
-	public partial class ViewEmployee : EmployeePortalModuleBase, IActionable
+    public partial class ViewEmployee: PortalModuleBase<EmployeeSettings>, IActionable
 	{
 		#region Properties
 
@@ -60,6 +64,18 @@ namespace R7.University.Employee
         }
 
 		#endregion
+
+        protected EmployeeInfo GetEmployee ()
+        {
+            if (Settings.ShowCurrentUser)
+            {
+                var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+                if (userId != null)
+                    return UniversityRepository.Instance.GetEmployeeByUserId (userId.Value);
+            }
+
+            return UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (Settings.EmployeeID);
+        }
 
 		#region Handlers
 
@@ -123,11 +139,11 @@ namespace R7.University.Employee
 					
 					if (displayContent)
 					{
-						if (EmployeeSettings.AutoTitle)
-                            UpdateModuleTitle (Employee.AbbrName);
+						if (Settings.AutoTitle)
+                            EmployeeModuleHelper.UpdateModuleTitle (ModuleId, Employee.AbbrName);
 						
 						// get employee achievements (titles) only then it about to display
-						achievements = EmployeeController.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
+                        achievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
                             "SELECT * FROM dbo.vw_University_EmployeeAchievements " +
                             "WHERE [EmployeeID] = @0 AND [IsTitle] = 1", Employee.EmployeeID);
 
@@ -152,7 +168,7 @@ namespace R7.University.Employee
 		protected void Display (EmployeeInfo employee, IEnumerable<EmployeeAchievementInfo> achievements)
 		{
 			// occupied positions
-			var occupiedPositions = EmployeeController.GetObjects<OccupiedPositionInfoEx> (
+            var occupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
                 "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
             
 			if (occupiedPositions.Any ())
@@ -167,7 +183,7 @@ namespace R7.University.Employee
 			var fullName = employee.FullName;
 			labelFullName.Text = fullName;
 
-            EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeSettings.PhotoWidth);
+            EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth);
 
             var popupUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
 				
@@ -276,7 +292,7 @@ namespace R7.University.Employee
 
 		#region IActionable implementation
 
-		public DotNetNuke.Entities.Modules.Actions.ModuleActionCollection ModuleActions
+		public ModuleActionCollection ModuleActions
 		{
 			get
 			{
@@ -292,7 +308,7 @@ namespace R7.University.Employee
 					"", 
 					EditUrl ("EditEmployee"),
 					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					SecurityAccessLevel.Edit,
 					Employee == null,
 					false
 				);
@@ -308,7 +324,7 @@ namespace R7.University.Employee
                         "", 
                         EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee"),
                         false, 
-                        DotNetNuke.Security.SecurityAccessLevel.Edit,
+                        SecurityAccessLevel.Edit,
                         true, 
                         false
                     );
@@ -321,7 +337,7 @@ namespace R7.University.Employee
                         "", 
                         EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EmployeeDetails"),
                         false, 
-                        DotNetNuke.Security.SecurityAccessLevel.View,
+                        SecurityAccessLevel.View,
                         true, 
                         false
                     );
@@ -334,7 +350,7 @@ namespace R7.University.Employee
                         "", 
                         EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard"),
                         false,
-                        DotNetNuke.Security.SecurityAccessLevel.View,
+                        SecurityAccessLevel.View,
                         true,
                         true
                     );

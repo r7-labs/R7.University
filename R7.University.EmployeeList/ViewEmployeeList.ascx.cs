@@ -1,26 +1,50 @@
-﻿using System;
-using System.IO;
-using System.Data;
-using System.Collections;
+﻿//
+// ViewEmployeeList.ascx.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2014-2016 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Data;
 using System.Linq;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
-using DotNetNuke.Entities.Icons;
+using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.Services.FileSystem;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University;
+using R7.University.Data;
 
 namespace R7.University.EmployeeList
 {
-	public partial class ViewEmployeeList : EmployeeListPortalModuleBase, IActionable
+    public partial class ViewEmployeeList: PortalModuleBase<EmployeeListSettings>, IActionable
 	{
 		#region Properties
 
@@ -64,10 +88,10 @@ namespace R7.University.EmployeeList
 					// REVIEW: Add Employees.LastYearRating field and sorting by it!
 					
 					// get employees by DivisionID, in edit mode show also non-published employees
-					var	items = EmployeeListController.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-						            (EmployeeListSettings.IncludeSubdivisions) ? // which SP to use
+                    var	items = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+						            (Settings.IncludeSubdivisions) ? // which SP to use
 							"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-						            EmployeeListSettings.DivisionID, EmployeeListSettings.SortType, IsEditable
+						            Settings.DivisionID, Settings.SortType, IsEditable
 					            );
 
 					// check if we have some content to display, 
@@ -90,7 +114,7 @@ namespace R7.University.EmployeeList
                         // get title achievements for all selected employees
                         // TODO: Move to dataprovider
                         // TODO: Use {databaseOwner} and {objectQualifier} 
-                        CommonTitleAchievements = EmployeeListController.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
+                        CommonTitleAchievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
                             string.Format ("SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] IN ({0}) AND [IsTitle] = 1", 
                                 employeeIds)
                         );
@@ -98,9 +122,9 @@ namespace R7.University.EmployeeList
                         // get occupied positions for all selected employees
                         // current division positions go first, then checks IsPrime, then PositionWeight
                         // add "AND [DivisionID] = @1" to display employee positions only from current division
-                        CommonOccupiedPositions = EmployeeListController.GetObjects<OccupiedPositionInfoEx> (
+                        CommonOccupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
                             string.Format ("WHERE [EmployeeID] IN ({0}) ORDER BY (CASE WHEN [DivisionID]={1} THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
-                                employeeIds, EmployeeListSettings.DivisionID)
+                                employeeIds, Settings.DivisionID)
                         );
 
                         // set container control visibility to common users
@@ -122,7 +146,7 @@ namespace R7.University.EmployeeList
 
 		#region IActionable implementation
 
-		public DotNetNuke.Entities.Modules.Actions.ModuleActionCollection ModuleActions
+		public ModuleActionCollection ModuleActions
 		{
 			get
 			{
@@ -135,12 +159,12 @@ namespace R7.University.EmployeeList
 					ModuleActionType.AddContent, 
 					"", 
 					"", 
-					Null.IsNull (EmployeeListSettings.DivisionID) ?
+					Null.IsNull (Settings.DivisionID) ?
                         EditUrl ("EditEmployee")
                         // pass division_id to select division in which to add employee
-                        : EditUrl ("division_id", EmployeeListSettings.DivisionID.ToString (), "EditEmployee"),
+                        : EditUrl ("division_id", Settings.DivisionID.ToString (), "EditEmployee"),
 					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					SecurityAccessLevel.Edit,
 					true, 
 					false
 				);
@@ -179,11 +203,11 @@ namespace R7.University.EmployeeList
 			// edit link
 			if (IsEditable)
 			{
-				if (Null.IsNull (EmployeeListSettings.DivisionID))
+				if (Null.IsNull (Settings.DivisionID))
                     linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee");
 				else
 					linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (),
-                        "EditEmployee", "division_id", EmployeeListSettings.DivisionID.ToString ());
+                        "EditEmployee", "division_id", Settings.DivisionID.ToString ());
 			}
 
 			// make edit link visible in edit mode
@@ -202,7 +226,7 @@ namespace R7.University.EmployeeList
 			// fill the controls
 
             // employee photo
-            EmployeePhotoLogic.Bind (employee, imagePhoto, EmployeeListSettings.PhotoWidth, true);
+            EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth, true);
 
             var employeeDetailsUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
                 
@@ -292,7 +316,7 @@ namespace R7.University.EmployeeList
 					// op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
 					strOps = Utils.FormatList ("; ", strOps, Utils.FormatList (": ", strOp, 
                         // do not display division title also for current division
-                        (op.DivisionID != EmployeeListSettings.DivisionID) ? op.FormatDivisionLink (this) : string.Empty));
+                        (op.DivisionID != Settings.DivisionID) ? op.FormatDivisionLink (this) : string.Empty));
 				}
 
 				if (!string.IsNullOrWhiteSpace (strOps))

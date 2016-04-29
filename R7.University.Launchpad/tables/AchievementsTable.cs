@@ -27,6 +27,8 @@
 using System;
 using System.Data;
 using DotNetNuke.Services.Localization;
+using DotNetNuke.Entities.Modules;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
@@ -36,7 +38,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
             var dt = new DataTable ();
             DataRow dr;
@@ -49,7 +51,7 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var achievements =  module.LaunchpadController.FindObjects<AchievementInfo> (
+            var achievements =  UniversityRepository.Instance.DataProvider.FindObjects<AchievementInfo> (
                 @"WHERE CONCAT ([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false
             );
 

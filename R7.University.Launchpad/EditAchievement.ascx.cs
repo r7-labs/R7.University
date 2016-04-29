@@ -25,20 +25,18 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI.WebControls;
-using System.Linq;
 using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.R7;
 using R7.University;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using DotNetNuke.Entities.Modules;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditAchievement : LaunchpadPortalModuleBase
+	public partial class EditAchievement : PortalModuleBase
 	{
 		private int? itemId = null;
 
@@ -85,7 +83,7 @@ namespace R7.University.Launchpad
 					if (itemId.HasValue)
 					{
 						// load the item
-						var item = LaunchpadController.Get<AchievementInfo> (itemId.Value);
+                        var item = UniversityRepository.Instance.DataProvider.Get<AchievementInfo> (itemId.Value);
 
 						if (item != null)
 						{
@@ -133,7 +131,7 @@ namespace R7.University.Launchpad
 				else
 				{
 					// update existing record
-					item = LaunchpadController.Get<AchievementInfo> (itemId.Value);
+                    item = UniversityRepository.Instance.DataProvider.Get<AchievementInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -142,9 +140,9 @@ namespace R7.University.Launchpad
 				item.AchievementType = (AchievementType)Enum.Parse (typeof(AchievementType), comboAchievementType.SelectedValue);
 
 				if (!itemId.HasValue)
-					LaunchpadController.Add<AchievementInfo> (item);
+                    UniversityRepository.Instance.DataProvider.Add<AchievementInfo> (item);
 				else
-					LaunchpadController.Update<AchievementInfo> (item);
+                    UniversityRepository.Instance.DataProvider.Update<AchievementInfo> (item);
 
 				Utils.SynchronizeModule (this);
 
@@ -172,7 +170,7 @@ namespace R7.University.Launchpad
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue)
 				{
-					LaunchpadController.Delete<AchievementInfo> (itemId.Value);
+                    UniversityRepository.Instance.DataProvider.Delete<AchievementInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}

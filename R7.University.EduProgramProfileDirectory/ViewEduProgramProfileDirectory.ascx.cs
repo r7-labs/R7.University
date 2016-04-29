@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,31 +25,26 @@
 // THE SOFTWARE.
 
 using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
-using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Security;
-using DotNetNuke.R7;
 using R7.University;
 using R7.University.ModelExtensions;
 using R7.University.ControlExtensions;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.University.Data;
 
 namespace R7.University.EduProgramProfileDirectory
 {
-    public partial class ViewEduProgramProfileDirectory
-        : ExtendedPortalModuleBase<EduProgramProfileDirectoryController, EduProgramProfileDirectorySettings>, IActionable
+    public partial class ViewEduProgramProfileDirectory: PortalModuleBase<EduProgramProfileDirectorySettings>, IActionable
 	{
 		#region Properties
 
@@ -133,12 +128,12 @@ namespace R7.University.EduProgramProfileDirectory
             var indexer = new ViewModelIndexer (1);
             var eduLevelIds = Settings.EduLevels;
 
-            var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
-                .WithEduPrograms (Controller)
+            var eduProgramProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
+                .WithEduPrograms (UniversityRepository.Instance.DataProvider)
                 .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
                 .Where (epp => epp.IsPublished () || IsEditable)
-                .WithEduLevel (Controller)
-                .WithEduProgramProfileForms (Controller)
+                .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
@@ -162,12 +157,12 @@ namespace R7.University.EduProgramProfileDirectory
             var indexer = new ViewModelIndexer (1);
             var eduLevelIds = Settings.EduLevels;
 
-            var eduProgramProfiles = Controller.GetObjects<EduProgramProfileInfo> ()
-                .WithEduPrograms (Controller)
+            var eduProgramProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
+                .WithEduPrograms (UniversityRepository.Instance.DataProvider)
                 .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
                 .Where (epp => epp.IsPublished () || IsEditable)
-                .WithEduLevel (Controller)
-                .WithDocuments (Controller)
+                .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                .WithDocuments (UniversityRepository.Instance.DataProvider)
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)

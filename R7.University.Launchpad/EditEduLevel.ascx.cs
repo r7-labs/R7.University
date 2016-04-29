@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,33 +26,60 @@
 
 using System;
 using R7.University;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduLevel: EditModuleBase<LaunchpadController,LaunchpadSettings,EduLevelInfo>
+    public partial class EditEduLevel: EditPortalModuleBase<EduLevelInfo,int>
 	{
         protected EditEduLevel (): base ("edulevel_id")
         {}
 
-        protected override void OnInitControls () 
+        protected override void InitControls () 
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
-        protected override void OnLoadItem (EduLevelInfo item)
+        protected override void LoadItem (EduLevelInfo item)
         {
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
             textSortIndex.Text = item.SortIndex.ToString ();
         }
 
-        protected override void OnUpdateItem (EduLevelInfo item)
+        protected override void BeforeUpdateItem (EduLevelInfo item)
         {
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
             item.SortIndex = TypeUtils.ParseToNullable<int> (textSortIndex.Text) ?? 0;
         }
+
+        #region implemented abstract members of EditPortalModuleBase
+
+        protected override EduLevelInfo GetItem (int itemId)
+        {
+            return UniversityRepository.Instance.DataProvider.Get<EduLevelInfo> (itemId);
+        }
+
+        protected override int AddItem (EduLevelInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Add<EduLevelInfo> (item);
+            return item.EduLevelID;
+        }
+
+        protected override void UpdateItem (EduLevelInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Update<EduLevelInfo> (item);
+        }
+
+        protected override void DeleteItem (EduLevelInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Delete<EduLevelInfo> (item);
+        }
+
+        #endregion
 	}
 }
 

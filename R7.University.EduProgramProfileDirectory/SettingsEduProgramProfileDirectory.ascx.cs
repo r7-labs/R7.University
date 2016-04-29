@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,17 +28,16 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Web.UI.WebControls;
-using DotNetNuke.R7;
 using R7.University;
+using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.University.Data;
 
 namespace R7.University.EduProgramProfileDirectory
 {
-    public partial class SettingsEduProgramProfileDirectory 
-        : ExtendedModuleSettingsBase<EduProgramProfileDirectoryController, EduProgramProfileDirectorySettings>
+    public partial class SettingsEduProgramProfileDirectory: ModuleSettingsBase<EduProgramProfileDirectorySettings>
     {
         private ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
@@ -61,7 +60,7 @@ namespace R7.University.EduProgramProfileDirectory
             comboMode.DataBind ();
 
             // fill edulevels list
-            var eduLevels = Controller.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
+            var eduLevels = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
 
             foreach (var eduLevel in eduLevels)
             {

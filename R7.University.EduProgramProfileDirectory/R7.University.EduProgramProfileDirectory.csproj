@@ -52,8 +52,8 @@
     <Reference Include="DotNetNuke.Web">
       <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.Web.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.5.0\lib\net45\DotNetNuke.R7.dll</HintPath>
+    <Reference Include="R7.DotNetNuke.Extensions">
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.7.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

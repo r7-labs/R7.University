@@ -1,20 +1,51 @@
-﻿using System;
+﻿//
+// EditEduProgram.ascx.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2015-2016 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.R7;
+using DotNetNuke.Framework;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.ModelExtensions;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using DotNetNuke.Entities.Modules;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
     // available tabs
     public enum EditEduProgramTab { Common, Documents };
 
-	public partial class EditEduProgram : LaunchpadPortalModuleBase
+	public partial class EditEduProgram : PortalModuleBase
 	{
         protected EditEduProgramTab SelectedTab
         {
@@ -71,10 +102,10 @@ namespace R7.University.Launchpad
                 + Localization.GetString ("DeleteItem") + "');");
 
 			// bind education levels
-            comboEduLevel.DataSource = LaunchpadController.GetObjects<EduLevelInfo> ();
+            comboEduLevel.DataSource = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ();
             comboEduLevel.DataBind ();
 
-            var documentTypes = LaunchpadController.GetObjects<DocumentTypeInfo> ();
+            var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();
             formEditDocuments.OnInit (this, documentTypes);
 		}
 
@@ -86,8 +117,8 @@ namespace R7.University.Launchpad
 		{
 			base.OnLoad (e);
             	
-            if (DotNetNuke.Framework.AJAX.IsInstalled ())
-                DotNetNuke.Framework.AJAX.RegisterScriptManager ();
+            if (AJAX.IsInstalled ())
+                AJAX.RegisterScriptManager ();
             
 			try
 			{
@@ -103,7 +134,7 @@ namespace R7.University.Launchpad
 					if (itemId.HasValue)
 					{
 						// load the item
-						var item = LaunchpadController.Get<EduProgramInfo> (itemId.Value);
+                        var item = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (itemId.Value);
 
 						if (item != null)
 						{
@@ -117,9 +148,9 @@ namespace R7.University.Launchpad
 
                             auditControl.Bind (item);
 
-                            var documents = LaunchpadController.GetObjects<DocumentInfo> (
+                            var documents = UniversityRepository.Instance.DataProvider.GetObjects<DocumentInfo> (
                                 string.Format ("WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID))
-                                .WithDocumentType (LaunchpadController)
+                                .WithDocumentType (UniversityRepository.Instance.DataProvider)
                                 .Cast<DocumentInfo> ()
                                 .ToList ();
                             
@@ -170,7 +201,7 @@ namespace R7.University.Launchpad
 				else
 				{
 					// update existing record
-					item = LaunchpadController.Get<EduProgramInfo> (itemId.Value);
+                    item = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -188,7 +219,7 @@ namespace R7.University.Launchpad
                     item.LastModifiedOnDate = item.CreatedOnDate;
                     item.CreatedByUserID = UserInfo.UserID;
                     item.LastModifiedByUserID = item.CreatedByUserID;
-                    LaunchpadController.AddEduProgram (item, formEditDocuments.GetData ());
+                    UniversityRepository.Instance.AddEduProgram (item, formEditDocuments.GetData ());
                 }
 				else
                 {
@@ -202,7 +233,7 @@ namespace R7.University.Launchpad
                         item.CreatedByUserID = item.LastModifiedByUserID;
                     }
 
-                    LaunchpadController.UpdateEduProgram (item, formEditDocuments.GetData ());
+                    UniversityRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
                 }
 
 				Utils.SynchronizeModule (this);
@@ -230,7 +261,7 @@ namespace R7.University.Launchpad
 			{
 				if (itemId != null)
 				{
-                    LaunchpadController.DeleteEduProgram (itemId.Value);
+                    UniversityRepository.Instance.DeleteEduProgram (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}

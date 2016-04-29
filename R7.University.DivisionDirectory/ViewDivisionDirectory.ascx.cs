@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014-2015
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,31 +25,28 @@
 // THE SOFTWARE.
 
 using System;
-using System.Data;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
-using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Data;
+using R7.DotNetNuke.Extensions.Entities.Modules;
 
 namespace R7.University.DivisionDirectory
 {
     // TODO: Make module instances co-exist on same page
 
-    public partial class ViewDivisionDirectory : DivisionDirectoryPortalModuleBase
+    public partial class ViewDivisionDirectory : PortalModuleBase<DivisionDirectorySettings>
     {
         #region Properties
 
@@ -109,14 +106,14 @@ namespace R7.University.DivisionDirectory
         {
             base.OnInit (e);
 
-            mviewDivisionDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewDivisionDirectory, "view" + DivisionDirectorySettings.Mode.ToString ());
+            mviewDivisionDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewDivisionDirectory, "view" + Settings.Mode);
 
-            if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.Search)
+            if (Settings.Mode == DivisionDirectoryMode.Search)
             {
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = DivisionDirectoryController.GetObjects <DivisionInfo> ()
+                var divisions = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
                     .Where (d => d.IsPublished || IsEditable)
                     .OrderBy (d => d.Title).ToList ();
                 
@@ -134,7 +131,7 @@ namespace R7.University.DivisionDirectory
 
                 gridDivisions.LocalizeColumns (LocalResourceFile);
             }
-            else if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
+            else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
             {
                 gridObrnadzorDivisions.LocalizeColumns (LocalResourceFile);
             }
@@ -152,7 +149,7 @@ namespace R7.University.DivisionDirectory
             {
                 if (!IsPostBack)
                 {
-                    if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.Search)
+                    if (Settings.Mode == DivisionDirectoryMode.Search)
                     {
                         if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
                         {
@@ -166,10 +163,10 @@ namespace R7.University.DivisionDirectory
                                 DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions);
                         }
                     }
-                    else if (DivisionDirectorySettings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
+                    else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
                     {
                         // getting all root divisions
-                        var rootDivisions = DivisionDirectoryController.GetRootDivisions ().OrderBy (d => d.Title);
+                        var rootDivisions = UniversityRepository.Instance.GetRootDivisions ().OrderBy (d => d.Title);
 
                         if (rootDivisions.Any ())
                         {
@@ -177,7 +174,7 @@ namespace R7.University.DivisionDirectory
 
                             foreach (var rootDivision in rootDivisions)
                             {
-                                divisions.AddRange (DivisionDirectoryController.GetSubDivisions (rootDivision.DivisionID));
+                                divisions.AddRange (UniversityRepository.Instance.GetSubDivisions (rootDivision.DivisionID));
                             }
 
                             // bind divisions to the grid
@@ -231,7 +228,7 @@ namespace R7.University.DivisionDirectory
         protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions)
         {
             // REVIEW: If division is not published, it's child divisions also should not
-            var divisions = DivisionDirectoryController
+            var divisions = UniversityRepository.Instance
                 .FindDivisions (searchText, includeSubdivisions, searchDivision)
                 .Where (d => d.IsPublished || IsEditable); 
 
@@ -345,7 +342,7 @@ namespace R7.University.DivisionDirectory
                     linkDocument.Visible = false;
 
                 // contact person (head employee)
-                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
+                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
                 if (contactPerson != null)
                 {
                     linkContactPerson.Text = contactPerson.AbbrName;
@@ -384,10 +381,10 @@ namespace R7.University.DivisionDirectory
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
                 // contact person (head employee)
-                var contactPerson = DivisionDirectoryController.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
+                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
                 if (contactPerson != null)
                 {
-                    var headPosition = DivisionDirectoryController.GetObjects<OccupiedPositionInfoEx> (
+                    var headPosition = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
                         "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
                         contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
 

@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,48 +25,12 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using System.Linq;
-using DotNetNuke.Collections;
-using DotNetNuke.Data;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Search;
-using DotNetNuke.Services.Search.Entities;
-using R7.University;
 
 namespace R7.University.DivisionDirectory
 {
-    public partial class DivisionDirectoryController : UniversityControllerBase
+    public class DivisionDirectoryController : ModuleController
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="R7.DivisionDirectory.R7.DivisionDirectoryController"/> class.
-        /// </summary>
-        public DivisionDirectoryController ()
-            : base ()
-        { 
-
-        }
-
-        #region ModuleSearchBase implementaion
-
-        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
-        {
-            var searchDocs = new List<SearchDocument> ();
-
-            // TODO: Implement GetModifiedSearchDocuments()
-
-            /* var sd = new SearchDocument();
-            searchDocs.Add(searchDoc);
-            */
-
-            return searchDocs;
-        }
-
-        #endregion
-
     }
 }
 

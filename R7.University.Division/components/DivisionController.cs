@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,30 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml;
-using System.Linq;
-using DotNetNuke.Collections;
-using DotNetNuke.Data;
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Search;
 using DotNetNuke.Services.Search.Entities;
 using R7.University;
+using R7.University.Data;
 
 namespace R7.University.Division
 {
-	public partial class DivisionController : UniversityControllerBase, IPortable
+	public partial class DivisionController : ModuleSearchBase, IPortable
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="R7.University.Division.DivisionController"/> class.
-		/// </summary>
-		public DivisionController () : base ()
-		{ 
-
-		}
-
 		#region ModuleSearchBase implementaion
 
 		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
 		{
 			var searchDocs = new List<SearchDocument> ();
 			var settings = new DivisionSettings (modInfo);
-			var division = Get<DivisionInfo> (settings.DivisionID);
+            var division = UniversityRepository.Instance.DataProvider.Get<DivisionInfo> (settings.DivisionID);
 		
 			if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
 			{
@@ -89,7 +81,7 @@ namespace R7.University.Division
 		public string ExportModule (int moduleId)
 		{
 			var sb = new StringBuilder ();
-			var infos = GetObjects<DivisionInfo> (moduleId);
+            var infos = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> (moduleId);
 
             if (infos.Any ())
 			{
@@ -117,7 +109,7 @@ namespace R7.University.Division
 		/// <param name="UserID"></param>
 		public void ImportModule (int ModuleID, string Content, string Version, int UserID)
 		{
-			var infos = DotNetNuke.Common.Globals.GetContent (Content, "Divisions");
+			var infos = Globals.GetContent (Content, "Divisions");
 		
 			foreach (XmlNode info in infos.SelectNodes("Division"))
 			{
@@ -126,7 +118,7 @@ namespace R7.University.Division
 				item.Title = info.SelectSingleNode ("content").InnerText;
 				item.CreatedByUserID = UserID;
 
-				Add<DivisionInfo> (item);
+                UniversityRepository.Instance.DataProvider.Add<DivisionInfo> (item);
 			}
 		}
 

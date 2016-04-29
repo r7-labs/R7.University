@@ -17,7 +17,7 @@
             <asp:TextBox id="textSortIndex" runat="server" />
             <asp:RegularExpressionValidator runat="server" resourcekey="SortIndex.Invalid"
                 ControlToValidate="textSortIndex" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" 
-                ValidationExpression="-?\d+" />
+                ValidationExpression="^0*[1-9]\d*$" />
         </div>
 	</fieldset>
 	<ul class="dnnActions dnnClear">

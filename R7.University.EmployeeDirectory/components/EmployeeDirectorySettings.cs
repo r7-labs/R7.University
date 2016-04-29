@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2016
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,16 +29,19 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
-using DotNetNuke.R7;
-using R7.University;
+using R7.DotNetNuke.Extensions.Modules;
 
 namespace R7.University.EmployeeDirectory
 {
     /// <summary>
     /// Provides strong typed access to settings used by module
     /// </summary>
-    public class EmployeeDirectorySettings : SettingsWrapper
+    public class EmployeeDirectorySettings: SettingsWrapper
     {
+        public EmployeeDirectorySettings ()
+        {
+        }
+
         public EmployeeDirectorySettings (IModuleControl module): base (module)
         {
         }

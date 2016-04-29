@@ -25,16 +25,15 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.Data;
 
 namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileFormExtensions
     {
         public static EduProgramProfileFormInfo WithEduForm (
-            this EduProgramProfileFormInfo eduProgramProfileForm, ControllerBase controller)
+            this EduProgramProfileFormInfo eduProgramProfileForm, Dal2DataProvider controller)
         {
             eduProgramProfileForm.EduForm = controller.Get<EduFormInfo> (eduProgramProfileForm.EduFormID);
 
@@ -42,7 +41,7 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEnumerable<EduProgramProfileFormInfo> WithEduForms (
-            this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, ControllerBase controller)
+            this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, Dal2DataProvider controller)
         {
             foreach (var eduProgramProfileForm in eduProgramProfileForms)
             {

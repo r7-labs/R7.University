@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014-2015 Roman M. Yagodin
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,23 +25,26 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI.WebControls;
 using System.Linq;
-using DotNetNuke.Services.Exceptions;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.R7;
+using DotNetNuke.Framework;
+using DotNetNuke.Services.Exceptions;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
+using R7.University.Data;
 
 namespace R7.University.Employee
 {
-	public partial class SettingsEmployee : EmployeeModuleSettingsBase
+    public partial class SettingsEmployee : ModuleSettingsBase<EmployeeSettings>
 	{
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
             // bind employees to the combobox
-            comboEmployees.DataSource = EmployeeController.GetObjects<EmployeeInfo> ().OrderBy (em => em.LastName);
+            comboEmployees.DataSource = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> ().OrderBy (em => em.LastName);
             comboEmployees.DataBind ();
 
             // add default item
@@ -55,24 +58,24 @@ namespace R7.University.Employee
 		{
 			try
 			{
-                if (DotNetNuke.Framework.AJAX.IsInstalled ())
-                    DotNetNuke.Framework.AJAX.RegisterScriptManager ();
+                if (AJAX.IsInstalled ())
+                    AJAX.RegisterScriptManager ();
 
 				if (!IsPostBack)
 				{
-					if (!Null.IsNull (EmployeeSettings.EmployeeID))
-                        comboEmployees.SelectByValue (EmployeeSettings.EmployeeID);
+					if (!Null.IsNull (Settings.EmployeeID))
+                        comboEmployees.SelectByValue (Settings.EmployeeID);
                     else
                         comboEmployees.SelectedIndex = 0;
 
-					checkAutoTitle.Checked = EmployeeSettings.AutoTitle;
-					checkShowCurrentUser.Checked = EmployeeSettings.ShowCurrentUser;
+					checkAutoTitle.Checked = Settings.AutoTitle;
+					checkShowCurrentUser.Checked = Settings.ShowCurrentUser;
 					
-					if (!Null.IsNull (EmployeeSettings.PhotoWidth))
-						textPhotoWidth.Text = EmployeeSettings.PhotoWidth.ToString ();
+					if (!Null.IsNull (Settings.PhotoWidth))
+						textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
 					
-					if (!Null.IsNull (EmployeeSettings.DataCacheTime))
-						textDataCacheTime.Text = EmployeeSettings.DataCacheTime.ToString ();
+					if (!Null.IsNull (Settings.DataCacheTime))
+						textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
 				}
 			}
 			catch (Exception ex)
@@ -88,21 +91,21 @@ namespace R7.University.Employee
 		{
 			try
 			{
-				EmployeeSettings.ShowCurrentUser = checkShowCurrentUser.Checked;
+				Settings.ShowCurrentUser = checkShowCurrentUser.Checked;
 
-				EmployeeSettings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
+				Settings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
 
-				EmployeeSettings.AutoTitle = checkAutoTitle.Checked;
+				Settings.AutoTitle = checkAutoTitle.Checked;
 
 				if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
-					EmployeeSettings.PhotoWidth = int.Parse (textPhotoWidth.Text);
+					Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
 				else
-					EmployeeSettings.PhotoWidth = Null.NullInteger;
+					Settings.PhotoWidth = Null.NullInteger;
 				
 				if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
-					EmployeeSettings.DataCacheTime = int.Parse (textDataCacheTime.Text);
+					Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
 				else
-					EmployeeSettings.DataCacheTime = Null.NullInteger;
+					Settings.DataCacheTime = Null.NullInteger;
 				
 				Utils.SynchronizeModule (this);
 

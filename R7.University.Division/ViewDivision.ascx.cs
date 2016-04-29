@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2016 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,23 +25,26 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
-using DotNetNuke.Entities.Content.Taxonomy;
-using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Security;
+using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
-using DotNetNuke.R7;
+using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University;
+using R7.University.Data;
 
 namespace R7.University.Division
 {
-	public partial class ViewDivision : DivisionPortalModuleBase, IActionable
+    public partial class ViewDivision : PortalModuleBase<DivisionSettings>, IActionable
 	{
         private ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
@@ -80,9 +83,9 @@ namespace R7.University.Division
 				if (!IsPostBack || ViewState.Count == 0) // Fix for issue #23
 				{
 					var display = false;
-					if (!Null.IsNull (DivisionSettings.DivisionID))
+					if (!Null.IsNull (Settings.DivisionID))
 					{
-						var item = DivisionController.Get<DivisionInfo> (DivisionSettings.DivisionID);
+                        var item = UniversityRepository.Instance.DataProvider.Get<DivisionInfo> (Settings.DivisionID);
 						if (item != null)
 						{	
 							display = true;
@@ -249,7 +252,7 @@ namespace R7.University.Division
 			imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
 
 			// get & bind subdivisions
-			var subDivisions = DivisionController.GetObjects<DivisionInfo> (
+            var subDivisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> (
                 "WHERE [ParentDivisionID] = @0", division.DivisionID)
                 .Where (d => IsEditable || d.IsPublished)
                 .OrderBy (d => d.Title)
@@ -268,14 +271,14 @@ namespace R7.University.Division
 
 		#region IActionable implementation
 
-		public DotNetNuke.Entities.Modules.Actions.ModuleActionCollection ModuleActions
+		public ModuleActionCollection ModuleActions
 		{
 			get
 			{
 				// create a new action to add an item, this will be added 
 				// to the controls dropdown menu
 				var actions = new ModuleActionCollection ();
-				var existingDivision = !Null.IsNull (DivisionSettings.DivisionID);
+				var existingDivision = !Null.IsNull (Settings.DivisionID);
 
 				actions.Add (
 					GetNextActionID (), 
@@ -285,7 +288,7 @@ namespace R7.University.Division
 					"",
 					EditUrl ("EditDivision"),
 					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					SecurityAccessLevel.Edit,
 					!existingDivision,
 					false
 				);
@@ -296,9 +299,9 @@ namespace R7.University.Division
 					ModuleActionType.EditContent, 
 					"", 
 					"", 
-                    EditUrl ("division_id", DivisionSettings.DivisionID.ToString (), "EditDivision"),
+                    EditUrl ("division_id", Settings.DivisionID.ToString (), "EditDivision"),
 					false, 
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
+					SecurityAccessLevel.Edit,
 					existingDivision, 
 					false
 				);
@@ -309,9 +312,9 @@ namespace R7.University.Division
 					ModuleActionType.ContentOptions, 
 					"", 
 					"", 
-                    EditUrl ("division_id", DivisionSettings.DivisionID.ToString (), "VCard"),
+                    EditUrl ("division_id", Settings.DivisionID.ToString (), "VCard"),
 					false, 
-					DotNetNuke.Security.SecurityAccessLevel.View,
+					SecurityAccessLevel.View,
 					existingDivision, 
 					true // open in new window
 				);

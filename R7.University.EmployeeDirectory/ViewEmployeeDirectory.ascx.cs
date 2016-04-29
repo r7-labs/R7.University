@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014-2015
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,16 +32,20 @@ using System.Linq;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Entities.Icons;
-using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.ModelExtensions;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.University.Data;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.EmployeeDirectory
 {
     // TODO: Make module instances co-exist on same page
 
-    public partial class ViewEmployeeDirectory : EmployeeDirectoryPortalModuleBase
+    public partial class ViewEmployeeDirectory: PortalModuleBase<EmployeeDirectorySettings>
     {
         #region Properties
 
@@ -110,14 +114,14 @@ namespace R7.University.EmployeeDirectory
         {
             base.OnInit (e);
 
-            mviewEmployeeDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewEmployeeDirectory, "view" + EmployeeDirectorySettings.Mode.ToString ());
+            mviewEmployeeDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewEmployeeDirectory, "view" + Settings.Mode);
 
-            if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.Search)
+            if (Settings.Mode == EmployeeDirectoryMode.Search)
             {
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = EmployeeDirectoryController.GetObjects <DivisionInfo> ()
+                var divisions = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
                     .Where (d => d.IsPublished || IsEditable)
                     .OrderBy (d => d.Title).ToList ();
                 
@@ -146,7 +150,7 @@ namespace R7.University.EmployeeDirectory
             {
                 if (!IsPostBack)
                 {
-                    if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.Search)
+                    if (Settings.Mode == EmployeeDirectoryMode.Search)
                     {
                         if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
                         {
@@ -161,14 +165,14 @@ namespace R7.University.EmployeeDirectory
                                 DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
                         }
                     }
-                    else if (EmployeeDirectorySettings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
+                    else if (Settings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
                     {
-                        var eduLevelIds = EmployeeDirectorySettings.EduLevels;
+                        var eduLevelIds = Settings.EduLevels;
 
-                        var eduProfiles = EmployeeDirectoryController.GetObjects<EduProgramProfileInfo> ()
+                        var eduProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
                             // .Where (epp => epp.IsPublished () || IsEditable)
-                            .WithEduPrograms (EmployeeDirectoryController)
-                            .WithEduLevel (EmployeeDirectoryController)
+                            .WithEduPrograms (UniversityRepository.Instance.DataProvider)
+                            .WithEduLevel (UniversityRepository.Instance.DataProvider)
                             .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
                             .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                             .ThenBy (epp => epp.EduProgram.Code)
@@ -177,7 +181,7 @@ namespace R7.University.EmployeeDirectory
                             .Select (epp => new EduProgramProfileObrnadzorTeachersViewModel (epp, ViewModelContext))
                             .ToList ();
 
-                        if (EmployeeDirectorySettings.ShowAllTeachers)
+                        if (Settings.ShowAllTeachers)
                         {
                             eduProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
                                 new EduProgramProfileInfo { 
@@ -225,13 +229,13 @@ namespace R7.University.EmployeeDirectory
                 if (Null.IsNull (eduProfile.EduProgramProfileID))
                 {
                     // select all teachers w/o edu. program profiles
-                    teachers = EmployeeDirectoryController.GetTeachersWithoutEduPrograms ();
+                    teachers = UniversityRepository.Instance.GetTeachersWithoutEduPrograms ();
                     anchorName = "empty";
                 }
                 else
                 {
                     // select teachers for current edu. program profile
-                    teachers = EmployeeDirectoryController.GetTeachersByEduProgramProfile (eduProfile.EduProgramProfileID);
+                    teachers = UniversityRepository.Instance.GetTeachersByEduProgramProfile (eduProfile.EduProgramProfileID);
                     anchorName = eduProfile.EduProgramProfileID.ToString ();
                 }
 
@@ -290,7 +294,7 @@ namespace R7.University.EmployeeDirectory
                 {
                     var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
 
-                    var discipline = EmployeeDirectoryController.GetObjects <EmployeeDisciplineInfo> (
+                    var discipline = UniversityRepository.Instance.DataProvider.GetObjects <EmployeeDisciplineInfo> (
                         "WHERE [EmployeeID] = @0 AND [EduProgramProfileID] = @1", teacher.EmployeeID, eduProfileId).FirstOrDefault ();
 
                     if (discipline != null) literalDisciplines.Text = discipline.Disciplines;
@@ -302,7 +306,7 @@ namespace R7.University.EmployeeDirectory
 
                 var literalPositions = (Literal) e.Row.FindControl ("literalPositions");
 
-                var positions = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> (
+                var positions = UniversityRepository.Instance.DataProvider.GetObjects <OccupiedPositionInfoEx> (
                     "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", teacher.EmployeeID).Select (op => Utils.FormatList (": ", op.PositionTitle, op.DivisionTitle));
 
                 // TODO: Use OccupiedPositionInfoEx.GroupByDivision () here
@@ -313,7 +317,7 @@ namespace R7.University.EmployeeDirectory
                 #region Academic degrees, Academic titles, Education, Training
 
                 // get all empoyee achievements
-                var achievements = EmployeeDirectoryController.GetObjects<EmployeeAchievementInfo> (
+                var achievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (
                     CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
                     teacher.EmployeeID).ToList ();
 
@@ -391,7 +395,7 @@ namespace R7.University.EmployeeDirectory
 
         protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions, bool teachersOnly)
         {
-            var employees = EmployeeDirectoryController.FindEmployees (searchText,
+            var employees = UniversityRepository.Instance.FindEmployees (searchText,
                                 IsEditable, teachersOnly, includeSubdivisions, searchDivision); 
 
             if (employees == null || !employees.Any ())
@@ -489,7 +493,7 @@ namespace R7.University.EmployeeDirectory
                 workingPlace.Text = employee.WorkingPlace;
 
                 // try to get prime position:
-                var primePosition = EmployeeDirectoryController.GetObjects <OccupiedPositionInfoEx> (
+                var primePosition = UniversityRepository.Instance.DataProvider.GetObjects <OccupiedPositionInfoEx> (
                                         "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
 
                 if (primePosition != null)

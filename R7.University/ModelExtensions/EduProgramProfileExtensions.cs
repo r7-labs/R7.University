@@ -27,14 +27,14 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.Data;
 
 namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileExtensions
     {
         public static EduProgramProfileInfo WithEduProgram (
-            this EduProgramProfileInfo eduProfile, ControllerBase controller)
+            this EduProgramProfileInfo eduProfile, Dal2DataProvider controller)
         {
             eduProfile.EduProgram = controller.Get<EduProgramInfo> (eduProfile.EduProgramID);
 
@@ -42,7 +42,7 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEnumerable<EduProgramProfileInfo> WithEduPrograms (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, Dal2DataProvider controller)
         {
             var eduPrograms = controller.GetObjects<EduProgramInfo> ();
 
@@ -55,7 +55,7 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEnumerable<EduProgramProfileInfo> WithEduLevel (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, Dal2DataProvider controller)
         {
             foreach (var eduProgramProfile in eduProgramProfiles) {
                 eduProgramProfile.EduProgram.WithEduLevel (controller);
@@ -64,7 +64,7 @@ namespace R7.University.ModelExtensions
         }
 
         public static EduProgramProfileInfo WithEduProgramProfileForms (
-            this EduProgramProfileInfo eduProfile, ControllerBase controller)
+            this EduProgramProfileInfo eduProfile, Dal2DataProvider controller)
         {
             eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
                 "WHERE [EduProgramProfileID] = @0", eduProfile.EduProgramProfileID)
@@ -76,7 +76,7 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEnumerable<EduProgramProfileInfo> WithEduProgramProfileForms (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, ControllerBase controller)
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, Dal2DataProvider controller)
         {
             foreach (var eduProgramProfile in eduProgramProfiles) {
                 yield return eduProgramProfile.WithEduProgramProfileForms (controller);
@@ -84,7 +84,7 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEduProgramProfile WithDocuments (
-            this IEduProgramProfile eduProgramProfile, ControllerBase controller)
+            this IEduProgramProfile eduProgramProfile, Dal2DataProvider controller)
         {
             eduProgramProfile.Documents = controller.GetObjects<DocumentInfo> (
                 "WHERE [ItemID] = @0", "EduProgramProfileID=" + eduProgramProfile.EduProgramProfileID)
@@ -97,7 +97,7 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEnumerable<IEduProgramProfile> WithDocuments (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, ControllerBase controller)
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, Dal2DataProvider controller)
         {
             foreach (var eduProgramProfile in eduProgramProfiles) {
                 yield return eduProgramProfile.WithDocuments (controller);

@@ -33,6 +33,7 @@ using DotNetNuke.Entities.Modules;
 using System.Threading;
 using System.Web.UI;
 using DotNetNuke.Common.Utilities;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
@@ -42,9 +43,9 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
-            var divisions = module.LaunchpadController.FindObjects<DivisionInfo> (
+            var divisions = UniversityRepository.Instance.DataProvider.FindObjects<DivisionInfo> (
                 @"WHERE CONCAT([Title], ' ', [ShortTitle], ' ', [Location], ' ', [Phone], ' ',
                 [Fax], ' ', [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ', [WorkingHours])
                 LIKE N'%{0}%'", search, false);

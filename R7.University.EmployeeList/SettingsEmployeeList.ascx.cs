@@ -1,23 +1,47 @@
-﻿using System;
-using System.Web.UI.WebControls;
+﻿//
+// SettingsEmployeeList.ascx.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2014-2016 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using System.Linq;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
 using DotNetNuke.Common.Utilities;
 using R7.University;
+using R7.DotNetNuke.Extensions.Modules;
+using R7.University.Data;
 
 namespace R7.University.EmployeeList
 {
-	public partial class SettingsEmployeeList : EmployeeListModuleSettingsBase
+    public partial class SettingsEmployeeList : ModuleSettingsBase<EmployeeListSettings>
 	{
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
             // get divisions
-            var divisions = EmployeeListController.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
+            var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
@@ -42,18 +66,18 @@ namespace R7.University.EmployeeList
 				if (!IsPostBack)
 				{
 			        // select node and expand tree to it
-                    Utils.SelectAndExpandByValue (treeDivisions, EmployeeListSettings.DivisionID.ToString ());
+                    Utils.SelectAndExpandByValue (treeDivisions, Settings.DivisionID.ToString ());
 
 					// check / uncheck IncludeSubdivisions
-					checkIncludeSubdivisions.Checked = EmployeeListSettings.IncludeSubdivisions;
+					checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
 
-					comboSortType.Select (EmployeeListSettings.SortType.ToString (), false);
+					comboSortType.Select (Settings.SortType.ToString (), false);
 
-					if (!Null.IsNull (EmployeeListSettings.PhotoWidth))
-						textPhotoWidth.Text = EmployeeListSettings.PhotoWidth.ToString ();
+					if (!Null.IsNull (Settings.PhotoWidth))
+						textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
 					
-					if (!Null.IsNull (EmployeeListSettings.DataCacheTime))
-						textDataCacheTime.Text = EmployeeListSettings.DataCacheTime.ToString ();
+					if (!Null.IsNull (Settings.DataCacheTime))
+						textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
 				}
 			}
 			catch (Exception ex)
@@ -69,19 +93,19 @@ namespace R7.University.EmployeeList
 		{
 			try
 			{
-				EmployeeListSettings.DivisionID = int.Parse (treeDivisions.SelectedValue);
-				EmployeeListSettings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
-				EmployeeListSettings.SortType = int.Parse (comboSortType.SelectedValue);
+				Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
+				Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
+				Settings.SortType = int.Parse (comboSortType.SelectedValue);
 
 				if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
-					EmployeeListSettings.PhotoWidth = int.Parse (textPhotoWidth.Text);
+					Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
 				else
-					EmployeeListSettings.PhotoWidth = Null.NullInteger;
+					Settings.PhotoWidth = Null.NullInteger;
 				
 				if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
-					EmployeeListSettings.DataCacheTime = int.Parse (textDataCacheTime.Text);
+					Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
 				else
-					EmployeeListSettings.DataCacheTime = Null.NullInteger;
+					Settings.DataCacheTime = Null.NullInteger;
 
 				Utils.SynchronizeModule (this);
 			}

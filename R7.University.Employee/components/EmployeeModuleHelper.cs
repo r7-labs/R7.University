@@ -23,14 +23,25 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
+using DotNetNuke.Entities.Modules;
 
 namespace R7.University.Employee
 {
-    public class EmployeeModuleHelper
+    public static class EmployeeModuleHelper
     {
-        public EmployeeModuleHelper ()
+        public static void UpdateModuleTitle (int moduleId, string title)
         {
+            // replace module title
+            var mctrl = new ModuleController ();
+            var module = mctrl.GetModule (moduleId);
+
+            if (module.ModuleTitle != title)
+            {
+                module.ModuleTitle = title;
+                mctrl.UpdateModule (module);
+            }
         }
     }
 }

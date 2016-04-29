@@ -1,27 +1,47 @@
-﻿using System;
-using System.Web.UI.WebControls;
+﻿//
+// EditEduProgramProfile.ascx.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2015-2016 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using System.Linq;
-using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.R7;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.ModelExtensions;
 using System.Text.RegularExpressions;
+using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduProgramProfile: 
-        EditModuleBase<LaunchpadController,LaunchpadSettings,EduProgramProfileInfo>
+    public partial class EditEduProgramProfile: EditPortalModuleBase<EduProgramProfileInfo,int>
 	{
         protected EditEduProgramProfile (): base ("eduprogramprofile_id")
         {}
 
-        protected override void OnInitControls ()
+        protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel, auditControl);
         }
@@ -35,7 +55,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // bind education programs
-            comboEduProgram.DataSource = Controller.GetObjects<EduProgramInfo> ()
+            comboEduProgram.DataSource = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramInfo> ()
                 .OrderBy (ep => ep.EduLevelID)
                 .ThenBy (ep => ep.Code);
             
@@ -43,11 +63,11 @@ namespace R7.University.Launchpad
             comboEduProgram.SelectedIndex = 0;
 
             // init edit forms
-            formEditEduForms.OnInit (this, Controller.GetObjects<EduFormInfo> ());
-            formEditDocuments.OnInit (this, Controller.GetObjects<DocumentTypeInfo> ());
+            formEditEduForms.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<EduFormInfo> ());
+            formEditDocuments.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
         }
 
-        protected override void OnLoadItem (EduProgramProfileInfo item)
+        protected override void LoadItem (EduProgramProfileInfo item)
         {
             textProfileCode.Text = item.ProfileCode;
             textProfileTitle.Text = item.ProfileTitle;
@@ -60,23 +80,23 @@ namespace R7.University.Launchpad
 
             auditControl.Bind (item);
 
-            var documents = Controller.GetObjects<DocumentInfo> (
+            var documents = UniversityRepository.Instance.DataProvider.GetObjects<DocumentInfo> (
                 string.Format ("WHERE ItemID = N'EduProgramProfileID={0}'", item.EduProgramProfileID))
-                .WithDocumentType (Controller)
+                .WithDocumentType (UniversityRepository.Instance.DataProvider)
                 .Cast<DocumentInfo> ()
                 .ToList ();
 
             formEditDocuments.SetData (documents, item.EduProgramProfileID);
 
-            var eppForms = Controller.GetObjects<EduProgramProfileFormInfo> (
+            var eppForms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileFormInfo> (
                 "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
-                .WithEduForms (Controller)
+                .WithEduForms (UniversityRepository.Instance.DataProvider)
                 .ToList ();
             
             formEditEduForms.SetData (eppForms, item.EduProgramProfileID);
         }
 
-        protected override void OnUpdateItem (EduProgramProfileInfo item)
+        protected override void BeforeUpdateItem (EduProgramProfileInfo item)
         {
             // fill the object
             item.ProfileCode = textProfileCode.Text.Trim ();
@@ -110,12 +130,34 @@ namespace R7.University.Launchpad
             }
         }
 
-        protected override void AfterUpdateItem (EduProgramProfileInfo item)
+        #region implemented abstract members of EditPortalModuleBase
+
+        protected override EduProgramProfileInfo GetItem (int itemId)
         {
-            // update referenced items
-            Controller.UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfileID", item.EduProgramProfileID);
-            Controller.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+            return UniversityRepository.Instance.DataProvider.Get<EduProgramProfileInfo> (itemId);
         }
+
+        protected override int AddItem (EduProgramProfileInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Add<EduProgramProfileInfo> (item);
+            return item.EduProgramProfileID;
+        }
+
+        protected override void UpdateItem (EduProgramProfileInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Add<EduProgramProfileInfo> (item);
+
+            // update referenced items
+            UniversityRepository.Instance.UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfileID", item.EduProgramProfileID);
+            UniversityRepository.Instance.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+        }
+
+        protected override void DeleteItem (EduProgramProfileInfo item)
+        {
+            UniversityRepository.Instance.DataProvider.Delete<EduProgramProfileInfo> (item);
+        }
+
+        #endregion
 
         protected void linkEditEduProgram_Click (object sender, EventArgs e)
         {

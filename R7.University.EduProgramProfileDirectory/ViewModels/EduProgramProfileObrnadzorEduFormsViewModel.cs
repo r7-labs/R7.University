@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
 {

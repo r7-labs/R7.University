@@ -10,9 +10,9 @@ using R7.University.Controls;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditEduProgramProfile
+    public partial class EditEduProgramProfile
 	{
-		protected LinkButton buttonUpdate;
+        protected LinkButton buttonUpdate;
 		protected LinkButton buttonDelete;
 		protected HyperLink linkCancel;
         protected AjaxControlToolkit.ComboBox comboEduProgram;

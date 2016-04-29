@@ -26,6 +26,8 @@
 
 using System;
 using System.Data;
+using DotNetNuke.Entities.Modules;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
@@ -40,9 +42,9 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (LaunchpadPortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
-            var documents = module.LaunchpadController.FindObjects<DocumentInfo> (
+            var documents = UniversityRepository.Instance.DataProvider.FindObjects<DocumentInfo> (
                 @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
 
             return DataTableConstructor.FromIEnumerable (documents);

@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,8 @@ using System.Linq;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Controls
 {

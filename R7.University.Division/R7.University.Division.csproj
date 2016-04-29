@@ -65,8 +65,8 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\packages\AjaxControlToolkit.15.1.4.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.5.0\lib\net45\DotNetNuke.R7.dll</HintPath>
+    <Reference Include="R7.DotNetNuke.Extensions">
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.7.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -107,7 +107,6 @@
     <Compile Include="ViewVCard.ascx.cs">
       <DependentUpon>ViewVCard.ascx</DependentUpon>
     </Compile>
-    <Compile Include="components\DivisionModuleBase.cs" />
     <Compile Include="EditDivision.ascx.cs">
       <DependentUpon>EditDivision.ascx</DependentUpon>
     </Compile>

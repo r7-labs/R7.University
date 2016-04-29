@@ -29,6 +29,7 @@ using System.Text;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.University;
+using R7.University.Data;
 
 namespace R7.University.Employee
 {
@@ -48,12 +49,10 @@ namespace R7.University.Employee
 			{
 				if (!IsPostBack)
 				{
-					var ctrl = new EmployeeController ();
-
 					var employee_id = Request.QueryString ["employee_id"];
 					if (!string.IsNullOrWhiteSpace (employee_id))
 					{
-						var employee = ctrl.Get<EmployeeInfo> (int.Parse (employee_id));
+                        var employee = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (int.Parse (employee_id));
 						if (employee != null)
 						{
 							var vcard = employee.VCard;

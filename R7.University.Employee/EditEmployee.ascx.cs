@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014-2015 Roman M. Yagodin
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,26 +25,30 @@
 // THE SOFTWARE.
 
 using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
-using System.Linq;
 using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Users;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Users;
+using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.FileSystem;
-using DotNetNuke.R7;
+using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.ControlExtensions;
+using R7.University.Data;
 using R7.University.ModelExtensions;
 
 namespace R7.University.Employee
 {
-	public partial class EditEmployee : EmployeePortalModuleBase
+    public partial class EditEmployee: PortalModuleBase<EmployeeSettings>
 	{
 		#region Types
 
@@ -84,7 +88,7 @@ namespace R7.University.Employee
 				var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
 				if (commonAchievements == null)
 				{
-					commonAchievements = EmployeeController.GetObjects<AchievementInfo> ().ToList ();
+                    commonAchievements = UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ().ToList ();
 					ViewState ["commonAchievements"] = commonAchievements;
 				}
 				
@@ -136,13 +140,13 @@ namespace R7.University.Employee
 			WorkingHoursLogic.Init (this, comboWorkingHours);
 
 			// if results are null or empty, lists were empty too
-            var positions = new List<PositionInfo> (EmployeeController.GetObjects<PositionInfo> ()
+            var positions = new List<PositionInfo> (UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ()
                 .OrderBy (p => p.Title));
 
-            var divisions = new List<DivisionInfo> (EmployeeController.GetObjects<DivisionInfo> ()
+            var divisions = new List<DivisionInfo> (UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ()
                 .OrderBy (d => d.Title));
             
-            var commonAchievements = new List<AchievementInfo> (EmployeeController.GetObjects<AchievementInfo> ()
+            var commonAchievements = new List<AchievementInfo> (UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ()
                 .OrderBy (a => a.Title));
 
             ViewState ["commonAchievements"] = commonAchievements;
@@ -179,8 +183,8 @@ namespace R7.University.Employee
 			comboAchievementTypes.DataBind ();
 
             // get edu profiles
-            var eduProfiles = EmployeeController.GetObjects<EduProgramProfileInfo> ()
-                .WithEduPrograms (EmployeeController)
+            var eduProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
+                .WithEduPrograms (UniversityRepository.Instance.DataProvider)
                 .OrderBy (epp => epp.EduProgram.EduLevelID)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.ProfileTitle)
@@ -210,8 +214,8 @@ namespace R7.University.Employee
 		{
 			base.OnLoad (e);
 
-            if (DotNetNuke.Framework.AJAX.IsInstalled ())
-                DotNetNuke.Framework.AJAX.RegisterScriptManager ();
+            if (AJAX.IsInstalled ())
+                AJAX.RegisterScriptManager ();
             
 			try
 			{
@@ -227,7 +231,7 @@ namespace R7.University.Employee
 					if (itemId.HasValue)
 					{
 						// load the item
-						var item = EmployeeController.Get<EmployeeInfo> (itemId.Value);
+                        var item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
 
 						if (item != null)
 						{
@@ -278,7 +282,7 @@ namespace R7.University.Employee
 							}
 
 							// read OccupiedPositions data
-							var occupiedPositionInfoExs = EmployeeController.GetObjects<OccupiedPositionInfoEx> (
+                            var occupiedPositionInfoExs = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
 						        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
 
 							// fill view list
@@ -292,7 +296,7 @@ namespace R7.University.Employee
 							gridOccupiedPositions.DataBind ();
 
 							// read employee achievements
-							var achievementInfos = EmployeeController.GetObjects<EmployeeAchievementInfo> (
+                            var achievementInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (
 						        CommandType.Text, 
                                 "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", 
                                 itemId.Value);
@@ -312,7 +316,7 @@ namespace R7.University.Employee
 							gridAchievements.DataBind ();
 
                             // read employee educational programs 
-                            var disciplineInfos = EmployeeController.GetObjects<EmployeeDisciplineInfoEx> (
+                            var disciplineInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeDisciplineInfoEx> (
                                 "WHERE [EmployeeID] = @0", itemId.Value);
 
                             // fill disciplines list
@@ -374,7 +378,7 @@ namespace R7.University.Employee
 				else
 				{
 					// update existing record
-					item = EmployeeController.Get<EmployeeInfo> (itemId.Value);
+                    item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -412,7 +416,7 @@ namespace R7.University.Employee
 					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
 					// add employee
-                    EmployeeController.AddEmployee (item, GetOccupiedPositions (), 
+                    UniversityRepository.Instance.AddEmployee (item, GetOccupiedPositions (), 
                         GetEmployeeAchievements (), GetEmployeeDisciplines());
 
 					// then adding new employee from Employee or EmployeeDetails modules, 
@@ -420,20 +424,20 @@ namespace R7.University.Employee
 					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" || 
                         ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails")
 					{
-						EmployeeSettings.EmployeeID = item.EmployeeID;
+						Settings.EmployeeID = item.EmployeeID;
 
 						// we adding new employee, so he/she should be displayed in the module
-						EmployeeSettings.ShowCurrentUser = false;
+						Settings.ShowCurrentUser = false;
 					}
 				}
 				else
 				{
 					// update audit info
-					item.LastModifiedByUserID = this.UserId;
+					item.LastModifiedByUserID = UserId;
 					item.LastModifiedOnDate = DateTime.Now;
 
 					// update employee
-                    EmployeeController.UpdateEmployee (item, GetOccupiedPositions (), 
+                    UniversityRepository.Instance.UpdateEmployee (item, GetOccupiedPositions (), 
                         GetEmployeeAchievements (), GetEmployeeDisciplines());
 				}
 
@@ -500,7 +504,7 @@ namespace R7.University.Employee
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue)
 				{
-					EmployeeController.Delete<EmployeeInfo> (itemId.Value);
+                    UniversityRepository.Instance.DataProvider.Delete<EmployeeInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}
@@ -763,7 +767,6 @@ namespace R7.University.Employee
 			// exclude header
 			if (e.Row.RowType == DataControlRowType.DataRow)
 			{
-
 				// find edit and delete linkbuttons
 				var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
 				var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
@@ -1113,8 +1116,8 @@ namespace R7.University.Employee
                     discipline.EduProgramProfileID = int.Parse (comboEduProgram.SelectedValue);
                     discipline.Disciplines = textProgramDisciplines.Text.Trim ();
 
-                    var profile = EmployeeController.Get<EduProgramProfileInfo> (discipline.EduProgramProfileID)
-                        .WithEduProgram (EmployeeController);
+                    var profile = UniversityRepository.Instance.DataProvider.Get<EduProgramProfileInfo> (discipline.EduProgramProfileID)
+                        .WithEduProgram (UniversityRepository.Instance.DataProvider);
                     
                     discipline.Code = profile.EduProgram.Code;
                     discipline.Title = profile.EduProgram.Title;

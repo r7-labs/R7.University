@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,17 +25,14 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI.WebControls;
-using System.Linq;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.R7;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 
 namespace R7.University.DivisionDirectory
 {    
-    public partial class SettingsDivisionDirectory : DivisionDirectoryModuleSettingsBase
+    public partial class SettingsDivisionDirectory : ModuleSettingsBase<DivisionDirectorySettings>
     {
         protected override void OnInit (EventArgs e)
         {
@@ -54,7 +51,7 @@ namespace R7.University.DivisionDirectory
             {
                 if (!IsPostBack)
                 {
-                    comboMode.SelectByValue (DivisionDirectorySettings.Mode);
+                    comboMode.SelectByValue (Settings.Mode);
                 }
             }
             catch (Exception ex)
@@ -70,7 +67,7 @@ namespace R7.University.DivisionDirectory
         {
             try
             {
-                DivisionDirectorySettings.Mode = (DivisionDirectoryMode) Enum.Parse (typeof (DivisionDirectoryMode), comboMode.SelectedValue);
+                Settings.Mode = (DivisionDirectoryMode) Enum.Parse (typeof (DivisionDirectoryMode), comboMode.SelectedValue);
 
                 Utils.SynchronizeModule(this);
             }

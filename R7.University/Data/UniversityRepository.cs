@@ -1,5 +1,5 @@
 ﻿//
-// UniversityControllerBase.cs
+// UniversityRepository.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -32,11 +32,26 @@ using DotNetNuke.Data;
 using R7.University;
 using R7.DotNetNuke.Extensions.Data;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    public abstract class UniversityControllerBase: Dal2DataProvider
+    public class UniversityRepository
 	{
-		#region Custom methods
+        #region Singleton implementation
+
+        private static readonly Lazy<UniversityRepository> instance = new Lazy<UniversityRepository> ();
+
+        public static UniversityRepository Instance
+        {
+            get { return instance.Value; }
+        }
+
+        #endregion
+
+        private Dal2DataProvider dataProvider;
+        public Dal2DataProvider DataProvider
+        {
+            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
+        }
 
 		public EmployeeInfo GetEmployeeByUserId (int userId)
 		{
@@ -58,7 +73,7 @@ namespace R7.University
             // not many, so using Distinct() extension method to get rid of them 
             // is looking more sane than further SP SQL code complication.
 
-            return GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+            return DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
                 "University_FindEmployees", searchText, includeNonPublished, teachersOnly, includeSubdivisions, divisionId)
                     .Distinct (new EmployeeEqualityComparer ());
         }
@@ -75,27 +90,27 @@ namespace R7.University
 				try
 				{
 					// add Employee
-					Add<EmployeeInfo> (employee);
+					DataProvider.Add<EmployeeInfo> (employee);
 
 					// add new OccupiedPositions
 					foreach (var op in occupiedPositions)
 					{
 						op.EmployeeID = employee.EmployeeID;
-						Add<OccupiedPositionInfo> (op);
+                        DataProvider.Add<OccupiedPositionInfo> (op);
 					}
 					
 					// add new EmployeeAchievements
 					foreach (var ach in achievements)
 					{
 						ach.EmployeeID = employee.EmployeeID;
-						Add<EmployeeAchievementInfo> (ach);
+                        DataProvider.Add<EmployeeAchievementInfo> (ach);
 					}
 
                     // add new EmployeeEduPrograms
                     foreach (var ep in eduPrograms)
                     {
                         ep.EmployeeID = employee.EmployeeID;
-                        Add<EmployeeDisciplineInfo> (ep);
+                        DataProvider.Add<EmployeeDisciplineInfo> (ep);
                     }
 				
 					ctx.Commit ();
@@ -120,19 +135,19 @@ namespace R7.University
 				try
 				{
 					// update Employee
-					Update<EmployeeInfo> (employee);
+                    DataProvider.Update<EmployeeInfo> (employee);
 
 					var occupiedPositonIDs = occupiedPositions.Select (op => op.OccupiedPositionID.ToString ());
 					if (occupiedPositonIDs.Any())
 					{
-						Delete<OccupiedPositionInfo> (
+                        DataProvider.Delete<OccupiedPositionInfo> (
 							string.Format ("WHERE [EmployeeID] = {0} AND [OccupiedPositionID] NOT IN ({1})", 
 								employee.EmployeeID, Utils.FormatList (", ", occupiedPositonIDs))); 
 					}
 					else
 					{
 						// delete all employee occupied positions 
-						Delete<OccupiedPositionInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID); 
+                        DataProvider.Delete<OccupiedPositionInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID); 
 					}
 					
 					// add new OccupiedPositions
@@ -142,23 +157,23 @@ namespace R7.University
 						op.EmployeeID = employee.EmployeeID;
 						
 						if (op.OccupiedPositionID <= 0)
-							Add<OccupiedPositionInfo> (op);
+                            DataProvider.Add<OccupiedPositionInfo> (op);
 						else
-							Update<OccupiedPositionInfo> (op);
+                            DataProvider.Update<OccupiedPositionInfo> (op);
 					}
 					
 					var employeeAchievementIDs = achievements.Select (a => a.EmployeeAchievementID.ToString ());
 					if (employeeAchievementIDs.Any())
 					{
 						// delete those not in current list
-						Delete<EmployeeAchievementInfo> (
+                        DataProvider.Delete<EmployeeAchievementInfo> (
 							string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
 								employee.EmployeeID, Utils.FormatList (", ", employeeAchievementIDs))); 
 					}
 					else
 					{
 						// delete all employee achievements
-						Delete<EmployeeAchievementInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
+                        DataProvider.Delete<EmployeeAchievementInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
 					}
 
 					// add new EmployeeAchievements
@@ -174,23 +189,23 @@ namespace R7.University
 						
 						ach.EmployeeID = employee.EmployeeID;
 						if (ach.EmployeeAchievementID <= 0)
-							Add<EmployeeAchievementInfo> (ach);
+                            DataProvider.Add<EmployeeAchievementInfo> (ach);
 						else
-							Update<EmployeeAchievementInfo> (ach);
+                            DataProvider.Update<EmployeeAchievementInfo> (ach);
 					}
 
                     var employeeDisciplineIDs = disciplines.Select (a => a.EmployeeDisciplineID.ToString ());
                     if (employeeDisciplineIDs.Any ())
                     {
                         // delete those not in current list
-                        Delete<EmployeeDisciplineInfo> (
+                        DataProvider.Delete<EmployeeDisciplineInfo> (
                             string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeDisciplineID] NOT IN ({1})", 
                                 employee.EmployeeID, Utils.FormatList (", ", employeeDisciplineIDs))); 
                     }
                     else
                     {
                         // delete all employee disciplines
-                        Delete<EmployeeDisciplineInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
+                        DataProvider.Delete<EmployeeDisciplineInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
                     }
 
                     // add new employee disciplines
@@ -198,9 +213,9 @@ namespace R7.University
                     {
                         discipline.EmployeeID = employee.EmployeeID;
                         if (discipline.EmployeeDisciplineID <= 0)
-                            Add<EmployeeDisciplineInfo> (discipline);
+                            DataProvider.Add<EmployeeDisciplineInfo> (discipline);
                         else
-                            Update<EmployeeDisciplineInfo> (discipline);
+                            DataProvider.Update<EmployeeDisciplineInfo> (discipline);
                     }
 
 					ctx.Commit ();
@@ -215,7 +230,7 @@ namespace R7.University
 
         public IEnumerable<DivisionInfo> FindDivisions (string searchText, bool includeSubdivisions, string divisionId)
         {
-            return GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
+            return DataProvider.GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
                 "University_FindDivisions", searchText, includeSubdivisions, divisionId);
         }
 
@@ -223,7 +238,7 @@ namespace R7.University
         {
             if (headPositionId != null)
             {
-                return GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+                return DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
                     "University_GetHeadEmployee", divisionId, headPositionId.Value).FirstOrDefault ();
             }
         
@@ -234,7 +249,7 @@ namespace R7.University
         {
             // TODO: Convert to stored procedure or Linq query
             
-            return GetObjects<EmployeeInfo> (CommandType.Text,
+            return DataProvider.GetObjects<EmployeeInfo> (CommandType.Text,
                 @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
@@ -246,7 +261,7 @@ namespace R7.University
 
         public IEnumerable<EmployeeInfo> GetTeachersWithoutEduPrograms ()
         {
-            return GetObjects<EmployeeInfo> (CommandType.Text,
+            return DataProvider.GetObjects<EmployeeInfo> (CommandType.Text,
                 @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
                     INNER JOIN dbo.vw_University_OccupiedPositions AS OP
                         ON E.EmployeeID = OP.EmployeeID
@@ -256,7 +271,7 @@ namespace R7.University
 
         public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)
         {
-            return GetObjects<DivisionInfo> (CommandType.Text,
+            return DataProvider.GetObjects<DivisionInfo> (CommandType.Text,
                 @"SELECT DISTINCT D.*, DH.[Level], DH.[Path] FROM dbo.University_Divisions AS D 
                     INNER JOIN dbo.University_DivisionsHierarchy (@0) AS DH
                         ON D.DivisionID = DH.DivisionID
@@ -265,7 +280,7 @@ namespace R7.University
 
         public IEnumerable<DivisionInfo> GetRootDivisions ()
         {
-            return GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
+            return DataProvider.GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
         }
 
         public IEnumerable<EduProgramInfo> GetEduPrograms (IEnumerable<string> eduLevelIds, bool getAll)
@@ -274,12 +289,12 @@ namespace R7.University
             {
                 if (getAll)
                 {
-                    return GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
+                    return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
                             Utils.FormatList (",", eduLevelIds))
                     );
                 }
 
-                return GetObjects<EduProgramInfo> (string.Format ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
+                return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
                         "AND (EndDate IS NULL OR @0 < EndDate) AND EduLevelID IN ({0})",
                         Utils.FormatList (",", eduLevelIds)), DateTime.Now
                 );
@@ -297,13 +312,13 @@ namespace R7.University
                 try
                 {
                     // add edu program
-                    Add<EduProgramInfo> (eduProgram);
+                    DataProvider.Add<EduProgramInfo> (eduProgram);
 
                     // add new documents
                     foreach (var document in documents)
                     {
                         document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
-                        Add<DocumentInfo> (document);
+                        DataProvider.Add<DocumentInfo> (document);
                     }
 
                     ctx.Commit ();
@@ -325,20 +340,20 @@ namespace R7.University
                 try
                 {
                     // update edu program
-                    Update<EduProgramInfo> (eduProgram);
+                    DataProvider.Update<EduProgramInfo> (eduProgram);
 
                     var documentIds = documents.Select (d => d.DocumentID.ToString ());
                     if (documentIds.Any ())
                     {
                         // delete specific documents
-                        Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'{0}' AND [DocumentID] NOT IN ({1})", 
+                        DataProvider.Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'{0}' AND [DocumentID] NOT IN ({1})", 
                             "EduProgramID=" + eduProgram.EduProgramID,
                             Utils.FormatList (", ", documentIds))); 
                     }
                     else
                     {
                         // delete all edu program documents
-                        Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'EduProgramID={0}'", eduProgram.EduProgramID)); 
+                        DataProvider.Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'EduProgramID={0}'", eduProgram.EduProgramID)); 
                     }
 
                     // add new documents
@@ -346,9 +361,9 @@ namespace R7.University
                     {
                         document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
                         if (document.DocumentID <= 0)
-                            Add<DocumentInfo> (document);
+                            DataProvider.Add<DocumentInfo> (document);
                         else
-                            Update<DocumentInfo> (document);
+                            DataProvider.Update<DocumentInfo> (document);
                     }
 
                     ctx.Commit ();
@@ -370,10 +385,10 @@ namespace R7.University
                 try
                 {
                     // delete documents
-                    Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'EduProgramID={0}'", eduProgramId));
+                    DataProvider.Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'EduProgramID={0}'", eduProgramId));
 
                     // delete edu program
-                    Delete<EduProgramInfo> (eduProgramId);
+                    DataProvider.Delete<EduProgramInfo> (eduProgramId);
                   
                     ctx.Commit ();
                 }
@@ -393,7 +408,7 @@ namespace R7.University
 
                 try
                 {
-                    var originalDocuments = GetObjects<DocumentInfo> (string.Format (
+                    var originalDocuments = DataProvider.GetObjects<DocumentInfo> (string.Format (
                         "WHERE ItemID = N'{0}={1}'", itemKey, itemId)).ToList ();
                     
                     foreach (var document in documents)
@@ -401,11 +416,11 @@ namespace R7.University
                         if (document.DocumentID <= 0)
                         {
                             document.ItemID = itemKey + "=" + itemId;
-                            Add<DocumentInfo> (document);
+                            DataProvider.Add<DocumentInfo> (document);
                         }
                         else
                         {
-                            Update<DocumentInfo> (document);
+                            DataProvider.Update<DocumentInfo> (document);
 
                             // documents with same ID could be different objects!
                             var updatedDocument = originalDocuments.FirstOrDefault (d => d.DocumentID == document.DocumentID);
@@ -420,7 +435,7 @@ namespace R7.University
                     // delete remaining documents
                     foreach (var document in originalDocuments)
                     {
-                        Delete<DocumentInfo> (document);
+                        DataProvider.Delete<DocumentInfo> (document);
                     }
 
                     ctx.Commit ();
@@ -441,7 +456,7 @@ namespace R7.University
 
                 try
                 {
-                    var originalEduForms = GetObjects<EduProgramProfileFormInfo> (
+                    var originalEduForms = DataProvider.GetObjects<EduProgramProfileFormInfo> (
                         "WHERE EduProgramProfileID = @0", eduProgramProfileId).ToList ();
                     
                     foreach (var eduForm in eduForms)
@@ -449,11 +464,11 @@ namespace R7.University
                         if (eduForm.EduProgramProfileFormID <= 0)
                         {
                             eduForm.EduProgramProfileID = eduProgramProfileId;
-                            Add<EduProgramProfileFormInfo> (eduForm);
+                            DataProvider.Add<EduProgramProfileFormInfo> (eduForm);
                         }
                         else
                         {
-                            Update<EduProgramProfileFormInfo> (eduForm);
+                            DataProvider.Update<EduProgramProfileFormInfo> (eduForm);
 
                             // objects with same ID could be different!
                             var updatedEduForm = originalEduForms.FirstOrDefault (ef => 
@@ -470,7 +485,7 @@ namespace R7.University
                     // delete remaining items
                     foreach (var eduForm in originalEduForms)
                     {
-                        Delete<EduProgramProfileFormInfo> (eduForm);
+                        DataProvider.Delete<EduProgramProfileFormInfo> (eduForm);
                     }
 
                     ctx.Commit ();
@@ -482,8 +497,5 @@ namespace R7.University
                 }
             }
         }
-
-		#endregion
 	}
 }
-

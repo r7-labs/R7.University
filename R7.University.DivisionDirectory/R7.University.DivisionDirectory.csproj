@@ -56,8 +56,8 @@
     <Reference Include="Microsoft.ApplicationBlocks.Data">
       <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.5.0\lib\net45\DotNetNuke.R7.dll</HintPath>
+    <Reference Include="R7.DotNetNuke.Extensions">
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.7.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +94,6 @@
     <Compile Include="SettingsDivisionDirectory.ascx.controls.cs">
       <DependentUpon>SettingsDivisionDirectory.ascx</DependentUpon>
     </Compile>
-    <Compile Include="components\DivisionDirectoryModuleBase.cs" />
     <Compile Include="components\DivisionDirectoryMode.cs" />
     <Compile Include="ViewModels\DivisionObrnadzorViewModel.cs" />
   </ItemGroup>

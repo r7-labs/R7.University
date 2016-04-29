@@ -25,20 +25,17 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI.WebControls;
-using System.Linq;
 using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.R7;
 using R7.University;
+using R7.DotNetNuke.Extensions.Utilities;
+using DotNetNuke.Entities.Modules;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditPosition : LaunchpadPortalModuleBase
+	public partial class EditPosition : PortalModuleBase
 	{
 		// ALT: private int itemId = Null.NullInteger;
 		private int? itemId = null;
@@ -82,7 +79,7 @@ namespace R7.University.Launchpad
 					if (itemId.HasValue)
 					{
 						// load the item
-						var item = LaunchpadController.Get<PositionInfo> (itemId.Value);
+                        var item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
 
 						if (item != null)
 						{
@@ -133,7 +130,7 @@ namespace R7.University.Launchpad
 				else
 				{
 					// update existing record
-					item = LaunchpadController.Get<PositionInfo> (itemId.Value);
+                    item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
 				}
 
 				// fill the object
@@ -143,9 +140,9 @@ namespace R7.University.Launchpad
 				item.IsTeacher = checkIsTeacher.Checked;
 
 				if (!itemId.HasValue)
-					LaunchpadController.Add<PositionInfo> (item);
+                    UniversityRepository.Instance.DataProvider.Add<PositionInfo> (item);
 				else
-					LaunchpadController.Update<PositionInfo> (item);
+                    UniversityRepository.Instance.DataProvider.Update<PositionInfo> (item);
 
 				Utils.SynchronizeModule (this);
 
@@ -173,7 +170,7 @@ namespace R7.University.Launchpad
 				// ALT: if (!Null.IsNull (itemId))
 				if (itemId.HasValue)
 				{
-					LaunchpadController.Delete<PositionInfo> (itemId.Value);
+                    UniversityRepository.Instance.DataProvider.Delete<PositionInfo> (itemId.Value);
 					Response.Redirect (Globals.NavigateURL (), true);
 				}
 			}

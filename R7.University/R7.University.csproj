@@ -54,8 +54,8 @@
     <Reference Include="DotNetNuke.WebUtility">
       <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.R7">
-      <HintPath>..\packages\DotNetNuke.R7.0.5.0\lib\net45\DotNetNuke.R7.dll</HintPath>
+    <Reference Include="R7.DotNetNuke.Extensions">
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.7.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +72,6 @@
     <Compile Include="components\ViewNumerator.cs" />
     <Compile Include="components\CopyCstor.cs" />
     <Compile Include="components\UrlUtils.cs" />
-    <Compile Include="components\UniversityControllerBase.cs" />
     <Compile Include="components\XmlSerializationHelper.cs" />
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
     <Compile Include="ModelExtensions\DocumentExtensions.cs" />
@@ -128,6 +127,8 @@
     <Compile Include="Models\FormatHelper.cs" />
     <Compile Include="components\EnumViewModel.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
+    <Compile Include="Data\UniversityRepository.cs" />
+    <Compile Include="components\UniversityController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -139,6 +140,7 @@
     <Folder Include="Controls\" />
     <Folder Include="Controls\App_LocalResources\" />
     <Folder Include="Controls\ViewModels\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

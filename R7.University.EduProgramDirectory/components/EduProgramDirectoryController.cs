@@ -1,98 +1,35 @@
-﻿using System;
-using System.Data;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using System.Linq;
-using DotNetNuke.Collections;
-using DotNetNuke.Data;
-using DotNetNuke.Common.Utilities;
+﻿//
+// EduProgramDirectoryController.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2015-2016 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Search;
-using DotNetNuke.Services.Search.Entities;
-using R7.University;
 
 namespace R7.University.EduProgramDirectory
 {
-    public partial class EduProgramDirectoryController : UniversityControllerBase, IPortable
+    public class EduProgramDirectoryController: ModuleController
 	{
-		#region Public methods
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="EduProgramDirectory.EduProgramDirectoryController"/> class.
-		/// </summary>
-		public EduProgramDirectoryController ()
-		{ 
-
-		}
-
-		#endregion
-
-		#region ModuleSearchBase implementaion
-
-		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
-		{
-			var searchDocs = new List<SearchDocument> ();
-			
-            return searchDocs;
-		}
-
-		#endregion
-
-
-		#region IPortable members
-
-		// TODO: Implement IPortable for EduProgramDirectory module
-
-		/// <summary>
-		/// Exports a module to XML
-		/// </summary>
-		/// <param name="ModuleID">a module ID</param>
-		/// <returns>XML string with module representation</returns>
-		public string ExportModule (int moduleId)
-		{
-			var sb = new StringBuilder ();
-			var infos = GetObjects<EmployeeInfo> (moduleId);
-
-            if (infos.Any ())
-			{
-				sb.Append ("<EduProgramDirectorys>");
-				foreach (var info in infos)
-				{
-					sb.Append ("<EduProgramDirectory>");
-					sb.Append ("<content>");
-					sb.Append (XmlUtils.XMLEncode (info.FullName));
-					sb.Append ("</content>");
-					sb.Append ("</EduProgramDirectory>");
-				}
-				sb.Append ("</EduProgramDirectorys>");
-			}
-			
-			return sb.ToString ();
-		}
-
-		/// <summary>
-		/// Imports a module from an XML
-		/// </summary>
-		/// <param name="ModuleID"></param>
-		/// <param name="Content"></param>
-		/// <param name="Version"></param>
-		/// <param name="UserID"></param>
-		public void ImportModule (int ModuleID, string Content, string Version, int UserID)
-		{
-			var infos = DotNetNuke.Common.Globals.GetContent (Content, "EduProgramDirectorys");
-		
-			foreach (XmlNode info in infos.SelectNodes("Employee"))
-			{
-				var item = new EmployeeInfo ();
-				item.FirstName = info.SelectSingleNode ("firstname").InnerText;
-				item.CreatedByUserID = UserID;
-
-				Add<EmployeeInfo> (item);
-			}
-		}
-
-		#endregion
 	}
 }
 
