@@ -121,7 +121,6 @@
     <Compile Include="Utilities\UrlUtils.cs" />
     <Compile Include="Utilities\TextUtils.cs" />
     <Compile Include="Utilities\Utils.cs" />
-    <Compile Include="ViewModels\EnumViewModel.cs" />
     <Compile Include="ViewModels\ViewModelIndexer.cs" />
     <Compile Include="ViewModels\ViewNumerator.cs" />
     <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
