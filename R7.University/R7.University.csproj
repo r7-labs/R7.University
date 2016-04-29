@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="components\Utils.cs" />
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="components\VCard.cs" />
     <Compile Include="components\VCardPhone.cs" />
     <Compile Include="components\CacheHelper.cs" />
@@ -129,6 +128,7 @@
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
     <Compile Include="Data\UniversityRepository.cs" />
     <Compile Include="components\UniversityController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -141,6 +141,7 @@
     <Folder Include="Controls\App_LocalResources\" />
     <Folder Include="Controls\ViewModels\" />
     <Folder Include="Data\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Folder Include="js\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -79,7 +80,6 @@
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="components\EmployeeDirectoryController.cs" />
     <Compile Include="components\EmployeeDirectorySettings.cs" />
     <Compile Include="ViewEmployeeDirectory.ascx.cs">
@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="components\EmployeeDirectoryMode.cs" />
     <Compile Include="ViewModels\EduProgramProfileObrnadzorTeachersViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

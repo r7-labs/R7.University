@@ -63,6 +63,7 @@
   <ItemGroup>
     <Folder Include="js\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -79,7 +80,6 @@
     <None Include="App_LocalResources\ViewDivisionDirectory.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="components\DivisionDirectoryController.cs" />
     <Compile Include="components\DivisionDirectorySettings.cs" />
     <Compile Include="ViewDivisionDirectory.ascx.cs">
@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="components\DivisionDirectoryMode.cs" />
     <Compile Include="ViewModels\DivisionObrnadzorViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

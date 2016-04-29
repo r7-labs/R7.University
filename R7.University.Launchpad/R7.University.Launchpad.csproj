@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="tables\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -125,7 +126,6 @@
       <DependentUpon>SettingsLaunchpad.ascx</DependentUpon>
     </Compile>
     <Compile Include="components\LaunchpadSettings.cs" />
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="EditPosition.ascx.cs">
       <DependentUpon>EditPosition.ascx</DependentUpon>
     </Compile>
@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="tables\EduFormsTable.cs" />
     <Compile Include="components\LaunchpadController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
