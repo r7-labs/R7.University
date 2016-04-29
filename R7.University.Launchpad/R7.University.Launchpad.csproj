@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="tables\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
