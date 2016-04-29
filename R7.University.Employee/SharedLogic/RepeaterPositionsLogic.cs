@@ -30,7 +30,7 @@ using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 
-namespace R7.University.Employee
+namespace R7.University.Employee.SharedLogic
 {
     public static class RepeaterPositionsLogic
     {

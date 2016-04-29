@@ -30,7 +30,7 @@ using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 
-namespace R7.University.Launchpad
+namespace R7.University.Launchpad.Components
 {
     /// <summary>
     /// Provides strong typed access to settings used by module

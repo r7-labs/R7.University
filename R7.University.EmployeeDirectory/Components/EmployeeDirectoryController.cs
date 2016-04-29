@@ -27,7 +27,7 @@
 using System;
 using DotNetNuke.Entities.Modules;
 
-namespace R7.University.EmployeeDirectory
+namespace R7.University.EmployeeDirectory.Components
 {
     public class EmployeeDirectoryController: ModuleController
     {

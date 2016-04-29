@@ -26,7 +26,7 @@
 
 using System;
 
-namespace R7.University.EduProgramProfileDirectory
+namespace R7.University.EduProgramProfileDirectory.Components
 {
     public enum EduProgramProfileDirectoryMode
     {

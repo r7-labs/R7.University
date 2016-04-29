@@ -32,7 +32,7 @@ using DotNetNuke.Services.Search.Entities;
 using R7.University;
 using R7.University.Data;
 
-namespace R7.University.EmployeeList
+namespace R7.University.EmployeeList.Components
 {
     public class EmployeeListController: ModuleSearchBase
     {

@@ -27,7 +27,7 @@
 using System;
 using DotNetNuke.Entities.Modules;
 
-namespace R7.University.DivisionDirectory
+namespace R7.University.DivisionDirectory.Components
 {
     public class DivisionDirectoryController : ModuleController
     {

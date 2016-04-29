@@ -26,7 +26,7 @@
 
 using System;
 
-namespace R7.University.EmployeeDirectory
+namespace R7.University.EmployeeDirectory.Components
 {
     public enum EmployeeDirectoryMode
     {

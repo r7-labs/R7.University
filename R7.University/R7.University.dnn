@@ -146,7 +146,7 @@
 					<desktopModule>
 						<moduleName>R7.University.Launchpad</moduleName>
 						<foldername>R7.University.Launchpad</foldername>
-						<businessControllerClass>R7.University.Launchpad.LaunchpadController</businessControllerClass>
+						<businessControllerClass>R7.University.Launchpad.Components.LaunchpadController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<!-- <supportedFeature type="Searchable" /> -->
@@ -330,7 +330,7 @@
 					<desktopModule>
 						<moduleName>R7.University.Employee</moduleName>
 						<foldername>R7.University.Employee</foldername>
-						<businessControllerClass>R7.University.Employee.EmployeeController</businessControllerClass>
+						<businessControllerClass>R7.University.Employee.Components.EmployeeController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -432,7 +432,7 @@
 					<desktopModule>
 						<moduleName>R7.University.EmployeeDetails</moduleName>
 						<foldername>R7.University.EmployeeDetails</foldername>
-						<businessControllerClass>R7.University.Employee.EmployeeController</businessControllerClass>
+						<businessControllerClass>R7.University.Employee.Components.EmployeeController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -514,7 +514,7 @@
 					<desktopModule>
 						<moduleName>R7.University.EmployeeList</moduleName>
 						<foldername>R7.University.EmployeeList</foldername>
-						<businessControllerClass>R7.University.EmployeeList.EmployeeListController</businessControllerClass>
+						<businessControllerClass>R7.University.EmployeeList.Components.EmployeeListController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -605,7 +605,7 @@
 					<desktopModule>
 						<moduleName>R7.University.Division</moduleName>
 						<foldername>R7.University.Division</foldername>
-						<businessControllerClass>R7.University.Division.DivisionController</businessControllerClass>
+						<businessControllerClass>R7.University.Division.Components.DivisionController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -696,7 +696,7 @@
 					<desktopModule>
 				   		<moduleName>R7.University.EmployeeDirectory</moduleName>
 				   		<foldername>R7.University.EmployeeDirectory</foldername>
-				   		<businessControllerClass>R7.University.EmployeeDirectory.EmployeeDirectoryController</businessControllerClass>
+				   		<businessControllerClass>R7.University.EmployeeDirectory.Components.EmployeeDirectoryController</businessControllerClass>
 				   		<supportedFeatures>
 				     		<!-- <supportedFeature type="Portable" /> -->
 				    		<!-- <supportedFeature type="Searchable" /> -->
@@ -787,7 +787,7 @@
 					<desktopModule>
 				   		<moduleName>R7.University.DivisionDirectory</moduleName>
 				   		<foldername>R7.University.DivisionDirectory</foldername>
-				   		<businessControllerClass>R7.University.DivisionDirectory.DivisionDirectoryController</businessControllerClass>
+				   		<businessControllerClass>R7.University.DivisionDirectory.Components.DivisionDirectoryController</businessControllerClass>
 				   		<supportedFeatures>
 				     		<!-- <supportedFeature type="Portable" /> -->
 				    		<!-- <supportedFeature type="Searchable" /> -->
@@ -891,7 +891,7 @@
                     <desktopModule>
                         <moduleName>R7.University.EduProgramDirectory</moduleName>
                         <foldername>R7.University.EduProgramDirectory</foldername>
-                        <businessControllerClass>R7.University.EduProgramDirectory.EduProgramDirectoryController</businessControllerClass>
+                        <businessControllerClass>R7.University.EduProgramDirectory.Components.EduProgramDirectoryController</businessControllerClass>
                         <supportedFeatures>
                             <!-- <supportedFeature type="Portable" /> -->
                             <!-- <supportedFeature type="Searchable" /> -->
@@ -971,7 +971,7 @@
                     <desktopModule>
                         <moduleName>R7.University.EduProgramProfileDirectory</moduleName>
                         <foldername>R7.University.EduProgramProfileDirectory</foldername>
-                        <businessControllerClass>R7.University.EduProgramProfileDirectory.EduProgramProfileDirectoryController</businessControllerClass>
+                        <businessControllerClass>R7.University.EduProgramProfileDirectory.Components.EduProgramProfileDirectoryController</businessControllerClass>
                         <supportedFeatures>
                             <!-- <supportedFeature type="Portable" /> -->
                             <!-- <supportedFeature type="Searchable" /> -->

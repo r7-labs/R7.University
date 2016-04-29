@@ -31,7 +31,7 @@ using DotNetNuke.Services.Search.Entities;
 using R7.University;
 using R7.University.Data;
 
-namespace R7.University.Employee
+namespace R7.University.Employee.Components
 {
     public class EmployeeController : ModuleSearchBase
     {

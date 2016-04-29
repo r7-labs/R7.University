@@ -27,7 +27,7 @@
 using System;
 using DotNetNuke.Entities.Modules;
 
-namespace R7.University.Employee
+namespace R7.University.Employee.Components
 {
     public static class EmployeeModuleHelper
     {

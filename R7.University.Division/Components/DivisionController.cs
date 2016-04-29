@@ -36,9 +36,9 @@ using DotNetNuke.Services.Search.Entities;
 using R7.University;
 using R7.University.Data;
 
-namespace R7.University.Division
+namespace R7.University.Division.Components
 {
-    public partial class DivisionController : ModuleSearchBase, IPortable
+    public class DivisionController : ModuleSearchBase, IPortable
     {
         #region ModuleSearchBase implementaion
 

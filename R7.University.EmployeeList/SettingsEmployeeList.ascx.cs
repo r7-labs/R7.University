@@ -33,6 +33,7 @@ using R7.University;
 using R7.University.Data;
 using R7.University.Utilities;
 using DotNetNuke.Entities.Modules;
+using R7.University.EmployeeList.Components;
 
 namespace R7.University.EmployeeList
 {

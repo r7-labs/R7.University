@@ -26,7 +26,7 @@
 
 using System;
 
-namespace R7.University.DivisionDirectory
+namespace R7.University.DivisionDirectory.Components
 {
     public enum DivisionDirectoryMode
     {

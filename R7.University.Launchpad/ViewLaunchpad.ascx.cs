@@ -35,6 +35,7 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.University.Launchpad.Components;
 
 namespace R7.University.Launchpad
 {

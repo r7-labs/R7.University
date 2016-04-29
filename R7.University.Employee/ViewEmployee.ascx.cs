@@ -41,6 +41,8 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
 using R7.University.SharedLogic;
+using R7.University.Employee.Components;
+using R7.University.Employee.SharedLogic;
 
 namespace R7.University.Employee
 {

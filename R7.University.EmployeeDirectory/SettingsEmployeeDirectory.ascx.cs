@@ -33,12 +33,12 @@ using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.Data;
+using R7.University.EmployeeDirectory.Components;
 
 namespace R7.University.EmployeeDirectory
 {
     public partial class SettingsEmployeeDirectory: ModuleSettingsBase<EmployeeDirectorySettings>
     {
-
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);

@@ -41,6 +41,7 @@ using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University.Data;
 using R7.University.ViewModels;
+using R7.University.EduProgramDirectory.Components;
 
 namespace R7.University.EduProgramDirectory
 {

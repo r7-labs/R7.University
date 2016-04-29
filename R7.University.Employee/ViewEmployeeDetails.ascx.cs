@@ -45,6 +45,8 @@ using R7.University;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
+using R7.University.Employee.Components;
+using R7.University.Employee.SharedLogic;
 using R7.University.SharedLogic;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
 

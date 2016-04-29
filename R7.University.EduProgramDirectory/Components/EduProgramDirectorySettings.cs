@@ -31,7 +31,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
 
-namespace R7.University.EduProgramDirectory
+namespace R7.University.EduProgramDirectory.Components
 {
     /// <summary>
     /// Provides strong typed access to settings used by module

@@ -30,7 +30,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
 
-namespace R7.University.EmployeeList
+namespace R7.University.EmployeeList.Components
 {
     /// <summary>
     /// Provides strong typed access to settings used by module

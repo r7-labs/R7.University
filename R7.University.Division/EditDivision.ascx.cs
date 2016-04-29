@@ -36,6 +36,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
+using R7.University.Division.Components;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 

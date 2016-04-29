@@ -26,12 +26,13 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.Data;
+using R7.University.Division.Components;
 using R7.University.Utilities;
-using DotNetNuke.Entities.Modules;
 
 namespace R7.University.Division
 {
