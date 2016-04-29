@@ -40,7 +40,7 @@ using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 namespace R7.University.Controls
 {
     public abstract class GridAndFormEditControlBase<TModel,TViewModel>: UserControl
-        where TViewModel: class, IEditControlViewModel<TModel>, new ()
+        where TViewModel: class, IEditControlViewModel<TModel>, new()
     {
         #region Controls
 
@@ -89,12 +89,11 @@ namespace R7.University.Controls
         #endregion
 
         private string localResourceFile;
+
         public string LocalResourceFile
         {
-            get
-            {
-                if (localResourceFile == null)
-                {
+            get {
+                if (localResourceFile == null) {
                     localResourceFile = DnnWebUiUtilities.GetLocalResourceFile (this);
                 }
 
@@ -113,8 +112,7 @@ namespace R7.University.Controls
 
         protected int TargetItemId
         {
-            get
-            { 
+            get { 
                 var targetItemId = ViewState ["targetItemId"];
                 return (targetItemId != null) ? (int) targetItemId : 0;
             }
@@ -133,8 +131,7 @@ namespace R7.University.Controls
         public List<TModel> GetData ()
         {
             var items = ViewStateItems;
-            if (items != null)
-            {
+            if (items != null) {
                 return items.Select (i => i.ToModel ()).ToList ();
             }
 
@@ -156,6 +153,7 @@ namespace R7.University.Controls
         #endregion
 
         private ViewModelContext viewModelContext;
+
         protected ViewModelContext ViewModelContext
         {
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this, Module)); }
@@ -191,24 +189,20 @@ namespace R7.University.Controls
 
         protected void OnUpdateItemCommand (object sender, CommandEventArgs e)
         {
-            try
-            {
+            try {
                 TViewModel item;
 
                 // get item list from viewstate
                 var items = ViewStateItems;
-                if (items == null)
-                {
+                if (items == null) {
                     items = new List<TViewModel> ();
                 }
 
                 var command = e.CommandArgument.ToString ();
-                if (command == "Add")
-                {
+                if (command == "Add") {
                     item = new TViewModel ();
                 }
-                else
-                {
+                else {
                     // restore ItemID from hidden field
                     var hiddenViewItemId = int.Parse (HiddenViewItemID.Value);
                     item = items.Find (i => i.ViewItemID == hiddenViewItemId);
@@ -216,8 +210,7 @@ namespace R7.University.Controls
 
                 OnUpdateItem (item);
 
-                if (command == "Add")
-                {
+                if (command == "Add") {
                     item.SetTargetItemId (TargetItemId, TargetItemKey);
                     items.Add (item);
                 }
@@ -228,8 +221,7 @@ namespace R7.University.Controls
                 ViewStateItems = items;
 
                 // rebind viewmodels to the context
-                foreach (var form in items)
-                {
+                foreach (var form in items) {
                     form.Context = ViewModelContext;
                 }
 
@@ -238,20 +230,17 @@ namespace R7.University.Controls
                 GridItems.DataBind ();
 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
             }
         }
 
         protected void OnCancelEditItemClick (object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 ResetForm ();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
             }
         }
@@ -271,8 +260,7 @@ namespace R7.University.Controls
             e.Row.Cells [1].Visible = false;
 
             // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
                 // find edit and delete linkbuttons
                 var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
                 var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
@@ -282,24 +270,21 @@ namespace R7.University.Controls
                 linkDelete.CommandArgument = e.Row.Cells [1].Text;
 
                 // add confirmation dialog to delete link
-                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" 
+                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('"
                     + Localization.GetString ("DeleteItem") + "');");
             }
         }
 
         protected void OnEditItemCommand (object sender, CommandEventArgs e)
         {
-            try
-            {
+            try {
                 var items = ViewStateItems;
-                if (items != null)
-                {
+                if (items != null) {
                     var itemId = e.CommandArgument.ToString ();
 
                     // find item in the list
                     var item = items.Find (i => i.ViewItemID.ToString () == itemId);
-                    if (item != null)
-                    {
+                    if (item != null) {
                         // fill form
                         OnLoadItem (item);
 
@@ -312,26 +297,22 @@ namespace R7.University.Controls
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
             }
         }
 
         protected void OnDeleteItemCommand (object sender, CommandEventArgs e)
         {
-            try
-            {
+            try {
                 var items = ViewStateItems;
-                if (items != null)
-                {
+                if (items != null) {
                     var itemId = e.CommandArgument.ToString ();
 
                     // find position in a list
                     var itemIndex = items.FindIndex (i => i.ViewItemID.ToString () == itemId);
 
-                    if (itemIndex >= 0)
-                    {
+                    if (itemIndex >= 0) {
                         // remove item
                         items.RemoveAt (itemIndex);
 
@@ -339,8 +320,7 @@ namespace R7.University.Controls
                         ViewStateItems = items;
 
                         // rebind viewmodels to context
-                        foreach (var form in items)
-                        {
+                        foreach (var form in items) {
                             form.Context = ViewModelContext;
                         }
 
@@ -349,15 +329,13 @@ namespace R7.University.Controls
                         GridItems.DataBind ();
 
                         // reset form if we deleting currently edited item
-                        if (ButtonUpdateItem.Visible && HiddenViewItemID.Value == itemId)
-                        {
+                        if (ButtonUpdateItem.Visible && HiddenViewItemID.Value == itemId) {
                             ResetForm ();
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
             }
         }

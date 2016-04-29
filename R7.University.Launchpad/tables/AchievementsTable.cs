@@ -26,15 +26,15 @@
 
 using System;
 using System.Data;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services.Localization;
 using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
     public class AchievementsTable: LaunchpadTableBase
     {
-        public AchievementsTable (): base ("Achievements")
+        public AchievementsTable () : base ("Achievements")
         {
         }
 
@@ -43,27 +43,28 @@ namespace R7.University.Launchpad
             var dt = new DataTable ();
             DataRow dr;
 
-            dt.Columns.Add (new DataColumn ("AchievementID", typeof(int)));
-            dt.Columns.Add (new DataColumn ("Title", typeof(string)));
-            dt.Columns.Add (new DataColumn ("ShortTitle", typeof(string)));
-            dt.Columns.Add (new DataColumn ("AchievementType", typeof(string)));
+            dt.Columns.Add (new DataColumn ("AchievementID", typeof (int)));
+            dt.Columns.Add (new DataColumn ("Title", typeof (string)));
+            dt.Columns.Add (new DataColumn ("ShortTitle", typeof (string)));
+            dt.Columns.Add (new DataColumn ("AchievementType", typeof (string)));
 
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var achievements =  UniversityRepository.Instance.DataProvider.FindObjects<AchievementInfo> (
-                @"WHERE CONCAT ([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false
-            );
+            var achievements = UniversityRepository.Instance.DataProvider.FindObjects<AchievementInfo> (
+                                   @"WHERE CONCAT ([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false
+                               );
 
-            foreach (var achievement in achievements)
-            {
+            foreach (var achievement in achievements) {
                 var col = 0;
                 dr = dt.NewRow ();
 
                 dr [col++] = achievement.AchievementID;
                 dr [col++] = achievement.Title;
                 dr [col++] = achievement.ShortTitle;
-                dr [col++] = Localization.GetString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType), module.LocalResourceFile);
+                dr [col++] = Localization.GetString (
+                    AchievementTypeInfo.GetResourceKey (achievement.AchievementType),
+                    module.LocalResourceFile);
 
                 dt.Rows.Add (dr);
             }

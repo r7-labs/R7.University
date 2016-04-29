@@ -9,17 +9,17 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public partial class SettingsEmployee
-	{
-		protected LabelControl labelEmployee;
+    public partial class SettingsEmployee
+    {
+        protected LabelControl labelEmployee;
         protected AjaxControlToolkit.ComboBox comboEmployees;
-		protected LabelControl labelAutoTitle;
-		protected CheckBox checkAutoTitle;
-		protected LabelControl labelPhotoWidth;
-		protected TextBox textPhotoWidth;
-		protected LabelControl labelDataCacheTime;
-		protected TextBox textDataCacheTime;
-		protected LabelControl labelShowCurrentUser;
-		protected CheckBox checkShowCurrentUser;
-	}
+        protected LabelControl labelAutoTitle;
+        protected CheckBox checkAutoTitle;
+        protected LabelControl labelPhotoWidth;
+        protected TextBox textPhotoWidth;
+        protected LabelControl labelDataCacheTime;
+        protected TextBox textDataCacheTime;
+        protected LabelControl labelShowCurrentUser;
+        protected CheckBox checkShowCurrentUser;
+    }
 }

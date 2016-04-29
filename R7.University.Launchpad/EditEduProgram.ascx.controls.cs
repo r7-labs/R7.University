@@ -10,8 +10,8 @@ using R7.University.Controls;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditEduProgram
-	{
+    public partial class EditEduProgram
+    {
         protected LinkButton buttonUpdate;
         protected LinkButton buttonDelete;
         protected HyperLink linkCancel;
@@ -24,5 +24,5 @@ namespace R7.University.Launchpad
         protected DnnDateTimePicker datetimeEndDate;
         protected DropDownList comboEduLevel;
         protected EditDocuments formEditDocuments;
-	}
+    }
 }

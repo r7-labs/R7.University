@@ -96,14 +96,20 @@ namespace R7.University
         [IgnoreColumn]
         public string EduProgramProfileString
         {
-            get 
-            {
-                if (EduProgram != null)
-                {
-                    return FormatHelper.FormatEduProgramProfileTitle (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle); 
+            get {
+                if (EduProgram != null) {
+                    return FormatHelper.FormatEduProgramProfileTitle (
+                        EduProgram.Code,
+                        EduProgram.Title,
+                        ProfileCode,
+                        ProfileTitle); 
                 }
 
-                return FormatHelper.FormatEduProgramProfileTitle (string.Empty, string.Empty, ProfileCode, ProfileTitle);
+                return FormatHelper.FormatEduProgramProfileTitle (
+                    string.Empty,
+                    string.Empty,
+                    ProfileCode,
+                    ProfileTitle);
             }
         }
     }

@@ -42,8 +42,7 @@ namespace R7.University
 
         public static T Deserialize<T> (object value) where T: class, new()
         {
-            if (value != null && !string.IsNullOrEmpty (value.ToString ()))
-            {
+            if (value != null && !string.IsNullOrEmpty (value.ToString ())) {
                 var xmlSerializer = new XmlSerializer (typeof (T));
                 var stringReader = new StringReader (value.ToString ());
                 return xmlSerializer.Deserialize (stringReader) as T;

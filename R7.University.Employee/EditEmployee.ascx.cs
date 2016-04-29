@@ -49,83 +49,87 @@ using R7.University.ModelExtensions;
 namespace R7.University.Employee
 {
     public partial class EditEmployee: PortalModuleBase<EmployeeSettings>
-	{
-		#region Types
+    {
+        #region Types
 
-		public enum EditEmployeeTab { Common, Positions, Achievements, EduPrograms, About };
+        public enum EditEmployeeTab
+        {
+            Common,
+            Positions,
+            Achievements,
+            EduPrograms,
+            About}
 
-		#endregion
+        ;
 
-		private int? itemId = null;
-	
-		#region Properties
+        #endregion
 
-		protected EditEmployeeTab SelectedTab
-		{
-			get 
-			{
+        private int? itemId = null;
+
+        #region Properties
+
+        protected EditEmployeeTab SelectedTab
+        {
+            get {
                 // get postback initiator
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
                 // urlDocumentURL control is on Achievements tab
-                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentURL.ID +"$"))
-                {
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentURL.ID + "$")) {
                     ViewState ["SelectedTab"] = EditEmployeeTab.Achievements;
                     return EditEmployeeTab.Achievements;
                 }
 
                 // otherwise, get current tab from viewstate
-				var obj = ViewState ["SelectedTab"];
-				return (obj != null) ? (EditEmployeeTab)obj : EditEmployeeTab.Common;
-			}
-			set { ViewState ["SelectedTab"] = value; }
-		}
+                var obj = ViewState ["SelectedTab"];
+                return (obj != null) ? (EditEmployeeTab) obj : EditEmployeeTab.Common;
+            }
+            set { ViewState ["SelectedTab"] = value; }
+        }
 
-		private List<AchievementInfo> CommonAchievements
-		{
-			get
-			{ 
-				var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
-				if (commonAchievements == null)
-				{
+        private List<AchievementInfo> CommonAchievements
+        {
+            get { 
+                var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
+                if (commonAchievements == null) {
                     commonAchievements = UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ().ToList ();
-					ViewState ["commonAchievements"] = commonAchievements;
-				}
+                    ViewState ["commonAchievements"] = commonAchievements;
+                }
 				
-				return commonAchievements;
-			}
-		}
+                return commonAchievements;
+            }
+        }
 
-		protected string EditIconUrl
-		{
-			get { return IconController.IconURL ("Edit"); }
-		}
+        protected string EditIconUrl
+        {
+            get { return IconController.IconURL ("Edit"); }
+        }
 
-		protected string DeleteIconUrl
-		{
-			get { return IconController.IconURL ("Delete"); }
-		}
+        protected string DeleteIconUrl
+        {
+            get { return IconController.IconURL ("Delete"); }
+        }
 
-		#endregion
+        #endregion
 
-		#region Handlers
+        #region Handlers
 
-		/// <summary>
-		/// Handles Init event for a control.
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnInit (EventArgs e)
-		{
-			base.OnInit (e);
+        /// <summary>
+        /// Handles Init event for a control.
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
 
-			// set url for Cancel link
-			linkCancel.NavigateUrl = Globals.NavigateURL ();
+            // set url for Cancel link
+            linkCancel.NavigateUrl = Globals.NavigateURL ();
 
-			// add confirmation dialog to delete button
-			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + 
+            // add confirmation dialog to delete button
+            buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" +
                 Localization.GetString ("DeleteItem") + "');");
 
-			// setup filepicker
+            // setup filepicker
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
 
             // TODO: Get default faces folder from global / portal settings 
@@ -133,13 +137,13 @@ namespace R7.University.Employee
             // FIXME: Causes crash on DNN versions after 7.1.2 (tested only on 7.4.1 and 7.4.2):
             // pickerPhoto.FilePath = "Images/faces/";
 
-			// add default item to user list
+            // add default item to user list
             comboUsers.Items.Add (new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
 
-			// init working hours
-			WorkingHoursLogic.Init (this, comboWorkingHours);
+            // init working hours
+            WorkingHoursLogic.Init (this, comboWorkingHours);
 
-			// if results are null or empty, lists were empty too
+            // if results are null or empty, lists were empty too
             var positions = new List<PositionInfo> (UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ()
                 .OrderBy (p => p.Title));
 
@@ -151,36 +155,38 @@ namespace R7.University.Employee
 
             ViewState ["commonAchievements"] = commonAchievements;
 
-			// add default items
-			positions.Insert (0, new PositionInfo () {
-				ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
-			});
+            // add default items
+            positions.Insert (0, new PositionInfo ()
+                {
+                    ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
+                });
 
-			commonAchievements.Insert (0, new AchievementInfo () {
-                ShortTitle = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
-			});
+            commonAchievements.Insert (0, new AchievementInfo ()
+                {
+                    ShortTitle = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
+                });
 
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             // bind positions
-			comboPositions.DataSource = positions;
-			comboPositions.DataBind ();
+            comboPositions.DataSource = positions;
+            comboPositions.DataBind ();
             comboPositions.SelectedIndex = 0;
 
             // bind achievements
-			comboAchievement.DataSource = commonAchievements;
-			comboAchievement.DataBind ();
+            comboAchievement.DataSource = commonAchievements;
+            comboAchievement.DataBind ();
             comboAchievement.SelectedIndex = 0;
 
             // bind divisions
             treeDivisions.DataSource = divisions;
-			treeDivisions.DataBind ();
+            treeDivisions.DataBind ();
             // select first (default) node - fix for issue #8
             treeDivisions.Nodes [0].Selected = true;
 
-			// bind achievement types
-			comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
-			comboAchievementTypes.DataBind ();
+            // bind achievement types
+            comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
+            comboAchievementTypes.DataBind ();
 
             // get edu profiles
             var eduProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
@@ -191,9 +197,10 @@ namespace R7.University.Employee
                 .ToList ();
 
             // add default value
-            eduProfiles.Insert (0, new EduProgramProfileInfo {
-                ProfileTitle = LocalizeString ("NotSelected.Text"), EduProgramProfileID = Null.NullInteger 
-            });
+            eduProfiles.Insert (0, new EduProgramProfileInfo
+                {
+                    ProfileTitle = LocalizeString ("NotSelected.Text"), EduProgramProfileID = Null.NullInteger 
+                });
 
             // bind edu programs
             comboEduProgram.DataSource = eduProfiles;
@@ -204,120 +211,113 @@ namespace R7.University.Employee
             gridAchievements.LocalizeColumns (LocalResourceFile);
             gridOccupiedPositions.LocalizeColumns (LocalResourceFile);
             gridEduPrograms.LocalizeColumns (LocalResourceFile);
-		}
+        }
 
-		/// <summary>
-		/// Handles Load event for a control.
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnLoad (EventArgs e)
-		{
-			base.OnLoad (e);
+        /// <summary>
+        /// Handles Load event for a control.
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
 
             if (AJAX.IsInstalled ())
                 AJAX.RegisterScriptManager ();
             
-			try
-			{
+            try {
                 // parse querystring parameters
-				itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
+                itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
       
-				if (!IsPostBack)
-				{
-					// load the data into the control the first time we hit this page
+                if (!IsPostBack) {
+                    // load the data into the control the first time we hit this page
 
-					// check we have an item to lookup
-					// ALT: if (!Null.IsNull (itemId) 
-					if (itemId.HasValue)
-					{
-						// load the item
+                    // check we have an item to lookup
+                    // ALT: if (!Null.IsNull (itemId) 
+                    if (itemId.HasValue) {
+                        // load the item
                         var item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
 
-						if (item != null)
-						{
-							textLastName.Text = item.LastName;
-							textFirstName.Text = item.FirstName;
-							textOtherName.Text = item.OtherName;
-							textPhone.Text = item.Phone;
-							textCellPhone.Text = item.CellPhone;
-							textFax.Text = item.Fax;
-							textEmail.Text = item.Email;
-							textSecondaryEmail.Text = item.SecondaryEmail;
-							textWebSite.Text = item.WebSite;
-							textWebSiteLabel.Text = item.WebSiteLabel;
-							textMessenger.Text = item.Messenger;
-							textWorkingPlace.Text = item.WorkingPlace;
-							textBiography.Text = item.Biography;
+                        if (item != null) {
+                            textLastName.Text = item.LastName;
+                            textFirstName.Text = item.FirstName;
+                            textOtherName.Text = item.OtherName;
+                            textPhone.Text = item.Phone;
+                            textCellPhone.Text = item.CellPhone;
+                            textFax.Text = item.Fax;
+                            textEmail.Text = item.Email;
+                            textSecondaryEmail.Text = item.SecondaryEmail;
+                            textWebSite.Text = item.WebSite;
+                            textWebSiteLabel.Text = item.WebSiteLabel;
+                            textMessenger.Text = item.Messenger;
+                            textWorkingPlace.Text = item.WorkingPlace;
+                            textBiography.Text = item.Biography;
 							
-							// load working hours
-							WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
+                            // load working hours
+                            WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
-							if (!Null.IsNull (item.ExperienceYears))
-								textExperienceYears.Text = item.ExperienceYears.ToString ();
+                            if (!Null.IsNull (item.ExperienceYears))
+                                textExperienceYears.Text = item.ExperienceYears.ToString ();
 
-							if (!Null.IsNull (item.ExperienceYearsBySpec))
-								textExperienceYearsBySpec.Text = item.ExperienceYearsBySpec.ToString ();
+                            if (!Null.IsNull (item.ExperienceYearsBySpec))
+                                textExperienceYearsBySpec.Text = item.ExperienceYearsBySpec.ToString ();
 
-							checkIsPublished.Checked = item.IsPublished;
+                            checkIsPublished.Checked = item.IsPublished;
 
-							// set photo
-                            if (!Utils.IsNull (item.PhotoFileID))
-							{
-								var photo = FileManager.Instance.GetFile (item.PhotoFileID.Value);
-								if (photo != null)
-								{
+                            // set photo
+                            if (!Utils.IsNull (item.PhotoFileID)) {
+                                var photo = FileManager.Instance.GetFile (item.PhotoFileID.Value);
+                                if (photo != null) {
                                     pickerPhoto.FileID = photo.FileId;
-								}
-							}
-
-							if (!Null.IsNull (item.UserID))
-							{
-								var user = UserController.GetUserById (this.PortalId, item.UserID.Value);
-								if (user != null)
-								{
-									// add previously selected user to user list...
-                                    comboUsers.Items.Add (new ListItem (user.Username + " / " + user.Email, user.UserID.ToString ()));
-									comboUsers.SelectedIndex = 1;
-								}
-							}
-
-							// read OccupiedPositions data
-                            var occupiedPositionInfoExs = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-						        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
-
-							// fill view list
-							var occupiedPositions = new List<OccupiedPositionView> ();
-							foreach (var op in occupiedPositionInfoExs)
-								occupiedPositions.Add (new OccupiedPositionView (op));
-
-							// bind occupied positions
-							ViewState ["occupiedPositions"] = occupiedPositions;
-							gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
-							gridOccupiedPositions.DataBind ();
-
-							// read employee achievements
-                            var achievementInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (
-						        CommandType.Text, 
-                                "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", 
-                                itemId.Value);
-
-							// fill achievements list
-							var achievements = new List<EmployeeAchievementView> ();
-							foreach (var achievement in achievementInfos)
-                            {
-                                var achView = new EmployeeAchievementView (achievement);
-                                achView.Localize (LocalResourceFile);
-								achievements.Add (achView);
+                                }
                             }
 
-							// bind achievements
-							ViewState ["achievements"] = achievements;
-							gridAchievements.DataSource = AchievementsDataTable (achievements);
-							gridAchievements.DataBind ();
+                            if (!Null.IsNull (item.UserID)) {
+                                var user = UserController.GetUserById (this.PortalId, item.UserID.Value);
+                                if (user != null) {
+                                    // add previously selected user to user list...
+                                    comboUsers.Items.Add (new ListItem (
+                                            user.Username + " / " + user.Email,
+                                            user.UserID.ToString ()));
+                                    comboUsers.SelectedIndex = 1;
+                                }
+                            }
+
+                            // read OccupiedPositions data
+                            var occupiedPositionInfoExs = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
+                                                              "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
+
+                            // fill view list
+                            var occupiedPositions = new List<OccupiedPositionView> ();
+                            foreach (var op in occupiedPositionInfoExs)
+                                occupiedPositions.Add (new OccupiedPositionView (op));
+
+                            // bind occupied positions
+                            ViewState ["occupiedPositions"] = occupiedPositions;
+                            gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                            gridOccupiedPositions.DataBind ();
+
+                            // read employee achievements
+                            var achievementInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (
+                                                       CommandType.Text, 
+                                                       "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", 
+                                                       itemId.Value);
+
+                            // fill achievements list
+                            var achievements = new List<EmployeeAchievementView> ();
+                            foreach (var achievement in achievementInfos) {
+                                var achView = new EmployeeAchievementView (achievement);
+                                achView.Localize (LocalResourceFile);
+                                achievements.Add (achView);
+                            }
+
+                            // bind achievements
+                            ViewState ["achievements"] = achievements;
+                            gridAchievements.DataSource = AchievementsDataTable (achievements);
+                            gridAchievements.DataBind ();
 
                             // read employee educational programs 
                             var disciplineInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeDisciplineInfoEx> (
-                                "WHERE [EmployeeID] = @0", itemId.Value);
+                                                      "WHERE [EmployeeID] = @0", itemId.Value);
 
                             // fill disciplines list
                             var disciplines = new List<EmployeeDisciplineView> ();
@@ -331,150 +331,141 @@ namespace R7.University.Employee
 
                             // setup audit control
                             ctlAudit.Bind (item);
-						}
-						else
-							Response.Redirect (Globals.NavigateURL (), true);
-					}
-					else
-					{
-						buttonDelete.Visible = false;
-						ctlAudit.Visible = false;
-					}
+                        }
+                        else
+                            Response.Redirect (Globals.NavigateURL (), true);
+                    }
+                    else {
+                        buttonDelete.Visible = false;
+                        ctlAudit.Visible = false;
+                    }
 
-					// then edit / add from EmployeeList, divisionId query param
-					// can be set to current division ID
-					var divisionId = Request.QueryString ["division_id"];
-					Utils.SelectAndExpandByValue (treeDivisions, divisionId);
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    // then edit / add from EmployeeList, divisionId query param
+                    // can be set to current division ID
+                    var divisionId = Request.QueryString ["division_id"];
+                    Utils.SelectAndExpandByValue (treeDivisions, divisionId);
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		/// <summary>
-		/// Handles Click event for Update button
-		/// </summary>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		/// <param name='e'>
-		/// Event args.
-		/// </param>
-		protected void buttonUpdate_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				EmployeeInfo item;
+        /// <summary>
+        /// Handles Click event for Update button
+        /// </summary>
+        /// <param name='sender'>
+        /// Sender.
+        /// </param>
+        /// <param name='e'>
+        /// Event args.
+        /// </param>
+        protected void buttonUpdate_Click (object sender, EventArgs e)
+        {
+            try {
+                EmployeeInfo item;
 
-				// determine if we are adding or updating
-				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue)
-				{
-					// to add new record
-					item = new EmployeeInfo ();
-				}
-				else
-				{
-					// update existing record
+                // determine if we are adding or updating
+                // ALT: if (Null.IsNull (itemId))
+                if (!itemId.HasValue) {
+                    // to add new record
+                    item = new EmployeeInfo ();
+                }
+                else {
+                    // update existing record
                     item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
-				}
+                }
 
-				// fill the object
-				item.LastName = textLastName.Text.Trim ();
-				item.FirstName = textFirstName.Text.Trim ();
-				item.OtherName = textOtherName.Text.Trim ();
-				item.Phone = textPhone.Text.Trim ();
-				item.CellPhone = textCellPhone.Text.Trim ();
-				item.Fax = textFax.Text.Trim ();
-				item.Email = textEmail.Text.Trim ().ToLowerInvariant ();
-				item.SecondaryEmail = textSecondaryEmail.Text.Trim ().ToLowerInvariant ();
-				item.WebSite = textWebSite.Text.Trim ();
-				item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
-				item.Messenger = textMessenger.Text.Trim ();
-				item.WorkingPlace = textWorkingPlace.Text.Trim ();
-				item.Biography = textBiography.Text.Trim ();
+                // fill the object
+                item.LastName = textLastName.Text.Trim ();
+                item.FirstName = textFirstName.Text.Trim ();
+                item.OtherName = textOtherName.Text.Trim ();
+                item.Phone = textPhone.Text.Trim ();
+                item.CellPhone = textCellPhone.Text.Trim ();
+                item.Fax = textFax.Text.Trim ();
+                item.Email = textEmail.Text.Trim ().ToLowerInvariant ();
+                item.SecondaryEmail = textSecondaryEmail.Text.Trim ().ToLowerInvariant ();
+                item.WebSite = textWebSite.Text.Trim ();
+                item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
+                item.Messenger = textMessenger.Text.Trim ();
+                item.WorkingPlace = textWorkingPlace.Text.Trim ();
+                item.Biography = textBiography.Text.Trim ();
 				
-				// update working hours
-				item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, 
+                // update working hours
+                item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, 
                     checkAddToVocabulary.Checked);
 
-				item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
-				item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
+                item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
+                item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
 
-				item.IsPublished = checkIsPublished.Checked;
+                item.IsPublished = checkIsPublished.Checked;
 
-				// pickerPhoto.FileID may be 0 by default
-				item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?)pickerPhoto.FileID : null;
-				item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
+                // pickerPhoto.FileID may be 0 by default
+                item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
+                item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
 
-				if (!itemId.HasValue)
-				{		
-					// update audit info
-					item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
-					item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
+                if (!itemId.HasValue) {		
+                    // update audit info
+                    item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
+                    item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
-					// add employee
+                    // add employee
                     UniversityRepository.Instance.AddEmployee (item, GetOccupiedPositions (), 
-                        GetEmployeeAchievements (), GetEmployeeDisciplines());
+                        GetEmployeeAchievements (), GetEmployeeDisciplines ());
 
-					// then adding new employee from Employee or EmployeeDetails modules, 
-					// set calling module to display new employee
-					if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" || 
-                        ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails")
-					{
-						Settings.EmployeeID = item.EmployeeID;
+                    // then adding new employee from Employee or EmployeeDetails modules, 
+                    // set calling module to display new employee
+                    if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" ||
+                    ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails") {
+                        Settings.EmployeeID = item.EmployeeID;
 
-						// we adding new employee, so he/she should be displayed in the module
-						Settings.ShowCurrentUser = false;
-					}
-				}
-				else
-				{
-					// update audit info
-					item.LastModifiedByUserID = UserId;
-					item.LastModifiedOnDate = DateTime.Now;
+                        // we adding new employee, so he/she should be displayed in the module
+                        Settings.ShowCurrentUser = false;
+                    }
+                }
+                else {
+                    // update audit info
+                    item.LastModifiedByUserID = UserId;
+                    item.LastModifiedOnDate = DateTime.Now;
 
-					// update employee
+                    // update employee
                     UniversityRepository.Instance.UpdateEmployee (item, GetOccupiedPositions (), 
-                        GetEmployeeAchievements (), GetEmployeeDisciplines());
-				}
+                        GetEmployeeAchievements (), GetEmployeeDisciplines ());
+                }
 
                 Utils.SynchronizeModule (this);
                 DataCache.RemoveCache ("Employee_" + TabModuleId + "_RenderedContent");
 
                 Response.Redirect (Globals.NavigateURL (), true);
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		private List<OccupiedPositionInfo> GetOccupiedPositions ()
-		{
-			var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+        private List<OccupiedPositionInfo> GetOccupiedPositions ()
+        {
+            var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
 					
-			var occupiedPositionInfos = new List<OccupiedPositionInfo> ();
-			if (occupiedPositions != null)
-				foreach (var op in occupiedPositions)
-					occupiedPositionInfos.Add (op.NewOccupiedPositionInfo ());
+            var occupiedPositionInfos = new List<OccupiedPositionInfo> ();
+            if (occupiedPositions != null)
+                foreach (var op in occupiedPositions)
+                    occupiedPositionInfos.Add (op.NewOccupiedPositionInfo ());
 
-			return occupiedPositionInfos;
-		}
+            return occupiedPositionInfos;
+        }
 
-		private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
-		{
-			var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+        private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
+        {
+            var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
 				
-			var achievementInfos = new List<EmployeeAchievementInfo> ();
-			if (achievements != null)
-				foreach (var ach in achievements)
-					achievementInfos.Add (ach.NewEmployeeAchievementInfo ());
+            var achievementInfos = new List<EmployeeAchievementInfo> ();
+            if (achievements != null)
+                foreach (var ach in achievements)
+                    achievementInfos.Add (ach.NewEmployeeAchievementInfo ());
 
-			return achievementInfos;
-		}
+            return achievementInfos;
+        }
 
         private List<EmployeeDisciplineInfo> GetEmployeeDisciplines ()
         {
@@ -488,154 +479,140 @@ namespace R7.University.Employee
             return disciplineInfos;
         }
 
-		/// <summary>
-		/// Handles Click event for Delete button
-		/// </summary>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		/// <param name='e'>
-		/// Event args.
-		/// </param>
-		protected void buttonDelete_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				// ALT: if (!Null.IsNull (itemId))
-				if (itemId.HasValue)
-				{
+        /// <summary>
+        /// Handles Click event for Delete button
+        /// </summary>
+        /// <param name='sender'>
+        /// Sender.
+        /// </param>
+        /// <param name='e'>
+        /// Event args.
+        /// </param>
+        protected void buttonDelete_Click (object sender, EventArgs e)
+        {
+            try {
+                // ALT: if (!Null.IsNull (itemId))
+                if (itemId.HasValue) {
                     UniversityRepository.Instance.DataProvider.Delete<EmployeeInfo> (itemId.Value);
-					Response.Redirect (Globals.NavigateURL (), true);
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    Response.Redirect (Globals.NavigateURL (), true);
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		protected void buttonUserLookup_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Common;
+        protected void buttonUserLookup_Click (object sender, EventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Common;
 
-				var term = textUserLookup.Text.Trim ();
-				var includeDeleted = checkIncludeDeletedUsers.Checked;
+                var term = textUserLookup.Text.Trim ();
+                var includeDeleted = checkIncludeDeletedUsers.Checked;
 
-				// uncheck to minimize UX errors
-				checkIncludeDeletedUsers.Checked = false;
+                // uncheck to minimize UX errors
+                checkIncludeDeletedUsers.Checked = false;
 
-				var usersFound = 0;
-				var usersFoundTotal = 0;
+                var usersFound = 0;
+                var usersFoundTotal = 0;
 			
-				// TODO: Link to open admin users interface in a separate tab
-				var users = UserController.GetUsersByEmail (PortalId, term, -1, -1, 
+                // TODO: Link to open admin users interface in a separate tab
+                var users = UserController.GetUsersByEmail (PortalId, term, -1, -1, 
                     ref usersFound, includeDeleted, false);
-				usersFoundTotal += usersFound;
+                usersFoundTotal += usersFound;
 
-				// find cross-portal users (host & others) by email
-				users.AddRange (UserController.GetUsersByEmail (Null.NullInteger, term, -1, -1, 
-                    ref usersFound, includeDeleted, false));
-				usersFoundTotal += usersFound;
+                // find cross-portal users (host & others) by email
+                users.AddRange (UserController.GetUsersByEmail (Null.NullInteger, term, -1, -1, 
+                        ref usersFound, includeDeleted, false));
+                usersFoundTotal += usersFound;
 
-				// combine email lookup results with lookup by username
-				users.AddRange (UserController.GetUsersByUserName (PortalId, term, -1, -1, 
-                    ref usersFound, includeDeleted, false));
-				usersFoundTotal += usersFound;
+                // combine email lookup results with lookup by username
+                users.AddRange (UserController.GetUsersByUserName (PortalId, term, -1, -1, 
+                        ref usersFound, includeDeleted, false));
+                usersFoundTotal += usersFound;
 
-				// find cross-portal users  by username
-				users.AddRange (UserController.GetUsersByUserName (Null.NullInteger, term, -1, -1, 
-                    ref usersFound, includeDeleted, false));
-				usersFoundTotal += usersFound;
+                // find cross-portal users  by username
+                users.AddRange (UserController.GetUsersByUserName (Null.NullInteger, term, -1, -1, 
+                        ref usersFound, includeDeleted, false));
+                usersFoundTotal += usersFound;
 
-				// clear user combox & add default item
-				comboUsers.Items.Clear ();
+                // clear user combox & add default item
+                comboUsers.Items.Clear ();
                 comboUsers.Items.Add (new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
 
-				if (usersFoundTotal > 0)
-				{
-					foreach (var userObj in users)
-					{
-						var user = userObj as UserInfo;
-                        comboUsers.Items.Add (new ListItem (user.Username + " / " + user.Email, user.UserID.ToString ()));
-					}
+                if (usersFoundTotal > 0) {
+                    foreach (var userObj in users) {
+                        var user = userObj as UserInfo;
+                        comboUsers.Items.Add (new ListItem (
+                                user.Username + " / " + user.Email,
+                                user.UserID.ToString ()));
+                    }
 
-					// at least one user exists, so select first one:
-					// listUsers.SelectedIndex = 1;
-					comboUsers.SelectedIndex = 1;
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    // at least one user exists, so select first one:
+                    // listUsers.SelectedIndex = 1;
+                    comboUsers.SelectedIndex = 1;
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
         protected void buttonPhotoLookup_Click (object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 SelectedTab = EditEmployeeTab.Common;
 
                 // TODO: Remove hardcoding
                 var folderPath = "Images/faces/";
                 var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
 
-                if (folder != null)
-                {
+                if (folder != null) {
                     var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, 
-                        textLastName.Text, textOtherName.Text);
+                                           textLastName.Text, textOtherName.Text);
 
                     // REVIEW: EmployeeInfo should contain culture data?
                     var employeeNameTL = TextUtils.Transliterate (employeeName, TextUtils.RuTranslitTable)
                         .ToLowerInvariant ();
 
                     // get files from default folder recursively
-                    foreach (var file in FolderManager.Instance.GetFiles (folder, true))
-                    {
+                    foreach (var file in FolderManager.Instance.GetFiles (folder, true)) {
                         var fileName = Path.GetFileNameWithoutExtension (file.FileName).ToLowerInvariant ();
-                        if (fileName == employeeName || fileName == employeeNameTL)
-                        {
+                        if (fileName == employeeName || fileName == employeeNameTL) {
                             pickerPhoto.FileID = file.FileId;
                             break;
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
 
         protected void buttonCancelEditEduProgram_Click (object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
                 ResetEditEduProgramForm ();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
 
-		protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Positions;
+        protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Positions;
 
-				ResetEditPositionForm ();
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                ResetEditPositionForm ();
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
         private void ResetEditEduProgramForm ()
         {
@@ -647,110 +624,102 @@ namespace R7.University.Employee
             textProgramDisciplines.Text = string.Empty;
         }
 
-		private void ResetEditPositionForm ()
-		{
-			// restore default buttons visibility
-			buttonAddPosition.Visible = true;
-			buttonUpdatePosition.Visible = false;
+        private void ResetEditPositionForm ()
+        {
+            // restore default buttons visibility
+            buttonAddPosition.Visible = true;
+            buttonUpdatePosition.Visible = false;
 
-			// reset divisions treeview
-			var divisionId = Request.QueryString ["division_id"];
-			Utils.SelectAndExpandByValue (treeDivisions, 
-				!string.IsNullOrWhiteSpace (divisionId)? divisionId : Null.NullInteger.ToString ());
+            // reset divisions treeview
+            var divisionId = Request.QueryString ["division_id"];
+            Utils.SelectAndExpandByValue (treeDivisions, 
+                !string.IsNullOrWhiteSpace (divisionId) ? divisionId : Null.NullInteger.ToString ());
 		
-			// reset other controls
-			comboPositions.SelectedIndex = 0;
-			textPositionTitleSuffix.Text = "";
-			checkIsPrime.Checked = false;
-			hiddenOccupiedPositionItemID.Value = "";
-		}
+            // reset other controls
+            comboPositions.SelectedIndex = 0;
+            textPositionTitleSuffix.Text = "";
+            checkIsPrime.Checked = false;
+            hiddenOccupiedPositionItemID.Value = "";
+        }
 
-		protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Positions;
+        protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Positions;
 
-				var positionID = int.Parse (comboPositions.SelectedValue);
-				var divisionID = int.Parse (treeDivisions.SelectedValue);
+                var positionID = int.Parse (comboPositions.SelectedValue);
+                var divisionID = int.Parse (treeDivisions.SelectedValue);
 
-				if (!Null.IsNull (positionID) && !Null.IsNull (divisionID))
-				{
-					OccupiedPositionView occupiedPosition;
+                if (!Null.IsNull (positionID) && !Null.IsNull (divisionID)) {
+                    OccupiedPositionView occupiedPosition;
 
-					var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                    var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
 
-					// creating new list, if none
-					if (occupiedPositions == null)
-						occupiedPositions = new List<OccupiedPositionView>();
+                    // creating new list, if none
+                    if (occupiedPositions == null)
+                        occupiedPositions = new List<OccupiedPositionView> ();
 
-					var command = e.CommandArgument.ToString ();
-					if (command == "Add")
-					{
-						occupiedPosition = new OccupiedPositionView ();
-					}
-					else // update 
-					{
-						// restore ItemID from hidden field
-						var hiddenItemID = int.Parse (hiddenOccupiedPositionItemID.Value);
-						occupiedPosition = occupiedPositions.Find (op => op.ItemID == hiddenItemID);
-					}
+                    var command = e.CommandArgument.ToString ();
+                    if (command == "Add") {
+                        occupiedPosition = new OccupiedPositionView ();
+                    }
+                    else { // update 
+                        // restore ItemID from hidden field
+                        var hiddenItemID = int.Parse (hiddenOccupiedPositionItemID.Value);
+                        occupiedPosition = occupiedPositions.Find (op => op.ItemID == hiddenItemID);
+                    }
 					
-					// fill the object
-					occupiedPosition.PositionID = positionID;
-					occupiedPosition.DivisionID = divisionID;
+                    // fill the object
+                    occupiedPosition.PositionID = positionID;
+                    occupiedPosition.DivisionID = divisionID;
                     occupiedPosition.PositionShortTitle = comboPositions.SelectedItem.Text;
-					occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
-					occupiedPosition.IsPrime = checkIsPrime.Checked;
-					occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text.Trim();
+                    occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
+                    occupiedPosition.IsPrime = checkIsPrime.Checked;
+                    occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text.Trim ();
 					
-					if (command == "Add")
-					{
-						occupiedPositions.Add (occupiedPosition);
-					}
+                    if (command == "Add") {
+                        occupiedPositions.Add (occupiedPosition);
+                    }
 
-					ResetEditPositionForm ();
+                    ResetEditPositionForm ();
 
-					ViewState ["occupiedPositions"] = occupiedPositions;
-					gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
-					gridOccupiedPositions.DataBind ();
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    ViewState ["occupiedPositions"] = occupiedPositions;
+                    gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                    gridOccupiedPositions.DataBind ();
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		protected void gridOccupiedPositions_RowDataBound (object sender, GridViewRowEventArgs e)
-		{
-			grids_RowDataBound (sender, e);
-		}
+        protected void gridOccupiedPositions_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            grids_RowDataBound (sender, e);
+        }
 
-		protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
-		{
-			grids_RowDataBound (sender, e);
-		}
+        protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            grids_RowDataBound (sender, e);
+        }
 
         protected void gridEduPrograms_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             grids_RowDataBound (sender, e);
         }
-		
-		private void grids_RowDataBound (object sender, GridViewRowEventArgs e)
-		{
-			// hide ItemID column, also in header
-			e.Row.Cells [1].Visible = false;
+
+        private void grids_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            // hide ItemID column, also in header
+            e.Row.Cells [1].Visible = false;
 
             // TODO: Move to gridAchievements_RowDataBound()
-            if (sender == gridAchievements)
-            {
+            if (sender == gridAchievements) {
                 // hide description
                 e.Row.Cells [6].Visible = false;
 
                 // exclude header
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
+                if (e.Row.RowType == DataControlRowType.DataRow) {
                     // add description as row tooltip
                     e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [6].Text);
 
@@ -764,334 +733,304 @@ namespace R7.University.Employee
                 }
             }
 
-			// exclude header
-			if (e.Row.RowType == DataControlRowType.DataRow)
-			{
-				// find edit and delete linkbuttons
-				var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
-				var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
+            // exclude header
+            if (e.Row.RowType == DataControlRowType.DataRow) {
+                // find edit and delete linkbuttons
+                var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
+                var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
 
-				// set recordId to delete
-				linkEdit.CommandArgument = e.Row.Cells [1].Text;
-				linkDelete.CommandArgument = e.Row.Cells [1].Text;
+                // set recordId to delete
+                linkEdit.CommandArgument = e.Row.Cells [1].Text;
+                linkDelete.CommandArgument = e.Row.Cells [1].Text;
 
-				// add confirmation dialog to delete link
-				linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" +
+                // add confirmation dialog to delete link
+                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" +
                     Localization.GetString ("DeleteItem") + "');");
-			}
-		}
+            }
+        }
 
-		protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Positions;
+        protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Positions;
 
-				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
-				if (occupiedPositions != null)
-				{
-					var itemID = e.CommandArgument.ToString ();
+                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                if (occupiedPositions != null) {
+                    var itemID = e.CommandArgument.ToString ();
 	
-					// find position in a list
-					var occupiedPosition = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
+                    // find position in a list
+                    var occupiedPosition = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
 	
-					if (occupiedPosition != null)
-					{
-						// fill the form
-						treeDivisions.CollapseAllNodes ();
-						Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString ());
+                    if (occupiedPosition != null) {
+                        // fill the form
+                        treeDivisions.CollapseAllNodes ();
+                        Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString ());
                         comboPositions.SelectByValue (occupiedPosition.PositionID);
                         checkIsPrime.Checked = occupiedPosition.IsPrime;
-						textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
+                        textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
 						
-						// set hidden field value to ItemID of edited item
-						hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString ();
+                        // set hidden field value to ItemID of edited item
+                        hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString ();
 
-						// show / hide buttonss
-						buttonAddPosition.Visible = false;
-						buttonUpdatePosition.Visible = true;
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                        // show / hide buttonss
+                        buttonAddPosition.Visible = false;
+                        buttonUpdatePosition.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Positions;
+        protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Positions;
 
-				var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
-				if (occupiedPositions != null)
-				{
-					var itemID = e.CommandArgument.ToString ();
+                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                if (occupiedPositions != null) {
+                    var itemID = e.CommandArgument.ToString ();
 	
-					// find position in a list
-					var opFound = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
+                    // find position in a list
+                    var opFound = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
 				
-					if (opFound != null)
-					{
-						occupiedPositions.Remove (opFound);
-						ViewState ["occupiedPositions"] = occupiedPositions;
+                    if (opFound != null) {
+                        occupiedPositions.Remove (opFound);
+                        ViewState ["occupiedPositions"] = occupiedPositions;
 	
-						gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
-						gridOccupiedPositions.DataBind ();
+                        gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                        gridOccupiedPositions.DataBind ();
 
-						// reset form if we deleting currently edited position
-						if (buttonUpdatePosition.Visible && hiddenOccupiedPositionItemID.Value == itemID)
-							ResetEditPositionForm ();
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                        // reset form if we deleting currently edited position
+                        if (buttonUpdatePosition.Visible && hiddenOccupiedPositionItemID.Value == itemID)
+                            ResetEditPositionForm ();
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		private DataTable OccupiedPositionsDataTable (List<OccupiedPositionView> occupiedPositions)
-		{
+        private DataTable OccupiedPositionsDataTable (List<OccupiedPositionView> occupiedPositions)
+        {
             return DataTableConstructor.FromIEnumerable (occupiedPositions);
-		}
+        }
 
-		private DataTable AchievementsDataTable (List<EmployeeAchievementView> achievements)
-		{
+        private DataTable AchievementsDataTable (List<EmployeeAchievementView> achievements)
+        {
             return DataTableConstructor.FromIEnumerable (achievements);
-		}
+        }
 
         private DataTable EduProgramsDataTable (List<EmployeeDisciplineView> eduPrograms)
         {
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
 
-		protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Achievements;
+        protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Achievements;
 
-				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
-				if (achievements != null)
-				{
-					var itemID = e.CommandArgument.ToString ();
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                if (achievements != null) {
+                    var itemID = e.CommandArgument.ToString ();
 	
-					// find position in a list
-					var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
+                    // find position in a list
+                    var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
 	
-					if (achievement != null)
-					{
-						// remove achievement
-						achievements.Remove (achievement);
+                    if (achievement != null) {
+                        // remove achievement
+                        achievements.Remove (achievement);
 						
-						// refresh viewstate
-						ViewState ["achievements"] = achievements;
+                        // refresh viewstate
+                        ViewState ["achievements"] = achievements;
 	
-						// bind achievements to the gridview
-						gridAchievements.DataSource = AchievementsDataTable (achievements);
-						gridAchievements.DataBind ();
+                        // bind achievements to the gridview
+                        gridAchievements.DataSource = AchievementsDataTable (achievements);
+                        gridAchievements.DataBind ();
 
-						// reset form if we deleting currently edited achievement
-						if (buttonUpdateAchievement.Visible && hiddenAchievementItemID.Value == itemID)
-							ResetEditAchievementForm ();
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                        // reset form if we deleting currently edited achievement
+                        if (buttonUpdateAchievement.Visible && hiddenAchievementItemID.Value == itemID)
+                            ResetEditAchievementForm ();
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Achievements;
+        protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Achievements;
 
-				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
-				if (achievements != null)
-				{
-					var itemID = e.CommandArgument.ToString ();
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                if (achievements != null) {
+                    var itemID = e.CommandArgument.ToString ();
 	
-					// find position in a list
-					var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
+                    // find position in a list
+                    var achievement = achievements.Find (ach => ach.ItemID.ToString () == itemID);
 	
-					if (achievement != null)
-					{
-						// fill achievements form
+                    if (achievement != null) {
+                        // fill achievements form
 						
-						if (achievement.AchievementID != null)
-						{
-							comboAchievement.SelectByValue (achievement.AchievementID);
+                        if (achievement.AchievementID != null) {
+                            comboAchievement.SelectByValue (achievement.AchievementID);
 	
-							panelAchievementTitle.Visible = false;
-							panelAchievementShortTitle.Visible = false;
-							panelAchievementTypes.Visible = false;
-						}
-						else
-						{
-							comboAchievement.SelectByValue (Null.NullInteger);
+                            panelAchievementTitle.Visible = false;
+                            panelAchievementShortTitle.Visible = false;
+                            panelAchievementTypes.Visible = false;
+                        }
+                        else {
+                            comboAchievement.SelectByValue (Null.NullInteger);
 	
-							textAchievementTitle.Text = achievement.Title;
-							textAchievementShortTitle.Text = achievement.ShortTitle;
-							comboAchievementTypes.SelectByValue (achievement.AchievementType);
+                            textAchievementTitle.Text = achievement.Title;
+                            textAchievementShortTitle.Text = achievement.ShortTitle;
+                            comboAchievementTypes.SelectByValue (achievement.AchievementType);
 							
-							panelAchievementTitle.Visible = true;
-							panelAchievementShortTitle.Visible = true;
-							panelAchievementTypes.Visible = true;
-						}
+                            panelAchievementTitle.Visible = true;
+                            panelAchievementShortTitle.Visible = true;
+                            panelAchievementTypes.Visible = true;
+                        }
 	
-						textAchievementTitleSuffix.Text = achievement.TitleSuffix;
-						textAchievementDescription.Text = achievement.Description;
-						textYearBegin.Text = achievement.YearBegin.ToString ();
-						textYearEnd.Text = achievement.YearEnd.ToString ();
-						checkIsTitle.Checked = achievement.IsTitle;
+                        textAchievementTitleSuffix.Text = achievement.TitleSuffix;
+                        textAchievementDescription.Text = achievement.Description;
+                        textYearBegin.Text = achievement.YearBegin.ToString ();
+                        textYearEnd.Text = achievement.YearEnd.ToString ();
+                        checkIsTitle.Checked = achievement.IsTitle;
 
-						if (!string.IsNullOrWhiteSpace (achievement.DocumentURL))
-							urlDocumentURL.Url = achievement.DocumentURL;
-						else
-							urlDocumentURL.UrlType = "N";
+                        if (!string.IsNullOrWhiteSpace (achievement.DocumentURL))
+                            urlDocumentURL.Url = achievement.DocumentURL;
+                        else
+                            urlDocumentURL.UrlType = "N";
 
-						// show update and cancel buttons (enter edit mode)
-						buttonAddAchievement.Visible = false;
-						buttonUpdateAchievement.Visible = true;
+                        // show update and cancel buttons (enter edit mode)
+                        buttonAddAchievement.Visible = false;
+                        buttonUpdateAchievement.Visible = true;
 
-						// store ItemID in the hidden field
-						hiddenAchievementItemID.Value = achievement.ItemID.ToString ();
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                        // store ItemID in the hidden field
+                        hiddenAchievementItemID.Value = achievement.ItemID.ToString ();
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		protected void buttonCancelEditAchievement_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Achievements;
+        protected void buttonCancelEditAchievement_Click (object sender, EventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Achievements;
 
-				ResetEditAchievementForm ();
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                ResetEditAchievementForm ();
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		private void ResetEditAchievementForm ()
-		{
-			// restore default buttons visibility
-			buttonAddAchievement.Visible = true;
-			buttonUpdateAchievement.Visible = false;
+        private void ResetEditAchievementForm ()
+        {
+            // restore default buttons visibility
+            buttonAddAchievement.Visible = true;
+            buttonUpdateAchievement.Visible = false;
 
-			// restore default panels visibility
-			panelAchievementTitle.Visible = true;
-			panelAchievementShortTitle.Visible = true;
-			panelAchievementTypes.Visible = true;
+            // restore default panels visibility
+            panelAchievementTitle.Visible = true;
+            panelAchievementShortTitle.Visible = true;
+            panelAchievementTypes.Visible = true;
 
-			// reset controls
-			comboAchievement.SelectedIndex = 0;
-			comboAchievementTypes.SelectedIndex = 0;
-			textAchievementTitle.Text = "";
-			textAchievementShortTitle.Text = "";
-			textAchievementTitleSuffix.Text = "";
-			textAchievementDescription.Text = "";
-			textYearBegin.Text = "";
-			textYearEnd.Text = "";
-			checkIsTitle.Checked = false;
-			urlDocumentURL.UrlType = "N";
-			hiddenAchievementItemID.Value = "";
-		}
+            // reset controls
+            comboAchievement.SelectedIndex = 0;
+            comboAchievementTypes.SelectedIndex = 0;
+            textAchievementTitle.Text = "";
+            textAchievementShortTitle.Text = "";
+            textAchievementTitleSuffix.Text = "";
+            textAchievementDescription.Text = "";
+            textYearBegin.Text = "";
+            textYearEnd.Text = "";
+            checkIsTitle.Checked = false;
+            urlDocumentURL.UrlType = "N";
+            hiddenAchievementItemID.Value = "";
+        }
 
-		protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Achievements;
+        protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Achievements;
 
-				EmployeeAchievementView achievement;
+                EmployeeAchievementView achievement;
 
-				// get achievements list from viewstate
-				var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                // get achievements list from viewstate
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
 				
-				// creating new list, if none
-				if (achievements == null)
-					achievements = new List<EmployeeAchievementView>();
+                // creating new list, if none
+                if (achievements == null)
+                    achievements = new List<EmployeeAchievementView> ();
 
-				var command = e.CommandArgument.ToString ();
-				if (command == "Add")
-				{
-					achievement = new EmployeeAchievementView ();
-				}
-				else
-				{
-					// restore ItemID from hidden field
-					var hiddenItemID = int.Parse (hiddenAchievementItemID.Value);
-					achievement = achievements.Find (ach => ach.ItemID == hiddenItemID);
-				}
+                var command = e.CommandArgument.ToString ();
+                if (command == "Add") {
+                    achievement = new EmployeeAchievementView ();
+                }
+                else {
+                    // restore ItemID from hidden field
+                    var hiddenItemID = int.Parse (hiddenAchievementItemID.Value);
+                    achievement = achievements.Find (ach => ach.ItemID == hiddenItemID);
+                }
 	
-				achievement.AchievementID = TypeUtils.ParseToNullable<int> (comboAchievement.SelectedValue);
-				if (achievement.AchievementID == null)
-				{
-					achievement.Title = textAchievementTitle.Text.Trim();
-					achievement.ShortTitle = textAchievementShortTitle.Text.Trim();
-					achievement.AchievementType = (AchievementType)Enum.Parse (typeof(AchievementType), 
+                achievement.AchievementID = TypeUtils.ParseToNullable<int> (comboAchievement.SelectedValue);
+                if (achievement.AchievementID == null) {
+                    achievement.Title = textAchievementTitle.Text.Trim ();
+                    achievement.ShortTitle = textAchievementShortTitle.Text.Trim ();
+                    achievement.AchievementType = (AchievementType) Enum.Parse (typeof (AchievementType), 
                         comboAchievementTypes.SelectedValue);
-				}
-				else
-				{
-					var ach = CommonAchievements.Find (a => a.AchievementID.ToString () == 
+                }
+                else {
+                    var ach = CommonAchievements.Find (a => a.AchievementID.ToString () ==
                         comboAchievement.SelectedValue);
 
-					achievement.Title = ach.Title;
-					achievement.ShortTitle = ach.ShortTitle;
-					achievement.AchievementType = ach.AchievementType;
-				}
+                    achievement.Title = ach.Title;
+                    achievement.ShortTitle = ach.ShortTitle;
+                    achievement.AchievementType = ach.AchievementType;
+                }
 
-				achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim();
-				achievement.Description = textAchievementDescription.Text.Trim();
-				achievement.IsTitle = checkIsTitle.Checked;
-				achievement.YearBegin = TypeUtils.ParseToNullable<int> (textYearBegin.Text);
-				achievement.YearEnd = TypeUtils.ParseToNullable<int> (textYearEnd.Text);
-				achievement.DocumentURL = urlDocumentURL.Url;
+                achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim ();
+                achievement.Description = textAchievementDescription.Text.Trim ();
+                achievement.IsTitle = checkIsTitle.Checked;
+                achievement.YearBegin = TypeUtils.ParseToNullable<int> (textYearBegin.Text);
+                achievement.YearEnd = TypeUtils.ParseToNullable<int> (textYearEnd.Text);
+                achievement.DocumentURL = urlDocumentURL.Url;
 
                 achievement.Localize (LocalResourceFile);
 
-				if (command == "Add")
-				{
-					achievements.Add (achievement);
-				}
+                if (command == "Add") {
+                    achievements.Add (achievement);
+                }
 
-				ResetEditAchievementForm ();
+                ResetEditAchievementForm ();
 
-				// refresh viewstate
-				ViewState ["achievements"] = achievements;
+                // refresh viewstate
+                ViewState ["achievements"] = achievements;
 
-				// bind achievements to the gridview
-				gridAchievements.DataSource = AchievementsDataTable (achievements);
-				gridAchievements.DataBind ();
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                // bind achievements to the gridview
+                gridAchievements.DataSource = AchievementsDataTable (achievements);
+                gridAchievements.DataBind ();
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
         protected void buttonAddEduProgram_Command (object sender, CommandEventArgs e)
         {
-            try
-            {
+            try {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
-                if (!Null.IsNull (int.Parse (comboEduProgram.SelectedValue)))
-                {
+                if (!Null.IsNull (int.Parse (comboEduProgram.SelectedValue))) {
                     EmployeeDisciplineView discipline;
 
                     // get disciplines list from viewstate
@@ -1099,15 +1038,13 @@ namespace R7.University.Employee
 
                     // creating new list, if none
                     if (disciplines == null)
-                        disciplines = new List<EmployeeDisciplineView>();
+                        disciplines = new List<EmployeeDisciplineView> ();
 
                     var command = e.CommandArgument.ToString ();
-                    if (command == "Add")
-                    {
+                    if (command == "Add") {
                         discipline = new EmployeeDisciplineView ();
                     }
-                    else
-                    {
+                    else {
                         // restore ItemID from hidden field
                         var hiddenItemID = int.Parse (hiddenEduProgramItemID.Value);
                         discipline = disciplines.Find (ep1 => ep1.ItemID == hiddenItemID);
@@ -1124,8 +1061,7 @@ namespace R7.University.Employee
                     discipline.ProfileCode = profile.ProfileCode;
                     discipline.ProfileTitle = profile.ProfileTitle;
 
-                    if (command == "Add")
-                    {
+                    if (command == "Add") {
                         disciplines.Add (discipline);
                     }
 
@@ -1139,28 +1075,24 @@ namespace R7.University.Employee
                     gridEduPrograms.DataBind ();
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
 
         protected void linkEditEduProgram_Command (object sender, CommandEventArgs e)
         {
-            try
-            {
+            try {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
                 var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
-                if (disciplines != null)
-                {
+                if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
                     // find position in a list
                     var discipline = disciplines.Find (d => d.ItemID.ToString () == itemID);
 
-                    if (discipline != null)
-                    {
+                    if (discipline != null) {
                         // fill achievements form
                         comboEduProgram.SelectByValue (discipline.EduProgramProfileID);
                         textProgramDisciplines.Text = discipline.Disciplines;
@@ -1174,28 +1106,24 @@ namespace R7.University.Employee
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
 
         protected void linkDeleteEduProgram_Command (object sender, CommandEventArgs e)
         {
-            try
-            {
+            try {
                 SelectedTab = EditEmployeeTab.EduPrograms;
 
                 var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
-                if (disciplines != null)
-                {
+                if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
                     // find position in a list
                     var disciplinesIndex = disciplines.FindIndex (ep => ep.ItemID.ToString () == itemID);
 
-                    if (disciplinesIndex >= 0)
-                    {
+                    if (disciplinesIndex >= 0) {
                         // remove edu program
                         disciplines.RemoveAt (disciplinesIndex);
 
@@ -1212,38 +1140,33 @@ namespace R7.University.Employee
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
 
-		protected void comboAchievement_SelectedIndexChanged (object sender, EventArgs e)
-		{
-			try
-			{
-				SelectedTab = EditEmployeeTab.Achievements;
+        protected void comboAchievement_SelectedIndexChanged (object sender, EventArgs e)
+        {
+            try {
+                SelectedTab = EditEmployeeTab.Achievements;
 
-                if (((AjaxControlToolkit.ComboBox) sender).SelectedValue == Null.NullInteger.ToString())
-				{
-					panelAchievementTitle.Visible = true;
-					panelAchievementShortTitle.Visible = true;
-					panelAchievementTypes.Visible = true;
-				}
-				else
-				{
-					panelAchievementTitle.Visible = false;
-					panelAchievementShortTitle.Visible = false;
-					panelAchievementTypes.Visible = false;
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                if (((AjaxControlToolkit.ComboBox) sender).SelectedValue == Null.NullInteger.ToString ()) {
+                    panelAchievementTitle.Visible = true;
+                    panelAchievementShortTitle.Visible = true;
+                    panelAchievementTypes.Visible = true;
+                }
+                else {
+                    panelAchievementTitle.Visible = false;
+                    panelAchievementShortTitle.Visible = false;
+                    panelAchievementTypes.Visible = false;
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
 

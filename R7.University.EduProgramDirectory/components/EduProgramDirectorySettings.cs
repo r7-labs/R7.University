@@ -25,47 +25,45 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
 
 namespace R7.University.EduProgramDirectory
 {
-	/// <summary>
-	/// Provides strong typed access to settings used by module
-	/// </summary>
-	public partial class EduProgramDirectorySettings : SettingsWrapper
-	{
+    /// <summary>
+    /// Provides strong typed access to settings used by module
+    /// </summary>
+    public partial class EduProgramDirectorySettings : SettingsWrapper
+    {
         public EduProgramDirectorySettings ()
         {
         }
 
-		public EduProgramDirectorySettings (IModuleControl module) : base (module)
-		{
-		}
+        public EduProgramDirectorySettings (IModuleControl module) : base (module)
+        {
+        }
 
-		public EduProgramDirectorySettings (ModuleInfo module) : base (module)
-		{
-		}
+        public EduProgramDirectorySettings (ModuleInfo module) : base (module)
+        {
+        }
 
-		#region Properties for settings
+        #region Properties for settings
 
         public IList<string> EduLevels
         {
-            get
-            {
+            get {
                 return ReadSetting<string> ("EduProgramDirectory_EduLevels", string.Empty)
-                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries).ToList ();
+                    .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList ();
             }
-            set
-            {
+            set {
                 WriteModuleSetting<string> ("EduProgramDirectory_EduLevels", string.Join (";", value));
             }
         }
 
-		#endregion
-	}
+        #endregion
+    }
 }
 

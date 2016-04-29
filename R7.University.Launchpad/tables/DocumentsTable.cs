@@ -37,15 +37,15 @@ namespace R7.University.Launchpad
         {
             get { return false; }
         }
-        
-        public DocumentsTable (): base ("Documents")
+
+        public DocumentsTable () : base ("Documents")
         {
         }
 
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
             var documents = UniversityRepository.Instance.DataProvider.FindObjects<DocumentInfo> (
-                @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
+                                @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
 
             return DataTableConstructor.FromIEnumerable (documents);
         }

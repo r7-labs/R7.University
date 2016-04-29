@@ -33,14 +33,14 @@ namespace R7.University.Launchpad
 {
     public class EduProgramsTable: LaunchpadTableBase
     {
-        public EduProgramsTable (): base ("EduPrograms")
+        public EduProgramsTable () : base ("EduPrograms")
         {
         }
 
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
             var eduPrograms = UniversityRepository.Instance.DataProvider.FindObjects<EduProgramInfo> (
-                @"WHERE CONCAT([Code], ' ', [Title]) LIKE N'%{0}%'", search, false);
+                                  @"WHERE CONCAT([Code], ' ', [Title]) LIKE N'%{0}%'", search, false);
 
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }

@@ -56,7 +56,7 @@ namespace R7.University
 
         public static string FormatShortTitle (string title, string shortTitle)
         {
-            return !string.IsNullOrWhiteSpace (shortTitle)? shortTitle : title;
+            return !string.IsNullOrWhiteSpace (shortTitle) ? shortTitle : title;
         }
 
         #endregion

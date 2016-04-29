@@ -9,49 +9,49 @@ using R7.University;
 
 namespace R7.University.Division
 {
-	public partial class EditDivision
-	{
-		protected ModuleAuditControl ctlAudit;
-		protected LinkButton buttonUpdate;
-		protected LinkButton buttonDelete;
-		protected HyperLink linkCancel;
+    public partial class EditDivision
+    {
+        protected ModuleAuditControl ctlAudit;
+        protected LinkButton buttonUpdate;
+        protected LinkButton buttonDelete;
+        protected HyperLink linkCancel;
 
-		protected LabelControl lblTitle;
-		protected TextBox txtTitle;
-		protected LabelControl lblShortTitle;
-		protected TextBox txtShortTitle;
+        protected LabelControl lblTitle;
+        protected TextBox txtTitle;
+        protected LabelControl lblShortTitle;
+        protected TextBox txtShortTitle;
 
-		protected LabelControl lblParentDivision;
+        protected LabelControl lblParentDivision;
         protected DnnTreeView treeParentDivisions;
-		protected LabelControl lblDivisionTerm;
-		protected DnnTreeView treeDivisionTerms;
+        protected LabelControl lblDivisionTerm;
+        protected DnnTreeView treeDivisionTerms;
 
-		protected LabelControl lblHomePage;
-		protected DnnUrlControl urlHomePage;
-		protected LabelControl lblWebSite;
-		protected TextBox txtWebSite;
-		protected LabelControl labelWebSiteLabel;
-		protected TextBox textWebSiteLabel;
-		protected LabelControl labelDocumentUrl;
-		protected DnnUrlControl urlDocumentUrl;
-		protected LabelControl lblPhone;
-		protected TextBox txtPhone;
-		protected LabelControl lblFax;
-		protected TextBox txtFax;
-		protected LabelControl lblEmail;
-		protected TextBox txtEmail;
-		protected LabelControl lblSecondaryEmail;
-		protected TextBox txtSecondaryEmail;
-		protected LabelControl lblLocation;
-		protected TextBox txtLocation;
-		protected LabelControl labelWorkingHours;
-		protected LabelControl labelCustomWorkingHours;
+        protected LabelControl lblHomePage;
+        protected DnnUrlControl urlHomePage;
+        protected LabelControl lblWebSite;
+        protected TextBox txtWebSite;
+        protected LabelControl labelWebSiteLabel;
+        protected TextBox textWebSiteLabel;
+        protected LabelControl labelDocumentUrl;
+        protected DnnUrlControl urlDocumentUrl;
+        protected LabelControl lblPhone;
+        protected TextBox txtPhone;
+        protected LabelControl lblFax;
+        protected TextBox txtFax;
+        protected LabelControl lblEmail;
+        protected TextBox txtEmail;
+        protected LabelControl lblSecondaryEmail;
+        protected TextBox txtSecondaryEmail;
+        protected LabelControl lblLocation;
+        protected TextBox txtLocation;
+        protected LabelControl labelWorkingHours;
+        protected LabelControl labelCustomWorkingHours;
         protected DropDownList comboWorkingHours;
-		protected TextBox textWorkingHours;
-		protected CheckBox checkAddToVocabulary;
+        protected TextBox textWorkingHours;
+        protected CheckBox checkAddToVocabulary;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected CheckBox checkIsVirtual;
         protected AjaxControlToolkit.ComboBox comboHeadPosition;
-	}
+    }
 }

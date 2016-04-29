@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2014 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,36 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 using DotNetNuke.Common.Utilities;
 
 namespace R7.University
 {
-	public static class CacheHelper
-	{
-		public static bool Exists (string key)
-		{
-			return DataCache.GetCache (key) != null;
-		}
+    public static class CacheHelper
+    {
+        public static bool Exists (string key)
+        {
+            return DataCache.GetCache (key) != null;
+        }
 
-		public static void Set<T> (T toSet, string key, int seconds)
-		{
-			DataCache.SetCache (key, toSet, TimeSpan.FromSeconds (seconds)); 
-		}
+        public static void Set<T> (T toSet, string key, int seconds)
+        {
+            DataCache.SetCache (key, toSet, TimeSpan.FromSeconds (seconds)); 
+        }
 
-		public static T Get<T> (string key)
-		{
-			return (T)DataCache.GetCache (key);
-		}
+        public static T Get<T> (string key)
+        {
+            return (T) DataCache.GetCache (key);
+        }
 
-		public static T TryGet<T> (string key, T defValue)
-		{
-			var obj = DataCache.GetCache (key);
-			if (obj != null)
-				return (T)obj;
+        public static T TryGet<T> (string key, T defValue)
+        {
+            var obj = DataCache.GetCache (key);
+            if (obj != null)
+                return (T) obj;
 
-			return defValue;
-		}
-	}
+            return defValue;
+        }
+    }
 }

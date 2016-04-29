@@ -27,8 +27,8 @@
 using System;
 using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
-using R7.University.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Utilities;
 
 namespace R7.University.Controls
 {
@@ -71,12 +71,10 @@ namespace R7.University.Controls
         [XmlIgnore]
         public string LocalizedType
         { 
-            get
-            {
-                if (DocumentType != null)
-                {
+            get {
+                if (DocumentType != null) {
                     var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentType.Type + ".Text", 
-                        Context.LocalResourceFile);
+                                            Context.LocalResourceFile);
                     
                     return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentType.Type;
                 }
@@ -88,10 +86,8 @@ namespace R7.University.Controls
         [XmlIgnore]
         public string FormattedUrl
         {
-            get
-            { 
-                if (!string.IsNullOrWhiteSpace (Url))
-                {
+            get { 
+                if (!string.IsNullOrWhiteSpace (Url)) {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
                         UrlUtils.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrlLabel.Text", Context.LocalResourceFile)
@@ -115,8 +111,7 @@ namespace R7.University.Controls
             CopyCstor.Copy<IDocument> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
-            if (model.DocumentType != null)
-            {
+            if (model.DocumentType != null) {
                 viewModel.DocumentType = new DocumentTypeViewModel (model.DocumentType, viewContext);
             }
 

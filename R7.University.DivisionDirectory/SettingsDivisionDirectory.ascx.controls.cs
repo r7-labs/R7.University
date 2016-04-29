@@ -6,7 +6,7 @@ using DotNetNuke.UI.UserControls;
 using DotNetNuke.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
 
-namespace R7.University.DivisionDirectory 
+namespace R7.University.DivisionDirectory
 {
     public partial class SettingsDivisionDirectory
     {

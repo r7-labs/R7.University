@@ -25,18 +25,19 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.University;
 using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
     public partial class EditEduForm: EditPortalModuleBase<EduFormInfo,int>
-	{
-        protected EditEduForm (): base ("eduform_id")
-        {}
+    {
+        protected EditEduForm () : base ("eduform_id")
+        {
+        }
 
-        protected override void InitControls () 
+        protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
@@ -55,8 +56,7 @@ namespace R7.University.Launchpad
         {
             // don't update fields for system items,
             // also don't update IsSystem value at all
-            if (!item.IsSystem)
-            {
+            if (!item.IsSystem) {
                 item.Title = textTitle.Text.Trim ();
             }
 
@@ -92,5 +92,5 @@ namespace R7.University.Launchpad
         }
 
         #endregion
-	}
+    }
 }

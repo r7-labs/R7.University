@@ -27,10 +27,9 @@
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
-using DotNetNuke.Services.Localization;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Content.Taxonomy;
-using DotNetNuke.Web.UI.WebControls;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services.Localization;
 using R7.University.ControlExtensions;
 
 namespace R7.University
@@ -60,16 +59,13 @@ namespace R7.University
             workingHours = workingHours.Trim ();
             var workingHoursNonEmpty = !string.IsNullOrWhiteSpace (workingHours);
 
-            if (comboWorkingHours.SelectedIndex <= 0 || workingHoursNonEmpty)
-            {
+            if (comboWorkingHours.SelectedIndex <= 0 || workingHoursNonEmpty) {
                 // REVIEW: Shouldn't we try to add term after updating main item?
-                if (addToVocabulary && workingHoursNonEmpty)
-                {
+                if (addToVocabulary && workingHoursNonEmpty) {
                     // try add new term to University_WorkingHours vocabulary
                     var vocCtrl = new VocabularyController ();
                     var voc = vocCtrl.GetVocabularies ().SingleOrDefault (v => v.Name == "University_WorkingHours");
-                    if (voc != null)
-                    {
+                    if (voc != null) {
                         var termCtrl = new TermController ();
                         termCtrl.AddTerm (new Term (workingHours, "", voc.VocabularyId)); 
                         vocCtrl.ClearVocabularyCache ();

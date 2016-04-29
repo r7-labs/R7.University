@@ -48,11 +48,10 @@ namespace R7.University
         [IgnoreColumn]
         public string EduProfileString
         {
-            get
-            {
+            get {
                 var profileString = Utils.FormatList (" ", ProfileCode, ProfileTitle);
                 return Utils.FormatList (" ", Code, Title) +
-                    (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
+                (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
             }
         }
     }

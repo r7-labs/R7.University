@@ -9,8 +9,8 @@ using R7.University;
 
 namespace R7.University.EmployeeList
 {
-	public partial class ViewEmployeeList
-	{
-		protected DataList listEmployees;
-	}
+    public partial class ViewEmployeeList
+    {
+        protected DataList listEmployees;
+    }
 }

@@ -27,13 +27,13 @@
 using System;
 using System.Linq;
 using DotNetNuke.Services.Exceptions;
-using R7.University;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.University;
 
 namespace R7.University.Launchpad
 {
     public partial class SettingsLaunchpad : ModuleSettingsBase<LaunchpadSettings>
-	{
+    {
         #region Properties
 
         protected LaunchpadTables LaunchpadTables = new LaunchpadTables ();
@@ -41,69 +41,64 @@ namespace R7.University.Launchpad
         #endregion
 
         protected override void OnInit (EventArgs e)
-		{
+        {
             base.OnInit (e);
 
-			// fill PageSize combobox
-			comboPageSize.AddItem ("10", "10");
-			comboPageSize.AddItem ("25", "25");
-			comboPageSize.AddItem ("50", "50");
-			comboPageSize.AddItem ("100", "100");
+            // fill PageSize combobox
+            comboPageSize.AddItem ("10", "10");
+            comboPageSize.AddItem ("25", "25");
+            comboPageSize.AddItem ("50", "50");
+            comboPageSize.AddItem ("100", "100");
 
-			// fill tables list
+            // fill tables list
             foreach (var table in LaunchpadTables.Tables)
                 listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (
-                    LocalizeString (table.ResourceKey), table.Name));
-		}
+                        LocalizeString (table.ResourceKey), table.Name));
+        }
 
-		/// <summary>
-		/// Handles the loading of the module setting for this control
-		/// </summary>
-		public override void LoadSettings ()
-		{ 
-			try
-			{
-				if (!IsPostBack)
-				{
-					// TODO: Allow select nearest pagesize value
-					comboPageSize.Select (Settings.PageSize.ToString (), false);
+        /// <summary>
+        /// Handles the loading of the module setting for this control
+        /// </summary>
+        public override void LoadSettings ()
+        { 
+            try {
+                if (!IsPostBack) {
+                    // TODO: Allow select nearest pagesize value
+                    comboPageSize.Select (Settings.PageSize.ToString (), false);
 
-					// check table list items
-					foreach (var table in Settings.Tables)
-					{
-						var item = listTables.FindItemByValue (table);
-						if (item != null) item.Checked = true;
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    // check table list items
+                    foreach (var table in Settings.Tables) {
+                        var item = listTables.FindItemByValue (table);
+                        if (item != null)
+                            item.Checked = true;
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		/// <summary>
-		/// handles updating the module settings for this control
-		/// </summary>
-		public override void UpdateSettings ()
-		{
-			try
-			{
-				Settings.PageSize = int.Parse (comboPageSize.SelectedValue);
-				Settings.Tables = listTables.CheckedItems.Select (i => i.Value).ToList ();
+        /// <summary>
+        /// handles updating the module settings for this control
+        /// </summary>
+        public override void UpdateSettings ()
+        {
+            try {
+                Settings.PageSize = int.Parse (comboPageSize.SelectedValue);
+                Settings.Tables = listTables.CheckedItems.Select (i => i.Value).ToList ();
 
-				// remove session variable for active view,
-				// since view set may be changed
-				Session.Remove ("Launchpad_ActiveView_" + TabModuleId);
+                // remove session variable for active view,
+                // since view set may be changed
+                Session.Remove ("Launchpad_ActiveView_" + TabModuleId);
 
-				Utils.SynchronizeModule (this);
+                Utils.SynchronizeModule (this);
 
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
-	}
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+    }
 }
 

@@ -33,7 +33,7 @@ using DotNetNuke.Services.FileSystem;
 
 namespace R7.University
 {
-    public static class EmployeePhotoLogic 
+    public static class EmployeePhotoLogic
     {
         public static void Bind (EmployeeInfo employee, Image imagePhoto, int photoWidth, bool square = false)
         {
@@ -41,44 +41,38 @@ namespace R7.University
             var imageHeight = 0;
             var imageWidth = 0;
 
-            if (!Utils.IsNull (employee.PhotoFileID))
-            {
+            if (!Utils.IsNull (employee.PhotoFileID)) {
                 // REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
 
                 image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
 
-                if (image != null && square)
-                {
+                if (image != null && square) {
                     // trying to get square image
                     // FIXME: Remove hard-coded photo filename options
-                    var squareImage = FileManager.Instance.GetFile(
-                        FolderManager.Instance.GetFolder (image.FolderId), 
-                        Path.GetFileNameWithoutExtension (image.FileName) + "_square" + Path.GetExtension(image.FileName));
+                    var squareImage = FileManager.Instance.GetFile (
+                                          FolderManager.Instance.GetFolder (image.FolderId), 
+                                          Path.GetFileNameWithoutExtension (image.FileName) + "_square" + Path.GetExtension (image.FileName));
 
                     if (squareImage != null)
                         image = squareImage;
                 }
             }
 
-            if (image != null)
-            {
+            if (image != null) {
                 imageHeight = image.Height;
                 imageWidth = image.Width;
 
                 // do we need to scale image?
-                if (!Null.IsNull (photoWidth) && photoWidth != imageWidth)
-                {
+                if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
                     imagePhoto.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
-                        "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth));
+                            "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth));
                 }
-                else
-                {
+                else {
                     // use original image
-                    imagePhoto.ImageUrl = FileManager.Instance.GetUrl(image);
+                    imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
                 }
             }
-            else
-            {
+            else {
                 // if not photo specified, or not found, use fallback image
                 imageWidth = square ? 120 : 192;
                 imageHeight = square ? 120 : 256;
@@ -89,13 +83,11 @@ namespace R7.University
             }
 
             // do we need to scale image dimensions?
-            if (!Null.IsNull (photoWidth) && photoWidth != imageWidth)
-            {
+            if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
                 imagePhoto.Width = photoWidth;
-                imagePhoto.Height = (int)(imageHeight * (float)photoWidth / imageWidth);
+                imagePhoto.Height = (int) (imageHeight * (float) photoWidth / imageWidth);
             }
-            else
-            {
+            else {
                 imagePhoto.Width = imageWidth;
                 imagePhoto.Height = imageHeight;
             }

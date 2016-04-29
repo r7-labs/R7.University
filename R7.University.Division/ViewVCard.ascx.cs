@@ -26,14 +26,14 @@
 
 using System;
 using System.Text;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.University;
-using DotNetNuke.Entities.Modules;
 using R7.University.Data;
 
 namespace R7.University.Division
 {
-	public partial class ViewVCard : PortalModuleBase
+	public class ViewVCard : PortalModuleBase
 	{
 		#region Handlers
 

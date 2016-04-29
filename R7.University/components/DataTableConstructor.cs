@@ -44,18 +44,15 @@ namespace R7.University
             // get all the properties
             var props = typeof (T).GetProperties (BindingFlags.Public | BindingFlags.Instance);
 
-            foreach (var prop in props)
-            {
+            foreach (var prop in props) {
                 dataTable.Columns.Add (prop.Name, Nullable.GetUnderlyingType (
-                    prop.PropertyType) ?? prop.PropertyType);
+                        prop.PropertyType) ?? prop.PropertyType);
             }
 
-            foreach (T item in items)
-            {
+            foreach (T item in items) {
                 var values = new object [props.Length];
 
-                for (var i = 0; i < props.Length; i++)
-                {
+                for (var i = 0; i < props.Length; i++) {
                     // inserting property values to datatable rows
                     values [i] = props [i].GetValue (item, null) ?? DBNull.Value;
                 }

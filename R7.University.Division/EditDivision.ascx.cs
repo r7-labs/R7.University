@@ -40,18 +40,25 @@ using R7.University.Data;
 namespace R7.University.Division
 {
     public partial class EditDivision: EditPortalModuleBase<DivisionInfo,int>
-	{
+    {
         private int? itemId;
 
         #region Types
 
-        public enum EditDivisionTab { Common, Contacts, Documents, Bindings };
+        public enum EditDivisionTab
+        {
+            Common,
+            Contacts,
+            Documents,
+            Bindings
+        }
 
         #endregion
 
         #region Properties
 
         private DivisionSettings settings;
+
         protected new DivisionSettings Settings
         {
             get { return settings ?? (settings = new DivisionSettings (this)); }
@@ -59,34 +66,32 @@ namespace R7.University.Division
 
         protected EditDivisionTab SelectedTab
         {
-            get 
-            {
+            get {
                 // get postback initiator
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
-                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlHomePage.ID +"$"))
-                {
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlHomePage.ID + "$")) {
                     ViewState ["SelectedTab"] = EditDivisionTab.Bindings;
                     return EditDivisionTab.Bindings;
                 }
 
-                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentUrl.ID +"$"))
-                {
+                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentUrl.ID + "$")) {
                     ViewState ["SelectedTab"] = EditDivisionTab.Documents;
                     return EditDivisionTab.Documents;
                 }
 
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
-                return (obj != null) ? (EditDivisionTab)obj : EditDivisionTab.Common;
+                return (obj != null) ? (EditDivisionTab) obj : EditDivisionTab.Common;
             }
             set { ViewState ["SelectedTab"] = value; }
         }
 
         #endregion
 
-        protected EditDivision (): base ("division_id")
-        {}
+        protected EditDivision () : base ("division_id")
+        {
+        }
 
         /// <summary>
         /// Handles Init event for a control.
@@ -101,7 +106,7 @@ namespace R7.University.Division
 
             // fill divisions dropdown
             var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ()
-                // exclude current division
+                            // exclude current division
                 .Where (d => (itemId == null || itemId != d.DivisionID)).OrderBy (dd => dd.Title).ToList ();
 
             // insert default item
@@ -129,7 +134,13 @@ namespace R7.University.Division
 
             // bind positions
             var positions = UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ().OrderBy (p => p.Title).ToList ();
-            positions.Insert (0, new PositionInfo { ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger });
+            positions.Insert (
+                0,
+                new PositionInfo
+                {
+                    ShortTitle = LocalizeString ("NotSelected.Text"),
+                    PositionID = Null.NullInteger
+                });
             comboHeadPosition.DataSource = positions;
             comboHeadPosition.DataBind ();
             comboHeadPosition.SelectedIndex = 0;
@@ -168,14 +179,12 @@ namespace R7.University.Division
 
             // select taxonomy term
             var treeNode = treeDivisionTerms.FindNodeByValue (item.DivisionTermID.ToString ());
-            if (treeNode != null)
-            {
+            if (treeNode != null) {
                 treeNode.Selected = true;
 
                 // expand all parent nodes
                 treeNode = treeNode.ParentNode;
-                while (treeNode != null)
-                {
+                while (treeNode != null) {
                     treeNode.Expanded = true;
                     treeNode = treeNode.ParentNode;
                 } 
@@ -222,7 +231,10 @@ namespace R7.University.Division
             item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
 
             // update working hours
-            item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, checkAddToVocabulary.Checked);
+            item.WorkingHours = WorkingHoursLogic.Update (
+                comboWorkingHours,
+                textWorkingHours.Text,
+                checkAddToVocabulary.Checked);
         }
 
         #region implemented abstract members of EditPortalModuleBase
@@ -242,8 +254,7 @@ namespace R7.University.Division
 
             // then adding new division from Division module, 
             // set calling module to display new division info
-            if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division")
-            {
+            if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division") {
                 Settings.DivisionID = item.DivisionID;
             }
 
@@ -265,6 +276,6 @@ namespace R7.University.Division
         }
 
         #endregion
-	}
+    }
 }
 

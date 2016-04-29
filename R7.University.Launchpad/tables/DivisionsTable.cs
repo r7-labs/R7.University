@@ -24,34 +24,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
 using System.Data;
-using System.Linq;
 using DotNetNuke.Entities.Modules;
-using System.Threading;
-using System.Web.UI;
-using DotNetNuke.Common.Utilities;
 using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
     public class DivisionsTable: LaunchpadTableBase
-	{
-        public DivisionsTable (): base ("Divisions")
+    {
+        public DivisionsTable () : base ("Divisions")
         {
         }
 
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
             var divisions = UniversityRepository.Instance.DataProvider.FindObjects<DivisionInfo> (
-                @"WHERE CONCAT([Title], ' ', [ShortTitle], ' ', [Location], ' ', [Phone], ' ',
+                                @"WHERE CONCAT([Title], ' ', [ShortTitle], ' ', [Location], ' ', [Phone], ' ',
                 [Fax], ' ', [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ', [WorkingHours])
                 LIKE N'%{0}%'", search, false);
             
             return DataTableConstructor.FromIEnumerable (divisions);
         }
-	}
+    }
 }
 

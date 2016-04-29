@@ -61,13 +61,13 @@ namespace R7.University
         public static SystemDocumentType GetSystemDocumentType (this IDocumentType documentType)
         {
             SystemDocumentType result;
-            return Enum.TryParse<SystemDocumentType> (documentType.Type, out result)? result : SystemDocumentType.Custom;
+            return Enum.TryParse<SystemDocumentType> (documentType.Type, out result) ? result : SystemDocumentType.Custom;
         }
 
         public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)
         {
             SystemEduForm result;
-            return Enum.TryParse<SystemEduForm> (eduForm.Title, out result)? result : SystemEduForm.Custom;
+            return Enum.TryParse<SystemEduForm> (eduForm.Title, out result) ? result : SystemEduForm.Custom;
         }
 
         #endregion

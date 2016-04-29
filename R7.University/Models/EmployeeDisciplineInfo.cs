@@ -48,7 +48,12 @@ namespace R7.University
 
         public override string ToString ()
         {
-            return string.Format ("[EmployeeDisciplineInfo: EmployeeDisciplineID={0}, EmployeeID={1}, EduProgramProfileID={2}, Disciplines={3}]", EmployeeDisciplineID, EmployeeID, EduProgramProfileID, Disciplines);
+            return string.Format (
+                "[EmployeeDisciplineInfo: EmployeeDisciplineID={0}, EmployeeID={1}, EduProgramProfileID={2}, Disciplines={3}]",
+                EmployeeDisciplineID,
+                EmployeeID,
+                EduProgramProfileID,
+                Disciplines);
         }
     }
 }

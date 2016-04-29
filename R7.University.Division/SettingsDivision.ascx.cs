@@ -34,52 +34,48 @@ using R7.University.Data;
 namespace R7.University.Division
 {
     public partial class SettingsDivision : ModuleSettingsBase<DivisionSettings>
-	{
-		/// <summary>
-		/// Handles the loading of the module setting for this control
-		/// </summary>
-		public override void LoadSettings ()
-		{
-			try
-			{
-				if (!IsPostBack)
-				{
-					// get divisions
-                    var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
+    {
+        /// <summary>
+        /// Handles the loading of the module setting for this control
+        /// </summary>
+        public override void LoadSettings ()
+        {
+            try {
+                if (!IsPostBack) {
+                    // get divisions
+                    var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ()
+                        .OrderBy (d => d.Title).ToList ();
 
                     // insert default item
                     divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
-					// bind divisions to the tree
-					treeDivisions.DataSource = divisions;
-					treeDivisions.DataBind ();
+                    // bind divisions to the tree
+                    treeDivisions.DataSource = divisions;
+                    treeDivisions.DataBind ();
 
                     // select node and expand tree to it
                     Utils.SelectAndExpandByValue (treeDivisions, Settings.DivisionID.ToString ());
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		/// <summary>
-		/// handles updating the module settings for this control
-		/// </summary>
-		public override void UpdateSettings ()
-		{
-			try
-			{
-				Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
+        /// <summary>
+        /// handles updating the module settings for this control
+        /// </summary>
+        public override void UpdateSettings ()
+        {
+            try {
+                Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
 
-				Utils.SynchronizeModule (this);
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
-	}
+                Utils.SynchronizeModule (this);
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+    }
 }
 

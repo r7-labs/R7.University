@@ -26,20 +26,21 @@
 
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.ControlExtensions;
-using R7.University.ModelExtensions;
-using System.Text.RegularExpressions;
-using R7.DotNetNuke.Extensions.Modules;
-using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.University.Data;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Launchpad
 {
     public partial class EditEduProgramProfile: EditPortalModuleBase<EduProgramProfileInfo,int>
-	{
-        protected EditEduProgramProfile (): base ("eduprogramprofile_id")
-        {}
+    {
+        protected EditEduProgramProfile () : base ("eduprogramprofile_id")
+        {
+        }
 
         protected override void InitControls ()
         {
@@ -81,7 +82,7 @@ namespace R7.University.Launchpad
             auditControl.Bind (item);
 
             var documents = UniversityRepository.Instance.DataProvider.GetObjects<DocumentInfo> (
-                string.Format ("WHERE ItemID = N'EduProgramProfileID={0}'", item.EduProgramProfileID))
+                                string.Format ("WHERE ItemID = N'EduProgramProfileID={0}'", item.EduProgramProfileID))
                 .WithDocumentType (UniversityRepository.Instance.DataProvider)
                 .Cast<DocumentInfo> ()
                 .ToList ();
@@ -89,7 +90,7 @@ namespace R7.University.Launchpad
             formEditDocuments.SetData (documents, item.EduProgramProfileID);
 
             var eppForms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileFormInfo> (
-                "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
+                               "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
                 .WithEduForms (UniversityRepository.Instance.DataProvider)
                 .ToList ();
             
@@ -108,22 +109,19 @@ namespace R7.University.Launchpad
             item.EndDate = datetimeEndDate.SelectedDate;
             item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
 
-            if (ItemId == null)
-            {
+            if (ItemId == null) {
                 item.CreatedOnDate = DateTime.Now;
                 item.LastModifiedOnDate = item.CreatedOnDate;
                 item.CreatedByUserID = UserInfo.UserID;
                 item.LastModifiedByUserID = item.CreatedByUserID;
             }
-            else
-            {
+            else {
                 item.LastModifiedOnDate = DateTime.Now;
                 item.LastModifiedByUserID = UserInfo.UserID;
 
                 // HACK: Set missing CreatedOnDate value
                 // REVIEW: Solve on SqlDataProvider level on upgrage to 2.0.0?
-                if (item.CreatedOnDate == default (DateTime)) 
-                {
+                if (item.CreatedOnDate == default (DateTime)) {
                     item.CreatedOnDate = item.LastModifiedOnDate;
                     item.CreatedByUserID = item.LastModifiedByUserID;
                 }
@@ -148,8 +146,13 @@ namespace R7.University.Launchpad
             UniversityRepository.Instance.DataProvider.Add<EduProgramProfileInfo> (item);
 
             // update referenced items
-            UniversityRepository.Instance.UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfileID", item.EduProgramProfileID);
-            UniversityRepository.Instance.UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+            UniversityRepository.Instance.UpdateDocuments (
+                formEditDocuments.GetData (),
+                "EduProgramProfileID",
+                item.EduProgramProfileID);
+            UniversityRepository.Instance.UpdateEduProgramProfileForms (
+                formEditEduForms.GetData (),
+                item.EduProgramProfileID);
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
@@ -161,30 +164,29 @@ namespace R7.University.Launchpad
 
         protected void linkEditEduProgram_Click (object sender, EventArgs e)
         {
-            var modalEditUrl = EditUrl ("eduprogram_id", int.Parse (comboEduProgram.SelectedValue).ToString (), "EditEduProgram");
+            var modalEditUrl = EditUrl (
+                                   "eduprogram_id",
+                                   int.Parse (comboEduProgram.SelectedValue).ToString (),
+                                   "EditEduProgram");
             var rawEditUrl = Regex.Match (modalEditUrl, @"'(.*?)'").Groups [1].ToString ();
             Response.Redirect (rawEditUrl, true);
         }
 
         protected int SelectedTab
         {
-            get 
-            {
+            get {
                 // get postback initiator control
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
-                if (!string.IsNullOrEmpty (eventTarget))
-                {
+                if (!string.IsNullOrEmpty (eventTarget)) {
                     // check if postback initiator is on EduForms tab
-                    if (eventTarget.Contains ("$" + formEditEduForms.ID))
-                    {
+                    if (eventTarget.Contains ("$" + formEditEduForms.ID)) {
                         ViewState ["SelectedTab"] = 1;
                         return 1;
                     }
 
                     // check if postback initiator is on Documents tab
-                    if (eventTarget.Contains ("$" + formEditDocuments.ID))
-                    {
+                    if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
                         ViewState ["SelectedTab"] = 2;
                         return 2;
                     }
@@ -192,8 +194,7 @@ namespace R7.University.Launchpad
 
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
-                if (obj != null)
-                {
+                if (obj != null) {
                     return (int) obj;
                 }
 
@@ -201,5 +202,5 @@ namespace R7.University.Launchpad
             }
             set { ViewState ["SelectedTab"] = value; }
         }
-	}
+    }
 }

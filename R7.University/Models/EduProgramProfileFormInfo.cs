@@ -25,7 +25,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University

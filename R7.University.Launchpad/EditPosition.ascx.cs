@@ -26,161 +26,150 @@
 
 using System;
 using DotNetNuke.Common;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.University;
 using R7.DotNetNuke.Extensions.Utilities;
-using DotNetNuke.Entities.Modules;
+using R7.University;
 using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditPosition : PortalModuleBase
-	{
-		// ALT: private int itemId = Null.NullInteger;
-		private int? itemId = null;
+    public partial class EditPosition : PortalModuleBase
+    {
+        // ALT: private int itemId = Null.NullInteger;
+        private int? itemId = null;
 
-		#region Handlers
+        #region Handlers
 
-		/// <summary>
-		/// Handles Init event for a control.
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnInit (EventArgs e)
-		{
-			base.OnInit (e);
+        /// <summary>
+        /// Handles Init event for a control.
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
 
-			// set url for Cancel link
-			linkCancel.NavigateUrl = Globals.NavigateURL ();
+            // set url for Cancel link
+            linkCancel.NavigateUrl = Globals.NavigateURL ();
 
-			// add confirmation dialog to delete button
-			buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
-		}
+            // add confirmation dialog to delete button
+            buttonDelete.Attributes.Add (
+                "onClick",
+                "javascript:return confirm('" + Localization.GetString ("DeleteItem") + "');");
+        }
 
-		/// <summary>
-		/// Handles Load event for a control.
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnLoad (EventArgs e)
-		{
-			base.OnLoad (e);
+        /// <summary>
+        /// Handles Load event for a control.
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
 			
-			try
-			{
-				// parse querystring parameters
-				itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["position_id"]);
+            try {
+                // parse querystring parameters
+                itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["position_id"]);
       
-				if (!IsPostBack)
-				{
-					// load the data into the control the first time we hit this page
+                if (!IsPostBack) {
+                    // load the data into the control the first time we hit this page
 
-					// check we have an item to lookup
-					// ALT: if (!Null.IsNull (itemId) 
-					if (itemId.HasValue)
-					{
-						// load the item
+                    // check we have an item to lookup
+                    // ALT: if (!Null.IsNull (itemId) 
+                    if (itemId.HasValue) {
+                        // load the item
                         var item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
 
-						if (item != null)
-						{
+                        if (item != null) {
 											
-							txtTitle.Text = item.Title;
-							txtShortTitle.Text = item.ShortTitle;
-							txtWeight.Text = item.Weight.ToString ();
-							checkIsTeacher.Checked = item.IsTeacher;
+                            txtTitle.Text = item.Title;
+                            txtShortTitle.Text = item.ShortTitle;
+                            txtWeight.Text = item.Weight.ToString ();
+                            checkIsTeacher.Checked = item.IsTeacher;
 														
-						}
-						else
-							Response.Redirect (Globals.NavigateURL (), true);
-					}
-					else
-					{
-						buttonDelete.Visible = false;
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                        }
+                        else
+                            Response.Redirect (Globals.NavigateURL (), true);
+                    }
+                    else {
+                        buttonDelete.Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		/// <summary>
-		/// Handles Click event for Update button
-		/// </summary>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		/// <param name='e'>
-		/// Event args.
-		/// </param>
-		protected void buttonUpdate_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				PositionInfo item;
+        /// <summary>
+        /// Handles Click event for Update button
+        /// </summary>
+        /// <param name='sender'>
+        /// Sender.
+        /// </param>
+        /// <param name='e'>
+        /// Event args.
+        /// </param>
+        protected void buttonUpdate_Click (object sender, EventArgs e)
+        {
+            try {
+                PositionInfo item;
 
-				// determine if we are adding or updating
-				// ALT: if (Null.IsNull (itemId))
-				if (!itemId.HasValue)
-				{
-					// add new record
-					item = new PositionInfo ();
-				}
-				else
-				{
-					// update existing record
+                // determine if we are adding or updating
+                // ALT: if (Null.IsNull (itemId))
+                if (!itemId.HasValue) {
+                    // add new record
+                    item = new PositionInfo ();
+                }
+                else {
+                    // update existing record
                     item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
-				}
+                }
 
-				// fill the object
-				item.Title = txtTitle.Text.Trim ();
-				item.ShortTitle = txtShortTitle.Text.Trim ();
+                // fill the object
+                item.Title = txtTitle.Text.Trim ();
+                item.ShortTitle = txtShortTitle.Text.Trim ();
                 item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
-				item.IsTeacher = checkIsTeacher.Checked;
+                item.IsTeacher = checkIsTeacher.Checked;
 
-				if (!itemId.HasValue)
+                if (!itemId.HasValue)
                     UniversityRepository.Instance.DataProvider.Add<PositionInfo> (item);
-				else
+                else
                     UniversityRepository.Instance.DataProvider.Update<PositionInfo> (item);
 
-				Utils.SynchronizeModule (this);
+                Utils.SynchronizeModule (this);
 
-				Response.Redirect (Globals.NavigateURL (), true);
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                Response.Redirect (Globals.NavigateURL (), true);
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		/// <summary>
-		/// Handles Click event for Delete button
-		/// </summary>
-		/// <param name='sender'>
-		/// Sender.
-		/// </param>
-		/// <param name='e'>
-		/// Event args.
-		/// </param>
-		protected void buttonDelete_Click (object sender, EventArgs e)
-		{
-			try
-			{
-				// ALT: if (!Null.IsNull (itemId))
-				if (itemId.HasValue)
-				{
+        /// <summary>
+        /// Handles Click event for Delete button
+        /// </summary>
+        /// <param name='sender'>
+        /// Sender.
+        /// </param>
+        /// <param name='e'>
+        /// Event args.
+        /// </param>
+        protected void buttonDelete_Click (object sender, EventArgs e)
+        {
+            try {
+                // ALT: if (!Null.IsNull (itemId))
+                if (itemId.HasValue) {
                     UniversityRepository.Instance.DataProvider.Delete<PositionInfo> (itemId.Value);
-					Response.Redirect (Globals.NavigateURL (), true);
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    Response.Redirect (Globals.NavigateURL (), true);
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
 

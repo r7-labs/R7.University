@@ -25,11 +25,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.Controls
@@ -54,17 +54,17 @@ namespace R7.University.Controls
 
         public string TitleLocalized
         { 
-            get
-            {   
+            get {   
                 var titleLocalized = Localization.GetString ("SystemEduForm_" + Title + ".Text", 
-                    Context.LocalResourceFile);
+                                         Context.LocalResourceFile);
                 
                 return (!string.IsNullOrEmpty (titleLocalized)) ? titleLocalized : Title;
             }
         }
 
         public EduFormViewModel ()
-        {}
+        {
+        }
 
         public EduFormViewModel (IEduForm eduForm, ViewModelContext context)
         {
@@ -77,13 +77,13 @@ namespace R7.University.Controls
         {
             var eduFormVms = eduForms.Select (ef => new EduFormViewModel (ef, context)).ToList ();
 
-            if (withDefaultItem) 
-            {
-                eduFormVms.Insert (0, new EduFormViewModel {
-                    EduFormID = Null.NullInteger,
-                    Title = "Default",
-                    Context = context
-                });
+            if (withDefaultItem) {
+                eduFormVms.Insert (0, new EduFormViewModel
+                    {
+                        EduFormID = Null.NullInteger,
+                        Title = "Default",
+                        Context = context
+                    });
             }
 
             return eduFormVms;

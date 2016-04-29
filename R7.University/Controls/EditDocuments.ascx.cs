@@ -25,10 +25,10 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using DotNetNuke.Entities.Modules;
+using System.Linq;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 
@@ -61,13 +61,13 @@ namespace R7.University.Controls
 
         protected DocumentTypeViewModel GetDocumentType (int? documentTypeId)
         {
-            if (documentTypeId != null)
-            {
+            if (documentTypeId != null) {
                 var documentTypes = XmlSerializationHelper.Deserialize<List<DocumentTypeViewModel>> (ViewState ["documentTypes"]);
                 return documentTypes.Single (dt => dt.DocumentTypeID == documentTypeId.Value);
             }
 
-            return new DocumentTypeViewModel {
+            return new DocumentTypeViewModel
+            {
                 Type = string.Empty,
                 DocumentTypeID = Null.NullInteger
             };
@@ -88,7 +88,8 @@ namespace R7.University.Controls
             textDocumentSortIndex.Text = item.SortIndex.ToString ();
             datetimeDocumentStartDate.SelectedDate = item.StartDate;
             datetimeDocumentEndDate.SelectedDate = item.EndDate;
-            urlDocumentUrl.Url = item.Url;;
+            urlDocumentUrl.Url = item.Url;
+            ;
         }
 
         protected override void OnUpdateItem (DocumentViewModel item)

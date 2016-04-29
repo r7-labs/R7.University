@@ -9,11 +9,11 @@ using R7.University;
 
 namespace R7.University.Division
 {
-	public partial class SettingsDivision
-	{
-		protected LabelControl labelDivision;
-		protected DnnTreeView treeDivisions;
-		protected LabelControl labelBarcodeWidth;
-		protected TextBox textBarcodeWidth;
-	}
+    public partial class SettingsDivision
+    {
+        protected LabelControl labelDivision;
+        protected DnnTreeView treeDivisions;
+        protected LabelControl labelBarcodeWidth;
+        protected TextBox textBarcodeWidth;
+    }
 }

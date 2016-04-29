@@ -9,9 +9,9 @@ using R7.University;
 
 namespace R7.University.EduProgramDirectory
 {
-	public partial class ViewEduProgramDirectory
-	{
+    public partial class ViewEduProgramDirectory
+    {
         protected MultiView mviewEduProgramDirectory;
         protected GridView gridEduStandards;
-	}
+    }
 }

@@ -26,7 +26,6 @@
 
 using System;
 using DotNetNuke.UI.UserControls;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
 
 namespace R7.University.ControlExtensions
@@ -38,7 +37,9 @@ namespace R7.University.ControlExtensions
             auditControl.CreatedDate = item.CreatedOnDate.ToLongDateString ();
             auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, Null.NullInteger.ToString ());
             auditControl.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
-            auditControl.LastModifiedByUser = Utils.GetUserDisplayName (item.LastModifiedByUserID, Null.NullInteger.ToString ());
+            auditControl.LastModifiedByUser = Utils.GetUserDisplayName (
+                item.LastModifiedByUserID,
+                Null.NullInteger.ToString ());
         }
     }
 }

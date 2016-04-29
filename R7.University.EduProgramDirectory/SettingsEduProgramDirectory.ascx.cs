@@ -28,8 +28,8 @@ using System;
 using System.Linq;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls;
-using R7.University;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.University;
 using R7.University.Data;
 
 namespace R7.University.EduProgramDirectory
@@ -43,12 +43,12 @@ namespace R7.University.EduProgramDirectory
             // fill edulevels list
             var eduLevels = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
            
-            foreach (var eduLevel in eduLevels)
-            {
-                listEduLevels.Items.Add (new DnnListBoxItem { 
-                    Text = eduLevel.DisplayShortTitle, 
-                    Value = eduLevel.EduLevelID.ToString ()
-                });
+            foreach (var eduLevel in eduLevels) {
+                listEduLevels.Items.Add (new DnnListBoxItem
+                    { 
+                        Text = eduLevel.DisplayShortTitle, 
+                        Value = eduLevel.EduLevelID.ToString ()
+                    });
             }
         }
 
@@ -57,23 +57,18 @@ namespace R7.University.EduProgramDirectory
         /// </summary>
         public override void LoadSettings ()
         {
-            try
-            {
-                if (!IsPostBack)
-                {
+            try {
+                if (!IsPostBack) {
                     // check edulevels list items
-                    foreach (var eduLevelIdString in Settings.EduLevels)
-                    {
+                    foreach (var eduLevelIdString in Settings.EduLevels) {
                         var item = listEduLevels.FindItemByValue (eduLevelIdString);
-                        if (item != null)
-                        {
+                        if (item != null) {
                             item.Checked = true;
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
@@ -83,14 +78,12 @@ namespace R7.University.EduProgramDirectory
         /// </summary>
         public override void UpdateSettings ()
         {
-            try
-            {
+            try {
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => i.Value).ToList ();
 
                 Utils.SynchronizeModule (this);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }

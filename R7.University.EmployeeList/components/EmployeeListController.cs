@@ -34,45 +34,44 @@ using R7.University.Data;
 
 namespace R7.University.EmployeeList
 {
-	public class EmployeeListController: ModuleSearchBase
-	{
-		#region ModuleSearchBase implementaion
+    public class EmployeeListController: ModuleSearchBase
+    {
+        #region ModuleSearchBase implementaion
 
-		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
-		{
-			var searchDocs = new List<SearchDocument> ();
-			var settings = new EmployeeListSettings (modInfo);
+        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
+        {
+            var searchDocs = new List<SearchDocument> ();
+            var settings = new EmployeeListSettings (modInfo);
 		
-			var	employees = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-				                (settings.IncludeSubdivisions) ? // which SP to use
+            var	employees = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
+                       (settings.IncludeSubdivisions) ? // which SP to use
 				"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-				                settings.DivisionID, settings.SortType, false
-			                );
+                       settings.DivisionID, settings.SortType, false
+                   );
 
-            foreach (var employee in employees)
-			{
-				if (employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
-				{
-					var aboutEmployee = employee.SearchDocumentText;
-					var sd = new SearchDocument () {
-						PortalId = modInfo.PortalID,
-						AuthorUserId = employee.LastModifiedByUserID,
-						Title = employee.FullName,
-						// Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
-						Body = aboutEmployee,
-						ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
-						UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
+            foreach (var employee in employees) {
+                if (employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
+                    var aboutEmployee = employee.SearchDocumentText;
+                    var sd = new SearchDocument ()
+                    {
+                        PortalId = modInfo.PortalID,
+                        AuthorUserId = employee.LastModifiedByUserID,
+                        Title = employee.FullName,
+                        // Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
+                        Body = aboutEmployee,
+                        ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
+                        UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
                         Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
-						IsActive = employee.IsPublished
-					};
+                        IsActive = employee.IsPublished
+                    };
 
-					searchDocs.Add (sd);
-				}
-			}
-			return searchDocs;
-		}
+                    searchDocs.Add (sd);
+                }
+            }
+            return searchDocs;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
 

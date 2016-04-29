@@ -9,11 +9,11 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class SettingsLaunchpad
-	{
-		protected LabelControl labelPageSize;
-		protected DnnComboBox comboPageSize;
-		protected LabelControl labelTables;
-		protected DnnListBox listTables;
-	}
+    public partial class SettingsLaunchpad
+    {
+        protected LabelControl labelPageSize;
+        protected DnnComboBox comboPageSize;
+        protected LabelControl labelTables;
+        protected DnnListBox listTables;
+    }
 }

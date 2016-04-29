@@ -10,9 +10,9 @@ using R7.University;
 namespace R7.University.EduProgramProfileDirectory
 {
     public partial class ViewEduProgramProfileDirectory
-	{
+    {
         protected MultiView mviewEduProgramProfileDirectory;
         protected GridView gridEduProgramProfileObrnadzorEduForms;
         protected GridView gridEduProgramProfileObrnadzorDocuments;
-	}
+    }
 }

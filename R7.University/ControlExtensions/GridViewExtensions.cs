@@ -26,7 +26,6 @@
 
 using System;
 using System.Web.UI.WebControls;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Localization;
 
 namespace R7.University.ControlExtensions

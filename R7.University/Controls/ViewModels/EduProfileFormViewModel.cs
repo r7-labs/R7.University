@@ -74,7 +74,7 @@ namespace R7.University.Controls
         #region IEduProgramProfileForm implementation
 
         public long EduProgramProfileFormID { get; set; }
-       
+
         public int EduProgramProfileID { get; set; }
 
         public int EduFormID { get; set; }
@@ -97,8 +97,7 @@ namespace R7.University.Controls
         [XmlIgnore]
         public string EduFormTitleLocalized
         {
-            get
-            {
+            get {
                 EduFormViewModel.Context = Context;
                 return EduFormViewModel.TitleLocalized;
             }
@@ -107,8 +106,7 @@ namespace R7.University.Controls
         [XmlIgnore]
         public string TimeToLearnString
         {
-            get
-            { 
+            get { 
                 return FormatHelper.FormatTimeToLearn (TimeToLearn,
                     "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile);
             }

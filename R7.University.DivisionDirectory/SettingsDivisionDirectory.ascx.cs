@@ -31,7 +31,7 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 
 namespace R7.University.DivisionDirectory
-{    
+{
     public partial class SettingsDivisionDirectory : ModuleSettingsBase<DivisionDirectorySettings>
     {
         protected override void OnInit (EventArgs e)
@@ -47,32 +47,29 @@ namespace R7.University.DivisionDirectory
         /// </summary>
         public override void LoadSettings ()
         {
-            try
-            {
-                if (!IsPostBack)
-                {
+            try {
+                if (!IsPostBack) {
                     comboMode.SelectByValue (Settings.Mode);
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
-      
+
         /// <summary>
         /// handles updating the module settings for this control
         /// </summary>
         public override void UpdateSettings ()
         {
-            try
-            {
-                Settings.Mode = (DivisionDirectoryMode) Enum.Parse (typeof (DivisionDirectoryMode), comboMode.SelectedValue);
+            try {
+                Settings.Mode = (DivisionDirectoryMode) Enum.Parse (
+                    typeof (DivisionDirectoryMode),
+                    comboMode.SelectedValue);
 
-                Utils.SynchronizeModule(this);
+                Utils.SynchronizeModule (this);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }

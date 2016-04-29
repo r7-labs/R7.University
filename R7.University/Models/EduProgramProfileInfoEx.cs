@@ -26,7 +26,6 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using System.Threading;
 
 namespace R7.University
 {

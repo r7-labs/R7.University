@@ -25,7 +25,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using R7.DotNetNuke.Extensions.ViewModels;
 
@@ -35,13 +34,11 @@ namespace R7.University.Division
     {
         protected ViewModelContext Context { get; set; }
 
-        public string HomePageLink 
+        public string HomePageLink
         { 
-            get
-            {
+            get {
                 int homeTabId;
-                if (int.TryParse (HomePage, out homeTabId) && Context.Module.TabId != homeTabId)
-                {
+                if (int.TryParse (HomePage, out homeTabId) && Context.Module.TabId != homeTabId) {
                     return string.Format ("<a href=\"{0}\">{1}</a>", Globals.NavigateURL (homeTabId), Title);
                 }
 
@@ -53,7 +50,7 @@ namespace R7.University.Division
         {
             get { return !IsPublished ? "not-published-division" : string.Empty; }
         }
-            
+
         public SubDivisionViewModel (DivisionInfo division, ViewModelContext context)
         {
             Context = context;

@@ -25,11 +25,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.Controls
@@ -55,17 +55,17 @@ namespace R7.University.Controls
         [XmlIgnore]
         public string LocalizedType
         { 
-            get
-            { 
+            get { 
                 var localizedType = Localization.GetString ("SystemDocumentType_" + Type + ".Text", 
-                    Context.LocalResourceFile);
+                                        Context.LocalResourceFile);
                 
                 return (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
             }
         }
 
         public DocumentTypeViewModel ()
-        {}
+        {
+        }
 
         public DocumentTypeViewModel (IDocumentType documentType, ViewModelContext context)
         {
@@ -78,13 +78,13 @@ namespace R7.University.Controls
         {
             var documentTypeVms = documentTypes.Select (dt => new DocumentTypeViewModel (dt, context)).ToList ();
 
-            if (withDefaultItem) 
-            {
-                documentTypeVms.Insert (0, new DocumentTypeViewModel {
-                    DocumentTypeID = Null.NullInteger,
-                    Type = "Default",
-                    Context = context
-                });
+            if (withDefaultItem) {
+                documentTypeVms.Insert (0, new DocumentTypeViewModel
+                    {
+                        DocumentTypeID = Null.NullInteger,
+                        Type = "Default",
+                        Context = context
+                    });
             }
 
             return documentTypeVms;

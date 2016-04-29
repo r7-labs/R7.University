@@ -100,8 +100,7 @@ namespace R7.University
         [IgnoreColumn]
         public bool IsPublished
         {
-            get
-            {
+            get {
                 var now = DateTime.Now;
                 return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
             }
@@ -110,9 +109,8 @@ namespace R7.University
         [IgnoreColumn]
         public IList<DocumentInfo> EduStandardDocuments
         {
-            get
-            { 
-                return Documents.Where (d => d.DocumentType != null 
+            get { 
+                return Documents.Where (d => d.DocumentType != null
                     && d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduStandard).ToList ();
             }
         }

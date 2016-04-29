@@ -39,7 +39,7 @@ namespace R7.University
 
         bool IsSystem { get; set; }
     }
-    
+
     [TableName ("University_DocumentTypes")]
     [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
     [Cacheable ("University_DocumentTypes")]

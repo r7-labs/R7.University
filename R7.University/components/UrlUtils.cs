@@ -28,7 +28,6 @@ using System;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Tabs;
-using System.Web.UI.WebControls;
 
 namespace R7.University.Utilities
 {
@@ -46,8 +45,7 @@ namespace R7.University.Utilities
         /// <returns>Return raw (untrackable) URL for external URLs.</returns>
         public static string LinkClickIdnHack (string url, int tabId, int moduleId)
         {
-            switch (Globals.GetURLType (url))
-            {
+            switch (Globals.GetURLType (url)) {
                 case TabType.Url:
                     return url;
                     

@@ -25,7 +25,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Threading;
 
 namespace R7.University
 {

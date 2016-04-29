@@ -39,10 +39,11 @@ namespace R7.University.ModelExtensions
             return eduProgram;
         }
 
-        public static IEnumerable<EduProgramInfo> WithEduLevel (this IEnumerable<EduProgramInfo> eduPrograms, Dal2DataProvider controller)
+        public static IEnumerable<EduProgramInfo> WithEduLevel (
+            this IEnumerable<EduProgramInfo> eduPrograms,
+            Dal2DataProvider controller)
         {
-            foreach (var eduProgram in eduPrograms)
-            {
+            foreach (var eduProgram in eduPrograms) {
                 eduProgram.WithEduLevel (controller);
             }
 
@@ -59,10 +60,11 @@ namespace R7.University.ModelExtensions
             return eduProgram;
         }
 
-        public static IEnumerable<EduProgramInfo> WithDocuments (this IEnumerable<EduProgramInfo> eduPrograms, Dal2DataProvider controller)
+        public static IEnumerable<EduProgramInfo> WithDocuments (
+            this IEnumerable<EduProgramInfo> eduPrograms,
+            Dal2DataProvider controller)
         {
-            foreach (var eduProgram in eduPrograms)
-            {
+            foreach (var eduProgram in eduPrograms) {
                 eduProgram.WithDocuments (controller);
             }
 

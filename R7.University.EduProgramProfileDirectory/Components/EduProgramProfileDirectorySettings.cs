@@ -25,44 +25,42 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
 
 namespace R7.University.EduProgramProfileDirectory
 {
-	/// <summary>
-	/// Provides strong typed access to settings used by module
-	/// </summary>
-	public class EduProgramProfileDirectorySettings : SettingsWrapper
-	{
+    /// <summary>
+    /// Provides strong typed access to settings used by module
+    /// </summary>
+    public class EduProgramProfileDirectorySettings : SettingsWrapper
+    {
         public EduProgramProfileDirectorySettings ()
         {
         }
 
         public EduProgramProfileDirectorySettings (IModuleControl module) : base (module)
-		{
-		}
+        {
+        }
 
         public EduProgramProfileDirectorySettings (ModuleInfo module) : base (module)
-		{
-		}
+        {
+        }
 
         #region Properties for settings
 
         public IList<int> EduLevels
         {
-            get
-            {
+            get {
                 return ReadSetting<string> ("EduProgramProfileDirectory_EduLevels", string.Empty)
-                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries)
+                    .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
                     .ToList ()
                     .ConvertAll (s => int.Parse (s));
             }
-            set
-            {
+            set {
                 WriteModuleSetting<string> ("EduProgramProfileDirectory_EduLevels", string.Join (";", value));
             }
         }
@@ -74,6 +72,6 @@ namespace R7.University.EduProgramProfileDirectory
         }
 
         #endregion
-	}
+    }
 }
 

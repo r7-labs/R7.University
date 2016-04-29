@@ -44,19 +44,19 @@ using R7.University.Data;
 namespace R7.University.EduProgramDirectory
 {
     public partial class ViewEduProgramDirectory: PortalModuleBase<EduProgramDirectorySettings>, IActionable
-	{
-		#region Properties
+    {
+        #region Properties
 
-		protected string EditIconUrl
-		{
-			get { return IconController.IconURL ("Edit"); }
-		}
+        protected string EditIconUrl
+        {
+            get { return IconController.IconURL ("Edit"); }
+        }
 
         private ViewModelContext viewModelContext;
+
         protected ViewModelContext ViewModelContext
         {
-            get
-            { 
+            get { 
                 if (viewModelContext == null)
                     viewModelContext = new ViewModelContext (this);
 
@@ -64,9 +64,9 @@ namespace R7.University.EduProgramDirectory
             }
         }
 
-		#endregion
+        #endregion
 
-		#region Handlers
+        #region Handlers
 
         protected override void OnInit (EventArgs e)
         {
@@ -75,18 +75,16 @@ namespace R7.University.EduProgramDirectory
             gridEduStandards.LocalizeColumns (LocalResourceFile);
         }
 
-		/// <summary>
-		/// Handles Load event for a control
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnLoad (EventArgs e)
-		{
-			base.OnLoad (e);
+        /// <summary>
+        /// Handles Load event for a control
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
 			
-			try
-			{
-                if (!IsPostBack)
-				{
+            try {
+                if (!IsPostBack) {
                     var viewModelIndexer = new ViewModelIndexer (1);
 
                     // REVIEW: Order / group by edu level first?
@@ -96,81 +94,80 @@ namespace R7.University.EduProgramDirectory
                         .OrderBy (ep => ep.EduLevel.SortIndex)
                         .ThenBy (ep => ep.Code)
                         .ThenBy (ep => ep.Title)
-                        .Select (ep => new EduProgramStandardObrnadzorViewModel (ep, ViewModelContext, viewModelIndexer))
+                        .Select (ep => new EduProgramStandardObrnadzorViewModel (
+                                              ep,
+                                              ViewModelContext,
+                                              viewModelIndexer))
                         .ToList ();
                     
-                    if (eduPrograms.Count > 0)
-                    {
+                    if (eduPrograms.Count > 0) {
                         gridEduStandards.DataSource = eduPrograms;
                         gridEduStandards.DataBind ();
                     }
-                    else
-                    {
+                    else {
                         this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
                     }
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region IActionable implementation
+        #region IActionable implementation
 
-		public ModuleActionCollection ModuleActions
-		{
-			get
-			{
-				// create a new action to add an item, 
+        public ModuleActionCollection ModuleActions
+        {
+            get {
+                // create a new action to add an item, 
                 // this will be added to the controls dropdown menu
-				var actions = new ModuleActionCollection ();
-				actions.Add (
-					GetNextActionID (), 
-					LocalizeString ("AddEduProgram.Action"),
-					ModuleActionType.AddContent, 
-					"", "", 
-					EditUrl ("EditEduProgram"),
-					false, 
-					SecurityAccessLevel.Edit,
-					true, 
-					false
-				);
+                var actions = new ModuleActionCollection ();
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("AddEduProgram.Action"),
+                    ModuleActionType.AddContent, 
+                    "", "", 
+                    EditUrl ("EditEduProgram"),
+                    false, 
+                    SecurityAccessLevel.Edit,
+                    true, 
+                    false
+                );
 			
-				return actions;
-			}
-		}
+                return actions;
+            }
+        }
 
-		#endregion
+        #endregion
 
         protected void gridEduStandards_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgram = (EduProgramInfo) e.Row.DataItem;
 
-                if (IsEditable)
-                {
+                if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = EditUrl ("eduprogram_id", eduProgram.EduProgramID.ToString (), "EditEduProgram");
+                    linkEdit.NavigateUrl = EditUrl (
+                        "eduprogram_id",
+                        eduProgram.EduProgramID.ToString (),
+                        "EditEduProgram");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!eduProgram.IsPublished)
-                {
+                if (!eduProgram.IsPublished) {
                     e.Row.CssClass = "not-published";
                 }
             }
         }
-	}
+    }
 }
 

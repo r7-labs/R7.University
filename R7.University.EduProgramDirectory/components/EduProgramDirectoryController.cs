@@ -29,7 +29,7 @@ using DotNetNuke.Entities.Modules;
 namespace R7.University.EduProgramDirectory
 {
     public class EduProgramDirectoryController: ModuleController
-	{
-	}
+    {
+    }
 }
 

@@ -60,8 +60,7 @@ namespace R7.University
         [IgnoreColumn]
         public SystemEduForm SystemEduForm
         {
-            get
-            {
+            get {
                 SystemEduForm result;
                 return Enum.TryParse<SystemEduForm> (Title, out result) ? result : SystemEduForm.Custom;
             }

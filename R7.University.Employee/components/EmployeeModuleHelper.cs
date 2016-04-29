@@ -37,8 +37,7 @@ namespace R7.University.Employee
             var mctrl = new ModuleController ();
             var module = mctrl.GetModule (moduleId);
 
-            if (module.ModuleTitle != title)
-            {
+            if (module.ModuleTitle != title) {
                 module.ModuleTitle = title;
                 mctrl.UpdateModule (module);
             }

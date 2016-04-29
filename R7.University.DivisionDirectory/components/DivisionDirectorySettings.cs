@@ -40,11 +40,11 @@ namespace R7.University.DivisionDirectory
         {
         }
 
-        public DivisionDirectorySettings (IModuleControl module): base (module)
+        public DivisionDirectorySettings (IModuleControl module) : base (module)
         {
         }
 
-        public DivisionDirectorySettings (ModuleInfo module): base (module)
+        public DivisionDirectorySettings (ModuleInfo module) : base (module)
         {
         }
 

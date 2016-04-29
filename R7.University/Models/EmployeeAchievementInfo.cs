@@ -1,118 +1,134 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using DotNetNuke.Data;
+﻿//
+// EmployeeAchievementInfo.cs
+//
+// Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+// Copyright (c) 2015-2016 Roman M. Yagodin
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using DotNetNuke.Entities.Portals;
-using DotNetNuke.Entities.Users;
 
 namespace R7.University
 {
-	// More attributes for class:
-	// Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]
-	// Explicit mapping declaration: [DeclareColumns]
-	// More attributes for class properties:
-	// Custom column name: [ColumnName("DivisionID")]
-	// Explicit include column: [IncludeColumn]
-	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
-	[TableName ("University_EmployeeAchievements")]
-	[PrimaryKey ("EmployeeAchievementID", AutoIncrement = true)]
+    // More attributes for class:
+    // Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]
+    // Explicit mapping declaration: [DeclareColumns]
+    // More attributes for class properties:
+    // Custom column name: [ColumnName("DivisionID")]
+    // Explicit include column: [IncludeColumn]
+    // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
+    [TableName ("University_EmployeeAchievements")]
+    [PrimaryKey ("EmployeeAchievementID", AutoIncrement = true)]
     [Serializable]
-	public class EmployeeAchievementInfo : ReferenceEntityBase
-	{
-		#region Fields
+    public class EmployeeAchievementInfo : ReferenceEntityBase
+    {
+        #region Fields
 
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// Empty default cstor
-		/// </summary>
-		public EmployeeAchievementInfo ()
-		{
-		}
+        /// <summary>
+        /// Empty default cstor
+        /// </summary>
+        public EmployeeAchievementInfo ()
+        {
+        }
 
-		#region IReferenceEntity implementation
+        #region IReferenceEntity implementation
 
         [IgnoreColumn]
         public new string DisplayShortTitle
         {
-            get 
-            { 
-                var shortTitle = !string.IsNullOrWhiteSpace (ShortTitle)? ShortTitle : Title;
+            get { 
+                var shortTitle = !string.IsNullOrWhiteSpace (ShortTitle) ? ShortTitle : Title;
                 return !string.IsNullOrWhiteSpace (TitleSuffix) ? shortTitle + " " + TitleSuffix : shortTitle; 
             } 
         }
 
-		#endregion
+        #endregion
 
-		#region Properties
+        #region Properties
 
-		public int EmployeeAchievementID { get; set; }
+        public int EmployeeAchievementID { get; set; }
 
-		public int EmployeeID  { get; set; }
+        public int EmployeeID  { get; set; }
 
-		public int? AchievementID { get; set; }
+        public int? AchievementID { get; set; }
 
-		public string Description { get; set; }
+        public string Description { get; set; }
 
-		public int? YearBegin { get; set; }
+        public int? YearBegin { get; set; }
 
-		public int? YearEnd { get; set; }
+        public int? YearEnd { get; set; }
 
-		public bool IsTitle { get; set; }
+        public bool IsTitle { get; set; }
 
-		public string DocumentURL { get; set; }
+        public string DocumentURL { get; set; }
 
-		public string TitleSuffix { get; set; }
+        public string TitleSuffix { get; set; }
 
-		[ColumnName ("AchievementType")]
-		public string AchievementTypeString { get; set; }
+        [ColumnName ("AchievementType")]
+        public string AchievementTypeString { get; set; }
 
-		#endregion
+        #endregion
 
-		[IgnoreColumn]
-		public AchievementType? AchievementType
-		{
-			get
-			{ 
-				if (!string.IsNullOrWhiteSpace (AchievementTypeString))
-					return (AchievementType)AchievementTypeString [0];
+        [IgnoreColumn]
+        public AchievementType? AchievementType
+        {
+            get { 
+                if (!string.IsNullOrWhiteSpace (AchievementTypeString))
+                    return (AchievementType) AchievementTypeString [0];
 
-				return null;
-			}
-			set
-			{ 
-				if (value != null)
-					AchievementTypeString = ((char)value).ToString ();
-				else
-					AchievementTypeString = null;
-			}
-		}
+                return null;
+            }
+            set { 
+                if (value != null)
+                    AchievementTypeString = ((char) value).ToString ();
+                else
+                    AchievementTypeString = null;
+            }
+        }
 
-		[IgnoreColumn]
-		public string FormatYears
-		{
-			get
-			{
-				if (YearBegin != null && YearEnd == null)
-					return YearBegin.ToString (); 
+        [IgnoreColumn]
+        public string FormatYears
+        {
+            get {
+                if (YearBegin != null && YearEnd == null)
+                    return YearBegin.ToString (); 
 				
-				if (YearBegin == null && YearEnd != null)
-				{
-					if (YearEnd.Value != 0)
-						return "? - " + YearEnd; 
-				}
+                if (YearBegin == null && YearEnd != null) {
+                    if (YearEnd.Value != 0)
+                        return "? - " + YearEnd; 
+                }
 
-				if (YearBegin != null && YearEnd != null)
-				{
-					if (YearEnd.Value != 0)
-						return string.Format ("{0} - {1}", YearBegin, YearEnd);
+                if (YearBegin != null && YearEnd != null) {
+                    if (YearEnd.Value != 0)
+                        return string.Format ("{0} - {1}", YearBegin, YearEnd);
 
-					return YearBegin + " - {ATM}";
-				}
+                    return YearBegin + " - {ATM}";
+                }
 
-				return string.Empty;
-			}
-		}
+                return string.Empty;
+            }
+        }
 		
-	}
+    }
 }

@@ -38,7 +38,7 @@ using R7.University.Data;
 namespace R7.University.Employee
 {
     public partial class SettingsEmployee : ModuleSettingsBase<EmployeeSettings>
-	{
+    {
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -48,73 +48,72 @@ namespace R7.University.Employee
             comboEmployees.DataBind ();
 
             // add default item
-            comboEmployees.Items.Insert (0, new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
+            comboEmployees.Items.Insert (
+                0,
+                new ListItem (
+                    LocalizeString ("NotSelected.Text"),
+                    Null.NullInteger.ToString ()));
         }
 
-		/// <summary>
-		/// Handles the loading of the module setting for this control
-		/// </summary>
-		public override void LoadSettings ()
-		{
-			try
-			{
+        /// <summary>
+        /// Handles the loading of the module setting for this control
+        /// </summary>
+        public override void LoadSettings ()
+        {
+            try {
                 if (AJAX.IsInstalled ())
                     AJAX.RegisterScriptManager ();
 
-				if (!IsPostBack)
-				{
-					if (!Null.IsNull (Settings.EmployeeID))
+                if (!IsPostBack) {
+                    if (!Null.IsNull (Settings.EmployeeID))
                         comboEmployees.SelectByValue (Settings.EmployeeID);
                     else
                         comboEmployees.SelectedIndex = 0;
 
-					checkAutoTitle.Checked = Settings.AutoTitle;
-					checkShowCurrentUser.Checked = Settings.ShowCurrentUser;
+                    checkAutoTitle.Checked = Settings.AutoTitle;
+                    checkShowCurrentUser.Checked = Settings.ShowCurrentUser;
 					
-					if (!Null.IsNull (Settings.PhotoWidth))
-						textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
+                    if (!Null.IsNull (Settings.PhotoWidth))
+                        textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
 					
-					if (!Null.IsNull (Settings.DataCacheTime))
-						textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    if (!Null.IsNull (Settings.DataCacheTime))
+                        textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		/// <summary>
-		/// handles updating the module settings for this control
-		/// </summary>
-		public override void UpdateSettings ()
-		{
-			try
-			{
-				Settings.ShowCurrentUser = checkShowCurrentUser.Checked;
+        /// <summary>
+        /// handles updating the module settings for this control
+        /// </summary>
+        public override void UpdateSettings ()
+        {
+            try {
+                Settings.ShowCurrentUser = checkShowCurrentUser.Checked;
 
-				Settings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
+                Settings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
 
-				Settings.AutoTitle = checkAutoTitle.Checked;
+                Settings.AutoTitle = checkAutoTitle.Checked;
 
-				if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
-					Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
-				else
-					Settings.PhotoWidth = Null.NullInteger;
+                if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
+                    Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
+                else
+                    Settings.PhotoWidth = Null.NullInteger;
 				
-				if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
-					Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
-				else
-					Settings.DataCacheTime = Null.NullInteger;
+                if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
+                    Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
+                else
+                    Settings.DataCacheTime = Null.NullInteger;
 				
-				Utils.SynchronizeModule (this);
+                Utils.SynchronizeModule (this);
 
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
-	}
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+    }
 }
 

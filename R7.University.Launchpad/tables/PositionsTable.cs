@@ -33,8 +33,8 @@ using R7.University.Data;
 namespace R7.University.Launchpad
 {
     public class PositionsTable: LaunchpadTableBase
-	{
-        public PositionsTable (): base ("Positions")
+    {
+        public PositionsTable () : base ("Positions")
         {
 
         }
@@ -42,10 +42,10 @@ namespace R7.University.Launchpad
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
             var positions = UniversityRepository.Instance.DataProvider.FindObjects<PositionInfo> (
-                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
+                                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
 
             return DataTableConstructor.FromIEnumerable (positions);
         }
-	}
+    }
 }
 

@@ -33,14 +33,14 @@ namespace R7.University.Launchpad
 {
     public class DocumentTypesTable: LaunchpadTableBase
     {
-        public DocumentTypesTable (): base ("DocumentTypes")
+        public DocumentTypesTable () : base ("DocumentTypes")
         {
         }
 
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
             var documentTypes = UniversityRepository.Instance.DataProvider.FindObjects<DocumentTypeInfo> (
-                @"WHERE CONCAT([Type], ' ', [Description]) LIKE N'%{0}%'", search, false);
+                                    @"WHERE CONCAT([Type], ' ', [Description]) LIKE N'%{0}%'", search, false);
 
             return DataTableConstructor.FromIEnumerable (documentTypes);
         }

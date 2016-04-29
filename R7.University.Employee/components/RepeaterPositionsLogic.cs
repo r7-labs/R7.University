@@ -36,8 +36,7 @@ namespace R7.University.Employee
         public static void ItemDataBound (PortalModuleBase module, object sender, RepeaterItemEventArgs e)
         {
             // exclude header & footer
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
                 var opex = (OccupiedPositionInfoEx) e.Item.DataItem;
 
                 var labelPosition = (Label) e.Item.FindControl ("labelPosition");
@@ -47,24 +46,25 @@ namespace R7.University.Employee
                 labelPosition.Text = PositionInfo.FormatShortTitle (opex.PositionTitle, opex.PositionShortTitle);
 
                 // don't display division title for highest level divisions
-                if (Utils.IsNull (opex.ParentDivisionID))
-                {
+                if (Utils.IsNull (opex.ParentDivisionID)) {
                     labelDivision.Visible = false;
                     linkDivision.Visible = false;
                 }
-                else
-                {
-                    var divisionShortTitle = DivisionInfo.FormatShortTitle (opex.DivisionTitle, opex.DivisionShortTitle);
+                else {
+                    var divisionShortTitle = DivisionInfo.FormatShortTitle (
+                                                 opex.DivisionTitle,
+                                                 opex.DivisionShortTitle);
 
-                    if (!string.IsNullOrWhiteSpace (opex.HomePage))
-                    {
+                    if (!string.IsNullOrWhiteSpace (opex.HomePage)) {
                         // link to division's homepage
                         labelDivision.Visible = false;
-                        linkDivision.NavigateUrl = Utils.FormatCrossPortalTabUrl (module, int.Parse (opex.HomePage), false);
+                        linkDivision.NavigateUrl = Utils.FormatCrossPortalTabUrl (
+                            module,
+                            int.Parse (opex.HomePage),
+                            false);
                         linkDivision.Text = divisionShortTitle;
                     }
-                    else
-                    {   
+                    else {   
                         // only division title
                         linkDivision.Visible = false;
                         labelDivision.Text = divisionShortTitle;

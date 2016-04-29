@@ -38,7 +38,10 @@ namespace R7.University.EduProgramDirectory
     {
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramStandardObrnadzorViewModel (EduProgramInfo ep, ViewModelContext context, ViewModelIndexer indexer)
+        public EduProgramStandardObrnadzorViewModel (
+            EduProgramInfo ep,
+            ViewModelContext context,
+            ViewModelIndexer indexer)
         {
             CopyCstor.Copy<EduProgramInfo> (ep, this);
             Context = context;
@@ -46,7 +49,7 @@ namespace R7.University.EduProgramDirectory
         }
 
         public int Order { get; protected set; }
-       
+
         public string EduLevelString
         {
             get { return EduLevel.DisplayShortTitle; }
@@ -54,19 +57,19 @@ namespace R7.University.EduProgramDirectory
 
         public string EduStandardLink
         {
-            get
-            {
+            get {
                 var eduStandardDocuments = EduStandardDocuments
                     .Where (d => d.IsPublished () || Context.Module.IsEditable).ToList ();
                 
-                if (eduStandardDocuments != null && eduStandardDocuments.Count > 0)
-                {
+                if (eduStandardDocuments != null && eduStandardDocuments.Count > 0) {
                     var eduStandardDocument = eduStandardDocuments [0];
 
-                    if (!string.IsNullOrWhiteSpace (eduStandardDocument.Url))
-                    {
+                    if (!string.IsNullOrWhiteSpace (eduStandardDocument.Url)) {
                         return string.Format ("<a href=\"{0}\"{1}{2} itemprop=\"EduStandartDoc\">{3}</a>",
-                            UrlUtils.LinkClickIdnHack (eduStandardDocument.Url, Context.Module.TabId, Context.Module.ModuleId), 
+                            UrlUtils.LinkClickIdnHack (
+                                eduStandardDocument.Url,
+                                Context.Module.TabId,
+                                Context.Module.ModuleId), 
                             Globals.GetURLType (eduStandardDocument.Url) == TabType.Url ? " target=\"_blank\"" : string.Empty,
                             !eduStandardDocument.IsPublished () ? " class=\"not-published-document\"" : string.Empty,
                             !string.IsNullOrWhiteSpace (eduStandardDocument.Title) ? eduStandardDocument.Title 

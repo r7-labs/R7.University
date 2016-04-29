@@ -34,76 +34,76 @@ namespace R7.University.EmployeeDirectory
     {
         #region IEduProgramProfile implementation
 
-        public int EduProgramProfileID 
+        public int EduProgramProfileID
         { 
             get { return Model.EduProgramProfileID; }
-            set {}
+            set { }
         }
 
-        public int EduProgramID 
+        public int EduProgramID
         { 
             get { return Model.EduProgramID; }
-            set {}
+            set { }
         }
 
-        public string ProfileCode 
+        public string ProfileCode
         { 
             get { return Model.ProfileCode; }
-            set {}
+            set { }
         }
 
-        public string ProfileTitle 
+        public string ProfileTitle
         { 
             get { return Model.ProfileTitle; }
-            set {}
+            set { }
         }
 
         public string Languages
         { 
             get { return Model.Languages; }
-            set {}
+            set { }
         }
 
-        public DateTime? AccreditedToDate 
+        public DateTime? AccreditedToDate
         { 
             get { return Model.AccreditedToDate; }
-            set {}
+            set { }
         }
 
-        public DateTime? CommunityAccreditedToDate 
+        public DateTime? CommunityAccreditedToDate
         { 
             get { return Model.CommunityAccreditedToDate; }
-            set {}
+            set { }
         }
 
         public DateTime? StartDate
         { 
             get { return Model.StartDate; }
-            set {}
+            set { }
         }
 
-        public DateTime? EndDate 
+        public DateTime? EndDate
         {
             get { return Model.EndDate; }
-            set {}
+            set { }
         }
 
         public EduProgramInfo EduProgram
         {
             get { return Model.EduProgram; }
-            set {}
+            set { }
         }
 
         public IList<IEduProgramProfileForm> EduProgramProfileForms
         {
             get { return Model.EduProgramProfileForms; }
-            set {}
+            set { }
         }
 
         public IList<IDocument> Documents
         {
             get { return Model.Documents; }
-            set {}
+            set { }
         }
 
         #endregion
@@ -120,8 +120,7 @@ namespace R7.University.EmployeeDirectory
 
         public string EduProgramProfileString
         {
-            get
-            {
+            get {
                 return FormatHelper.FormatEduProgramProfileTitle (
                     EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle
                 );

@@ -31,7 +31,7 @@ namespace R7.University.Employee
 {
     [Serializable]
     public class EmployeeDisciplineView: EmployeeDisciplineInfoEx
-	{
+    {
         public int ItemID { get; set; }
 
         public EmployeeDisciplineView ()
@@ -39,19 +39,20 @@ namespace R7.University.Employee
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeDisciplineView (EmployeeDisciplineInfoEx program): this ()
+        public EmployeeDisciplineView (EmployeeDisciplineInfoEx program) : this ()
         {
             CopyCstor.Copy<EmployeeDisciplineInfoEx> (program, this);
         }
 
         public EmployeeDisciplineInfo NewEmployeeDisciplineInfo ()
         {
-            return new EmployeeDisciplineInfo {
+            return new EmployeeDisciplineInfo
+            {
                 EmployeeID = EmployeeID,
                 EduProgramProfileID = EduProgramProfileID,
                 Disciplines = Disciplines
             };
         }
-	}
+    }
 }
 

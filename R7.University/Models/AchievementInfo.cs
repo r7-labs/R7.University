@@ -23,34 +23,30 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using System.Text.RegularExpressions;
-using DotNetNuke.Data;
+
 using DotNetNuke.ComponentModel.DataAnnotations;
-using DotNetNuke.Entities.Portals;
-using DotNetNuke.Entities.Users;
 
 namespace R7.University
 {
-	[TableName ("University_Achievements")]
-	[PrimaryKey ("AchievementID", AutoIncrement = true)]
-	public class AchievementInfo : ReferenceEntityBase
-	{
-		public AchievementInfo ()
-		{
-		}
+    [TableName ("University_Achievements")]
+    [PrimaryKey ("AchievementID", AutoIncrement = true)]
+    public class AchievementInfo : ReferenceEntityBase
+    {
+        public AchievementInfo ()
+        {
+        }
 
-		public int AchievementID { get; set; }
+        public int AchievementID { get; set; }
 
-		[ColumnName ("AchievementType")]
-		public string AchievementTypeString { get; set; }
+        [ColumnName ("AchievementType")]
+        public string AchievementTypeString { get; set; }
 
-		[IgnoreColumn]
-		public AchievementType AchievementType
-		{
-			get { return (AchievementType)AchievementTypeString [0]; }
-			set { AchievementTypeString = ((char)value).ToString (); }
-		}
-	}
+        [IgnoreColumn]
+        public AchievementType AchievementType
+        {
+            get { return (AchievementType) AchievementTypeString [0]; }
+            set { AchievementTypeString = ((char) value).ToString (); }
+        }
+    }
 }
 

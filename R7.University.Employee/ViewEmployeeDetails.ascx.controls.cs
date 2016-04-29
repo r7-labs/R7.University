@@ -9,36 +9,36 @@ using R7.University;
 
 namespace R7.University.Employee
 {
-	public partial class ViewEmployeeDetails
-	{
+    public partial class ViewEmployeeDetails
+    {
         protected Panel panelEmployeeDetails;
-		protected Image imagePhoto;
-		protected Image imageBarcode;
+        protected Image imagePhoto;
+        protected Image imageBarcode;
         protected Literal literalFullName;
-		protected Label labelAcademicDegreeAndTitle;
-		protected Label labelMessenger;
-		protected Label labelPhone;
-		protected Label labelFax;
-		protected Label labelCellPhone;
-		protected Label labelWorkingPlaceAndHours;
-		protected Literal litAbout;
-		protected Literal litDisciplines;
-		protected HyperLink linkAbout;
-		protected HyperLink linkDisciplines;
-		protected HyperLink linkAchievements;
-		protected HyperLink linkExperience;
-		protected HyperLink linkEmail;
-		protected HyperLink linkSecondaryEmail;
-		protected HyperLink linkWebSite;
-		protected HyperLink linkUserProfile;
-		protected Repeater repeaterPositions;
-		protected Label labelExperienceYears;
-		protected HyperLink linkReturn;
-		protected HyperLink linkVCard;
+        protected Label labelAcademicDegreeAndTitle;
+        protected Label labelMessenger;
+        protected Label labelPhone;
+        protected Label labelFax;
+        protected Label labelCellPhone;
+        protected Label labelWorkingPlaceAndHours;
+        protected Literal litAbout;
+        protected Literal litDisciplines;
+        protected HyperLink linkAbout;
+        protected HyperLink linkDisciplines;
+        protected HyperLink linkAchievements;
+        protected HyperLink linkExperience;
+        protected HyperLink linkEmail;
+        protected HyperLink linkSecondaryEmail;
+        protected HyperLink linkWebSite;
+        protected HyperLink linkUserProfile;
+        protected Repeater repeaterPositions;
+        protected Label labelExperienceYears;
+        protected HyperLink linkReturn;
+        protected HyperLink linkVCard;
         protected HyperLink linkEdit;
-		protected GridView gridExperience;
-		protected GridView gridAchievements;
+        protected GridView gridExperience;
+        protected GridView gridAchievements;
         protected GridView gridEduPrograms;
         protected HyperLink linkBarcode;
-	}
+    }
 }

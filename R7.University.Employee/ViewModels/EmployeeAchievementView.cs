@@ -25,14 +25,14 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
 using DotNetNuke.Services.Localization;
+using R7.University;
 
 namespace R7.University.Employee
 {
-	[Serializable]
-	public class EmployeeAchievementView: EmployeeAchievementInfo
-	{
+    [Serializable]
+    public class EmployeeAchievementView: EmployeeAchievementInfo
+    {
         public int ItemID { get; set; }
 
         public string ViewYears { get; protected set; }
@@ -52,20 +52,20 @@ namespace R7.University.Employee
         }
 
         public EmployeeAchievementView ()
-		{
-			ItemID = ViewNumerator.GetNextItemID ();
-		}
+        {
+            ItemID = ViewNumerator.GetNextItemID ();
+        }
 
-        public EmployeeAchievementView (EmployeeAchievementInfo achievement): this ()
-		{
+        public EmployeeAchievementView (EmployeeAchievementInfo achievement) : this ()
+        {
             CopyCstor.Copy<EmployeeAchievementInfo> (achievement, this);
-		}
+        }
 
-		public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
-		{
+        public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
+        {
             var achievement = new EmployeeAchievementInfo ();
             CopyCstor.Copy<EmployeeAchievementInfo> (this, achievement);
             return achievement;
-		}
-	}
+        }
+    }
 }

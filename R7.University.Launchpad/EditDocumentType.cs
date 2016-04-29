@@ -24,17 +24,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-using R7.University;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.University;
 using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
     public partial class EditDocumentType: EditPortalModuleBase<DocumentTypeInfo,int>
-	{
-        protected EditDocumentType (): base ("documenttype_id")
-        {}
+    {
+        protected EditDocumentType () : base ("documenttype_id")
+        {
+        }
 
         protected override void InitControls ()
         {
@@ -61,8 +61,7 @@ namespace R7.University.Launchpad
             // don't update Type for system types,
             // also don't update IsSystem value at all
 
-            if (!item.IsSystem)
-            {
+            if (!item.IsSystem) {
                 item.Type = textType.Text.Trim ();
             }
 
@@ -93,6 +92,6 @@ namespace R7.University.Launchpad
         }
 
         #endregion
-	}
+    }
 }
 

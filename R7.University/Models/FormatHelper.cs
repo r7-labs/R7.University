@@ -40,8 +40,7 @@ namespace R7.University
             // http://localization-guide.readthedocs.org/en/latest/l10n/pluralforms.html
 
             // TODO: Add more languages here
-            if (culture.TwoLetterISOLanguageName == "ru")
-            {   
+            if (culture.TwoLetterISOLanguageName == "ru") {   
                 // nplurals=3;
                 return (n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);
             }
@@ -50,7 +49,11 @@ namespace R7.University
             return (n != 1) ? 1 : 0;
         }
 
-        public static string FormatTimeToLearn (int timeToLearn, string yearsKeyBase, string monthsKeyBase, string resourceFile)
+        public static string FormatTimeToLearn (
+            int timeToLearn,
+            string yearsKeyBase,
+            string monthsKeyBase,
+            string resourceFile)
         {
             var culture = CultureInfo.CurrentUICulture;
 
@@ -68,8 +71,8 @@ namespace R7.University
                 return string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
             }
 
-            return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years) 
-                + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
+            return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years)
+            + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
         }
 
         public static string FormatEduProgramProfileTitle (string title, 
@@ -78,7 +81,7 @@ namespace R7.University
             var profileString = Utils.FormatList (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
-                !string.IsNullOrWhiteSpace (profileString)? "(" + profileString + ")" : string.Empty;
+                !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
             return Utils.FormatList (" ", title, profileStringInBrackets);
         }
@@ -89,7 +92,7 @@ namespace R7.University
             var profileString = Utils.FormatList (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
-                !string.IsNullOrWhiteSpace (profileString)? "(" + profileString + ")" : string.Empty;
+                !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
             return Utils.FormatList (" ", code, title, profileStringInBrackets);
         }
@@ -97,20 +100,19 @@ namespace R7.University
         public static string FormatLinkWithMicrodata (this IDocument document, 
             string defaultTitle, bool preferOwnTitle, int tabId, int moduleId, string microdata)
         {
-            var title = (preferOwnTitle && !string.IsNullOrWhiteSpace (document.Title))? document.Title : defaultTitle;
+            var title = (preferOwnTitle && !string.IsNullOrWhiteSpace (document.Title)) ? document.Title : defaultTitle;
                 
-            if (!string.IsNullOrWhiteSpace (document.Url))
-            {
-                return "<a href=\"" 
-                    + UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
-                    + "\" "
-                    + Utils.FormatList (" ",
-                        Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,
-                        !document.IsPublished ()? "class=\"not-published-document\"" : string.Empty,
-                        microdata)
-                    + ">" 
-                    + title
-                    + "</a>";
+            if (!string.IsNullOrWhiteSpace (document.Url)) {
+                return "<a href=\""
+                + UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
+                + "\" "
+                + Utils.FormatList (" ",
+                    Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,
+                    !document.IsPublished () ? "class=\"not-published-document\"" : string.Empty,
+                    microdata)
+                + ">"
+                + title
+                + "</a>";
             }
 
             return string.Empty;

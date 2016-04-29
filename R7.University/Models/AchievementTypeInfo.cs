@@ -23,70 +23,71 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 using System.Collections.Generic;
 
 namespace R7.University
 {
-	public enum AchievementType
-	{
-		Achievement = 'A',
-		Education = 'E',
-		Training = 'T',
-		Work = 'W',
-        AcademicTitle = 'R', // от 'Rank'
+    public enum AchievementType
+    {
+        Achievement = 'A',
+        Education = 'E',
+        Training = 'T',
+        Work = 'W',
+        AcademicTitle = 'R',
+        // от 'Rank'
         AcademicDegree = 'D'
-	}
+    }
 
-	public class AchievementTypeInfo
-	{
-		public AchievementType AchievementType { get; set; }
+    public class AchievementTypeInfo
+    {
+        public AchievementType AchievementType { get; set; }
 
-		public string LocalizedAchivementType
-		{
-			get { return OnLocalize != null ? OnLocalize (ResourceKey) : ResourceKey; }
-		}
+        public string LocalizedAchivementType
+        {
+            get { return OnLocalize != null ? OnLocalize (ResourceKey) : ResourceKey; }
+        }
 
-		public AchievementTypeInfo (AchievementType achievementType)
-		{
-			AchievementType = achievementType;
-		}
+        public AchievementTypeInfo (AchievementType achievementType)
+        {
+            AchievementType = achievementType;
+        }
 
-		#region Private members
+        #region Private members
 
-		private event LocalizeHandler OnLocalize;
+        private event LocalizeHandler OnLocalize;
 
-		private string ResourceKey
-		{
-			get { return GetResourceKey (AchievementType); } 
-		}
+        private string ResourceKey
+        {
+            get { return GetResourceKey (AchievementType); } 
+        }
 
-		#endregion
+        #endregion
 
-		#region Static members
+        #region Static members
 
-		public static List<AchievementTypeInfo> GetLocalizedAchievementTypes (LocalizeHandler localizeHandler)
-		{
-			var achievementTypes = new List<AchievementTypeInfo> ();
-			foreach (AchievementType achievementType in Enum.GetValues(typeof(AchievementType)))
-			{   
-				var achievement = new AchievementTypeInfo (achievementType);
-				achievement.OnLocalize += new LocalizeHandler (localizeHandler);
-				achievementTypes.Add (achievement);
-			}
+        public static List<AchievementTypeInfo> GetLocalizedAchievementTypes (LocalizeHandler localizeHandler)
+        {
+            var achievementTypes = new List<AchievementTypeInfo> ();
+            foreach (AchievementType achievementType in Enum.GetValues(typeof(AchievementType))) {   
+                var achievement = new AchievementTypeInfo (achievementType);
+                achievement.OnLocalize += new LocalizeHandler (localizeHandler);
+                achievementTypes.Add (achievement);
+            }
 
-			return achievementTypes;
-		}
+            return achievementTypes;
+        }
 
-		public static string GetResourceKey (AchievementType? achievementType)
-		{
-			if (achievementType != null)
-				return "AchievementType" + (char)achievementType.Value + ".Text";
+        public static string GetResourceKey (AchievementType? achievementType)
+        {
+            if (achievementType != null)
+                return "AchievementType" + (char) achievementType.Value + ".Text";
 		
-			return "AchievementTypeN.Text";
-		}
+            return "AchievementTypeN.Text";
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
 

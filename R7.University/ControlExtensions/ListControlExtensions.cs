@@ -33,12 +33,9 @@ namespace R7.University.ControlExtensions
     {
         public static bool SelectByText (this ListControl listControl, string text, StringComparison comparison)
         {
-            if (!string.IsNullOrWhiteSpace (text))
-            {
-                foreach (ListItem item in listControl.Items)
-                {
-                    if (string.Compare (item.Text, text, comparison) == 0)
-                    {
+            if (!string.IsNullOrWhiteSpace (text)) {
+                foreach (ListItem item in listControl.Items) {
+                    if (string.Compare (item.Text, text, comparison) == 0) {
                         item.Selected = true;
                         return true;
                     }

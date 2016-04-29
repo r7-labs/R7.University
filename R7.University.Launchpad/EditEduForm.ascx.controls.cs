@@ -9,13 +9,13 @@ using R7.University;
 
 namespace R7.University.Launchpad
 {
-	public partial class EditEduForm
-	{
-		protected LinkButton buttonUpdate;
-		protected LinkButton buttonDelete;
-		protected HyperLink linkCancel;
+    public partial class EditEduForm
+    {
+        protected LinkButton buttonUpdate;
+        protected LinkButton buttonDelete;
+        protected HyperLink linkCancel;
         protected TextBox textTitle;
-		protected TextBox textShortTitle;
+        protected TextBox textShortTitle;
         protected CheckBox checkIsSystem;
-	}
+    }
 }

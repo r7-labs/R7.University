@@ -42,11 +42,11 @@ namespace R7.University.EmployeeDirectory
         {
         }
 
-        public EmployeeDirectorySettings (IModuleControl module): base (module)
+        public EmployeeDirectorySettings (IModuleControl module) : base (module)
         {
         }
 
-        public EmployeeDirectorySettings (ModuleInfo module): base (module)
+        public EmployeeDirectorySettings (ModuleInfo module) : base (module)
         {
         }
 
@@ -60,15 +60,13 @@ namespace R7.University.EmployeeDirectory
 
         public IList<int> EduLevels
         {
-            get
-            {
+            get {
                 return ReadSetting<string> ("EmployeeDirectory_EduLevels", string.Empty)
-                    .Split (new [] {';'}, StringSplitOptions.RemoveEmptyEntries)
+                    .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
                     .ToList ()
                     .ConvertAll (s => int.Parse (s));
             }
-            set
-            {
+            set {
                 WriteModuleSetting<string> ("EmployeeDirectory_EduLevels", string.Join (";", value));
             }
         }

@@ -34,18 +34,18 @@ namespace R7.University.ModelExtensions
     {
         public static IDocument WithDocumentType (this IDocument document, Dal2DataProvider controller)
         {
-            if (document.DocumentTypeID != null)
-            {
+            if (document.DocumentTypeID != null) {
                 document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID.Value);
             }
 
             return document;
         }
 
-        public static IEnumerable<IDocument> WithDocumentType (this IEnumerable<IDocument> documents, Dal2DataProvider controller)
+        public static IEnumerable<IDocument> WithDocumentType (
+            this IEnumerable<IDocument> documents,
+            Dal2DataProvider controller)
         {
-            foreach (var document in documents)
-            {
+            foreach (var document in documents) {
                 document.WithDocumentType (controller);
             }
 

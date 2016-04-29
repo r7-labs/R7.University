@@ -26,21 +26,21 @@
 
 using System;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
 using System.Linq;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
-using R7.University;
-using R7.University.ControlExtensions;
-using R7.DotNetNuke.Extensions.ViewModels;
+using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University;
+using R7.University.ControlExtensions;
 using R7.University.Data;
-using R7.DotNetNuke.Extensions.Entities.Modules;
 
 namespace R7.University.DivisionDirectory
 {
@@ -52,8 +52,7 @@ namespace R7.University.DivisionDirectory
 
         protected string SearchText
         {
-            get
-            { 
+            get { 
                 var objSearchText = Session ["DivisionDirectory.SearchText." + TabModuleId];
                 return (string) objSearchText ?? string.Empty;
             }
@@ -62,8 +61,7 @@ namespace R7.University.DivisionDirectory
 
         protected string SearchDivision
         {
-            get
-            { 
+            get { 
                 var objSearchDivision = Session ["DivisionDirectory.SearchDivision." + TabModuleId];
                 return (string) objSearchDivision ?? Null.NullInteger.ToString ();
 
@@ -73,8 +71,7 @@ namespace R7.University.DivisionDirectory
 
         protected bool SearchIncludeSubdivisions
         {
-            get
-            { 
+            get { 
                 var objSearchIncludeSubdivisions = Session ["DivisionDirectory.SearchIncludeSubdivisions." + TabModuleId];
                 return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : true;
 
@@ -85,10 +82,10 @@ namespace R7.University.DivisionDirectory
         #endregion
 
         private ViewModelContext viewModelContext;
+
         protected ViewModelContext ViewModelContext
         {
-            get
-            { 
+            get { 
                 if (viewModelContext == null)
                     viewModelContext = new ViewModelContext (this);
 
@@ -106,10 +103,11 @@ namespace R7.University.DivisionDirectory
         {
             base.OnInit (e);
 
-            mviewDivisionDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewDivisionDirectory, "view" + Settings.Mode);
+            mviewDivisionDirectory.ActiveViewIndex = Utils.GetViewIndexByID (
+                mviewDivisionDirectory,
+                "view" + Settings.Mode);
 
-            if (Settings.Mode == DivisionDirectoryMode.Search)
-            {
+            if (Settings.Mode == DivisionDirectoryMode.Search) {
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
@@ -131,8 +129,7 @@ namespace R7.University.DivisionDirectory
 
                 gridDivisions.LocalizeColumns (LocalResourceFile);
             }
-            else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
-            {
+            else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                 gridObrnadzorDivisions.LocalizeColumns (LocalResourceFile);
             }
         }
@@ -145,14 +142,10 @@ namespace R7.University.DivisionDirectory
         {
             base.OnLoad (e);
             
-            try
-            {
-                if (!IsPostBack)
-                {
-                    if (Settings.Mode == DivisionDirectoryMode.Search)
-                    {
-                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
-                        {
+            try {
+                if (!IsPostBack) {
+                    if (Settings.Mode == DivisionDirectoryMode.Search) {
+                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision)) {
                             // restore current search
                             textSearch.Text = SearchText;
                             Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
@@ -163,17 +156,14 @@ namespace R7.University.DivisionDirectory
                                 DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions);
                         }
                     }
-                    else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions)
-                    {
+                    else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                         // getting all root divisions
                         var rootDivisions = UniversityRepository.Instance.GetRootDivisions ().OrderBy (d => d.Title);
 
-                        if (rootDivisions.Any ())
-                        {
+                        if (rootDivisions.Any ()) {
                             var divisions = new List<DivisionInfo> ();
 
-                            foreach (var rootDivision in rootDivisions)
-                            {
+                            foreach (var rootDivision in rootDivisions) {
                                 divisions.AddRange (UniversityRepository.Instance.GetSubDivisions (rootDivision.DivisionID));
                             }
 
@@ -185,22 +175,24 @@ namespace R7.University.DivisionDirectory
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
 
         #endregion
 
-        protected bool SearchParamsOK (string searchText, string searchDivision, bool includeSubdivisions, bool showMessages = true)
+        protected bool SearchParamsOK (
+            string searchText,
+            string searchDivision,
+            bool includeSubdivisions,
+            bool showMessages = true)
         {
             var divisionIsSpecified = TypeUtils.ParseToNullable<int> (searchDivision) != null;
             var searchTextIsEmpty = string.IsNullOrWhiteSpace (searchText);
 
             // no search params - shouldn't perform search
-            if (searchTextIsEmpty && !divisionIsSpecified)
-            {
+            if (searchTextIsEmpty && !divisionIsSpecified) {
                 if (showMessages)
                     this.Message ("SearchParams.Warning", MessageType.Warning, true);
 
@@ -232,8 +224,7 @@ namespace R7.University.DivisionDirectory
                 .FindDivisions (searchText, includeSubdivisions, searchDivision)
                 .Where (d => d.IsPublished || IsEditable); 
 
-            if (!divisions.Any ())
-            {
+            if (!divisions.Any ()) {
                 this.Message ("NoDivisionsFound.Warning", MessageType.Warning, true);
             }
 
@@ -251,8 +242,7 @@ namespace R7.University.DivisionDirectory
                 treeDivisions.SelectedNode.Value : Null.NullInteger.ToString ();
             var includeSubdivisions = checkIncludeSubdivisions.Checked;
 
-            if (SearchParamsOK (searchText, searchDivision, includeSubdivisions))
-            {
+            if (SearchParamsOK (searchText, searchDivision, includeSubdivisions)) {
                 // save current search
                 SearchText = searchText;
                 SearchDivision = searchDivision;
@@ -268,12 +258,10 @@ namespace R7.University.DivisionDirectory
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
                 var division = (DivisionInfo) e.Row.DataItem;
 
-                if (IsEditable)
-                {
+                if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
@@ -283,8 +271,7 @@ namespace R7.University.DivisionDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!division.IsPublished)
-                {
+                if (!division.IsPublished) {
                     e.Row.CssClass = "not-published";
                 }
 
@@ -293,19 +280,19 @@ namespace R7.University.DivisionDirectory
                 var literalPhone = (Literal) e.Row.FindControl ("literalPhone");
                 var linkEmail = (HyperLink) e.Row.FindControl ("linkEmail");
                 var literalLocation = (Literal) e.Row.FindControl ("literalLocation");
-                var linkDocument =  (HyperLink) e.Row.FindControl ("linkDocument");
-                var linkContactPerson =  (HyperLink) e.Row.FindControl ("linkContactPerson");
+                var linkDocument = (HyperLink) e.Row.FindControl ("linkDocument");
+                var linkContactPerson = (HyperLink) e.Row.FindControl ("linkContactPerson");
 
                 // division label / link
-                var divisionTitle = division.Title + ((division.HasUniqueShortTitle)? string.Format (" ({0})", division.ShortTitle) : string.Empty);
-                if (!string.IsNullOrWhiteSpace (division.HomePage))
-                {
+                var divisionTitle = division.Title + ((division.HasUniqueShortTitle) ? string.Format (
+                                        " ({0})",
+                                        division.ShortTitle) : string.Empty);
+                if (!string.IsNullOrWhiteSpace (division.HomePage)) {
                     linkTitle.NavigateUrl = Utils.FormatURL (this, division.HomePage, false);
                     linkTitle.Text = divisionTitle;
                     labelTitle.Visible = false;
                 }
-                else
-                {
+                else {
                     labelTitle.Text = divisionTitle;
                     linkTitle.Visible = false;
                 }
@@ -314,8 +301,7 @@ namespace R7.University.DivisionDirectory
                 literalLocation.Text = division.Location;
 
                 // email
-                if (!string.IsNullOrWhiteSpace (division.Email))
-                {
+                if (!string.IsNullOrWhiteSpace (division.Email)) {
                     linkEmail.Text = division.Email;
                     linkEmail.NavigateUrl = division.FormatEmailUrl;
                 }
@@ -323,15 +309,13 @@ namespace R7.University.DivisionDirectory
                     linkEmail.Visible = false;
 
                 // (main) document
-                if (!string.IsNullOrWhiteSpace (division.DocumentUrl))
-                {
+                if (!string.IsNullOrWhiteSpace (division.DocumentUrl)) {
                     linkDocument.Text = LocalizeString ("Regulations.Text");
                     linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
 
                     // REVIEW: Add GetUrlCssClass() method to the utils
                     // set link CSS class according to file extension
-                    if (Globals.GetURLType (division.DocumentUrl) == TabType.File)
-                    {
+                    if (Globals.GetURLType (division.DocumentUrl) == TabType.File) {
                         var fileId = int.Parse (division.DocumentUrl.Remove (0, "FileId=".Length));
                         var file = FileManager.Instance.GetFile (fileId);
                         if (file != null)
@@ -342,12 +326,16 @@ namespace R7.University.DivisionDirectory
                     linkDocument.Visible = false;
 
                 // contact person (head employee)
-                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
-                if (contactPerson != null)
-                {
+                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (
+                                        division.DivisionID,
+                                        division.HeadPositionID);
+                if (contactPerson != null) {
                     linkContactPerson.Text = contactPerson.AbbrName;
                     linkContactPerson.ToolTip = contactPerson.FullName;
-                    linkContactPerson.NavigateUrl = EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails");
+                    linkContactPerson.NavigateUrl = EditUrl (
+                        "employee_id",
+                        contactPerson.EmployeeID.ToString (),
+                        "EmployeeDetails");
                 }
             }
         }
@@ -359,12 +347,10 @@ namespace R7.University.DivisionDirectory
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
                 var division = (DivisionObrnadzorViewModel) e.Row.DataItem;
 
-                if (IsEditable)
-                {
+                if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
@@ -381,26 +367,26 @@ namespace R7.University.DivisionDirectory
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
                 // contact person (head employee)
-                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (division.DivisionID, division.HeadPositionID);
-                if (contactPerson != null)
-                {
+                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (
+                                        division.DivisionID,
+                                        division.HeadPositionID);
+                if (contactPerson != null) {
                     var headPosition = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                        "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
-                        contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
+                                           "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
+                                           contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
 
-                    var positionTitle = (!string.IsNullOrWhiteSpace (headPosition.PositionShortTitle))?
+                    var positionTitle = (!string.IsNullOrWhiteSpace (headPosition.PositionShortTitle)) ?
                         headPosition.PositionShortTitle : headPosition.PositionTitle;
 
-                    literalContactPerson.Text = "<strong><a href=\"" 
-                        + EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails")
-                        + "\" itemprop=\"Fio\">" + contactPerson.FullName + "</a></strong><br />"
-                        + Utils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
+                    literalContactPerson.Text = "<strong><a href=\""
+                    + EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails")
+                    + "\" itemprop=\"Fio\">" + contactPerson.FullName + "</a></strong><br />"
+                    + Utils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
                 }
 
                 #endregion
 
-                if (!division.IsPublished)
-                {
+                if (!division.IsPublished) {
                     e.Row.CssClass = "not-published";
                 }
 
@@ -410,8 +396,7 @@ namespace R7.University.DivisionDirectory
                     e.Row.Cells [2].CssClass = "level-" + division.Level;
                 }
 
-                if (prevLevel >= 0)
-                {
+                if (prevLevel >= 0) {
                     if (division.Level < prevLevel) {
                         e.Row.CssClass = "return return-" + (prevLevel - division.Level);
                     }

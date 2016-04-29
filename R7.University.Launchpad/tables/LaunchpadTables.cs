@@ -31,8 +31,9 @@ using System.Collections.Generic;
 namespace R7.University.Launchpad
 {
     public class LaunchpadTables
-	{
-        public List<LaunchpadTableBase> Tables = new List<LaunchpadTableBase>() {
+    {
+        public List<LaunchpadTableBase> Tables = new List<LaunchpadTableBase> ()
+        {
             // add new tables contructors here!
             new PositionsTable (),
             new DivisionsTable (),
@@ -46,7 +47,7 @@ namespace R7.University.Launchpad
             new EduFormsTable ()
         };
 
-        public List<string> TableNames 
+        public List<string> TableNames
         {
             get { return Tables.Select (t => t.Name).ToList (); }
         }
@@ -54,7 +55,7 @@ namespace R7.University.Launchpad
         protected Dictionary<string, LaunchpadTableBase> GridsDictionary;
 
         protected Dictionary<string, LaunchpadTableBase> NamesDictionary;
-       
+
         public LaunchpadTables ()
         {
             NamesDictionary = new Dictionary<string, LaunchpadTableBase> ();
@@ -65,8 +66,7 @@ namespace R7.University.Launchpad
         public void InitGridsDictionary ()
         {
             GridsDictionary = new Dictionary<string, LaunchpadTableBase> ();
-            foreach (var table in Tables)
-            {
+            foreach (var table in Tables) {
                 if (table.Grid == null)
                     throw new InvalidOperationException ("Null GridView reference. Note that LaunchpadTables.InitGridsDictionary() method should be called after LaunchpadTableBase.Init()!");
 

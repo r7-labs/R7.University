@@ -9,17 +9,17 @@ using R7.University;
 
 namespace R7.University.EmployeeList
 {
-	public partial class SettingsEmployeeList
-	{
-		protected LabelControl labelDivision;
-		protected DnnTreeView treeDivisions;
-		protected LabelControl labelIncludeSubdivisions;
-		protected CheckBox checkIncludeSubdivisions;
-		protected LabelControl labelSortType;
-		protected DnnComboBox comboSortType;
-		protected LabelControl labelPhotoWidth;
-		protected TextBox textPhotoWidth;
-		protected LabelControl labelDataCacheTime;
-		protected TextBox textDataCacheTime;
-	}
+    public partial class SettingsEmployeeList
+    {
+        protected LabelControl labelDivision;
+        protected DnnTreeView treeDivisions;
+        protected LabelControl labelIncludeSubdivisions;
+        protected CheckBox checkIncludeSubdivisions;
+        protected LabelControl labelSortType;
+        protected DnnComboBox comboSortType;
+        protected LabelControl labelPhotoWidth;
+        protected TextBox textPhotoWidth;
+        protected LabelControl labelDataCacheTime;
+        protected TextBox textDataCacheTime;
+    }
 }

@@ -32,47 +32,45 @@ using R7.DotNetNuke.Extensions.Modules;
 
 namespace R7.University.Division
 {
-	/// <summary>
-	/// Provides strong typed access to settings used by module
-	/// </summary>
-	public class DivisionSettings : SettingsWrapper
-	{
+    /// <summary>
+    /// Provides strong typed access to settings used by module
+    /// </summary>
+    public class DivisionSettings : SettingsWrapper
+    {
         public DivisionSettings ()
         {
         }
 
-		public DivisionSettings (IModuleControl module) : base (module)
-		{
-		}
+        public DivisionSettings (IModuleControl module) : base (module)
+        {
+        }
 
-		public DivisionSettings (ModuleInfo module) : base (module)
-		{
-		}
+        public DivisionSettings (ModuleInfo module) : base (module)
+        {
+        }
 
-		#region Properties for settings
+        #region Properties for settings
 
-		private int? divisionId;
+        private int? divisionId;
 
-		/// <summary>
-		/// Division ID
-		/// </summary>
-		public int DivisionID
-		{
-			get
-			{
-				if (divisionId == null)
-					divisionId = ReadSetting<int> ("Division_DivisionID", Null.NullInteger); 
+        /// <summary>
+        /// Division ID
+        /// </summary>
+        public int DivisionID
+        {
+            get {
+                if (divisionId == null)
+                    divisionId = ReadSetting<int> ("Division_DivisionID", Null.NullInteger); 
 			
-				return divisionId.Value;
-			}
-			set
-			{ 
-				WriteModuleSetting<int> ("Division_DivisionID", value); 
-				divisionId = value;
-			}
-		}
+                return divisionId.Value;
+            }
+            set { 
+                WriteModuleSetting<int> ("Division_DivisionID", value); 
+                divisionId = value;
+            }
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
 

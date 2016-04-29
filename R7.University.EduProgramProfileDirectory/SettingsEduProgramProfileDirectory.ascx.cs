@@ -29,10 +29,10 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls;
-using R7.University;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.University;
 using R7.University.Data;
 
 namespace R7.University.EduProgramProfileDirectory
@@ -40,10 +40,10 @@ namespace R7.University.EduProgramProfileDirectory
     public partial class SettingsEduProgramProfileDirectory: ModuleSettingsBase<EduProgramProfileDirectorySettings>
     {
         private ViewModelContext viewModelContext;
+
         protected ViewModelContext ViewModelContext
         {
-            get
-            { 
+            get { 
                 if (viewModelContext == null)
                     viewModelContext = new ViewModelContext (this);
 
@@ -62,12 +62,12 @@ namespace R7.University.EduProgramProfileDirectory
             // fill edulevels list
             var eduLevels = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
 
-            foreach (var eduLevel in eduLevels)
-            {
-                listEduLevels.Items.Add (new DnnListBoxItem { 
-                    Text = eduLevel.DisplayShortTitle, 
-                    Value = eduLevel.EduLevelID.ToString ()
-                });
+            foreach (var eduLevel in eduLevels) {
+                listEduLevels.Items.Add (new DnnListBoxItem
+                    { 
+                        Text = eduLevel.DisplayShortTitle, 
+                        Value = eduLevel.EduLevelID.ToString ()
+                    });
             }
         }
 
@@ -76,25 +76,20 @@ namespace R7.University.EduProgramProfileDirectory
         /// </summary>
         public override void LoadSettings ()
         {
-            try
-            {
-                if (!IsPostBack)
-                {
+            try {
+                if (!IsPostBack) {
                     comboMode.SelectByValue (Settings.Mode);
 
                     // check edulevels list items
-                    foreach (var eduLevelId in Settings.EduLevels)
-                    {
+                    foreach (var eduLevelId in Settings.EduLevels) {
                         var item = listEduLevels.FindItemByValue (eduLevelId.ToString ());
-                        if (item != null)
-                        {
+                        if (item != null) {
                             item.Checked = true;
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
@@ -104,18 +99,16 @@ namespace R7.University.EduProgramProfileDirectory
         /// </summary>
         public override void UpdateSettings ()
         {
-            try
-            {
+            try {
                 EduProgramProfileDirectoryMode mode;
-                Settings.Mode = Enum.TryParse<EduProgramProfileDirectoryMode> (comboMode.SelectedValue, out mode)? 
+                Settings.Mode = Enum.TryParse<EduProgramProfileDirectoryMode> (comboMode.SelectedValue, out mode) ? 
                     (EduProgramProfileDirectoryMode?) mode : null;
 
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
 
                 ModuleController.SynchronizeModule (ModuleId);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }

@@ -23,34 +23,35 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
 
 namespace R7.University
 {
-	[Flags]
-	public enum VCardPhoneType
-	{
-		None = 0,
-		Home = 1,
-		Msg = 2,
-		Work = 4,
-		Pref = 8,
-		Voice = 16,
-		Fax = 32,
-		Cell = 64,
-		Video = 128,
-		Pager = 256,
-		Bbs = 512,
-		Modem = 1024,
-		Car = 2048,
-		Isdn = 4096,
-		Pcs = 8192
-	}
+    [Flags]
+    public enum VCardPhoneType
+    {
+        None = 0,
+        Home = 1,
+        Msg = 2,
+        Work = 4,
+        Pref = 8,
+        Voice = 16,
+        Fax = 32,
+        Cell = 64,
+        Video = 128,
+        Pager = 256,
+        Bbs = 512,
+        Modem = 1024,
+        Car = 2048,
+        Isdn = 4096,
+        Pcs = 8192
+    }
 
-	public class VCardPhone
-	{
-		public string Number { get; set; }
+    public class VCardPhone
+    {
+        public string Number { get; set; }
 
-		public VCardPhoneType Type { get; set; }
-	}
+        public VCardPhoneType Type { get; set; }
+    }
 }

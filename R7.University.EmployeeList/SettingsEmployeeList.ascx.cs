@@ -26,16 +26,16 @@
 
 using System;
 using System.Linq;
-using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Common.Utilities;
-using R7.University;
+using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.University;
 using R7.University.Data;
 
 namespace R7.University.EmployeeList
 {
-    public partial class SettingsEmployeeList : ModuleSettingsBase<EmployeeListSettings>
-	{
+    public partial class SettingsEmployeeList: ModuleSettingsBase<EmployeeListSettings>
+    {
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -56,64 +56,59 @@ namespace R7.University.EmployeeList
             comboSortType.AddItem (LocalizeString ("SortTypeByName.Text"), "2");
         }
 
-		/// <summary>
-		/// Handles the loading of the module setting for this control
-		/// </summary>
-		public override void LoadSettings ()
-		{
-			try
-			{
-				if (!IsPostBack)
-				{
-			        // select node and expand tree to it
+        /// <summary>
+        /// Handles the loading of the module setting for this control
+        /// </summary>
+        public override void LoadSettings ()
+        {
+            try {
+                if (!IsPostBack) {
+                    // select node and expand tree to it
                     Utils.SelectAndExpandByValue (treeDivisions, Settings.DivisionID.ToString ());
 
-					// check / uncheck IncludeSubdivisions
-					checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
+                    // check / uncheck IncludeSubdivisions
+                    checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
 
-					comboSortType.Select (Settings.SortType.ToString (), false);
+                    comboSortType.Select (Settings.SortType.ToString (), false);
 
-					if (!Null.IsNull (Settings.PhotoWidth))
-						textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
+                    if (!Null.IsNull (Settings.PhotoWidth))
+                        textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
 					
-					if (!Null.IsNull (Settings.DataCacheTime))
-						textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                    if (!Null.IsNull (Settings.DataCacheTime))
+                        textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		/// <summary>
-		/// handles updating the module settings for this control
-		/// </summary>
-		public override void UpdateSettings ()
-		{
-			try
-			{
-				Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
-				Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
-				Settings.SortType = int.Parse (comboSortType.SelectedValue);
+        /// <summary>
+        /// handles updating the module settings for this control
+        /// </summary>
+        public override void UpdateSettings ()
+        {
+            try {
+                Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
+                Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
+                Settings.SortType = int.Parse (comboSortType.SelectedValue);
 
-				if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
-					Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
-				else
-					Settings.PhotoWidth = Null.NullInteger;
+                if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
+                    Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
+                else
+                    Settings.PhotoWidth = Null.NullInteger;
 				
-				if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
-					Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
-				else
-					Settings.DataCacheTime = Null.NullInteger;
+                if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
+                    Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
+                else
+                    Settings.DataCacheTime = Null.NullInteger;
 
-				Utils.SynchronizeModule (this);
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
-	}
+                Utils.SynchronizeModule (this);
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+    }
 }
 

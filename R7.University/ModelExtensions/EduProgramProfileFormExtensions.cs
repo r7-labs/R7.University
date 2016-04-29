@@ -43,8 +43,7 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<EduProgramProfileFormInfo> WithEduForms (
             this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, Dal2DataProvider controller)
         {
-            foreach (var eduProgramProfileForm in eduProgramProfileForms)
-            {
+            foreach (var eduProgramProfileForm in eduProgramProfileForms) {
                 eduProgramProfileForm.WithEduForm (controller);
             }
 

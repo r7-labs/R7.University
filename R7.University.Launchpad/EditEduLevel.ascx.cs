@@ -25,19 +25,20 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University;
 using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
     public partial class EditEduLevel: EditPortalModuleBase<EduLevelInfo,int>
-	{
-        protected EditEduLevel (): base ("edulevel_id")
-        {}
+    {
+        protected EditEduLevel () : base ("edulevel_id")
+        {
+        }
 
-        protected override void InitControls () 
+        protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
@@ -80,6 +81,6 @@ namespace R7.University.Launchpad
         }
 
         #endregion
-	}
+    }
 }
 

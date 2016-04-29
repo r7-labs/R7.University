@@ -11,13 +11,13 @@ using R7.University.Controls;
 namespace R7.University.Launchpad
 {
     public partial class EditEduProgramProfile
-	{
+    {
         protected LinkButton buttonUpdate;
-		protected LinkButton buttonDelete;
-		protected HyperLink linkCancel;
+        protected LinkButton buttonDelete;
+        protected HyperLink linkCancel;
         protected AjaxControlToolkit.ComboBox comboEduProgram;
         protected TextBox textProfileCode;
-		protected TextBox textProfileTitle;
+        protected TextBox textProfileTitle;
         protected TextBox textLanguages;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
@@ -27,5 +27,5 @@ namespace R7.University.Launchpad
         protected EditDocuments formEditDocuments;
         protected EditEduForms formEditEduForms;
         protected ModuleAuditControl auditControl;
-	}
+    }
 }

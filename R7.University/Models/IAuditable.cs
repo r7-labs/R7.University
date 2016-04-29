@@ -2,14 +2,14 @@
 
 namespace R7.University
 {
-	public interface IAuditable
-	{
-		int LastModifiedByUserID { get; set; }
+    public interface IAuditable
+    {
+        int LastModifiedByUserID { get; set; }
 
-		DateTime LastModifiedOnDate { get; set; }
+        DateTime LastModifiedOnDate { get; set; }
 
-		int CreatedByUserID { get; set; }
+        int CreatedByUserID { get; set; }
 
-		DateTime CreatedOnDate { get; set; }
-	}
+        DateTime CreatedOnDate { get; set; }
+    }
 }

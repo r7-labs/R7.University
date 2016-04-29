@@ -35,7 +35,7 @@ namespace R7.University
 
         public static int GetNextItemID ()
         {
-            Interlocked.Increment(ref nextItemID);
+            Interlocked.Increment (ref nextItemID);
             return nextItemID;
         }
     }

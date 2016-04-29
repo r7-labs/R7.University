@@ -25,21 +25,21 @@
 // THE SOFTWARE.
 
 using System;
-using System.Data;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
+using System.Data;
 using System.Linq;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.Services.Exceptions;
+using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University;
 using R7.University.ControlExtensions;
-using R7.University.ModelExtensions;
-using R7.DotNetNuke.Extensions.ViewModels;
-using R7.DotNetNuke.Extensions.ModuleExtensions;
-using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.University.Data;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.ModelExtensions;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -50,10 +50,10 @@ namespace R7.University.EmployeeDirectory
         #region Properties
 
         private ViewModelContext viewModelContext;
+
         protected ViewModelContext ViewModelContext
         {
-            get
-            { 
+            get { 
                 if (viewModelContext == null)
                     viewModelContext = new ViewModelContext (this);
 
@@ -63,8 +63,7 @@ namespace R7.University.EmployeeDirectory
 
         protected string SearchText
         {
-            get
-            { 
+            get { 
                 var objSearchText = Session ["EmployeeDirectory.SearchText." + TabModuleId];
                 return (string) objSearchText ?? string.Empty;
             }
@@ -73,8 +72,7 @@ namespace R7.University.EmployeeDirectory
 
         protected string SearchDivision
         {
-            get
-            { 
+            get { 
                 var objSearchDivision = Session ["EmployeeDirectory.SearchDivision." + TabModuleId];
                 return (string) objSearchDivision ?? Null.NullInteger.ToString ();
 
@@ -84,8 +82,7 @@ namespace R7.University.EmployeeDirectory
 
         protected bool SearchIncludeSubdivisions
         {
-            get
-            { 
+            get { 
                 var objSearchIncludeSubdivisions = Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId];
                 return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : false;
             }
@@ -94,8 +91,7 @@ namespace R7.University.EmployeeDirectory
 
         protected bool SearchTeachersOnly
         {
-            get
-            { 
+            get { 
                 var objSearchTeachersOnly = Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId];
                 return objSearchTeachersOnly != null ? (bool) objSearchTeachersOnly : false;
             }
@@ -114,10 +110,11 @@ namespace R7.University.EmployeeDirectory
         {
             base.OnInit (e);
 
-            mviewEmployeeDirectory.ActiveViewIndex = Utils.GetViewIndexByID (mviewEmployeeDirectory, "view" + Settings.Mode);
+            mviewEmployeeDirectory.ActiveViewIndex = Utils.GetViewIndexByID (
+                mviewEmployeeDirectory,
+                "view" + Settings.Mode);
 
-            if (Settings.Mode == EmployeeDirectoryMode.Search)
-            {
+            if (Settings.Mode == EmployeeDirectoryMode.Search) {
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
@@ -125,7 +122,8 @@ namespace R7.University.EmployeeDirectory
                     .Where (d => d.IsPublished || IsEditable)
                     .OrderBy (d => d.Title).ToList ();
                 
-                divisions.Insert (0, new DivisionInfo {
+                divisions.Insert (0, new DivisionInfo
+                    {
                         DivisionID = Null.NullInteger, 
                         Title = LocalizeString ("AllDivisions.Text") 
                     });
@@ -146,14 +144,10 @@ namespace R7.University.EmployeeDirectory
         {
             base.OnLoad (e);
             
-            try
-            {
-                if (!IsPostBack)
-                {
-                    if (Settings.Mode == EmployeeDirectoryMode.Search)
-                    {
-                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision))
-                        {
+            try {
+                if (!IsPostBack) {
+                    if (Settings.Mode == EmployeeDirectoryMode.Search) {
+                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision)) {
                             // restore current search
                             textSearch.Text = SearchText;
                             Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
@@ -165,12 +159,11 @@ namespace R7.University.EmployeeDirectory
                                 DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
                         }
                     }
-                    else if (Settings.Mode == EmployeeDirectoryMode.TeachersByEduProgram)
-                    {
+                    else if (Settings.Mode == EmployeeDirectoryMode.TeachersByEduProgram) {
                         var eduLevelIds = Settings.EduLevels;
 
                         var eduProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
-                            // .Where (epp => epp.IsPublished () || IsEditable)
+                                          // .Where (epp => epp.IsPublished () || IsEditable)
                             .WithEduPrograms (UniversityRepository.Instance.DataProvider)
                             .WithEduLevel (UniversityRepository.Instance.DataProvider)
                             .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
@@ -181,29 +174,28 @@ namespace R7.University.EmployeeDirectory
                             .Select (epp => new EduProgramProfileObrnadzorTeachersViewModel (epp, ViewModelContext))
                             .ToList ();
 
-                        if (Settings.ShowAllTeachers)
-                        {
+                        if (Settings.ShowAllTeachers) {
                             eduProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
-                                new EduProgramProfileInfo { 
-                                    EduProgramProfileID = Null.NullInteger,
-                                    EduProgram = new EduProgramInfo {
-                                        Code = string.Empty,
-                                        Title = LocalizeString ("NoEduPrograms.Text")
-                                    }
-                                }, ViewModelContext)
+                                    new EduProgramProfileInfo
+                                    { 
+                                        EduProgramProfileID = Null.NullInteger,
+                                        EduProgram = new EduProgramInfo
+                                        {
+                                            Code = string.Empty,
+                                            Title = LocalizeString ("NoEduPrograms.Text")
+                                        }
+                                    }, ViewModelContext)
                             );
                         }
 
-                        if (eduProfiles.Count > 0)
-                        {
+                        if (eduProfiles.Count > 0) {
                             repeaterEduPrograms.DataSource = eduProfiles;
                             repeaterEduPrograms.DataBind ();
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
@@ -214,8 +206,7 @@ namespace R7.University.EmployeeDirectory
 
         protected void repeaterEduPrograms_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
                 var eduProfile = (EduProgramProfileObrnadzorTeachersViewModel) e.Item.DataItem;
 
                 // find controls in the template
@@ -226,14 +217,12 @@ namespace R7.University.EmployeeDirectory
                 IEnumerable<EmployeeInfo> teachers;
                 string anchorName;
 
-                if (Null.IsNull (eduProfile.EduProgramProfileID))
-                {
+                if (Null.IsNull (eduProfile.EduProgramProfileID)) {
                     // select all teachers w/o edu. program profiles
                     teachers = UniversityRepository.Instance.GetTeachersWithoutEduPrograms ();
                     anchorName = "empty";
                 }
-                else
-                {
+                else {
                     // select teachers for current edu. program profile
                     teachers = UniversityRepository.Instance.GetTeachersByEduProgramProfile (eduProfile.EduProgramProfileID);
                     anchorName = eduProfile.EduProgramProfileID.ToString ();
@@ -241,10 +230,9 @@ namespace R7.University.EmployeeDirectory
 
                 // create anchor to simplify navigation
                 literalEduProgramProfileAnchor.Text = "<a id=\"eduprogramprofile-" + anchorName + "\"" +
-                    " name=\"eduprogramprofile-" + anchorName + "\"></a>";
+                " name=\"eduprogramprofile-" + anchorName + "\"></a>";
 
-                if (teachers.Any ())
-                {
+                if (teachers.Any ()) {
                     // pass eduProfileId to gridTeachersByEduProgram_RowDataBound()
                     eduProfileId = eduProfile.EduProgramProfileID;
 
@@ -253,8 +241,7 @@ namespace R7.University.EmployeeDirectory
                     gridTeachersByEduProgram.DataSource = teachers;
                     gridTeachersByEduProgram.DataBind ();
                 }
-                else
-                {
+                else {
                     labelEduProgramProfile.Visible = false;
                     gridTeachersByEduProgram.Visible = false;
                 }
@@ -266,12 +253,10 @@ namespace R7.University.EmployeeDirectory
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
                 var teacher = (EmployeeInfo) e.Row.DataItem;
 
-                if (IsEditable)
-                {
+                if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
@@ -290,14 +275,14 @@ namespace R7.University.EmployeeDirectory
 
                 #region Disciplines
 
-                if (!Null.IsNull (eduProfileId))
-                {
+                if (!Null.IsNull (eduProfileId)) {
                     var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
 
                     var discipline = UniversityRepository.Instance.DataProvider.GetObjects <EmployeeDisciplineInfo> (
-                        "WHERE [EmployeeID] = @0 AND [EduProgramProfileID] = @1", teacher.EmployeeID, eduProfileId).FirstOrDefault ();
+                                         "WHERE [EmployeeID] = @0 AND [EduProgramProfileID] = @1", teacher.EmployeeID, eduProfileId).FirstOrDefault ();
 
-                    if (discipline != null) literalDisciplines.Text = discipline.Disciplines;
+                    if (discipline != null)
+                        literalDisciplines.Text = discipline.Disciplines;
                 }
 
                 #endregion
@@ -307,7 +292,10 @@ namespace R7.University.EmployeeDirectory
                 var literalPositions = (Literal) e.Row.FindControl ("literalPositions");
 
                 var positions = UniversityRepository.Instance.DataProvider.GetObjects <OccupiedPositionInfoEx> (
-                    "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", teacher.EmployeeID).Select (op => Utils.FormatList (": ", op.PositionTitle, op.DivisionTitle));
+                                    "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", teacher.EmployeeID).Select (op => Utils.FormatList (
+                                        ": ",
+                                        op.PositionTitle,
+                                        op.DivisionTitle));
 
                 // TODO: Use OccupiedPositionInfoEx.GroupByDivision () here
                 literalPositions.Text = Utils.FormatList ("; ", positions);
@@ -318,8 +306,8 @@ namespace R7.University.EmployeeDirectory
 
                 // get all empoyee achievements
                 var achievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (
-                    CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
-                    teacher.EmployeeID).ToList ();
+                                       CommandType.Text, "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0",
+                                       teacher.EmployeeID).ToList ();
 
                 var literalEducation = (Literal) e.Row.FindControl ("literalEducation");
                 var literalTraining = (Literal) e.Row.FindControl ("literalTraining");
@@ -363,14 +351,17 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
-        protected bool SearchParamsOK (string searchText, string searchDivision, bool includeSubdivisions, bool showMessages = true)
+        protected bool SearchParamsOK (
+            string searchText,
+            string searchDivision,
+            bool includeSubdivisions,
+            bool showMessages = true)
         {
             var divisionIsSpecified = TypeUtils.ParseToNullable<int> (searchDivision) != null;
             var searchTextIsEmpty = string.IsNullOrWhiteSpace (searchText);
 
             // no search params - shouldn't perform search
-            if (searchTextIsEmpty && !divisionIsSpecified)
-            {
+            if (searchTextIsEmpty && !divisionIsSpecified) {
                 if (showMessages)
                     this.Message ("SearchParams.Warning", MessageType.Warning, true);
 
@@ -381,8 +372,7 @@ namespace R7.University.EmployeeDirectory
             if ((!divisionIsSpecified || // no division specified
                 (divisionIsSpecified && includeSubdivisions)) && // division specified, but subdivisions flag is set
                 (searchTextIsEmpty || // search phrase is empty
-                (!searchTextIsEmpty && searchText.Length < 3))) // search phrase is too short
-            {
+                (!searchTextIsEmpty && searchText.Length < 3))) { // search phrase is too short
                 if (showMessages)
                     this.Message ("SearchPhrase.Warning", MessageType.Warning, true);
 
@@ -398,8 +388,7 @@ namespace R7.University.EmployeeDirectory
             var employees = UniversityRepository.Instance.FindEmployees (searchText,
                                 IsEditable, teachersOnly, includeSubdivisions, searchDivision); 
 
-            if (employees == null || !employees.Any ())
-            {
+            if (employees == null || !employees.Any ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
             }
 
@@ -437,8 +426,7 @@ namespace R7.University.EmployeeDirectory
             var includeSubdivisions = checkIncludeSubdivisions.Checked;
             var teachersOnly = checkTeachersOnly.Checked;
 
-            if (SearchParamsOK (searchText, searchDivision, includeSubdivisions))
-            {
+            if (SearchParamsOK (searchText, searchDivision, includeSubdivisions)) {
                 // save current search
                 SearchText = searchText;
                 SearchDivision = searchDivision;
@@ -455,12 +443,10 @@ namespace R7.University.EmployeeDirectory
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
                 var employee = (EmployeeInfo) e.Row.DataItem;
 
-                if (IsEditable)
-                {
+                if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
@@ -482,8 +468,7 @@ namespace R7.University.EmployeeDirectory
 
                 phone.Text = employee.Phone;
 
-                if (!string.IsNullOrWhiteSpace (employee.Email))
-                {
+                if (!string.IsNullOrWhiteSpace (employee.Email)) {
                     email.Text = employee.Email;
                     email.NavigateUrl = "mailto:" + employee.Email;
                 }
@@ -494,18 +479,17 @@ namespace R7.University.EmployeeDirectory
 
                 // try to get prime position:
                 var primePosition = UniversityRepository.Instance.DataProvider.GetObjects <OccupiedPositionInfoEx> (
-                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID).FirstOrDefault ();
+                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC",
+                                        employee.EmployeeID).FirstOrDefault ();
 
-                if (primePosition != null)
-                {
+                if (primePosition != null) {
                     position.Text = Utils.FormatList (": ", Utils.FormatList (" ", 
-                        PositionInfo.FormatShortTitle (primePosition.PositionTitle, primePosition.PositionShortTitle), 
-                        primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
+                            PositionInfo.FormatShortTitle (primePosition.PositionTitle, primePosition.PositionShortTitle), 
+                            primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }
 
                 // mark not published employees, as they visible only to editors
-                if (!employee.IsPublished)
-                {
+                if (!employee.IsPublished) {
                     e.Row.CssClass = "not-published";
                 }
 

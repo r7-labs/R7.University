@@ -45,19 +45,19 @@ using R7.University.Data;
 namespace R7.University.EmployeeList
 {
     public partial class ViewEmployeeList: PortalModuleBase<EmployeeListSettings>, IActionable
-	{
-		#region Properties
+    {
+        #region Properties
 
-		protected string EditIconUrl
-		{
-			get { return IconController.IconURL ("Edit"); }
-		}
+        protected string EditIconUrl
+        {
+            get { return IconController.IconURL ("Edit"); }
+        }
 
-		#endregion
+        #endregion
 
-		#region Handlers
+        #region Handlers
 
-		/*
+        /*
 		/// <summary>
 		/// Handles Init event for a control
 		/// </summary>
@@ -71,45 +71,42 @@ namespace R7.University.EmployeeList
 
         protected IEnumerable<OccupiedPositionInfoEx> CommonOccupiedPositions;
 
-		/// <summary>
-		/// Handles Load event for a control
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnLoad (EventArgs e)
-		{
-			base.OnLoad (e);
+        /// <summary>
+        /// Handles Load event for a control
+        /// </summary>
+        /// <param name="e">Event args.</param>
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
 			
-			try
-			{
-				if (!IsPostBack || ViewState.Count == 0) // Fix for issue #23
-				{
-					if (Cache_OnLoad ()) return;
+            try {
+                if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
+                    if (Cache_OnLoad ())
+                        return;
 					
-					// REVIEW: Add Employees.LastYearRating field and sorting by it!
+                    // REVIEW: Add Employees.LastYearRating field and sorting by it!
 					
-					// get employees by DivisionID, in edit mode show also non-published employees
+                    // get employees by DivisionID, in edit mode show also non-published employees
                     var	items = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-						            (Settings.IncludeSubdivisions) ? // which SP to use
+                                    (Settings.IncludeSubdivisions) ? // which SP to use
 							"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-						            Settings.DivisionID, Settings.SortType, IsEditable
-					            );
+                                    Settings.DivisionID, Settings.SortType, IsEditable
+                                );
 
-					// check if we have some content to display, 
-					// otherwise display a message for module editors or hide module from regular users
-					if (!items.Any ())
-					{
-						// set container control visibility to common users
-						Cache_SetContainerVisible (false);
+                    // check if we have some content to display, 
+                    // otherwise display a message for module editors or hide module from regular users
+                    if (!items.Any ()) {
+                        // set container control visibility to common users
+                        Cache_SetContainerVisible (false);
 						
-						if (IsEditable)
-							this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-						else
+                        if (IsEditable)
+                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                        else
 							// hide entire module
 							ContainerControl.Visible = false;
-					}
-					else
-					{
-				        var employeeIds = Utils.FormatList (", ", items.Select (em => em.EmployeeID));
+                    }
+                    else {
+                        var employeeIds = Utils.FormatList (", ", items.Select (em => em.EmployeeID));
 
                         // get title achievements for all selected employees
                         // TODO: Move to dataprovider
@@ -130,63 +127,61 @@ namespace R7.University.EmployeeList
                         // set container control visibility to common users
                         Cache_SetContainerVisible (true);
 
-						// bind the data
-						listEmployees.DataSource = items;
-						listEmployees.DataBind ();
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				Exceptions.ProcessModuleLoadException (this, ex);
-			}
-		}
+                        // bind the data
+                        listEmployees.DataSource = items;
+                        listEmployees.DataBind ();
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region IActionable implementation
+        #region IActionable implementation
 
-		public ModuleActionCollection ModuleActions
-		{
-			get
-			{
-				// create a new action to add an item, this will be added 
-				// to the controls dropdown menu
-				var actions = new ModuleActionCollection ();
-				actions.Add (
-					GetNextActionID (), 
-					Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
-					ModuleActionType.AddContent, 
-					"", 
-					"", 
-					Null.IsNull (Settings.DivisionID) ?
+        public ModuleActionCollection ModuleActions
+        {
+            get {
+                // create a new action to add an item, this will be added 
+                // to the controls dropdown menu
+                var actions = new ModuleActionCollection ();
+                actions.Add (
+                    GetNextActionID (), 
+                    Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
+                    ModuleActionType.AddContent, 
+                    "", 
+                    "", 
+                    Null.IsNull (Settings.DivisionID) ?
                         EditUrl ("EditEmployee")
-                        // pass division_id to select division in which to add employee
+                    // pass division_id to select division in which to add employee
                         : EditUrl ("division_id", Settings.DivisionID.ToString (), "EditEmployee"),
-					false, 
-					SecurityAccessLevel.Edit,
-					true, 
-					false
-				);
+                    false, 
+                    SecurityAccessLevel.Edit,
+                    true, 
+                    false
+                );
 			
-				return actions;
-			}
-		}
+                return actions;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		/// <summary>
-		/// Handles the items being bound to the datalist control. In this method we merge the data with the
-		/// template defined for this control to produce the result to display to the user
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		protected void listEmployees_ItemDataBound (object sender, System.Web.UI.WebControls.DataListItemEventArgs e)
-		{
-			// e.Item.DataItem is of EmployeeListInfo class
-		    var employee = (EmployeeInfo) e.Item.DataItem;
+        /// <summary>
+        /// Handles the items being bound to the datalist control. In this method we merge the data with the
+        /// template defined for this control to produce the result to display to the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void listEmployees_ItemDataBound (object sender, System.Web.UI.WebControls.DataListItemEventArgs e)
+        {
+            // e.Item.DataItem is of EmployeeListInfo class
+            var employee = (EmployeeInfo) e.Item.DataItem;
 			
-			// find controls in DataList item template
+            // find controls in DataList item template
             var linkEdit = (HyperLink) e.Item.FindControl ("linkEdit");
             var imageEdit = (Image) e.Item.FindControl ("imageEdit");
             var imagePhoto = (Image) e.Item.FindControl ("imagePhoto");
@@ -200,133 +195,122 @@ namespace R7.University.EmployeeList
             var linkWebSite = (HyperLink) e.Item.FindControl ("linkWebSite");
             var linkUserProfile = (HyperLink) e.Item.FindControl ("linkUserProfile");
 
-			// edit link
-			if (IsEditable)
-			{
-				if (Null.IsNull (Settings.DivisionID))
+            // edit link
+            if (IsEditable) {
+                if (Null.IsNull (Settings.DivisionID))
                     linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee");
-				else
-					linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (),
+                else
+                    linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (),
                         "EditEmployee", "division_id", Settings.DivisionID.ToString ());
-			}
+            }
 
-			// make edit link visible in edit mode
-			linkEdit.Visible = IsEditable;
-			imageEdit.Visible = IsEditable;
+            // make edit link visible in edit mode
+            linkEdit.Visible = IsEditable;
+            imageEdit.Visible = IsEditable;
             
-			// mark non-published employees, as they visible only to editors
-            if (!employee.IsPublished)
-            {
+            // mark non-published employees, as they visible only to editors
+            if (!employee.IsPublished) {
                 if (e.Item.ItemType == ListItemType.Item)
                     e.Item.CssClass = listEmployees.ItemStyle.CssClass + " _nonpublished";
                 else
                     e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " _nonpublished";
             }
 
-			// fill the controls
+            // fill the controls
 
             // employee photo
             EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth, true);
 
             var employeeDetailsUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
                 
-			// photo fallback
-			if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl))
-			{
-				linkDetails.Visible = false;
-			}
-			else
-			{
-				// link to employee details
+            // photo fallback
+            if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl)) {
+                linkDetails.Visible = false;
+            }
+            else {
+                // link to employee details
                 linkDetails.NavigateUrl = employeeDetailsUrl;
-			}
+            }
 
-			// employee fullname
-			linkFullName.Text = employee.FullName;
+            // employee fullname
+            linkFullName.Text = employee.FullName;
             linkFullName.NavigateUrl = employeeDetailsUrl;
 
-			// get current employee title achievements
-			var achievements = CommonTitleAchievements.Where (ach => ach.EmployeeID == employee.EmployeeID);
+            // get current employee title achievements
+            var achievements = CommonTitleAchievements.Where (ach => ach.EmployeeID == employee.EmployeeID);
 
-			var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle));
+            var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle));
 			
             // employee title achievements
-			var strTitles = Utils.FormatList (", ", titles);
-			if (!string.IsNullOrWhiteSpace (strTitles))
-				labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
-			else
-				labelAcademicDegreeAndTitle.Visible = false;
+            var strTitles = Utils.FormatList (", ", titles);
+            if (!string.IsNullOrWhiteSpace (strTitles))
+                labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
+            else
+                labelAcademicDegreeAndTitle.Visible = false;
 			
-			// phones
-			var phones = Utils.FormatList (", ", employee.Phone, employee.CellPhone);
-			if (!string.IsNullOrWhiteSpace (phones))
-				labelPhones.Text = phones;
-			else
-				labelPhones.Visible = false;
+            // phones
+            var phones = Utils.FormatList (", ", employee.Phone, employee.CellPhone);
+            if (!string.IsNullOrWhiteSpace (phones))
+                labelPhones.Text = phones;
+            else
+                labelPhones.Visible = false;
 
-			// email
-			if (!string.IsNullOrWhiteSpace (employee.Email))
-			{
-				linkEmail.NavigateUrl = "mailto:" + employee.Email;
-				linkEmail.Text = employee.Email; 
-			}
-			else
-				linkEmail.Visible = false;
+            // email
+            if (!string.IsNullOrWhiteSpace (employee.Email)) {
+                linkEmail.NavigateUrl = "mailto:" + employee.Email;
+                linkEmail.Text = employee.Email; 
+            }
+            else
+                linkEmail.Visible = false;
 
-			// secondary email
-			if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail))
-			{
-				linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
-				linkSecondaryEmail.Text = employee.SecondaryEmail; 
-			}
-			else
-				linkSecondaryEmail.Visible = false;
+            // secondary email
+            if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail)) {
+                linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
+                linkSecondaryEmail.Text = employee.SecondaryEmail; 
+            }
+            else
+                linkSecondaryEmail.Visible = false;
 
-			// webSite
-			if (!string.IsNullOrWhiteSpace (employee.WebSite))
-			{
-				linkWebSite.NavigateUrl = employee.FormatWebSiteUrl;
-				linkWebSite.Text = employee.FormatWebSiteLabel;
-			}
-			else
-				linkWebSite.Visible = false;
+            // webSite
+            if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
+                linkWebSite.NavigateUrl = employee.FormatWebSiteUrl;
+                linkWebSite.Text = employee.FormatWebSiteLabel;
+            }
+            else
+                linkWebSite.Visible = false;
 
-			// profile link
-			if (!Utils.IsNull<int> (employee.UserID))
-			{
-				linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
-				// TODO: Replace profile text with something more sane
-				linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
-			}
-			else
-				linkUserProfile.Visible = false;
+            // profile link
+            if (!Utils.IsNull<int> (employee.UserID)) {
+                linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
+                // TODO: Replace profile text with something more sane
+                linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
+            }
+            else
+                linkUserProfile.Visible = false;
 
-			// get current employee occupied positions
-			var ops = CommonOccupiedPositions.Where (op => op.EmployeeID == employee.EmployeeID);
+            // get current employee occupied positions
+            var ops = CommonOccupiedPositions.Where (op => op.EmployeeID == employee.EmployeeID);
 
-			// build positions value
-			var positionsVisible = false;
-			if (ops != null && ops.Any ())
-			{
-				var strOps = string.Empty;
-				foreach (var op in OccupiedPositionInfoEx.GroupByDivision (ops))
-				{
+            // build positions value
+            var positionsVisible = false;
+            if (ops != null && ops.Any ()) {
+                var strOps = string.Empty;
+                foreach (var op in OccupiedPositionInfoEx.GroupByDivision (ops)) {
                     var strOp = PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle);
 
-					// op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
-					strOps = Utils.FormatList ("; ", strOps, Utils.FormatList (": ", strOp, 
+                    // op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
+                    strOps = Utils.FormatList ("; ", strOps, Utils.FormatList (": ", strOp, 
                         // do not display division title also for current division
-                        (op.DivisionID != Settings.DivisionID) ? op.FormatDivisionLink (this) : string.Empty));
-				}
+                            (op.DivisionID != Settings.DivisionID) ? op.FormatDivisionLink (this) : string.Empty));
+                }
 
-				if (!string.IsNullOrWhiteSpace (strOps))
-				{
-					labelPositions.Text = strOps;
-					positionsVisible = true;
-				}
-			}
-			labelPositions.Visible = positionsVisible;
-		}
-	}
+                if (!string.IsNullOrWhiteSpace (strOps)) {
+                    labelPositions.Text = strOps;
+                    positionsVisible = true;
+                }
+            }
+            labelPositions.Visible = positionsVisible;
+        }
+    }
 }
 

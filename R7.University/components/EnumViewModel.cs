@@ -42,8 +42,7 @@ namespace R7.University
         public EnumViewModel (T? value)
         {
             // where T: enum
-            if (!typeof (T).IsEnum)
-            {
+            if (!typeof (T).IsEnum) {
                 throw new NotSupportedException ("Type parameter of EnumViewModel must be enum.");
             }
 
@@ -72,15 +71,13 @@ namespace R7.University
         {
             var values = new List<EnumViewModel<T>> ();
 
-            if (includeDefault)
-            {
+            if (includeDefault) {
                 var v1 = new EnumViewModel<T> (null);
                 v1.Context = context;
                 values.Add (v1);
             }
 
-            foreach (T value in Enum.GetValues (typeof (T)))
-            {   
+            foreach (T value in Enum.GetValues (typeof (T))) {   
                 var v1 = new EnumViewModel<T> (value);
                 v1.Context = context;
                 values.Add (v1);
@@ -91,8 +88,7 @@ namespace R7.University
 
         public static string GetValueResourceKey (T? value)
         {
-            if (value != null)
-            {
+            if (value != null) {
                 return typeof (T).Name + "_" + value.Value + ".Text";
             }
 

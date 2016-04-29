@@ -36,43 +36,43 @@ namespace R7.University.EduProgramProfileDirectory
     {
         #region IEduProgramProfile implementation
 
-        public int EduProgramProfileID 
+        public int EduProgramProfileID
         { 
             get { return Model.EduProgramProfileID; }
-            set {}
+            set { }
         }
 
-        public int EduProgramID 
+        public int EduProgramID
         { 
             get { return Model.EduProgramID; }
-            set {}
-        }
-      
-        public string ProfileCode 
-        { 
-            get { return Model.ProfileCode; }
-            set {}
+            set { }
         }
 
-        public string ProfileTitle 
+        public string ProfileCode
+        { 
+            get { return Model.ProfileCode; }
+            set { }
+        }
+
+        public string ProfileTitle
         { 
             get { return Model.ProfileTitle; }
-            set {}
+            set { }
         }
 
         public string Languages
         { 
             get { return Model.Languages; }
-            set {}
+            set { }
         }
 
-        public DateTime? AccreditedToDate 
+        public DateTime? AccreditedToDate
         { 
             get { return Model.AccreditedToDate; }
-            set {}
+            set { }
         }
 
-        public DateTime? CommunityAccreditedToDate 
+        public DateTime? CommunityAccreditedToDate
         { 
             get { return Model.CommunityAccreditedToDate; }
             set { }
@@ -81,31 +81,31 @@ namespace R7.University.EduProgramProfileDirectory
         public DateTime? StartDate
         { 
             get { return Model.StartDate; }
-            set {}
+            set { }
         }
 
-        public DateTime? EndDate 
+        public DateTime? EndDate
         {
             get { return Model.EndDate; }
-            set {}
+            set { }
         }
 
         public EduProgramInfo EduProgram
         {
             get { return Model.EduProgram; }
-            set {}
+            set { }
         }
-       
+
         public IList<IEduProgramProfileForm> EduProgramProfileForms
         {
             get { return Model.EduProgramProfileForms; }
-            set {}
+            set { }
         }
 
         public IList<IDocument> Documents
         {
             get { return Model.Documents; }
-            set {}
+            set { }
         }
 
         #endregion
@@ -114,7 +114,10 @@ namespace R7.University.EduProgramProfileDirectory
 
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramProfileObrnadzorEduFormsViewModel (IEduProgramProfile model, ViewModelContext context, ViewModelIndexer indexer)
+        public EduProgramProfileObrnadzorEduFormsViewModel (
+            IEduProgramProfile model,
+            ViewModelContext context,
+            ViewModelIndexer indexer)
         {
             Model = model;
             Context = context;
@@ -123,8 +126,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected IEduProgramProfileForm FullTimeForm
         {
-            get 
-            { 
+            get { 
                 return EduProgramProfileForms.FirstOrDefault (eppf => 
                     eppf.EduForm.GetSystemEduForm () == SystemEduForm.FullTime); 
             }
@@ -132,8 +134,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected IEduProgramProfileForm PartTimeForm
         {
-            get 
-            { 
+            get { 
                 return EduProgramProfileForms.FirstOrDefault (eppf => 
                     eppf.EduForm.GetSystemEduForm () == SystemEduForm.PartTime); 
             }
@@ -141,8 +142,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected IEduProgramProfileForm ExtramuralForm
         {
-            get 
-            { 
+            get { 
                 return EduProgramProfileForms.FirstOrDefault (eppf => 
                     eppf.EduForm.GetSystemEduForm () == SystemEduForm.Extramural); 
             }
@@ -150,15 +150,14 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected string TimeToLearnApplyMarkup (string eduFormResourceKey, string timeToLearn)
         {
-            return "<span class=\"hidden\" itemprop=\"EduForm\">" 
-                + Localization.GetString (eduFormResourceKey, Context.LocalResourceFile) 
-                + "</span>" + "<span itemprop=\"LearningTerm\">" + timeToLearn + "</span>";
+            return "<span class=\"hidden\" itemprop=\"EduForm\">"
+            + Localization.GetString (eduFormResourceKey, Context.LocalResourceFile)
+            + "</span>" + "<span itemprop=\"LearningTerm\">" + timeToLearn + "</span>";
         }
 
         public string TimeToLearnFullTimeString
         {
-            get
-            { 
+            get { 
                 if (FullTimeForm == null) {
                     return string.Empty; 
                 }
@@ -172,8 +171,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         public string TimeToLearnPartTimeString
         {
-            get
-            {
+            get {
                 if (PartTimeForm == null) {
                     return string.Empty; 
                 }
@@ -187,8 +185,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         public string TimeToLearnExtramuralString
         {
-            get
-            {
+            get {
                 if (ExtramuralForm == null) {
                     return string.Empty; 
                 }
@@ -224,10 +221,8 @@ namespace R7.University.EduProgramProfileDirectory
 
         public string AccreditedToDateString
         {
-            get
-            { 
-                if (AccreditedToDate != null) 
-                {
+            get { 
+                if (AccreditedToDate != null) {
                     return "<span itemprop=\"DateEnd\">" + AccreditedToDate.Value.ToShortDateString () + "</span>";
                 }
 

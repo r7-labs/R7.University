@@ -34,36 +34,36 @@ using R7.University.Data;
 namespace R7.University.Employee
 {
     public class EmployeeController : ModuleSearchBase
-	{
-		#region ModuleSearchBase implementaion
+    {
+        #region ModuleSearchBase implementaion
 
-		public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
-		{
-			var searchDocs = new List<SearchDocument> ();
-			var settings = new EmployeeSettings (modInfo);
+        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
+        {
+            var searchDocs = new List<SearchDocument> ();
+            var settings = new EmployeeSettings (modInfo);
             var employee = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (settings.EmployeeID);
 		
-			if (employee != null && employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ())
-			{
-				var aboutEmployee = employee.SearchDocumentText;
-				var sd = new SearchDocument () {
-					PortalId = modInfo.PortalID,
-					AuthorUserId = employee.LastModifiedByUserID,
-					Title = employee.FullName,
-					// Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
-					Body = aboutEmployee,
-					ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
-					UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
+            if (employee != null && employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
+                var aboutEmployee = employee.SearchDocumentText;
+                var sd = new SearchDocument ()
+                {
+                    PortalId = modInfo.PortalID,
+                    AuthorUserId = employee.LastModifiedByUserID,
+                    Title = employee.FullName,
+                    // Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
+                    Body = aboutEmployee,
+                    ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
+                    UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
                     Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
-					IsActive = employee.IsPublished
-				};
+                    IsActive = employee.IsPublished
+                };
 	
-				searchDocs.Add (sd);
-			}
-			return searchDocs;
-		}
+                searchDocs.Add (sd);
+            }
+            return searchDocs;
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
 

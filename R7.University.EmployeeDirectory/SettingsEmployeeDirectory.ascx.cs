@@ -34,7 +34,7 @@ using R7.University;
 using R7.University.Data;
 
 namespace R7.University.EmployeeDirectory
-{    
+{
     public partial class SettingsEmployeeDirectory: ModuleSettingsBase<EmployeeDirectorySettings>
     {
 
@@ -48,12 +48,12 @@ namespace R7.University.EmployeeDirectory
             // fill edulevels list
             var eduLevels = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
 
-            foreach (var eduLevel in eduLevels)
-            {
-                listEduLevels.Items.Add (new DnnListBoxItem { 
-                    Text = eduLevel.DisplayShortTitle, 
-                    Value = eduLevel.EduLevelID.ToString ()
-                });
+            foreach (var eduLevel in eduLevels) {
+                listEduLevels.Items.Add (new DnnListBoxItem
+                    { 
+                        Text = eduLevel.DisplayShortTitle, 
+                        Value = eduLevel.EduLevelID.ToString ()
+                    });
             }
         }
 
@@ -62,18 +62,14 @@ namespace R7.University.EmployeeDirectory
         /// </summary>
         public override void LoadSettings ()
         {
-            try
-            {
-                if (!IsPostBack)
-                {
+            try {
+                if (!IsPostBack) {
                     comboMode.SelectByValue (Settings.Mode);
 
                     // check edulevels list items
-                    foreach (var eduLevelId in Settings.EduLevels)
-                    {
+                    foreach (var eduLevelId in Settings.EduLevels) {
                         var item = listEduLevels.FindItemByValue (eduLevelId.ToString ());
-                        if (item != null)
-                        {
+                        if (item != null) {
                             item.Checked = true;
                         }
                     }
@@ -81,27 +77,26 @@ namespace R7.University.EmployeeDirectory
                     checkShowAllTeachers.Checked = Settings.ShowAllTeachers;
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
-      
+
         /// <summary>
         /// handles updating the module settings for this control
         /// </summary>
         public override void UpdateSettings ()
         {
-            try
-            {
-                Settings.Mode = (EmployeeDirectoryMode) Enum.Parse (typeof (EmployeeDirectoryMode), comboMode.SelectedValue);
+            try {
+                Settings.Mode = (EmployeeDirectoryMode) Enum.Parse (
+                    typeof (EmployeeDirectoryMode),
+                    comboMode.SelectedValue);
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
                 Settings.ShowAllTeachers = checkShowAllTeachers.Checked;
 
                 Utils.SynchronizeModule (this);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }

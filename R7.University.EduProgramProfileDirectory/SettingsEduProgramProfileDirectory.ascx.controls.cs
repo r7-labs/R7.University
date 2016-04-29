@@ -9,9 +9,9 @@ using R7.University;
 
 namespace R7.University.EduProgramProfileDirectory
 {
-	public partial class SettingsEduProgramProfileDirectory
-	{
+    public partial class SettingsEduProgramProfileDirectory
+    {
         protected DropDownList comboMode;
         protected DnnListBox listEduLevels;
-	}
+    }
 }
