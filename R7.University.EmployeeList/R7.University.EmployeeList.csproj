@@ -63,7 +63,7 @@
       <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="R7.DotNetNuke.Extensions">
-      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.7.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.8.0-alpha-1\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

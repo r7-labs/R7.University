@@ -40,7 +40,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Components;

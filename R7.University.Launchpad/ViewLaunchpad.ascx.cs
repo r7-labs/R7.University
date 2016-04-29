@@ -33,7 +33,7 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
-using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University.Launchpad.Components;
 

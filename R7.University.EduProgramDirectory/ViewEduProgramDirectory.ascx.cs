@@ -37,7 +37,7 @@ using R7.University;
 using R7.University.ModelExtensions;
 using R7.University.ControlExtensions;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.DotNetNuke.Extensions.Entities.Modules;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University.Data;
 using R7.University.ViewModels;
