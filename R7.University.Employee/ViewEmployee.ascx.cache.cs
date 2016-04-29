@@ -26,6 +26,8 @@
 
 #define RENDERCACHE
 
+using R7.University.Components;
+
 //
 // ViewEmployee.ascx.cache.cs
 //

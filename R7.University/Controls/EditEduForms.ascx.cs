@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.University.Components;
 
 namespace R7.University.Controls
 {

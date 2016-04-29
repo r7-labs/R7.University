@@ -25,12 +25,8 @@
 // THE SOFTWARE.
 
 using System;
-using System.Runtime.CompilerServices;
-using System.CodeDom;
-using System.Web.Services.Description;
-using Telerik.Web.UI;
 
-namespace R7.University
+namespace R7.University.Components
 {
     public static class CopyCstor
     {

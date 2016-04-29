@@ -28,7 +28,7 @@ using System;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University;
+using R7.University.Utilities;
 
 namespace R7.University.DivisionDirectory
 {

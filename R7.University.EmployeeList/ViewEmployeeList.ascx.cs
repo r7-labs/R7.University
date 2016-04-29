@@ -41,6 +41,8 @@ using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University;
 using R7.University.Data;
+using R7.University.SharedLogic;
+using R7.University.Utilities;
 
 namespace R7.University.EmployeeList
 {

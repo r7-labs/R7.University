@@ -31,6 +31,7 @@ using System.Xml.Serialization;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Components;
 
 namespace R7.University.Controls
 {

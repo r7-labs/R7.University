@@ -27,8 +27,9 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
+using R7.University.Utilities;
 
-namespace R7.University
+namespace R7.University.Models
 {
     public class VCard
     {

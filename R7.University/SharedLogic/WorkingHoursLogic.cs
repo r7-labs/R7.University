@@ -32,7 +32,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Localization;
 using R7.University.ControlExtensions;
 
-namespace R7.University
+namespace R7.University.SharedLogic
 {
     public static class WorkingHoursLogic
     {

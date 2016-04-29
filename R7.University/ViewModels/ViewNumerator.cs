@@ -1,10 +1,10 @@
 ﻿//
-// EmployeeEqualityComparer.cs
+// ViewEnumerator.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,25 +25,19 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
+using System.Threading;
 
-namespace R7.University
+namespace R7.University.ViewModels
 {
-    public class EmployeeEqualityComparer : IEqualityComparer <EmployeeInfo>
+    public static class ViewNumerator
     {
-        #region IEqualityComparer implementation
+        private static int nextItemID = 0;
 
-        public bool Equals (EmployeeInfo x, EmployeeInfo y)
+        public static int GetNextItemID ()
         {
-            return x.EmployeeID == y.EmployeeID;
+            Interlocked.Increment (ref nextItemID);
+            return nextItemID;
         }
-
-        public int GetHashCode (EmployeeInfo obj)
-        {
-            return obj.EmployeeID;
-        }
-
-        #endregion
     }
 }
 

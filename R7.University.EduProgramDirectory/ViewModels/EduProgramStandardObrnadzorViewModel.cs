@@ -27,10 +27,12 @@
 using System;
 using System.Linq;
 using DotNetNuke.Common;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Entities.Tabs;
-using R7.University.Utilities;
+using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Components;
+using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramDirectory
 {

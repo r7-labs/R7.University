@@ -30,8 +30,9 @@ using System.Globalization;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
+using R7.University.Utilities;
 
-namespace R7.University
+namespace R7.University.SharedLogic
 {
     public static class EmployeePhotoLogic
     {

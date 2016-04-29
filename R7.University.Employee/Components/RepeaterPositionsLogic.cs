@@ -28,6 +28,7 @@ using System;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
 using R7.University;
+using R7.University.Utilities;
 
 namespace R7.University.Employee
 {

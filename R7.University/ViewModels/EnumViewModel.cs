@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 
-namespace R7.University
+namespace R7.University.ViewModels
 {
     public class EnumViewModel<T> where T: struct
     {

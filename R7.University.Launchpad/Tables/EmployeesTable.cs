@@ -31,6 +31,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.University;
 using R7.University.Data;
+using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {

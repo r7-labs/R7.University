@@ -43,6 +43,10 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
+using R7.University.SharedLogic;
+using R7.University.Utilities;
+using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
+using R7.University.Components;
 
 namespace R7.University.Employee
 {
@@ -173,7 +177,7 @@ namespace R7.University.Employee
 
             if (InPopup) {
                 linkReturn.Attributes.Add ("onclick", "javascript:return " +
-                    UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
+                    DnnUrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
             }
             else if (InViewModule) {
                 linkReturn.Visible = false;

@@ -37,7 +37,7 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.UI.Modules;
 
-namespace R7.University
+namespace R7.University.Utilities
 {
     public static class Utils
     {

@@ -36,6 +36,7 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
+using R7.University.Components;
 
 namespace R7.University.Controls
 {

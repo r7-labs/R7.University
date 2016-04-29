@@ -33,7 +33,7 @@ using System.Data;
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace R7.University
+namespace R7.University.Components
 {
     public static class DataTableConstructor
     {

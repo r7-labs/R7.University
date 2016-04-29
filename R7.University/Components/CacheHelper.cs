@@ -27,7 +27,7 @@
 using System;
 using DotNetNuke.Common.Utilities;
 
-namespace R7.University
+namespace R7.University.Components
 {
     public static class CacheHelper
     {

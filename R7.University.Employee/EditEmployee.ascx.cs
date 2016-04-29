@@ -42,9 +42,12 @@ using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.ModelExtensions;
+using R7.University.SharedLogic;
+using R7.University.Utilities;
 
 namespace R7.University.Employee
 {
@@ -572,8 +575,8 @@ namespace R7.University.Employee
                                            textLastName.Text, textOtherName.Text);
 
                     // REVIEW: EmployeeInfo should contain culture data?
-                    var employeeNameTL = TextUtils.Transliterate (employeeName, TextUtils.RuTranslitTable)
-                        .ToLowerInvariant ();
+                    var employeeNameTL = R7.University.Utilities.TextUtils.Transliterate (employeeName, 
+                        R7.University.Utilities.TextUtils.RuTranslitTable).ToLowerInvariant ();
 
                     // get files from default folder recursively
                     foreach (var file in FolderManager.Instance.GetFiles (folder, true)) {

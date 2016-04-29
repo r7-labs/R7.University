@@ -1,10 +1,10 @@
 ﻿//
-// ViewEnumerator.cs
+// Phone.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2014 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,19 +25,33 @@
 // THE SOFTWARE.
 
 using System;
-using System.Threading;
 
-namespace R7.University
+namespace R7.University.Models
 {
-    public static class ViewNumerator
+    [Flags]
+    public enum VCardPhoneType
     {
-        private static int nextItemID = 0;
+        None = 0,
+        Home = 1,
+        Msg = 2,
+        Work = 4,
+        Pref = 8,
+        Voice = 16,
+        Fax = 32,
+        Cell = 64,
+        Video = 128,
+        Pager = 256,
+        Bbs = 512,
+        Modem = 1024,
+        Car = 2048,
+        Isdn = 4096,
+        Pcs = 8192
+    }
 
-        public static int GetNextItemID ()
-        {
-            Interlocked.Increment (ref nextItemID);
-            return nextItemID;
-        }
+    public class VCardPhone
+    {
+        public string Number { get; set; }
+
+        public VCardPhoneType Type { get; set; }
     }
 }
-

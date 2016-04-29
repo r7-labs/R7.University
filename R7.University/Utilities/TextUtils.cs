@@ -27,7 +27,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace R7.University
+namespace R7.University.Utilities
 {
     public static class TextUtils
     {

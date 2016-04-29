@@ -1,10 +1,10 @@
 ﻿//
-// Phone.cs
+// ViewModelIndexer.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,32 +26,21 @@
 
 using System;
 
-namespace R7.University
+namespace R7.University.ViewModels
 {
-    [Flags]
-    public enum VCardPhoneType
+    public class ViewModelIndexer
     {
-        None = 0,
-        Home = 1,
-        Msg = 2,
-        Work = 4,
-        Pref = 8,
-        Voice = 16,
-        Fax = 32,
-        Cell = 64,
-        Video = 128,
-        Pager = 256,
-        Bbs = 512,
-        Modem = 1024,
-        Car = 2048,
-        Isdn = 4096,
-        Pcs = 8192
-    }
+        private int index;
 
-    public class VCardPhone
-    {
-        public string Number { get; set; }
+        public ViewModelIndexer (int startIndex)
+        {
+            index = startIndex;
+        }
 
-        public VCardPhoneType Type { get; set; }
+        public int GetNextIndex ()
+        {
+            return index++;
+        }
     }
 }
+

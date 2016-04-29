@@ -28,6 +28,9 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
+using R7.University.Utilities;
+
 namespace R7.University
 {
     // More attributes for class:
@@ -41,13 +44,6 @@ namespace R7.University
     [PrimaryKey ("EmployeeID", AutoIncrement = true)]
     public class EmployeeInfo : UniversityEntityBase
     {
-        /// <summary>
-        /// Empty default cstor
-        /// </summary>
-        public EmployeeInfo ()
-        {
-        }
-
         #region Properties
 
         public int EmployeeID { get; set; }

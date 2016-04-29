@@ -26,6 +26,7 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Utilities;
 
 namespace R7.University
 {

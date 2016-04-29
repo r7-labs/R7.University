@@ -116,19 +116,19 @@
     <Compile Include="Components\CacheHelper.cs" />
     <Compile Include="Components\CopyCstor.cs" />
     <Compile Include="Components\DataTableConstructor.cs" />
-    <Compile Include="Components\EmployeeEqualityComparer.cs" />
-    <Compile Include="Components\EmployeePhotoLogic.cs" />
-    <Compile Include="Components\EnumViewModel.cs" />
-    <Compile Include="Components\TextUtils.cs" />
     <Compile Include="Components\UniversityController.cs" />
-    <Compile Include="Components\UrlUtils.cs" />
-    <Compile Include="Components\Utils.cs" />
-    <Compile Include="Components\VCard.cs" />
-    <Compile Include="Components\VCardPhone.cs" />
-    <Compile Include="Components\ViewModelIndexer.cs" />
-    <Compile Include="Components\ViewNumerator.cs" />
-    <Compile Include="Components\WorkingHoursLogic.cs" />
     <Compile Include="Components\XmlSerializationHelper.cs" />
+    <Compile Include="Utilities\UrlUtils.cs" />
+    <Compile Include="Utilities\TextUtils.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="ViewModels\EnumViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelIndexer.cs" />
+    <Compile Include="ViewModels\ViewNumerator.cs" />
+    <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
+    <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
+    <Compile Include="Models\VCardPhone.cs" />
+    <Compile Include="Models\VCard.cs" />
+    <Compile Include="Models\EmployeeEqualityComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -142,6 +142,9 @@
     <Folder Include="Data\" />
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="SharedLogic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

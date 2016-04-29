@@ -40,6 +40,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University.Data;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramDirectory
 {

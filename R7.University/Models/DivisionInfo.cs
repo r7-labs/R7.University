@@ -26,8 +26,10 @@
 
 using System;
 using System.Text.RegularExpressions;
-using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University
 {
@@ -42,17 +44,6 @@ namespace R7.University
     [PrimaryKey ("DivisionID", AutoIncrement = true)]
     public class DivisionInfo : UniversityEntityBase, IReferenceEntity
     {
-        #region Fields
-
-        #endregion
-
-        /// <summary>
-        /// Empty default cstor
-        /// </summary>
-        public DivisionInfo ()
-        {
-        }
-
         /// <summary>
         /// Empty division to use as default item with lists and treeviews
         /// </summary>

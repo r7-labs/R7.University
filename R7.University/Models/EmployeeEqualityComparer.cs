@@ -1,10 +1,10 @@
 ﻿//
-// ViewModelIndexer.cs
+// EmployeeEqualityComparer.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2014 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,22 +25,25 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 
-namespace R7.University
+namespace R7.University.Models
 {
-    public class ViewModelIndexer
+    public class EmployeeEqualityComparer : IEqualityComparer <EmployeeInfo>
     {
-        private int index;
+        #region IEqualityComparer implementation
 
-        public ViewModelIndexer (int startIndex)
+        public bool Equals (EmployeeInfo x, EmployeeInfo y)
         {
-            index = startIndex;
+            return x.EmployeeID == y.EmployeeID;
         }
 
-        public int GetNextIndex ()
+        public int GetHashCode (EmployeeInfo obj)
         {
-            return index++;
+            return obj.EmployeeID;
         }
+
+        #endregion
     }
 }
 

@@ -28,7 +28,7 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University;
+using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
