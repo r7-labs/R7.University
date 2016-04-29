@@ -59,19 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="components\Utils.cs" />
-    <Compile Include="components\VCard.cs" />
-    <Compile Include="components\VCardPhone.cs" />
-    <Compile Include="components\CacheHelper.cs" />
-    <Compile Include="components\EmployeePhotoLogic.cs" />
-    <Compile Include="components\WorkingHoursLogic.cs" />
-    <Compile Include="components\TextUtils.cs" />
-    <Compile Include="components\EmployeeEqualityComparer.cs" />
-    <Compile Include="components\DataTableConstructor.cs" />
-    <Compile Include="components\ViewNumerator.cs" />
-    <Compile Include="components\CopyCstor.cs" />
-    <Compile Include="components\UrlUtils.cs" />
-    <Compile Include="components\XmlSerializationHelper.cs" />
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
     <Compile Include="ModelExtensions\DocumentExtensions.cs" />
     <Compile Include="Models\AchievementInfo.cs" />
@@ -98,7 +85,6 @@
     <Compile Include="Models\UniversityEntityBase.cs" />
     <Compile Include="ControlExtensions\GridViewExtensions.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
-    <Compile Include="components\ViewModelIndexer.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileExtensions.cs" />
     <Compile Include="Controls\EditDocuments.ascx.cs">
       <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>
@@ -124,15 +110,28 @@
     <Compile Include="Controls\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="Models\FormatHelper.cs" />
-    <Compile Include="components\EnumViewModel.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
     <Compile Include="Data\UniversityRepository.cs" />
-    <Compile Include="components\UniversityController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Components\CacheHelper.cs" />
+    <Compile Include="Components\CopyCstor.cs" />
+    <Compile Include="Components\DataTableConstructor.cs" />
+    <Compile Include="Components\EmployeeEqualityComparer.cs" />
+    <Compile Include="Components\EmployeePhotoLogic.cs" />
+    <Compile Include="Components\EnumViewModel.cs" />
+    <Compile Include="Components\TextUtils.cs" />
+    <Compile Include="Components\UniversityController.cs" />
+    <Compile Include="Components\UrlUtils.cs" />
+    <Compile Include="Components\Utils.cs" />
+    <Compile Include="Components\VCard.cs" />
+    <Compile Include="Components\VCardPhone.cs" />
+    <Compile Include="Components\ViewModelIndexer.cs" />
+    <Compile Include="Components\ViewNumerator.cs" />
+    <Compile Include="Components\WorkingHoursLogic.cs" />
+    <Compile Include="Components\XmlSerializationHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="components\" />
     <Folder Include="css\" />
     <Folder Include="ModelExtensions\" />
     <Folder Include="Models\" />
@@ -142,6 +141,7 @@
     <Folder Include="Controls\ViewModels\" />
     <Folder Include="Data\" />
     <Folder Include="Properties\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
