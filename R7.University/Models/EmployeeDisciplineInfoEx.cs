@@ -26,7 +26,7 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.University.Utilities;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University
 {
@@ -50,8 +50,8 @@ namespace R7.University
         public string EduProfileString
         {
             get {
-                var profileString = Utils.FormatList (" ", ProfileCode, ProfileTitle);
-                return Utils.FormatList (" ", Code, Title) +
+                var profileString = TextUtils.FormatList (" ", ProfileCode, ProfileTitle);
+                return TextUtils.FormatList (" ", Code, Title) +
                 (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
             }
         }

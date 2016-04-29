@@ -28,7 +28,7 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.Utilities;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -68,7 +68,7 @@ namespace R7.University.Launchpad
                 return tables;
             }
             set { 
-                WriteTabModuleSetting<string> ("Launchpad_Tables", Utils.FormatList (";", value.ToArray ())); 
+                WriteTabModuleSetting<string> ("Launchpad_Tables", TextUtils.FormatList (";", value.ToArray ())); 
             }
         }
 

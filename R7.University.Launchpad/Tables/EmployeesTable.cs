@@ -29,9 +29,9 @@ using System.Collections.Generic;
 using System.Data;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
-using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -96,7 +96,7 @@ namespace R7.University.Launchpad
                 dr [i++] = employee.OtherName;
                 dr [i++] = employee.Email;
                 dr [i++] = employee.SecondaryEmail;
-                dr [i++] = Utils.FormatList (": ", employee.WebSiteLabel, employee.WebSite);
+                dr [i++] = TextUtils.FormatList (": ", employee.WebSiteLabel, employee.WebSite);
                 dr [i++] = employee.Messenger;
                 dr [i++] = employee.WorkingPlace;
                 dr [i++] = employee.WorkingHours;

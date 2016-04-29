@@ -27,7 +27,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using R7.University.Utilities;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Models
 {
@@ -127,7 +127,7 @@ namespace R7.University.Models
             // names
             // last element must contain additional names, comma separated
             if (Names.Count > 0)
-                vcard.AppendFormat ("N{0}:{1}\n", charset, Utils.FormatList (";", Names.ToArray ()));
+                vcard.AppendFormat ("N{0}:{1}\n", charset, TextUtils.FormatList (";", Names.ToArray ()));
 
             // organization
             if (!string.IsNullOrWhiteSpace (OrganizationName))
@@ -222,7 +222,7 @@ namespace R7.University.Models
             if ((type & VCardPhoneType.Pcs) > 0)
                 types.Add (VCardPhoneType.Pcs.ToString ());
 
-            return Utils.FormatList (",", types.ToArray ());
+            return TextUtils.FormatList (",", types.ToArray ());
         }
     }
 }

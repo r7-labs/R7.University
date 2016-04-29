@@ -28,13 +28,13 @@ using System;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.Data;
-using R7.University.Utilities;
 
 namespace R7.University.Employee
 {
@@ -108,8 +108,7 @@ namespace R7.University.Employee
                 else
                     Settings.DataCacheTime = Null.NullInteger;
 				
-                Utils.SynchronizeModule (this);
-
+                ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

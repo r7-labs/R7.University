@@ -26,13 +26,13 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.Data;
-using R7.University.Utilities;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -95,7 +95,7 @@ namespace R7.University.EmployeeDirectory
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
                 Settings.ShowAllTeachers = checkShowAllTeachers.Checked;
 
-                Utils.SynchronizeModule (this);
+                ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

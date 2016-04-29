@@ -33,7 +33,6 @@ using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
-using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -138,7 +137,7 @@ namespace R7.University.Launchpad
                 else
                     UniversityRepository.Instance.DataProvider.Update<AchievementInfo> (item);
 
-                Utils.SynchronizeModule (this);
+                ModuleController.SynchronizeModule (ModuleId);
 
                 Response.Redirect (Globals.NavigateURL (), true);
             }

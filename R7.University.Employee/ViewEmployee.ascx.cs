@@ -41,7 +41,6 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
 using R7.University.SharedLogic;
-using R7.University.Utilities;
 
 namespace R7.University.Employee
 {
@@ -184,9 +183,9 @@ namespace R7.University.Employee
             linkPhoto.NavigateUrl = popupUrl;
 
             // Employee titles
-            var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle));
+            var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.DisplayShortTitle));
 			
-            var strTitles = Utils.FormatList (", ", titles);
+            var strTitles = TextUtils.FormatList (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
@@ -217,7 +216,7 @@ namespace R7.University.Employee
                 labelMessenger.Visible = false;
 
             // Working place and Hours
-            var workingPlaceAndHours = Utils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours))
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
             else
@@ -274,7 +273,7 @@ namespace R7.University.Employee
                 linkSecondaryEmail.Visible = false;
 
             // Profile link
-            if (!Utils.IsNull<int> (employee.UserID))
+            if (!TypeUtils.IsNull<int> (employee.UserID))
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
             else
                 linkUserProfile.Visible = false;

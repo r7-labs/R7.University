@@ -30,8 +30,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
@@ -408,7 +408,7 @@ namespace R7.University.EduProgramProfileDirectory
                         .ToList ();
 
                     if (languages.Count > 0) {
-                        return "<span itemprop=\"language\">" + Utils.FormatList (", ", languages) + "</span>";
+                        return "<span itemprop=\"language\">" + TextUtils.FormatList (", ", languages) + "</span>";
                     }
                 }
 

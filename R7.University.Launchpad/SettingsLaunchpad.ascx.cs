@@ -26,9 +26,9 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -92,8 +92,7 @@ namespace R7.University.Launchpad
                 // since view set may be changed
                 Session.Remove ("Launchpad_ActiveView_" + TabModuleId);
 
-                Utils.SynchronizeModule (this);
-
+                ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

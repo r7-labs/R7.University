@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.UI.Modules;
-using R7.University.Utilities;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University
 {
@@ -79,7 +79,7 @@ namespace R7.University
                 var strDivision = DivisionInfo.FormatShortTitle (DivisionTitle, DivisionShortTitle);
                 if (!string.IsNullOrWhiteSpace (HomePage))
                     strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
-                        Utils.FormatURL (module, HomePage, false), strDivision);
+                        R7.University.Utilities.Utils.FormatURL (module, HomePage, false), strDivision);
 
                 return strDivision;
             }
@@ -99,13 +99,13 @@ namespace R7.University
             for (var i = 0; i < opList.Count; i++) {
                 var op = opList [i];
                 // first combine position short title with it's suffix
-                op.PositionShortTitle = Utils.FormatList (" ", 
+                op.PositionShortTitle = TextUtils.FormatList (" ", 
                     PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle), 
                     op.TitleSuffix);
 
                 for (var j = i + 1; j < opList.Count;) {
                     if (op.DivisionID == opList [j].DivisionID) {
-                        op.PositionShortTitle += ", " + Utils.FormatList (" ", 
+                        op.PositionShortTitle += ", " + TextUtils.FormatList (" ", 
                             PositionInfo.FormatShortTitle (opList [j].PositionTitle, opList [j].PositionShortTitle), 
                             opList [j].TitleSuffix);
 					

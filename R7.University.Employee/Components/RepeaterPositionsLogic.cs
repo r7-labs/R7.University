@@ -27,8 +27,8 @@
 using System;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
-using R7.University.Utilities;
 
 namespace R7.University.Employee
 {
@@ -47,7 +47,7 @@ namespace R7.University.Employee
                 labelPosition.Text = PositionInfo.FormatShortTitle (opex.PositionTitle, opex.PositionShortTitle);
 
                 // don't display division title for highest level divisions
-                if (Utils.IsNull (opex.ParentDivisionID)) {
+                if (TypeUtils.IsNull (opex.ParentDivisionID)) {
                     labelDivision.Visible = false;
                     linkDivision.Visible = false;
                 }
@@ -59,7 +59,7 @@ namespace R7.University.Employee
                     if (!string.IsNullOrWhiteSpace (opex.HomePage)) {
                         // link to division's homepage
                         labelDivision.Visible = false;
-                        linkDivision.NavigateUrl = Utils.FormatCrossPortalTabUrl (
+                        linkDivision.NavigateUrl = R7.University.Utilities.Utils.FormatCrossPortalTabUrl (
                             module,
                             int.Parse (opex.HomePage),
                             false);

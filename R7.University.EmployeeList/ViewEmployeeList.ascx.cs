@@ -39,10 +39,10 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
 using R7.University.SharedLogic;
-using R7.University.Utilities;
 
 namespace R7.University.EmployeeList
 {
@@ -108,7 +108,7 @@ namespace R7.University.EmployeeList
 							ContainerControl.Visible = false;
                     }
                     else {
-                        var employeeIds = Utils.FormatList (", ", items.Select (em => em.EmployeeID));
+                        var employeeIds = TextUtils.FormatList (", ", items.Select (em => em.EmployeeID));
 
                         // get title achievements for all selected employees
                         // TODO: Move to dataprovider
@@ -241,17 +241,17 @@ namespace R7.University.EmployeeList
             // get current employee title achievements
             var achievements = CommonTitleAchievements.Where (ach => ach.EmployeeID == employee.EmployeeID);
 
-            var titles = achievements.Select (ach => Utils.FirstCharToLower (ach.DisplayShortTitle));
+            var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.DisplayShortTitle));
 			
             // employee title achievements
-            var strTitles = Utils.FormatList (", ", titles);
+            var strTitles = TextUtils.FormatList (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
                 labelAcademicDegreeAndTitle.Visible = false;
 			
             // phones
-            var phones = Utils.FormatList (", ", employee.Phone, employee.CellPhone);
+            var phones = TextUtils.FormatList (", ", employee.Phone, employee.CellPhone);
             if (!string.IsNullOrWhiteSpace (phones))
                 labelPhones.Text = phones;
             else
@@ -282,7 +282,7 @@ namespace R7.University.EmployeeList
                 linkWebSite.Visible = false;
 
             // profile link
-            if (!Utils.IsNull<int> (employee.UserID)) {
+            if (!TypeUtils.IsNull<int> (employee.UserID)) {
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
                 // TODO: Replace profile text with something more sane
                 linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);
@@ -301,7 +301,7 @@ namespace R7.University.EmployeeList
                     var strOp = PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle);
 
                     // op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
-                    strOps = Utils.FormatList ("; ", strOps, Utils.FormatList (": ", strOp, 
+                    strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", strOp, 
                         // do not display division title also for current division
                             (op.DivisionID != Settings.DivisionID) ? op.FormatDivisionLink (this) : string.Empty));
                 }

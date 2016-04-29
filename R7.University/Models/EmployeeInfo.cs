@@ -28,8 +28,8 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
-using R7.University.Utilities;
 
 namespace R7.University
 {
@@ -120,14 +120,14 @@ namespace R7.University
         [IgnoreColumn]
         public string FullName
         {
-            get { return Utils.FormatList (" ", LastName, FirstName, OtherName); }
+            get { return TextUtils.FormatList (" ", LastName, FirstName, OtherName); }
         }
 
         [IgnoreColumn]
         public string SearchDocumentText
         {
             get {
-                var text = Utils.FormatList (", ",
+                var text = TextUtils.FormatList (", ",
                     FullName,
                     Phone,
                     CellPhone,

@@ -30,7 +30,7 @@ using System.Globalization;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
-using R7.University.Utilities;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.SharedLogic
 {
@@ -42,7 +42,7 @@ namespace R7.University.SharedLogic
             var imageHeight = 0;
             var imageWidth = 0;
 
-            if (!Utils.IsNull (employee.PhotoFileID)) {
+            if (!TypeUtils.IsNull (employee.PhotoFileID)) {
                 // REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
 
                 image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);

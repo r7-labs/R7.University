@@ -30,9 +30,9 @@ using System.Data;
 using System.Linq;
 using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Models;
-using R7.University.Utilities;
 
 namespace R7.University.Data
 {
@@ -141,7 +141,7 @@ namespace R7.University.Data
                     if (occupiedPositonIDs.Any ()) {
                         DataProvider.Delete<OccupiedPositionInfo> (
                             string.Format ("WHERE [EmployeeID] = {0} AND [OccupiedPositionID] NOT IN ({1})", 
-                                employee.EmployeeID, Utils.FormatList (", ", occupiedPositonIDs))); 
+                                employee.EmployeeID, TextUtils.FormatList (", ", occupiedPositonIDs))); 
                     }
                     else {
                         // delete all employee occupied positions 
@@ -164,7 +164,7 @@ namespace R7.University.Data
                         // delete those not in current list
                         DataProvider.Delete<EmployeeAchievementInfo> (
                             string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
-                                employee.EmployeeID, Utils.FormatList (", ", employeeAchievementIDs))); 
+                                employee.EmployeeID, TextUtils.FormatList (", ", employeeAchievementIDs))); 
                     }
                     else {
                         // delete all employee achievements
@@ -192,7 +192,7 @@ namespace R7.University.Data
                         // delete those not in current list
                         DataProvider.Delete<EmployeeDisciplineInfo> (
                             string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeDisciplineID] NOT IN ({1})", 
-                                employee.EmployeeID, Utils.FormatList (", ", employeeDisciplineIDs))); 
+                                employee.EmployeeID, TextUtils.FormatList (", ", employeeDisciplineIDs))); 
                     }
                     else {
                         // delete all employee disciplines
@@ -276,13 +276,13 @@ namespace R7.University.Data
             if (eduLevelIds.Any ()) {
                 if (getAll) {
                     return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
-                            Utils.FormatList (",", eduLevelIds))
+                            TextUtils.FormatList (",", eduLevelIds))
                     );
                 }
 
                 return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
                         "AND (EndDate IS NULL OR @0 < EndDate) AND EduLevelID IN ({0})",
-                        Utils.FormatList (",", eduLevelIds)), DateTime.Now
+                        TextUtils.FormatList (",", eduLevelIds)), DateTime.Now
                 );
             }
 
@@ -327,7 +327,7 @@ namespace R7.University.Data
                         // delete specific documents
                         DataProvider.Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'{0}' AND [DocumentID] NOT IN ({1})", 
                                 "EduProgramID=" + eduProgram.EduProgramID,
-                                Utils.FormatList (", ", documentIds))); 
+                                TextUtils.FormatList (", ", documentIds))); 
                     }
                     else {
                         // delete all edu program documents

@@ -39,14 +39,14 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Entities.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.SharedLogic;
-using R7.University.Utilities;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
-using R7.University.Components;
 
 namespace R7.University.Employee
 {
@@ -330,7 +330,7 @@ namespace R7.University.Employee
                 labelMessenger.Visible = false;
 
             // Working place and Hours
-            var workingPlaceAndHours = Utils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours))
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
             else
@@ -361,7 +361,7 @@ namespace R7.University.Employee
                 linkSecondaryEmail.Visible = false;
 
             // Profile link
-            if (!Utils.IsNull<int> (employee.UserID))
+            if (!TypeUtils.IsNull<int> (employee.UserID))
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
             else
                 linkUserProfile.Visible = false;
@@ -456,11 +456,11 @@ namespace R7.University.Employee
 	
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
-                .Select (ach => Utils.FirstCharToLower (ach.Title));
+                .Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.Title));
             
-            var strTitles = Utils.FormatList (", ", titles);
+            var strTitles = TextUtils.FormatList (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
-                labelAcademicDegreeAndTitle.Text = Utils.FirstCharToUpper (strTitles);
+                labelAcademicDegreeAndTitle.Text = strTitles.FirstCharToUpper ();
             else
                 labelAcademicDegreeAndTitle.Visible = false;
 

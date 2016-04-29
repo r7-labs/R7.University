@@ -40,7 +40,6 @@ using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.ModelExtensions;
-using R7.University.Utilities;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -111,7 +110,7 @@ namespace R7.University.EmployeeDirectory
         {
             base.OnInit (e);
 
-            mviewEmployeeDirectory.ActiveViewIndex = Utils.GetViewIndexByID (
+            mviewEmployeeDirectory.ActiveViewIndex = R7.University.Utilities.Utils.GetViewIndexByID (
                 mviewEmployeeDirectory,
                 "view" + Settings.Mode);
 
@@ -133,7 +132,7 @@ namespace R7.University.EmployeeDirectory
                 treeDivisions.DataBind ();
 
                 // REVIEW: Level should be set in settings?
-                Utils.ExpandToLevel (treeDivisions, 2);
+                R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
             }
         }
 
@@ -151,7 +150,7 @@ namespace R7.University.EmployeeDirectory
                         if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision)) {
                             // restore current search
                             textSearch.Text = SearchText;
-                            Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
+                            R7.University.Utilities.Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
                             checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
                             checkTeachersOnly.Checked = SearchTeachersOnly;
 
@@ -293,13 +292,13 @@ namespace R7.University.EmployeeDirectory
                 var literalPositions = (Literal) e.Row.FindControl ("literalPositions");
 
                 var positions = UniversityRepository.Instance.DataProvider.GetObjects <OccupiedPositionInfoEx> (
-                                    "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", teacher.EmployeeID).Select (op => Utils.FormatList (
-                                        ": ",
+                                    "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", teacher.EmployeeID)
+                                    .Select (op => TextUtils.FormatList (": ",
                                         op.PositionTitle,
                                         op.DivisionTitle));
 
                 // TODO: Use OccupiedPositionInfoEx.GroupByDivision () here
-                literalPositions.Text = Utils.FormatList ("; ", positions);
+                literalPositions.Text = R7.DotNetNuke.Extensions.Utilities.TextUtils.FormatList ("; ", positions);
 
                 #endregion
 
@@ -317,11 +316,11 @@ namespace R7.University.EmployeeDirectory
 
                 var education = achievements
                     .Where (ach => ach.AchievementType == AchievementType.Education)
-                    .Select (ed => Utils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
+                    .Select (ed => TextUtils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
                 
                 var training = achievements
                     .Where (ach => ach.AchievementType == AchievementType.Training)
-                    .Select (ed => Utils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
+                    .Select (ed => TextUtils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
                 
                 var academicDegrees = achievements
                     .Where (ach => ach.AchievementType == AchievementType.AcademicDegree)
@@ -331,10 +330,10 @@ namespace R7.University.EmployeeDirectory
                     .Where (ach => ach.AchievementType == AchievementType.AcademicTitle)
                     .Select (ed => ed.DisplayShortTitle);
 
-                literalEducation.Text = Utils.FormatList ("; ", education);
-                literalTraining.Text = Utils.FormatList ("; ", training);
-                literalAcademicDegrees.Text = Utils.FormatList ("; ", academicDegrees);
-                literalAcademicTitles.Text = Utils.FormatList ("; ", academicTitles);
+                literalEducation.Text = TextUtils.FormatList ("; ", education);
+                literalTraining.Text = TextUtils.FormatList ("; ", training);
+                literalAcademicDegrees.Text = TextUtils.FormatList ("; ", academicDegrees);
+                literalAcademicTitles.Text = TextUtils.FormatList ("; ", academicTitles);
 
                 #endregion
 
@@ -484,7 +483,7 @@ namespace R7.University.EmployeeDirectory
                                         employee.EmployeeID).FirstOrDefault ();
 
                 if (primePosition != null) {
-                    position.Text = Utils.FormatList (": ", Utils.FormatList (" ", 
+                    position.Text = TextUtils.FormatList (": ", TextUtils.FormatList (" ", 
                             PositionInfo.FormatShortTitle (primePosition.PositionTitle, primePosition.PositionShortTitle), 
                             primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }

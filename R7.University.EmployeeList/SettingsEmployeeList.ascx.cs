@@ -32,6 +32,7 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.Data;
 using R7.University.Utilities;
+using DotNetNuke.Entities.Modules;
 
 namespace R7.University.EmployeeList
 {
@@ -104,7 +105,7 @@ namespace R7.University.EmployeeList
                 else
                     Settings.DataCacheTime = Null.NullInteger;
 
-                Utils.SynchronizeModule (this);
+                ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

@@ -25,10 +25,10 @@
 // THE SOFTWARE.
 
 using System;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.Utilities;
 
 namespace R7.University.DivisionDirectory
 {
@@ -67,7 +67,7 @@ namespace R7.University.DivisionDirectory
                     typeof (DivisionDirectoryMode),
                     comboMode.SelectedValue);
 
-                Utils.SynchronizeModule (this);
+                ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

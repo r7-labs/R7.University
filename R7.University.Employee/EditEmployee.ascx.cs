@@ -33,6 +33,7 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
@@ -267,7 +268,7 @@ namespace R7.University.Employee
                             checkIsPublished.Checked = item.IsPublished;
 
                             // set photo
-                            if (!Utils.IsNull (item.PhotoFileID)) {
+                            if (!TypeUtils.IsNull (item.PhotoFileID)) {
                                 var photo = FileManager.Instance.GetFile (item.PhotoFileID.Value);
                                 if (photo != null) {
                                     pickerPhoto.FileID = photo.FileId;
@@ -436,7 +437,7 @@ namespace R7.University.Employee
                         GetEmployeeAchievements (), GetEmployeeDisciplines ());
                 }
 
-                Utils.SynchronizeModule (this);
+                ModuleController.SynchronizeModule (ModuleId);
                 DataCache.RemoveCache ("Employee_" + TabModuleId + "_RenderedContent");
 
                 Response.Redirect (Globals.NavigateURL (), true);

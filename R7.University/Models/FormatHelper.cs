@@ -26,10 +26,10 @@
 
 using System;
 using System.Globalization;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
-using R7.University.Utilities;
+using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University
 {
@@ -78,23 +78,23 @@ namespace R7.University
         public static string FormatEduProgramProfileTitle (string title, 
             string profileCode, string profileTitle)
         {
-            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
+            var profileString = TextUtils.FormatList (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
-            return Utils.FormatList (" ", title, profileStringInBrackets);
+            return TextUtils.FormatList (" ", title, profileStringInBrackets);
         }
 
         public static string FormatEduProgramProfileTitle (string code, string title, 
             string profileCode, string profileTitle)
         {
-            var profileString = Utils.FormatList (" ", profileCode, profileTitle);
+            var profileString = TextUtils.FormatList (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
-            return Utils.FormatList (" ", code, title, profileStringInBrackets);
+            return TextUtils.FormatList (" ", code, title, profileStringInBrackets);
         }
 
         public static string FormatLinkWithMicrodata (this IDocument document, 
@@ -104,9 +104,9 @@ namespace R7.University
                 
             if (!string.IsNullOrWhiteSpace (document.Url)) {
                 return "<a href=\""
-                + UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
+                + R7.University.Utilities.UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
                 + "\" "
-                + Utils.FormatList (" ",
+                + TextUtils.FormatList (" ",
                     Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,
                     !document.IsPublished () ? "class=\"not-published-document\"" : string.Empty,
                     microdata)

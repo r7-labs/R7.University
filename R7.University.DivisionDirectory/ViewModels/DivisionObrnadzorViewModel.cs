@@ -29,9 +29,9 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Utilities;
 
 namespace R7.University.DivisionDirectory
 {
@@ -216,7 +216,7 @@ namespace R7.University.DivisionDirectory
                 }
                 else
                 {
-                    division.Order = Utils.FormatList (separator, orderStack) + separator + orderCounter + separator;
+                    division.Order = TextUtils.FormatList (separator, orderStack) + separator + orderCounter + separator;
                     division.Level = level;
                 }
 

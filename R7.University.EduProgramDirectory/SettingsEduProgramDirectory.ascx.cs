@@ -26,12 +26,12 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.Data;
-using R7.University.Utilities;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -82,7 +82,7 @@ namespace R7.University.EduProgramDirectory
             try {
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => i.Value).ToList ();
 
-                Utils.SynchronizeModule (this);
+                ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

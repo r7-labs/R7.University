@@ -28,7 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.University.Utilities;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University
 {
@@ -95,7 +95,7 @@ namespace R7.University
         [IgnoreColumn]
         public string EduProgramString
         {
-            get { return Utils.FormatList (" ", Code, Title); }
+            get { return TextUtils.FormatList (" ", Code, Title); }
         }
 
         [IgnoreColumn]

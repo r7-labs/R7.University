@@ -41,7 +41,6 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
-using R7.University.Utilities;
 
 namespace R7.University.DivisionDirectory
 {
@@ -104,7 +103,7 @@ namespace R7.University.DivisionDirectory
         {
             base.OnInit (e);
 
-            mviewDivisionDirectory.ActiveViewIndex = Utils.GetViewIndexByID (
+            mviewDivisionDirectory.ActiveViewIndex = R7.University.Utilities.Utils.GetViewIndexByID (
                 mviewDivisionDirectory,
                 "view" + Settings.Mode);
 
@@ -126,7 +125,7 @@ namespace R7.University.DivisionDirectory
                 treeDivisions.DataBind ();
 
                 // REVIEW: Level should be set in settings?
-                Utils.ExpandToLevel (treeDivisions, 2);
+                R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
 
                 gridDivisions.LocalizeColumns (LocalResourceFile);
             }
@@ -149,7 +148,7 @@ namespace R7.University.DivisionDirectory
                         if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision)) {
                             // restore current search
                             textSearch.Text = SearchText;
-                            Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
+                            R7.University.Utilities.Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
                             checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
 
                             // perform search
@@ -289,7 +288,7 @@ namespace R7.University.DivisionDirectory
                                         " ({0})",
                                         division.ShortTitle) : string.Empty);
                 if (!string.IsNullOrWhiteSpace (division.HomePage)) {
-                    linkTitle.NavigateUrl = Utils.FormatURL (this, division.HomePage, false);
+                    linkTitle.NavigateUrl = R7.University.Utilities.Utils.FormatURL (this, division.HomePage, false);
                     linkTitle.Text = divisionTitle;
                     labelTitle.Visible = false;
                 }
@@ -382,7 +381,7 @@ namespace R7.University.DivisionDirectory
                     literalContactPerson.Text = "<strong><a href=\""
                     + EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails")
                     + "\" itemprop=\"Fio\">" + contactPerson.FullName + "</a></strong><br />"
-                    + Utils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
+                    + TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
                 }
 
                 #endregion

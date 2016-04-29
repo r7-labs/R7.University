@@ -226,7 +226,7 @@ namespace R7.University.Launchpad
                     UniversityRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
                 }
 
-                Utils.SynchronizeModule (this);
+                ModuleController.SynchronizeModule (ModuleId);
 
                 Response.Redirect (Globals.NavigateURL (), true);
             }
