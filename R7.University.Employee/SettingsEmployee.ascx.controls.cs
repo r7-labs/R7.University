@@ -12,7 +12,7 @@ namespace R7.University.Employee
     public partial class SettingsEmployee
     {
         protected LabelControl labelEmployee;
-        protected AjaxControlToolkit.ComboBox comboEmployees;
+        protected DropDownList comboEmployees;
         protected LabelControl labelAutoTitle;
         protected CheckBox checkAutoTitle;
         protected LabelControl labelPhotoWidth;

@@ -144,6 +144,7 @@
     <Folder Include="Utilities\" />
     <Folder Include="ViewModels\" />
     <Folder Include="SharedLogic\" />
+    <Folder Include="js\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -189,6 +190,8 @@
     <None Include="packages.config" />
     <None Include="license.htm" />
     <None Include="releaseNotes.htm" />
+    <None Include="js\dnn-ac-combobox.js" />
+    <None Include="css\dnn-ac-combobox.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

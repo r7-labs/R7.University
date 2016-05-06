@@ -2,28 +2,22 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/dnn-ac-combobox.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
 	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
 	<fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label id="labelEmployee" runat="server" ControlName="comboEmployees" />
-            <asp:UpdatePanel id="updatePanelEmployees" runat="server">
-                <ContentTemplate>
-                    <act:ComboBox id="comboEmployees" runat="server" CssClass="act_combobox"
-                        DropDownStyle="DropDownList"
-                        AutoCompleteMode="SuggestAppend"
-                        CaseSensitive="false"
-                        DataValueField="EmployeeID"
-                        DataTextField="AbbrName"
-                    />
-                </ContentTemplate>
-            </asp:UpdatePanel>
-		</div>
+            <asp:DropDownList id="comboEmployees" runat="server" CssClass="dnn-ac-combobox"
+                DataValueField="EmployeeID"
+                DataTextField="AbbrName"
+            />
+        </div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" />
 			<asp:TextBox id="textPhotoWidth" runat="server" Style="width:100px" />
@@ -50,3 +44,17 @@
 		</div>
 	</fieldset>	
 </div>
+<script type="text/javascript">
+(function($, Sys) {
+    function setupModule() {
+        dnnAcCombobox_Init($);
+        $(".dnn-ac-combobox").combobox();
+    };
+    $(document).ready(function() {
+        setupModule();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setupModule();
+        });
+    });
+} (jQuery, window.Sys));
+</script>
