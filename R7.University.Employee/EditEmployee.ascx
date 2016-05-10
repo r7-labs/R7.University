@@ -11,6 +11,9 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/dnn-ac-combobox.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
+
 <div class="dnnForm dnnClear">
 	<div id="employee-tabs">
 		<ul class="dnnAdminTabNav dnnClear">
@@ -323,63 +326,67 @@
 		</div>
 		<div id="employee-eduprograms-tab">
 			<fieldset>
-                <div class="dnnFormItem">
-                    <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                        GridLines="None" OnRowDataBound="gridEduPrograms_RowDataBound" Style="margin-bottom:30px;width:775px">
-                            <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-                            <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-                            <AlternatingRowStyle CssClass="dnnGridAltItem" />
-                            <SelectedRowStyle CssClass="dnnFormError" />
-                            <EditRowStyle CssClass="dnnFormInput" />
-                            <FooterStyle CssClass="dnnGridFooter" />
-                            <PagerStyle CssClass="dnnGridPager" />
-                            <Columns>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <span style="white-space:nowrap">
-                                            <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditEduProgram_Command" >
-                                                <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-                                            </asp:LinkButton>
-                                            <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteEduProgram_Command" >
-                                                <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-                                            </asp:LinkButton>
-                                        </span>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="ItemID" />
-                                <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
-                                <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
-                            </Columns>
-                    </asp:GridView>
-                    <asp:HiddenField id="hiddenEduProgramItemID" runat="server" />
-                </div>
-   	            <div class="dnnFormItem">
-                    <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-                    <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
-                        <ContentTemplate>
-                            <act:ComboBox id="comboEduProgram" runat="server" CssClass="act_combobox"
-                                DropDownStyle="DropDownList"
-                                AutoCompleteMode="SuggestAppend"
-                                CaseSensitive="false"
+                <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
+                    <ContentTemplate>
+                        <div class="dnnFormItem">
+                            <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                                GridLines="None" OnRowDataBound="gridEduPrograms_RowDataBound" Style="margin-bottom:30px;width:775px">
+                                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                                    <SelectedRowStyle CssClass="dnnFormError" />
+                                    <EditRowStyle CssClass="dnnFormInput" />
+                                    <FooterStyle CssClass="dnnGridFooter" />
+                                    <PagerStyle CssClass="dnnGridPager" />
+                                    <Columns>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <span style="white-space:nowrap">
+                                                    <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditEduProgram_Command" >
+                                                        <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                                    </asp:LinkButton>
+                                                    <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteEduProgram_Command" >
+                                                        <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
+                                                    </asp:LinkButton>
+                                                </span>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="ItemID" />
+                                        <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
+                                        <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                                    </Columns>
+                            </asp:GridView>
+                            <asp:HiddenField id="hiddenEduProgramItemID" runat="server" />
+                        </div>
+                        <div class="dnnFormItem">
+                            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+                            <asp:DropDownList id="comboEduLevel" runat="server"
+                                AutoPostBack="true"
+                                OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
+                                DataValueField="EduLevelID"
+                                DataTextField="Title" />
+                        </div>
+                        <div class="dnnFormItem">
+                            <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
+                            <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
                                 DataValueField="EduProgramProfileID"
-                                DataTextField="EduProgramProfileString"
-                            />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />
-                    <asp:TextBox id="textProgramDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
-                </div>
-                <div class="dnnFormItem">
-                    <div class="dnnLabel"></div>
-                    <asp:LinkButton id="buttonAddEduProgram" runat="server" resourcekey="buttonAddEduProgram" 
-                        CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" CommandArgument="Add" />
-                    <asp:LinkButton id="buttonUpdateEduProgram" runat="server" resourcekey="buttonUpdateEduProgram" 
-                        CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" Visible="false" CommandArgument="Update" />
-                    <asp:LinkButton id="buttonCancelEditEduProgram" runat="server" resourcekey="buttonCancelEditEduProgram" 
-                        CssClass="dnnSecondaryAction" OnClick="buttonCancelEditEduProgram_Click" />
-                </div>
+                                DataTextField="EduProgramProfileString" />
+                        </div>
+                        <div class="dnnFormItem">
+                            <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />
+                            <asp:TextBox id="textProgramDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
+                        </div>
+                        <div class="dnnFormItem">
+                            <div class="dnnLabel"></div>
+                            <asp:LinkButton id="buttonAddEduProgram" runat="server" resourcekey="buttonAddEduProgram" 
+                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" CommandArgument="Add" />
+                            <asp:LinkButton id="buttonUpdateEduProgram" runat="server" resourcekey="buttonUpdateEduProgram" 
+                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" Visible="false" CommandArgument="Update" />
+                            <asp:LinkButton id="buttonCancelEditEduProgram" runat="server" resourcekey="buttonCancelEditEduProgram" 
+                                CssClass="dnnSecondaryAction" OnClick="buttonCancelEditEduProgram_Click" />
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 			</fieldset>
 		</div>
         <div id="employee-about-tab">
@@ -401,17 +408,18 @@
 	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
 <script type="text/javascript">
-jQuery(function ($) {
-    var setupModule = function () {
+(function($, Sys) {
+    function setupModule() {
         $("#employee-achievements-tab").dnnPanels({defaultState: "closed"});
-
+        dnnAcCombobox_Init($);
+        $(".dnn-ac-combobox").combobox();
     };
-    setupModule();
-    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+    $(document).ready(function() {
+        $("#employee-tabs").dnnTabs({selected: <%= (int)SelectedTab %>});
         setupModule();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setupModule();
+        });
     });
-});
-jQuery(document).ready(function() {
-    $("#employee-tabs").dnnTabs({selected: <%= (int)SelectedTab %>});
-});
+} (jQuery, window.Sys));
 </script>

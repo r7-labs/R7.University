@@ -186,6 +186,12 @@
     <data name="labelIsPrime.Help">
         <value>Если флажок отмечен, занимаемая должность будет рассматриваться как основная для этого сотрудника.</value>
     </data>
+    <data name="labelEduLevel.Text">
+        <value>Уровень образования:</value>
+    </data>
+    <data name="labelEduLevel.Help">
+        <value>Выберите уровень образования из выпадающего списка.</value>
+    </data>
     <data name="labelEduProgram.Text">
         <value>Образовательная программа:</value>
     </data>

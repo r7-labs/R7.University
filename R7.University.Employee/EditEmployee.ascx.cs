@@ -79,12 +79,13 @@ namespace R7.University.Employee
                 // get postback initiator
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
-                // urlDocumentURL control is on Achievements tab
-                if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$" + urlDocumentURL.ID + "$")) {
-                    ViewState ["SelectedTab"] = EditEmployeeTab.Achievements;
-                    return EditEmployeeTab.Achievements;
+                if (!string.IsNullOrEmpty (eventTarget)) {
+                    // urlDocumentURL control is on Achievements tab
+                    if (eventTarget.Contains ("$" + urlDocumentURL.ID + "$")) {
+                        ViewState ["SelectedTab"] = EditEmployeeTab.Achievements;
+                        return EditEmployeeTab.Achievements;
+                    }
                 }
-
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
                 return (obj != null) ? (EditEmployeeTab) obj : EditEmployeeTab.Common;
@@ -193,24 +194,13 @@ namespace R7.University.Employee
             comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
             comboAchievementTypes.DataBind ();
 
-            // get edu profiles
-            var eduProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
-                .WithEduPrograms (UniversityRepository.Instance.DataProvider)
-                .OrderBy (epp => epp.EduProgram.EduLevelID)
-                .ThenBy (epp => epp.EduProgram.Code)
-                .ThenBy (epp => epp.ProfileTitle)
-                .ToList ();
+            // get and bind edu levels
+            var eduLevels = EduLevelRepository.Instance.GetEduLevels ();
+            comboEduLevel.DataSource = eduLevels;
+            comboEduLevel.DataBind ();
 
-            // add default value
-            eduProfiles.Insert (0, new EduProgramProfileInfo
-                {
-                    ProfileTitle = LocalizeString ("NotSelected.Text"), EduProgramProfileID = Null.NullInteger 
-                });
-
-            // bind edu programs
-            comboEduProgram.DataSource = eduProfiles;
-            comboEduProgram.DataBind ();
-            comboEduProgram.SelectedIndex = 0;
+            // get and bind edu profiles
+            BindEduProgramProfiles (eduLevels.First ().EduLevelID);
 
             // localize bounded gridviews
             gridAchievements.LocalizeColumns (LocalResourceFile);
@@ -624,8 +614,6 @@ namespace R7.University.Employee
             // restore default buttons visibility
             buttonAddEduProgram.Visible = true;
             buttonUpdateEduProgram.Visible = false;
-
-            comboEduProgram.SelectedIndex = 0;
             textProgramDisciplines.Text = string.Empty;
         }
 
@@ -1039,11 +1027,7 @@ namespace R7.University.Employee
                     EmployeeDisciplineView discipline;
 
                     // get disciplines list from viewstate
-                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
-
-                    // creating new list, if none
-                    if (disciplines == null)
-                        disciplines = new List<EmployeeDisciplineView> ();
+                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView> ?? new List<EmployeeDisciplineView> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
@@ -1058,9 +1042,8 @@ namespace R7.University.Employee
                     discipline.EduProgramProfileID = int.Parse (comboEduProgram.SelectedValue);
                     discipline.Disciplines = textProgramDisciplines.Text.Trim ();
 
-                    var profile = UniversityRepository.Instance.DataProvider.Get<EduProgramProfileInfo> (discipline.EduProgramProfileID)
-                        .WithEduProgram (UniversityRepository.Instance.DataProvider);
-                    
+                    var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+
                     discipline.Code = profile.EduProgram.Code;
                     discipline.Title = profile.EduProgram.Title;
                     discipline.ProfileCode = profile.ProfileCode;
@@ -1098,6 +1081,14 @@ namespace R7.University.Employee
                     var discipline = disciplines.Find (d => d.ItemID.ToString () == itemID);
 
                     if (discipline != null) {
+                        var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+                        var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
+                        var newEduLevelId = profile.EduProgram.EduLevelID;
+                        if (eduLevelId != newEduLevelId) {
+                            comboEduLevel.SelectByValue (newEduLevelId);
+                            BindEduProgramProfiles (newEduLevelId);
+                        }
+
                         // fill achievements form
                         comboEduProgram.SelectByValue (discipline.EduProgramProfileID);
                         textProgramDisciplines.Text = discipline.Disciplines;
@@ -1169,6 +1160,19 @@ namespace R7.University.Employee
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
+        }
+
+        protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
+        {
+            var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
+            BindEduProgramProfiles (eduLevelId);
+        }
+
+        private void BindEduProgramProfiles (int eduLevelId)
+        {
+            var epps = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = epps;
+            comboEduProgram.DataBind ();
         }
 
         #endregion

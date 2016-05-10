@@ -11,13 +11,10 @@ namespace R7.University.Employee
 {
 	public partial class EditEmployee
 	{
-		// WTF: The dnnSecondaryActions not applied on asp:Button
-
 		protected ModuleAuditControl ctlAudit;
 		protected LinkButton buttonUpdate;
 		protected LinkButton buttonDelete;
 		protected HyperLink linkCancel;
-
 		protected LabelControl labelPhoto;
 		protected DnnFilePickerUploader pickerPhoto;
         protected LinkButton buttonPhotoLookup;
@@ -59,9 +56,6 @@ namespace R7.University.Employee
 		protected TextEditor textBiography;
 		protected LabelControl labelIsPublished;
 		protected CheckBox checkIsPublished;
-		// protected LabelControl labelIsDeleted;
-		// protected CheckBox checkIsDeleted;
-
 		protected LinkButton buttonUserLookup;
 		protected CheckBox checkIncludeDeletedUsers;
 		protected TextBox textUserLookup;
@@ -69,7 +63,7 @@ namespace R7.University.Employee
 		protected LabelControl labelUserLookup;
 		protected DropDownList comboUsers;
 
-		protected GridView gridOccupiedPositions;
+        protected GridView gridOccupiedPositions;
 		protected LabelControl labelPositions;
 		protected LabelControl labelDivisions;
         protected AjaxControlToolkit.ComboBox comboPositions;
@@ -114,7 +108,8 @@ namespace R7.University.Employee
 
         protected GridView gridEduPrograms;
         protected TextBox textProgramDisciplines;
-        protected AjaxControlToolkit.ComboBox comboEduProgram;
+        protected DropDownList comboEduLevel;
+        protected DropDownList comboEduProgram;
         protected LinkButton buttonAddEduProgram;
         protected LinkButton buttonUpdateEduProgram;
         protected LinkButton buttonCancelEditEduProgram;

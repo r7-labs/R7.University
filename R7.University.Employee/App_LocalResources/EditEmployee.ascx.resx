@@ -267,6 +267,12 @@
     <data name="IsPrime.Column">
         <value>Is Prime</value>
     </data>
+    <data name="labelEduLevel.Text">
+        <value>Education Level:</value>
+    </data>
+    <data name="labelEduLevel.Help">
+        <value>Select education level from the dropdown.</value>
+    </data>
     <data name="labelEduProgram.Text">
         <value>Educational Program:</value>
     </data>
