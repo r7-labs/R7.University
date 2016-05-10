@@ -21,7 +21,7 @@ function dnnAcCombobox_Init ($) {
             .appendTo(this.wrapper)
             .val(value)
             .attr("title", "")
-            .addClass("dnn-ac-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+            .addClass("dnn-ac-combobox-input ui-widget ui-widget-content ui-state-default")
             .autocomplete({
                 delay: 0,
                 minLength: 0,

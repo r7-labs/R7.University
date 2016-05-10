@@ -43,8 +43,9 @@
     width:16px;
     height:24px;
     min-width:auto;
-    position:absolute;
     padding:6px 0 0 0;
+    position:absolute;
+    margin-left:-18px;
 }
 
 .dnn-ac-combobox .dnnSecondaryAction {
