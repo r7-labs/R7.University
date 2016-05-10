@@ -128,6 +128,8 @@
     <Compile Include="Models\VCardPhone.cs" />
     <Compile Include="Models\VCard.cs" />
     <Compile Include="Models\EmployeeEqualityComparer.cs" />
+    <Compile Include="Data\EduProgramProfileRepository.cs" />
+    <Compile Include="Data\EduLevelRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
