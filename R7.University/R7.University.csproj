@@ -130,6 +130,7 @@
     <Compile Include="Models\EmployeeEqualityComparer.cs" />
     <Compile Include="Data\EduProgramProfileRepository.cs" />
     <Compile Include="Data\EduLevelRepository.cs" />
+    <Compile Include="Data\EduProgramRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
