@@ -1,0 +1,18 @@
+﻿-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+-- EduPrograms
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'AccreditedToDate')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+        DROP COLUMN [AccreditedToDate]
+END
+GO
+
+-- Refresh views
+
+EXECUTE sp_refreshview N'{databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]';
+GO
+

@@ -42,12 +42,6 @@
     <data name="labelGeneration.Help">
         <value>Enter the generation code for educational program, e.g. '3+'.</value>
     </data>
-    <data name="labelAccreditedToDate.Text">
-        <value>Accredited To:</value>
-    </data>
-    <data name="labelAccreditedToDate.Help">
-        <value>Enter the date current educational program is accredited to, or leave empty.</value>
-    </data>
     <data name="labelStartDate.Text">
         <value>Start Publication:</value>
     </data>

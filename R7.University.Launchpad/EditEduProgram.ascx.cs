@@ -139,7 +139,6 @@ namespace R7.University.Launchpad
                             textCode.Text = item.Code;
                             textTitle.Text = item.Title;
                             textGeneration.Text = item.Generation;
-                            dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
                             datetimeStartDate.SelectedDate = item.StartDate;
                             datetimeEndDate.SelectedDate = item.EndDate;
                             comboEduLevel.SelectByValue (item.EduLevelID);
@@ -201,7 +200,6 @@ namespace R7.University.Launchpad
                 item.Code = textCode.Text.Trim ();
                 item.Title = textTitle.Text.Trim ();
                 item.Generation = textGeneration.Text.Trim ();
-                item.AccreditedToDate = dateAccreditedToDate.SelectedDate;
                 item.StartDate = datetimeStartDate.SelectedDate;
                 item.EndDate = datetimeEndDate.SelectedDate;
                 item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);

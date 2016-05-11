@@ -195,6 +195,7 @@
     <None Include="releaseNotes.htm" />
     <None Include="js\dnn-ac-combobox.js" />
     <None Include="css\dnn-ac-combobox.css" />
+    <None Include="SqlDataProvider\01.08.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

@@ -44,8 +44,6 @@ namespace R7.University
 
         string Generation { get; set; }
 
-        DateTime? AccreditedToDate { get; set; }
-
         DateTime? StartDate { get; set; }
 
         DateTime? EndDate { get; set; }
@@ -76,8 +74,6 @@ namespace R7.University
         public string Title { get; set; }
 
         public string Generation { get; set; }
-
-        public DateTime? AccreditedToDate { get; set; }
 
         public DateTime? StartDate { get; set; }
 
