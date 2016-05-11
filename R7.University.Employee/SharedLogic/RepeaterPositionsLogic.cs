@@ -29,6 +29,7 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
+using R7.University.Data;
 
 namespace R7.University.Employee.SharedLogic
 {

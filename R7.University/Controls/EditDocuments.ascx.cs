@@ -32,6 +32,7 @@ using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
+using R7.University.Data;
 
 namespace R7.University.Controls
 {

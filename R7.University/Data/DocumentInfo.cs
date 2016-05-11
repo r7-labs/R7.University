@@ -26,30 +26,10 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    public interface IDocument
-    {
-        int DocumentID { get; set; }
-
-        int? DocumentTypeID { get; set; }
-
-        string ItemID { get; set; }
-
-        string Title { get; set; }
-
-        string Url { get; set; }
-
-        int SortIndex { get; set; }
-
-        DateTime? StartDate { get; set; }
-
-        DateTime? EndDate { get; set; }
-
-        IDocumentType DocumentType { get; set; }
-    }
-
     [TableName ("University_Documents")]
     [PrimaryKey ("DocumentID", AutoIncrement = true)]
     public class DocumentInfo: IDocument

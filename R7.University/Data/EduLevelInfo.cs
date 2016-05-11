@@ -1,5 +1,5 @@
 ﻿//
-// DocumentTypeInfo.cs
+// EduLevelInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,34 +26,39 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    public interface IDocumentType
+    [TableName ("University_EduLevels")]
+    [PrimaryKey ("EduLevelID", AutoIncrement = true)]
+    [Cacheable ("University_EduLevels")]
+    public class EduLevelInfo: IReferenceEntity
     {
-        int DocumentTypeID { get; set; }
+        #region Properties
 
-        string Type { get; set; }
+        public int EduLevelID { get; set; }
 
-        string Description { get; set; }
+        public int SortIndex { get; set; }
 
-        bool IsSystem { get; set; }
-    }
+        #endregion
 
-    [TableName ("University_DocumentTypes")]
-    [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
-    [Cacheable ("University_DocumentTypes")]
-    public class DocumentTypeInfo: IDocumentType
-    {
-        #region IDocumentType implementation
+        #region IReferenceEntity implementation
 
-        public int DocumentTypeID { get; set; }
+        public string Title { get; set; }
 
-        public string Type { get; set; }
+        public string ShortTitle { get; set; }
 
-        public string Description { get; set; }
+        [IgnoreColumn]
+        public string DisplayShortTitle
+        {
+            get { return FormatShortTitle (Title, ShortTitle); }
+        }
 
-        public bool IsSystem { get; set; }
+        public static string FormatShortTitle (string title, string shortTitle)
+        {
+            return !string.IsNullOrWhiteSpace (shortTitle) ? shortTitle : title;
+        }
 
         #endregion
     }

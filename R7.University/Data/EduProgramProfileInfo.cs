@@ -27,37 +27,11 @@
 using System;
 using System.Collections.Generic;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
+using R7.University.ViewModels;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    public interface IEduProgramProfile
-    {
-        int EduProgramProfileID { get; set; }
-
-        int EduProgramID { get; set; }
-
-        string ProfileCode { get; set; }
-
-        string ProfileTitle { get; set; }
-
-        string Languages { get; set; }
-
-        DateTime? AccreditedToDate { get; set; }
-
-        DateTime? CommunityAccreditedToDate { get; set; }
-
-        DateTime? StartDate { get; set; }
-
-        DateTime? EndDate { get; set; }
-
-        // TODO: Use IEduProgram interface here
-        EduProgramInfo EduProgram { get; set; }
-
-        IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
-
-        IList<IDocument> Documents { get; set; }
-    }
-
     [TableName ("University_EduProgramProfiles")]
     [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
     public class EduProgramProfileInfo: UniversityEntityBase, IEduProgramProfile

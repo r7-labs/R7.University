@@ -29,7 +29,7 @@ using System.Text;
 using System.Collections.Generic;
 using R7.DotNetNuke.Extensions.Utilities;
 
-namespace R7.University.Models
+namespace R7.University.Data
 {
     public class VCard
     {

@@ -1,10 +1,10 @@
 ﻿//
-// Phone.cs
+// EmployeeDisciplineInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,33 +25,36 @@
 // THE SOFTWARE.
 
 using System;
+using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University.Models
+namespace R7.University.Data
 {
-    [Flags]
-    public enum VCardPhoneType
+    [TableName ("University_EmployeeDisciplines")]
+    [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
+    [Serializable]
+    public class EmployeeDisciplineInfo
     {
-        None = 0,
-        Home = 1,
-        Msg = 2,
-        Work = 4,
-        Pref = 8,
-        Voice = 16,
-        Fax = 32,
-        Cell = 64,
-        Video = 128,
-        Pager = 256,
-        Bbs = 512,
-        Modem = 1024,
-        Car = 2048,
-        Isdn = 4096,
-        Pcs = 8192
-    }
+        #region Properties
 
-    public class VCardPhone
-    {
-        public string Number { get; set; }
+        public long EmployeeDisciplineID { get; set; }
 
-        public VCardPhoneType Type { get; set; }
+        public int EmployeeID { get; set; }
+
+        public int EduProgramProfileID { get; set; }
+
+        public string Disciplines { get; set; }
+
+        #endregion
+
+        public override string ToString ()
+        {
+            return string.Format (
+                "[EmployeeDisciplineInfo: EmployeeDisciplineID={0}, EmployeeID={1}, EduProgramProfileID={2}, Disciplines={3}]",
+                EmployeeDisciplineID,
+                EmployeeID,
+                EduProgramProfileID,
+                Disciplines);
+        }
     }
 }
+

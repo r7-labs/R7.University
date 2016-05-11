@@ -31,7 +31,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
 
-namespace R7.University
+namespace R7.University.Data
 {
     // More attributes for class:
     // Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]

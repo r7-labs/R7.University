@@ -27,6 +27,9 @@
 using System;
 using System.Collections.Generic;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Models;
+using R7.University.Data;
+using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory
 {

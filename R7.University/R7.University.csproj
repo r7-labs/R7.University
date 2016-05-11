@@ -61,25 +61,9 @@
   <ItemGroup>
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
     <Compile Include="ModelExtensions\DocumentExtensions.cs" />
-    <Compile Include="Models\AchievementInfo.cs" />
-    <Compile Include="Models\AchievementTypeInfo.cs" />
     <Compile Include="Models\Delegates.cs" />
-    <Compile Include="Models\DivisionInfo.cs" />
-    <Compile Include="Models\DocumentInfo.cs" />
-    <Compile Include="Models\DocumentTypeInfo.cs" />
-    <Compile Include="Models\EduLevelInfo.cs" />
-    <Compile Include="Models\EduProgramInfo.cs" />
-    <Compile Include="Models\EduProgramProfileInfo.cs" />
-    <Compile Include="Models\EduProgramProfileInfoEx.cs" />
-    <Compile Include="Models\EmployeeAchievementInfo.cs" />
-    <Compile Include="Models\EmployeeDisciplineInfo.cs" />
-    <Compile Include="Models\EmployeeDisciplineInfoEx.cs" />
-    <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="Models\IAuditable.cs" />
     <Compile Include="Models\IReferenceEntity.cs" />
-    <Compile Include="Models\OccupiedPositionInfo.cs" />
-    <Compile Include="Models\OccupiedPositionInfoEx.cs" />
-    <Compile Include="Models\PositionInfo.cs" />
     <Compile Include="Models\ReferenceEntityBase.cs" />
     <Compile Include="Models\SystemDocumentType.cs" />
     <Compile Include="Models\UniversityEntityBase.cs" />
@@ -95,8 +79,6 @@
       <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\SystemEduForm.cs" />
-    <Compile Include="Models\EduProgramProfileFormInfo.cs" />
-    <Compile Include="Models\EduFormInfo.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileFormExtensions.cs" />
     <Compile Include="Controls\EditEduForms.ascx.controls.cs">
       <DependentUpon>Controls\EditEduForms.ascx</DependentUpon>
@@ -109,7 +91,6 @@
     <Compile Include="Controls\GridAndFormEditControlBase.cs" />
     <Compile Include="Controls\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelHelper.cs" />
-    <Compile Include="Models\FormatHelper.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
     <Compile Include="Data\UniversityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,12 +106,37 @@
     <Compile Include="ViewModels\ViewNumerator.cs" />
     <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
-    <Compile Include="Models\VCardPhone.cs" />
-    <Compile Include="Models\VCard.cs" />
-    <Compile Include="Models\EmployeeEqualityComparer.cs" />
     <Compile Include="Data\EduProgramProfileRepository.cs" />
     <Compile Include="Data\EduLevelRepository.cs" />
     <Compile Include="Data\EduProgramRepository.cs" />
+    <Compile Include="Data\EduProgramInfo.cs" />
+    <Compile Include="Models\IEduProgram.cs" />
+    <Compile Include="Models\IEduProgramProfile.cs" />
+    <Compile Include="Data\EduProgramProfileInfo.cs" />
+    <Compile Include="Data\EduProgramProfileFormInfo.cs" />
+    <Compile Include="Data\EduProgramProfileInfoEx.cs" />
+    <Compile Include="Models\IEduProgramProfileForm.cs" />
+    <Compile Include="Models\IEduForm.cs" />
+    <Compile Include="Data\EduFormInfo.cs" />
+    <Compile Include="Models\IDocument.cs" />
+    <Compile Include="Data\DocumentInfo.cs" />
+    <Compile Include="Data\AchievementInfo.cs" />
+    <Compile Include="Data\AchievementTypeInfo.cs" />
+    <Compile Include="Data\DivisionInfo.cs" />
+    <Compile Include="Data\DocumentTypeInfo.cs" />
+    <Compile Include="Models\IDocumentType.cs" />
+    <Compile Include="Data\EduLevelInfo.cs" />
+    <Compile Include="Data\EmployeeAchievementInfo.cs" />
+    <Compile Include="Data\EmployeeDisciplineInfo.cs" />
+    <Compile Include="Data\EmployeeDisciplineInfoEx.cs" />
+    <Compile Include="Data\VCard.cs" />
+    <Compile Include="Data\VCardPhone.cs" />
+    <Compile Include="Data\OccupiedPositionInfo.cs" />
+    <Compile Include="Data\OccupiedPositionInfoEx.cs" />
+    <Compile Include="Data\EmployeeInfo.cs" />
+    <Compile Include="Data\EmployeeEqualityComparer.cs" />
+    <Compile Include="Data\PositionInfo.cs" />
+    <Compile Include="ViewModels\FormatHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

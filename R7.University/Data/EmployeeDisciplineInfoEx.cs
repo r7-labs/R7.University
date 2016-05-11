@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramProfileInfoEx.cs
+// EmployeeDisciplineInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,12 +26,13 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.DotNetNuke.Extensions.Utilities;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    // TODO: Remove last use of this class in the EduProgramProfilesTable, then remove db view
-    [TableName ("vw_University_EduProgramProfiles")]
-    public class EduProgramProfileInfoEx: EduProgramProfileInfo
+    [TableName ("vw_University_EmployeeDisciplines")]
+    [Serializable]
+    public class EmployeeDisciplineInfoEx: EmployeeDisciplineInfo
     {
         #region External properties
 
@@ -39,13 +40,20 @@ namespace R7.University
 
         public string Title { get; set; }
 
+        public string ProfileCode { get; set; }
+
+        public string ProfileTitle { get; set; }
+
         #endregion
 
         [IgnoreColumn]
         public string EduProfileString
         {
-            get { return FormatHelper.FormatEduProgramProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
+            get {
+                var profileString = TextUtils.FormatList (" ", ProfileCode, ProfileTitle);
+                return TextUtils.FormatList (" ", Code, Title) +
+                (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
+            }
         }
     }
 }
-

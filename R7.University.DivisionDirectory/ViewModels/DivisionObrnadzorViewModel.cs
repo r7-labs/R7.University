@@ -32,6 +32,7 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Data;
 
 namespace R7.University.DivisionDirectory
 {

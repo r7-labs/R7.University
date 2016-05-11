@@ -30,8 +30,9 @@ using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Models;
 
-namespace R7.University
+namespace R7.University.ViewModels
 {
     public static class FormatHelper
     {

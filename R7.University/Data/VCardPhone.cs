@@ -1,10 +1,10 @@
 ﻿//
-// EmployeeDisciplineInfoEx.cs
+// Phone.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2014 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,35 +25,33 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.DotNetNuke.Extensions.Utilities;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    [TableName ("vw_University_EmployeeDisciplines")]
-    [Serializable]
-    public class EmployeeDisciplineInfoEx: EmployeeDisciplineInfo
+    [Flags]
+    public enum VCardPhoneType
     {
-        #region External properties
+        None = 0,
+        Home = 1,
+        Msg = 2,
+        Work = 4,
+        Pref = 8,
+        Voice = 16,
+        Fax = 32,
+        Cell = 64,
+        Video = 128,
+        Pager = 256,
+        Bbs = 512,
+        Modem = 1024,
+        Car = 2048,
+        Isdn = 4096,
+        Pcs = 8192
+    }
 
-        public string Code { get; set; }
+    public class VCardPhone
+    {
+        public string Number { get; set; }
 
-        public string Title { get; set; }
-
-        public string ProfileCode { get; set; }
-
-        public string ProfileTitle { get; set; }
-
-        #endregion
-
-        [IgnoreColumn]
-        public string EduProfileString
-        {
-            get {
-                var profileString = TextUtils.FormatList (" ", ProfileCode, ProfileTitle);
-                return TextUtils.FormatList (" ", Code, Title) +
-                (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
-            }
-        }
+        public VCardPhoneType Type { get; set; }
     }
 }

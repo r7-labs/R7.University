@@ -28,11 +28,13 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using R7.DotNetNuke.Extensions.Data;
+using R7.University.Data;
 
 namespace R7.University.ModelExtensions
 {
     public static class EduProgramExtensions
     {
+        // TODO: Use IEduProgram interface instead of EduProgramInfo class
         public static EduProgramInfo WithEduLevel (this EduProgramInfo eduProgram, Dal2DataProvider controller)
         {
             eduProgram.EduLevel = controller.Get<EduLevelInfo> (eduProgram.EduLevelID);

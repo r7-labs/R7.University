@@ -27,6 +27,7 @@
 using System;
 using DotNetNuke.Common;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Data;
 
 namespace R7.University.Division
 {

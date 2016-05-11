@@ -1,10 +1,10 @@
 ﻿//
-// EduLevelInfo.cs
+// EmployeeEqualityComparer.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2014 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,38 +25,22 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    [TableName ("University_EduLevels")]
-    [PrimaryKey ("EduLevelID", AutoIncrement = true)]
-    [Cacheable ("University_EduLevels")]
-    public class EduLevelInfo: IReferenceEntity
+    public class EmployeeEqualityComparer : IEqualityComparer <EmployeeInfo>
     {
-        #region Properties
+        #region IEqualityComparer implementation
 
-        public int EduLevelID { get; set; }
-
-        public int SortIndex { get; set; }
-
-        #endregion
-
-        #region IReferenceEntity implementation
-
-        public string Title { get; set; }
-
-        public string ShortTitle { get; set; }
-
-        [IgnoreColumn]
-        public string DisplayShortTitle
+        public bool Equals (EmployeeInfo x, EmployeeInfo y)
         {
-            get { return FormatShortTitle (Title, ShortTitle); }
+            return x.EmployeeID == y.EmployeeID;
         }
 
-        public static string FormatShortTitle (string title, string shortTitle)
+        public int GetHashCode (EmployeeInfo obj)
         {
-            return !string.IsNullOrWhiteSpace (shortTitle) ? shortTitle : title;
+            return obj.EmployeeID;
         }
 
         #endregion

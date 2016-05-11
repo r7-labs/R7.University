@@ -1,5 +1,5 @@
 ﻿//
-// EmployeeEqualityComparer.cs
+// AchievementInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -24,26 +24,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
+using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University.Models
+namespace R7.University.Data
 {
-    public class EmployeeEqualityComparer : IEqualityComparer <EmployeeInfo>
+    [TableName ("University_Achievements")]
+    [PrimaryKey ("AchievementID", AutoIncrement = true)]
+    public class AchievementInfo : ReferenceEntityBase
     {
-        #region IEqualityComparer implementation
-
-        public bool Equals (EmployeeInfo x, EmployeeInfo y)
+        public AchievementInfo ()
         {
-            return x.EmployeeID == y.EmployeeID;
         }
 
-        public int GetHashCode (EmployeeInfo obj)
-        {
-            return obj.EmployeeID;
-        }
+        public int AchievementID { get; set; }
 
-        #endregion
+        [ColumnName ("AchievementType")]
+        public string AchievementTypeString { get; set; }
+
+        [IgnoreColumn]
+        public AchievementType AchievementType
+        {
+            get { return (AchievementType) AchievementTypeString [0]; }
+            set { AchievementTypeString = ((char) value).ToString (); }
+        }
     }
 }
 

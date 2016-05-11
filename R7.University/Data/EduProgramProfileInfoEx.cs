@@ -1,10 +1,10 @@
 ﻿//
-// AchievementInfo.cs
+// EduProgramProfileInfoEx.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2014 
+// Copyright (c) 2015 
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,28 +24,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Data;
+using R7.University.ViewModels;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    [TableName ("University_Achievements")]
-    [PrimaryKey ("AchievementID", AutoIncrement = true)]
-    public class AchievementInfo : ReferenceEntityBase
+    // TODO: Remove last use of this class in the EduProgramProfilesTable, then remove db view
+    [TableName ("vw_University_EduProgramProfiles")]
+    public class EduProgramProfileInfoEx: EduProgramProfileInfo
     {
-        public AchievementInfo ()
-        {
-        }
+        #region External properties
 
-        public int AchievementID { get; set; }
+        public string Code { get; set; }
 
-        [ColumnName ("AchievementType")]
-        public string AchievementTypeString { get; set; }
+        public string Title { get; set; }
+
+        #endregion
 
         [IgnoreColumn]
-        public AchievementType AchievementType
+        public string EduProfileString
         {
-            get { return (AchievementType) AchievementTypeString [0]; }
-            set { AchievementTypeString = ((char) value).ToString (); }
+            get { return FormatHelper.FormatEduProgramProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
         }
     }
 }

@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,31 +29,10 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Models;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    public interface IEduProgram
-    {
-        int EduProgramID { get; set; }
-
-        int EduLevelID { get; set; }
-
-        string Code { get; set; }
-
-        string Title { get; set; }
-
-        string Generation { get; set; }
-
-        DateTime? StartDate { get; set; }
-
-        DateTime? EndDate { get; set; }
-
-        EduLevelInfo EduLevel { get; set; }
-
-        IList<DocumentInfo> Documents { get; set; }
-
-    }
-
     [TableName ("University_EduPrograms")]
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
     public class EduProgramInfo: UniversityEntityBase, IEduProgram

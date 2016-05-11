@@ -1,10 +1,10 @@
 ﻿//
-// EduProgramProfileForm.cs
+// IEduProgramProfile.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,54 +25,37 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using R7.University.Data;
 
-namespace R7.University
+namespace R7.University.Models
 {
-    public interface IEduProgramProfileForm
+    public interface IEduProgramProfile
     {
-        long EduProgramProfileFormID { get; set; }
-
         int EduProgramProfileID { get; set; }
 
-        int EduFormID { get; set; }
+        int EduProgramID { get; set; }
 
-        int TimeToLearn { get; set; }
+        string ProfileCode { get; set; }
 
-        bool IsAdmissive { get; set; }
+        string ProfileTitle { get; set; }
 
-        IEduForm EduForm { get; set; }
-    }
+        string Languages { get; set; }
 
-    [TableName ("University_EduProgramProfileForms")]
-    [PrimaryKey ("EduProgramProfileFormID", AutoIncrement = true)]
-    public class EduProgramProfileFormInfo: IEduProgramProfileForm
-    {
-        #region IEduProgramProfileForm implementation
+        DateTime? AccreditedToDate { get; set; }
 
-        public long EduProgramProfileFormID { get; set; }
+        DateTime? CommunityAccreditedToDate { get; set; }
 
-        public int EduProgramProfileID { get; set; }
+        DateTime? StartDate { get; set; }
 
-        public int EduFormID { get; set; }
+        DateTime? EndDate { get; set; }
 
-        public int TimeToLearn { get; set; }
+        // TODO: Use IEduProgram interface here
+        EduProgramInfo EduProgram { get; set; }
 
-        // REVIEW: Rename?
-        public bool IsAdmissive { get; set; }
+        IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
 
-        [IgnoreColumn]
-        public IEduForm EduForm { get; set; }
-
-        #endregion
-
-        [IgnoreColumn]
-        public EduProgramProfileInfo EduProgramProfile { get; set; }
-
-        public void SetTimeToLearn (int years, int months)
-        {
-            TimeToLearn = years * 12 + months;
-        }
+        IList<IDocument> Documents { get; set; }
     }
 }
 

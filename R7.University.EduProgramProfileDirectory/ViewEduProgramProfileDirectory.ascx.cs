@@ -43,6 +43,7 @@ using R7.University.Data;
 using R7.University.ModelExtensions;
 using R7.University.ViewModels;
 using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.Models;
 
 namespace R7.University.EduProgramProfileDirectory
 {

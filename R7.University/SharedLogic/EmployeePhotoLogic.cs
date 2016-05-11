@@ -31,6 +31,7 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Data;
 
 namespace R7.University.SharedLogic
 {

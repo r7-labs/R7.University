@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramProfileFormExtensions.cs
+// EduForm.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,30 +25,35 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Data;
-using R7.University.Data;
+using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
-namespace R7.University.ModelExtensions
+namespace R7.University.Data
 {
-    public static class EduProgramProfileFormExtensions
+    [TableName ("University_EduForms")]
+    [PrimaryKey ("EduFormID", AutoIncrement = true)]
+    [Cacheable ("University_EduForms")]
+    public class EduFormInfo: IEduForm
     {
-        public static EduProgramProfileFormInfo WithEduForm (
-            this EduProgramProfileFormInfo eduProgramProfileForm, Dal2DataProvider controller)
-        {
-            eduProgramProfileForm.EduForm = controller.Get<EduFormInfo> (eduProgramProfileForm.EduFormID);
+        #region IEduForm implementation
 
-            return eduProgramProfileForm;
-        }
+        public int EduFormID { get; set; }
 
-        public static IEnumerable<EduProgramProfileFormInfo> WithEduForms (
-            this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, Dal2DataProvider controller)
+        public bool IsSystem { get; set; }
+
+        public string Title { get; set; }
+
+        public string ShortTitle { get; set; }
+
+        #endregion
+
+        [IgnoreColumn]
+        public SystemEduForm SystemEduForm
         {
-            foreach (var eduProgramProfileForm in eduProgramProfileForms) {
-                eduProgramProfileForm.WithEduForm (controller);
+            get {
+                SystemEduForm result;
+                return Enum.TryParse<SystemEduForm> (Title, out result) ? result : SystemEduForm.Custom;
             }
-
-            return eduProgramProfileForms;
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿//
-// EmployeeDisciplineInfo.cs
+// OccupiedPositionInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,34 +27,48 @@
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University
+namespace R7.University.Data
 {
-    [TableName ("University_EmployeeDisciplines")]
-    [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
-    [Serializable]
-    public class EmployeeDisciplineInfo
+    // TODO: Add Unique constraint to OccupiedPositions table FK's
+
+    // More attributes for class:
+    // Set caching for table: [Cacheable("R7.University_OccupiedPositions", CacheItemPriority.Default, 20)]
+    // Explicit mapping declaration: [DeclareColumns]
+    // More attributes for class properties:
+    // Custom column name: [ColumnName("OccupiedPositionID")]
+    // Explicit include column: [IncludeColumn]
+    // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
+    [TableName ("University_OccupiedPositions")]
+    [PrimaryKey ("OccupiedPositionID", AutoIncrement = true)]
+    public class OccupiedPositionInfo
     {
-        #region Properties
-
-        public long EmployeeDisciplineID { get; set; }
-
-        public int EmployeeID { get; set; }
-
-        public int EduProgramProfileID { get; set; }
-
-        public string Disciplines { get; set; }
+        #region Fields
 
         #endregion
 
-        public override string ToString ()
+        /// <summary>
+        /// Empty default cstor
+        /// </summary>
+        public OccupiedPositionInfo ()
         {
-            return string.Format (
-                "[EmployeeDisciplineInfo: EmployeeDisciplineID={0}, EmployeeID={1}, EduProgramProfileID={2}, Disciplines={3}]",
-                EmployeeDisciplineID,
-                EmployeeID,
-                EduProgramProfileID,
-                Disciplines);
         }
+
+	
+        #region Properties
+
+        public int OccupiedPositionID { get; set; }
+
+        public int PositionID { get; set; }
+
+        public int DivisionID { get; set; }
+
+        public int EmployeeID { get; set; }
+
+        public bool IsPrime { get; set; }
+
+        public string TitleSuffix { get; set; }
+
+        #endregion
     }
 }
 

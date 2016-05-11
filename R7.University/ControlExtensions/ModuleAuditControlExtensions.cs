@@ -28,6 +28,7 @@ using System;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.Common.Utilities;
 using R7.University.Utilities;
+using R7.University.Models;
 
 namespace R7.University.ControlExtensions
 {

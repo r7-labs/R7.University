@@ -1,10 +1,10 @@
 ﻿//
-// EduForm.cs
+// IEduForm.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,8 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University
+namespace R7.University.Models
 {
     public interface IEduForm
     {
@@ -38,33 +37,6 @@ namespace R7.University
         string Title { get; set; }
 
         string ShortTitle { get; set; }
-    }
-
-    [TableName ("University_EduForms")]
-    [PrimaryKey ("EduFormID", AutoIncrement = true)]
-    [Cacheable ("University_EduForms")]
-    public class EduFormInfo: IEduForm
-    {
-        #region IEduForm implementation
-
-        public int EduFormID { get; set; }
-
-        public bool IsSystem { get; set; }
-
-        public string Title { get; set; }
-
-        public string ShortTitle { get; set; }
-
-        #endregion
-
-        [IgnoreColumn]
-        public SystemEduForm SystemEduForm
-        {
-            get {
-                SystemEduForm result;
-                return Enum.TryParse<SystemEduForm> (Title, out result) ? result : SystemEduForm.Custom;
-            }
-        }
     }
 }
 

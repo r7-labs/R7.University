@@ -27,7 +27,7 @@
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
 
-namespace R7.University
+namespace R7.University.Data
 {
     // More attributes for class:
     // Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]
@@ -41,10 +41,6 @@ namespace R7.University
     [Serializable]
     public class EmployeeAchievementInfo : ReferenceEntityBase
     {
-        #region Fields
-
-        #endregion
-
         /// <summary>
         /// Empty default cstor
         /// </summary>

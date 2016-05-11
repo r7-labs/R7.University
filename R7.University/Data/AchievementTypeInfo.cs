@@ -27,7 +27,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace R7.University
+namespace R7.University.Data
 {
     public enum AchievementType
     {

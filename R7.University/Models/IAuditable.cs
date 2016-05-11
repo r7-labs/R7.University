@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace R7.University
+namespace R7.University.Models
 {
     public interface IAuditable
     {

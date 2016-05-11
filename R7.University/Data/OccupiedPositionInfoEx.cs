@@ -31,7 +31,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 
-namespace R7.University
+namespace R7.University.Data
 {
     // More attributes for class:
     // Set caching for table: [Cacheable("R7.University_OccupiedPositions", CacheItemPriority.Default, 20)]

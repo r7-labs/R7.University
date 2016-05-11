@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramProfileFormExtensions.cs
+// EduProgramProfileForm.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,30 +25,39 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Data;
-using R7.University.Data;
+using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
-namespace R7.University.ModelExtensions
+namespace R7.University.Data
 {
-    public static class EduProgramProfileFormExtensions
+    [TableName ("University_EduProgramProfileForms")]
+    [PrimaryKey ("EduProgramProfileFormID", AutoIncrement = true)]
+    public class EduProgramProfileFormInfo: IEduProgramProfileForm
     {
-        public static EduProgramProfileFormInfo WithEduForm (
-            this EduProgramProfileFormInfo eduProgramProfileForm, Dal2DataProvider controller)
+        #region IEduProgramProfileForm implementation
+
+        public long EduProgramProfileFormID { get; set; }
+
+        public int EduProgramProfileID { get; set; }
+
+        public int EduFormID { get; set; }
+
+        public int TimeToLearn { get; set; }
+
+        // REVIEW: Rename?
+        public bool IsAdmissive { get; set; }
+
+        [IgnoreColumn]
+        public IEduForm EduForm { get; set; }
+
+        #endregion
+
+        [IgnoreColumn]
+        public EduProgramProfileInfo EduProgramProfile { get; set; }
+
+        public void SetTimeToLearn (int years, int months)
         {
-            eduProgramProfileForm.EduForm = controller.Get<EduFormInfo> (eduProgramProfileForm.EduFormID);
-
-            return eduProgramProfileForm;
-        }
-
-        public static IEnumerable<EduProgramProfileFormInfo> WithEduForms (
-            this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, Dal2DataProvider controller)
-        {
-            foreach (var eduProgramProfileForm in eduProgramProfileForms) {
-                eduProgramProfileForm.WithEduForm (controller);
-            }
-
-            return eduProgramProfileForms;
+            TimeToLearn = years * 12 + months;
         }
     }
 }

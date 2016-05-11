@@ -1,10 +1,10 @@
 ﻿//
-// EduProgramProfileFormExtensions.cs
+// IEduProgramProfileForm.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,31 +25,22 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Data;
-using R7.University.Data;
 
-namespace R7.University.ModelExtensions
+namespace R7.University.Models
 {
-    public static class EduProgramProfileFormExtensions
+    public interface IEduProgramProfileForm
     {
-        public static EduProgramProfileFormInfo WithEduForm (
-            this EduProgramProfileFormInfo eduProgramProfileForm, Dal2DataProvider controller)
-        {
-            eduProgramProfileForm.EduForm = controller.Get<EduFormInfo> (eduProgramProfileForm.EduFormID);
+        long EduProgramProfileFormID { get; set; }
 
-            return eduProgramProfileForm;
-        }
+        int EduProgramProfileID { get; set; }
 
-        public static IEnumerable<EduProgramProfileFormInfo> WithEduForms (
-            this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, Dal2DataProvider controller)
-        {
-            foreach (var eduProgramProfileForm in eduProgramProfileForms) {
-                eduProgramProfileForm.WithEduForm (controller);
-            }
+        int EduFormID { get; set; }
 
-            return eduProgramProfileForms;
-        }
+        int TimeToLearn { get; set; }
+
+        bool IsAdmissive { get; set; }
+
+        IEduForm EduForm { get; set; }
     }
 }
 
