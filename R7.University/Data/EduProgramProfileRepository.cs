@@ -72,6 +72,7 @@ namespace R7.University.Data
                 "WHERE EP.EduLevelID = @0", eduLevelId)
                     .WithEduPrograms ()
                     .OrderBy (epp => epp.EduProgram.Code)
+                    .ThenBy (epp => epp.ProfileCode)
                     .ThenBy (epp => epp.ProfileTitle);
         }
     }
