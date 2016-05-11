@@ -55,17 +55,29 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            // bind education programs
-            comboEduProgram.DataSource = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramInfo> ()
-                .OrderBy (ep => ep.EduLevelID)
-                .ThenBy (ep => ep.Code);
-            
-            comboEduProgram.DataBind ();
-            comboEduProgram.SelectedIndex = 0;
+            // get and bind edu levels
+            var eduLevels = EduLevelRepository.Instance.GetEduLevels ();
+            comboEduLevel.DataSource = eduLevels;
+            comboEduLevel.DataBind ();
+
+            // get and bind edu profiles
+            BindEduPrograms (eduLevels.First ().EduLevelID);
 
             // init edit forms
             formEditEduForms.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<EduFormInfo> ());
             formEditDocuments.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
+        }
+
+        private void BindEduPrograms (int eduLevelId)
+        {
+            var eps = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = eps;
+            comboEduProgram.DataBind ();
+        }
+
+        protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
+        {
+            BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
         }
 
         protected override void LoadItem (EduProgramProfileInfo item)
@@ -77,6 +89,13 @@ namespace R7.University.Launchpad
             dateCommunityAccreditedToDate.SelectedDate = item.CommunityAccreditedToDate;
             datetimeStartDate.SelectedDate = item.StartDate;
             datetimeEndDate.SelectedDate = item.EndDate;
+
+            // update comboEduProgram, if needed
+            var currentEduLevelId = int.Parse (comboEduLevel.SelectedValue);
+            if (item.EduProgram.EduLevelID != currentEduLevelId) {
+                BindEduPrograms (item.EduProgram.EduLevelID);
+            }
+
             comboEduProgram.SelectByValue (item.EduProgramID);
 
             auditControl.Bind (item);
@@ -132,7 +151,7 @@ namespace R7.University.Launchpad
 
         protected override EduProgramProfileInfo GetItem (int itemId)
         {
-            return UniversityRepository.Instance.DataProvider.Get<EduProgramProfileInfo> (itemId);
+            return EduProgramProfileRepository.Instance.Get (itemId);
         }
 
         protected override int AddItem (EduProgramProfileInfo item)

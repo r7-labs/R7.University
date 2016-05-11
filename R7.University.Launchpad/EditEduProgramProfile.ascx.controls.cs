@@ -15,7 +15,6 @@ namespace R7.University.Launchpad
         protected LinkButton buttonUpdate;
         protected LinkButton buttonDelete;
         protected HyperLink linkCancel;
-        protected AjaxControlToolkit.ComboBox comboEduProgram;
         protected TextBox textProfileCode;
         protected TextBox textProfileTitle;
         protected TextBox textLanguages;
@@ -23,6 +22,7 @@ namespace R7.University.Launchpad
         protected DnnDateTimePicker datetimeEndDate;
         protected DnnDatePicker dateAccreditedToDate;
         protected DnnDatePicker dateCommunityAccreditedToDate;
+        protected DropDownList comboEduProgram;
         protected DropDownList comboEduLevel;
         protected EditDocuments formEditDocuments;
         protected EditEduForms formEditEduForms;

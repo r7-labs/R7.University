@@ -3,14 +3,15 @@
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditEduForms" Src="../R7.University/Controls/EditEduForms.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="../R7.University/Controls/EditDocuments.ascx" %>
-<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" Priority="200" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/dnn-ac-combobox.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
+
 <script type="text/javascript">
-    $(function() { $("#eduProgramProfileTabs").dnnTabs({selected: <%= SelectedTab %>}); });
+    $(function() {  });
 </script>
 <div class="dnnForm dnnClear university-edit-eduprogramprofile">
     <div id="eduProgramProfileTabs">
@@ -22,26 +23,28 @@
         <asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
         <div id="eduProgramProfileCommon" class="dnnForm dnnClear">
         	<fieldset>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-                    <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
-                        <ContentTemplate>
-                            <act:ComboBox id="comboEduProgram" runat="server" CssClass="act_combobox"
-                                DropDownStyle="DropDownList"
-                                AutoCompleteMode="SuggestAppend"
-                                CaseSensitive="false"
+                <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
+                    <ContentTemplate>
+                        <div class="dnnFormItem">
+                            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+                            <asp:DropDownList id="comboEduLevel" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
+                                DataValueField="EduLevelID"
+                                DataTextField="Title" />
+                        </div>
+                        <div class="dnnFormItem">
+                            <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
+                            <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
                                 DataValueField="EduProgramID"
-                                DataTextField="EduProgramString"
-                            />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
+                                DataTextField="EduProgramString" />
+                            <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
+                                OnClick="linkEditEduProgram_Click" CssClass="edit-button-right">
+                                <img src="<%= DotNetNuke.Entities.Icons.IconController.IconURL ("Edit") %>" />
+                            </asp:LinkButton>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
                 <div class="dnnFormItem">
-                    <div class="dnnLabel"></div>
-                    <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
-                        OnClick="linkEditEduProgram_Click" CssClass="dnnSecondaryAction dnn-form-control" />
-                </div>
-        		<div class="dnnFormItem">
                     <dnn:Label ID="labelProfileCode" runat="server" ControlName="textProfileCode" />
                     <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />
                 </div>
@@ -86,3 +89,18 @@
     <hr />
     <dnn:Audit id="auditControl" runat="server" />
 </div>
+<script type="text/javascript">
+(function($, Sys) {
+    function setupModule() {
+        dnnAcCombobox_Init($);
+        $(".dnn-ac-combobox").combobox();
+    };
+    $(document).ready(function() {
+        $("#eduProgramProfileTabs").dnnTabs({selected: <%= SelectedTab %>});
+        setupModule();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setupModule();
+        });
+    });
+} (jQuery, window.Sys));
+</script>

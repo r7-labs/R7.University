@@ -50,6 +50,10 @@
     max-width:20%!important;
 }
 
+.dnnFormItem .edit-button-right {
+    margin-left:1.75em;
+}
+
 /* jQuery UI excerpt */
 .ui-menu {
     list-style: none;

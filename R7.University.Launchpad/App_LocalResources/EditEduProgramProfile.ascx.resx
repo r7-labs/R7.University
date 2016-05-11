@@ -39,6 +39,12 @@
     <data name="labelLanguages.Help" xml:space="preserve">
         <value>Enter the list of IETF language tags in 'xx' or 'xx-YY' format, separated by semicolon (;).</value>
     </data>
+    <data name="labelEduLevel.Text">
+        <value>Education Level:</value>
+    </data>
+    <data name="labelEduLevel.Help">
+        <value>Select the education level from the dropdown.</value>
+    </data>
     <data name="labelEduProgram.Text">
         <value>Educational Program:</value>
     </data>
