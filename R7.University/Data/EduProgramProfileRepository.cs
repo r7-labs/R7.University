@@ -75,6 +75,15 @@ namespace R7.University.Data
                     .ThenBy (epp => epp.ProfileCode)
                     .ThenBy (epp => epp.ProfileTitle);
         }
+
+        public IEnumerable<EduProgramProfileInfo> FindEduProgramProfiles (string search)
+        {
+            return DataProvider.GetObjects<EduProgramProfileInfo> ("SELECT EPP.* FROM dbo.University_EduProgramProfiles AS EPP " +
+                "INNER JOIN dbo.University_EduPrograms AS EP ON EPP.EduProgramID = EP.EduProgramID "
+                + string.Format (@"WHERE CONCAT(EPP.ProfileCode, ' ', EPP.ProfileTitle, ' ', EP.Code, ' ', EP.Title) LIKE N'%{0}%'",
+                    search))
+                .WithEduPrograms ();
+        }
     }
 }
 

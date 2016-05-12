@@ -112,7 +112,6 @@
     <Compile Include="Models\IEduProgramProfile.cs" />
     <Compile Include="Data\EduProgramProfileInfo.cs" />
     <Compile Include="Data\EduProgramProfileFormInfo.cs" />
-    <Compile Include="Data\EduProgramProfileInfoEx.cs" />
     <Compile Include="Models\IEduProgramProfileForm.cs" />
     <Compile Include="Models\IEduForm.cs" />
     <Compile Include="Data\EduFormInfo.cs" />

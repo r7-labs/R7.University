@@ -11,8 +11,8 @@ BEGIN
 END
 GO
 
--- Refresh views
+-- Drop views
 
-EXECUTE sp_refreshview N'{databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]';
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]') and type in (N'V'))
+    DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]
 GO
-

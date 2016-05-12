@@ -26,9 +26,11 @@
 
 using System;
 using System.Data;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Data;
+using R7.University.Launchpad.ViewModels;
 
 namespace R7.University.Launchpad
 {
@@ -40,11 +42,9 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
-            var eduProgramProfiles = UniversityRepository.Instance.DataProvider.FindObjects<EduProgramProfileInfoEx> (
-                                         @"WHERE CONCAT([ProfileCode], ' ', [ProfileTitle], ' ', [Code], ' ', [Title]) LIKE N'%{0}%'",
-                                         search,
-                                         false);
-
+            var eduProgramProfiles = EduProgramProfileRepository.Instance.FindEduProgramProfiles (search)
+                .Select (epp => new EduProgramProfileViewModel (epp));
+            
             return DataTableConstructor.FromIEnumerable (eduProgramProfiles);
         }
     }
