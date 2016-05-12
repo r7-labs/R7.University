@@ -109,24 +109,16 @@ namespace R7.University.EmployeeList
 							ContainerControl.Visible = false;
                     }
                     else {
-                        var employeeIds = TextUtils.FormatList (", ", items.Select (em => em.EmployeeID));
+                        var employeeIds = items.Select (em => em.EmployeeID);
 
                         // get title achievements for all selected employees
-                        // TODO: Move to dataprovider
-                        // TODO: Use {databaseOwner} and {objectQualifier} 
-                        CommonTitleAchievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
-                            string.Format ("SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] IN ({0}) AND [IsTitle] = 1", 
-                                employeeIds)
-                        );
+                        CommonTitleAchievements = EmployeeAchievementRepository.Instance
+                            .GetTitleAchivements_ForEmployees (employeeIds);
 
                         // get occupied positions for all selected employees
-                        // current division positions go first, then checks IsPrime, then PositionWeight
-                        // add "AND [DivisionID] = @1" to display employee positions only from current division
-                        CommonOccupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                            string.Format ("WHERE [EmployeeID] IN ({0}) ORDER BY (CASE WHEN [DivisionID]={1} THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
-                                employeeIds, Settings.DivisionID)
-                        );
-
+                        CommonOccupiedPositions = OccupiedPositionRepository.Instance
+                            .GetOccupiedPositions_ForEmployees (employeeIds, Settings.DivisionID);
+                        
                         // set container control visibility to common users
                         Cache_SetContainerVisible (true);
 
