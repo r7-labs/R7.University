@@ -50,10 +50,10 @@ namespace R7.University.Data
         [IgnoreColumn]
         public IEduForm EduForm { get; set; }
 
-        #endregion
-
         [IgnoreColumn]
-        public EduProgramProfileInfo EduProgramProfile { get; set; }
+        public IEduProgramProfile EduProgramProfile { get; set; }
+
+        #endregion
 
         public void SetTimeToLearn (int years, int months)
         {

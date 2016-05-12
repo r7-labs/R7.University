@@ -90,6 +90,9 @@ namespace R7.University.Controls
         [XmlIgnore]
         public IEduForm EduForm { get; set; }
 
+        [XmlIgnore]
+        public IEduProgramProfile EduProgramProfile { get; set; }
+
         public EduFormViewModel EduFormViewModel
         {
             get { return (EduFormViewModel) EduForm; }
