@@ -91,7 +91,7 @@ namespace R7.University.EmployeeDirectory
             set { }
         }
 
-        public EduProgramInfo EduProgram
+        public IEduProgram EduProgram
         {
             get { return Model.EduProgram; }
             set { }

@@ -29,13 +29,13 @@ using System.Linq;
 using System.Collections.Generic;
 using R7.DotNetNuke.Extensions.Data;
 using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.ModelExtensions
 {
     public static class EduProgramExtensions
     {
-        // TODO: Use IEduProgram interface instead of EduProgramInfo class
-        public static EduProgramInfo WithEduLevel (this EduProgramInfo eduProgram, Dal2DataProvider controller)
+        public static IEduProgram WithEduLevel (this IEduProgram eduProgram, Dal2DataProvider controller)
         {
             eduProgram.EduLevel = controller.Get<EduLevelInfo> (eduProgram.EduLevelID);
             return eduProgram;
@@ -55,7 +55,9 @@ namespace R7.University.ModelExtensions
         public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram, Dal2DataProvider controller)
         {
             eduProgram.Documents = controller.GetObjects<DocumentInfo> (
-                "WHERE [ItemID] = @0", "EduProgramID=" + eduProgram.EduProgramID).ToList ();
+                    "WHERE [ItemID] = @0", "EduProgramID=" + eduProgram.EduProgramID)
+                .Cast<IDocument> ()
+                .ToList ();
 
             eduProgram.Documents.WithDocumentType (controller);
 

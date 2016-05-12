@@ -56,7 +56,7 @@ namespace R7.University.EduProgramDirectory
 
         public string EduLevelString
         {
-            get { return EduLevel.DisplayShortTitle; }
+            get { return FormatHelper.FormatShortTitle (EduLevel.ShortTitle, EduLevel.Title); }
         }
 
         public string EduStandardLink

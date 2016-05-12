@@ -57,7 +57,7 @@ namespace R7.University.Data
         public DateTime? EndDate { get; set; }
 
         [IgnoreColumn]
-        public EduProgramInfo EduProgram { get; set; }
+        public IEduProgram EduProgram { get; set; }
 
         [IgnoreColumn] 
         public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }

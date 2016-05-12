@@ -39,7 +39,7 @@ namespace R7.University.Data
     {
         public EduProgramInfo ()
         {
-            Documents = new List<DocumentInfo> ();
+            Documents = new List<IDocument> ();
         }
 
         #region IEduProgram implementation
@@ -59,10 +59,10 @@ namespace R7.University.Data
         public DateTime? EndDate { get; set; }
 
         [IgnoreColumn]
-        public EduLevelInfo EduLevel { get; set; }
+        public IEduLevel EduLevel { get; set; }
 
         [IgnoreColumn]
-        public IList<DocumentInfo> Documents { get; set; }
+        public IList<IDocument> Documents { get; set; }
 
         #endregion
 
@@ -83,7 +83,7 @@ namespace R7.University.Data
         }
 
         [IgnoreColumn]
-        public IList<DocumentInfo> EduStandardDocuments
+        public IList<IDocument> EduStandardDocuments
         {
             get { 
                 return Documents.Where (d => d.DocumentType != null

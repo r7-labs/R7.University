@@ -27,13 +27,14 @@
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Data
 {
     [TableName ("University_EduLevels")]
     [PrimaryKey ("EduLevelID", AutoIncrement = true)]
     [Cacheable ("University_EduLevels")]
-    public class EduLevelInfo: IReferenceEntity
+    public class EduLevelInfo: IEduLevel, IReferenceEntity
     {
         #region Properties
 
@@ -52,12 +53,7 @@ namespace R7.University.Data
         [IgnoreColumn]
         public string DisplayShortTitle
         {
-            get { return FormatShortTitle (Title, ShortTitle); }
-        }
-
-        public static string FormatShortTitle (string title, string shortTitle)
-        {
-            return !string.IsNullOrWhiteSpace (shortTitle) ? shortTitle : title;
+            get { return FormatHelper.FormatShortTitle (ShortTitle, Title); }
         }
 
         #endregion

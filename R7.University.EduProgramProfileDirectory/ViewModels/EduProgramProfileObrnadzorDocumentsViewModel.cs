@@ -96,7 +96,7 @@ namespace R7.University.EduProgramProfileDirectory
             set { }
         }
 
-        public EduProgramInfo EduProgram
+        public IEduProgram EduProgram
         {
             get { return Model.EduProgram; }
             set { }

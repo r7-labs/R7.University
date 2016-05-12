@@ -137,6 +137,7 @@
     <Compile Include="Data\EmployeeEqualityComparer.cs" />
     <Compile Include="Data\PositionInfo.cs" />
     <Compile Include="ViewModels\FormatHelper.cs" />
+    <Compile Include="Models\IEduLevel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

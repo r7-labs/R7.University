@@ -26,7 +26,6 @@
 
 using System;
 using System.Collections.Generic;
-using R7.University.Data;
 
 namespace R7.University.Models
 {
@@ -50,8 +49,7 @@ namespace R7.University.Models
 
         DateTime? EndDate { get; set; }
 
-        // TODO: Use IEduProgram interface here
-        EduProgramInfo EduProgram { get; set; }
+        IEduProgram EduProgram { get; set; }
 
         IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
 

@@ -36,6 +36,11 @@ namespace R7.University.ViewModels
 {
     public static class FormatHelper
     {
+        public static string FormatShortTitle (string shortTitle, string title)
+        {
+            return !string.IsNullOrWhiteSpace (shortTitle) ? shortTitle : title;
+        }
+
         private static int getPlural (int n, CultureInfo culture)
         {
             // http://localization-guide.readthedocs.org/en/latest/l10n/pluralforms.html
