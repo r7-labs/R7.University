@@ -44,10 +44,7 @@ namespace R7.University.SharedLogic
             var imageWidth = 0;
 
             if (!TypeUtils.IsNull (employee.PhotoFileID)) {
-                // REVIEW: Need add ON DELETE rule to FK, linking PhotoFileID & Files.FileID 
-
                 image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-
                 if (image != null && square) {
                     // trying to get square image
                     // FIXME: Remove hard-coded photo filename options
