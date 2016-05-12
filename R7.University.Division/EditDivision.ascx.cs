@@ -156,10 +156,6 @@ namespace R7.University.Division
 
         protected override void LoadItem (DivisionInfo item)
         {
-            // FIXME: Need support in EditModuleBase to drop this on top of OnLoad method
-            // if (DotNetNuke.Framework.AJAX.IsInstalled ())
-            //    DotNetNuke.Framework.AJAX.RegisterScriptManager ();
-            
             txtTitle.Text = item.Title;
             txtShortTitle.Text = item.ShortTitle;
             txtWebSite.Text = item.WebSite;
