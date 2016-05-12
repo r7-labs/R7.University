@@ -1,10 +1,10 @@
 ﻿//
-// UniversityEntityBase.cs
+// IUniversityBaseEntity.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015-2016 Roman M. Yagodin
+// Copyright (c) 2014-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,19 +28,14 @@ using System;
 
 namespace R7.University.Models
 {
-    public abstract class UniversityEntityBase: IAuditable
+    public interface IUniversityBaseEntity
     {
-        #region IAuditable implementation
+        int LastModifiedByUserID { get; set; }
 
-        public int LastModifiedByUserID { get; set; }
+        DateTime LastModifiedOnDate { get; set; }
 
-        public DateTime LastModifiedOnDate { get; set; }
+        int CreatedByUserID { get; set; }
 
-        public int CreatedByUserID { get; set; }
-
-        public DateTime CreatedOnDate { get; set; }
-
-        #endregion
+        DateTime CreatedOnDate { get; set; }
     }
 }
-

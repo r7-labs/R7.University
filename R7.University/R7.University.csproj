@@ -62,11 +62,9 @@
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
     <Compile Include="ModelExtensions\DocumentExtensions.cs" />
     <Compile Include="Models\Delegates.cs" />
-    <Compile Include="Models\IAuditable.cs" />
     <Compile Include="Models\IReferenceEntity.cs" />
     <Compile Include="Models\ReferenceEntityBase.cs" />
     <Compile Include="Models\SystemDocumentType.cs" />
-    <Compile Include="Models\UniversityEntityBase.cs" />
     <Compile Include="ControlExtensions\GridViewExtensions.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileExtensions.cs" />
@@ -138,6 +136,8 @@
     <Compile Include="Data\PositionInfo.cs" />
     <Compile Include="ViewModels\FormatHelper.cs" />
     <Compile Include="Models\IEduLevel.cs" />
+    <Compile Include="Models\UniversityBaseEntityInfo.cs" />
+    <Compile Include="Models\IUniversityBaseEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

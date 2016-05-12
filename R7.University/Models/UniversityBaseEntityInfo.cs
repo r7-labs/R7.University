@@ -1,10 +1,10 @@
 ﻿//
-// ModuleAuditControlExtensions.cs
+// UniversityBaseEntityInfo.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,24 +25,22 @@
 // THE SOFTWARE.
 
 using System;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.Common.Utilities;
-using R7.University.Utilities;
-using R7.University.Models;
 
-namespace R7.University.ControlExtensions
+namespace R7.University.Models
 {
-    public static class ModuleAuditControlExtensions
+    public abstract class UniversityBaseEntityInfo: IUniversityBaseEntity
     {
-        public static void Bind (this ModuleAuditControl auditControl, IUniversityBaseEntity item)
-        {
-            auditControl.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-            auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, Null.NullInteger.ToString ());
-            auditControl.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
-            auditControl.LastModifiedByUser = Utils.GetUserDisplayName (
-                item.LastModifiedByUserID,
-                Null.NullInteger.ToString ());
-        }
+        #region IAuditable implementation
+
+        public int LastModifiedByUserID { get; set; }
+
+        public DateTime LastModifiedOnDate { get; set; }
+
+        public int CreatedByUserID { get; set; }
+
+        public DateTime CreatedOnDate { get; set; }
+
+        #endregion
     }
 }
 

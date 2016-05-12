@@ -34,7 +34,7 @@ namespace R7.University.Data
 {
     [TableName ("University_EduProgramProfiles")]
     [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
-    public class EduProgramProfileInfo: UniversityEntityBase, IEduProgramProfile
+    public class EduProgramProfileInfo: UniversityBaseEntityInfo, IEduProgramProfile
     {
         #region IEduProgramProfile implementation
 

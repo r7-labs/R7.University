@@ -35,7 +35,7 @@ namespace R7.University.Data
 {
     [TableName ("University_EduPrograms")]
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo: UniversityEntityBase, IEduProgram
+    public class EduProgramInfo: UniversityBaseEntityInfo, IEduProgram
     {
         public EduProgramInfo ()
         {

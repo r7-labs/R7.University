@@ -42,7 +42,7 @@ namespace R7.University.Data
     // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("University_Employees")]
     [PrimaryKey ("EmployeeID", AutoIncrement = true)]
-    public class EmployeeInfo : UniversityEntityBase
+    public class EmployeeInfo : UniversityBaseEntityInfo
     {
         #region Properties
 
