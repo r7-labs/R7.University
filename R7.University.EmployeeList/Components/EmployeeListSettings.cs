@@ -29,6 +29,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.University.Components;
 
 namespace R7.University.EmployeeList.Components
 {
@@ -93,8 +94,7 @@ namespace R7.University.EmployeeList.Components
 
         public int PhotoWidth
         {
-			// REVIEW: Need a way to customize default settings like PhotoWidth
-            get { return ReadSetting<int> ("EmployeeList_PhotoWidth", 120); }
+			get { return ReadSetting<int> ("EmployeeList_PhotoWidth", UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth); }
             set { WriteTabModuleSetting<int> ("EmployeeList_PhotoWidth", value); }
         }
 

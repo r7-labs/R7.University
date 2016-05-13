@@ -75,8 +75,8 @@ namespace R7.University.SharedLogic
             }
             else {
                 // if not photo specified, or not found, use fallback image
-                imageWidth = square ? 120 : 192;
-                imageHeight = square ? 120 : 256;
+                imageWidth = square ? UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth : UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
+                imageHeight = square ? UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth : UniversityConfig.Instance.EmployeePhoto.DefaultWidth * 4 / 3;
 
                 // TODO: Make fallback image resizable through image handler
                 imagePhoto.ImageUrl = string.Format ("/DesktopModules/R7.University/R7.University/images/nophoto_{0}{1}.png", 
