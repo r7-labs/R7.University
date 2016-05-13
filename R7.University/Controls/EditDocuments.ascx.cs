@@ -87,6 +87,7 @@ namespace R7.University.Controls
         {
             comboDocumentType.SelectByValue (item.DocumentTypeID);
             textDocumentTitle.Text = item.Title;
+            textDocumentGroup.Text = item.Group;
             textDocumentSortIndex.Text = item.SortIndex.ToString ();
             datetimeDocumentStartDate.SelectedDate = item.StartDate;
             datetimeDocumentEndDate.SelectedDate = item.EndDate;
@@ -96,6 +97,7 @@ namespace R7.University.Controls
         protected override void OnUpdateItem (DocumentViewModel item)
         {
             item.Title = textDocumentTitle.Text.Trim ();
+            item.Group = textDocumentGroup.Text.Trim ();
             item.DocumentTypeID = TypeUtils.ParseToNullable<int> (comboDocumentType.SelectedValue);
             item.DocumentType = GetDocumentType (item.DocumentTypeID);
             item.SortIndex = TypeUtils.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;

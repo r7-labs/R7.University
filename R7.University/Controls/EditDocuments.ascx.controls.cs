@@ -12,6 +12,7 @@ namespace R7.University.Controls
     {
         protected GridView gridDocuments;
         protected TextBox textDocumentTitle;
+        protected TextBox textDocumentGroup;
         protected DropDownList comboDocumentType;
         protected DnnUrlControl urlDocumentUrl;
         protected TextBox textDocumentSortIndex;

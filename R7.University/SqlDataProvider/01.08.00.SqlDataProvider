@@ -11,6 +11,15 @@ BEGIN
 END
 GO
 
+-- Documents
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'Group')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+        ADD [Group] nvarchar (255) NULL
+END
+GO
+
 -- Employees
 
 IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'FK_{objectQualifier}University_Employees_PhotoFile' and type in (N'F'))

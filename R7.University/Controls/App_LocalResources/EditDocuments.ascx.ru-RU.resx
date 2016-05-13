@@ -66,6 +66,12 @@
     <data name="labelDocumentTitle.Help">
         <value>Введите название документа.</value>
     </data>
+    <data name="labelDocumentGroup.Text">
+        <value>Группа:</value>
+    </data>
+    <data name="labelDocumentGroup.Help">
+        <value>Укажите имя группы для документа.</value>
+    </data>
     <data name="labelDocumentType.Text">
         <value>Тип документа:</value>
     </data>
@@ -113,6 +119,9 @@
     </data>
     <data name="DocumentTitle.Column">
         <value>Название</value>
+    </data>
+    <data name="DocumentGroup.Column">
+        <value>Группа</value>
     </data>
     <data name="DocumentType.Column">
         <value>Тип</value>

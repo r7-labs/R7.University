@@ -38,6 +38,8 @@ namespace R7.University.Models
 
         string Title { get; set; }
 
+        string Group { get; set; }
+
         string Url { get; set; }
 
         int SortIndex { get; set; }

@@ -65,6 +65,8 @@ namespace R7.University.Controls
 
         public string Title { get; set; }
 
+        public string Group { get; set; }
+
         public string Url { get; set; }
 
         public int SortIndex { get; set; }

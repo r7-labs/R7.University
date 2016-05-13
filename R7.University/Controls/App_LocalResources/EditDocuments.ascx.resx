@@ -66,6 +66,12 @@
     <data name="labelDocumentTitle.Help">
         <value>Enter title for the document.</value>
     </data>
+    <data name="labelDocumentGroup.Text">
+        <value>Group:</value>
+    </data>
+    <data name="labelDocumentGroup.Help">
+        <value>Specify group name for the document.</value>
+    </data>
     <data name="labelDocumentType.Text">
         <value>Type:</value>
     </data>
@@ -113,6 +119,9 @@
     </data>
     <data name="DocumentTitle.Column">
         <value>Title</value>
+    </data>
+    <data name="DocumentGroup.Column">
+        <value>Group</value>
     </data>
     <data name="DocumentType.Column">
         <value>Type</value>

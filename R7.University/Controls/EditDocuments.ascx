@@ -31,6 +31,7 @@
                     <asp:BoundField DataField="ViewItemID" />
                     <asp:BoundField DataField="LocalizedType" HeaderText="DocumentType" />
                     <asp:BoundField DataField="Title" HeaderText="DocumentTitle" />
+                    <asp:BoundField DataField="Group" HeaderText="DocumentGroup" />
                     <asp:BoundField DataField="FileName" HeaderText="DocumentFileName" />
                     <asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex" />
                     <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate" DataFormatString="{0:d}" />
@@ -59,6 +60,10 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
             <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label ID="labelDocumentGroup" runat="server" ControlName="textDocumentGroup" />
+            <asp:TextBox id="textDocumentGroup" runat="server" MaxLength="255" />
         </div>
         <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("sectionAdvancedProperties.Text") %></a></h2>
         <fieldset>
