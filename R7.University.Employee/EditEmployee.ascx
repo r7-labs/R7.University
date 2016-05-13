@@ -328,33 +328,34 @@
 			<fieldset>
                 <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
                     <ContentTemplate>
+                        <asp:ValidationSummary runat="server" ValidationGroup="Disciplines" DisplayMode="SingleParagraph" CssClass="dnnFormMessage dnnFormWarning" />
                         <div class="dnnFormItem">
                             <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                                GridLines="None" OnRowDataBound="gridEduPrograms_RowDataBound" Style="margin-bottom:30px;width:775px">
-                                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-                                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-                                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
-                                    <SelectedRowStyle CssClass="dnnFormError" />
-                                    <EditRowStyle CssClass="dnnFormInput" />
-                                    <FooterStyle CssClass="dnnGridFooter" />
-                                    <PagerStyle CssClass="dnnGridPager" />
-                                    <Columns>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <span style="white-space:nowrap">
-                                                    <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditEduProgram_Command" >
-                                                        <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-                                                    </asp:LinkButton>
-                                                    <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteEduProgram_Command" >
-                                                        <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-                                                    </asp:LinkButton>
-                                                </span>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="ItemID" />
-                                        <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
-                                        <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
-                                    </Columns>
+                                    GridLines="None" OnRowDataBound="gridEduPrograms_RowDataBound" Style="margin-bottom:30px;width:775px">
+                                <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                                <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                                <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                                <SelectedRowStyle CssClass="dnnFormError" />
+                                <EditRowStyle CssClass="dnnFormInput" />
+                                <FooterStyle CssClass="dnnGridFooter" />
+                                <PagerStyle CssClass="dnnGridPager" />
+                                <Columns>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <span style="white-space:nowrap">
+                                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditEduProgram_Command" >
+                                                    <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                                </asp:LinkButton>
+                                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteEduProgram_Command" >
+                                                    <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
+                                                </asp:LinkButton>
+                                            </span>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="ItemID" />
+                                    <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
+                                    <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                                </Columns>
                             </asp:GridView>
                             <asp:HiddenField id="hiddenEduProgramItemID" runat="server" />
                         </div>
@@ -371,6 +372,8 @@
                             <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
                                 DataValueField="EduProgramProfileID"
                                 DataTextField="EduProgramProfileString" />
+                            <asp:CustomValidator id="valEduProgramProfile" runat="server" ControlToValidate="comboEduProgram"
+                                Display="None" EnableClientScript="false" ValidationGroup="Disciplines" />
                         </div>
                         <div class="dnnFormItem">
                             <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />
@@ -379,11 +382,11 @@
                         <div class="dnnFormItem">
                             <div class="dnnLabel"></div>
                             <asp:LinkButton id="buttonAddEduProgram" runat="server" resourcekey="buttonAddEduProgram" 
-                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" CommandArgument="Add" />
+                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" CommandArgument="Add" CausesValidation="true" ValidationGroup="Disciplines" />
                             <asp:LinkButton id="buttonUpdateEduProgram" runat="server" resourcekey="buttonUpdateEduProgram" 
-                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" Visible="false" CommandArgument="Update" />
+                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" Visible="false" CommandArgument="Update" CausesValidation="true" ValidationGroup="Disciplines" />
                             <asp:LinkButton id="buttonCancelEditEduProgram" runat="server" resourcekey="buttonCancelEditEduProgram" 
-                                CssClass="dnnSecondaryAction" OnClick="buttonCancelEditEduProgram_Click" />
+                                CssClass="dnnSecondaryAction" OnClick="buttonCancelEditEduProgram_Click" CausesValidation="false" />
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>

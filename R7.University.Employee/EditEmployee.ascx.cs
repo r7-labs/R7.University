@@ -40,16 +40,17 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
+using R7.University.Employee.Components;
 using R7.University.ModelExtensions;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
-using R7.University.Employee.Components;
 
 namespace R7.University.Employee
 {
@@ -1031,28 +1032,39 @@ namespace R7.University.Employee
                         discipline = disciplines.Find (ep1 => ep1.ItemID == hiddenItemID);
                     }
 
-                    discipline.EduProgramProfileID = int.Parse (comboEduProgram.SelectedValue);
-                    discipline.Disciplines = textProgramDisciplines.Text.Trim ();
+                    var eduProgramProfileId = int.Parse (comboEduProgram.SelectedValue);
 
-                    var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+                    // check for possible duplicates
+                    var discCount = disciplines.Count (d => d.EduProgramProfileID == eduProgramProfileId);
 
-                    discipline.Code = profile.EduProgram.Code;
-                    discipline.Title = profile.EduProgram.Title;
-                    discipline.ProfileCode = profile.ProfileCode;
-                    discipline.ProfileTitle = profile.ProfileTitle;
+                    if ((command == "Add" && discCount == 0) || (command == "Update" && discCount == 1)) {
+                        discipline.EduProgramProfileID = eduProgramProfileId;
+                        discipline.Disciplines = textProgramDisciplines.Text.Trim ();
 
-                    if (command == "Add") {
-                        disciplines.Add (discipline);
+                        var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+
+                        discipline.Code = profile.EduProgram.Code;
+                        discipline.Title = profile.EduProgram.Title;
+                        discipline.ProfileCode = profile.ProfileCode;
+                        discipline.ProfileTitle = profile.ProfileTitle;
+
+                        if (command == "Add") {
+                            disciplines.Add (discipline);
+                        }
+
+                        ResetEditEduProgramForm ();
+
+                        // refresh viewstate
+                        ViewState ["disciplines"] = disciplines;
+
+                        // bind items to the gridview
+                        gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
+                        gridEduPrograms.DataBind ();
                     }
-
-                    ResetEditEduProgramForm ();
-
-                    // refresh viewstate
-                    ViewState ["disciplines"] = disciplines;
-
-                    // bind items to the gridview
-                    gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
-                    gridEduPrograms.DataBind ();
+                    else {
+                        valEduProgramProfile.IsValid = false;
+                        valEduProgramProfile.ErrorMessage = LocalizeString ("EduProgramProfile.Warning");
+                    }
                 }
             }
             catch (Exception ex) {

@@ -294,4 +294,7 @@
     <data name="buttonCancelEditEduProgram.Text">
         <value>Отмена</value>
     </data>
+    <data name="EduProgramProfile.Warning">
+        <value>Невозможно добавить или сохранить запись о дисциплинах, так как уже существует запись для указанного профиля образовательной программы.</value>
+    </data>
 </root>

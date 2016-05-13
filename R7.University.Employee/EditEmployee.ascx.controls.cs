@@ -114,5 +114,6 @@ namespace R7.University.Employee
         protected LinkButton buttonUpdateEduProgram;
         protected LinkButton buttonCancelEditEduProgram;
         protected HiddenField hiddenEduProgramItemID;
+        protected CustomValidator valEduProgramProfile;
 	}
 }
