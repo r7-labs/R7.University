@@ -57,7 +57,7 @@ namespace R7.University.Controls
             var documentTypeViewModels = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext, true);
             ViewState ["documentTypes"] = XmlSerializationHelper.Serialize (documentTypeViewModels);
 
-            comboDocumentType.DataSource = documentTypeViewModels;
+            comboDocumentType.DataSource = documentTypeViewModels.OrderBy (dt => dt.LocalizedType);
             comboDocumentType.DataBind ();
         }
 
@@ -91,7 +91,6 @@ namespace R7.University.Controls
             datetimeDocumentStartDate.SelectedDate = item.StartDate;
             datetimeDocumentEndDate.SelectedDate = item.EndDate;
             urlDocumentUrl.Url = item.Url;
-            ;
         }
 
         protected override void OnUpdateItem (DocumentViewModel item)
