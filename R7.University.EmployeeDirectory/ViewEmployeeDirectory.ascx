@@ -95,7 +95,7 @@
                     <div class="table-responsive">
                         <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
                                 UseAccessibleHeader="true" OnRowDataBound="gridTeachersByEduProgram_RowDataBound"
-                                CssClass="table table-bordered table-stripped table-hover small" GridLines="None" Width="100%">
+                                CssClass="table table-bordered table-stripped table-hover grid-teachers-by-eduprogram" GridLines="None" Width="100%">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
