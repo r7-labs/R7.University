@@ -51,8 +51,14 @@
     <data name="TimeToLearnYears.Invalid">
         <value>Число лет дожно быть целым числом от 0 до 7.</value>
     </data>
+    <data name="TimeToLearnYears.Required">
+        <value>Введите число лет.</value>
+    </data>
     <data name="TimeToLearnMonths.Invalid">
         <value>Число месяцев должно быть целым числом от 0 до 11.</value>
+    </data>
+    <data name="TimeToLearnMonths.Required">
+        <value>Введите число месяцев.</value>
     </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>

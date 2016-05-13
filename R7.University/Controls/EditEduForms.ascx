@@ -59,9 +59,15 @@
                 ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
                 Type="Integer" MinimumValue="0" MaximumValue="7"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+            <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnYears.Required"
+                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
             <asp:RangeValidator runat="server" resourcekey="TimeToLearnMonths.Invalid"
                 ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
                 Type="Integer" MinimumValue="0" MaximumValue="11"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+            <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnMonths.Required"
+                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         </div>
         <div class="dnnFormItem">
