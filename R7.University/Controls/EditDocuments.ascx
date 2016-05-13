@@ -39,6 +39,13 @@
             </asp:GridView>
         </div>
         <div class="dnnFormItem">
+            <dnn:Label id="labelDocumentType" runat="server" ControlName="comboDocumentType" />
+            <asp:DropDownList id="comboDocumentType" runat="server" 
+                DataTextField="LocalizedType"
+                DataValueField="DocumentTypeID"
+            />
+        </div>
+        <div class="dnnFormItem">
             <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
             <dnn:Url id="urlDocumentUrl" runat="server" UrlType="N" 
                 IncludeActiveTab="true"
@@ -49,24 +56,17 @@
             />   
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelDocumentType" runat="server" ControlName="comboDocumentType" />
-            <asp:DropDownList id="comboDocumentType" runat="server" 
-                DataTextField="LocalizedType"
-                DataValueField="DocumentTypeID"
-            />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelDocumentSortIndex" runat="server" ControlName="textDocumentSortIndex" />
-            <asp:TextBox id="textDocumentSortIndex" runat="server" Value="0" />
-            <asp:RegularExpressionValidator runat="server" resourcekey="DocumentSortIndex.Invalid"
-                ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents" 
-                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="-?\d+" />
+            <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
+            <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
         </div>
         <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("sectionAdvancedProperties.Text") %></a></h2>
         <fieldset>
-            <div class="dnnFormItem">
-                <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
-                <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
+         <div class="dnnFormItem">
+            <dnn:Label id="labelDocumentSortIndex" runat="server" ControlName="textDocumentSortIndex" />
+                <asp:TextBox id="textDocumentSortIndex" runat="server" Value="0" />
+                <asp:RegularExpressionValidator runat="server" resourcekey="DocumentSortIndex.Invalid"
+                    ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents" 
+                    Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="-?\d+" />
             </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="labelDocumentStartDate" runat="server" ControlName="datetimeDocumentStartDate" />
