@@ -378,6 +378,8 @@
                         <div class="dnnFormItem">
                             <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />
                             <asp:TextBox id="textProgramDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="textProgramDisciplines" Display="Dynamic"
+                                CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="Disciplines.Required" />
                         </div>
                         <div class="dnnFormItem">
                             <div class="dnnLabel"></div>

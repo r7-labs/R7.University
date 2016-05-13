@@ -297,4 +297,7 @@
     <data name="EduProgramProfile.Warning">
         <value>Невозможно добавить или сохранить запись о дисциплинах, так как уже существует запись для указанного профиля образовательной программы.</value>
     </data>
+    <data name="Disciplines.Required">
+        <value>Введите дисциплины.</value>
+    </data>
 </root>

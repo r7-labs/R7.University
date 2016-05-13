@@ -297,4 +297,7 @@
     <data name="EduProgramProfile.Warning">
         <value>Cannot add or update disciplines entry, as the entry for specified edu. program profile already exists.</value>
     </data>
+    <data name="Disciplines.Required">
+        <value>Disciplines field is required.</value>
+    </data>
 </root>
