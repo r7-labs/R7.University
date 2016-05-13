@@ -402,7 +402,7 @@ namespace R7.University.Employee
             linkBarcode.Attributes.Add ("data-dialog-title", employee.FullName);
 
             // barcode image
-            const int barcodeWidth = 192;
+            var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
             imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
                     "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                     barcodeWidth, barcodeWidth, 

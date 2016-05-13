@@ -36,10 +36,10 @@ using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University;
+using R7.University.Components;
 using R7.University.Data;
 using R7.University.Division.Components;
 
@@ -223,8 +223,7 @@ namespace R7.University.Division
             linkBarcode.Attributes.Add ("data-dialog-title", division.Title);
 
             // barcode image
-            // TODO: Move barcode width to global settings
-            const int barcodeWidth = 192;
+            var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
             imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
                     "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                     barcodeWidth, barcodeWidth,
