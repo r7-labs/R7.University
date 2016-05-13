@@ -134,14 +134,10 @@ namespace R7.University.Employee
             // add confirmation dialog to delete button
             buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" +
                 Localization.GetString ("DeleteItem") + "');");
-
+           
             // setup filepicker
+            pickerPhoto.FolderPath = UniversityConfig.Instance.EmployeePhoto.DefaultPath;
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
-
-            // TODO: Get default faces folder from global / portal settings 
-
-            // FIXME: Causes crash on DNN versions after 7.1.2 (tested only on 7.4.1 and 7.4.2):
-            // pickerPhoto.FilePath = "Images/faces/";
 
             // add default item to user list
             comboUsers.Items.Add (new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
