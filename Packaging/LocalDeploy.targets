@@ -20,6 +20,7 @@
             <LocalDeployResourceFiles Include="..\**\*.xml" />
             <LocalDeployResourceFiles Include="..\**\*.xsl" />
             <LocalDeployResourceFiles Include="..\**\*.xslt" />
+            <LocalDeployResourceFiles Include="..\**\*.yml" Exclude="..\.travis.yml" />
             <LocalDeployResourceFiles Include="..\**\*.resx" />
             <LocalDeployResourceFiles Include="..\**\*.js" />
             <LocalDeployResourceFiles Include="..\**\*.jpg" />

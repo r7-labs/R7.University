@@ -14,6 +14,7 @@
         <ItemGroup>
             <InstallBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.dll" />
             <InstallBinaryFiles Include="$(MainProjectOutputPath)\AjaxControlToolkit.dll" />
+            <InstallBinaryFiles Include="$(MainProjectOutputPath)\YamlDotNet.dll" />
         </ItemGroup>
         <!-- Declare manifest files -->
         <ItemGroup>
@@ -39,6 +40,7 @@
             <InstallResourceFiles Include="..\**\*.xml" />
             <InstallResourceFiles Include="..\**\*.xsl" />
             <InstallResourceFiles Include="..\**\*.xslt" />
+            <InstallResourceFiles Include="..\**\*.yml" Exclude="..\.travis.yml" />
             <InstallResourceFiles Include="..\**\*.resx" />
             <InstallResourceFiles Include="..\**\*.js" />
             <InstallResourceFiles Include="..\**\*.jpg" />

@@ -57,6 +57,9 @@
     <Reference Include="R7.DotNetNuke.Extensions">
       <HintPath>..\packages\R7.DotNetNuke.Extensions.0.8.0-alpha-1\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.3.8.0\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
@@ -139,6 +142,8 @@
     <Compile Include="Models\IUniversityBaseEntity.cs" />
     <Compile Include="Data\EmployeeAchievementRepository.cs" />
     <Compile Include="Data\OccupiedPositionRepository.cs" />
+    <Compile Include="Components\UniversityConfig.cs" />
+    <Compile Include="Components\UniversityPortalConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -204,6 +209,7 @@
     <None Include="js\dnn-ac-combobox.js" />
     <None Include="css\dnn-ac-combobox.css" />
     <None Include="SqlDataProvider\01.08.00.SqlDataProvider" />
+    <None Include="R7.University.yml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

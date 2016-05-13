@@ -123,6 +123,15 @@
 						</assembly>
 					</assemblies>
 				</component>
+                <component type="Assembly">
+                    <assemblies>
+                        <basePath>bin</basePath>
+                        <assembly>
+                            <path>bin</path>
+                            <name>YamlDotNet.dll</name>
+                        </assembly>
+                    </assemblies>
+                </component>
 				<component type="ResourceFile">
 					<resourceFiles>
 						<basePath>DesktopModules/R7.University</basePath>

@@ -558,8 +558,7 @@ namespace R7.University.Employee
             try {
                 SelectedTab = EditEmployeeTab.Common;
 
-                // TODO: Remove hardcoding
-                var folderPath = "Images/faces/";
+                var folderPath =  UniversityConfig.Instance.DefaultEmployeesPhotoPath;
                 var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
 
                 if (folder != null) {
