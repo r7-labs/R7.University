@@ -123,6 +123,9 @@
     <data name="DocumentUrlLabel.Text">
         <value>Open</value>
     </data>
+    <data name="DocumentFileName.Column">
+        <value>File Name</value>
+    </data>
     <data name="DocumentSortIndex.Column">
         <value>Sort Index</value>
     </data>

@@ -5,9 +5,9 @@
 
 <div id="eduProgramDocuments" class="eduProgramDocuments">
     <fieldset>
-        <div class="dnnFormItem">
+        <div class="dnnFormItem" style="width:auto;margin-right:1.5em">
             <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                GridLines="None" Style="margin-bottom:30px;width:775px">
+                GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                 <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -31,9 +31,10 @@
                     <asp:BoundField DataField="ViewItemID" />
                     <asp:BoundField DataField="LocalizedType" HeaderText="DocumentType" />
                     <asp:BoundField DataField="Title" HeaderText="DocumentTitle" />
+                    <asp:BoundField DataField="FileName" HeaderText="DocumentFileName" />
                     <asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex" />
-                    <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate" />
-                    <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate" />
+                    <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate" DataFormatString="{0:d}" />
+                    <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate" DataFormatString="{0:d}" />
                     <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl" HtmlEncode="false" />
                 </Columns>
             </asp:GridView>

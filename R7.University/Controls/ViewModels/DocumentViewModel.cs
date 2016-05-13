@@ -26,13 +26,16 @@
 
 using System;
 using System.Xml.Serialization;
+using DotNetNuke.Common;
+using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Data;
+using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using R7.University.Models;
-using R7.University.Data;
 
 namespace R7.University.Controls
 {
@@ -96,6 +99,19 @@ namespace R7.University.Controls
                         UrlUtils.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrlLabel.Text", Context.LocalResourceFile)
                     );
+                }
+
+                return string.Empty;
+            }
+        }
+
+        [XmlIgnore]
+        public string FileName
+        {
+            get {
+                if (Globals.GetURLType (Url) == TabType.File) {
+                    var file = FileManager.Instance.GetFile (int.Parse (Url.ToUpperInvariant ().Replace ("FILEID=","")));
+                    return (file != null) ? file.FileName : string.Empty;
                 }
 
                 return string.Empty;
