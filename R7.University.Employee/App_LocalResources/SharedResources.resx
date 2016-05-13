@@ -84,9 +84,6 @@
     <data name="Achievements.Tab" xml:space="preserve">
         <value>Achievements</value>
     </data>
-    <data name="EduPrograms.Tab" xml:space="preserve">
-        <value>Educational Programs</value>
-    </data>
     <data name="Positions.Tab" xml:space="preserve">
         <value>Positions</value>
     </data>

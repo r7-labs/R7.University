@@ -84,9 +84,6 @@
     <data name="Achievements.Tab" xml:space="preserve">
         <value>Достижения</value>
     </data>
-    <data name="EduPrograms.Tab" xml:space="preserve">
-        <value>Образовательные программы</value>
-    </data>
     <data name="Positions.Tab" xml:space="preserve">
         <value>Должности</value>
     </data>

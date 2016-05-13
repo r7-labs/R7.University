@@ -192,11 +192,11 @@
     <data name="labelEduLevel.Help">
         <value>Выберите уровень образования из выпадающего списка.</value>
     </data>
-    <data name="labelEduProgram.Text">
-        <value>Образовательная программа:</value>
+    <data name="labelEduProgramProfile.Text">
+        <value>Профиль обр. программы:</value>
     </data>
-    <data name="labelEduProgram.Help">
-        <value>Выберите образовательную программу из списка.</value>
+    <data name="labelEduProgramProfile.Help">
+        <value>Выберите профиль образовательной программы из выпадающего списка.</value>
     </data>
     <data name="labelDisciplines.Text">
         <value>Дисципины:</value>
@@ -285,13 +285,13 @@
     <data name="IsPrime.Column">
         <value>Основная</value>
     </data>
-    <data name="buttonAddEduProgram.Text">
-        <value>Добавить программу</value>
+    <data name="buttonAddDisciplines.Text">
+        <value>Добавить дисциплины</value>
     </data>
-    <data name="buttonUpdateEduProgram.Text">
-        <value>Сохранить программу</value>
+    <data name="buttonUpdateDisciplines.Text">
+        <value>Сохранить дисциплины</value>
     </data>
-    <data name="buttonCancelEditEduProgram.Text">
+    <data name="buttonCancelEditDisciplines.Text">
         <value>Отмена</value>
     </data>
     <data name="EduProgramProfile.Warning">

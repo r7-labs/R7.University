@@ -63,10 +63,9 @@ namespace R7.University.Employee
             Common,
             Positions,
             Achievements,
-            EduPrograms,
-            About}
-
-        ;
+            [Obsolete] Disciplines,
+            About
+        }
 
         #endregion
 
@@ -202,7 +201,7 @@ namespace R7.University.Employee
             // localize bounded gridviews
             gridAchievements.LocalizeColumns (LocalResourceFile);
             gridOccupiedPositions.LocalizeColumns (LocalResourceFile);
-            gridEduPrograms.LocalizeColumns (LocalResourceFile);
+            gridDisciplines.LocalizeColumns (LocalResourceFile);
         }
 
         /// <summary>
@@ -318,8 +317,8 @@ namespace R7.University.Employee
 
                             // bind disciplines
                             ViewState ["disciplines"] = disciplines;
-                            gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
-                            gridEduPrograms.DataBind ();
+                            gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
+                            gridDisciplines.DataBind ();
 
                             // setup audit control
                             ctlAudit.Bind (item);
@@ -581,12 +580,10 @@ namespace R7.University.Employee
             }
         }
 
-        protected void buttonCancelEditEduProgram_Click (object sender, EventArgs e)
+        protected void buttonCancelEditDisciplines_Click (object sender, EventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.EduPrograms;
-
-                ResetEditEduProgramForm ();
+                ResetEditDisciplinesForm ();
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -605,12 +602,12 @@ namespace R7.University.Employee
             }
         }
 
-        private void ResetEditEduProgramForm ()
+        private void ResetEditDisciplinesForm ()
         {
             // restore default buttons visibility
-            buttonAddEduProgram.Visible = true;
-            buttonUpdateEduProgram.Visible = false;
-            textProgramDisciplines.Text = string.Empty;
+            buttonAddDisciplines.Visible = true;
+            buttonUpdateDisciplines.Visible = false;
+            textDisciplines.Text = string.Empty;
         }
 
         private void ResetEditPositionForm ()
@@ -709,7 +706,7 @@ namespace R7.University.Employee
             grids_RowDataBound (sender, e);
         }
 
-        protected void gridEduPrograms_RowDataBound (object sender, GridViewRowEventArgs e)
+        protected void gridDisciplines_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             grids_RowDataBound (sender, e);
         }
@@ -809,7 +806,7 @@ namespace R7.University.Employee
             return DataTableConstructor.FromIEnumerable (achievements);
         }
 
-        private DataTable EduProgramsDataTable (List<EmployeeDisciplineView> eduPrograms)
+        private DataTable DisciplinesDataTable (List<EmployeeDisciplineView> eduPrograms)
         {
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
@@ -1011,12 +1008,10 @@ namespace R7.University.Employee
             }
         }
 
-        protected void buttonAddEduProgram_Command (object sender, CommandEventArgs e)
+        protected void buttonAddDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.EduPrograms;
-
-                if (!Null.IsNull (int.Parse (comboEduProgram.SelectedValue))) {
+                if (!Null.IsNull (int.Parse (comboEduProgramProfile.SelectedValue))) {
                     EmployeeDisciplineView discipline;
 
                     // get disciplines list from viewstate
@@ -1028,18 +1023,18 @@ namespace R7.University.Employee
                     }
                     else {
                         // restore ItemID from hidden field
-                        var hiddenItemID = int.Parse (hiddenEduProgramItemID.Value);
+                        var hiddenItemID = int.Parse (hiddenDisciplinesItemID.Value);
                         discipline = disciplines.Find (ep1 => ep1.ItemID == hiddenItemID);
                     }
 
-                    var eduProgramProfileId = int.Parse (comboEduProgram.SelectedValue);
+                    var eduProgramProfileId = int.Parse (comboEduProgramProfile.SelectedValue);
 
                     // check for possible duplicates
                     var discCount = disciplines.Count (d => d.EduProgramProfileID == eduProgramProfileId);
 
                     if ((command == "Add" && discCount == 0) || (command == "Update" && discCount == 1)) {
                         discipline.EduProgramProfileID = eduProgramProfileId;
-                        discipline.Disciplines = textProgramDisciplines.Text.Trim ();
+                        discipline.Disciplines = textDisciplines.Text.Trim ();
 
                         var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
 
@@ -1052,14 +1047,14 @@ namespace R7.University.Employee
                             disciplines.Add (discipline);
                         }
 
-                        ResetEditEduProgramForm ();
+                        ResetEditDisciplinesForm ();
 
                         // refresh viewstate
                         ViewState ["disciplines"] = disciplines;
 
                         // bind items to the gridview
-                        gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
-                        gridEduPrograms.DataBind ();
+                        gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
+                        gridDisciplines.DataBind ();
                     }
                     else {
                         valEduProgramProfile.IsValid = false;
@@ -1072,11 +1067,9 @@ namespace R7.University.Employee
             }
         }
 
-        protected void linkEditEduProgram_Command (object sender, CommandEventArgs e)
+        protected void linkEditDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.EduPrograms;
-
                 var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
@@ -1094,15 +1087,15 @@ namespace R7.University.Employee
                         }
 
                         // fill achievements form
-                        comboEduProgram.SelectByValue (discipline.EduProgramProfileID);
-                        textProgramDisciplines.Text = discipline.Disciplines;
+                        comboEduProgramProfile.SelectByValue (discipline.EduProgramProfileID);
+                        textDisciplines.Text = discipline.Disciplines;
 
                         // store ItemID in the hidden field
-                        hiddenEduProgramItemID.Value = discipline.ItemID.ToString ();
+                        hiddenDisciplinesItemID.Value = discipline.ItemID.ToString ();
 
                         // show / hide buttons
-                        buttonAddEduProgram.Visible = false;
-                        buttonUpdateEduProgram.Visible = true;
+                        buttonAddDisciplines.Visible = false;
+                        buttonUpdateDisciplines.Visible = true;
                     }
                 }
             }
@@ -1111,11 +1104,9 @@ namespace R7.University.Employee
             }
         }
 
-        protected void linkDeleteEduProgram_Command (object sender, CommandEventArgs e)
+        protected void linkDeleteDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.EduPrograms;
-
                 var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
@@ -1131,12 +1122,13 @@ namespace R7.University.Employee
                         ViewState ["disciplines"] = disciplines;
 
                         // bind edu discipline to the gridview
-                        gridEduPrograms.DataSource = EduProgramsDataTable (disciplines);
-                        gridEduPrograms.DataBind ();
+                        gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
+                        gridDisciplines.DataBind ();
 
                         // reset form if we deleting currently edited discipline
-                        if (buttonUpdateEduProgram.Visible && hiddenEduProgramItemID.Value == itemID)
-                            ResetEditEduProgramForm ();
+                        if (buttonUpdateDisciplines.Visible && hiddenDisciplinesItemID.Value == itemID) {
+                            ResetEditDisciplinesForm ();
+                        }
                     }
                 }
             }
@@ -1175,8 +1167,8 @@ namespace R7.University.Employee
         private void BindEduProgramProfiles (int eduLevelId)
         {
             var epps = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevel (eduLevelId);
-            comboEduProgram.DataSource = epps;
-            comboEduProgram.DataBind ();
+            comboEduProgramProfile.DataSource = epps;
+            comboEduProgramProfile.DataBind ();
         }
 
         #endregion

@@ -20,7 +20,7 @@
 		    <li><a href="#employee-common-tab"><%= LocalizeString("Common.Tab") %></a></li>
 		    <li><a href="#employee-positions-tab"><%= LocalizeString("Positions.Tab") %></a></li>
 		    <li><a href="#employee-achievements-tab"><%= LocalizeString("Achievements.Tab") %></a></li>
-            <li><a href="#employee-eduprograms-tab"><%= LocalizeString("EduPrograms.Tab") %></a></li>
+            <li><a href="#employee-disciplines-tab"><%= LocalizeString("Disciplines.Tab") %></a></li>
 		    <li><a href="#employee-about-tab"><%= LocalizeString("About.Tab") %></a></li>
 		</ul>
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
@@ -324,14 +324,15 @@
 				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
 			</fieldset>
 		</div>
-		<div id="employee-eduprograms-tab">
+		<div id="employee-disciplines-tab">
 			<fieldset>
-                <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
+                <asp:UpdatePanel runat="server">
                     <ContentTemplate>
-                        <asp:ValidationSummary runat="server" ValidationGroup="Disciplines" DisplayMode="SingleParagraph" CssClass="dnnFormMessage dnnFormWarning" />
+                        <asp:ValidationSummary runat="server" ValidationGroup="Disciplines" 
+                            DisplayMode="SingleParagraph" CssClass="dnnFormMessage dnnFormWarning" />
                         <div class="dnnFormItem">
-                            <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                                    GridLines="None" OnRowDataBound="gridEduPrograms_RowDataBound" Style="margin-bottom:30px;width:775px">
+                            <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                                    GridLines="None" OnRowDataBound="gridDisciplines_RowDataBound" Style="margin-bottom:30px;width:775px">
                                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                                 <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
                                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -343,10 +344,10 @@
                                     <asp:TemplateField>
                                         <ItemTemplate>
                                             <span style="white-space:nowrap">
-                                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditEduProgram_Command" >
+                                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditDisciplines_Command" >
                                                     <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
                                                 </asp:LinkButton>
-                                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteEduProgram_Command" >
+                                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteDisciplines_Command" >
                                                     <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
                                                 </asp:LinkButton>
                                             </span>
@@ -357,7 +358,7 @@
                                     <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
                                 </Columns>
                             </asp:GridView>
-                            <asp:HiddenField id="hiddenEduProgramItemID" runat="server" />
+                            <asp:HiddenField id="hiddenDisciplinesItemID" runat="server" />
                         </div>
                         <div class="dnnFormItem">
                             <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
@@ -368,27 +369,30 @@
                                 DataTextField="Title" />
                         </div>
                         <div class="dnnFormItem">
-                            <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-                            <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
+                            <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
+                            <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-ac-combobox"
                                 DataValueField="EduProgramProfileID"
                                 DataTextField="EduProgramProfileString" />
-                            <asp:CustomValidator id="valEduProgramProfile" runat="server" ControlToValidate="comboEduProgram"
+                            <asp:CustomValidator id="valEduProgramProfile" runat="server" ControlToValidate="comboEduProgramProfile"
                                 Display="None" EnableClientScript="false" ValidationGroup="Disciplines" />
                         </div>
                         <div class="dnnFormItem">
-                            <dnn:Label id="labelDisciplines" runat="server" ControlName="textProgramDisciplines" />
-                            <asp:TextBox id="textProgramDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="textProgramDisciplines" Display="Dynamic"
+                            <dnn:Label id="labelDisciplines" runat="server" ControlName="textDisciplines" />
+                            <asp:TextBox id="textDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="textDisciplines" Display="Dynamic"
                                 CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="Disciplines.Required" />
                         </div>
                         <div class="dnnFormItem">
                             <div class="dnnLabel"></div>
-                            <asp:LinkButton id="buttonAddEduProgram" runat="server" resourcekey="buttonAddEduProgram" 
-                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" CommandArgument="Add" CausesValidation="true" ValidationGroup="Disciplines" />
-                            <asp:LinkButton id="buttonUpdateEduProgram" runat="server" resourcekey="buttonUpdateEduProgram" 
-                                CssClass="dnnPrimaryAction" OnCommand="buttonAddEduProgram_Command" Visible="false" CommandArgument="Update" CausesValidation="true" ValidationGroup="Disciplines" />
-                            <asp:LinkButton id="buttonCancelEditEduProgram" runat="server" resourcekey="buttonCancelEditEduProgram" 
-                                CssClass="dnnSecondaryAction" OnClick="buttonCancelEditEduProgram_Click" CausesValidation="false" />
+                            <asp:LinkButton id="buttonAddDisciplines" runat="server" resourcekey="buttonAddDisciplines" 
+                                CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" CommandArgument="Add" 
+                                CausesValidation="true" ValidationGroup="Disciplines" />
+                            <asp:LinkButton id="buttonUpdateDisciplines" runat="server" resourcekey="buttonUpdateDisciplines" 
+                                CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" Visible="false" CommandArgument="Update" 
+                                CausesValidation="true" ValidationGroup="Disciplines" />
+                            <asp:LinkButton id="buttonCancelEditDisciplines" runat="server" resourcekey="buttonCancelEditDisciplines" 
+                                CssClass="dnnSecondaryAction" OnClick="buttonCancelEditDisciplines_Click" 
+                                CausesValidation="false" />
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>

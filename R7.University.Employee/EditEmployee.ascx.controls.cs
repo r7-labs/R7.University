@@ -106,14 +106,14 @@ namespace R7.University.Employee
 		protected LabelControl labelAchievementTitleSuffix;
 		protected TextBox textAchievementTitleSuffix;
 
-        protected GridView gridEduPrograms;
-        protected TextBox textProgramDisciplines;
+        protected GridView gridDisciplines;
+        protected TextBox textDisciplines;
         protected DropDownList comboEduLevel;
-        protected DropDownList comboEduProgram;
-        protected LinkButton buttonAddEduProgram;
-        protected LinkButton buttonUpdateEduProgram;
-        protected LinkButton buttonCancelEditEduProgram;
-        protected HiddenField hiddenEduProgramItemID;
+        protected DropDownList comboEduProgramProfile;
+        protected LinkButton buttonAddDisciplines;
+        protected LinkButton buttonUpdateDisciplines;
+        protected LinkButton buttonCancelEditDisciplines;
+        protected HiddenField hiddenDisciplinesItemID;
         protected CustomValidator valEduProgramProfile;
 	}
 }
