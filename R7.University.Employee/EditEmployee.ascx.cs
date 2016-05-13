@@ -558,7 +558,7 @@ namespace R7.University.Employee
             try {
                 SelectedTab = EditEmployeeTab.Common;
 
-                var folderPath =  UniversityConfig.Instance.DefaultEmployeesPhotoPath;
+                var folderPath =  UniversityConfig.Instance.EmployeePhoto.DefaultPath;
                 var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
 
                 if (folder != null) {

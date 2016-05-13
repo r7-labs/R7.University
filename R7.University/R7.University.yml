@@ -1,1 +1,3 @@
-﻿default-employees-photo-path: Images/faces/
+﻿employee-photo:
+  default-path: Images/faces/
+  square-suffix: _square

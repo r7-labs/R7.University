@@ -25,12 +25,13 @@
 // THE SOFTWARE.
 
 using System;
-using System.IO;
 using System.Globalization;
+using System.IO;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Components;
 using R7.University.Data;
 
 namespace R7.University.SharedLogic
@@ -47,10 +48,11 @@ namespace R7.University.SharedLogic
                 image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
                 if (image != null && square) {
                     // trying to get square image
-                    // FIXME: Remove hard-coded photo filename options
                     var squareImage = FileManager.Instance.GetFile (
                                           FolderManager.Instance.GetFolder (image.FolderId), 
-                                          Path.GetFileNameWithoutExtension (image.FileName) + "_square" + Path.GetExtension (image.FileName));
+                                          Path.GetFileNameWithoutExtension (image.FileName)
+                                          + UniversityConfig.Instance.EmployeePhoto.SquareSuffix
+                                          + Path.GetExtension (image.FileName));
 
                     if (squareImage != null)
                         image = squareImage;
@@ -78,7 +80,8 @@ namespace R7.University.SharedLogic
 
                 // TODO: Make fallback image resizable through image handler
                 imagePhoto.ImageUrl = string.Format ("/DesktopModules/R7.University/R7.University/images/nophoto_{0}{1}.png", 
-                    CultureInfo.CurrentCulture.TwoLetterISOLanguageName, square ? "_square" : "");
+                    CultureInfo.CurrentCulture.TwoLetterISOLanguageName, square ? 
+                        UniversityConfig.Instance.EmployeePhoto.SquareSuffix : "");
             }
 
             // do we need to scale image dimensions?
