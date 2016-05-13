@@ -38,7 +38,7 @@ namespace R7.University.Data
 
         public int DocumentID { get; set; }
 
-        public int? DocumentTypeID { get; set; }
+        public int DocumentTypeID { get; set; }
 
         public string ItemID { get; set; }
 

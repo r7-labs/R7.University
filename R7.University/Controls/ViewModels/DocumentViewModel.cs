@@ -46,7 +46,7 @@ namespace R7.University.Controls
 
         public int DocumentID { get; set; }
 
-        public int? DocumentTypeID { get; set; }
+        public int DocumentTypeID { get; set; }
 
         [XmlIgnore]
         public IDocumentType DocumentType { get; set; }
@@ -81,14 +81,10 @@ namespace R7.University.Controls
         public string LocalizedType
         { 
             get {
-                if (DocumentType != null) {
-                    var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentType.Type + ".Text", 
-                                            Context.LocalResourceFile);
+                var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentType.Type + ".Text", 
+                    Context.LocalResourceFile);
                     
-                    return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentType.Type;
-                }
-
-                return string.Empty;
+                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentType.Type;
             }
         }
 
@@ -133,10 +129,7 @@ namespace R7.University.Controls
             CopyCstor.Copy<IDocument> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
-            if (model.DocumentType != null) {
-                viewModel.DocumentType = new DocumentTypeViewModel (model.DocumentType, viewContext);
-            }
-
+            viewModel.DocumentType = new DocumentTypeViewModel (model.DocumentType, viewContext);
             viewModel.Context = viewContext;
 
             return viewModel;

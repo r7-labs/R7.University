@@ -32,7 +32,7 @@ namespace R7.University.Models
     {
         int DocumentID { get; set; }
 
-        int? DocumentTypeID { get; set; }
+        int DocumentTypeID { get; set; }
 
         string ItemID { get; set; }
 

@@ -36,10 +36,7 @@ namespace R7.University.ModelExtensions
     {
         public static IDocument WithDocumentType (this IDocument document, Dal2DataProvider controller)
         {
-            if (document.DocumentTypeID != null) {
-                document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID.Value);
-            }
-
+            document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID);
             return document;
         }
 

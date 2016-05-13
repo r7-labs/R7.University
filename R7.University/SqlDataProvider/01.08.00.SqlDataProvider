@@ -17,6 +17,8 @@ IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{database
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
         ADD [Group] nvarchar (255) NULL
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+        ALTER COLUMN [DocumentTypeID] int NOT NULL
 END
 GO
 

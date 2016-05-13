@@ -85,9 +85,8 @@ namespace R7.University.Data
         [IgnoreColumn]
         public IList<IDocument> EduStandardDocuments
         {
-            get { 
-                return Documents.Where (d => d.DocumentType != null
-                    && d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduStandard).ToList ();
+            get {
+                return Documents.Where (d => d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduStandard).ToList ();
             }
         }
     }

@@ -77,20 +77,9 @@ namespace R7.University.Controls
         }
 
         public static List<DocumentTypeViewModel> GetBindableList (IEnumerable<DocumentTypeInfo> documentTypes, 
-            ViewModelContext context, bool withDefaultItem)
+            ViewModelContext context)
         {
-            var documentTypeVms = documentTypes.Select (dt => new DocumentTypeViewModel (dt, context)).ToList ();
-
-            if (withDefaultItem) {
-                documentTypeVms.Insert (0, new DocumentTypeViewModel
-                    {
-                        DocumentTypeID = Null.NullInteger,
-                        Type = "Default",
-                        Context = context
-                    });
-            }
-
-            return documentTypeVms;
+            return documentTypes.Select (dt => new DocumentTypeViewModel (dt, context)).ToList ();
         }
 
         public DocumentTypeInfo ToModel ()

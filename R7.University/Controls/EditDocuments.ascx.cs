@@ -54,7 +54,7 @@ namespace R7.University.Controls
         {
             Module = module;
 
-            var documentTypeViewModels = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext, true);
+            var documentTypeViewModels = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext);
             ViewState ["documentTypes"] = XmlSerializationHelper.Serialize (documentTypeViewModels);
 
             comboDocumentType.DataSource = documentTypeViewModels.OrderBy (dt => dt.LocalizedType);
@@ -98,7 +98,7 @@ namespace R7.University.Controls
         {
             item.Title = textDocumentTitle.Text.Trim ();
             item.Group = textDocumentGroup.Text.Trim ();
-            item.DocumentTypeID = TypeUtils.ParseToNullable<int> (comboDocumentType.SelectedValue);
+            item.DocumentTypeID = int.Parse (comboDocumentType.SelectedValue);
             item.DocumentType = GetDocumentType (item.DocumentTypeID);
             item.SortIndex = TypeUtils.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
             item.StartDate = datetimeDocumentStartDate.SelectedDate;

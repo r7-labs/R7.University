@@ -135,7 +135,6 @@ namespace R7.University.EduProgramProfileDirectory
             get { 
                 return Documents.FirstOrDefault (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduProgram); 
             }
         }
@@ -145,7 +144,6 @@ namespace R7.University.EduProgramProfileDirectory
             get {
                 return Documents.Where (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduPlan)
                     .OrderBy (d => d.SortIndex);
             }
@@ -156,7 +154,6 @@ namespace R7.University.EduProgramProfileDirectory
             get {
                 return Documents.Where (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduSchedule)
                     .OrderBy (d => d.SortIndex);
             }
@@ -168,7 +165,6 @@ namespace R7.University.EduProgramProfileDirectory
             get {
                 return Documents.FirstOrDefault (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramAnnotation); 
             }
         }
@@ -178,7 +174,6 @@ namespace R7.University.EduProgramProfileDirectory
             get {
                 return Documents.Where (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramOfPractice)
                     .OrderBy (d => d.SortIndex);
             }
@@ -189,7 +184,6 @@ namespace R7.University.EduProgramProfileDirectory
             get {
                 return Documents.FirstOrDefault (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduMaterial); 
             }
         }
@@ -199,7 +193,6 @@ namespace R7.University.EduProgramProfileDirectory
             get {
                 return Documents.FirstOrDefault (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.Contingent); 
             }
         }
@@ -209,7 +202,6 @@ namespace R7.University.EduProgramProfileDirectory
             get {
                 return Documents.FirstOrDefault (d =>
                     (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType != null &&
                     d.DocumentType.GetSystemDocumentType () == SystemDocumentType.ContingentMovement); 
             }
         }
