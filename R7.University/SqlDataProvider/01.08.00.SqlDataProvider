@@ -4,6 +4,14 @@
 
 -- Employees
 
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'FK_{objectQualifier}University_Employees_PhotoFile' and type in (N'F'))
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+        ADD CONSTRAINT [FK_{objectQualifier}University_Employees_PhotoFile] FOREIGN KEY (PhotoFileID)
+            REFERENCES {databaseOwner}[{objectQualifier}Files](FileId) ON DELETE SET NULL
+END
+GO
+
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'StartDate')
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
@@ -11,6 +19,20 @@ BEGIN
         [EndDate] datetime NULL
 END 
 GO
+
+IF EXISTS (select * from sys.objects where name = N'DF_{objectQualifier}University_Employees_IsPublished' and type in (N'D'))
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+    DROP CONSTRAINT [DF_{objectQualifier}University_Employees_IsPublished]
+END
+GO
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'IsPublished')
+BEGIN
+    UPDATE {databaseOwner}[{objectQualifier}University_Employees] SET EndDate = CONVERT(date, GETDATE()) WHERE IsPublished = 0
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+        DROP COLUMN [IsPublished]
+END
 
 -- EduPrograms
 
@@ -32,18 +54,203 @@ BEGIN
 END
 GO
 
--- Employees
-
-IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'FK_{objectQualifier}University_Employees_PhotoFile' and type in (N'F'))
-BEGIN
-    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
-        ADD CONSTRAINT [FK_{objectQualifier}University_Employees_PhotoFile] FOREIGN KEY (PhotoFileID)
-            REFERENCES {databaseOwner}[{objectQualifier}Files](FileId) ON DELETE SET NULL
-END
-GO
-
 -- Drop views
 
 IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]') and type in (N'V'))
     DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]
+GO
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]') and OBJECTPROPERTY(id, N'IsView') = 1)
+    DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]
+GO
+
+-- Create views
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight] AS
+    SELECT E.EmployeeID, MAX(P.Weight) AS MaxWeight
+        FROM {databaseOwner}[{objectQualifier}University_Employees] AS E 
+        INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions] AS OP 
+            ON E.EmployeeID = OP.EmployeeID 
+        INNER JOIN {databaseOwner}[{objectQualifier}University_Positions] AS P 
+            ON OP.PositionID = P.PositionID
+    GROUP BY E.EmployeeID
+GO
+
+-- Drop existing stored procedures
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_FindEmployees]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
+GO
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetEmployeesByDivisionID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployeesByDivisionID]
+GO
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]
+GO
+
+-- Create stored procedures
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
+    @searchText nvarchar (50),
+    @teachersOnly bit,
+    @includeSubdivisions bit,
+    @divisionId int = -1
+AS
+DECLARE
+    @searchPattern nvarchar (100)
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    SET @searchPattern = N'%' + @searchText + '%';
+    
+    IF (@divisionId <> -1 AND @includeSubdivisions = 1)
+    BEGIN
+        SELECT E.* FROM (
+            SELECT EW.EmployeeID, MAX (EW.MaxWeight) AS MaxWeight 
+            FROM {databaseOwner}[{objectQualifier}University_DivisionsHierarchy](@divisionId) AS DH
+                INNER JOIN {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS VOP
+                    ON DH.DivisionID = VOP.DivisionID
+                INNER JOIN {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight] AS EW
+                    ON EW.EmployeeID = VOP.EmployeeID 
+            WHERE VOP.IsTeacher = 1 OR @teachersOnly = 0
+            GROUP BY EW.EmployeeID
+        ) AS DE INNER JOIN {databaseOwner}[{objectQualifier}University_Employees] AS E ON DE.EmployeeID = E.EmployeeID 
+        WHERE (LEN (@searchText) = 0 -- could be empty
+              OR E.FirstName + ' ' + E.LastName + ' ' + E.OtherName LIKE @searchPattern
+              OR E.Email LIKE @searchPattern OR E.SecondaryEmail LIKE @searchPattern
+              OR E.Phone LIKE @searchPattern OR E.CellPhone LIKE @searchPattern 
+              OR E.WorkingPlace LIKE @searchPattern)
+        -- Sort by max weight of all employee positions
+        ORDER BY DE.MaxWeight DESC, E.LastName; 
+    END
+    ELSE
+    BEGIN
+        SELECT E.* FROM (
+            SELECT EW.EmployeeID, MAX (EW.MaxWeight) AS MaxWeight 
+            FROM {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight] AS EW
+                INNER JOIN {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS VOP
+                    ON EW.EmployeeID = VOP.EmployeeID
+            WHERE (VOP.DivisionID = @divisionId OR @divisionId = -1)
+                AND (VOP.IsTeacher = 1 OR @teachersOnly = 0)
+            GROUP BY EW.EmployeeID
+        ) AS EI INNER JOIN {databaseOwner}[{objectQualifier}University_Employees] AS E ON EI.EmployeeID = E.EmployeeID
+        WHERE (E.FirstName + ' ' + E.LastName + ' ' + E.OtherName LIKE @searchPattern
+              OR E.Email LIKE @searchPattern OR E.SecondaryEmail LIKE @searchPattern 
+              OR E.Phone LIKE @searchPattern OR E.CellPhone LIKE @searchPattern 
+              OR E.WorkingPlace LIKE @searchPattern)
+        -- Sort by max weight of all employee positions
+        ORDER BY EI.MaxWeight DESC, E.LastName;
+    END
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID] 
+    @divisionId int,
+    @sortType int,
+    @weightMod int = 10
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+        
+    IF (@sortType = 1)
+    BEGIN
+        -- Sort by total (summary) weight of all employee positions
+        SELECT DE.* FROM (
+            SELECT DISTINCT E.*, EW.TotalWeight 
+                FROM {databaseOwner}[{objectQualifier}University_Employees] AS E 
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions] AS OP
+                        ON E.EmployeeID = OP.EmployeeID 
+                    INNER JOIN {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight] AS EW
+                        ON E.EmployeeID = EW.EmployeeID
+            WHERE OP.DivisionID = @divisionId
+        ) AS DE
+        ORDER BY DE.TotalWeight DESC, DE.LastName;
+    END
+    ELSE IF (@sortType = 2)
+    BEGIN
+        -- Sort by employee lastname, then firstname
+        SELECT DISTINCT E.*
+            FROM {databaseOwner}[{objectQualifier}University_Employees] AS E 
+                INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions] AS OP
+                    ON E.EmployeeID = OP.EmployeeID 
+            WHERE OP.DivisionID = @divisionId
+        ORDER BY E.LastName
+    END
+    ELSE -- IF (@sortType = 0)
+    BEGIN
+        -- Sort by max weight of all employee positions (by default)
+        SELECT E.* FROM (
+            SELECT EW.EmployeeID, 
+                -- Add some weight to prime positions in the current division
+                MAX (EW.MaxWeight + CASE WHEN (OP.DivisionID = @divisionId AND OP.IsPrime = 1) THEN @weightMod ELSE 0 END) AS MaxWeight
+                FROM {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight] AS EW
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions] AS OP
+                        ON EW.EmployeeID = OP.EmployeeID 
+            WHERE OP.DivisionID = @divisionId
+            GROUP BY EW.EmployeeID
+        ) AS DE INNER JOIN {databaseOwner}[{objectQualifier}University_Employees] AS E ON DE.EmployeeID = E.EmployeeID 
+        ORDER BY DE.MaxWeight DESC, E.LastName;
+    END
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive] 
+    @divisionId int,
+    @sortType int,
+    @weightMod int = 10
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    IF (@sortType = 1)
+    BEGIN
+        SELECT DE.* FROM (
+            SELECT DISTINCT E.*, EW.TotalWeight 
+                FROM {databaseOwner}[{objectQualifier}University_DivisionsHierarchy](@divisionId) AS DH
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions]   AS OP
+                        ON DH.DivisionID = OP.DivisionID
+                    INNER JOIN {databaseOwner}[{objectQualifier}.University_Employees] AS E 
+                        ON E.EmployeeID = OP.EmployeeID 
+                    INNER JOIN {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight] AS EW
+                        ON E.EmployeeID = EW.EmployeeID
+        ) AS DE
+        ORDER BY DE.TotalWeight DESC, DE.LastName;
+    END
+    ELSE IF (@sortType = 2)
+    BEGIN
+        -- Sort by employee lastname, then firstname
+        SELECT DISTINCT E.*
+            FROM {databaseOwner}[{objectQualifier}University_DivisionsHierarchy](@divisionId) AS DH
+                INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions] AS OP
+                    ON DH.DivisionID = OP.DivisionID
+                INNER JOIN {databaseOwner}[{objectQualifier}University_Employees] AS E 
+                    ON E.EmployeeID = OP.EmployeeID
+            WHERE OP.DivisionID = @divisionId
+        ORDER BY E.LastName;
+    END
+    ELSE -- IF (@sortType = 0)
+    BEGIN
+        -- Sort by max weight of all employee positions (by default)
+        SELECT E.* FROM (
+            SELECT EW.EmployeeID, 
+                -- Add some weight to prime positions in the current division
+                MAX (EW.MaxWeight + CASE WHEN (OP.DivisionID = @divisionId AND OP.IsPrime = 1) THEN @weightMod ELSE 0 END) AS MaxWeight
+                FROM {databaseOwner}[{objectQualifier}University_DivisionsHierarchy](@divisionId) AS DH
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions] AS OP
+                        ON DH.DivisionID = OP.DivisionID
+                    INNER JOIN {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight] AS EW
+                        ON EW.EmployeeID = OP.EmployeeID 
+            GROUP BY EW.EmployeeID
+        ) AS DE INNER JOIN {databaseOwner}[{objectQualifier}University_Employees] AS E ON DE.EmployeeID = E.EmployeeID 
+        ORDER BY DE.MaxWeight DESC, E.LastName;
+    END
+END
 GO

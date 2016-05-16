@@ -220,12 +220,14 @@ namespace R7.University.EmployeeDirectory
 
                 if (Null.IsNull (eduProfile.EduProgramProfileID)) {
                     // select all teachers w/o edu. program profiles
-                    teachers = UniversityRepository.Instance.GetTeachersWithoutEduPrograms ();
+                    teachers = EmployeeRepository.Instance.GetTeachers_WithoutEduPrograms ()
+                        .Where (empl => empl.IsPublished ());
                     anchorName = "empty";
                 }
                 else {
                     // select teachers for current edu. program profile
-                    teachers = UniversityRepository.Instance.GetTeachersByEduProgramProfile (eduProfile.EduProgramProfileID);
+                    teachers = EmployeeRepository.Instance.GetTeachers_ByEduProgramProfile (eduProfile.EduProgramProfileID)
+                        .Where (empl => empl.IsPublished ());
                     anchorName = eduProfile.EduProgramProfileID.ToString ();
                 }
 
@@ -386,9 +388,9 @@ namespace R7.University.EmployeeDirectory
 
         protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions, bool teachersOnly)
         {
-            var employees = UniversityRepository.Instance.FindEmployees (searchText,
-                                IsEditable, teachersOnly, includeSubdivisions, searchDivision); 
-
+            var employees = EmployeeRepository.Instance.FindEmployees (searchText, 
+                                IsEditable, teachersOnly, includeSubdivisions, searchDivision);
+            
             if (employees == null || !employees.Any ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
             }

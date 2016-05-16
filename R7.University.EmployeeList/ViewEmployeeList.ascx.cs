@@ -88,14 +88,10 @@ namespace R7.University.EmployeeList
                     if (Cache_OnLoad ())
                         return;
 					
-                    // REVIEW: Add Employees.LastYearRating field and sorting by it!
-					
                     // get employees by DivisionID, in edit mode show also non-published employees
-                    var	items = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-                                    (Settings.IncludeSubdivisions) ? // which SP to use
-							"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-                                    Settings.DivisionID, Settings.SortType, IsEditable
-                                );
+                    var items = EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
+                            Settings.IncludeSubdivisions, Settings.SortType)
+                        .Where (empl => IsEditable || empl.IsPublished ());
 
                     // check if we have some content to display, 
                     // otherwise display a message for module editors or hide module from regular users

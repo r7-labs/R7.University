@@ -42,12 +42,9 @@ namespace R7.University.EmployeeList.Components
         {
             var searchDocs = new List<SearchDocument> ();
             var settings = new EmployeeListSettings (modInfo);
-		
-            var	employees = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-                       (settings.IncludeSubdivisions) ? // which SP to use
-				"University_GetRecursiveEmployeesByDivisionID" : "University_GetEmployeesByDivisionID", 
-                       settings.DivisionID, settings.SortType, false
-                   );
+
+            var employees = EmployeeRepository.Instance.GetEmployees_ByDivisionId (settings.DivisionID,
+                                settings.IncludeSubdivisions, settings.SortType);
 
             foreach (var employee in employees) {
                 if (employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {

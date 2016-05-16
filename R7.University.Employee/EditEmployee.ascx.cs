@@ -400,7 +400,7 @@ namespace R7.University.Employee
                     item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
                     // add employee
-                    UniversityRepository.Instance.AddEmployee (item, GetOccupiedPositions (), 
+                    EmployeeRepository.Instance.AddEmployee (item, GetOccupiedPositions (), 
                         GetEmployeeAchievements (), GetEmployeeDisciplines ());
 
                     // then adding new employee from Employee or EmployeeDetails modules, 
@@ -419,7 +419,7 @@ namespace R7.University.Employee
                     item.LastModifiedOnDate = DateTime.Now;
 
                     // update employee
-                    UniversityRepository.Instance.UpdateEmployee (item, GetOccupiedPositions (), 
+                    EmployeeRepository.Instance.UpdateEmployee (item, GetOccupiedPositions (), 
                         GetEmployeeAchievements (), GetEmployeeDisciplines ());
                 }
 

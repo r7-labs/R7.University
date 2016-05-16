@@ -104,10 +104,10 @@ namespace R7.University.Employee
             if (Settings.ShowCurrentUser) {
                 var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
                 if (userId != null)
-                    return UniversityRepository.Instance.GetEmployeeByUserId (userId.Value);
+                    return EmployeeRepository.Instance.GetEmployee_ByUserId (userId.Value);
             }
 
-            return UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (Settings.EmployeeID);
+            return EmployeeRepository.Instance.GetEmployee (Settings.EmployeeID);
         }
 
 

@@ -146,6 +146,7 @@
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="Models\IEmployee.cs" />
     <Compile Include="ModelExtensions\EmployeeExtensions.cs" />
+    <Compile Include="Data\EmployeeRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
