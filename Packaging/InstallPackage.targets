@@ -13,7 +13,6 @@
         <!-- Declare binaries -->
         <ItemGroup>
             <InstallBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.dll" />
-            <InstallBinaryFiles Include="$(MainProjectOutputPath)\AjaxControlToolkit.dll" />
             <InstallBinaryFiles Include="$(MainProjectOutputPath)\YamlDotNet.dll" />
         </ItemGroup>
         <!-- Declare manifest files -->

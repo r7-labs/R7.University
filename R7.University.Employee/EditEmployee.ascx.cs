@@ -158,28 +158,24 @@ namespace R7.University.Employee
             ViewState ["commonAchievements"] = commonAchievements;
 
             // add default items
-            positions.Insert (0, new PositionInfo ()
-                {
-                    ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
-                });
+            positions.Insert (0, new PositionInfo {
+                ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
+            });
 
-            commonAchievements.Insert (0, new AchievementInfo ()
-                {
-                    ShortTitle = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
-                });
+            commonAchievements.Insert (0, new AchievementInfo {
+                ShortTitle = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
+            });
 
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             // bind positions
             comboPositions.DataSource = positions;
             comboPositions.DataBind ();
-            comboPositions.SelectedIndex = 0;
-
+        
             // bind achievements
             comboAchievement.DataSource = commonAchievements;
             comboAchievement.DataBind ();
-            comboAchievement.SelectedIndex = 0;
-
+        
             // bind divisions
             treeDivisions.DataSource = divisions;
             treeDivisions.DataBind ();
@@ -1142,7 +1138,7 @@ namespace R7.University.Employee
             try {
                 SelectedTab = EditEmployeeTab.Achievements;
 
-                if (((AjaxControlToolkit.ComboBox) sender).SelectedValue == Null.NullInteger.ToString ()) {
+                if (((DropDownList) sender).SelectedValue == Null.NullInteger.ToString ()) {
                     panelAchievementTitle.Visible = true;
                     panelAchievementShortTitle.Visible = true;
                     panelAchievementTypes.Visible = true;

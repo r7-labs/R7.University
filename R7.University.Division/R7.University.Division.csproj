@@ -62,9 +62,6 @@
     <Reference Include="DotNetNuke.WebUtility">
       <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
     </Reference>
-    <Reference Include="AjaxControlToolkit">
-      <HintPath>..\packages\AjaxControlToolkit.15.1.4.0\lib\net40\AjaxControlToolkit.dll</HintPath>
-    </Reference>
     <Reference Include="R7.DotNetNuke.Extensions">
       <HintPath>..\packages\R7.DotNetNuke.Extensions.0.8.0-alpha-1\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>

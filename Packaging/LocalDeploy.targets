@@ -5,7 +5,7 @@
         <ItemGroup>
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.dll" />
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.pdb" />
-            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\AjaxControlToolkit.dll" />
+            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\YamlDotNet.dll" />
         </ItemGroup>
         <!-- Declare resource files -->
         <ItemGroup>

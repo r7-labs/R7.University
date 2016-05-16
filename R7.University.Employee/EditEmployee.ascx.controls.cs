@@ -66,7 +66,7 @@ namespace R7.University.Employee
         protected GridView gridOccupiedPositions;
 		protected LabelControl labelPositions;
 		protected LabelControl labelDivisions;
-        protected AjaxControlToolkit.ComboBox comboPositions;
+        protected DropDownList comboPositions;
 		protected LabelControl labelPositionTitleSuffix;
 		protected TextBox textPositionTitleSuffix;
 		protected DnnTreeView treeDivisions;
@@ -99,7 +99,7 @@ namespace R7.University.Employee
 		protected DnnUrlControl urlDocumentURL;
 		protected HiddenField hiddenAchievementItemID;
 		protected LabelControl labelAchievements;
-        protected AjaxControlToolkit.ComboBox comboAchievement;
+        protected DropDownList comboAchievement;
 		protected Panel panelAchievementTitle;
 		protected Panel panelAchievementShortTitle;
 		protected Panel panelAchievementTypes;

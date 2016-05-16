@@ -4,11 +4,12 @@
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/admin.css" Priority="200" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/dnn-ac-combobox.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
+
 <div class="dnnForm dnnClear">
     <div id="division-tabs">
         <ul class="dnnAdminTabNav dnnClear">
@@ -38,17 +39,9 @@
         		</div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHeadPosition" runat="server" ControlName="comboHeadPosition" />
-                    <asp:UpdatePanel id="updatePanelHeadPosition" runat="server">
-                        <ContentTemplate>
-                            <act:ComboBox id="comboHeadPosition" runat="server" CssClass="act_combobox"
-                                DropDownStyle="DropDownList"
-                                AutoCompleteMode="SuggestAppend"
-                                CaseSensitive="false"
-                                DataValueField="PositionID"
-                                DataTextField="DisplayShortTitle"
-                            />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                    <asp:DropDownList id="comboHeadPosition" runat="server" CssClass="dnn-ac-combobox"
+                        DataValueField="PositionID"
+                        DataTextField="DisplayShortTitle" />
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelStartDate" runat="server" ControlName="datetimeStartDate" />
@@ -153,5 +146,17 @@
 	<dnn:Audit id="ctlAudit" runat="server" />	
 </div>
 <script type="text/javascript">
-    $(function() { $("#division-tabs").dnnTabs({selected: <%= (int)SelectedTab %>}); });
+(function($, Sys) {
+    function setupModule() {
+        dnnAcCombobox_Init($);
+        $(".dnn-ac-combobox").combobox();
+    };
+    $(document).ready(function() {
+        $("#division-tabs").dnnTabs({selected: <%= (int)SelectedTab %>});
+        setupModule();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setupModule();
+        });
+    });
+} (jQuery, window.Sys));
 </script>

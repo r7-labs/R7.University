@@ -52,6 +52,6 @@ namespace R7.University.Division
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected CheckBox checkIsVirtual;
-        protected AjaxControlToolkit.ComboBox comboHeadPosition;
+        protected DropDownList comboHeadPosition;
     }
 }

@@ -6,10 +6,8 @@
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="act" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/act.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/dnn-ac-combobox.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
@@ -167,23 +165,14 @@
 						DataTextField="DisplayShortTitle"
 						DataValueField="DivisionID"
 						DataFieldID = "DivisionID"
-						DataFieldParentID="ParentDivisionID"
-					/>
+						DataFieldParentID="ParentDivisionID" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
-                    <asp:UpdatePanel id="updatePanelPositions" runat="server">
-                        <ContentTemplate>
-                            <act:ComboBox id="comboPositions" runat="server" CssClass="act_combobox"
-                                DropDownStyle="DropDownList"
-                                AutoCompleteMode="SuggestAppend"
-                                CaseSensitive="false"
-                                DataValueField="PositionID"
-                                DataTextField="DisplayShortTitle"
-                            />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-				</div>
+    				<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
+                    <asp:DropDownList id="comboPositions" runat="server" CssClass="dnn-ac-combobox"
+                        DataValueField="PositionID"
+                        DataTextField="DisplayShortTitle" />
+                </div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" />
 					<asp:TextBox id="textPositionTitleSuffix" runat="server" MaxLength="100" />
@@ -243,22 +232,17 @@
                     <ContentTemplate>
         				<div class="dnnFormItem">
         					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
-                                    <act:ComboBox id="comboAchievement" runat="server" CssClass="act_combobox"
-                                        DropDownStyle="DropDownList"
-                                        AutoCompleteMode="SuggestAppend"
-                                        CaseSensitive="false"
-                                        DataValueField="AchievementID"
-                                        DataTextField="DisplayShortTitle"
-                                        AutoPostBack="true"
-                                        OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged"
-                                    />
+                            <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-ac-combobox"
+                                DataValueField="AchievementID"
+                                DataTextField="DisplayShortTitle"
+                                AutoPostBack="true"
+                                OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged" />
                         </div>
                         <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
                             <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
                             <asp:DropDownList id="comboAchievementTypes" runat="server" 
                                 DataTextField="LocalizedAchivementType"
-                                DataValueField="AchievementType"
-                            />
+                                DataValueField="AchievementType" />
                         </asp:Panel>
         				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
         					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
