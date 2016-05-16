@@ -51,6 +51,7 @@ using R7.University.Employee.Components;
 using R7.University.ModelExtensions;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
+using System.Diagnostics;
 
 namespace R7.University.Employee
 {
@@ -248,7 +249,8 @@ namespace R7.University.Employee
                             if (!Null.IsNull (item.ExperienceYearsBySpec))
                                 textExperienceYearsBySpec.Text = item.ExperienceYearsBySpec.ToString ();
 
-                            checkIsPublished.Checked = item.IsPublished;
+                            datetimeStartDate.SelectedDate = item.StartDate;
+                            datetimeEndDate.SelectedDate = item.EndDate;
 
                             // set photo
                             if (!TypeUtils.IsNull (item.PhotoFileID)) {
@@ -385,7 +387,8 @@ namespace R7.University.Employee
                 item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
                 item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
 
-                item.IsPublished = checkIsPublished.Checked;
+                item.StartDate = datetimeStartDate.SelectedDate;
+                item.EndDate = datetimeEndDate.SelectedDate;
 
                 // pickerPhoto.FileID may be 0 by default
                 item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;

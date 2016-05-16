@@ -84,7 +84,9 @@ namespace R7.University.Data
 
         public int? ExperienceYearsBySpec { get; set; }
 
-        public bool IsPublished { get; set; }
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
 
         #endregion
 

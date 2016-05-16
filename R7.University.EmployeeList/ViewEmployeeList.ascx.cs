@@ -37,13 +37,14 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
-using R7.University.SharedLogic;
 using R7.University.EmployeeList.Components;
+using R7.University.ModelExtensions;
+using R7.University.SharedLogic;
 
 namespace R7.University.EmployeeList
 {
@@ -192,11 +193,13 @@ namespace R7.University.EmployeeList
 
             // edit link
             if (IsEditable) {
-                if (Null.IsNull (Settings.DivisionID))
+                if (Null.IsNull (Settings.DivisionID)) {
                     linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee");
-                else
+                }
+                else {
                     linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (),
                         "EditEmployee", "division_id", Settings.DivisionID.ToString ());
+                }
             }
 
             // make edit link visible in edit mode
@@ -204,11 +207,13 @@ namespace R7.University.EmployeeList
             imageEdit.Visible = IsEditable;
             
             // mark non-published employees, as they visible only to editors
-            if (!employee.IsPublished) {
-                if (e.Item.ItemType == ListItemType.Item)
+            if (!employee.IsPublished ()) {
+                if (e.Item.ItemType == ListItemType.Item) {
                     e.Item.CssClass = listEmployees.ItemStyle.CssClass + " _nonpublished";
-                else
+                }
+                else {
                     e.Item.CssClass = listEmployees.AlternatingItemStyle.CssClass + " _nonpublished";
+                }
             }
 
             // fill the controls

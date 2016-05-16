@@ -43,6 +43,7 @@ using R7.University.Data;
 using R7.University.SharedLogic;
 using R7.University.Employee.Components;
 using R7.University.Employee.SharedLogic;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee
 {
@@ -113,7 +114,7 @@ namespace R7.University.Employee
                         if (IsEditable)
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                     }
-                    else if (!Employee.IsPublished) {
+                    else if (!Employee.IsPublished ()) {
                         // employee isn't published
                         if (IsEditable)
                             this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
@@ -123,14 +124,14 @@ namespace R7.University.Employee
 
                     // if we have something published to display
                     // then display module to common users
-                    Cache_SetContainerVisible (hasData && Employee.IsPublished);
+                    Cache_SetContainerVisible (hasData && Employee.IsPublished ());
 											
                     // display module only in edit mode
                     // only if we have published data to display
-                    ContainerControl.Visible = IsEditable || (hasData && Employee.IsPublished);
+                    ContainerControl.Visible = IsEditable || (hasData && Employee.IsPublished ());
 											
                     // display module content only if it exists and published (or in edit mode)
-                    var displayContent = hasData && (IsEditable || Employee.IsPublished);
+                    var displayContent = hasData && (IsEditable || Employee.IsPublished ());
 
                     panelEmployee.Visible = displayContent;
 					

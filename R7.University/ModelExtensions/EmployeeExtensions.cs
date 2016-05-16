@@ -1,5 +1,5 @@
 ﻿//
-// IEmployee.cs
+// EmployeeExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,53 +25,15 @@
 // THE SOFTWARE.
 
 using System;
+using R7.University.Models;
 
-namespace R7.University.Models
+namespace R7.University.ModelExtensions
 {
-    public interface IEmployee
+    public static class EmployeeExtensions
     {
-        int EmployeeID { get; set; }
-
-        int? UserID { get; set; }
-
-        int? PhotoFileID { get; set; }
-
-        string Phone { get; set; }
-
-        string CellPhone { get; set; }
-
-        string Fax { get; set; }
-
-        string LastName { get; set; }
-
-        string FirstName { get; set; }
-
-        string OtherName { get; set; }
-
-        string Email { get; set; }
-
-        string SecondaryEmail { get; set; }
-
-        string WebSite { get; set; }
-
-        string WebSiteLabel { get; set; }
-
-        string Messenger { get; set; }
-
-        string WorkingPlace { get; set; }
-
-        string WorkingHours { get; set; }
-
-        string Biography { get; set; }
-
-        // employee stage may be not continuous, so using starting date is not possible
-        int? ExperienceYears { get; set; }
-
-        // employee ExpYearsBySpec even more unbinded to dates
-        int? ExperienceYearsBySpec { get; set; }
-
-        DateTime? StartDate { get; set; }
-
-        DateTime? EndDate { get; set; }
+        public static bool IsPublished (this IEmployee employee)
+        {
+            return ModelHelper.IsPublished (employee.StartDate, employee.EndDate);
+        }
     }
 }

@@ -121,10 +121,14 @@
 					<dnn:Label id="labelExperienceYearsBySpec" runat="server" ControlName="textExperienceYearsBySpec" />
 					<asp:TextBox id="textExperienceYearsBySpec" runat="server" />
 				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelIsPublished" runat="server" ControlName="checkIsPublished" />
-					<asp:CheckBox id="checkIsPublished" runat="server" />
-				</div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelStartDate" runat="server" ControlName="datetimeStartDate" />
+                    <dnn:DnnDateTimePicker id="datetimeStartDate" runat="server" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEndDate" runat="server" ControlName="datetimeEndDate" />
+                    <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
+                </div>
 			</fieldset>
 		</div>
 		<div id="employee-positions-tab">

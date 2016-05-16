@@ -106,8 +106,8 @@ namespace R7.University.Launchpad
                 
                 dr [i++] = employee.ExperienceYears ?? Null.NullInteger;
                 dr [i++] = employee.ExperienceYearsBySpec ?? Null.NullInteger;
-                dr [i++] = employee.IsPublished;
-                //dr [i++] = employee.IsDeleted;
+                dr [i++] = employee.StartDate;
+                dr [i++] = employee.EndDate;
 
                 // TODO: Remove audit fields
                 dr [i++] = employee.CreatedByUserID;

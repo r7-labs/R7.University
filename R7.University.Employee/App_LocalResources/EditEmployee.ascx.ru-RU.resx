@@ -132,9 +132,18 @@
 	<data name="labelBiography.Help">
 		<value>Введите биографию сотрудника / предоставленные им сведения о себе.</value>
 	</data>
-	<data name="labelIsPublished.Text">
-		<value>Опубликовано?</value>
-	</data>
+    <data name="labelStartDate.Text">
+        <value>Начало публикации:</value>
+    </data>
+    <data name="labelStartDate.Help">
+        <value>Введите дату, начиная с которой сотрудник должен быть опубликован на сайте.</value>
+    </data>
+    <data name="labelEndDate.Text">
+        <value>Окончание публикации:</value>
+    </data>
+    <data name="labelEndDate.Help">
+        <value>Введите дату, начиная с которой сотрудник должен быть снят с публикации на сайте.</value>
+    </data>
 	<data name="labelIsPublished.Help">
 		<value>Установите флажок, чтобы опубликовать сведения о сотруднике.</value>
 	</data>

@@ -490,7 +490,7 @@ namespace R7.University.EmployeeDirectory
                 }
 
                 // mark not published employees, as they visible only to editors
-                if (!employee.IsPublished) {
+                if (!employee.IsPublished ()) {
                     e.Row.CssClass = "not-published";
                 }
 

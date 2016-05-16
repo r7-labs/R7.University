@@ -49,6 +49,7 @@ using R7.University.Employee.Components;
 using R7.University.Employee.SharedLogic;
 using R7.University.SharedLogic;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee
 {
@@ -202,10 +203,10 @@ namespace R7.University.Employee
             try {
                 if (!IsPostBack) {
                     // can we display module content?
-                    var displayContent = Employee != null && (IsEditable || Employee.IsPublished);
+                    var displayContent = Employee != null && (IsEditable || Employee.IsPublished ());
 
                     // can we display something (content or messages)?
-                    var displaySomething = IsEditable || (Employee != null && Employee.IsPublished);
+                    var displaySomething = IsEditable || (Employee != null && Employee.IsPublished ());
 
                     // something went wrong in popup mode - reload page
                     if (InPopup && !displaySomething) {
@@ -225,7 +226,7 @@ namespace R7.University.Employee
                             // employee isn't set or not found
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                         }
-                        else if (!Employee.IsPublished) {
+                        else if (!Employee.IsPublished ()) {
                             // employee don't published
                             this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
                         }

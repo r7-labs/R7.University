@@ -54,8 +54,8 @@ namespace R7.University.Employee
 		protected LabelControl labelExperienceYearsBySpec;
 		protected TextBox textExperienceYearsBySpec;
 		protected TextEditor textBiography;
-		protected LabelControl labelIsPublished;
-		protected CheckBox checkIsPublished;
+        protected DnnDateTimePicker datetimeStartDate;
+        protected DnnDateTimePicker datetimeEndDate;
 		protected LinkButton buttonUserLookup;
 		protected CheckBox checkIncludeDeletedUsers;
 		protected TextBox textUserLookup;
