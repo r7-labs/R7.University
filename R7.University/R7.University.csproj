@@ -147,6 +147,7 @@
     <Compile Include="Models\IEmployee.cs" />
     <Compile Include="ModelExtensions\EmployeeExtensions.cs" />
     <Compile Include="Data\EmployeeRepository.cs" />
+    <Compile Include="Models\IDivision.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

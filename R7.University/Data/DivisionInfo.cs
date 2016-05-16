@@ -42,7 +42,7 @@ namespace R7.University.Data
     // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("University_Divisions")]
     [PrimaryKey ("DivisionID", AutoIncrement = true)]
-    public class DivisionInfo : UniversityBaseEntityInfo, IReferenceEntity
+    public class DivisionInfo: UniversityBaseEntityInfo, IReferenceEntity, IDivision
     {
         /// <summary>
         /// Empty division to use as default item with lists and treeviews
@@ -77,7 +77,7 @@ namespace R7.University.Data
 
         #endregion
 
-        #region Properties
+        #region IDivision implementation
 
         public int DivisionID { get; set; }
 
