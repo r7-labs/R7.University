@@ -26,6 +26,7 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
 namespace R7.University.Data
 {
@@ -39,15 +40,8 @@ namespace R7.University.Data
     [TableName ("University_EmployeeAchievements")]
     [PrimaryKey ("EmployeeAchievementID", AutoIncrement = true)]
     [Serializable]
-    public class EmployeeAchievementInfo : ReferenceEntityBase
+    public class EmployeeAchievementInfo: ReferenceEntityBase, IEmployeeAchievement
     {
-        /// <summary>
-        /// Empty default cstor
-        /// </summary>
-        public EmployeeAchievementInfo ()
-        {
-        }
-
         #region IReferenceEntity implementation
 
         [IgnoreColumn]
@@ -61,7 +55,7 @@ namespace R7.University.Data
 
         #endregion
 
-        #region Properties
+        #region IEmployeeAchievement implementation
 
         public int EmployeeAchievementID { get; set; }
 
@@ -81,11 +75,6 @@ namespace R7.University.Data
 
         public string TitleSuffix { get; set; }
 
-        [ColumnName ("AchievementType")]
-        public string AchievementTypeString { get; set; }
-
-        #endregion
-
         [IgnoreColumn]
         public AchievementType? AchievementType
         {
@@ -102,6 +91,11 @@ namespace R7.University.Data
                     AchievementTypeString = null;
             }
         }
+
+        #endregion
+
+        [ColumnName ("AchievementType")]
+        public string AchievementTypeString { get; set; }
 
         [IgnoreColumn]
         public string FormatYears
