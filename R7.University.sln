@@ -208,7 +208,7 @@ Global
 		$29.Name = Methods
 		$29.AffectedEntity = Methods
 		$29.VisibilityMask = Protected, Public
-		$29.NamingStyle = PascalCase
+		$29.NamingStyle = PascalCaseWithUpperLetterUnderscore
 		$29.IncludeInstanceMembers = True
 		$29.IncludeStaticEntities = True
 		$18.NamingRule = $30
