@@ -25,21 +25,21 @@
 // THE SOFTWARE.
 
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
 namespace R7.University.Data
 {
     [TableName ("University_Achievements")]
     [PrimaryKey ("AchievementID", AutoIncrement = true)]
-    public class AchievementInfo : ReferenceEntityBase
+    public class AchievementInfo: IAchievement
     {
-        public AchievementInfo ()
-        {
-        }
+        #region IAchievement implementation
 
         public int AchievementID { get; set; }
 
-        [ColumnName ("AchievementType")]
-        public string AchievementTypeString { get; set; }
+        public string Title { get; set; }
+
+        public string ShortTitle  { get; set; }
 
         [IgnoreColumn]
         public AchievementType AchievementType
@@ -47,6 +47,10 @@ namespace R7.University.Data
             get { return (AchievementType) AchievementTypeString [0]; }
             set { AchievementTypeString = ((char) value).ToString (); }
         }
+
+        #endregion
+
+        [ColumnName ("AchievementType")]
+        public string AchievementTypeString { get; set; }
     }
 }
-

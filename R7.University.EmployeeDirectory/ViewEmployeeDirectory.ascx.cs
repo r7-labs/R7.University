@@ -32,15 +32,16 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
-using R7.University.ModelExtensions;
 using R7.University.EmployeeDirectory.Components;
+using R7.University.ModelExtensions;
+using R7.University.Models;
 using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory

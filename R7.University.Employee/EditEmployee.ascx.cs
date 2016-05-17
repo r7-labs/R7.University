@@ -40,7 +40,6 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
@@ -48,10 +47,9 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.Employee.Components;
-using R7.University.ModelExtensions;
+using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
-using System.Diagnostics;
 
 namespace R7.University.Employee
 {

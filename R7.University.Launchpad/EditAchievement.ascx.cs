@@ -31,8 +31,8 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
 using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {

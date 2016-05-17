@@ -26,20 +26,10 @@
 
 using System;
 using System.Collections.Generic;
+using R7.University.Models;
 
 namespace R7.University.Data
 {
-    public enum AchievementType
-    {
-        Achievement = 'A',
-        Education = 'E',
-        Training = 'T',
-        Work = 'W',
-        AcademicTitle = 'R',
-        // от 'Rank'
-        AcademicDegree = 'D'
-    }
-
     public class AchievementTypeInfo
     {
         public AchievementType AchievementType { get; set; }

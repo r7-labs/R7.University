@@ -37,8 +37,8 @@ using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
@@ -46,10 +46,11 @@ using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.Employee.Components;
 using R7.University.Employee.SharedLogic;
-using R7.University.SharedLogic;
-using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
 using R7.University.ModelExtensions;
+using R7.University.Models;
+using R7.University.SharedLogic;
 using R7.University.ViewModels;
+using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
 
 namespace R7.University.Employee
 {
