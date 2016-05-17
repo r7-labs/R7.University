@@ -149,6 +149,7 @@
     <Compile Include="Data\EmployeeRepository.cs" />
     <Compile Include="Models\IDivision.cs" />
     <Compile Include="ModelExtensions\EnumerableExtensions.cs" />
+    <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

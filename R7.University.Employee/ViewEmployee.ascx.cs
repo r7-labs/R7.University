@@ -153,7 +153,7 @@ namespace R7.University.Employee
         protected void Display (IEmployee employee)
         {
             if (employee.OccupiedPositions.Any ()) {
-                repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (employee.OccupiedPositions);
+                repeaterPositions.DataSource = employee.OccupiedPositions;
                 repeaterPositions.DataBind ();
             }
             else

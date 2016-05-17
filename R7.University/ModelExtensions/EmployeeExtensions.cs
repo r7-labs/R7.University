@@ -65,7 +65,9 @@ namespace R7.University.ModelExtensions
                 employees.Select (e => e.EmployeeID), divisionId);
 
             foreach (var employee in employees) {
-                employee.OccupiedPositions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID).ToList ();
+                employee.OccupiedPositions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID)
+                    .GroupByDivision ()
+                    .ToList ();
             }
 
             return employees;
@@ -74,7 +76,9 @@ namespace R7.University.ModelExtensions
         public static IEmployee WithOccupiedPositions (this IEmployee employee)
         {
             employee.OccupiedPositions = OccupiedPositionRepository.Instance
-                .GetOccupiedPositions (employee.EmployeeID).ToList ();
+                .GetOccupiedPositions (employee.EmployeeID)
+                .GroupByDivision ()
+                .ToList ();
             
             return employee;
         }

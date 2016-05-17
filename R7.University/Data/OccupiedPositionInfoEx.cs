@@ -86,39 +86,6 @@ namespace R7.University.Data
               
             return string.Empty;
         }
-
-        /// <summary>
-        /// Groups the occupied positions in same division
-        /// </summary>
-        /// <returns>The occupied positions.</returns>
-        /// <param name="occupiedPositions">The occupied positions groupped by division.</param>
-        public static IEnumerable<OccupiedPositionInfoEx> GroupByDivision (IEnumerable<OccupiedPositionInfoEx> occupiedPositions)
-        {
-            var opList = occupiedPositions.ToList ();
-
-            for (var i = 0; i < opList.Count; i++) {
-                var op = opList [i];
-                // first combine position short title with it's suffix
-                op.PositionShortTitle = TextUtils.FormatList (" ", 
-                    PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle), 
-                    op.TitleSuffix);
-
-                for (var j = i + 1; j < opList.Count;) {
-                    if (op.DivisionID == opList [j].DivisionID) {
-                        op.PositionShortTitle += ", " + TextUtils.FormatList (" ", 
-                            PositionInfo.FormatShortTitle (opList [j].PositionTitle, opList [j].PositionShortTitle), 
-                            opList [j].TitleSuffix);
-					
-                        // remove groupped item
-                        opList.RemoveAt (j);
-                    }
-                    else
-                        j++;
-                }
-            }
-
-            return opList;
-        }
     }
 }
 

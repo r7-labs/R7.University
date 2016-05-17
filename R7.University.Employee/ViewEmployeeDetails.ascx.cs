@@ -300,7 +300,7 @@ namespace R7.University.Employee
                                         "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
             
             if (occupiedPositions.Any ()) {
-                repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
+                repeaterPositions.DataSource = occupiedPositions.GroupByDivision ();
                 repeaterPositions.DataBind ();
             }
             else

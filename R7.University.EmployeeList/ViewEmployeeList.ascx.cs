@@ -279,7 +279,7 @@ namespace R7.University.EmployeeList
             var positionsVisible = false;
             if (!ops.IsNullOrEmpty ()) {
                 var strOps = string.Empty;
-                foreach (var op in OccupiedPositionInfoEx.GroupByDivision (ops)) {
+                foreach (var op in ops) {
                     var strOp = PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle);
 
                     // op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
