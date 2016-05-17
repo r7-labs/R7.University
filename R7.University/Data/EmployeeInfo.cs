@@ -90,6 +90,12 @@ namespace R7.University.Data
 
         #endregion
 
+        [IgnoreColumn]
+        public IList<EmployeeAchievementInfo> Achievements { get; set; }
+
+        [IgnoreColumn]
+        public IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
+
         #region Calculated properties
 
         [IgnoreColumn]

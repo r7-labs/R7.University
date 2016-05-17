@@ -25,6 +25,8 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
+using R7.University.Data;
 
 namespace R7.University.Models
 {
@@ -73,5 +75,9 @@ namespace R7.University.Models
         DateTime? StartDate { get; set; }
 
         DateTime? EndDate { get; set; }
+
+        IList<EmployeeAchievementInfo> Achievements { get; set; }
+
+        IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
     }
 }
