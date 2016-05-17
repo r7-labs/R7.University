@@ -25,7 +25,9 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.ObjectModel;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Services.Cache;
 
 namespace R7.University.Components
 {
@@ -53,6 +55,29 @@ namespace R7.University.Components
                 return (T) obj;
 
             return defValue;
+        }
+
+        /// <summary>
+        /// Remove all cache keys with specified prefix
+        /// </summary>
+        /// <param name="cacheKeyPrefix">Cache key prefix.</param>
+        public static void RemoveCacheByPrefix (string cacheKeyPrefix)
+        {
+            // get all cache keys with s
+            var cacheKeys = new Collection<string> ();
+            var cacheEnumerator = CachingProvider.Instance ().GetEnumerator ();
+
+            while (cacheEnumerator.MoveNext ()) {
+                var cacheKey = cacheEnumerator.Key.ToString ();
+                if (cacheKey.StartsWith ("DNN_" + cacheKeyPrefix, StringComparison.InvariantCultureIgnoreCase)) {
+                    cacheKeys.Add (cacheKey);
+                }
+            }
+
+            foreach (var cacheKey in cacheKeys) {
+                // Substring (4) removes DNN_ prefix 
+                DataCache.RemoveCache (cacheKey.Substring (4));
+            }
         }
     }
 }
