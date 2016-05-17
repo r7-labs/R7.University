@@ -26,6 +26,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using R7.DotNetNuke.Extensions.Data;
 using R7.DotNetNuke.Extensions.Utilities;
 
@@ -49,6 +50,13 @@ namespace R7.University.Data
         public Dal2DataProvider DataProvider
         {
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
+        }
+
+        public IEnumerable<OccupiedPositionInfoEx> GetOccupiedPositions (int employeeId)
+        {
+            return DataProvider.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0", employeeId)
+                .OrderByDescending (opx => opx.IsPrime)
+                .ThenByDescending (opx => opx.PositionWeight);
         }
 
         public IEnumerable<OccupiedPositionInfoEx> GetOccupiedPositions_ForEmployees (IEnumerable<int> employeeIds, int divisionId)

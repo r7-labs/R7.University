@@ -31,18 +31,6 @@
 			<asp:CheckBox id="checkAutoTitle" runat="server" Checked="true" />
 		</div>
 	</fieldset>	
-	<h2 id="panelDataCache" class="dnnFormSectionHead">
-		<a href="" class="dnnSectionExpanded"><%= LocalizeString("DataCache") %></a>
-	</h2>
-	<fieldset>
-		<div class="dnnFormItem">
-			<asp:Label id="labelDataCacheInfo" runat="server" resourcekey="labelDataCacheInfo" CssClass="dnnFormMessage" />
-		</div>
-		<div class="dnnFormItem">
-			<dnn:Label id="labelDataCacheTime" runat="server" ControlName="textDataTime" />
-			<asp:TextBox id="textDataCacheTime" runat="server" Style="width:100px" />
-		</div>
-	</fieldset>	
 </div>
 <script type="text/javascript">
 (function($, Sys) {

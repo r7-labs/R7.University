@@ -32,13 +32,14 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.SharedLogic
 {
     public static class EmployeePhotoLogic
     {
-        public static void Bind (EmployeeInfo employee, Image imagePhoto, int photoWidth, bool square = false)
+        public static void Bind (IEmployee employee, Image imagePhoto, int photoWidth, bool square = false)
         {
             IFileInfo image = null;
             var imageHeight = 0;
@@ -95,7 +96,7 @@ namespace R7.University.SharedLogic
             }
 
             // set alt & title for photo
-            var fullName = employee.FullName;
+            var fullName = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
             imagePhoto.AlternateText = fullName;
             imagePhoto.ToolTip = fullName;
         }

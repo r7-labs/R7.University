@@ -39,6 +39,14 @@ namespace R7.University.ModelExtensions
             return ModelHelper.IsPublished (employee.StartDate, employee.EndDate);
         }
 
+        public static IEmployee WithAchievements (this IEmployee employee)
+        {
+            employee.Achievements = EmployeeAchievementRepository.Instance
+                .GetEmployeeAchievements (employee.EmployeeID).ToList ();
+
+            return employee;
+        }
+
         public static IEnumerable<IEmployee> WithAchievements (this IEnumerable<IEmployee> employees)
         {
             var commonAchievements = EmployeeAchievementRepository.Instance.GetAchievements_ForEmployees (
@@ -61,6 +69,14 @@ namespace R7.University.ModelExtensions
             }
 
             return employees;
+        }
+
+        public static IEmployee WithOccupiedPositions (this IEmployee employee)
+        {
+            employee.OccupiedPositions = OccupiedPositionRepository.Instance
+                .GetOccupiedPositions (employee.EmployeeID).ToList ();
+            
+            return employee;
         }
     }
 }

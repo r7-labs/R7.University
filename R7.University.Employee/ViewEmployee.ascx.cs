@@ -26,74 +26,68 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
+using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
+using R7.University.Components;
 using R7.University.Data;
-using R7.University.SharedLogic;
 using R7.University.Employee.Components;
 using R7.University.Employee.SharedLogic;
 using R7.University.ModelExtensions;
+using R7.University.Models;
+using R7.University.SharedLogic;
+using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
     public partial class ViewEmployee: PortalModuleBase<EmployeeSettings>, IActionable
     {
-        #region Properties
+        #region Get data
 
-        private EmployeeInfo _employee;
-
-        public EmployeeInfo Employee
+        protected IEmployee GetEmployee ()
         {
-            get {
-                if (_employee == null) {
-                    // use module settings
-                    _employee = GetEmployee ();
-                }
-
-                return _employee;
+            if (Settings.ShowCurrentUser) {
+                return GetEmployee_CurrentUser_Internal ();
             }
+
+            return DataCache.GetCachedData<IEmployee> (new CacheItemArgs ("//r7_University/Employee?ModuleId=" + ModuleId,
+                UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
+                c => GetEmployee_Internal ()
+            );
+        }
+
+        protected IEmployee GetEmployee_Internal ()
+        {
+            return EmployeeRepository.Instance.GetEmployee (Settings.EmployeeID)
+                .WithAchievements ()
+                .WithOccupiedPositions ();
+        }
+
+        protected IEmployee GetEmployee_CurrentUser_Internal ()
+        {
+            var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+            if (userId != null) {
+                return EmployeeRepository.Instance.GetEmployee_ByUserId (userId.Value)
+                    .WithAchievements ()
+                    .WithOccupiedPositions ();
+            }
+
+            return null;
         }
 
         #endregion
 
-        protected EmployeeInfo GetEmployee ()
-        {
-            if (Settings.ShowCurrentUser) {
-                var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
-                if (userId != null) {
-                    return EmployeeRepository.Instance.GetEmployee_ByUserId (userId.Value);
-                }
-            }
-
-            return EmployeeRepository.Instance.GetEmployee (Settings.EmployeeID);
-        }
-
         #region Handlers
-
-        /*
-		/// <summary>
-		/// Handles Init event for a control
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnInit (EventArgs e)
-		{
-			base.OnInit (e);
-
-			//#if (DATACACHE)
-			//AddActionHandler (ClearDataCache_Action);
-			//#endif
-		}*/
 
         /// <summary>
         /// Handles Load event for a control
@@ -105,48 +99,42 @@ namespace R7.University.Employee
 
             try {
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
-                    if (Cache_OnLoad ())
-                        return;
-					
-                    IEnumerable<EmployeeAchievementInfo> achievements = null;
 
-                    if (Employee == null) {
+                    var employee = GetEmployee ();
+
+                    if (employee == null) {
                         // employee isn't set or not found
-                        if (IsEditable)
+                        if (IsEditable) {
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                        }
                     }
-                    else if (!Employee.IsPublished ()) {
+                    else if (!employee.IsPublished ()) {
                         // employee isn't published
-                        if (IsEditable)
+                        if (IsEditable) {
                             this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
+                        }
                     }
 
-                    var hasData = Employee != null;
-
-                    // if we have something published to display
-                    // then display module to common users
-                    Cache_SetContainerVisible (hasData && Employee.IsPublished ());
-											
+                    var hasData = employee != null;
+                    						
                     // display module only in edit mode
                     // only if we have published data to display
-                    ContainerControl.Visible = IsEditable || (hasData && Employee.IsPublished ());
+                    ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished ());
 											
                     // display module content only if it exists and published (or in edit mode)
-                    var displayContent = hasData && (IsEditable || Employee.IsPublished ());
+                    var displayContent = hasData && (IsEditable || employee.IsPublished ());
 
                     panelEmployee.Visible = displayContent;
 					
                     if (displayContent) {
-                        if (Settings.AutoTitle)
-                            EmployeeModuleHelper.UpdateModuleTitle (ModuleId, Employee.AbbrName);
-						
-                        // get employee achievements (titles) only then it about to display
-                        achievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
-                            "SELECT * FROM dbo.vw_University_EmployeeAchievements " +
-                            "WHERE [EmployeeID] = @0 AND [IsTitle] = 1", Employee.EmployeeID);
+                        if (Settings.AutoTitle) {
+                            EmployeeModuleHelper.UpdateModuleTitle (ModuleId, 
+                                FormatHelper.AbbrName (employee.FirstName, employee.LastName, employee.OtherName)
+                            );
+                        }
 
                         // display employee info
-                        Display (Employee, achievements);
+                        Display (employee);
                     }
 
                 } // if (!IsPostBack)
@@ -162,21 +150,17 @@ namespace R7.University.Employee
         /// Displays the specified employee.
         /// </summary>
         /// <param name="employee">Employee.</param>
-        protected void Display (EmployeeInfo employee, IEnumerable<EmployeeAchievementInfo> achievements)
+        protected void Display (IEmployee employee)
         {
-            // occupied positions
-            var occupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-            
-            if (occupiedPositions.Any ()) {
-                repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (occupiedPositions);
+            if (employee.OccupiedPositions.Any ()) {
+                repeaterPositions.DataSource = OccupiedPositionInfoEx.GroupByDivision (employee.OccupiedPositions);
                 repeaterPositions.DataBind ();
             }
             else
                 repeaterPositions.Visible = false;
 
             // Full name
-            var fullName = employee.FullName;
+            var fullName = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
             labelFullName.Text = fullName;
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth);
@@ -187,7 +171,9 @@ namespace R7.University.Employee
             linkPhoto.NavigateUrl = popupUrl;
 
             // Employee titles
-            var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.DisplayShortTitle));
+            var titles = employee.Achievements
+                .Where (ach => ach.IsTitle)
+                .Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.DisplayShortTitle));
 			
             var strTitles = TextUtils.FormatList (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
@@ -225,40 +211,15 @@ namespace R7.University.Employee
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
             else
                 labelWorkingPlaceAndHours.Visible = false;
-
-            /*
-			// Working place
-			if (!string.IsNullOrWhiteSpace (employee.WorkingPlace))
-				labelWorkingPlace.Text = employee.WorkingPlace;
-			else
-				labelWorkingPlace.Visible = false;
-
-			// Working hours
-			if (!string.IsNullOrWhiteSpace (employee.WorkingHours))
-				labelWorkingHours.Text = employee.WorkingHours;
-			else
-				labelWorkingHours.Visible = false;
-			*/
-
-            /*
-			// WebSite
-			if (!string.IsNullOrWhiteSpace (employee.WebSite))
-			{
-				// THINK: Do we have to check if WebSite starting with http:// or https://?
-				linkWebSite.NavigateUrl = "http://" + employee.WebSite;
-				linkWebSite.Text = employee.WebSite;
-			}
-			else
-				linkWebSite.Visible = false;
-			*/
-
+            
             // WebSite
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = employee.FormatWebSiteUrl;
-                linkWebSite.Text = employee.FormatWebSiteLabel;
+                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
             }
-            else
+            else {
                 linkWebSite.Visible = false;
+            }
 
             // Email
             if (!string.IsNullOrWhiteSpace (employee.Email)) {
@@ -291,6 +252,7 @@ namespace R7.University.Employee
                 // create a new action to add an item, this will be added 
                 // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
+                var employee = GetEmployee ();
 
                 actions.Add (
                     GetNextActionID (), 
@@ -301,19 +263,19 @@ namespace R7.University.Employee
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    Employee == null,
+                    employee == null,
                     false
                 );
 
-                if (Employee != null) {
+                if (employee != null) {
                     // otherwise, add "edit" action
                     actions.Add (
                         GetNextActionID (), 
-                        Localization.GetString ("EditEmployee.Action", this.LocalResourceFile),
+                        LocalizeString ("EditEmployee.Action"),
                         ModuleActionType.EditContent, 
                         "", 
                         "", 
-                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee"),
+                        EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee"),
                         false, 
                         SecurityAccessLevel.Edit,
                         true, 
@@ -322,11 +284,11 @@ namespace R7.University.Employee
 
                     actions.Add (
                         GetNextActionID (), 
-                        Localization.GetString ("Details.Action", this.LocalResourceFile),
+                        LocalizeString ("Details.Action"),
                         ModuleActionType.ContentOptions, 
                         "", 
                         "", 
-                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EmployeeDetails"),
+                        EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails"),
                         false, 
                         SecurityAccessLevel.View,
                         true, 
@@ -335,32 +297,17 @@ namespace R7.University.Employee
 
                     actions.Add (
                         GetNextActionID (), 
-                        Localization.GetString ("VCard.Action", this.LocalResourceFile),
+                        LocalizeString ("VCard.Action"),
                         ModuleActionType.ContentOptions, 
                         "", 
                         "", 
-                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard"),
+                        EditUrl ("employee_id", employee.EmployeeID.ToString (), "VCard"),
                         false,
                         SecurityAccessLevel.View,
                         true,
                         true
                     );
                 }
-
-                /*
-				#if (DATACACHE)
-				actions.Add (
-					GetNextActionID (), 
-					"Clear Data Cache", // Localization.GetString("ClearDataCache.Action", this.LocalResourceFile),
-					"ClearDataCache.Action", "", 
-					"/images/action_refresh.gif",
-					"", //Utils.EditUrl (this, "VCard", "employee_id", EmployeeID.ToString ()),
-					true,  // use action event
-					DotNetNuke.Security.SecurityAccessLevel.Edit,
-					true, 
-					false // open in new window
-				);
-				#endif*/
 
                 return actions;
             }

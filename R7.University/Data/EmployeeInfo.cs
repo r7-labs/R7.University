@@ -153,24 +153,6 @@ namespace R7.University.Data
             }
         }
 
-        [IgnoreColumn]
-        public string FormatWebSiteLabel
-        {
-            get {
-                return (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
-					WebSite.Contains ("://") ? WebSite.Remove (0, WebSite.IndexOf ("://") + 3) : WebSite;
-            }
-        }
-
-        [IgnoreColumn]
-        public string FormatWebSiteUrl
-        {
-            get {
-                return WebSite.Contains ("://") ? WebSite.ToLowerInvariant () : 
-					"http://" + WebSite.ToLowerInvariant ();
-            }
-        }
-
         #endregion
 
         [IgnoreColumn]

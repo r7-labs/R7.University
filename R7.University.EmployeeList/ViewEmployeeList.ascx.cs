@@ -47,6 +47,7 @@ using R7.University.EmployeeList.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SharedLogic;
+using R7.University.ViewModels;
 
 namespace R7.University.EmployeeList
 {
@@ -255,11 +256,12 @@ namespace R7.University.EmployeeList
 
             // webSite
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = employee.FormatWebSiteUrl;
-                linkWebSite.Text = employee.FormatWebSiteLabel;
+                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
             }
-            else
+            else {
                 linkWebSite.Visible = false;
+            }
 
             // profile link
             if (!TypeUtils.IsNull<int> (employee.UserID)) {

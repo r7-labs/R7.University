@@ -41,7 +41,6 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
@@ -50,6 +49,7 @@ using R7.University.Employee.SharedLogic;
 using R7.University.SharedLogic;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
 using R7.University.ModelExtensions;
+using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
@@ -341,11 +341,12 @@ namespace R7.University.Employee
 
             // WebSite
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = employee.FormatWebSiteUrl;
-                linkWebSite.Text = employee.FormatWebSiteLabel;
+                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
             }
-            else
+            else {
                 linkWebSite.Visible = false;
+            }
 
             // Email
             if (!string.IsNullOrWhiteSpace (employee.Email)) {

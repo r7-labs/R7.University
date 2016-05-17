@@ -93,22 +93,6 @@ namespace R7.University.Employee.Components
             set { WriteTabModuleSetting<int> ("Employee_PhotoWidth", value); }
         }
 
-        private int? dataCacheTime;
-
-        public int DataCacheTime
-        {
-            get { 
-                if (dataCacheTime == null)
-                    dataCacheTime = ReadSetting<int> ("Employee_DataCacheTime", 1200);
-				
-                return dataCacheTime.Value;
-            }
-            set { 
-                WriteTabModuleSetting<int> ("Employee_DataCacheTime", value); 
-                dataCacheTime = value;
-            }
-        }
-
         #endregion
     }
 }

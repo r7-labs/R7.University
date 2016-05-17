@@ -30,16 +30,4 @@
 	<data name="labelPhotoWidth.Help" xml:space="preserve">
     	<value>Enter photo width in pixels, or leave empty to use original photo size.</value>
   	</data>
-	<data name="DataCache.Text" xml:space="preserve">
-		<value>Data Cache</value>
-	</data>
-	<data name="labelDataCacheInfo.Text" xml:space="preserve">
-    	<value>&lt;strong&gt;Important note about module caching:&lt;/strong&gt;&lt;br /&gt;This module uses its own custom data cache, so it is recommended to disable module cache on a &quot;Page Settings&quot; tab, and then set appropriate cache duration (in seconds) in a &quot;Data Cache Duration&quot; field below. Note what data cache is not implemented yet for R7.University.EmployeeDetails module.</value>
-  	</data>
-	<data name="labelDataCacheTime.Text" xml:space="preserve">
-    	<value>Data Cache Duration (seconds):</value>
-  	</data>
-	<data name="labelDataCacheTime.Help" xml:space="preserve">
-    	<value>Enter data cache duration in seconds. Leave empty or set to 0 to disable module data cache.</value>
-  	</data>
 </root>

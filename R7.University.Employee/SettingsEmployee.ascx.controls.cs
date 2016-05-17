@@ -17,8 +17,6 @@ namespace R7.University.Employee
         protected CheckBox checkAutoTitle;
         protected LabelControl labelPhotoWidth;
         protected TextBox textPhotoWidth;
-        protected LabelControl labelDataCacheTime;
-        protected TextBox textDataCacheTime;
         protected LabelControl labelShowCurrentUser;
         protected CheckBox checkShowCurrentUser;
     }

@@ -424,7 +424,6 @@ namespace R7.University.Employee
                 }
 
                 ModuleController.SynchronizeModule (ModuleId);
-                DataCache.RemoveCache ("Employee_" + TabModuleId + "_RenderedContent");
 
                 Response.Redirect (Globals.NavigateURL (), true);
             }

@@ -123,6 +123,32 @@ namespace R7.University.ViewModels
 
             return string.Empty;
         }
+
+        public static string FullName (string firstName, string lastName, string otherName)
+        {
+            return TextUtils.FormatList (" ", lastName, firstName, otherName);
+        }
+
+        public static string AbbrName (string firstName, string lastName, string otherName)
+        {
+            if (!string.IsNullOrWhiteSpace (otherName)) {
+                return string.Format ("{0} {1}.{2}.", lastName, firstName.Substring (0, 1), otherName.Substring (0, 1)); 
+            }
+
+            return string.Format ("{0} {1}.", lastName, firstName.Substring (0, 1));
+        }
+
+        public static string FormatWebSiteUrl  (string website)
+        {
+            return website.Contains ("://") ? website.ToLowerInvariant () : 
+                "http://" + website.ToLowerInvariant ();
+        }
+
+        public static string FormatWebSiteLabel (string website, string websiteLabel)
+        {
+            return (!string.IsNullOrWhiteSpace (websiteLabel)) ? websiteLabel : 
+                website.Contains ("://") ? website.Remove (0, website.IndexOf ("://") + 3) : website;
+        }
     }
 }
 

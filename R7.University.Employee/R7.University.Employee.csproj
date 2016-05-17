@@ -118,9 +118,6 @@
     <Compile Include="ViewEmployeeDetails.ascx.controls.cs">
       <DependentUpon>ViewEmployeeDetails.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewEmployee.ascx.cache.cs">
-      <DependentUpon>ViewEmployee.ascx</DependentUpon>
-    </Compile>
     <Compile Include="EditEmployee.ascx.cs">
       <DependentUpon>EditEmployee.ascx</DependentUpon>
     </Compile>

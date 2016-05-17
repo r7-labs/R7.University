@@ -36,6 +36,7 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.University;
 using R7.University.Data;
 using R7.University.Employee.Components;
+using R7.University.Components;
 
 namespace R7.University.Employee
 {
@@ -77,9 +78,6 @@ namespace R7.University.Employee
 					
                     if (!Null.IsNull (Settings.PhotoWidth))
                         textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
-					
-                    if (!Null.IsNull (Settings.DataCacheTime))
-                        textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
                 }
             }
             catch (Exception ex) {
@@ -104,12 +102,8 @@ namespace R7.University.Employee
                 else
                     Settings.PhotoWidth = Null.NullInteger;
 				
-                if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
-                    Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
-                else
-                    Settings.DataCacheTime = Null.NullInteger;
-				
                 ModuleController.SynchronizeModule (ModuleId);
+                CacheHelper.RemoveCacheByPrefix ("//r7_University/Employee?ModuleId=" + ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

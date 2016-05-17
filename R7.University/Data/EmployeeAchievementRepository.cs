@@ -52,6 +52,14 @@ namespace R7.University.Data
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
+        public IEnumerable<EmployeeAchievementInfo> GetEmployeeAchievements (int employeeId)
+        {
+            // TODO: Use {databaseOwner} and {objectQualifier} 
+            return DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
+                "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", employeeId
+            );
+        }
+
         public IEnumerable<EmployeeAchievementInfo> GetAchievements_ForEmployees (IEnumerable<int> employeeIds)
         {
             var strEmployeeIds = TextUtils.FormatList (", ", employeeIds);
