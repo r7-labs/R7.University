@@ -25,6 +25,9 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -34,6 +37,30 @@ namespace R7.University.ModelExtensions
         public static bool IsPublished (this IEmployee employee)
         {
             return ModelHelper.IsPublished (employee.StartDate, employee.EndDate);
+        }
+
+        public static IEnumerable<IEmployee> WithAchievements (this IEnumerable<IEmployee> employees)
+        {
+            var commonAchievements = EmployeeAchievementRepository.Instance.GetAchievements_ForEmployees (
+                employees.Select (e => e.EmployeeID));
+            
+            foreach (var employee in employees) {
+                employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID).ToList ();
+            }
+
+            return employees;
+        }
+
+        public static IEnumerable<IEmployee> WithOccupiedPositions (this IEnumerable<IEmployee> employees, int divisionId)
+        {
+            var commonOps = OccupiedPositionRepository.Instance.GetOccupiedPositions_ForEmployees (
+                employees.Select (e => e.EmployeeID), divisionId);
+
+            foreach (var employee in employees) {
+                employee.OccupiedPositions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID).ToList ();
+            }
+
+            return employees;
         }
     }
 }

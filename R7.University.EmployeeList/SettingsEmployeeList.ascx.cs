@@ -27,13 +27,13 @@
 using System;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University;
+using R7.University.Components;
 using R7.University.Data;
-using R7.University.Utilities;
-using DotNetNuke.Entities.Modules;
 using R7.University.EmployeeList.Components;
+using R7.University.Utilities;
 
 namespace R7.University.EmployeeList
 {
@@ -76,9 +76,6 @@ namespace R7.University.EmployeeList
 
                     if (!Null.IsNull (Settings.PhotoWidth))
                         textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
-					
-                    if (!Null.IsNull (Settings.DataCacheTime))
-                        textDataCacheTime.Text = Settings.DataCacheTime.ToString ();
                 }
             }
             catch (Exception ex) {
@@ -100,13 +97,9 @@ namespace R7.University.EmployeeList
                     Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
                 else
                     Settings.PhotoWidth = Null.NullInteger;
-				
-                if (!string.IsNullOrWhiteSpace (textDataCacheTime.Text))
-                    Settings.DataCacheTime = int.Parse (textDataCacheTime.Text);
-                else
-                    Settings.DataCacheTime = Null.NullInteger;
 
                 ModuleController.SynchronizeModule (ModuleId);
+                CacheHelper.RemoveCacheByPrefix ("//r7_University/EmployeeList?TabModuleId=" + TabModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

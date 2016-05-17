@@ -79,7 +79,7 @@ namespace R7.University.EmployeeList.Components
         public bool IncludeSubdivisions
         {
             get { return ReadSetting<bool> ("EmployeeList_IncludeSubdivisions", false); }
-            set { WriteModuleSetting<bool> ("EmployeeList_IncludeSubdivisions", value); }
+            set { WriteTabModuleSetting<bool> ("EmployeeList_IncludeSubdivisions", value); }
         }
 
         /// <summary>
@@ -96,22 +96,6 @@ namespace R7.University.EmployeeList.Components
         {
 			get { return ReadSetting<int> ("EmployeeList_PhotoWidth", UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth); }
             set { WriteTabModuleSetting<int> ("EmployeeList_PhotoWidth", value); }
-        }
-
-        private int? dataCacheTime;
-
-        public int DataCacheTime
-        {
-            get { 
-                if (dataCacheTime == null)
-                    dataCacheTime = ReadSetting<int> ("EmployeeList_DataCacheTime", 1200);
-				
-                return dataCacheTime.Value;
-            }
-            set { 
-                WriteTabModuleSetting<int> ("EmployeeList_DataCacheTime", value); 
-                dataCacheTime = value;
-            }
         }
 
         #endregion

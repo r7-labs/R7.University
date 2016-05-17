@@ -1,54 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>EmployeeList Settings</value>
-  </data>
+        <value>EmployeeList Settings</value>
+    </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>About EmployeeList Settings</value>
-  </data>
+        <value>About EmployeeList Settings</value>
+    </data>
 	<data name="labelDivision.Text" xml:space="preserve">
-    <value>Division:</value>
-  </data>
+        <value>Division:</value>
+    </data>
 	<data name="labelDivision.Help" xml:space="preserve">
-    <value>Select a division from a tree to display it's employees.</value>
-  </data>
+        <value>Select a division from a tree to display it's employees.</value>
+    </data>
 	<data name="labelIncludeSubdivisions.Text" xml:space="preserve">
-    <value>Include Subdivisions?</value>
-  </data>
+        <value>Include Subdivisions?</value>
+    </data>
 	<data name="labelIncludeSubdivisions.Help" xml:space="preserve">
-    <value>Check to include employees from all subordinate divisions.</value>
-  </data>
+        <value>Check to include employees from all subordinate divisions.</value>
+    </data>
 	<data name="labelSortType.Text" xml:space="preserve">
-    <value>Sort Type:</value>
-  </data>
+        <value>Sort Type:</value>
+    </data>
 	<data name="labelIncludeSubdivisions.Help" xml:space="preserve">
-    <value>Select a sort type from the list to use with this module.</value>
-  </data>
+        <value>Select a sort type from the list to use with this module.</value>
+    </data>
 	<data name="SortTypeByMaxWeight.Text" xml:space="preserve">
     <value>By max position weight</value>
-  </data>
+    </data>
 	<data name="SortTypeByTotalWeight.Text" xml:space="preserve">
-    <value>By total positions weight</value>
-  </data>
+        <value>By total positions weight</value>
+    </data>
 	<data name="SortTypeByName.Text" xml:space="preserve">
-    <value>By employee name</value>
-  </data>
+        <value>By employee name</value>
+    </data>
 	<data name="labelPhotoWidth.Text" xml:space="preserve">
-	<value>Photo Width:</value>
-  </data>
+	    <value>Photo Width:</value>
+    </data>
 	<data name="labelPhotoWidth.Help" xml:space="preserve">
-	<value>Enter photo width in pixels, or leave empty to use original photo size.</value>
-  </data>
-	<data name="DataCache.Text" xml:space="preserve">
-		<value>Data Cache</value>
-	</data>
-	<data name="labelDataCacheInfo.Text" xml:space="preserve">
-		<value>&lt;strong&gt;Important note about module caching:&lt;/strong&gt;&lt;br /&gt;This module uses its own custom data cache, so it is recommended to disable module cache on a "Page Settings" tab, and then set appropriate cache duration (in seconds) in a "Data Cache Duration" field below.</value>
-	</data>
-	<data name="labelDataCacheTime.Text" xml:space="preserve">
-		<value>Data Cache Duration (seconds):</value>
-	</data>
-	<data name="labelDataCacheTime.Help" xml:space="preserve">
-		<value>Enter data cache duration in seconds. Leave empty or set to 0 to disable module data cache.</value>
-	</data>
+	    <value>Enter photo width in pixels, or leave empty to use original photo size.</value>
+    </data>
 </root>

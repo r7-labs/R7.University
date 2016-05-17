@@ -52,13 +52,13 @@ namespace R7.University.Data
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
-        public IEnumerable<EmployeeAchievementInfo> GetTitleAchivements_ForEmployees (IEnumerable<int> employeeIds)
+        public IEnumerable<EmployeeAchievementInfo> GetAchievements_ForEmployees (IEnumerable<int> employeeIds)
         {
             var strEmployeeIds = TextUtils.FormatList (", ", employeeIds);
 
             // TODO: Use {databaseOwner} and {objectQualifier} 
             return DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
-                string.Format ("SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] IN ({0}) AND [IsTitle] = 1", 
+                string.Format ("SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] IN ({0})", 
                     strEmployeeIds)
             );
         }

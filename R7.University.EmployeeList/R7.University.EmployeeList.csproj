@@ -94,9 +94,6 @@
     <Compile Include="SettingsEmployeeList.ascx.controls.cs">
       <DependentUpon>SettingsEmployeeList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewEmployeeList.ascx.cache.cs">
-      <DependentUpon>ViewEmployeeList.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\EmployeeListController.cs" />
     <Compile Include="Components\EmployeeListSettings.cs" />

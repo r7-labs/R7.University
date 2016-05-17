@@ -1,21 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>Настройки EmployeeList</value>
-  </data>
+        <value>Настройки EmployeeList</value>
+    </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>О настройках EmployeeList</value>
-  </data>
-	<data name="DataCache.Text" xml:space="preserve">
-		<value>Кеш данных</value>
-	</data>
-	<data name="labelDataCacheInfo.Text" xml:space="preserve">
-    	<value>&lt;strong&gt;Важное замечание относительно кеширования:&lt;/strong&gt;&lt;br /&gt;Данный модуль использует собственный кеш данных, поэтому рекомендуется отключить кеш на вкладке "Модуль на странице", а затем установить необходимую продолжительность кеширования (в секундах) в расположенном ниже поле "Продолжительность кеширования".</value>
-  	</data>
-	<data name="labelDataCacheTime.Text" xml:space="preserve">
-    	<value>Продолжительность кеширования (сек):</value>
-  	</data>
-	<data name="labelDataCacheTime.Help" xml:space="preserve">
-    	<value>Введите продолжительность кеширования в секундах. Оставьте поле пустым или введите 0 для того, чтобы отключить кеш данных модуля.</value>
-  	</data>
+        <value>О настройках EmployeeList</value>
+    </data>
 </root>

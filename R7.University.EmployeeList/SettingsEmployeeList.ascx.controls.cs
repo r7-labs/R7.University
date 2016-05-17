@@ -19,7 +19,5 @@ namespace R7.University.EmployeeList
         protected DnnComboBox comboSortType;
         protected LabelControl labelPhotoWidth;
         protected TextBox textPhotoWidth;
-        protected LabelControl labelDataCacheTime;
-        protected TextBox textDataCacheTime;
     }
 }

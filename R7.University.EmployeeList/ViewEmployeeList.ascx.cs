@@ -26,8 +26,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
+using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -44,6 +44,7 @@ using R7.University;
 using R7.University.Data;
 using R7.University.EmployeeList.Components;
 using R7.University.ModelExtensions;
+using R7.University.Models;
 using R7.University.SharedLogic;
 
 namespace R7.University.EmployeeList
@@ -61,19 +62,24 @@ namespace R7.University.EmployeeList
 
         #region Handlers
 
-        /*
-		/// <summary>
-		/// Handles Init event for a control
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnInit (EventArgs e)
-		{
-			base.OnInit (e);
-		}*/
-		
-        protected IEnumerable<EmployeeAchievementInfo> CommonTitleAchievements;
+        // REVIEW: Move to repository class?
+        protected IEnumerable<IEmployee> GetEmployees ()
+        {
+            var cacheKey = "//r7_University/EmployeeList?TabModuleId=" + TabModuleId;
+            return DataCache.GetCachedData<IEnumerable<IEmployee>> (
+                new CacheItemArgs (cacheKey, 1200, CacheItemPriority.Normal),
+                c => GetEmployees_Internal ()
+            );
+        }
 
-        protected IEnumerable<OccupiedPositionInfoEx> CommonOccupiedPositions;
+        protected IEnumerable<IEmployee> GetEmployees_Internal ()
+        {
+            // get employees by DivisionID
+            return EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
+                Settings.IncludeSubdivisions, Settings.SortType)
+                    .WithAchievements ()
+                    .WithOccupiedPositions (Settings.DivisionID);
+        }
 
         /// <summary>
         /// Handles Load event for a control
@@ -85,42 +91,22 @@ namespace R7.University.EmployeeList
 			
             try {
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
-                    if (Cache_OnLoad ())
-                        return;
-					
-                    // get employees by DivisionID, in edit mode show also non-published employees
-                    var items = EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
-                            Settings.IncludeSubdivisions, Settings.SortType)
-                        .Where (empl => IsEditable || empl.IsPublished ());
-
+                    var items = GetEmployees ();
+            
                     // check if we have some content to display, 
                     // otherwise display a message for module editors or hide module from regular users
-                    if (!items.Any ()) {
-                        // set container control visibility to common users
-                        Cache_SetContainerVisible (false);
-						
-                        if (IsEditable)
+                    if (items == null || !items.Any ()) {
+                        if (IsEditable) {
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-                        else
+                        }
+                        else {
 							// hide entire module
 							ContainerControl.Visible = false;
+                        }
                     }
                     else {
-                        var employeeIds = items.Select (em => em.EmployeeID);
-
-                        // get title achievements for all selected employees
-                        CommonTitleAchievements = EmployeeAchievementRepository.Instance
-                            .GetTitleAchivements_ForEmployees (employeeIds);
-
-                        // get occupied positions for all selected employees
-                        CommonOccupiedPositions = OccupiedPositionRepository.Instance
-                            .GetOccupiedPositions_ForEmployees (employeeIds, Settings.DivisionID);
-                        
-                        // set container control visibility to common users
-                        Cache_SetContainerVisible (true);
-
                         // bind the data
-                        listEmployees.DataSource = items;
+                        listEmployees.DataSource = items.Where (empl => IsEditable || empl.IsPublished ());
                         listEmployees.DataBind ();
                     }
                 }
@@ -233,8 +219,7 @@ namespace R7.University.EmployeeList
             linkFullName.NavigateUrl = employeeDetailsUrl;
 
             // get current employee title achievements
-            var achievements = CommonTitleAchievements.Where (ach => ach.EmployeeID == employee.EmployeeID);
-
+            var achievements = employee.Achievements.Where (ach => ach.IsTitle);
             var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.DisplayShortTitle));
 			
             // employee title achievements
@@ -285,7 +270,7 @@ namespace R7.University.EmployeeList
                 linkUserProfile.Visible = false;
 
             // get current employee occupied positions
-            var ops = CommonOccupiedPositions.Where (op => op.EmployeeID == employee.EmployeeID);
+            var ops = employee.OccupiedPositions;
 
             // build positions value
             var positionsVisible = false;

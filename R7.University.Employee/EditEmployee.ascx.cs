@@ -483,7 +483,7 @@ namespace R7.University.Employee
             try {
                 // ALT: if (!Null.IsNull (itemId))
                 if (itemId.HasValue) {
-                    UniversityRepository.Instance.DataProvider.Delete<EmployeeInfo> (itemId.Value);
+                    EmployeeRepository.Instance.DeleteEmployee (itemId.Value);
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }
