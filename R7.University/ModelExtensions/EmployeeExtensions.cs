@@ -41,23 +41,27 @@ namespace R7.University.ModelExtensions
 
         public static IEmployee WithAchievements (this IEmployee employee)
         {
-            employee.Achievements = EmployeeAchievementRepository.Instance
+            if (employee != null) {
+                employee.Achievements = EmployeeAchievementRepository.Instance
                 .GetEmployeeAchievements (employee.EmployeeID)
                 .Cast<IEmployeeAchievement> ()
                 .ToList ();
+            }
 
             return employee;
         }
 
         public static IEnumerable<IEmployee> WithAchievements (this IEnumerable<IEmployee> employees)
         {
-            var commonAchievements = EmployeeAchievementRepository.Instance.GetAchievements_ForEmployees (
-                employees.Select (e => e.EmployeeID));
+            if (!employees.IsNullOrEmpty ()) {
+                var commonAchievements = EmployeeAchievementRepository.Instance.GetAchievements_ForEmployees (
+                                         employees.Select (e => e.EmployeeID));
             
-            foreach (var employee in employees) {
-                employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID)
+                foreach (var employee in employees) {
+                    employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID)
                     .Cast<IEmployeeAchievement> ()
                     .ToList ();
+                }
             }
 
             return employees;
@@ -65,13 +69,15 @@ namespace R7.University.ModelExtensions
 
         public static IEnumerable<IEmployee> WithOccupiedPositions (this IEnumerable<IEmployee> employees, int divisionId)
         {
-            var commonOps = OccupiedPositionRepository.Instance.GetOccupiedPositions_ForEmployees (
-                employees.Select (e => e.EmployeeID), divisionId);
+            if (!employees.IsNullOrEmpty ()) {
+                var commonOps = OccupiedPositionRepository.Instance.GetOccupiedPositions_ForEmployees (
+                                employees.Select (e => e.EmployeeID), divisionId);
 
-            foreach (var employee in employees) {
-                employee.OccupiedPositions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID)
+                foreach (var employee in employees) {
+                    employee.OccupiedPositions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID)
                     .GroupByDivision ()
                     .ToList ();
+                }
             }
 
             return employees;
@@ -79,11 +85,13 @@ namespace R7.University.ModelExtensions
 
         public static IEmployee WithOccupiedPositions (this IEmployee employee)
         {
-            employee.OccupiedPositions = OccupiedPositionRepository.Instance
+            if (employee != null) {
+                employee.OccupiedPositions = OccupiedPositionRepository.Instance
                 .GetOccupiedPositions (employee.EmployeeID)
                 .GroupByDivision ()
                 .ToList ();
-            
+            }
+
             return employee;
         }
     }
