@@ -31,6 +31,7 @@ using System.Linq;
 using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Components;
 using R7.University.ModelExtensions;
 
 namespace R7.University.Data
@@ -67,6 +68,7 @@ namespace R7.University.Data
 
         public IEnumerable<EmployeeInfo> GetEmployees_ByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
         {
+            // TODO: Expose weghtMod sp argument
             return DataProvider.GetObjectsFromSp<EmployeeInfo> (
                 includeSubDivisions ? // which SP to use
                     "University_GetEmployees_ByDivisionID_Recursive" : "University_GetEmployees_ByDivisionID", 
@@ -141,6 +143,8 @@ namespace R7.University.Data
                     }
 
                     ctx.Commit ();
+
+                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
                 }
                 catch {
                     ctx.RollbackTransaction ();
@@ -233,12 +237,19 @@ namespace R7.University.Data
                     }
 
                     ctx.Commit ();
+                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
                 }
                 catch {
                     ctx.RollbackTransaction ();
                     throw;
                 }
             }
+        }
+
+        public void DeleteEmployee (int employeeId)
+        {
+            DataProvider.Delete<EmployeeInfo> (employeeId);
+            CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
     }
 }
