@@ -391,7 +391,7 @@ namespace R7.University.EmployeeDirectory
             var employees = EmployeeRepository.Instance.FindEmployees (searchText, 
                                 IsEditable, teachersOnly, includeSubdivisions, searchDivision);
             
-            if (employees == null || !employees.Any ()) {
+            if (employees.IsNullOrEmpty ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
             }
 
