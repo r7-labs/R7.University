@@ -41,6 +41,12 @@ namespace R7.University.ViewModels
             return !string.IsNullOrWhiteSpace (shortTitle) ? shortTitle : title;
         }
 
+        public static string FormatShortTitle (string shortTitle, string title, string titleSuffix)
+        {
+            var shortTitleWoSuffix = FormatShortTitle (shortTitle, title);
+            return !string.IsNullOrWhiteSpace (titleSuffix) ? shortTitleWoSuffix + " " + titleSuffix : shortTitleWoSuffix; 
+        }
+
         private static int getPlural (int n, CultureInfo culture)
         {
             // http://localization-guide.readthedocs.org/en/latest/l10n/pluralforms.html

@@ -41,6 +41,7 @@ using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.ModelExtensions;
 using R7.University.EmployeeDirectory.Components;
+using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -319,19 +320,21 @@ namespace R7.University.EmployeeDirectory
 
                 var education = achievements
                     .Where (ach => ach.AchievementType == AchievementType.Education)
-                    .Select (ed => TextUtils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
+                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
+                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin));
                 
                 var training = achievements
                     .Where (ach => ach.AchievementType == AchievementType.Training)
-                    .Select (ed => TextUtils.FormatList ("&nbsp;- ", ed.DisplayShortTitle, ed.YearBegin));
+                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
+                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin));
                 
                 var academicDegrees = achievements
                     .Where (ach => ach.AchievementType == AchievementType.AcademicDegree)
-                    .Select (ed => ed.DisplayShortTitle);
+                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix));
                 
                 var academicTitles = achievements
                     .Where (ach => ach.AchievementType == AchievementType.AcademicTitle)
-                    .Select (ed => ed.DisplayShortTitle);
+                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix));
 
                 literalEducation.Text = TextUtils.FormatList ("; ", education);
                 literalTraining.Text = TextUtils.FormatList ("; ", training);

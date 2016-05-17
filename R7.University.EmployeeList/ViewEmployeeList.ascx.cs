@@ -222,7 +222,8 @@ namespace R7.University.EmployeeList
 
             // get current employee title achievements
             var achievements = employee.Achievements.Where (ach => ach.IsTitle);
-            var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.DisplayShortTitle));
+            var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (
+                FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix)));
 			
             // employee title achievements
             var strTitles = TextUtils.FormatList (", ", titles);

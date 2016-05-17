@@ -40,21 +40,8 @@ namespace R7.University.Data
     [TableName ("University_EmployeeAchievements")]
     [PrimaryKey ("EmployeeAchievementID", AutoIncrement = true)]
     [Serializable]
-    public class EmployeeAchievementInfo: ReferenceEntityBase, IEmployeeAchievement
+    public class EmployeeAchievementInfo: IEmployeeAchievement
     {
-        #region IReferenceEntity implementation
-
-        [IgnoreColumn]
-        public new string DisplayShortTitle
-        {
-            get { 
-                var shortTitle = !string.IsNullOrWhiteSpace (ShortTitle) ? ShortTitle : Title;
-                return !string.IsNullOrWhiteSpace (TitleSuffix) ? shortTitle + " " + TitleSuffix : shortTitle; 
-            } 
-        }
-
-        #endregion
-
         #region IEmployeeAchievement implementation
 
         public int EmployeeAchievementID { get; set; }
@@ -64,6 +51,10 @@ namespace R7.University.Data
         public int? AchievementID { get; set; }
 
         public string Description { get; set; }
+
+        public string Title { get; set; }
+
+        public string ShortTitle  { get; set; }
 
         public int? YearBegin { get; set; }
 

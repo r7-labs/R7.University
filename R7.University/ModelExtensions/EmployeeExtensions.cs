@@ -42,7 +42,9 @@ namespace R7.University.ModelExtensions
         public static IEmployee WithAchievements (this IEmployee employee)
         {
             employee.Achievements = EmployeeAchievementRepository.Instance
-                .GetEmployeeAchievements (employee.EmployeeID).ToList ();
+                .GetEmployeeAchievements (employee.EmployeeID)
+                .Cast<IEmployeeAchievement> ()
+                .ToList ();
 
             return employee;
         }
@@ -53,7 +55,9 @@ namespace R7.University.ModelExtensions
                 employees.Select (e => e.EmployeeID));
             
             foreach (var employee in employees) {
-                employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID).ToList ();
+                employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID)
+                    .Cast<IEmployeeAchievement> ()
+                    .ToList ();
             }
 
             return employees;

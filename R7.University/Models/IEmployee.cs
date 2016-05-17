@@ -76,7 +76,7 @@ namespace R7.University.Models
 
         DateTime? EndDate { get; set; }
 
-        IList<EmployeeAchievementInfo> Achievements { get; set; }
+        IList<IEmployeeAchievement> Achievements { get; set; }
 
         IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
     }

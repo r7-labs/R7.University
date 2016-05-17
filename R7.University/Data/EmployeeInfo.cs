@@ -88,13 +88,13 @@ namespace R7.University.Data
 
         public DateTime? EndDate { get; set; }
 
-        #endregion
-
         [IgnoreColumn]
-        public IList<EmployeeAchievementInfo> Achievements { get; set; }
+        public IList<IEmployeeAchievement> Achievements { get; set; }
 
         [IgnoreColumn]
         public IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
+
+        #endregion
 
         #region Calculated properties
 

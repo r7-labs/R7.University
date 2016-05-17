@@ -37,6 +37,10 @@ namespace R7.University.Models
 
         int? AchievementID { get; set; }
 
+        string Title { get; set; }
+
+        string ShortTitle  { get; set; }
+
         string Description { get; set; }
 
         int? YearBegin { get; set; }
