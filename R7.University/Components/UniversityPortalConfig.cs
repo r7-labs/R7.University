@@ -33,6 +33,8 @@ namespace R7.University.Components
         public EmployeePhotoConfig EmployeePhoto { get; set; }
 
         public BarcodeConfig Barcode { get; set; }
+
+        public int DataCacheTime { get; set; }
     }
 
     public class EmployeePhotoConfig

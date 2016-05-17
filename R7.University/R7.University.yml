@@ -6,3 +6,5 @@
 
 barcode:
   default-width: 192
+
+data-cache-time: 1200

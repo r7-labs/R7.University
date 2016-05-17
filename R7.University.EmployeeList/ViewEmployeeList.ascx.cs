@@ -41,6 +41,7 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
+using R7.University.Components;
 using R7.University.Data;
 using R7.University.EmployeeList.Components;
 using R7.University.ModelExtensions;
@@ -67,7 +68,7 @@ namespace R7.University.EmployeeList
         {
             var cacheKey = "//r7_University/EmployeeList?TabModuleId=" + TabModuleId;
             return DataCache.GetCachedData<IEnumerable<IEmployee>> (
-                new CacheItemArgs (cacheKey, 1200, CacheItemPriority.Normal),
+                new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEmployees_Internal ()
             );
         }
