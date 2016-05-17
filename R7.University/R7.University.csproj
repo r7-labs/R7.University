@@ -152,6 +152,7 @@
     <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />
     <Compile Include="Models\IEmployeeAchievement.cs" />
     <Compile Include="Models\IOccupiedPosition.cs" />
+    <Compile Include="Models\IPosition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

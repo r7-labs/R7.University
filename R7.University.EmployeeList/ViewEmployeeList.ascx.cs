@@ -281,7 +281,7 @@ namespace R7.University.EmployeeList
             if (!ops.IsNullOrEmpty ()) {
                 var strOps = string.Empty;
                 foreach (var op in ops) {
-                    var strOp = PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle);
+                    var strOp = FormatHelper.FormatShortTitle (op.PositionShortTitle, op.PositionTitle);
 
                     // op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
                     strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", strOp, 

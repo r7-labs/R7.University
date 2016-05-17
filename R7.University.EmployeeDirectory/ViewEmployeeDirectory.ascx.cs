@@ -489,8 +489,8 @@ namespace R7.University.EmployeeDirectory
                                         employee.EmployeeID).FirstOrDefault ();
 
                 if (primePosition != null) {
-                    position.Text = TextUtils.FormatList (": ", TextUtils.FormatList (" ", 
-                            PositionInfo.FormatShortTitle (primePosition.PositionTitle, primePosition.PositionShortTitle), 
+                    position.Text = TextUtils.FormatList (": ",
+                        FormatHelper.FormatShortTitle (primePosition.PositionShortTitle, primePosition.PositionTitle, 
                             primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }
 

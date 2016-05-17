@@ -30,6 +30,7 @@ using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
+using R7.University.ViewModels;
 
 namespace R7.University.Employee.SharedLogic
 {
@@ -45,7 +46,7 @@ namespace R7.University.Employee.SharedLogic
                 var labelDivision = (Label) e.Item.FindControl ("labelDivision");
                 var linkDivision = (HyperLink) e.Item.FindControl ("linkDivision");
 
-                labelPosition.Text = PositionInfo.FormatShortTitle (opex.PositionTitle, opex.PositionShortTitle);
+                labelPosition.Text = FormatHelper.FormatShortTitle (opex.PositionShortTitle, opex.PositionTitle);
 
                 // don't display division title for highest level divisions
                 if (TypeUtils.IsNull (opex.ParentDivisionID)) {

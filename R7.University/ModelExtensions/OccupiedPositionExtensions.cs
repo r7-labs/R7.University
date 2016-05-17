@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Linq;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Data;
+using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions
 {
@@ -47,13 +48,13 @@ namespace R7.University.ModelExtensions
                 var op = opList [i];
                 // first combine position short title with it's suffix
                 op.PositionShortTitle = TextUtils.FormatList (" ", 
-                    PositionInfo.FormatShortTitle (op.PositionTitle, op.PositionShortTitle), 
+                    FormatHelper.FormatShortTitle (op.PositionShortTitle, op.PositionTitle), 
                     op.TitleSuffix);
 
                 for (var j = i + 1; j < opList.Count;) {
                     if (op.DivisionID == opList [j].DivisionID) {
                         op.PositionShortTitle += ", " + TextUtils.FormatList (" ", 
-                            PositionInfo.FormatShortTitle (opList [j].PositionTitle, opList [j].PositionShortTitle), 
+                            FormatHelper.FormatShortTitle (opList [j].PositionShortTitle, opList [j].PositionTitle), 
                             opList [j].TitleSuffix);
 
                         // remove groupped item

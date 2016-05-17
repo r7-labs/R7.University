@@ -73,7 +73,7 @@ namespace R7.University.Employee
         {
             PositionID = opex.PositionID;
             DivisionID = opex.DivisionID;
-            PositionShortTitle = PositionInfo.FormatShortTitle (opex.PositionTitle, opex.PositionShortTitle);
+            PositionShortTitle = FormatHelper.FormatShortTitle (opex.PositionShortTitle, opex.PositionTitle);
             DivisionShortTitle = DivisionInfo.FormatShortTitle (opex.DivisionTitle, opex.DivisionShortTitle);
             IsPrime = opex.IsPrime;
             TitleSuffix = opex.TitleSuffix;

@@ -26,29 +26,23 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
 namespace R7.University
 {
-	// More attributes for class:
-	// Set caching for table: [Cacheable("R7.University_Positions", CacheItemPriority.Default, 20)]
-	// Explicit mapping declaration: [DeclareColumns]
-	// More attributes for class properties:
-	// Custom column name: [ColumnName("PositionID")]
-	// Explicit include column: [IncludeColumn]
-	// Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
 	[TableName ("University_Positions")]
 	[PrimaryKey ("PositionID", AutoIncrement = true)]
-	public class PositionInfo : ReferenceEntityBase
+	public class PositionInfo: IPosition
 	{
-        #region Properties
+        public int PositionID { get; set; }
 
-		public int PositionID { get; set; }
+        public string Title { get; set; }
+
+        public string ShortTitle  { get; set; }
 
 		public int Weight { get; set; }
 
 		public bool IsTeacher { get; set; }
-
-		#endregion
 	}
 }
 
