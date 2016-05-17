@@ -34,14 +34,14 @@
                         DataFieldID="DivisionID"
                         DataFieldParentID="ParentDivisionID"
                         DataValueField="DivisionID"
-                        DataTextField="DisplayShortTitle"
+                        DataTextField="Title"
                     />
         		</div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHeadPosition" runat="server" ControlName="comboHeadPosition" />
                     <asp:DropDownList id="comboHeadPosition" runat="server" CssClass="dnn-ac-combobox"
                         DataValueField="PositionID"
-                        DataTextField="DisplayShortTitle" />
+                        DataTextField="Title" />
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelStartDate" runat="server" ControlName="datetimeStartDate" />

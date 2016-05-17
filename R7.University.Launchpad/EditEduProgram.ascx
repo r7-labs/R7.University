@@ -29,7 +29,7 @@
                 <div class="dnnFormItem">
                     <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
                     <asp:DropDownList id="comboEduLevel" runat="server" 
-                        DataTextField="DisplayShortTitle"
+                        DataTextField="Title"
                         DataValueField="EduLevelID"
                     />
                 </div>

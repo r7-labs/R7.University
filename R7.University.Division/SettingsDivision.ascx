@@ -14,7 +14,7 @@
 				DataFieldID="DivisionID"
 				DataFieldParentID="ParentDivisionID"
 				DataValueField="DivisionID"
-				DataTextField="DisplayShortTitle"
+				DataTextField="Title"
 			/> 
 		</div>
 	</fieldset>	

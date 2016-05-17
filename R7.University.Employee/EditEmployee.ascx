@@ -166,7 +166,7 @@
 				<div class="dnnFormItem">
 					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" />
 					<dnn:DnnTreeView id="treeDivisions" runat="server"
-						DataTextField="DisplayShortTitle"
+						DataTextField="Title"
 						DataValueField="DivisionID"
 						DataFieldID = "DivisionID"
 						DataFieldParentID="ParentDivisionID" />
@@ -175,7 +175,7 @@
     				<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
                     <asp:DropDownList id="comboPositions" runat="server" CssClass="dnn-ac-combobox"
                         DataValueField="PositionID"
-                        DataTextField="DisplayShortTitle" />
+                        DataTextField="Title" />
                 </div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" />
@@ -238,7 +238,7 @@
         					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
                             <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-ac-combobox"
                                 DataValueField="AchievementID"
-                                DataTextField="DisplayShortTitle"
+                                DataTextField="Title"
                                 AutoPostBack="true"
                                 OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged" />
                         </div>
