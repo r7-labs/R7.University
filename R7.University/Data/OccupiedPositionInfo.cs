@@ -26,6 +26,7 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
 namespace R7.University.Data
 {
@@ -40,21 +41,9 @@ namespace R7.University.Data
     // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("University_OccupiedPositions")]
     [PrimaryKey ("OccupiedPositionID", AutoIncrement = true)]
-    public class OccupiedPositionInfo
+    public class OccupiedPositionInfo: IOccupiedPosition
     {
-        #region Fields
-
-        #endregion
-
-        /// <summary>
-        /// Empty default cstor
-        /// </summary>
-        public OccupiedPositionInfo ()
-        {
-        }
-
-	
-        #region Properties
+        #region IOccupiedPosition implementation
 
         public int OccupiedPositionID { get; set; }
 

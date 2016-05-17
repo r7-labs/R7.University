@@ -25,11 +25,8 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.UI.Modules;
-using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Data
 {
@@ -44,16 +41,8 @@ namespace R7.University.Data
     [PrimaryKey ("OccupiedPositionID", AutoIncrement = false)]
     public class OccupiedPositionInfoEx : OccupiedPositionInfo
     {
-        /// <summary>
-        /// Empty default cstor
-        /// </summary>
-        public OccupiedPositionInfoEx ()
-        {
-        }
+        #region Extended (Position and Division) properties
 
-        #region Extended (external) properties
-
-        // WTF: [ReadOnlyColumn] attribute prevents data from loading?
         public string PositionShortTitle { get; set; }
 
         public string PositionTitle { get; set; }
