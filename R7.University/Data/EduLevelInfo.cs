@@ -27,34 +27,23 @@
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.University.Models;
-using R7.University.ViewModels;
 
 namespace R7.University.Data
 {
     [TableName ("University_EduLevels")]
     [PrimaryKey ("EduLevelID", AutoIncrement = true)]
     [Cacheable ("University_EduLevels")]
-    public class EduLevelInfo: IEduLevel, IReferenceEntity
+    public class EduLevelInfo: IEduLevel
     {
-        #region Properties
+        #region IEduLevel implementation
 
         public int EduLevelID { get; set; }
-
-        public int SortIndex { get; set; }
-
-        #endregion
-
-        #region IReferenceEntity implementation
 
         public string Title { get; set; }
 
         public string ShortTitle { get; set; }
 
-        [IgnoreColumn]
-        public string DisplayShortTitle
-        {
-            get { return FormatHelper.FormatShortTitle (ShortTitle, Title); }
-        }
+        public int SortIndex { get; set; }
 
         #endregion
     }

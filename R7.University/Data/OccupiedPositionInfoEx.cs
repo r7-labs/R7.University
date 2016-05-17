@@ -27,19 +27,13 @@
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.UI.Modules;
+using R7.University.ViewModels;
 
 namespace R7.University.Data
 {
-    // More attributes for class:
-    // Set caching for table: [Cacheable("R7.University_OccupiedPositions", CacheItemPriority.Default, 20)]
-    // Explicit mapping declaration: [DeclareColumns]
-    // More attributes for class properties:
-    // Custom column name: [ColumnName("OccupiedPositionID")]
-    // Explicit include column: [IncludeColumn]
-    // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("vw_University_OccupiedPositions")]
     [PrimaryKey ("OccupiedPositionID", AutoIncrement = false)]
-    public class OccupiedPositionInfoEx : OccupiedPositionInfo
+    public class OccupiedPositionInfoEx: OccupiedPositionInfo
     {
         #region Extended (Position and Division) properties
 
@@ -65,7 +59,7 @@ namespace R7.University.Data
         {
             // do not display division title for high-level divisions
             if (ParentDivisionID != null) {
-                var strDivision = DivisionInfo.FormatShortTitle (DivisionTitle, DivisionShortTitle);
+                var strDivision = FormatHelper.FormatShortTitle (DivisionShortTitle, DivisionTitle);
                 if (!string.IsNullOrWhiteSpace (HomePage))
                     strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
                         R7.University.Utilities.Utils.FormatURL (module, HomePage, false), strDivision);

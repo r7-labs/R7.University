@@ -65,8 +65,6 @@
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
     <Compile Include="ModelExtensions\DocumentExtensions.cs" />
     <Compile Include="Models\Delegates.cs" />
-    <Compile Include="Models\IReferenceEntity.cs" />
-    <Compile Include="Models\ReferenceEntityBase.cs" />
     <Compile Include="Models\SystemDocumentType.cs" />
     <Compile Include="ControlExtensions\GridViewExtensions.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />

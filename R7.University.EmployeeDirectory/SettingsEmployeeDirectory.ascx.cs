@@ -31,9 +31,9 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University;
 using R7.University.Data;
 using R7.University.EmployeeDirectory.Components;
+using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -52,7 +52,7 @@ namespace R7.University.EmployeeDirectory
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem
                     { 
-                        Text = eduLevel.DisplayShortTitle, 
+                        Text = FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title),
                         Value = eduLevel.EduLevelID.ToString ()
                     });
             }

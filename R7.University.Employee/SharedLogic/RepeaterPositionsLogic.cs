@@ -54,9 +54,9 @@ namespace R7.University.Employee.SharedLogic
                     linkDivision.Visible = false;
                 }
                 else {
-                    var divisionShortTitle = DivisionInfo.FormatShortTitle (
-                                                 opex.DivisionTitle,
-                                                 opex.DivisionShortTitle);
+                    var divisionShortTitle = FormatHelper.FormatShortTitle (
+                                                 opex.DivisionShortTitle,
+                                                 opex.DivisionTitle);
 
                     if (!string.IsNullOrWhiteSpace (opex.HomePage)) {
                         // link to division's homepage

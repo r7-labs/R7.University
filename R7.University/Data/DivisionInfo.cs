@@ -30,6 +30,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Data
 {
@@ -42,7 +43,7 @@ namespace R7.University.Data
     // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("University_Divisions")]
     [PrimaryKey ("DivisionID", AutoIncrement = true)]
-    public class DivisionInfo: UniversityBaseEntityInfo, IReferenceEntity, IDivision
+    public class DivisionInfo: UniversityBaseEntityInfo, IDivision
     {
         /// <summary>
         /// Empty division to use as default item with lists and treeviews
@@ -58,25 +59,6 @@ namespace R7.University.Data
             };
         }
 
-        #region IReferenceEntity implementation
-
-        public string Title { get; set; }
-
-        public string ShortTitle { get; set; }
-
-        [IgnoreColumn]
-        public string DisplayShortTitle
-        {
-            get { return FormatShortTitle (Title, ShortTitle); }
-        }
-
-        public static string FormatShortTitle (string title, string shortTitle)
-        {
-            return !string.IsNullOrWhiteSpace (shortTitle) ? shortTitle : title;
-        }
-
-        #endregion
-
         #region IDivision implementation
 
         public int DivisionID { get; set; }
@@ -84,6 +66,10 @@ namespace R7.University.Data
         public int? ParentDivisionID  { get; set; }
 
         public int? DivisionTermID  { get; set; }
+
+        public string Title { get; set; }
+
+        public string ShortTitle { get; set; }
 
         public string HomePage { get; set; }
 
@@ -129,7 +115,10 @@ namespace R7.University.Data
         {
 			// replace all non-word character with spaces, 
 			// trim resulting string and then replace all spaces with single underscore
-            get { return Regex.Replace (Regex.Replace (DisplayShortTitle, @"\W", " ").Trim (), @"\s+", "_"); } 
+            get { 
+                return Regex.Replace (Regex.Replace (
+                    FormatHelper.FormatShortTitle (ShortTitle, Title), @"\W", " ").Trim (), @"\s+", "_"); 
+            } 
         }
 
         [IgnoreColumn]

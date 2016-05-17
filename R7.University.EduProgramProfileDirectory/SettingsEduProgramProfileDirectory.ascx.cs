@@ -32,9 +32,9 @@ using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University;
 using R7.University.Data;
 using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
 {
@@ -66,7 +66,7 @@ namespace R7.University.EduProgramProfileDirectory
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem
                     { 
-                        Text = eduLevel.DisplayShortTitle, 
+                        Text = FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title),
                         Value = eduLevel.EduLevelID.ToString ()
                     });
             }
