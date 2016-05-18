@@ -90,7 +90,7 @@ namespace R7.University.EduProgramDirectory
                     var viewModelIndexer = new ViewModelIndexer (1);
 
                     // REVIEW: Order / group by edu level first?
-                    var eduPrograms = UniversityRepository.Instance.GetEduPrograms (Settings.EduLevels, IsEditable)
+                    var eduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels, IsEditable)
                         .WithDocuments (UniversityRepository.Instance.DataProvider)
                         .WithEduLevel (UniversityRepository.Instance.DataProvider)
                         .OrderBy (ep => ep.EduLevel.SortIndex)

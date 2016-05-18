@@ -209,7 +209,7 @@ namespace R7.University.Launchpad
                     item.LastModifiedOnDate = item.CreatedOnDate;
                     item.CreatedByUserID = UserInfo.UserID;
                     item.LastModifiedByUserID = item.CreatedByUserID;
-                    UniversityRepository.Instance.AddEduProgram (item, formEditDocuments.GetData ());
+                    EduProgramRepository.Instance.AddEduProgram (item, formEditDocuments.GetData ());
                 }
                 else {
                     item.LastModifiedOnDate = DateTime.Now;
@@ -221,7 +221,7 @@ namespace R7.University.Launchpad
                         item.CreatedByUserID = item.LastModifiedByUserID;
                     }
 
-                    UniversityRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
+                    EduProgramRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
                 }
 
                 ModuleController.SynchronizeModule (ModuleId);
@@ -246,7 +246,7 @@ namespace R7.University.Launchpad
         {
             try {
                 if (itemId != null) {
-                    UniversityRepository.Instance.DeleteEduProgram (itemId.Value);
+                    EduProgramRepository.Instance.DeleteEduProgram (itemId.Value);
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }
