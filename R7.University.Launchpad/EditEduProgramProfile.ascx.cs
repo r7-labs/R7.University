@@ -162,7 +162,7 @@ namespace R7.University.Launchpad
 
         protected override void UpdateItem (EduProgramProfileInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Add<EduProgramProfileInfo> (item);
+            UniversityRepository.Instance.DataProvider.Update<EduProgramProfileInfo> (item);
 
             // update referenced items
             UniversityRepository.Instance.UpdateDocuments (
