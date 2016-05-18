@@ -31,7 +31,6 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ViewModels;
 using R7.University.Models;
-using R7.University.Data;
 
 namespace R7.University.EduProgramProfileDirectory
 {
@@ -42,73 +41,73 @@ namespace R7.University.EduProgramProfileDirectory
         public int EduProgramProfileID
         { 
             get { return Model.EduProgramProfileID; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public int EduProgramID
         { 
             get { return Model.EduProgramID; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public string ProfileCode
         { 
             get { return Model.ProfileCode; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public string ProfileTitle
         { 
             get { return Model.ProfileTitle; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public string Languages
         { 
             get { return Model.Languages; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public DateTime? AccreditedToDate
         { 
             get { return Model.AccreditedToDate; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public DateTime? CommunityAccreditedToDate
         { 
             get { return Model.CommunityAccreditedToDate; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public DateTime? StartDate
         { 
             get { return Model.StartDate; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public DateTime? EndDate
         {
             get { return Model.EndDate; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public IEduProgram EduProgram
         {
             get { return Model.EduProgram; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public IList<IEduProgramProfileForm> EduProgramProfileForms
         {
             get { return Model.EduProgramProfileForms; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         public IList<IDocument> Documents
         {
             get { return Model.Documents; }
-            set { }
+            set { throw new NotImplementedException (); }
         }
 
         #endregion
