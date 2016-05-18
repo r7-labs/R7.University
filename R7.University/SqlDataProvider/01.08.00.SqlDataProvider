@@ -54,6 +54,16 @@ BEGIN
 END
 GO
 
+-- DocumentTypes
+
+IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where type = N'ProfStandard')
+BEGIN
+    -- must be same as SystemDocumentType enum members
+    INSERT INTO {databaseOwner}[{objectQualifier}University_DocumentTypes] (Type, IsSystem) VALUES
+        (N'ProfStandard', 1)
+END
+GO
+
 -- Drop views
 
 IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]') and type in (N'V'))

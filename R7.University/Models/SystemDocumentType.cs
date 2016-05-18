@@ -45,6 +45,8 @@ namespace R7.University
         OrderAcademicLeave,
         // ru-RU: образовательный стандарт
         EduStandard,
+        // ru-RU: профессиональный стандарт
+        ProfStandard,
         // ru-RU: образовательная программа
         EduProgram,
         // ru-RU: календарный график

@@ -30,6 +30,9 @@
     <data name="SystemDocumentType_EduStandard.Text">
         <value>Educational Standard</value>
     </data>
+    <data name="SystemDocumentType_ProfStandard.Text">
+        <value>Professional Standard</value>
+    </data>
     <data name="SystemDocumentType_EduProgram.Text">
         <value>Educational Program</value>
     </data>
