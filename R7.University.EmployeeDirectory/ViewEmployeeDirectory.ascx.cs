@@ -166,7 +166,7 @@ namespace R7.University.EmployeeDirectory
                         var eduLevelIds = Settings.EduLevels;
 
                         var eduProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
-                                          // .Where (epp => epp.IsPublished () || IsEditable)
+                            .Where (epp => epp.IsPublished () || IsEditable)
                             .WithEduPrograms (UniversityRepository.Instance.DataProvider)
                             .WithEduLevel (UniversityRepository.Instance.DataProvider)
                             .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
@@ -213,7 +213,7 @@ namespace R7.University.EmployeeDirectory
                 var eduProfile = (EduProgramProfileObrnadzorTeachersViewModel) e.Item.DataItem;
 
                 // find controls in the template
-                var labelEduProgramProfile = (Label) e.Item.FindControl ("labelEduProgramProfile");
+                var panelTeachers = (Panel) e.Item.FindControl ("panelTeachers");
                 var literalEduProgramProfileAnchor = (Literal) e.Item.FindControl ("literalEduProgramProfileAnchor");
                 var gridTeachersByEduProgram = (GridView) e.Item.FindControl ("gridTeachersByEduProgram");
 
@@ -241,14 +241,18 @@ namespace R7.University.EmployeeDirectory
                     // pass eduProfileId to gridTeachersByEduProgram_RowDataBound()
                     eduProfileId = eduProfile.EduProgramProfileID;
 
+                    // mark item as not published
+                    if (!eduProfile.IsPublished ()) {
+                        panelTeachers.CssClass = "not-published";
+                    }
+
                     gridTeachersByEduProgram.LocalizeColumns (LocalResourceFile);
 
                     gridTeachersByEduProgram.DataSource = teachers;
                     gridTeachersByEduProgram.DataBind ();
                 }
                 else {
-                    labelEduProgramProfile.Visible = false;
-                    gridTeachersByEduProgram.Visible = false;
+                    panelTeachers.Visible = false;
                 }
             }
         }
