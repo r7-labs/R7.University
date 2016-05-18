@@ -32,7 +32,7 @@
                 </asp:Panel>
                 <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false"
                     UseAccessibleHeader="true" CssClass="table table-bordered table-stripped table-hover gridEmployees"
-                    GridLines="None" OnRowDataBound="gridEmployees_RowDataBound">
+                    GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEmployees_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
@@ -95,7 +95,8 @@
                     <div class="table-responsive">
                         <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
                                 UseAccessibleHeader="true" OnRowDataBound="gridTeachersByEduProgram_RowDataBound"
-                                CssClass="table table-bordered table-stripped table-hover grid-teachers-by-eduprogram" GridLines="None" Width="100%">
+                                OnRowCreated="grid_RowCreated" CssClass="table table-bordered table-stripped table-hover grid-teachers-by-eduprogram" 
+                                GridLines="None" Width="100%">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>

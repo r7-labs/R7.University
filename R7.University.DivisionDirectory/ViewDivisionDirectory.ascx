@@ -30,7 +30,7 @@
             </asp:Panel>
             <asp:GridView id="gridDivisions" runat="server" Visible="false" AutoGenerateColumns="false"
                 UseAccessibleHeader="true" CssClass="table table-stripped table-bordered table-hover gridDivisions" 
-                GridLines="None" OnRowDataBound="gridDivisions_RowDataBound">
+                GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridDivisions_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
@@ -76,7 +76,7 @@
         <asp:View id="viewObrnadzorDivisions" runat="server">
             <div class="table-responsive">
                 <asp:GridView id="gridObrnadzorDivisions" runat="server" AutoGenerateColumns="false" 
-                        UseAccessibleHeader="true" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
+                        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
                         CssClass="table table-bordered table-stripped table-hover" GridLines="None" Width="100%">
                     <Columns>
                         <asp:TemplateField>

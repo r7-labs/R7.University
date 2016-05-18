@@ -445,6 +445,14 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
+        protected void grid_RowCreated (object sender, GridViewRowEventArgs e)
+        {
+            // table header row should be inside <thead> tag
+            if (e.Row.RowType == DataControlRowType.Header) {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
         protected void gridEmployees_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             // show / hide edit column

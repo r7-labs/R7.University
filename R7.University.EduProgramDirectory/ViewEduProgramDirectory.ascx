@@ -5,7 +5,7 @@
             <div class="table-responsive">
                 <asp:GridView id="gridEduStandards" runat="server" AutoGenerateColumns="false"
                     UseAccessibleHeader="true" CssClass="table table-bordered table-stripped table-hover grid-edustandards"
-                    GridLines="None" OnRowDataBound="gridEduStandards_RowDataBound">
+                    GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEduStandards_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>

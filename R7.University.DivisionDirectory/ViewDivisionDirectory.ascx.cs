@@ -254,6 +254,14 @@ namespace R7.University.DivisionDirectory
             }
         }
 
+        protected void grid_RowCreated (object sender, GridViewRowEventArgs e)
+        {
+            // table header row should be inside <thead> tag
+            if (e.Row.RowType == DataControlRowType.Header) {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
         protected void gridDivisions_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             // show / hide edit column

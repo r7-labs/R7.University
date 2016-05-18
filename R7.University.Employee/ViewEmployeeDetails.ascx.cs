@@ -537,6 +537,14 @@ namespace R7.University.Employee
             return dt;
         }
 
+        protected void grid_RowCreated (object sender, GridViewRowEventArgs e)
+        {
+            // table header row should be inside <thead> tag
+            if (e.Row.RowType == DataControlRowType.Header) {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
         protected void gridExperience_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             // hide description column

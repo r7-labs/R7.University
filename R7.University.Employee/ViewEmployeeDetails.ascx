@@ -54,7 +54,7 @@
     			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
     			<div class="_section" style="margin-bottom:10px">
     				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid grid-experience"
-    						OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
+                            UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
     						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
     				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
     				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -66,7 +66,7 @@
     		<div id="employeeAchievements" class="_tab">
     			<div class="_section" style="margin-bottom:10px">
     				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid grid-achievements"
-    						OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
+    						UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
     						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
     				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
     				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -77,7 +77,8 @@
     		</div>
     		<div id="employeeDisciplines" class="_tab">
                 <div class="_section">
-                    <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid grid-eduprograms" GridLines="None">
+                    <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid grid-eduprograms" 
+                        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
                         <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                         <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
                         <AlternatingRowStyle CssClass="dnnGridAltItem" />
