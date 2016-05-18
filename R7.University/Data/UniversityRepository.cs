@@ -107,16 +107,19 @@ namespace R7.University.Data
         public void AddEduProgram (EduProgramInfo eduProgram, IList<DocumentInfo> documents)
         {
             using (var ctx = DataContext.Instance ()) {
-                ctx.BeginTransaction ();
+                var eduProgramRepo = ctx.GetRepository<EduProgramInfo> ();
+                var documentRepo = ctx.GetRepository<DocumentInfo> ();
 
                 try {
+                    ctx.BeginTransaction ();
+
                     // add edu program
-                    DataProvider.Add<EduProgramInfo> (eduProgram);
+                    eduProgramRepo.Insert (eduProgram);
 
                     // add new documents
                     foreach (var document in documents) {
                         document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
-                        DataProvider.Add<DocumentInfo> (document);
+                        documentRepo.Insert (document);
                     }
 
                     ctx.Commit ();
@@ -131,22 +134,25 @@ namespace R7.University.Data
         public void UpdateEduProgram (EduProgramInfo eduProgram, IList<DocumentInfo> documents)
         {
             using (var ctx = DataContext.Instance ()) {
-                ctx.BeginTransaction ();
+                var eduProgramRepo = ctx.GetRepository<EduProgramInfo> ();
+                var documentRepo = ctx.GetRepository<DocumentInfo> ();
 
                 try {
+                    ctx.BeginTransaction ();
+
                     // update edu program
-                    DataProvider.Update<EduProgramInfo> (eduProgram);
+                    eduProgramRepo.Update (eduProgram);
 
                     var documentIds = documents.Select (d => d.DocumentID.ToString ());
                     if (documentIds.Any ()) {
                         // delete specific documents
-                        DataProvider.Delete<DocumentInfo> (string.Format ("WHERE [ItemID] = N'{0}' AND [DocumentID] NOT IN ({1})", 
+                        documentRepo.Delete (string.Format ("WHERE [ItemID] = N'{0}' AND [DocumentID] NOT IN ({1})", 
                                 "EduProgramID=" + eduProgram.EduProgramID,
                                 TextUtils.FormatList (", ", documentIds))); 
                     }
                     else {
                         // delete all edu program documents
-                        DataProvider.Delete<DocumentInfo> (string.Format (
+                        documentRepo.Delete (string.Format (
                                 "WHERE [ItemID] = N'EduProgramID={0}'",
                                 eduProgram.EduProgramID)); 
                     }
@@ -154,10 +160,12 @@ namespace R7.University.Data
                     // add new documents
                     foreach (var document in documents) {
                         document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
-                        if (document.DocumentID <= 0)
-                            DataProvider.Add<DocumentInfo> (document);
-                        else
-                            DataProvider.Update<DocumentInfo> (document);
+                        if (document.DocumentID <= 0) {
+                            documentRepo.Insert (document);
+                        }
+                        else {
+                            documentRepo.Update (document);
+                        }
                     }
 
                     ctx.Commit ();
@@ -172,17 +180,20 @@ namespace R7.University.Data
         public void DeleteEduProgram (int eduProgramId)
         {
             using (var ctx = DataContext.Instance ()) {
-                ctx.BeginTransaction ();
+                var eduProgramRepo = ctx.GetRepository<EduProgramInfo> ();
+                var documentRepo = ctx.GetRepository<DocumentInfo> ();
 
                 try {
+                    ctx.BeginTransaction ();
+
                     // delete documents
-                    DataProvider.Delete<DocumentInfo> (string.Format (
+                    documentRepo.Delete (string.Format (
                             "WHERE [ItemID] = N'EduProgramID={0}'",
                             eduProgramId));
 
                     // delete edu program
-                    DataProvider.Delete<EduProgramInfo> (eduProgramId);
-                  
+                    eduProgramRepo.Delete ("WHERE [EduProgramID]=@0", eduProgramId);
+
                     ctx.Commit ();
                 }
                 catch {
