@@ -90,6 +90,10 @@ IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]
 GO
 
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetHeadEmployee]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
+GO
+
 -- Create stored procedures
 
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
@@ -252,5 +256,20 @@ BEGIN
         ) AS DE INNER JOIN {databaseOwner}[{objectQualifier}University_Employees] AS E ON DE.EmployeeID = E.EmployeeID 
         ORDER BY DE.MaxWeight DESC, E.LastName;
     END
+END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
+    @divisionId int
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    SELECT TOP (1) E.* FROM {databaseOwner}[{objectQualifier}University_Employees] AS E
+        INNER JOIN {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS VOP
+            ON E.EmployeeID = VOP.EmployeeID AND VOP.DivisionID = @divisionId
+    ORDER BY VOP.PositionWeight DESC
 END
 GO

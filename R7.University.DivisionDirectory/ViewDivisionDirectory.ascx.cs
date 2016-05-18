@@ -34,14 +34,14 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.DivisionDirectory.Components;
+using R7.University.ModelExtensions;
 
 namespace R7.University.DivisionDirectory
 {
@@ -338,7 +338,8 @@ namespace R7.University.DivisionDirectory
                 var contactPerson = UniversityRepository.Instance.GetHeadEmployee (
                                         division.DivisionID,
                                         division.HeadPositionID);
-                if (contactPerson != null) {
+                
+                if (contactPerson != null && contactPerson.IsPublished ()) {
                     linkContactPerson.Text = contactPerson.AbbrName;
                     linkContactPerson.ToolTip = contactPerson.FullName;
                     linkContactPerson.NavigateUrl = EditUrl (
@@ -379,7 +380,8 @@ namespace R7.University.DivisionDirectory
                 var contactPerson = UniversityRepository.Instance.GetHeadEmployee (
                                         division.DivisionID,
                                         division.HeadPositionID);
-                if (contactPerson != null) {
+                
+                if (contactPerson != null && contactPerson.IsPublished ()) {
                     var headPosition = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
                                            "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
                                            contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
