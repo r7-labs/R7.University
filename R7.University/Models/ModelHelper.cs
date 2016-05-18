@@ -50,12 +50,7 @@ namespace R7.University.Models
 
         public static bool IsPublished (this IEduProgramProfile eduProgramProfile)
         {
-            var isPublished = IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
-            if (eduProgramProfile.EduProgram != null) {
-                return isPublished && eduProgramProfile.EduProgram.IsPublished ();
-            }
-
-            return isPublished;
+            return IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
         }
 
         public static SystemDocumentType GetSystemDocumentType (this IDocumentType documentType)
