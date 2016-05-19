@@ -84,30 +84,6 @@ namespace R7.University.Data
                 WHERE OP.IsTeacher = 1");
         }
 
-        public IEnumerable<EmployeeInfo> GetTeachers_ByEduProgramProfile (int eduProfileId)
-        {
-            // REVIEW: Convert to stored procedure?
-            return DataProvider.GetObjects<EmployeeInfo> (CommandType.Text,
-                @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
-                    INNER JOIN dbo.vw_University_OccupiedPositions AS OP
-                        ON E.EmployeeID = OP.EmployeeID
-                    INNER JOIN dbo.University_EmployeeDisciplines AS ED
-                        ON E.EmployeeID = ED.EmployeeID
-                WHERE ED.EduProgramProfileID = @0 AND OP.IsTeacher = 1
-                ORDER BY E.LastName, E.FirstName", eduProfileId);
-        }
-
-        public IEnumerable<EmployeeInfo> GetTeachers_WithoutEduPrograms ()
-        {
-            // REVIEW: Convert to stored procedure?
-            return DataProvider.GetObjects<EmployeeInfo> (CommandType.Text,
-                @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
-                    INNER JOIN dbo.vw_University_OccupiedPositions AS OP
-                        ON E.EmployeeID = OP.EmployeeID
-                    WHERE OP.IsTeacher = 1 AND E.EmployeeID NOT IN 
-                        (SELECT DISTINCT EmployeeID FROM dbo.University_EmployeeDisciplines)");
-        }
-
         public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool includeNonPublished, 
             bool teachersOnly, bool includeSubdivisions, string divisionId)
         {
