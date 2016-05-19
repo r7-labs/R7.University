@@ -51,15 +51,26 @@ namespace R7.University.ModelExtensions
             return employee;
         }
 
-        public static IEnumerable<IEmployee> WithAchievements (this IEnumerable<IEmployee> employees)
+        public static IEnumerable<IEmployee> WithDisciplines (
+            this IEnumerable<IEmployee> employees, 
+            IEnumerable<IEmployeeDiscipline> disciplines)
         {
-            if (!employees.IsNullOrEmpty ()) {
-                var commonAchievements = EmployeeAchievementRepository.Instance.GetAchievements_ForEmployees (
-                                         employees.Select (e => e.EmployeeID));
-            
+            if (!employees.IsNullOrEmpty () && !disciplines.IsNullOrEmpty ()) {
                 foreach (var employee in employees) {
-                    employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID)
-                    .Cast<IEmployeeAchievement> ()
+                    employee.Disciplines = disciplines.Where (d => d.EmployeeID == employee.EmployeeID).ToList ();
+                }
+            }
+
+            return employees;
+        }
+
+        public static IEnumerable<IEmployee> WithAchievements (
+            this IEnumerable<IEmployee> employees,
+            IEnumerable<IEmployeeAchievement> achievements)
+        {
+            if (!employees.IsNullOrEmpty () && !achievements.IsNullOrEmpty ()) {
+                foreach (var employee in employees) {
+                    employee.Achievements = achievements.Where (ach => ach.EmployeeID == employee.EmployeeID)
                     .ToList ();
                 }
             }
@@ -67,6 +78,24 @@ namespace R7.University.ModelExtensions
             return employees;
         }
 
+        [Obsolete]
+        public static IEnumerable<IEmployee> WithAchievements (this IEnumerable<IEmployee> employees)
+        {
+            if (!employees.IsNullOrEmpty ()) {
+                var commonAchievements = EmployeeAchievementRepository.Instance.GetAchievements_ForEmployees (
+                    employees.Select (e => e.EmployeeID));
+
+                foreach (var employee in employees) {
+                    employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID)
+                        .Cast<IEmployeeAchievement> ()
+                        .ToList ();
+                }
+            }
+
+            return employees;
+        }
+
+        [Obsolete]
         public static IEnumerable<IEmployee> WithOccupiedPositions (this IEnumerable<IEmployee> employees, int divisionId)
         {
             if (!employees.IsNullOrEmpty ()) {
@@ -77,6 +106,20 @@ namespace R7.University.ModelExtensions
                     employee.OccupiedPositions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID)
                     .GroupByDivision ()
                     .ToList ();
+                }
+            }
+
+            return employees;
+        }
+
+        public static IEnumerable<IEmployee> WithOccupiedPositions (this IEnumerable<IEmployee> employees, 
+            IEnumerable<OccupiedPositionInfoEx> occupiedPositions)
+        {
+            if (!employees.IsNullOrEmpty () && !occupiedPositions.IsNullOrEmpty ()) {
+                foreach (var employee in employees) {
+                    employee.OccupiedPositions = occupiedPositions.Where (op => op.EmployeeID == employee.EmployeeID)
+                        .GroupByDivision ()
+                        .ToList ();
                 }
             }
 

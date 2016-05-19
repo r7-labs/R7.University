@@ -75,6 +75,15 @@ namespace R7.University.Data
                 divisionId, sortType);
         }
 
+        public IEnumerable<EmployeeInfo> GetTeachers ()
+        {
+            return DataProvider.GetObjects<EmployeeInfo> (CommandType.Text,
+                @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
+                    INNER JOIN dbo.vw_University_OccupiedPositions AS OP
+                        ON E.EmployeeID = OP.EmployeeID
+                WHERE OP.IsTeacher = 1");
+        }
+
         public IEnumerable<EmployeeInfo> GetTeachers_ByEduProgramProfile (int eduProfileId)
         {
             // REVIEW: Convert to stored procedure?
