@@ -32,7 +32,7 @@ namespace R7.University.Data
 {
     [TableName ("University_DocumentTypes")]
     [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
-    [Cacheable ("University_DocumentTypes")]
+    [Cacheable ("//r7_University/Entities/DocumentTypes")]
     public class DocumentTypeInfo: IDocumentType
     {
         #region IDocumentType implementation

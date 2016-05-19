@@ -32,7 +32,7 @@ namespace R7.University.Data
 {
     [TableName ("University_EduLevels")]
     [PrimaryKey ("EduLevelID", AutoIncrement = true)]
-    [Cacheable ("University_EduLevels")]
+    [Cacheable ("//r7_University/Entities/EduLevels")]
     public class EduLevelInfo: IEduLevel
     {
         #region IEduLevel implementation
