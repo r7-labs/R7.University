@@ -51,6 +51,25 @@ BEGIN
         ADD [Group] nvarchar (255) NULL
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
         ALTER COLUMN [DocumentTypeID] int NOT NULL
+   
+END
+GO
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'FK_{objectQualifier}University_Documents_DocumentTypes') and type in (N'F'))
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+        DROP CONSTRAINT [FK_{objectQualifier}University_Documents_DocumentTypes]
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+        ADD CONSTRAINT [FK_{objectQualifier}University_Documents_DocumentTypes] FOREIGN KEY (DocumentTypeID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_DocumentTypes] (DocumentTypeID) ON DELETE CASCADE
+END
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id(N'FK_{objectQualifier}University_Employees_PhotoFile') and type in (N'F'))
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+        ADD CONSTRAINT [FK_{objectQualifier}University_Employees_PhotoFile] FOREIGN KEY (PhotoFileID)
+            REFERENCES {databaseOwner}[{objectQualifier}Files](FileId) ON DELETE SET NULL
 END
 GO
 
