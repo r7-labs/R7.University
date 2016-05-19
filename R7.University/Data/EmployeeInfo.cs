@@ -92,6 +92,9 @@ namespace R7.University.Data
         public IList<IEmployeeAchievement> Achievements { get; set; }
 
         [IgnoreColumn]
+        public IList<IEmployeeDiscipline> Disciplines { get; set; }
+
+        [IgnoreColumn]
         public IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
 
         #endregion
