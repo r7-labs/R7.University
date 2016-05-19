@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,16 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.University.Models;
 
 namespace R7.University.Data
 {
     [TableName ("University_EmployeeDisciplines")]
     [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
     [Serializable]
-    public class EmployeeDisciplineInfo
+    public class EmployeeDisciplineInfo: IEmployeeDiscipline
     {
-        #region Properties
+        #region IEmployeeDiscipline implementation
 
         public long EmployeeDisciplineID { get; set; }
 
