@@ -284,10 +284,8 @@ namespace R7.University.Employee
                             gridOccupiedPositions.DataBind ();
 
                             // read employee achievements
-                            var achievementInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (
-                                                       CommandType.Text, 
-                                                       "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", 
-                                                       itemId.Value);
+                            var achievementInfos = EmployeeAchievementRepository.Instance
+                                .GetEmployeeAchievements (itemId.Value);
 
                             // fill achievements list
                             var achievements = new List<EmployeeAchievementView> ();

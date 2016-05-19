@@ -26,10 +26,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using R7.DotNetNuke.Extensions.Data;
-using R7.University.ModelExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Data
 {
@@ -68,9 +69,11 @@ namespace R7.University.Data
 
         public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevel (int eduLevelId)
         {
-            return DataProvider.GetObjects<EduProgramProfileInfo> ("SELECT EPP.* FROM dbo.University_EduProgramProfiles AS EPP " +
-                "INNER JOIN dbo.University_EduPrograms AS EP ON EPP.EduProgramID = EP.EduProgramID " +
-                "WHERE EP.EduLevelID = @0", eduLevelId)
+            return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
+                @"SELECT EPP.* FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
+                        ON EPP.EduProgramID = EP.EduProgramID
+                    WHERE EP.EduLevelID = @0", eduLevelId)
                     .WithEduProgram ()
                     // TODO: Move sorting ouside extension method
                     .OrderBy (epp => epp.EduProgram.Code)
@@ -80,20 +83,23 @@ namespace R7.University.Data
 
         public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevels (IEnumerable<int> eduLevelIds)
         {
-            return DataProvider.GetObjects<EduProgramProfileInfo> (string.Format ("SELECT EPP.* FROM dbo.University_EduProgramProfiles AS EPP " +
-                    "INNER JOIN dbo.University_EduPrograms AS EP ON EPP.EduProgramID = EP.EduProgramID " +
-                    "WHERE EP.EduLevelID IN ({0})", TextUtils.FormatList (",", eduLevelIds)))
+            return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
+                @"SELECT EPP.* FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP 
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
+                        ON EPP.EduProgramID = EP.EduProgramID 
+                    WHERE EP.EduLevelID IN (" +  TextUtils.FormatList (",", eduLevelIds) + ")")
                     .WithEduProgram ();
         }
 
         public IEnumerable<EduProgramProfileInfo> FindEduProgramProfiles (string search)
         {
-            return DataProvider.GetObjects<EduProgramProfileInfo> ("SELECT EPP.* FROM dbo.University_EduProgramProfiles AS EPP " +
-                "INNER JOIN dbo.University_EduPrograms AS EP ON EPP.EduProgramID = EP.EduProgramID "
-                + string.Format (@"WHERE CONCAT(EPP.ProfileCode, ' ', EPP.ProfileTitle, ' ', EP.Code, ' ', EP.Title) LIKE N'%{0}%'",
-                    search))
+            return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
+                @"SELECT EPP.* FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
+                        ON EPP.EduProgramID = EP.EduProgramID
+                    WHERE CONCAT(EPP.ProfileCode, ' ', EPP.ProfileTitle, ' ', EP.Code, ' ', EP.Title) 
+                        LIKE N'%" + search + "%'")
                 .WithEduProgram ();
         }
     }
 }
-

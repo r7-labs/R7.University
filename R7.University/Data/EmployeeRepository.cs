@@ -70,16 +70,17 @@ namespace R7.University.Data
         {
             // TODO: Expose weghtMod sp argument
             return DataProvider.GetObjectsFromSp<EmployeeInfo> (
-                includeSubDivisions ? // which SP to use
-                    "University_GetEmployees_ByDivisionID_Recursive" : "University_GetEmployees_ByDivisionID", 
+                includeSubDivisions // which SP to use
+                    ? "{databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]" 
+                    : "{databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]", 
                 divisionId, sortType);
         }
 
         public IEnumerable<EmployeeInfo> GetTeachers ()
         {
             return DataProvider.GetObjects<EmployeeInfo> (CommandType.Text,
-                @"SELECT DISTINCT E.* FROM dbo.University_Employees AS E
-                    INNER JOIN dbo.vw_University_OccupiedPositions AS OP
+                @"SELECT DISTINCT E.* FROM {databaseOwner}[{objectQualifier}University_Employees] AS E
+                    INNER JOIN {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS OP
                         ON E.EmployeeID = OP.EmployeeID
                 WHERE OP.IsTeacher = 1");
         }
@@ -91,7 +92,7 @@ namespace R7.University.Data
             // not many, so using Distinct() extension method to get rid of them 
             // is looking more sane than further SP SQL code complication.
 
-            return DataProvider.GetObjectsFromSp<EmployeeInfo> ("University_FindEmployees", 
+            return DataProvider.GetObjectsFromSp<EmployeeInfo> ("{databaseOwner}[{objectQualifier}University_FindEmployees]", 
                     searchText, teachersOnly, includeSubdivisions, divisionId)
                 .Where (e => includeNonPublished || e.IsPublished ())
                 .Distinct (new EmployeeEqualityComparer ());

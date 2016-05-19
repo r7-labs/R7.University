@@ -59,14 +59,15 @@ namespace R7.University.Data
         public IEnumerable<DivisionInfo> FindDivisions (string searchText, bool includeSubdivisions, string divisionId)
         {
             return DataProvider.GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
-                "University_FindDivisions", searchText, includeSubdivisions, divisionId);
+                "{databaseOwner}[{objectQualifier}University_FindDivisions]", searchText, includeSubdivisions, divisionId);
         }
 
         public EmployeeInfo GetHeadEmployee (int divisionId, int? headPositionId)
         {
             if (headPositionId != null) {
                 return DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-                    "University_GetHeadEmployee", divisionId, headPositionId.Value).FirstOrDefault ();
+                    "{databaseOwner}[{objectQualifier}University_GetHeadEmployee]", divisionId, headPositionId.Value)
+                        .FirstOrDefault ();
             }
         
             return null;
@@ -75,8 +76,9 @@ namespace R7.University.Data
         public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)
         {
             return DataProvider.GetObjects<DivisionInfo> (CommandType.Text,
-                @"SELECT DISTINCT D.*, DH.[Level], DH.[Path] FROM dbo.University_Divisions AS D 
-                    INNER JOIN dbo.University_DivisionsHierarchy (@0) AS DH
+                @"SELECT DISTINCT D.*, DH.[Level], DH.[Path] 
+                    FROM {databaseOwner}[{objectQualifier}University_Divisions] AS D 
+                    INNER JOIN {databaseOwner}[{objectQualifier}University_DivisionsHierarchy] (@0) AS DH
                         ON D.DivisionID = DH.DivisionID
                     ORDER BY DH.[Path], D.Title", divisionId);
         }

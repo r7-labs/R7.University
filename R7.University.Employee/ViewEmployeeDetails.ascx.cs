@@ -456,9 +456,9 @@ namespace R7.University.Employee
             }
 
             // get all empoyee achievements
-            var achievements = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
-                                   "SELECT * FROM dbo.vw_University_EmployeeAchievements WHERE [EmployeeID] = @0", employee.EmployeeID);
-	
+            var achievements = EmployeeAchievementRepository.Instance
+                .GetEmployeeAchievements (employee.EmployeeID);
+            
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
                 .Select (ach => R7.University.Utilities.Utils.FirstCharToLower (ach.Title));

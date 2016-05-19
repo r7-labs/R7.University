@@ -200,10 +200,8 @@ namespace R7.University.EmployeeDirectory
                                     .GetObjects<EmployeeDisciplineInfo> ())
                                 .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
                                     .GetObjects<OccupiedPositionInfoEx> ())
-                                .WithAchievements (UniversityRepository.Instance.DataProvider
-                                    .GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
-                                        "SELECT * FROM dbo.vw_University_EmployeeAchievements"));
-                           
+                                .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
+                            
                             repeaterEduPrograms.DataSource = eduProfiles;
                             repeaterEduPrograms.DataBind ();
                         }
