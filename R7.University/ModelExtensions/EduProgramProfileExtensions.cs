@@ -53,7 +53,7 @@ namespace R7.University.ModelExtensions
         }
 
         [Obsolete]
-        public static IEnumerable<EduProgramProfileInfo> WithEduPrograms (
+        public static IEnumerable<EduProgramProfileInfo> WithEduProgram (
             this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, Dal2DataProvider controller)
         {
             var eduPrograms = controller.GetObjects<EduProgramInfo> ();
@@ -66,7 +66,7 @@ namespace R7.University.ModelExtensions
             );
         }
 
-        public static IEnumerable<EduProgramProfileInfo> WithEduPrograms (
+        public static IEnumerable<EduProgramProfileInfo> WithEduProgram (
             this IEnumerable<EduProgramProfileInfo> eduProgramProfiles)
         {
             var eduPrograms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramInfo> ();

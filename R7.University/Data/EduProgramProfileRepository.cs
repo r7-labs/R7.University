@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Linq;
 using R7.DotNetNuke.Extensions.Data;
 using R7.University.ModelExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Data
 {
@@ -70,10 +71,19 @@ namespace R7.University.Data
             return DataProvider.GetObjects<EduProgramProfileInfo> ("SELECT EPP.* FROM dbo.University_EduProgramProfiles AS EPP " +
                 "INNER JOIN dbo.University_EduPrograms AS EP ON EPP.EduProgramID = EP.EduProgramID " +
                 "WHERE EP.EduLevelID = @0", eduLevelId)
-                    .WithEduPrograms ()
+                    .WithEduProgram ()
+                    // TODO: Move sorting ouside extension method
                     .OrderBy (epp => epp.EduProgram.Code)
                     .ThenBy (epp => epp.ProfileCode)
                     .ThenBy (epp => epp.ProfileTitle);
+        }
+
+        public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevels (IEnumerable<int> eduLevelIds)
+        {
+            return DataProvider.GetObjects<EduProgramProfileInfo> (string.Format ("SELECT EPP.* FROM dbo.University_EduProgramProfiles AS EPP " +
+                    "INNER JOIN dbo.University_EduPrograms AS EP ON EPP.EduProgramID = EP.EduProgramID " +
+                    "WHERE EP.EduLevelID IN ({0})", TextUtils.FormatList (",", eduLevelIds)))
+                    .WithEduProgram ();
         }
 
         public IEnumerable<EduProgramProfileInfo> FindEduProgramProfiles (string search)
@@ -82,7 +92,7 @@ namespace R7.University.Data
                 "INNER JOIN dbo.University_EduPrograms AS EP ON EPP.EduProgramID = EP.EduProgramID "
                 + string.Format (@"WHERE CONCAT(EPP.ProfileCode, ' ', EPP.ProfileTitle, ' ', EP.Code, ' ', EP.Title) LIKE N'%{0}%'",
                     search))
-                .WithEduPrograms ();
+                .WithEduProgram ();
         }
     }
 }

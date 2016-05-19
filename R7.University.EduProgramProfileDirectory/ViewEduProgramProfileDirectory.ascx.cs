@@ -124,17 +124,15 @@ namespace R7.University.EduProgramProfileDirectory
         protected void ObrnadzorEduFormsView ()
         {
             var indexer = new ViewModelIndexer (1);
-            var eduLevelIds = Settings.EduLevels;
 
-            var eduProgramProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
-                .WithEduPrograms (UniversityRepository.Instance.DataProvider)
-                .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
+            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                 .Where (epp => epp.IsPublished () || IsEditable)
                 .WithEduLevel (UniversityRepository.Instance.DataProvider)
                 .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
+                .ThenBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle)
                 .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, ViewModelContext, indexer))
                 .ToList ();
@@ -151,17 +149,15 @@ namespace R7.University.EduProgramProfileDirectory
         protected void ObrnadzorDocumentsView ()
         {
             var indexer = new ViewModelIndexer (1);
-            var eduLevelIds = Settings.EduLevels;
 
-            var eduProgramProfiles = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileInfo> ()
-                .WithEduPrograms (UniversityRepository.Instance.DataProvider)
-                .Where (epp => eduLevelIds.Contains (epp.EduProgram.EduLevelID))
+            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                 .Where (epp => epp.IsPublished () || IsEditable)
                 .WithEduLevel (UniversityRepository.Instance.DataProvider)
                 .WithDocuments (UniversityRepository.Instance.DataProvider)
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
+                .ThenBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle)
                 .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, ViewModelContext, indexer))
                 .ToList ();
