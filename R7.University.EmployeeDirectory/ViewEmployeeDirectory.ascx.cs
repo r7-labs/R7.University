@@ -139,16 +139,16 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
-        protected IList<EduProgramProfileObrnadzorTeachersViewModel> GetEduProgramProfileViewModels ()
+        protected IList<EduProgramProfileViewModel> GetEduProgramProfileViewModels ()
         {
-            return DataCache.GetCachedData<IList<EduProgramProfileObrnadzorTeachersViewModel>> (
+            return DataCache.GetCachedData<IList<EduProgramProfileViewModel>> (
                 new CacheItemArgs ("//r7_University/Modules/EmployeeDirectory?ModuleId=" + ModuleId,
                     UniversityConfig.Instance.DataCacheTime, System.Web.Caching.CacheItemPriority.Normal),
                 c => GetEduProgramProfileViewModels_Internal ()
             );
         }
 
-        protected IList<EduProgramProfileObrnadzorTeachersViewModel> GetEduProgramProfileViewModels_Internal ()
+        protected IList<EduProgramProfileViewModel> GetEduProgramProfileViewModels_Internal ()
         {
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                 
@@ -158,17 +158,17 @@ namespace R7.University.EmployeeDirectory
                 .ThenBy (epp => epp.EduProgram.Title)
                 .ThenBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle)
-                .Select (epp => new EduProgramProfileObrnadzorTeachersViewModel (epp, ViewModelContext))
+                .Select (epp => new EduProgramProfileViewModel (epp, ViewModelContext))
                 .ToList ();
 
             if (Settings.ShowAllTeachers) {
-                eduProgramProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
+                eduProgramProfiles.Add (new EduProgramProfileViewModel (
                     new EduProgramProfileInfo {
                         EduProgramProfileID = Null.NullInteger,
                         EduProgram = new EduProgramInfo
                             {
                                 Code = string.Empty,
-                                Title = LocalizeString ("NoEduPrograms.Text")
+                                Title = LocalizeString ("NoDisciplines.Text")
                             }
                     }, ViewModelContext)
                 );
@@ -234,10 +234,10 @@ namespace R7.University.EmployeeDirectory
                                 DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
                         }
                     }
-                    else if (Settings.Mode == EmployeeDirectoryMode.TeachersByEduProgram) {
-                        repeaterEduPrograms.DataSource = GetEduProgramProfileViewModels ()
+                    else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
+                        repeaterEduProgramProfiles.DataSource = GetEduProgramProfileViewModels ()
                             .Where (epp => epp.IsPublished () || IsEditable);
-                        repeaterEduPrograms.DataBind ();
+                        repeaterEduProgramProfiles.DataBind ();
                     }
                 }
             }
@@ -248,18 +248,18 @@ namespace R7.University.EmployeeDirectory
 
         #endregion
 
-        protected void repeaterEduPrograms_ItemDataBound (object sender, RepeaterItemEventArgs e)
+        protected void repeaterEduProgramProfiles_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-                var eduProgramProfile = (EduProgramProfileObrnadzorTeachersViewModel) e.Item.DataItem;
+                var eduProgramProfile = (EduProgramProfileViewModel) e.Item.DataItem;
 
                 // find controls in the template
                 var panelTeachers = (Panel) e.Item.FindControl ("panelTeachers");
                 var literalEduProgramProfileAnchor = (Literal) e.Item.FindControl ("literalEduProgramProfileAnchor");
-                var gridTeachersByEduProgram = (GridView) e.Item.FindControl ("gridTeachersByEduProgram");
+                var gridTeachers = (GridView) e.Item.FindControl ("gridTeachers");
 
                 // create anchor to simplify navigation
-                var anchorName = (Null.IsNull (eduProgramProfile.EduProgramProfileID)) ? "empty" : eduProgramProfile.EduProgramProfileID.ToString ();
+                var anchorName = (Null.IsNull (eduProgramProfile.EduProgramProfileID)) ? "none" : eduProgramProfile.EduProgramProfileID.ToString ();
                 literalEduProgramProfileAnchor.Text = "<a id=\"eduprogramprofile-" + anchorName + "\"" +
                 " name=\"eduprogramprofile-" + anchorName + "\"></a>";
 
@@ -270,9 +270,9 @@ namespace R7.University.EmployeeDirectory
                         panelTeachers.CssClass = "not-published";
                     }
 
-                    gridTeachersByEduProgram.LocalizeColumns (LocalResourceFile);
-                    gridTeachersByEduProgram.DataSource = publishedTeachers;
-                    gridTeachersByEduProgram.DataBind ();
+                    gridTeachers.LocalizeColumns (LocalResourceFile);
+                    gridTeachers.DataSource = publishedTeachers;
+                    gridTeachers.DataBind ();
                 }
                 else {
                     panelTeachers.Visible = false;
@@ -280,7 +280,7 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
-        protected void gridTeachersByEduProgram_RowDataBound (object sender, GridViewRowEventArgs e)
+        protected void gridTeachers_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;

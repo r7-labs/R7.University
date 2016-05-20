@@ -4,22 +4,22 @@
         <value>Настройки EmployeeDirectory</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>О настройках EmployeeDirectory</value>
+        <value>О настройках модуля EmployeeDirectory</value>
     </data>
     <data name="labelMode.Text" xml:space="preserve">
         <value>Режим:</value>
     </data>
     <data name="labelMode.Help" xml:space="preserve">
-        <value>Выберите режим работы модуля из списка.</value>
+        <value>Выберите режим работы модуля из выпадающего списка.</value>
     </data>
     <data name="labelEduLevels.Text" xml:space="preserve">
         <value>Уровни образования:</value>
     </data>
     <data name="labelEduLevels.Help" xml:space="preserve">
-        <value>Отметьте уровни образования, информацию о которых должен отображать данный модуль в режиме 'Преподаватели по образовательным программам'.</value>
+        <value>Отметьте уровни образования, информацию о которых должен отображать данный модуль в режиме 'Преподаватели'.</value>
     </data>
     <data name="labelShowAllTeachers.Text" xml:space="preserve">
-        <value>Показывать всех преподавателей:</value>
+        <value>Также показывать преподавателей без дисциплин:</value>
     </data>
     <data name="labelShowAllTeachers.Help" xml:space="preserve">
         <value>Если отмечено, модуль будет отображать также преподавателей, у которых не указаны преподаваемые дисциплины. Эта настройка будет использоваться только в режиме 'Преподаватели по образовательным программам'.</value>

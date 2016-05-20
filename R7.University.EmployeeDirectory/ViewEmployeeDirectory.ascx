@@ -5,7 +5,7 @@
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.EmployeeDirectory/js/tree.js" />
 
-<div class="dnnForm dnnClear employeeDirectory">
+<div class="dnnForm dnnClear employee-directory">
     <asp:MultiView id="mviewEmployeeDirectory" runat="server">
         <asp:View id="viewSearch" runat="server">
             <fieldset>
@@ -31,7 +31,7 @@
                     <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
                 </asp:Panel>
                 <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false"
-                    UseAccessibleHeader="true" CssClass="table table-bordered table-stripped table-hover gridEmployees"
+                    UseAccessibleHeader="true" CssClass="table table-bordered table-stripped table-hover grid-employees"
                     GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEmployees_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
@@ -85,19 +85,19 @@
                 </asp:GridView>
             </fieldset>
         </asp:View>
-        <asp:View id="viewTeachersByEduProgram" runat="server">
-            <asp:Repeater id="repeaterEduPrograms" runat="server" OnItemDataBound="repeaterEduPrograms_ItemDataBound">
+        <asp:View id="viewTeachers" runat="server">
+            <asp:Repeater id="repeaterEduProgramProfiles" runat="server" OnItemDataBound="repeaterEduProgramProfiles_ItemDataBound">
                 <ItemTemplate>
                     <asp:Panel id="panelTeachers" runat="server">
                         <h3>
                             <asp:Literal id="literalEduProgramProfileAnchor" runat="server" />
-                            <%# Eval ("EduProgramProfileString") %>
+                            <%# Eval ("Title_String") %>
                         </h3>
                         <div class="table-responsive">
-                            <asp:GridView id="gridTeachersByEduProgram" runat="server" AutoGenerateColumns="false" 
-                                    UseAccessibleHeader="true" OnRowDataBound="gridTeachersByEduProgram_RowDataBound"
-                                    OnRowCreated="grid_RowCreated" CssClass="table table-bordered table-stripped table-hover grid-teachers-by-eduprogram" 
-                                    GridLines="None" Width="100%">
+                            <asp:GridView id="gridTeachers" runat="server" AutoGenerateColumns="false" 
+                                    UseAccessibleHeader="true" OnRowDataBound="gridTeachers_RowDataBound"
+                                    OnRowCreated="grid_RowCreated" CssClass="table table-bordered table-stripped table-hover grid-teachers" 
+                                    GridLines="None">
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>

@@ -1,5 +1,5 @@
 ﻿//
-// EduProgramProfileObrnadzorTeachersViewModel.cs
+// EduProgramProfileViewModel.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -32,7 +32,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
-    public class EduProgramProfileObrnadzorTeachersViewModel: IEduProgramProfile
+    public class EduProgramProfileViewModel: IEduProgramProfile
     {
         #region IEduProgramProfile implementation
 
@@ -110,25 +110,29 @@ namespace R7.University.EmployeeDirectory.ViewModels
 
         #endregion
 
-        public IEduProgramProfile Model { get; protected set; }
+        #region Bindable properties
 
-        public ViewModelContext Context { get; protected set; }
-
-        public IList<TeacherViewModel> Teachers { get; set; }
-
-        public EduProgramProfileObrnadzorTeachersViewModel (IEduProgramProfile model, ViewModelContext context)
-        {
-            Model = model;
-            Context = context;
-        }
-
-        public string EduProgramProfileString
+        public string Title_String
         {
             get {
                 return FormatHelper.FormatEduProgramProfileTitle (
                     EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle
                 );
             }
+        }
+
+        #endregion
+
+        public IEduProgramProfile Model { get; protected set; }
+
+        public ViewModelContext Context { get; protected set; }
+
+        public IList<TeacherViewModel> Teachers { get; set; }
+
+        public EduProgramProfileViewModel (IEduProgramProfile model, ViewModelContext context)
+        {
+            Model = model;
+            Context = context;
         }
     }
 }

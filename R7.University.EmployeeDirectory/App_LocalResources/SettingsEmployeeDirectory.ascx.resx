@@ -4,22 +4,22 @@
         <value>EmployeeDirectory Settings</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>About EmployeeDirectory Settings</value>
+        <value>About EmployeeDirectory Module Settings</value>
     </data>
     <data name="labelMode.Text" xml:space="preserve">
         <value>Mode:</value>
     </data>
     <data name="labelMode.Help" xml:space="preserve">
-        <value>Select module mode from the list.</value>
+        <value>Select module mode from the dropdown.</value>
     </data>
     <data name="labelEduLevels.Text" xml:space="preserve">
         <value>Educational Levels:</value>
     </data>
     <data name="labelEduLevels.Help" xml:space="preserve">
-        <value>Check educational levels the module should display in the 'Teachers by edu. program' mode.</value>
+        <value>Check educational levels the module should display in the 'Teachers' mode.</value>
     </data>
     <data name="labelShowAllTeachers.Text" xml:space="preserve">
-        <value>Show All Teachers:</value>
+        <value>Also Show Teachers w/o Disciplines:</value>
     </data>
     <data name="labelShowAllTeachers.Help" xml:space="preserve">
         <value>If checked, module will also show teachers without associated disciplines. This option will be used in the 'Teachers by edu. program' mode only.</value>

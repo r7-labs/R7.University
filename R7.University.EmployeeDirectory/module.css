@@ -1,12 +1,12 @@
-﻿.employeeDirectory .gridEmployees { width:100% }
+﻿.employee-directory .grid-employees { width:100% }
 
-.employeeDirectory .textSearch {
+.employee-directory .textSearch {
     float:left;
     width:33%!important;
     margin-right:0.5em 
 }
 
-.employeeDirectory .linkDivisions {
+.employee-directory .linkDivisions {
     min-width:15em;
     padding:6px;
     overflow:hidden;
@@ -15,15 +15,15 @@
     text-shadow:none; 
 }
 
-.employeeDirectory .linkSearch { float:left }
+.employee-directory .linkSearch { float:left }
 
-.employeeDirectory .wrapperDivisions {
+.employee-directory .wrapperDivisions {
     position:relative;
     float:left;
     margin-right:0.5em
 }
 
-.employeeDirectory #hiddenDivisions {
+.employee-directory #hiddenDivisions {
     display:none;
     position:absolute;
     top:40px;
@@ -38,6 +38,9 @@
     box-shadow:0 0 5px #ccc
 }
 
-.employeeDirectory .not-published { background-color:#ffc }
+.employee-directory .not-published { background-color:#ffc }
 
-.employeeDirectory .grid-teachers-by-eduprogram { font-size:85% }
+.employee-directory .grid-teachers { 
+    width:100%;
+    font-size:85% 
+}

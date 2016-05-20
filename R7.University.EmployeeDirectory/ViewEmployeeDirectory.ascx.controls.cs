@@ -18,7 +18,6 @@ namespace R7.University.EmployeeDirectory
         protected DnnTreeView treeDivisions;
         protected CheckBox checkTeachersOnly;
         protected CheckBox checkIncludeSubdivisions;
-        protected Repeater repeaterEduPrograms;
-        // protected GridView gridTeachersByEduProgram;
+        protected Repeater repeaterEduProgramProfiles;
     }
 }

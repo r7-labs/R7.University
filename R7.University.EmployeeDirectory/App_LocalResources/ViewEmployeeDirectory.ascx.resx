@@ -51,8 +51,8 @@
     <data name="ExperienceYearsBySpec.Column" xml:space="preserve">
         <value>Experience by Speciality (years)</value>
     </data>
-    <data name="NoEduPrograms.Text" xml:space="preserve">
-        <value>Educational program not specified</value>
+    <data name="NoDisciplines.Text" xml:space="preserve">
+        <value>Disciplines not specified</value>
     </data>
     <data xml:space="preserve" name="AllDivisions.Text">
         <value>&lt; All Divisions &gt;</value>

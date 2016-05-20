@@ -93,12 +93,12 @@
     <Compile Include="SettingsEmployeeDirectory.ascx.controls.cs">
       <DependentUpon>SettingsEmployeeDirectory.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EduProgramProfileObrnadzorTeachersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\EmployeeDirectoryController.cs" />
     <Compile Include="Components\EmployeeDirectoryMode.cs" />
     <Compile Include="Components\EmployeeDirectorySettings.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

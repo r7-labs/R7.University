@@ -31,8 +31,7 @@ namespace R7.University.EmployeeDirectory.Components
     public enum EmployeeDirectoryMode
     {
         Search,
-        TeachersByEduProgram,
-        // HeadEmployees
+        Teachers
     }
 }
 
