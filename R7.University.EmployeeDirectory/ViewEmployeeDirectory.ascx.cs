@@ -26,7 +26,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
@@ -36,6 +35,7 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EmployeeDirectory.Components;
@@ -139,8 +139,78 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
-        protected IEnumerable<IEmployee> Teachers;
-       
+        protected IList<EduProgramProfileObrnadzorTeachersViewModel> GetEduProgramProfileViewModels ()
+        {
+            return DataCache.GetCachedData<IList<EduProgramProfileObrnadzorTeachersViewModel>> (
+                new CacheItemArgs ("//r7_University/Modules/EmployeeDirectory?ModuleId=" + ModuleId,
+                    UniversityConfig.Instance.DataCacheTime, System.Web.Caching.CacheItemPriority.Normal),
+                c => GetEduProgramProfileViewModels_Internal ()
+            );
+        }
+
+        protected IList<EduProgramProfileObrnadzorTeachersViewModel> GetEduProgramProfileViewModels_Internal ()
+        {
+            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
+                
+                .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
+                .ThenBy (epp => epp.EduProgram.Code)
+                .ThenBy (epp => epp.EduProgram.Title)
+                .ThenBy (epp => epp.ProfileCode)
+                .ThenBy (epp => epp.ProfileTitle)
+                .Select (epp => new EduProgramProfileObrnadzorTeachersViewModel (epp, ViewModelContext))
+                .ToList ();
+
+            if (Settings.ShowAllTeachers) {
+                eduProgramProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
+                    new EduProgramProfileInfo {
+                        EduProgramProfileID = Null.NullInteger,
+                        EduProgram = new EduProgramInfo
+                            {
+                                Code = string.Empty,
+                                Title = LocalizeString ("NoEduPrograms.Text")
+                            }
+                    }, ViewModelContext)
+                );
+            }
+
+            if (eduProgramProfiles.Count > 0) {
+                
+                var teachers = EmployeeRepository.Instance.GetTeachers ()
+                    .WithDisciplines (UniversityRepository.Instance.DataProvider
+                        .GetObjects<EmployeeDisciplineInfo> ())
+                    .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
+                        .GetObjects<OccupiedPositionInfoEx> ())
+                    .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
+
+                var indexer = new ViewModelIndexer (1);
+                IEnumerable<IEmployee> eduProgramProfileTeachers;
+
+                foreach (var eduProgramProfile in eduProgramProfiles) {
+                    if (!Null.IsNull (eduProgramProfile.EduProgramProfileID)) {
+                        eduProgramProfileTeachers = teachers
+                            .Where (t => t.Disciplines.Any (
+                                d => d.EduProgramProfileID == eduProgramProfile.EduProgramProfileID));
+                    }
+                    else {
+                        // get teachers w/o disciplines
+                        eduProgramProfileTeachers = teachers
+                            .Where (t => t.Disciplines.IsNullOrEmpty ());
+                    }
+
+                    eduProgramProfile.Teachers = eduProgramProfileTeachers
+                        .OrderBy (t => t.LastName)
+                        .ThenBy (t => t.FirstName)
+                        .Select (t => new TeacherViewModel (t, eduProgramProfile, ViewModelContext, indexer))
+                        .ToList ();
+
+                    indexer.Reset ();
+                }
+            }
+
+            return eduProgramProfiles;
+        }
+
         /// <summary>
         /// Handles Load event for a control
         /// </summary>
@@ -165,67 +235,9 @@ namespace R7.University.EmployeeDirectory
                         }
                     }
                     else if (Settings.Mode == EmployeeDirectoryMode.TeachersByEduProgram) {
-
-                        var eduProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                            .Where (epp => epp.IsPublished () || IsEditable)
-                            .WithEduLevel (UniversityRepository.Instance.DataProvider)
-                            .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
-                            .ThenBy (epp => epp.EduProgram.Code)
-                            .ThenBy (epp => epp.EduProgram.Title)
-                            .ThenBy (epp => epp.ProfileCode)
-                            .ThenBy (epp => epp.ProfileTitle)
-                            .Select (epp => new EduProgramProfileObrnadzorTeachersViewModel (epp, ViewModelContext))
-                            .ToList ();
-
-                        if (Settings.ShowAllTeachers) {
-                            eduProfiles.Add (new EduProgramProfileObrnadzorTeachersViewModel (
-                                    new EduProgramProfileInfo
-                                    { 
-                                        EduProgramProfileID = Null.NullInteger,
-                                        EduProgram = new EduProgramInfo
-                                        {
-                                            Code = string.Empty,
-                                            Title = LocalizeString ("NoEduPrograms.Text")
-                                        }
-                                    }, ViewModelContext)
-                            );
-                        }
-
-                        if (eduProfiles.Count > 0) {
-                             
-                            Teachers = EmployeeRepository.Instance.GetTeachers ()
-                                .Where (t => t.IsPublished () || IsEditable)
-                                .WithDisciplines (UniversityRepository.Instance.DataProvider
-                                    .GetObjects<EmployeeDisciplineInfo> ())
-                                .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
-                                    .GetObjects<OccupiedPositionInfoEx> ())
-                                .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
-
-                            var indexer = new ViewModelIndexer (1);
-                            IEnumerable<IEmployee> teachers;
-                            foreach (var eduProfile in eduProfiles) {
-                                if  (!Null.IsNull (eduProfile.EduProgramProfileID)) {
-                                    teachers = Teachers
-                                        .Where (t => t.Disciplines.Any (
-                                            d => d.EduProgramProfileID == eduProfile.EduProgramProfileID));
-                                }
-                                else {
-                                    teachers = Teachers
-                                        .Where (t => t.Disciplines.IsNullOrEmpty ());
-                                }
-                                
-                                eduProfile.Teachers = teachers
-                                    .OrderBy (t => t.LastName)
-                                    .ThenBy (t => t.FirstName)
-                                    .Select (t => new TeacherViewModel (t, eduProfile, ViewModelContext, indexer))
-                                    .ToList ();
-                                
-                                indexer.Reset ();
-                            }
-
-                            repeaterEduPrograms.DataSource = eduProfiles;
-                            repeaterEduPrograms.DataBind ();
-                        }
+                        repeaterEduPrograms.DataSource = GetEduProgramProfileViewModels ()
+                            .Where (epp => epp.IsPublished () || IsEditable);
+                        repeaterEduPrograms.DataBind ();
                     }
                 }
             }
@@ -239,7 +251,7 @@ namespace R7.University.EmployeeDirectory
         protected void repeaterEduPrograms_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-                var eduProfile = (EduProgramProfileObrnadzorTeachersViewModel) e.Item.DataItem;
+                var eduProgramProfile = (EduProgramProfileObrnadzorTeachersViewModel) e.Item.DataItem;
 
                 // find controls in the template
                 var panelTeachers = (Panel) e.Item.FindControl ("panelTeachers");
@@ -247,18 +259,19 @@ namespace R7.University.EmployeeDirectory
                 var gridTeachersByEduProgram = (GridView) e.Item.FindControl ("gridTeachersByEduProgram");
 
                 // create anchor to simplify navigation
-                var anchorName = (Null.IsNull (eduProfile.EduProgramProfileID)) ? "empty" : eduProfile.EduProgramProfileID.ToString ();
+                var anchorName = (Null.IsNull (eduProgramProfile.EduProgramProfileID)) ? "empty" : eduProgramProfile.EduProgramProfileID.ToString ();
                 literalEduProgramProfileAnchor.Text = "<a id=\"eduprogramprofile-" + anchorName + "\"" +
                 " name=\"eduprogramprofile-" + anchorName + "\"></a>";
 
-                if (eduProfile.Teachers.Count > 0) {
-                    // mark item as not published
-                    if (!eduProfile.IsPublished ()) {
+                var publishedTeachers = eduProgramProfile.Teachers.Where (t => IsEditable || t.IsPublished ());
+                if (publishedTeachers.Any ()) {
+                    // mark edu. program profile as not published
+                    if (!eduProgramProfile.IsPublished ()) {
                         panelTeachers.CssClass = "not-published";
                     }
 
                     gridTeachersByEduProgram.LocalizeColumns (LocalResourceFile);
-                    gridTeachersByEduProgram.DataSource = eduProfile.Teachers;
+                    gridTeachersByEduProgram.DataSource = publishedTeachers;
                     gridTeachersByEduProgram.DataBind ();
                 }
                 else {
@@ -286,6 +299,7 @@ namespace R7.University.EmployeeDirectory
                 }
 
                 if (!teacher.IsPublished ()) {
+                    // mark teacher as not published
                     e.Row.CssClass += " not-published";
                 }
 
