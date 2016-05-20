@@ -32,14 +32,22 @@ namespace R7.University.ViewModels
     {
         private int index;
 
+        private readonly int startIndex;
+
         public ViewModelIndexer (int startIndex)
         {
-            index = startIndex;
+            this.startIndex = startIndex;
+            Reset ();
         }
 
         public int GetNextIndex ()
         {
             return index++;
+        }
+
+        public void Reset ()
+        {
+            index = startIndex;
         }
     }
 }
