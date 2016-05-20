@@ -75,3 +75,4 @@
 .divisionDirectory table tr.return.return-10 { border-top-width: 11px }
 
 .divisionDirectory .not-published { background-color:#ffc }
+.divisionDirectory .not-published:hover { background-color:#fefe97 }

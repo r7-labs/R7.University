@@ -38,7 +38,9 @@
     box-shadow:0 0 5px #ccc
 }
 
-.employee-directory .not-published { background-color:#ffc }
+.employee-directory .not-published h3 { color:#ddd }
+.employee-directory tr.not-published { background-color:#ffc }
+.employee-directory tr.not-published:hover { background-color:#fefe97 }
 
 .employee-directory .grid-teachers { 
     width:100%;
