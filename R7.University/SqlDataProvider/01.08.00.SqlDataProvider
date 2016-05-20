@@ -61,7 +61,27 @@ BEGIN
         DROP CONSTRAINT [FK_{objectQualifier}University_Documents_DocumentTypes]
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
         ADD CONSTRAINT [FK_{objectQualifier}University_Documents_DocumentTypes] FOREIGN KEY (DocumentTypeID)
-            REFERENCES {databaseOwner}[{objectQualifier}University_DocumentTypes] (DocumentTypeID) ON DELETE CASCADE
+            REFERENCES {databaseOwner}[{objectQualifier}University_DocumentTypes] (DocumentTypeID) ON DELETE NO ACTION
+END
+GO
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'FK_{objectQualifier}University_EduPrograms_EduLevels') and type in (N'F'))
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+        DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels]
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+        ADD CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels] FOREIGN KEY (EduLevelID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels] (EduLevelID) ON DELETE NO ACTION
+END
+GO
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'FK_{objectQualifier}University_EduProgramProfiles_EduPrograms') and type in (N'F'))
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduPrograms]
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        ADD CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduPrograms] FOREIGN KEY (EduProgramID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE NO ACTION
 END
 GO
 
