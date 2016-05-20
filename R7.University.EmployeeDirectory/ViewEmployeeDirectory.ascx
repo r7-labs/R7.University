@@ -106,42 +106,14 @@
                                             </asp:HyperLink>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Order">
-                                        <ItemTemplate>
-                                            <asp:Literal id="literalOrder" runat="server" /> 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="Order" HeaderText="Order" DataFormatString="{0}." />
                                     <asp:BoundField DataField="FullName" HeaderText="FullName" />
-                                    <asp:TemplateField HeaderText="Positions">
-                                        <ItemTemplate>
-                                            <asp:Literal id="literalPositions" runat="server" /> 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Disciplines">
-                                        <ItemTemplate>
-                                            <asp:Literal id="literalDisciplines" runat="server" /> 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="AcademicDegrees">
-                                        <ItemTemplate>
-                                            <asp:Literal id="literalAcademicDegrees" runat="server" /> 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="AcademicTitles">
-                                        <ItemTemplate>
-                                            <asp:Literal id="literalAcademicTitles" runat="server" /> 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Education">
-                                        <ItemTemplate>
-                                            <asp:Literal id="literalEducation" runat="server" /> 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Training">
-                                        <ItemTemplate>
-                                            <asp:Literal id="literalTraining" runat="server" /> 
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="Positions_String" HeaderText="Positions" />
+                                    <asp:BoundField DataField="Disciplines_String" HeaderText="Disciplines" />
+                                    <asp:BoundField DataField="AcademicDegrees_String" HeaderText="AcademicDegrees" />
+                                    <asp:BoundField DataField="AcademicTitles_String" HeaderText="AcademicTitles" />
+                                    <asp:BoundField DataField="Education_String" HeaderText="Education" />
+                                    <asp:BoundField DataField="Training_String" HeaderText="Training" />
                                     <asp:BoundField DataField="ExperienceYears" HeaderText="ExperienceYears" />
                                     <asp:BoundField DataField="ExperienceYearsBySpec" HeaderText="ExperienceYearsBySpec" />
                                 </Columns>

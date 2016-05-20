@@ -25,18 +25,22 @@
 // THE SOFTWARE.
 
 using System;
-using R7.University.Models;
 using System.Collections.Generic;
-using R7.University.Data;
+using System.Linq;
+using DotNetNuke.Common.Utilities;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Data;
+using R7.University.Models;
 using R7.University.ViewModels;
-using Telerik.Web.UI.PivotGrid.Core.Totals;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
     public class TeacherViewModel: IEmployee
     {
         public IEmployee Model { get; protected set; }
+
+        public IEduProgramProfile EduProgramProfile { get; protected set; }
 
         public ViewModelContext Context { get; protected set; }
 
@@ -192,12 +196,88 @@ namespace R7.University.EmployeeDirectory.ViewModels
 
         public int Order { get; set; }
 
+        public string FullName
+        {
+            get { return FormatHelper.FullName (Model.FirstName, Model.LastName, Model.OtherName); }
+        }
+
+        public string Positions_String
+        {
+            get {
+                var positions = Model.OccupiedPositions
+                    .OrderByDescending (op => op.IsPrime)
+                    .ThenByDescending (op => op.PositionWeight);
+
+                return TextUtils.FormatList ("; ", 
+                    positions.Select (op => TextUtils.FormatList (": ", op.PositionTitle, op.DivisionTitle))
+                );
+            }
+        }
+
+        public string Disciplines_String
+        {
+            get {
+                if (!Null.IsNull (EduProgramProfile.EduProgramProfileID)) {
+                    var disciplines = Model.Disciplines
+                        .FirstOrDefault (d => d.EduProgramProfileID == EduProgramProfile.EduProgramProfileID);
+
+                    if (disciplines != null) {
+                        return disciplines.Disciplines;
+                    }
+                }
+                return string.Empty;
+            }
+        }
+
+        public string AcademicDegrees_String
+        {
+            get {
+                return TextUtils.FormatList ("; ", Model.Achievements
+                    .Where (ach => ach.AchievementType == AchievementType.AcademicDegree)
+                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+                );
+            }
+        }
+
+        public string AcademicTitles_String
+        {
+            get {
+                return TextUtils.FormatList ("; ", Model.Achievements
+                    .Where (ach => ach.AchievementType == AchievementType.AcademicTitle)
+                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+                );
+            }
+        }
+
+        public string Education_String
+        {
+            get {
+                return TextUtils.FormatList ("; ", Model.Achievements
+                    .Where (ach => ach.AchievementType == AchievementType.Education)
+                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
+                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
+                );
+            }
+        }
+
+        public string Training_String
+        {
+            get {
+                return TextUtils.FormatList ("; ", Model.Achievements
+                    .Where (ach => ach.AchievementType == AchievementType.Education)
+                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
+                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
+                );
+            }
+        }
+
         #endregion
 
-        public TeacherViewModel (IEmployee model, ViewModelContext context, ViewModelIndexer indexer)
+        public TeacherViewModel (IEmployee model, IEduProgramProfile eduProgramProfile, ViewModelContext context, ViewModelIndexer indexer)
         {
             Model = model;
             Context = context;
+            EduProgramProfile = eduProgramProfile;
             Order = indexer.GetNextIndex ();
         }
     }

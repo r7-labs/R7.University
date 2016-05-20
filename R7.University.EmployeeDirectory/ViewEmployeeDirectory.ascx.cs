@@ -165,9 +165,8 @@ namespace R7.University.EmployeeDirectory
                         }
                     }
                     else if (Settings.Mode == EmployeeDirectoryMode.TeachersByEduProgram) {
-                        var eduLevelIds = Settings.EduLevels;
 
-                        var eduProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (eduLevelIds)
+                        var eduProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                             .Where (epp => epp.IsPublished () || IsEditable)
                             .WithEduLevel (UniversityRepository.Instance.DataProvider)
                             .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
@@ -201,7 +200,29 @@ namespace R7.University.EmployeeDirectory
                                 .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
                                     .GetObjects<OccupiedPositionInfoEx> ())
                                 .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
-                            
+
+                            var indexer = new ViewModelIndexer (1);
+                            IEnumerable<IEmployee> teachers;
+                            foreach (var eduProfile in eduProfiles) {
+                                if  (!Null.IsNull (eduProfile.EduProgramProfileID)) {
+                                    teachers = Teachers
+                                        .Where (t => t.Disciplines.Any (
+                                            d => d.EduProgramProfileID == eduProfile.EduProgramProfileID));
+                                }
+                                else {
+                                    teachers = Teachers
+                                        .Where (t => t.Disciplines.IsNullOrEmpty ());
+                                }
+                                
+                                eduProfile.Teachers = teachers
+                                    .OrderBy (t => t.LastName)
+                                    .ThenBy (t => t.FirstName)
+                                    .Select (t => new TeacherViewModel (t, eduProfile, ViewModelContext, indexer))
+                                    .ToList ();
+                                
+                                indexer.Reset ();
+                            }
+
                             repeaterEduPrograms.DataSource = eduProfiles;
                             repeaterEduPrograms.DataBind ();
                         }
@@ -215,8 +236,6 @@ namespace R7.University.EmployeeDirectory
 
         #endregion
 
-        private int eduProfileId;
-
         protected void repeaterEduPrograms_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
@@ -227,42 +246,19 @@ namespace R7.University.EmployeeDirectory
                 var literalEduProgramProfileAnchor = (Literal) e.Item.FindControl ("literalEduProgramProfileAnchor");
                 var gridTeachersByEduProgram = (GridView) e.Item.FindControl ("gridTeachersByEduProgram");
 
-                IEnumerable<IEmployee> teachers;
-                string anchorName;
-
-                if (Null.IsNull (eduProfile.EduProgramProfileID)) {
-                    // select all teachers w/o disciplines
-                    teachers = Teachers
-                        .Where (t => t.Disciplines.IsNullOrEmpty ());
-
-                    anchorName = "empty";
-                }
-                else {
-                    // select teachers for current edu. program profile
-                    teachers = Teachers
-                        .Where (t => t.Disciplines.Any (d => d.EduProgramProfileID == eduProfile.EduProgramProfileID))
-                        .OrderBy (t => t.LastName)
-                        .ThenBy (t => t.FirstName);
-                            
-                    anchorName = eduProfile.EduProgramProfileID.ToString ();
-                }
-
                 // create anchor to simplify navigation
+                var anchorName = (Null.IsNull (eduProfile.EduProgramProfileID)) ? "empty" : eduProfile.EduProgramProfileID.ToString ();
                 literalEduProgramProfileAnchor.Text = "<a id=\"eduprogramprofile-" + anchorName + "\"" +
                 " name=\"eduprogramprofile-" + anchorName + "\"></a>";
 
-                if (teachers.Any ()) {
-                    // pass eduProfileId to gridTeachersByEduProgram_RowDataBound()
-                    eduProfileId = eduProfile.EduProgramProfileID;
-
+                if (eduProfile.Teachers.Count > 0) {
                     // mark item as not published
                     if (!eduProfile.IsPublished ()) {
                         panelTeachers.CssClass = "not-published";
                     }
 
                     gridTeachersByEduProgram.LocalizeColumns (LocalResourceFile);
-
-                    gridTeachersByEduProgram.DataSource = teachers;
+                    gridTeachersByEduProgram.DataSource = eduProfile.Teachers;
                     gridTeachersByEduProgram.DataBind ();
                 }
                 else {
@@ -277,7 +273,7 @@ namespace R7.University.EmployeeDirectory
             e.Row.Cells [0].Visible = IsEditable;
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                var teacher = (EmployeeInfo) e.Row.DataItem;
+                var teacher = (TeacherViewModel) e.Row.DataItem;
 
                 if (IsEditable) {
                     // get edit link controls
@@ -288,77 +284,6 @@ namespace R7.University.EmployeeDirectory
                     linkEdit.NavigateUrl = EditUrl ("employee_id", teacher.EmployeeID.ToString (), "EditEmployee");
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
-
-                #region Order
-
-                var literalOrder = (Literal) e.Row.FindControl ("literalOrder");
-                literalOrder.Text = (e.Row.RowIndex + 1) + ".";
-
-                #endregion
-
-                #region Disciplines
-
-                if (!Null.IsNull (eduProfileId)) {
-                    var literalDisciplines = (Literal) e.Row.FindControl ("literalDisciplines");
-
-                    // get discipline
-                    var discipline = teacher.Disciplines
-                        .FirstOrDefault (d => d.EduProgramProfileID == eduProfileId);
-
-                    if (discipline != null) {
-                        literalDisciplines.Text = discipline.Disciplines;
-                    }
-                }
-
-                #endregion
-
-                #region Positions
-
-                var literalPositions = (Literal) e.Row.FindControl ("literalPositions");
-
-                // get positions
-                var positions = teacher.OccupiedPositions
-                    .OrderByDescending (op => op.IsPrime)
-                    .ThenByDescending (op => op.PositionWeight);
-                
-                // REVIEW: Use OccupiedPositionInfoEx.GroupByDivision () here?
-                literalPositions.Text = TextUtils.FormatList ("; ", 
-                    positions.Select (op => TextUtils.FormatList (": ", op.PositionTitle, op.DivisionTitle))
-                );
-
-                #endregion
-
-                #region Academic degrees, Academic titles, Education, Training
-
-                var literalEducation = (Literal) e.Row.FindControl ("literalEducation");
-                var literalTraining = (Literal) e.Row.FindControl ("literalTraining");
-                var literalAcademicDegrees = (Literal) e.Row.FindControl ("literalAcademicDegrees");
-                var literalAcademicTitles = (Literal) e.Row.FindControl ("literalAcademicTitles");
-
-                var education = teacher.Achievements
-                    .Where (ach => ach.AchievementType == AchievementType.Education)
-                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
-                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin));
-                
-                var training = teacher.Achievements
-                    .Where (ach => ach.AchievementType == AchievementType.Training)
-                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
-                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin));
-                
-                var academicDegrees = teacher.Achievements
-                    .Where (ach => ach.AchievementType == AchievementType.AcademicDegree)
-                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix));
-                
-                var academicTitles = teacher.Achievements
-                    .Where (ach => ach.AchievementType == AchievementType.AcademicTitle)
-                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix));
-
-                literalEducation.Text = TextUtils.FormatList ("; ", education);
-                literalTraining.Text = TextUtils.FormatList ("; ", training);
-                literalAcademicDegrees.Text = TextUtils.FormatList ("; ", academicDegrees);
-                literalAcademicTitles.Text = TextUtils.FormatList ("; ", academicTitles);
-
-                #endregion
 
                 if (!teacher.IsPublished ()) {
                     e.Row.CssClass += " not-published";
@@ -374,7 +299,6 @@ namespace R7.University.EmployeeDirectory
                 e.Row.Cells [8].Attributes.Add ("itemprop", "ProfDevelopment");
                 e.Row.Cells [9].Attributes.Add ("itemprop", "GenExperience");
                 e.Row.Cells [10].Attributes.Add ("itemprop", "SpecExperience");
-
             }
         }
 

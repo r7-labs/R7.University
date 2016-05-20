@@ -98,6 +98,7 @@
     <Compile Include="Components\EmployeeDirectoryController.cs" />
     <Compile Include="Components\EmployeeDirectoryMode.cs" />
     <Compile Include="Components\EmployeeDirectorySettings.cs" />
+    <Compile Include="ViewModels\TeacherViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -114,6 +114,8 @@ namespace R7.University.EmployeeDirectory.ViewModels
 
         public ViewModelContext Context { get; protected set; }
 
+        public IList<TeacherViewModel> Teachers { get; set; }
+
         public EduProgramProfileObrnadzorTeachersViewModel (IEduProgramProfile model, ViewModelContext context)
         {
             Model = model;
