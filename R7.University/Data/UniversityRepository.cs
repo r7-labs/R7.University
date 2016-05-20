@@ -56,38 +56,6 @@ namespace R7.University.Data
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
-        public IEnumerable<DivisionInfo> FindDivisions (string searchText, bool includeSubdivisions, string divisionId)
-        {
-            return DataProvider.GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
-                "{databaseOwner}[{objectQualifier}University_FindDivisions]", searchText, includeSubdivisions, divisionId);
-        }
-
-        public EmployeeInfo GetHeadEmployee (int divisionId, int? headPositionId)
-        {
-            if (headPositionId != null) {
-                return DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-                    "{databaseOwner}[{objectQualifier}University_GetHeadEmployee]", divisionId, headPositionId.Value)
-                        .FirstOrDefault ();
-            }
-        
-            return null;
-        }
-
-        public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)
-        {
-            return DataProvider.GetObjects<DivisionInfo> (CommandType.Text,
-                @"SELECT DISTINCT D.*, DH.[Level], DH.[Path] 
-                    FROM {databaseOwner}[{objectQualifier}University_Divisions] AS D 
-                    INNER JOIN {databaseOwner}[{objectQualifier}University_DivisionsHierarchy] (@0) AS DH
-                        ON D.DivisionID = DH.DivisionID
-                    ORDER BY DH.[Path], D.Title", divisionId);
-        }
-
-        public IEnumerable<DivisionInfo> GetRootDivisions ()
-        {
-            return DataProvider.GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
-        }
-
         public void UpdateDocuments (IList<DocumentInfo> documents, string itemKey, int itemId)
         {
             using (var ctx = DataContext.Instance ()) {

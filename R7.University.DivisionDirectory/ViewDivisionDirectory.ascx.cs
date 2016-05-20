@@ -159,13 +159,13 @@ namespace R7.University.DivisionDirectory
                     }
                     else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                         // getting all root divisions
-                        var rootDivisions = UniversityRepository.Instance.GetRootDivisions ().OrderBy (d => d.Title);
+                        var rootDivisions = DivisionRepository.Instance.GetRootDivisions ().OrderBy (d => d.Title);
 
                         if (rootDivisions.Any ()) {
                             var divisions = new List<DivisionInfo> ();
 
                             foreach (var rootDivision in rootDivisions) {
-                                divisions.AddRange (UniversityRepository.Instance.GetSubDivisions (rootDivision.DivisionID));
+                                divisions.AddRange (DivisionRepository.Instance.GetSubDivisions (rootDivision.DivisionID));
                             }
 
                             // bind divisions to the grid
@@ -221,7 +221,7 @@ namespace R7.University.DivisionDirectory
         protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions)
         {
             // REVIEW: If division is not published, it's child divisions also should not
-            var divisions = UniversityRepository.Instance
+            var divisions = DivisionRepository.Instance
                 .FindDivisions (searchText, includeSubdivisions, searchDivision)
                 .Where (d => d.IsPublished || IsEditable); 
 
@@ -335,7 +335,7 @@ namespace R7.University.DivisionDirectory
                     linkDocument.Visible = false;
 
                 // contact person (head employee)
-                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (
+                var contactPerson = DivisionRepository.Instance.GetHeadEmployee (
                                         division.DivisionID,
                                         division.HeadPositionID);
                 
@@ -377,7 +377,7 @@ namespace R7.University.DivisionDirectory
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
                 // contact person (head employee)
-                var contactPerson = UniversityRepository.Instance.GetHeadEmployee (
+                var contactPerson = DivisionRepository.Instance.GetHeadEmployee (
                                         division.DivisionID,
                                         division.HeadPositionID);
                 
