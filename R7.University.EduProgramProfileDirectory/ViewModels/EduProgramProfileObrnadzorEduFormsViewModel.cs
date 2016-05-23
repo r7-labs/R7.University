@@ -36,6 +36,22 @@ namespace R7.University.EduProgramProfileDirectory
 {
     public class EduProgramProfileObrnadzorEduFormsViewModel: IEduProgramProfile
     {
+        public IEduProgramProfile Model { get; protected set; }
+
+        public ViewModelContext Context { get; protected set; }
+
+        public ViewModelIndexer Indexer { get; protected set; }
+
+        public EduProgramProfileObrnadzorEduFormsViewModel (
+            IEduProgramProfile model,
+            ViewModelContext context,
+            ViewModelIndexer indexer)
+        {
+            Model = model;
+            Context = context;
+            Indexer = indexer;
+        }
+
         #region IEduProgramProfile implementation
 
         public int EduProgramProfileID
@@ -112,20 +128,6 @@ namespace R7.University.EduProgramProfileDirectory
 
         #endregion
 
-        public IEduProgramProfile Model { get; protected set; }
-
-        public ViewModelContext Context { get; protected set; }
-
-        public EduProgramProfileObrnadzorEduFormsViewModel (
-            IEduProgramProfile model,
-            ViewModelContext context,
-            ViewModelIndexer indexer)
-        {
-            Model = model;
-            Context = context;
-            Order = indexer.GetNextIndex ();
-        }
-
         protected IEduProgramProfileForm FullTimeForm
         {
             get { 
@@ -199,7 +201,10 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        public int Order { get; protected set; }
+        public int Order
+        {
+            get { return Indexer.GetNextIndex (); }
+        }
 
         public string Code
         {

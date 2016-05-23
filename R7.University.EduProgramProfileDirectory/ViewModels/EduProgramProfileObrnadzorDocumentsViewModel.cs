@@ -40,6 +40,61 @@ namespace R7.University.EduProgramProfileDirectory
 {
     public class EduProgramProfileObrnadzorDocumentsViewModel: IEduProgramProfile
     {
+        public IEduProgramProfile Model { get; protected set; }
+
+        public ViewModelContext Context { get; protected set; }
+
+        public ViewModelIndexer Indexer { get; protected set; }
+
+        public EduProgramProfileObrnadzorDocumentsViewModel (
+            IEduProgramProfile model,
+            ViewModelContext context,
+            ViewModelIndexer indexer)
+        {
+            Model = model;
+            Context = context;
+            Indexer = indexer;
+        }
+
+        protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
+        {
+            return documents
+                .Where (d => Context.Module.IsEditable || d.IsPublished ())
+                .OrderBy (d => d.Group)
+                .ThenBy (d => d.SortIndex);
+        }
+
+        protected delegate string GetDocumentTitle (IDocument document);
+
+        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
+        {
+            var markupBuilder = new StringBuilder ();
+            var count = 0;
+            foreach (var document in documents) {
+                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
+                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
+                    Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
+                    true,
+                    groupPlacement,
+                    Context.Module.TabId,
+                    Context.Module.ModuleId,
+                    microdata
+                );
+
+                if (!string.IsNullOrEmpty (linkMarkup)) {
+                    markupBuilder.Append ("<li>" + linkMarkup + "</li>");
+                    count++;
+                }
+            }
+
+            var markup = markupBuilder.ToString ();
+            if (!string.IsNullOrEmpty (markup)) {
+                return ((count == 1)? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
+            }
+
+            return string.Empty;
+        }
+
         #region IEduProgramProfile implementation
 
         public int EduProgramProfileID
@@ -116,62 +171,12 @@ namespace R7.University.EduProgramProfileDirectory
 
         #endregion
 
-        public IEduProgramProfile Model { get; protected set; }
-
-        public ViewModelContext Context { get; protected set; }
-
-        public EduProgramProfileObrnadzorDocumentsViewModel (
-            IEduProgramProfile model,
-            ViewModelContext context,
-            ViewModelIndexer indexer)
-        {
-            Model = model;
-            Context = context;
-            Order = indexer.GetNextIndex ();
-        }
-
-        protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
-        {
-            return documents
-                .Where (d => Context.Module.IsEditable || d.IsPublished ())
-                .OrderBy (d => d.Group)
-                .ThenBy (d => d.SortIndex);
-        }
-
-        protected delegate string GetDocumentTitle (IDocument document);
-
-        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
-        {
-            var markupBuilder = new StringBuilder ();
-            var count = 0;
-            foreach (var document in documents) {
-                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
-                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
-                    Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
-                    true,
-                    groupPlacement,
-                    Context.Module.TabId,
-                    Context.Module.ModuleId,
-                    microdata
-                );
-
-                if (!string.IsNullOrEmpty (linkMarkup)) {
-                    markupBuilder.Append ("<li>" + linkMarkup + "</li>");
-                    count++;
-                }
-            }
-
-            var markup = markupBuilder.ToString ();
-            if (!string.IsNullOrEmpty (markup)) {
-                return ((count == 1)? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
-            }
-
-            return string.Empty;
-        }
-
         #region Bindable properties
 
-        public int Order { get; protected set; }
+        public int Order
+        {
+            get { return Indexer.GetNextIndex (); }
+        }
 
         public string Code
         {

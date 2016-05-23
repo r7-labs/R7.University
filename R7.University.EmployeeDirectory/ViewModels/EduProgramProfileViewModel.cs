@@ -34,6 +34,18 @@ namespace R7.University.EmployeeDirectory.ViewModels
 {
     public class EduProgramProfileViewModel: IEduProgramProfile
     {
+        public IEduProgramProfile Model { get; protected set; }
+
+        public ViewModelContext Context { get; protected set; }
+
+        public IndexedEnumerable<TeacherViewModel> Teachers { get; set; }
+
+        public EduProgramProfileViewModel (IEduProgramProfile model, ViewModelContext context)
+        {
+            Model = model;
+            Context = context;
+        }
+
         #region IEduProgramProfile implementation
 
         public int EduProgramProfileID
@@ -122,18 +134,6 @@ namespace R7.University.EmployeeDirectory.ViewModels
         }
 
         #endregion
-
-        public IEduProgramProfile Model { get; protected set; }
-
-        public ViewModelContext Context { get; protected set; }
-
-        public IList<TeacherViewModel> Teachers { get; set; }
-
-        public EduProgramProfileViewModel (IEduProgramProfile model, ViewModelContext context)
-        {
-            Model = model;
-            Context = context;
-        }
     }
 }
 

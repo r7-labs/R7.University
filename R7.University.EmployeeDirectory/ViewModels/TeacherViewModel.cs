@@ -44,6 +44,16 @@ namespace R7.University.EmployeeDirectory.ViewModels
 
         public ViewModelContext Context { get; protected set; }
 
+        public ViewModelIndexer Indexer { get; protected set; }
+
+        public TeacherViewModel (IEmployee model, IEduProgramProfile eduProgramProfile, ViewModelContext context, ViewModelIndexer indexer)
+        {
+            Model = model;
+            Context = context;
+            EduProgramProfile = eduProgramProfile;
+            Indexer = indexer;
+        }
+
         #region IEmployee implementation
 
         public int EmployeeID
@@ -194,7 +204,10 @@ namespace R7.University.EmployeeDirectory.ViewModels
 
         #region Bindable properties
 
-        public int Order { get; set; }
+        public int Order
+        {
+            get { return Indexer.GetNextIndex (); }
+        }
 
         public string FullName
         {
@@ -272,13 +285,5 @@ namespace R7.University.EmployeeDirectory.ViewModels
         }
 
         #endregion
-
-        public TeacherViewModel (IEmployee model, IEduProgramProfile eduProgramProfile, ViewModelContext context, ViewModelIndexer indexer)
-        {
-            Model = model;
-            Context = context;
-            EduProgramProfile = eduProgramProfile;
-            Order = indexer.GetNextIndex ();
-        }
     }
 }

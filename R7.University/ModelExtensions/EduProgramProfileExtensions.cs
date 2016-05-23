@@ -88,8 +88,8 @@ namespace R7.University.ModelExtensions
             }
         }
 
-        public static EduProgramProfileInfo WithEduProgramProfileForms (
-            this EduProgramProfileInfo eduProfile, Dal2DataProvider controller)
+        public static IEduProgramProfile WithEduProgramProfileForms (
+            this IEduProgramProfile eduProfile, Dal2DataProvider controller)
         {
             eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
                 "WHERE [EduProgramProfileID] = @0", eduProfile.EduProgramProfileID)
@@ -100,8 +100,8 @@ namespace R7.University.ModelExtensions
             return eduProfile;
         }
 
-        public static IEnumerable<EduProgramProfileInfo> WithEduProgramProfileForms (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, Dal2DataProvider controller)
+        public static IEnumerable<IEduProgramProfile> WithEduProgramProfileForms (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, Dal2DataProvider controller)
         {
             foreach (var eduProgramProfile in eduProgramProfiles) {
                 yield return eduProgramProfile.WithEduProgramProfileForms (controller);

@@ -74,54 +74,54 @@ namespace R7.University.EduProgramProfileDirectory
 
         #region Get data
 
-        protected IList<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms ()
+        protected IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms ()
         {
-            return DataCache.GetCachedData<IList<EduProgramProfileObrnadzorEduFormsViewModel>> (
+            return DataCache.GetCachedData<IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel>> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEduProgramProfileEduForms_Internal ()
             );
         }
 
-        protected IList<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments ()
+        protected IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments ()
         {
-            return DataCache.GetCachedData<IList<EduProgramProfileObrnadzorDocumentsViewModel>> (
+            return DataCache.GetCachedData<IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel>> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEduProgramProfileDocuments_Internal ()
             );
         }
 
-        protected IList<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms_Internal ()
+        protected IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms_Internal ()
         {
             var indexer = new ViewModelIndexer (1);
-
-            return EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (UniversityRepository.Instance.DataProvider)
-                .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
-                .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
-                .ThenBy (epp => epp.EduProgram.Code)
-                .ThenBy (epp => epp.EduProgram.Title)
-                .ThenBy (epp => epp.ProfileCode)
-                .ThenBy (epp => epp.ProfileTitle)
-                .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, ViewModelContext, indexer))
-                .ToList ();
+            return new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
+                EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
+                    .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                    .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
+                    .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
+                    .ThenBy (epp => epp.EduProgram.Code)
+                    .ThenBy (epp => epp.EduProgram.Title)
+                    .ThenBy (epp => epp.ProfileCode)
+                    .ThenBy (epp => epp.ProfileTitle)
+                    .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, ViewModelContext, indexer))
+            );
         }
 
-        protected IList<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments_Internal ()
+        protected IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments_Internal ()
         {
             var indexer = new ViewModelIndexer (1);
-
-            return EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (UniversityRepository.Instance.DataProvider)
-                .WithDocuments (UniversityRepository.Instance.DataProvider)
-                .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
-                .ThenBy (epp => epp.EduProgram.Code)
-                .ThenBy (epp => epp.EduProgram.Title)
-                .ThenBy (epp => epp.ProfileCode)
-                .ThenBy (epp => epp.ProfileTitle)
-                .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, ViewModelContext, indexer))
-                .ToList ();
+            return new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
+                EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
+                    .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                    .WithDocuments (UniversityRepository.Instance.DataProvider)
+                    .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
+                    .ThenBy (epp => epp.EduProgram.Code)
+                    .ThenBy (epp => epp.EduProgram.Title)
+                    .ThenBy (epp => epp.ProfileCode)
+                    .ThenBy (epp => epp.ProfileTitle)
+                    .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, ViewModelContext, indexer))
+            );
         }
 
         #endregion

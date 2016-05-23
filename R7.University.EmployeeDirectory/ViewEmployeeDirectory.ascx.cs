@@ -183,7 +183,7 @@ namespace R7.University.EmployeeDirectory
                         .GetObjects<OccupiedPositionInfoEx> ())
                     .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
 
-                var indexer = new ViewModelIndexer (1);
+
                 IEnumerable<IEmployee> eduProgramProfileTeachers;
 
                 foreach (var eduProgramProfile in eduProgramProfiles) {
@@ -198,13 +198,13 @@ namespace R7.University.EmployeeDirectory
                             .Where (t => t.Disciplines.IsNullOrEmpty ());
                     }
 
-                    eduProgramProfile.Teachers = eduProgramProfileTeachers
-                        .OrderBy (t => t.LastName)
-                        .ThenBy (t => t.FirstName)
-                        .Select (t => new TeacherViewModel (t, eduProgramProfile, ViewModelContext, indexer))
-                        .ToList ();
-
-                    indexer.Reset ();
+                    var indexer = new ViewModelIndexer (1);
+                    eduProgramProfile.Teachers = new IndexedEnumerable<TeacherViewModel> (indexer,
+                        eduProgramProfileTeachers
+                            .OrderBy (t => t.LastName)
+                            .ThenBy (t => t.FirstName)
+                            .Select (t => new TeacherViewModel (t, eduProgramProfile, ViewModelContext, indexer))
+                    );
                 }
             }
 
