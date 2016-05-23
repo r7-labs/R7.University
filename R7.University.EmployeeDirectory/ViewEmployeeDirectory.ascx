@@ -12,7 +12,6 @@
                 <asp:Panel runat="server" DefaultButton="linkSearch" CssClass="dnnFormItem dnnClear">
                     <div class="wrapperSearchFlags">
                         <asp:CheckBox id="checkTeachersOnly" runat="server" resourcekey="checkTeachersOnly.Text" />
-                        <asp:CheckBox id="checkIncludeSubdivisions" runat="server" resourcekey="checkIncludeSubdivisions.Text" />
                     </div>
                     <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
                     <div class="wrapperDivisions">

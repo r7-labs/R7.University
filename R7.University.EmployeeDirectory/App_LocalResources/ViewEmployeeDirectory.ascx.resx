@@ -54,15 +54,8 @@
     <data name="NoDisciplines.Text" xml:space="preserve">
         <value>Disciplines not specified</value>
     </data>
-    <data xml:space="preserve" name="AllDivisions.Text">
-        <value>&lt; All Divisions &gt;</value>
-    </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Search</value>
-    </data>
-    <data xml:space="preserve" name="SearchPhrase.Warning">
-        <value>Search phrase should be at least 3 characters long 
-        when searching in all divisions (or including subdivisions).</value>
     </data>
     <data xml:space="preserve" name="SearchParams.Warning">
         <value>Please enter search phrase and (or) select division.</value>

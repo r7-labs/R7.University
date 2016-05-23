@@ -86,14 +86,15 @@ namespace R7.University.Data
         }
 
         public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool includeNonPublished, 
-            bool teachersOnly, bool includeSubdivisions, string divisionId)
+            bool teachersOnly, int divisionId)
         {
             // University_FindEmployees SP could return some duplicate records - 
             // not many, so using Distinct() extension method to get rid of them 
             // is looking more sane than further SP SQL code complication.
 
+            // TODO: Remove @includeSubdivisions argument from sp
             return DataProvider.GetObjectsFromSp<EmployeeInfo> ("{databaseOwner}[{objectQualifier}University_FindEmployees]", 
-                    searchText, teachersOnly, includeSubdivisions, divisionId)
+                    searchText, teachersOnly, true, divisionId)
                 .Where (e => includeNonPublished || e.IsPublished ())
                 .Distinct (new EmployeeEqualityComparer ());
         }

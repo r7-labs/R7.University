@@ -54,15 +54,8 @@
     <data name="NoDisciplines.Text" xml:space="preserve">
         <value>Дисциплины не указаны</value>
     </data>
-    <data xml:space="preserve" name="AllDivisions.Text">
-        <value>&lt; Все подразделения &gt;</value>
-    </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Поиск</value>
-    </data>
-    <data xml:space="preserve" name="SearchPhrase.Warning">
-        <value>Длина поисковой фразы должна быть не менее 3-х символов в том случае,
-        если поиск производится по всем подразделениям или с включением подчиненных подразделений.</value>
     </data>
     <data xml:space="preserve" name="SearchParams.Warning">
         <value>Введите поисковую фразу и (или) выберите подразделение.</value>

@@ -31,6 +31,7 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Services.Exceptions;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
@@ -64,6 +65,10 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
+        #endregion
+
+        #region Session state properties
+
         protected string SearchText
         {
             get { 
@@ -73,23 +78,14 @@ namespace R7.University.EmployeeDirectory
             set { Session ["EmployeeDirectory.SearchText." + TabModuleId] = value; }
         }
 
-        protected string SearchDivision
+        protected int SearchDivision
         {
             get { 
                 var objSearchDivision = Session ["EmployeeDirectory.SearchDivision." + TabModuleId];
-                return (string) objSearchDivision ?? Null.NullInteger.ToString ();
+                return objSearchDivision != null ? (int) objSearchDivision : Null.NullInteger;
 
             }
             set { Session ["EmployeeDirectory.SearchDivision." + TabModuleId] = value; }
-        }
-
-        protected bool SearchIncludeSubdivisions
-        {
-            get { 
-                var objSearchIncludeSubdivisions = Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId];
-                return objSearchIncludeSubdivisions != null ? (bool) objSearchIncludeSubdivisions : false;
-            }
-            set { Session ["EmployeeDirectory.SearchIncludeSubdivisions." + TabModuleId] = value; }
         }
 
         protected bool SearchTeachersOnly
@@ -121,18 +117,15 @@ namespace R7.University.EmployeeDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
+                treeDivisions.DataSource = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
                     .Where (d => d.IsPublished || IsEditable)
-                    .OrderBy (d => d.Title).ToList ();
-                
-                divisions.Insert (0, new DivisionInfo
-                    {
-                        DivisionID = Null.NullInteger, 
-                        Title = LocalizeString ("AllDivisions.Text") 
-                    });
-               
-                treeDivisions.DataSource = divisions;
+                    .OrderBy (d => d.Title);
                 treeDivisions.DataBind ();
+
+                // select first node
+                if (treeDivisions.Nodes.Count > 0) {
+                    treeDivisions.Nodes [0].Selected = true;
+                }
 
                 // REVIEW: Level should be set in settings?
                 R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
@@ -222,16 +215,26 @@ namespace R7.University.EmployeeDirectory
             try {
                 if (!IsPostBack) {
                     if (Settings.Mode == EmployeeDirectoryMode.Search) {
-                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision)) {
+                        if (!string.IsNullOrWhiteSpace (SearchText) || !Null.IsNull (SearchDivision)) {
+
                             // restore current search
                             textSearch.Text = SearchText;
-                            R7.University.Utilities.Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
-                            checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
                             checkTeachersOnly.Checked = SearchTeachersOnly;
 
+                            if (Null.IsNull (SearchDivision)) {
+                                // select first node
+                                if (treeDivisions.Nodes.Count > 0) {
+                                    treeDivisions.Nodes [0].Selected = true;
+                                }
+                            }
+                            else {
+                                treeDivisions.SelectAndExpandByValue (SearchDivision.ToString ());
+                            }
+
                             // perform search
-                            if (SearchParamsOK (SearchText, SearchDivision, SearchIncludeSubdivisions, false))
-                                DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
+                            if (SearchParamsOK (SearchText, SearchDivision, false)) {
+                                DoSearch (SearchText, SearchDivision, SearchTeachersOnly);
+                            }
                         }
                     }
                     else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
@@ -316,30 +319,16 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
-        protected bool SearchParamsOK (
-            string searchText,
-            string searchDivision,
-            bool includeSubdivisions,
-            bool showMessages = true)
+        protected bool SearchParamsOK (string searchText, int searchDivision, bool showMessages = true)
         {
-            var divisionIsSpecified = TypeUtils.ParseToNullable<int> (searchDivision) != null;
+            var divisionNotSpecified = Null.IsNull (searchDivision);
             var searchTextIsEmpty = string.IsNullOrWhiteSpace (searchText);
 
             // no search params - shouldn't perform search
-            if (searchTextIsEmpty && !divisionIsSpecified) {
-                if (showMessages)
+            if (searchTextIsEmpty && divisionNotSpecified) {
+                if (showMessages) {
                     this.Message ("SearchParams.Warning", MessageType.Warning, true);
-
-                gridEmployees.Visible = false;
-                return false;
-            }
-                
-            if ((!divisionIsSpecified || // no division specified
-                (divisionIsSpecified && includeSubdivisions)) && // division specified, but subdivisions flag is set
-                (searchTextIsEmpty || // search phrase is empty
-                (!searchTextIsEmpty && searchText.Length < 3))) { // search phrase is too short
-                if (showMessages)
-                    this.Message ("SearchPhrase.Warning", MessageType.Warning, true);
+                }
 
                 gridEmployees.Visible = false;
                 return false;
@@ -348,10 +337,10 @@ namespace R7.University.EmployeeDirectory
             return true;
         }
 
-        protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions, bool teachersOnly)
+        protected void DoSearch (string searchText, int searchDivision, bool teachersOnly)
         {
             var employees = EmployeeRepository.Instance.FindEmployees (searchText, 
-                                IsEditable, teachersOnly, includeSubdivisions, searchDivision);
+                                IsEditable, teachersOnly, searchDivision);
             
             if (employees.IsNullOrEmpty ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
@@ -364,42 +353,21 @@ namespace R7.University.EmployeeDirectory
             gridEmployees.Visible = true;
         }
 
-        /*
-        protected void ResetSearch ()
-        {
-            // reset controls
-            textSearch.Text = string.Empty;
-            Utils.SelectAndExpandByValue (treeDivisions, Null.NullInteger.ToString ());
-            checkIncludeSubdivisions.Checked = false;
-            checkTeachersOnly.Checked = false;
-
-            // hide employees grid
-            gridEmployees.Visible = false;
-
-            // reset saved search
-            SearchText = string.Empty;
-            SearchDivision = Null.NullInteger.ToString ();
-            SearchIncludeSubdivisions = false;
-            SearchTeachersOnly = false;
-        }*/
-
         protected void linkSearch_Click (object sender, EventArgs e)
         {
             var searchText = textSearch.Text.Trim ();
             var searchDivision = (treeDivisions.SelectedNode != null) ? 
-                treeDivisions.SelectedNode.Value : Null.NullInteger.ToString ();
-            var includeSubdivisions = checkIncludeSubdivisions.Checked;
+                int.Parse (treeDivisions.SelectedNode.Value) : Null.NullInteger;
             var teachersOnly = checkTeachersOnly.Checked;
 
-            if (SearchParamsOK (searchText, searchDivision, includeSubdivisions)) {
+            if (SearchParamsOK (searchText, searchDivision)) {
                 // save current search
                 SearchText = searchText;
                 SearchDivision = searchDivision;
-                SearchIncludeSubdivisions = includeSubdivisions;
                 SearchTeachersOnly = teachersOnly;
 
                 // perform search
-                DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions, SearchTeachersOnly);
+                DoSearch (SearchText, SearchDivision, SearchTeachersOnly);
             }
         }
 
