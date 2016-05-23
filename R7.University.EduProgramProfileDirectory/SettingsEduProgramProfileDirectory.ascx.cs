@@ -32,6 +32,7 @@ using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.Data;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.ViewModels;
@@ -108,6 +109,7 @@ namespace R7.University.EduProgramProfileDirectory
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
 
                 ModuleController.SynchronizeModule (ModuleId);
+                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

@@ -27,23 +27,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Caching;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
-using R7.University.ModelExtensions;
-using R7.University.ViewModels;
 using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
 {
@@ -65,6 +67,86 @@ namespace R7.University.EduProgramProfileDirectory
                     viewModelContext = new ViewModelContext (this);
 
                 return viewModelContext;
+            }
+        }
+
+        #endregion
+
+        #region Get data
+
+        protected IList<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms ()
+        {
+            return DataCache.GetCachedData<IList<EduProgramProfileObrnadzorEduFormsViewModel>> (
+                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
+                    UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
+                c => GetEduProgramProfileEduForms_Internal ()
+            );
+        }
+
+        protected IList<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments ()
+        {
+            return DataCache.GetCachedData<IList<EduProgramProfileObrnadzorDocumentsViewModel>> (
+                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
+                    UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
+                c => GetEduProgramProfileDocuments_Internal ()
+            );
+        }
+
+        protected IList<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms_Internal ()
+        {
+            var indexer = new ViewModelIndexer (1);
+
+            return EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
+                .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
+                .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
+                .ThenBy (epp => epp.EduProgram.Code)
+                .ThenBy (epp => epp.EduProgram.Title)
+                .ThenBy (epp => epp.ProfileCode)
+                .ThenBy (epp => epp.ProfileTitle)
+                .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, ViewModelContext, indexer))
+                .ToList ();
+        }
+
+        protected IList<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments_Internal ()
+        {
+            var indexer = new ViewModelIndexer (1);
+
+            return EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
+                .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                .WithDocuments (UniversityRepository.Instance.DataProvider)
+                .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
+                .ThenBy (epp => epp.EduProgram.Code)
+                .ThenBy (epp => epp.EduProgram.Title)
+                .ThenBy (epp => epp.ProfileCode)
+                .ThenBy (epp => epp.ProfileTitle)
+                .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, ViewModelContext, indexer))
+                .ToList ();
+        }
+
+        #endregion
+
+        #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions
+        {
+            get {
+                // create a new action to add an item, 
+                // this will be added to the controls dropdown menu
+                var actions = new ModuleActionCollection ();
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("AddEduProgramProfile.Action"),
+                    ModuleActionType.AddContent, 
+                    "", "", 
+                    EditUrl ("EditEduProgramProfile"),
+                    false, 
+                    SecurityAccessLevel.Edit,
+                    true, 
+                    false
+                );
+
+                return actions;
             }
         }
 
@@ -119,25 +201,12 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        #endregion
-
         protected void ObrnadzorEduFormsView ()
         {
-            var indexer = new ViewModelIndexer (1);
+            var eduProgramProfiles = GetEduProgramProfileEduForms ()
+                .Where (epp => epp.IsPublished () || IsEditable);
 
-            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .Where (epp => epp.IsPublished () || IsEditable)
-                .WithEduLevel (UniversityRepository.Instance.DataProvider)
-                .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
-                .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
-                .ThenBy (epp => epp.EduProgram.Code)
-                .ThenBy (epp => epp.EduProgram.Title)
-                .ThenBy (epp => epp.ProfileCode)
-                .ThenBy (epp => epp.ProfileTitle)
-                .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, ViewModelContext, indexer))
-                .ToList ();
-
-            if (eduProgramProfiles.Count > 0) {
+            if (!eduProgramProfiles.IsNullOrEmpty ()) {
                 gridEduProgramProfileObrnadzorEduForms.DataSource = eduProgramProfiles;
                 gridEduProgramProfileObrnadzorEduForms.DataBind ();
             }
@@ -148,21 +217,10 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void ObrnadzorDocumentsView ()
         {
-            var indexer = new ViewModelIndexer (1);
+            var eduProgramProfiles = GetEduProgramProfileDocuments ()
+                .Where (epp => epp.IsPublished () || IsEditable);
 
-            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .Where (epp => epp.IsPublished () || IsEditable)
-                .WithEduLevel (UniversityRepository.Instance.DataProvider)
-                .WithDocuments (UniversityRepository.Instance.DataProvider)
-                .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
-                .ThenBy (epp => epp.EduProgram.Code)
-                .ThenBy (epp => epp.EduProgram.Title)
-                .ThenBy (epp => epp.ProfileCode)
-                .ThenBy (epp => epp.ProfileTitle)
-                .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, ViewModelContext, indexer))
-                .ToList ();
-
-            if (eduProgramProfiles.Count > 0) {
+            if (!eduProgramProfiles.IsNullOrEmpty ()) {
                 gridEduProgramProfileObrnadzorDocuments.DataSource = eduProgramProfiles;
                 gridEduProgramProfileObrnadzorDocuments.DataBind ();
             }
@@ -170,32 +228,6 @@ namespace R7.University.EduProgramProfileDirectory
                 this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
             }
         }
-
-        #region IActionable implementation
-
-        public ModuleActionCollection ModuleActions
-        {
-            get {
-                // create a new action to add an item, 
-                // this will be added to the controls dropdown menu
-                var actions = new ModuleActionCollection ();
-                actions.Add (
-                    GetNextActionID (), 
-                    LocalizeString ("AddEduProgramProfile.Action"),
-                    ModuleActionType.AddContent, 
-                    "", "", 
-                    EditUrl ("EditEduProgramProfile"),
-                    false, 
-                    SecurityAccessLevel.Edit,
-                    true, 
-                    false
-                );
-			
-                return actions;
-            }
-        }
-
-        #endregion
 
         protected void gridEduProgramProfileObrnadzorEduForms_RowDataBound (object sender, GridViewRowEventArgs e)
         {
@@ -325,6 +357,8 @@ namespace R7.University.EduProgramProfileDirectory
                 }
             }
         }
+
+        #endregion
     }
 }
 
