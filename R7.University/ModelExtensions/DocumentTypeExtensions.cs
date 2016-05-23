@@ -1,10 +1,10 @@
 ﻿//
-// ModelHelper.cs
+// DocumentTypeExtensions.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 Roman M. Yagodin
+// Copyright (c) 2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,36 +25,17 @@
 // THE SOFTWARE.
 
 using System;
+using R7.University.Models;
 
-namespace R7.University.Models
+namespace R7.University.ModelExtensions
 {
-    public static class ModelHelper
+    public static class DocumentTypeExtensions
     {
-        public static bool IsPublished (DateTime? startDate, DateTime? endDate)
+        public static SystemDocumentType GetSystemDocumentType (this IDocumentType documentType)
         {
-            var now = DateTime.Now;
-            return (startDate == null || now >= startDate) && (endDate == null || now < endDate);
+            SystemDocumentType result;
+            return Enum.TryParse<SystemDocumentType> (documentType.Type, out result) ? result : SystemDocumentType.Custom;
         }
-
-        #region Extension methods
-
-        public static bool IsPublished (this IEduProgram eduProgram)
-        {
-            return IsPublished (eduProgram.StartDate, eduProgram.EndDate);
-        }
-
-        public static bool IsPublished (this IEduProgramProfile eduProgramProfile)
-        {
-            return IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
-        }
-
-        public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)
-        {
-            SystemEduForm result;
-            return Enum.TryParse<SystemEduForm> (eduForm.Title, out result) ? result : SystemEduForm.Custom;
-        }
-
-        #endregion
     }
 }
 

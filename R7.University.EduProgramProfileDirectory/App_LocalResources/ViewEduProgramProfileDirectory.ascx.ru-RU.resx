@@ -12,7 +12,7 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать. Добавьте профили образовательных программ и воспользуйтесь настройками модуля для установки параметров отображения.</value>
     </data>
-    <data name="Index.Column" xml:space="preserve">
+    <data name="Order.Column" xml:space="preserve">
         <value>№ п/п</value>
     </data>
     <data name="Title.Column" xml:space="preserve">

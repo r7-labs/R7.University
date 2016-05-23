@@ -156,6 +156,8 @@
     <Compile Include="Models\IEmployeeDiscipline.cs" />
     <Compile Include="Data\EmployeeDisciplineRepository.cs" />
     <Compile Include="Data\DivisionRepository.cs" />
+    <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
+    <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -27,13 +27,18 @@
 using System;
 using System.Collections.Generic;
 using R7.DotNetNuke.Extensions.Data;
-using R7.University.Models;
 using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.ModelExtensions
 {
     public static class DocumentExtensions
     {
+        public static bool IsPublished (this IDocument document)
+        {
+            return ModelHelper.IsPublished (document.StartDate, document.EndDate);
+        }
+
         public static IDocument WithDocumentType (this IDocument document, Dal2DataProvider controller)
         {
             document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID);
@@ -49,6 +54,12 @@ namespace R7.University.ModelExtensions
             }
 
             return documents;
+        }
+
+        public static SystemDocumentType GetSystemDocumentType (this IDocument document)
+        {
+            SystemDocumentType result;
+            return Enum.TryParse<SystemDocumentType> (document.DocumentType.Type, out result) ? result : SystemDocumentType.Custom;
         }
     }
 }

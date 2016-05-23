@@ -35,6 +35,7 @@ using R7.University.Utilities;
 using R7.University.ViewModels;
 using R7.University.Data;
 using R7.University.Models;
+using R7.University.ModelExtensions;
 
 namespace R7.University.EduProgramDirectory
 {

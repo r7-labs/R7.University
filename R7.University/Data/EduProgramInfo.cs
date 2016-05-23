@@ -30,6 +30,7 @@ using System.Linq;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Data
 {

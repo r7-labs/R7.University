@@ -128,5 +128,10 @@ namespace R7.University.ModelExtensions
                 yield return eduProgramProfile.WithDocuments (controller);
             }
         }
+
+        public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
+        {
+            return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
+        }
     }
 }

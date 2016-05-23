@@ -31,6 +31,7 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.ModelExtensions;
 
 namespace R7.University.ViewModels
 {
@@ -109,13 +110,19 @@ namespace R7.University.ViewModels
             return TextUtils.FormatList (" ", code, title, profileStringInBrackets);
         }
 
-        public static string FormatLinkWithMicrodata (this IDocument document, 
-            string defaultTitle, bool preferOwnTitle, int tabId, int moduleId, string microdata)
+        public static string FormatDocumentLink_WithMicrodata (this IDocument document, string documentTitle,
+            string defaultTitle, bool preferDocumentTitle, DocumentGroupPlacement groupPlacement, int tabId, int moduleId, string microdata)
         {
-            var title = (preferOwnTitle && !string.IsNullOrWhiteSpace (document.Title)) ? document.Title : defaultTitle;
-                
+            var title = (preferDocumentTitle && !string.IsNullOrWhiteSpace (documentTitle)) 
+                ? ((groupPlacement == DocumentGroupPlacement.InTitle)
+                    ? TextUtils.FormatList (": ", document.Group, documentTitle)
+                    : documentTitle)
+                : ((groupPlacement == DocumentGroupPlacement.InTitle && !string.IsNullOrWhiteSpace (document.Group))
+                    ? document.Group
+                    : defaultTitle);
+              
             if (!string.IsNullOrWhiteSpace (document.Url)) {
-                return "<a href=\""
+                var linkMarkup = "<a href=\""
                 + R7.University.Utilities.UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
                 + "\" "
                 + TextUtils.FormatList (" ",
@@ -125,6 +132,16 @@ namespace R7.University.ViewModels
                 + ">"
                 + title
                 + "</a>";
+                
+                if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {
+                    return TextUtils.FormatList (": ", document.Group, linkMarkup);
+                }
+
+                if (groupPlacement == DocumentGroupPlacement.AfterTitle) {
+                    return TextUtils.FormatList (": ", linkMarkup, document.Group);
+                }
+
+                return linkMarkup;
             }
 
             return string.Empty;

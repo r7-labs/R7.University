@@ -12,7 +12,7 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Nothing to display. Please add some educational program profiles and use module settings to set view options.</value>
     </data>
-    <data name="Index.Column" xml:space="preserve">
+    <data name="Order.Column" xml:space="preserve">
         <value>#</value>
     </data>
     <data name="Title.Column" xml:space="preserve">

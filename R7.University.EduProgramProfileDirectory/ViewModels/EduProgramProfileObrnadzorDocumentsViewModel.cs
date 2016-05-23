@@ -32,8 +32,9 @@ using System.Text;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
 {
@@ -126,275 +127,202 @@ namespace R7.University.EduProgramProfileDirectory
         {
             Model = model;
             Context = context;
-            Index = indexer.GetNextIndex ();
+            Order = indexer.GetNextIndex ();
         }
 
-        protected IDocument EduProgramDocument
+        protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
         {
-            get { 
-                return Documents.FirstOrDefault (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduProgram); 
-            }
+            return documents
+                .Where (d => Context.Module.IsEditable || d.IsPublished ())
+                .OrderBy (d => d.Group)
+                .ThenBy (d => d.SortIndex);
         }
 
-        protected IEnumerable<IDocument> EduPlanDocuments
-        {
-            get {
-                return Documents.Where (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduPlan)
-                    .OrderBy (d => d.SortIndex);
-            }
-        }
+        protected delegate string GetDocumentTitle (IDocument document);
 
-        protected IEnumerable<IDocument> EduScheduleDocuments
-        {
-            get {
-                return Documents.Where (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduSchedule)
-                    .OrderBy (d => d.SortIndex);
-            }
-        }
-
-
-        protected IDocument WorkProgramAnnotationDocument
-        {
-            get {
-                return Documents.FirstOrDefault (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramAnnotation); 
-            }
-        }
-
-        protected IEnumerable<IDocument> WorkProgramOfPracticeDocuments
-        {
-            get {
-                return Documents.Where (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.WorkProgramOfPractice)
-                    .OrderBy (d => d.SortIndex);
-            }
-        }
-
-        protected IDocument EduMaterialDocument
-        {
-            get {
-                return Documents.FirstOrDefault (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduMaterial); 
-            }
-        }
-
-        protected IDocument ContingentDocument
-        {
-            get {
-                return Documents.FirstOrDefault (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.Contingent); 
-            }
-        }
-
-        protected IDocument ContingentMovementDocument
-        {
-            get {
-                return Documents.FirstOrDefault (d =>
-                    (d.IsPublished () || Context.Module.IsEditable) &&
-                    d.DocumentType.GetSystemDocumentType () == SystemDocumentType.ContingentMovement); 
-            }
-        }
-
-        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata)
+        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
         {
             var markupBuilder = new StringBuilder ();
-
+            var count = 0;
             foreach (var document in documents) {
-                var linkMarkup = document.FormatLinkWithMicrodata (
-                                     Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
-                                     true,
-                                     Context.Module.TabId,
-                                     Context.Module.ModuleId,
-                                     microdata
-                                 );
+                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
+                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
+                    Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
+                    true,
+                    groupPlacement,
+                    Context.Module.TabId,
+                    Context.Module.ModuleId,
+                    microdata
+                );
 
                 if (!string.IsNullOrEmpty (linkMarkup)) {
-                    markupBuilder.AppendLine (linkMarkup);
+                    markupBuilder.Append ("<li>" + linkMarkup + "</li>");
+                    count++;
                 }
             }
 
             var markup = markupBuilder.ToString ();
             if (!string.IsNullOrEmpty (markup)) {
-                return markup;
+                return ((count == 1)? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
             }
 
             return string.Empty;
         }
 
-        public string EduProgramLink
-        {
-            get {
-                if (EduProgramDocument != null) {
-                    var linkMarkup = EduProgramDocument.FormatLinkWithMicrodata (
-                                         FormatHelper.FormatEduProgramProfileTitle (
-                                             EduProgram.Title,
-                                             ProfileCode,
-                                             ProfileTitle), 
-                                         false,
-                                         Context.Module.TabId,
-                                         Context.Module.ModuleId,
-                                         "itemprop=\"OOP_main\""
-                                     );
+        #region Bindable properties
 
-                    if (!string.IsNullOrEmpty (linkMarkup)) {
-                        return linkMarkup;
-                    }
-                }
-
-                return "<span itemprop=\"OOP_main\">"
-                + FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
-                + "</span>";
-            }
-        }
-
-        public string EduPlanLinks
-        {
-            get { return FormatDocumentLinks (EduPlanDocuments, "itemprop=\"education_plan\""); }
-        }
-
-        public string WorkProgramAnnotationLink
-        {
-            get {
-                if (WorkProgramAnnotationDocument != null) {
-                    var linkMarkup = WorkProgramAnnotationDocument.FormatLinkWithMicrodata (
-                                         Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
-                                         true,
-                                         Context.Module.TabId,
-                                         Context.Module.ModuleId,
-                                         "itemprop=\"education_annotation\""
-                                     );
-
-                    if (!string.IsNullOrEmpty (linkMarkup)) {
-                        return linkMarkup;
-                    }
-                }
-
-                return string.Empty;
-            }
-        }
-
-        public string EduScheduleLinks
-        {
-            get { return FormatDocumentLinks (EduScheduleDocuments, "itemprop=\"education_shedule\""); }
-        }
-
-        public string WorkProgramOfPracticeLinks
-        {
-            get {
-                var index = 0;
-                var markupBuilder = new StringBuilder ();
-
-                foreach (var document in WorkProgramOfPracticeDocuments) {
-                    var linkMarkup = document.FormatLinkWithMicrodata (
-                                         (++index).ToString (),
-                                         false,
-                                         Context.Module.TabId,
-                                         Context.Module.ModuleId,
-                                         "itemprop=\"EduPr\""
-                                     );
-
-                    if (!string.IsNullOrEmpty (linkMarkup)) {
-                        markupBuilder.AppendLine (linkMarkup);
-                    }
-                }
-
-                var markup = markupBuilder.ToString ();
-                if (!string.IsNullOrEmpty (markup)) {
-                    return markup;
-                }
-
-                return string.Empty;
-            }
-        }
-
-        public string EduMaterialLink
-        {
-            get {
-                if (EduMaterialDocument != null) {
-                    var linkMarkup = EduMaterialDocument.FormatLinkWithMicrodata (
-                                         Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
-                                         true,
-                                         Context.Module.TabId,
-                                         Context.Module.ModuleId,
-                                         "itemprop=\"methodology\""
-                                     );
-
-                    if (!string.IsNullOrEmpty (linkMarkup)) {
-                        return linkMarkup;
-                    }
-                }
-
-                return string.Empty;
-            }
-        }
-
-        public string ContingentLink
-        {
-            get {
-                if (ContingentDocument != null) {
-                    var linkMarkup = ContingentDocument.FormatLinkWithMicrodata (
-                                         Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
-                                         true,
-                                         Context.Module.TabId,
-                                         Context.Module.ModuleId,
-                                         "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\""
-                                     );
-
-                    if (!string.IsNullOrEmpty (linkMarkup)) {
-                        return linkMarkup;
-                    }
-                }
-
-                return string.Empty;
-            }
-        }
-
-        public string ContingentMovementLink
-        {
-            get {
-                if (ContingentMovementDocument != null) {
-                    var linkMarkup = ContingentMovementDocument.FormatLinkWithMicrodata (
-                                         Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile), 
-                                         true,
-                                         Context.Module.TabId,
-                                         Context.Module.ModuleId,
-                                         "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\""
-                                     );
-
-                    if (!string.IsNullOrEmpty (linkMarkup)) {
-                        return linkMarkup;
-                    }
-                }
-
-                return string.Empty;
-            }
-        }
-
-        public int Index { get; protected set; }
-
-        public string IndexString
-        {
-            get { return Index + "."; }
-        }
+        public int Order { get; protected set; }
 
         public string Code
         {
             get { return "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>"; }
         }
 
+        public string EduProgram_Links
+        {
+            get {
+                var eduProgramDocuments = GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduProgram));
+                if (!eduProgramDocuments.IsNullOrEmpty ()) {
+                    return FormatDocumentLinks (
+                        eduProgramDocuments,
+                        "itemprop=\"OOP_main\"",
+                        DocumentGroupPlacement.AfterTitle,
+                        delegate {
+                            return FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title,
+                                ProfileCode,
+                                ProfileTitle);
+                        }
+                    );
+                }
+
+                // show edu. program profile title w/o link
+                return "<span itemprop=\"OOP_main\">"
+                    + FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
+                    + "</span>";
+            }
+        }
+
+        public string EduPlan_Links
+        {
+            get { 
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduPlan)),
+                    "itemprop=\"education_plan\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
+        }
+
+        public string EduSchedule_Links
+        {
+            get { 
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
+                    "itemprop=\"education_shedule\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
+        }
+
+        public string WorkProgramAnnotation_Links
+        {
+            get {
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
+                    "itemprop=\"education_annotation\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
+        }
+
+        public string EduMaterial_Links
+        {
+            get {
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
+                    "itemprop=\"methodology\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
+        }
+
+        public string Contingent_Links
+        {
+            get {
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.Contingent)),
+                    "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
+        }
+
+        public string ContingentMovement_Links
+        {
+            get {
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
+                    "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
+        }
+
+        public string WorkProgramOfPractice_Links
+        {
+            get {
+                var wpopDocuments = GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.WorkProgramOfPractice));
+
+                // get all groups
+                var groups = wpopDocuments
+                    .Select (d => d.Group)
+                    .Distinct ();
+
+                var markupBuilder = new StringBuilder ();
+                var groupMarkupBuilder = new StringBuilder ();
+
+                var groupCount = 0;
+                foreach (var group in groups) {
+                    var index = 0;
+                    foreach (var document in wpopDocuments.Where (d => d.Group == group)) {
+                        var linkMarkup = document.FormatDocumentLink_WithMicrodata (
+                                         null,   
+                                         (++index).ToString (),
+                                         false,
+                                         DocumentGroupPlacement.None,
+                                         Context.Module.TabId,
+                                         Context.Module.ModuleId,
+                                         "itemprop=\"EduPr\""
+                                     );
+
+                        if (!string.IsNullOrEmpty (linkMarkup)) {
+                            // use AppendLine to add whitespace between <a> tags
+                            groupMarkupBuilder.AppendLine (linkMarkup);
+                        }
+                    }
+
+                    var groupMarkup = groupMarkupBuilder.ToString ();
+                    if (!string.IsNullOrEmpty (groupMarkup)) {
+                        markupBuilder.Append ("<li>" + TextUtils.FormatList (": ", group, groupMarkup) + "</li>");
+                        groupCount++;
+                    }
+
+                    // reuse StringBuilder
+                    groupMarkupBuilder.Clear ();
+                }
+
+                var markup = markupBuilder.ToString ();
+                if (!string.IsNullOrEmpty (markup)) {
+                    return ((groupCount == 1)? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
+                }
+
+                return string.Empty;
+            }
+        }
+
         private static char [] languageCodeSeparator = { ';' };
 
-        public string LanguagesString
+        public string Languages_String
         {
             get {
                 if (Languages != null) {
@@ -411,5 +339,7 @@ namespace R7.University.EduProgramProfileDirectory
                 return string.Empty;
             }
         }
+
+        #endregion
     }
 }

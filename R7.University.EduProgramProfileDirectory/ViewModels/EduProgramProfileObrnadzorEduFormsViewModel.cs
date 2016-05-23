@@ -123,7 +123,7 @@ namespace R7.University.EduProgramProfileDirectory
         {
             Model = model;
             Context = context;
-            Index = indexer.GetNextIndex ();
+            Order = indexer.GetNextIndex ();
         }
 
         protected IEduProgramProfileForm FullTimeForm
@@ -199,12 +199,7 @@ namespace R7.University.EduProgramProfileDirectory
             }
         }
 
-        public int Index { get; protected set; }
-
-        public string IndexString
-        {
-            get { return Index + "."; }
-        }
+        public int Order { get; protected set; }
 
         public string Code
         {

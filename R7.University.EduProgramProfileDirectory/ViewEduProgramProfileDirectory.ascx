@@ -21,7 +21,7 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="IndexString" />
+                        <asp:BoundField DataField="Order" HeaderText="Order" DataFormatString="{0}." />
                         <asp:BoundField DataField="Code" HtmlEncode="false" />
                         <asp:BoundField DataField="Title" />
                         <asp:BoundField DataField="EduLevelString" HtmlEncode="false" />
@@ -48,17 +48,17 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="IndexString" HeaderText="Index" />
+                        <asp:BoundField DataField="Order" HeaderText="Order" DataFormatString="{0}." />
                         <asp:BoundField DataField="Code" HtmlEncode="false" />
-                        <asp:BoundField DataField="EduProgramLink" HtmlEncode="false" HeaderText="Title" />
-                        <asp:BoundField DataField="EduPlanLinks" HtmlEncode="false" HeaderText="EduPlan" />
-                        <asp:BoundField DataField="WorkProgramAnnotationLink" HtmlEncode="false" HeaderText="WorkProgramAnnotation" />
-                        <asp:BoundField DataField="EduScheduleLinks" HtmlEncode="false" HeaderText="EduSchedule" />
-                        <asp:BoundField DataField="WorkProgramOfPracticeLinks" HtmlEncode="false" HeaderText="WorkProgramOfPractice" />
-                        <asp:BoundField DataField="EduMaterialLink" HtmlEncode="false" HeaderText="EduMaterial" />
-                        <asp:BoundField DataField="LanguagesString" HtmlEncode="false" HeaderText="Languages" />
-                        <asp:BoundField DataField="ContingentLink" HtmlEncode="false" HeaderText="Contingent" />
-                        <asp:BoundField DataField="ContingentMovementLink" HtmlEncode="false" HeaderText="ContingentMovement" />
+                        <asp:BoundField DataField="EduProgram_Links" HtmlEncode="false" HeaderText="Title" />
+                        <asp:BoundField DataField="EduPlan_Links" HtmlEncode="false" HeaderText="EduPlan" />
+                        <asp:BoundField DataField="WorkProgramAnnotation_Links" HtmlEncode="false" HeaderText="WorkProgramAnnotation" />
+                        <asp:BoundField DataField="EduSchedule_Links" HtmlEncode="false" HeaderText="EduSchedule" />
+                        <asp:BoundField DataField="WorkProgramOfPractice_Links" HtmlEncode="false" HeaderText="WorkProgramOfPractice" />
+                        <asp:BoundField DataField="EduMaterial_Links" HtmlEncode="false" HeaderText="EduMaterial" />
+                        <asp:BoundField DataField="Languages_String" HtmlEncode="false" HeaderText="Languages" />
+                        <asp:BoundField DataField="Contingent_Links" HtmlEncode="false" HeaderText="Contingent" />
+                        <asp:BoundField DataField="ContingentMovement_Links" HtmlEncode="false" HeaderText="ContingentMovement" />
                     </Columns>
                 </asp:GridView>
             </div>
