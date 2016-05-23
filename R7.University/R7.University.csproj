@@ -158,6 +158,8 @@
     <Compile Include="Data\DivisionRepository.cs" />
     <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
+    <Compile Include="ViewModels\IndexedEnumerable.cs" />
+    <Compile Include="ViewModels\IIndexer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

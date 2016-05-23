@@ -28,7 +28,7 @@ using System;
 
 namespace R7.University.ViewModels
 {
-    public class ViewModelIndexer
+    public class ViewModelIndexer: IIndexer
     {
         private int index;
 
