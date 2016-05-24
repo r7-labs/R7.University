@@ -65,6 +65,9 @@
     /* from ui-widget-content */
     background: #ffffff;
     border: 1px solid #aaaaaa;
+
+    max-height:16em;
+    overflow:auto;
 }
 
 .ui-menu .ui-menu-item {
