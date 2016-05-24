@@ -34,6 +34,7 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
@@ -49,7 +50,7 @@ namespace R7.University.DivisionDirectory
 
     public partial class ViewDivisionDirectory : PortalModuleBase<DivisionDirectorySettings>
     {
-        #region Properties
+        #region Session properties
 
         protected string SearchText
         {
@@ -60,11 +61,11 @@ namespace R7.University.DivisionDirectory
             set { Session ["DivisionDirectory.SearchText." + TabModuleId] = value; }
         }
 
-        protected string SearchDivision
+        protected int SearchDivision
         {
             get { 
                 var objSearchDivision = Session ["DivisionDirectory.SearchDivision." + TabModuleId];
-                return (string) objSearchDivision ?? Null.NullInteger.ToString ();
+                return objSearchDivision != null ? (int) objSearchDivision : Null.NullInteger;
 
             }
             set { Session ["DivisionDirectory.SearchDivision." + TabModuleId] = value; }
@@ -83,7 +84,6 @@ namespace R7.University.DivisionDirectory
         #endregion
 
         private ViewModelContext viewModelContext;
-
         protected ViewModelContext ViewModelContext
         {
             get { 
@@ -116,14 +116,13 @@ namespace R7.University.DivisionDirectory
                     .Where (d => d.IsPublished || IsEditable)
                     .OrderBy (d => d.Title).ToList ();
                 
-                divisions.Insert (0, new DivisionInfo
-                    {
-                        DivisionID = Null.NullInteger, 
-                        Title = LocalizeString ("AllDivisions.Text") 
-                    });
-           
                 treeDivisions.DataSource = divisions;
                 treeDivisions.DataBind ();
+
+                // select first node
+                if (treeDivisions.Nodes.Count > 0) {
+                    treeDivisions.Nodes [0].Selected = true;
+                }
 
                 // REVIEW: Level should be set in settings?
                 R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
@@ -146,15 +145,25 @@ namespace R7.University.DivisionDirectory
             try {
                 if (!IsPostBack) {
                     if (Settings.Mode == DivisionDirectoryMode.Search) {
-                        if (!string.IsNullOrWhiteSpace (SearchText) || !string.IsNullOrWhiteSpace (SearchDivision)) {
+                        if (!string.IsNullOrWhiteSpace (SearchText) || !Null.IsNull (SearchDivision)) {
+
                             // restore current search
                             textSearch.Text = SearchText;
-                            R7.University.Utilities.Utils.SelectAndExpandByValue (treeDivisions, SearchDivision);
-                            checkIncludeSubdivisions.Checked = SearchIncludeSubdivisions;
+
+                            if (Null.IsNull (SearchDivision)) {
+                                // select first node
+                                if (treeDivisions.Nodes.Count > 0) {
+                                    treeDivisions.Nodes [0].Selected = true;
+                                }
+                            }
+                            else {
+                                treeDivisions.SelectAndExpandByValue (SearchDivision.ToString ());
+                            }
 
                             // perform search
-                            if (SearchParamsOK (SearchText, SearchDivision, SearchIncludeSubdivisions, false))
-                                DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions);
+                            if (SearchParamsOK (SearchText, SearchDivision, false)) {
+                                DoSearch (SearchText, SearchDivision);
+                            }
                         }
                     }
                     else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
@@ -185,44 +194,30 @@ namespace R7.University.DivisionDirectory
 
         protected bool SearchParamsOK (
             string searchText,
-            string searchDivision,
-            bool includeSubdivisions,
+            int searchDivision,
             bool showMessages = true)
         {
-            var divisionIsSpecified = TypeUtils.ParseToNullable<int> (searchDivision) != null;
+            var divisionNotSpecified = Null.IsNull (searchDivision);
             var searchTextIsEmpty = string.IsNullOrWhiteSpace (searchText);
 
             // no search params - shouldn't perform search
-            if (searchTextIsEmpty && !divisionIsSpecified) {
-                if (showMessages)
+            if (searchTextIsEmpty && divisionNotSpecified) {
+                if (showMessages) {
                     this.Message ("SearchParams.Warning", MessageType.Warning, true);
+                }
 
                 gridDivisions.Visible = false;
                 return false;
             }
-                
-            // There are not much divisions as employees, so it's OK to don't check search phrase length
-            /*
-            if ((!divisionIsSpecified || // no division specified
-                (divisionIsSpecified && includeSubdivisions)) && // division specified, but subdivisions flag is set
-                (searchTextIsEmpty || // search phrase is empty
-                (!searchTextIsEmpty && searchText.Length < 3))) // search phrase is too short
-            {
-                if (showMessages)
-                    Utils.Message (this, "SearchPhrase.Warning", MessageType.Warning, true);
 
-                gridDivisions.Visible = false;
-                return false;
-            }*/
-           
             return true;
         }
 
-        protected void DoSearch (string searchText, string searchDivision, bool includeSubdivisions)
+        protected void DoSearch (string searchText, int searchDivision)
         {
             // REVIEW: If division is not published, it's child divisions also should not
             var divisions = DivisionRepository.Instance
-                .FindDivisions (searchText, includeSubdivisions, searchDivision)
+                .FindDivisions (searchText, searchDivision)
                 .Where (d => d.IsPublished || IsEditable); 
 
             if (!divisions.Any ()) {
@@ -240,17 +235,15 @@ namespace R7.University.DivisionDirectory
         {
             var searchText = textSearch.Text.Trim ();
             var searchDivision = (treeDivisions.SelectedNode != null) ? 
-                treeDivisions.SelectedNode.Value : Null.NullInteger.ToString ();
-            var includeSubdivisions = checkIncludeSubdivisions.Checked;
-
-            if (SearchParamsOK (searchText, searchDivision, includeSubdivisions)) {
+                int.Parse (treeDivisions.SelectedNode.Value) : Null.NullInteger;
+           
+            if (SearchParamsOK (searchText, searchDivision)) {
                 // save current search
                 SearchText = searchText;
                 SearchDivision = searchDivision;
-                SearchIncludeSubdivisions = includeSubdivisions;
-
+               
                 // perform search
-                DoSearch (SearchText, SearchDivision, SearchIncludeSubdivisions);
+                DoSearch (SearchText, SearchDivision);
             }
         }
 

@@ -4,16 +4,16 @@
 
 function dd_treeNodeClicked (sender, eventArgs) {
     var nodeText = eventArgs.get_node ().get_text ();
-    $(".divisionDirectory #linkDivisions").text (dd_shorten (35, nodeText));
-    $(".divisionDirectory #linkDivisions").attr ("title", nodeText);
-    $(".divisionDirectory #hiddenDivisions").hide ();
+    $(".division-directory #linkDivisions").text (dd_shorten (35, nodeText));
+    $(".division-directory #linkDivisions").attr ("title", nodeText);
+    $(".division-directory #hiddenDivisions").hide ();
 }
 
 function dd_treeLoad (sender, eventArgs) {
     var nodes = sender.get_selectedNodes ();
     if (nodes.length > 0) {
         var nodeText = nodes [0].get_text ();
-         $(".divisionDirectory #linkDivisions").text (dd_shorten (35, nodeText));
-         $(".divisionDirectory #linkDivisions").attr ("title", nodeText);
+         $(".division-directory #linkDivisions").text (dd_shorten (35, nodeText));
+         $(".division-directory #linkDivisions").attr ("title", nodeText);
     }
 }

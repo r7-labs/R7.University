@@ -52,10 +52,11 @@ namespace R7.University.Data
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
-        public IEnumerable<DivisionInfo> FindDivisions (string searchText, bool includeSubdivisions, string divisionId)
+        public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
         {
+            // TODO: Remove @includeSubdivision argument from sp
             return DataProvider.GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
-                "{databaseOwner}[{objectQualifier}University_FindDivisions]", searchText, includeSubdivisions, divisionId);
+                "{databaseOwner}[{objectQualifier}University_FindDivisions]", searchText, true, divisionId);
         }
 
         public EmployeeInfo GetHeadEmployee (int divisionId, int? headPositionId)

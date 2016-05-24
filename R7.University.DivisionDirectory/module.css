@@ -1,13 +1,14 @@
-﻿.divisionDirectory .gridDivisions { width:100% }
+﻿.division-directory .grid-divisions,
+.division-directory .grid-obrnadzor-divisions { width:100% }
 
-.divisionDirectory .textSearch 
+.division-directory .textSearch 
 { 
     float:left;
     width:33%!important;
     margin-right:0.5em 
 }
 
-.divisionDirectory .linkDivisions 
+.division-directory .linkDivisions 
 { 
     min-width:15em;
     padding:6px;
@@ -17,16 +18,16 @@
     text-shadow:none; 
 }
 
-.divisionDirectory .linkSearch { float:left }
+.division-directory .linkSearch { float:left }
 
-.divisionDirectory .wrapperDivisions
+.division-directory .wrapperDivisions
 {
     position:relative;
     float:left;
     margin-right:0.5em
 }
 
-.divisionDirectory #hiddenDivisions
+.division-directory #hiddenDivisions
 {
     display:none;
     position:absolute;
@@ -42,37 +43,35 @@
     box-shadow:0 0 5px #ccc
 }
 
-.divisionDirectory ._nonpublished { background-color:#ffc }
-
 /* add more here for deeper hierarchies */
 /* first 2 levels w/o indent (base 8px), next + 6px per level */
-.divisionDirectory table td.level-1 { }
-.divisionDirectory table td.level-2 { padding-left: 14px }
-.divisionDirectory table td.level-3 { padding-left: 20px }
-.divisionDirectory table td.level-4 { padding-left: 26px }
-.divisionDirectory table td.level-5 { padding-left: 32px }
-.divisionDirectory table td.level-6 { padding-left: 38px }
-.divisionDirectory table td.level-7 { padding-left: 44px }
-.divisionDirectory table td.level-8 { padding-left: 50px }
-.divisionDirectory table td.level-9 { padding-left: 56px }
-.divisionDirectory table td.level-10 { padding-left: 62px }
+.division-directory table td.level-1 { }
+.division-directory table td.level-2 { padding-left: 14px }
+.division-directory table td.level-3 { padding-left: 20px }
+.division-directory table td.level-4 { padding-left: 26px }
+.division-directory table td.level-5 { padding-left: 32px }
+.division-directory table td.level-6 { padding-left: 38px }
+.division-directory table td.level-7 { padding-left: 44px }
+.division-directory table td.level-8 { padding-left: 50px }
+.division-directory table td.level-9 { padding-left: 56px }
+.division-directory table td.level-10 { padding-left: 62px }
 
-.divisionDirectory table tr.return {
+.division-directory table tr.return {
     border-top-style: solid;
     border-top-color: #ddd
 }
 
 /* add more here for deeper hierarchies */
-.divisionDirectory table tr.return.return-1 { border-top-width: 2px }
-.divisionDirectory table tr.return.return-2 { border-top-width: 3px }
-.divisionDirectory table tr.return.return-3 { border-top-width: 4px }
-.divisionDirectory table tr.return.return-4 { border-top-width: 5px }
-.divisionDirectory table tr.return.return-5 { border-top-width: 6px }
-.divisionDirectory table tr.return.return-6 { border-top-width: 7px }
-.divisionDirectory table tr.return.return-7 { border-top-width: 8px }
-.divisionDirectory table tr.return.return-8 { border-top-width: 9px }
-.divisionDirectory table tr.return.return-9 { border-top-width: 10px }
-.divisionDirectory table tr.return.return-10 { border-top-width: 11px }
+.division-directory table tr.return.return-1 { border-top-width: 2px }
+.division-directory table tr.return.return-2 { border-top-width: 3px }
+.division-directory table tr.return.return-3 { border-top-width: 4px }
+.division-directory table tr.return.return-4 { border-top-width: 5px }
+.division-directory table tr.return.return-5 { border-top-width: 6px }
+.division-directory table tr.return.return-6 { border-top-width: 7px }
+.division-directory table tr.return.return-7 { border-top-width: 8px }
+.division-directory table tr.return.return-8 { border-top-width: 9px }
+.division-directory table tr.return.return-9 { border-top-width: 10px }
+.division-directory table tr.return.return-10 { border-top-width: 11px }
 
-.divisionDirectory .not-published { background-color:#ffc }
-.divisionDirectory .not-published:hover { background-color:#fefe97 }
+.division-directory .not-published { background-color:#ffc }
+.division-directory .not-published:hover { background-color:#fefe97 }

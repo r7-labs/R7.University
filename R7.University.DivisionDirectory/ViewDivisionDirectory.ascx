@@ -5,16 +5,14 @@
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.DivisionDirectory/js/tree.js" />
 
-<div class="dnnForm dnnClear divisionDirectory">
+<div class="dnnForm dnnClear division-directory">
     <asp:MultiView id="mviewDivisionDirectory" runat="server">
         <asp:View id="viewSearch" runat="server">
             <asp:Panel runat="server" DefaultButton="linkSearch" CssClass="dnnFormItem dnnClear">
-                <div class="wrapperSearchFlags">
-                    <asp:CheckBox id="checkIncludeSubdivisions" runat="server" resourcekey="checkIncludeSubdivisions.Text" />
-                </div>
+                <div class="wrapperSearchFlags" />
                 <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
                 <div class="wrapperDivisions">
-                    <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('.divisionDirectory #hiddenDivisions').toggle ()"><%= LocalizeString ("AllDivisions.Text") %></a>
+                    <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('.division-directory #hiddenDivisions').toggle ()"></a>
                     <div id="hiddenDivisions">
                         <dnn:DnnTreeView id="treeDivisions" runat="server" 
                             OnClientLoad="dd_treeLoad"
@@ -29,7 +27,7 @@
                 <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
             </asp:Panel>
             <asp:GridView id="gridDivisions" runat="server" Visible="false" AutoGenerateColumns="false"
-                UseAccessibleHeader="true" CssClass="table table-stripped table-bordered table-hover gridDivisions" 
+                UseAccessibleHeader="true" CssClass="table table-stripped table-bordered table-hover grid-divisions" 
                 GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridDivisions_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
@@ -77,7 +75,7 @@
             <div class="table-responsive">
                 <asp:GridView id="gridObrnadzorDivisions" runat="server" AutoGenerateColumns="false" 
                         UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
-                        CssClass="table table-bordered table-stripped table-hover" GridLines="None" Width="100%">
+                        CssClass="table table-bordered table-stripped table-hover grid-obrnadzor-divisions" GridLines="None">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
