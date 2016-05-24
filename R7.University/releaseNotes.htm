@@ -1,4 +1,38 @@
 ﻿<div style="white-space:normal">
+
+<h3>Version 1.8.0</h3>
+<p>Major end-user changes:</p>
+<ul>
+    <li>Fix #102: [EditEmployee] Validate duplicate discipline entries.</li>
+    <li>Fix #103: [Employee] Cannot change module permissions.</li>
+    <li>Fix #108: [Employee Directory] Greatly improve performance in the teachers view mode by reducing number of db requests and use caching.</li>
+    <li>Implement #41: Global settings in YAML format (see R7.University.yml file in the portal root).</li>
+    <li>Implement #49: [EmployeeList] New module setting to hide head employee from the list.</li>
+    <li>Implement #84: [EmployeeDirectory, DivisionDirectory] Less restrictive search.</li>
+    <li>Implement #96: [A11y] Use accessible header for all public grids.</li>
+    <li>Implement #98: [Model] Document type now required for a document.</li>
+    <li>Implement #100: [Model] use StartDate/EndDate instead of IsPublished for an employee.</li>
+    <li>Implement #104: [EditEmployee] Improve selection of edu. program profiles by adding edu. level dropdown.</li>
+    <li>Implement #112: [EduProgramDirectory] Add support for new system document type: professional standard.</li>
+    <li>Implement #115: [EduProgramProfileDirectory] now can display multiple document links of any doc. type in a single cell using new Group property.</li>
+    <li>[Model] Now you cannot delete edu. level, document type or edu. program entry if there some linked entries exists.</li>
+    <li>[Employee, EmployeeList] Add validators for PhotoWidth fields.</li>
+    <li>[Employee Directory] Hide not published edu. profiles from regular users.</li>
+    <li>[EduProgramProfileDirectory] Improve performance by caching.</li>
+    <li>[EduProgramDirectory] Module now can display multiple standard links in a single cell.</li>
+    <li>[EduProgramDirectory] Add settings to show or hide edu. level, prof. standard and generation columns.</li>
+    <li>[UI] Not published items preserve distinct look on mouse hover.</li>
+</ul>
+<p>Notable developer changes:</p>
+<ul>
+    <li>The DotNetNuke.R7 library replaced with R7.DotNetNuke.Extensions.</li>
+    <li>Add formal R7.ImageHandler dependency in the manifest.</li>
+    <li>Implement #106: Replace AjaxControlTookit.Combobox with jQuery UI based script, drop AjaxControlToolkit dependency.</li>
+    <li>[EmployeeList, Employee] Drop render cache implementation in favor of data cache.</li>
+    <li>[EmployeeList, Employee] Drop render cache implementation in favor of data cache.</li>
+    <li>Massive refactoring and cleanup, close many code tasks (many new also added), apply new formatting rules.</li>
+</ul>
+
 <h3>Version 1.7.5</h3>
 <p>This release provide some fixes for EditEmployee form.</p>
 <ul>
@@ -6,6 +40,7 @@
     <li>EditEmployee: Fix "Achivements" typo in resources.</li>
     <li>EditEmployee: Add missing colons for labels in russian tranlation.</li>
 </ul>
+
 <h3>Version 1.7.4</h3>
 <p>This release brings extra usability improvements.</p>
 <ul>
@@ -22,6 +57,7 @@
     <li>Adjust AjaxControlToolkit.ComboBox button width.</li>
     <li>Some code refactoring and cleanup.</li>
 </ul>
+
 <h3>Version 1.7.3</h3>
 <p>This release brings some usability improvements.</p>
 <ul>
@@ -33,12 +69,14 @@
     <li>EditEduProgramProfile: Add button to edit selected edu. program.</li>
     <li>EditDocuments: Don't reset document and URL types.</li>
 </ul>
+
 <h3>Version 1.7.2</h3>
 <ul>
     <li>Launchpad: Quickfix for null ShortTitle (relate to #32).</li>
     <li>Update DotNetNuke.R7 to 0.3.1.</li>
     <li>Fix #99: Issues when creating edu. program profiles.</li>
 </ul>
+
 <h3>Version 1.7.1</h3>
 <ul>
     <li>Upgrade AjaxControlToolkit to 15.1.4.</li>
@@ -162,8 +200,8 @@ Also make database backup before upgrading!</p>
 <h3>Version 1.2.0</h3>
 <ul>
     <li>Support for employee and educational programs / disciplines binding.</li>
-    <li>EditEmployee: AcademicTitle & AcademicDegree field now hidden.</li>
-    <li>AcademicTitle & AcademicDegree implemented as separate achievement types.</li>
+    <li>EditEmployee: AcademicTitle &amp; AcademicDegree field now hidden.</li>
+    <li>AcademicTitle &amp; AcademicDegree implemented as separate achievement types.</li>
     <li>EmployeeDirectory: New display mode to show all teachers groupped by educational programs (obrnadzor.gov.ru requirements).</li>
     <li>DivisionDirectory: New display mode to show all divisions (obrnadzor.gov.ru requirements).</li>
 </ul>
@@ -171,7 +209,7 @@ Also make database backup before upgrading!</p>
 <h3>Version 1.1.8</h3>
 <ul>
     <li>Implemented #63: Added EmployeeDetails module.</li>
-    <li>EmployeeDetails: Optimize & fix table painting script.</li>
+    <li>EmployeeDetails: Optimize &amp; fix table painting script.</li>
     <li>Localization updated.</li>
     <li>Other small improvements and fixes.</li>
 </ul>
@@ -356,4 +394,5 @@ Also make database backup before upgrading!</p>
 
 <h3>Version 1.0.0</h3>
 <p>This is the initial release.</p>
+
 </div>
