@@ -35,14 +35,19 @@ namespace R7.University.EmployeeList.ViewModels
 {
     public class EmployeeListViewModel
     {
-        public ViewModelContext<EmployeeListSettings> Context { get; protected set; }
+        protected ViewModelContext<EmployeeListSettings> Context;
+
+        public EmployeeListViewModel SetContext (ViewModelContext<EmployeeListSettings> context)
+        {
+            Context = context;
+            return this;
+        }
 
         public EmployeeListViewModel (IEnumerable<IEmployee> employees, 
-            IDivision division, ViewModelContext<EmployeeListSettings> context)
+            IDivision division)
         {
             Employees = employees;
             Division = division;
-            Context = context;
         }
 
         public IDivision Division  { get; protected set; }

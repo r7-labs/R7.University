@@ -78,7 +78,7 @@ namespace R7.University.EmployeeList
             return DataCache.GetCachedData<EmployeeListViewModel> (
                 new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetViewModel_Internal ()
-            );
+            ).SetContext (ViewModelContext);
         }
 
         protected EmployeeListViewModel GetViewModel_Internal ()
@@ -89,8 +89,7 @@ namespace R7.University.EmployeeList
                     Settings.IncludeSubdivisions, Settings.SortType)
                     .WithAchievements ()
                     .WithOccupiedPositions (Settings.DivisionID),
-                DivisionRepository.Instance.GetDivision (Settings.DivisionID),
-                ViewModelContext
+                DivisionRepository.Instance.GetDivision (Settings.DivisionID)
             );
         }
 
