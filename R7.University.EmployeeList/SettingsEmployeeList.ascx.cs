@@ -99,7 +99,7 @@ namespace R7.University.EmployeeList
                     Settings.PhotoWidth = Null.NullInteger;
 
                 ModuleController.SynchronizeModule (ModuleId);
-                CacheHelper.RemoveCacheByPrefix ("//r7_University/EmployeeList?TabModuleId=" + TabModuleId);
+                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

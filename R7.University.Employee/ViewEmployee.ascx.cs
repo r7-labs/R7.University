@@ -60,7 +60,7 @@ namespace R7.University.Employee
                 return GetEmployee_CurrentUser_Internal ();
             }
 
-            return DataCache.GetCachedData<IEmployee> (new CacheItemArgs ("//r7_University/Employee?ModuleId=" + ModuleId,
+            return DataCache.GetCachedData<IEmployee> (new CacheItemArgs ("//r7_University/Modules/Employee?ModuleId=" + ModuleId,
                 UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEmployee_Internal ()
             );

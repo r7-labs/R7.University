@@ -103,7 +103,7 @@ namespace R7.University.Employee
                     Settings.PhotoWidth = Null.NullInteger;
 				
                 ModuleController.SynchronizeModule (ModuleId);
-                CacheHelper.RemoveCacheByPrefix ("//r7_University/Employee?ModuleId=" + ModuleId);
+                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/Employee?ModuleId=" + ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

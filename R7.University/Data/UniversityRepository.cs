@@ -26,13 +26,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
-using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
-using R7.University.Models;
+using R7.University.Components;
 
 namespace R7.University.Data
 {
@@ -88,6 +85,7 @@ namespace R7.University.Data
                     }
 
                     ctx.Commit ();
+                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
                 }
                 catch {
                     ctx.RollbackTransaction ();
@@ -130,6 +128,7 @@ namespace R7.University.Data
                     }
 
                     ctx.Commit ();
+                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
                 }
                 catch {
                     ctx.RollbackTransaction ();

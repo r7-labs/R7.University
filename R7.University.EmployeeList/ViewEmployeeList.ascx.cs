@@ -67,7 +67,7 @@ namespace R7.University.EmployeeList
         // REVIEW: Move to repository class?
         protected IEnumerable<IEmployee> GetEmployees ()
         {
-            var cacheKey = "//r7_University/EmployeeList?TabModuleId=" + TabModuleId;
+            var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
             return DataCache.GetCachedData<IEnumerable<IEmployee>> (
                 new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEmployees_Internal ()
