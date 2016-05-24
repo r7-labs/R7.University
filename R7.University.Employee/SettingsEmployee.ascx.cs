@@ -75,9 +75,7 @@ namespace R7.University.Employee
 
                     checkAutoTitle.Checked = Settings.AutoTitle;
                     checkShowCurrentUser.Checked = Settings.ShowCurrentUser;
-					
-                    if (!Null.IsNull (Settings.PhotoWidth))
-                        textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
+					textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
                 }
             }
             catch (Exception ex) {
@@ -92,16 +90,10 @@ namespace R7.University.Employee
         {
             try {
                 Settings.ShowCurrentUser = checkShowCurrentUser.Checked;
-
                 Settings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
-
                 Settings.AutoTitle = checkAutoTitle.Checked;
+                Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
 
-                if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
-                    Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
-                else
-                    Settings.PhotoWidth = Null.NullInteger;
-				
                 ModuleController.SynchronizeModule (ModuleId);
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/Employee?ModuleId=" + ModuleId);
             }

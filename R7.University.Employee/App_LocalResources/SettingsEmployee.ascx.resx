@@ -30,4 +30,10 @@
 	<data name="labelPhotoWidth.Help" xml:space="preserve">
     	<value>Enter photo width in pixels, or leave empty to use original photo size.</value>
   	</data>
+    <data name="PhotoWidth.Required" xml:space="preserve">
+        <value>Photo width is required.</value>
+    </data>
+    <data name="PhotoWidth.Invalid" xml:space="preserve">
+        <value>Photo width should be integer between 1 and 1024.</value>
+    </data>
 </root>

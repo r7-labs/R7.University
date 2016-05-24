@@ -18,17 +18,22 @@
                 DataTextField="AbbrName"
             />
         </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" />
+            <asp:CheckBox id="checkShowCurrentUser" runat="server" Checked="false" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" />
+            <asp:CheckBox id="checkAutoTitle" runat="server" Checked="true" />
+        </div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" />
-			<asp:TextBox id="textPhotoWidth" runat="server" Style="width:100px" />
-		</div>
-		<div class="dnnFormItem">
-			<dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" />
-			<asp:CheckBox id="checkShowCurrentUser" runat="server" Checked="false" />
-		</div>
-		<div class="dnnFormItem">
-			<dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" />
-			<asp:CheckBox id="checkAutoTitle" runat="server" Checked="true" />
+			<asp:TextBox id="textPhotoWidth" runat="server" />
+            <asp:RangeValidator runat="server" resourcekey="PhotoWidth.Invalid"
+                ControlToValidate="textPhotoWidth" Type="Integer" MinimumValue="1" MaximumValue="1024"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+            <asp:RequiredFieldValidator runat="server" resourcekey="PhotoWidth.Required"
+                ControlToValidate="textPhotoWidth" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
 		</div>
 	</fieldset>	
 </div>
