@@ -74,9 +74,7 @@ namespace R7.University.EmployeeList
                     checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
                     checkHideHeadEmployee.Checked = Settings.HideHeadEmployee;
                     comboSortType.SelectByValue (Settings.SortType);
-
-                    if (!Null.IsNull (Settings.PhotoWidth))
-                        textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
+                    textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
                 }
             }
             catch (Exception ex) {
@@ -94,11 +92,7 @@ namespace R7.University.EmployeeList
                 Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
                 Settings.HideHeadEmployee = checkHideHeadEmployee.Checked;
                 Settings.SortType = int.Parse (comboSortType.SelectedValue);
-
-                if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))
-                    Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
-                else
-                    Settings.PhotoWidth = Null.NullInteger;
+                Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
 
                 ModuleController.SynchronizeModule (ModuleId);
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId);

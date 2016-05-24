@@ -12,4 +12,10 @@
     <data name="labelHideHeadEmployee.Help" xml:space="preserve">
         <value>Отметьте, чтобы скрыть в списке сотрудников руководителя выбранного подразделения. Эта настройка выключена по-умолчанию.</value>
     </data>
+    <data name="PhotoWidth.Required" xml:space="preserve">
+        <value>Укажите ширину фото.</value>
+    </data>
+    <data name="PhotoWidth.Invalid" xml:space="preserve">
+        <value>Ширина фото должна быть целым числом от 1 до 1024.</value>
+    </data>
 </root>
