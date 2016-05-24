@@ -40,18 +40,22 @@ namespace R7.University.EmployeeDirectory.ViewModels
     {
         public IEmployee Model { get; protected set; }
 
-        public IEduProgramProfile EduProgramProfile { get; protected set; }
+        public EmployeeDirectoryTeachersViewModel RootViewModel { get; protected set; }
 
-        public ViewModelContext Context { get; protected set; }
+        public IEduProgramProfile EduProgramProfile { get; protected set; }
 
         public ViewModelIndexer Indexer { get; protected set; }
 
-        public TeacherViewModel (IEmployee model, IEduProgramProfile eduProgramProfile, ViewModelContext context, ViewModelIndexer indexer)
+        public TeacherViewModel (IEmployee model, IEduProgramProfile eduProgramProfile, EmployeeDirectoryTeachersViewModel rootViewModel, ViewModelIndexer indexer)
         {
             Model = model;
-            Context = context;
+            RootViewModel = rootViewModel;
             EduProgramProfile = eduProgramProfile;
             Indexer = indexer;
+        }
+        public ViewModelContext Context
+        {
+            get { return RootViewModel.Context; }
         }
 
         #region IEmployee implementation

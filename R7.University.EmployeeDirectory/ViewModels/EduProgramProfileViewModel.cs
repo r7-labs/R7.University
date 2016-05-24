@@ -36,14 +36,19 @@ namespace R7.University.EmployeeDirectory.ViewModels
     {
         public IEduProgramProfile Model { get; protected set; }
 
-        public ViewModelContext Context { get; protected set; }
+        public EmployeeDirectoryTeachersViewModel RootViewModel { get; protected set; }
 
         public IndexedEnumerable<TeacherViewModel> Teachers { get; set; }
 
-        public EduProgramProfileViewModel (IEduProgramProfile model, ViewModelContext context)
+        public EduProgramProfileViewModel (IEduProgramProfile model, EmployeeDirectoryTeachersViewModel rootViewModel)
         {
             Model = model;
-            Context = context;
+            RootViewModel = rootViewModel;
+        }
+
+        public ViewModelContext Context
+        {
+            get { return RootViewModel.Context; }
         }
 
         #region IEduProgramProfile implementation

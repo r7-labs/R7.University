@@ -132,17 +132,19 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
-        protected IList<EduProgramProfileViewModel> GetEduProgramProfileViewModels ()
+        protected EmployeeDirectoryTeachersViewModel GetViewModel ()
         {
-            return DataCache.GetCachedData<IList<EduProgramProfileViewModel>> (
+            return DataCache.GetCachedData<EmployeeDirectoryTeachersViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EmployeeDirectory?ModuleId=" + ModuleId,
                     UniversityConfig.Instance.DataCacheTime, System.Web.Caching.CacheItemPriority.Normal),
-                c => GetEduProgramProfileViewModels_Internal ()
-            );
+                c => GetViewModel_Internal ()
+            ).SetContext (ViewModelContext);
         }
 
-        protected IList<EduProgramProfileViewModel> GetEduProgramProfileViewModels_Internal ()
+        protected EmployeeDirectoryTeachersViewModel GetViewModel_Internal ()
         {
+            var viewModel = new EmployeeDirectoryTeachersViewModel ();
+
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                 
                 .WithEduLevel (UniversityRepository.Instance.DataProvider)
@@ -151,7 +153,7 @@ namespace R7.University.EmployeeDirectory
                 .ThenBy (epp => epp.EduProgram.Title)
                 .ThenBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle)
-                .Select (epp => new EduProgramProfileViewModel (epp, ViewModelContext))
+                .Select (epp => new EduProgramProfileViewModel (epp, viewModel))
                 .ToList ();
 
             if (Settings.ShowAllTeachers) {
@@ -163,7 +165,7 @@ namespace R7.University.EmployeeDirectory
                                 Code = string.Empty,
                                 Title = LocalizeString ("NoDisciplines.Text")
                             }
-                    }, ViewModelContext)
+                    }, viewModel)
                 );
             }
 
@@ -196,12 +198,13 @@ namespace R7.University.EmployeeDirectory
                         eduProgramProfileTeachers
                             .OrderBy (t => t.LastName)
                             .ThenBy (t => t.FirstName)
-                            .Select (t => new TeacherViewModel (t, eduProgramProfile, ViewModelContext, indexer))
+                            .Select (t => new TeacherViewModel (t, eduProgramProfile, viewModel, indexer))
                     );
                 }
             }
 
-            return eduProgramProfiles;
+            viewModel.EduProgramProfiles = eduProgramProfiles;
+            return viewModel;
         }
 
         /// <summary>
@@ -238,7 +241,7 @@ namespace R7.University.EmployeeDirectory
                         }
                     }
                     else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
-                        repeaterEduProgramProfiles.DataSource = GetEduProgramProfileViewModels ()
+                        repeaterEduProgramProfiles.DataSource = GetViewModel ().EduProgramProfiles
                             .Where (epp => epp.IsPublished () || IsEditable);
                         repeaterEduProgramProfiles.DataBind ();
                     }
