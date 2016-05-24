@@ -43,14 +43,22 @@ namespace R7.University.EduProgramDirectory
             base.OnInit (e);
 
             // fill edulevels list
-            var eduLevels = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ().OrderBy (el => el.SortIndex);
+            var eduLevels = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ()
+                .OrderBy (el => el.SortIndex);
            
             foreach (var eduLevel in eduLevels) {
-                listEduLevels.Items.Add (new DnnListBoxItem
-                    { 
-                        Text = FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title),
-                        Value = eduLevel.EduLevelID.ToString ()
-                    });
+                listEduLevels.Items.Add (new DnnListBoxItem {
+                    Text = FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title),
+                    Value = eduLevel.EduLevelID.ToString ()
+                });
+            }
+
+            // fill columns list
+            foreach (var column in Enum.GetNames (typeof (EduProgramDirectoryColumn))) {
+                listColumns.Items.Add (new DnnListBoxItem {
+                    Text = LocalizeString ("EduProgram" + column + ".Column"),
+                    Value = column
+                });
             }
         }
 
@@ -64,6 +72,14 @@ namespace R7.University.EduProgramDirectory
                     // check edulevels list items
                     foreach (var eduLevelIdString in Settings.EduLevels) {
                         var item = listEduLevels.FindItemByValue (eduLevelIdString);
+                        if (item != null) {
+                            item.Checked = true;
+                        }
+                    }
+
+                    // check columns list items
+                    foreach (var columnString in Settings.Columns) {
+                        var item = listColumns.FindItemByValue (columnString);
                         if (item != null) {
                             item.Checked = true;
                         }
@@ -82,6 +98,7 @@ namespace R7.University.EduProgramDirectory
         {
             try {
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => i.Value).ToList ();
+                Settings.Columns = listColumns.CheckedItems.Select (i => i.Value).ToList ();
 
                 ModuleController.SynchronizeModule (ModuleId);
             }

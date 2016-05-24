@@ -18,12 +18,9 @@
                         <asp:BoundField DataField="Code" HeaderText="EduProgramCode" />
                         <asp:BoundField DataField="Title" HeaderText="EduProgramTitle" />
                         <asp:BoundField DataField="EduLevel_String" HeaderText="EduProgramEduLevel" />
-                        <asp:BoundField DataField="ProfStandard_Links" HeaderText="EduProgramProfStandard" HtmlEncode="false">
-                            <ItemStyle CssClass="standard-link"></ItemStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="EduStandard_Links" HeaderText="EduProgramEduStandard" HtmlEncode="false">
-                            <ItemStyle CssClass="standard-link"></ItemStyle>
-                        </asp:BoundField>
+                        <asp:BoundField DataField="Generation" HeaderText="EduProgramGeneration" />
+                        <asp:BoundField DataField="ProfStandard_Links" HeaderText="EduProgramProfStandard" HtmlEncode="false" />
+                        <asp:BoundField DataField="EduStandard_Links" HeaderText="EduProgramEduStandard" HtmlEncode="false" />
                     </Columns>
                 </asp:GridView>
             </div>

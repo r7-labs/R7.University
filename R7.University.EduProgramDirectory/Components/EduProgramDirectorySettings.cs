@@ -56,10 +56,23 @@ namespace R7.University.EduProgramDirectory.Components
         {
             get {
                 return ReadSetting<string> ("EduProgramDirectory_EduLevels", string.Empty)
-                    .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList ();
+                    .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList ();
             }
             set {
                 WriteModuleSetting<string> ("EduProgramDirectory_EduLevels", string.Join (";", value));
+            }
+        }
+
+        public IList<string> Columns
+        {
+            get {
+                return ReadSetting<string> ("EduProgramDirectory_Columns", string.Empty)
+                    .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList ();
+            }
+            set {
+                WriteTabModuleSetting<string> ("EduProgramDirectory_Columns", string.Join (";", value));
             }
         }
 

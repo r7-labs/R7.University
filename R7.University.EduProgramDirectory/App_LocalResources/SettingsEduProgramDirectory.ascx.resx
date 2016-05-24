@@ -4,7 +4,7 @@
         <value>EduProgramDirectory Settings</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;p&gt;About EduProgramDirectory settings module&lt;/p&gt;</value>
+        <value>&lt;p&gt;About EduProgramDirectory module settings&lt;/p&gt;</value>
     </data>
     <data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Not Selected &gt;</value>
@@ -14,5 +14,11 @@
     </data>
     <data name="labelEduLevels.Help" xml:space="preserve">
         <value>Check educational levels the module should display.</value>
+    </data>
+    <data name="labelColumns.Text" xml:space="preserve">
+        <value>Columns:</value>
+    </data>
+    <data name="labelColumns.Help" xml:space="preserve">
+        <value>Check additional columns to display.</value>
     </data>
 </root>

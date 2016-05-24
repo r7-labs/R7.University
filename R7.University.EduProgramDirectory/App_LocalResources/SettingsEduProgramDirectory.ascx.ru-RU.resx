@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>Настройки EduProgramDirectory</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;О настройках модуля EduProgramDirectory&lt;/p&gt;</value>
+    </data>
+    <data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Не выбрано &gt;</value>
+    </data>
+    <data name="labelEduLevels.Text" xml:space="preserve">
+        <value>Уровни образования:</value>
+    </data>
+    <data name="labelEduLevels.Help" xml:space="preserve">
+        <value>Отметьте уровни образования, отображаемые данным модулем.</value>
+    </data>
+    <data name="labelColumns.Text" xml:space="preserve">
+        <value>Столбцы:</value>
+    </data>
+    <data name="labelColumns.Help" xml:space="preserve">
+        <value>Отметьте дополнительные столбцы, которые требуется отобразить.</value>
+    </data>
+</root>
