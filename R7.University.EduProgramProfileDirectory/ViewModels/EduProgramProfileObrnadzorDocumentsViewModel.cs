@@ -36,23 +36,28 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 
-namespace R7.University.EduProgramProfileDirectory
+namespace R7.University.EduProgramProfileDirectory.ViewModels
 {
     public class EduProgramProfileObrnadzorDocumentsViewModel: IEduProgramProfile
     {
         public IEduProgramProfile Model { get; protected set; }
 
-        public ViewModelContext Context { get; protected set; }
+        public EduProgramProfileDirectoryDocumentsViewModel RootViewModel { get; protected set; }
+
+        protected ViewModelContext Context
+        {
+            get { return RootViewModel.Context; }
+        }
 
         public ViewModelIndexer Indexer { get; protected set; }
 
         public EduProgramProfileObrnadzorDocumentsViewModel (
             IEduProgramProfile model,
-            ViewModelContext context,
+            EduProgramProfileDirectoryDocumentsViewModel rootViewModel,
             ViewModelIndexer indexer)
         {
             Model = model;
-            Context = context;
+            RootViewModel = rootViewModel;
             Indexer = indexer;
         }
 

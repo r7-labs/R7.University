@@ -90,6 +90,8 @@
     <Compile Include="ViewModels\EduProgramProfileObrnadzorEduFormsViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileObrnadzorDocumentsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\EduProgramProfileDirectoryDocumentsViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileDirectoryEduFormsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />

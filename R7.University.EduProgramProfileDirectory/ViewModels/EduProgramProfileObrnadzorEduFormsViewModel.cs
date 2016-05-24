@@ -32,23 +32,28 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ViewModels;
 using R7.University.Models;
 
-namespace R7.University.EduProgramProfileDirectory
+namespace R7.University.EduProgramProfileDirectory.ViewModels
 {
     public class EduProgramProfileObrnadzorEduFormsViewModel: IEduProgramProfile
     {
         public IEduProgramProfile Model { get; protected set; }
 
-        public ViewModelContext Context { get; protected set; }
+        public EduProgramProfileDirectoryEduFormsViewModel RootViewModel { get; protected set; }
+
+        protected ViewModelContext Context
+        {
+            get { return RootViewModel.Context; }
+        }
 
         public ViewModelIndexer Indexer { get; protected set; }
 
         public EduProgramProfileObrnadzorEduFormsViewModel (
             IEduProgramProfile model,
-            ViewModelContext context,
+            EduProgramProfileDirectoryEduFormsViewModel rootViewModel,
             ViewModelIndexer indexer)
         {
             Model = model;
-            Context = context;
+            RootViewModel = rootViewModel;
             Indexer = indexer;
         }
 

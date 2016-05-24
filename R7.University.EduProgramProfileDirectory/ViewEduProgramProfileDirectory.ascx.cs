@@ -43,6 +43,7 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.EduProgramProfileDirectory.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
@@ -74,28 +75,30 @@ namespace R7.University.EduProgramProfileDirectory
 
         #region Get data
 
-        protected IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms ()
+        protected EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel ()
         {
-            return DataCache.GetCachedData<IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel>> (
+            return DataCache.GetCachedData<EduProgramProfileDirectoryEduFormsViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
-                c => GetEduProgramProfileEduForms_Internal ()
-            );
+                c => GetEduFormsViewModel_Internal ()
+            ).SetContext (ViewModelContext);
         }
 
-        protected IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments ()
+        protected EduProgramProfileDirectoryDocumentsViewModel GetDocumentsViewModel ()
         {
-            return DataCache.GetCachedData<IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel>> (
+            return DataCache.GetCachedData<EduProgramProfileDirectoryDocumentsViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
-                c => GetEduProgramProfileDocuments_Internal ()
-            );
+                c => GetDocumentsViewModel_Internal ()
+            ).SetContext (ViewModelContext);
         }
 
-        protected IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> GetEduProgramProfileEduForms_Internal ()
+        protected EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel_Internal ()
         {
+            var viewModel = new EduProgramProfileDirectoryEduFormsViewModel ();
             var indexer = new ViewModelIndexer (1);
-            return new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
+
+            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
                 EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                     .WithEduLevel (UniversityRepository.Instance.DataProvider)
                     .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
@@ -104,14 +107,18 @@ namespace R7.University.EduProgramProfileDirectory
                     .ThenBy (epp => epp.EduProgram.Title)
                     .ThenBy (epp => epp.ProfileCode)
                     .ThenBy (epp => epp.ProfileTitle)
-                    .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, ViewModelContext, indexer))
+                    .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
             );
+
+            return viewModel;
         }
 
-        protected IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> GetEduProgramProfileDocuments_Internal ()
+        protected EduProgramProfileDirectoryDocumentsViewModel GetDocumentsViewModel_Internal ()
         {
+            var viewModel = new EduProgramProfileDirectoryDocumentsViewModel ();
             var indexer = new ViewModelIndexer (1);
-            return new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
+
+            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
                 EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                     .WithEduLevel (UniversityRepository.Instance.DataProvider)
                     .WithDocuments (UniversityRepository.Instance.DataProvider)
@@ -120,8 +127,10 @@ namespace R7.University.EduProgramProfileDirectory
                     .ThenBy (epp => epp.EduProgram.Title)
                     .ThenBy (epp => epp.ProfileCode)
                     .ThenBy (epp => epp.ProfileTitle)
-                    .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, ViewModelContext, indexer))
+                    .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))
             );
+
+            return viewModel;
         }
 
         #endregion
@@ -203,7 +212,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void ObrnadzorEduFormsView ()
         {
-            var eduProgramProfiles = GetEduProgramProfileEduForms ()
+            var eduProgramProfiles = GetEduFormsViewModel ().EduProgramProfiles
                 .Where (epp => epp.IsPublished () || IsEditable);
 
             if (!eduProgramProfiles.IsNullOrEmpty ()) {
@@ -217,7 +226,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void ObrnadzorDocumentsView ()
         {
-            var eduProgramProfiles = GetEduProgramProfileDocuments ()
+            var eduProgramProfiles = GetDocumentsViewModel ().EduProgramProfiles
                 .Where (epp => epp.IsPublished () || IsEditable);
 
             if (!eduProgramProfiles.IsNullOrEmpty ()) {
