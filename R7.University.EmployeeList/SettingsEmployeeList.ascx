@@ -27,7 +27,7 @@
         </div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelSortType" runat="server" ControlName="comboSortType" />
-			<dnn:DnnComboBox id="comboSortType" runat="server"/>
+			<asp:DropDownList id="comboSortType" runat="server"/>
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelPhotoWidth" runat="server" ControlName="textPhotoWidth" />

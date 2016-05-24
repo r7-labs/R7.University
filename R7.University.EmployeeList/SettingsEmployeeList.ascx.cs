@@ -29,8 +29,10 @@ using System.Linq;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Components;
+using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EmployeeList.Components;
 using R7.University.Utilities;
@@ -71,8 +73,7 @@ namespace R7.University.EmployeeList
 
                     checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
                     checkHideHeadEmployee.Checked = Settings.HideHeadEmployee;
-
-                    comboSortType.Select (Settings.SortType.ToString (), false);
+                    comboSortType.SelectByValue (Settings.SortType);
 
                     if (!Null.IsNull (Settings.PhotoWidth))
                         textPhotoWidth.Text = Settings.PhotoWidth.ToString ();

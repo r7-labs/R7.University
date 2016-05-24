@@ -15,7 +15,7 @@ namespace R7.University.EmployeeList
         protected DnnTreeView treeDivisions;
         protected CheckBox checkIncludeSubdivisions;
         protected CheckBox checkHideHeadEmployee;
-        protected DnnComboBox comboSortType;
+        protected DropDownList comboSortType;
         protected TextBox textPhotoWidth;
     }
 }
