@@ -42,6 +42,7 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University.Data;
 using R7.University.ViewModels;
 using R7.University.EduProgramDirectory.Components;
+using R7.University.Models;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -158,7 +159,7 @@ namespace R7.University.EduProgramDirectory
             e.Row.Cells [0].Visible = IsEditable;
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                var eduProgram = (EduProgramInfo) e.Row.DataItem;
+                var eduProgram = (IEduProgram) e.Row.DataItem;
 
                 if (IsEditable) {
                     // get edit link controls
@@ -173,7 +174,7 @@ namespace R7.University.EduProgramDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!eduProgram.IsPublished) {
+                if (!eduProgram.IsPublished ()) {
                     e.Row.CssClass = "not-published";
                 }
             }

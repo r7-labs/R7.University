@@ -74,6 +74,11 @@ namespace R7.University.ModelExtensions
 
             return eduPrograms;
         }
+
+        public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgram eduProgram, SystemDocumentType documentType)
+        {
+            return eduProgram.Documents.Where (d => d.GetSystemDocumentType () == documentType);
+        }
     }
 }
 

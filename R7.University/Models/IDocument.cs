@@ -50,5 +50,7 @@ namespace R7.University.Models
 
         IDocumentType DocumentType { get; set; }
     }
+
+    public delegate string GetDocumentTitle (IDocument document);
 }
 

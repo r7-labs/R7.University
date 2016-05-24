@@ -68,9 +68,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.SortIndex);
         }
-
-        protected delegate string GetDocumentTitle (IDocument document);
-
+              
         protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
         {
             var markupBuilder = new StringBuilder ();

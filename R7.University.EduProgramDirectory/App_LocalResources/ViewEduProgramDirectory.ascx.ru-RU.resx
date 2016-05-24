@@ -18,10 +18,13 @@
     <data name="EduProgramEduLevel.Column" xml:space="preserve">
         <value>Уровень образования</value>
     </data>
-    <data name="EduProgramStandard.Column" xml:space="preserve">
-        <value>Стандарт</value>
+    <data name="EduProgramEduStandard.Column" xml:space="preserve">
+        <value>Образовательный стандарт</value>
     </data>
-    <data name="EduProgramStandardLink.Text" xml:space="preserve">
+    <data name="EduProgramProfStandard.Column" xml:space="preserve">
+        <value>Профессиональный стандарт</value>
+    </data>
+    <data name="LinkOpen.Text" xml:space="preserve">
         <value>открыть</value>
     </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">

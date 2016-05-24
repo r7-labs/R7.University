@@ -25,65 +25,160 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.Components;
+using R7.University.Data;
+using R7.University.ModelExtensions;
+using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using R7.University.Data;
-using R7.University.Models;
-using R7.University.ModelExtensions;
+using System.Text;
 
 namespace R7.University.EduProgramDirectory
 {
-    public class EduProgramStandardObrnadzorViewModel: EduProgramInfo
+    public class EduProgramStandardObrnadzorViewModel: IEduProgram
     {
+        public IEduProgram Model { get; protected set; }
+
+        public IIndexer Indexer { get; protected set; }
+
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramStandardObrnadzorViewModel (
-            EduProgramInfo ep,
-            ViewModelContext context,
-            ViewModelIndexer indexer)
+        public EduProgramStandardObrnadzorViewModel (EduProgramInfo model, ViewModelContext context, IIndexer indexer)
         {
-            CopyCstor.Copy<EduProgramInfo> (ep, this);
+            Model = model;
             Context = context;
-            Order = indexer.GetNextIndex ();
+            Indexer = indexer;
         }
 
-        public int Order { get; protected set; }
+        #region IEduProgram implementation
 
-        public string EduLevelString
+        public int EduProgramID
+        {
+            get { return Model.EduProgramID; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public int EduLevelID
+        {
+            get { return Model.EduLevelID; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public string Code
+        {
+            get { return Model.Code; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public string Title
+        {
+            get { return Model.Title; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public string Generation
+        {
+            get { return Model.Generation; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public DateTime? StartDate
+        {
+            get { return Model.StartDate; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public DateTime? EndDate
+        {
+            get { return Model.EndDate; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public IEduLevel EduLevel
+        {
+            get { return Model.EduLevel; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public IList<IDocument> Documents
+        {
+            get { return Model.Documents; }
+            set { throw new NotImplementedException (); }
+        }
+
+        #endregion
+
+        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
+        {
+            var markupBuilder = new StringBuilder ();
+            var count = 0;
+            foreach (var document in documents) {
+                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
+                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
+                    Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
+                    true,
+                    groupPlacement,
+                    Context.Module.TabId,
+                    Context.Module.ModuleId,
+                    microdata
+                );
+
+                if (!string.IsNullOrEmpty (linkMarkup)) {
+                    markupBuilder.Append ("<li>" + linkMarkup + "</li>");
+                    count++;
+                }
+            }
+
+            var markup = markupBuilder.ToString ();
+            if (!string.IsNullOrEmpty (markup)) {
+                return ((count == 1)? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
+            }
+
+            return string.Empty;
+        }
+
+        protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
+        {
+            return documents
+                .Where (d => Context.Module.IsEditable || d.IsPublished ())
+                .OrderBy (d => d.Group)
+                .ThenBy (d => d.SortIndex);
+        }
+
+        public int Order 
+        {
+            get { return Indexer.GetNextIndex (); }
+        }
+
+        public string EduLevel_String
         {
             get { return FormatHelper.FormatShortTitle (EduLevel.ShortTitle, EduLevel.Title); }
         }
 
-        public string EduStandardLink
+        public string EduStandard_Links
         {
-            get {
-                var eduStandardDocuments = EduStandardDocuments
-                    .Where (d => d.IsPublished () || Context.Module.IsEditable).ToList ();
-                
-                if (eduStandardDocuments != null && eduStandardDocuments.Count > 0) {
-                    var eduStandardDocument = eduStandardDocuments [0];
+            get { 
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduStandard)),
+                    "itemprop=\"EduStandartDoc\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
+        }
 
-                    if (!string.IsNullOrWhiteSpace (eduStandardDocument.Url)) {
-                        return string.Format ("<a href=\"{0}\"{1}{2} itemprop=\"EduStandartDoc\">{3}</a>",
-                            UrlUtils.LinkClickIdnHack (
-                                eduStandardDocument.Url,
-                                Context.Module.TabId,
-                                Context.Module.ModuleId), 
-                            Globals.GetURLType (eduStandardDocument.Url) == TabType.Url ? " target=\"_blank\"" : string.Empty,
-                            !eduStandardDocument.IsPublished () ? " class=\"not-published-document\"" : string.Empty,
-                            !string.IsNullOrWhiteSpace (eduStandardDocument.Title) ? eduStandardDocument.Title 
-                            : Localization.GetString ("EduProgramStandardLink.Text", Context.LocalResourceFile)
-                        );
-                    }
-                }
-
-                return string.Empty;
+        public string ProfStandard_Links
+        {
+            get { 
+                return FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.ProfStandard)),
+                    string.Empty,
+                    DocumentGroupPlacement.InTitle
+                );
             }
         }
     }
