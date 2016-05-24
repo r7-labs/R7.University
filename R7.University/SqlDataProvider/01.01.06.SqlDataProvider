@@ -16,6 +16,7 @@ GO
 
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_FindDivisions]
     @searchText nvarchar (50),
+    -- TODO: Remove @includeSubdivisions as obsolete, should always be 1
     @includeSubdivisions bit,
     @divisionId int = -1
 AS
