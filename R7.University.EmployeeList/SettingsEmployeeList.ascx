@@ -21,6 +21,10 @@
 			<dnn:Label id="labelIncludeSubdivisions" runat="server" ControlName="checkIncludeSubdivisions" />
 			<asp:CheckBox id="checkIncludeSubdivisions" runat="server" />
 		</div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelHideHeadEmployee" runat="server" ControlName="checkHideHeadEmployee" />
+            <asp:CheckBox id="checkHideHeadEmployee" runat="server" />
+        </div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelSortType" runat="server" ControlName="comboSortType" />
 			<dnn:DnnComboBox id="comboSortType" runat="server"/>

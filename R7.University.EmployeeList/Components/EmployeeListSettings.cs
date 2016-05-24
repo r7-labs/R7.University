@@ -82,6 +82,12 @@ namespace R7.University.EmployeeList.Components
             set { WriteTabModuleSetting<bool> ("EmployeeList_IncludeSubdivisions", value); }
         }
 
+        public bool HideHeadEmployee
+        {
+            get { return ReadSetting<bool> ("EmployeeList_HideHeadEmployee", false); }
+            set { WriteTabModuleSetting<bool> ("EmployeeList_HideHeadEmployee", value); }
+        }
+
         /// <summary>
         /// Gets or sets the type of the sort.
         /// </summary>

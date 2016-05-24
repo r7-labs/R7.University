@@ -4,7 +4,7 @@
         <value>EmployeeList Settings</value>
     </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-        <value>About EmployeeList Settings</value>
+        <value>About EmployeeList Module Settings</value>
     </data>
 	<data name="labelDivision.Text" xml:space="preserve">
         <value>Division:</value>
@@ -17,6 +17,12 @@
     </data>
 	<data name="labelIncludeSubdivisions.Help" xml:space="preserve">
         <value>Check to include employees from all subordinate divisions.</value>
+    </data>
+    <data name="labelHideHeadEmployee.Text" xml:space="preserve">
+        <value>Hide Head Employee?</value>
+    </data>
+    <data name="labelHideHeadEmployee.Help" xml:space="preserve">
+        <value>Check to hide selected division's head employee in the list. This option is disabled by default.</value>
     </data>
 	<data name="labelSortType.Text" xml:space="preserve">
         <value>Sort Type:</value>

@@ -69,8 +69,8 @@ namespace R7.University.EmployeeList
                     // select node and expand tree to it
                     Utils.SelectAndExpandByValue (treeDivisions, Settings.DivisionID.ToString ());
 
-                    // check / uncheck IncludeSubdivisions
                     checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
+                    checkHideHeadEmployee.Checked = Settings.HideHeadEmployee;
 
                     comboSortType.Select (Settings.SortType.ToString (), false);
 
@@ -91,6 +91,7 @@ namespace R7.University.EmployeeList
             try {
                 Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
                 Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
+                Settings.HideHeadEmployee = checkHideHeadEmployee.Checked;
                 Settings.SortType = int.Parse (comboSortType.SelectedValue);
 
                 if (!string.IsNullOrWhiteSpace (textPhotoWidth.Text))

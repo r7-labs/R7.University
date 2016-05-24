@@ -13,11 +13,9 @@ namespace R7.University.EmployeeList
     {
         protected LabelControl labelDivision;
         protected DnnTreeView treeDivisions;
-        protected LabelControl labelIncludeSubdivisions;
         protected CheckBox checkIncludeSubdivisions;
-        protected LabelControl labelSortType;
+        protected CheckBox checkHideHeadEmployee;
         protected DnnComboBox comboSortType;
-        protected LabelControl labelPhotoWidth;
         protected TextBox textPhotoWidth;
     }
 }

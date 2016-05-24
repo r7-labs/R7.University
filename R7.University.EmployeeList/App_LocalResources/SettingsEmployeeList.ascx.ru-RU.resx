@@ -4,6 +4,12 @@
         <value>Настройки EmployeeList</value>
     </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-        <value>О настройках EmployeeList</value>
+        <value>О настройках модуля EmployeeList</value>
+    </data>
+    <data name="labelHideHeadEmployee.Text" xml:space="preserve">
+        <value>Скрыть руководителя?</value>
+    </data>
+    <data name="labelHideHeadEmployee.Help" xml:space="preserve">
+        <value>Отметьте, чтобы скрыть в списке сотрудников руководителя выбранного подразделения. Эта настройка выключена по-умолчанию.</value>
     </data>
 </root>

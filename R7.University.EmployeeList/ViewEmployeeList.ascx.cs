@@ -40,10 +40,11 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Data;
 using R7.University.EmployeeList.Components;
+using R7.University.EmployeeList.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SharedLogic;
@@ -60,27 +61,37 @@ namespace R7.University.EmployeeList
             get { return IconController.IconURL ("Edit"); }
         }
 
+        private ViewModelContext<EmployeeListSettings> viewModelContext;
+        protected ViewModelContext<EmployeeListSettings> ViewModelContext
+        {
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext<EmployeeListSettings> (this)); }
+        }
+
         #endregion
 
         #region Handlers
 
         // REVIEW: Move to repository class?
-        protected IEnumerable<IEmployee> GetEmployees ()
+        protected EmployeeListViewModel GetViewModel ()
         {
             var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
-            return DataCache.GetCachedData<IEnumerable<IEmployee>> (
+            return DataCache.GetCachedData<EmployeeListViewModel> (
                 new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
-                c => GetEmployees_Internal ()
+                c => GetViewModel_Internal ()
             );
         }
 
-        protected IEnumerable<IEmployee> GetEmployees_Internal ()
+        protected EmployeeListViewModel GetViewModel_Internal ()
         {
             // get employees by DivisionID
-            return EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
-                Settings.IncludeSubdivisions, Settings.SortType)
+            return new EmployeeListViewModel (
+                EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
+                    Settings.IncludeSubdivisions, Settings.SortType)
                     .WithAchievements ()
-                    .WithOccupiedPositions (Settings.DivisionID);
+                    .WithOccupiedPositions (Settings.DivisionID),
+                DivisionRepository.Instance.GetDivision (Settings.DivisionID),
+                ViewModelContext
+            );
         }
 
         /// <summary>
@@ -93,11 +104,14 @@ namespace R7.University.EmployeeList
 			
             try {
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
-                    var items = GetEmployees ();
+
+                    // get employees
+                    var employees = GetViewModel ().Employees
+                        .Where (empl => IsEditable || empl.IsPublished ());
             
                     // check if we have some content to display, 
                     // otherwise display a message for module editors or hide module from regular users
-                    if (items.IsNullOrEmpty ()) {
+                    if (employees.IsNullOrEmpty ()) {
                         if (IsEditable) {
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                         }
@@ -108,7 +122,7 @@ namespace R7.University.EmployeeList
                     }
                     else {
                         // bind the data
-                        listEmployees.DataSource = items.Where (empl => IsEditable || empl.IsPublished ());
+                        listEmployees.DataSource = employees;
                         listEmployees.DataBind ();
                     }
                 }
@@ -159,7 +173,7 @@ namespace R7.University.EmployeeList
         protected void listEmployees_ItemDataBound (object sender, System.Web.UI.WebControls.DataListItemEventArgs e)
         {
             // e.Item.DataItem is of EmployeeListInfo class
-            var employee = (EmployeeInfo) e.Item.DataItem;
+            var employee = (IEmployee) e.Item.DataItem;
 			
             // find controls in DataList item template
             var linkEdit = (HyperLink) e.Item.FindControl ("linkEdit");
@@ -217,7 +231,7 @@ namespace R7.University.EmployeeList
             }
 
             // employee fullname
-            linkFullName.Text = employee.FullName;
+            linkFullName.Text = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
             linkFullName.NavigateUrl = employeeDetailsUrl;
 
             // get current employee title achievements

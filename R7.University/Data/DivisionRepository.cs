@@ -52,6 +52,11 @@ namespace R7.University.Data
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
+        public DivisionInfo GetDivision (int divisionId)
+        {
+            return DataProvider.Get<DivisionInfo> (divisionId);
+        }
+
         public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
         {
             // TODO: Remove @includeSubdivision argument from sp
