@@ -35,19 +35,18 @@ namespace R7.University.EmployeeList.ViewModels
 {
     public class EmployeeListViewModel
     {
-        protected ViewModelContext<EmployeeListSettings> Context;
+        public EmployeeListViewModel (IEnumerable<IEmployee> employees, IDivision division)
+        {
+            Employees = employees;
+            Division = division;
+        }
+
+        public ViewModelContext<EmployeeListSettings> Context { get; protected set; }
 
         public EmployeeListViewModel SetContext (ViewModelContext<EmployeeListSettings> context)
         {
             Context = context;
             return this;
-        }
-
-        public EmployeeListViewModel (IEnumerable<IEmployee> employees, 
-            IDivision division)
-        {
-            Employees = employees;
-            Division = division;
         }
 
         public IDivision Division  { get; protected set; }
@@ -64,7 +63,7 @@ namespace R7.University.EmployeeList.ViewModels
                 return employees.Where (e => !hideHeadEmployee || !e.OccupiedPositions
                     .Any (op => op.DivisionID == divisionId && op.PositionID == Division.HeadPositionID));
             }
-            set { employees = value; }
+            protected set { employees = value; }
         }
     }
 }
