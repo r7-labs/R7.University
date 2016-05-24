@@ -44,6 +44,10 @@ namespace R7.University.ControlExtensions
 
             return false;
         }
+
+        public static void AddItem (this ListControl listControl, string text, string value)
+        {
+            listControl.Items.Add (new ListItem (text, value));
+        }
     }
 }
-
