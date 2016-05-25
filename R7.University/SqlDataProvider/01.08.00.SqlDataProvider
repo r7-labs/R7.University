@@ -20,7 +20,7 @@ BEGIN
 END 
 GO
 
-IF EXISTS (select * from sys.objects where name = N'DF_{objectQualifier}University_Employees_IsPublished' and type in (N'D'))
+IF EXISTS (select * from sys.objects where object_id = object_id(N'DF_{objectQualifier}University_Employees_IsPublished') and type in (N'D'))
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
         DROP CONSTRAINT [DF_{objectQualifier}University_Employees_IsPublished]
@@ -29,10 +29,11 @@ GO
 
 IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'IsPublished')
 BEGIN
-    UPDATE {databaseOwner}[{objectQualifier}University_Employees] SET EndDate = CONVERT(date, GETDATE()) WHERE IsPublished = 0
+    UPDATE {databaseOwner}[{objectQualifier}University_Employees] SET EndDate = CONVERT(date, GETDATE()) WHERE [IsPublished] = 0
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
         DROP COLUMN [IsPublished]
 END
+GO
 
 -- EduPrograms
 
@@ -127,8 +128,18 @@ IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployeesByDivisionID]
 GO
 
+-- drop sp with new name also
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]
+GO
+
 IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
     DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]
+GO
+
+-- drop sp with new name also
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]
 GO
 
 IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_GetHeadEmployee]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
