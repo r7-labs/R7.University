@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <data name="ControlTitle_details.Text">
+    <data name="ControlTitle_employeedetails.Text">
         <value>Подробно о сотруднике</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
