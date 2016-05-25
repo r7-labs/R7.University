@@ -83,12 +83,16 @@ namespace R7.University.Data
 
         public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevels (IEnumerable<int> eduLevelIds)
         {
-            return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
-                @"SELECT EPP.* FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP 
+            if (eduLevelIds.Any ()) {
+                return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
+                    @"SELECT EPP.* FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP 
                     INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
                         ON EPP.EduProgramID = EP.EduProgramID 
-                    WHERE EP.EduLevelID IN (" +  TextUtils.FormatList (",", eduLevelIds) + ")")
+                    WHERE EP.EduLevelID IN (" + TextUtils.FormatList (",", eduLevelIds) + ")")
                     .WithEduProgram ();
+            }
+
+            return Enumerable.Empty<EduProgramProfileInfo> ();
         }
 
         public IEnumerable<EduProgramProfileInfo> FindEduProgramProfiles (string search)
