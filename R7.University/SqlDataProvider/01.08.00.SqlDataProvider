@@ -313,16 +313,17 @@ END
 GO
 
 CREATE PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
-    @divisionId int
+    @divisionId int,
+    @headPositionId int
 AS
 BEGIN
     -- SET NOCOUNT ON added to prevent extra result sets from
     -- interfering with SELECT statements.
     SET NOCOUNT ON;
 
-    SELECT TOP (1) E.* FROM {databaseOwner}[{objectQualifier}University_Employees] AS E
-        INNER JOIN {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS VOP
-            ON E.EmployeeID = VOP.EmployeeID AND VOP.DivisionID = @divisionId
-    ORDER BY VOP.PositionWeight DESC
+    SELECT E.* FROM {databaseOwner}[{objectQualifier}University_Employees] AS E 
+        INNER JOIN {databaseOwner}[{objectQualifier}University_OccupiedPositions] AS EOP
+            ON E.EmployeeID = EOP.EmployeeID 
+        WHERE EOP.DivisionID = @divisionId AND EOP.PositionID = @headPositionId
 END
 GO
