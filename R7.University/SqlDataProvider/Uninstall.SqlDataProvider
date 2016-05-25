@@ -16,6 +16,10 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
     DROP CONSTRAINT [FK_{objectQualifier}University_Employees_Users]
 GO
 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+    DROP CONSTRAINT [FK_{objectQualifier}University_Employees_PhotoFile]
+GO
+
 ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 	DROP CONSTRAINT [FK_{objectQualifier}University_OccupiedPositions_University_Divisions]
 GO
@@ -115,9 +119,6 @@ DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
 GO
 
 DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
-GO
-
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EduProgramProfiles]
 GO
 
 -- Drop stored procedures & functions
