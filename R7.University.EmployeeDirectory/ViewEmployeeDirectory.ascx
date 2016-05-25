@@ -111,8 +111,8 @@
                                     <asp:BoundField DataField="Disciplines_String" HeaderText="Disciplines" />
                                     <asp:BoundField DataField="AcademicDegrees_String" HeaderText="AcademicDegrees" />
                                     <asp:BoundField DataField="AcademicTitles_String" HeaderText="AcademicTitles" />
-                                    <asp:BoundField DataField="Education_String" HeaderText="Education" />
-                                    <asp:BoundField DataField="Training_String" HeaderText="Training" />
+                                    <asp:BoundField DataField="Education_String" HeaderText="Education" HtmlEncode="false" />
+                                    <asp:BoundField DataField="Training_String" HeaderText="Training" HtmlEncode="false" />
                                     <asp:BoundField DataField="ExperienceYears" HeaderText="ExperienceYears" />
                                     <asp:BoundField DataField="ExperienceYearsBySpec" HeaderText="ExperienceYearsBySpec" />
                                 </Columns>
