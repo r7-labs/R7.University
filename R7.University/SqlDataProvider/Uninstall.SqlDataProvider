@@ -60,6 +60,43 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines]
 	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_EduProgramProfiles] 
 GO
 
+-- Drop stored procedures & functions
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindDivisions]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
+GO
+
+DROP FUNCTION {databaseOwner}[{objectQualifier}University_DivisionsHierarchy]
+GO
+
+-- Drop views
+ 
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
+GO
+
+DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
+GO
+
 -- Drop tables
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
@@ -102,41 +139,4 @@ DROP TABLE {databaseOwner}[{objectQualifier}University_Divisions]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_Employees]
-GO
-
--- Drop views
- 
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions]
-GO
-
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesMaxWeight]
-GO
-
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]
-GO
-
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
-GO
-
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
-GO
-
--- Drop stored procedures & functions
-
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]
-GO
-
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]
-GO
-
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
-GO
-
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindDivisions]
-GO
-
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
-GO
-
-DROP FUNCTION {databaseOwner}[{objectQualifier}University_DivisionsHierarchy]
 GO
