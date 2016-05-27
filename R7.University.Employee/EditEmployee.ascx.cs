@@ -1026,7 +1026,7 @@ namespace R7.University.Employee
                     // check for possible duplicates
                     var discCount = disciplines.Count (d => d.EduProgramProfileID == eduProgramProfileId);
 
-                    if ((command == "Add" && discCount == 0) || (command == "Update" && discCount == 1)) {
+                    if ((command == "Add" && discCount == 0) || (command == "Update" && discCount <= 1)) {
                         discipline.EduProgramProfileID = eduProgramProfileId;
                         discipline.Disciplines = textDisciplines.Text.Trim ();
 
