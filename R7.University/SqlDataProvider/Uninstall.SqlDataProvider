@@ -123,13 +123,19 @@ GO
 
 -- Drop stored procedures & functions
 
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployeesByDivisionID]
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]
 GO
 
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetRecursiveEmployeesByDivisionID]
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]
 GO
 
 DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindEmployees]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindDivisions]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
 GO
 
 DROP FUNCTION {databaseOwner}[{objectQualifier}University_DivisionsHierarchy]
