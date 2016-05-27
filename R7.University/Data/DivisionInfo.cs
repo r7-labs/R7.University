@@ -43,7 +43,7 @@ namespace R7.University.Data
     // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("University_Divisions")]
     [PrimaryKey ("DivisionID", AutoIncrement = true)]
-    public class DivisionInfo: UniversityBaseEntityInfo, IDivision
+    public class DivisionInfo: IDivision
     {
         /// <summary>
         /// Empty division to use as default item with lists and treeviews
@@ -98,6 +98,14 @@ namespace R7.University.Data
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public int LastModifiedByUserID { get; set; }
+
+        public DateTime LastModifiedOnDate { get; set; }
+
+        public int CreatedByUserID { get; set; }
+
+        public DateTime CreatedOnDate { get; set; }
 
         #endregion
 

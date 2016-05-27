@@ -99,6 +99,30 @@ namespace R7.University.EduProgramDirectory
             set { throw new NotImplementedException (); }
         }
 
+        public int LastModifiedByUserID
+        {
+            get { return Model.LastModifiedByUserID; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public DateTime LastModifiedOnDate
+        {
+            get { return Model.LastModifiedOnDate; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public int CreatedByUserID
+        {
+            get { return Model.CreatedByUserID; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public DateTime CreatedOnDate
+        {
+            get { return Model.CreatedOnDate; }
+            set { throw new NotImplementedException (); }
+        }
+
         public IEduLevel EduLevel
         {
             get { return Model.EduLevel; }

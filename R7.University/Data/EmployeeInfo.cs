@@ -42,7 +42,7 @@ namespace R7.University.Data
     // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("University_Employees")]
     [PrimaryKey ("EmployeeID", AutoIncrement = true)]
-    public class EmployeeInfo: UniversityBaseEntityInfo, IEmployee
+    public class EmployeeInfo: IEmployee
     {
         #region IEmployee implementation
 
@@ -87,6 +87,14 @@ namespace R7.University.Data
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public int LastModifiedByUserID { get; set; }
+
+        public DateTime LastModifiedOnDate { get; set; }
+
+        public int CreatedByUserID { get; set; }
+
+        public DateTime CreatedOnDate { get; set; }
 
         [IgnoreColumn]
         public IList<IEmployeeAchievement> Achievements { get; set; }

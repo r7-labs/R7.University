@@ -29,7 +29,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEduProgramProfile
+    public interface IEduProgramProfile: IUniversityBaseEntity
     {
         int EduProgramProfileID { get; set; }
 

@@ -30,7 +30,7 @@ using R7.University.Data;
 
 namespace R7.University.Models
 {
-    public interface IEmployee
+    public interface IEmployee: IUniversityBaseEntity
     {
         int EmployeeID { get; set; }
 

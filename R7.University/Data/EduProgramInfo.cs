@@ -36,7 +36,7 @@ namespace R7.University.Data
 {
     [TableName ("University_EduPrograms")]
     [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo: UniversityBaseEntityInfo, IEduProgram
+    public class EduProgramInfo: IEduProgram
     {
         public EduProgramInfo ()
         {
@@ -58,6 +58,14 @@ namespace R7.University.Data
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public int LastModifiedByUserID { get; set; }
+
+        public DateTime LastModifiedOnDate { get; set; }
+
+        public int CreatedByUserID { get; set; }
+
+        public DateTime CreatedOnDate { get; set; }
 
         [IgnoreColumn]
         public IEduLevel EduLevel { get; set; }

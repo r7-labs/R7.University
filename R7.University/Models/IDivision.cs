@@ -28,7 +28,7 @@ using System;
 
 namespace R7.University.Models
 {
-    public interface IDivision
+    public interface IDivision: IUniversityBaseEntity
     {
         string Title { get; set; }
 

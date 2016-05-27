@@ -26,11 +26,10 @@
 
 using System;
 using System.Collections.Generic;
-using R7.University.Data;
 
 namespace R7.University.Models
 {
-    public interface IEduProgram
+    public interface IEduProgram: IUniversityBaseEntity
     {
         int EduProgramID { get; set; }
 
