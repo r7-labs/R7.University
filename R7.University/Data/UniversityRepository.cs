@@ -26,14 +26,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
-using R7.University.Components;
 
 namespace R7.University.Data
 {
-    [Obsolete]
     public class UniversityRepository
     {
         #region Singleton implementation
@@ -49,9 +45,15 @@ namespace R7.University.Data
 
         private Dal2DataProvider dataProvider;
 
+        [Obsolete]
         public Dal2DataProvider DataProvider
         {
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
+        }
+
+        public IEnumerable<EduLevelInfo> GetEduLevels ()
+        {
+            return DataProvider.GetObjects<EduLevelInfo> ();
         }
     }
 }
