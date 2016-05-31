@@ -64,6 +64,12 @@ namespace R7.University.Data
             return DataProvider.GetObjects<DocumentInfo> ("WHERE ItemID = @0", itemId);
         }
 
+        public IEnumerable<IDocument> FindDocuments (string search)
+        {
+            return DataProvider.FindObjects<DocumentInfo> (
+                @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
+        }
+
         public void UpdateDocuments (IList<DocumentInfo> documents, string itemKey, int itemId)
         {
             using (var ctx = DataContext.Instance ()) {

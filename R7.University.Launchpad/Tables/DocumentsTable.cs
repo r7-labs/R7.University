@@ -45,8 +45,7 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
-            var documents = UniversityRepository.Instance.DataProvider.FindObjects<DocumentInfo> (
-                                @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
+            var documents = DocumentRepository.Instance.FindDocuments (search);
 
             return DataTableConstructor.FromIEnumerable (documents);
         }
