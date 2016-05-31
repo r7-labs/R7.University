@@ -60,16 +60,15 @@ namespace R7.University.Data
         public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
         {
             // TODO: Remove @includeSubdivision argument from sp
-            return DataProvider.GetObjects<DivisionInfo> (CommandType.StoredProcedure, 
-                "{databaseOwner}[{objectQualifier}University_FindDivisions]", searchText, true, divisionId);
+            return DataProvider.GetObjectsFromSp<DivisionInfo> ("{databaseOwner}[{objectQualifier}University_FindDivisions]", 
+                searchText, true, divisionId);
         }
 
         public EmployeeInfo GetHeadEmployee (int divisionId, int? headPositionId)
         {
             if (headPositionId != null) {
-                return DataProvider.GetObjects<EmployeeInfo> (CommandType.StoredProcedure, 
-                    "{databaseOwner}[{objectQualifier}University_GetHeadEmployee]", divisionId, headPositionId.Value)
-                        .FirstOrDefault ();
+                return DataProvider.GetObjectsFromSp<EmployeeInfo> ("{databaseOwner}[{objectQualifier}University_GetHeadEmployee]", 
+                    divisionId, headPositionId.Value).FirstOrDefault ();
             }
 
             return null;
