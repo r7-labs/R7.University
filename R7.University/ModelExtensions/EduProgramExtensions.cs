@@ -35,12 +35,6 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramExtensions
     {
-        public static IEduProgram WithEduLevel (this IEduProgram eduProgram, IEduLevel eduLevel)
-        {
-            eduProgram.EduLevel = eduLevel;
-            return eduProgram;
-        }
-
         public static IEnumerable<IEduProgram> WithEduLevel (this IEnumerable<IEduProgram> eduPrograms,
             IEnumerable<IEduLevel> allEduLevels)
         {
