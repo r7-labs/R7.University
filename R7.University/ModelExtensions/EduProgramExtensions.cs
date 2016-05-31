@@ -25,10 +25,8 @@
 // THE SOFTWARE.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Data;
-using R7.University.Data;
+using System.Linq;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -46,21 +44,20 @@ namespace R7.University.ModelExtensions
             );
         }
 
-        public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram)
+        public static IEnumerable<IEduProgram> WithDocuments (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocument> documents)
         {
-            eduProgram.Documents = DocumentRepository.Instance.GetDocuments (
-                "EduProgramID=" + eduProgram.EduProgramID)
-                .ToList ();
-
-            eduProgram.Documents.WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
-
-            return eduProgram;
+            return eduPrograms.GroupJoin (documents.DefaultIfEmpty (), ep => "EduProgramID" + ep.EduProgramID, d => d.ItemID,
+                (ep, docs) => {
+                    ep.Documents = docs.ToList ();
+                    return ep;
+                }
+            );
         }
 
-        public static IEnumerable<EduProgramInfo> WithDocuments (this IEnumerable<EduProgramInfo> eduPrograms)
+        public static IEnumerable<IEduProgram> WithDocumentTypes (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocumentType> documentTypes)
         {
             foreach (var eduProgram in eduPrograms) {
-                eduProgram.WithDocuments ();
+                eduProgram.Documents.WithDocumentType (documentTypes);
             }
 
             return eduPrograms;

@@ -92,7 +92,8 @@ namespace R7.University.EduProgramDirectory
 
                     // REVIEW: Order / group by edu level first?
                     var eduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels)
-                        .WithDocuments ()
+                        .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID"))
+                        .WithDocumentTypes (UniversityRepository.Instance.GetDocumentTypes ())
                         .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
                         .OrderBy (ep => ep.EduLevel.SortIndex)
                         .ThenBy (ep => ep.Code)
