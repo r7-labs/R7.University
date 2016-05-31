@@ -91,7 +91,7 @@ namespace R7.University.EduProgramDirectory
                     var viewModelIndexer = new ViewModelIndexer (1);
 
                     // REVIEW: Order / group by edu level first?
-                    var eduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels, IsEditable)
+                    var eduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels)
                         .WithDocuments (UniversityRepository.Instance.DataProvider)
                         .WithEduLevel (UniversityRepository.Instance.DataProvider)
                         .OrderBy (ep => ep.EduLevel.SortIndex)
@@ -104,7 +104,7 @@ namespace R7.University.EduProgramDirectory
                         .ToList ();
                     
                     if (eduPrograms.Count > 0) {
-                        gridEduStandards.DataSource = eduPrograms;
+                        gridEduStandards.DataSource = eduPrograms.Where (ep => ep.IsPublished () || IsEditable);
                         gridEduStandards.DataBind ();
                     }
                     else {

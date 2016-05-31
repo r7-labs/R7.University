@@ -174,18 +174,11 @@ namespace R7.University.Data
                 .ThenBy (ep => ep.Title);
         }
 
-        public IEnumerable<EduProgramInfo> GetEduPrograms_ByEduLevels (IEnumerable<string> eduLevelIds, bool getAll)
+        public IEnumerable<EduProgramInfo> GetEduPrograms_ByEduLevels (IEnumerable<string> eduLevelIds)
         {
             if (eduLevelIds.Any ()) {
-                if (getAll) {
-                    return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
-                        TextUtils.FormatList (",", eduLevelIds))
-                    );
-                }
-
-                return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE (StartDate IS NULL OR @0 >= StartDate) " +
-                    "AND (EndDate IS NULL OR @0 < EndDate) AND EduLevelID IN ({0})",
-                    TextUtils.FormatList (",", eduLevelIds)), DateTime.Now
+                return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
+                    TextUtils.FormatList (",", eduLevelIds))
                 );
             }
 
