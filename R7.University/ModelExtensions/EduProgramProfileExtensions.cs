@@ -79,10 +79,13 @@ namespace R7.University.ModelExtensions
             );
         }
 
-        public static IEnumerable<EduProgramProfileInfo> WithEduLevel (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, IEnumerable<IEduLevel> allEduLevels)
+        public static IEnumerable<IEduProgramProfile> WithEduLevel (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduLevel> eduLevels)
         {
-            eduProgramProfiles.Select (epp => epp.EduProgram).WithEduLevel (allEduLevels);
+            foreach (var epp in eduProgramProfiles) {
+                epp.EduProgram.EduLevel = eduLevels.FirstOrDefault (el => el.EduLevelID == epp.EduProgram.EduLevelID);
+            }
+        
             return eduProgramProfiles;
         }
 
@@ -106,26 +109,25 @@ namespace R7.University.ModelExtensions
             }
         }
 
-        public static IEduProgramProfile WithDocuments (
-            this IEduProgramProfile eduProgramProfile, 
-            IEnumerable<IDocumentType> documentTypes, 
-            Dal2DataProvider controller)
+        public static IEnumerable<IEduProgramProfile> WithDocuments (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IDocument> documents)
         {
-            eduProgramProfile.Documents = DocumentRepository.Instance.GetDocuments (
-                "EduProgramProfileID=" + eduProgramProfile.EduProgramProfileID)
-                .ToList ();
-            
-            eduProgramProfile.Documents.WithDocumentType (documentTypes);
-
-            return eduProgramProfile;
+            return eduProgramProfiles.GroupJoin (documents.DefaultIfEmpty (), epp => "EduProgramProfileID=" + epp.EduProgramProfileID, d => d.ItemID,
+                (epp, docs) => {
+                    epp.Documents = docs.ToList ();
+                    return epp;
+                }
+            );
         }
 
-        public static IEnumerable<IEduProgramProfile> WithDocuments (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IDocumentType> documentTypes, Dal2DataProvider controller)
+        public static IEnumerable<IEduProgramProfile> WithDocumentType (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IDocumentType> documentTypes)
         {
             foreach (var eduProgramProfile in eduProgramProfiles) {
-                yield return eduProgramProfile.WithDocuments (documentTypes, controller);
+                eduProgramProfile.Documents = eduProgramProfile.Documents.WithDocumentType (documentTypes).ToList ();
             }
+
+            return eduProgramProfiles;
         }
 
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)

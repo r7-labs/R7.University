@@ -34,9 +34,9 @@ namespace R7.University.ModelExtensions
     public static class EduProgramExtensions
     {
         public static IEnumerable<IEduProgram> WithEduLevel (this IEnumerable<IEduProgram> eduPrograms,
-            IEnumerable<IEduLevel> allEduLevels)
+            IEnumerable<IEduLevel> eduLevels)
         {
-            return eduPrograms.Join (allEduLevels, ep => ep.EduLevelID, el => el.EduLevelID,
+            return eduPrograms.Join (eduLevels, ep => ep.EduLevelID, el => el.EduLevelID,
                 (ep, el) => {
                     ep.EduLevel = el;
                     return ep;
@@ -46,7 +46,7 @@ namespace R7.University.ModelExtensions
 
         public static IEnumerable<IEduProgram> WithDocuments (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocument> documents)
         {
-            return eduPrograms.GroupJoin (documents.DefaultIfEmpty (), ep => "EduProgramID" + ep.EduProgramID, d => d.ItemID,
+            return eduPrograms.GroupJoin (documents.DefaultIfEmpty (), ep => "EduProgramID=" + ep.EduProgramID, d => d.ItemID,
                 (ep, docs) => {
                     ep.Documents = docs.ToList ();
                     return ep;
@@ -57,7 +57,7 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<IEduProgram> WithDocumentTypes (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocumentType> documentTypes)
         {
             foreach (var eduProgram in eduPrograms) {
-                eduProgram.Documents.WithDocumentType (documentTypes);
+                eduProgram.Documents = eduProgram.Documents.WithDocumentType (documentTypes).ToList ();
             }
 
             return eduPrograms;
@@ -69,4 +69,3 @@ namespace R7.University.ModelExtensions
         }
     }
 }
-
