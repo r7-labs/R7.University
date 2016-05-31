@@ -55,5 +55,10 @@ namespace R7.University.Data
         {
             return DataProvider.GetObjects<EduLevelInfo> ();
         }
+
+        public IEnumerable<DocumentTypeInfo> GetDocumentTypes ()
+        {
+            return DataProvider.GetObjects<DocumentTypeInfo> ();
+        }
     }
 }
