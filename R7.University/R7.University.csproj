@@ -224,6 +224,7 @@
     <None Include="css\dnn-ac-combobox.css" />
     <None Include="SqlDataProvider\01.08.00.SqlDataProvider" />
     <None Include="R7.University.yml" />
+    <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

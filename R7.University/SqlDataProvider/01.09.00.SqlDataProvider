@@ -1,0 +1,38 @@
+﻿-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_Divisions_ParentDivisions]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Divisions_ParentDivisions]
+        ON {databaseOwner}[{objectQualifier}University_Divisions] (ParentDivisionID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_Documents_DocumentTypes]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_DocumentTypes]
+        ON {databaseOwner}[{objectQualifier}University_Documents] (DocumentTypeID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_EduProgramProfileForms]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_EduProgramProfileForms]
+        ON {databaseOwner}[{objectQualifier}University_EduProgramProfileForms] (EduProgramProfileID ASC, EduFormID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_EduProgramProfiles_EduPrograms]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_EduProgramProfiles_EduPrograms]
+        ON {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_EduPrograms_EduLevels]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_EduPrograms_EduLevels]
+        ON {databaseOwner}[{objectQualifier}University_EduPrograms] (EduLevelID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_EmployeeAchievements]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_EmployeeAchievements]
+        ON {databaseOwner}[{objectQualifier}University_EmployeeAchievements] (EmployeeID ASC, AchievementID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_Employees_Users]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Employees_Users]
+        ON {databaseOwner}[{objectQualifier}University_Employees] (UserID ASC)
+GO
