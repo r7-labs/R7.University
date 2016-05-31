@@ -54,17 +54,17 @@ namespace R7.University.Data
 
         #endregion
 
-        public IEnumerable<IDocument> GetDocuments_ForItemType (string itemType)
+        public IEnumerable<DocumentInfo> GetDocuments_ForItemType (string itemType)
         {
-            return DataProvider.GetObjects<DocumentInfo> ("WHERE ItemID LIKE @0", itemType + "=%");
+            return DataProvider.GetObjects<DocumentInfo> (string.Format ("WHERE ItemID LIKE N'{0}=%'", itemType));
         }
 
-        public IEnumerable<IDocument> GetDocuments (string itemId)
+        public IEnumerable<DocumentInfo> GetDocuments (string itemId)
         {
             return DataProvider.GetObjects<DocumentInfo> ("WHERE ItemID = @0", itemId);
         }
 
-        public IEnumerable<IDocument> FindDocuments (string search)
+        public IEnumerable<DocumentInfo> FindDocuments (string search)
         {
             return DataProvider.FindObjects<DocumentInfo> (
                 @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
