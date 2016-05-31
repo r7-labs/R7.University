@@ -169,7 +169,7 @@ namespace R7.University.Launchpad
                 formEditDocuments.GetData (),
                 "EduProgramProfileID",
                 item.EduProgramProfileID);
-            UniversityRepository.Instance.UpdateEduProgramProfileForms (
+            EduProgramProfileFormRepository.Instance.UpdateEduProgramProfileForms (
                 formEditEduForms.GetData (),
                 item.EduProgramProfileID);
         }

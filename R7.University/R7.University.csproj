@@ -160,6 +160,7 @@
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
     <Compile Include="Data\DocumentRepository.cs" />
+    <Compile Include="Data\EduProgramProfileFormRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

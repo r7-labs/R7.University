@@ -33,6 +33,7 @@ using R7.University.Components;
 
 namespace R7.University.Data
 {
+    [Obsolete]
     public class UniversityRepository
     {
         #region Singleton implementation
@@ -51,49 +52,6 @@ namespace R7.University.Data
         public Dal2DataProvider DataProvider
         {
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
-        }
-
-        public void UpdateEduProgramProfileForms (IList<EduProgramProfileFormInfo> eduForms, int eduProgramProfileId)
-        {
-            using (var ctx = DataContext.Instance ()) {
-                ctx.BeginTransaction ();
-
-                try {
-                    var originalEduForms = DataProvider.GetObjects<EduProgramProfileFormInfo> (
-                                               "WHERE EduProgramProfileID = @0", eduProgramProfileId).ToList ();
-                    
-                    foreach (var eduForm in eduForms) {
-                        if (eduForm.EduProgramProfileFormID <= 0) {
-                            eduForm.EduProgramProfileID = eduProgramProfileId;
-                            DataProvider.Add<EduProgramProfileFormInfo> (eduForm);
-                        }
-                        else {
-                            DataProvider.Update<EduProgramProfileFormInfo> (eduForm);
-
-                            // objects with same ID could be different!
-                            var updatedEduForm = originalEduForms.FirstOrDefault (ef => 
-                                ef.EduProgramProfileFormID == eduForm.EduProgramProfileFormID);
-                            
-                            if (updatedEduForm != null) {
-                                // do not delete this object later
-                                originalEduForms.Remove (updatedEduForm);
-                            }
-                        }
-                    }
-
-                    // delete remaining items
-                    foreach (var eduForm in originalEduForms) {
-                        DataProvider.Delete<EduProgramProfileFormInfo> (eduForm);
-                    }
-
-                    ctx.Commit ();
-                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
-                }
-                catch {
-                    ctx.RollbackTransaction ();
-                    throw;
-                }
-            }
         }
     }
 }
