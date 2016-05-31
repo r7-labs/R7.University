@@ -47,7 +47,7 @@ namespace R7.University.Data
 
         private Dal2DataProvider dataProvider;
 
-        public Dal2DataProvider DataProvider
+        protected Dal2DataProvider DataProvider
         {
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
