@@ -102,7 +102,7 @@ namespace R7.University.Launchpad
 
             var documents = UniversityRepository.Instance.DataProvider.GetObjects<DocumentInfo> (
                                 string.Format ("WHERE ItemID = N'EduProgramProfileID={0}'", item.EduProgramProfileID))
-                .WithDocumentType (UniversityRepository.Instance.DataProvider)
+                .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
                 .Cast<DocumentInfo> ()
                 .ToList ();
 

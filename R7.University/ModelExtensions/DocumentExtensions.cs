@@ -4,7 +4,7 @@
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-// Copyright (c) 2015 
+// Copyright (c) 2015-2016 Roman M. Yagodin
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,7 @@
 
 using System;
 using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Data;
-using R7.University.Data;
+using System.Linq;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -39,21 +38,16 @@ namespace R7.University.ModelExtensions
             return ModelHelper.IsPublished (document.StartDate, document.EndDate);
         }
 
-        public static IDocument WithDocumentType (this IDocument document, Dal2DataProvider controller)
-        {
-            document.DocumentType = controller.Get<DocumentTypeInfo> (document.DocumentTypeID);
-            return document;
-        }
-
         public static IEnumerable<IDocument> WithDocumentType (
-            this IEnumerable<IDocument> documents,
-            Dal2DataProvider controller)
+            this IEnumerable<IDocument> documents, 
+            IEnumerable<IDocumentType> documentTypes)
         {
-            foreach (var document in documents) {
-                document.WithDocumentType (controller);
-            }
-
-            return documents;
+            return documents.Join (documentTypes, d => d.DocumentTypeID, dt => dt.DocumentTypeID,
+                (d, dt) => {
+                    d.DocumentType = dt;
+                    return d;
+                }
+            );
         }
 
         public static SystemDocumentType GetSystemDocumentType (this IDocument document)

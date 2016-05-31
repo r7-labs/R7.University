@@ -59,7 +59,7 @@ namespace R7.University.ModelExtensions
                 .Cast<IDocument> ()
                 .ToList ();
 
-            eduProgram.Documents.WithDocumentType (controller);
+            eduProgram.Documents.WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
 
             return eduProgram;
         }

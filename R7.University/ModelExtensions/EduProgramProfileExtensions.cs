@@ -109,23 +109,25 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEduProgramProfile WithDocuments (
-            this IEduProgramProfile eduProgramProfile, Dal2DataProvider controller)
+            this IEduProgramProfile eduProgramProfile, 
+            IEnumerable<IDocumentType> documentTypes, 
+            Dal2DataProvider controller)
         {
             eduProgramProfile.Documents = controller.GetObjects<DocumentInfo> (
                 "WHERE [ItemID] = @0", "EduProgramProfileID=" + eduProgramProfile.EduProgramProfileID)
                 .Cast<IDocument> ()
                 .ToList ();
             
-            eduProgramProfile.Documents.WithDocumentType (controller);
+            eduProgramProfile.Documents.WithDocumentType (documentTypes);
 
             return eduProgramProfile;
         }
 
         public static IEnumerable<IEduProgramProfile> WithDocuments (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, Dal2DataProvider controller)
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IDocumentType> documentTypes, Dal2DataProvider controller)
         {
             foreach (var eduProgramProfile in eduProgramProfiles) {
-                yield return eduProgramProfile.WithDocuments (controller);
+                yield return eduProgramProfile.WithDocuments (documentTypes, controller);
             }
         }
 
