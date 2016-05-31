@@ -48,7 +48,7 @@ namespace R7.University.EduProgramDirectory
 
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramStandardObrnadzorViewModel (EduProgramInfo model, ViewModelContext context, IIndexer indexer)
+        public EduProgramStandardObrnadzorViewModel (IEduProgram model, ViewModelContext context, IIndexer indexer)
         {
             Model = model;
             Context = context;

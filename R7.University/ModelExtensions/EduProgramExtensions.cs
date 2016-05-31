@@ -35,21 +35,21 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramExtensions
     {
-        public static IEduProgram WithEduLevel (this IEduProgram eduProgram, Dal2DataProvider controller)
+        public static IEduProgram WithEduLevel (this IEduProgram eduProgram, IEduLevel eduLevel)
         {
-            eduProgram.EduLevel = controller.Get<EduLevelInfo> (eduProgram.EduLevelID);
+            eduProgram.EduLevel = eduLevel;
             return eduProgram;
         }
 
-        public static IEnumerable<EduProgramInfo> WithEduLevel (
-            this IEnumerable<EduProgramInfo> eduPrograms,
-            Dal2DataProvider controller)
+        public static IEnumerable<IEduProgram> WithEduLevel (this IEnumerable<IEduProgram> eduPrograms,
+            IEnumerable<IEduLevel> allEduLevels)
         {
-            foreach (var eduProgram in eduPrograms) {
-                eduProgram.WithEduLevel (controller);
-            }
-
-            return eduPrograms;
+            return eduPrograms.Join (allEduLevels, ep => ep.EduLevelID, el => el.EduLevelID,
+                (ep, el) => {
+                    ep.EduLevel = el;
+                    return ep;
+                }
+            );
         }
 
         public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram)

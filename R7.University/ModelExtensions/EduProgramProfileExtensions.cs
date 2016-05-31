@@ -80,12 +80,10 @@ namespace R7.University.ModelExtensions
         }
 
         public static IEnumerable<EduProgramProfileInfo> WithEduLevel (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, Dal2DataProvider controller)
+            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, IEnumerable<IEduLevel> allEduLevels)
         {
-            foreach (var eduProgramProfile in eduProgramProfiles) {
-                eduProgramProfile.EduProgram.WithEduLevel (controller);
-                yield return eduProgramProfile;
-            }
+            eduProgramProfiles.Select (epp => epp.EduProgram).WithEduLevel (allEduLevels);
+            return eduProgramProfiles;
         }
 
         public static IEduProgramProfile WithEduProgramProfileForms (

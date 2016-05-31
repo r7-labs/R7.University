@@ -147,7 +147,7 @@ namespace R7.University.EmployeeDirectory
 
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                 
-                .WithEduLevel (UniversityRepository.Instance.DataProvider)
+                .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
                 .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
