@@ -53,47 +53,6 @@ namespace R7.University.Data
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
-        public void UpdateDocuments (IList<DocumentInfo> documents, string itemKey, int itemId)
-        {
-            using (var ctx = DataContext.Instance ()) {
-                ctx.BeginTransaction ();
-
-                try {
-                    var originalDocuments = DataProvider.GetObjects<DocumentInfo> (string.Format (
-                                                    "WHERE ItemID = N'{0}={1}'", itemKey, itemId)).ToList ();
-                    
-                    foreach (var document in documents) {
-                        if (document.DocumentID <= 0) {
-                            document.ItemID = itemKey + "=" + itemId;
-                            DataProvider.Add<DocumentInfo> (document);
-                        }
-                        else {
-                            DataProvider.Update<DocumentInfo> (document);
-
-                            // documents with same ID could be different objects!
-                            var updatedDocument = originalDocuments.FirstOrDefault (d => d.DocumentID == document.DocumentID);
-                            if (updatedDocument != null) {
-                                // do not delete this document later
-                                originalDocuments.Remove (updatedDocument);
-                            }
-                        }
-                    }
-
-                    // delete remaining documents
-                    foreach (var document in originalDocuments) {
-                        DataProvider.Delete<DocumentInfo> (document);
-                    }
-
-                    ctx.Commit ();
-                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
-                }
-                catch {
-                    ctx.RollbackTransaction ();
-                    throw;
-                }
-            }
-        }
-
         public void UpdateEduProgramProfileForms (IList<EduProgramProfileFormInfo> eduForms, int eduProgramProfileId)
         {
             using (var ctx = DataContext.Instance ()) {

@@ -165,7 +165,7 @@ namespace R7.University.Launchpad
             UniversityRepository.Instance.DataProvider.Update<EduProgramProfileInfo> (item);
 
             // update referenced items
-            UniversityRepository.Instance.UpdateDocuments (
+            DocumentRepository.Instance.UpdateDocuments (
                 formEditDocuments.GetData (),
                 "EduProgramProfileID",
                 item.EduProgramProfileID);
