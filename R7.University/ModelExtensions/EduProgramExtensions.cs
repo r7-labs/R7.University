@@ -52,11 +52,10 @@ namespace R7.University.ModelExtensions
             return eduPrograms;
         }
 
-        public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram, Dal2DataProvider controller)
+        public static EduProgramInfo WithDocuments (this EduProgramInfo eduProgram)
         {
-            eduProgram.Documents = controller.GetObjects<DocumentInfo> (
-                    "WHERE [ItemID] = @0", "EduProgramID=" + eduProgram.EduProgramID)
-                .Cast<IDocument> ()
+            eduProgram.Documents = DocumentRepository.Instance.GetDocuments (
+                "EduProgramID=" + eduProgram.EduProgramID)
                 .ToList ();
 
             eduProgram.Documents.WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
@@ -64,12 +63,10 @@ namespace R7.University.ModelExtensions
             return eduProgram;
         }
 
-        public static IEnumerable<EduProgramInfo> WithDocuments (
-            this IEnumerable<EduProgramInfo> eduPrograms,
-            Dal2DataProvider controller)
+        public static IEnumerable<EduProgramInfo> WithDocuments (this IEnumerable<EduProgramInfo> eduPrograms)
         {
             foreach (var eduProgram in eduPrograms) {
-                eduProgram.WithDocuments (controller);
+                eduProgram.WithDocuments ();
             }
 
             return eduPrograms;

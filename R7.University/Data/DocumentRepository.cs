@@ -30,6 +30,7 @@ using System.Linq;
 using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
 using R7.University.Components;
+using R7.University.Models;
 
 namespace R7.University.Data
 {
@@ -46,12 +47,22 @@ namespace R7.University.Data
 
         private Dal2DataProvider dataProvider;
 
-        public Dal2DataProvider DataProvider
+        protected Dal2DataProvider DataProvider
         {
             get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
         #endregion
+
+        public IEnumerable<IDocument> GetDocuments_ForItemType (string itemType)
+        {
+            return DataProvider.GetObjects<DocumentInfo> ("WHERE ItemID LIKE @0", itemType + "=%");
+        }
+
+        public IEnumerable<IDocument> GetDocuments (string itemId)
+        {
+            return DataProvider.GetObjects<DocumentInfo> ("WHERE ItemID = @0", itemId);
+        }
 
         public void UpdateDocuments (IList<DocumentInfo> documents, string itemKey, int itemId)
         {
@@ -59,8 +70,7 @@ namespace R7.University.Data
                 ctx.BeginTransaction ();
 
                 try {
-                    var originalDocuments = DataProvider.GetObjects<DocumentInfo> (string.Format (
-                        "WHERE ItemID = N'{0}={1}'", itemKey, itemId)).ToList ();
+                    var originalDocuments = GetDocuments (string.Format ("{0}={1}", itemKey, itemId)).ToList ();
 
                     foreach (var document in documents) {
                         if (document.DocumentID <= 0) {
@@ -81,7 +91,7 @@ namespace R7.University.Data
 
                     // delete remaining documents
                     foreach (var document in originalDocuments) {
-                        DataProvider.Delete<DocumentInfo> (document);
+                        DataProvider.Delete<DocumentInfo> (document.DocumentID);
                     }
 
                     ctx.Commit ();

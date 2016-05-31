@@ -145,8 +145,7 @@ namespace R7.University.Launchpad
 
                             auditControl.Bind (item);
 
-                            var documents = UniversityRepository.Instance.DataProvider.GetObjects<DocumentInfo> (
-                                                string.Format ("WHERE ItemID = N'EduProgramID={0}'", item.EduProgramID))
+                            var documents = DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID")
                                 .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
                                 .Cast<DocumentInfo> ()
                                 .ToList ();

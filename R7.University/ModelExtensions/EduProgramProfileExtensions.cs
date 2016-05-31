@@ -113,9 +113,8 @@ namespace R7.University.ModelExtensions
             IEnumerable<IDocumentType> documentTypes, 
             Dal2DataProvider controller)
         {
-            eduProgramProfile.Documents = controller.GetObjects<DocumentInfo> (
-                "WHERE [ItemID] = @0", "EduProgramProfileID=" + eduProgramProfile.EduProgramProfileID)
-                .Cast<IDocument> ()
+            eduProgramProfile.Documents = DocumentRepository.Instance.GetDocuments (
+                "EduProgramProfileID=" + eduProgramProfile.EduProgramProfileID)
                 .ToList ();
             
             eduProgramProfile.Documents.WithDocumentType (documentTypes);

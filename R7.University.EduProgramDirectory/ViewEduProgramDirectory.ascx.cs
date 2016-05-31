@@ -92,7 +92,7 @@ namespace R7.University.EduProgramDirectory
 
                     // REVIEW: Order / group by edu level first?
                     var eduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels)
-                        .WithDocuments (UniversityRepository.Instance.DataProvider)
+                        .WithDocuments ()
                         .WithEduLevel (UniversityRepository.Instance.DataProvider)
                         .OrderBy (ep => ep.EduLevel.SortIndex)
                         .ThenBy (ep => ep.Code)
