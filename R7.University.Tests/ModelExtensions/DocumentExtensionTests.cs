@@ -1,5 +1,5 @@
 ﻿//
-// Test.cs
+// DocumentExtensionsTests.cs
 //
 // Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,15 +25,45 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using R7.University.Data;
+using R7.University.ModelExtensions;
+using R7.University.Models;
 using Xunit;
 
-namespace R7.University.Tests
+namespace R7.University.Tests.ModelExtensions
 {
-    public class Test
+    public class DocumentExtensionsTests
     {
-        [Fact ()]
-        public void TestMethod ()
+        [Fact]
+        public void WithDocumentType_Test ()
         {
+            const string typeName = "TypeName";
+
+            var documentTypes = new List<IDocumentType> { 
+                new DocumentTypeInfo {
+                    DocumentTypeID = 1,
+                    Type = typeName
+                }
+            };
+
+            var documents = new List<IDocument> { 
+                new DocumentInfo {
+                    DocumentTypeID = 1
+                },
+                new DocumentInfo {
+                    DocumentTypeID = 3
+                }
+            };
+
+            var documentsWithType = documents.WithDocumentType (documentTypes);
+
+            // document type exist, DocumentType property should contain object reference
+            Assert.Equal (typeName, documentsWithType.ElementAt (0).DocumentType.Type);
+
+            // document type doesn't exist, there shouldn't be second document object in the collection
+            Assert.Equal (1, documentsWithType.Count ());
         }
     }
 }
