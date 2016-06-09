@@ -27,7 +27,7 @@ namespace R7.University.Data
 {
     [TableName ("University_EduForms")]
     [PrimaryKey ("EduFormID", AutoIncrement = true)]
-    [Cacheable ("University_EduForms")]
+    [Cacheable ("//r7_University/Entities/EduForms")]
     public class EduFormInfo: IEduForm
     {
         #region IEduForm implementation
