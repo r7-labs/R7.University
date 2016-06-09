@@ -67,23 +67,23 @@ namespace R7.University.Launchpad
 
         protected override DocumentTypeInfo GetItem (int itemId)
         {
-            return UniversityRepository.Instance.DataProvider.Get<DocumentTypeInfo> (itemId);
+            return UniversityDataProvider.Instance.Get<DocumentTypeInfo> (itemId);
         }
 
         protected override int AddItem (DocumentTypeInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Add<DocumentTypeInfo> (item);
+            UniversityDataProvider.Instance.Add<DocumentTypeInfo> (item);
             return item.DocumentTypeID;
         }
 
         protected override void UpdateItem (DocumentTypeInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Update<DocumentTypeInfo> (item);
+            UniversityDataProvider.Instance.Update<DocumentTypeInfo> (item);
         }
 
         protected override void DeleteItem (DocumentTypeInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Delete<DocumentTypeInfo> (item);
+            UniversityDataProvider.Instance.Delete<DocumentTypeInfo> (item);
         }
 
         #endregion

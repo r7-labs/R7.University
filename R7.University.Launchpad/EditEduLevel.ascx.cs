@@ -76,23 +76,23 @@ namespace R7.University.Launchpad
 
         protected override EduLevelInfo GetItem (int itemId)
         {
-            return UniversityRepository.Instance.DataProvider.Get<EduLevelInfo> (itemId);
+            return UniversityDataProvider.Instance.Get<EduLevelInfo> (itemId);
         }
 
         protected override int AddItem (EduLevelInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Add<EduLevelInfo> (item);
+            UniversityDataProvider.Instance.Add<EduLevelInfo> (item);
             return item.EduLevelID;
         }
 
         protected override void UpdateItem (EduLevelInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Update<EduLevelInfo> (item);
+            UniversityDataProvider.Instance.Update<EduLevelInfo> (item);
         }
 
         protected override void DeleteItem (EduLevelInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Delete<EduLevelInfo> (item);
+            UniversityDataProvider.Instance.Delete<EduLevelInfo> (item);
         }
 
         #endregion

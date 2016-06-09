@@ -67,23 +67,23 @@ namespace R7.University.Launchpad
 
         protected override EduFormInfo GetItem (int itemId)
         {
-            return UniversityRepository.Instance.DataProvider.Get<EduFormInfo> (itemId);
+            return UniversityDataProvider.Instance.Get<EduFormInfo> (itemId);
         }
 
         protected override int AddItem (EduFormInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Add<EduFormInfo> (item);
+            UniversityDataProvider.Instance.Add<EduFormInfo> (item);
             return item.EduFormID;
         }
 
         protected override void UpdateItem (EduFormInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Update<EduFormInfo> (item);
+            UniversityDataProvider.Instance.Update<EduFormInfo> (item);
         }
 
         protected override void DeleteItem (EduFormInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Delete<EduFormInfo> (item);
+            UniversityDataProvider.Instance.Delete<EduFormInfo> (item);
         }
 
         #endregion
