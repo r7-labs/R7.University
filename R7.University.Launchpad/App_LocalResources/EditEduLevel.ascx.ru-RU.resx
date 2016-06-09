@@ -33,6 +33,12 @@
     <data name="SortIndex.Invalid" xml:space="preserve">
         <value>Индекс сортировки должен быть целым числом.</value>
     </data>
+    <data name="labelParentEduLevel.Text" xml:space="preserve">
+        <value>Вышестоящий уровень образования:</value>
+    </data>
+    <data name="labelParentEduLevel.Help" xml:space="preserve">
+        <value>Выберите вышестоящий уровень образования (обычно это уровень образовательной программы).</value>
+    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;Модуль редактирования уровня образования&lt;/P&gt;</value>
     </data>

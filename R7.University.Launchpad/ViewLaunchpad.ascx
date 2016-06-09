@@ -205,6 +205,7 @@
                            </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="EduLevelID" SortExpression="EduLevelID" HeaderText="EduLevelID" />
+                        <asp:BoundField DataField="ParentEduLevelID" SortExpression="ParentEduLevelID" HeaderText="ParentEduLevelID" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="SortIndex" SortExpression="SortIndex" HeaderText="SortIndex" />

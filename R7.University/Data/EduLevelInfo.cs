@@ -40,6 +40,8 @@ namespace R7.University.Data
 
         public int SortIndex { get; set; }
 
+        public int? ParentEduLevelId { get; set; }
+
         #endregion
     }
 }

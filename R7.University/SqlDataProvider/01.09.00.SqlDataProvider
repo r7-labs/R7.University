@@ -23,6 +23,17 @@
 -- replace {databaseOwner} and {objectQualifier} with real values. 
 -- Defaults is "dbo." for database owner and "" for object qualifier 
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduLevels]') and name = N'ParentEduLevelID')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduLevels]
+        ADD [ParentEduLevelID] int NULL
+        CONSTRAINT [FK_{objectQualifier}University_EduLevels_ParentEduLevels] FOREIGN KEY (ParentEduLevelID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels] (EduLevelID) ON DELETE NO ACTION
+END
+GO
+
+-- Add indexes
+
 IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_Divisions_ParentDivisions]') and type in (N'UQ'))
     CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Divisions_ParentDivisions]
         ON {databaseOwner}[{objectQualifier}University_Divisions] (ParentDivisionID ASC)

@@ -19,6 +19,10 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using System.Linq;
+using DotNetNuke.Common.Utilities;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Data;
@@ -31,6 +35,22 @@ namespace R7.University.Launchpad
         {
         }
 
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            var eduProgramLevels = UniversityRepository.Instance.GetEduProgramLevels ().ToList ();
+            eduProgramLevels.Insert (0, new EduLevelInfo {
+                    EduLevelID = Null.NullInteger,
+                    ParentEduLevelId = null,
+                    Title = LocalizeString ("NotSelected.Text")
+                }
+            );
+
+            comboParentEduLevel.DataSource = eduProgramLevels;
+            comboParentEduLevel.DataBind ();
+        }
+
         protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
@@ -41,6 +61,7 @@ namespace R7.University.Launchpad
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
             textSortIndex.Text = item.SortIndex.ToString ();
+            comboParentEduLevel.SelectByValue (item.ParentEduLevelId);
         }
 
         protected override void BeforeUpdateItem (EduLevelInfo item)
@@ -48,6 +69,7 @@ namespace R7.University.Launchpad
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
             item.SortIndex = TypeUtils.ParseToNullable<int> (textSortIndex.Text) ?? 0;
+            item.ParentEduLevelId = TypeUtils.ParseToNullable<int> (comboParentEduLevel.SelectedValue);
         }
 
         #region implemented abstract members of EditPortalModuleBase

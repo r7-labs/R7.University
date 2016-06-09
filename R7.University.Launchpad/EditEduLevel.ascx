@@ -4,6 +4,12 @@
 
 <div class="dnnForm dnnClear">
 	<fieldset>	
+        <div class="dnnFormItem">
+            <dnn:Label id="labelParentEduLevel" runat="server" ControlName="comboParentEduLevel" />
+            <asp:DropDownList id="comboParentEduLevel" runat="server"
+                DataValueField="EduLevelID"
+                DataTextField="Title" />
+        </div>
 		<div class="dnnFormItem">
 			<dnn:Label ID="labelTitle" runat="server" ControlName="textTitle" />
 			<asp:TextBox ID="textTitle" runat="server" MaxLength="250" />

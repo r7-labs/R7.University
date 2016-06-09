@@ -28,10 +28,16 @@
         <value>Sort Index:</value>
     </data>
     <data name="labelSortIndex.Help" xml:space="preserve">
-        <value>Enter the numeric index for the educational level. It will be used in sorting.</value>
+        <value>Enter the numeric index for the education level. It will be used in sorting.</value>
     </data>
     <data name="SortIndex.Invalid" xml:space="preserve">
         <value>Sort Index must be an integer.</value>
+    </data>
+    <data name="labelParentEduLevel.Text" xml:space="preserve">
+        <value>Parent Education Level:</value>
+    </data>
+    <data name="labelParentEduLevel.Help" xml:space="preserve">
+        <value>Select parent education level (generally it's the level of educational program).</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;An Edit education level module&lt;/P&gt;</value>
