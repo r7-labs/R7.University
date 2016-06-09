@@ -24,3 +24,11 @@ On [this page](http://www.volgau.com/LinkClick.aspx?link=284) you could see *Emp
 - [ ] Support http://schema.org formats
 - [ ] Allow manage multiple organizations
 - [x] Add portal-level configuration options
+
+## License
+
+[![LGPLv3](http://www.gnu.org/graphics/gplv3-147x51.png)](http://www.gnu.org/licenses/gpl.txt)
+
+The *R7.University* is free software: you can redistribute it and/or modify it under the terms of 
+the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, 
+or (at your option) any later version.
