@@ -72,7 +72,7 @@
                 <asp:TextBox id="textDocumentSortIndex" runat="server" Value="0" />
                 <asp:RegularExpressionValidator runat="server" resourcekey="DocumentSortIndex.Invalid"
                     ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents" 
-                    Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="-?\d+" />
+                    Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="^-?\d+$" />
             </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="labelDocumentStartDate" runat="server" ControlName="datetimeDocumentStartDate" />
