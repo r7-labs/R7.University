@@ -50,7 +50,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // get and bind edu levels
-            var eduLevels = EduLevelRepository.Instance.GetEduLevels ();
+            var eduLevels = UniversityRepository.Instance.GetEduLevels ();
             comboEduLevel.DataSource = eduLevels;
             comboEduLevel.DataBind ();
 

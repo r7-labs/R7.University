@@ -106,7 +106,6 @@
     <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
     <Compile Include="Data\EduProgramProfileRepository.cs" />
-    <Compile Include="Data\EduLevelRepository.cs" />
     <Compile Include="Data\EduProgramRepository.cs" />
     <Compile Include="Data\EduProgramInfo.cs" />
     <Compile Include="Models\IEduProgram.cs" />
