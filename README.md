@@ -27,7 +27,7 @@ On [this page](http://www.volgau.com/LinkClick.aspx?link=284) you could see *Emp
 
 ## License
 
-[![LGPLv3](http://www.gnu.org/graphics/gplv3-147x51.png)](http://www.gnu.org/licenses/gpl.txt)
+[![GPLv3](http://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl.txt)
 
 The *R7.University* is free software: you can redistribute it and/or modify it under the terms of 
 the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, 
