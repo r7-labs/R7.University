@@ -29,9 +29,18 @@ namespace R7.University.Data
 {
     public class DivisionRepository
     {
+        protected Dal2DataProvider DataProvider;
+
+        public DivisionRepository (Dal2DataProvider dataProvider)
+        {
+            DataProvider = dataProvider;
+        }
+
         #region Singleton implementation
 
-        private static readonly Lazy<DivisionRepository> instance = new Lazy<DivisionRepository> ();
+        private static readonly Lazy<DivisionRepository> instance = new Lazy<DivisionRepository> (
+            () => new DivisionRepository (UniversityDataProvider.Instance)
+        );
 
         public static DivisionRepository Instance
         {
@@ -39,13 +48,6 @@ namespace R7.University.Data
         }
 
         #endregion
-
-        private Dal2DataProvider dataProvider;
-
-        protected Dal2DataProvider DataProvider
-        {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
-        }
 
         public DivisionInfo GetDivision (int divisionId)
         {

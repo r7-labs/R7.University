@@ -28,9 +28,19 @@ namespace R7.University.Data
 {
     public class UniversityRepository
     {
+        [Obsolete]
+        public Dal2DataProvider DataProvider;
+
+        public UniversityRepository (Dal2DataProvider dataProvider)
+        {
+            DataProvider = dataProvider;
+        }
+
         #region Singleton implementation
 
-        private static readonly Lazy<UniversityRepository> instance = new Lazy<UniversityRepository> ();
+        private static readonly Lazy<UniversityRepository> instance = new Lazy<UniversityRepository> (
+            () => new UniversityRepository (UniversityDataProvider.Instance)
+        );
 
         public static UniversityRepository Instance
         {
@@ -39,30 +49,24 @@ namespace R7.University.Data
 
         #endregion
 
-        [Obsolete]
-        public Dal2DataProvider DataProvider
-        {
-            get { return UniversityDataProvider.Instance; }
-        }
-
         public IEnumerable<EduLevelInfo> GetEduLevels ()
         {
-            return UniversityDataProvider.Instance.GetObjects<EduLevelInfo> ();
+            return DataProvider.GetObjects<EduLevelInfo> ();
         }
 
         public IEnumerable<EduLevelInfo> GetEduProgramLevels ()
         {
-            return UniversityDataProvider.Instance.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
+            return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
         }
 
         public IEnumerable<EduLevelInfo> GetEduProgramProfileLevels ()
         {
-            return UniversityDataProvider.Instance.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId != null);
+            return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId != null);
         }
 
         public IEnumerable<DocumentTypeInfo> GetDocumentTypes ()
         {
-            return UniversityDataProvider.Instance.GetObjects<DocumentTypeInfo> ();
+            return DataProvider.GetObjects<DocumentTypeInfo> ();
         }
     }
 }

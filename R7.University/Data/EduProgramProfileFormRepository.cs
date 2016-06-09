@@ -32,7 +32,9 @@ namespace R7.University.Data
     {
         #region Singleton implementation
 
-        private static readonly Lazy<EduProgramProfileFormRepository> instance = new Lazy<EduProgramProfileFormRepository> ();
+        private static readonly Lazy<EduProgramProfileFormRepository> instance = new Lazy<EduProgramProfileFormRepository> (
+            () => new EduProgramProfileFormRepository (UniversityDataProvider.Instance)
+        );
 
         public static EduProgramProfileFormRepository Instance
         {
@@ -41,11 +43,11 @@ namespace R7.University.Data
 
         #endregion
 
-        private Dal2DataProvider dataProvider;
+        protected Dal2DataProvider DataProvider;
 
-        protected Dal2DataProvider DataProvider
+        public EduProgramProfileFormRepository (Dal2DataProvider dataProvider)
         {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
+            DataProvider = dataProvider;
         }
 
         public void UpdateEduProgramProfileForms (IList<EduProgramProfileFormInfo> eduForms, int eduProgramProfileId)

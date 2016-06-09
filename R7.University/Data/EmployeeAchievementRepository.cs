@@ -29,9 +29,18 @@ namespace R7.University.Data
 {
     public class EmployeeAchievementRepository
     {
+        protected Dal2DataProvider DataProvider;
+
+        public EmployeeAchievementRepository (Dal2DataProvider dataProvider)
+        {
+            DataProvider = dataProvider;
+        }
+
         #region Singleton implementation
 
-        private static readonly Lazy<EmployeeAchievementRepository> instance = new Lazy<EmployeeAchievementRepository> ();
+        private static readonly Lazy<EmployeeAchievementRepository> instance = new Lazy<EmployeeAchievementRepository> (
+            () => new EmployeeAchievementRepository (UniversityDataProvider.Instance)
+        );
 
         public static EmployeeAchievementRepository Instance
         {
@@ -39,13 +48,6 @@ namespace R7.University.Data
         }
 
         #endregion
-
-        private Dal2DataProvider dataProvider;
-
-        protected Dal2DataProvider DataProvider
-        {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
-        }
 
         public IEnumerable<EmployeeAchievementInfo> GetEmployeeAchievements ()
         {

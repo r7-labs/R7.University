@@ -33,7 +33,9 @@ namespace R7.University.Data
     {
         #region Singleton implementation
 
-        private static readonly Lazy<EduProgramProfileRepository> instance = new Lazy<EduProgramProfileRepository> ();
+        private static readonly Lazy<EduProgramProfileRepository> instance = new Lazy<EduProgramProfileRepository> (
+            () => new EduProgramProfileRepository (UniversityDataProvider.Instance)
+        );
 
         public static EduProgramProfileRepository Instance
         {
@@ -42,18 +44,11 @@ namespace R7.University.Data
 
         #endregion
 
-        /*
+        protected Dal2DataProvider DataProvider;
+
         public EduProgramProfileRepository (Dal2DataProvider dataProvider)
         {
-            this.dataProvider = dataProvider;
-        }
-        */
-
-        private Dal2DataProvider dataProvider;
-
-        protected Dal2DataProvider DataProvider
-        {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
+            DataProvider = dataProvider;
         }
 
         public EduProgramProfileInfo Get (int eduProgramProfileId)

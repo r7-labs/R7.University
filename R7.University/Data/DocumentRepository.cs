@@ -30,20 +30,22 @@ namespace R7.University.Data
 {
     public class DocumentRepository
     {
+        protected Dal2DataProvider DataProvider;
+
+        public DocumentRepository (Dal2DataProvider dataProvider)
+        {
+            DataProvider = dataProvider;
+        }
+
         #region Singleton implementation
 
-        private static readonly Lazy<DocumentRepository> instance = new Lazy<DocumentRepository> ();
+        private static readonly Lazy<DocumentRepository> instance = new Lazy<DocumentRepository> (
+            () => new DocumentRepository (UniversityDataProvider.Instance)
+        );
 
         public static DocumentRepository Instance
         {
             get { return instance.Value; }
-        }
-
-        private Dal2DataProvider dataProvider;
-
-        protected Dal2DataProvider DataProvider
-        {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
         }
 
         #endregion

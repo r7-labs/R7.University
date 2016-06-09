@@ -33,9 +33,18 @@ namespace R7.University.Data
 {
     public class EmployeeRepository
     {
+        protected Dal2DataProvider DataProvider;
+
+        public EmployeeRepository (Dal2DataProvider dataProvider)
+        {
+            DataProvider = dataProvider;
+        }
+
         #region Singleton implementation
 
-        private static readonly Lazy<EmployeeRepository> instance = new Lazy<EmployeeRepository> ();
+        private static readonly Lazy<EmployeeRepository> instance = new Lazy<EmployeeRepository> (
+            () => new EmployeeRepository (UniversityDataProvider.Instance)
+        );
 
         public static EmployeeRepository Instance
         {
@@ -43,13 +52,6 @@ namespace R7.University.Data
         }
 
         #endregion
-
-        private Dal2DataProvider dataProvider;
-
-        public Dal2DataProvider DataProvider
-        {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
-        }
 
         public EmployeeInfo GetEmployee (int employeeId)
         {

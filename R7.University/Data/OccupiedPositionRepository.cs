@@ -29,9 +29,18 @@ namespace R7.University.Data
 {
     public class OccupiedPositionRepository
     {
+        protected Dal2DataProvider DataProvider;
+
+        public OccupiedPositionRepository (Dal2DataProvider dataProvider)
+        {
+            DataProvider = dataProvider;
+        }
+
         #region Singleton implementation
 
-        private static readonly Lazy<OccupiedPositionRepository> instance = new Lazy<OccupiedPositionRepository> ();
+        private static readonly Lazy<OccupiedPositionRepository> instance = new Lazy<OccupiedPositionRepository> (
+            () => new OccupiedPositionRepository (UniversityDataProvider.Instance)
+        );
 
         public static OccupiedPositionRepository Instance
         {
@@ -39,13 +48,6 @@ namespace R7.University.Data
         }
 
         #endregion
-
-        private Dal2DataProvider dataProvider;
-
-        protected Dal2DataProvider DataProvider
-        {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
-        }
 
         public IEnumerable<OccupiedPositionInfoEx> GetOccupiedPositions (int employeeId)
         {
