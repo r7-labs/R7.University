@@ -39,32 +39,30 @@ namespace R7.University.Data
 
         #endregion
 
-        private Dal2DataProvider dataProvider;
-
         [Obsolete]
         public Dal2DataProvider DataProvider
         {
-            get { return dataProvider ?? (dataProvider = new Dal2DataProvider ()); }
+            get { return UniversityDataProvider.Instance; }
         }
 
         public IEnumerable<EduLevelInfo> GetEduLevels ()
         {
-            return DataProvider.GetObjects<EduLevelInfo> ();
+            return UniversityDataProvider.Instance.GetObjects<EduLevelInfo> ();
         }
 
         public IEnumerable<EduLevelInfo> GetEduProgramLevels ()
         {
-            return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
+            return UniversityDataProvider.Instance.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
         }
 
         public IEnumerable<EduLevelInfo> GetEduProgramProfileLevels ()
         {
-            return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId != null);
+            return UniversityDataProvider.Instance.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId != null);
         }
 
         public IEnumerable<DocumentTypeInfo> GetDocumentTypes ()
         {
-            return DataProvider.GetObjects<DocumentTypeInfo> ();
+            return UniversityDataProvider.Instance.GetObjects<DocumentTypeInfo> ();
         }
     }
 }
