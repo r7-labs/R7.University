@@ -189,6 +189,12 @@ namespace R7.University.Launchpad.ViewModels
             set { throw new NotImplementedException (); }
         }
 
+        public bool ShowBarcode
+        {
+            get { return Model.ShowBarcode; }
+            set { throw new NotImplementedException (); }
+        }
+
         public IList<IEmployeeAchievement> Achievements
         {
             get { return Model.Achievements; }

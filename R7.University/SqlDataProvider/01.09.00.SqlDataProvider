@@ -23,6 +23,13 @@
 -- replace {databaseOwner} and {objectQualifier} with real values. 
 -- Defaults is "dbo." for database owner and "" for object qualifier 
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'ShowBarcode')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+        ADD [ShowBarcode] bit NOT NULL DEFAULT ((1))
+END
+GO
+
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduLevels]') and name = N'ParentEduLevelID')
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduLevels]

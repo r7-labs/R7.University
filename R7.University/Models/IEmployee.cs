@@ -71,6 +71,8 @@ namespace R7.University.Models
 
         DateTime? EndDate { get; set; }
 
+        bool ShowBarcode { get; set; }
+
         IList<IEmployeeAchievement> Achievements { get; set; }
 
         IList<IEmployeeDiscipline> Disciplines { get; set; }

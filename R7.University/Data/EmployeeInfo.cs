@@ -91,6 +91,8 @@ namespace R7.University.Data
 
         public DateTime CreatedOnDate { get; set; }
 
+        public bool ShowBarcode { get; set; }
+
         [IgnoreColumn]
         public IList<IEmployeeAchievement> Achievements { get; set; }
 

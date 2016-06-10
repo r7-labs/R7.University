@@ -122,6 +122,10 @@
 					<asp:TextBox id="textExperienceYearsBySpec" runat="server" />
 				</div>
                 <div class="dnnFormItem">
+                    <dnn:Label id="labelShowBarcode" runat="server" ControlName="checkShowBarcode" />
+                    <asp:CheckBox id="checkShowBarcode" runat="server" CssClass="dnn-form-control" />
+                </div>
+                <div class="dnnFormItem">
                     <dnn:Label id="labelStartDate" runat="server" ControlName="datetimeStartDate" />
                     <dnn:DnnDateTimePicker id="datetimeStartDate" runat="server" />
                 </div>

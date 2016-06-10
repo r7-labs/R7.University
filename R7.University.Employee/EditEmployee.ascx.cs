@@ -133,6 +133,8 @@ namespace R7.University.Employee
             pickerPhoto.FolderPath = UniversityConfig.Instance.EmployeePhoto.DefaultPath;
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
 
+            checkShowBarcode.Checked = true;
+
             // add default item to user list
             comboUsers.Items.Add (new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
 
@@ -232,6 +234,7 @@ namespace R7.University.Employee
                             textMessenger.Text = item.Messenger;
                             textWorkingPlace.Text = item.WorkingPlace;
                             textBiography.Text = item.Biography;
+                            checkShowBarcode.Checked = item.ShowBarcode;
 							
                             // load working hours
                             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
@@ -370,6 +373,7 @@ namespace R7.University.Employee
                 item.Messenger = textMessenger.Text.Trim ();
                 item.WorkingPlace = textWorkingPlace.Text.Trim ();
                 item.Biography = textBiography.Text.Trim ();
+                item.ShowBarcode = checkShowBarcode.Checked;
 				
                 // update working hours
                 item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, 

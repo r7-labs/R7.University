@@ -144,6 +144,12 @@
     <data name="labelEndDate.Help">
         <value>Enter the date from current employee should be removed from publication on the site.</value>
     </data>
+    <data name="labelShowBarcode.Text">
+        <value>Show Barcode:</value>
+    </data>
+    <data name="labelShowBarcode.Help">
+        <value>Uncheck to disable barcode display for the employee.</value>
+    </data>
 	<data name="labelUserLookup.Text">
 		<value>User Lookup:</value>
 	</data>

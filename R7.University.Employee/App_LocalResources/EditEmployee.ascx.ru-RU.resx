@@ -144,9 +144,12 @@
     <data name="labelEndDate.Help">
         <value>Введите дату, начиная с которой сотрудник должен быть снят с публикации на сайте.</value>
     </data>
-	<data name="labelIsPublished.Help">
-		<value>Установите флажок, чтобы опубликовать сведения о сотруднике.</value>
-	</data>
+	<data name="labelShowBarcode.Text">
+        <value>Показывать штрих-код:</value>
+    </data>
+    <data name="labelShowBarcode.Help">
+        <value>Снимите флажок, чтобы запретить показ штрих-кода для данного сотрудника.</value>
+    </data>
 	<data name="labelUserLookup.Text">
 		<value>Найти пользователя:</value>
 	</data>

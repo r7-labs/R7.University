@@ -396,20 +396,25 @@ namespace R7.University.Employee
 
         void Barcode (EmployeeInfo employee)
         {
-            linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
-            linkBarcode.Attributes.Add ("data-dialog-title", employee.FullName);
+            if (employee.ShowBarcode) {
+                linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
+                linkBarcode.Attributes.Add ("data-dialog-title", employee.FullName);
 
-            // barcode image
-            var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
-            imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
-                    "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
-                    barcodeWidth, barcodeWidth, 
-                    Server.UrlEncode (employee.VCard.ToString ()
+                // barcode image
+                var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
+                imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
+                        "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
+                        barcodeWidth, barcodeWidth, 
+                        Server.UrlEncode (employee.VCard.ToString ()
 						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
-                ));
+                    ));
 
-            imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
-            imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
+                imageBarcode.ToolTip = LocalizeString ("imageBarcode.ToolTip");
+                imageBarcode.AlternateText = LocalizeString ("imageBarcode.AlternateText");
+            }
+            else {
+                linkBarcode.Visible = false;
+            }
         }
 
         void Experience (EmployeeInfo employee)

@@ -62,6 +62,7 @@ namespace R7.University.Employee
 		protected Label labelUserNames;
 		protected LabelControl labelUserLookup;
 		protected DropDownList comboUsers;
+        protected CheckBox checkShowBarcode;
 
         protected GridView gridOccupiedPositions;
 		protected LabelControl labelPositions;
