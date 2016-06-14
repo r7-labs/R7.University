@@ -133,7 +133,7 @@ namespace R7.University.Division
             // bind positions
             var positions = UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ().OrderBy (p => p.Title).ToList ();
             positions.Insert (0, new PositionInfo {
-                    ShortTitle = LocalizeString ("NotSelected.Text"),
+                    Title = LocalizeString ("NotSelected.Text"),
                     PositionID = Null.NullInteger
                 }
             );

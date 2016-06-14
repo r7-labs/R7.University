@@ -155,11 +155,11 @@ namespace R7.University.Employee
 
             // add default items
             positions.Insert (0, new PositionInfo {
-                ShortTitle = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
+                Title = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
             });
 
             commonAchievements.Insert (0, new AchievementInfo {
-                ShortTitle = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
+                Title = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
             });
 
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
