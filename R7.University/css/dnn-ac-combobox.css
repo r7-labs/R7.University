@@ -13,6 +13,7 @@
 }
 
 .dnn-ac-combobox {
+    position:relative;
     display:inline-block;
     width:45%;
     max-width:445px;
@@ -45,7 +46,9 @@
     min-width:auto;
     padding:6px 0 0 0;
     position:absolute;
-    margin-left:-18px;
+    top:0;
+    right:-18px;
+    z-index:10;
 }
 
 .dnn-ac-combobox .dnnSecondaryAction {
