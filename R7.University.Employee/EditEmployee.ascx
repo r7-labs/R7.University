@@ -236,72 +236,65 @@
 							</Columns>
 				    </asp:GridView>
 				</div>
-                <asp:UpdatePanel id="updatePanelAchievement" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-        				<div class="dnnFormItem">
-        					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
-                            <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-ac-combobox"
-                                DataValueField="AchievementID"
-                                DataTextField="Title"
-                                AutoPostBack="true"
-                                OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged" />
-                        </div>
-                        <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
-                            <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
-                            <asp:DropDownList id="comboAchievementTypes" runat="server" 
-                                DataTextField="LocalizedAchivementType"
-                                DataValueField="AchievementType" />
-                        </asp:Panel>
-        				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
-        					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
-        					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
-                            <asp:RegularExpressionValidator runat="server"
-                                CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
-                                ControlToValidate="textAchievementTitle" Display="Dynamic"
-                                ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements">
-                            </asp:RegularExpressionValidator>
-        				</asp:Panel>
-                        <div class="dnnFormItem">
-        					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
-        					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
-        				</div>
-        				<div class="dnnFormItem">
-        					<dnn:Label id="labelYears" runat="server" ControlName="textYearBegin" />
-        					<div class="dnn-form-control-group">
-                                <asp:TextBox id="textYearBegin" runat="server" CssClass="dnn-form-control-half-width" />
-                                &ndash;
-                                <asp:TextBox id="textYearEnd" runat="server" CssClass="dnn-form-control-half-width" />
-                            </div>
-        				</div>
-                        <div class="dnnFormItem">
-        					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />
-        					<asp:CheckBox id="checkIsTitle" runat="server" CssClass="dnn-form-control" />
-        				</div>
-                        <div class="dnnFormItem">
-                            <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" />
-                            <dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
-                                IncludeActiveTab="true"
-                                ShowFiles="true" ShowTabs="true"
-                                ShowUrls="true" ShowUsers="true"
-                                ShowLog="false" ShowTrack="false"
-                                ShowNone="true" ShowNewWindow="false" />      
-                        </div>
-                        <h2 class="dnnFormSectionHead dnnClear"><a href="#"><%: LocalizeString ("sectionAdvancedAchievementProperties.Text") %></a></h2>
-                        <fieldset>
-                            <asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
-                                <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" />
-                                <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
-                            </asp:Panel>
-                            <div class="dnnFormItem">
-                                <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" />
-                                <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
-                            </div>
-                        </fieldset>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:PostBackTrigger ControlID="urlDocumentURL" />
-                    </Triggers>
-                </asp:UpdatePanel>
+      			<div class="dnnFormItem">
+					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
+                    <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-ac-combobox"
+                        DataValueField="AchievementID"
+                        DataTextField="Title"
+                        AutoPostBack="true"
+                        OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged" />
+                </div>
+                <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
+                    <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
+                    <asp:DropDownList id="comboAchievementTypes" runat="server" 
+                        DataTextField="LocalizedAchivementType"
+                        DataValueField="AchievementType" />
+                </asp:Panel>
+				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
+					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
+					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
+                    <asp:RegularExpressionValidator runat="server"
+                        CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
+                        ControlToValidate="textAchievementTitle" Display="Dynamic"
+                        ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements">
+                    </asp:RegularExpressionValidator>
+				</asp:Panel>
+                <div class="dnnFormItem">
+					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
+					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelYears" runat="server" ControlName="textYearBegin" />
+					<div class="dnn-form-control-group">
+                        <asp:TextBox id="textYearBegin" runat="server" CssClass="dnn-form-control-half-width" />
+                        &ndash;
+                        <asp:TextBox id="textYearEnd" runat="server" CssClass="dnn-form-control-half-width" />
+                    </div>
+				</div>
+                <div class="dnnFormItem">
+					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />
+					<asp:CheckBox id="checkIsTitle" runat="server" CssClass="dnn-form-control" />
+				</div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" />
+                    <dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
+                        IncludeActiveTab="true"
+                        ShowFiles="true" ShowTabs="true"
+                        ShowUrls="true" ShowUsers="true"
+                        ShowLog="false" ShowTrack="false"
+                        ShowNone="true" ShowNewWindow="false" />      
+                </div>
+                <h2 class="dnnFormSectionHead dnnClear"><a href="#"><%: LocalizeString ("sectionAdvancedAchievementProperties.Text") %></a></h2>
+                <fieldset>
+                    <asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
+                        <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" />
+                        <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
+                    </asp:Panel>
+                    <div class="dnnFormItem">
+                        <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" />
+                        <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
+                    </div>
+                </fieldset>
 				<div class="dnnFormItem">
 					<div class="dnnLabel"></div>
 					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
@@ -318,77 +311,73 @@
 		</div>
 		<div id="employee-disciplines-tab">
 			<fieldset>
-                <asp:UpdatePanel runat="server">
-                    <ContentTemplate>
-                        <asp:ValidationSummary runat="server" ValidationGroup="Disciplines" 
-                            DisplayMode="SingleParagraph" CssClass="dnnFormMessage dnnFormWarning" />
-                        <div class="dnnFormItem">
-                            <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                                    GridLines="None" OnRowDataBound="gridDisciplines_RowDataBound" Style="margin-bottom:30px;width:775px">
-                                <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-                                <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-                                <AlternatingRowStyle CssClass="dnnGridAltItem" />
-                                <SelectedRowStyle CssClass="dnnFormError" />
-                                <EditRowStyle CssClass="dnnFormInput" />
-                                <FooterStyle CssClass="dnnGridFooter" />
-                                <PagerStyle CssClass="dnnGridPager" />
-                                <Columns>
-                                    <asp:TemplateField>
-                                        <ItemTemplate>
-                                            <span style="white-space:nowrap">
-                                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditDisciplines_Command" >
-                                                    <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-                                                </asp:LinkButton>
-                                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteDisciplines_Command" >
-                                                    <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-                                                </asp:LinkButton>
-                                            </span>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="ItemID" />
-                                    <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
-                                    <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
-                                </Columns>
-                            </asp:GridView>
-                            <asp:HiddenField id="hiddenDisciplinesItemID" runat="server" />
-                        </div>
-                        <div class="dnnFormItem">
-                            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-                            <asp:DropDownList id="comboEduLevel" runat="server"
-                                AutoPostBack="true"
-                                OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
-                                DataValueField="EduLevelID"
-                                DataTextField="Title" />
-                        </div>
-                        <div class="dnnFormItem">
-                            <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
-                            <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-ac-combobox"
-                                DataValueField="EduProgramProfileID"
-                                DataTextField="EduProgramProfileString" />
-                            <asp:CustomValidator id="valEduProgramProfile" runat="server" ControlToValidate="comboEduProgramProfile"
-                                Display="None" EnableClientScript="false" ValidationGroup="Disciplines" />
-                        </div>
-                        <div class="dnnFormItem">
-                            <dnn:Label id="labelDisciplines" runat="server" ControlName="textDisciplines" />
-                            <asp:TextBox id="textDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="textDisciplines" Display="Dynamic"
-                                CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="Disciplines.Required" />
-                        </div>
-                        <div class="dnnFormItem">
-                            <div class="dnnLabel"></div>
-                            <asp:LinkButton id="buttonAddDisciplines" runat="server" resourcekey="buttonAddDisciplines" 
-                                CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" CommandArgument="Add" 
-                                CausesValidation="true" ValidationGroup="Disciplines" />
-                            <asp:LinkButton id="buttonUpdateDisciplines" runat="server" resourcekey="buttonUpdateDisciplines" 
-                                CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" Visible="false" CommandArgument="Update" 
-                                CausesValidation="true" ValidationGroup="Disciplines" />
-                            <asp:LinkButton id="buttonCancelEditDisciplines" runat="server" resourcekey="buttonCancelEditDisciplines" 
-                                CssClass="dnnSecondaryAction" OnClick="buttonCancelEditDisciplines_Click" 
-                                CausesValidation="false" />
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-			</fieldset>
+                <asp:ValidationSummary runat="server" ValidationGroup="Disciplines" 
+                    DisplayMode="SingleParagraph" CssClass="dnnFormMessage dnnFormWarning" />
+                <div class="dnnFormItem">
+                    <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                            GridLines="None" OnRowDataBound="gridDisciplines_RowDataBound" Style="margin-bottom:30px;width:775px">
+                        <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                        <SelectedRowStyle CssClass="dnnFormError" />
+                        <EditRowStyle CssClass="dnnFormInput" />
+                        <FooterStyle CssClass="dnnGridFooter" />
+                        <PagerStyle CssClass="dnnGridPager" />
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <span style="white-space:nowrap">
+                                        <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditDisciplines_Command" >
+                                            <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                        </asp:LinkButton>
+                                        <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteDisciplines_Command" >
+                                            <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
+                                        </asp:LinkButton>
+                                    </span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="ItemID" />
+                            <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
+                            <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                        </Columns>
+                    </asp:GridView>
+                    <asp:HiddenField id="hiddenDisciplinesItemID" runat="server" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+                    <asp:DropDownList id="comboEduLevel" runat="server"
+                        AutoPostBack="true"
+                        OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
+                        DataValueField="EduLevelID"
+                        DataTextField="Title" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
+                    <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-ac-combobox"
+                        DataValueField="EduProgramProfileID"
+                        DataTextField="EduProgramProfileString" />
+                    <asp:CustomValidator id="valEduProgramProfile" runat="server" ControlToValidate="comboEduProgramProfile"
+                        Display="None" EnableClientScript="false" ValidationGroup="Disciplines" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelDisciplines" runat="server" ControlName="textDisciplines" />
+                    <asp:TextBox id="textDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="textDisciplines" Display="Dynamic"
+                        CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="Disciplines.Required" />
+                </div>
+                <div class="dnnFormItem">
+                    <div class="dnnLabel"></div>
+                    <asp:LinkButton id="buttonAddDisciplines" runat="server" resourcekey="buttonAddDisciplines" 
+                        CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" CommandArgument="Add" 
+                        CausesValidation="true" ValidationGroup="Disciplines" />
+                    <asp:LinkButton id="buttonUpdateDisciplines" runat="server" resourcekey="buttonUpdateDisciplines" 
+                        CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" Visible="false" CommandArgument="Update" 
+                        CausesValidation="true" ValidationGroup="Disciplines" />
+                    <asp:LinkButton id="buttonCancelEditDisciplines" runat="server" resourcekey="buttonCancelEditDisciplines" 
+                        CssClass="dnnSecondaryAction" OnClick="buttonCancelEditDisciplines_Click" 
+                        CausesValidation="false" />
+                </div>
+            </fieldset>
 		</div>
         <div id="employee-about-tab">
 			<fieldset>
@@ -408,15 +397,17 @@
 	<hr />
 	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
+<input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">
 (function($, Sys) {
     function setupModule() {
+        var selectedTab = document.getElementById("hiddenSelectedTab").value;
+        $("#employee-tabs").dnnTabs({selected: selectedTab});
         $("#employee-achievements-tab").dnnPanels({defaultState: "closed"});
         dnnAcCombobox_Init($);
         $(".dnn-ac-combobox").combobox();
     };
     $(document).ready(function() {
-        $("#employee-tabs").dnnTabs({selected: <%= (int)SelectedTab %>});
         setupModule();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
             setupModule();

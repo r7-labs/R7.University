@@ -57,7 +57,7 @@ namespace R7.University.Employee
             Common,
             Positions,
             Achievements,
-            [Obsolete] Disciplines,
+            Disciplines,
             About
         }
 
@@ -74,10 +74,35 @@ namespace R7.University.Employee
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
-                    // urlDocumentURL control is on Achievements tab
-                    if (eventTarget.Contains ("$" + urlDocumentURL.ID + "$")) {
+                    
+                    if (eventTarget.Contains ("$" + buttonUserLookup.ID) ||
+                        eventTarget.Contains ("$" + buttonPhotoLookup.ID)) {
+                        ViewState ["SelectedTab"] = EditEmployeeTab.Common;
+                        return EditEmployeeTab.Common;
+                    }
+
+                    if (eventTarget.Contains ("$" +  buttonCancelEditPosition.ID) ||
+                        eventTarget.Contains ("$" +  buttonAddPosition.ID) ||
+                        eventTarget.Contains ("$" +  gridOccupiedPositions.ID)) {
+                        ViewState ["SelectedTab"] = EditEmployeeTab.Positions;
+                        return EditEmployeeTab.Positions;
+                    }
+
+                    if (eventTarget.Contains ("$" +  buttonCancelEditAchievement.ID) ||
+                        eventTarget.Contains ("$" +  buttonAddAchievement.ID) ||
+                        eventTarget.Contains ("$" +  gridAchievements.ID) ||
+                        eventTarget.Contains ("$" +  urlDocumentURL.ID) ||
+                        eventTarget.Contains ("$" +  comboAchievement.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Achievements;
                         return EditEmployeeTab.Achievements;
+                    }
+
+                    if (eventTarget.Contains ("$" + buttonCancelEditDisciplines.ID) ||
+                        eventTarget.Contains ("$" + buttonAddDisciplines.ID) ||
+                        eventTarget.Contains ("$" + gridDisciplines.ID) ||
+                        eventTarget.Contains ("$" + comboEduLevel.ID)) {
+                        ViewState ["SelectedTab"] = EditEmployeeTab.Disciplines;
+                        return EditEmployeeTab.Disciplines;
                     }
                 }
                 // otherwise, get current tab from viewstate
@@ -203,10 +228,7 @@ namespace R7.University.Employee
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
-
-            if (AJAX.IsInstalled ())
-                AJAX.RegisterScriptManager ();
-            
+             
             try {
                 // parse querystring parameters
                 itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
@@ -489,8 +511,6 @@ namespace R7.University.Employee
         protected void buttonUserLookup_Click (object sender, EventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Common;
-
                 var term = textUserLookup.Text.Trim ();
                 var includeDeleted = checkIncludeDeletedUsers.Checked;
 
@@ -545,8 +565,6 @@ namespace R7.University.Employee
         protected void buttonPhotoLookup_Click (object sender, EventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Common;
-
                 var folderPath =  UniversityConfig.Instance.EmployeePhoto.DefaultPath;
                 var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
 
@@ -586,8 +604,6 @@ namespace R7.University.Employee
         protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Positions;
-
                 ResetEditPositionForm ();
             }
             catch (Exception ex) {
@@ -624,8 +640,6 @@ namespace R7.University.Employee
         protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Positions;
-
                 var positionID = int.Parse (comboPositions.SelectedValue);
                 var divisionID = int.Parse (treeDivisions.SelectedValue);
 
@@ -728,8 +742,6 @@ namespace R7.University.Employee
         protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Positions;
-
                 var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
@@ -762,8 +774,6 @@ namespace R7.University.Employee
         protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Positions;
-
                 var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
@@ -807,8 +817,6 @@ namespace R7.University.Employee
         protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Achievements;
-
                 var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
@@ -841,8 +849,6 @@ namespace R7.University.Employee
         protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Achievements;
-
                 var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
@@ -900,8 +906,6 @@ namespace R7.University.Employee
         protected void buttonCancelEditAchievement_Click (object sender, EventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Achievements;
-
                 ResetEditAchievementForm ();
             }
             catch (Exception ex) {
@@ -937,8 +941,6 @@ namespace R7.University.Employee
         protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Achievements;
-
                 EmployeeAchievementView achievement;
 
                 // get achievements list from viewstate
@@ -1133,8 +1135,6 @@ namespace R7.University.Employee
         protected void comboAchievement_SelectedIndexChanged (object sender, EventArgs e)
         {
             try {
-                SelectedTab = EditEmployeeTab.Achievements;
-
                 if (((DropDownList) sender).SelectedValue == Null.NullInteger.ToString ()) {
                     panelAchievementTitle.Visible = true;
                     panelAchievementShortTitle.Visible = true;
