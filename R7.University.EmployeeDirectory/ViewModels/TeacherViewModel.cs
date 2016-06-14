@@ -305,7 +305,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", Model.Achievements
-                    .Where (ach => ach.AchievementType == AchievementType.Education)
+                    .Where (ach => ach.AchievementType == AchievementType.Training)
                     .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
                 );
