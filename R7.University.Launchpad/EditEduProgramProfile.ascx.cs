@@ -87,6 +87,7 @@ namespace R7.University.Launchpad
             // update comboEduProgram, if needed
             var currentEduLevelId = int.Parse (comboEduLevel.SelectedValue);
             if (item.EduProgram.EduLevelID != currentEduLevelId) {
+                comboEduLevel.SelectByValue (item.EduProgram.EduLevelID);
                 BindEduPrograms (item.EduProgram.EduLevelID);
             }
 
