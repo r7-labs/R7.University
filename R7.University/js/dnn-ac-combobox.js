@@ -39,6 +39,8 @@ function dnnAcCombobox_Init ($) {
                     this._trigger("select", event, {
                         item: ui.item.option
                     });
+                    this.element.change();
+
                 },
                 autocompletechange: "_removeIfInvalid"
             });
@@ -125,6 +127,7 @@ function dnnAcCombobox_Init ($) {
             */
 
             this.input.autocomplete("instance").term = "";
+            this.element.change();
         },
      
         _destroy: function() {
