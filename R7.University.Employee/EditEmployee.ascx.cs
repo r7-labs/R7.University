@@ -67,51 +67,6 @@ namespace R7.University.Employee
 
         #region Properties
 
-        protected EditEmployeeTab SelectedTab
-        {
-            get {
-                // get postback initiator
-                var eventTarget = Request.Form ["__EVENTTARGET"];
-
-                if (!string.IsNullOrEmpty (eventTarget)) {
-                    
-                    if (eventTarget.Contains ("$" + buttonUserLookup.ID) ||
-                        eventTarget.Contains ("$" + buttonPhotoLookup.ID)) {
-                        ViewState ["SelectedTab"] = EditEmployeeTab.Common;
-                        return EditEmployeeTab.Common;
-                    }
-
-                    if (eventTarget.Contains ("$" +  buttonCancelEditPosition.ID) ||
-                        eventTarget.Contains ("$" +  buttonAddPosition.ID) ||
-                        eventTarget.Contains ("$" +  gridOccupiedPositions.ID)) {
-                        ViewState ["SelectedTab"] = EditEmployeeTab.Positions;
-                        return EditEmployeeTab.Positions;
-                    }
-
-                    if (eventTarget.Contains ("$" +  buttonCancelEditAchievement.ID) ||
-                        eventTarget.Contains ("$" +  buttonAddAchievement.ID) ||
-                        eventTarget.Contains ("$" +  gridAchievements.ID) ||
-                        eventTarget.Contains ("$" +  urlDocumentURL.ID) ||
-                        eventTarget.Contains ("$" +  comboAchievement.ID)) {
-                        ViewState ["SelectedTab"] = EditEmployeeTab.Achievements;
-                        return EditEmployeeTab.Achievements;
-                    }
-
-                    if (eventTarget.Contains ("$" + buttonCancelEditDisciplines.ID) ||
-                        eventTarget.Contains ("$" + buttonAddDisciplines.ID) ||
-                        eventTarget.Contains ("$" + gridDisciplines.ID) ||
-                        eventTarget.Contains ("$" + comboEduLevel.ID)) {
-                        ViewState ["SelectedTab"] = EditEmployeeTab.Disciplines;
-                        return EditEmployeeTab.Disciplines;
-                    }
-                }
-                // otherwise, get current tab from viewstate
-                var obj = ViewState ["SelectedTab"];
-                return (obj != null) ? (EditEmployeeTab) obj : EditEmployeeTab.Common;
-            }
-            set { ViewState ["SelectedTab"] = value; }
-        }
-
         private List<AchievementInfo> CommonAchievements
         {
             get { 
@@ -228,7 +183,11 @@ namespace R7.University.Employee
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
-             
+
+            if (AJAX.IsInstalled ()) {
+                AJAX.RegisterScriptManager ();
+            }
+
             try {
                 // parse querystring parameters
                 itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
@@ -511,6 +470,7 @@ namespace R7.University.Employee
         protected void buttonUserLookup_Click (object sender, EventArgs e)
         {
             try {
+                
                 var term = textUserLookup.Text.Trim ();
                 var includeDeleted = checkIncludeDeletedUsers.Checked;
 
@@ -565,6 +525,9 @@ namespace R7.University.Employee
         protected void buttonPhotoLookup_Click (object sender, EventArgs e)
         {
             try {
+
+                System.Threading.Thread.Sleep (5000);
+
                 var folderPath =  UniversityConfig.Instance.EmployeePhoto.DefaultPath;
                 var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
 
