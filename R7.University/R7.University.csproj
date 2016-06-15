@@ -161,6 +161,7 @@
     <Compile Include="Data\DocumentRepository.cs" />
     <Compile Include="Data\EduProgramProfileFormRepository.cs" />
     <Compile Include="Data\UniversityDataProvider.cs" />
+    <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

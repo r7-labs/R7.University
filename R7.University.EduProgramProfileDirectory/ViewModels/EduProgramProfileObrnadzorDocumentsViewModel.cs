@@ -33,10 +33,8 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory.ViewModels
 {
-    public class EduProgramProfileObrnadzorDocumentsViewModel: IEduProgramProfile
+    public class EduProgramProfileObrnadzorDocumentsViewModel: EduProgramProfileViewModelBase
     {
-        public IEduProgramProfile Model { get; protected set; }
-
         public EduProgramProfileDirectoryDocumentsViewModel RootViewModel { get; protected set; }
 
         protected ViewModelContext Context
@@ -49,9 +47,8 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         public EduProgramProfileObrnadzorDocumentsViewModel (
             IEduProgramProfile model,
             EduProgramProfileDirectoryDocumentsViewModel rootViewModel,
-            ViewModelIndexer indexer)
+            ViewModelIndexer indexer): base (model)
         {
-            Model = model;
             RootViewModel = rootViewModel;
             Indexer = indexer;
         }
@@ -92,106 +89,6 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
             return string.Empty;
         }
-
-        #region IEduProgramProfile implementation
-
-        public int EduProgramProfileID
-        { 
-            get { return Model.EduProgramProfileID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int EduProgramID
-        { 
-            get { return Model.EduProgramID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string ProfileCode
-        { 
-            get { return Model.ProfileCode; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string ProfileTitle
-        { 
-            get { return Model.ProfileTitle; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Languages
-        { 
-            get { return Model.Languages; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? AccreditedToDate
-        { 
-            get { return Model.AccreditedToDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? CommunityAccreditedToDate
-        { 
-            get { return Model.CommunityAccreditedToDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? StartDate
-        { 
-            get { return Model.StartDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? EndDate
-        {
-            get { return Model.EndDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int LastModifiedByUserID
-        {
-            get { return Model.LastModifiedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime LastModifiedOnDate
-        {
-            get { return Model.LastModifiedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int CreatedByUserID
-        {
-            get { return Model.CreatedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime CreatedOnDate
-        {
-            get { return Model.CreatedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IEduProgram EduProgram
-        {
-            get { return Model.EduProgram; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IList<IEduProgramProfileForm> EduProgramProfileForms
-        {
-            get { return Model.EduProgramProfileForms; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IList<IDocument> Documents
-        {
-            get { return Model.Documents; }
-            set { throw new NotImplementedException (); }
-        }
-
-        #endregion
 
         #region Bindable properties
 
