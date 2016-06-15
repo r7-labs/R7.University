@@ -418,7 +418,10 @@
 	<dnn:Audit id="ctlAudit" runat="server" />
     <asp:UpdateProgress ID="uprogCommon" AssociatedUpdatePanelID="panelCommon" runat="server">
         <ProgressTemplate>
-            <div class="update-progress dnnLoading dnnPanelLoading"></div>
+            <div class="update-progress">
+                <div class="update-progress-background"></div>
+                <div class="update-progress-loading"></div>
+            </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
 </div>
