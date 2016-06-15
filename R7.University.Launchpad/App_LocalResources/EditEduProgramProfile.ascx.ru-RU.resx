@@ -24,6 +24,12 @@
     <data name="labelEduLevel.Help">
         <value>Выберите уровень образования из выпадающего списка.</value>
     </data>
+    <data name="labelEduProgramLevel.Text">
+        <value>Уровень образовательной программы:</value>
+    </data>
+    <data name="labelEduProgramLevel.Help">
+        <value>Выберите уровень образовательной программы из выпадающего списка.</value>
+    </data>
     <data name="labelEduProgram.Text">
         <value>Образовательная программа:</value>
     </data>

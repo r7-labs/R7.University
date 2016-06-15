@@ -23,6 +23,7 @@ namespace R7.University.Launchpad
         protected DnnDatePicker dateAccreditedToDate;
         protected DnnDatePicker dateCommunityAccreditedToDate;
         protected DropDownList comboEduProgram;
+        protected DropDownList comboEduProgramLevel;
         protected DropDownList comboEduLevel;
         protected EditDocuments formEditDocuments;
         protected EditEduForms formEditEduForms;

@@ -37,6 +37,8 @@ namespace R7.University.Data
 
         public int EduProgramID { get; set; }
 
+        public int EduLevelId { get; set; }
+
         public string ProfileCode { get; set; }
 
         public string ProfileTitle { get; set; }
@@ -61,6 +63,9 @@ namespace R7.University.Data
 
         [IgnoreColumn]
         public IEduProgram EduProgram { get; set; }
+
+        [IgnoreColumn]
+        public IEduLevel EduLevel { get; set; }
 
         [IgnoreColumn] 
         public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }

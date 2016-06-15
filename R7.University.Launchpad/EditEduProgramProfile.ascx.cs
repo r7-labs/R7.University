@@ -49,13 +49,16 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            // get and bind edu levels
-            var eduLevels = UniversityRepository.Instance.GetEduLevels ();
-            comboEduLevel.DataSource = eduLevels;
+            // get and bind edu. levels
+            var eduProgramLevels = UniversityRepository.Instance.GetEduProgramLevels ();
+            comboEduProgramLevel.DataSource = eduProgramLevels;
+            comboEduProgramLevel.DataBind ();
+
+            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduLevels ();
             comboEduLevel.DataBind ();
 
-            // get and bind edu profiles
-            BindEduPrograms (eduLevels.First ().EduLevelID);
+            // get and bind edu. profiles
+            BindEduPrograms (eduProgramLevels.First ().EduLevelID);
 
             // init edit forms
             formEditEduForms.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<EduFormInfo> ());
@@ -64,14 +67,13 @@ namespace R7.University.Launchpad
 
         private void BindEduPrograms (int eduLevelId)
         {
-            var eps = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
-            comboEduProgram.DataSource = eps;
+            comboEduProgram.DataSource = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
             comboEduProgram.DataBind ();
         }
 
-        protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
+        protected void comboEduProgramLevel_SelectedIndexChanged (object sender, EventArgs e)
         {
-            BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
+            BindEduPrograms (int.Parse (comboEduProgramLevel.SelectedValue));
         }
 
         protected override void LoadItem (EduProgramProfileInfo item)
@@ -83,15 +85,17 @@ namespace R7.University.Launchpad
             dateCommunityAccreditedToDate.SelectedDate = item.CommunityAccreditedToDate;
             datetimeStartDate.SelectedDate = item.StartDate;
             datetimeEndDate.SelectedDate = item.EndDate;
+            comboEduLevel.SelectByValue (item.EduLevelId);
 
             // update comboEduProgram, if needed
-            var currentEduLevelId = int.Parse (comboEduLevel.SelectedValue);
+            var currentEduLevelId = int.Parse (comboEduProgramLevel.SelectedValue);
             if (item.EduProgram.EduLevelID != currentEduLevelId) {
-                comboEduLevel.SelectByValue (item.EduProgram.EduLevelID);
+                comboEduProgramLevel.SelectByValue (item.EduProgram.EduLevelID);
                 BindEduPrograms (item.EduProgram.EduLevelID);
             }
 
             comboEduProgram.SelectByValue (item.EduProgramID);
+            comboEduLevel.SelectByValue (item.EduLevelId);
 
             auditControl.Bind (item);
 
@@ -121,6 +125,7 @@ namespace R7.University.Launchpad
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
             item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
+            item.EduLevelId = int.Parse (comboEduLevel.SelectedValue);
 
             if (ItemId == null) {
                 item.CreatedOnDate = DateTime.Now;

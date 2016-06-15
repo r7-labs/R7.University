@@ -30,6 +30,8 @@ namespace R7.University.Models
 
         int EduProgramID { get; set; }
 
+        int EduLevelId { get; set; }
+
         string ProfileCode { get; set; }
 
         string ProfileTitle { get; set; }
@@ -45,6 +47,8 @@ namespace R7.University.Models
         DateTime? EndDate { get; set; }
 
         IEduProgram EduProgram { get; set; }
+
+        IEduLevel EduLevel { get; set; }
 
         IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
 

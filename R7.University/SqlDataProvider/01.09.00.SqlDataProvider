@@ -39,6 +39,24 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'EduLevelID')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        ADD [EduLevelID] int NULL
+
+    UPDATE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] SET EduLevelID = 
+        (SELECT EP.EduLevelID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP WHERE EP.EduProgramID = EPP.EduProgramID)
+        FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP
+    
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        ALTER COLUMN [EduLevelID] int NOT NULL
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        ADD CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduLevels] FOREIGN KEY (EduLevelID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels] (EduLevelID) ON DELETE NO ACTION
+END
+GO
+
 -- Add indexes
 
 IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_Divisions_ParentDivisions]') and type in (N'UQ'))

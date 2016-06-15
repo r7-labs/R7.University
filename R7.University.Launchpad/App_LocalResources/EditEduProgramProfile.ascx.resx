@@ -45,6 +45,12 @@
     <data name="labelEduLevel.Help">
         <value>Select the education level from the dropdown.</value>
     </data>
+    <data name="labelEduProgramLevel.Text">
+        <value>Educational Program Level:</value>
+    </data>
+    <data name="labelEduProgramLevel.Help">
+        <value>Select educational program level from the dropdown.</value>
+    </data>
     <data name="labelEduProgram.Text">
         <value>Educational Program:</value>
     </data>

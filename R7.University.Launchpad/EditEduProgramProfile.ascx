@@ -10,9 +10,6 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/dnn-ac-combobox.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
-<script type="text/javascript">
-    $(function() {  });
-</script>
 <div class="dnnForm dnnClear university-edit-eduprogramprofile">
     <div id="eduProgramProfileTabs">
         <ul class="dnnAdminTabNav dnnClear">
@@ -23,12 +20,13 @@
         <asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
         <div id="eduProgramProfileCommon" class="dnnForm dnnClear">
         	<fieldset>
-                <asp:UpdatePanel id="updatePanelEduProgram" runat="server">
+                <asp:UpdatePanel id="updatePanelEduProgram" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="dnnFormItem">
-                            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-                            <asp:DropDownList id="comboEduLevel" runat="server" AutoPostBack="true"
-                                OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
+                            <dnn:Label id="labelEduProgramLevel" runat="server" ControlName="comboEduProgramLevel" />
+                            <asp:DropDownList id="comboEduProgramLevel" runat="server" 
+                                AutoPostBack="true"
+                                OnSelectedIndexChanged="comboEduProgramLevel_SelectedIndexChanged"
                                 DataValueField="EduLevelID"
                                 DataTextField="Title" />
                         </div>
@@ -44,6 +42,12 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+                    <asp:DropDownList id="comboEduLevel" runat="server"
+                        DataValueField="EduLevelID"
+                        DataTextField="Title" />
+                </div>
                 <div class="dnnFormItem">
                     <dnn:Label ID="labelProfileCode" runat="server" ControlName="textProfileCode" />
                     <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />
