@@ -20,21 +20,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.Data;
 using R7.University.Models;
 using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
-    public class TeacherViewModel: IEmployee
+    public class TeacherViewModel: EmployeeViewModelBase
     {
-        public IEmployee Model { get; protected set; }
-
         public EmployeeDirectoryTeachersViewModel RootViewModel { get; protected set; }
 
         public IEduProgramProfile EduProgramProfile { get; protected set; }
@@ -42,8 +38,8 @@ namespace R7.University.EmployeeDirectory.ViewModels
         public ViewModelIndexer Indexer { get; protected set; }
 
         public TeacherViewModel (IEmployee model, IEduProgramProfile eduProgramProfile, EmployeeDirectoryTeachersViewModel rootViewModel, ViewModelIndexer indexer)
+            : base (model)
         {
-            Model = model;
             RootViewModel = rootViewModel;
             EduProgramProfile = eduProgramProfile;
             Indexer = indexer;
@@ -52,184 +48,6 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get { return RootViewModel.Context; }
         }
-
-        #region IEmployee implementation
-
-        public int EmployeeID
-        {
-            get { return Model.EmployeeID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? UserID
-        {
-            get { return Model.UserID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? PhotoFileID
-        {
-            get { return Model.PhotoFileID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Phone
-        {
-            get { return Model.Phone; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string CellPhone
-        {
-            get { return Model.CellPhone; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Fax
-        {
-            get { return Model.Fax; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string LastName
-        {
-            get { return Model.LastName; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string FirstName
-        {
-            get { return Model.FirstName; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string OtherName
-        {
-            get { return Model.OtherName; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Email
-        {
-            get { return Model.Email; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string SecondaryEmail
-        {
-            get { return Model.SecondaryEmail; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string WebSite
-        {
-            get { return Model.WebSite; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string WebSiteLabel
-        {
-            get { return Model.WebSiteLabel; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Messenger
-        {
-            get { return Model.Messenger; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string WorkingPlace
-        {
-            get { return Model.WorkingPlace; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string WorkingHours
-        {
-            get { return Model.WorkingHours; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Biography
-        {
-            get { return Model.Biography; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? ExperienceYears
-        {
-            get { return Model.ExperienceYears; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? ExperienceYearsBySpec
-        {
-            get { return Model.ExperienceYearsBySpec; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? StartDate
-        {
-            get { return Model.StartDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? EndDate
-        {
-            get { return Model.EndDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int LastModifiedByUserID
-        {
-            get { return Model.LastModifiedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime LastModifiedOnDate
-        {
-            get { return Model.LastModifiedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int CreatedByUserID
-        {
-            get { return Model.CreatedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime CreatedOnDate
-        {
-            get { return Model.CreatedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public bool ShowBarcode
-        {
-            get { return Model.ShowBarcode; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IList<IEmployeeAchievement> Achievements
-        {
-            get { return Model.Achievements; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IList<IEmployeeDiscipline> Disciplines
-        {
-            get { return Model.Disciplines; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IList<OccupiedPositionInfoEx> OccupiedPositions
-        {
-            get { return Model.OccupiedPositions; }
-            set { throw new NotImplementedException (); }
-        }
-
-        #endregion
 
         #region Bindable properties
 
