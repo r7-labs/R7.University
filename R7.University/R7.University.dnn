@@ -318,7 +318,7 @@
       		</components>
 		</package>
 		<package name="R7.University.Employee" type="Module" version="01.08.01">
-			<friendlyName>_Employee</friendlyName>
+			<friendlyName>R7.University.Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
@@ -420,7 +420,7 @@
 			</components>
 		</package>
 		<package name="R7.University.EmployeeDetails" type="Module" version="01.08.01">
-			<friendlyName>_EmployeeDetails</friendlyName>
+			<friendlyName>R7.University.EmployeeDetails</friendlyName>
 			<description>This is a module to display detailed information about single employee.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
@@ -502,7 +502,7 @@
 			</components>
 		</package>
 		<package name="R7.University.EmployeeList" type="Module" version="01.08.01">
-			<friendlyName>_EmployeeList</friendlyName>
+			<friendlyName>R7.University.EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
@@ -593,7 +593,7 @@
 			</components>
 		</package>
 		<package name="R7.University.Division" type="Module" version="01.08.01">
-			<friendlyName>_Division</friendlyName>
+			<friendlyName>R7.University.Division</friendlyName>
 			<description>This is a module to display information about single division.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
