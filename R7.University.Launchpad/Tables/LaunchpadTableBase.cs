@@ -20,9 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.Entities.Modules;
-using System.Web.UI.WebControls;
 using System.Data;
+using System.Web.UI.WebControls;
+using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 
@@ -94,8 +95,9 @@ namespace R7.University.Launchpad
                 module.GetNextActionID (),
                 // TODO: Action labels require localization
                 EditControlKey.Replace ("Edit", "Add "),
-                ModuleActionType.AddContent, 
-                "", "",
+                ModuleActionType.AddContent,
+                "",
+                IconController.IconURL ("Add"),
                 module.EditUrl (EditControlKey),
                 "",
                 false, 

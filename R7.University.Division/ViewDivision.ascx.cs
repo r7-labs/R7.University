@@ -24,6 +24,7 @@ using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Content.Taxonomy;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Entities.Tabs;
@@ -260,7 +261,7 @@ namespace R7.University.Division
                     Localization.GetString ("AddDivision.Action", LocalResourceFile),
                     ModuleActionType.AddContent, 
                     "", 
-                    "",
+                    IconController.IconURL ("Add"),
                     EditUrl ("EditDivision"),
                     false, 
                     SecurityAccessLevel.Edit,
@@ -273,7 +274,7 @@ namespace R7.University.Division
                     Localization.GetString ("EditDivision.Action", LocalResourceFile),
                     ModuleActionType.EditContent, 
                     "", 
-                    "", 
+                    IconController.IconURL ("Edit"),
                     EditUrl ("division_id", Settings.DivisionID.ToString (), "EditDivision"),
                     false, 
                     SecurityAccessLevel.Edit,
@@ -286,7 +287,7 @@ namespace R7.University.Division
                     Localization.GetString ("VCard.Action", LocalResourceFile),
                     ModuleActionType.ContentOptions, 
                     "", 
-                    "", 
+                    IconController.IconURL ("View"),
                     EditUrl ("division_id", Settings.DivisionID.ToString (), "VCard"),
                     false, 
                     SecurityAccessLevel.View,

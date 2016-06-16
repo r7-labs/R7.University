@@ -26,6 +26,7 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Framework;
@@ -121,7 +122,7 @@ namespace R7.University.Employee
                     LocalizeString ("AddEmployee.Action"),
                     ModuleActionType.AddContent,
                     "",
-                    "", 
+                    IconController.IconURL ("Add"),
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
@@ -136,7 +137,7 @@ namespace R7.University.Employee
                         LocalizeString ("EditEmployee.Action"),
                         ModuleActionType.EditContent, 
                         "", 
-                        "", 
+                        IconController.IconURL ("Edit"), 
                         EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee"),
                         false, 
                         SecurityAccessLevel.Edit,
@@ -149,7 +150,7 @@ namespace R7.University.Employee
                         LocalizeString ("VCard.Action"),
                         ModuleActionType.ContentOptions, 
                         "", 
-                        "", 
+                        IconController.IconURL ("View"), 
                         EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard"),
                         false,
                         SecurityAccessLevel.View,

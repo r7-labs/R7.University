@@ -141,7 +141,7 @@ namespace R7.University.EmployeeList
                     Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
                     ModuleActionType.AddContent, 
                     "", 
-                    "", 
+                    IconController.IconURL ("Add"),
                     Null.IsNull (Settings.DivisionID) ?
                         EditUrl ("EditEmployee")
                     // pass division_id to select division in which to add employee

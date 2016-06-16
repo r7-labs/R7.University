@@ -21,23 +21,22 @@
 
 using System;
 using System.Collections.Generic;
-using System.Web.UI.WebControls;
 using System.Linq;
+using System.Web.UI.WebControls;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
-using DotNetNuke.Entities.Icons;
-using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Security;
-using R7.University;
-using R7.University.ModelExtensions;
-using R7.University.ControlExtensions;
-using R7.DotNetNuke.Extensions.ViewModels;
-using R7.DotNetNuke.Extensions.Modules;
+using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.ControlExtensions;
 using R7.University.Data;
-using R7.University.ViewModels;
 using R7.University.EduProgramDirectory.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -127,7 +126,8 @@ namespace R7.University.EduProgramDirectory
                     GetNextActionID (), 
                     LocalizeString ("AddEduProgram.Action"),
                     ModuleActionType.AddContent, 
-                    "", "", 
+                    "", 
+                    IconController.IconURL ("Add"),
                     EditUrl ("EditEduProgram"),
                     false, 
                     SecurityAccessLevel.Edit,

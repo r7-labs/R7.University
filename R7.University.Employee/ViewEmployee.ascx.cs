@@ -26,6 +26,7 @@ using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -255,7 +256,7 @@ namespace R7.University.Employee
                     Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
                     ModuleActionType.AddContent, 
                     "", 
-                    "", 
+                    IconController.IconURL ("Add"), 
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
@@ -270,7 +271,7 @@ namespace R7.University.Employee
                         LocalizeString ("EditEmployee.Action"),
                         ModuleActionType.EditContent, 
                         "", 
-                        "", 
+                        IconController.IconURL ("Edit"),
                         EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee"),
                         false, 
                         SecurityAccessLevel.Edit,
@@ -283,7 +284,7 @@ namespace R7.University.Employee
                         LocalizeString ("Details.Action"),
                         ModuleActionType.ContentOptions, 
                         "", 
-                        "", 
+                        IconController.IconURL ("View"),
                         EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails"),
                         false, 
                         SecurityAccessLevel.View,
@@ -296,7 +297,7 @@ namespace R7.University.Employee
                         LocalizeString ("VCard.Action"),
                         ModuleActionType.ContentOptions, 
                         "", 
-                        "", 
+                        IconController.IconURL ("View"),
                         EditUrl ("employee_id", employee.EmployeeID.ToString (), "VCard"),
                         false,
                         SecurityAccessLevel.View,
