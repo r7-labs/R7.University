@@ -40,14 +40,14 @@
                                 <img src="<%= DotNetNuke.Entities.Icons.IconController.IconURL ("Edit") %>" />
                             </asp:LinkButton>
                         </div>
+                        <div class="dnnFormItem">
+                            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+                            <asp:DropDownList id="comboEduLevel" runat="server"
+                                DataValueField="EduLevelID"
+                                DataTextField="Title" />
+                        </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-                    <asp:DropDownList id="comboEduLevel" runat="server"
-                        DataValueField="EduLevelID"
-                        DataTextField="Title" />
-                </div>
                 <div class="dnnFormItem">
                     <dnn:Label ID="labelProfileCode" runat="server" ControlName="textProfileCode" />
                     <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />

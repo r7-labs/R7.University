@@ -54,9 +54,6 @@ namespace R7.University.Launchpad
             comboEduProgramLevel.DataSource = eduProgramLevels;
             comboEduProgramLevel.DataBind ();
 
-            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduLevels ();
-            comboEduLevel.DataBind ();
-
             // get and bind edu. profiles
             BindEduPrograms (eduProgramLevels.First ().EduLevelID);
 
@@ -69,6 +66,13 @@ namespace R7.University.Launchpad
         {
             comboEduProgram.DataSource = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
             comboEduProgram.DataBind ();
+
+            var eduProgramProfileLevels = UniversityRepository.Instance.GetEduLevels ()
+                .Where (el => el.ParentEduLevelId == eduLevelId || el.EduLevelID == eduLevelId)
+                .OrderBy (el => el.ParentEduLevelId != null); 
+            
+            comboEduLevel.DataSource = eduProgramProfileLevels;
+            comboEduLevel.DataBind ();
         }
 
         protected void comboEduProgramLevel_SelectedIndexChanged (object sender, EventArgs e)
