@@ -38,7 +38,7 @@ namespace R7.University.EduProgramDirectory
             base.OnInit (e);
 
             // fill edulevels list
-            var eduLevels = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ()
+            var eduLevels = UniversityRepository.Instance.GetEduProgramLevels ()
                 .OrderBy (el => el.SortIndex);
            
             foreach (var eduLevel in eduLevels) {

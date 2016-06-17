@@ -99,7 +99,7 @@ namespace R7.University.Launchpad
                 + Localization.GetString ("DeleteItem") + "');");
 
             // bind education levels
-            comboEduLevel.DataSource = UniversityRepository.Instance.DataProvider.GetObjects<EduLevelInfo> ();
+            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduProgramLevels ();
             comboEduLevel.DataBind ();
 
             var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();
