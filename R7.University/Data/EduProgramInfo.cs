@@ -44,11 +44,15 @@ namespace R7.University.Data
 
         public int EduLevelID { get; set; }
 
+        public int? DivisionId { get; set; }
+
         public string Code { get; set; }
 
         public string Title { get; set; }
 
         public string Generation { get; set; }
+
+        public string HomePage { get; set; }
 
         public DateTime? StartDate { get; set; }
 
@@ -64,6 +68,9 @@ namespace R7.University.Data
 
         [IgnoreColumn]
         public IEduLevel EduLevel { get; set; }
+
+        [IgnoreColumn]
+        public IDivision Division { get; set; }
 
         [IgnoreColumn]
         public IList<IDocument> Documents { get; set; }

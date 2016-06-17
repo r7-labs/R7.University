@@ -30,17 +30,23 @@ namespace R7.University.Models
 
         int EduLevelID { get; set; }
 
+        int? DivisionId { get; set; }
+
         string Code { get; set; }
 
         string Title { get; set; }
 
         string Generation { get; set; }
 
+        string HomePage { get; set; }
+
         DateTime? StartDate { get; set; }
 
         DateTime? EndDate { get; set; }
 
         IEduLevel EduLevel { get; set; }
+
+        IDivision Division { get; set; }
 
         IList<IDocument> Documents { get; set; }
     }

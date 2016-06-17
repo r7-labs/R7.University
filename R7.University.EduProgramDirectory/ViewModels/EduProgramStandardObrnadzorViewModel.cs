@@ -64,6 +64,12 @@ namespace R7.University.EduProgramDirectory
             set { throw new NotImplementedException (); }
         }
 
+        public int? DivisionId
+        {
+            get { return Model.DivisionId; }
+            set { throw new NotImplementedException (); }
+        }
+
         public string Code
         {
             get { return Model.Code; }
@@ -79,6 +85,12 @@ namespace R7.University.EduProgramDirectory
         public string Generation
         {
             get { return Model.Generation; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public string HomePage
+        {
+            get { return Model.HomePage; }
             set { throw new NotImplementedException (); }
         }
 
@@ -121,6 +133,12 @@ namespace R7.University.EduProgramDirectory
         public IEduLevel EduLevel
         {
             get { return Model.EduLevel; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public IDivision Division
+        {
+            get { return Model.Division; }
             set { throw new NotImplementedException (); }
         }
 

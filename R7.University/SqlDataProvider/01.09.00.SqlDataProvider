@@ -54,6 +54,17 @@ BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
         ADD CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduLevels] FOREIGN KEY (EduLevelID)
             REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels] (EduLevelID) ON DELETE NO ACTION
+
+END
+GO
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and name = N'HomePage')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+        ADD [HomePage] nvarchar(255) NULL,
+        [DivisionID] int NULL
+        CONSTRAINT [FK_{objectQualifier}University_EduPrograms_Divisions] FOREIGN KEY (DivisionID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_Divisions] (DivisionID) ON DELETE SET NULL
 END
 GO
 
@@ -82,6 +93,11 @@ GO
 IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_EduPrograms_EduLevels]') and type in (N'UQ'))
     CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_EduPrograms_EduLevels]
         ON {databaseOwner}[{objectQualifier}University_EduPrograms] (EduLevelID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_EduPrograms_Divisions]') and type in (N'UQ'))
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_EduPrograms_Divisions]
+        ON {databaseOwner}[{objectQualifier}University_EduPrograms] (DivisionID ASC)
 GO
 
 IF NOT EXISTS (select * from sys.objects where object_id = object_id (N'[IX_{objectQualifier}University_EmployeeAchievements]') and type in (N'UQ'))
