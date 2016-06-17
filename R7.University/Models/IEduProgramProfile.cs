@@ -32,6 +32,8 @@ namespace R7.University.Models
 
         int EduLevelId { get; set; }
 
+        int? DivisionId { get; set; }
+
         string ProfileCode { get; set; }
 
         string ProfileTitle { get; set; }
@@ -49,6 +51,8 @@ namespace R7.University.Models
         IEduProgram EduProgram { get; set; }
 
         IEduLevel EduLevel { get; set; }
+
+        IDivision Division { get; set; }
 
         IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
 

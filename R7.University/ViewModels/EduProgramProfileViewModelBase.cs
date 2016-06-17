@@ -54,6 +54,12 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
+        public int? DivisionId
+        {
+            get { return Model.EduLevelId; }
+            set { throw new NotImplementedException (); }
+        }
+
         public string ProfileCode
         {
             get { return Model.ProfileCode; }
@@ -129,6 +135,12 @@ namespace R7.University.ViewModels
         public IEduLevel EduLevel
         {
             get { return Model.EduLevel; }
+            set { throw new NotImplementedException (); }
+        }
+
+        public IDivision Division
+        {
+            get { return Model.Division; }
             set { throw new NotImplementedException (); }
         }
 
