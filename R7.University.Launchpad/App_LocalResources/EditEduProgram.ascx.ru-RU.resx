@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Common.Tab" xml:space="preserve">
+        <value>Образовательная программа</value>
+    </data>
+    <data name="Documents.Tab" xml:space="preserve">
+        <value>Документы</value>
+    </data>
+    <data name="labelCode.Text" xml:space="preserve">
+        <value>Код:</value>
+    </data>
+    <data name="labelCode.Help" xml:space="preserve">
+        <value>Введите код образовательной программы в соответствии со стандартом.</value>
+    </data>
+    <data name="Code.Required" xml:space="preserve">
+        <value>Укажите код образовательной программы.</value>
+    </data>
+    <data name="labelTitle.Text" xml:space="preserve">
+        <value>Наименование:</value>
+    </data>
+    <data name="labelTitle.Help" xml:space="preserve">
+        <value>Введите наименование образовательной программы в соответствии со стандартом.</value>
+    </data>
+    <data name="Title.Required" xml:space="preserve">
+        <value>Укажите наименование образовательной программы.</value>
+    </data>
+    <data name="labelEduLevel.Text">
+        <value>Уровень образования:</value>
+    </data>
+    <data name="labelEduLevel.Help">
+        <value>Выберите уровень образовательной программы.</value>
+    </data>
+    <data name="labelGeneration.Text">
+        <value>Поколение:</value>
+    </data>
+    <data name="labelGeneration.Help">
+        <value>Введите код поколения образовательной программы (стандарта), например '3+'.</value>
+    </data>
+    <data name="labelStartDate.Text">
+        <value>Начало публикации:</value>
+    </data>
+    <data name="labelStartDate.Help">
+        <value>Введите дату, начиная с которой образовательная программа должна быть опубликована на сайте.</value>
+    </data>
+    <data name="labelEndDate.Text">
+        <value>Окончание публикации:</value>
+    </data>
+    <data name="labelEndDate.Help">
+        <value>Введите дату, при наступлении которой образовательная программа должна быть снята с публикации на сайте.</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;Модуль редактирования образовательной программы&lt;/P&gt;</value>
+    </data>
+    <data name="ControlTitle_edit.Text" xml:space="preserve">
+        <value>Редактирование обр. программы</value>
+    </data>
+</root>

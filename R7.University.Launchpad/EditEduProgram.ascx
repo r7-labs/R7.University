@@ -6,25 +6,27 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" Priority="200" />
-<script type="text/javascript">
-    $(function() { $("#eduProgramTabs").dnnTabs({selected: <%= (int)SelectedTab %>}); });
-</script>
 <div class="dnnForm dnnClear">
-    <div id="eduProgramTabs" class="dnnForm dnnClear">
+    <div id="eduprogram-tabs" class="dnnForm dnnClear">
         <ul class="dnnAdminTabNav dnnClear">
-            <li><a href="#eduProgramCommon"><%= LocalizeString ("CommonTab.Text") %></a></li>
-            <li><a href="#eduProgramDocuments"><%= LocalizeString ("DocumentsTab.Text") %></a></li>
+            <li><a href="#eduprogram-common"><%= LocalizeString ("Common.Tab") %></a></li>
+            <li><a href="#eduprogram-documents"><%= LocalizeString ("Documents.Tab") %></a></li>
         </ul>
-        <asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
-        <div id="eduProgramCommon">
+        <div id="eduprogram-common">
         	<fieldset>
-        		<div class="dnnFormItem">
+        		<div class="dnnFormItem dnnFormRequired">
                     <dnn:Label ID="labelCode" runat="server" ControlName="textCode" />
                     <asp:TextBox ID="textCode" runat="server" MaxLength="64" />
+                    <asp:RequiredFieldValidator runat="server" resourcekey="Code.Required"
+                        ControlToValidate="textCode" ValidationGroup="EduProgram" 
+                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
-                <div class="dnnFormItem">
+                <div class="dnnFormItem dnnFormRequired">
         			<dnn:Label ID="labelTitle" runat="server" ControlName="textTitle" />
         			<asp:TextBox ID="textTitle" runat="server" MaxLength="250" />
+                    <asp:RequiredFieldValidator runat="server" resourcekey="Title.Required"
+                        ControlToValidate="textTitle" ValidationGroup="EduProgram" 
+                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         		</div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
@@ -47,11 +49,11 @@
                 </div>
         	</fieldset>
         </div>
-        <div id="eduProgramDocuments">
+        <div id="eduprogram-documents">
             <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgram" />
         </div>
         <ul class="dnnActions dnnClear">
-            <li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" OnClick="buttonUpdate_Click" /></li>
+            <li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="EduProgram" OnClick="buttonUpdate_Click" /></li>
             <li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" OnClick="buttonDelete_Click" /></li>
             <li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
         </ul>
@@ -59,3 +61,18 @@
         <dnn:Audit id="auditControl" runat="server" />
     </div>
 </div>
+<input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
+<script type="text/javascript">
+(function($, Sys) {
+    function setupModule() {
+        var selectedTab = document.getElementById("hiddenSelectedTab").value;
+        $("#eduprogram-tabs").dnnTabs(selectedTab);
+    };
+    $(document).ready(function() {
+        setupModule();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setupModule();
+        });
+    });
+} (jQuery, window.Sys));
+</script>
