@@ -65,8 +65,16 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
 	DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels]
 GO
 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_Divisions]
+GO
+
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduLevels]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_Divisions]
 GO
 
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
