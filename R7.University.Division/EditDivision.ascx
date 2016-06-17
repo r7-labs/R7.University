@@ -29,7 +29,7 @@
         			<asp:TextBox id="txtShortTitle" runat="server" MaxLength="64" />
         		</div>
         		<div class="dnnFormItem">
-        			<dnn:Label id="lblParentDivision" runat="server" ControlName="comboParentDivisions" />
+        			<dnn:Label id="lblParentDivision" runat="server" ControlName="treeParentDivisions" />
                     <dnn:DnnTreeView id="treeParentDivisions" runat="server"
                         DataFieldID="DivisionID"
                         DataFieldParentID="ParentDivisionID"
