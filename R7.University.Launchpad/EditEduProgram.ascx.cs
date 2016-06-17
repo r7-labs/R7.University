@@ -42,6 +42,7 @@ namespace R7.University.Launchpad
     public enum EditEduProgramTab
     {
         Common,
+        Bindings,
         Documents
     }
 
@@ -54,10 +55,17 @@ namespace R7.University.Launchpad
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
+
                     // check if postback initiator is on Documents tab
                     if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
                         ViewState ["SelectedTab"] = EditEduProgramTab.Documents;
                         return EditEduProgramTab.Documents;
+                    }
+
+                    // check if postback initiator is on Bindings tab
+                    if (eventTarget.Contains ("$" + urlHomePage.ID)) {
+                        ViewState ["SelectedTab"] = EditEduProgramTab.Bindings;
+                        return EditEduProgramTab.Bindings;
                     }
                 }
 
@@ -104,6 +112,13 @@ namespace R7.University.Launchpad
 
             var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();
             formEditDocuments.OnInit (this, documentTypes);
+
+            // fill divisions dropdown
+            var divisions = DivisionRepository.Instance.GetDivisions ().ToList ();
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            treeDivision.DataSource = divisions;
+            treeDivision.DataBind ();
         }
 
         /// <summary>
@@ -137,6 +152,8 @@ namespace R7.University.Launchpad
                             datetimeStartDate.SelectedDate = item.StartDate;
                             datetimeEndDate.SelectedDate = item.EndDate;
                             comboEduLevel.SelectByValue (item.EduLevelID);
+                            urlHomePage.Url = item.HomePage;
+                            treeDivision.SelectAndExpandByValue (item.DivisionId.ToString ());
 
                             auditControl.Bind (item);
 
@@ -197,6 +214,8 @@ namespace R7.University.Launchpad
                 item.StartDate = datetimeStartDate.SelectedDate;
                 item.EndDate = datetimeEndDate.SelectedDate;
                 item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
+                item.HomePage = urlHomePage.Url;
+                item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 
                 if (itemId == null) {
                     item.CreatedOnDate = DateTime.Now;

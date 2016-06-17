@@ -15,6 +15,9 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Educational Program</value>
     </data>
+    <data name="Bindings.Tab" xml:space="preserve">
+        <value>Bingings</value>
+    </data>
     <data name="Documents.Tab" xml:space="preserve">
         <value>Documents</value>
     </data>
@@ -59,6 +62,18 @@
     </data>
     <data name="labelEndDate.Help">
         <value>Enter the date from current educational program should be removed from publication on the site.</value>
+    </data>
+    <data name="labelHomePage.Text">
+        <value>Home Page:</value>
+    </data>
+    <data name="labelHomePage.Help">
+        <value>Specify home page for the educational program. This page generally contains details about educational program.</value>
+    </data>
+    <data name="labelDivision.Text">
+        <value>Division:</value>
+    </data>
+    <data name="labelDivision.Help">
+        <value>Select division, which implements the educational program. Generally it's a faculty or an institute.</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;An Edit education program module&lt;/P&gt;</value>

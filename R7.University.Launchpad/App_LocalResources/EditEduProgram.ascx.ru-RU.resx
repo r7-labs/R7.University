@@ -15,6 +15,9 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Образовательная программа</value>
     </data>
+    <data name="Bindings.Tab" xml:space="preserve">
+        <value>Привязки</value>
+    </data>
     <data name="Documents.Tab" xml:space="preserve">
         <value>Документы</value>
     </data>
@@ -59,6 +62,18 @@
     </data>
     <data name="labelEndDate.Help">
         <value>Введите дату, при наступлении которой образовательная программа должна быть снята с публикации на сайте.</value>
+    </data>
+    <data name="labelHomePage.Text">
+        <value>Домашняя страница:</value>
+    </data>
+    <data name="labelHomePage.Help">
+        <value>Укажите домашнюю страницу для образовательной программы. Как правило, эта страница содержит развернутое описание образовательной программы.</value>
+    </data>
+    <data name="labelDivision.Text">
+        <value>Подразделение:</value>
+    </data>
+    <data name="labelDivision.Help">
+        <value>Выберите подразделение, реализующее данную образовательную программу. Обычно это факультет или институт.</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;Модуль редактирования образовательной программы&lt;/P&gt;</value>

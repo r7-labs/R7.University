@@ -24,5 +24,7 @@ namespace R7.University.Launchpad
         protected DnnDateTimePicker datetimeEndDate;
         protected DropDownList comboEduLevel;
         protected EditDocuments formEditDocuments;
+        protected DnnUrlControl urlHomePage;
+        protected DnnTreeView treeDivision;
     }
 }

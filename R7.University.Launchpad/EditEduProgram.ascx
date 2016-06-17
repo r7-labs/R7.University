@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditEduProgram.ascx.cs" Inherits="R7.University.Launchpad.EditEduProgram" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
+<%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="../R7.University/Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
@@ -10,6 +11,7 @@
     <div id="eduprogram-tabs" class="dnnForm dnnClear">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduprogram-common"><%= LocalizeString ("Common.Tab") %></a></li>
+            <li><a href="#eduprogram-bindings"><%= LocalizeString ("Bindings.Tab") %></a></li>
             <li><a href="#eduprogram-documents"><%= LocalizeString ("Documents.Tab") %></a></li>
         </ul>
         <div id="eduprogram-common">
@@ -48,6 +50,28 @@
                     <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
                 </div>
         	</fieldset>
+        </div>
+        <div id="eduprogram-bindings">
+            <fieldset>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelDivision" runat="server" ControlName="treeDivision" />
+                    <dnn:DnnTreeView id="treeDivision" runat="server"
+                        DataFieldID="DivisionID"
+                        DataFieldParentID="ParentDivisionID"
+                        DataValueField="DivisionID"
+                        DataTextField="Title"
+                    />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelHomePage" runat="server" ControlName="urlHomePage" />
+                    <dnn:Url id="urlHomePage" runat="server" UrlType="T" 
+                            IncludeActiveTab="true"
+                            ShowFiles="false" ShowTabs="true"
+                            ShowUrls="true" ShowUsers="false"
+                            ShowLog="false" ShowTrack="false"
+                            ShowNone="true" ShowNewWindow="false" />      
+                </div>
+            </fieldset>
         </div>
         <div id="eduprogram-documents">
             <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgram" />
