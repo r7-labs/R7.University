@@ -19,11 +19,11 @@ compatible with [obrnadzor.gov.ru](http://obrnadzor.gov.ru/microformats) microda
 
 See *R7.University* modules in action on the official website of *Volgograd State Agricultural University*:
 
-- [*Employee*, *EmployeeList* and *Division* modules](http://www.volgau.com/LinkClick.aspx?link=284)
-- [*DivisionDirectory* module](http://www.volgau.com/sveden/struct)
-- [*EmployeeDirectory* module](http://www.volgau.com/sveden/employees)
-- [*EduProgramProfileDirectory* modules](http://www.volgau.com/sveden/education)
-- [*EduProgramDirectory* modules](http://www.volgau.com/sveden/edustandarts)
+- [Employee, EmployeeList and Division modules](http://www.volgau.com/LinkClick.aspx?link=284)
+- [DivisionDirectory module](http://www.volgau.com/sveden/struct)
+- [EmployeeDirectory module](http://www.volgau.com/sveden/employees)
+- [EduProgramProfileDirectory modules](http://www.volgau.com/sveden/education)
+- [EduProgramDirectory modules](http://www.volgau.com/sveden/edustandarts)
 
 ## Short TODO
 
