@@ -59,11 +59,8 @@ namespace R7.University.Data
 
         public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevel (int eduLevelId)
         {
-            return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
-                @"SELECT EPP.* FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP
-                    INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
-                        ON EPP.EduProgramID = EP.EduProgramID
-                    WHERE EP.EduLevelID = @0", eduLevelId)
+            return DataProvider.GetObjects<EduProgramProfileInfo> (
+                    "WHERE EduLevelID = @0", eduLevelId)
                     .WithEduProgram ()
                     // TODO: Move sorting ouside extension method
                     .OrderBy (epp => epp.EduProgram.Code)
@@ -74,11 +71,8 @@ namespace R7.University.Data
         public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevels (IEnumerable<int> eduLevelIds)
         {
             if (eduLevelIds.Any ()) {
-                return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
-                    @"SELECT EPP.* FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP 
-                    INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP 
-                        ON EPP.EduProgramID = EP.EduProgramID 
-                    WHERE EP.EduLevelID IN (" + TextUtils.FormatList (",", eduLevelIds) + ")")
+                return DataProvider.GetObjects<EduProgramProfileInfo> (
+                    "WHERE EduLevelID IN (" + TextUtils.FormatList (",", eduLevelIds) + ")")
                     .WithEduProgram ();
             }
 

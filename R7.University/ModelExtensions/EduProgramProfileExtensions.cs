@@ -78,7 +78,7 @@ namespace R7.University.ModelExtensions
             this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduLevel> eduLevels)
         {
             foreach (var epp in eduProgramProfiles) {
-                epp.EduProgram.EduLevel = eduLevels.FirstOrDefault (el => el.EduLevelID == epp.EduProgram.EduLevelID);
+                epp.EduLevel = eduLevels.First (el => el.EduLevelID == epp.EduLevelId);
             }
         
             return eduProgramProfiles;

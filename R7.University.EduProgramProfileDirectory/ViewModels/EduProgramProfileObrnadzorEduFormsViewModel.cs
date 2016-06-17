@@ -139,7 +139,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
         public string EduLevelString
         {
-            get { return "<span itemprop=\"EduLevel\">" + EduProgram.EduLevel.Title + "</span>"; }
+            get { return "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>"; }
         }
 
         public string AccreditedToDateString
