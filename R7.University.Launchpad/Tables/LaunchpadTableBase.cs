@@ -94,7 +94,7 @@ namespace R7.University.Launchpad
             return new ModuleAction (
                 module.GetNextActionID (),
                 // TODO: Action labels require localization
-                EditControlKey.Replace ("Edit", "Add "),
+                EditControlKey.Replace ("edit", "Add "),
                 ModuleActionType.AddContent,
                 "",
                 IconController.IconURL ("Add"),
