@@ -103,7 +103,7 @@ namespace R7.University.Division
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // fill divisions dropdown
-            var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ()
+            var divisions = DivisionRepository.Instance.GetDivisions ()
                             // exclude current division
                 .Where (d => (itemId == null || itemId != d.DivisionID)).OrderBy (dd => dd.Title).ToList ();
 

@@ -40,7 +40,7 @@ namespace R7.University.EmployeeList
             base.OnInit (e);
 
             // get divisions
-            var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ().OrderBy (d => d.Title).ToList ();
+            var divisions = DivisionRepository.Instance.GetDivisions ().OrderBy (d => d.Title).ToList ();
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

@@ -40,7 +40,7 @@ namespace R7.University.Division
             try {
                 if (!IsPostBack) {
                     // get divisions
-                    var divisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ()
+                    var divisions = DivisionRepository.Instance.GetDivisions ()
                         .OrderBy (d => d.Title).ToList ();
 
                     // insert default item

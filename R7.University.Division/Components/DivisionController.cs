@@ -75,7 +75,7 @@ namespace R7.University.Division.Components
         public string ExportModule (int moduleId)
         {
             var sb = new StringBuilder ();
-            var infos = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> (moduleId);
+            var infos = DivisionRepository.Instance.GetDivisions ();
 
             if (infos.Any ()) {
                 sb.Append ("<Divisions>");

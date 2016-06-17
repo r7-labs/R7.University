@@ -170,7 +170,7 @@ namespace R7.University.Employee
             var positions = new List<PositionInfo> (UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ()
                 .OrderBy (p => p.Title));
 
-            var divisions = new List<DivisionInfo> (UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> ()
+            var divisions = new List<DivisionInfo> (DivisionRepository.Instance.GetDivisions ()
                 .OrderBy (d => d.Title));
             
             var commonAchievements = new List<AchievementInfo> (UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ()
