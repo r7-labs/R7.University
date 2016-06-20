@@ -9,6 +9,12 @@
     <data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Не выбрано &gt;</value>
     </data>
+    <data name="labelDivision.Text" xml:space="preserve">
+        <value>Подразделение:</value>
+    </data>
+    <data name="labelDivision.Help" xml:space="preserve">
+        <value>Выберите подразделение, чтобы показать те образовательные программы, которые связаны с ним.</value>
+    </data>
     <data name="labelEduLevels.Text" xml:space="preserve">
         <value>Уровни образования:</value>
     </data>

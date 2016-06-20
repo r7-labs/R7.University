@@ -28,6 +28,8 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Data;
 using R7.University.EduProgramDirectory.Components;
 using R7.University.ViewModels;
+using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -55,6 +57,13 @@ namespace R7.University.EduProgramDirectory
                     Value = column
                 });
             }
+
+            // fill divisions dropdown
+            var divisions = DivisionRepository.Instance.GetDivisions ().ToList ();
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            treeDivision.DataSource = divisions;
+            treeDivision.DataBind ();
         }
 
         /// <summary>
@@ -79,6 +88,8 @@ namespace R7.University.EduProgramDirectory
                             item.Checked = true;
                         }
                     }
+
+                    treeDivision.SelectAndExpandByValue (Settings.DivisionId.ToString ());
                 }
             }
             catch (Exception ex) {
@@ -94,6 +105,7 @@ namespace R7.University.EduProgramDirectory
             try {
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => i.Value).ToList ();
                 Settings.Columns = listColumns.CheckedItems.Select (i => i.Value).ToList ();
+                Settings.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 
                 ModuleController.SynchronizeModule (ModuleId);
             }

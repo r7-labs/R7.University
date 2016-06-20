@@ -45,7 +45,13 @@ namespace R7.University.EduProgramDirectory.Components
         {
         }
 
-        #region Properties for settings
+        #region Module settings
+
+        public int? DivisionId
+        {
+            get { return ReadSetting<int?> ("EduProgramDirectory_DivisionId", null); }
+            set { WriteModuleSetting<int?> ("EduProgramDirectory_DivisionId", value); }
+        }
 
         public IList<string> EduLevels
         {
@@ -58,6 +64,10 @@ namespace R7.University.EduProgramDirectory.Components
                 WriteModuleSetting<string> ("EduProgramDirectory_EduLevels", string.Join (";", value));
             }
         }
+
+        #endregion
+
+        #region Tabmodule settings
 
         public IList<string> Columns
         {

@@ -82,10 +82,16 @@ namespace R7.University.EduProgramDirectory
 			
             try {
                 if (!IsPostBack) {
-                    var viewModelIndexer = new ViewModelIndexer (1);
+                    IEnumerable<IEduProgram> baseEduPrograms;
+                    if (Settings.DivisionId == null) {
+                        baseEduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels);
+                    }
+                    else {
+                        baseEduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
+                    }
 
-                    // REVIEW: Order / group by edu level first?
-                    var eduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels)
+                    var viewModelIndexer = new ViewModelIndexer (1);
+                    var eduPrograms = baseEduPrograms
                         .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID"))
                         .WithDocumentTypes (UniversityRepository.Instance.GetDocumentTypes ())
                         .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())

@@ -11,6 +11,7 @@ namespace R7.University.EduProgramDirectory
 {
     public partial class SettingsEduProgramDirectory
     {
+        protected DnnTreeView treeDivision;
         protected DnnListBox listEduLevels;
         protected DnnListBox listColumns;
     }

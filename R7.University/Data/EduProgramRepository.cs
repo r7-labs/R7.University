@@ -174,6 +174,18 @@ namespace R7.University.Data
 
             return Enumerable.Empty<EduProgramInfo> ();
         }
+
+        public IEnumerable<EduProgramInfo> GetEduPrograms_ByDivisionAndEduLevels (int divisionId, IEnumerable<string> eduLevelIds)
+        {
+            if (eduLevelIds.Any ()) {
+                return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE DivisionID = {0} AND EduLevelID IN ({1})",
+                    divisionId,
+                    TextUtils.FormatList (",", eduLevelIds))
+                );
+            }
+
+            return Enumerable.Empty<EduProgramInfo> ();
+        }
     }
 }
 
