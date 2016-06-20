@@ -32,6 +32,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.Data;
+using R7.University.EduProgram.Components;
 using R7.University.ModelExtensions;
 
 namespace R7.University.EduProgram
@@ -193,12 +194,14 @@ namespace R7.University.EduProgram
         {
             try {
                 EduProgramInfo item;
+                var isNew = false;
 
                 // determine if we are adding or updating
                 // ALT: if (Null.IsNull (itemId))
                 if (!itemId.HasValue) {
                     // add new record
                     item = new EduProgramInfo ();
+                    isNew = true;
                 }
                 else {
                     // update existing record
@@ -233,6 +236,12 @@ namespace R7.University.EduProgram
                     }
 
                     EduProgramRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
+                }
+
+                // update EduProgram module settings then adding new item
+                if (isNew && ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
+                    var settings = new EduProgramSettings (this);
+                    settings.EduProgramId = item.EduProgramID;
                 }
 
                 ModuleController.SynchronizeModule (ModuleId);
