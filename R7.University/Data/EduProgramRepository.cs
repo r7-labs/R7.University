@@ -157,6 +157,11 @@ namespace R7.University.Data
 
         #endregion
 
+        public EduProgramInfo GetEduProgram (int eduProgramId)
+        {
+            return DataProvider.Get<EduProgramInfo> (eduProgramId);
+        }
+
         public IEnumerable<EduProgramInfo> GetEduPrograms_ByEduLevel (int eduLevelId)
         {
             return DataProvider.GetObjects<EduProgramInfo> ("WHERE EduLevelID = @0", eduLevelId)
