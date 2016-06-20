@@ -8,7 +8,7 @@ using DotNetNuke.Web.UI.WebControls;
 using R7.University;
 using R7.University.Controls;
 
-namespace R7.University.Launchpad
+namespace R7.University.EduProgram
 {
     public partial class EditEduProgram
     {

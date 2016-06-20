@@ -175,8 +175,7 @@
 									<moduleControl>
 										<controlKey>Settings</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/SettingsLaunchpad.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<controlTitle>Settings</controlTitle>
+                                        <controlTitle>Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -187,9 +186,7 @@
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Employee</controlTitle>
+                                        <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -200,9 +197,7 @@
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Division</controlTitle>
+                                        <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -213,9 +208,7 @@
 									<moduleControl>
 										<controlKey>EditPosition</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditPosition.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Position</controlTitle>
+                                        <controlTitle>Edit Position</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -226,9 +219,7 @@
 									<moduleControl>
 										<controlKey>EditAchievement</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditAchievement.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Achievement</controlTitle>
+                                        <controlTitle>Edit Achievement</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -239,9 +230,7 @@
 									<moduleControl>
 										<controlKey>EditEduLevel</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduLevel.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Education Level</controlTitle>
+                                        <controlTitle>Edit Education Level</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -252,8 +241,6 @@
                                     <moduleControl>
                                         <controlKey>EditEduForm</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduForm.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
-                                        <supportsPopUps>True</supportsPopUps>
                                         <controlTitle>Edit Educational Form</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -264,10 +251,8 @@
                                     </moduleControl>
 									<moduleControl>
 										<controlKey>EditEduProgram</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgram.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Educational Program</controlTitle>
+										<controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -278,8 +263,6 @@
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
-                                        <supportsPopUps>True</supportsPopUps>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -291,8 +274,6 @@
                                     <moduleControl>
                                         <controlKey>EditDocumentType</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDocumentType.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
-                                        <supportsPopUps>True</supportsPopUps>
                                         <controlTitle>Edit Document Type</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -381,9 +362,7 @@
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Employee</controlTitle>
+                                        <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -394,7 +373,6 @@
 									<moduleControl>
 										<controlKey>Settings</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
 										<controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -472,9 +450,7 @@
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Employee</controlTitle>
+                                        <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -485,8 +461,7 @@
 									<moduleControl>
 										<controlKey>Settings</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<controlTitle>Employee Settings</controlTitle>
+                                        <controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -543,9 +518,7 @@
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Employee</controlTitle>
+                                        <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -567,8 +540,7 @@
 									<moduleControl>
 										<controlKey>Settings</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.EmployeeList/SettingsEmployeeList.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<controlTitle>Settings</controlTitle>
+                                        <controlTitle>Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -645,9 +617,7 @@
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Division</controlTitle>
+                                        <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -658,8 +628,7 @@
 									<moduleControl>
 										<controlKey>Settings</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Division/SettingsDivision.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<controlTitle>Division Settings</controlTitle>
+                                        <controlTitle>Division Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -736,9 +705,7 @@
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Employee</controlTitle>
+                                        <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -749,8 +716,7 @@
 				         			<moduleControl>
 						           		<controlKey>Settings</controlKey>
 						           		<controlSrc>DesktopModules/R7.University/R7.University.EmployeeDirectory/SettingsEmployeeDirectory.ascx</controlSrc>
-						          		<supportsPartialRendering>False</supportsPartialRendering>
-						           		<controlTitle>Settings</controlTitle>
+						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />
 						           		<helpUrl />
@@ -827,9 +793,7 @@
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Employee</controlTitle>
+                                        <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -840,9 +804,7 @@
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
 										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>True</supportsPopUps>
-										<controlTitle>Edit Division</controlTitle>
+                                        <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
 										<helpUrl />
@@ -853,8 +815,7 @@
 									<moduleControl>
 						           		<controlKey>Settings</controlKey>
 						           		<controlSrc>DesktopModules/R7.University/R7.University.DivisionDirectory/SettingsDivisionDirectory.ascx</controlSrc>
-						          		<supportsPartialRendering>False</supportsPartialRendering>
-						           		<controlTitle>Settings</controlTitle>
+						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />
 						           		<helpUrl />
@@ -917,9 +878,19 @@
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
                                     <moduleControl>
+                                        <controlKey>EditEduProgram</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
                                         <controlKey>Settings</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/SettingsEduProgram.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
                                         <controlTitle>EduProgram Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -985,9 +956,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgram.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
-                                        <supportsPopUps>True</supportsPopUps>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -999,7 +968,6 @@
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.EduProgramDirectory/SettingsEduProgramDirectory.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
                                         <controlTitle>Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1066,8 +1034,6 @@
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
-                                        <supportsPopUps>True</supportsPopUps>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1078,9 +1044,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgram.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
-                                        <supportsPopUps>True</supportsPopUps>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1092,7 +1056,6 @@
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.EduProgramProfileDirectory/SettingsEduProgramProfileDirectory.ascx</controlSrc>
-                                        <supportsPartialRendering>False</supportsPartialRendering>
                                         <controlTitle>Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />

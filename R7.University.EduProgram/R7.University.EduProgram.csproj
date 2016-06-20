@@ -75,6 +75,12 @@
     </Compile>
     <Compile Include="Components\EduProgramController.cs" />
     <Compile Include="Components\EduProgramSettings.cs" />
+    <Compile Include="EditEduProgram.ascx.cs">
+      <DependentUpon>EditEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgram.ascx.controls.cs">
+      <DependentUpon>EditEduProgram.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -82,12 +88,19 @@
     <Content Include="packages.config" />
     <Content Include="SettingsEduProgram.ascx" />
     <Content Include="ViewEduProgram.ascx" />
+    <Content Include="EditEduProgram.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\SettingsEduProgram.ascx.resx" />
     <None Include="App_LocalResources\SettingsEduProgram.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewEduProgram.ascx.resx" />
     <None Include="App_LocalResources\ViewEduProgram.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEduProgram.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="App_LocalResources\EditEduProgram.ascx.ru-RU.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

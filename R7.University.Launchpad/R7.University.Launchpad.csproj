@@ -79,7 +79,6 @@
     <Content Include="EditPosition.ascx" />
     <Content Include="EditAchievement.ascx" />
     <Content Include="EditEduLevel.ascx" />
-    <Content Include="EditEduProgram.ascx" />
     <Content Include="packages.config" />
     <Content Include="EditEduProgramProfile.ascx" />
     <Content Include="EditDocumentType.ascx" />
@@ -97,9 +96,6 @@
     <None Include="App_LocalResources\EditAchievement.ascx.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.resx" />
     <None Include="App_LocalResources\EditDocumentType.ascx.resx" />
-    <None Include="App_LocalResources\EditEduProgram.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
     <None Include="App_LocalResources\EditEduLevel.ascx.resx">
       <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
     </None>
@@ -111,9 +107,6 @@
     </None>
     <None Include="App_LocalResources\EditPosition.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\EditEduProgram.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewLaunchpad.ascx.cs">
@@ -145,12 +138,6 @@
     </Compile>
     <Compile Include="EditEduLevel.ascx.controls.cs">
       <DependentUpon>EditEduLevel.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditEduProgram.ascx.cs">
-      <DependentUpon>EditEduProgram.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditEduProgram.ascx.controls.cs">
-      <DependentUpon>EditEduProgram.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditEduProgramProfile.ascx.controls.cs">
       <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
