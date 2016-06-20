@@ -44,5 +44,10 @@ namespace R7.University.ControlExtensions
         {
             listControl.Items.Add (new ListItem (text, value));
         }
+
+        public static void InsertDefaultItem (this ListControl listControl, string text, int value = -1)
+        {
+            listControl.Items.Insert (0, new ListItem (text, value.ToString ()));
+        }
     }
 }
