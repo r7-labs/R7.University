@@ -67,7 +67,7 @@
                     <dnn:Url id="urlHomePage" runat="server" UrlType="T" 
                             IncludeActiveTab="true"
                             ShowFiles="false" ShowTabs="true"
-                            ShowUrls="true" ShowUsers="false"
+                            ShowUrls="false" ShowUsers="false"
                             ShowLog="false" ShowTrack="false"
                             ShowNone="true" ShowNewWindow="false" />      
                 </div>

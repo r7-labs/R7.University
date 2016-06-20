@@ -22,16 +22,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using DotNetNuke.Common;
-using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.Data;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Utilities;
 using R7.University.ViewModels;
-using System.Text;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -190,6 +187,19 @@ namespace R7.University.EduProgramDirectory
         public int Order 
         {
             get { return Indexer.GetNextIndex (); }
+        }
+
+        public string Title_Link
+        {
+            get {
+                if (!string.IsNullOrWhiteSpace (Model.HomePage)) {
+                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
+                        Globals.NavigateURL (int.Parse (Model.HomePage)),
+                        Model.Title);
+                }
+
+                return Model.Title;
+            }
         }
 
         public string EduLevel_String

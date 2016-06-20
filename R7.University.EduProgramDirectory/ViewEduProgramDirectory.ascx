@@ -16,7 +16,7 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="Order" HeaderText="EduProgramOrder" DataFormatString="{0}." />
                         <asp:BoundField DataField="Code" HeaderText="EduProgramCode" />
-                        <asp:BoundField DataField="Title" HeaderText="EduProgramTitle" />
+                        <asp:BoundField DataField="Title_Link" HeaderText="EduProgramTitle" HtmlEncode="false" />
                         <asp:BoundField DataField="EduLevel_String" HeaderText="EduProgramEduLevel" />
                         <asp:BoundField DataField="Generation" HeaderText="EduProgramGeneration" />
                         <asp:BoundField DataField="ProfStandard_Links" HeaderText="EduProgramProfStandard" HtmlEncode="false" />
