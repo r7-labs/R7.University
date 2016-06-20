@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <data xml:space="preserve" name="AddContent.Action">
-    <value>Добавить содержимое</value>
-  </data>
     <data xml:space="preserve" name="ModuleHelp.Text">
-    <value>&lt;P&gt; Модуль R7.University.EduProgram&lt;/P&gt;</value>
-  </data>
+        <value>&lt;P&gt; Модуль R7.University.EduProgram&lt;/P&gt;</value>
+    </data>
     <data xml:space="preserve" name="DefaultContent.Text">
-    <value>Что-то вместо содержимого</value>
-  </data>
+        <value>Что-то вместо содержимого</value>
+    </data>
     <data xml:space="preserve" name="NothingToDisplay.Text">
-      <value>Нечего отображать, добавьте элементы.</value>
-  </data>
+        <value>Нечего отображать, выберите образовательную программу в настройках модуля.</value>
+    </data>
+    <data xml:space="preserve" name="AddContent.Action">
+        <value>Добавить обр. программу</value>
+    </data>
+    <data xml:space="preserve" name="AddContent.Action">
+        <value>Редактировать обр. программу</value>
+    </data>
 </root>

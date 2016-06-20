@@ -27,27 +27,18 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.Data;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
+using R7.University.Models;
 
 namespace R7.University.EduProgram
 {
     public partial class ViewEduProgram : PortalModuleBase<EduProgramSettings>, IActionable
     {
         #region Handlers 
-        
-        /// <summary>
-        /// Handles Init event for a control
-        /// </summary>
-        /// <param name="e">Event args.</param>
-        protected override void OnInit(EventArgs e)
-        {
-            base.OnInit (e);
-        }
-                
+     
         /// <summary>
         /// Handles Load event for a control
         /// </summary>
@@ -60,20 +51,27 @@ namespace R7.University.EduProgram
             {
                 if (!IsPostBack)
                 {
-                    var dataProvider = new Dal2DataProvider ();
-                    var items = dataProvider.GetObjects<EduProgramInfo> ();
+                    IEduProgram eduProgram = null;
+                    if (Settings.EduProgramId != null) {
+                        eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+                    }
 
                     // check if we have some content to display, 
                     // otherwise display a message for module editors.
-                    if (items == null && IsEditable)
+                    if (eduProgram == null)
                     {
-                        this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                        if (IsEditable) {
+                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                        }
+                        else {
+                            ContainerControl.Visible = false;
+                        }
                     }
                     else
                     {
                         // bind the data
-                        lstContent.DataSource = items;
-                        lstContent.DataBind ();
+                        formEduProgram.DataSource = new List<IEduProgram> { eduProgram };
+                        formEduProgram.DataBind ();
                     }
                 }
             }
@@ -96,7 +94,7 @@ namespace R7.University.EduProgram
                 var actions = new ModuleActionCollection ();
                 actions.Add (
                     GetNextActionID (), 
-                    Localization.GetString (ModuleActionType.AddContent, this.LocalResourceFile),
+                    LocalizeString ("AddEduProgram.Action"),
                     ModuleActionType.AddContent, 
                     "", 
                     IconController.IconURL ("Add"), 
@@ -106,6 +104,21 @@ namespace R7.University.EduProgram
                     true, 
                     false
                 );
+
+                if (Settings.EduProgramId != null) {
+                    actions.Add (
+                        GetNextActionID (),
+                        LocalizeString ("EditEduProgram.Action"),
+                        ModuleActionType.EditContent, 
+                        "", 
+                        IconController.IconURL ("Edit"), 
+                        EditUrl ("EditEduProgram"),
+                        false, 
+                        SecurityAccessLevel.Edit,
+                        true, 
+                        false
+                    );
+                }
 
                 return actions;
             }

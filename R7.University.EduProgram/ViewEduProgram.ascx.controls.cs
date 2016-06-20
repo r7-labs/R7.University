@@ -12,6 +12,6 @@ namespace R7.University.EduProgram
 {
     public partial class ViewEduProgram
     {    
-        protected DataList lstContent;
+        protected FormView formEduProgram;
     }
 }
