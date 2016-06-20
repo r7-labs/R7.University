@@ -89,23 +89,22 @@ namespace R7.University.EduProgram
         {
             get
             {
-                // create a new action to add an item, this will be added 
-                // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
-                actions.Add (
-                    GetNextActionID (), 
-                    LocalizeString ("AddEduProgram.Action"),
-                    ModuleActionType.AddContent, 
-                    "", 
-                    IconController.IconURL ("Add"), 
-                    EditUrl ("EditEduProgram"),
-                    false, 
-                    SecurityAccessLevel.Edit,
-                    true, 
-                    false
-                );
-
-                if (Settings.EduProgramId != null) {
+                if (Settings.EduProgramId == null) {
+                    actions.Add (
+                        GetNextActionID (), 
+                        LocalizeString ("AddEduProgram.Action"),
+                        ModuleActionType.AddContent, 
+                        "", 
+                        IconController.IconURL ("Add"), 
+                        EditUrl ("EditEduProgram"),
+                        false, 
+                        SecurityAccessLevel.Edit,
+                        true, 
+                        false
+                    );
+                }
+                else {
                     actions.Add (
                         GetNextActionID (),
                         LocalizeString ("EditEduProgram.Action"),
