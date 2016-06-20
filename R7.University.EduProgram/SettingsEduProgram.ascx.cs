@@ -22,13 +22,39 @@
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Data;
 using R7.University.EduProgram.Components;
+using R7.University.ControlExtensions;
 
 namespace R7.University.EduProgram
 {    
     public partial class SettingsEduProgram : ModuleSettingsBase<EduProgramSettings>
     {
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduProgramLevels ();
+            comboEduLevel.DataBind ();
+
+            BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
+        }
+
+        protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
+        {
+            BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
+        }
+
+        protected void BindEduPrograms (int eduLevelId)
+        {
+            comboEduProgram.DataSource = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
+            comboEduProgram.DataBind ();
+            comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
+        }
+
         /// <summary>
         /// Handles the loading of the module setting for this control
         /// </summary>
@@ -38,6 +64,12 @@ namespace R7.University.EduProgram
             {
                 if (!IsPostBack)
                 {
+                    if (Settings.EduProgramId != null) {
+                        var eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+                        comboEduLevel.SelectByValue (eduProgram.EduLevelID);
+                        BindEduPrograms (eduProgram.EduLevelID);
+                        comboEduProgram.SelectByValue (eduProgram.EduProgramID);
+                    }
                 }
             }
             catch (Exception ex)
@@ -53,6 +85,8 @@ namespace R7.University.EduProgram
         {
             try
             {
+                Settings.EduProgramId = TypeUtils.ParseToNullable<int> (comboEduProgram.SelectedValue);
+
                 ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex)

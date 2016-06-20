@@ -43,7 +43,13 @@ namespace R7.University.EduProgram.Components
         {
         }
 
-        #region Properties for settings
+        #region Module settings
+
+        public int? EduProgramId
+        {
+            get { return ReadSetting<int?> ("EduProgram_EduProgramId", null); }
+            set { WriteModuleSetting<int?> ("EduProgram_EduProgramId", value); }
+        }
 
         #endregion
     }

@@ -10,5 +10,7 @@ namespace R7.University.EduProgram
 {
     public partial class SettingsEduProgram
     {
+        protected DropDownList comboEduLevel;
+        protected DropDownList comboEduProgram;
     }
 }

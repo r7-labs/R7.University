@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
-    <Content Include="admin.css" />
     <Content Include="packages.config" />
     <Content Include="SettingsEduProgram.ascx" />
     <Content Include="ViewEduProgram.ascx" />
@@ -101,6 +100,8 @@
     <None Include="App_LocalResources\EditEduProgram.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="App_LocalResources\SharedResources.resx" />
+    <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
