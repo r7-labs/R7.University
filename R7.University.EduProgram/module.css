@@ -1,0 +1,9 @@
+﻿/* Place CSS for view control here */
+
+.R7.University.EduProgram_ContentList { width:100% }             
+.R7.University.EduProgram_ContentListItem { text-align: left }
+.R7.University.EduProgram_UserName { font-weight:bold }
+.R7.University.EduProgram_CreateOnDate { font-style:italic }
+.R7.University.EduProgram_Content { clear:both }
+
+

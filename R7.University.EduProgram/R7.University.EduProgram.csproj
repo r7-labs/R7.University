@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71EEFF26-83B2-462A-A809-AB887A905003}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>R7.University.EduProgram</RootNamespace>
+    <AssemblyName>R7.University.EduProgram</AssemblyName>
+    <ReleaseVersion>1.8.1</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\R7.University\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\R7.University\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="DotNetNuke">
+      <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="R7.DotNetNuke.Extensions">
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.8.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsEduProgram.ascx.cs">
+      <DependentUpon>SettingsEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsEduProgram.ascx.controls.cs">
+      <DependentUpon>SettingsEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEduProgram.ascx.cs">
+      <DependentUpon>ViewEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEduProgram.ascx.controls.cs">
+      <DependentUpon>ViewEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\EduProgramController.cs" />
+    <Compile Include="Components\EduProgramSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="module.css" />
+    <Content Include="admin.css" />
+    <Content Include="packages.config" />
+    <Content Include="SettingsEduProgram.ascx" />
+    <Content Include="ViewEduProgram.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_LocalResources\SettingsEduProgram.ascx.resx" />
+    <None Include="App_LocalResources\SettingsEduProgram.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\ViewEduProgram.ascx.resx" />
+    <None Include="App_LocalResources\ViewEduProgram.ascx.ru-RU.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\R7.University\R7.University.csproj">
+      <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
+      <Name>R7.University</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

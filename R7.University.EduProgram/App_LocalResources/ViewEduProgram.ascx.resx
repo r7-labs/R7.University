@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data xml:space="preserve" name="AddContent.Action">
+    <value>Add Content</value>
+  </data>
+    <data xml:space="preserve" name="ModuleHelp.Text">
+    <value>&lt;P&gt;A R7.University.EduProgram module&lt;/P&gt;</value>
+  </data>
+    <data xml:space="preserve" name="DefaultContent.Text">
+    <value>Here is some sample content</value>
+  </data>
+    <data xml:space="preserve" name="NothingToDisplay.Text">
+      <value>Nothing to display, add some items.</value>
+  </data>
+</root>
