@@ -14,6 +14,7 @@
     <div id="eduprogramprofile-tabs">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduprogramprofile-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
+            <li><a href="#eduprogramprofile-bindings-tab"><%= LocalizeString ("Bindings.Tab") %></a></li>
             <li><a href="#eduprogramprofile-eduforms-tab"><%= LocalizeString ("EduForms.Tab") %></a></li>
             <li><a href="#eduprogramprofile-documents-tab"><%= LocalizeString ("Documents.Tab") %></a></li>
         </ul>
@@ -76,6 +77,19 @@
                     <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
                 </div>
         	</fieldset>
+        </div>
+        <div id="eduprogramprofile-bindings">
+            <fieldset>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelDivision" runat="server" ControlName="treeDivision" />
+                    <dnn:DnnTreeView id="treeDivision" runat="server"
+                        DataFieldID="DivisionID"
+                        DataFieldParentID="ParentDivisionID"
+                        DataValueField="DivisionID"
+                        DataTextField="Title"
+                    />
+                </div>
+            </fieldset>
         </div>
         <div id="eduprogramprofile-eduforms-tab">
             <controls:EditEduForms id="formEditEduForms" runat="server" />

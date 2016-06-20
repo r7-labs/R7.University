@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.ModelExtensions;
@@ -32,6 +33,42 @@ namespace R7.University.Launchpad
 {
     public partial class EditEduProgramProfile: EditPortalModuleBase<EduProgramProfileInfo,int>
     {
+        #region Properties
+
+        protected int SelectedTab
+        {
+            get {
+                // get postback initiator control
+                var eventTarget = Request.Form ["__EVENTTARGET"];
+
+                if (!string.IsNullOrEmpty (eventTarget)) {
+
+                    // check if postback initiator is on EduForms tab
+                    if (eventTarget.Contains ("$" + formEditEduForms.ID)) {
+                        ViewState ["SelectedTab"] = 2;
+                        return 2;
+                    }
+
+                    // check if postback initiator is on Documents tab
+                    if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
+                        ViewState ["SelectedTab"] = 3;
+                        return 3;
+                    }
+                }
+
+                // otherwise, get current tab from viewstate
+                var obj = ViewState ["SelectedTab"];
+                if (obj != null) {
+                    return (int) obj;
+                }
+
+                return 0;
+            }
+            set { ViewState ["SelectedTab"] = value; }
+        }
+
+        #endregion
+
         protected EditEduProgramProfile () : base ("eduprogramprofile_id")
         {
         }
@@ -60,6 +97,13 @@ namespace R7.University.Launchpad
             // init edit forms
             formEditEduForms.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<EduFormInfo> ());
             formEditDocuments.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
+
+            // fill divisions dropdown
+            var divisions = DivisionRepository.Instance.GetDivisions ().ToList ();
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            treeDivision.DataSource = divisions;
+            treeDivision.DataBind ();
         }
 
         private void BindEduPrograms (int eduLevelId)
@@ -90,6 +134,7 @@ namespace R7.University.Launchpad
             datetimeStartDate.SelectedDate = item.StartDate;
             datetimeEndDate.SelectedDate = item.EndDate;
             comboEduLevel.SelectByValue (item.EduLevelId);
+            treeDivision.SelectAndExpandByValue (item.DivisionId.ToString ());
 
             // update comboEduProgram, if needed
             var currentEduLevelId = int.Parse (comboEduProgramLevel.SelectedValue);
@@ -130,6 +175,7 @@ namespace R7.University.Launchpad
             item.EndDate = datetimeEndDate.SelectedDate;
             item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
             item.EduLevelId = int.Parse (comboEduLevel.SelectedValue);
+            item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 
             if (ItemId == null) {
                 item.CreatedOnDate = DateTime.Now;
@@ -192,37 +238,6 @@ namespace R7.University.Launchpad
                                    "EditEduProgram");
             var rawEditUrl = Regex.Match (modalEditUrl, @"'(.*?)'").Groups [1].ToString ();
             Response.Redirect (rawEditUrl, true);
-        }
-
-        protected int SelectedTab
-        {
-            get {
-                // get postback initiator control
-                var eventTarget = Request.Form ["__EVENTTARGET"];
-
-                if (!string.IsNullOrEmpty (eventTarget)) {
-                    // check if postback initiator is on EduForms tab
-                    if (eventTarget.Contains ("$" + formEditEduForms.ID)) {
-                        ViewState ["SelectedTab"] = 1;
-                        return 1;
-                    }
-
-                    // check if postback initiator is on Documents tab
-                    if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
-                        ViewState ["SelectedTab"] = 2;
-                        return 2;
-                    }
-                }
-
-                // otherwise, get current tab from viewstate
-                var obj = ViewState ["SelectedTab"];
-                if (obj != null) {
-                    return (int) obj;
-                }
-
-                return 0;
-            }
-            set { ViewState ["SelectedTab"] = value; }
         }
     }
 }

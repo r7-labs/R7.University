@@ -21,6 +21,9 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Профиль образовательной программы</value>
     </data>
+    <data name="Bindings.Tab" xml:space="preserve">
+        <value>Привязки</value>
+    </data>
     <data name="EduForms.Tab" xml:space="preserve">
         <value>Формы обучения</value>
     </data>
@@ -89,5 +92,11 @@
     </data>
     <data name="labelEndDate.Help">
         <value>Введите дату, при наступлении которой профиль образовательной программы должен быть снят с публикации на сайте.</value>
+    </data>
+    <data name="labelDivision.Text">
+        <value>Подразделение:</value>
+    </data>
+    <data name="labelDivision.Help">
+        <value>Выберите подразделение, связанное с данным профилем (специализацией) образовательной программы. Обычно это выпускающая кафедра.</value>
     </data>
 </root>
