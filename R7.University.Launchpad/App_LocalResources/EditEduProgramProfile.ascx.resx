@@ -12,13 +12,19 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="CommonTab.Text" xml:space="preserve">
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;A module to edit education program profile&lt;/P&gt;</value>
+    </data>
+    <data name="ControlTitle_edit.Text" xml:space="preserve">
+        <value>Edit Education Program Profile</value>
+    </data>
+    <data name="Common.Tab" xml:space="preserve">
         <value>Educational Program Profile</value>
     </data>
-    <data name="EduFormsTab.Text" xml:space="preserve">
+    <data name="EduForms.Tab" xml:space="preserve">
         <value>Education Forms</value>
     </data>
-    <data name="DocumentsTab.Text" xml:space="preserve">
+    <data name="Documents.Tab" xml:space="preserve">
         <value>Documents</value>
     </data>
     <data name="labelProfileCode.Text" xml:space="preserve">
@@ -64,13 +70,13 @@
         <value>Accredited to:</value>
     </data>
     <data name="labelAccreditedToDate.Help">
-        <value>Enter the date until current educational was accredited to.</value>
+        <value>Enter the date until current educational program profile was accredited to.</value>
     </data>
     <data name="labelCommunityAccreditedToDate.Text">
         <value>Accredited by Community to:</value>
     </data>
     <data name="labelCommunityAccreditedToDate.Help">
-        <value>Enter the date until current educational was accredited to by community.</value>
+        <value>Enter the date until current educational program profile was accredited to by community.</value>
     </data>
     <data name="labelStartDate.Text">
         <value>Start Publication:</value>
@@ -83,11 +89,5 @@
     </data>
     <data name="labelEndDate.Help">
         <value>Enter the date from current educational program profile should be removed from publication on the site.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;A module to edit education program profile&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Education Program Profile</value>
     </data>
 </root>

@@ -11,14 +11,13 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear university-edit-eduprogramprofile">
-    <div id="eduProgramProfileTabs">
+    <div id="eduprogramprofile-tabs">
         <ul class="dnnAdminTabNav dnnClear">
-            <li><a href="#eduProgramProfileCommon"><%= LocalizeString ("CommonTab.Text") %></a></li>
-            <li><a href="#eduProgramProfileForms"><%= LocalizeString ("EduFormsTab.Text") %></a></li>
-            <li><a href="#eduProgramProfileDocuments"><%= LocalizeString ("DocumentsTab.Text") %></a></li>
+            <li><a href="#eduprogramprofile-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
+            <li><a href="#eduprogramprofile-eduforms-tab"><%= LocalizeString ("EduForms.Tab") %></a></li>
+            <li><a href="#eduprogramprofile-documents-tab"><%= LocalizeString ("Documents.Tab") %></a></li>
         </ul>
-        <asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
-        <div id="eduProgramProfileCommon" class="dnnForm dnnClear">
+        <div id="eduprogramprofile-common-tab" class="dnnForm dnnClear">
         	<fieldset>
                 <asp:UpdatePanel id="updatePanelEduProgram" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
@@ -54,8 +53,8 @@
                 </div>
                 <div class="dnnFormItem">
         			<dnn:Label ID="labelProfileTitle" runat="server" ControlName="textProfileTitle" />
-        			<asp:TextBox ID="textProfileTitle" runat="server" MaxLength="250" />
-        		</div>
+        			<asp:TextBox ID="textProfileTitle" runat="server" MaxLength="250" />  
+                </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelLanguages" runat="server" ControlName="textLanguages" />
                     <asp:TextBox id="textLanguages" runat="server" MaxLength="250" />
@@ -78,15 +77,15 @@
                 </div>
         	</fieldset>
         </div>
-        <div id="eduProgramProfileForms">
+        <div id="eduprogramprofile-eduforms-tab">
             <controls:EditEduForms id="formEditEduForms" runat="server" />
         </div>
-        <div id="eduProgramProfileDocuments">
+        <div id="eduprogramprofile-documents-tab">
             <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgramProfile" />
         </div>
     </div>
    	<ul class="dnnActions dnnClear">
-		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
+		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="EduProgramProfile" /></li>
 		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
@@ -100,7 +99,7 @@
         $(".dnn-ac-combobox").combobox();
     };
     $(document).ready(function() {
-        $("#eduProgramProfileTabs").dnnTabs({selected: <%= SelectedTab %>});
+        $("#eduprogramprofile-tabs").dnnTabs({selected: <%= SelectedTab %>});
         setupModule();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
             setupModule();
