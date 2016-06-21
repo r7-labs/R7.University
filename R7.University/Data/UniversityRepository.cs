@@ -59,11 +59,6 @@ namespace R7.University.Data
             return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
         }
 
-        public IEnumerable<EduLevelInfo> GetEduProgramProfileLevels ()
-        {
-            return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId != null);
-        }
-
         public IEnumerable<DocumentTypeInfo> GetDocumentTypes ()
         {
             return DataProvider.GetObjects<DocumentTypeInfo> ();
