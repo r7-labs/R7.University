@@ -83,6 +83,11 @@ namespace R7.University.ViewModels
             + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
         }
 
+        public static string FormatEduProgramTitle (string code, string title)
+        {
+            return TextUtils.FormatList (" ", code, title);
+        }
+
         public static string FormatEduProgramProfileTitle (string title, 
             string profileCode, string profileTitle)
         {
