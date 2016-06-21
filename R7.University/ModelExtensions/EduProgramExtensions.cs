@@ -39,6 +39,15 @@ namespace R7.University.ModelExtensions
             );
         }
 
+        public static IEduProgram WithEduProgramProfiles (this IEduProgram eduProgram, IEnumerable<IEduProgramProfile> eduProgramProfiles)
+        {
+            eduProgram.EduProgramProfiles = eduProgramProfiles
+                .Where (epp => epp.EduProgramID == eduProgram.EduProgramID)
+                .ToList ();
+            
+            return eduProgram;
+        }
+
         public static IEnumerable<IEduProgram> WithDocuments (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocument> documents)
         {
             return eduPrograms.GroupJoin (documents.DefaultIfEmpty (), ep => "EduProgramID=" + ep.EduProgramID, d => d.ItemID,
