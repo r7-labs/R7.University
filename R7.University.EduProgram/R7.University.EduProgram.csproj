@@ -81,6 +81,9 @@
     <Compile Include="EditEduProgram.ascx.controls.cs">
       <DependentUpon>EditEduProgram.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EduProgramViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramModuleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -116,5 +119,8 @@
       <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
       <Name>R7.University</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

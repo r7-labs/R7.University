@@ -20,11 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.ViewModels;
-using R7.DotNetNuke.Extensions.ViewModels;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace R7.University.EduProgram.ViewModels
 {
@@ -42,13 +41,13 @@ namespace R7.University.EduProgram.ViewModels
             RootViewModel = rootViewModel;
         }
 
-        IEnumerable<EduProgramProfileViewModel> EduProgramProfileViewModels { get; set; }
+        public IEnumerable<EduProgramProfileViewModel> EduProgramProfileViewModels { get; set; }
 
         #region Bindable properties
 
         public string Title_String
         {
-            get { throw new NotImplementedException (); }
+            get { return FormatHelper.FormatEduProgramTitle (Model.Code, Model.Title); }
         }
 
         #endregion

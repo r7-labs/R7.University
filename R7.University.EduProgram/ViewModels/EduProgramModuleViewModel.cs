@@ -18,14 +18,22 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgram.ViewModels
 {
     public class EduProgramModuleViewModel
     {
-        public EduProgramModuleViewModel ()
+        public ViewModelContext Context { get; protected set; }
+
+        public EduProgramViewModel EduProgram { get; set; }
+
+        public EduProgramModuleViewModel SetContext (ViewModelContext context)
         {
+            Context = context;
+            return this;
         }
     }
 }

@@ -21,22 +21,49 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
-using R7.University.Models;
+using R7.University.EduProgram.ViewModels;
+using R7.University.ModelExtensions;
+using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgram
 {
     public partial class ViewEduProgram : PortalModuleBase<EduProgramSettings>, IActionable
     {
+        #region Get data
+
+        public EduProgramModuleViewModel GetViewModel ()
+        {
+            if (Settings.EduProgramId != null) {
+                var viewModel = new EduProgramModuleViewModel ();
+                viewModel.EduProgram = new EduProgramViewModel (
+                    EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value),
+                    viewModel
+                );
+
+                viewModel.EduProgram.EduProgramProfileViewModels = EduProgramProfileRepository.Instance
+                    .GetEduProgramProfiles_ByEduProgram (viewModel.EduProgram.EduProgramID)
+                    .WithEduProgram (viewModel.EduProgram)
+                    .Select (epp => new EduProgramProfileViewModel (epp, viewModel));
+
+                return viewModel;
+            }
+
+            return null;
+        }
+
+        #endregion
+
         #region Handlers 
      
         /// <summary>
@@ -51,14 +78,14 @@ namespace R7.University.EduProgram
             {
                 if (!IsPostBack)
                 {
-                    IEduProgram eduProgram = null;
+                    EduProgramModuleViewModel viewModel = null;
                     if (Settings.EduProgramId != null) {
-                        eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+                        viewModel = GetViewModel ().SetContext (new ViewModelContext (this));
                     }
 
                     // check if we have some content to display, 
                     // otherwise display a message for module editors.
-                    if (eduProgram == null)
+                    if (viewModel == null)
                     {
                         if (IsEditable) {
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
@@ -70,7 +97,7 @@ namespace R7.University.EduProgram
                     else
                     {
                         // bind the data
-                        formEduProgram.DataSource = new List<IEduProgram> { eduProgram };
+                        formEduProgram.DataSource = new List<EduProgramViewModel> { viewModel.EduProgram };
                         formEduProgram.DataBind ();
                     }
                 }
@@ -80,7 +107,20 @@ namespace R7.University.EduProgram
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
-        
+
+        protected void formEduProgram_DataBound (object sender, EventArgs e)
+        {
+            if (formEduProgram.DataItem != null) {
+
+                var listEduProgramProfiles = (ListView) formEduProgram.FindControl ("listEduProgramProfiles");
+
+                var viewModel = (EduProgramViewModel) formEduProgram.DataItem;
+               
+                listEduProgramProfiles.DataSource = viewModel.EduProgramProfileViewModels;
+                listEduProgramProfiles.DataBind ();
+            }
+        }
+
         #endregion        
             
         #region IActionable implementation

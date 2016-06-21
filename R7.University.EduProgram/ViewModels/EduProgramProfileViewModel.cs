@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramViewModel.cs
+//  EduProgramProfileViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,7 +26,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgram.ViewModels
 {
-    public class EduProgramViewModel: EduProgramViewModelBase
+    public class EduProgramProfileViewModel: EduProgramProfileViewModelBase
     {
         public EduProgramModuleViewModel RootViewModel { get; protected set; }
 
@@ -35,10 +35,29 @@ namespace R7.University.EduProgram.ViewModels
             get { return RootViewModel.Context; }
         }
         
-        public EduProgramViewModel (IEduProgram model, EduProgramModuleViewModel rootViewModel): base (model)
+        public EduProgramProfileViewModel (IEduProgramProfile model, EduProgramModuleViewModel rootViewModel): base (model)
         {
             RootViewModel = rootViewModel;
         }
+
+        #region Bindable properties
+
+        public string Title_String
+        {
+            get {
+                return FormatHelper.FormatEduProgramTitle (
+                    Model.ProfileCode,
+                    Model.ProfileTitle
+                );
+            }
+        }
+
+        public bool AccreditedToDate_Visible
+        {
+            get { return Model.AccreditedToDate != null; }
+        }
+
+        #endregion
     }
 }
 
