@@ -50,6 +50,11 @@ namespace R7.University.EduProgram.ViewModels
             get { return FormatHelper.FormatEduProgramTitle (Model.Code, Model.Title); }
         }
 
+        public string EduLevel_Title
+        {
+            get { return Model.EduLevel.Title; }
+        }
+
         #endregion
     }
 }

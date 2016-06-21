@@ -57,6 +57,34 @@ namespace R7.University.EduProgram.ViewModels
             get { return Model.AccreditedToDate != null; }
         }
 
+        public string AccreditedToDate_String
+        {
+            get { 
+                return Model.AccreditedToDate != null ?
+                    Model.AccreditedToDate.Value.ToShortDateString () :
+                    string.Empty;
+            }
+        }
+
+        public bool CommunityAccreditedToDate_Visible
+        {
+            get { return Model.CommunityAccreditedToDate != null; }
+        }
+
+        public string CommunityAccreditedToDate_String
+        {
+            get { 
+                return Model.CommunityAccreditedToDate != null ?
+                    Model.CommunityAccreditedToDate.Value.ToShortDateString () :
+                    string.Empty;
+            }
+        }
+
+        public string EduLevel_Title
+        {
+            get { return Model.EduLevel.Title; }
+        }
+
         #endregion
     }
 }

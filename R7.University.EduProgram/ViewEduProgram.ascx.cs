@@ -45,14 +45,16 @@ namespace R7.University.EduProgram
         public EduProgramModuleViewModel GetViewModel ()
         {
             if (Settings.EduProgramId != null) {
+                var eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+                eduProgram.EduLevel = UniversityRepository.Instance.GetEduProgramLevels ()
+                    .First (el => el.EduLevelID == eduProgram.EduLevelID);
+
                 var viewModel = new EduProgramModuleViewModel ();
-                viewModel.EduProgram = new EduProgramViewModel (
-                    EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value),
-                    viewModel
-                );
+                viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);
 
                 viewModel.EduProgram.EduProgramProfileViewModels = EduProgramProfileRepository.Instance
                     .GetEduProgramProfiles_ByEduProgram (viewModel.EduProgram.EduProgramID)
+                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
                     .WithEduProgram (viewModel.EduProgram)
                     .Select (epp => new EduProgramProfileViewModel (epp, viewModel));
 
