@@ -61,8 +61,8 @@ namespace R7.University.ModelExtensions
             );
         }
 
-        public static IEnumerable<EduProgramProfileInfo> WithEduProgram (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, IEduProgram eduProgram)
+        public static IEnumerable<IEduProgramProfile> WithEduProgram (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEduProgram eduProgram)
         {
             foreach (var epp in eduProgramProfiles) {
                 epp.EduProgram = eduProgram;
