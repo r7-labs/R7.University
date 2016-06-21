@@ -1,10 +1,10 @@
 ﻿//
-//  IEduProgram.cs
+//  EduProgramModuleViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -18,40 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
-using System.Collections.Generic;
-using R7.University.Models;
 
-namespace R7.University.Models
+namespace R7.University.EduProgram.ViewModels
 {
-    public interface IEduProgram: IUniversityBaseEntity
+    public class EduProgramModuleViewModel
     {
-        int EduProgramID { get; set; }
-
-        int EduLevelID { get; set; }
-
-        int? DivisionId { get; set; }
-
-        string Code { get; set; }
-
-        string Title { get; set; }
-
-        string Generation { get; set; }
-
-        string HomePage { get; set; }
-
-        DateTime? StartDate { get; set; }
-
-        DateTime? EndDate { get; set; }
-
-        IEduLevel EduLevel { get; set; }
-
-        IDivision Division { get; set; }
-
-        IList<IDocument> Documents { get; set; }
-
-        IList<IEduProgramProfile> EduProgramProfiles { get; set; }
+        public EduProgramModuleViewModel ()
+        {
+        }
     }
 }
 

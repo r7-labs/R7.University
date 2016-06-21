@@ -75,6 +75,9 @@ namespace R7.University.Data
         [IgnoreColumn]
         public IList<IDocument> Documents { get; set; }
 
+        [IgnoreColumn]
+        public IList<IEduProgramProfile> EduProgramProfiles { get; set; }
+
         #endregion
 
         // TODO: Move to viewmodel
