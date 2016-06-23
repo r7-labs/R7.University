@@ -25,9 +25,10 @@ using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Components;
+using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
-using R7.University.ControlExtensions;
 
 namespace R7.University.EduProgram
 {    
@@ -86,6 +87,8 @@ namespace R7.University.EduProgram
             try
             {
                 Settings.EduProgramId = TypeUtils.ParseToNullable<int> (comboEduProgram.SelectedValue);
+
+                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId);
 
                 ModuleController.SynchronizeModule (ModuleId);
             }

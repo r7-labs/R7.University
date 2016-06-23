@@ -22,7 +22,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Caching;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
@@ -30,11 +32,12 @@ using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
 using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
-using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgram
 {
@@ -44,7 +47,10 @@ namespace R7.University.EduProgram
 
         protected EduProgramModuleViewModel GetViewModel ()
         {
-            return GetViewModel_Internal ().SetContext (new ViewModelContext (this));
+            return DataCache.GetCachedData<EduProgramModuleViewModel> (
+                new CacheItemArgs ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId,
+                    UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
+                c => GetViewModel_Internal ()).SetContext (new ViewModelContext (this));
         }
 
         protected EduProgramModuleViewModel GetViewModel_Internal ()
