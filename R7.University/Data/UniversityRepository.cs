@@ -49,6 +49,11 @@ namespace R7.University.Data
 
         #endregion
 
+        public IEnumerable<EduFormInfo> GetEduForms ()
+        {
+            return DataProvider.GetObjects<EduFormInfo> ();
+        }
+
         public IEnumerable<EduLevelInfo> GetEduLevels ()
         {
             return DataProvider.GetObjects<EduLevelInfo> ();

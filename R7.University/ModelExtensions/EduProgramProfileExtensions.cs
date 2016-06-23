@@ -94,24 +94,29 @@ namespace R7.University.ModelExtensions
             return eduProgramProfiles;
         }
 
-        public static IEduProgramProfile WithEduProgramProfileForms (
-            this IEduProgramProfile eduProfile, Dal2DataProvider controller)
+        public static IEnumerable<IEduProgramProfile> WithEduForms (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduForm> eduForms)
         {
-            eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
-                "WHERE [EduProgramProfileID] = @0", eduProfile.EduProgramProfileID)
-                .WithEduForms (controller)
-                .Cast<IEduProgramProfileForm> ()
-                .ToList ();
+            foreach (var epp in eduProgramProfiles) {
+                if (epp.EduProgramProfileForms != null) {
+                    epp.EduProgramProfileForms = epp.EduProgramProfileForms.WithEduForms (eduForms).ToList ();
+                }
+            }
 
-            return eduProfile;
+            return eduProgramProfiles;
         }
 
         public static IEnumerable<IEduProgramProfile> WithEduProgramProfileForms (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, Dal2DataProvider controller)
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduProgramProfileForm> eduProgramProfileForms)
         {
-            foreach (var eduProgramProfile in eduProgramProfiles) {
-                yield return eduProgramProfile.WithEduProgramProfileForms (controller);
+            if (!eduProgramProfileForms.IsNullOrEmpty ()) {
+                foreach (var eduProgramProfile in eduProgramProfiles) {
+                    eduProgramProfile.EduProgramProfileForms = eduProgramProfileForms
+                        .Where (eppf => eppf.EduProgramProfileID == eduProgramProfile.EduProgramProfileID).ToList ();
+                }
             }
+
+            return eduProgramProfiles;
         }
 
         public static IEnumerable<IEduProgramProfile> WithDocuments (
