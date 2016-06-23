@@ -6,8 +6,11 @@
     <data xml:space="preserve" name="DefaultContent.Text">
         <value>Что-то вместо содержимого</value>
     </data>
-    <data xml:space="preserve" name="NothingToDisplay.Text">
-        <value>Нечего отображать, выберите образовательную программу в настройках модуля.</value>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Нечего отображать, выберите образовательную программу в настройках модуля или добавьте новую.</value>
+    </data>
+    <data name="NotPublished.Text" xml:space="preserve" >
+        <value>Выбранная образовательная программа не опубликована.</value>
     </data>
     <data xml:space="preserve" name="AddContent.Action">
         <value>Добавить обр. программу</value>
@@ -20,6 +23,9 @@
     </data>
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>
+    </data>
+    <data name="EduProgramProfiles.Text" xml:space="preserve">
+        <value>Профили (специализации) образовательной программы:</value>
     </data>
     <data name="EduForms.Text" xml:space="preserve">
         <value>Формы и сроки обучения:</value>

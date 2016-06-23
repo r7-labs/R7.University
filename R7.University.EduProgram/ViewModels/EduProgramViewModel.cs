@@ -94,7 +94,16 @@ namespace R7.University.EduProgram.ViewModels
                     "EditEduProgram"
                 );
             }
+        }
 
+        public string CssClass
+        {
+            get { return Model.IsPublished () ? string.Empty : "u8y-not-published"; }
+        }
+
+        public bool EduProgramProfiles_Visible
+        {
+            get { return EduProgramProfileViewModels.Any (epp => epp.IsPublished () || Context.Module.IsEditable); }
         }
 
         #endregion

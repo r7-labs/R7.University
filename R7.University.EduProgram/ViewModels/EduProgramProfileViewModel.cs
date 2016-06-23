@@ -121,7 +121,11 @@ namespace R7.University.EduProgram.ViewModels
                     "EditEduProgramProfile"
                 );
             }
+        }
 
+        public string CssClass
+        {
+            get { return Model.IsPublished () ? string.Empty : "u8y-not-published"; }
         }
 
         #endregion

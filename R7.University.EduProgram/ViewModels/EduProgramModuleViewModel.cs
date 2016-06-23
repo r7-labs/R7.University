@@ -30,6 +30,11 @@ namespace R7.University.EduProgram.ViewModels
 
         public EduProgramViewModel EduProgram { get; set; }
 
+        public bool IsEmpty ()
+        {
+            return EduProgram == null;
+        }
+
         public EduProgramModuleViewModel SetContext (ViewModelContext context)
         {
             Context = context;

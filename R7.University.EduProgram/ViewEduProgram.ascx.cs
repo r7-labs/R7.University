@@ -42,10 +42,20 @@ namespace R7.University.EduProgram
     {
         #region Get data
 
-        public EduProgramModuleViewModel GetViewModel ()
+        protected EduProgramModuleViewModel GetViewModel ()
+        {
+            return GetViewModel_Internal ().SetContext (new ViewModelContext (this));
+        }
+
+        protected EduProgramModuleViewModel GetViewModel_Internal ()
         {
             if (Settings.EduProgramId != null) {
                 var eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+
+                if (eduProgram == null) {
+                    // edu. program not found - return empty view model
+                    return new EduProgramModuleViewModel ();
+                }
 
                 eduProgram.EduLevel = UniversityRepository.Instance.GetEduProgramLevels ()
                     .First (el => el.EduLevelID == eduProgram.EduLevelID);
@@ -72,7 +82,8 @@ namespace R7.University.EduProgram
                 return viewModel;
             }
 
-            return null;
+            // edu. program not set - return empty view model
+            return new EduProgramModuleViewModel ();
         }
 
         #endregion
@@ -91,28 +102,34 @@ namespace R7.University.EduProgram
             {
                 if (!IsPostBack)
                 {
-                    EduProgramModuleViewModel viewModel = null;
-                    if (Settings.EduProgramId != null) {
-                        viewModel = GetViewModel ().SetContext (new ViewModelContext (this));
-                    }
+                    var shouldBind = true;
 
-                    // check if we have some content to display, 
-                    // otherwise display a message for module editors.
-                    if (viewModel == null)
-                    {
+                    var viewModel = GetViewModel ();
+                    if (viewModel.IsEmpty ()) {
                         if (IsEditable) {
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                         }
+                        shouldBind = false;
+                    }
+                    else if (!viewModel.EduProgram.IsPublished ()) {
+                        if (IsEditable) {
+                            this.Message ("NotPublished.Text", MessageType.Warning, true);
+                        }
                         else {
-                            ContainerControl.Visible = false;
+                            shouldBind = false;
                         }
                     }
-                    else
+
+                    if (shouldBind)
                     {
                         // bind the data
                         formEduProgram.DataSource = new List<EduProgramViewModel> { viewModel.EduProgram };
                         formEduProgram.DataBind ();
+                    } 
+                    else {
+                        ContainerControl.Visible = IsEditable;
                     }
+
                 }
             }
             catch (Exception ex)
@@ -128,8 +145,10 @@ namespace R7.University.EduProgram
                 var listEduProgramProfiles = (ListView) formEduProgram.FindControl ("listEduProgramProfiles");
 
                 var viewModel = (EduProgramViewModel) formEduProgram.DataItem;
-               
-                listEduProgramProfiles.DataSource = viewModel.EduProgramProfileViewModels;
+
+                listEduProgramProfiles.DataSource = viewModel.EduProgramProfileViewModels
+                    .Where (epp => epp.IsPublished () || IsEditable);
+
                 listEduProgramProfiles.DataBind ();
             }
         }

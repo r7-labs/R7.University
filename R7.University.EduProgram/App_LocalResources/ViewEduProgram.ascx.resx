@@ -6,8 +6,11 @@
     <data xml:space="preserve" name="DefaultContent.Text">
         <value>Here is some sample content</value>
     </data>
-    <data xml:space="preserve" name="NothingToDisplay.Text">
-        <value>Nothing to display, please select educational program in module settings.</value>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Nothing to display, please select educational program in module settings or add new.</value>
+    </data>
+    <data name="NotPublished.Text" xml:space="preserve" >
+        <value>Selected educational program is not published.</value>
     </data>
     <data xml:space="preserve" name="AddEduProgram.Action">
         <value>Add Edu. Program</value>
@@ -20,6 +23,9 @@
     </data>
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Education level:</value>
+    </data>
+    <data name="EduProgramProfiles.Text" xml:space="preserve">
+        <value>Educational program profiles (specializations):</value>
     </data>
     <data name="EduForms.Text" xml:space="preserve">
         <value>Education forms and learn time:</value>
