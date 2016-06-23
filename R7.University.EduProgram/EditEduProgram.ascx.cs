@@ -156,7 +156,7 @@ namespace R7.University.EduProgram
 
                             auditControl.Bind (item);
 
-                            var documents = DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID")
+                            var documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + item.EduProgramID)
                                 .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
                                 .Cast<DocumentInfo> ()
                                 .ToList ();
