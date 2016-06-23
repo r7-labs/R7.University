@@ -15,8 +15,14 @@
     <data xml:space="preserve" name="AddContent.Action">
         <value>Редактировать обр. программу</value>
     </data>
+    <data name="LinkOpen.Text" xml:space="preserve">
+        <value>нажмите, чтобы открыть</value>
+    </data>
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>
+    </data>
+    <data name="EduStandard.Text" xml:space="preserve">
+        <value>Образовательный стандарт:</value>
     </data>
     <data name="AccreditedToDate.Text" xml:space="preserve">
         <value>Государственной аккредитация, до:</value>

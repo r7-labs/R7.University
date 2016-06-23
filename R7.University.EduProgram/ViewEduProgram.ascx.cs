@@ -46,8 +46,13 @@ namespace R7.University.EduProgram
         {
             if (Settings.EduProgramId != null) {
                 var eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+
                 eduProgram.EduLevel = UniversityRepository.Instance.GetEduProgramLevels ()
                     .First (el => el.EduLevelID == eduProgram.EduLevelID);
+                
+                eduProgram.Documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + eduProgram.EduProgramID)
+                    .WithDocumentType (UniversityRepository.Instance.GetDocumentTypes ())
+                    .ToList ();
 
                 var viewModel = new EduProgramModuleViewModel ();
                 viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);

@@ -3,8 +3,11 @@
     <ItemTemplate>
         <div>
             <h3><%# Eval ("Title_String") %></h3>
-            <p><asp:Label runat="server" resourcekey="EduLevel.Text" CssClass="u8y-label" /> <%# Eval ("EduLevel_Title") %></p>
-            <strong>Standard:</strong>
+            <div><asp:Label runat="server" resourcekey="EduLevel.Text" CssClass="u8y-label" /> <%# Eval ("EduLevel_Title") %></div>
+            <asp:Panel runat="server" Visible='<%# Eval ("EduStandard_Visible") %>'>
+                <asp:Label runat="server" resourcekey="EduStandard.Text" CssClass="u8y-label" /> 
+                    <%# HttpUtility.HtmlDecode ((string) Eval ("EduStandard_Links")) %>
+            </asp:Panel>
         </div>
         <h4>Educational Profiles:</h4>
         <asp:ListView id="listEduProgramProfiles" runat="server">

@@ -1,3 +1,7 @@
 ﻿.u8y-eduprogram .u8y-label {
     font-weight:bold
 }
+
+.u8y-eduprogram .u8y-inline {
+    display:inline
+}

@@ -21,7 +21,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -43,6 +45,14 @@ namespace R7.University.EduProgram.ViewModels
 
         public IEnumerable<EduProgramProfileViewModel> EduProgramProfileViewModels { get; set; }
 
+        protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
+        {
+            return documents
+                .Where (d => Context.Module.IsEditable || d.IsPublished ())
+                .OrderBy (d => d.Group)
+                .ThenBy (d => d.SortIndex);
+        }
+
         #region Bindable properties
 
         public string Title_String
@@ -53,6 +63,26 @@ namespace R7.University.EduProgram.ViewModels
         public string EduLevel_Title
         {
             get { return Model.EduLevel.Title; }
+        }
+
+        public bool EduStandard_Visible
+        {
+            get { return GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduStandard)).Any (); }
+        }
+
+        public string EduStandard_Links
+        {
+            get { 
+                return FormatHelper.FormatDocumentLinks (
+                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduStandard)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline u8y-inline\">{0}</ul>",
+                    "<ul class=\"list-inline u8y-inline\">{0}</ul>",
+                    "itemprop=\"EduStandartDoc\"",
+                    DocumentGroupPlacement.InTitle
+                );
+            }
         }
 
         #endregion

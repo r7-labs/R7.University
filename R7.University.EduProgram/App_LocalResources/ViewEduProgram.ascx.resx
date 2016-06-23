@@ -15,8 +15,14 @@
     <data xml:space="preserve" name="EditEduProgram.Action">
         <value>Edit Edu. Program</value>
     </data>
+    <data name="LinkOpen.Text" xml:space="preserve">
+        <value>click to open</value>
+    </data>
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Education Level:</value>
+    </data>
+    <data name="EduStandard.Text" xml:space="preserve">
+        <value>Educational Standard:</value>
     </data>
     <data name="AccreditedToDate.Text" xml:space="preserve">
         <value>Accredited to:</value>
