@@ -112,6 +112,18 @@ namespace R7.University.EduProgram.ViewModels
             }
         }
 
+        public string Edit_Url
+        {
+            get {
+                return Context.Module.EditUrl (
+                    "eduprogramprofile_id",
+                    Model.EduProgramProfileID.ToString (),
+                    "EditEduProgramProfile"
+                );
+            }
+
+        }
+
         #endregion
     }
 }

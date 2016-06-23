@@ -85,6 +85,18 @@ namespace R7.University.EduProgram.ViewModels
             }
         }
 
+        public string Edit_Url
+        {
+            get {
+                return Context.Module.EditUrl (
+                    "eduprogram_id",
+                    Model.EduProgramID.ToString (),
+                    "EditEduProgram"
+                );
+            }
+
+        }
+
         #endregion
     }
 }

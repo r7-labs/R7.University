@@ -2,7 +2,10 @@
 <asp:FormView id="formEduProgram" runat="server" OnDataBound="formEduProgram_DataBound" CssClass="u8y-eduprogram">
     <ItemTemplate>
         <div>
-            <h3><%# Eval ("Title_String") %></h3>
+            <h3>
+                <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Eval ("Edit_Url") %>' IconKey="Edit" />
+                <%# Eval ("Title_String") %>
+            </h3>
             <div><asp:Label runat="server" resourcekey="EduLevel.Text" CssClass="u8y-label" /> <%# Eval ("EduLevel_Title") %></div>
             <asp:Panel runat="server" Visible='<%# Eval ("EduStandard_Visible") %>'>
                 <asp:Label runat="server" resourcekey="EduStandard.Text" CssClass="u8y-label" /> 
@@ -18,7 +21,10 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <li>
-                    <h4><%# Eval ("Title_String") %></h4>
+                    <h4>
+                        <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Eval ("Edit_Url") %>' IconKey="Edit" />
+                        <%# Eval ("Title_String") %>
+                    </h4>
                     <div><asp:Label runat="server" resourcekey="EduLevel.Text" CssClass="u8y-label" /> <%# Eval ("EduLevel_Title") %></div>
                     <asp:Panel runat="server" Visible='<%# Eval ("AccreditedToDate_Visible") %>'>
                         <asp:Label runat="server" resourcekey="AccreditedToDate.Text" CssClass="u8y-label" /> <%# Eval ("AccreditedToDate_String") %>
