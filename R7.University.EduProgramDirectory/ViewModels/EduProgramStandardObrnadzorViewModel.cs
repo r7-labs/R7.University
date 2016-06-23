@@ -45,6 +45,7 @@ namespace R7.University.EduProgramDirectory
             Indexer = indexer;
         }
 
+        [Obsolete ("Use FormatHelper.FormatDocumentLinks instead")]
         protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
         {
             var markupBuilder = new StringBuilder ();
