@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ViewEduProgram.ascx.cs" Inherits="R7.University.EduProgram.ViewEduProgram" %>
 <asp:FormView id="formEduProgram" runat="server" OnDataBound="formEduProgram_DataBound" CssClass="u8y-eduprogram">
     <ItemTemplate>
-        <div>
+        <div class="u8y-eduprogram-info">
             <h3 runat="server" class='<%# Eval ("CssClass") %>'>
                 <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Eval ("Edit_Url") %>' IconKey="Edit" />
                 <%# Eval ("Title_String") %>
@@ -17,7 +17,7 @@
             </asp:Panel>
         </div>
         <asp:Panel runat="server" Visible='<%# Eval ("EduProgramProfiles_Visible") %>'>
-            <h4><%# LocalizeString ("EduProgramProfiles.Text") %></h4>
+            <h3><%# LocalizeString ("EduProgramProfiles.Text") %></h3>
             <asp:ListView id="listEduProgramProfiles" runat="server">
                 <LayoutTemplate>
                     <ul runat="server" class="eduprogram-profiles">
