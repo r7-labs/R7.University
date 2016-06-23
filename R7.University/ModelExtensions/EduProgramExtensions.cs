@@ -71,5 +71,10 @@ namespace R7.University.ModelExtensions
         {
             return eduProgram.Documents.Where (d => d.GetSystemDocumentType () == documentType);
         }
+
+        public static bool IsPublished (this IEduProgram eduProgram)
+        {
+            return ModelHelper.IsPublished (eduProgram.StartDate, eduProgram.EndDate);
+        }
     }
 }

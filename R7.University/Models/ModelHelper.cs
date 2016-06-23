@@ -33,16 +33,6 @@ namespace R7.University.Models
 
         #region Extension methods
 
-        public static bool IsPublished (this IEduProgram eduProgram)
-        {
-            return IsPublished (eduProgram.StartDate, eduProgram.EndDate);
-        }
-
-        public static bool IsPublished (this IEduProgramProfile eduProgramProfile)
-        {
-            return IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
-        }
-
         public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)
         {
             SystemEduForm result;
