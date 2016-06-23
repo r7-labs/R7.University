@@ -140,6 +140,18 @@ namespace R7.University.ModelExtensions
             return eduProgramProfiles;
         }
 
+        public static IEnumerable<IEduProgramProfile> WithDivisions (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles,  IEnumerable<IDivision> divisions)
+        {
+            foreach (var epp in eduProgramProfiles) {
+                if (epp.DivisionId != null) {
+                    epp.Division = divisions.First (d => d.DivisionID == epp.DivisionId.Value);
+                }
+            }
+
+            return eduProgramProfiles;
+        }
+
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
         {
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
