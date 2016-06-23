@@ -19,12 +19,16 @@
             <ItemTemplate>
                 <li>
                     <h4><%# Eval ("Title_String") %></h4>
-                    <p><asp:Label runat="server" resourcekey="EduLevel.Text" CssClass="u8y-label" /> <%# Eval ("EduLevel_Title") %></p>
+                    <div><asp:Label runat="server" resourcekey="EduLevel.Text" CssClass="u8y-label" /> <%# Eval ("EduLevel_Title") %></div>
                     <asp:Panel runat="server" Visible='<%# Eval ("AccreditedToDate_Visible") %>'>
                         <asp:Label runat="server" resourcekey="AccreditedToDate.Text" CssClass="u8y-label" /> <%# Eval ("AccreditedToDate_String") %>
                     </asp:Panel>
                     <asp:Panel runat="server" Visible='<%# Eval ("CommunityAccreditedToDate_Visible") %>'>
                         <asp:Label runat="server" resourcekey="CommunityAccreditedToDate.Text" CssClass="u8y-label" /> <%# Eval ("CommunityAccreditedToDate_String") %>
+                    </asp:Panel>
+                    <asp:Panel runat="server" Visible='<%# Eval ("EduForms_Visible") %>'>
+                        <p><strong><%# LocalizeString ("EduForms.Text") %></strong></p>
+                        <%# HttpUtility.HtmlDecode ((string) Eval ("EduForms_String")) %>
                     </asp:Panel>
                 </li>
             </ItemTemplate>

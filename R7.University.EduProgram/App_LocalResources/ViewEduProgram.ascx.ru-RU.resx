@@ -21,6 +21,9 @@
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>
     </data>
+    <data name="EduForms.Text" xml:space="preserve">
+        <value>Формы и сроки обучения:</value>
+    </data>
     <data name="EduStandard.Text" xml:space="preserve">
         <value>Образовательный стандарт:</value>
     </data>
@@ -29,5 +32,32 @@
     </data>
     <data name="CommunityAccreditedToDate.Text" xml:space="preserve">
         <value>Профессионально-общественная аккредитация, до:</value>
+    </data>
+    <data name="TimeToLearnFullTime.Text" xml:space="preserve">
+        <value>Очная форма</value>
+    </data>
+    <data name="TimeToLearnPartTime.Text" xml:space="preserve">
+        <value>Очно-заочная форма</value>
+    </data>
+    <data name="TimeToLearnExtramural.Text" xml:space="preserve">
+        <value>Заочная форма</value>
+    </data>
+    <data name="TimeToLearnYears.Format1" xml:space="preserve">
+        <value>{0} год</value>
+    </data>
+    <data name="TimeToLearnYears.Format2" xml:space="preserve">
+        <value>{0} года</value>
+    </data>
+    <data name="TimeToLearnYears.Format3" xml:space="preserve">
+        <value>{0} лет</value>
+    </data>
+    <data name="TimeToLearnMonths.Format1" xml:space="preserve">
+        <value>{0} месяц</value>
+    </data>
+    <data name="TimeToLearnMonths.Format2" xml:space="preserve">
+        <value>{0} месяца</value>
+    </data>
+    <data name="TimeToLearnMonths.Format3" xml:space="preserve">
+        <value>{0} месяцев</value>
     </data>
 </root>

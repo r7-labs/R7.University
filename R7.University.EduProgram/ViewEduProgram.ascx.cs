@@ -54,13 +54,19 @@ namespace R7.University.EduProgram
                     .WithDocumentType (UniversityRepository.Instance.GetDocumentTypes ())
                     .ToList ();
 
+                var eduProgramProfiles = EduProgramProfileRepository.Instance
+                    .GetEduProgramProfiles_ByEduProgram (eduProgram.EduProgramID)
+                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
+                    .WithEduProgram (eduProgram);
+
+                eduProgramProfiles = eduProgramProfiles
+                    .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance.GetEduProgramProfileForms (eduProgramProfiles))
+                    .WithEduForms (UniversityRepository.Instance.GetEduForms ());
+                
                 var viewModel = new EduProgramModuleViewModel ();
                 viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);
 
-                viewModel.EduProgram.EduProgramProfileViewModels = EduProgramProfileRepository.Instance
-                    .GetEduProgramProfiles_ByEduProgram (viewModel.EduProgram.EduProgramID)
-                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
-                    .WithEduProgram (viewModel.EduProgram)
+                viewModel.EduProgram.EduProgramProfileViewModels = eduProgramProfiles
                     .Select (epp => new EduProgramProfileViewModel (epp, viewModel));
 
                 return viewModel;

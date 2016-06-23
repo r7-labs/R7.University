@@ -19,15 +19,45 @@
         <value>click to open</value>
     </data>
     <data name="EduLevel.Text" xml:space="preserve">
-        <value>Education Level:</value>
+        <value>Education level:</value>
+    </data>
+    <data name="EduForms.Text" xml:space="preserve">
+        <value>Education forms and learn time:</value>
     </data>
     <data name="EduStandard.Text" xml:space="preserve">
-        <value>Educational Standard:</value>
+        <value>Educational standard:</value>
     </data>
     <data name="AccreditedToDate.Text" xml:space="preserve">
         <value>Accredited to:</value>
     </data>
     <data name="CommunityAccreditedToDate.Text" xml:space="preserve">
-        <value>Community Accredited to:</value>
+        <value>Community accredited to:</value>
+    </data>
+    <data name="TimeToLearnFullTime.Text" xml:space="preserve">
+        <value>Full Time</value>
+    </data>
+    <data name="TimeToLearnPartTime.Text" xml:space="preserve">
+        <value>Part Time</value>
+    </data>
+    <data name="TimeToLearnExtramural.Text" xml:space="preserve">
+        <value>Extramural</value>
+    </data>
+    <data name="TimeToLearnYears.Format1" xml:space="preserve">
+        <value>{0} year</value>
+    </data>
+    <data name="TimeToLearnYears.Format2" xml:space="preserve">
+        <value>{0} years</value>
+    </data>
+    <data name="TimeToLearnYears.Format3" xml:space="preserve">
+        <value>{0} years</value>
+    </data>
+    <data name="TimeToLearnMonths.Format1" xml:space="preserve">
+        <value>{0} month</value>
+    </data>
+    <data name="TimeToLearnMonths.Format2" xml:space="preserve">
+        <value>{0} months</value>
+    </data>
+    <data name="TimeToLearnMonths.Format3" xml:space="preserve">
+        <value>{0} months</value>
     </data>
 </root>

@@ -19,10 +19,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+using System.Text;
+using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
-using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgram.ViewModels
 {
@@ -83,6 +85,31 @@ namespace R7.University.EduProgram.ViewModels
         public string EduLevel_Title
         {
             get { return Model.EduLevel.Title; }
+        }
+
+        public bool EduForms_Visible
+        {
+            get { return !Model.EduProgramProfileForms.IsNullOrEmpty (); }
+        }
+
+        public string EduForms_String
+        {
+            get {
+                if (Model.EduProgramProfileForms != null) {
+                    var sb = new StringBuilder ();
+                    foreach (var eppf in Model.EduProgramProfileForms) {
+                        sb.AppendFormat ("<li>{0} &ndash; {1}</li>", 
+                            Localization.GetString ("TimeToLearn" + eppf.EduForm.Title + ".Text", Context.LocalResourceFile),
+                            FormatHelper.FormatTimeToLearn (eppf.TimeToLearn,
+                                "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
+                        );
+                    }
+
+                    return string.Format ("<ul>{0}</ul>", sb);
+                }
+
+                return null;
+            }
         }
 
         #endregion
