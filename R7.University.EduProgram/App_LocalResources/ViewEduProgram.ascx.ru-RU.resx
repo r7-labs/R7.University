@@ -30,6 +30,12 @@
     <data name="EduForms.Text" xml:space="preserve">
         <value>Формы и сроки обучения:</value>
     </data>
+    <data name="Faculty.Text" xml:space="preserve">
+        <value>Факультет (институт):</value>
+    </data>
+    <data name="FacultyDepartment.Text" xml:space="preserve">
+        <value>Выпускающая кафедра:</value>
+    </data>
     <data name="EduStandard.Text" xml:space="preserve">
         <value>Образовательный стандарт:</value>
     </data>

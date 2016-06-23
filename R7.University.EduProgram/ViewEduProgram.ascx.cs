@@ -65,6 +65,10 @@ namespace R7.University.EduProgram
 
                 eduProgram.EduLevel = UniversityRepository.Instance.GetEduProgramLevels ()
                     .First (el => el.EduLevelID == eduProgram.EduLevelID);
+
+                if (eduProgram.DivisionId != null) {
+                    eduProgram.Division = DivisionRepository.Instance.GetDivision (eduProgram.DivisionId.Value);
+                }
                 
                 eduProgram.Documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + eduProgram.EduProgramID)
                     .WithDocumentType (UniversityRepository.Instance.GetDocumentTypes ())
@@ -77,8 +81,12 @@ namespace R7.University.EduProgram
 
                 eduProgramProfiles = eduProgramProfiles
                     .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance.GetEduProgramProfileForms (eduProgramProfiles))
-                    .WithEduForms (UniversityRepository.Instance.GetEduForms ());
-                
+                    .WithEduForms (UniversityRepository.Instance.GetEduForms ())
+                    .WithDivisions (DivisionRepository.Instance.GetDivisions (eduProgramProfiles
+                        .Where (epp => epp.DivisionId != null)
+                        .Select (epp => epp.DivisionId.Value))
+                    );
+
                 var viewModel = new EduProgramModuleViewModel ();
                 viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);
 

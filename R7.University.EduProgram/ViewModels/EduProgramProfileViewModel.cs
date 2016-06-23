@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Text;
+using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -126,6 +127,27 @@ namespace R7.University.EduProgram.ViewModels
         public string CssClass
         {
             get { return Model.IsPublished () ? string.Empty : "u8y-not-published"; }
+        }
+
+        public bool Division_Visible
+        {
+            get { return Model.Division != null; }
+        }
+
+        public string Division_Link
+        {
+            get { 
+                if (Model.Division != null) {
+                    if (!string.IsNullOrWhiteSpace (Model.Division.HomePage)) {
+                        return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
+                            // REVIEW: Model.Division.HomePage could not contain tabId
+                            Globals.NavigateURL (int.Parse (Model.Division.HomePage)), Model.Division.Title
+                        );
+                    }
+                    return Model.Division.Title;
+                }
+                return string.Empty;
+            }
         }
 
         #endregion

@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DotNetNuke.Common;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -104,6 +105,27 @@ namespace R7.University.EduProgram.ViewModels
         public bool EduProgramProfiles_Visible
         {
             get { return EduProgramProfileViewModels.Any (epp => epp.IsPublished () || Context.Module.IsEditable); }
+        }
+
+        public bool Division_Visible
+        {
+            get { return Model.Division != null; }
+        }
+
+        public string Division_Link
+        {
+            get { 
+                if (Model.Division != null) {
+                    if (!string.IsNullOrWhiteSpace (Model.Division.HomePage)) {
+                        return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
+                            // REVIEW: Model.Division.HomePage could not contain tabId
+                            Globals.NavigateURL (int.Parse (Model.Division.HomePage)), Model.Division.Title
+                        );
+                    }
+                    return Model.Division.Title;
+                }
+                return string.Empty;
+            }
         }
 
         #endregion
