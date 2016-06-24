@@ -21,7 +21,6 @@
                 </div>
             </div>
             <div runat="server" Visible='<%# Eval ("EduProgramProfiles_Visible") %>'>
-                <h3><%# LocalizeString ("EduProgramProfiles.Text") %></h3>
                 <asp:ListView id="listEduProgramProfiles" runat="server">
                     <LayoutTemplate>
                         <ul runat="server" class="eduprogram-profiles">

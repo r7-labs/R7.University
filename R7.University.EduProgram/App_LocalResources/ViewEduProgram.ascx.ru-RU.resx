@@ -24,8 +24,8 @@
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>
     </data>
-    <data name="EduProgramProfiles.Text" xml:space="preserve">
-        <value>Профили (специализации):</value>
+    <data name="EduProgramProfile.Text" xml:space="preserve">
+        <value>Профиль (специализация)</value>
     </data>
     <data name="EduForms.Text" xml:space="preserve">
         <value>Формы и сроки обучения:</value>

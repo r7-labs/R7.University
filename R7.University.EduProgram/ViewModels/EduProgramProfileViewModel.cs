@@ -22,6 +22,7 @@
 using System.Text;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -48,19 +49,10 @@ namespace R7.University.EduProgram.ViewModels
         public string Title_String
         {
             get {
-                var title = FormatHelper.FormatEduProgramTitle (
-                    Model.ProfileCode,
-                    Model.ProfileTitle
+                return TextUtils.FormatList (": ", 
+                    Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
+                    FormatHelper.FormatEduProgramTitle (Model.ProfileCode, Model.ProfileTitle)
                 );
-
-                if (string.IsNullOrWhiteSpace (title)) {
-                    title = FormatHelper.FormatEduProgramTitle (
-                        Model.EduProgram.Code,
-                        Model.EduProgram.Title
-                    );
-                }
-                    
-                return title;
             }
         }
 
