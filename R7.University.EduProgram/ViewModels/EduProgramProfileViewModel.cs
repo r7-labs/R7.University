@@ -48,10 +48,19 @@ namespace R7.University.EduProgram.ViewModels
         public string Title_String
         {
             get {
-                return FormatHelper.FormatEduProgramTitle (
+                var title = FormatHelper.FormatEduProgramTitle (
                     Model.ProfileCode,
                     Model.ProfileTitle
                 );
+
+                if (string.IsNullOrWhiteSpace (title)) {
+                    title = FormatHelper.FormatEduProgramTitle (
+                        Model.EduProgram.Code,
+                        Model.EduProgram.Title
+                    );
+                }
+                    
+                return title;
             }
         }
 
