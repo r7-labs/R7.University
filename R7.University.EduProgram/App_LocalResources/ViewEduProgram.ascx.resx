@@ -25,7 +25,7 @@
         <value>Education level:</value>
     </data>
     <data name="EduProgramProfiles.Text" xml:space="preserve">
-        <value>Educational program profiles (specializations):</value>
+        <value>Profiles (specializations):</value>
     </data>
     <data name="EduForms.Text" xml:space="preserve">
         <value>Education forms and learn time:</value>
