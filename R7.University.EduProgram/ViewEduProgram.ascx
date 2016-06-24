@@ -49,8 +49,8 @@
                                 <label runat="server"><%# LocalizeString ("CommunityAccreditedToDate.Text") %></label>
                                 <%# Eval ("CommunityAccreditedToDate_String") %>
                             </p>
-                            <div runat="server" Visible='<%# Eval ("EduForms_Visible") %>' class="u8y-para">
-                                <p><label runat="server"><%# LocalizeString ("EduForms.Text") %></label></p>
+                            <div runat="server" Visible='<%# Eval ("EduForms_Visible") %>' class="u8y-para-end">
+                                <label runat="server"><%# LocalizeString ("EduForms.Text") %></label>
                                 <%# HttpUtility.HtmlDecode ((string) Eval ("EduForms_String")) %>
                             </div>
                         </li>
