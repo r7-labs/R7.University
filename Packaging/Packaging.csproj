@@ -94,5 +94,9 @@
       <Project>{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}</Project>
       <Name>R7.University.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\R7.University.EduProgram\R7.University.EduProgram.csproj">
+      <Project>{71EEFF26-83B2-462A-A809-AB887A905003}</Project>
+      <Name>R7.University.EduProgram</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

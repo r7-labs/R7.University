@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using R7.DotNetNuke.Extensions.Data;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Data
 {
@@ -89,6 +90,17 @@ namespace R7.University.Data
         public IEnumerable<DivisionInfo> GetRootDivisions ()
         {
             return DataProvider.GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
+        }
+
+        public IEnumerable<DivisionInfo> GetDivisions (IEnumerable<int> divisionIds)
+        {
+            if (divisionIds != null && divisionIds.Any ()) {
+                return DataProvider.GetObjects<DivisionInfo> (
+                    string.Format ("WHERE DivisionID IN ({0})", TextUtils.FormatList (",", divisionIds))
+                );
+            }
+
+            return Enumerable.Empty<DivisionInfo> ();
         }
     }
 }

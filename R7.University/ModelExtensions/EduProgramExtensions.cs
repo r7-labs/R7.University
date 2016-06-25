@@ -39,6 +39,15 @@ namespace R7.University.ModelExtensions
             );
         }
 
+        public static IEduProgram WithEduProgramProfiles (this IEduProgram eduProgram, IEnumerable<IEduProgramProfile> eduProgramProfiles)
+        {
+            eduProgram.EduProgramProfiles = eduProgramProfiles
+                .Where (epp => epp.EduProgramID == eduProgram.EduProgramID)
+                .ToList ();
+            
+            return eduProgram;
+        }
+
         public static IEnumerable<IEduProgram> WithDocuments (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocument> documents)
         {
             return eduPrograms.GroupJoin (documents.DefaultIfEmpty (), ep => "EduProgramID=" + ep.EduProgramID, d => d.ItemID,
@@ -61,6 +70,11 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgram eduProgram, SystemDocumentType documentType)
         {
             return eduProgram.Documents.Where (d => d.GetSystemDocumentType () == documentType);
+        }
+
+        public static bool IsPublished (this IEduProgram eduProgram)
+        {
+            return ModelHelper.IsPublished (eduProgram.StartDate, eduProgram.EndDate);
         }
     }
 }

@@ -49,6 +49,11 @@ namespace R7.University.Data
 
         #endregion
 
+        public IEnumerable<EduFormInfo> GetEduForms ()
+        {
+            return DataProvider.GetObjects<EduFormInfo> ();
+        }
+
         public IEnumerable<EduLevelInfo> GetEduLevels ()
         {
             return DataProvider.GetObjects<EduLevelInfo> ();
@@ -57,11 +62,6 @@ namespace R7.University.Data
         public IEnumerable<EduLevelInfo> GetEduProgramLevels ()
         {
             return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
-        }
-
-        public IEnumerable<EduLevelInfo> GetEduProgramProfileLevels ()
-        {
-            return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId != null);
         }
 
         public IEnumerable<DocumentTypeInfo> GetDocumentTypes ()

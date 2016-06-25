@@ -25,6 +25,9 @@ using System.Linq;
 using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
 using R7.University.Components;
+using R7.University.Models;
+using R7.University.ModelExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Data
 {
@@ -48,6 +51,18 @@ namespace R7.University.Data
         public EduProgramProfileFormRepository (Dal2DataProvider dataProvider)
         {
             DataProvider = dataProvider;
+        }
+
+        public IEnumerable<EduProgramProfileFormInfo> GetEduProgramProfileForms (IEnumerable<IEduProgramProfile> eduProgramProfiles)
+        {
+            if (!eduProgramProfiles.IsNullOrEmpty ()) {
+                return DataProvider.GetObjects<EduProgramProfileFormInfo> (
+                    string.Format ("WHERE EduProgramProfileID IN ({0})",
+                        TextUtils.FormatList (",", eduProgramProfiles.Select (epp => epp.EduProgramProfileID)))
+                );
+            }
+
+            return Enumerable.Empty<EduProgramProfileFormInfo> ();
         }
 
         public void UpdateEduProgramProfileForms (IList<EduProgramProfileFormInfo> eduForms, int eduProgramProfileId)

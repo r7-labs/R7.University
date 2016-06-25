@@ -1,10 +1,10 @@
 ﻿//
-//  ModelHelper.cs
+//  EduProgramModuleViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -20,26 +20,26 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using R7.DotNetNuke.Extensions.ViewModels;
 
-namespace R7.University.Models
+namespace R7.University.EduProgram.ViewModels
 {
-    public static class ModelHelper
+    public class EduProgramModuleViewModel
     {
-        public static bool IsPublished (DateTime? startDate, DateTime? endDate)
+        public ViewModelContext Context { get; protected set; }
+
+        public EduProgramViewModel EduProgram { get; set; }
+
+        public bool IsEmpty ()
         {
-            var now = DateTime.Now;
-            return (startDate == null || now >= startDate) && (endDate == null || now < endDate);
+            return EduProgram == null;
         }
 
-        #region Extension methods
-
-        public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)
+        public EduProgramModuleViewModel SetContext (ViewModelContext context)
         {
-            SystemEduForm result;
-            return Enum.TryParse<SystemEduForm> (eduForm.Title, out result) ? result : SystemEduForm.Custom;
+            Context = context;
+            return this;
         }
-
-        #endregion
     }
 }
 

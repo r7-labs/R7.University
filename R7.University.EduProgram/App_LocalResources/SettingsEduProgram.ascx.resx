@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data xml:space="preserve" name="ControlTitle_settings.Text">
+        <value>EduProgram Settings</value>
+    </data>
+    <data xml:space="preserve" name="ModuleHelp.Text">
+        <value>About R7.University.EduProgram Settings</value>
+    </data>
+    <data xml:space="preserve" name="sectionBasicSettings.Text">
+        <value>Basic Settings</value>
+    </data>
+    <data name="labelEduLevel.Text">
+        <value>Educational Level:</value>
+    </data>
+    <data name="labelEduLevel.Help">
+        <value>Select educational program level from the dropdown.</value>
+    </data>
+    <data name="labelEduProgram.Text">
+        <value>Educational Program:</value>
+    </data>
+    <data name="labelEduProgram.Help">
+        <value>Select the educational program from the dropdown.</value>
+    </data>
+</root>

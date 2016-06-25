@@ -32,121 +32,20 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramDirectory
 {
-    public class EduProgramStandardObrnadzorViewModel: IEduProgram
+    public class EduProgramStandardObrnadzorViewModel: EduProgramViewModelBase
     {
-        public IEduProgram Model { get; protected set; }
-
         public IIndexer Indexer { get; protected set; }
 
         public ViewModelContext Context { get; protected set; }
 
         public EduProgramStandardObrnadzorViewModel (IEduProgram model, ViewModelContext context, IIndexer indexer)
+            : base (model)
         {
-            Model = model;
             Context = context;
             Indexer = indexer;
         }
 
-        #region IEduProgram implementation
-
-        public int EduProgramID
-        {
-            get { return Model.EduProgramID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int EduLevelID
-        {
-            get { return Model.EduLevelID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? DivisionId
-        {
-            get { return Model.DivisionId; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Code
-        {
-            get { return Model.Code; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Title
-        {
-            get { return Model.Title; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Generation
-        {
-            get { return Model.Generation; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string HomePage
-        {
-            get { return Model.HomePage; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? StartDate
-        {
-            get { return Model.StartDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime? EndDate
-        {
-            get { return Model.EndDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int LastModifiedByUserID
-        {
-            get { return Model.LastModifiedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime LastModifiedOnDate
-        {
-            get { return Model.LastModifiedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int CreatedByUserID
-        {
-            get { return Model.CreatedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public DateTime CreatedOnDate
-        {
-            get { return Model.CreatedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IEduLevel EduLevel
-        {
-            get { return Model.EduLevel; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IDivision Division
-        {
-            get { return Model.Division; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public IList<IDocument> Documents
-        {
-            get { return Model.Documents; }
-            set { throw new NotImplementedException (); }
-        }
-
-        #endregion
-
+        [Obsolete ("Use FormatHelper.FormatDocumentLinks instead")]
         protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
         {
             var markupBuilder = new StringBuilder ();

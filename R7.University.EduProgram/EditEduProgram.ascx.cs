@@ -30,13 +30,12 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
+using R7.University.EduProgram.Components;
 using R7.University.ModelExtensions;
-using R7.University.Utilities;
 
-namespace R7.University.Launchpad
+namespace R7.University.EduProgram
 {
     // available tabs
     public enum EditEduProgramTab
@@ -157,7 +156,7 @@ namespace R7.University.Launchpad
 
                             auditControl.Bind (item);
 
-                            var documents = DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID")
+                            var documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + item.EduProgramID)
                                 .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
                                 .Cast<DocumentInfo> ()
                                 .ToList ();
@@ -195,12 +194,14 @@ namespace R7.University.Launchpad
         {
             try {
                 EduProgramInfo item;
+                var isNew = false;
 
                 // determine if we are adding or updating
                 // ALT: if (Null.IsNull (itemId))
                 if (!itemId.HasValue) {
                     // add new record
                     item = new EduProgramInfo ();
+                    isNew = true;
                 }
                 else {
                     // update existing record
@@ -235,6 +236,12 @@ namespace R7.University.Launchpad
                     }
 
                     EduProgramRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
+                }
+
+                // update EduProgram module settings then adding new item
+                if (isNew && ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
+                    var settings = new EduProgramSettings (this);
+                    settings.EduProgramId = item.EduProgramID;
                 }
 
                 ModuleController.SynchronizeModule (ModuleId);

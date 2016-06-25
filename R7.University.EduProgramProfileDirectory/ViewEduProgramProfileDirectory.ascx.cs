@@ -93,10 +93,16 @@ namespace R7.University.EduProgramProfileDirectory
             var viewModel = new EduProgramProfileDirectoryEduFormsViewModel ();
             var indexer = new ViewModelIndexer (1);
 
+            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
+                .WithEduLevel (UniversityRepository.Instance.GetEduLevels ());
+            
+            eduProgramProfiles = eduProgramProfiles
+                .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance
+                    .GetEduProgramProfileForms (eduProgramProfiles))
+                .WithEduForms (UniversityRepository.Instance.GetEduForms ());
+               
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
-                EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
-                    .WithEduProgramProfileForms (UniversityRepository.Instance.DataProvider)
+                eduProgramProfiles
                     .OrderBy (epp => epp.EduLevel.SortIndex)
                     .ThenBy (epp => epp.EduProgram.Code)
                     .ThenBy (epp => epp.EduProgram.Title)

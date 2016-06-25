@@ -20,13 +20,16 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Models;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.ViewModels
 {
@@ -83,6 +86,11 @@ namespace R7.University.ViewModels
             + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
         }
 
+        public static string FormatEduProgramTitle (string code, string title)
+        {
+            return TextUtils.FormatList (" ", code, title);
+        }
+
         public static string FormatEduProgramProfileTitle (string title, 
             string profileCode, string profileTitle)
         {
@@ -137,6 +145,35 @@ namespace R7.University.ViewModels
                 }
 
                 return linkMarkup;
+            }
+
+            return string.Empty;
+        }
+
+        public static string FormatDocumentLinks (IEnumerable<IDocument> documents, ViewModelContext context, string itemTemplate, string listTemplateOne, string listTemplateMany, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
+        {
+            var markupBuilder = new StringBuilder ();
+            var count = 0;
+            foreach (var document in documents) {
+                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
+                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
+                    Localization.GetString ("LinkOpen.Text", context.LocalResourceFile),
+                    true,
+                    groupPlacement,
+                    context.Module.TabId,
+                    context.Module.ModuleId,
+                    microdata
+                );
+
+                if (!string.IsNullOrEmpty (linkMarkup)) {
+                    markupBuilder.Append (string.Format (itemTemplate, linkMarkup));
+                    count++;
+                }
+            }
+
+            var markup = markupBuilder.ToString ();
+            if (!string.IsNullOrEmpty (markup)) {
+                return string.Format ((count == 1)? listTemplateOne : listTemplateMany, markup);
             }
 
             return string.Empty;

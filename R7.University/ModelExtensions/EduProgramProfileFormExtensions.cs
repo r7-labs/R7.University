@@ -20,30 +20,22 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Data;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileFormExtensions
     {
-        public static EduProgramProfileFormInfo WithEduForm (
-            this EduProgramProfileFormInfo eduProgramProfileForm, Dal2DataProvider controller)
+        public static IEnumerable<IEduProgramProfileForm> WithEduForms (
+            this IEnumerable<IEduProgramProfileForm> eduProgramProfileForms, IEnumerable<IEduForm> eduForms)
         {
-            eduProgramProfileForm.EduForm = controller.Get<EduFormInfo> (eduProgramProfileForm.EduFormID);
-
-            return eduProgramProfileForm;
-        }
-
-        public static IEnumerable<EduProgramProfileFormInfo> WithEduForms (
-            this IEnumerable<EduProgramProfileFormInfo> eduProgramProfileForms, Dal2DataProvider controller)
-        {
-            foreach (var eduProgramProfileForm in eduProgramProfileForms) {
-                eduProgramProfileForm.WithEduForm (controller);
-            }
-
-            return eduProgramProfileForms;
+            return eduProgramProfileForms.Join (eduForms, eppf => eppf.EduFormID, ef => ef.EduFormID,
+                (eppf, ef) => {
+                    eppf.EduForm = ef;
+                    return eppf;
+                });
         }
     }
 }

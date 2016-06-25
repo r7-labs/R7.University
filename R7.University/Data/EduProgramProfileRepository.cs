@@ -57,6 +57,11 @@ namespace R7.University.Data
                 .WithEduProgram ();
         }
 
+        public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduProgram (int eduProgramId)
+        {
+            return DataProvider.GetObjects<EduProgramProfileInfo> ("WHERE EduProgramID = @0", eduProgramId);
+        }
+
         public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevel (int eduLevelId)
         {
             return DataProvider.GetObjects<EduProgramProfileInfo> (

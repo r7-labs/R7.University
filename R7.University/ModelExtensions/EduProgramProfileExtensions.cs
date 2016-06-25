@@ -61,6 +61,16 @@ namespace R7.University.ModelExtensions
             );
         }
 
+        public static IEnumerable<IEduProgramProfile> WithEduProgram (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEduProgram eduProgram)
+        {
+            foreach (var epp in eduProgramProfiles) {
+                epp.EduProgram = eduProgram;
+            }
+
+            return eduProgramProfiles;
+        }
+
         public static IEnumerable<EduProgramProfileInfo> WithEduProgram (
             this IEnumerable<EduProgramProfileInfo> eduProgramProfiles)
         {
@@ -84,24 +94,29 @@ namespace R7.University.ModelExtensions
             return eduProgramProfiles;
         }
 
-        public static IEduProgramProfile WithEduProgramProfileForms (
-            this IEduProgramProfile eduProfile, Dal2DataProvider controller)
+        public static IEnumerable<IEduProgramProfile> WithEduForms (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduForm> eduForms)
         {
-            eduProfile.EduProgramProfileForms = controller.GetObjects<EduProgramProfileFormInfo> (
-                "WHERE [EduProgramProfileID] = @0", eduProfile.EduProgramProfileID)
-                .WithEduForms (controller)
-                .Cast<IEduProgramProfileForm> ()
-                .ToList ();
+            foreach (var epp in eduProgramProfiles) {
+                if (epp.EduProgramProfileForms != null) {
+                    epp.EduProgramProfileForms = epp.EduProgramProfileForms.WithEduForms (eduForms).ToList ();
+                }
+            }
 
-            return eduProfile;
+            return eduProgramProfiles;
         }
 
         public static IEnumerable<IEduProgramProfile> WithEduProgramProfileForms (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, Dal2DataProvider controller)
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduProgramProfileForm> eduProgramProfileForms)
         {
-            foreach (var eduProgramProfile in eduProgramProfiles) {
-                yield return eduProgramProfile.WithEduProgramProfileForms (controller);
+            if (!eduProgramProfileForms.IsNullOrEmpty ()) {
+                foreach (var eduProgramProfile in eduProgramProfiles) {
+                    eduProgramProfile.EduProgramProfileForms = eduProgramProfileForms
+                        .Where (eppf => eppf.EduProgramProfileID == eduProgramProfile.EduProgramProfileID).ToList ();
+                }
             }
+
+            return eduProgramProfiles;
         }
 
         public static IEnumerable<IEduProgramProfile> WithDocuments (
@@ -125,9 +140,26 @@ namespace R7.University.ModelExtensions
             return eduProgramProfiles;
         }
 
+        public static IEnumerable<IEduProgramProfile> WithDivisions (
+            this IEnumerable<IEduProgramProfile> eduProgramProfiles,  IEnumerable<IDivision> divisions)
+        {
+            foreach (var epp in eduProgramProfiles) {
+                if (epp.DivisionId != null) {
+                    epp.Division = divisions.First (d => d.DivisionID == epp.DivisionId.Value);
+                }
+            }
+
+            return eduProgramProfiles;
+        }
+
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
         {
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
+        }
+
+        public static bool IsPublished (this IEduProgramProfile eduProgramProfile)
+        {
+            return ModelHelper.IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
         }
     }
 }
