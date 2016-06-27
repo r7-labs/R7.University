@@ -51,6 +51,7 @@
                         <asp:BoundField DataField="Order" HeaderText="Order" DataFormatString="{0}." />
                         <asp:BoundField DataField="Code" HtmlEncode="false" />
                         <asp:BoundField DataField="EduProgram_Links" HtmlEncode="false" HeaderText="Title" />
+                        <asp:BoundField DataField="EduLevel_String" HtmlEncode="false" HeaderText="EduLevel" />
                         <asp:BoundField DataField="EduPlan_Links" HtmlEncode="false" HeaderText="EduPlan" />
                         <asp:BoundField DataField="WorkProgramAnnotation_Links" HtmlEncode="false" HeaderText="WorkProgramAnnotation" />
                         <asp:BoundField DataField="EduSchedule_Links" HtmlEncode="false" HeaderText="EduSchedule" />

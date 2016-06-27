@@ -127,6 +127,11 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
             }
         }
 
+        public string EduLevel_String
+        {
+            get { return "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>"; }
+        }
+
         public string EduPlan_Links
         {
             get { 
