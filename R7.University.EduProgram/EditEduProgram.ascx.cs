@@ -158,6 +158,9 @@ namespace R7.University.EduProgram
 
                             var documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + item.EduProgramID)
                                 .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
+                                .OrderBy (d => d.Group)
+                                .ThenBy (d => d.DocumentType.DocumentTypeID)
+                                .ThenBy (d => d.SortIndex)
                                 .Cast<DocumentInfo> ()
                                 .ToList ();
                             

@@ -150,6 +150,9 @@ namespace R7.University.Launchpad
 
             var documents = DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramProfileID")
                 .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
+                .OrderBy (d => d.Group)
+                .ThenBy (d => d.DocumentType.DocumentTypeID)
+                .ThenBy (d => d.SortIndex)
                 .Cast<DocumentInfo> ()
                 .ToList ();
 
