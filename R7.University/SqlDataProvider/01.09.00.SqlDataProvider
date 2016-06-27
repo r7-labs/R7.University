@@ -40,10 +40,12 @@ END
 GO
 
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'EduLevelID')
-BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
         ADD [EduLevelID] int NULL
+GO
 
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'EduLevelID' and is_nullable = 1)
+BEGIN
     UPDATE {databaseOwner}[{objectQualifier}University_EduProgramProfiles] SET EduLevelID = 
         (SELECT EP.EduLevelID FROM {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP WHERE EP.EduProgramID = EPP.EduProgramID)
         FROM {databaseOwner}[{objectQualifier}University_EduProgramProfiles] AS EPP
@@ -54,7 +56,6 @@ BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
         ADD CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduLevels] FOREIGN KEY (EduLevelID)
             REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels] (EduLevelID) ON DELETE NO ACTION
-
 END
 GO
 
