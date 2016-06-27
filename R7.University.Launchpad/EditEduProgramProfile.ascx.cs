@@ -148,7 +148,7 @@ namespace R7.University.Launchpad
 
             auditControl.Bind (item);
 
-            var documents = DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramProfileID")
+            var documents = DocumentRepository.Instance.GetDocuments ("EduProgramProfileID=" + item.EduProgramProfileID)
                 .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
