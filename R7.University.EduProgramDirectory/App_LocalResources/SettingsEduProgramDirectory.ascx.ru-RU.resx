@@ -22,7 +22,7 @@
         <value>Отметьте уровни образования, отображаемые данным модулем. Если сброшены все флаги, будут показаны образовательные программы по всем доступным уровням образования.</value>
     </data>
     <data name="labelColumns.Text" xml:space="preserve">
-        <value>Столбцы:</value>
+        <value>Дополнительные столбцы:</value>
     </data>
     <data name="labelColumns.Help" xml:space="preserve">
         <value>Отметьте дополнительные столбцы, которые требуется отобразить.</value>
