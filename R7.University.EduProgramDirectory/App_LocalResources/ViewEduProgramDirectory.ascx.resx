@@ -10,6 +10,6 @@
         <value>open</value>
     </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
-        <value>Nothing to display. Please add some educational programs and use module setting to set view options.</value>
+        <value>Nothing to display. Please add some educational programs or change module settings.</value>
     </data>
 </root>

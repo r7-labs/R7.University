@@ -177,7 +177,7 @@ namespace R7.University.Data
                 );
             }
 
-            return Enumerable.Empty<EduProgramInfo> ();
+            return DataProvider.GetObjects<EduProgramInfo> ();
         }
 
         public IEnumerable<EduProgramInfo> GetEduPrograms_ByDivisionAndEduLevels (int divisionId, IEnumerable<string> eduLevelIds)
@@ -189,7 +189,7 @@ namespace R7.University.Data
                 );
             }
 
-            return Enumerable.Empty<EduProgramInfo> ();
+            return DataProvider.GetObjects<EduProgramInfo> ("WHERE DivisionID = @0", divisionId);
         }
     }
 }
