@@ -1,5 +1,35 @@
 ﻿<div style="white-space:normal">
 
+<h3>Version 1.9.0</h3>
+<p>End-user changes:</p>
+<ul>
+    <li>New EduProgram module which displays basic info about edu. program and its profiles.</li>
+    <li>Fix #123: [EmployeeDirectory] Education and Trainig columns show same content.</li>
+    <li>Fix #120: dnn-ac-combobox rendered incorrectly in Chrome.</li>
+    <li>Implement #121: Add indexes to FKs and other fields used in queries (improve performance).</li>
+    <li>Implement #122: Make barcode display optional for an employee.</li>
+    <li>Implement #126: [EditDocuments] Sort documents on load.</li>
+    <li>Package friendly names for modules now in R7.University.ModuleName format.</li>
+    <li>[Launchpad] Fix action label generation.</li>
+    <li>[Model] Ability to define education sublevels for edu. profiles.</li>
+    <li>[Model] Add homepage property for edu. program.</li>
+    <li>[Model] Add division relation for edu. program and edu. program profile.</li>
+    <li>[EduProgramDirectory] display edu. program title as link to homepage.</li>
+    <li>[EduProgramDirectory] could display edu. programs for single division (specified in settings).</li>
+    <li>[EduProgramDirectory] displays edu. programs for all available edu. levels, if no edu. levels was set in settings.</li>
+    <li>[UX] Improve selection of edu. programs and edu. program profiles in edit and settings forms.</li>
+    <li>[UX] Use Icon API to get module action icons, use different icons for different action types.</li>
+    <li>[UX] Enable AJAX for entire EditEmployee form.</li>
+    <li>License changed to GNU GPL v3 or any later.</li>
+    <li>Russian translation update.</li>
+</ul>
+<p>Developer changes:</p>
+<ul>
+    <li>dnn-ac-combobox now preserve autopostback behavior of underlying dropdown.</li>
+    <li>Extract viewmodelbase classes, major DAL code refactoring.</li>
+    <li>Add xUnit-based tests project (include config test, basic document model extensions test).</li>
+</ul>
+
 <h3>Version 1.8.1</h3>
 <p>This release provide fixes for bugs, found in 1.8.0.</p>
 <ul>
