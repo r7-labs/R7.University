@@ -103,11 +103,12 @@ namespace R7.University.EduProgramProfileDirectory
                
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
                 eduProgramProfiles
-                    .OrderBy (epp => epp.EduLevel.SortIndex)
+                    .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                     .ThenBy (epp => epp.EduProgram.Code)
                     .ThenBy (epp => epp.EduProgram.Title)
                     .ThenBy (epp => epp.ProfileCode)
                     .ThenBy (epp => epp.ProfileTitle)
+                    .ThenBy (epp => epp.EduLevel.SortIndex)
                     .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
             );
 
@@ -124,11 +125,12 @@ namespace R7.University.EduProgramProfileDirectory
                     .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
                     .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramProfileID"))
                     .WithDocumentType (UniversityRepository.Instance.GetDocumentTypes ())
-                    .OrderBy (epp => epp.EduLevel.SortIndex)
+                    .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                     .ThenBy (epp => epp.EduProgram.Code)
                     .ThenBy (epp => epp.EduProgram.Title)
                     .ThenBy (epp => epp.ProfileCode)
                     .ThenBy (epp => epp.ProfileTitle)
+                    .ThenBy (epp => epp.EduLevel.SortIndex)
                     .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))
             );
 

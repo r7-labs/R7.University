@@ -76,8 +76,8 @@ namespace R7.University.EduProgram
 
                 var eduProgramProfiles = EduProgramProfileRepository.Instance
                     .GetEduProgramProfiles_ByEduProgram (eduProgram.EduProgramID)
-                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
-                    .WithEduProgram (eduProgram);
+                    .WithEduProgram (eduProgram)
+                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ());
 
                 eduProgramProfiles = eduProgramProfiles
                     .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance.GetEduProgramProfileForms (eduProgramProfiles))

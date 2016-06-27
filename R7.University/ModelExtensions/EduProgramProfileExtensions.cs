@@ -89,6 +89,12 @@ namespace R7.University.ModelExtensions
         {
             foreach (var epp in eduProgramProfiles) {
                 epp.EduLevel = eduLevels.First (el => el.EduLevelID == epp.EduLevelId);
+
+                if (epp.EduProgram == null) {
+                    throw new ArgumentException ("EduProgram should not be null");
+                }
+
+                epp.EduProgram.EduLevel = eduLevels.First (el => el.EduLevelID == epp.EduProgram.EduLevelID);
             }
         
             return eduProgramProfiles;

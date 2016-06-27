@@ -141,7 +141,6 @@ namespace R7.University.EmployeeDirectory
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                
                 .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
                 .OrderBy (epp => epp.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
