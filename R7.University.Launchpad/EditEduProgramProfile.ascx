@@ -78,7 +78,7 @@
                 </div>
         	</fieldset>
         </div>
-        <div id="eduprogramprofile-bindings">
+        <div id="eduprogramprofile-bindings-tab">
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelDivision" runat="server" ControlName="treeDivision" />
