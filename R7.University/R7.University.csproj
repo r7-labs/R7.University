@@ -126,7 +126,6 @@
     <Compile Include="Data\DocumentInfo.cs" />
     <Compile Include="Data\AchievementInfo.cs" />
     <Compile Include="Data\AchievementTypeInfo.cs" />
-    <Compile Include="Data\DivisionInfo.cs" />
     <Compile Include="Data\DocumentTypeInfo.cs" />
     <Compile Include="Models\IDocumentType.cs" />
     <Compile Include="Data\EduLevelInfo.cs" />
@@ -139,7 +138,6 @@
     <Compile Include="Data\OccupiedPositionInfoEx.cs" />
     <Compile Include="Data\EmployeeInfo.cs" />
     <Compile Include="Data\EmployeeEqualityComparer.cs" />
-    <Compile Include="Data\PositionInfo.cs" />
     <Compile Include="ViewModels\FormatHelper.cs" />
     <Compile Include="Models\IEduLevel.cs" />
     <Compile Include="Models\IUniversityBaseEntity.cs" />
@@ -173,6 +171,9 @@
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
     <Compile Include="Components\ModuleHelper.cs" />
     <Compile Include="Data\UniversityDbContext.cs" />
+    <Compile Include="Data\IUniversityDbContext.cs" />
+    <Compile Include="Data\PositionInfo.cs" />
+    <Compile Include="Data\DivisionInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

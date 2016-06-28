@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
@@ -72,8 +73,9 @@ namespace R7.University.Launchpad
                     // check we have an item to lookup
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
+
                         // load the item
-                        var item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
+                        var item = UniversityDbContext.Instance.Positions.FirstOrDefault (p => p.PositionID == itemId.Value);
 
                         if (item != null) {
 											
@@ -118,7 +120,7 @@ namespace R7.University.Launchpad
                 }
                 else {
                     // update existing record
-                    item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
+                    item = UniversityDbContext.Instance.Positions.FirstOrDefault (p => p.PositionID == itemId.Value);
                 }
 
                 // fill the object
@@ -127,10 +129,11 @@ namespace R7.University.Launchpad
                 item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
                 item.IsTeacher = checkIsTeacher.Checked;
 
-                if (!itemId.HasValue)
-                    UniversityRepository.Instance.DataProvider.Add<PositionInfo> (item);
-                else
-                    UniversityRepository.Instance.DataProvider.Update<PositionInfo> (item);
+                if (!itemId.HasValue) {
+                    UniversityDbContext.Instance.Positions.Add (item);
+                }
+
+                UniversityDbContext.Instance.SaveChanges ();
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -153,9 +156,12 @@ namespace R7.University.Launchpad
         protected void buttonDelete_Click (object sender, EventArgs e)
         {
             try {
-                // ALT: if (!Null.IsNull (itemId))
                 if (itemId.HasValue) {
-                    UniversityRepository.Instance.DataProvider.Delete<PositionInfo> (itemId.Value);
+                    
+                    var item = UniversityDbContext.Instance.Positions.FirstOrDefault (p => p.PositionID == itemId.Value);
+                    UniversityDbContext.Instance.Positions.Remove (item);
+                    UniversityDbContext.Instance.SaveChanges ();
+
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }

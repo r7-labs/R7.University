@@ -29,37 +29,55 @@ namespace R7.University.Data
 {
     public class UniversityDbContext : DbContext
     {
-        public UniversityDbContext (): base ("name=SiteSqlServer")
+        #region Singleton implementation
+
+        static readonly Lazy<UniversityDbContext> instance = new Lazy<UniversityDbContext> (
+            () => new UniversityDbContext ("name=SiteSqlServer")
+        );
+
+        public static UniversityDbContext Instance
+        {
+            get { return instance.Value; }
+        }
+
+        static UniversityDbContext ()
         {
             // do not use migrations (1)
+            Database.SetInitializer<UniversityDbContext> (null);
+        }
+
+        protected UniversityDbContext (string nameOrConnectionString): base (nameOrConnectionString)
+        {
+            // do not use migrations (2)
             Configuration.AutoDetectChangesEnabled = false; 
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
 
-        static UniversityDbContext ()
-        {
-            // do not use migrations (2)
-            Database.SetInitializer<UniversityDbContext> (null);
-        }
-
-        public static UniversityDbContext Create ()
-        {
-            return new UniversityDbContext ();
-        }
+        #endregion
 
         protected override void OnModelCreating (DbModelBuilder modelBuilder)
         {
             // remove trailing '.' from schema name, by ex. "dbo." => "dbo"
             modelBuilder.HasDefaultSchema (Config.GetDataBaseOwner ().TrimEnd ('.'));
 
+            // add mappings
+            modelBuilder.Configurations.Add<PositionInfo> (new PositionMapping ());
+
             // add objectQualifier
             var plurService = new EnglishPluralizationService ();
             modelBuilder.Types ().Configure (entity => 
-                entity.ToTable (Config.GetObjectQualifer () + plurService.Pluralize (entity.ClrType.Name)));
+                entity.ToTable (Config.GetObjectQualifer () 
+                    + "University_" + plurService.Pluralize (entity.ClrType.Name.Replace ("Info", string.Empty))));
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        #region IUniversityDbContext implementation
+
+        public IDbSet<PositionInfo> Positions { get; set; }
+
+        #endregion
     }
 }
 

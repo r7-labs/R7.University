@@ -20,13 +20,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.University.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 
 namespace R7.University
 {
-	[TableName ("University_Positions")]
-	[PrimaryKey ("PositionID", AutoIncrement = true)]
 	public class PositionInfo: IPosition
 	{
         public int PositionID { get; set; }
@@ -39,5 +38,18 @@ namespace R7.University
 
 		public bool IsTeacher { get; set; }
 	}
+
+    public class PositionMapping: EntityTypeConfiguration<PositionInfo>
+    {
+        public PositionMapping ()
+        {
+            HasKey (m => m.PositionID);
+            Property (m => m.PositionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.Title).IsRequired ().HasMaxLength (100);
+            Property (m => m.ShortTitle).HasMaxLength (64);
+            Property (m => m.Weight).IsRequired ();
+            Property (m => m.IsTeacher).IsRequired ();
+        }
+    }
 }
 
