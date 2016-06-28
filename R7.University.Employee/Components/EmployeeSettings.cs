@@ -45,7 +45,7 @@ namespace R7.University.Employee.Components
         {
         }
 
-        #region Properties for settings
+        #region Module settings
 
         private int? employeeId;
 
@@ -76,10 +76,14 @@ namespace R7.University.Employee.Components
             set { WriteModuleSetting<bool> ("Employee_ShowCurrentUser", value); }
         }
 
+        #endregion
+
+        #region TabModule settings
+
         public bool AutoTitle
         {
             get { return ReadSetting<bool> ("Employee_AutoTitle", true); }
-            set { WriteModuleSetting<bool> ("Employee_AutoTitle", value); }
+            set { WriteTabModuleSetting<bool> ("Employee_AutoTitle", value); }
         }
 
         public int PhotoWidth

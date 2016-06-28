@@ -1,5 +1,5 @@
 ﻿//
-//  EmployeeModuleHelper.cs
+//  ModuleHelper.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -22,19 +22,16 @@
 using System;
 using DotNetNuke.Entities.Modules;
 
-namespace R7.University.Employee.Components
+namespace R7.University.Components
 {
-    public static class EmployeeModuleHelper
+    public static class ModuleHelper
     {
-        public static void UpdateModuleTitle (int moduleId, string title)
+        public static void UpdateModuleTitle (int tabModileId, string title)
         {
-            // replace module title
-            var mctrl = new ModuleController ();
-            var module = mctrl.GetModule (moduleId);
-
+            var module = ModuleController.Instance.GetTabModule (tabModileId);
             if (module.ModuleTitle != title) {
                 module.ModuleTitle = title;
-                mctrl.UpdateModule (module);
+                ModuleController.Instance.UpdateModule (module);
             }
         }
     }
