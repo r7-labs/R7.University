@@ -6,6 +6,7 @@
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.dll" />
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\R7.University*.pdb" />
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\YamlDotNet.dll" />
+            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)\EntityFramework*.dll" />
         </ItemGroup>
         <!-- Declare resource files -->
         <ItemGroup>
