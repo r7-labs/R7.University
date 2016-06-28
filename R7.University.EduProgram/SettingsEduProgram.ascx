@@ -23,6 +23,10 @@
                 DataValueField="EduProgramID"
                 DataTextField="EduProgramString" />
         </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" />
+            <asp:CheckBox id="checkAutoTitle" runat="server" />
+        </div>
     </fieldset> 
 </div>
 <script type="text/javascript">

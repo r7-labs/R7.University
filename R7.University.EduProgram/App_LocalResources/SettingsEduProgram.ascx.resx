@@ -21,4 +21,10 @@
     <data name="labelEduProgram.Help">
         <value>Select the educational program from the dropdown.</value>
     </data>
+    <data name="labelAutoTitle.Text">
+        <value>Automatic Title:</value>
+    </data>
+    <data name="labelEduProgram.Help">
+        <value>Check to use displayed educational program title as module title.</value>
+    </data>
 </root>

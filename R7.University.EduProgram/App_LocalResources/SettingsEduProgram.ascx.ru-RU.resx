@@ -21,4 +21,10 @@
     <data name="labelEduProgram.Help">
         <value>Выберите образовательную программy из выпадающего списка.</value>
     </data>
+    <data name="labelAutoTitle.Text">
+        <value>Автоматический заголовок:</value>
+    </data>
+    <data name="labelEduProgram.Help">
+        <value>Отметьте, чтобы использовать заголовок отображаемой образовательной программы в качестве заголовка модуля.</value>
+    </data>
 </root>

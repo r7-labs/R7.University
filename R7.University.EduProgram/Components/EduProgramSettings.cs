@@ -52,6 +52,16 @@ namespace R7.University.EduProgram.Components
         }
 
         #endregion
+
+        #region TabModule settings
+
+        public bool AutoTitle
+        {
+            get { return ReadSetting<bool> ("EduProgram_AutoTitle", true); }
+            set { WriteModuleSetting<bool> ("EduProgram_AutoTitle", value); }
+        }
+
+        #endregion
     }
 }
 

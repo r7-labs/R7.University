@@ -38,6 +38,7 @@ using R7.University.Data;
 using R7.University.EduProgram.Components;
 using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgram
 {
@@ -136,6 +137,13 @@ namespace R7.University.EduProgram
 
                     if (shouldBind)
                     {
+                        // update module title
+                        if (Settings.AutoTitle) {
+                            ModuleHelper.UpdateModuleTitle (TabModuleId,
+                                FormatHelper.FormatEduProgramTitle (viewModel.EduProgram.Code, viewModel.EduProgram.Title)
+                            );
+                        }
+                           
                         // bind the data
                         formEduProgram.DataSource = new List<EduProgramViewModel> { viewModel.EduProgram };
                         formEduProgram.DataBind ();

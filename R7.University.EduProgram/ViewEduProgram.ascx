@@ -3,10 +3,6 @@
     <ItemTemplate>
         <div class="u8y-eduprogram">
             <div class="u8y-eduprogram-info">
-                <h3 runat="server" class='<%# Eval ("CssClass") %>'>
-                    <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Eval ("Edit_Url") %>' IconKey="Edit" />
-                    <%# Eval ("Title_String") %>
-                </h3>
                 <p>
                     <label runat="server"><%# LocalizeString ("EduLevel.Text") %></label>
                     <%# Eval ("EduLevel_Title") %>

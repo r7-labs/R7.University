@@ -71,6 +71,8 @@ namespace R7.University.EduProgram
                         BindEduPrograms (eduProgram.EduLevelID);
                         comboEduProgram.SelectByValue (eduProgram.EduProgramID);
                     }
+
+                    checkAutoTitle.Checked = Settings.AutoTitle;
                 }
             }
             catch (Exception ex)
@@ -87,7 +89,8 @@ namespace R7.University.EduProgram
             try
             {
                 Settings.EduProgramId = TypeUtils.ParseToNullable<int> (comboEduProgram.SelectedValue);
-
+                Settings.AutoTitle = checkAutoTitle.Checked;
+ 
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId);
 
                 ModuleController.SynchronizeModule (ModuleId);

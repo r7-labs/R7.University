@@ -12,5 +12,6 @@ namespace R7.University.EduProgram
     {
         protected DropDownList comboEduLevel;
         protected DropDownList comboEduProgram;
+        protected CheckBox checkAutoTitle;
     }
 }
