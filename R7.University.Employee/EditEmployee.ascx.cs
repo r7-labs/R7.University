@@ -167,8 +167,7 @@ namespace R7.University.Employee
             WorkingHoursLogic.Init (this, comboWorkingHours);
 
             // if results are null or empty, lists were empty too
-            var positions = new List<PositionInfo> (UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ()
-                .OrderBy (p => p.Title));
+            var positions = UniversityDbContext.Instance.Positions.OrderBy (p => p.Title).ToList ();
 
             var divisions = new List<DivisionInfo> (DivisionRepository.Instance.GetDivisions ()
                 .OrderBy (d => d.Title));
