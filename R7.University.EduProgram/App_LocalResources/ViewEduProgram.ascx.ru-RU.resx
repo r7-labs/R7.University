@@ -40,10 +40,10 @@
         <value>Образовательный стандарт:</value>
     </data>
     <data name="AccreditedToDate.Text" xml:space="preserve">
-        <value>Государственной аккредитация, до:</value>
+        <value>Государственной аккредитация (до):</value>
     </data>
     <data name="CommunityAccreditedToDate.Text" xml:space="preserve">
-        <value>Профессионально-общественная аккредитация, до:</value>
+        <value>Профессионально-общественная аккредитация (до):</value>
     </data>
     <data name="TimeToLearnFullTime.Text" xml:space="preserve">
         <value>Очная форма</value>

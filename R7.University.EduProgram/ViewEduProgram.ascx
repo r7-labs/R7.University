@@ -37,14 +37,16 @@
                                 <label runat="server"><%# LocalizeString ("FacultyDepartment.Text") %></label>
                                 <%# HttpUtility.HtmlDecode ((string) Eval ("Division_Link")) %>
                             </p>
-                            <p runat="server" Visible='<%# Eval ("AccreditedToDate_Visible") %>'>
-                                <label runat="server"><%# LocalizeString ("AccreditedToDate.Text") %></label>
-                                <%# Eval ("AccreditedToDate_String") %>
-                            </p>
-                            <p runat="server" Visible='<%# Eval ("CommunityAccreditedToDate_Visible") %>'>
-                                <label runat="server"><%# LocalizeString ("CommunityAccreditedToDate.Text") %></label>
-                                <%# Eval ("CommunityAccreditedToDate_String") %>
-                            </p>
+                            <div runat="server" Visible='<%# (bool) Eval ("AccreditedToDate_Visible") || (bool) Eval ("CommunityAccreditedToDate_Visible") %>' class="u8y-para">
+                                <div runat="server" Visible='<%# Eval ("AccreditedToDate_Visible") %>'>
+                                    <label runat="server"><%# LocalizeString ("AccreditedToDate.Text") %></label>
+                                    <%# Eval ("AccreditedToDate_String") %>
+                                </div>
+                                <div runat="server" Visible='<%# Eval ("CommunityAccreditedToDate_Visible") %>'>
+                                    <label runat="server"><%# LocalizeString ("CommunityAccreditedToDate.Text") %></label>
+                                    <%# Eval ("CommunityAccreditedToDate_String") %>
+                                </div>
+                            </div>
                             <div runat="server" Visible='<%# Eval ("EduForms_Visible") %>' class="u8y-para-end">
                                 <label runat="server"><%# LocalizeString ("EduForms.Text") %></label>
                                 <%# HttpUtility.HtmlDecode ((string) Eval ("EduForms_String")) %>
