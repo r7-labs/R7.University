@@ -129,7 +129,6 @@
     <Compile Include="ViewModels\OccupiedPositionView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\EmployeeController.cs" />
-    <Compile Include="Components\EmployeeModuleHelper.cs" />
     <Compile Include="Components\EmployeeSettings.cs" />
     <Compile Include="SharedLogic\RepeaterPositionsLogic.cs" />
   </ItemGroup>

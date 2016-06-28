@@ -164,6 +164,7 @@
     <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
+    <Compile Include="Components\ModuleHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
