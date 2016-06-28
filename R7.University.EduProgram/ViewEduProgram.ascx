@@ -23,16 +23,16 @@
             <div runat="server" Visible='<%# Eval ("EduProgramProfiles_Visible") %>'>
                 <asp:ListView id="listEduProgramProfiles" runat="server">
                     <LayoutTemplate>
-                        <ul runat="server" class="eduprogram-profiles">
+                        <div runat="server" class="u8y-eduprogram-profiles">
                             <div runat="server" id="itemPlaceholder"></div>
-                        </ul>
+                        </div>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <li>
-                            <h4 runat="server" class='<%# Eval ("CssClass") %>'>
+                        <div>
+                            <h3 runat="server" class='<%# Eval ("CssClass") %>'>
                                 <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Eval ("Edit_Url") %>' IconKey="Edit" />
                                 <%# Eval ("Title_String") %>
-                            </h4>
+                            </h3>
                             <p>
                                 <label runat="server"><%# LocalizeString ("EduLevel.Text") %></label>
                                 <%# Eval ("EduLevel_Title") %>
@@ -53,7 +53,7 @@
                                 <label runat="server"><%# LocalizeString ("EduForms.Text") %></label>
                                 <%# HttpUtility.HtmlDecode ((string) Eval ("EduForms_String")) %>
                             </div>
-                        </li>
+                        </div>
                     </ItemTemplate>
                 </asp:ListView>
             </div>
