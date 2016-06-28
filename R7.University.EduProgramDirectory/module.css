@@ -2,3 +2,5 @@
 
 .eduprogram-directory .not-published { background-color:#ffc }
 .eduprogram-directory .not-published:hover { background-color:#fefe97 }
+
+.eduprogram-directory .u8y-column.u8y-expand { width:100% }
