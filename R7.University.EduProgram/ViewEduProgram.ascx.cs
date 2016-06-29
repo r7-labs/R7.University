@@ -86,7 +86,10 @@ namespace R7.University.EduProgram
                     .WithDivisions (DivisionRepository.Instance.GetDivisions (eduProgramProfiles
                         .Where (epp => epp.DivisionId != null)
                         .Select (epp => epp.DivisionId.Value))
-                    );
+                    )
+                    .OrderBy (epp => epp.ProfileCode)
+                    .ThenBy (epp => epp.ProfileTitle)
+                    .ThenBy (epp => epp.EduLevel.SortIndex);
 
                 var viewModel = new EduProgramModuleViewModel ();
                 viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);
