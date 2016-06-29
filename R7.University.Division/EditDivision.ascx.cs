@@ -131,7 +131,11 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            var positions = UniversityDbContext.Instance.Positions.OrderBy (p => p.Title).ToList ();
+            IList<PositionInfo> positions;
+            using (var db = UniversityDbContextFactory.Instance.Create ()) {
+                positions = db.Positions.OrderBy (p => p.Title).ToList ();
+            }
+
             positions.Insert (0, new PositionInfo {
                     Title = LocalizeString ("NotSelected.Text"),
                     PositionID = Null.NullInteger

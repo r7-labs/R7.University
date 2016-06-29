@@ -25,6 +25,7 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Data;
+using System.Collections.Generic;
 
 namespace R7.University.Launchpad
 {
@@ -36,15 +37,20 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, string search)
         {
-            // REVIEW: Cannot set comparison options
-            var positions = UniversityDbContext.Instance.Positions.Where (p =>
-                p.Title.Contains (search) || p.ShortTitle.Contains (search)
-            );
+            IList<PositionInfo> positions;
+            using (var db = UniversityDbContextFactory.Instance.Create ()) {
+                using (var repo = new UniversityRepository<PositionInfo> (db)) {
 
-            if (!positions.Any ()) {
-                positions = UniversityDbContext.Instance.Positions;
+                    // REVIEW: Cannot set comparison options
+                    positions = repo.GetObjects (p => p.Title.Contains (search) || p.ShortTitle.Contains (search))
+                        .ToList ();
+
+                    if (!positions.Any ()) {
+                        positions = db.Positions.ToList ();
+                    }
+                }
             }
-        
+
             return DataTableConstructor.FromIEnumerable (positions);
         }
     }

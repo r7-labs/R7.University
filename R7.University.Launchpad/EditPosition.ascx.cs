@@ -28,6 +28,7 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
@@ -75,7 +76,10 @@ namespace R7.University.Launchpad
                     if (itemId.HasValue) {
 
                         // load the item
-                        var item = UniversityDbContext.Instance.Positions.FirstOrDefault (p => p.PositionID == itemId.Value);
+                        IPosition item;
+                        using (var db = UniversityDbContextFactory.Instance.Create ()) {
+                            item = db.Positions.Find (itemId.Value);
+                        }
 
                         if (item != null) {
 											
@@ -112,28 +116,31 @@ namespace R7.University.Launchpad
             try {
                 PositionInfo item;
 
-                // determine if we are adding or updating
-                // ALT: if (Null.IsNull (itemId))
-                if (!itemId.HasValue) {
-                    // add new record
-                    item = new PositionInfo ();
-                }
-                else {
-                    // update existing record
-                    item = UniversityDbContext.Instance.Positions.FirstOrDefault (p => p.PositionID == itemId.Value);
-                }
+                using (var db = UniversityDbContextFactory.Instance.Create ()) {
 
-                // fill the object
-                item.Title = txtTitle.Text.Trim ();
-                item.ShortTitle = txtShortTitle.Text.Trim ();
-                item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
-                item.IsTeacher = checkIsTeacher.Checked;
+                    // determine if we are adding or updating
+                    // ALT: if (Null.IsNull (itemId))
+                    if (!itemId.HasValue) {
+                        // add new record
+                        item = new PositionInfo ();
+                    }
+                    else {
+                        // update existing record
+                        item = db.Positions.Find (itemId.Value);
+                    }
 
-                if (!itemId.HasValue) {
-                    UniversityDbContext.Instance.Positions.Add (item);
+                    // fill the object
+                    item.Title = txtTitle.Text.Trim ();
+                    item.ShortTitle = txtShortTitle.Text.Trim ();
+                    item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
+                    item.IsTeacher = checkIsTeacher.Checked;
+
+                    if (!itemId.HasValue) {
+                        db.Positions.Add (item);
+                    }
+
+                    db.SaveChanges ();
                 }
-
-                UniversityDbContext.Instance.SaveChanges ();
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -158,9 +165,11 @@ namespace R7.University.Launchpad
             try {
                 if (itemId.HasValue) {
                     
-                    var item = UniversityDbContext.Instance.Positions.FirstOrDefault (p => p.PositionID == itemId.Value);
-                    UniversityDbContext.Instance.Positions.Remove (item);
-                    UniversityDbContext.Instance.SaveChanges ();
+                    using (var db = UniversityDbContextFactory.Instance.Create ()) {
+                        var item = db.Positions.Find (itemId.Value);
+                        db.Positions.Remove (item);
+                        db.SaveChanges ();
+                    }
 
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
