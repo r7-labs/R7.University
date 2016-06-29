@@ -22,7 +22,7 @@
 using System;
 using R7.University.Data;
 
-namespace R7.University.Tests
+namespace R7.University.Tests.Data
 {
     public class TestDbContextFactory: UniversityDbContextFactoryBase
     {

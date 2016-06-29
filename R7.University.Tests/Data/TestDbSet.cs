@@ -18,14 +18,26 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbSet
+    public class TestDbSet<TEntity>: DbSet<TEntity> where TEntity: class, new ()
     {
-        public TestDbSet ()
+        protected HashSet<TEntity> entities;
+        
+        public TestDbSet () : base ()
         {
+            entities = new HashSet<TEntity> ();
+        }
+
+        public override TEntity Add (TEntity entity)
+        {
+            entities.Add (entity);
+            return entity;
         }
     }
 }

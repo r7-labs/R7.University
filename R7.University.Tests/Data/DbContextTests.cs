@@ -18,16 +18,23 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using R7.University.Data;
+using Xunit;
 
-namespace R7.University.Tests
+namespace R7.University.Tests.Data
 {
     public class DbContextTests
     {
-        public DbContextTests ()
+        [Fact]
+        public void CreateDbContextTest ()
         {
+            var dbContextFactory = new TestDbContextFactory ();
+            using (var db = dbContextFactory.Create ()) {
+                db.Employees.Add (new EmployeeInfo ());
+                db.SaveChanges ();
+            }
         }
     }
 }
-

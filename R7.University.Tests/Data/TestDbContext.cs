@@ -23,10 +23,23 @@ using System;
 using R7.University.Data;
 using System.Data.Entity;
 
-namespace R7.University.Tests
+namespace R7.University.Tests.Data
 {
     public class TestDbContext: IUniversityDbContext
     {
+        protected IDbSet<EmployeeInfo> employees;
+        protected IDbSet<DivisionInfo> divisions;
+        protected IDbSet<OccupiedPositionInfo> occupiedPositions;
+        protected IDbSet<PositionInfo> positions;
+
+        public TestDbContext ()
+        {
+            employees = new TestDbSet<EmployeeInfo> ();
+            divisions = new TestDbSet<DivisionInfo> ();
+            occupiedPositions = new TestDbSet<OccupiedPositionInfo> ();
+            positions = new TestDbSet<PositionInfo> ();
+        }
+
         #region IUniversityDbContext implementation
 
         public IDbSet<TEntity> Set<TEntity> () where TEntity : class, new()
@@ -41,26 +54,26 @@ namespace R7.University.Tests
 
         public IDbSet<EmployeeInfo> Employees
         {
-            get { throw new NotImplementedException (); }
-            set { throw new NotImplementedException (); }
+            get { return employees; }
+            set { employees = value; }
         }
 
         public IDbSet<DivisionInfo> Divisions
         {
-            get { throw new NotImplementedException (); }
-            set { throw new NotImplementedException (); }
+            get { return divisions; }
+            set { divisions = value; }
         }
 
         public IDbSet<OccupiedPositionInfo> OccupiedPositions
         {
-            get { throw new NotImplementedException (); }
-            set { throw new NotImplementedException (); }
+            get { return occupiedPositions; }
+            set { occupiedPositions = value; }
         }
 
         public IDbSet<PositionInfo> Positions
         {
-            get { throw new NotImplementedException (); }
-            set { throw new NotImplementedException (); }
+            get { return positions; }
+            set { positions = value; }
         }
 
         #endregion
@@ -71,7 +84,7 @@ namespace R7.University.Tests
         {
         }
 
-        #endregions
+        #endregion
     }
 }
 
