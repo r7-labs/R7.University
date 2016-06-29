@@ -1,5 +1,5 @@
 ﻿//
-//  IOccupiedPosition.cs
+//  TestDbSet.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -18,31 +18,15 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
-using R7.University.Data;
 
-namespace R7.University.Models
+namespace R7.University.Tests.Data
 {
-    public interface IOccupiedPosition
+    public class TestDbSet
     {
-        int OccupiedPositionID { get; set; }
-
-        int PositionID { get; set; }
-
-        int DivisionID { get; set; }
-
-        int EmployeeID { get; set; }
-
-        bool IsPrime { get; set; }
-
-        string TitleSuffix { get; set; }
-
-        PositionInfo Position { get; set; }
-
-        DivisionInfo Division { get; set; }
-
-        EmployeeInfo Employee { get; set; }
+        public TestDbSet ()
+        {
+        }
     }
 }
 

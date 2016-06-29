@@ -211,6 +211,12 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
+        public ICollection<OccupiedPositionInfo> Positions
+        {
+            get { return Model.Positions; }
+            set { throw new NotImplementedException (); }
+        }
+
         #endregion
     }
 }

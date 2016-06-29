@@ -78,5 +78,7 @@ namespace R7.University.Models
         IList<IEmployeeDiscipline> Disciplines { get; set; }
 
         IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
+
+        ICollection<OccupiedPositionInfo> Positions { get; set; }
     }
 }

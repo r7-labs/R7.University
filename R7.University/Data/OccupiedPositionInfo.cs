@@ -22,18 +22,12 @@
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.University.Models;
+using System.Data.Entity.ModelConfiguration;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace R7.University.Data
 {
     // TODO: Add Unique constraint to OccupiedPositions table FK's
-
-    // More attributes for class:
-    // Set caching for table: [Cacheable("R7.University_OccupiedPositions", CacheItemPriority.Default, 20)]
-    // Explicit mapping declaration: [DeclareColumns]
-    // More attributes for class properties:
-    // Custom column name: [ColumnName("OccupiedPositionID")]
-    // Explicit include column: [IncludeColumn]
-    // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
     [TableName ("University_OccupiedPositions")]
     [PrimaryKey ("OccupiedPositionID", AutoIncrement = true)]
     public class OccupiedPositionInfo: IOccupiedPosition
@@ -52,7 +46,36 @@ namespace R7.University.Data
 
         public string TitleSuffix { get; set; }
 
+        [IgnoreColumn]
+        public PositionInfo Position { get; set; }
+
+        [IgnoreColumn]
+        public DivisionInfo Division { get; set; }
+
+        [IgnoreColumn]
+        public EmployeeInfo Employee { get; set; }
+
         #endregion
+    }
+
+    public class OccupiedPositionMapping: EntityTypeConfiguration<OccupiedPositionInfo>
+    {
+        public OccupiedPositionMapping ()
+        {
+            HasKey (m => m.OccupiedPositionID);
+            Property (m => m.OccupiedPositionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+
+            Property (m => m.PositionID).IsRequired ();
+            Property (m => m.DivisionID).IsRequired ();
+            Property (m => m.EmployeeID).IsRequired ();
+
+            HasRequired<PositionInfo> (m => m.Position).WithMany ().HasForeignKey (m => m.PositionID).WillCascadeOnDelete (true);
+            HasRequired<DivisionInfo> (m => m.Division).WithMany ().HasForeignKey (m => m.DivisionID).WillCascadeOnDelete (true);
+            HasRequired<EmployeeInfo> (m => m.Employee).WithMany ().HasForeignKey (m => m.EmployeeID).WillCascadeOnDelete (true);
+
+            Property (m => m.IsPrime);
+            Property (m => m.TitleSuffix);
+        }
     }
 }
 

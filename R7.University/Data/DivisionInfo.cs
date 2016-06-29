@@ -26,6 +26,8 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.ViewModels;
+using System.Data.Entity.ModelConfiguration;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace R7.University.Data
 {
@@ -220,6 +222,43 @@ namespace R7.University.Data
 
                 return text;
             }
+        }
+    }
+
+    public class DivisionMapping: EntityTypeConfiguration<DivisionInfo>
+    {
+        public DivisionMapping ()
+        {
+            HasKey (m => m.DivisionID);
+            Property (m => m.DivisionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+
+            Property (m => m.ParentDivisionID).IsOptional ();
+            Property (m => m.DivisionTermID).IsOptional ();
+            Property (m => m.HeadPositionID).IsOptional ();
+
+            Property (m => m.Title).IsRequired ();
+            Property (m => m.ShortTitle);
+
+            Property (m => m.HomePage);
+            Property (m => m.WebSite);
+            Property (m => m.WebSiteLabel);
+
+            Property (m => m.Phone);
+            Property (m => m.Fax);
+            Property (m => m.Email);
+            Property (m => m.SecondaryEmail);
+            Property (m => m.Location);
+            Property (m => m.WorkingHours);
+            Property (m => m.DocumentUrl);
+            Property (m => m.IsVirtual);
+
+            Property (m => m.StartDate).IsOptional ();
+            Property (m => m.EndDate).IsOptional ();
+
+            Property (m => m.LastModifiedByUserID);
+            Property (m => m.LastModifiedOnDate);
+            Property (m => m.CreatedByUserID);
+            Property (m => m.CreatedOnDate);
         }
     }
 }

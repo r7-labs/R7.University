@@ -1,5 +1,5 @@
 ﻿//
-//  IOccupiedPosition.cs
+//  TestDbContextFactory.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -22,27 +22,13 @@
 using System;
 using R7.University.Data;
 
-namespace R7.University.Models
+namespace R7.University.Tests
 {
-    public interface IOccupiedPosition
+    public class TestDbContextFactory: UniversityDbContextFactoryBase
     {
-        int OccupiedPositionID { get; set; }
-
-        int PositionID { get; set; }
-
-        int DivisionID { get; set; }
-
-        int EmployeeID { get; set; }
-
-        bool IsPrime { get; set; }
-
-        string TitleSuffix { get; set; }
-
-        PositionInfo Position { get; set; }
-
-        DivisionInfo Division { get; set; }
-
-        EmployeeInfo Employee { get; set; }
+        public override IUniversityDbContext Create ()
+        {
+            return new TestDbContext ();
+        }
     }
 }
-
