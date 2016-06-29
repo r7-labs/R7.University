@@ -24,8 +24,18 @@ using System.Data.Entity;
 
 namespace R7.University.Data
 {
-    public interface IUniversityDbContext
+    public interface IUniversityDbContext: IDisposable
     {
+        IDbSet<TEntity> Set<TEntity> () where TEntity: class, new ();
+
+        int SaveChanges ();
+
+        IDbSet<EmployeeInfo> Employees { get; set; }
+
+        IDbSet<DivisionInfo> Divisions { get; set; }
+
+        IDbSet<OccupiedPositionInfo> OccupiedPositions { get; set; }
+
         IDbSet<PositionInfo> Positions { get; set; }
     }
 }

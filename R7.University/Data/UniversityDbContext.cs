@@ -29,32 +29,19 @@ namespace R7.University.Data
 {
     public class UniversityDbContext : DbContext
     {
-        #region Singleton implementation
-
-        static readonly Lazy<UniversityDbContext> instance = new Lazy<UniversityDbContext> (
-            () => new UniversityDbContext ("name=SiteSqlServer")
-        );
-
-        public static UniversityDbContext Instance
-        {
-            get { return instance.Value; }
-        }
-
         static UniversityDbContext ()
         {
             // do not use migrations (1)
             Database.SetInitializer<UniversityDbContext> (null);
         }
 
-        protected UniversityDbContext (string nameOrConnectionString): base (nameOrConnectionString)
+        public UniversityDbContext (): base ("name=SiteSqlServer")
         {
             // do not use migrations (2)
             Configuration.AutoDetectChangesEnabled = false; 
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
-
-        #endregion
 
         protected override void OnModelCreating (DbModelBuilder modelBuilder)
         {
@@ -63,6 +50,9 @@ namespace R7.University.Data
 
             // add mappings
             modelBuilder.Configurations.Add<PositionInfo> (new PositionMapping ());
+            modelBuilder.Configurations.Add<DivisionInfo> (new DivisionMapping ());
+            modelBuilder.Configurations.Add<EmployeeInfo> (new EmployeeMapping ());
+            modelBuilder.Configurations.Add<OccupiedPositionInfo> (new OccupiedPositionMapping ());
 
             // add objectQualifier
             var plurService = new EnglishPluralizationService ();
@@ -74,6 +64,12 @@ namespace R7.University.Data
         }
 
         #region IUniversityDbContext implementation
+
+        public IDbSet<EmployeeInfo> Employees { get; set; }
+
+        public IDbSet<DivisionInfo> Divisions { get; set; }
+
+        public IDbSet<OccupiedPositionInfo> OccupiedPositions { get; set; }
 
         public IDbSet<PositionInfo> Positions { get; set; }
 
