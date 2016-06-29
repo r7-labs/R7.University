@@ -18,15 +18,42 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using System.Linq;
 
 namespace R7.University.Data
 {
-    public class UniversityDbContextFactory
+    public abstract class UniversityDbContextFactoryBase
     {
-        public UniversityDbContextFactory ()
+        public abstract IUniversityDbContext Create ();
+    }
+
+    public class UniversityDbContextFactory: UniversityDbContextFactoryBase
+    {
+        #region Singleton implementation
+
+        static readonly Lazy<UniversityDbContextFactory> instance = new Lazy<UniversityDbContextFactory> ();
+
+        public static UniversityDbContextFactory Instance
         {
+            get { return instance.Value; }
+        }
+
+        #endregion
+
+        public override IUniversityDbContext Create ()
+        {
+            // return IUniversityDbContext implementation
+            return (IUniversityDbContext) new UniversityDbContext ();
+        }
+
+        public void Example ()
+        {
+            using (var db = UniversityDbContextFactory.Instance.Create ()) {
+                db.Set<EmployeeInfo> ().Where (e => e.EmployeeID == 1);
+                var x = db.SaveChanges () > 0;
+            }
         }
     }
 }
-
