@@ -35,18 +35,18 @@ namespace R7.University.Launchpad
         // ALT: private int itemId = Null.NullInteger;
         private int? itemId = null;
 
-        #region Database context handling
+        #region Repository handling
 
-        private IUniversityDbContext dbContext;
-        protected IUniversityDbContext DbContext
+        private UniversityDbRepository repository;
+        protected UniversityDbRepository Repository
         {
-            get { return dbContext ?? (dbContext = UniversityDbContextFactory.Instance.Create ()); }
+            get { return repository ?? (repository = new UniversityDbRepository ()); }
         }
 
         public override void Dispose ()
         {
-            if (dbContext != null) {
-                dbContext.Dispose ();
+            if (repository != null) {
+                repository.Dispose ();
             }
 
             base.Dispose ();
@@ -93,7 +93,7 @@ namespace R7.University.Launchpad
                     if (itemId.HasValue) {
 
                         // load the item
-                        var item = DbContext.Set<PositionInfo> ().Find (itemId.Value);
+                        var item = Repository.Get<PositionInfo> (itemId.Value);
                         if (item != null) {
 											
                             txtTitle.Text = item.Title;
@@ -137,7 +137,7 @@ namespace R7.University.Launchpad
                 }
                 else {
                     // update existing record
-                    item = DbContext.Set<PositionInfo> ().Find (itemId.Value);
+                    item = Repository.Get<PositionInfo> (itemId.Value);
                 }
 
                 if (item != null) {
@@ -148,14 +148,8 @@ namespace R7.University.Launchpad
                     item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
                     item.IsTeacher = checkIsTeacher.Checked;
 
-                    if (!itemId.HasValue) {
-                        DbContext.Set<PositionInfo> ().Add (item);
-                    } else {
-                        //DbContext.Set<PositionInfo> ().A
-                        DbContext.WasModified (item);
-                    }
-
-                    DbContext.SaveChanges ();
+                    Repository.AddOrUpdate (item); 
+                    Repository.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);
 
@@ -180,9 +174,9 @@ namespace R7.University.Launchpad
         {
             try {
                 if (itemId.HasValue) {
-                    var item = DbContext.Set<PositionInfo> ().Find (itemId.Value);
-                    DbContext.Set<PositionInfo> ().Remove (item);
-                    DbContext.SaveChanges ();
+                    var item = Repository.Get<PositionInfo> (itemId.Value);
+                    Repository.Remove (item);
+                    Repository.SaveChanges ();
 
                     Response.Redirect (Globals.NavigateURL (), true);
                 }

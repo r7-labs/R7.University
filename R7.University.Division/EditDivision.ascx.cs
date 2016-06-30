@@ -53,18 +53,18 @@ namespace R7.University.Division
 
         #endregion
 
-        #region Database context handling
+        #region Repository handling
 
-        private IUniversityDbContext dbContext;
-        protected IUniversityDbContext DbContext
+        private UniversityDbRepository repository;
+        protected UniversityDbRepository Repository
         {
-            get { return dbContext ?? (dbContext = UniversityDbContextFactory.Instance.Create ()); }
+            get { return repository ?? (repository = new UniversityDbRepository ()); }
         }
 
         public override void Dispose ()
         {
-            if (dbContext != null) {
-                dbContext.Dispose ();
+            if (repository != null) {
+                repository.Dispose ();
             }
 
             base.Dispose ();
@@ -150,7 +150,7 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            var positions = DbContext.Set<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = Repository.GetAll<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
             positions.Insert (0, new PositionInfo {
                     Title = LocalizeString ("NotSelected.Text"),

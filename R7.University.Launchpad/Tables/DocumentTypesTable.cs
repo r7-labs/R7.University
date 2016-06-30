@@ -32,7 +32,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityDbRepository repository, string search)
         {
             var documentTypes = UniversityRepository.Instance.DataProvider.FindObjects<DocumentTypeInfo> (
                                     @"WHERE CONCAT([Type], ' ', [Description]) LIKE N'%{0}%'", search, false);

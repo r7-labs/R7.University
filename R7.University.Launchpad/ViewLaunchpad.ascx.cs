@@ -31,6 +31,7 @@ using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.University.Launchpad.Components;
+using R7.University.Data;
 
 namespace R7.University.Launchpad
 {
@@ -47,6 +48,25 @@ namespace R7.University.Launchpad
 
         #endregion
 
+        #region Repository handling
+
+        private UniversityDbRepository repository;
+        protected UniversityDbRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDbRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Handlers
 
         /// <summary>
@@ -59,7 +79,7 @@ namespace R7.University.Launchpad
             var session = Session [gridviewId];
             if (session == null) {
                 var tabName = GetActiveTabName ();
-                session = Tables.GetByGridId (gridviewId).GetDataTable (this, (string) Session [tabName + "_Search"]);
+                session = Tables.GetByGridId (gridviewId).GetDataTable (this, Repository, (string) Session [tabName + "_Search"]);
                 Session [gridviewId] = session;
             }
             return (DataTable) session;
@@ -190,10 +210,10 @@ namespace R7.University.Launchpad
 
             var searchText = textSearch.Text;
             if (!string.IsNullOrWhiteSpace (searchText)) {
-                table.DataBind (this, searchText);
+                table.DataBind (this, Repository, searchText);
             }
             else {
-                table.DataBind (this);
+                table.DataBind (this, Repository);
             }
 
             // set URL to add new item
@@ -385,7 +405,7 @@ namespace R7.University.Launchpad
 
                 Session [tabName + "_Search"] = textSearch.Text.Trim ();
 
-                Tables.GetByName (tabName).DataBind (this, textSearch.Text.Trim ());
+                Tables.GetByName (tabName).DataBind (this, Repository, textSearch.Text.Trim ());
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -400,7 +420,7 @@ namespace R7.University.Launchpad
                 textSearch.Text = string.Empty;
                 Session [tabName + "_Search"] = null;
 
-                Tables.GetByName (tabName).DataBind (this);
+                Tables.GetByName (tabName).DataBind (this, Repository);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

@@ -35,7 +35,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityDbRepository repository, string search)
         {
             var employees = UniversityRepository.Instance.DataProvider.FindObjects<EmployeeInfo> (
                 @"WHERE CONCAT([LastName], ' ', [FirstName], ' ', [OtherName], ' ',

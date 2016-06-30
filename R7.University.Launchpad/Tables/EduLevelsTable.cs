@@ -32,7 +32,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityDbRepository repository, string search)
         {
             var eduLevels = UniversityRepository.Instance.DataProvider.FindObjects<EduLevelInfo> (
                                 @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);

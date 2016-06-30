@@ -37,7 +37,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityDbRepository repository, string search)
         {
             var documents = DocumentRepository.Instance.FindDocuments (search);
 

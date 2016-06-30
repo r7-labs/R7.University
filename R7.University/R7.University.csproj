@@ -174,8 +174,8 @@
     <Compile Include="Data\IUniversityDbContext.cs" />
     <Compile Include="Data\PositionInfo.cs" />
     <Compile Include="Data\DivisionInfo.cs" />
-    <Compile Include="Data\UniversityRepositoryBase.cs" />
     <Compile Include="Data\UniversityDbContextFactory.cs" />
+    <Compile Include="Data\UniversityDbRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

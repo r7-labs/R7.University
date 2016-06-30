@@ -26,6 +26,7 @@ using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Data;
 using System.Collections.Generic;
+using Telerik.Web.UI.GridExcelBuilder.Abstract;
 
 namespace R7.University.Launchpad
 {
@@ -35,22 +36,13 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityDbRepository repository, string search)
         {
-            IList<PositionInfo> positions;
-            using (var db = UniversityDbContextFactory.Instance.Create ()) {
-                using (var repo = new UniversityRepository<PositionInfo> (db)) {
-
-                    // REVIEW: Cannot set comparison options
-                    positions = repo.Where (p => p.Title.Contains (search) || p.ShortTitle.Contains (search))
-                        .ToList ();
-
-                    if (!positions.Any ()) {
-                        positions = db.Set<PositionInfo> ().ToList ();
-                    }
-                }
-            }
-
+            // REVIEW: Cannot set comparison options
+            var positions = (search != null)
+                ? repository.Where<PositionInfo> (p => p.Title.Contains (search) || p.ShortTitle.Contains (search)).ToList ()
+                : repository.GetAll<PositionInfo> ().ToList ();
+            
             return DataTableConstructor.FromIEnumerable (positions);
         }
     }

@@ -30,7 +30,6 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
-using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
@@ -65,18 +64,18 @@ namespace R7.University.Employee
 
         private int? itemId = null;
 
-        #region Database context handling
+        #region Repository handling
 
-        private IUniversityDbContext dbContext;
-        protected IUniversityDbContext DbContext
+        private UniversityDbRepository repository;
+        protected UniversityDbRepository Repository
         {
-            get { return dbContext ?? (dbContext = UniversityDbContextFactory.Instance.Create ()); }
+            get { return repository ?? (repository = new UniversityDbRepository ()); }
         }
 
         public override void Dispose ()
         {
-            if (dbContext != null) {
-                dbContext.Dispose ();
+            if (repository != null) {
+                repository.Dispose ();
             }
 
             base.Dispose ();
@@ -187,7 +186,7 @@ namespace R7.University.Employee
 
             // if results are null or empty, lists were empty too
 
-            var positions = DbContext.Set<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = Repository.GetAll<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
             var divisions = new List<DivisionInfo> (DivisionRepository.Instance.GetDivisions ()
                 .OrderBy (d => d.Title));
