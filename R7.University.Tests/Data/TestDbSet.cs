@@ -25,7 +25,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbSet<TEntity>: DbSet<TEntity> where TEntity: class, new ()
+    public class TestDbSet<TEntity>: DbSet<TEntity> where TEntity: class
     {
         protected HashSet<TEntity> entities;
         

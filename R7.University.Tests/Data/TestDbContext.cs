@@ -20,29 +20,21 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Data;
 using System.Data.Entity;
+using R7.University.Data;
 
 namespace R7.University.Tests.Data
 {
     public class TestDbContext: IUniversityDbContext
     {
-        protected IDbSet<EmployeeInfo> employees;
-        protected IDbSet<DivisionInfo> divisions;
-        protected IDbSet<OccupiedPositionInfo> occupiedPositions;
-        protected IDbSet<PositionInfo> positions;
-
-        public TestDbContext ()
-        {
-            employees = new TestDbSet<EmployeeInfo> ();
-            divisions = new TestDbSet<DivisionInfo> ();
-            occupiedPositions = new TestDbSet<OccupiedPositionInfo> ();
-            positions = new TestDbSet<PositionInfo> ();
-        }
-
         #region IUniversityDbContext implementation
 
-        public IDbSet<TEntity> Set<TEntity> () where TEntity : class, new()
+        public IDbSet<TEntity> Set<TEntity> () where TEntity : class
+        {
+            return new TestDbSet<TEntity> ();
+        }
+
+        public void WasModified<TEntity> (TEntity entity) where TEntity : class
         {
             throw new NotImplementedException ();
         }
@@ -50,30 +42,6 @@ namespace R7.University.Tests.Data
         public int SaveChanges ()
         {
             return 0;
-        }
-
-        public IDbSet<EmployeeInfo> Employees
-        {
-            get { return employees; }
-            set { employees = value; }
-        }
-
-        public IDbSet<DivisionInfo> Divisions
-        {
-            get { return divisions; }
-            set { divisions = value; }
-        }
-
-        public IDbSet<OccupiedPositionInfo> OccupiedPositions
-        {
-            get { return occupiedPositions; }
-            set { occupiedPositions = value; }
-        }
-
-        public IDbSet<PositionInfo> Positions
-        {
-            get { return positions; }
-            set { positions = value; }
         }
 
         #endregion

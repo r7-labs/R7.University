@@ -45,7 +45,7 @@ namespace R7.University.Data
         public override IUniversityDbContext Create ()
         {
             // return IUniversityDbContext implementation
-            return (IUniversityDbContext) new UniversityDbContext ();
+            return new UniversityDbContext ();
         }
 
         public void Example ()

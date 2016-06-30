@@ -32,7 +32,7 @@ namespace R7.University.Tests.Data
         {
             var dbContextFactory = new TestDbContextFactory ();
             using (var db = dbContextFactory.Create ()) {
-                db.Employees.Add (new EmployeeInfo ());
+                db.Set<EmployeeInfo> ().Add (new EmployeeInfo ());
                 db.SaveChanges ();
             }
         }

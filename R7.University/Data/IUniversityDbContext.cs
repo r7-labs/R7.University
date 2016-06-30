@@ -26,17 +26,11 @@ namespace R7.University.Data
 {
     public interface IUniversityDbContext: IDisposable
     {
-        IDbSet<TEntity> Set<TEntity> () where TEntity: class, new ();
+        IDbSet<TEntity> Set<TEntity> () where TEntity: class;
+
+        void WasModified<TEntity> (TEntity entity) where TEntity: class;
 
         int SaveChanges ();
-
-        IDbSet<EmployeeInfo> Employees { get; set; }
-
-        IDbSet<DivisionInfo> Divisions { get; set; }
-
-        IDbSet<OccupiedPositionInfo> OccupiedPositions { get; set; }
-
-        IDbSet<PositionInfo> Positions { get; set; }
     }
 }
 

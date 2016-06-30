@@ -27,19 +27,23 @@ using DotNetNuke.Common.Utilities;
 
 namespace R7.University.Data
 {
-    public class UniversityDbContext : DbContext
+    public class UniversityDbContext : DbContext, IUniversityDbContext
     {
         static UniversityDbContext ()
         {
-            // do not use migrations (1)
+            // do not use migrations
             Database.SetInitializer<UniversityDbContext> (null);
         }
 
         public UniversityDbContext (): base ("name=SiteSqlServer")
         {
-            // do not use migrations (2)
+            // don't autodetect entity changes
             Configuration.AutoDetectChangesEnabled = false; 
+
+            // don't use lazy loading
             Configuration.LazyLoadingEnabled = false;
+
+            // we don't autotodetect changes nor use lazy loading, so disable proxies
             Configuration.ProxyCreationEnabled = false;
         }
 
@@ -65,13 +69,15 @@ namespace R7.University.Data
 
         #region IUniversityDbContext implementation
 
-        public IDbSet<EmployeeInfo> Employees { get; set; }
+        public new IDbSet<TEntity> Set<TEntity> () where TEntity: class
+        {
+            return base.Set<TEntity> ();
+        }
 
-        public IDbSet<DivisionInfo> Divisions { get; set; }
-
-        public IDbSet<OccupiedPositionInfo> OccupiedPositions { get; set; }
-
-        public IDbSet<PositionInfo> Positions { get; set; }
+        public void WasModified<TEntity> (TEntity entity) where TEntity: class
+        {
+            base.Entry<TEntity> (entity).State = EntityState.Modified;
+        }
 
         #endregion
     }

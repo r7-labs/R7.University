@@ -65,6 +65,25 @@ namespace R7.University.Employee
 
         private int? itemId = null;
 
+        #region Database context handling
+
+        private IUniversityDbContext dbContext;
+        protected IUniversityDbContext DbContext
+        {
+            get { return dbContext ?? (dbContext = UniversityDbContextFactory.Instance.Create ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (dbContext != null) {
+                dbContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected EditEmployeeTab SelectedTab
@@ -168,10 +187,7 @@ namespace R7.University.Employee
 
             // if results are null or empty, lists were empty too
 
-            IList<PositionInfo> positions;
-            using (var db = UniversityDbContextFactory.Instance.Create ()) {
-                positions = db.Positions.OrderBy (p => p.Title).ToList ();
-            }
+            var positions = DbContext.Set<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
             var divisions = new List<DivisionInfo> (DivisionRepository.Instance.GetDivisions ()
                 .OrderBy (d => d.Title));

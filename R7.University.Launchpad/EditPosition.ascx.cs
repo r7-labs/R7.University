@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
@@ -28,7 +27,6 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University;
 using R7.University.Data;
-using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
@@ -36,6 +34,25 @@ namespace R7.University.Launchpad
     {
         // ALT: private int itemId = Null.NullInteger;
         private int? itemId = null;
+
+        #region Database context handling
+
+        private IUniversityDbContext dbContext;
+        protected IUniversityDbContext DbContext
+        {
+            get { return dbContext ?? (dbContext = UniversityDbContextFactory.Instance.Create ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (dbContext != null) {
+                dbContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
 
         #region Handlers
 
@@ -76,11 +93,7 @@ namespace R7.University.Launchpad
                     if (itemId.HasValue) {
 
                         // load the item
-                        IPosition item;
-                        using (var db = UniversityDbContextFactory.Instance.Create ()) {
-                            item = db.Positions.Find (itemId.Value);
-                        }
-
+                        var item = DbContext.Set<PositionInfo> ().Find (itemId.Value);
                         if (item != null) {
 											
                             txtTitle.Text = item.Title;
@@ -116,19 +129,19 @@ namespace R7.University.Launchpad
             try {
                 PositionInfo item;
 
-                using (var db = UniversityDbContextFactory.Instance.Create ()) {
+                // determine if we are adding or updating
+                // ALT: if (Null.IsNull (itemId))
+                if (!itemId.HasValue) {
+                    // add new record
+                    item = new PositionInfo ();
+                }
+                else {
+                    // update existing record
+                    item = DbContext.Set<PositionInfo> ().Find (itemId.Value);
+                }
 
-                    // determine if we are adding or updating
-                    // ALT: if (Null.IsNull (itemId))
-                    if (!itemId.HasValue) {
-                        // add new record
-                        item = new PositionInfo ();
-                    }
-                    else {
-                        // update existing record
-                        item = db.Positions.Find (itemId.Value);
-                    }
-
+                if (item != null) {
+                    
                     // fill the object
                     item.Title = txtTitle.Text.Trim ();
                     item.ShortTitle = txtShortTitle.Text.Trim ();
@@ -136,15 +149,18 @@ namespace R7.University.Launchpad
                     item.IsTeacher = checkIsTeacher.Checked;
 
                     if (!itemId.HasValue) {
-                        db.Positions.Add (item);
+                        DbContext.Set<PositionInfo> ().Add (item);
+                    } else {
+                        //DbContext.Set<PositionInfo> ().A
+                        DbContext.WasModified (item);
                     }
 
-                    db.SaveChanges ();
+                    DbContext.SaveChanges ();
+
+                    ModuleController.SynchronizeModule (ModuleId);
+
+                    Response.Redirect (Globals.NavigateURL (), true);
                 }
-
-                ModuleController.SynchronizeModule (ModuleId);
-
-                Response.Redirect (Globals.NavigateURL (), true);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -164,12 +180,9 @@ namespace R7.University.Launchpad
         {
             try {
                 if (itemId.HasValue) {
-                    
-                    using (var db = UniversityDbContextFactory.Instance.Create ()) {
-                        var item = db.Positions.Find (itemId.Value);
-                        db.Positions.Remove (item);
-                        db.SaveChanges ();
-                    }
+                    var item = DbContext.Set<PositionInfo> ().Find (itemId.Value);
+                    DbContext.Set<PositionInfo> ().Remove (item);
+                    DbContext.SaveChanges ();
 
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
