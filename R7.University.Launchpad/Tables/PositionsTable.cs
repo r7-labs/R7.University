@@ -42,11 +42,11 @@ namespace R7.University.Launchpad
                 using (var repo = new UniversityRepository<PositionInfo> (db)) {
 
                     // REVIEW: Cannot set comparison options
-                    positions = repo.GetObjects (p => p.Title.Contains (search) || p.ShortTitle.Contains (search))
+                    positions = repo.Where (p => p.Title.Contains (search) || p.ShortTitle.Contains (search))
                         .ToList ();
 
                     if (!positions.Any ()) {
-                        positions = db.Positions.ToList ();
+                        positions = db.Set<PositionInfo> ().ToList ();
                     }
                 }
             }
