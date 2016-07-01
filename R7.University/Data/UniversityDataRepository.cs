@@ -61,6 +61,11 @@ namespace R7.University.Data
             return Query<DivisionInfo> ().OrderBy (d => d.Title);
         }
 
+        public IQueryable<DivisionInfo> QueryRootDivisions ()
+        {
+            return Query<DivisionInfo> ().Where (d => d.ParentDivisionID == null);
+        }
+
         #endregion
     }
 }

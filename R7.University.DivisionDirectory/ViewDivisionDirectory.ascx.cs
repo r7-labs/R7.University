@@ -46,6 +46,25 @@ namespace R7.University.DivisionDirectory
 
     public partial class ViewDivisionDirectory : PortalModuleBase<DivisionDirectorySettings>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Session properties
 
         protected string SearchText
@@ -164,7 +183,7 @@ namespace R7.University.DivisionDirectory
                     }
                     else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                         // getting all root divisions
-                        var rootDivisions = DivisionRepository.Instance.GetRootDivisions ().OrderBy (d => d.Title);
+                        var rootDivisions = Repository.QueryRootDivisions ().OrderBy (d => d.Title);
 
                         if (rootDivisions.Any ()) {
                             var divisions = new List<DivisionInfo> ();

@@ -78,11 +78,6 @@ namespace R7.University.Data
                     ORDER BY DH.[Path], D.Title", divisionId);
         }
 
-        public IEnumerable<DivisionInfo> GetRootDivisions ()
-        {
-            return DataProvider.GetObjects<DivisionInfo> ("WHERE [ParentDivisionID] IS NULL");
-        }
-
         public IEnumerable<DivisionInfo> GetDivisions (IEnumerable<int> divisionIds)
         {
             if (divisionIds != null && divisionIds.Any ()) {
