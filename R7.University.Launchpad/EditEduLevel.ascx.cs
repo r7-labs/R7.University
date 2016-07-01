@@ -21,17 +21,36 @@
 
 using System;
 using System.Linq;
-using DotNetNuke.Common.Utilities;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Data;
 using R7.University.Models;
+using R7.University.ControlExtensions;
 
 namespace R7.University.Launchpad
 {
     public partial class EditEduLevel: EditPortalModuleBase<EduLevelInfo,int>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected EditEduLevel () : base ("edulevel_id")
         {
         }
@@ -40,16 +59,9 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            var eduProgramLevels = UniversityRepository.Instance.GetEduProgramLevels ().ToList ();
-            eduProgramLevels.Insert (0, new EduLevelInfo {
-                    EduLevelID = Null.NullInteger,
-                    ParentEduLevelId = null,
-                    Title = LocalizeString ("NotSelected.Text")
-                }
-            );
-
-            comboParentEduLevel.DataSource = eduProgramLevels;
+            comboParentEduLevel.DataSource = Repository.QueryEduProgramLevels ().ToList ();
             comboParentEduLevel.DataBind ();
+            comboParentEduLevel.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
 
         protected override void InitControls ()
@@ -77,23 +89,27 @@ namespace R7.University.Launchpad
 
         protected override EduLevelInfo GetItem (int itemId)
         {
-            return UniversityDataProvider.Instance.Get<EduLevelInfo> (itemId);
+            return Repository.Get<EduLevelInfo> (itemId);
         }
 
         protected override int AddItem (EduLevelInfo item)
         {
-            UniversityDataProvider.Instance.Add<EduLevelInfo> (item);
+            Repository.Add (item);
+            Repository.SaveChanges (true);
+
             return item.EduLevelID;
         }
 
         protected override void UpdateItem (EduLevelInfo item)
         {
-            UniversityDataProvider.Instance.Update<EduLevelInfo> (item);
+            Repository.Update (item);
+            Repository.SaveChanges (true);
         }
 
         protected override void DeleteItem (EduLevelInfo item)
         {
-            UniversityDataProvider.Instance.Delete<EduLevelInfo> (item);
+            Repository.Remove (item);
+            Repository.SaveChanges (true);
         }
 
         #endregion

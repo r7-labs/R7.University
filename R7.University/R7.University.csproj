@@ -183,6 +183,7 @@
     <Compile Include="Data\Mappings\EmployeeMapping.cs" />
     <Compile Include="Data\Mappings\DivisionMapping.cs" />
     <Compile Include="Data\Mappings\OccupiedPositionMapping.cs" />
+    <Compile Include="Data\Mappings\EduLevelMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

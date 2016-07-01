@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Data;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Data;
@@ -35,8 +36,10 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityDataRepository repository, string search)
         {
-            var eduLevels = UniversityRepository.Instance.DataProvider.FindObjects<EduLevelInfo> (
-                                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
+            // REVIEW: Cannot set comparison options
+            var eduLevels = (search != null)
+                ? repository.Query<EduLevelInfo> ().Where (p => p.Title.Contains (search) || p.ShortTitle.Contains (search)).ToList ()
+                : repository.Query<EduLevelInfo> ().ToList ();
 
             return DataTableConstructor.FromIEnumerable (eduLevels);
         }

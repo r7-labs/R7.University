@@ -34,6 +34,8 @@ namespace R7.University.Models
         string ShortTitle { get; set; }
 
         int? ParentEduLevelId { get; set; }
+
+        EduLevelInfo ParentEduLevel { get; set; }
     }
 }
 

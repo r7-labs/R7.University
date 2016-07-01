@@ -41,6 +41,9 @@ namespace R7.University.Models
 
         public int? ParentEduLevelId { get; set; }
 
+        [IgnoreColumn]
+        public virtual EduLevelInfo ParentEduLevel { get; set; }
+
         #endregion
     }
 }

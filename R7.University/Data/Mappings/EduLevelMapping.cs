@@ -1,5 +1,5 @@
 ﻿//
-//  UniversityDataRepository.cs
+//  EduLevelMapping.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,38 +20,24 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using R7.University.Models;
 
-namespace R7.University.Data
+namespace R7.University.Data.Mappings
 {
-    public class UniversityDataRepository: DataRepositoryBase
+    public class EduLevelMapping: EntityTypeConfiguration<EduLevelInfo>
     {
-        public UniversityDataRepository (IDataContext dataContext): base (dataContext)
+        public EduLevelMapping ()
         {
+            HasKey (m => m.EduLevelID);
+            Property (m => m.EduLevelID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.Title).IsRequired ();
+            Property (m => m.ShortTitle).IsOptional ();
+            Property (m => m.SortIndex).IsRequired ();
+            Property (m => m.ParentEduLevelId);
+            HasOptional (m => m.ParentEduLevel).WithMany ().HasForeignKey (m => m.ParentEduLevelId);
         }
-
-        public UniversityDataRepository ()
-        {
-        }
-
-        #region DataRepositoryBase implementation
-
-        public override IDataContext CreateDataContext ()
-        {
-            return UniversityDataContextFactory.Instance.Create ();
-        }
-
-        #endregion
-
-        #region Custom methods
-
-        public IQueryable<EduLevelInfo> QueryEduProgramLevels ()
-        {
-            return Query<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
-        }
-
-        #endregion
     }
 }
 
