@@ -39,7 +39,7 @@ namespace R7.University.ModelExtensions
         {
             return documents.Join (documentTypes, d => d.DocumentTypeID, dt => dt.DocumentTypeID,
                 (d, dt) => {
-                    d.DocumentType = dt;
+                    d.DocumentType = (DocumentTypeInfo) dt;
                     return d;
                 }
             );

@@ -1,5 +1,5 @@
 ﻿//
-//  IDocument.cs
+//  DocumentTypeMapping.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,32 +20,21 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+using R7.University.Models;
 
-namespace R7.University.Models
+namespace R7.University.Data.Mappings
 {
-    public interface IDocument
+    public class DocumentTypeMapping: EntityTypeConfiguration<DocumentTypeInfo>
     {
-        int DocumentID { get; set; }
-
-        int DocumentTypeID { get; set; }
-
-        string ItemID { get; set; }
-
-        string Title { get; set; }
-
-        string Group { get; set; }
-
-        string Url { get; set; }
-
-        int SortIndex { get; set; }
-
-        DateTime? StartDate { get; set; }
-
-        DateTime? EndDate { get; set; }
-
-        DocumentTypeInfo DocumentType { get; set; }
+        public DocumentTypeMapping ()
+        {
+            HasKey (m => m.DocumentTypeID);
+            Property (m => m.DocumentTypeID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.Type).IsRequired ();
+            Property (m => m.Description).IsOptional ();
+            Property (m => m.IsSystem).IsRequired ();
+        }
     }
-
-    public delegate string GetDocumentTitle (IDocument document);
 }
-

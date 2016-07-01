@@ -184,6 +184,8 @@
     <Compile Include="Data\Mappings\DivisionMapping.cs" />
     <Compile Include="Data\Mappings\OccupiedPositionMapping.cs" />
     <Compile Include="Data\Mappings\EduLevelMapping.cs" />
+    <Compile Include="Data\Mappings\DocumentTypeMapping.cs" />
+    <Compile Include="Data\Mappings\DocumentMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

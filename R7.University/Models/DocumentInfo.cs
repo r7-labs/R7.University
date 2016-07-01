@@ -49,7 +49,7 @@ namespace R7.University.Models
         public DateTime? EndDate { get; set; }
 
         [IgnoreColumn]
-        public IDocumentType DocumentType { get; set; }
+        public virtual DocumentTypeInfo DocumentType { get; set; }
 
         #endregion
     }

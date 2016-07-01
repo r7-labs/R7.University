@@ -44,17 +44,10 @@ namespace R7.University.Controls
         public int DocumentTypeID { get; set; }
 
         [XmlIgnore]
-        public IDocumentType DocumentType { get; set; }
+        [Obsolete ("Use DocumentTypeViewModel property instead", true)] 
+        public DocumentTypeInfo DocumentType { get; set; }
 
-        /// <summary>
-        /// XML-serializeable boilerplate for <see cref="DocumentViewModel.DocumentType" /> property
-        /// </summary>
-        /// <value>The document type view model.</value>
-        public DocumentTypeViewModel DocumentTypeViewModel
-        {
-            get { return (DocumentTypeViewModel) DocumentType; }
-            set { DocumentType = value; }
-        }
+        public DocumentTypeViewModel DocumentTypeViewModel { get; set; }
 
         public string ItemID { get; set; }
 
@@ -76,10 +69,10 @@ namespace R7.University.Controls
         public string LocalizedType
         { 
             get {
-                var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentType.Type + ".Text", 
+                var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentTypeViewModel.Type + ".Text", 
                     Context.LocalResourceFile);
                     
-                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentType.Type;
+                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentTypeViewModel.Type;
             }
         }
 
@@ -124,7 +117,7 @@ namespace R7.University.Controls
             CopyCstor.Copy<IDocument> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
-            viewModel.DocumentType = new DocumentTypeViewModel (model.DocumentType, viewContext);
+            viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
             viewModel.Context = viewContext;
 
             return viewModel;
@@ -149,15 +142,6 @@ namespace R7.University.Controls
         {
             ViewItemID = ViewNumerator.GetNextItemID ();
         }
-
-        /*
-        public static void BindToView (IEnumerable<DocumentViewModel> documents, ViewModelContext context)
-        {
-            foreach (var document in documents)
-            {
-                document.Context = context;
-            }
-        }*/
     }
 }
 
