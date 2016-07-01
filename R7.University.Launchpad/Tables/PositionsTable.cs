@@ -19,14 +19,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Data;
-using System.Collections.Generic;
-using Telerik.Web.UI.GridExcelBuilder.Abstract;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {

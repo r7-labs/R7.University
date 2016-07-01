@@ -1,5 +1,5 @@
 ﻿//
-//  EmployeeDisciplineInfoEx.cs
+//  DocumentInfo.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,34 +21,37 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.DotNetNuke.Extensions.Utilities;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
-    [TableName ("vw_University_EmployeeDisciplines")]
-    [Serializable]
-    public class EmployeeDisciplineInfoEx: EmployeeDisciplineInfo
+    [TableName ("University_Documents")]
+    [PrimaryKey ("DocumentID", AutoIncrement = true)]
+    public class DocumentInfo: IDocument
     {
-        #region External properties
+        #region IDocument implementation
 
-        public string Code { get; set; }
+        public int DocumentID { get; set; }
+
+        public int DocumentTypeID { get; set; }
+
+        public string ItemID { get; set; }
 
         public string Title { get; set; }
 
-        public string ProfileCode { get; set; }
+        public string Group { get; set; }
 
-        public string ProfileTitle { get; set; }
+        public string Url { get; set; }
 
-        #endregion
+        public int SortIndex { get; set; }
+
+        public DateTime? StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
 
         [IgnoreColumn]
-        public string EduProfileString
-        {
-            get {
-                var profileString = TextUtils.FormatList (" ", ProfileCode, ProfileTitle);
-                return TextUtils.FormatList (" ", Code, Title) +
-                (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
-            }
-        }
+        public IDocumentType DocumentType { get; set; }
+
+        #endregion
     }
 }
+

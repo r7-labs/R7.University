@@ -24,11 +24,8 @@ using System.Collections.Generic;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Models;
-using System.Data.Entity.ModelConfiguration;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
     // More attributes for class:
     // Set caching for table: [Cacheable("University_Employees", CacheItemPriority.Default, 20)]
@@ -224,51 +221,6 @@ namespace R7.University.Data
             }
         }
 
-    }
-
-    public class EmployeeMapping: EntityTypeConfiguration<EmployeeInfo>
-    {
-        public EmployeeMapping ()
-        {
-            HasKey (m => m.EmployeeID);
-            Property (m => m.EmployeeID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
-            Property (m => m.UserID).IsOptional ();
-            Property (m => m.PhotoFileID).IsOptional ();
-            Property (m => m.LastName).IsRequired ();
-            Property (m => m.FirstName).IsRequired ();
-            Property (m => m.OtherName);
-
-            Property (m => m.Phone);
-            Property (m => m.CellPhone);
-            Property (m => m.Fax);
-            Property (m => m.Email);
-            Property (m => m.SecondaryEmail);
-            Property (m => m.WebSite);
-            Property (m => m.WebSiteLabel);
-            Property (m => m.Messenger);
-            Property (m => m.Biography);   
-
-            Property (m => m.WorkingPlace);
-            Property (m => m.WorkingHours);    
-            Property (m => m.ExperienceYears).IsOptional ();
-            Property (m => m.ExperienceYearsBySpec).IsOptional ();
-
-            Property (m => m.StartDate).IsOptional ();
-            Property (m => m.EndDate).IsOptional ();
-
-            Property (m => m.LastModifiedByUserID);
-            Property (m => m.LastModifiedOnDate);
-            Property (m => m.CreatedByUserID);
-            Property (m => m.CreatedOnDate);
-
-            Property (m => m.ShowBarcode);
-
-            Ignore (m => m.OccupiedPositions);
-            Ignore (m => m.Achievements);
-            Ignore (m => m.Disciplines);
-
-            HasMany (m => m.Positions).WithRequired ().HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);
-        }
     }
 }
 	

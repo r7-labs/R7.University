@@ -29,6 +29,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
 using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Division.Components
 {

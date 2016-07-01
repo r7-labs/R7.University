@@ -28,6 +28,7 @@ using R7.DotNetNuke.Extensions.Data;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.Data
 {

@@ -21,8 +21,8 @@
 
 using System;
 using R7.University.Components;
+using R7.University.Models;
 using R7.University.ViewModels;
-using R7.University.Data;
 
 namespace R7.University.Employee
 {

@@ -25,6 +25,7 @@ using System.Linq;
 using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
 using R7.University.Components;
+using R7.University.Models;
 
 namespace R7.University.Data
 {

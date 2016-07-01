@@ -38,6 +38,7 @@ using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.DivisionDirectory.Components;
 using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.DivisionDirectory
 {

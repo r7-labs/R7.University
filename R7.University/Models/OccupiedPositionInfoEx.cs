@@ -24,7 +24,7 @@ using DotNetNuke.ComponentModel.DataAnnotations;
 using DotNetNuke.UI.Modules;
 using R7.University.ViewModels;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
     [TableName ("vw_University_OccupiedPositions")]
     [PrimaryKey ("OccupiedPositionID", AutoIncrement = false)]

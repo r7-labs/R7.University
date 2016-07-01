@@ -21,9 +21,8 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.University.Models;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
     [TableName ("University_EduForms")]
     [PrimaryKey ("EduFormID", AutoIncrement = true)]

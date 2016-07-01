@@ -21,7 +21,7 @@
 
 using System;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
     [Flags]
     public enum VCardPhoneType

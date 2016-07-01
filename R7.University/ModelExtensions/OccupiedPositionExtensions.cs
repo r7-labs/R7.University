@@ -23,7 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Data;
+using R7.University.Models;
 using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions

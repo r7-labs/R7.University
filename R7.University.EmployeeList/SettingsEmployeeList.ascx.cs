@@ -29,6 +29,7 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EmployeeList.Components;
+using R7.University.Models;
 using R7.University.Utilities;
 
 namespace R7.University.EmployeeList

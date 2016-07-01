@@ -28,10 +28,10 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.Division.Components;
+using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 

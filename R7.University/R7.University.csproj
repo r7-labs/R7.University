@@ -114,30 +114,12 @@
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
     <Compile Include="Data\EduProgramProfileRepository.cs" />
     <Compile Include="Data\EduProgramRepository.cs" />
-    <Compile Include="Data\EduProgramInfo.cs" />
     <Compile Include="Models\IEduProgram.cs" />
     <Compile Include="Models\IEduProgramProfile.cs" />
-    <Compile Include="Data\EduProgramProfileInfo.cs" />
-    <Compile Include="Data\EduProgramProfileFormInfo.cs" />
     <Compile Include="Models\IEduProgramProfileForm.cs" />
     <Compile Include="Models\IEduForm.cs" />
-    <Compile Include="Data\EduFormInfo.cs" />
     <Compile Include="Models\IDocument.cs" />
-    <Compile Include="Data\DocumentInfo.cs" />
-    <Compile Include="Data\AchievementInfo.cs" />
-    <Compile Include="Data\AchievementTypeInfo.cs" />
-    <Compile Include="Data\DocumentTypeInfo.cs" />
     <Compile Include="Models\IDocumentType.cs" />
-    <Compile Include="Data\EduLevelInfo.cs" />
-    <Compile Include="Data\EmployeeAchievementInfo.cs" />
-    <Compile Include="Data\EmployeeDisciplineInfo.cs" />
-    <Compile Include="Data\EmployeeDisciplineInfoEx.cs" />
-    <Compile Include="Data\VCard.cs" />
-    <Compile Include="Data\VCardPhone.cs" />
-    <Compile Include="Data\OccupiedPositionInfo.cs" />
-    <Compile Include="Data\OccupiedPositionInfoEx.cs" />
-    <Compile Include="Data\EmployeeInfo.cs" />
-    <Compile Include="Data\EmployeeEqualityComparer.cs" />
     <Compile Include="ViewModels\FormatHelper.cs" />
     <Compile Include="Models\IEduLevel.cs" />
     <Compile Include="Models\IUniversityBaseEntity.cs" />
@@ -170,8 +152,6 @@
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
     <Compile Include="Components\ModuleHelper.cs" />
-    <Compile Include="Data\PositionInfo.cs" />
-    <Compile Include="Data\DivisionInfo.cs" />
     <Compile Include="Data\IDataRepository.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\UniversityDataContext.cs" />
@@ -179,6 +159,30 @@
     <Compile Include="Patterns\FactoryBase.cs" />
     <Compile Include="Data\DataRepositoryBase.cs" />
     <Compile Include="Data\UniversityDataRepository.cs" />
+    <Compile Include="Models\AchievementInfo.cs" />
+    <Compile Include="Models\AchievementTypeInfo.cs" />
+    <Compile Include="Models\DivisionInfo.cs" />
+    <Compile Include="Models\DocumentInfo.cs" />
+    <Compile Include="Models\DocumentTypeInfo.cs" />
+    <Compile Include="Models\EduFormInfo.cs" />
+    <Compile Include="Models\EduLevelInfo.cs" />
+    <Compile Include="Models\EduProgramInfo.cs" />
+    <Compile Include="Models\EduProgramProfileFormInfo.cs" />
+    <Compile Include="Models\EduProgramProfileInfo.cs" />
+    <Compile Include="Models\EmployeeAchievementInfo.cs" />
+    <Compile Include="Models\EmployeeDisciplineInfo.cs" />
+    <Compile Include="Models\EmployeeDisciplineInfoEx.cs" />
+    <Compile Include="Models\EmployeeEqualityComparer.cs" />
+    <Compile Include="Models\EmployeeInfo.cs" />
+    <Compile Include="Models\OccupiedPositionInfo.cs" />
+    <Compile Include="Models\PositionInfo.cs" />
+    <Compile Include="Models\VCard.cs" />
+    <Compile Include="Models\VCardPhone.cs" />
+    <Compile Include="Models\OccupiedPositionInfoEx.cs" />
+    <Compile Include="Data\Mappings\PositionMapping.cs" />
+    <Compile Include="Data\Mappings\EmployeeMapping.cs" />
+    <Compile Include="Data\Mappings\DivisionMapping.cs" />
+    <Compile Include="Data\Mappings\OccupiedPositionMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -197,6 +201,7 @@
     <Folder Include="SharedLogic\" />
     <Folder Include="js\" />
     <Folder Include="Patterns\" />
+    <Folder Include="Data\Mappings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

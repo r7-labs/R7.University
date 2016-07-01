@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramInfo.cs
+//  EduProgramProfileInfo.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,38 +21,34 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Models;
-using R7.University.ModelExtensions;
+using R7.University.ViewModels;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
-    [TableName ("University_EduPrograms")]
-    [PrimaryKey ("EduProgramID", AutoIncrement = true)]
-    public class EduProgramInfo: IEduProgram
+    [TableName ("University_EduProgramProfiles")]
+    [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
+    public class EduProgramProfileInfo: IEduProgramProfile
     {
-        public EduProgramInfo ()
-        {
-            Documents = new List<IDocument> ();
-        }
+        #region IEduProgramProfile implementation
 
-        #region IEduProgram implementation
+        public int EduProgramProfileID { get; set; }
 
         public int EduProgramID { get; set; }
 
-        public int EduLevelID { get; set; }
+        public int EduLevelId { get; set; }
 
         public int? DivisionId { get; set; }
 
-        public string Code { get; set; }
+        public string ProfileCode { get; set; }
 
-        public string Title { get; set; }
+        public string ProfileTitle { get; set; }
 
-        public string Generation { get; set; }
+        public string Languages { get; set; }
 
-        public string HomePage { get; set; }
+        public DateTime? AccreditedToDate { get; set; }
+
+        public DateTime? CommunityAccreditedToDate { get; set; }
 
         public DateTime? StartDate { get; set; }
 
@@ -67,41 +63,41 @@ namespace R7.University.Data
         public DateTime CreatedOnDate { get; set; }
 
         [IgnoreColumn]
+        public IEduProgram EduProgram { get; set; }
+
+        [IgnoreColumn]
         public IEduLevel EduLevel { get; set; }
 
         [IgnoreColumn]
         public IDivision Division { get; set; }
 
-        [IgnoreColumn]
-        public IList<IDocument> Documents { get; set; }
+        [IgnoreColumn] 
+        public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
 
-        [IgnoreColumn]
-        public IList<IEduProgramProfile> EduProgramProfiles { get; set; }
+        [IgnoreColumn] 
+        public IList<IDocument> Documents { get; set; }
 
         #endregion
 
-        // TODO: Move to viewmodel
         [IgnoreColumn]
-        public string EduProgramString
-        {
-            get { return TextUtils.FormatList (" ", Code, Title); }
-        }
-
-        [IgnoreColumn]
-        public bool IsPublished
+        public string EduProgramProfileString
         {
             get {
-                var now = DateTime.Now;
-                return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
-            }
-        }
+                if (EduProgram != null) {
+                    return FormatHelper.FormatEduProgramProfileTitle (
+                        EduProgram.Code,
+                        EduProgram.Title,
+                        ProfileCode,
+                        ProfileTitle); 
+                }
 
-        [IgnoreColumn]
-        public IList<IDocument> EduStandardDocuments
-        {
-            get {
-                return Documents.Where (d => d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduStandard).ToList ();
+                return FormatHelper.FormatEduProgramProfileTitle (
+                    string.Empty,
+                    string.Empty,
+                    ProfileCode,
+                    ProfileTitle);
             }
         }
     }
 }
+

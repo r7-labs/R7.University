@@ -1,5 +1,5 @@
 ﻿//
-//  DbContextTests.cs
+//  PositionMapping.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,22 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Data;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using R7.University.Models;
-using Xunit;
 
-namespace R7.University.Tests.Data
+namespace R7.University.Data.Mappings
 {
-    public class DbContextTests
+    public class PositionMapping: EntityTypeConfiguration<PositionInfo>
     {
-        [Fact]
-        public void CreateDbContextTest ()
+        public PositionMapping ()
         {
-            var dbContextFactory = new TestDbContextFactory ();
-            using (var db = dbContextFactory.Create ()) {
-                db.Set<EmployeeInfo> ().Add (new EmployeeInfo ());
-                db.SaveChanges ();
-            }
+            HasKey (m => m.PositionID);
+            Property (m => m.PositionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.Title).IsRequired ().HasMaxLength (100);
+            Property (m => m.ShortTitle).HasMaxLength (64);
+            Property (m => m.Weight).IsRequired ();
+            Property (m => m.IsTeacher).IsRequired ();
         }
     }
 }
+

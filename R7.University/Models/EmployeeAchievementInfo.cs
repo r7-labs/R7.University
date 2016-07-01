@@ -21,9 +21,8 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.University.Models;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
     // More attributes for class:
     // Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]

@@ -25,6 +25,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
 using R7.University.Data;
 using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.Employee.Components
 {

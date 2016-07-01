@@ -1,10 +1,10 @@
 ﻿//
-//  EmployeeEqualityComparer.cs
+//  PositionInfo.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014 Roman M. Yagodin
+//  Copyright (c) 2015-2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -20,25 +20,19 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
-    public class EmployeeEqualityComparer : IEqualityComparer <EmployeeInfo>
-    {
-        #region IEqualityComparer implementation
+	public class PositionInfo: IPosition
+	{
+        public int PositionID { get; set; }
 
-        public bool Equals (EmployeeInfo x, EmployeeInfo y)
-        {
-            return x.EmployeeID == y.EmployeeID;
-        }
+        public string Title { get; set; }
 
-        public int GetHashCode (EmployeeInfo obj)
-        {
-            return obj.EmployeeID;
-        }
+        public string ShortTitle  { get; set; }
 
-        #endregion
-    }
+		public int Weight { get; set; }
+
+		public bool IsTeacher { get; set; }
+	}
 }
-

@@ -24,6 +24,8 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using DotNetNuke.Common.Utilities;
+using R7.University.Data.Mappings;
+using R7.University.Models;
 
 namespace R7.University.Data
 {

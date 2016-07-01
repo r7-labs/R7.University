@@ -1,10 +1,10 @@
 ﻿//
-//  AchievementInfo.cs
+//  EduLevelInfo.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,33 +19,29 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.University.Models;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
-    [TableName ("University_Achievements")]
-    [PrimaryKey ("AchievementID", AutoIncrement = true)]
-    public class AchievementInfo: IAchievement
+    [TableName ("University_EduLevels")]
+    [PrimaryKey ("EduLevelID", AutoIncrement = true)]
+    [Cacheable ("//r7_University/Entities/EduLevels")]
+    public class EduLevelInfo: IEduLevel
     {
-        #region IAchievement implementation
+        #region IEduLevel implementation
 
-        public int AchievementID { get; set; }
+        public int EduLevelID { get; set; }
 
         public string Title { get; set; }
 
-        public string ShortTitle  { get; set; }
+        public string ShortTitle { get; set; }
 
-        [IgnoreColumn]
-        public AchievementType AchievementType
-        {
-            get { return (AchievementType) AchievementTypeString [0]; }
-            set { AchievementTypeString = ((char) value).ToString (); }
-        }
+        public int SortIndex { get; set; }
+
+        public int? ParentEduLevelId { get; set; }
 
         #endregion
-
-        [ColumnName ("AchievementType")]
-        public string AchievementTypeString { get; set; }
     }
 }
+

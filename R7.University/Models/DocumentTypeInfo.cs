@@ -1,5 +1,5 @@
 ﻿//
-//  EmployeeDisciplineInfo.cs
+//  DocumentTypeInfo.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,36 +21,25 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.University.Models;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
-    [TableName ("University_EmployeeDisciplines")]
-    [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
-    [Serializable]
-    public class EmployeeDisciplineInfo: IEmployeeDiscipline
+    [TableName ("University_DocumentTypes")]
+    [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
+    [Cacheable ("//r7_University/Entities/DocumentTypes")]
+    public class DocumentTypeInfo: IDocumentType
     {
-        #region IEmployeeDiscipline implementation
+        #region IDocumentType implementation
 
-        public long EmployeeDisciplineID { get; set; }
+        public int DocumentTypeID { get; set; }
 
-        public int EmployeeID { get; set; }
+        public string Type { get; set; }
 
-        public int EduProgramProfileID { get; set; }
+        public string Description { get; set; }
 
-        public string Disciplines { get; set; }
+        public bool IsSystem { get; set; }
 
         #endregion
-
-        public override string ToString ()
-        {
-            return string.Format (
-                "[EmployeeDisciplineInfo: EmployeeDisciplineID={0}, EmployeeID={1}, EduProgramProfileID={2}, Disciplines={3}]",
-                EmployeeDisciplineID,
-                EmployeeID,
-                EduProgramProfileID,
-                Disciplines);
-        }
     }
 }
 

@@ -1,5 +1,5 @@
 ﻿//
-//  PositionInfo.cs
+//  EmployeeDisciplineInfoEx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,36 +20,35 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Models;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
+using DotNetNuke.ComponentModel.DataAnnotations;
+using R7.DotNetNuke.Extensions.Utilities;
 
-namespace R7.University
+namespace R7.University.Models
 {
-	public class PositionInfo: IPosition
-	{
-        public int PositionID { get; set; }
+    [TableName ("vw_University_EmployeeDisciplines")]
+    [Serializable]
+    public class EmployeeDisciplineInfoEx: EmployeeDisciplineInfo
+    {
+        #region External properties
+
+        public string Code { get; set; }
 
         public string Title { get; set; }
 
-        public string ShortTitle  { get; set; }
+        public string ProfileCode { get; set; }
 
-		public int Weight { get; set; }
+        public string ProfileTitle { get; set; }
 
-		public bool IsTeacher { get; set; }
-	}
+        #endregion
 
-    public class PositionMapping: EntityTypeConfiguration<PositionInfo>
-    {
-        public PositionMapping ()
+        [IgnoreColumn]
+        public string EduProfileString
         {
-            HasKey (m => m.PositionID);
-            Property (m => m.PositionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
-            Property (m => m.Title).IsRequired ().HasMaxLength (100);
-            Property (m => m.ShortTitle).HasMaxLength (64);
-            Property (m => m.Weight).IsRequired ();
-            Property (m => m.IsTeacher).IsRequired ();
+            get {
+                var profileString = TextUtils.FormatList (" ", ProfileCode, ProfileTitle);
+                return TextUtils.FormatList (" ", Code, Title) +
+                (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
+            }
         }
     }
 }
-

@@ -21,11 +21,8 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.University.Models;
-using System.Data.Entity.ModelConfiguration;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
     // TODO: Add Unique constraint to OccupiedPositions table FK's
     [TableName ("University_OccupiedPositions")]
@@ -57,25 +54,4 @@ namespace R7.University.Data
 
         #endregion
     }
-
-    public class OccupiedPositionMapping: EntityTypeConfiguration<OccupiedPositionInfo>
-    {
-        public OccupiedPositionMapping ()
-        {
-            HasKey (m => m.OccupiedPositionID);
-            Property (m => m.OccupiedPositionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
-
-            Property (m => m.PositionID).IsRequired ();
-            Property (m => m.DivisionID).IsRequired ();
-            Property (m => m.EmployeeID).IsRequired ();
-
-            HasRequired<PositionInfo> (m => m.Position).WithMany ().HasForeignKey (m => m.PositionID).WillCascadeOnDelete (true);
-            HasRequired<DivisionInfo> (m => m.Division).WithMany ().HasForeignKey (m => m.DivisionID).WillCascadeOnDelete (true);
-            HasRequired<EmployeeInfo> (m => m.Employee).WithMany ().HasForeignKey (m => m.EmployeeID).WillCascadeOnDelete (true);
-
-            Property (m => m.IsPrime);
-            Property (m => m.TitleSuffix);
-        }
-    }
 }
-

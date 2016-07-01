@@ -24,12 +24,13 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Data;
 using R7.University.EduProgramDirectory.Components;
+using R7.University.Models;
 using R7.University.ViewModels;
-using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.EduProgramDirectory
 {

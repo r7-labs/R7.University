@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Data;
 using R7.DotNetNuke.Extensions.Data;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Models;
 
 namespace R7.University.Data
 {

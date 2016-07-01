@@ -23,8 +23,8 @@ using System;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Data;
 using R7.University.ViewModels;
+using R7.University.Models;
 
 namespace R7.University.Employee.SharedLogic
 {

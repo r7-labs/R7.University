@@ -34,6 +34,7 @@ using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
 using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.EduProgram
 {
