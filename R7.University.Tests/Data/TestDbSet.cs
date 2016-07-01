@@ -20,24 +20,83 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Data.Entity;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbSet<TEntity>: DbSet<TEntity> where TEntity: class
+    public class TestDbSet<TEntity>: IDbSet<TEntity> where TEntity: class
     {
-        protected HashSet<TEntity> entities;
-        
-        public TestDbSet () : base ()
+        private HashSet<TEntity> entities;
+
+        public TestDbSet ()
         {
             entities = new HashSet<TEntity> ();
         }
 
-        public override TEntity Add (TEntity entity)
+        public TEntity Add (TEntity entity)
         {
             entities.Add (entity);
             return entity;
+        }
+
+        public TEntity Find (params object[] keyValues)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public TEntity Remove (TEntity entity)
+        {
+            entities.Remove (entity);
+            return entity;
+        }
+
+        public TEntity Attach (TEntity entity)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public TEntity Create ()
+        {
+            throw new NotImplementedException ();
+        }
+
+        public TDerivedEntity Create<TDerivedEntity> () where TDerivedEntity : class, TEntity
+        {
+            throw new NotImplementedException ();
+        }
+
+        public System.Collections.ObjectModel.ObservableCollection<TEntity> Local
+        {
+            get { throw new NotImplementedException (); }
+        }
+
+        public IEnumerator<TEntity> GetEnumerator ()
+        {
+            return entities.GetEnumerator ();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator ()
+        {
+            return entities.GetEnumerator ();
+        }
+
+        public Expression Expression
+        {
+            get { throw new NotImplementedException (); }
+        }
+
+        public Type ElementType
+        {
+            get { return typeof (TEntity); }
+        }
+
+        public IQueryProvider Provider
+        {
+            get { throw new NotImplementedException (); }
         }
     }
 }
