@@ -21,12 +21,15 @@
 
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace R7.University.Data
 {
     public interface IDataRepository: IDisposable
     {
         IQueryable<TEntity> Query<TEntity> () where TEntity: class;
+
+        IQueryable<TEntity> QueryOne<TEntity> (Expression<Func<TEntity,bool>> keySelector) where TEntity: class;
 
         TEntity Get<TEntity> (object key) where TEntity: class;
 

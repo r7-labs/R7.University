@@ -21,6 +21,7 @@
 
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace R7.University.Data
 {
@@ -64,15 +65,14 @@ namespace R7.University.Data
             return Context.Set<TEntity> ();
         }
 
-        /*
-        public virtual IQueryable<TEntity> Query<TEntity> (Expression<Func<TEntity,object>> keySelector, object key) where TEntity: class
+        public virtual IQueryable<TEntity> QueryOne<TEntity> (Expression<Func<TEntity,bool>> keySelector) where TEntity: class
         {
-            if (keySelector == null || key == null) {
-                throw new ArgumentException ("KeySelector and key values cannot be null.");
+            if (keySelector == null) {
+                throw new ArgumentException ("Key selector cannot be null.");
             }
 
-            return Context.Set<TEntity> ().Where (e => keySelector (e) == key);
-        }*/
+            return Context.Set<TEntity> ().Where (keySelector).Take (1);
+        }
 
         public virtual TEntity Get<TEntity> (object key) where TEntity: class
         {
