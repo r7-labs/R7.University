@@ -46,9 +46,14 @@ namespace R7.University.Data
 
         #region Custom methods
 
+        public IQueryable<EduLevelInfo> QueryEduLevels ()
+        {
+            return Query<EduLevelInfo> ().OrderBy (el => el.EduLevelID);
+        }
+
         public IQueryable<EduLevelInfo> QueryEduProgramLevels ()
         {
-            return Query<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
+            return Query<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null).OrderBy (el => el.EduLevelID);
         }
 
         #endregion
