@@ -51,12 +51,7 @@ namespace R7.University.Data
 
         #endregion
 
-        public IEnumerable<DocumentInfo> GetDocuments_ForItemType (string itemType)
-        {
-            return DataProvider.GetObjects<DocumentInfo> (string.Format ("WHERE ItemID LIKE N'{0}=%'", itemType));
-        }
-
-        public IEnumerable<DocumentInfo> GetDocuments (string itemId)
+        protected IEnumerable<DocumentInfo> GetDocuments (string itemId)
         {
             return DataProvider.GetObjects<DocumentInfo> ("WHERE ItemID = @0", itemId);
         }

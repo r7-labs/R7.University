@@ -126,7 +126,7 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
-        public IList<IDocument> Documents
+        public IList<DocumentInfo> Documents
         {
             get { return Model.Documents; }
             set { throw new NotImplementedException (); }

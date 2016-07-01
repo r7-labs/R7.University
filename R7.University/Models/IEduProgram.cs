@@ -49,7 +49,7 @@ namespace R7.University.Models
 
         IDivision Division { get; set; }
 
-        IList<IDocument> Documents { get; set; }
+        IList<DocumentInfo> Documents { get; set; }
 
         IList<IEduProgramProfile> EduProgramProfiles { get; set; }
     }

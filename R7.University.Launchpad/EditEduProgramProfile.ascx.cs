@@ -168,12 +168,10 @@ namespace R7.University.Launchpad
 
             auditControl.Bind (item);
 
-            var documents = DocumentRepository.Instance.GetDocuments ("EduProgramProfileID=" + item.EduProgramProfileID)
-                .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
+            var documents = Repository.QueryDocuments_ByItem ("EduProgramProfileID=" + item.EduProgramProfileID)
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
-                .Cast<DocumentInfo> ()
                 .ToList ();
 
             formEditDocuments.SetData (documents, item.EduProgramProfileID);

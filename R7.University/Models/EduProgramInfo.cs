@@ -34,7 +34,7 @@ namespace R7.University.Models
     {
         public EduProgramInfo ()
         {
-            Documents = new List<IDocument> ();
+            Documents = new List<DocumentInfo> ();
         }
 
         #region IEduProgram implementation
@@ -72,7 +72,7 @@ namespace R7.University.Models
         public IDivision Division { get; set; }
 
         [IgnoreColumn]
-        public IList<IDocument> Documents { get; set; }
+        public IList<DocumentInfo> Documents { get; set; }
 
         [IgnoreColumn]
         public IList<IEduProgramProfile> EduProgramProfiles { get; set; }
@@ -96,7 +96,7 @@ namespace R7.University.Models
         }
 
         [IgnoreColumn]
-        public IList<IDocument> EduStandardDocuments
+        public IList<DocumentInfo> EduStandardDocuments
         {
             get {
                 return Documents.Where (d => d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduStandard).ToList ();

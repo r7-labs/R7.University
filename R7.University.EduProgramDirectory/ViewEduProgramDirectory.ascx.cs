@@ -111,8 +111,7 @@ namespace R7.University.EduProgramDirectory
 
                     var viewModelIndexer = new ViewModelIndexer (1);
                     var eduPrograms = baseEduPrograms
-                        .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID"))
-                        .WithDocumentTypes (UniversityRepository.Instance.GetDocumentTypes ())
+                        .WithDocuments (Repository.QueryDocuments_ByItemType ("EduProgramID"))
                         .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
                         .OrderBy (ep => ep.EduLevel.SortIndex)
                         .ThenBy (ep => ep.Code)

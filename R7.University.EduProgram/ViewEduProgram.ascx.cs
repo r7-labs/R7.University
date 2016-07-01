@@ -90,8 +90,7 @@ namespace R7.University.EduProgram
                     eduProgram.Division = Repository.Get<DivisionInfo> (eduProgram.DivisionId.Value);
                 }
                 
-                eduProgram.Documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + eduProgram.EduProgramID)
-                    .WithDocumentType (UniversityRepository.Instance.GetDocumentTypes ())
+                eduProgram.Documents = Repository.QueryDocuments_ByItem ("EduProgramID=" + eduProgram.EduProgramID)
                     .ToList ();
 
                 var eduProgramProfiles = EduProgramProfileRepository.Instance

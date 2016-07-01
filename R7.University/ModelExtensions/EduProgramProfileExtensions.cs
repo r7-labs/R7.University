@@ -136,16 +136,6 @@ namespace R7.University.ModelExtensions
             );
         }
 
-        public static IEnumerable<IEduProgramProfile> WithDocumentType (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IDocumentType> documentTypes)
-        {
-            foreach (var eduProgramProfile in eduProgramProfiles) {
-                eduProgramProfile.Documents = eduProgramProfile.Documents.WithDocumentType (documentTypes).ToList ();
-            }
-
-            return eduProgramProfiles;
-        }
-
         public static IEnumerable<IEduProgramProfile> WithDivisions (
             this IEnumerable<IEduProgramProfile> eduProgramProfiles,  IEnumerable<IDivision> divisions)
         {

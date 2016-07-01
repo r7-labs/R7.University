@@ -142,8 +142,7 @@ namespace R7.University.EduProgramProfileDirectory
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
                 EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
                     .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
-                    .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramProfileID"))
-                    .WithDocumentType (UniversityRepository.Instance.GetDocumentTypes ())
+                    .WithDocuments (Repository.QueryDocuments_ByItemType ("EduProgramProfileID"))
                     .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                     .ThenBy (epp => epp.EduProgram.Code)
                     .ThenBy (epp => epp.EduProgram.Title)
@@ -151,6 +150,7 @@ namespace R7.University.EduProgramProfileDirectory
                     .ThenBy (epp => epp.ProfileTitle)
                     .ThenBy (epp => epp.EduLevel.SortIndex)
                     .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))
+                    .ToList ()
             );
 
             return viewModel;

@@ -52,19 +52,10 @@ namespace R7.University.ModelExtensions
         {
             return eduPrograms.GroupJoin (documents.DefaultIfEmpty (), ep => "EduProgramID=" + ep.EduProgramID, d => d.ItemID,
                 (ep, docs) => {
-                    ep.Documents = docs.ToList ();
+                    ep.Documents = docs.Cast<DocumentInfo> ().ToList ();
                     return ep;
                 }
             );
-        }
-
-        public static IEnumerable<IEduProgram> WithDocumentTypes (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocumentType> documentTypes)
-        {
-            foreach (var eduProgram in eduPrograms) {
-                eduProgram.Documents = eduProgram.Documents.WithDocumentType (documentTypes).ToList ();
-            }
-
-            return eduPrograms;
         }
 
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgram eduProgram, SystemDocumentType documentType)

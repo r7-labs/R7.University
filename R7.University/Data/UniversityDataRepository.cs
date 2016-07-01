@@ -23,6 +23,9 @@ using System;
 using System.Linq;
 using R7.University.Models;
 
+// required by IQueryable.Include ()
+using System.Data.Entity;
+
 namespace R7.University.Data
 {
     public class UniversityDataRepository: DataRepositoryBase
@@ -64,6 +67,21 @@ namespace R7.University.Data
         public IQueryable<DivisionInfo> QueryRootDivisions ()
         {
             return Query<DivisionInfo> ().Where (d => d.ParentDivisionID == null);
+        }
+
+        public IQueryable<DocumentTypeInfo> QueryDocumentTypes ()
+        {
+            return Query<DocumentTypeInfo> ();
+        }
+
+        public IQueryable<DocumentInfo> QueryDocuments_ByItemType (string itemType)
+        {
+            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.ItemID.StartsWith (itemType + "="));
+        }
+
+        public IQueryable<DocumentInfo> QueryDocuments_ByItem (string itemId)
+        {
+            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.ItemID == itemId);
         }
 
         #endregion
