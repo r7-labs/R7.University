@@ -68,14 +68,14 @@ namespace R7.University.Launchpad
             Grid.PageSize = pageSize;
         }
 
-        public virtual void DataBind (PortalModuleBase module, UniversityDbRepository repository, string search = null)
+        public virtual void DataBind (PortalModuleBase module, UniversityDataRepository repository, string search = null)
         {
             Grid.DataSource = GetDataTable (module, repository, search);
             module.Session [Grid.ID] = Grid.DataSource;
             Grid.DataBind ();
         }
 
-        public abstract DataTable GetDataTable (PortalModuleBase module, UniversityDbRepository repository, string search);
+        public abstract DataTable GetDataTable (PortalModuleBase module, UniversityDataRepository repository, string search);
 
         public virtual string GetAddUrl (PortalModuleBase module)
         {

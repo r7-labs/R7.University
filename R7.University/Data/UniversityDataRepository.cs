@@ -1,5 +1,5 @@
 ﻿//
-//  UniversityDbRepository.cs
+//  UniversityDataRepository.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -31,7 +31,7 @@ namespace R7.University.Data
     /// <summary>
     /// Implements generic repository pattern
     /// </summary>
-    public class UniversityDbRepository : IDataRepository
+    public class UniversityDataRepository : IDataRepository
     {
         private bool _disposed = false;
 
@@ -48,11 +48,11 @@ namespace R7.University.Data
             }
         }
 
-        public UniversityDbRepository ()
+        public UniversityDataRepository ()
         {
         }
 
-        public UniversityDbRepository (IUniversityDbContext dbContext)
+        public UniversityDataRepository (IUniversityDbContext dbContext)
         {
             _context = dbContext;
         }

@@ -37,10 +37,10 @@ namespace R7.University.Launchpad
 
         #region Repository handling
 
-        private UniversityDbRepository repository;
-        protected UniversityDbRepository Repository
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
         {
-            get { return repository ?? (repository = new UniversityDbRepository ()); }
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
         }
 
         public override void Dispose ()
