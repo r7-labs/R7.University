@@ -38,6 +38,17 @@ namespace R7.University.Tests.Data
             // repository call after dispose should throw exception
             Assert.Throws (typeof (InvalidOperationException), () => repository.Query<TestEntity> ().ToList ());
         }
+
+        [Fact]
+        public void QueryOneTest ()
+        {
+            using (var repository = new TestDataRepository ()) {
+                repository.Add<TestEntity> (new TestEntity { Id = 1, Title = "Hello, world!" });
+                repository.Add<TestEntity> (new TestEntity { Id = 2, Title = "Hello again!" });
+
+                Assert.Equal (2, repository.QueryOne<TestEntity> (e => e.Id == 2).Single ().Id);
+            }
+        }
     }
 }
 
