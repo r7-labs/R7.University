@@ -40,8 +40,8 @@ namespace R7.University.Launchpad
         {
             // REVIEW: Cannot set comparison options
             var positions = (search != null)
-                ? repository.Where<PositionInfo> (p => p.Title.Contains (search) || p.ShortTitle.Contains (search)).ToList ()
-                : repository.GetAll<PositionInfo> ().ToList ();
+                ? repository.Query<PositionInfo> ().Where (p => p.Title.Contains (search) || p.ShortTitle.Contains (search)).ToList ()
+                : repository.Query<PositionInfo> ().ToList ();
             
             return DataTableConstructor.FromIEnumerable (positions);
         }

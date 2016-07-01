@@ -150,7 +150,7 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            var positions = Repository.GetAll<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = Repository.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
             positions.Insert (0, new PositionInfo {
                     Title = LocalizeString ("NotSelected.Text"),

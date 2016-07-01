@@ -60,20 +60,20 @@ namespace R7.University.Data
 
         #region Repository methods
 
-        public virtual TEntity SingleOrDefault<TEntity> (Expression<Func<TEntity, bool>> predicate) where TEntity: class
+        public virtual IQueryable<TEntity> Query<TEntity> () where TEntity: class
         {
-            if (predicate == null) {
-                throw new ArgumentException ("Predicate value cannot be null.");
+            return Context.Set<TEntity> ();
+        }
+
+        /*
+        public virtual IQueryable<TEntity> Query<TEntity> (Expression<Func<TEntity,object>> keySelector, object key) where TEntity: class
+        {
+            if (keySelector == null || key == null) {
+                throw new ArgumentException ("KeySelector and key values cannot be null.");
             }
 
-            try {
-                return Context.Set<TEntity> ().SingleOrDefault (predicate);
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
-        }
+            return Context.Set<TEntity> ().Where (e => keySelector (e) == key);
+        }*/
 
         public virtual TEntity Get<TEntity> (object key) where TEntity: class
         {
@@ -81,122 +81,56 @@ namespace R7.University.Data
                 throw new ArgumentException ("Key value cannot be null.");
             }
 
-            try {
-                return Context.Set<TEntity> ().Find (key);
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
-        }
-
-        public virtual IQueryable<TEntity> Where<TEntity> (Expression<Func<TEntity, bool>> predicate) where TEntity: class
-        {
-            if (predicate == null) {
-                throw new ArgumentException ("Predicate value cannot be null.");
-            }
-        
-            try {
-                return Context.Set<TEntity> ().Where (predicate);
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
-        }
-
-        public virtual IQueryable<TEntity> GetAll<TEntity> () where TEntity: class
-        {
-            try {
-                return Context.Set<TEntity> ();
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
-        }
-
-        public virtual bool SaveChanges ()
-        {
-            try {
-                return Context.SaveChanges () > 0;
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
+            return Context.Set<TEntity> ().Find (key);
         }
 
         public virtual void Add<TEntity> (TEntity entity) where TEntity: class
         {
-            try {
-                Context.Set<TEntity> ().Add (entity);
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
+            Context.Set<TEntity> ().Add (entity);
         }
 
         public virtual void Update<TEntity> (TEntity entity) where TEntity: class
         {
-            try {
-                Context.WasModified (entity);
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
+            Context.WasModified (entity);
         }
 
         public virtual void AddOrUpdate<TEntity> (TEntity entity) where TEntity: class
         {
-            try {
-                if (!Exists (entity)) {
-                    // add
-                    Context.Set<TEntity> ().Add (entity);
-                } 
-                else {
-                    // update
-                    Context.WasModified (entity);
-                }
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
+            if (!Exists (entity)) {
+                // add
+                Context.Set<TEntity> ().Add (entity);
+            } 
+            else {
+                // update
+                Context.WasModified (entity);
             }
         }
 
         // TODO: Test this
         public virtual void UpdateExternal<TEntity> (TEntity entity) where TEntity: class
         {
-            try {
-                Context.Set<TEntity> ().Attach (entity);
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
+            Context.Set<TEntity> ().Attach (entity);
         }
 
         public virtual void Remove<TEntity> (TEntity entity) where TEntity: class
         {
-            try {
-                Context.Set<TEntity> ().Remove (entity);
-            }
-            catch (Exception ex) {
-                // TODO: Log exception
-                throw;
-            }
+            Context.Set<TEntity> ().Remove (entity);
         }
 
-        #endregion
-
-        #region Private methods
-
-        private bool Exists<TEntity> (TEntity entity) where TEntity : class
+        public bool Exists<TEntity> (TEntity entity) where TEntity : class
         {
             return Context.Set<TEntity> ().Local.Any (e => e == entity);
+        }
+
+        public virtual bool SaveChanges (bool dispose = false)
+        {
+            var result = Context.SaveChanges () > 0;
+
+            if (dispose) {
+                Dispose ();
+            }
+
+            return result;
         }
 
         #endregion

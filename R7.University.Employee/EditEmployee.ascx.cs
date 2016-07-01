@@ -186,7 +186,7 @@ namespace R7.University.Employee
 
             // if results are null or empty, lists were empty too
 
-            var positions = Repository.GetAll<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = Repository.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
             var divisions = new List<DivisionInfo> (DivisionRepository.Instance.GetDivisions ()
                 .OrderBy (d => d.Title));
