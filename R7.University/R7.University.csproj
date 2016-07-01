@@ -176,6 +176,7 @@
     <Compile Include="Data\DivisionInfo.cs" />
     <Compile Include="Data\UniversityDbContextFactory.cs" />
     <Compile Include="Data\UniversityDbRepository.cs" />
+    <Compile Include="Data\IDataRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -21,7 +21,6 @@
 
 using System;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace R7.University.Data
 {
@@ -32,7 +31,7 @@ namespace R7.University.Data
     /// <summary>
     /// Implements generic repository pattern
     /// </summary>
-    public class UniversityDbRepository : IDisposable
+    public class UniversityDbRepository : IDataRepository
     {
         private bool _disposed = false;
 
@@ -58,7 +57,7 @@ namespace R7.University.Data
             _context = dbContext;
         }
 
-        #region Repository methods
+        #region IDataRepository implementation
 
         public virtual IQueryable<TEntity> Query<TEntity> () where TEntity: class
         {
