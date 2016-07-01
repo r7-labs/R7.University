@@ -20,130 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 
 namespace R7.University.Data
 {
-    // TODO: Write errors to DNN eventlog
-    // REVIEW: Extract IDbRepository interface?
-    // REVIEW: Make abstract?
-
-    /// <summary>
-    /// Implements generic repository pattern
-    /// </summary>
-    public class UniversityDataRepository : IDataRepository
+    public class UniversityDataRepository: DataRepositoryBase
     {
-        private bool _disposed = false;
-
-        // REVIEW: Use factory for repository, not db context?
-        private IDataContext _context;
-        protected IDataContext Context
+        public UniversityDataRepository (IDataContext dataContext): base (dataContext)
         {
-            get {
-                if (!_disposed) {
-                    return _context ?? (_context = UniversityDataContextFactory.Instance.Create ());
-                }
-
-                throw new InvalidOperationException ("Cannot use repository after it was disposed.");
-            }
         }
 
         public UniversityDataRepository ()
         {
         }
 
-        public UniversityDataRepository (IDataContext dbContext)
+        public override IDataContext CreateDataContext ()
         {
-            _context = dbContext;
+            return UniversityDataContextFactory.Instance.Create ();
         }
-
-        #region IDataRepository implementation
-
-        public virtual IQueryable<TEntity> Query<TEntity> () where TEntity: class
-        {
-            return Context.Set<TEntity> ();
-        }
-
-        /*
-        public virtual IQueryable<TEntity> Query<TEntity> (Expression<Func<TEntity,object>> keySelector, object key) where TEntity: class
-        {
-            if (keySelector == null || key == null) {
-                throw new ArgumentException ("KeySelector and key values cannot be null.");
-            }
-
-            return Context.Set<TEntity> ().Where (e => keySelector (e) == key);
-        }*/
-
-        public virtual TEntity Get<TEntity> (object key) where TEntity: class
-        {
-            if (key == null) {
-                throw new ArgumentException ("Key value cannot be null.");
-            }
-
-            return Context.Set<TEntity> ().Find (key);
-        }
-
-        public virtual void Add<TEntity> (TEntity entity) where TEntity: class
-        {
-            Context.Set<TEntity> ().Add (entity);
-        }
-
-        public virtual void Update<TEntity> (TEntity entity) where TEntity: class
-        {
-            Context.WasModified (entity);
-        }
-
-        public virtual void AddOrUpdate<TEntity> (TEntity entity) where TEntity: class
-        {
-            if (!Exists (entity)) {
-                // add
-                Context.Set<TEntity> ().Add (entity);
-            } 
-            else {
-                // update
-                Context.WasModified (entity);
-            }
-        }
-
-        // TODO: Test this
-        public virtual void UpdateExternal<TEntity> (TEntity entity) where TEntity: class
-        {
-            Context.Set<TEntity> ().Attach (entity);
-        }
-
-        public virtual void Remove<TEntity> (TEntity entity) where TEntity: class
-        {
-            Context.Set<TEntity> ().Remove (entity);
-        }
-
-        public bool Exists<TEntity> (TEntity entity) where TEntity : class
-        {
-            return Context.Set<TEntity> ().Local.Any (e => e == entity);
-        }
-
-        public virtual bool SaveChanges (bool dispose = false)
-        {
-            var result = Context.SaveChanges () > 0;
-
-            if (dispose) {
-                Dispose ();
-            }
-
-            return result;
-        }
-
-        #endregion
-
-        #region IDisposable implementation
-
-        public void Dispose ()
-        {
-            _disposed = true;
-            if (_context != null) {
-                _context.Dispose ();
-            }
-        }
-
-        #endregion
     }
 }
+
