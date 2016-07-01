@@ -1,5 +1,5 @@
 ﻿//
-//  IUniversityDbContext.cs
+//  IDataContext.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -24,7 +24,7 @@ using System.Data.Entity;
 
 namespace R7.University.Data
 {
-    public interface IUniversityDbContext: IDisposable
+    public interface IDataContext: IDisposable
     {
         IDbSet<TEntity> Set<TEntity> () where TEntity: class;
 

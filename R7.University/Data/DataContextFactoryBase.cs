@@ -1,5 +1,5 @@
 ﻿//
-//  TestDbContextFactory.cs
+//  DataContextFactoryBase.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,15 +20,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Data;
 
-namespace R7.University.Tests.Data
+namespace R7.University.Data
 {
-    public class TestDbContextFactory: DataContextFactoryBase
+    public abstract class DataContextFactoryBase
     {
-        public override IDataContext Create ()
-        {
-            return new TestDbContext ();
-        }
+        public abstract IDataContext Create ();
     }
 }
+

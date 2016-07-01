@@ -25,7 +25,7 @@ using R7.University.Data;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbContext: IUniversityDbContext
+    public class TestDbContext: IDataContext
     {
         #region IUniversityDbContext implementation
 

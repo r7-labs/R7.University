@@ -1,5 +1,5 @@
 ﻿//
-//  UniversityDbContext.cs
+//  UniversityDataContext.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -27,15 +27,15 @@ using DotNetNuke.Common.Utilities;
 
 namespace R7.University.Data
 {
-    public class UniversityDbContext : DbContext, IUniversityDbContext
+    public class UniversityDataContext : DbContext, IDataContext
     {
-        static UniversityDbContext ()
+        static UniversityDataContext ()
         {
             // do not use migrations
-            Database.SetInitializer<UniversityDbContext> (null);
+            Database.SetInitializer<UniversityDataContext> (null);
         }
 
-        public UniversityDbContext (): base ("name=SiteSqlServer")
+        public UniversityDataContext (): base ("name=SiteSqlServer")
         {
             // don't autodetect entity changes
             Configuration.AutoDetectChangesEnabled = false; 

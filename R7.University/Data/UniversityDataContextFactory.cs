@@ -1,5 +1,5 @@
 ﻿//
-//  UniversityDbContextFactory.cs
+//  UniversityDataContextFactory.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,40 +20,26 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 
 namespace R7.University.Data
 {
-    public abstract class UniversityDbContextFactoryBase
-    {
-        public abstract IUniversityDbContext Create ();
-    }
-
-    public class UniversityDbContextFactory: UniversityDbContextFactoryBase
+    public class UniversityDataContextFactory: DataContextFactoryBase
     {
         #region Singleton implementation
 
-        static readonly Lazy<UniversityDbContextFactory> instance = new Lazy<UniversityDbContextFactory> ();
+        static readonly Lazy<UniversityDataContextFactory> instance = new Lazy<UniversityDataContextFactory> ();
 
-        public static UniversityDbContextFactory Instance
+        public static UniversityDataContextFactory Instance
         {
             get { return instance.Value; }
         }
 
         #endregion
 
-        public override IUniversityDbContext Create ()
+        public override IDataContext Create ()
         {
-            // return IUniversityDbContext implementation
-            return new UniversityDbContext ();
-        }
-
-        public void Example ()
-        {
-            using (var db = UniversityDbContextFactory.Instance.Create ()) {
-                db.Set<EmployeeInfo> ().Where (e => e.EmployeeID == 1);
-                var x = db.SaveChanges () > 0;
-            }
+            // return IDataContext implementation
+            return new UniversityDataContext ();
         }
     }
 }

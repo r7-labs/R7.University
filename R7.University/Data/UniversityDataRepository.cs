@@ -36,12 +36,12 @@ namespace R7.University.Data
         private bool _disposed = false;
 
         // REVIEW: Use factory for repository, not db context?
-        private IUniversityDbContext _context;
-        protected IUniversityDbContext Context
+        private IDataContext _context;
+        protected IDataContext Context
         {
             get {
                 if (!_disposed) {
-                    return _context ?? (_context = UniversityDbContextFactory.Instance.Create ());
+                    return _context ?? (_context = UniversityDataContextFactory.Instance.Create ());
                 }
 
                 throw new InvalidOperationException ("Cannot use repository after it was disposed.");
@@ -52,7 +52,7 @@ namespace R7.University.Data
         {
         }
 
-        public UniversityDataRepository (IUniversityDbContext dbContext)
+        public UniversityDataRepository (IDataContext dbContext)
         {
             _context = dbContext;
         }
