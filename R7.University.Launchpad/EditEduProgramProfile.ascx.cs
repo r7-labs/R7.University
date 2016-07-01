@@ -119,7 +119,7 @@ namespace R7.University.Launchpad
             formEditDocuments.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
 
             // fill divisions dropdown
-            var divisions = DivisionRepository.Instance.GetDivisions ().ToList ();
+            var divisions = Repository.QueryDivisions ().ToList ();
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;

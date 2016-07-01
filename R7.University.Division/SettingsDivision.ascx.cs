@@ -33,6 +33,25 @@ namespace R7.University.Division
 {
     public partial class SettingsDivision : ModuleSettingsBase<DivisionSettings>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         /// <summary>
         /// Handles the loading of the module setting for this control
         /// </summary>
@@ -41,8 +60,7 @@ namespace R7.University.Division
             try {
                 if (!IsPostBack) {
                     // get divisions
-                    var divisions = DivisionRepository.Instance.GetDivisions ()
-                        .OrderBy (d => d.Title).ToList ();
+                    var divisions = Repository.QueryDivisions ().ToList ();
 
                     // insert default item
                     divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

@@ -188,8 +188,7 @@ namespace R7.University.Employee
 
             var positions = Repository.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
-            var divisions = new List<DivisionInfo> (DivisionRepository.Instance.GetDivisions ()
-                .OrderBy (d => d.Title));
+            var divisions = Repository.QueryDivisions ().ToList ();
             
             var commonAchievements = new List<AchievementInfo> (UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ()
                 .OrderBy (a => a.Title));

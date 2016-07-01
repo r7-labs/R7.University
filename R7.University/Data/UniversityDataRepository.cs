@@ -56,6 +56,11 @@ namespace R7.University.Data
             return Query<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null).OrderBy (el => el.EduLevelID);
         }
 
+        public IQueryable<DivisionInfo> QueryDivisions ()
+        {
+            return Query<DivisionInfo> ().OrderBy (d => d.Title);
+        }
+
         #endregion
     }
 }

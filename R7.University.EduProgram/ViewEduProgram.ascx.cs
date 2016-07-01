@@ -87,7 +87,7 @@ namespace R7.University.EduProgram
                 eduProgram.EduLevel = Repository.QueryOne<EduLevelInfo> (el => el.EduLevelID == eduProgram.EduLevelID).Single ();
 
                 if (eduProgram.DivisionId != null) {
-                    eduProgram.Division = DivisionRepository.Instance.GetDivision (eduProgram.DivisionId.Value);
+                    eduProgram.Division = Repository.Get<DivisionInfo> (eduProgram.DivisionId.Value);
                 }
                 
                 eduProgram.Documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + eduProgram.EduProgramID)

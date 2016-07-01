@@ -51,16 +51,6 @@ namespace R7.University.Data
 
         #endregion
 
-        public IEnumerable<DivisionInfo> GetDivisions ()
-        {
-            return DataProvider.GetObjects<DivisionInfo> ();
-        }
-
-        public DivisionInfo GetDivision (int divisionId)
-        {
-            return DataProvider.Get<DivisionInfo> (divisionId);
-        }
-
         public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
         {
             // TODO: Remove @includeSubdivision argument from sp

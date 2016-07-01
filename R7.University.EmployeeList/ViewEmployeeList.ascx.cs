@@ -49,6 +49,25 @@ namespace R7.University.EmployeeList
 {
     public partial class ViewEmployeeList: PortalModuleBase<EmployeeListSettings>, IActionable
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected string EditIconUrl
@@ -84,7 +103,7 @@ namespace R7.University.EmployeeList
                     Settings.IncludeSubdivisions, Settings.SortType)
                     .WithAchievements ()
                     .WithOccupiedPositions (Settings.DivisionID),
-                DivisionRepository.Instance.GetDivision (Settings.DivisionID)
+                    Repository.Get<DivisionInfo> (Settings.DivisionID)
             );
         }
 

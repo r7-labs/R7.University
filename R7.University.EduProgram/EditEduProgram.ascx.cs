@@ -132,8 +132,8 @@ namespace R7.University.EduProgram
             var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();
             formEditDocuments.OnInit (this, documentTypes);
 
-            // fill divisions dropdown
-            var divisions = DivisionRepository.Instance.GetDivisions ().ToList ();
+            // fill divisions treeview
+            var divisions = Repository.QueryDivisions ().ToList ();
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;

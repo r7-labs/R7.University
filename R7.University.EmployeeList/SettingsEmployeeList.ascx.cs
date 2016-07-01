@@ -36,12 +36,31 @@ namespace R7.University.EmployeeList
 {
     public partial class SettingsEmployeeList: ModuleSettingsBase<EmployeeListSettings>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
             // get divisions
-            var divisions = DivisionRepository.Instance.GetDivisions ().OrderBy (d => d.Title).ToList ();
+            var divisions = Repository.QueryDivisions ().ToList ();
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
