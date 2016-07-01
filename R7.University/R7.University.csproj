@@ -177,7 +177,7 @@
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\UniversityDataContext.cs" />
     <Compile Include="Data\UniversityDataContextFactory.cs" />
-    <Compile Include="Data\DataContextFactoryBase.cs" />
+    <Compile Include="Patterns\FactoryBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -195,6 +195,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="SharedLogic\" />
     <Folder Include="js\" />
+    <Folder Include="Patterns\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

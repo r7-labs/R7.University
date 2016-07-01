@@ -20,10 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using R7.University.Patterns;
 
 namespace R7.University.Data
 {
-    public class UniversityDataContextFactory: DataContextFactoryBase
+    public class UniversityDataContextFactory: FactoryBase<IDataContext>
     {
         #region Singleton implementation
 

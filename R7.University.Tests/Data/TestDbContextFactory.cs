@@ -21,10 +21,11 @@
 
 using System;
 using R7.University.Data;
+using R7.University.Patterns;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbContextFactory: DataContextFactoryBase
+    public class TestDbContextFactory: FactoryBase<IDataContext>
     {
         public override IDataContext Create ()
         {

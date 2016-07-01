@@ -1,5 +1,5 @@
 ﻿//
-//  DataContextFactoryBase.cs
+//  FactoryBase.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,11 +21,13 @@
 
 using System;
 
-namespace R7.University.Data
+namespace R7.University.Patterns
 {
-    public abstract class DataContextFactoryBase
+    /// <summary>
+    /// Simple abstract factory
+    /// </summary>
+    public abstract class FactoryBase<T>
     {
-        public abstract IDataContext Create ();
+        public abstract T Create ();
     }
 }
-
