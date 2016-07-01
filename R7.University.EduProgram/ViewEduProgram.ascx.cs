@@ -39,11 +39,31 @@ using R7.University.EduProgram.Components;
 using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.ViewModels;
+using R7.University.Models;
 
 namespace R7.University.EduProgram
 {
     public partial class ViewEduProgram : PortalModuleBase<EduProgramSettings>, IActionable
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Get data
 
         protected EduProgramModuleViewModel GetViewModel ()
@@ -64,8 +84,7 @@ namespace R7.University.EduProgram
                     return new EduProgramModuleViewModel ();
                 }
 
-                eduProgram.EduLevel = UniversityRepository.Instance.GetEduProgramLevels ()
-                    .First (el => el.EduLevelID == eduProgram.EduLevelID);
+                eduProgram.EduLevel = Repository.QueryOne<EduLevelInfo> (el => el.EduLevelID == eduProgram.EduLevelID).Single ();
 
                 if (eduProgram.DivisionId != null) {
                     eduProgram.Division = DivisionRepository.Instance.GetDivision (eduProgram.DivisionId.Value);
@@ -78,7 +97,7 @@ namespace R7.University.EduProgram
                 var eduProgramProfiles = EduProgramProfileRepository.Instance
                     .GetEduProgramProfiles_ByEduProgram (eduProgram.EduProgramID)
                     .WithEduProgram (eduProgram)
-                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ());
+                    .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ());
 
                 eduProgramProfiles = eduProgramProfiles
                     .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance.GetEduProgramProfileForms (eduProgramProfiles))

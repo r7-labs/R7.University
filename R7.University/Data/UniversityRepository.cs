@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using R7.DotNetNuke.Extensions.Data;
 using R7.University.Models;
 
@@ -53,16 +52,6 @@ namespace R7.University.Data
         public IEnumerable<EduFormInfo> GetEduForms ()
         {
             return DataProvider.GetObjects<EduFormInfo> ();
-        }
-
-        public IEnumerable<EduLevelInfo> GetEduLevels ()
-        {
-            return DataProvider.GetObjects<EduLevelInfo> ();
-        }
-
-        public IEnumerable<EduLevelInfo> GetEduProgramLevels ()
-        {
-            return DataProvider.GetObjects<EduLevelInfo> ().Where (el => el.ParentEduLevelId == null);
         }
 
         public IEnumerable<DocumentTypeInfo> GetDocumentTypes ()

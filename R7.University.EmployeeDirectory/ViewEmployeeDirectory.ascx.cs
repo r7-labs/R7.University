@@ -45,7 +45,27 @@ namespace R7.University.EmployeeDirectory
     // TODO: Make module instances co-exist on same page
 
     public partial class ViewEmployeeDirectory: PortalModuleBase<EmployeeDirectorySettings>
-    {
+    {   
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
+
         #region Properties
 
         private ViewModelContext viewModelContext;
@@ -141,7 +161,7 @@ namespace R7.University.EmployeeDirectory
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
+                .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
                 .OrderBy (epp => epp.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)

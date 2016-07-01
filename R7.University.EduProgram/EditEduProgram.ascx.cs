@@ -48,6 +48,25 @@ namespace R7.University.EduProgram
 
     public partial class EditEduProgram : PortalModuleBase
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected EditEduProgramTab SelectedTab
         {
             get {
@@ -107,7 +126,7 @@ namespace R7.University.EduProgram
                 + Localization.GetString ("DeleteItem") + "');");
 
             // bind education levels
-            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduProgramLevels ();
+            comboEduLevel.DataSource = Repository.QueryEduProgramLevels ().ToList ();
             comboEduLevel.DataBind ();
 
             var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();

@@ -34,6 +34,25 @@ namespace R7.University.Launchpad
 {
     public partial class EditEduProgramProfile: EditPortalModuleBase<EduProgramProfileInfo,int>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected int SelectedTab
@@ -88,7 +107,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // get and bind edu. levels
-            var eduProgramLevels = UniversityRepository.Instance.GetEduProgramLevels ();
+            var eduProgramLevels = Repository.QueryEduProgramLevels ().ToList ();
             comboEduProgramLevel.DataSource = eduProgramLevels;
             comboEduProgramLevel.DataBind ();
 
@@ -112,11 +131,11 @@ namespace R7.University.Launchpad
             comboEduProgram.DataSource = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
             comboEduProgram.DataBind ();
 
-            var eduProgramProfileLevels = UniversityRepository.Instance.GetEduLevels ()
-                .Where (el => el.ParentEduLevelId == eduLevelId || el.EduLevelID == eduLevelId)
-                .OrderBy (el => el.ParentEduLevelId != null); 
+            comboEduLevel.DataSource = Repository.Query<EduLevelInfo> ()
+                    .Where (el => el.ParentEduLevelId == eduLevelId || el.EduLevelID == eduLevelId)
+                    .OrderBy (el => el.ParentEduLevelId != null)
+                    .ToList ();
             
-            comboEduLevel.DataSource = eduProgramProfileLevels;
             comboEduLevel.DataBind ();
         }
 

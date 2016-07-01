@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
@@ -34,11 +35,30 @@ namespace R7.University.EduProgram
 {    
     public partial class SettingsEduProgram : ModuleSettingsBase<EduProgramSettings>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
-            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduProgramLevels ();
+            comboEduLevel.DataSource = Repository.QueryEduProgramLevels ().ToList ();
             comboEduLevel.DataBind ();
 
             BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));

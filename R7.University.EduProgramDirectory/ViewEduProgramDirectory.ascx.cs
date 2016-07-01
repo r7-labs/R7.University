@@ -42,6 +42,25 @@ namespace R7.University.EduProgramDirectory
 {
     public partial class ViewEduProgramDirectory: PortalModuleBase<EduProgramDirectorySettings>, IActionable
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected string EditIconUrl
@@ -94,7 +113,7 @@ namespace R7.University.EduProgramDirectory
                     var eduPrograms = baseEduPrograms
                         .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID"))
                         .WithDocumentTypes (UniversityRepository.Instance.GetDocumentTypes ())
-                        .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
+                        .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
                         .OrderBy (ep => ep.EduLevel.SortIndex)
                         .ThenBy (ep => ep.Code)
                         .ThenBy (ep => ep.Title)

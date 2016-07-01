@@ -36,13 +36,31 @@ namespace R7.University.EduProgramDirectory
 {
     public partial class SettingsEduProgramDirectory : ModuleSettingsBase<EduProgramDirectorySettings>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
             // fill edulevels list
-            var eduLevels = UniversityRepository.Instance.GetEduProgramLevels ()
-                .OrderBy (el => el.SortIndex);
+            var eduLevels = Repository.QueryEduProgramLevels ().ToList ();
            
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem {

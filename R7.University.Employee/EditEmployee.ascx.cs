@@ -226,7 +226,7 @@ namespace R7.University.Employee
             comboAchievementTypes.DataBind ();
 
             // get and bind edu levels
-            var eduLevels = UniversityRepository.Instance.GetEduLevels ();
+            var eduLevels = Repository.QueryEduProgramLevels ().ToList ();
             comboEduLevel.DataSource = eduLevels;
             comboEduLevel.DataBind ();
 

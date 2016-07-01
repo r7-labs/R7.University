@@ -30,11 +30,31 @@ using R7.University.Components;
 using R7.University.Data;
 using R7.University.EmployeeDirectory.Components;
 using R7.University.ViewModels;
+using R7.University.Models;
 
 namespace R7.University.EmployeeDirectory
 {
     public partial class SettingsEmployeeDirectory: ModuleSettingsBase<EmployeeDirectorySettings>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -43,8 +63,7 @@ namespace R7.University.EmployeeDirectory
             comboMode.DataBind ();
 
             // fill edulevels list
-            var eduLevels = UniversityRepository.Instance.GetEduLevels ()
-                .OrderBy (el => el.SortIndex);
+            var eduLevels = Repository.QueryEduLevels ().ToList ();
 
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem

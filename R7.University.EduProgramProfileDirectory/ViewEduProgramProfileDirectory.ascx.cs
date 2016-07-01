@@ -47,6 +47,25 @@ namespace R7.University.EduProgramProfileDirectory
 {
     public partial class ViewEduProgramProfileDirectory: PortalModuleBase<EduProgramProfileDirectorySettings>, IActionable
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected string EditIconUrl
@@ -94,7 +113,7 @@ namespace R7.University.EduProgramProfileDirectory
             var indexer = new ViewModelIndexer (1);
 
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (UniversityRepository.Instance.GetEduLevels ());
+                .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ());
             
             eduProgramProfiles = eduProgramProfiles
                 .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance
@@ -122,7 +141,7 @@ namespace R7.University.EduProgramProfileDirectory
 
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
                 EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                    .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
+                    .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
                     .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramProfileID"))
                     .WithDocumentType (UniversityRepository.Instance.GetDocumentTypes ())
                     .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)

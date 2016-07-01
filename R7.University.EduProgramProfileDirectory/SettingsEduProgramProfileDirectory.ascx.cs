@@ -31,11 +31,31 @@ using R7.University.Components;
 using R7.University.Data;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.ViewModels;
+using R7.University.Models;
 
 namespace R7.University.EduProgramProfileDirectory
 {
     public partial class SettingsEduProgramProfileDirectory: ModuleSettingsBase<EduProgramProfileDirectorySettings>
     {
+        #region Repository handling
+
+        private UniversityDataRepository repository;
+        protected UniversityDataRepository Repository
+        {
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (repository != null) {
+                repository.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         private ViewModelContext viewModelContext;
 
         protected ViewModelContext ViewModelContext
@@ -57,8 +77,7 @@ namespace R7.University.EduProgramProfileDirectory
             comboMode.DataBind ();
 
             // fill edulevels list
-            var eduLevels = UniversityRepository.Instance.GetEduLevels ()
-                .OrderBy (el => el.SortIndex);
+            var eduLevels = Repository.QueryEduLevels ().ToList();
 
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem
