@@ -18,14 +18,25 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using System.Linq;
+using R7.University.Tests.Models;
+using Xunit;
 
 namespace R7.University.Tests.Data
 {
     public class DataRepositoryTests
     {
-        public DataRepositoryTests ()
+        [Fact]
+        public void DataRepositoryTest ()
         {
+            var repository = new TestDataRepository ();
+            repository.Query<TestEntity> ().ToList ();
+            repository.Dispose ();
+
+            // repository call after dispose should throw exception
+            Assert.Throws (typeof (InvalidOperationException), () => repository.Query<TestEntity> ().ToList ());
         }
     }
 }

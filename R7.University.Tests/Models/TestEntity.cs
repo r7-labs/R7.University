@@ -18,15 +18,16 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 
 namespace R7.University.Tests.Models
 {
     public class TestEntity
     {
-        public TestEntity ()
-        {
-        }
+        public int Id { get; set; }
+
+        public string Title { get; set; }
     }
 }
 
