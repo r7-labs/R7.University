@@ -25,10 +25,12 @@ using System.Linq;
 namespace R7.University.Data
 {
     /// <summary>
-    /// Implements generic repository pattern
+    /// Generic repository for IDataContext
     /// </summary>
     public abstract class DataRepositoryBase : IDataRepository
     {
+        // REVIEW: Extract UnitOfWork to manage IDataContext lifecycle outside repository?
+
         private bool _disposed = false;
 
         // REVIEW: Use factory for repository, not db context?
