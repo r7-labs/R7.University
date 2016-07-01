@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using R7.University.Data;
 
@@ -27,11 +28,19 @@ namespace R7.University.Tests.Data
 {
     public class TestDbContext: IDataContext
     {
+        private IDictionary<Type,object> dictEntities = new Dictionary<Type,object> ();
+
         #region IUniversityDbContext implementation
 
         public IDbSet<TEntity> Set<TEntity> () where TEntity : class
         {
-            return new TestDbSet<TEntity> ();
+            if (dictEntities.ContainsKey (typeof (TEntity))) {
+                return (TestDbSet<TEntity>) dictEntities [typeof (TEntity)];
+            }
+
+            var dbSet = new TestDbSet<TEntity> ();
+            dictEntities [typeof (TEntity)] = dbSet;
+            return dbSet;
         }
 
         public void WasModified<TEntity> (TEntity entity) where TEntity : class
