@@ -24,8 +24,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using DotNetNuke.Common.Utilities;
-using R7.University.Data.Mappings;
-using R7.University.Models;
 
 namespace R7.University.Data
 {
@@ -55,10 +53,7 @@ namespace R7.University.Data
             modelBuilder.HasDefaultSchema (Config.GetDataBaseOwner ().TrimEnd ('.'));
 
             // add mappings
-            modelBuilder.Configurations.Add<PositionInfo> (new PositionMapping ());
-            modelBuilder.Configurations.Add<DivisionInfo> (new DivisionMapping ());
-            modelBuilder.Configurations.Add<EmployeeInfo> (new EmployeeMapping ());
-            modelBuilder.Configurations.Add<OccupiedPositionInfo> (new OccupiedPositionMapping ());
+            modelBuilder.Configurations.AddFromAssembly (GetType ().Assembly);
 
             // add objectQualifier
             var plurService = new EnglishPluralizationService ();
