@@ -35,6 +35,10 @@ BEGIN
 END
 GO
 
+IF EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_Items')
+    DROP INDEX [IX_{objectQualifier}University_Documents_Items] ON {databaseOwner}[{objectQualifier}University_Documents]
+GO
+
 IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'ItemID')
 BEGIN
     UPDATE {databaseOwner}[{objectQualifier}University_Documents] SET EduProgramID =
@@ -45,23 +49,14 @@ BEGIN
             CAST (REPLACE (ItemID, N'EduProgramProfileID=', N'') AS int)
         WHERE ItemID LIKE N'EduProgramProfileID=%'
 
-    -- ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
-    --    DROP COLUMN [ItemID]
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+        DROP COLUMN [ItemID]
 END
 GO
 
--- Add/remove indexes
+-- Re-add index
 
-IF NOT EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_EduPrograms')
-    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_EduPrograms]
-        ON {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID ASC)
-GO
-
-IF NOT EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_EduProgramProfiles')
-    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_EduProgramProfiles]
-        ON {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramProfileID ASC)
-GO
-
-IF EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_Items')
-    DROP INDEX [IX_{objectQualifier}University_Documents_Items]
+IF NOT EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_Items')
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_Items]
+        ON {databaseOwner}[{objectQualifier}University_Documents] (EduProgramProfileID ASC, EduProgramID ASC)
 GO
