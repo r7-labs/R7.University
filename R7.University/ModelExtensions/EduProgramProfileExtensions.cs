@@ -30,35 +30,12 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileExtensions
     {
-        [Obsolete]
-        public static EduProgramProfileInfo WithEduProgram (
-            this EduProgramProfileInfo eduProfile, Dal2DataProvider controller)
-        {
-            eduProfile.EduProgram = controller.Get<EduProgramInfo> (eduProfile.EduProgramID);
-
-            return eduProfile;
-        }
-
         public static EduProgramProfileInfo WithEduProgram (
             this EduProgramProfileInfo eduProfile)
         {
             eduProfile.EduProgram = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (eduProfile.EduProgramID);
 
             return eduProfile;
-        }
-
-        [Obsolete]
-        public static IEnumerable<EduProgramProfileInfo> WithEduProgram (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles, Dal2DataProvider controller)
-        {
-            var eduPrograms = controller.GetObjects<EduProgramInfo> ();
-
-            return eduProgramProfiles.Join (eduPrograms, epp => epp.EduProgramID, ep => ep.EduProgramID, 
-                delegate (EduProgramProfileInfo epp, EduProgramInfo ep) {
-                    epp.EduProgram = ep;
-                    return epp;
-                }
-            );
         }
 
         public static IEnumerable<IEduProgramProfile> WithEduProgram (
