@@ -71,7 +71,7 @@ namespace R7.University.EduProgram
 
         protected void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = Repository.QueryEduPrograms_ByEduLevel (eduLevelId).ToList ();
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
@@ -86,7 +86,7 @@ namespace R7.University.EduProgram
                 if (!IsPostBack)
                 {
                     if (Settings.EduProgramId != null) {
-                        var eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+                        var eduProgram = Repository.QueryEduProgram (Settings.EduProgramId.Value).Single ();
                         comboEduLevel.SelectByValue (eduProgram.EduLevelID);
                         BindEduPrograms (eduProgram.EduLevelID);
                         comboEduProgram.SelectByValue (eduProgram.EduProgramID);

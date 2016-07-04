@@ -110,6 +110,14 @@ namespace R7.University.Data
                 .Include (ep => ep.Documents.Select (d => d.DocumentType));
         }
 
+        public IQueryable<EduProgramInfo> QueryEduPrograms_ByEduLevel (int eduLevelId)
+        {
+            return QueryEduPrograms ()
+                .Where (ep => ep.EduLevelID == eduLevelId)
+                .OrderBy (ep => ep.Code)
+                .ThenBy (ep => ep.Title);
+        }
+
         public IQueryable<EduProgramInfo> QueryEduPrograms_ByEduLevels (IList<int> eduLevelIds)
         {
             if (eduLevelIds.Count > 0) {

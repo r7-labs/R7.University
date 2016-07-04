@@ -52,8 +52,6 @@ namespace R7.University.Data
             DataProvider = dataProvider;
         }
 
-        #region CUD Methods
-
         public void AddEduProgram (EduProgramInfo eduProgram, IList<DocumentInfo> documents)
         {
             using (var ctx = DataContext.Instance ()) {
@@ -151,43 +149,5 @@ namespace R7.University.Data
                 }
             }
         }
-
-        #endregion
-
-        public EduProgramInfo GetEduProgram (int eduProgramId)
-        {
-            return DataProvider.Get<EduProgramInfo> (eduProgramId);
-        }
-
-        public IEnumerable<EduProgramInfo> GetEduPrograms_ByEduLevel (int eduLevelId)
-        {
-            return DataProvider.GetObjects<EduProgramInfo> ("WHERE EduLevelID = @0", eduLevelId)
-                .OrderBy (ep => ep.Code)
-                .ThenBy (ep => ep.Title);
-        }
-
-        public IEnumerable<EduProgramInfo> GetEduPrograms_ByEduLevels (IEnumerable<string> eduLevelIds)
-        {
-            if (eduLevelIds.Any ()) {
-                return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE EduLevelID IN ({0})",
-                    TextUtils.FormatList (",", eduLevelIds))
-                );
-            }
-
-            return DataProvider.GetObjects<EduProgramInfo> ();
-        }
-
-        public IEnumerable<EduProgramInfo> GetEduPrograms_ByDivisionAndEduLevels (int divisionId, IEnumerable<string> eduLevelIds)
-        {
-            if (eduLevelIds.Any ()) {
-                return DataProvider.GetObjects<EduProgramInfo> (string.Format ("WHERE DivisionID = {0} AND EduLevelID IN ({1})",
-                    divisionId,
-                    TextUtils.FormatList (",", eduLevelIds))
-                );
-            }
-
-            return DataProvider.GetObjects<EduProgramInfo> ("WHERE DivisionID = @0", divisionId);
-        }
     }
 }
-
