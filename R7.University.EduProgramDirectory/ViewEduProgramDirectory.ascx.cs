@@ -103,27 +103,27 @@ namespace R7.University.EduProgramDirectory
                 if (!IsPostBack) {
                     IEnumerable<IEduProgram> baseEduPrograms;
                     if (Settings.DivisionId == null) {
-                        baseEduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels);
+                        baseEduPrograms = Repository.QueryEduPrograms_ByEduLevels (Settings.EduLevels);
                     }
                     else {
-                        baseEduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
+                        baseEduPrograms = Repository.QueryEduPrograms_ByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
                     }
 
                     var viewModelIndexer = new ViewModelIndexer (1);
                     var eduPrograms = baseEduPrograms
-                        .WithDocuments (Repository.QueryDocuments_ByItemType ("EduProgramID"))
-                        .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
                         .OrderBy (ep => ep.EduLevel.SortIndex)
                         .ThenBy (ep => ep.Code)
                         .ThenBy (ep => ep.Title)
-                        .Select (ep => new EduProgramStandardObrnadzorViewModel (
-                                              ep,
-                                              ViewModelContext,
-                                              viewModelIndexer))
                         .ToList ();
-                    
-                    if (eduPrograms.Count > 0) {
-                        gridEduStandards.DataSource = eduPrograms.Where (ep => ep.IsPublished () || IsEditable);
+
+                    var eduProgramViewModels = eduPrograms
+                        .Select (ep => new EduProgramStandardObrnadzorViewModel (
+                            ep,
+                            ViewModelContext,
+                            viewModelIndexer));
+                     
+                    if (eduProgramViewModels.Any ()) {
+                        gridEduStandards.DataSource = eduProgramViewModels.Where (ep => ep.IsPublished () || IsEditable);
                         gridEduStandards.DataBind ();
                     }
                     else {

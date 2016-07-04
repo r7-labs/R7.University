@@ -186,6 +186,7 @@
     <Compile Include="Data\Mappings\EduLevelMapping.cs" />
     <Compile Include="Data\Mappings\DocumentTypeMapping.cs" />
     <Compile Include="Data\Mappings\DocumentMapping.cs" />
+    <Compile Include="Data\Mappings\EduProgramMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -254,6 +255,7 @@
     <None Include="SqlDataProvider\01.08.00.SqlDataProvider" />
     <None Include="R7.University.yml" />
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.10.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

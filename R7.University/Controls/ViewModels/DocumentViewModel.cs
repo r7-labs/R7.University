@@ -51,6 +51,8 @@ namespace R7.University.Controls
 
         public string ItemID { get; set; }
 
+        public int? EduProgramID { get; set; }
+
         public string Title { get; set; }
 
         public string Group { get; set; }

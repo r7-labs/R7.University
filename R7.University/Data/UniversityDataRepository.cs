@@ -22,9 +22,9 @@
 using System;
 using System.Linq;
 using R7.University.Models;
-
-// required by IQueryable.Include ()
-using System.Data.Entity;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity; // required by IQueryable.Include ()
 
 namespace R7.University.Data
 {
@@ -82,6 +82,43 @@ namespace R7.University.Data
         public IQueryable<DocumentInfo> QueryDocuments_ByItem (string itemId)
         {
             return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.ItemID == itemId);
+        }
+
+        public IQueryable<EduProgramInfo> QueryEduProgram (int eduProgramId)
+        {
+            return QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
+                .Include (ep => ep.EduLevel)
+                .Include (ep => ep.Documents)
+                .Include (ep => ep.Documents.Select (d => d.DocumentType));
+        }
+
+        public IQueryable<EduProgramInfo> QueryEduPrograms ()
+        {
+            return Query<EduProgramInfo> ()
+                .Include (ep => ep.EduLevel)
+                .Include (ep => ep.Documents)
+                .Include (ep => ep.Documents.Select (d => d.DocumentType));
+        }
+
+        public IQueryable<EduProgramInfo> QueryEduPrograms_ByEduLevels (IList<int> eduLevelIds)
+        {
+            if (eduLevelIds.Count > 0) {
+                return QueryEduPrograms ()
+                   .Where (ep => eduLevelIds.Contains (ep.EduLevelID));
+            }
+
+            return QueryEduPrograms ();
+        }
+
+        public IQueryable<EduProgramInfo> QueryEduPrograms_ByDivisionAndEduLevels (int divisionId, IList<int> eduLevelIds)
+        {
+            if (eduLevelIds.Count > 0) {
+                return QueryEduPrograms ()
+                    .Where (ep => ep.DivisionId == divisionId && eduLevelIds.Contains (ep.EduLevelID));
+            }
+
+            return QueryEduPrograms ()
+                .Where (ep => ep.DivisionId == divisionId);
         }
 
         #endregion

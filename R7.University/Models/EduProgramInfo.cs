@@ -21,10 +21,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.ModelExtensions;
 
 namespace R7.University.Models
 {
@@ -34,7 +32,7 @@ namespace R7.University.Models
     {
         public EduProgramInfo ()
         {
-            Documents = new List<DocumentInfo> ();
+            Documents = new HashSet<DocumentInfo> ();
         }
 
         #region IEduProgram implementation
@@ -66,16 +64,13 @@ namespace R7.University.Models
         public DateTime CreatedOnDate { get; set; }
 
         [IgnoreColumn]
-        public IEduLevel EduLevel { get; set; }
+        public virtual EduLevelInfo EduLevel { get; set; }
 
         [IgnoreColumn]
-        public IDivision Division { get; set; }
+        public virtual DivisionInfo Division { get; set; }
 
         [IgnoreColumn]
-        public IList<DocumentInfo> Documents { get; set; }
-
-        [IgnoreColumn]
-        public IList<IEduProgramProfile> EduProgramProfiles { get; set; }
+        public virtual ICollection<DocumentInfo> Documents { get; set; }
 
         #endregion
 
@@ -84,23 +79,6 @@ namespace R7.University.Models
         public string EduProgramString
         {
             get { return TextUtils.FormatList (" ", Code, Title); }
-        }
-
-        [IgnoreColumn]
-        public bool IsPublished
-        {
-            get {
-                var now = DateTime.Now;
-                return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
-            }
-        }
-
-        [IgnoreColumn]
-        public IList<DocumentInfo> EduStandardDocuments
-        {
-            get {
-                return Documents.Where (d => d.DocumentType.GetSystemDocumentType () == SystemDocumentType.EduStandard).ToList ();
-            }
         }
     }
 }

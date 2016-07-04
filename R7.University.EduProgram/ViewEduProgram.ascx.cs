@@ -68,30 +68,28 @@ namespace R7.University.EduProgram
 
         protected EduProgramModuleViewModel GetViewModel ()
         {
+            return GetViewModel_Internal ().SetContext (new ViewModelContext (this));
+
+            /*
             return DataCache.GetCachedData<EduProgramModuleViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId,
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
-                c => GetViewModel_Internal ()).SetContext (new ViewModelContext (this));
+                c => GetViewModel_Internal ()).SetContext (new ViewModelContext (this));*/
         }
 
         protected EduProgramModuleViewModel GetViewModel_Internal ()
         {
             if (Settings.EduProgramId != null) {
-                var eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+                var eduProgram = Repository.QueryEduProgram (Settings.EduProgramId.Value).SingleOrDefault ();
 
                 if (eduProgram == null) {
                     // edu. program not found - return empty view model
                     return new EduProgramModuleViewModel ();
                 }
 
-                eduProgram.EduLevel = Repository.QueryOne<EduLevelInfo> (el => el.EduLevelID == eduProgram.EduLevelID).Single ();
-
                 if (eduProgram.DivisionId != null) {
                     eduProgram.Division = Repository.Get<DivisionInfo> (eduProgram.DivisionId.Value);
                 }
-                
-                eduProgram.Documents = Repository.QueryDocuments_ByItem ("EduProgramID=" + eduProgram.EduProgramID)
-                    .ToList ();
 
                 var eduProgramProfiles = EduProgramProfileRepository.Instance
                     .GetEduProgramProfiles_ByEduProgram (eduProgram.EduProgramID)

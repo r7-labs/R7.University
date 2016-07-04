@@ -1,5 +1,5 @@
 ﻿//
-//  DocumentMapping.cs
+//  EduProgramMapping.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,25 +26,30 @@ using R7.University.Models;
 
 namespace R7.University.Data.Mappings
 {
-    public class DocumentMapping: EntityTypeConfiguration<DocumentInfo>
+    public class EduProgramMapping: EntityTypeConfiguration<EduProgramInfo>
     {
-        public DocumentMapping ()
+        public EduProgramMapping ()
         {
-            HasKey (m => m.DocumentID);
-            Property (m => m.DocumentID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
-            Property (m => m.DocumentTypeID).IsRequired ();
-            Property (m => m.ItemID).IsRequired ();
-            Property (m => m.EduProgramID).IsOptional ();
-            Property (m => m.Title).IsOptional ();
-            Property (m => m.Group).IsOptional ();
-            Property (m => m.Url).IsOptional ();
-            Property (m => m.SortIndex).IsRequired ();
+            HasKey (m => m.EduProgramID);
+            Property (m => m.EduProgramID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.EduLevelID).IsRequired ();
+            Property (m => m.DivisionId).IsOptional ();
+            Property (m => m.Code).IsRequired ();
+            Property (m => m.Title).IsRequired ();
+            Property (m => m.Generation).IsOptional ();
+            Property (m => m.HomePage).IsOptional ();
+
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
 
-            HasRequired (m => m.DocumentType).WithMany ().HasForeignKey (m => m.DocumentTypeID);
-            // HasOptional (m => m.EduProgram).WithMany (x => x.Documents).HasForeignKey (m => m.EduProgramID);
-            // HasOptional (m => m.EduProgramProfile).WithMany ().HasForeignKey (m => m.EduProgramProfileId);
+            Property (m => m.LastModifiedByUserID);
+            Property (m => m.LastModifiedOnDate);
+            Property (m => m.CreatedByUserID);
+            Property (m => m.CreatedOnDate);
+
+            HasRequired (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelID);
+            HasOptional (m => m.Division).WithMany ().HasForeignKey (m => m.DivisionId);
+            HasMany (m => m.Documents).WithOptional ().HasForeignKey (x => x.EduProgramID);
         }
     }
 }

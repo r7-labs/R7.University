@@ -45,13 +45,10 @@ namespace R7.University.Models
 
         DateTime? EndDate { get; set; }
 
-        IEduLevel EduLevel { get; set; }
+        EduLevelInfo EduLevel { get; set; }
 
-        IDivision Division { get; set; }
+        DivisionInfo Division { get; set; }
 
-        IList<DocumentInfo> Documents { get; set; }
-
-        IList<IEduProgramProfile> EduProgramProfiles { get; set; }
+        ICollection<DocumentInfo> Documents { get; set; }
     }
 }
-

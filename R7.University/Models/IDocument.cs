@@ -31,6 +31,8 @@ namespace R7.University.Models
 
         string ItemID { get; set; }
 
+        int? EduProgramID { get; set; }
+
         string Title { get; set; }
 
         string Group { get; set; }

@@ -93,8 +93,8 @@ namespace R7.University.EduProgramDirectory
             try {
                 if (!IsPostBack) {
                     // check edulevels list items
-                    foreach (var eduLevelIdString in Settings.EduLevels) {
-                        var item = listEduLevels.FindItemByValue (eduLevelIdString);
+                    foreach (var eduLevelId in Settings.EduLevels) {
+                        var item = listEduLevels.FindItemByValue (eduLevelId.ToString ());
                         if (item != null) {
                             item.Checked = true;
                         }
@@ -122,7 +122,7 @@ namespace R7.University.EduProgramDirectory
         public override void UpdateSettings ()
         {
             try {
-                Settings.EduLevels = listEduLevels.CheckedItems.Select (i => i.Value).ToList ();
+                Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
                 Settings.Columns = listColumns.CheckedItems.Select (i => i.Value).ToList ();
                 Settings.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 

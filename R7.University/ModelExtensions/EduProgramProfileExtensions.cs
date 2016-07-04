@@ -94,7 +94,7 @@ namespace R7.University.ModelExtensions
                     throw new ArgumentException ("EduProgram should not be null");
                 }
 
-                epp.EduProgram.EduLevel = eduLevels.First (el => el.EduLevelID == epp.EduProgram.EduLevelID);
+                epp.EduProgram.EduLevel = (EduLevelInfo) eduLevels.First (el => el.EduLevelID == epp.EduProgram.EduLevelID);
             }
         
             return eduProgramProfiles;

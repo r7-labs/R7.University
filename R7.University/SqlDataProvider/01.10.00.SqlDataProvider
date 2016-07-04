@@ -1,0 +1,67 @@
+﻿--
+--  01.10.00.SqlDataProvider
+--
+--  Author:
+--       Roman M. Yagodin <roman.yagodin@gmail.com>
+--
+--  Copyright (c) 2016 Roman M. Yagodin
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.
+--
+--  This program is distributed in the hope that it will be useful,
+--  but WITHOUT ANY WARRANTY; without even the implied warranty of
+--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU General Public License for more details.
+--
+--  You should have received a copy of the GNU General Public License
+--  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'EduProgramID')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+        ADD [EduProgramID] int NULL,
+            [EduProgramProfileID] int NULL
+        CONSTRAINT [FK_{objectQualifier}University_Documents_EduPrograms] FOREIGN KEY (EduProgramID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE,
+        CONSTRAINT [FK_{objectQualifier}University_Documents_EduProgramProfiles] FOREIGN KEY (EduProgramProfileID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramProfileID) ON DELETE CASCADE
+END
+GO
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'ItemID')
+BEGIN
+    UPDATE {databaseOwner}[{objectQualifier}University_Documents] SET EduProgramID =
+            CAST (REPLACE (ItemID, N'EduProgramID=', N'') AS int)
+        WHERE ItemID LIKE N'EduProgramID=%'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_Documents] SET EduProgramProfileID =
+            CAST (REPLACE (ItemID, N'EduProgramProfileID=', N'') AS int)
+        WHERE ItemID LIKE N'EduProgramProfileID=%'
+
+    -- ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+    --    DROP COLUMN [ItemID]
+END
+GO
+
+-- Add/remove indexes
+
+IF NOT EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_EduPrograms')
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_EduPrograms]
+        ON {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID ASC)
+GO
+
+IF NOT EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_EduProgramProfiles')
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_EduProgramProfiles]
+        ON {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramProfileID ASC)
+GO
+
+IF EXISTS (select * from sys.indexes where object_id = object_id (N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'IX_{objectQualifier}University_Documents_Items')
+    DROP INDEX [IX_{objectQualifier}University_Documents_Items]
+GO
