@@ -42,10 +42,11 @@ namespace R7.University.Models
         public bool IsAdmissive { get; set; }
 
         [IgnoreColumn]
-        public IEduForm EduForm { get; set; }
+        public virtual EduFormInfo EduForm { get; set; }
 
+        /*
         [IgnoreColumn]
-        public IEduProgramProfile EduProgramProfile { get; set; }
+        public IEduProgramProfile EduProgramProfile { get; set; }*/
 
         #endregion
 

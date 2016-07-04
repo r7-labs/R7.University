@@ -33,7 +33,7 @@ namespace R7.University.ModelExtensions
         {
             return eduProgramProfileForms.Join (eduForms, eppf => eppf.EduFormID, ef => ef.EduFormID,
                 (eppf, ef) => {
-                    eppf.EduForm = ef;
+                    eppf.EduForm = (EduFormInfo) ef;
                     return eppf;
                 });
         }
