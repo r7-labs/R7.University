@@ -22,9 +22,7 @@
 using System;
 using System.Linq;
 using R7.University.Models;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity; // required by IQueryable.Include ()
 
 namespace R7.University.Data
 {
