@@ -74,14 +74,24 @@ namespace R7.University.Data
             return Query<DocumentTypeInfo> ();
         }
 
-        public IQueryable<DocumentInfo> QueryDocuments_ByItemType (string itemType)
+        public IQueryable<DocumentInfo> QueryDocuments_ForEduProgram (int eduProgramId)
         {
-            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.ItemID.StartsWith (itemType + "="));
+            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramId == eduProgramId);
         }
 
-        public IQueryable<DocumentInfo> QueryDocuments_ByItem (string itemId)
+        public IQueryable<DocumentInfo> QueryDocuments_ForEduPrograms ()
         {
-            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.ItemID == itemId);
+            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramId != null);
+        }
+
+        public IQueryable<DocumentInfo> QueryDocuments_ForEduProgramProfile (int eduProgramProfileId)
+        {
+            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramProfileId == eduProgramProfileId);
+        }
+
+        public IQueryable<DocumentInfo> QueryDocuments_ForEduProgramProfiles ()
+        {
+            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramProfileId != null);
         }
 
         public IQueryable<EduProgramInfo> QueryEduProgram (int eduProgramId)

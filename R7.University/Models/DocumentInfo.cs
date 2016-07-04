@@ -34,11 +34,9 @@ namespace R7.University.Models
 
         public int DocumentTypeID { get; set; }
 
-        public int? EduProgramID { get; set; }
+        public int? EduProgramId { get; set; }
 
-        // public int EduProgramProfileId { get; set; }
-
-        public string ItemID { get; set; }
+        public int? EduProgramProfileId { get; set; }
 
         public string Title { get; set; }
 

@@ -27,10 +27,10 @@ using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Controls
 {
@@ -49,9 +49,9 @@ namespace R7.University.Controls
 
         public DocumentTypeViewModel DocumentTypeViewModel { get; set; }
 
-        public string ItemID { get; set; }
+        public int? EduProgramId { get; set; }
 
-        public int? EduProgramID { get; set; }
+        public int? EduProgramProfileId { get; set; }
 
         public string Title { get; set; }
 
@@ -135,7 +135,7 @@ namespace R7.University.Controls
 
         public void SetTargetItemId (int targetItemId, string targetItemKey)
         {
-            ItemID = targetItemKey + targetItemId;
+            DocumentExtensions.SetModelId (this, targetItemKey, targetItemId);
         }
 
         #endregion

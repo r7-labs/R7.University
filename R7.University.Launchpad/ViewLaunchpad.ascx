@@ -349,7 +349,8 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="DocumentID" SortExpression="DocumentID" HeaderText="DocumentID" />
                         <asp:BoundField DataField="DocumentTypeID" SortExpression="DocumentTypeID" HeaderText="DocumentTypeID" />
-                        <asp:BoundField DataField="ItemID" SortExpression="ItemID" HeaderText="ItemID" />
+                        <asp:BoundField DataField="EduProgramId" SortExpression="EduProgramId" HeaderText="EduProgramId" />
+                        <asp:BoundField DataField="EduProgramProfileId" SortExpression="EduProgramProfileId" HeaderText="EduProgramProfileId" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="Url" SortExpression="Url" HeaderText="Url" />
                         <asp:BoundField DataField="SortIndex" SortExpression="SortIndex" HeaderText="SortIndex" />

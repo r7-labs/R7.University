@@ -68,7 +68,7 @@ namespace R7.University.Data
 
                     // add new documents
                     foreach (var document in documents) {
-                        document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
+                        document.EduProgramId = eduProgram.EduProgramID;
                         documentRepo.Insert (document);
                     }
 
@@ -97,20 +97,18 @@ namespace R7.University.Data
                     var documentIds = documents.Select (d => d.DocumentID.ToString ());
                     if (documentIds.Any ()) {
                         // delete specific documents
-                        documentRepo.Delete (string.Format ("WHERE [ItemID] = N'{0}' AND [DocumentID] NOT IN ({1})", 
-                            "EduProgramID=" + eduProgram.EduProgramID,
+                        documentRepo.Delete (string.Format ("WHERE [EduProgramID] = {0} AND [DocumentID] NOT IN ({1})", 
+                            eduProgram.EduProgramID,
                             TextUtils.FormatList (", ", documentIds))); 
                     }
                     else {
                         // delete all edu program documents
-                        documentRepo.Delete (string.Format (
-                            "WHERE [ItemID] = N'EduProgramID={0}'",
-                            eduProgram.EduProgramID)); 
+                        documentRepo.Delete ("WHERE [EduProgramID] = @0", eduProgram.EduProgramID);
                     }
 
                     // add new documents
                     foreach (var document in documents) {
-                        document.ItemID = "EduProgramID=" + eduProgram.EduProgramID;
+                        document.EduProgramId = eduProgram.EduProgramID;
                         if (document.DocumentID <= 0) {
                             documentRepo.Insert (document);
                         }
@@ -139,12 +137,10 @@ namespace R7.University.Data
                     ctx.BeginTransaction ();
 
                     // delete documents
-                    documentRepo.Delete (string.Format (
-                        "WHERE [ItemID] = N'EduProgramID={0}'",
-                        eduProgramId));
+                    documentRepo.Delete ("WHERE [EduProgramID] = @0", eduProgramId);
 
                     // delete edu program
-                    eduProgramRepo.Delete ("WHERE [EduProgramID]=@0", eduProgramId);
+                    eduProgramRepo.Delete ("WHERE [EduProgramID] = @0", eduProgramId);
 
                     ctx.Commit ();
                     CacheHelper.RemoveCacheByPrefix ("//r7_University");

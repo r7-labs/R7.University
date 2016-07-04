@@ -128,7 +128,7 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<IEduProgramProfile> WithDocuments (
             this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IDocument> documents)
         {
-            return eduProgramProfiles.GroupJoin (documents.DefaultIfEmpty (), epp => "EduProgramProfileID=" + epp.EduProgramProfileID, d => d.ItemID,
+            return eduProgramProfiles.GroupJoin (documents.DefaultIfEmpty (), epp => epp.EduProgramProfileID, d => d.EduProgramProfileId,
                 (epp, docs) => {
                     epp.Documents = docs.ToList ();
                     return epp;

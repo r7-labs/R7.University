@@ -50,6 +50,15 @@ namespace R7.University.ModelExtensions
             SystemDocumentType result;
             return Enum.TryParse<SystemDocumentType> (document.DocumentType.Type, out result) ? result : SystemDocumentType.Custom;
         }
+
+        public static void SetModelId (this IDocument document, string forModel, int modelId)
+        {
+            if (forModel == "EduProgram") {
+                document.EduProgramId = modelId;
+            } else if (forModel == "EduProgramProfile") {
+                document.EduProgramProfileId = modelId;
+            }
+        }
     }
 }
 

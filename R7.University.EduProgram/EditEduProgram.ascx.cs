@@ -176,7 +176,7 @@ namespace R7.University.EduProgram
 
                             auditControl.Bind (item);
 
-                            var documents = Repository.QueryDocuments_ByItem ("EduProgramID=" + item.EduProgramID)
+                            var documents = Repository.QueryDocuments_ForEduProgram (item.EduProgramID)
                                 .OrderBy (d => d.Group)
                                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                                 .ThenBy (d => d.SortIndex)

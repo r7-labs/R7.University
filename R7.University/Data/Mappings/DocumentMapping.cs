@@ -33,8 +33,8 @@ namespace R7.University.Data.Mappings
             HasKey (m => m.DocumentID);
             Property (m => m.DocumentID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.DocumentTypeID).IsRequired ();
-            Property (m => m.ItemID).IsRequired ();
-            Property (m => m.EduProgramID).IsOptional ();
+            Property (m => m.EduProgramId).IsOptional ();
+            Property (m => m.EduProgramProfileId).IsOptional ();
             Property (m => m.Title).IsOptional ();
             Property (m => m.Group).IsOptional ();
             Property (m => m.Url).IsOptional ();
@@ -43,8 +43,6 @@ namespace R7.University.Data.Mappings
             Property (m => m.EndDate).IsOptional ();
 
             HasRequired (m => m.DocumentType).WithMany ().HasForeignKey (m => m.DocumentTypeID);
-            // HasOptional (m => m.EduProgram).WithMany (x => x.Documents).HasForeignKey (m => m.EduProgramID);
-            // HasOptional (m => m.EduProgramProfile).WithMany ().HasForeignKey (m => m.EduProgramProfileId);
         }
     }
 }

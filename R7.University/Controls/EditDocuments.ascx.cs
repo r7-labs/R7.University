@@ -40,11 +40,6 @@ namespace R7.University.Controls
 
         #endregion
 
-        protected override string TargetItemKey
-        {
-            get { return ForModel + "ID="; }
-        }
-
         public void OnInit (PortalModuleBase module, IEnumerable<DocumentTypeInfo> documentTypes)
         {
             Module = module;

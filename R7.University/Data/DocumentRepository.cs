@@ -26,6 +26,7 @@ using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
 using R7.University.Components;
 using R7.University.Models;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Data
 {
@@ -51,28 +52,30 @@ namespace R7.University.Data
 
         #endregion
 
-        protected IEnumerable<DocumentInfo> GetDocuments (string itemId)
+        protected IEnumerable<DocumentInfo> GetDocuments (string forModel, int itemId)
         {
-            return DataProvider.GetObjects<DocumentInfo> ("WHERE ItemID = @0", itemId);
+            if (forModel == "EduProgram") {
+                return DataProvider.GetObjects<DocumentInfo> ("WHERE EduProgramID = @0", itemId);
+            }
+
+            if (forModel == "EduProgramProfile") {
+                return DataProvider.GetObjects<DocumentInfo> ("WHERE EduProgramProfileID = @0", itemId);
+            }
+
+            return Enumerable.Empty<DocumentInfo> ();
         }
 
-        public IEnumerable<DocumentInfo> FindDocuments (string search)
-        {
-            return DataProvider.FindObjects<DocumentInfo> (
-                @"WHERE CONCAT([ItemID], ' ', [Title], ' ', [Url]) LIKE N'%{0}%'", search, false);
-        }
-
-        public void UpdateDocuments (IList<DocumentInfo> documents, string itemKey, int itemId)
+        public void UpdateDocuments (IList<DocumentInfo> documents, string forModel, int itemId)
         {
             using (var ctx = DataContext.Instance ()) {
                 ctx.BeginTransaction ();
 
                 try {
-                    var originalDocuments = GetDocuments (string.Format ("{0}={1}", itemKey, itemId)).ToList ();
+                    var originalDocuments = GetDocuments (forModel, itemId).ToList ();
 
                     foreach (var document in documents) {
                         if (document.DocumentID <= 0) {
-                            document.ItemID = itemKey + "=" + itemId;
+                            DocumentExtensions.SetModelId (document, forModel, itemId);
                             DataProvider.Add<DocumentInfo> (document);
                         }
                         else {

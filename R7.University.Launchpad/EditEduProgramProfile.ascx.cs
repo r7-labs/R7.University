@@ -168,7 +168,7 @@ namespace R7.University.Launchpad
 
             auditControl.Bind (item);
 
-            var documents = Repository.QueryDocuments_ByItem ("EduProgramProfileID=" + item.EduProgramProfileID)
+            var documents = Repository.QueryDocuments_ForEduProgramProfile (item.EduProgramProfileID)
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
@@ -238,7 +238,7 @@ namespace R7.University.Launchpad
             // update referenced items
             DocumentRepository.Instance.UpdateDocuments (
                 formEditDocuments.GetData (),
-                "EduProgramProfileID",
+                "EduProgramProfile",
                 item.EduProgramProfileID);
             EduProgramProfileFormRepository.Instance.UpdateEduProgramProfileForms (
                 formEditEduForms.GetData (),
