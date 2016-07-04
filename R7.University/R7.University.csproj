@@ -188,6 +188,7 @@
     <Compile Include="Data\Mappings\DocumentMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramMapping.cs" />
     <Compile Include="Data\QueryableExtensions.cs" />
+    <Compile Include="Data\Mappings\EduFormMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

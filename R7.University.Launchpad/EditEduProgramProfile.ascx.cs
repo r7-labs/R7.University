@@ -178,7 +178,7 @@ namespace R7.University.Launchpad
 
             var eppForms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileFormInfo> (
                                "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
-                .WithEduForms (UniversityRepository.Instance.GetEduForms ())
+                .WithEduForms (Repository.QueryEduForms ().ToList ())
                 .Cast<EduProgramProfileFormInfo> ()
                 .ToList ();
             

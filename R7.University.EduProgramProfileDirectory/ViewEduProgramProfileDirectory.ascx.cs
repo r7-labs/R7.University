@@ -118,7 +118,7 @@ namespace R7.University.EduProgramProfileDirectory
             eduProgramProfiles = eduProgramProfiles
                 .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance
                     .GetEduProgramProfileForms (eduProgramProfiles))
-                .WithEduForms (UniversityRepository.Instance.GetEduForms ());
+                .WithEduForms (Repository.QueryEduForms ().ToList ());
                
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
                 eduProgramProfiles

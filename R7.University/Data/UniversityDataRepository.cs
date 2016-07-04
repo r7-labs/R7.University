@@ -137,6 +137,11 @@ namespace R7.University.Data
                 .Where (ep => ep.DivisionId == divisionId);
         }
 
+        public IQueryable<EduFormInfo> QueryEduForms ()
+        {
+            return Query<EduFormInfo> ();
+        }
+
         #endregion
     }
 }

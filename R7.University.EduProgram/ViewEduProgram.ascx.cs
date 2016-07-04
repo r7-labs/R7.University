@@ -98,7 +98,7 @@ namespace R7.University.EduProgram
 
                 eduProgramProfiles = eduProgramProfiles
                     .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance.GetEduProgramProfileForms (eduProgramProfiles))
-                    .WithEduForms (UniversityRepository.Instance.GetEduForms ())
+                    .WithEduForms (Repository.QueryEduForms ().ToList ())
                     .WithDivisions (DivisionRepository.Instance.GetDivisions (eduProgramProfiles
                         .Where (epp => epp.DivisionId != null)
                         .Select (epp => epp.DivisionId.Value))
