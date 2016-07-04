@@ -30,6 +30,12 @@ namespace R7.University.Models
     [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
     public class EduProgramProfileInfo: IEduProgramProfile
     {
+        public EduProgramProfileInfo ()
+        {
+            EduProgramProfileForms = new HashSet<EduProgramProfileFormInfo> ();
+            Documents = new HashSet<DocumentInfo> ();
+        }
+
         #region IEduProgramProfile implementation
 
         public int EduProgramProfileID { get; set; }
@@ -63,19 +69,19 @@ namespace R7.University.Models
         public DateTime CreatedOnDate { get; set; }
 
         [IgnoreColumn]
-        public IEduProgram EduProgram { get; set; }
+        public virtual EduProgramInfo EduProgram { get; set; }
 
         [IgnoreColumn]
-        public IEduLevel EduLevel { get; set; }
+        public virtual EduLevelInfo EduLevel { get; set; }
 
         [IgnoreColumn]
-        public IDivision Division { get; set; }
+        public virtual DivisionInfo Division { get; set; }
 
         [IgnoreColumn] 
-        public IList<IEduProgramProfileForm> EduProgramProfileForms { get; set; }
+        public virtual ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
 
         [IgnoreColumn] 
-        public IList<IDocument> Documents { get; set; }
+        public virtual ICollection<DocumentInfo> Documents { get; set; }
 
         #endregion
 

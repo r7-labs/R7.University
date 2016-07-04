@@ -42,7 +42,7 @@ namespace R7.University.ModelExtensions
             this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEduProgram eduProgram)
         {
             foreach (var epp in eduProgramProfiles) {
-                epp.EduProgram = eduProgram;
+                epp.EduProgram = (EduProgramInfo) eduProgram;
             }
 
             return eduProgramProfiles;
@@ -65,7 +65,7 @@ namespace R7.University.ModelExtensions
             this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduLevel> eduLevels)
         {
             foreach (var epp in eduProgramProfiles) {
-                epp.EduLevel = eduLevels.First (el => el.EduLevelID == epp.EduLevelId);
+                epp.EduLevel = (EduLevelInfo) eduLevels.First (el => el.EduLevelID == epp.EduLevelId);
 
                 if (epp.EduProgram == null) {
                     throw new ArgumentException ("EduProgram should not be null");
@@ -82,7 +82,8 @@ namespace R7.University.ModelExtensions
         {
             foreach (var epp in eduProgramProfiles) {
                 if (epp.EduProgramProfileForms != null) {
-                    epp.EduProgramProfileForms = epp.EduProgramProfileForms.WithEduForms (eduForms).ToList ();
+                    epp.EduProgramProfileForms = epp.EduProgramProfileForms.WithEduForms (eduForms)
+                        .Cast <EduProgramProfileFormInfo> ().ToList ();
                 }
             }
 
@@ -95,7 +96,8 @@ namespace R7.University.ModelExtensions
             if (!eduProgramProfileForms.IsNullOrEmpty ()) {
                 foreach (var eduProgramProfile in eduProgramProfiles) {
                     eduProgramProfile.EduProgramProfileForms = eduProgramProfileForms
-                        .Where (eppf => eppf.EduProgramProfileID == eduProgramProfile.EduProgramProfileID).ToList ();
+                        .Where (eppf => eppf.EduProgramProfileID == eduProgramProfile.EduProgramProfileID)
+                            .Cast <EduProgramProfileFormInfo> ().ToList ();
                 }
             }
 
@@ -107,7 +109,7 @@ namespace R7.University.ModelExtensions
         {
             return eduProgramProfiles.GroupJoin (documents.DefaultIfEmpty (), epp => epp.EduProgramProfileID, d => d.EduProgramProfileId,
                 (epp, docs) => {
-                    epp.Documents = docs.ToList ();
+                    epp.Documents = docs.Cast<DocumentInfo> ().ToList ();
                     return epp;
                 }
             );
@@ -118,7 +120,7 @@ namespace R7.University.ModelExtensions
         {
             foreach (var epp in eduProgramProfiles) {
                 if (epp.DivisionId != null) {
-                    epp.Division = divisions.First (d => d.DivisionID == epp.DivisionId.Value);
+                    epp.Division = (DivisionInfo) divisions.First (d => d.DivisionID == epp.DivisionId.Value);
                 }
             }
 

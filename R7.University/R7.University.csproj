@@ -190,6 +190,7 @@
     <Compile Include="Data\QueryableExtensions.cs" />
     <Compile Include="Data\Mappings\EduFormMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileFormMapping.cs" />
+    <Compile Include="Data\Mappings\EduProgramProfileMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
