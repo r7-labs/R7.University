@@ -68,13 +68,10 @@ namespace R7.University.EduProgram
 
         protected EduProgramModuleViewModel GetViewModel ()
         {
-            return GetViewModel_Internal ().SetContext (new ViewModelContext (this));
-
-            /*
             return DataCache.GetCachedData<EduProgramModuleViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId,
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
-                c => GetViewModel_Internal ()).SetContext (new ViewModelContext (this));*/
+                c => GetViewModel_Internal ()).SetContext (new ViewModelContext (this));
         }
 
         protected EduProgramModuleViewModel GetViewModel_Internal ()
@@ -91,19 +88,15 @@ namespace R7.University.EduProgram
                     eduProgram.Division = Repository.Get<DivisionInfo> (eduProgram.DivisionId.Value);
                 }
 
-                var eduProgramProfiles = EduProgramProfileRepository.Instance
-                    .GetEduProgramProfiles_ByEduProgram (eduProgram.EduProgramID)
-                    .WithEduProgram (eduProgram)
-                    .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ());
+                // TODO: Restore sorting of edu. program profiles
 
-                eduProgramProfiles = eduProgramProfiles
-                    .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance.GetEduProgramProfileForms (eduProgramProfiles))
-                    .WithEduForms (Repository.QueryEduForms ().ToList ())
-                    .WithDivisions (DivisionRepository.Instance.GetDivisions (eduProgramProfiles
-                        .Where (epp => epp.DivisionId != null)
-                        .Select (epp => epp.DivisionId.Value))
-                    );
-
+                var eduProgramProfiles = Repository.QueryEduProgramProfiles_ByEduProgram (eduProgram.EduProgramID)
+                    .Include (epp => epp.EduProgramProfileForms)
+                    .Include (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm))
+                    .Include (epp => epp.Documents)
+                    .Include (epp => epp.Division)
+                    .ToList ();
+                
                 var viewModel = new EduProgramModuleViewModel ();
                 viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);
 

@@ -142,6 +142,27 @@ namespace R7.University.Data
             return Query<EduFormInfo> ();
         }
 
+        public IQueryable<EduProgramProfileInfo> QueryEduProgramProfile (int eduProgramProfileId)
+        {
+            return QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
+                .Include (epp => epp.EduProgram)
+                .Include (epp => epp.EduProgram.EduLevel)
+                .Include (epp => epp.EduLevel);
+        }
+
+        public IQueryable<EduProgramProfileInfo> QueryEduProgramProfiles ()
+        {
+            return Query<EduProgramProfileInfo> ()
+                .Include (epp => epp.EduProgram)
+                .Include (epp => epp.EduProgram.EduLevel)
+                .Include (epp => epp.EduLevel);
+        }
+
+        public IQueryable<EduProgramProfileInfo> QueryEduProgramProfiles_ByEduProgram (int eduProgramId)
+        {
+            return  QueryEduProgramProfiles ().Where (epp => epp.EduProgramID == eduProgramId);
+        }
+
         #endregion
     }
 }

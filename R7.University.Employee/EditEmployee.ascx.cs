@@ -1048,7 +1048,7 @@ namespace R7.University.Employee
                         discipline.EduProgramProfileID = eduProgramProfileId;
                         discipline.Disciplines = textDisciplines.Text.Trim ();
 
-                        var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+                        var profile = Repository.QueryEduProgramProfile (discipline.EduProgramProfileID).Single ();
 
                         discipline.Code = profile.EduProgram.Code;
                         discipline.Title = profile.EduProgram.Title;
@@ -1090,7 +1090,7 @@ namespace R7.University.Employee
                     var discipline = disciplines.Find (d => d.ItemID.ToString () == itemID);
 
                     if (discipline != null) {
-                        var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+                        var profile = Repository.QueryEduProgramProfile (discipline.EduProgramProfileID).Single ();
                         var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
                         var newEduLevelId = profile.EduProgram.EduLevelID;
                         if (eduLevelId != newEduLevelId) {

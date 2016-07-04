@@ -222,18 +222,20 @@ namespace R7.University.Launchpad
 
         protected override EduProgramProfileInfo GetItem (int itemId)
         {
-            return EduProgramProfileRepository.Instance.Get (itemId);
+            return Repository.QueryEduProgramProfile (itemId).Single ();
         }
 
         protected override int AddItem (EduProgramProfileInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Add<EduProgramProfileInfo> (item);
+            Repository.Add (item);
+            Repository.SaveChanges (true);
             return item.EduProgramProfileID;
         }
 
         protected override void UpdateItem (EduProgramProfileInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Update<EduProgramProfileInfo> (item);
+            Repository.Update (item);
+            Repository.SaveChanges (true);
 
             // update referenced items
             DocumentRepository.Instance.UpdateDocuments (
@@ -247,7 +249,8 @@ namespace R7.University.Launchpad
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Delete<EduProgramProfileInfo> (item);
+            Repository.Remove (item);
+            Repository.SaveChanges (true);
         }
 
         #endregion
