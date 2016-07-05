@@ -1,5 +1,5 @@
 ﻿//
-//  EmployeeAchievementViewModel.cs
+//  EmployeeAchievementEditViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -28,7 +28,7 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementViewModel: EmployeeAchievementInfo
+    public class EmployeeAchievementEditViewModel: EmployeeAchievementInfo
     {
         public int ItemID { get; set; }
 
@@ -48,12 +48,12 @@ namespace R7.University.Employee.ViewModels
                 AchievementTypeInfo.GetResourceKey (AchievementType), resourceFile);
         }
 
-        public EmployeeAchievementViewModel ()
+        public EmployeeAchievementEditViewModel ()
         {
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeAchievementViewModel (EmployeeAchievementInfo achievement) : this ()
+        public EmployeeAchievementEditViewModel (EmployeeAchievementInfo achievement) : this ()
         {
             CopyCstor.Copy<EmployeeAchievementInfo> (achievement, this);
         }

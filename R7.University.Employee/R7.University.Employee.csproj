@@ -73,6 +73,7 @@
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
     <Folder Include="SharedLogic\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -129,9 +130,10 @@
     <Compile Include="Components\EmployeeController.cs" />
     <Compile Include="Components\EmployeeSettings.cs" />
     <Compile Include="SharedLogic\RepeaterPositionsLogic.cs" />
-    <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
     <Compile Include="ViewModels\EmployeeDisciplineViewModel.cs" />
     <Compile Include="ViewModels\OccupiedPositionViewModel.cs" />
+    <Compile Include="Queries\EmployeeQuery.cs" />
+    <Compile Include="ViewModels\EmployeeAchievementEditViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
