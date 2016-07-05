@@ -1075,7 +1075,7 @@ namespace R7.University.Employee
                     if (discipline != null) {
                         var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
                         var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
-                        var newEduLevelId = profile.EduProgram.EduLevelID;
+                        var newEduLevelId = profile.EduLevelId;
                         if (eduLevelId != newEduLevelId) {
                             comboEduLevel.SelectByValue (newEduLevelId);
                             BindEduProgramProfiles (newEduLevelId);
