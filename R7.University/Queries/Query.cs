@@ -35,9 +35,14 @@ namespace R7.University.Queries
             this.modelContext = modelContext;
         }
 
-        public IEnumerable<TEntity> Execute ()
+        public IList<TEntity> Execute ()
         {
             return modelContext.Query<TEntity> ().ToList ();
+        }
+
+        public IList<TEntity> Execute<TKey> (Func<TEntity,TKey> keySelector)
+        {
+            return modelContext.Query<TEntity> ().OrderBy (keySelector).ToList ();
         }
     }
 }
