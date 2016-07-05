@@ -1,5 +1,5 @@
 ﻿//
-//  IEmployeeAchievement.cs
+//  AchievementMapping.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,37 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Data;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+using R7.University.Models;
 
-namespace R7.University.Models
+namespace R7.University.Data.Mappings
 {
-    public interface IEmployeeAchievement
+    public class AchievementMapping: EntityTypeConfiguration<AchievementInfo>
     {
-        int EmployeeAchievementID { get; set; }
-
-        int EmployeeID  { get; set; }
-
-        int? AchievementID { get; set; }
-
-        string Title { get; set; }
-
-        string ShortTitle  { get; set; }
-
-        string Description { get; set; }
-
-        int? YearBegin { get; set; }
-
-        int? YearEnd { get; set; }
-
-        bool IsTitle { get; set; }
-
-        string DocumentURL { get; set; }
-
-        string TitleSuffix { get; set; }
-
-        AchievementType? AchievementType { get; set; }
-
-        AchievementInfo Achievement { get; set; }
+        public AchievementMapping ()
+        {
+            HasKey (m => m.AchievementID);
+            Property (m => m.AchievementID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.Title).IsRequired ();
+            Property (m => m.ShortTitle).IsOptional ();
+            Property (m => m.AchievementTypeString).HasColumnName ("AchievementType").IsRequired ();
+            Ignore (m => m.AchievementType);
+        }
     }
 }
 

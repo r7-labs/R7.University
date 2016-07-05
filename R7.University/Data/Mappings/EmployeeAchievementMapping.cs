@@ -40,8 +40,11 @@ namespace R7.University.Data.Mappings
             Property (m => m.YearEnd).IsOptional ();
             Property (m => m.IsTitle).IsRequired ();
             Property (m => m.DocumentURL).IsRequired ();
-            Property (m => m.TitleSuffix);
-            Property (m => m.AchievementTypeString).HasColumnName ("AchievementType");
+            Property (m => m.TitleSuffix).IsOptional ();
+            Property (m => m.AchievementTypeString).HasColumnName ("AchievementType").IsRequired ();
+            Ignore (m => m.AchievementType);
+
+            HasOptional (m => m.Achievement).WithMany ().HasForeignKey (m => m.AchievementID);
         }
     }
 }

@@ -83,6 +83,9 @@ namespace R7.University.Models
         public string AchievementTypeString { get; set; }
 
         [IgnoreColumn]
+        public virtual AchievementInfo Achievement { get; set; }
+
+        [IgnoreColumn]
         public string FormatYears
         {
             get {
