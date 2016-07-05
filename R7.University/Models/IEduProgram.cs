@@ -50,5 +50,7 @@ namespace R7.University.Models
         DivisionInfo Division { get; set; }
 
         ICollection<DocumentInfo> Documents { get; set; }
+
+        ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
     }
 }

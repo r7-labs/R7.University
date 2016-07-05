@@ -132,6 +132,12 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
+        public ICollection<EduProgramProfileInfo> EduProgramProfiles
+        {
+            get { return Model.EduProgramProfiles; }
+            set { throw new NotImplementedException (); }
+        }
+
         #endregion
     }
 }

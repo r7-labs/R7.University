@@ -33,6 +33,7 @@ namespace R7.University.Models
         public EduProgramInfo ()
         {
             Documents = new HashSet<DocumentInfo> ();
+            EduProgramProfiles = new HashSet<EduProgramProfileInfo> ();
         }
 
         #region IEduProgram implementation
@@ -71,6 +72,9 @@ namespace R7.University.Models
 
         [IgnoreColumn]
         public virtual ICollection<DocumentInfo> Documents { get; set; }
+
+        [IgnoreColumn]
+        public virtual ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
 
         #endregion
 
