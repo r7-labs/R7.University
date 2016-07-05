@@ -36,10 +36,11 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
+using R7.University.EduProgram.Queries;
 using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
-using R7.University.ViewModels;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgram
 {
@@ -47,10 +48,10 @@ namespace R7.University.EduProgram
     {
         #region Repository handling
 
-        private ModuleRepository repository;
-        internal ModuleRepository Repository
+        private UniversityDataRepository repository;
+        internal UniversityDataRepository Repository
         {
-            get { return repository ?? (repository = new ModuleRepository ()); }
+            get { return repository ?? (repository = new UniversityDataRepository ()); }
         }
 
         public override void Dispose ()
@@ -78,7 +79,7 @@ namespace R7.University.EduProgram
         {
             // TODO: Restore sorting of edu. program profiles
             if (Settings.EduProgramId != null) {
-                var eduProgram = Repository.GetEduProgram (Settings.EduProgramId.Value);
+                var eduProgram = new EduProgramQuery (Repository).Execute (Settings.EduProgramId.Value);
                 if (eduProgram == null) {
                     // edu. program not found - return empty view model
                     return new EduProgramModuleViewModel ();

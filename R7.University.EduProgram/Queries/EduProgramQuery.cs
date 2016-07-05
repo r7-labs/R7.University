@@ -24,13 +24,20 @@ using System.Linq;
 using R7.University.Data;
 using R7.University.Models;
 
-namespace R7.University.EduProgram.Components
+namespace R7.University.EduProgram.Queries
 {
-    internal class ModuleRepository: UniversityDataRepository
+    internal class EduProgramQuery
     {
-        public EduProgramInfo GetEduProgram (int eduProgramId)
+        private readonly IDataRepository repository;
+
+        public EduProgramQuery (IDataRepository repository)
         {
-            return QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
+            this.repository = repository;
+        }
+
+        public EduProgramInfo Execute (int eduProgramId)
+        {
+            return repository.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
                 .Include (ep => ep.EduLevel)
                 .Include (ep => ep.Documents)
                 .Include (ep => ep.Documents.Select (d => d.DocumentType))
