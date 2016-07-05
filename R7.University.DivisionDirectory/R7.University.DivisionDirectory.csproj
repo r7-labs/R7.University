@@ -65,6 +65,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -98,6 +99,7 @@
     <Compile Include="Components\DivisionDirectoryController.cs" />
     <Compile Include="Components\DivisionDirectoryMode.cs" />
     <Compile Include="Components\DivisionDirectorySettings.cs" />
+    <Compile Include="Queries\HeadPositionQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

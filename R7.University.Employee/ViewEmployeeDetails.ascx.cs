@@ -47,11 +47,31 @@ using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.ViewModels;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
+using R7.University.Queries;
 
 namespace R7.University.Employee
 {
     public partial class ViewEmployeeDetails: PortalModuleBase<EmployeeSettings>, IActionable
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected bool InPopup
@@ -293,10 +313,8 @@ namespace R7.University.Employee
             }
 
             // occupied positions
-            var occupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-
-            if (occupiedPositions.Any ()) {
+            var occupiedPositions = new OccupiedPositionsByEmployeeQuery (ModelContext).Execute (employee.EmployeeID);
+            if (occupiedPositions.Count > 0) {
                 repeaterPositions.DataSource = occupiedPositions; 
                 // TODO: Restore this: repeaterPositions.DataSource = occupiedPositions; 
                 repeaterPositions.DataBind ();

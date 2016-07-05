@@ -39,6 +39,7 @@ using R7.University.Data;
 using R7.University.DivisionDirectory.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.DivisionDirectory.Queries;
 
 namespace R7.University.DivisionDirectory
 {
@@ -390,12 +391,11 @@ namespace R7.University.DivisionDirectory
                                         division.HeadPositionID);
                 
                 if (contactPerson != null && contactPerson.IsPublished ()) {
-                    var headPosition = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                                           "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
-                                           contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
+                    var headPosition = new HeadPositionQuery (ModelContext)
+                        .Execute (contactPerson.EmployeeID, division.HeadPositionID);
 
-                    var positionTitle = (!string.IsNullOrWhiteSpace (headPosition.PositionShortTitle)) ?
-                        headPosition.PositionShortTitle : headPosition.PositionTitle;
+                    var positionTitle = (!string.IsNullOrWhiteSpace (headPosition.Position.ShortTitle)) ?
+                        headPosition.Position.ShortTitle : headPosition.Position.Title;
 
                     literalContactPerson.Text = "<strong><a href=\""
                     + EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails")

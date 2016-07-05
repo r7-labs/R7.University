@@ -39,6 +39,7 @@ using R7.University.EmployeeDirectory.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
+using R7.University.Queries;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -435,13 +436,13 @@ namespace R7.University.EmployeeDirectory
                 workingPlace.Text = employee.WorkingPlace;
 
                 // try to get prime position:
-                var primePosition = UniversityRepository.Instance.DataProvider.GetObjects <OccupiedPositionInfoEx> (
-                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC",
-                                        employee.EmployeeID).FirstOrDefault ();
+                var primePosition = new OccupiedPositionsByEmployeeQuery (ModelContext)
+                    .Execute (employee.EmployeeID)
+                    .FirstOrDefault ();
 
                 if (primePosition != null) {
                     position.Text = TextUtils.FormatList (": ",
-                        FormatHelper.FormatShortTitle (primePosition.PositionShortTitle, primePosition.PositionTitle, 
+                        FormatHelper.FormatShortTitle (primePosition.Position.ShortTitle, primePosition.Position.Title, 
                             primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }
 
