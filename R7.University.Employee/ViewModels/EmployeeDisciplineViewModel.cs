@@ -1,10 +1,10 @@
 //
-//  EmployeeDisciplineView.cs
+//  EmployeeDisciplineViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015 Roman M. Yagodin
+//  Copyright (c) 2015-2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -24,19 +24,19 @@ using R7.University.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
 
-namespace R7.University.Employee
+namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeDisciplineView: EmployeeDisciplineInfoEx
+    public class EmployeeDisciplineViewModel: EmployeeDisciplineInfoEx
     {
         public int ItemID { get; set; }
 
-        public EmployeeDisciplineView ()
+        public EmployeeDisciplineViewModel ()
         {
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeDisciplineView (EmployeeDisciplineInfoEx program) : this ()
+        public EmployeeDisciplineViewModel (EmployeeDisciplineInfoEx program) : this ()
         {
             CopyCstor.Copy<EmployeeDisciplineInfoEx> (program, this);
         }

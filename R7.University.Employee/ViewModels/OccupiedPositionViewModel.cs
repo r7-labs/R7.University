@@ -1,5 +1,5 @@
 ﻿//
-//  OccupiedPositionView.cs
+//  OccupiedPositionViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,13 +21,12 @@
 
 using System;
 using R7.University.ViewModels;
-using R7.University.Data;
 using R7.University.Models;
 
-namespace R7.University.Employee
+namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class OccupiedPositionView
+    public class OccupiedPositionViewModel
     {
         public int ItemID { get; set; }
 
@@ -48,7 +47,7 @@ namespace R7.University.Employee
             get { return PositionShortTitle + " " + TitleSuffix; }
         }
 
-        public OccupiedPositionView ()
+        public OccupiedPositionViewModel ()
         {
             ItemID = ViewNumerator.GetNextItemID ();
         }
@@ -65,7 +64,7 @@ namespace R7.University.Employee
             return opinfo;
         }
 
-        public OccupiedPositionView (OccupiedPositionInfoEx opex) : this ()
+        public OccupiedPositionViewModel (OccupiedPositionInfoEx opex) : this ()
         {
             PositionID = opex.PositionID;
             DivisionID = opex.DivisionID;

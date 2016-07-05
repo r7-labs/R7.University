@@ -44,6 +44,7 @@ using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.Queries;
+using R7.University.Employee.ViewModels;
 
 namespace R7.University.Employee
 {
@@ -304,9 +305,9 @@ namespace R7.University.Employee
 
 
                             // fill view list
-                            var occupiedPositions = new List<OccupiedPositionView> ();
+                            var occupiedPositions = new List<OccupiedPositionViewModel> ();
                             foreach (var op in occupiedPositionInfoExs)
-                                occupiedPositions.Add (new OccupiedPositionView (op));
+                                occupiedPositions.Add (new OccupiedPositionViewModel (op));
 
                             // bind occupied positions
                             ViewState ["occupiedPositions"] = occupiedPositions;
@@ -318,9 +319,9 @@ namespace R7.University.Employee
                                 .GetEmployeeAchievements (itemId.Value);
 
                             // fill achievements list
-                            var achievements = new List<EmployeeAchievementView> ();
+                            var achievements = new List<EmployeeAchievementViewModel> ();
                             foreach (var achievement in achievementInfos) {
-                                var achView = new EmployeeAchievementView (achievement);
+                                var achView = new EmployeeAchievementViewModel (achievement);
                                 achView.Localize (LocalResourceFile);
                                 achievements.Add (achView);
                             }
@@ -335,9 +336,9 @@ namespace R7.University.Employee
                                                       "WHERE [EmployeeID] = @0", itemId.Value);
 
                             // fill disciplines list
-                            var disciplines = new List<EmployeeDisciplineView> ();
+                            var disciplines = new List<EmployeeDisciplineViewModel> ();
                             foreach (var eduprogram in disciplineInfos)
-                                disciplines.Add (new EmployeeDisciplineView (eduprogram));
+                                disciplines.Add (new EmployeeDisciplineViewModel (eduprogram));
 
                             // bind disciplines
                             ViewState ["disciplines"] = disciplines;
@@ -461,7 +462,7 @@ namespace R7.University.Employee
 
         private List<OccupiedPositionInfo> GetOccupiedPositions ()
         {
-            var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+            var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
 					
             var occupiedPositionInfos = new List<OccupiedPositionInfo> ();
             if (occupiedPositions != null)
@@ -473,7 +474,7 @@ namespace R7.University.Employee
 
         private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
         {
-            var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+            var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
 				
             var achievementInfos = new List<EmployeeAchievementInfo> ();
             if (achievements != null)
@@ -485,7 +486,7 @@ namespace R7.University.Employee
 
         private List<EmployeeDisciplineInfo> GetEmployeeDisciplines ()
         {
-            var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
+            var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel>;
 
             var disciplineInfos = new List<EmployeeDisciplineInfo> ();
             if (disciplines != null)
@@ -654,17 +655,17 @@ namespace R7.University.Employee
                 var divisionID = int.Parse (treeDivisions.SelectedValue);
 
                 if (!Null.IsNull (positionID) && !Null.IsNull (divisionID)) {
-                    OccupiedPositionView occupiedPosition;
+                    OccupiedPositionViewModel occupiedPosition;
 
-                    var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                    var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
 
                     // creating new list, if none
                     if (occupiedPositions == null)
-                        occupiedPositions = new List<OccupiedPositionView> ();
+                        occupiedPositions = new List<OccupiedPositionViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        occupiedPosition = new OccupiedPositionView ();
+                        occupiedPosition = new OccupiedPositionViewModel ();
                     }
                     else { // update 
                         // restore ItemID from hidden field
@@ -752,7 +753,7 @@ namespace R7.University.Employee
         protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -784,7 +785,7 @@ namespace R7.University.Employee
         protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -809,17 +810,17 @@ namespace R7.University.Employee
             }
         }
 
-        private DataTable OccupiedPositionsDataTable (List<OccupiedPositionView> occupiedPositions)
+        private DataTable OccupiedPositionsDataTable (List<OccupiedPositionViewModel> occupiedPositions)
         {
             return DataTableConstructor.FromIEnumerable (occupiedPositions);
         }
 
-        private DataTable AchievementsDataTable (List<EmployeeAchievementView> achievements)
+        private DataTable AchievementsDataTable (List<EmployeeAchievementViewModel> achievements)
         {
             return DataTableConstructor.FromIEnumerable (achievements);
         }
 
-        private DataTable DisciplinesDataTable (List<EmployeeDisciplineView> eduPrograms)
+        private DataTable DisciplinesDataTable (List<EmployeeDisciplineViewModel> eduPrograms)
         {
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
@@ -827,7 +828,7 @@ namespace R7.University.Employee
         protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -859,7 +860,7 @@ namespace R7.University.Employee
         protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -951,18 +952,18 @@ namespace R7.University.Employee
         protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                EmployeeAchievementView achievement;
+                EmployeeAchievementViewModel achievement;
 
                 // get achievements list from viewstate
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
 				
                 // creating new list, if none
                 if (achievements == null)
-                    achievements = new List<EmployeeAchievementView> ();
+                    achievements = new List<EmployeeAchievementViewModel> ();
 
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add") {
-                    achievement = new EmployeeAchievementView ();
+                    achievement = new EmployeeAchievementViewModel ();
                 }
                 else {
                     // restore ItemID from hidden field
@@ -1017,14 +1018,14 @@ namespace R7.University.Employee
         {
             try {
                 if (!Null.IsNull (int.Parse (comboEduProgramProfile.SelectedValue))) {
-                    EmployeeDisciplineView discipline;
+                    EmployeeDisciplineViewModel discipline;
 
                     // get disciplines list from viewstate
-                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView> ?? new List<EmployeeDisciplineView> ();
+                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel> ?? new List<EmployeeDisciplineViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        discipline = new EmployeeDisciplineView ();
+                        discipline = new EmployeeDisciplineViewModel ();
                     }
                     else {
                         // restore ItemID from hidden field
@@ -1075,7 +1076,7 @@ namespace R7.University.Employee
         protected void linkEditDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
+                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel>;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
@@ -1112,7 +1113,7 @@ namespace R7.University.Employee
         protected void linkDeleteDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
+                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel>;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
