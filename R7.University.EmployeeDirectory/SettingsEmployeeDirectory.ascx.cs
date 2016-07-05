@@ -31,6 +31,7 @@ using R7.University.Data;
 using R7.University.EmployeeDirectory.Components;
 using R7.University.ViewModels;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -63,8 +64,7 @@ namespace R7.University.EmployeeDirectory
             comboMode.DataBind ();
 
             // fill edulevels list
-            var eduLevels = ModelContext.QueryEduLevels ().ToList ();
-
+            var eduLevels = new EduLevelsQuery (ModelContext).Execute ();
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem
                     { 

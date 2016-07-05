@@ -47,11 +47,6 @@ namespace R7.University.Models
 
         #region Custom methods
 
-        public IQueryable<EduLevelInfo> QueryEduLevels ()
-        {
-            return Query<EduLevelInfo> ().OrderBy (el => el.EduLevelID);
-        }
-
         public IQueryable<DivisionInfo> QueryDivisions ()
         {
             return Query<DivisionInfo> ().OrderBy (d => d.Title);
