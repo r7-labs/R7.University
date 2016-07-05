@@ -19,12 +19,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University.Models
 {
     [TableName ("University_Achievements")]
     [PrimaryKey ("AchievementID", AutoIncrement = true)]
+    [Serializable]
     public class AchievementInfo: IAchievement
     {
         #region IAchievement implementation
