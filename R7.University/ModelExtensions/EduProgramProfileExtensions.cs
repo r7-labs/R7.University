@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using R7.DotNetNuke.Extensions.Data;
 using R7.University.Data;
 using R7.University.Models;
 
@@ -30,24 +29,6 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileExtensions
     {
-        public static EduProgramProfileInfo WithEduProgram (
-            this EduProgramProfileInfo eduProfile)
-        {
-            eduProfile.EduProgram = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (eduProfile.EduProgramID);
-
-            return eduProfile;
-        }
-
-        public static IEnumerable<IEduProgramProfile> WithEduProgram (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEduProgram eduProgram)
-        {
-            foreach (var epp in eduProgramProfiles) {
-                epp.EduProgram = (EduProgramInfo) eduProgram;
-            }
-
-            return eduProgramProfiles;
-        }
-
         public static IEnumerable<EduProgramProfileInfo> WithEduProgram (
             this IEnumerable<EduProgramProfileInfo> eduProgramProfiles)
         {
@@ -113,18 +94,6 @@ namespace R7.University.ModelExtensions
                     return epp;
                 }
             );
-        }
-
-        public static IEnumerable<IEduProgramProfile> WithDivisions (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles,  IEnumerable<IDivision> divisions)
-        {
-            foreach (var epp in eduProgramProfiles) {
-                if (epp.DivisionId != null) {
-                    epp.Division = (DivisionInfo) divisions.First (d => d.DivisionID == epp.DivisionId.Value);
-                }
-            }
-
-            return eduProgramProfiles;
         }
 
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
