@@ -189,11 +189,11 @@
     <Compile Include="Data\Mappings\EduProgramProfileMapping.cs" />
     <Compile Include="Queries\EduProgramLevelsQuery.cs" />
     <Compile Include="Queries\EduProgramsByEduLevelsQuery.cs" />
-    <Compile Include="Queries\EduProgramQuery.cs" />
     <Compile Include="Models\IModelContext.cs" />
     <Compile Include="Models\ModelContextBase.cs" />
     <Compile Include="Models\UniversityModelContext.cs" />
     <Compile Include="Models\QueryableExtensions.cs" />
+    <Compile Include="Queries\GetByKeyQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramQuery.cs
+//  SingleQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -24,18 +24,18 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class EduProgramQuery
+    public class GetByKeyQuery<TEntity> where TEntity: class
     {
         private readonly IModelContext modelContext;
 
-        public EduProgramQuery (IModelContext modelContext)
+        public GetByKeyQuery (IModelContext modelContext)
         {
             this.modelContext = modelContext;
         }
 
-        public EduProgramInfo Execute (int eduProgramId)
+        public TEntity Execute (object key)
         {
-            return modelContext.Get<EduProgramInfo> (eduProgramId);
+            return modelContext.Get<TEntity> (key);
         }
     }
 }
