@@ -84,6 +84,7 @@
     <Compile Include="ViewModels\EduProgramViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EduProgramModuleViewModel.cs" />
+    <Compile Include="Components\ModuleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />

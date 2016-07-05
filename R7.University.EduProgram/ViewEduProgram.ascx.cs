@@ -47,10 +47,10 @@ namespace R7.University.EduProgram
     {
         #region Repository handling
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private ModuleRepository repository;
+        internal ModuleRepository Repository
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return repository ?? (repository = new ModuleRepository ()); }
         }
 
         public override void Dispose ()
@@ -78,15 +78,7 @@ namespace R7.University.EduProgram
         {
             // TODO: Restore sorting of edu. program profiles
             if (Settings.EduProgramId != null) {
-                var eduProgram = Repository.QueryEduProgram (Settings.EduProgramId.Value)
-                    .Include (ep => ep.Division)
-                    .Include (ep => ep.EduProgramProfiles)
-                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduLevel))
-                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileForms))
-                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm)))
-                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.Division))
-                    .SingleOrDefault ();
-
+                var eduProgram = Repository.GetEduProgram (Settings.EduProgramId.Value);
                 if (eduProgram == null) {
                     // edu. program not found - return empty view model
                     return new EduProgramModuleViewModel ();
