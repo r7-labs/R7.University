@@ -129,7 +129,7 @@ namespace R7.University.EduProgram
             comboEduLevel.DataSource = new EduProgramLevelsQuery (ModelContext).Execute ();
             comboEduLevel.DataBind ();
 
-            var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();
+            var documentTypes = new Query<DocumentTypeInfo> (ModelContext).Execute ();
             formEditDocuments.OnInit (this, documentTypes);
 
             // fill divisions treeview
@@ -162,7 +162,7 @@ namespace R7.University.EduProgram
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (itemId.Value);
+                        var item = new GetByKeyQuery<EduProgramInfo> (ModelContext).Execute (itemId.Value);
 
                         if (item != null) {
                             textCode.Text = item.Code;
@@ -226,7 +226,7 @@ namespace R7.University.EduProgram
                 }
                 else {
                     // update existing record
-                    item = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (itemId.Value);
+                    item = new GetByKeyQuery<EduProgramInfo> (ModelContext).Execute (itemId.Value);
                 }
 
                 // fill the object
