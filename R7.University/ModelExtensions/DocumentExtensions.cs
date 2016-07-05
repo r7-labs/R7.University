@@ -20,8 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -31,18 +29,6 @@ namespace R7.University.ModelExtensions
         public static bool IsPublished (this IDocument document)
         {
             return ModelHelper.IsPublished (document.StartDate, document.EndDate);
-        }
-
-        public static IEnumerable<IDocument> WithDocumentType (
-            this IEnumerable<IDocument> documents, 
-            IEnumerable<IDocumentType> documentTypes)
-        {
-            return documents.Join (documentTypes, d => d.DocumentTypeID, dt => dt.DocumentTypeID,
-                (d, dt) => {
-                    d.DocumentType = (DocumentTypeInfo) dt;
-                    return d;
-                }
-            );
         }
 
         public static SystemDocumentType GetSystemDocumentType (this IDocument document)

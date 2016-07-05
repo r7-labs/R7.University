@@ -56,7 +56,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelExtensions\DocumentExtensionTests.cs" />
     <Compile Include="DefaultPortalConfigTests.cs" />
     <Compile Include="Data\TestDbContext.cs" />
     <Compile Include="Data\TestDbContextFactory.cs" />
