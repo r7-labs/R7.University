@@ -23,6 +23,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using R7.University.Models;
+using System.Web.UI.WebControls;
 
 namespace R7.University.Data.Mappings
 {
@@ -65,9 +66,9 @@ namespace R7.University.Data.Mappings
 
             Ignore (m => m.OccupiedPositions);
             Ignore (m => m.Achievements);
-            Ignore (m => m.Disciplines);
 
             HasMany (m => m.Positions).WithRequired ().HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);
+            HasMany (m => m.Disciplines).WithRequired ().HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);
         }
     }
 }

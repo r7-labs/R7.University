@@ -196,6 +196,7 @@
     <Compile Include="Queries\GetByKeyQuery.cs" />
     <Compile Include="Queries\EduLevelsQuery.cs" />
     <Compile Include="Queries\Query.cs" />
+    <Compile Include="Data\Mappings\EmployeeDisciplineMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

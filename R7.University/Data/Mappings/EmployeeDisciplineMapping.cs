@@ -1,5 +1,5 @@
 ﻿//
-//  SingleQuery.cs
+//  EmployeeDisciplineMapping.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,23 +20,21 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using R7.University.Models;
 
-namespace R7.University.Queries
+namespace R7.University.Data.Mappings
 {
-    // REVIEW: Can it be just ModelContext.Get<TEntity> ()?
-    public class GetByKeyQuery<TEntity> where TEntity: class
+    public class EmployeeDisciplineMapping: EntityTypeConfiguration<EmployeeDisciplineInfo>
     {
-        private readonly IModelContext modelContext;
-
-        public GetByKeyQuery (IModelContext modelContext)
+        public EmployeeDisciplineMapping ()
         {
-            this.modelContext = modelContext;
-        }
-
-        public TEntity Execute (object key)
-        {
-            return modelContext.Get<TEntity> (key);
+            HasKey (m => m.EmployeeDisciplineID);
+            Property (m => m.EmployeeDisciplineID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.EmployeeID).IsRequired ();
+            Property (m => m.EduProgramProfileID).IsRequired ();
+            Property (m => m.Disciplines).IsOptional ();
         }
     }
 }

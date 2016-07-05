@@ -75,7 +75,7 @@ namespace R7.University.Models
 
         IList<IEmployeeAchievement> Achievements { get; set; }
 
-        IList<IEmployeeDiscipline> Disciplines { get; set; }
+        ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
 
         IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
 

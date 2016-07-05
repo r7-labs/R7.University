@@ -96,13 +96,13 @@ namespace R7.University.Models
         public IList<IEmployeeAchievement> Achievements { get; set; }
 
         [IgnoreColumn]
-        public IList<IEmployeeDiscipline> Disciplines { get; set; }
+        public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
 
         [IgnoreColumn]
         public IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
 
         [IgnoreColumn]
-        public ICollection<OccupiedPositionInfo> Positions { get; set; }
+        public virtual ICollection<OccupiedPositionInfo> Positions { get; set; }
 
         #endregion
 

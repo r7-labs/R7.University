@@ -52,7 +52,9 @@ namespace R7.University.ModelExtensions
         {
             if (!employees.IsNullOrEmpty () && !disciplines.IsNullOrEmpty ()) {
                 foreach (var employee in employees) {
-                    employee.Disciplines = disciplines.Where (d => d.EmployeeID == employee.EmployeeID).ToList ();
+                    employee.Disciplines = disciplines.Where (d => d.EmployeeID == employee.EmployeeID)
+                        .Cast<EmployeeDisciplineInfo> ()
+                        .ToList ();
                 }
             }
 

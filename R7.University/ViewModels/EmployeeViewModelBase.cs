@@ -199,7 +199,7 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
-        public IList<IEmployeeDiscipline> Disciplines
+        public ICollection<EmployeeDisciplineInfo> Disciplines
         {
             get { return Model.Disciplines; }
             set { throw new NotImplementedException (); }
