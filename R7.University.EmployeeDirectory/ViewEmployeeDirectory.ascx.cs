@@ -187,8 +187,8 @@ namespace R7.University.EmployeeDirectory
                 var teachers = EmployeeRepository.Instance.GetTeachers ()
                     .WithDisciplines (UniversityRepository.Instance.DataProvider
                         .GetObjects<EmployeeDisciplineInfo> ())
-                    .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
-                        .GetObjects<OccupiedPositionInfoEx> ())
+                    // .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
+                    //     .GetObjects<OccupiedPositionInfoEx> ())
                     .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
 
 

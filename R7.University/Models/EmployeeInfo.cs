@@ -106,9 +106,6 @@ namespace R7.University.Models
         public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
 
         [IgnoreColumn]
-        public IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
-
-        [IgnoreColumn]
         public virtual ICollection<OccupiedPositionInfo> Positions { get; set; }
 
         #endregion

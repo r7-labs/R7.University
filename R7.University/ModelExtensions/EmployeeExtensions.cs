@@ -91,6 +91,7 @@ namespace R7.University.ModelExtensions
             return employees;
         }
 
+        /* TODO: Restore this:
         [Obsolete]
         public static IEnumerable<IEmployee> WithOccupiedPositions (this IEnumerable<IEmployee> employees, int divisionId)
         {
@@ -99,7 +100,7 @@ namespace R7.University.ModelExtensions
                                 employees.Select (e => e.EmployeeID), divisionId);
 
                 foreach (var employee in employees) {
-                    employee.OccupiedPositions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID)
+                    employee.Positions = commonOps.Where (op => op.EmployeeID == employee.EmployeeID)
                     .GroupByDivision ()
                     .ToList ();
                 }
@@ -113,25 +114,13 @@ namespace R7.University.ModelExtensions
         {
             if (!employees.IsNullOrEmpty () && !occupiedPositions.IsNullOrEmpty ()) {
                 foreach (var employee in employees) {
-                    employee.OccupiedPositions = occupiedPositions.Where (op => op.EmployeeID == employee.EmployeeID)
+                    employee.Positions = occupiedPositions.Where (op => op.EmployeeID == employee.EmployeeID)
                         .GroupByDivision ()
                         .ToList ();
                 }
             }
 
             return employees;
-        }
-
-        public static IEmployee WithOccupiedPositions (this IEmployee employee)
-        {
-            if (employee != null) {
-                employee.OccupiedPositions = OccupiedPositionRepository.Instance
-                .GetOccupiedPositions (employee.EmployeeID)
-                .GroupByDivision ()
-                .ToList ();
-            }
-
-            return employee;
-        }
+        }*/
     }
 }

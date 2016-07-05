@@ -18,14 +18,41 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using System.Linq;
+using R7.University.Models;
 
 namespace R7.University.Employee.Queries
 {
     public class EmployeeQuery
     {
-        public EmployeeQuery ()
+        private readonly IModelContext modelContext;
+
+        public EmployeeQuery (IModelContext modelContext)
         {
+            this.modelContext = modelContext;
+        }
+
+        public EmployeeInfo Execute (int employeeId)
+        {
+            return modelContext.QueryOne<EmployeeInfo> (e => e.EmployeeID == employeeId)
+                .Include (e => e.Positions)
+                .Include (e => e.Positions.Select (p => p.Position))
+                .Include (e => e.Positions.Select (p => p.Division))
+                .Include (e => e.Achievements)
+                .Include (e => e.Achievements.Select (a => a.Achievement))
+                .SingleOrDefault ();
+        }
+
+        public EmployeeInfo ExecuteByUserId (int userId)
+        {
+            return modelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
+                .Include (e => e.Positions.Select (p => p.Position))
+                .Include (e => e.Positions.Select (p => p.Division))
+                .Include (e => e.Achievements)
+                .Include (e => e.Achievements.Select (a => a.Achievement))
+                .SingleOrDefault ();
         }
     }
 }

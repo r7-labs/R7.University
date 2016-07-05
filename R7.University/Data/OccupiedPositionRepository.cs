@@ -50,14 +50,8 @@ namespace R7.University.Data
 
         #endregion
 
-        public IEnumerable<OccupiedPositionInfoEx> GetOccupiedPositions (int employeeId)
-        {
-            return DataProvider.GetObjects<OccupiedPositionInfoEx> ("WHERE [EmployeeID] = @0", employeeId)
-                .OrderByDescending (opx => opx.IsPrime)
-                .ThenByDescending (opx => opx.PositionWeight);
-        }
-
-        public IEnumerable<OccupiedPositionInfoEx> GetOccupiedPositions_ForEmployees (IEnumerable<int> employeeIds, int divisionId)
+        /* // TODO: Restore this:
+        public IEnumerable<IOccupiedPosition> GetOccupiedPositions_ForEmployees (IEnumerable<int> employeeIds, int divisionId)
         {
             var strEmployeeIds = TextUtils.FormatList (", ", employeeIds);
 
@@ -68,7 +62,7 @@ namespace R7.University.Data
                 + "ORDER BY (CASE WHEN [DivisionID]={1} THEN 0 ELSE 1 END), [IsPrime] DESC, [PositionWeight] DESC", 
                     strEmployeeIds, divisionId)
             );
-        }
+        }*/
     }
 }
 

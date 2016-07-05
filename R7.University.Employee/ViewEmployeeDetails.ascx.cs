@@ -295,9 +295,10 @@ namespace R7.University.Employee
             // occupied positions
             var occupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
                                         "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-            
+
             if (occupiedPositions.Any ()) {
-                repeaterPositions.DataSource = occupiedPositions.GroupByDivision ();
+                repeaterPositions.DataSource = occupiedPositions; 
+                // TODO: Restore this: repeaterPositions.DataSource = occupiedPositions; 
                 repeaterPositions.DataBind ();
             }
             else

@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using R7.University.Data;
 
 namespace R7.University.Models
 {
@@ -76,8 +75,6 @@ namespace R7.University.Models
         ICollection<EmployeeAchievementInfo> Achievements { get; set; }
 
         ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
-
-        IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
 
         ICollection<OccupiedPositionInfo> Positions { get; set; }
     }

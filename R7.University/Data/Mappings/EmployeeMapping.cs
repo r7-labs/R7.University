@@ -23,7 +23,6 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using R7.University.Models;
-using System.Web.UI.WebControls;
 
 namespace R7.University.Data.Mappings
 {
@@ -63,8 +62,6 @@ namespace R7.University.Data.Mappings
             Property (m => m.CreatedOnDate);
 
             Property (m => m.ShowBarcode);
-
-            Ignore (m => m.OccupiedPositions);
 
             HasMany (m => m.Positions).WithRequired ().HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);
             HasMany (m => m.Disciplines).WithRequired ().HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);

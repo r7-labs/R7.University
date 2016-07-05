@@ -319,9 +319,9 @@ namespace R7.University.Employee
                                 .GetEmployeeAchievements (itemId.Value);
 
                             // fill achievements list
-                            var achievements = new List<EmployeeAchievementViewModel> ();
+                            var achievements = new List<EmployeeAchievementEditViewModel> ();
                             foreach (var achievement in achievementInfos) {
-                                var achView = new EmployeeAchievementViewModel (achievement);
+                                var achView = new EmployeeAchievementEditViewModel (achievement);
                                 achView.Localize (LocalResourceFile);
                                 achievements.Add (achView);
                             }
@@ -474,7 +474,7 @@ namespace R7.University.Employee
 
         private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
         {
-            var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
+            var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
 				
             var achievementInfos = new List<EmployeeAchievementInfo> ();
             if (achievements != null)
@@ -815,7 +815,7 @@ namespace R7.University.Employee
             return DataTableConstructor.FromIEnumerable (occupiedPositions);
         }
 
-        private DataTable AchievementsDataTable (List<EmployeeAchievementViewModel> achievements)
+        private DataTable AchievementsDataTable (List<EmployeeAchievementEditViewModel> achievements)
         {
             return DataTableConstructor.FromIEnumerable (achievements);
         }
@@ -828,7 +828,7 @@ namespace R7.University.Employee
         protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -860,7 +860,7 @@ namespace R7.University.Employee
         protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -952,18 +952,18 @@ namespace R7.University.Employee
         protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                EmployeeAchievementViewModel achievement;
+                EmployeeAchievementEditViewModel achievement;
 
                 // get achievements list from viewstate
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementViewModel>;
+                var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
 				
                 // creating new list, if none
                 if (achievements == null)
-                    achievements = new List<EmployeeAchievementViewModel> ();
+                    achievements = new List<EmployeeAchievementEditViewModel> ();
 
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add") {
-                    achievement = new EmployeeAchievementViewModel ();
+                    achievement = new EmployeeAchievementEditViewModel ();
                 }
                 else {
                     // restore ItemID from hidden field

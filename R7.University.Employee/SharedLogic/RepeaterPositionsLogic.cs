@@ -34,30 +34,30 @@ namespace R7.University.Employee.SharedLogic
         {
             // exclude header & footer
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-                var opex = (OccupiedPositionInfoEx) e.Item.DataItem;
+                var op = (OccupiedPositionInfo) e.Item.DataItem;
 
                 var labelPosition = (Label) e.Item.FindControl ("labelPosition");
                 var labelDivision = (Label) e.Item.FindControl ("labelDivision");
                 var linkDivision = (HyperLink) e.Item.FindControl ("linkDivision");
 
-                labelPosition.Text = FormatHelper.FormatShortTitle (opex.PositionShortTitle, opex.PositionTitle);
+                labelPosition.Text = FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title);
 
                 // don't display division title for highest level divisions
-                if (TypeUtils.IsNull (opex.ParentDivisionID)) {
+                if (TypeUtils.IsNull (op.Division.ParentDivisionID)) {
                     labelDivision.Visible = false;
                     linkDivision.Visible = false;
                 }
                 else {
                     var divisionShortTitle = FormatHelper.FormatShortTitle (
-                                                 opex.DivisionShortTitle,
-                                                 opex.DivisionTitle);
+                        op.Division.ShortTitle,
+                        op.Division.Title);
 
-                    if (!string.IsNullOrWhiteSpace (opex.HomePage)) {
+                    if (!string.IsNullOrWhiteSpace (op.Division.HomePage)) {
                         // link to division's homepage
                         labelDivision.Visible = false;
                         linkDivision.NavigateUrl = R7.University.Utilities.Utils.FormatCrossPortalTabUrl (
                             module,
-                            int.Parse (opex.HomePage),
+                            int.Parse (op.Division.HomePage),
                             false);
                         linkDivision.Text = divisionShortTitle;
                     }

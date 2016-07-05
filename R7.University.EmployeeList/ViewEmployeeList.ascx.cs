@@ -101,8 +101,8 @@ namespace R7.University.EmployeeList
             return new EmployeeListViewModel (
                 EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
                     Settings.IncludeSubdivisions, Settings.SortType)
-                    .WithAchievements ()
-                    .WithOccupiedPositions (Settings.DivisionID),
+                    .WithAchievements (),
+                    // .WithOccupiedPositions (Settings.DivisionID),
                     ModelContext.Get<DivisionInfo> (Settings.DivisionID)
             );
         }
@@ -301,14 +301,14 @@ namespace R7.University.EmployeeList
                 linkUserProfile.Visible = false;
 
             // get current employee occupied positions
-            var ops = employee.OccupiedPositions;
+            var ops = employee.Positions;
 
             // build positions value
             var positionsVisible = false;
             if (!ops.IsNullOrEmpty ()) {
                 var strOps = string.Empty;
                 foreach (var op in ops) {
-                    var strOp = FormatHelper.FormatShortTitle (op.PositionShortTitle, op.PositionTitle);
+                    var strOp = FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title);
 
                     // op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
                     strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", strOp, 

@@ -28,8 +28,20 @@ namespace R7.University.Models
 {
     [TableName ("vw_University_OccupiedPositions")]
     [PrimaryKey ("OccupiedPositionID", AutoIncrement = false)]
-    public class OccupiedPositionInfoEx: OccupiedPositionInfo
+    public class OccupiedPositionInfoEx //: OccupiedPositionInfo
     {
+        public int OccupiedPositionID { get; set; }
+
+        public int PositionID { get; set; }
+
+        public int DivisionID { get; set; }
+
+        public int EmployeeID { get; set; }
+
+        public bool IsPrime { get; set; }
+
+        public string TitleSuffix { get; set; }
+
         #region Extended (Position and Division) properties
 
         public string PositionShortTitle { get; set; }
