@@ -47,18 +47,18 @@ namespace R7.University.EduProgramProfileDirectory
 {
     public partial class ViewEduProgramProfileDirectory: PortalModuleBase<EduProgramProfileDirectorySettings>, IActionable
     {
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -113,12 +113,12 @@ namespace R7.University.EduProgramProfileDirectory
             var indexer = new ViewModelIndexer (1);
 
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ());
+                .WithEduLevel (ModelContext.Query<EduLevelInfo> ().ToList ());
             
             eduProgramProfiles = eduProgramProfiles
                 .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance
                     .GetEduProgramProfileForms (eduProgramProfiles))
-                .WithEduForms (Repository.QueryEduForms ().ToList ());
+                .WithEduForms (ModelContext.QueryEduForms ().ToList ());
                
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
                 eduProgramProfiles
@@ -141,8 +141,8 @@ namespace R7.University.EduProgramProfileDirectory
 
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
                 EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                    .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
-                    .WithDocuments (Repository.QueryDocuments_ForEduProgramProfiles ())
+                    .WithEduLevel (ModelContext.Query<EduLevelInfo> ().ToList ())
+                    .WithDocuments (ModelContext.QueryDocuments_ForEduProgramProfiles ())
                     .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                     .ThenBy (epp => epp.EduProgram.Code)
                     .ThenBy (epp => epp.EduProgram.Title)

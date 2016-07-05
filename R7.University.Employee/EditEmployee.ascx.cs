@@ -36,7 +36,6 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
@@ -65,18 +64,18 @@ namespace R7.University.Employee
 
         private int? itemId = null;
 
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -187,9 +186,9 @@ namespace R7.University.Employee
 
             // if results are null or empty, lists were empty too
 
-            var positions = Repository.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = ModelContext.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
-            var divisions = Repository.QueryDivisions ().ToList ();
+            var divisions = ModelContext.QueryDivisions ().ToList ();
             
             var commonAchievements = new List<AchievementInfo> (UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ()
                 .OrderBy (a => a.Title));
@@ -226,7 +225,7 @@ namespace R7.University.Employee
             comboAchievementTypes.DataBind ();
 
             // get and bind edu levels
-            var eduLevels = new EduProgramLevelsQuery (Repository).Execute ();
+            var eduLevels = new EduProgramLevelsQuery (ModelContext).Execute ();
             comboEduLevel.DataSource = eduLevels;
             comboEduLevel.DataBind ();
 
@@ -1049,7 +1048,7 @@ namespace R7.University.Employee
                         discipline.EduProgramProfileID = eduProgramProfileId;
                         discipline.Disciplines = textDisciplines.Text.Trim ();
 
-                        var profile = Repository.QueryEduProgramProfile (discipline.EduProgramProfileID).Single ();
+                        var profile = ModelContext.QueryEduProgramProfile (discipline.EduProgramProfileID).Single ();
 
                         discipline.Code = profile.EduProgram.Code;
                         discipline.Title = profile.EduProgram.Title;
@@ -1091,7 +1090,7 @@ namespace R7.University.Employee
                     var discipline = disciplines.Find (d => d.ItemID.ToString () == itemID);
 
                     if (discipline != null) {
-                        var profile = Repository.QueryEduProgramProfile (discipline.EduProgramProfileID).Single ();
+                        var profile = ModelContext.QueryEduProgramProfile (discipline.EduProgramProfileID).Single ();
                         var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
                         var newEduLevelId = profile.EduProgram.EduLevelID;
                         if (eduLevelId != newEduLevelId) {

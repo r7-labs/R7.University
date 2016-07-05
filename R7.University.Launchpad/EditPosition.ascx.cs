@@ -25,8 +25,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Launchpad
@@ -36,18 +34,18 @@ namespace R7.University.Launchpad
         // ALT: private int itemId = Null.NullInteger;
         private int? itemId = null;
 
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -94,7 +92,7 @@ namespace R7.University.Launchpad
                     if (itemId.HasValue) {
 
                         // load the item
-                        var item = Repository.Get<PositionInfo> (itemId.Value);
+                        var item = ModelContext.Get<PositionInfo> (itemId.Value);
                         if (item != null) {
 											
                             txtTitle.Text = item.Title;
@@ -138,7 +136,7 @@ namespace R7.University.Launchpad
                 }
                 else {
                     // update existing record
-                    item = Repository.Get<PositionInfo> (itemId.Value);
+                    item = ModelContext.Get<PositionInfo> (itemId.Value);
                 }
 
                 if (item != null) {
@@ -149,8 +147,8 @@ namespace R7.University.Launchpad
                     item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
                     item.IsTeacher = checkIsTeacher.Checked;
 
-                    Repository.AddOrUpdate (item); 
-                    Repository.SaveChanges ();
+                    ModelContext.AddOrUpdate (item); 
+                    ModelContext.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);
 
@@ -175,9 +173,9 @@ namespace R7.University.Launchpad
         {
             try {
                 if (itemId.HasValue) {
-                    var item = Repository.Get<PositionInfo> (itemId.Value);
-                    Repository.Remove (item);
-                    Repository.SaveChanges ();
+                    var item = ModelContext.Get<PositionInfo> (itemId.Value);
+                    ModelContext.Remove (item);
+                    ModelContext.SaveChanges ();
 
                     Response.Redirect (Globals.NavigateURL (), true);
                 }

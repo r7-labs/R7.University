@@ -27,7 +27,6 @@ using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EmployeeList.Components;
 using R7.University.Models;
 using R7.University.Utilities;
@@ -36,18 +35,18 @@ namespace R7.University.EmployeeList
 {
     public partial class SettingsEmployeeList: ModuleSettingsBase<EmployeeListSettings>
     {
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -60,7 +59,7 @@ namespace R7.University.EmployeeList
             base.OnInit (e);
 
             // get divisions
-            var divisions = Repository.QueryDivisions ().ToList ();
+            var divisions = ModelContext.QueryDivisions ().ToList ();
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

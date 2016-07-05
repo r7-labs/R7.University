@@ -28,10 +28,10 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Launchpad.Components;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
@@ -48,18 +48,18 @@ namespace R7.University.Launchpad
 
         #endregion
 
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -79,7 +79,7 @@ namespace R7.University.Launchpad
             var session = Session [gridviewId];
             if (session == null) {
                 var tabName = GetActiveTabName ();
-                session = Tables.GetByGridId (gridviewId).GetDataTable (this, Repository, (string) Session [tabName + "_Search"]);
+                session = Tables.GetByGridId (gridviewId).GetDataTable (this, ModelContext, (string) Session [tabName + "_Search"]);
                 Session [gridviewId] = session;
             }
             return (DataTable) session;
@@ -210,10 +210,10 @@ namespace R7.University.Launchpad
 
             var searchText = textSearch.Text;
             if (!string.IsNullOrWhiteSpace (searchText)) {
-                table.DataBind (this, Repository, searchText);
+                table.DataBind (this, ModelContext, searchText);
             }
             else {
-                table.DataBind (this, Repository);
+                table.DataBind (this, ModelContext);
             }
 
             // set URL to add new item
@@ -405,7 +405,7 @@ namespace R7.University.Launchpad
 
                 Session [tabName + "_Search"] = textSearch.Text.Trim ();
 
-                Tables.GetByName (tabName).DataBind (this, Repository, textSearch.Text.Trim ());
+                Tables.GetByName (tabName).DataBind (this, ModelContext, textSearch.Text.Trim ());
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -420,7 +420,7 @@ namespace R7.University.Launchpad
                 textSearch.Text = string.Empty;
                 Session [tabName + "_Search"] = null;
 
-                Tables.GetByName (tabName).DataBind (this, Repository);
+                Tables.GetByName (tabName).DataBind (this, ModelContext);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

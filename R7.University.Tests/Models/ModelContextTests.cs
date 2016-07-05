@@ -24,29 +24,29 @@ using System.Linq;
 using R7.University.Tests.Models;
 using Xunit;
 
-namespace R7.University.Tests.Data
+namespace R7.University.Tests.Models
 {
-    public class DataRepositoryTests
+    public class ModelContextTests
     {
         [Fact]
         public void DataRepositoryTest ()
         {
-            var repository = new TestDataRepository ();
-            repository.Query<TestEntity> ().ToList ();
-            repository.Dispose ();
+            var modelContext = new TestModelContext ();
+            modelContext.Query<TestEntity> ().ToList ();
+            modelContext.Dispose ();
 
             // repository call after dispose should throw exception
-            Assert.Throws (typeof (InvalidOperationException), () => repository.Query<TestEntity> ().ToList ());
+            Assert.Throws (typeof (InvalidOperationException), () => modelContext.Query<TestEntity> ().ToList ());
         }
 
         [Fact]
         public void QueryOneTest ()
         {
-            using (var repository = new TestDataRepository ()) {
-                repository.Add<TestEntity> (new TestEntity { Id = 1, Title = "Hello, world!" });
-                repository.Add<TestEntity> (new TestEntity { Id = 2, Title = "Hello again!" });
+            using (var modelContext = new TestModelContext ()) {
+                modelContext.Add<TestEntity> (new TestEntity { Id = 1, Title = "Hello, world!" });
+                modelContext.Add<TestEntity> (new TestEntity { Id = 2, Title = "Hello again!" });
 
-                Assert.Equal (2, repository.QueryOne<TestEntity> (e => e.Id == 2).Single ().Id);
+                Assert.Equal (2, modelContext.QueryOne<TestEntity> (e => e.Id == 2).Single ().Id);
             }
         }
     }

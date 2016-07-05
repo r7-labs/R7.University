@@ -25,6 +25,7 @@ using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Data;
 using R7.University.Launchpad.ViewModels;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
@@ -34,7 +35,7 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, UniversityDataRepository repository, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
             var eduProgramProfiles = EduProgramProfileRepository.Instance.FindEduProgramProfiles (search)
                 .Select (epp => new EduProgramProfileViewModel (epp));

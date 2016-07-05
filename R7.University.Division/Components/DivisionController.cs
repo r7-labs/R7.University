@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Division.Components
@@ -37,9 +36,9 @@ namespace R7.University.Division.Components
             var searchDocs = new List<SearchDocument> ();
             var settings = new DivisionSettings (modInfo);
 
-            using (var repository = new UniversityDataRepository ()) {
+            using (var modelContext = new UniversityModelContext ()) {
 
-                var division = repository.Get<DivisionInfo> (settings.DivisionID);
+                var division = modelContext.Get<DivisionInfo> (settings.DivisionID);
                 if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
                     var aboutDivision = division.SearchDocumentText;
                     var sd = new SearchDocument ()

@@ -53,18 +53,18 @@ namespace R7.University.Division
 
         #endregion
 
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -122,7 +122,7 @@ namespace R7.University.Division
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // fill divisions dropdown
-            var divisions = Repository.QueryDivisions ()
+            var divisions = ModelContext.QueryDivisions ()
                 .Where (d => (itemId == null || itemId != d.DivisionID))
                 .ToList ();
 
@@ -150,7 +150,7 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            var positions = Repository.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = ModelContext.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
 
             positions.Insert (0, new PositionInfo {
                     Title = LocalizeString ("NotSelected.Text"),

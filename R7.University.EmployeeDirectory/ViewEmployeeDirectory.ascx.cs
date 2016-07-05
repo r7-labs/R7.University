@@ -46,25 +46,24 @@ namespace R7.University.EmployeeDirectory
 
     public partial class ViewEmployeeDirectory: PortalModuleBase<EmployeeDirectorySettings>
     {   
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
         }
 
         #endregion
-
 
         #region Properties
 
@@ -161,7 +160,7 @@ namespace R7.University.EmployeeDirectory
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
             var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (Repository.Query<EduLevelInfo> ().ToList ())
+                .WithEduLevel (ModelContext.Query<EduLevelInfo> ().ToList ())
                 .OrderBy (epp => epp.EduLevel.SortIndex)
                 .ThenBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)

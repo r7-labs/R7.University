@@ -1,5 +1,5 @@
 ﻿//
-//  DataRepositoryBase.cs
+//  ModuleContextBase.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -22,19 +22,18 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using R7.University.Data;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
     /// <summary>
-    /// Generic repository for IDataContext
+    /// Generic repository and unit of work wrapper for IDataContext
     /// </summary>
-    public abstract class DataRepositoryBase : IDataRepository
+    public abstract class ModelContextBase : IModelContext
     {
-        // REVIEW: Extract UnitOfWork to manage IDataContext lifecycle outside repository?
-
         private bool _disposed = false;
 
-        // REVIEW: Use factory for repository, not db context?
+        // REVIEW: Use factory, not data context?
         private IDataContext _context;
         protected IDataContext Context
         {
@@ -49,16 +48,16 @@ namespace R7.University.Data
 
         public abstract IDataContext CreateDataContext ();
 
-        protected DataRepositoryBase ()
+        protected ModelContextBase ()
         {
         }
 
-        protected DataRepositoryBase (IDataContext dbContext)
+        protected ModelContextBase (IDataContext dbContext)
         {
             _context = dbContext;
         }
 
-        #region IDataRepository implementation
+        #region IModelRepository implementation
 
         public virtual IQueryable<TEntity> Query<TEntity> () where TEntity: class
         {

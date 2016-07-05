@@ -28,7 +28,6 @@ using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.ViewModels;
 using R7.University.Models;
@@ -37,18 +36,18 @@ namespace R7.University.EduProgramProfileDirectory
 {
     public partial class SettingsEduProgramProfileDirectory: ModuleSettingsBase<EduProgramProfileDirectorySettings>
     {
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -77,7 +76,7 @@ namespace R7.University.EduProgramProfileDirectory
             comboMode.DataBind ();
 
             // fill edulevels list
-            var eduLevels = Repository.QueryEduLevels ().ToList();
+            var eduLevels = ModelContext.QueryEduLevels ().ToList();
 
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem

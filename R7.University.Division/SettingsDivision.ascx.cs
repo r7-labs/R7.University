@@ -24,7 +24,6 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.Data;
 using R7.University.Division.Components;
 using R7.University.Utilities;
 using R7.University.Models;
@@ -33,18 +32,18 @@ namespace R7.University.Division
 {
     public partial class SettingsDivision : ModuleSettingsBase<DivisionSettings>
     {
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -60,7 +59,7 @@ namespace R7.University.Division
             try {
                 if (!IsPostBack) {
                     // get divisions
-                    var divisions = Repository.QueryDivisions ().ToList ();
+                    var divisions = ModelContext.QueryDivisions ().ToList ();
 
                     // insert default item
                     divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

@@ -22,23 +22,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Queries
 {
     public class EduProgramsByEduLevelQuery
     {
-        private readonly IDataRepository repository;
+        private readonly IModelContext modelContext;
 
-        public EduProgramsByEduLevelQuery (IDataRepository repository)
+        public EduProgramsByEduLevelQuery (IModelContext modelContext)
         {
-            this.repository = repository;
+            this.modelContext = modelContext;
         }
 
         public IEnumerable<EduProgramInfo> Execute (int eduLevelId)
         {
-            return repository.Query<EduProgramInfo> ()
+            return modelContext.Query<EduProgramInfo> ()
                 .Where (ep => ep.EduLevelID == eduLevelId)
                 .OrderBy (ep => ep.Code)
                 .ThenBy (ep => ep.Title)

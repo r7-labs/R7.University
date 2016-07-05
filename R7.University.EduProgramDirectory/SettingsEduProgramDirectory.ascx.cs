@@ -27,7 +27,6 @@ using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Data;
 using R7.University.EduProgramDirectory.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
@@ -37,18 +36,18 @@ namespace R7.University.EduProgramDirectory
 {
     public partial class SettingsEduProgramDirectory : ModuleSettingsBase<EduProgramDirectorySettings>
     {
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -61,7 +60,7 @@ namespace R7.University.EduProgramDirectory
             base.OnInit (e);
 
             // fill edulevels list
-            var eduLevels = new EduProgramLevelsQuery (Repository).Execute ();
+            var eduLevels = new EduProgramLevelsQuery (ModelContext).Execute ();
            
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem {
@@ -79,7 +78,7 @@ namespace R7.University.EduProgramDirectory
             }
 
             // fill divisions dropdown
-            var divisions = Repository.QueryDivisions ().ToList ();
+            var divisions = ModelContext.QueryDivisions ().ToList ();
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;

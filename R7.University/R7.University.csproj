@@ -152,13 +152,10 @@
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
     <Compile Include="Components\ModuleHelper.cs" />
-    <Compile Include="Data\IDataRepository.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\UniversityDataContext.cs" />
     <Compile Include="Data\UniversityDataContextFactory.cs" />
     <Compile Include="Patterns\FactoryBase.cs" />
-    <Compile Include="Data\DataRepositoryBase.cs" />
-    <Compile Include="Data\UniversityDataRepository.cs" />
     <Compile Include="Models\AchievementInfo.cs" />
     <Compile Include="Models\AchievementTypeInfo.cs" />
     <Compile Include="Models\DivisionInfo.cs" />
@@ -187,13 +184,16 @@
     <Compile Include="Data\Mappings\DocumentTypeMapping.cs" />
     <Compile Include="Data\Mappings\DocumentMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramMapping.cs" />
-    <Compile Include="Data\QueryableExtensions.cs" />
     <Compile Include="Data\Mappings\EduFormMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileFormMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileMapping.cs" />
     <Compile Include="Queries\EduProgramLevelsQuery.cs" />
     <Compile Include="Queries\EduProgramsByEduLevelsQuery.cs" />
     <Compile Include="Queries\EduProgramQuery.cs" />
+    <Compile Include="Models\IModelContext.cs" />
+    <Compile Include="Models\ModelContextBase.cs" />
+    <Compile Include="Models\UniversityModelContext.cs" />
+    <Compile Include="Models\QueryableExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

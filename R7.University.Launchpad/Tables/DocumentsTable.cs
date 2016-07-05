@@ -39,12 +39,12 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, UniversityDataRepository repository, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
             // REVIEW: Cannot set comparison options
             var documents = (search != null)
-                ? repository.Query<DocumentInfo> ().Where (p => p.Title.Contains (search) || p.Url.Contains (search)).ToList ()
-                : repository.Query<DocumentInfo> ().ToList ();
+                ? modelContext.Query<DocumentInfo> ().Where (p => p.Title.Contains (search) || p.Url.Contains (search)).ToList ()
+                : modelContext.Query<DocumentInfo> ().ToList ();
 
             return DataTableConstructor.FromIEnumerable (documents);
         }

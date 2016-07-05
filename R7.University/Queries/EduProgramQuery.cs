@@ -20,23 +20,22 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Queries
 {
     public class EduProgramQuery
     {
-        private readonly IDataRepository repository;
+        private readonly IModelContext modelContext;
 
-        public EduProgramQuery (IDataRepository repository)
+        public EduProgramQuery (IModelContext modelContext)
         {
-            this.repository = repository;
+            this.modelContext = modelContext;
         }
 
         public EduProgramInfo Execute (int eduProgramId)
         {
-            return repository.Get<EduProgramInfo> (eduProgramId);
+            return modelContext.Get<EduProgramInfo> (eduProgramId);
         }
     }
 }

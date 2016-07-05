@@ -1,5 +1,5 @@
 ﻿//
-//  IDataRepository.cs
+//  IModelContext.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -23,9 +23,9 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
-    public interface IDataRepository: IDisposable
+    public interface IModelContext: IDisposable
     {
         IQueryable<TEntity> Query<TEntity> () where TEntity: class;
 

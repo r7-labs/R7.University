@@ -35,18 +35,18 @@ namespace R7.University.Launchpad
 {
     public partial class EditEduProgramProfile: EditPortalModuleBase<EduProgramProfileInfo,int>
     {
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -108,7 +108,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // get and bind edu. levels
-            var eduProgramLevels = new EduProgramLevelsQuery (Repository).Execute ();
+            var eduProgramLevels = new EduProgramLevelsQuery (ModelContext).Execute ();
             comboEduProgramLevel.DataSource = eduProgramLevels;
             comboEduProgramLevel.DataBind ();
 
@@ -120,7 +120,7 @@ namespace R7.University.Launchpad
             formEditDocuments.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
 
             // fill divisions dropdown
-            var divisions = Repository.QueryDivisions ().ToList ();
+            var divisions = ModelContext.QueryDivisions ().ToList ();
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;
@@ -129,10 +129,10 @@ namespace R7.University.Launchpad
 
         private void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (Repository).Execute (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (ModelContext).Execute (eduLevelId);
             comboEduProgram.DataBind ();
 
-            comboEduLevel.DataSource = Repository.Query<EduLevelInfo> ()
+            comboEduLevel.DataSource = ModelContext.Query<EduLevelInfo> ()
                     .Where (el => el.ParentEduLevelId == eduLevelId || el.EduLevelID == eduLevelId)
                     .OrderBy (el => el.ParentEduLevelId != null)
                     .ToList ();
@@ -169,7 +169,7 @@ namespace R7.University.Launchpad
 
             auditControl.Bind (item);
 
-            var documents = Repository.QueryDocuments_ForEduProgramProfile (item.EduProgramProfileID)
+            var documents = ModelContext.QueryDocuments_ForEduProgramProfile (item.EduProgramProfileID)
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
@@ -179,7 +179,7 @@ namespace R7.University.Launchpad
 
             var eppForms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileFormInfo> (
                                "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
-                .WithEduForms (Repository.QueryEduForms ().ToList ())
+                .WithEduForms (ModelContext.QueryEduForms ().ToList ())
                 .Cast<EduProgramProfileFormInfo> ()
                 .ToList ();
             
@@ -223,20 +223,20 @@ namespace R7.University.Launchpad
 
         protected override EduProgramProfileInfo GetItem (int itemId)
         {
-            return Repository.QueryEduProgramProfile (itemId).Single ();
+            return ModelContext.QueryEduProgramProfile (itemId).Single ();
         }
 
         protected override int AddItem (EduProgramProfileInfo item)
         {
-            Repository.Add (item);
-            Repository.SaveChanges (true);
+            ModelContext.Add (item);
+            ModelContext.SaveChanges (true);
             return item.EduProgramProfileID;
         }
 
         protected override void UpdateItem (EduProgramProfileInfo item)
         {
-            Repository.Update (item);
-            Repository.SaveChanges (true);
+            ModelContext.Update (item);
+            ModelContext.SaveChanges (true);
 
             // update referenced items
             DocumentRepository.Instance.UpdateDocuments (
@@ -250,8 +250,8 @@ namespace R7.University.Launchpad
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
-            Repository.Remove (item);
-            Repository.SaveChanges (true);
+            ModelContext.Remove (item);
+            ModelContext.SaveChanges (true);
         }
 
         #endregion

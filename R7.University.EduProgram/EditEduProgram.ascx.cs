@@ -33,7 +33,6 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -49,18 +48,18 @@ namespace R7.University.EduProgram
 
     public partial class EditEduProgram : PortalModuleBase
     {
-        #region Repository handling
+        #region Model context
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -127,14 +126,14 @@ namespace R7.University.EduProgram
                 + Localization.GetString ("DeleteItem") + "');");
 
             // bind education levels
-            comboEduLevel.DataSource = new EduProgramLevelsQuery (Repository).Execute ();
+            comboEduLevel.DataSource = new EduProgramLevelsQuery (ModelContext).Execute ();
             comboEduLevel.DataBind ();
 
             var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();
             formEditDocuments.OnInit (this, documentTypes);
 
             // fill divisions treeview
-            var divisions = Repository.QueryDivisions ().ToList ();
+            var divisions = ModelContext.QueryDivisions ().ToList ();
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;
@@ -177,7 +176,7 @@ namespace R7.University.EduProgram
 
                             auditControl.Bind (item);
 
-                            var documents = Repository.QueryDocuments_ForEduProgram (item.EduProgramID)
+                            var documents = ModelContext.QueryDocuments_ForEduProgram (item.EduProgramID)
                                 .OrderBy (d => d.Group)
                                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                                 .ThenBy (d => d.SortIndex)

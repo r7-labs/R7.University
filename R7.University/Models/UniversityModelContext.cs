@@ -1,5 +1,5 @@
 ﻿//
-//  UniversityDataRepository.cs
+//  UniversityModelContext.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,18 +21,18 @@
 
 using System;
 using System.Linq;
-using R7.University.Models;
 using System.Collections.Generic;
+using R7.University.Data;
 
-namespace R7.University.Data
+namespace R7.University.Models
 {
-    public class UniversityDataRepository: DataRepositoryBase
+    public class UniversityModelContext: ModelContextBase
     {
-        public UniversityDataRepository (IDataContext dataContext): base (dataContext)
+        public UniversityModelContext (IDataContext dataContext): base (dataContext)
         {
         }
 
-        public UniversityDataRepository ()
+        public UniversityModelContext ()
         {
         }
 

@@ -1,5 +1,5 @@
 ﻿//
-//  TestDataRepository.cs
+//  QueryableExtensions.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,23 +20,16 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Data;
+using System.Linq;
+using System.Linq.Expressions; 
 
-namespace R7.University.Tests.Data
+namespace R7.University.Models
 {
-    public class TestDataRepository: DataRepositoryBase
+    public static class QueryableExtensions
     {
-        public TestDataRepository ()
+        public static IQueryable<T> Include<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path)
         {
-        }
-
-        public TestDataRepository (IDataContext dataContext): base (dataContext)
-        {
-        }
-
-        public override IDataContext CreateDataContext ()
-        {
-            return new TestDbContextFactory ().Create ();
+            return System.Data.Entity.QueryableExtensions.Include (source, path);
         }
     }
 }

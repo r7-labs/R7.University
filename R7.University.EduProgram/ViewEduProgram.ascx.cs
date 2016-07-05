@@ -34,7 +34,6 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.EduProgram.Components;
 using R7.University.EduProgram.Queries;
 using R7.University.EduProgram.ViewModels;
@@ -62,8 +61,8 @@ namespace R7.University.EduProgram
             if (Settings.EduProgramId != null) {
 
                 EduProgramInfo eduProgram;
-                using (var repository = new UniversityDataRepository ()) {
-                    eduProgram = new EduProgramQuery (repository).Execute (Settings.EduProgramId.Value);
+                using (var modelContext = new UniversityModelContext ()) {
+                    eduProgram = new EduProgramQuery (modelContext).Execute (Settings.EduProgramId.Value);
                 }
 
                 if (eduProgram == null) {

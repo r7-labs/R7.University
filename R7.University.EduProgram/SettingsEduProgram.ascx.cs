@@ -28,8 +28,8 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EduProgram.Components;
+using R7.University.Models;
 using R7.University.Queries;
 
 namespace R7.University.EduProgram
@@ -38,16 +38,16 @@ namespace R7.University.EduProgram
     {
         #region Repository handling
 
-        private IDataRepository repository;
-        protected IDataRepository Repository
+        private IModelContext modelContext;
+        protected IModelContext ModelContext
         {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
         public override void Dispose ()
         {
-            if (repository != null) {
-                repository.Dispose ();
+            if (modelContext != null) {
+                modelContext.Dispose ();
             }
 
             base.Dispose ();
@@ -59,7 +59,7 @@ namespace R7.University.EduProgram
         {
             base.OnInit (e);
 
-            comboEduLevel.DataSource = new EduProgramLevelsQuery (Repository).Execute ();
+            comboEduLevel.DataSource = new EduProgramLevelsQuery (ModelContext).Execute ();
             comboEduLevel.DataBind ();
 
             BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
@@ -72,7 +72,7 @@ namespace R7.University.EduProgram
 
         protected void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (Repository).Execute (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (ModelContext).Execute (eduLevelId);
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
@@ -87,7 +87,7 @@ namespace R7.University.EduProgram
                 if (!IsPostBack)
                 {
                     if (Settings.EduProgramId != null) {
-                        var eduProgram = new EduProgramQuery (Repository).Execute (Settings.EduProgramId.Value);
+                        var eduProgram = new EduProgramQuery (ModelContext).Execute (Settings.EduProgramId.Value);
                         comboEduLevel.SelectByValue (eduProgram.EduLevelID);
                         BindEduPrograms (eduProgram.EduLevelID);
                         comboEduProgram.SelectByValue (eduProgram.EduProgramID);
