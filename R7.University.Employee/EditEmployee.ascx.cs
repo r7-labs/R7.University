@@ -135,7 +135,7 @@ namespace R7.University.Employee
             get { 
                 var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
                 if (commonAchievements == null) {
-                    commonAchievements = UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ().ToList ();
+                    commonAchievements = (List<AchievementInfo>) new Query<AchievementInfo> (ModelContext).Execute ();
                     ViewState ["commonAchievements"] = commonAchievements;
                 }
 				
@@ -186,33 +186,24 @@ namespace R7.University.Employee
 
             // if results are null or empty, lists were empty too
 
-            var positions = ModelContext.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
+            var positions = new Query<PositionInfo> (ModelContext).Execute (p => p.Title);
 
-            var divisions = ModelContext.QueryDivisions ().ToList ();
-            
-            var commonAchievements = new List<AchievementInfo> (UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ()
-                .OrderBy (a => a.Title));
+            var divisions = new Query<DivisionInfo> (ModelContext).Execute (d => d.Title);
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            var commonAchievements = new Query<AchievementInfo> (ModelContext).Execute (a => a.Title);
 
             ViewState ["commonAchievements"] = commonAchievements;
-
-            // add default items
-            positions.Insert (0, new PositionInfo {
-                Title = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
-            });
-
-            commonAchievements.Insert (0, new AchievementInfo {
-                Title = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
-            });
-
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             // bind positions
             comboPositions.DataSource = positions;
             comboPositions.DataBind ();
+            comboPositions.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         
             // bind achievements
             comboAchievement.DataSource = commonAchievements;
             comboAchievement.DataBind ();
+            comboAchievement.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         
             // bind divisions
             treeDivisions.DataSource = divisions;
@@ -257,7 +248,7 @@ namespace R7.University.Employee
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
+                        var item = ModelContext.Get<EmployeeInfo> (itemId.Value);
 
                         if (item != null) {
                             textLastName.Text = item.LastName;
@@ -309,6 +300,8 @@ namespace R7.University.Employee
                             // read OccupiedPositions data
                             var occupiedPositionInfoExs = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
                                                               "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
+
+
 
                             // fill view list
                             var occupiedPositions = new List<OccupiedPositionView> ();
@@ -395,7 +388,7 @@ namespace R7.University.Employee
                 }
                 else {
                     // update existing record
-                    item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
+                    item = ModelContext.Get<EmployeeInfo> (itemId.Value);
                 }
 
                 // fill the object
@@ -985,7 +978,7 @@ namespace R7.University.Employee
                         comboAchievementTypes.SelectedValue);
                 }
                 else {
-                    var ach = CommonAchievements.Find (a => a.AchievementID.ToString () ==
+                    var ach = CommonAchievements.Single (a => a.AchievementID.ToString () ==
                         comboAchievement.SelectedValue);
 
                     achievement.Title = ach.Title;
