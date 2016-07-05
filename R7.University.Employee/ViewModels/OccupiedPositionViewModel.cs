@@ -64,14 +64,14 @@ namespace R7.University.Employee.ViewModels
             return opinfo;
         }
 
-        public OccupiedPositionViewModel (OccupiedPositionInfoEx opex) : this ()
+        public OccupiedPositionViewModel (OccupiedPositionInfo op) : this ()
         {
-            PositionID = opex.PositionID;
-            DivisionID = opex.DivisionID;
-            PositionShortTitle = FormatHelper.FormatShortTitle (opex.PositionShortTitle, opex.PositionTitle);
-            DivisionShortTitle = FormatHelper.FormatShortTitle (opex.DivisionShortTitle, opex.DivisionTitle);
-            IsPrime = opex.IsPrime;
-            TitleSuffix = opex.TitleSuffix;
+            PositionID = op.PositionID;
+            DivisionID = op.DivisionID;
+            PositionShortTitle = FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title);
+            DivisionShortTitle = FormatHelper.FormatShortTitle (op.Division.ShortTitle, op.Division.Title);
+            IsPrime = op.IsPrime;
+            TitleSuffix = op.TitleSuffix;
         }
     }
 }

@@ -45,6 +45,7 @@ using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.Queries;
 using R7.University.Employee.ViewModels;
+using R7.University.Employee.Queries;
 
 namespace R7.University.Employee
 {
@@ -249,7 +250,7 @@ namespace R7.University.Employee
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = ModelContext.Get<EmployeeInfo> (itemId.Value);
+                        var item = new EmployeeQuery (ModelContext).Execute (itemId.Value);
 
                         if (item != null) {
                             textLastName.Text = item.LastName;
@@ -298,20 +299,12 @@ namespace R7.University.Employee
                                 }
                             }
 
-                            // read OccupiedPositions data
-                            var occupiedPositionInfoExs = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                                                              "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
-
-
-
                             // fill view list
-                            var occupiedPositions = new List<OccupiedPositionViewModel> ();
-                            foreach (var op in occupiedPositionInfoExs)
-                                occupiedPositions.Add (new OccupiedPositionViewModel (op));
+                            var occupiedPositions = item.Positions.Select (op => new OccupiedPositionViewModel (op)).ToList ();
 
                             // bind occupied positions
                             ViewState ["occupiedPositions"] = occupiedPositions;
-                            gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                            gridOccupiedPositions.DataSource = occupiedPositions;
                             gridOccupiedPositions.DataBind ();
 
                             // read employee achievements
@@ -688,7 +681,7 @@ namespace R7.University.Employee
                     ResetEditPositionForm ();
 
                     ViewState ["occupiedPositions"] = occupiedPositions;
-                    gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                    gridOccupiedPositions.DataSource = occupiedPositions;
                     gridOccupiedPositions.DataBind ();
                 }
             }
@@ -796,7 +789,7 @@ namespace R7.University.Employee
                         occupiedPositions.Remove (opFound);
                         ViewState ["occupiedPositions"] = occupiedPositions;
 	
-                        gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                        gridOccupiedPositions.DataSource = occupiedPositions;
                         gridOccupiedPositions.DataBind ();
 
                         // reset form if we deleting currently edited position
@@ -808,11 +801,6 @@ namespace R7.University.Employee
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
-        }
-
-        private DataTable OccupiedPositionsDataTable (List<OccupiedPositionViewModel> occupiedPositions)
-        {
-            return DataTableConstructor.FromIEnumerable (occupiedPositions);
         }
 
         private DataTable AchievementsDataTable (List<EmployeeAchievementEditViewModel> achievements)
