@@ -527,7 +527,7 @@ namespace R7.University.Employee
             foreach (var achievement in achievements) {
                 var col = 0;
                 dr = dt.NewRow ();
-                dr [col++] = achievement.FormatYears.Replace ("{ATM}", atTheMoment);
+                dr [col++] = FormatHelper.FormatYears (achievement.YearBegin, achievement.YearEnd).Replace ("{ATM}", atTheMoment);
                 dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
                 dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
                 dr [col++] = achievement.DocumentURL; 

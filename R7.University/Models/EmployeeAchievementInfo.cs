@@ -84,29 +84,5 @@ namespace R7.University.Models
 
         [IgnoreColumn]
         public virtual AchievementInfo Achievement { get; set; }
-
-        [IgnoreColumn]
-        public string FormatYears
-        {
-            get {
-                if (YearBegin != null && YearEnd == null)
-                    return YearBegin.ToString (); 
-				
-                if (YearBegin == null && YearEnd != null) {
-                    if (YearEnd.Value != 0)
-                        return "? - " + YearEnd; 
-                }
-
-                if (YearBegin != null && YearEnd != null) {
-                    if (YearEnd.Value != 0)
-                        return string.Format ("{0} - {1}", YearBegin, YearEnd);
-
-                    return YearBegin + " - {ATM}";
-                }
-
-                return string.Empty;
-            }
-        }
-		
     }
 }

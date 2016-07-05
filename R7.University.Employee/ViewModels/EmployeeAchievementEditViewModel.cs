@@ -43,7 +43,7 @@ namespace R7.University.Employee.ViewModels
 
         public void Localize (string resourceFile)
         {
-            ViewYears = FormatYears.Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
+            ViewYears = FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
             ViewAchievementType = Localization.GetString (
                 AchievementTypeInfo.GetResourceKey (AchievementType), resourceFile);
         }
