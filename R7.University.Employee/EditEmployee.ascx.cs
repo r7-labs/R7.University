@@ -83,6 +83,7 @@ namespace R7.University.Employee
 
                     if (eventTarget.Contains ("$" +  buttonCancelEditPosition.ID) ||
                         eventTarget.Contains ("$" +  buttonAddPosition.ID) ||
+                        eventTarget.Contains ("$" +  buttonUpdatePosition.ID) ||
                         eventTarget.Contains ("$" +  gridOccupiedPositions.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Positions;
                         return EditEmployeeTab.Positions;
@@ -90,6 +91,7 @@ namespace R7.University.Employee
 
                     if (eventTarget.Contains ("$" +  buttonCancelEditAchievement.ID) ||
                         eventTarget.Contains ("$" +  buttonAddAchievement.ID) ||
+                        eventTarget.Contains ("$" +  buttonUpdateAchievement.ID) ||
                         eventTarget.Contains ("$" +  gridAchievements.ID) ||
                         eventTarget.Contains ("$" +  urlDocumentURL.ID) ||
                         eventTarget.Contains ("$" +  comboAchievement.ID)) {
@@ -99,6 +101,7 @@ namespace R7.University.Employee
 
                     if (eventTarget.Contains ("$" + buttonCancelEditDisciplines.ID) ||
                         eventTarget.Contains ("$" + buttonAddDisciplines.ID) ||
+                        eventTarget.Contains ("$" + buttonUpdateDisciplines.ID) ||
                         eventTarget.Contains ("$" + gridDisciplines.ID) ||
                         eventTarget.Contains ("$" + comboEduLevel.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Disciplines;
