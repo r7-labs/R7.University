@@ -76,31 +76,25 @@ namespace R7.University.EduProgram
 
         protected EduProgramModuleViewModel GetViewModel_Internal ()
         {
+            // TODO: Restore sorting of edu. program profiles
             if (Settings.EduProgramId != null) {
-                var eduProgram = Repository.QueryEduProgram (Settings.EduProgramId.Value).SingleOrDefault ();
+                var eduProgram = Repository.QueryEduProgram (Settings.EduProgramId.Value)
+                    .Include (ep => ep.Division)
+                    .Include (ep => ep.EduProgramProfiles)
+                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduLevel))
+                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileForms))
+                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm)))
+                    .Include (ep => ep.EduProgramProfiles.Select (epp => epp.Division))
+                    .SingleOrDefault ();
 
                 if (eduProgram == null) {
                     // edu. program not found - return empty view model
                     return new EduProgramModuleViewModel ();
                 }
 
-                if (eduProgram.DivisionId != null) {
-                    eduProgram.Division = Repository.Get<DivisionInfo> (eduProgram.DivisionId.Value);
-                }
-
-                // TODO: Restore sorting of edu. program profiles
-
-                var eduProgramProfiles = Repository.QueryEduProgramProfiles_ByEduProgram (eduProgram.EduProgramID)
-                    .Include (epp => epp.EduProgramProfileForms)
-                    .Include (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm))
-                    .Include (epp => epp.Documents)
-                    .Include (epp => epp.Division)
-                    .ToList ();
-                
                 var viewModel = new EduProgramModuleViewModel ();
                 viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);
-
-                viewModel.EduProgram.EduProgramProfileViewModels = eduProgramProfiles
+                viewModel.EduProgram.EduProgramProfileViewModels = eduProgram.EduProgramProfiles
                     .Select (epp => new EduProgramProfileViewModel (epp, viewModel));
 
                 return viewModel;
