@@ -29,6 +29,7 @@ using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -107,7 +108,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // get and bind edu. levels
-            var eduProgramLevels = Repository.QueryEduProgramLevels ().ToList ();
+            var eduProgramLevels = new EduProgramLevelsQuery (Repository).Execute ();
             comboEduProgramLevel.DataSource = eduProgramLevels;
             comboEduProgramLevel.DataBind ();
 

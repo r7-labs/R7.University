@@ -191,6 +191,7 @@
     <Compile Include="Data\Mappings\EduFormMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileFormMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileMapping.cs" />
+    <Compile Include="Queries\EduProgramLevelsQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -210,6 +211,7 @@
     <Folder Include="js\" />
     <Folder Include="Patterns\" />
     <Folder Include="Data\Mappings\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

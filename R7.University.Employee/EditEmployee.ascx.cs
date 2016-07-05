@@ -44,6 +44,7 @@ using R7.University.Employee.Components;
 using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
+using R7.University.Queries;
 
 namespace R7.University.Employee
 {
@@ -225,7 +226,7 @@ namespace R7.University.Employee
             comboAchievementTypes.DataBind ();
 
             // get and bind edu levels
-            var eduLevels = Repository.QueryEduProgramLevels ().ToList ();
+            var eduLevels = new EduProgramLevelsQuery (Repository).Execute ();
             comboEduLevel.DataSource = eduLevels;
             comboEduLevel.DataBind ();
 

@@ -30,6 +30,7 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EduProgram.Components;
+using R7.University.Queries;
 
 namespace R7.University.EduProgram
 {    
@@ -58,7 +59,7 @@ namespace R7.University.EduProgram
         {
             base.OnInit (e);
 
-            comboEduLevel.DataSource = Repository.QueryEduProgramLevels ().ToList ();
+            comboEduLevel.DataSource = new EduProgramLevelsQuery (Repository).Execute ();
             comboEduLevel.DataBind ();
 
             BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));

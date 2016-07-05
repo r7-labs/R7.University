@@ -31,6 +31,7 @@ using R7.University.Data;
 using R7.University.EduProgramDirectory.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
+using R7.University.Queries;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -60,7 +61,7 @@ namespace R7.University.EduProgramDirectory
             base.OnInit (e);
 
             // fill edulevels list
-            var eduLevels = Repository.QueryEduProgramLevels ().ToList ();
+            var eduLevels = new EduProgramLevelsQuery (Repository).Execute ();
            
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem {

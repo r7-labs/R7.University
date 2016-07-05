@@ -35,6 +35,7 @@ using R7.University.Data;
 using R7.University.EduProgram.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EduProgram
 {
@@ -126,7 +127,7 @@ namespace R7.University.EduProgram
                 + Localization.GetString ("DeleteItem") + "');");
 
             // bind education levels
-            comboEduLevel.DataSource = Repository.QueryEduProgramLevels ().ToList ();
+            comboEduLevel.DataSource = new EduProgramLevelsQuery (Repository).Execute ();
             comboEduLevel.DataBind ();
 
             var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();

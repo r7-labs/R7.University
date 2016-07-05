@@ -27,6 +27,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Data;
 using R7.University.Models;
 using R7.University.ControlExtensions;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -59,7 +60,7 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            comboParentEduLevel.DataSource = Repository.QueryEduProgramLevels ().ToList ();
+            comboParentEduLevel.DataSource = new EduProgramLevelsQuery (Repository).Execute ();
             comboParentEduLevel.DataBind ();
             comboParentEduLevel.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
