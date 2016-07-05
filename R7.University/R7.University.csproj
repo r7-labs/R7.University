@@ -192,6 +192,8 @@
     <Compile Include="Data\Mappings\EduProgramProfileFormMapping.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileMapping.cs" />
     <Compile Include="Queries\EduProgramLevelsQuery.cs" />
+    <Compile Include="Queries\EduProgramsByEduLevelsQuery.cs" />
+    <Compile Include="Queries\EduProgramQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

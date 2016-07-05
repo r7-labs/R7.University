@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramLevelsQuery.cs
+//  EduProgramQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,28 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class EduProgramLevelsQuery
+    public class EduProgramQuery
     {
         private readonly IDataRepository repository;
 
-        public EduProgramLevelsQuery (IDataRepository repository)
+        public EduProgramQuery (IDataRepository repository)
         {
             this.repository = repository;
         }
 
-        public IEnumerable<EduLevelInfo> Execute ()
+        public EduProgramInfo Execute (int eduProgramId)
         {
-            return repository.Query<EduLevelInfo> ()
-                .Where (el => el.ParentEduLevelId == null)
-                .OrderBy (el => el.SortIndex)
-                .ToList ();
+            return repository.Get<EduProgramInfo> (eduProgramId);
         }
     }
 }

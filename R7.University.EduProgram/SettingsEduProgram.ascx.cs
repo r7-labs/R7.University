@@ -38,8 +38,8 @@ namespace R7.University.EduProgram
     {
         #region Repository handling
 
-        private UniversityDataRepository repository;
-        protected UniversityDataRepository Repository
+        private IDataRepository repository;
+        protected IDataRepository Repository
         {
             get { return repository ?? (repository = new UniversityDataRepository ()); }
         }
@@ -72,7 +72,7 @@ namespace R7.University.EduProgram
 
         protected void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = Repository.QueryEduPrograms_ByEduLevel (eduLevelId).ToList ();
+            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (Repository).Execute (eduLevelId);
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
@@ -87,7 +87,7 @@ namespace R7.University.EduProgram
                 if (!IsPostBack)
                 {
                     if (Settings.EduProgramId != null) {
-                        var eduProgram = Repository.QueryEduProgram (Settings.EduProgramId.Value).Single ();
+                        var eduProgram = new EduProgramQuery (Repository).Execute (Settings.EduProgramId.Value);
                         comboEduLevel.SelectByValue (eduProgram.EduLevelID);
                         BindEduPrograms (eduProgram.EduLevelID);
                         comboEduProgram.SelectByValue (eduProgram.EduProgramID);

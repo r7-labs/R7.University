@@ -129,7 +129,7 @@ namespace R7.University.Launchpad
 
         private void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = Repository.QueryEduPrograms_ByEduLevel (eduLevelId).ToList ();
+            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (Repository).Execute (eduLevelId);
             comboEduProgram.DataBind ();
 
             comboEduLevel.DataSource = Repository.Query<EduLevelInfo> ()

@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramLevelsQuery.cs
+//  EduProgramsByEduLevelsQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -27,20 +27,21 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class EduProgramLevelsQuery
+    public class EduProgramsByEduLevelQuery
     {
         private readonly IDataRepository repository;
 
-        public EduProgramLevelsQuery (IDataRepository repository)
+        public EduProgramsByEduLevelQuery (IDataRepository repository)
         {
             this.repository = repository;
         }
 
-        public IEnumerable<EduLevelInfo> Execute ()
+        public IEnumerable<EduProgramInfo> Execute (int eduLevelId)
         {
-            return repository.Query<EduLevelInfo> ()
-                .Where (el => el.ParentEduLevelId == null)
-                .OrderBy (el => el.SortIndex)
+            return repository.Query<EduProgramInfo> ()
+                .Where (ep => ep.EduLevelID == eduLevelId)
+                .OrderBy (ep => ep.Code)
+                .ThenBy (ep => ep.Title)
                 .ToList ();
         }
     }

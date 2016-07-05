@@ -46,25 +46,6 @@ namespace R7.University.EduProgram
 {
     public partial class ViewEduProgram : PortalModuleBase<EduProgramSettings>, IActionable
     {
-        #region Repository handling
-
-        private UniversityDataRepository repository;
-        internal UniversityDataRepository Repository
-        {
-            get { return repository ?? (repository = new UniversityDataRepository ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (repository != null) {
-                repository.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         #region Get data
 
         protected EduProgramModuleViewModel GetViewModel ()
@@ -79,7 +60,12 @@ namespace R7.University.EduProgram
         {
             // TODO: Restore sorting of edu. program profiles
             if (Settings.EduProgramId != null) {
-                var eduProgram = new EduProgramQuery (Repository).Execute (Settings.EduProgramId.Value);
+
+                EduProgramInfo eduProgram;
+                using (var repository = new UniversityDataRepository ()) {
+                    eduProgram = new EduProgramQuery (repository).Execute (Settings.EduProgramId.Value);
+                }
+
                 if (eduProgram == null) {
                     // edu. program not found - return empty view model
                     return new EduProgramModuleViewModel ();
