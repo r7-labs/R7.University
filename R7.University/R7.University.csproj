@@ -195,6 +195,7 @@
     <Compile Include="Models\QueryableExtensions.cs" />
     <Compile Include="Queries\GetByKeyQuery.cs" />
     <Compile Include="Queries\EduLevelsQuery.cs" />
+    <Compile Include="Queries\Query.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
