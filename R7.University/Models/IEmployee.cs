@@ -73,7 +73,7 @@ namespace R7.University.Models
 
         bool ShowBarcode { get; set; }
 
-        IList<IEmployeeAchievement> Achievements { get; set; }
+        ICollection<EmployeeAchievementInfo> Achievements { get; set; }
 
         ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
 

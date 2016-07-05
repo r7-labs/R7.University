@@ -193,7 +193,7 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
-        public IList<IEmployeeAchievement> Achievements
+        public ICollection<EmployeeAchievementInfo> Achievements
         {
             get { return Model.Achievements; }
             set { throw new NotImplementedException (); }

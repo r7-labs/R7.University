@@ -39,7 +39,6 @@ namespace R7.University.ModelExtensions
             if (employee != null) {
                 employee.Achievements = EmployeeAchievementRepository.Instance
                 .GetEmployeeAchievements (employee.EmployeeID)
-                .Cast<IEmployeeAchievement> ()
                 .ToList ();
             }
 
@@ -68,6 +67,7 @@ namespace R7.University.ModelExtensions
             if (!employees.IsNullOrEmpty () && !achievements.IsNullOrEmpty ()) {
                 foreach (var employee in employees) {
                     employee.Achievements = achievements.Where (ach => ach.EmployeeID == employee.EmployeeID)
+                    .Cast<EmployeeAchievementInfo> ()
                     .ToList ();
                 }
             }
@@ -84,7 +84,6 @@ namespace R7.University.ModelExtensions
 
                 foreach (var employee in employees) {
                     employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID)
-                        .Cast<IEmployeeAchievement> ()
                         .ToList ();
                 }
             }

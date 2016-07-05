@@ -38,6 +38,13 @@ namespace R7.University.Models
     [PrimaryKey ("EmployeeID", AutoIncrement = true)]
     public class EmployeeInfo: IEmployee
     {
+        public EmployeeInfo ()
+        {
+            Achievements = new HashSet<EmployeeAchievementInfo> ();
+            Disciplines = new HashSet<EmployeeDisciplineInfo> ();
+            Positions = new HashSet<OccupiedPositionInfo> ();
+        }
+        
         #region IEmployee implementation
 
         public int EmployeeID { get; set; }
@@ -93,7 +100,7 @@ namespace R7.University.Models
         public bool ShowBarcode { get; set; }
 
         [IgnoreColumn]
-        public IList<IEmployeeAchievement> Achievements { get; set; }
+        public virtual ICollection<EmployeeAchievementInfo> Achievements { get; set; }
 
         [IgnoreColumn]
         public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
