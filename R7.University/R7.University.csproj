@@ -138,7 +138,6 @@
     <Compile Include="Models\IAchievement.cs" />
     <Compile Include="Models\AchievementType.cs" />
     <Compile Include="Models\IEmployeeDiscipline.cs" />
-    <Compile Include="Data\EmployeeDisciplineRepository.cs" />
     <Compile Include="Data\DivisionRepository.cs" />
     <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
