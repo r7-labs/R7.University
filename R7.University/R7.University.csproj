@@ -124,7 +124,6 @@
     <Compile Include="Models\IEduLevel.cs" />
     <Compile Include="Models\IUniversityBaseEntity.cs" />
     <Compile Include="Data\EmployeeAchievementRepository.cs" />
-    <Compile Include="Data\OccupiedPositionRepository.cs" />
     <Compile Include="Components\UniversityConfig.cs" />
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="Models\IEmployee.cs" />
@@ -175,7 +174,6 @@
     <Compile Include="Models\PositionInfo.cs" />
     <Compile Include="Models\VCard.cs" />
     <Compile Include="Models\VCardPhone.cs" />
-    <Compile Include="Models\OccupiedPositionInfoEx.cs" />
     <Compile Include="Data\Mappings\PositionMapping.cs" />
     <Compile Include="Data\Mappings\EmployeeMapping.cs" />
     <Compile Include="Data\Mappings\DivisionMapping.cs" />
