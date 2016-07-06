@@ -77,16 +77,5 @@ namespace R7.University.Data
                         ON D.DivisionID = DH.DivisionID
                     ORDER BY DH.[Path], D.Title", divisionId);
         }
-
-        public IEnumerable<DivisionInfo> GetDivisions (IEnumerable<int> divisionIds)
-        {
-            if (divisionIds != null && divisionIds.Any ()) {
-                return DataProvider.GetObjects<DivisionInfo> (
-                    string.Format ("WHERE DivisionID IN ({0})", TextUtils.FormatList (",", divisionIds))
-                );
-            }
-
-            return Enumerable.Empty<DivisionInfo> ();
-        }
     }
 }
