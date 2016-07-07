@@ -23,7 +23,7 @@ using System;
 using System.Data;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Localization;
-using R7.University.Data;
+using R7.University.Launchpad.Queries;
 using R7.University.Models;
 
 namespace R7.University.Launchpad
@@ -47,9 +47,7 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var achievements = UniversityRepository.Instance.DataProvider.FindObjects<AchievementInfo> (
-                                   @"WHERE CONCAT ([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false
-                               );
+            var achievements = new FindAchievementQuery (modelContext).Execute (search);
 
             foreach (var achievement in achievements) {
                 var col = 0;
