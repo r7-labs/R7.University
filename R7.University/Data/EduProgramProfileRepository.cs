@@ -52,17 +52,6 @@ namespace R7.University.Data
             DataProvider = dataProvider;
         }
 
-        public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevel (int eduLevelId)
-        {
-            return DataProvider.GetObjects<EduProgramProfileInfo> (
-                    "WHERE EduLevelID = @0", eduLevelId)
-                    .WithEduProgram ()
-                    // TODO: Move sorting ouside extension method
-                    .OrderBy (epp => epp.EduProgram.Code)
-                    .ThenBy (epp => epp.ProfileCode)
-                    .ThenBy (epp => epp.ProfileTitle);
-        }
-
         public IEnumerable<EduProgramProfileInfo> FindEduProgramProfiles (string search)
         {
             return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,
