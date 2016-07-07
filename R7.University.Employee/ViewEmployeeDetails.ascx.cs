@@ -477,8 +477,7 @@ namespace R7.University.Employee
             }
 
             // get all empoyee achievements
-            var achievements = EmployeeAchievementRepository.Instance
-                .GetEmployeeAchievements (employee.EmployeeID);
+            var achievements = employee.Achievements;
             
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
@@ -513,7 +512,8 @@ namespace R7.University.Employee
                 ach.AchievementType != AchievementType.AcademicDegree &&
                 ach.AchievementType != AchievementType.Training &&
                 ach.AchievementType != AchievementType.Work)
-                .OrderByDescending (ach => ach.YearBegin);
+                .OrderByDescending (ach => ach.YearBegin)
+                .ToList ();
 			
             if (achievements.Any ()) {
                 gridAchievements.DataSource = AchievementsDataTable (achievements);

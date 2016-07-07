@@ -50,14 +50,6 @@ namespace R7.University.Data
 
         #endregion
 
-        public IEnumerable<EmployeeAchievementInfo> GetEmployeeAchievements (int employeeId)
-        {
-            return DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text,
-                @"SELECT * FROM {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements] 
-                    WHERE [EmployeeID] = @0", employeeId
-            );
-        }
-
         public IEnumerable<EmployeeAchievementInfo> GetAchievements_ForEmployees (IEnumerable<int> employeeIds)
         {
             return DataProvider.GetObjects<EmployeeAchievementInfo> (CommandType.Text, 
