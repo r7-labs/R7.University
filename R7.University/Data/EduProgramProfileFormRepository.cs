@@ -53,18 +53,6 @@ namespace R7.University.Data
             DataProvider = dataProvider;
         }
 
-        public IEnumerable<EduProgramProfileFormInfo> GetEduProgramProfileForms (IEnumerable<IEduProgramProfile> eduProgramProfiles)
-        {
-            if (!eduProgramProfiles.IsNullOrEmpty ()) {
-                return DataProvider.GetObjects<EduProgramProfileFormInfo> (
-                    string.Format ("WHERE EduProgramProfileID IN ({0})",
-                        TextUtils.FormatList (",", eduProgramProfiles.Select (epp => epp.EduProgramProfileID)))
-                );
-            }
-
-            return Enumerable.Empty<EduProgramProfileFormInfo> ();
-        }
-
         public void UpdateEduProgramProfileForms (IList<EduProgramProfileFormInfo> eduForms, int eduProgramProfileId)
         {
             using (var ctx = DataContext.Instance ()) {
