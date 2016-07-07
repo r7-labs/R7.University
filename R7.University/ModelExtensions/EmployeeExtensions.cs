@@ -34,47 +34,6 @@ namespace R7.University.ModelExtensions
             return ModelHelper.IsPublished (employee.StartDate, employee.EndDate);
         }
 
-        public static IEmployee WithAchievements (this IEmployee employee)
-        {
-            if (employee != null) {
-                employee.Achievements = EmployeeAchievementRepository.Instance
-                .GetEmployeeAchievements (employee.EmployeeID)
-                .ToList ();
-            }
-
-            return employee;
-        }
-
-        public static IEnumerable<IEmployee> WithDisciplines (
-            this IEnumerable<IEmployee> employees, 
-            IEnumerable<IEmployeeDiscipline> disciplines)
-        {
-            if (!employees.IsNullOrEmpty () && !disciplines.IsNullOrEmpty ()) {
-                foreach (var employee in employees) {
-                    employee.Disciplines = disciplines.Where (d => d.EmployeeID == employee.EmployeeID)
-                        .Cast<EmployeeDisciplineInfo> ()
-                        .ToList ();
-                }
-            }
-
-            return employees;
-        }
-
-        public static IEnumerable<IEmployee> WithAchievements (
-            this IEnumerable<IEmployee> employees,
-            IEnumerable<IEmployeeAchievement> achievements)
-        {
-            if (!employees.IsNullOrEmpty () && !achievements.IsNullOrEmpty ()) {
-                foreach (var employee in employees) {
-                    employee.Achievements = achievements.Where (ach => ach.EmployeeID == employee.EmployeeID)
-                    .Cast<EmployeeAchievementInfo> ()
-                    .ToList ();
-                }
-            }
-
-            return employees;
-        }
-
         [Obsolete]
         public static IEnumerable<IEmployee> WithAchievements (this IEnumerable<IEmployee> employees)
         {

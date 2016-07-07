@@ -74,15 +74,6 @@ namespace R7.University.Data
                 divisionId, sortType);
         }
 
-        public IEnumerable<EmployeeInfo> GetTeachers ()
-        {
-            return DataProvider.GetObjects<EmployeeInfo> (CommandType.Text,
-                @"SELECT DISTINCT E.* FROM {databaseOwner}[{objectQualifier}University_Employees] AS E
-                    INNER JOIN {databaseOwner}[{objectQualifier}vw_University_OccupiedPositions] AS OP
-                        ON E.EmployeeID = OP.EmployeeID
-                WHERE OP.IsTeacher = 1");
-        }
-
         public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool includeNonPublished, 
             bool teachersOnly, int divisionId)
         {

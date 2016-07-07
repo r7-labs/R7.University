@@ -18,14 +18,32 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EmployeeDirectory.Queries
 {
-    public class TeachersQuery
+    public class TeachersQuery: QueryBase
     {
-        public TeachersQuery ()
+        public TeachersQuery (IModelContext modelContext): base (modelContext)
         {
+        }
+
+        public IEnumerable<EmployeeInfo> Execute ()
+        {
+            return ModelContext.Query<EmployeeInfo> ()
+                .Include (e => e.Positions)
+                .Include (e => e.Positions.Select (op => op.Position))
+                .Include (e => e.Positions.Select (op => op.Division))
+                .Include (e => e.Disciplines)
+                .Include (e => e.Achievements)
+                .Include (e => e.Achievements.Select (ea => ea.Achievement))
+                .Where (e => e.Positions.Any (op => op.Position.IsTeacher))
+                .ToList ();
         }
     }
 }

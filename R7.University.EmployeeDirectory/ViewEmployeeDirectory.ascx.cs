@@ -40,6 +40,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 using R7.University.Queries;
+using R7.University.EmployeeDirectory.Queries;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -178,14 +179,8 @@ namespace R7.University.EmployeeDirectory
             }
 
             if (eduProgramProfiles.Count > 0) {
-                
-                var teachers = EmployeeRepository.Instance.GetTeachers ()
-                    .WithDisciplines (UniversityRepository.Instance.DataProvider
-                        .GetObjects<EmployeeDisciplineInfo> ())
-                    // .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
-                    //     .GetObjects<OccupiedPositionInfoEx> ())
-                    .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
 
+                var teachers = new TeachersQuery (ModelContext).Execute ();
 
                 IEnumerable<IEmployee> eduProgramProfileTeachers;
 
