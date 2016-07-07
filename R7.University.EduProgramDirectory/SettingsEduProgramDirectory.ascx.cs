@@ -78,7 +78,7 @@ namespace R7.University.EduProgramDirectory
             }
 
             // fill divisions dropdown
-            var divisions = ModelContext.QueryDivisions ().ToList ();
+            var divisions = new Query<DivisionInfo> (ModelContext).Execute (d => d.Title);
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;

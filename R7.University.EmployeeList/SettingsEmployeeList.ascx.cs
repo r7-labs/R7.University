@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
@@ -29,6 +28,7 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EmployeeList.Components;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.Utilities;
 
 namespace R7.University.EmployeeList
@@ -59,7 +59,7 @@ namespace R7.University.EmployeeList
             base.OnInit (e);
 
             // get divisions
-            var divisions = ModelContext.QueryDivisions ().ToList ();
+            var divisions = new Query<DivisionInfo> (ModelContext).Execute (d => d.Title);
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

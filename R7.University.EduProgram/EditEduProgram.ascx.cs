@@ -133,7 +133,7 @@ namespace R7.University.EduProgram
             formEditDocuments.OnInit (this, documentTypes);
 
             // fill divisions treeview
-            var divisions = ModelContext.QueryDivisions ().ToList ();
+            var divisions = new Query<DivisionInfo> (ModelContext).Execute (d => d.Title);
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;
