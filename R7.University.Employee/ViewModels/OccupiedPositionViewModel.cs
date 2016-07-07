@@ -20,32 +20,58 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.ViewModels;
+using System.Xml.Serialization;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class OccupiedPositionViewModel
+    public class OccupiedPositionViewModel: IOccupiedPosition
     {
-        public int ItemID { get; set; }
+        #region IOccupiedPosition implementation
+
+        public int OccupiedPositionID { get; set; }
 
         public int PositionID { get; set; }
 
         public int DivisionID { get; set; }
 
-        public string PositionShortTitle { get; set; }
-
-        public string DivisionShortTitle { get; set; }
+        public int EmployeeID { get; set; }
 
         public bool IsPrime { get; set; }
 
         public string TitleSuffix { get; set; }
 
+        [XmlIgnore]
+        public PositionInfo Position { get; set; }
+
+        [XmlIgnore]
+        public DivisionInfo Division { get; set; }
+
+        [XmlIgnore]
+        public EmployeeInfo Employee { get; set; }
+
+        #endregion
+
+        #region External properties
+
+        public string PositionShortTitle { get; set; }
+
+        public string DivisionShortTitle { get; set; }
+
+        #endregion
+
+        #region Bindable properties
+
         public string PositionShortTitleWithSuffix
         {
             get { return PositionShortTitle + " " + TitleSuffix; }
         }
+
+        #endregion
+
+        public int ItemID { get; set; }
 
         public OccupiedPositionViewModel ()
         {
@@ -54,17 +80,17 @@ namespace R7.University.Employee.ViewModels
 
         public OccupiedPositionInfo NewOccupiedPositionInfo ()
         {
-            var opinfo = new OccupiedPositionInfo ();
+            var op = new OccupiedPositionInfo ();
 
-            opinfo.PositionID = PositionID;
-            opinfo.DivisionID = DivisionID;
-            opinfo.IsPrime = IsPrime;
-            opinfo.TitleSuffix = TitleSuffix;
+            op.PositionID = PositionID;
+            op.DivisionID = DivisionID;
+            op.IsPrime = IsPrime;
+            op.TitleSuffix = TitleSuffix;
 
-            return opinfo;
+            return op;
         }
 
-        public OccupiedPositionViewModel (OccupiedPositionInfo op) : this ()
+        public OccupiedPositionViewModel (IOccupiedPosition op) : this ()
         {
             PositionID = op.PositionID;
             DivisionID = op.DivisionID;

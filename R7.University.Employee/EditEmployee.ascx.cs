@@ -145,6 +145,12 @@ namespace R7.University.Employee
             }
         }
 
+        protected List<OccupiedPositionViewModel> OccupiedPositions
+        {
+            get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionViewModel>> (ViewState ["occupiedPositions"]); }
+            set { ViewState ["occupiedPositions"] = XmlSerializationHelper.Serialize (value); }
+        }
+
         protected List<EmployeeDisciplineViewModel> Disciplines
         {
             get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineViewModel>> (ViewState ["disciplines"]); }
@@ -315,7 +321,7 @@ namespace R7.University.Employee
                             var occupiedPositions = item.Positions.Select (op => new OccupiedPositionViewModel (op)).ToList ();
 
                             // bind occupied positions
-                            ViewState ["occupiedPositions"] = occupiedPositions;
+                            OccupiedPositions = occupiedPositions;
                             gridOccupiedPositions.DataSource = occupiedPositions;
                             gridOccupiedPositions.DataBind ();
 
@@ -459,7 +465,7 @@ namespace R7.University.Employee
 
         private List<OccupiedPositionInfo> GetOccupiedPositions ()
         {
-            var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
+            var occupiedPositions = OccupiedPositions;
 					
             var occupiedPositionInfos = new List<OccupiedPositionInfo> ();
             if (occupiedPositions != null)
@@ -654,11 +660,7 @@ namespace R7.University.Employee
                 if (!Null.IsNull (positionID) && !Null.IsNull (divisionID)) {
                     OccupiedPositionViewModel occupiedPosition;
 
-                    var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
-
-                    // creating new list, if none
-                    if (occupiedPositions == null)
-                        occupiedPositions = new List<OccupiedPositionViewModel> ();
+                    var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
@@ -684,7 +686,7 @@ namespace R7.University.Employee
 
                     ResetEditPositionForm ();
 
-                    ViewState ["occupiedPositions"] = occupiedPositions;
+                    OccupiedPositions = occupiedPositions;
                     gridOccupiedPositions.DataSource = occupiedPositions;
                     gridOccupiedPositions.DataBind ();
                 }
@@ -750,7 +752,7 @@ namespace R7.University.Employee
         protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
+                var occupiedPositions = OccupiedPositions;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -782,7 +784,7 @@ namespace R7.University.Employee
         protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionViewModel>;
+                var occupiedPositions = OccupiedPositions;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -791,7 +793,8 @@ namespace R7.University.Employee
 				
                     if (opFound != null) {
                         occupiedPositions.Remove (opFound);
-                        ViewState ["occupiedPositions"] = occupiedPositions;
+
+                        OccupiedPositions = occupiedPositions;
 	
                         gridOccupiedPositions.DataSource = occupiedPositions;
                         gridOccupiedPositions.DataBind ();
