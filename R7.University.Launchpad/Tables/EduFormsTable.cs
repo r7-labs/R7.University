@@ -22,8 +22,8 @@
 using System.Data;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.Models;
+using R7.University.Launchpad.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -35,8 +35,7 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var eduForms = UniversityRepository.Instance.DataProvider.FindObjects<EduFormInfo> (
-                               @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
+            var eduForms = new FindEduFormQuery (modelContext).Execute (search);
 
             return DataTableConstructor.FromIEnumerable (eduForms);
         }
