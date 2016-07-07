@@ -86,7 +86,7 @@ namespace R7.University.Employee.ViewModels
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeAchievementEditViewModel (IEmployeeAchievement achievement) : this ()
+        public EmployeeAchievementEditViewModel (IEmployeeAchievement achievement, string resourceFile) : this ()
         {
             CopyCstor.Copy<IEmployeeAchievement> (achievement, this);
 
@@ -96,6 +96,8 @@ namespace R7.University.Employee.ViewModels
                 ShortTitle = achievement.Achievement.ShortTitle;
                 AchievementType = achievement.Achievement.AchievementType;
             }
+
+            Localize (resourceFile);
         }
 
         public EmployeeAchievementInfo NewEmployeeAchievementInfo ()

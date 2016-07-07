@@ -40,12 +40,12 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.Employee.Components;
+using R7.University.Employee.Queries;
+using R7.University.Employee.ViewModels;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
-using R7.University.Queries;
-using R7.University.Employee.ViewModels;
-using R7.University.Employee.Queries;
 
 namespace R7.University.Employee
 {
@@ -318,7 +318,8 @@ namespace R7.University.Employee
                             }
 
                             // fill view list
-                            var occupiedPositions = item.Positions.Select (op => new OccupiedPositionEditViewModel (op)).ToList ();
+                            var occupiedPositions = item.Positions
+                                .Select (op => new OccupiedPositionEditViewModel (op)).ToList ();
 
                             // bind occupied positions
                             OccupiedPositions = occupiedPositions;
@@ -326,12 +327,8 @@ namespace R7.University.Employee
                             gridOccupiedPositions.DataBind ();
 
                             // fill achievements list
-                            var achievements = new List<EmployeeAchievementEditViewModel> ();
-                            foreach (var achievement in item.Achievements) {
-                                var achView = new EmployeeAchievementEditViewModel (achievement);
-                                achView.Localize (LocalResourceFile);
-                                achievements.Add (achView);
-                            }
+                            var achievements = item.Achievements
+                                .Select (ea => new EmployeeAchievementEditViewModel (ea, LocalResourceFile)).ToList ();
 
                             // bind achievements
                             Achievements = achievements;
@@ -339,10 +336,9 @@ namespace R7.University.Employee
                             gridAchievements.DataBind ();
 
                             // fill disciplines list
-                            var disciplines = new List<EmployeeDisciplineEditViewModel> ();
-                            foreach (var eduprogram in item.Disciplines)
-                                disciplines.Add (new EmployeeDisciplineEditViewModel (eduprogram));
-
+                            var disciplines = item.Disciplines
+                                .Select (ed => new EmployeeDisciplineEditViewModel (ed)).ToList ();
+                    
                             // bind disciplines
                             Disciplines = disciplines;
                             gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
