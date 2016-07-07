@@ -26,7 +26,6 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Launchpad
@@ -34,6 +33,25 @@ namespace R7.University.Launchpad
     public partial class EditAchievement : PortalModuleBase
     {
         private int? itemId = null;
+
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
 
         #region Handlers
 
@@ -76,8 +94,9 @@ namespace R7.University.Launchpad
                     // check we have an item to lookup
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
+
                         // load the item
-                        var item = UniversityRepository.Instance.DataProvider.Get<AchievementInfo> (itemId.Value);
+                        var item = ModelContext.Get<AchievementInfo> (itemId.Value);
 
                         if (item != null) {
                             textTitle.Text = item.Title;
@@ -119,7 +138,7 @@ namespace R7.University.Launchpad
                 }
                 else {
                     // update existing record
-                    item = UniversityRepository.Instance.DataProvider.Get<AchievementInfo> (itemId.Value);
+                    item = ModelContext.Get<AchievementInfo> (itemId.Value);
                 }
 
                 // fill the object
@@ -127,10 +146,14 @@ namespace R7.University.Launchpad
                 item.ShortTitle = textShortTitle.Text.Trim ();
                 item.AchievementType = (AchievementType) Enum.Parse (typeof (AchievementType), comboAchievementType.SelectedValue);
 
-                if (!itemId.HasValue)
-                    UniversityRepository.Instance.DataProvider.Add<AchievementInfo> (item);
-                else
-                    UniversityRepository.Instance.DataProvider.Update<AchievementInfo> (item);
+                if (!itemId.HasValue) {
+                    ModelContext.Add<AchievementInfo> (item);
+                }
+                else {
+                    ModelContext.Update<AchievementInfo> (item);
+                }
+
+                ModelContext.SaveChanges (true);
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -153,9 +176,12 @@ namespace R7.University.Launchpad
         protected void buttonDelete_Click (object sender, EventArgs e)
         {
             try {
-                // ALT: if (!Null.IsNull (itemId))
                 if (itemId.HasValue) {
-                    UniversityRepository.Instance.DataProvider.Delete<AchievementInfo> (itemId.Value);
+                    
+                    var item = ModelContext.Get<AchievementInfo> (itemId.Value);
+                    ModelContext.Remove<AchievementInfo> (item);
+                    ModelContext.SaveChanges (true);
+
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }
