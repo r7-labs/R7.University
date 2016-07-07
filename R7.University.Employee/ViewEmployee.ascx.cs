@@ -99,7 +99,7 @@ namespace R7.University.Employee
         {
             var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
             if (userId != null) {
-                return new EmployeeQuery (ModelContext).ExecuteByUserId (userId.Value);
+                return new EmployeeQuery (ModelContext).ByUserId (userId.Value);
             }
 
             return null;

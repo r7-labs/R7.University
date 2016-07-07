@@ -41,13 +41,14 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.Employee.Components;
+using R7.University.Employee.Queries;
 using R7.University.Employee.SharedLogic;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.ViewModels;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
-using R7.University.Queries;
 
 namespace R7.University.Employee
 {
@@ -120,8 +121,9 @@ namespace R7.University.Employee
         {
             if (Settings.ShowCurrentUser) {
                 var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
-                if (userId != null)
-                    return EmployeeRepository.Instance.GetEmployee_ByUserId (userId.Value);
+                if (userId != null) {
+                    return new EmployeeQuery (ModelContext).ByUserId (userId.Value);
+                }
             }
 
             return ModelContext.Get<EmployeeInfo> (Settings.EmployeeID);

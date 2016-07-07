@@ -54,11 +54,6 @@ namespace R7.University.Data
 
         #endregion
 
-        public EmployeeInfo GetEmployee_ByUserId (int userId)
-        {
-            return DataProvider.GetObjects<EmployeeInfo> ("WHERE UserId = @0", userId).FirstOrDefault ();
-        }
-
         public IEnumerable<EmployeeInfo> GetEmployees_ByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
         {
             // TODO: Expose weghtMod sp argument
