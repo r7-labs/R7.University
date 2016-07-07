@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Launchpad
