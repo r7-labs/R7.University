@@ -72,6 +72,7 @@
     <Folder Include="Components\" />
     <Folder Include="Tables\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -175,6 +176,7 @@
     <Compile Include="Tables\PositionsTable.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="Queries\FindEduProgramProfileQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

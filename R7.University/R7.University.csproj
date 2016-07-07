@@ -112,7 +112,6 @@
     <Compile Include="ViewModels\ViewNumerator.cs" />
     <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
-    <Compile Include="Data\EduProgramProfileRepository.cs" />
     <Compile Include="Data\EduProgramRepository.cs" />
     <Compile Include="Models\IEduProgram.cs" />
     <Compile Include="Models\IEduProgramProfile.cs" />
