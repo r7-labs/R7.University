@@ -85,7 +85,6 @@
       <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\SystemEduForm.cs" />
-    <Compile Include="ModelExtensions\EduProgramProfileFormExtensions.cs" />
     <Compile Include="Controls\EditEduForms.ascx.controls.cs">
       <DependentUpon>Controls\EditEduForms.ascx</DependentUpon>
     </Compile>

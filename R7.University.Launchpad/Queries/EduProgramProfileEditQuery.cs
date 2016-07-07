@@ -1,10 +1,10 @@
 ﻿//
-//  EduProgramProfileFormExtensions.cs
+//  EduProgramProfileEditQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -21,21 +21,26 @@
 
 using System;
 using System.Linq;
-using System.Collections.Generic;
 using R7.University.Models;
+using R7.University.Queries;
 
-namespace R7.University.ModelExtensions
+namespace R7.University.Launchpad.Queries
 {
-    public static class EduProgramProfileFormExtensions
+    public class EduProgramProfileEditQuery: QueryBase
     {
-        public static IEnumerable<IEduProgramProfileForm> WithEduForms (
-            this IEnumerable<IEduProgramProfileForm> eduProgramProfileForms, IEnumerable<IEduForm> eduForms)
+        public EduProgramProfileEditQuery (IModelContext modelContext): base (modelContext)
         {
-            return eduProgramProfileForms.Join (eduForms, eppf => eppf.EduFormID, ef => ef.EduFormID,
-                (eppf, ef) => {
-                    eppf.EduForm = (EduFormInfo) ef;
-                    return eppf;
-                });
+        }
+
+        public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
+        {
+            return ModelContext.QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
+                .Include (epp => epp.EduProgram)
+                .Include (epp => epp.EduProgram.EduLevel)
+                .Include (epp => epp.EduLevel)
+                .Include (epp => epp.Documents)
+                .Include (epp => epp.Documents.Select (d => d.DocumentType))
+                .SingleOrDefault ();
         }
     }
 }

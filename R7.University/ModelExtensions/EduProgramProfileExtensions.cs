@@ -29,19 +29,6 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileExtensions
     {
-        public static IEnumerable<EduProgramProfileInfo> WithEduProgram (
-            this IEnumerable<EduProgramProfileInfo> eduProgramProfiles)
-        {
-            var eduPrograms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramInfo> ();
-
-            return eduProgramProfiles.Join (eduPrograms, epp => epp.EduProgramID, ep => ep.EduProgramID, 
-                delegate (EduProgramProfileInfo epp, EduProgramInfo ep) {
-                    epp.EduProgram = ep;
-                    return epp;
-                }
-            );
-        }
-
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
         {
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);

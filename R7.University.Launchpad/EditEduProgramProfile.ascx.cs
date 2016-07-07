@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
@@ -27,7 +28,7 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ControlExtensions;
 using R7.University.Data;
-using R7.University.ModelExtensions;
+using R7.University.Launchpad.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -116,8 +117,8 @@ namespace R7.University.Launchpad
             BindEduPrograms (eduProgramLevels.First ().EduLevelID);
 
             // init edit forms
-            formEditEduForms.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<EduFormInfo> ());
-            formEditDocuments.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
+            formEditEduForms.OnInit (this, new Query<EduFormInfo> (ModelContext).Execute ());
+            formEditDocuments.OnInit (this, new Query<DocumentTypeInfo> (ModelContext).Execute ());
 
             // fill divisions dropdown
             var divisions = ModelContext.QueryDivisions ().ToList ();
@@ -169,21 +170,15 @@ namespace R7.University.Launchpad
 
             auditControl.Bind (item);
 
-            var documents = ModelContext.QueryDocuments_ForEduProgramProfile (item.EduProgramProfileID)
+            // sort documents
+            var documents = item.Documents
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
                 .ToList ();
 
             formEditDocuments.SetData (documents, item.EduProgramProfileID);
-
-            var eppForms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileFormInfo> (
-                               "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
-                .WithEduForms (ModelContext.QueryEduForms ().ToList ())
-                .Cast<EduProgramProfileFormInfo> ()
-                .ToList ();
-            
-            formEditEduForms.SetData (eppForms, item.EduProgramProfileID);
+            formEditEduForms.SetData (item.EduProgramProfileForms.ToList (), item.EduProgramProfileID);
         }
 
         protected override void BeforeUpdateItem (EduProgramProfileInfo item)
@@ -223,13 +218,14 @@ namespace R7.University.Launchpad
 
         protected override EduProgramProfileInfo GetItem (int itemId)
         {
-            return ModelContext.QueryEduProgramProfile (itemId).Single ();
+            return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }
 
         protected override int AddItem (EduProgramProfileInfo item)
         {
             ModelContext.Add (item);
             ModelContext.SaveChanges (true);
+
             return item.EduProgramProfileID;
         }
 
