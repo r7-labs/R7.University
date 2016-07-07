@@ -1,5 +1,5 @@
 //
-//  EmployeeDisciplineViewModel.cs
+//  EmployeeDisciplineEditViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -28,7 +28,7 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeDisciplineViewModel: IEmployeeDiscipline
+    public class EmployeeDisciplineEditViewModel: IEmployeeDiscipline
     {
         #region IEmployeeDiscipline implementation
 
@@ -71,12 +71,12 @@ namespace R7.University.Employee.ViewModels
 
         public int ItemID { get; set; }
 
-        public EmployeeDisciplineViewModel ()
+        public EmployeeDisciplineEditViewModel ()
         {
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeDisciplineViewModel (IEmployeeDiscipline employeeDiscipline) : this ()
+        public EmployeeDisciplineEditViewModel (IEmployeeDiscipline employeeDiscipline) : this ()
         {
             CopyCstor.Copy<IEmployeeDiscipline> (employeeDiscipline, this);
 

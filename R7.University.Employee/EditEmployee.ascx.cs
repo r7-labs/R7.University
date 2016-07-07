@@ -145,15 +145,15 @@ namespace R7.University.Employee
             }
         }
 
-        protected List<OccupiedPositionViewModel> OccupiedPositions
+        protected List<OccupiedPositionEditViewModel> OccupiedPositions
         {
-            get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionViewModel>> (ViewState ["occupiedPositions"]); }
+            get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditViewModel>> (ViewState ["occupiedPositions"]); }
             set { ViewState ["occupiedPositions"] = XmlSerializationHelper.Serialize (value); }
         }
 
-        protected List<EmployeeDisciplineViewModel> Disciplines
+        protected List<EmployeeDisciplineEditViewModel> Disciplines
         {
-            get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineViewModel>> (ViewState ["disciplines"]); }
+            get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineEditViewModel>> (ViewState ["disciplines"]); }
             set { ViewState ["disciplines"] = XmlSerializationHelper.Serialize (value); }
         }
 
@@ -318,7 +318,7 @@ namespace R7.University.Employee
                             }
 
                             // fill view list
-                            var occupiedPositions = item.Positions.Select (op => new OccupiedPositionViewModel (op)).ToList ();
+                            var occupiedPositions = item.Positions.Select (op => new OccupiedPositionEditViewModel (op)).ToList ();
 
                             // bind occupied positions
                             OccupiedPositions = occupiedPositions;
@@ -339,9 +339,9 @@ namespace R7.University.Employee
                             gridAchievements.DataBind ();
 
                             // fill disciplines list
-                            var disciplines = new List<EmployeeDisciplineViewModel> ();
+                            var disciplines = new List<EmployeeDisciplineEditViewModel> ();
                             foreach (var eduprogram in item.Disciplines)
-                                disciplines.Add (new EmployeeDisciplineViewModel (eduprogram));
+                                disciplines.Add (new EmployeeDisciplineEditViewModel (eduprogram));
 
                             // bind disciplines
                             Disciplines = disciplines;
@@ -658,13 +658,13 @@ namespace R7.University.Employee
                 var divisionID = int.Parse (treeDivisions.SelectedValue);
 
                 if (!Null.IsNull (positionID) && !Null.IsNull (divisionID)) {
-                    OccupiedPositionViewModel occupiedPosition;
+                    OccupiedPositionEditViewModel occupiedPosition;
 
-                    var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionViewModel> ();
+                    var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionEditViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        occupiedPosition = new OccupiedPositionViewModel ();
+                        occupiedPosition = new OccupiedPositionEditViewModel ();
                     }
                     else { // update 
                         // restore ItemID from hidden field
@@ -815,7 +815,7 @@ namespace R7.University.Employee
             return DataTableConstructor.FromIEnumerable (achievements);
         }
 
-        private DataTable DisciplinesDataTable (List<EmployeeDisciplineViewModel> eduPrograms)
+        private DataTable DisciplinesDataTable (List<EmployeeDisciplineEditViewModel> eduPrograms)
         {
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
@@ -1009,14 +1009,14 @@ namespace R7.University.Employee
         {
             try {
                 if (!Null.IsNull (int.Parse (comboEduProgramProfile.SelectedValue))) {
-                    EmployeeDisciplineViewModel discipline;
+                    EmployeeDisciplineEditViewModel discipline;
 
                     // get disciplines list from viewstate
-                    var disciplines = Disciplines ?? new List<EmployeeDisciplineViewModel> ();
+                    var disciplines = Disciplines ?? new List<EmployeeDisciplineEditViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        discipline = new EmployeeDisciplineViewModel ();
+                        discipline = new EmployeeDisciplineEditViewModel ();
                     }
                     else {
                         // restore ItemID from hidden field
