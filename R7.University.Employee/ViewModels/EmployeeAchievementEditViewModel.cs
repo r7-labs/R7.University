@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
 using R7.University.Components;
 using R7.University.Models;
@@ -28,13 +29,44 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditViewModel: EmployeeAchievementInfo
+    public class EmployeeAchievementEditViewModel: IEmployeeAchievement
     {
+        #region IEmployeeAchievement implementation
+
+        public int EmployeeAchievementID { get; set; }
+
+        public int EmployeeID { get; set; }
+
+        public int? AchievementID { get; set; }
+
+        public string Title { get; set; }
+
+        public string ShortTitle { get; set; }
+
+        public string Description { get; set; }
+
+        public int? YearBegin { get; set; }
+
+        public int? YearEnd { get; set; }
+
+        public bool IsTitle { get; set; }
+
+        public string DocumentURL { get; set; }
+
+        public string TitleSuffix { get; set; }
+
+        public AchievementType? AchievementType { get; set; }
+
+        [XmlIgnore]
+        public AchievementInfo Achievement { get; set; }
+
+        #endregion
+
         public int ItemID { get; set; }
 
-        public string ViewYears { get; protected set; }
+        public string ViewYears { get; set; }
 
-        public string ViewAchievementType { get; protected set; }
+        public string ViewAchievementType { get; set; }
 
         public string ViewTitle
         { 
@@ -44,6 +76,7 @@ namespace R7.University.Employee.ViewModels
         public void Localize (string resourceFile)
         {
             ViewYears = FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
+
             ViewAchievementType = Localization.GetString (
                 AchievementTypeInfo.GetResourceKey (AchievementType), resourceFile);
         }
@@ -53,15 +86,22 @@ namespace R7.University.Employee.ViewModels
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeAchievementEditViewModel (EmployeeAchievementInfo achievement) : this ()
+        public EmployeeAchievementEditViewModel (IEmployeeAchievement achievement) : this ()
         {
-            CopyCstor.Copy<EmployeeAchievementInfo> (achievement, this);
+            CopyCstor.Copy<IEmployeeAchievement> (achievement, this);
+
+            // use base achievement values
+            if (achievement.Achievement != null) {
+                Title = achievement.Achievement.Title;
+                ShortTitle = achievement.Achievement.ShortTitle;
+                AchievementType = achievement.Achievement.AchievementType;
+            }
         }
 
         public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
         {
             var achievement = new EmployeeAchievementInfo ();
-            CopyCstor.Copy<EmployeeAchievementInfo> (this, achievement);
+            CopyCstor.Copy<IEmployeeAchievement> (this, achievement);
             return achievement;
         }
     }

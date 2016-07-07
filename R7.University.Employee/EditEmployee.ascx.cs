@@ -151,6 +151,12 @@ namespace R7.University.Employee
             set { ViewState ["disciplines"] = XmlSerializationHelper.Serialize (value); }
         }
 
+        protected List<EmployeeAchievementEditViewModel> Achievements
+        {
+            get { return XmlSerializationHelper.Deserialize<List<EmployeeAchievementEditViewModel>> (ViewState ["achievements"]); }
+            set { ViewState ["achievements"] = XmlSerializationHelper.Serialize (value); }
+        }
+
         protected string EditIconUrl
         {
             get { return IconController.IconURL ("Edit"); }
@@ -313,8 +319,6 @@ namespace R7.University.Employee
                             gridOccupiedPositions.DataSource = occupiedPositions;
                             gridOccupiedPositions.DataBind ();
 
-                            // read employee achievements
-                        
                             // fill achievements list
                             var achievements = new List<EmployeeAchievementEditViewModel> ();
                             foreach (var achievement in item.Achievements) {
@@ -324,7 +328,7 @@ namespace R7.University.Employee
                             }
 
                             // bind achievements
-                            ViewState ["achievements"] = achievements;
+                            Achievements = achievements;
                             gridAchievements.DataSource = AchievementsDataTable (achievements);
                             gridAchievements.DataBind ();
 
@@ -467,7 +471,7 @@ namespace R7.University.Employee
 
         private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
         {
-            var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
+            var achievements = Achievements;
 				
             var achievementInfos = new List<EmployeeAchievementInfo> ();
             if (achievements != null)
@@ -816,7 +820,7 @@ namespace R7.University.Employee
         protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
+                var achievements = Achievements;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -828,7 +832,7 @@ namespace R7.University.Employee
                         achievements.Remove (achievement);
 						
                         // refresh viewstate
-                        ViewState ["achievements"] = achievements;
+                        Achievements = achievements;
 	
                         // bind achievements to the gridview
                         gridAchievements.DataSource = AchievementsDataTable (achievements);
@@ -848,7 +852,7 @@ namespace R7.University.Employee
         protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
+                var achievements = Achievements;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -943,11 +947,7 @@ namespace R7.University.Employee
                 EmployeeAchievementEditViewModel achievement;
 
                 // get achievements list from viewstate
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementEditViewModel>;
-				
-                // creating new list, if none
-                if (achievements == null)
-                    achievements = new List<EmployeeAchievementEditViewModel> ();
+                var achievements = Achievements ?? new List<EmployeeAchievementEditViewModel> ();
 
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add") {
@@ -991,7 +991,7 @@ namespace R7.University.Employee
                 ResetEditAchievementForm ();
 
                 // refresh viewstate
-                ViewState ["achievements"] = achievements;
+                Achievements = achievements;
 
                 // bind achievements to the gridview
                 gridAchievements.DataSource = AchievementsDataTable (achievements);
