@@ -57,6 +57,9 @@
     <data name="EduProfile.Column">
         <value>Educational Profile</value>
     </data>
+    <data name="EduProgramProfile.Column">
+        <value>Educational Profile</value>
+    </data>
     <data name="Disciplines.Column">
         <value>Disciplines</value>
     </data>

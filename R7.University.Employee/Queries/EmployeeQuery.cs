@@ -39,17 +39,24 @@ namespace R7.University.Employee.Queries
                 .Include (e => e.Positions.Select (p => p.Position))
                 .Include (e => e.Positions.Select (p => p.Division))
                 .Include (e => e.Achievements)
-                .Include (e => e.Achievements.Select (a => a.Achievement))
+                .Include (e => e.Achievements.Select (ea => ea.Achievement))
+                .Include (e => e.Disciplines)
+                .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile))
+                .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduProgram))
                 .SingleOrDefault ();
         }
 
         public EmployeeInfo ByUserId (int userId)
         {
             return ModelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
+                .Include (e => e.Positions)
                 .Include (e => e.Positions.Select (p => p.Position))
                 .Include (e => e.Positions.Select (p => p.Division))
                 .Include (e => e.Achievements)
-                .Include (e => e.Achievements.Select (a => a.Achievement))
+                .Include (e => e.Achievements.Select (ea => ea.Achievement))
+                .Include (e => e.Disciplines)
+                .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile))
+                .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduProgram))
                 .SingleOrDefault ();
         }
     }

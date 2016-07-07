@@ -145,6 +145,12 @@ namespace R7.University.Employee
             }
         }
 
+        protected List<EmployeeDisciplineViewModel> Disciplines
+        {
+            get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineViewModel>> (ViewState ["disciplines"]); }
+            set { ViewState ["disciplines"] = XmlSerializationHelper.Serialize (value); }
+        }
+
         protected string EditIconUrl
         {
             get { return IconController.IconURL ("Edit"); }
@@ -308,12 +314,10 @@ namespace R7.University.Employee
                             gridOccupiedPositions.DataBind ();
 
                             // read employee achievements
-                            var achievementInfos = EmployeeAchievementRepository.Instance
-                                .GetEmployeeAchievements (itemId.Value);
-
+                        
                             // fill achievements list
                             var achievements = new List<EmployeeAchievementEditViewModel> ();
-                            foreach (var achievement in achievementInfos) {
+                            foreach (var achievement in item.Achievements) {
                                 var achView = new EmployeeAchievementEditViewModel (achievement);
                                 achView.Localize (LocalResourceFile);
                                 achievements.Add (achView);
@@ -324,17 +328,13 @@ namespace R7.University.Employee
                             gridAchievements.DataSource = AchievementsDataTable (achievements);
                             gridAchievements.DataBind ();
 
-                            // read employee educational programs 
-                            var disciplineInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeDisciplineInfoEx> (
-                                                      "WHERE [EmployeeID] = @0", itemId.Value);
-
                             // fill disciplines list
                             var disciplines = new List<EmployeeDisciplineViewModel> ();
-                            foreach (var eduprogram in disciplineInfos)
+                            foreach (var eduprogram in item.Disciplines)
                                 disciplines.Add (new EmployeeDisciplineViewModel (eduprogram));
 
                             // bind disciplines
-                            ViewState ["disciplines"] = disciplines;
+                            Disciplines = disciplines;
                             gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
                             gridDisciplines.DataBind ();
 
@@ -479,7 +479,7 @@ namespace R7.University.Employee
 
         private List<EmployeeDisciplineInfo> GetEmployeeDisciplines ()
         {
-            var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel>;
+            var disciplines = Disciplines;
 
             var disciplineInfos = new List<EmployeeDisciplineInfo> ();
             if (disciplines != null)
@@ -1009,7 +1009,7 @@ namespace R7.University.Employee
                     EmployeeDisciplineViewModel discipline;
 
                     // get disciplines list from viewstate
-                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel> ?? new List<EmployeeDisciplineViewModel> ();
+                    var disciplines = Disciplines ?? new List<EmployeeDisciplineViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
@@ -1044,7 +1044,7 @@ namespace R7.University.Employee
                         ResetEditDisciplinesForm ();
 
                         // refresh viewstate
-                        ViewState ["disciplines"] = disciplines;
+                        Disciplines = disciplines;
 
                         // bind items to the gridview
                         gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
@@ -1064,7 +1064,7 @@ namespace R7.University.Employee
         protected void linkEditDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel>;
+                var disciplines = Disciplines;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
@@ -1101,7 +1101,7 @@ namespace R7.University.Employee
         protected void linkDeleteDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineViewModel>;
+                var disciplines = Disciplines;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
@@ -1113,7 +1113,7 @@ namespace R7.University.Employee
                         disciplines.RemoveAt (disciplinesIndex);
 
                         // refresh viewstate
-                        ViewState ["disciplines"] = disciplines;
+                        Disciplines = disciplines;
 
                         // bind edu discipline to the gridview
                         gridDisciplines.DataSource = DisciplinesDataTable (disciplines);

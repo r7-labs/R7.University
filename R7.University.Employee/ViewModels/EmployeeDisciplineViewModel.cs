@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Xml.Serialization;
 using R7.University.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
@@ -39,8 +40,10 @@ namespace R7.University.Employee.ViewModels
 
         public string Disciplines { get; set; }
 
+        [XmlIgnore]
         public EmployeeInfo Employee { get; set; }
 
+        [XmlIgnore]
         public EduProgramProfileInfo EduProgramProfile { get; set; }
 
         #endregion
@@ -57,9 +60,16 @@ namespace R7.University.Employee.ViewModels
 
         #endregion
 
-        public int ItemID { get; set; }
+        #region Bindable properties
 
-        public IEmployeeDiscipline Model { get; protected set; }
+        public string EduProgramProfile_String
+        {
+            get { return FormatHelper.FormatEduProgramProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
+        }
+
+        #endregion
+
+        public int ItemID { get; set; }
 
         public EmployeeDisciplineViewModel ()
         {
