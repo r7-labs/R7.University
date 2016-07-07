@@ -38,6 +38,10 @@ namespace R7.University.Models
 
         public string Disciplines { get; set; }
 
+        public EmployeeInfo Employee { get; set; }
+
+        public EduProgramProfileInfo EduProgramProfile { get; set; }
+
         #endregion
 
         #region External properties

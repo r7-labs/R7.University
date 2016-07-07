@@ -35,7 +35,9 @@ namespace R7.University.Data.Mappings
             Property (m => m.EmployeeID).IsRequired ();
             Property (m => m.EduProgramProfileID).IsRequired ();
             Property (m => m.Disciplines).IsOptional ();
+
+            HasRequired (m => m.Employee).WithMany (e => e.Disciplines).HasForeignKey (m => m.EmployeeID).WillCascadeOnDelete (true);
+            HasRequired (m => m.EduProgramProfile).WithMany ().HasForeignKey (m => m.EduProgramProfileID).WillCascadeOnDelete (true);
         }
     }
 }
-

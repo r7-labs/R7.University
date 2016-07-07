@@ -26,7 +26,6 @@ namespace R7.University.Models
 {
     [TableName ("University_EmployeeDisciplines")]
     [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
-    [Serializable]
     public class EmployeeDisciplineInfo: IEmployeeDiscipline
     {
         #region IEmployeeDiscipline implementation
@@ -39,17 +38,13 @@ namespace R7.University.Models
 
         public string Disciplines { get; set; }
 
-        #endregion
+        [IgnoreColumn]
+        public virtual EmployeeInfo Employee { get; set; }
 
-        public override string ToString ()
-        {
-            return string.Format (
-                "[EmployeeDisciplineInfo: EmployeeDisciplineID={0}, EmployeeID={1}, EduProgramProfileID={2}, Disciplines={3}]",
-                EmployeeDisciplineID,
-                EmployeeID,
-                EduProgramProfileID,
-                Disciplines);
-        }
+        [IgnoreColumn]
+        public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
+
+        #endregion
     }
 }
 

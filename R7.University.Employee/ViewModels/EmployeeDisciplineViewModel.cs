@@ -27,18 +27,53 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeDisciplineViewModel: EmployeeDisciplineInfoEx
+    public class EmployeeDisciplineViewModel: IEmployeeDiscipline
     {
+        #region IEmployeeDiscipline implementation
+
+        public long EmployeeDisciplineID { get; set; }
+
+        public int EmployeeID { get; set; }
+
+        public int EduProgramProfileID { get; set; }
+
+        public string Disciplines { get; set; }
+
+        public EmployeeInfo Employee { get; set; }
+
+        public EduProgramProfileInfo EduProgramProfile { get; set; }
+
+        #endregion
+
+        #region External properties
+
+        public string Code { get; set; }
+
+        public string Title { get; set; }
+
+        public string ProfileCode { get; set; }
+
+        public string ProfileTitle { get; set; }
+
+        #endregion
+
         public int ItemID { get; set; }
+
+        public IEmployeeDiscipline Model { get; protected set; }
 
         public EmployeeDisciplineViewModel ()
         {
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeDisciplineViewModel (EmployeeDisciplineInfoEx program) : this ()
+        public EmployeeDisciplineViewModel (IEmployeeDiscipline employeeDiscipline) : this ()
         {
-            CopyCstor.Copy<EmployeeDisciplineInfoEx> (program, this);
+            CopyCstor.Copy<IEmployeeDiscipline> (employeeDiscipline, this);
+
+            Code = employeeDiscipline.EduProgramProfile.EduProgram.Code;
+            Title = employeeDiscipline.EduProgramProfile.EduProgram.Title;
+            ProfileCode = employeeDiscipline.EduProgramProfile.ProfileCode;
+            ProfileTitle = employeeDiscipline.EduProgramProfile.ProfileTitle;
         }
 
         public EmployeeDisciplineInfo NewEmployeeDisciplineInfo ()
