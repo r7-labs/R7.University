@@ -54,11 +54,6 @@ namespace R7.University.Data
 
         #endregion
 
-        public EmployeeInfo GetEmployee (int employeeId)
-        {
-            return DataProvider.Get<EmployeeInfo> (employeeId);
-        }
-
         public EmployeeInfo GetEmployee_ByUserId (int userId)
         {
             return DataProvider.GetObjects<EmployeeInfo> ("WHERE UserId = @0", userId).FirstOrDefault ();

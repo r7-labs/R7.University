@@ -100,7 +100,7 @@ namespace R7.University.Employee
 
                         if (employeeId != null) {
                             // get employee by querystring param
-                            _employee = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (employeeId.Value);
+                            _employee = ModelContext.Get<EmployeeInfo> (employeeId.Value);
                         }
                         else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee") {
                             // if employee id is not in the querystring, 
@@ -124,7 +124,7 @@ namespace R7.University.Employee
                     return EmployeeRepository.Instance.GetEmployee_ByUserId (userId.Value);
             }
 
-            return EmployeeRepository.Instance.GetEmployee (Settings.EmployeeID);
+            return ModelContext.Get<EmployeeInfo> (Settings.EmployeeID);
         }
 
 
