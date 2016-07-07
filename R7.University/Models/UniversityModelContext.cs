@@ -47,6 +47,8 @@ namespace R7.University.Models
 
         #region Custom methods
 
+        // TODO: Convert to queries
+
         public IQueryable<DivisionInfo> QueryDivisions ()
         {
             return Query<DivisionInfo> ().OrderBy (d => d.Title);
@@ -57,37 +59,9 @@ namespace R7.University.Models
             return Query<DivisionInfo> ().Where (d => d.ParentDivisionID == null);
         }
 
-        public IQueryable<DocumentTypeInfo> QueryDocumentTypes ()
-        {
-            return Query<DocumentTypeInfo> ();
-        }
-
         public IQueryable<DocumentInfo> QueryDocuments_ForEduProgram (int eduProgramId)
         {
             return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramId == eduProgramId);
-        }
-
-        public IQueryable<DocumentInfo> QueryDocuments_ForEduPrograms ()
-        {
-            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramId != null);
-        }
-
-        public IQueryable<DocumentInfo> QueryDocuments_ForEduProgramProfile (int eduProgramProfileId)
-        {
-            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramProfileId == eduProgramProfileId);
-        }
-
-        public IQueryable<DocumentInfo> QueryDocuments_ForEduProgramProfiles ()
-        {
-            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramProfileId != null);
-        }
-
-        public IQueryable<EduProgramInfo> QueryEduProgram (int eduProgramId)
-        {
-            return QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
-                .Include (ep => ep.EduLevel)
-                .Include (ep => ep.Documents)
-                .Include (ep => ep.Documents.Select (d => d.DocumentType));
         }
 
         public IQueryable<EduProgramInfo> QueryEduPrograms ()
@@ -119,11 +93,6 @@ namespace R7.University.Models
                 .Where (ep => ep.DivisionId == divisionId);
         }
 
-        public IQueryable<EduFormInfo> QueryEduForms ()
-        {
-            return Query<EduFormInfo> ();
-        }
-
         public IQueryable<EduProgramProfileInfo> QueryEduProgramProfile (int eduProgramProfileId)
         {
             return QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
@@ -138,11 +107,6 @@ namespace R7.University.Models
                 .Include (epp => epp.EduProgram)
                 .Include (epp => epp.EduProgram.EduLevel)
                 .Include (epp => epp.EduLevel);
-        }
-
-        public IQueryable<EduProgramProfileInfo> QueryEduProgramProfiles_ByEduProgram (int eduProgramId)
-        {
-            return  QueryEduProgramProfiles ().Where (epp => epp.EduProgramID == eduProgramId);
         }
 
         #endregion
