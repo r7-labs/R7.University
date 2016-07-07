@@ -117,11 +117,11 @@ namespace R7.University.Launchpad
             BindEduPrograms (eduProgramLevels.First ().EduLevelID);
 
             // init edit forms
-            formEditEduForms.OnInit (this, new Query<EduFormInfo> (ModelContext).Execute ());
-            formEditDocuments.OnInit (this, new Query<DocumentTypeInfo> (ModelContext).Execute ());
+            formEditEduForms.OnInit (this, new Query<EduFormInfo> (ModelContext).List ());
+            formEditDocuments.OnInit (this, new Query<DocumentTypeInfo> (ModelContext).List ());
 
             // fill divisions dropdown
-            var divisions = new Query<DivisionInfo> (ModelContext).Execute (d => d.Title);
+            var divisions = new Query<DivisionInfo> (ModelContext).OrderedList (d => d.Title);
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;

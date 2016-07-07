@@ -42,7 +42,7 @@ namespace R7.University.Employee
 
             // bind employees to the combobox
             using (var modelContext = new UniversityModelContext ()) {
-                comboEmployees.DataSource = new Query<EmployeeInfo> (modelContext).Execute (empl => empl.LastName);
+                comboEmployees.DataSource = new Query<EmployeeInfo> (modelContext).OrderedList (empl => empl.LastName);
                 comboEmployees.DataBind ();
             }
 

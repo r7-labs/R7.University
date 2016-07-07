@@ -32,12 +32,12 @@ namespace R7.University.Queries
         {
         }
 
-        public IList<TEntity> Execute ()
+        public IList<TEntity> List ()
         {
             return ModelContext.Query<TEntity> ().ToList ();
         }
 
-        public IList<TEntity> Execute<TKey> (Func<TEntity,TKey> keySelector)
+        public IList<TEntity> OrderedList<TKey> (Func<TEntity,TKey> keySelector)
         {
             return ModelContext.Query<TEntity> ().OrderBy (keySelector).ToList ();
         }
