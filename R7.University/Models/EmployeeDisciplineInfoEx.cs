@@ -21,14 +21,25 @@
 
 using System;
 using DotNetNuke.ComponentModel.DataAnnotations;
-using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Models
 {
     [TableName ("vw_University_EmployeeDisciplines")]
     [Serializable]
-    public class EmployeeDisciplineInfoEx: EmployeeDisciplineInfo
+    public class EmployeeDisciplineInfoEx: IEmployeeDiscipline
     {
+        #region IEmployeeDiscipline implementation
+
+        public long EmployeeDisciplineID { get; set; }
+
+        public int EmployeeID { get; set; }
+
+        public int EduProgramProfileID { get; set; }
+
+        public string Disciplines { get; set; }
+
+        #endregion
+
         #region External properties
 
         public string Code { get; set; }
@@ -40,15 +51,5 @@ namespace R7.University.Models
         public string ProfileTitle { get; set; }
 
         #endregion
-
-        [IgnoreColumn]
-        public string EduProfileString
-        {
-            get {
-                var profileString = TextUtils.FormatList (" ", ProfileCode, ProfileTitle);
-                return TextUtils.FormatList (" ", Code, Title) +
-                (!string.IsNullOrWhiteSpace (profileString) ? " (" + profileString + ")" : string.Empty);
-            }
-        }
     }
 }
