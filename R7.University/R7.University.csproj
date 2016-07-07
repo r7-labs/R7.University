@@ -198,6 +198,7 @@
     <Compile Include="Data\Mappings\AchievementMapping.cs" />
     <Compile Include="Queries\OccupiedPositionsByEmployeeQuery.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
+    <Compile Include="Queries\QueryBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
