@@ -160,13 +160,7 @@ namespace R7.University.EmployeeDirectory
         {
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
-            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (ModelContext.Query<EduLevelInfo> ().ToList ())
-                .OrderBy (epp => epp.EduLevel.SortIndex)
-                .ThenBy (epp => epp.EduProgram.Code)
-                .ThenBy (epp => epp.EduProgram.Title)
-                .ThenBy (epp => epp.ProfileCode)
-                .ThenBy (epp => epp.ProfileTitle)
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).Execute (Settings.EduLevels)
                 .Select (epp => new EduProgramProfileViewModel (epp, viewModel))
                 .ToList ();
 

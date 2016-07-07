@@ -42,60 +42,6 @@ namespace R7.University.ModelExtensions
             );
         }
 
-        public static IEnumerable<IEduProgramProfile> WithEduLevel (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduLevel> eduLevels)
-        {
-            foreach (var epp in eduProgramProfiles) {
-                epp.EduLevel = (EduLevelInfo) eduLevels.First (el => el.EduLevelID == epp.EduLevelId);
-
-                if (epp.EduProgram == null) {
-                    throw new ArgumentException ("EduProgram should not be null");
-                }
-
-                epp.EduProgram.EduLevel = (EduLevelInfo) eduLevels.First (el => el.EduLevelID == epp.EduProgram.EduLevelID);
-            }
-        
-            return eduProgramProfiles;
-        }
-
-        public static IEnumerable<IEduProgramProfile> WithEduForms (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduForm> eduForms)
-        {
-            foreach (var epp in eduProgramProfiles) {
-                if (epp.EduProgramProfileForms != null) {
-                    epp.EduProgramProfileForms = epp.EduProgramProfileForms.WithEduForms (eduForms)
-                        .Cast <EduProgramProfileFormInfo> ().ToList ();
-                }
-            }
-
-            return eduProgramProfiles;
-        }
-
-        public static IEnumerable<IEduProgramProfile> WithEduProgramProfileForms (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IEduProgramProfileForm> eduProgramProfileForms)
-        {
-            if (!eduProgramProfileForms.IsNullOrEmpty ()) {
-                foreach (var eduProgramProfile in eduProgramProfiles) {
-                    eduProgramProfile.EduProgramProfileForms = eduProgramProfileForms
-                        .Where (eppf => eppf.EduProgramProfileID == eduProgramProfile.EduProgramProfileID)
-                            .Cast <EduProgramProfileFormInfo> ().ToList ();
-                }
-            }
-
-            return eduProgramProfiles;
-        }
-
-        public static IEnumerable<IEduProgramProfile> WithDocuments (
-            this IEnumerable<IEduProgramProfile> eduProgramProfiles, IEnumerable<IDocument> documents)
-        {
-            return eduProgramProfiles.GroupJoin (documents.DefaultIfEmpty (), epp => epp.EduProgramProfileID, d => d.EduProgramProfileId,
-                (epp, docs) => {
-                    epp.Documents = docs.Cast<DocumentInfo> ().ToList ();
-                    return epp;
-                }
-            );
-        }
-
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
         {
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);

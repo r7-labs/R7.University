@@ -63,17 +63,6 @@ namespace R7.University.Data
                     .ThenBy (epp => epp.ProfileTitle);
         }
 
-        public IEnumerable<EduProgramProfileInfo> GetEduProgramProfiles_ByEduLevels (IEnumerable<int> eduLevelIds)
-        {
-            if (eduLevelIds.Any ()) {
-                return DataProvider.GetObjects<EduProgramProfileInfo> (
-                    "WHERE EduLevelID IN (" + TextUtils.FormatList (",", eduLevelIds) + ")")
-                    .WithEduProgram ();
-            }
-
-            return Enumerable.Empty<EduProgramProfileInfo> ();
-        }
-
         public IEnumerable<EduProgramProfileInfo> FindEduProgramProfiles (string search)
         {
             return DataProvider.GetObjects<EduProgramProfileInfo> (CommandType.Text,

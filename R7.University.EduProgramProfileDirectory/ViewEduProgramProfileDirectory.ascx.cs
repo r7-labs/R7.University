@@ -36,11 +36,11 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.EduProgramProfileDirectory.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
@@ -112,23 +112,10 @@ namespace R7.University.EduProgramProfileDirectory
             var viewModel = new EduProgramProfileDirectoryEduFormsViewModel ();
             var indexer = new ViewModelIndexer (1);
 
-            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (ModelContext.Query<EduLevelInfo> ().ToList ());
-            
-            eduProgramProfiles = eduProgramProfiles
-                .WithEduProgramProfileForms (EduProgramProfileFormRepository.Instance
-                    .GetEduProgramProfileForms (eduProgramProfiles))
-                .WithEduForms (ModelContext.QueryEduForms ().ToList ());
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).WithEduForms (Settings.EduLevels);
                
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
-                eduProgramProfiles
-                    .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
-                    .ThenBy (epp => epp.EduProgram.Code)
-                    .ThenBy (epp => epp.EduProgram.Title)
-                    .ThenBy (epp => epp.ProfileCode)
-                    .ThenBy (epp => epp.ProfileTitle)
-                    .ThenBy (epp => epp.EduLevel.SortIndex)
-                    .Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
+                eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -139,18 +126,10 @@ namespace R7.University.EduProgramProfileDirectory
             var viewModel = new EduProgramProfileDirectoryDocumentsViewModel ();
             var indexer = new ViewModelIndexer (1);
 
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).WithDocuments (Settings.EduLevels);
+
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
-                EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                    .WithEduLevel (ModelContext.Query<EduLevelInfo> ().ToList ())
-                    .WithDocuments (ModelContext.QueryDocuments_ForEduProgramProfiles ())
-                    .OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
-                    .ThenBy (epp => epp.EduProgram.Code)
-                    .ThenBy (epp => epp.EduProgram.Title)
-                    .ThenBy (epp => epp.ProfileCode)
-                    .ThenBy (epp => epp.ProfileTitle)
-                    .ThenBy (epp => epp.EduLevel.SortIndex)
-                    .Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))
-                    .ToList ()
+                eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
