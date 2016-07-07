@@ -25,18 +25,15 @@ using R7.University.Models;
 namespace R7.University.Queries
 {
     // REVIEW: Can it be just ModelContext.Get<TEntity> ()?
-    public class GetByKeyQuery<TEntity> where TEntity: class
+    public class GetByKeyQuery<TEntity>: QueryBase where TEntity: class
     {
-        private readonly IModelContext modelContext;
-
-        public GetByKeyQuery (IModelContext modelContext)
+        public GetByKeyQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public TEntity Execute (object key)
         {
-            return modelContext.Get<TEntity> (key);
+            return ModelContext.Get<TEntity> (key);
         }
     }
 }

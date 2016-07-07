@@ -26,23 +26,20 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class Query<TEntity> where TEntity: class
+    public class Query<TEntity>: QueryBase where TEntity: class
     {
-        private readonly IModelContext modelContext;
-
-        public Query (IModelContext modelContext)
+        public Query (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public IList<TEntity> Execute ()
         {
-            return modelContext.Query<TEntity> ().ToList ();
+            return ModelContext.Query<TEntity> ().ToList ();
         }
 
         public IList<TEntity> Execute<TKey> (Func<TEntity,TKey> keySelector)
         {
-            return modelContext.Query<TEntity> ().OrderBy (keySelector).ToList ();
+            return ModelContext.Query<TEntity> ().OrderBy (keySelector).ToList ();
         }
     }
 }

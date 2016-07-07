@@ -26,18 +26,15 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class EduProgramsByEduLevelQuery
+    public class EduProgramsByEduLevelQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public EduProgramsByEduLevelQuery (IModelContext modelContext)
+        public EduProgramsByEduLevelQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public IEnumerable<EduProgramInfo> Execute (int eduLevelId)
         {
-            return modelContext.Query<EduProgramInfo> ()
+            return ModelContext.Query<EduProgramInfo> ()
                 .Where (ep => ep.EduLevelID == eduLevelId)
                 .OrderBy (ep => ep.Code)
                 .ThenBy (ep => ep.Title)

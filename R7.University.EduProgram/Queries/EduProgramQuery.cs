@@ -22,21 +22,19 @@
 using System;
 using System.Linq;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EduProgram.Queries
 {
-    internal class EduProgramQuery
+    internal class EduProgramQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public EduProgramQuery (IModelContext repository)
+        public EduProgramQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = repository;
         }
 
         public EduProgramInfo Execute (int eduProgramId)
         {
-            return modelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
+            return ModelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
                 .Include (ep => ep.EduLevel)
                 .Include (ep => ep.Documents)
                 .Include (ep => ep.Documents.Select (d => d.DocumentType))

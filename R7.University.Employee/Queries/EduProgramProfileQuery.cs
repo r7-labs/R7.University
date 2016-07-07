@@ -23,21 +23,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Employee.Queries
 {
-    public class EduProgramProfileQuery
+    public class EduProgramProfileQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public EduProgramProfileQuery (IModelContext modelContext)
+        public EduProgramProfileQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public IEnumerable<EduProgramProfileInfo> ByEduLevel (int eduLevelId)
         {
-            return modelContext.Query<EduProgramProfileInfo> ().Where (epp => epp.EduLevelId == eduLevelId).ToList ();
+            return ModelContext.Query<EduProgramProfileInfo> ().Where (epp => epp.EduLevelId == eduLevelId).ToList ();
         }
     }
 }

@@ -22,21 +22,19 @@
 using System;
 using System.Linq;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    public class HeadPositionQuery
+    public class HeadPositionQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public HeadPositionQuery (IModelContext modelContext)
+        public HeadPositionQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public OccupiedPositionInfo Execute (int employeeId, int? positionId)
         {
-            return modelContext.Query<OccupiedPositionInfo> ()
+            return ModelContext.Query<OccupiedPositionInfo> ()
                 .Include (op => op.Position)
                 .Where (op => op.EmployeeID == employeeId && op.PositionID == positionId)
                 .FirstOrDefault ();

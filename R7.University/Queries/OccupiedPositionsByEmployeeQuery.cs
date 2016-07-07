@@ -26,18 +26,15 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class OccupiedPositionsByEmployeeQuery
+    public class OccupiedPositionsByEmployeeQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public OccupiedPositionsByEmployeeQuery (IModelContext modelContext)
+        public OccupiedPositionsByEmployeeQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public IList<OccupiedPositionInfo> Execute (int employeeId)
         {
-            return modelContext.Query<OccupiedPositionInfo> ()
+            return ModelContext.Query<OccupiedPositionInfo> ()
                 .Include (op => op.Position)
                 .Include (op => op.Division)
                 .Where (op => op.EmployeeID == employeeId)

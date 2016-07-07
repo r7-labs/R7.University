@@ -26,18 +26,15 @@ using System.Linq;
 
 namespace R7.University.Queries
 {
-    public class EduProgramProfileQuery
+    public class EduProgramProfileQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public EduProgramProfileQuery (IModelContext modelContext)
+        public EduProgramProfileQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         protected IQueryable<EduProgramProfileInfo> QueryEduProgramProfiles (IEnumerable<int> eduLevelIds)
         {
-            return modelContext.Query<EduProgramProfileInfo> ()
+            return ModelContext.Query<EduProgramProfileInfo> ()
                 .Where (epp => eduLevelIds.Contains (epp.EduLevelId))
                 .Include (epp => epp.EduLevel)
                 .Include (epp => epp.EduProgram);

@@ -22,21 +22,19 @@
 using System;
 using System.Linq;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Employee.Queries
 {
-    public class EmployeeQuery
+    public class EmployeeQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public EmployeeQuery (IModelContext modelContext)
+        public EmployeeQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public EmployeeInfo Execute (int employeeId)
         {
-            return modelContext.QueryOne<EmployeeInfo> (e => e.EmployeeID == employeeId)
+            return ModelContext.QueryOne<EmployeeInfo> (e => e.EmployeeID == employeeId)
                 .Include (e => e.Positions)
                 .Include (e => e.Positions.Select (p => p.Position))
                 .Include (e => e.Positions.Select (p => p.Division))
@@ -47,7 +45,7 @@ namespace R7.University.Employee.Queries
 
         public EmployeeInfo ExecuteByUserId (int userId)
         {
-            return modelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
+            return ModelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
                 .Include (e => e.Positions.Select (p => p.Position))
                 .Include (e => e.Positions.Select (p => p.Division))
                 .Include (e => e.Achievements)
@@ -56,4 +54,3 @@ namespace R7.University.Employee.Queries
         }
     }
 }
-

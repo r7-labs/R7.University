@@ -26,18 +26,15 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class EduLevelsQuery
+    public class EduLevelsQuery: QueryBase
     {
-        private readonly IModelContext modelContext;
-
-        public EduLevelsQuery (IModelContext modelContext)
+        public EduLevelsQuery (IModelContext modelContext): base (modelContext)
         {
-            this.modelContext = modelContext;
         }
 
         public IEnumerable<EduLevelInfo> Execute ()
         {
-            return modelContext.Query<EduLevelInfo> ()
+            return ModelContext.Query<EduLevelInfo> ()
                 .OrderBy (el => el.SortIndex)
                 .ToList ();
         }
