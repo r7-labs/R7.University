@@ -20,10 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Data;
-using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -41,9 +41,10 @@ namespace R7.University.Launchpad
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
             // REVIEW: Cannot set comparison options
-            var documents = (search != null)
-                ? modelContext.Query<DocumentInfo> ().Where (p => p.Title.Contains (search) || p.Url.Contains (search)).ToList ()
-                : modelContext.Query<DocumentInfo> ().ToList ();
+            var documents = (search == null)
+                ? new FlatQuery<DocumentInfo> (modelContext).List ()
+                : new FlatQuery<DocumentInfo> (modelContext)
+                    .ListWhere (p => p.Title.Contains (search) || p.Url.Contains (search));
 
             return DataTableConstructor.FromIEnumerable (documents);
         }

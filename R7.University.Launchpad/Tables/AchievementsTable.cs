@@ -23,8 +23,8 @@ using System;
 using System.Data;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Localization;
-using R7.University.Launchpad.Queries;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -47,7 +47,11 @@ namespace R7.University.Launchpad
             foreach (DataColumn column in dt.Columns)
                 column.AllowDBNull = true;
 
-            var achievements = new FindAchievementQuery (modelContext).Execute (search);
+            // REVIEW: Cannot set comparison options
+            var achievements = (search == null)
+                ? new FlatQuery<AchievementInfo> (modelContext).List ()
+                : new FlatQuery<AchievementInfo> (modelContext)
+                    .ListWhere (a => a.Title.Contains (search) || a.ShortTitle.Contains (search));
 
             foreach (var achievement in achievements) {
                 var col = 0;

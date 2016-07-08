@@ -178,8 +178,6 @@
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Queries\FindEduProgramProfileQuery.cs" />
     <Compile Include="Queries\EduProgramProfileEditQuery.cs" />
-    <Compile Include="Queries\FindEduFormQuery.cs" />
-    <Compile Include="Queries\FindAchievementQuery.cs" />
     <Compile Include="Queries\FindDivisionQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

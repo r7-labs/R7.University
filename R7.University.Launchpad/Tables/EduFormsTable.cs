@@ -23,7 +23,7 @@ using System.Data;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Models;
-using R7.University.Launchpad.Queries;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -35,7 +35,11 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var eduForms = new FindEduFormQuery (modelContext).Execute (search);
+            // REVIEW: Cannot set comparison options
+            var eduForms = (search == null)
+                ? new FlatQuery<EduFormInfo> (modelContext).List ()
+                : new FlatQuery<EduFormInfo> (modelContext)
+                    .ListWhere (ef => ef.Title.Contains (search) || ef.ShortTitle.Contains (search));
 
             return DataTableConstructor.FromIEnumerable (eduForms);
         }
