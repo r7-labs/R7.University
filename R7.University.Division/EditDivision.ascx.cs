@@ -31,6 +31,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.Division.Components;
+using R7.University.Division.Queries;
 using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
@@ -122,9 +123,7 @@ namespace R7.University.Division
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // fill divisions dropdown
-            var divisions = ModelContext.QueryDivisions ()
-                .Where (d => (itemId == null || itemId != d.DivisionID))
-                .ToList ();
+            var divisions = new DivisionQuery (ModelContext).Execute (itemId);
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

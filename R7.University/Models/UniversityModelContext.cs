@@ -49,11 +49,6 @@ namespace R7.University.Models
 
         // TODO: Convert to queries
 
-        public IQueryable<DivisionInfo> QueryDivisions ()
-        {
-            return Query<DivisionInfo> ().OrderBy (d => d.Title);
-        }
-
         public IQueryable<DivisionInfo> QueryRootDivisions ()
         {
             return Query<DivisionInfo> ().Where (d => d.ParentDivisionID == null);
