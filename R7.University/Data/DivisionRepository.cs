@@ -67,15 +67,5 @@ namespace R7.University.Data
 
             return null;
         }
-
-        public IEnumerable<DivisionInfo> GetSubDivisions (int divisionId)
-        {
-            return DataProvider.GetObjects<DivisionInfo> (CommandType.Text,
-                @"SELECT DISTINCT D.*, DH.[Level], DH.[Path] 
-                    FROM {databaseOwner}[{objectQualifier}University_Divisions] AS D 
-                    INNER JOIN {databaseOwner}[{objectQualifier}University_DivisionsHierarchy] (@0) AS DH
-                        ON D.DivisionID = DH.DivisionID
-                    ORDER BY DH.[Path], D.Title", divisionId);
-        }
     }
 }

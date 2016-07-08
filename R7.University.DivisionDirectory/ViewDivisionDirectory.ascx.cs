@@ -183,16 +183,10 @@ namespace R7.University.DivisionDirectory
                         }
                     }
                     else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
-                        // getting all root divisions
-                        var rootDivisions = ModelContext.QueryRootDivisions ().OrderBy (d => d.Title);
 
-                        if (rootDivisions.Any ()) {
-                            var divisions = new List<DivisionInfo> ();
+                        var divisions = new DivisionHierarchyQuery (ModelContext).Execute ();
 
-                            foreach (var rootDivision in rootDivisions) {
-                                divisions.AddRange (DivisionRepository.Instance.GetSubDivisions (rootDivision.DivisionID));
-                            }
-
+                        if (!divisions.IsNullOrEmpty ()) {
                             // bind divisions to the grid
                             var divisionViewModels = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
                             gridObrnadzorDivisions.DataSource = divisionViewModels;

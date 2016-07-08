@@ -60,6 +60,11 @@ namespace R7.University.Data.Mappings
             Property (m => m.LastModifiedOnDate);
             Property (m => m.CreatedByUserID);
             Property (m => m.CreatedOnDate);
+
+            Ignore (m => m.Level);
+            Ignore (m => m.Path);
+
+            HasMany (m => m.SubDivisions).WithRequired ().HasForeignKey (sd => sd.ParentDivisionID);
         }
     }
 }

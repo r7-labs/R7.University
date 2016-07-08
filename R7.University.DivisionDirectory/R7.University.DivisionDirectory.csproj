@@ -100,6 +100,7 @@
     <Compile Include="Components\DivisionDirectoryMode.cs" />
     <Compile Include="Components\DivisionDirectorySettings.cs" />
     <Compile Include="Queries\HeadPositionQuery.cs" />
+    <Compile Include="Queries\DivisionHierarchyQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
