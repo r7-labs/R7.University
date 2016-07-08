@@ -33,6 +33,7 @@ using R7.University.Data;
 using R7.University.Division.Components;
 using R7.University.Division.Queries;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 
@@ -149,16 +150,9 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            var positions = ModelContext.Query<PositionInfo> ().OrderBy (p => p.Title).ToList ();
-
-            positions.Insert (0, new PositionInfo {
-                    Title = LocalizeString ("NotSelected.Text"),
-                    PositionID = Null.NullInteger
-                }
-            );
-            
-            comboHeadPosition.DataSource = positions;
+            comboHeadPosition.DataSource = new Query<PositionInfo> (ModelContext).OrderedList (p => p.Title);
             comboHeadPosition.DataBind ();
+            comboHeadPosition.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
 
         protected override void InitControls ()
