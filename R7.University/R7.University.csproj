@@ -164,7 +164,6 @@
     <Compile Include="Models\EduProgramProfileInfo.cs" />
     <Compile Include="Models\EmployeeAchievementInfo.cs" />
     <Compile Include="Models\EmployeeDisciplineInfo.cs" />
-    <Compile Include="Models\EmployeeDisciplineInfoEx.cs" />
     <Compile Include="Models\EmployeeEqualityComparer.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="Models\OccupiedPositionInfo.cs" />
