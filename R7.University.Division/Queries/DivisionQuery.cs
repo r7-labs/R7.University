@@ -39,6 +39,13 @@ namespace R7.University.Division.Queries
                 .Where (d => (divisionId == null || divisionId != d.DivisionID))
                 .ToList ();
         }
+
+        public DivisionInfo SingleOrDefault (int divisionId)
+        {
+            return ModelContext.QueryOne<DivisionInfo> (d => d.DivisionID == divisionId)
+                .Include (d => d.SubDivisions)
+                .SingleOrDefault ();
+        }
     }
 }
 

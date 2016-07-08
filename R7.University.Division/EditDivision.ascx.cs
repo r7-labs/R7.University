@@ -22,14 +22,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.Division.Components;
 using R7.University.Division.Queries;
 using R7.University.Models;
@@ -246,7 +244,7 @@ namespace R7.University.Division
 
         protected override DivisionInfo GetItem (int itemId)
         {
-            return UniversityRepository.Instance.DataProvider.Get<DivisionInfo> (itemId);
+            return ModelContext.Get<DivisionInfo> (itemId);
         }
 
         protected override int AddItem (DivisionInfo item)
@@ -255,7 +253,8 @@ namespace R7.University.Division
             item.CreatedByUserID = item.LastModifiedByUserID = UserId;
             item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 
-            UniversityRepository.Instance.DataProvider.Add<DivisionInfo> (item);
+            ModelContext.Add<DivisionInfo> (item);
+            ModelContext.SaveChanges (true);
 
             // then adding new division from Division module, 
             // set calling module to display new division info
@@ -272,12 +271,14 @@ namespace R7.University.Division
             item.LastModifiedByUserID = UserId;
             item.LastModifiedOnDate = DateTime.Now;
 
-            UniversityRepository.Instance.DataProvider.Update<DivisionInfo> (item);
+            ModelContext.Update<DivisionInfo> (item);
+            ModelContext.SaveChanges (true);
         }
 
         protected override void DeleteItem (DivisionInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Delete<DivisionInfo> (item);
+            ModelContext.Remove<DivisionInfo> (item);
+            ModelContext.SaveChanges (true);
         }
 
         #endregion

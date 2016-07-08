@@ -39,6 +39,7 @@ using R7.University.Components;
 using R7.University.Data;
 using R7.University.Division.Components;
 using R7.University.Models;
+using R7.University.Division.Queries;
 
 namespace R7.University.Division
 {
@@ -56,17 +57,26 @@ namespace R7.University.Division
             }
         }
 
-        #region Handlers
+        #region Model context
 
-        /*
-		/// <summary>
-		/// Handles Init event for a control
-		/// </summary>
-		/// <param name="e">Event args.</param>
-		protected override void OnInit (EventArgs e)
-		{
-			base.OnInit (e);
-		}*/
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
+        #region Handlers
 
         /// <summary>
         /// Handles Load event for a control
@@ -80,7 +90,7 @@ namespace R7.University.Division
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
                     var display = false;
                     if (!Null.IsNull (Settings.DivisionID)) {
-                        var item = UniversityRepository.Instance.DataProvider.Get<DivisionInfo> (Settings.DivisionID);
+                        var item = new DivisionQuery (ModelContext).SingleOrDefault (Settings.DivisionID);
                         if (item != null) {	
                             display = true;
                             DisplayDivision (item);
@@ -232,8 +242,7 @@ namespace R7.University.Division
             imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
 
             // get & bind subdivisions
-            var subDivisions = UniversityRepository.Instance.DataProvider.GetObjects<DivisionInfo> (
-                                   "WHERE [ParentDivisionID] = @0", division.DivisionID)
+            var subDivisions = division.SubDivisions
                 .Where (d => IsEditable || d.IsPublished)
                 .OrderBy (d => d.Title)
                 .Select (d => new SubDivisionViewModel (d, ViewModelContext)); 
