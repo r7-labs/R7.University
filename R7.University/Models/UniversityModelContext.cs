@@ -49,11 +49,6 @@ namespace R7.University.Models
 
         // TODO: Convert to queries
 
-        public IQueryable<DivisionInfo> QueryRootDivisions ()
-        {
-            return Query<DivisionInfo> ().Where (d => d.ParentDivisionID == null);
-        }
-
         public IQueryable<DocumentInfo> QueryDocuments_ForEduProgram (int eduProgramId)
         {
             return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramId == eduProgramId);
@@ -91,14 +86,6 @@ namespace R7.University.Models
         public IQueryable<EduProgramProfileInfo> QueryEduProgramProfile (int eduProgramProfileId)
         {
             return QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
-                .Include (epp => epp.EduProgram)
-                .Include (epp => epp.EduProgram.EduLevel)
-                .Include (epp => epp.EduLevel);
-        }
-
-        public IQueryable<EduProgramProfileInfo> QueryEduProgramProfiles ()
-        {
-            return Query<EduProgramProfileInfo> ()
                 .Include (epp => epp.EduProgram)
                 .Include (epp => epp.EduProgram.EduLevel)
                 .Include (epp => epp.EduLevel);
