@@ -28,6 +28,7 @@ using R7.University.Models;
 
 namespace R7.University.Data
 {
+    [Obsolete]
     public class EmployeeAchievementRepository
     {
         protected Dal2DataProvider DataProvider;

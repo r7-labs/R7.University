@@ -26,9 +26,9 @@ using R7.University.Models;
 
 namespace R7.University.Data
 {
+    [Obsolete]
     public class UniversityRepository
     {
-        [Obsolete]
         public Dal2DataProvider DataProvider;
 
         public UniversityRepository (Dal2DataProvider dataProvider)

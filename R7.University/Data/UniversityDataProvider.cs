@@ -24,6 +24,7 @@ using R7.DotNetNuke.Extensions.Data;
 
 namespace R7.University.Data
 {
+    [Obsolete]
     public class UniversityDataProvider: Dal2DataProvider
     {
         #region Singleton implementation

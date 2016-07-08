@@ -30,6 +30,7 @@ using R7.University.Models;
 
 namespace R7.University.Data
 {
+    [Obsolete]
     public class EduProgramRepository
     {
         #region Singleton implementation

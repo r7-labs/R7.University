@@ -30,6 +30,7 @@ using R7.University.ModelExtensions;
 
 namespace R7.University.Data
 {
+    [Obsolete]
     public class DocumentRepository
     {
         protected Dal2DataProvider DataProvider;

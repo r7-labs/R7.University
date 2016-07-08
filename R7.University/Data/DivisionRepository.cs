@@ -29,6 +29,7 @@ using R7.University.Models;
 
 namespace R7.University.Data
 {
+    [Obsolete]
     public class DivisionRepository
     {
         protected Dal2DataProvider DataProvider;
