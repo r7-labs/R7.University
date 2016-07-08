@@ -190,7 +190,6 @@
     <Compile Include="Models\QueryableExtensions.cs" />
     <Compile Include="Queries\GetByKeyQuery.cs" />
     <Compile Include="Queries\EduLevelsQuery.cs" />
-    <Compile Include="Queries\Query.cs" />
     <Compile Include="Data\Mappings\EmployeeDisciplineMapping.cs" />
     <Compile Include="Data\Mappings\EmployeeAchievementMapping.cs" />
     <Compile Include="Data\Mappings\AchievementMapping.cs" />
@@ -198,6 +197,7 @@
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="Queries\QueryBase.cs" />
     <Compile Include="ModelExtensions\DivisionExtensions.cs" />
+    <Compile Include="Queries\FlatQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

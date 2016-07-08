@@ -129,11 +129,11 @@ namespace R7.University.EduProgram
             comboEduLevel.DataSource = new EduProgramLevelsQuery (ModelContext).Execute ();
             comboEduLevel.DataBind ();
 
-            var documentTypes = new Query<DocumentTypeInfo> (ModelContext).List ();
+            var documentTypes = new FlatQuery<DocumentTypeInfo> (ModelContext).List ();
             formEditDocuments.OnInit (this, documentTypes);
 
             // fill divisions treeview
-            var divisions = new Query<DivisionInfo> (ModelContext).OrderedList (d => d.Title);
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;

@@ -133,7 +133,7 @@ namespace R7.University.EmployeeDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                treeDivisions.DataSource = new Query<DivisionInfo> (ModelContext).OrderedList (d => d.Title)
+                treeDivisions.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
                     .Where (d => d.IsPublished || IsEditable);
                 
                 treeDivisions.DataBind ();

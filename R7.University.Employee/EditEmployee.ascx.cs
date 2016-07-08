@@ -137,7 +137,7 @@ namespace R7.University.Employee
             get { 
                 var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
                 if (commonAchievements == null) {
-                    commonAchievements = (List<AchievementInfo>) new Query<AchievementInfo> (ModelContext).List ();
+                    commonAchievements = (List<AchievementInfo>) new FlatQuery<AchievementInfo> (ModelContext).List ();
                     ViewState ["commonAchievements"] = commonAchievements;
                 }
 				
@@ -206,12 +206,12 @@ namespace R7.University.Employee
 
             // if results are null or empty, lists were empty too
 
-            var positions = new Query<PositionInfo> (ModelContext).OrderedList (p => p.Title);
+            var positions = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
 
-            var divisions = new Query<DivisionInfo> (ModelContext).OrderedList (d => d.Title);
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
-            var commonAchievements = new Query<AchievementInfo> (ModelContext).OrderedList (a => a.Title);
+            var commonAchievements = new FlatQuery<AchievementInfo> (ModelContext).ListOrderBy (a => a.Title);
 
             ViewState ["commonAchievements"] = commonAchievements;
 

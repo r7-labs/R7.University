@@ -148,7 +148,7 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            comboHeadPosition.DataSource = new Query<PositionInfo> (ModelContext).OrderedList (p => p.Title);
+            comboHeadPosition.DataSource = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
             comboHeadPosition.DataBind ();
             comboHeadPosition.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

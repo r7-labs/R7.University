@@ -1,5 +1,5 @@
 ﻿//
-//  Query.cs
+//  FlatQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -22,13 +22,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class Query<TEntity>: QueryBase where TEntity: class
+    public class FlatQuery<TEntity>: QueryBase where TEntity: class
     {
-        public Query (IModelContext modelContext): base (modelContext)
+        public FlatQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
@@ -37,9 +38,19 @@ namespace R7.University.Queries
             return ModelContext.Query<TEntity> ().ToList ();
         }
 
-        public IList<TEntity> OrderedList<TKey> (Func<TEntity,TKey> keySelector)
+        public IList<TEntity> ListWhere (Expression<Func<TEntity,bool>> predicate)
+        {
+            return ModelContext.Query<TEntity> ().Where (predicate).ToList ();
+        }
+
+        public IList<TEntity> ListOrderBy<TKey> (Expression<Func<TEntity,TKey>> keySelector)
         {
             return ModelContext.Query<TEntity> ().OrderBy (keySelector).ToList ();
+        }
+
+        public IList<TEntity> ListWhereOrderBy<TKey> (Expression<Func<TEntity,bool>> predicate, Expression<Func<TEntity,TKey>> keySelector)
+        {
+            return ModelContext.Query<TEntity> ().Where (predicate).OrderBy (keySelector).ToList ();
         }
     }
 }

@@ -59,7 +59,7 @@ namespace R7.University.EmployeeList
             base.OnInit (e);
 
             // get divisions
-            var divisions = new Query<DivisionInfo> (ModelContext).OrderedList (d => d.Title);
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
