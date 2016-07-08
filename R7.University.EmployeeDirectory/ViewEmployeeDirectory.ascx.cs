@@ -35,12 +35,12 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.EmployeeDirectory.Components;
+using R7.University.EmployeeDirectory.Queries;
 using R7.University.EmployeeDirectory.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.ViewModels;
 using R7.University.Queries;
-using R7.University.EmployeeDirectory.Queries;
+using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -133,9 +133,9 @@ namespace R7.University.EmployeeDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                treeDivisions.DataSource = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
-                    .Where (d => d.IsPublished || IsEditable)
-                    .OrderBy (d => d.Title);
+                treeDivisions.DataSource = new Query<DivisionInfo> (ModelContext).OrderedList (d => d.Title)
+                    .Where (d => d.IsPublished || IsEditable);
+                
                 treeDivisions.DataBind ();
 
                 // select first node
