@@ -40,6 +40,7 @@ using R7.University.DivisionDirectory.Components;
 using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.ViewModels;
 
 namespace R7.University.DivisionDirectory
@@ -129,9 +130,8 @@ namespace R7.University.DivisionDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
-                    .Where (d => d.IsPublished || IsEditable)
-                    .OrderBy (d => d.Title).ToList ();
+                var divisions = new Query<DivisionInfo> (ModelContext).OrderedList (d => d.Title)
+                    .Where (d => d.IsPublished || IsEditable);
                 
                 treeDivisions.DataSource = divisions;
                 treeDivisions.DataBind ();
