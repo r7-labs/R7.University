@@ -60,36 +60,6 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.SortIndex);
         }
-              
-        [Obsolete ("Use FormatHelper.FormatDocumentLinks instead")]
-        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
-        {
-            var markupBuilder = new StringBuilder ();
-            var count = 0;
-            foreach (var document in documents) {
-                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
-                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
-                    Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
-                    true,
-                    groupPlacement,
-                    Context.Module.TabId,
-                    Context.Module.ModuleId,
-                    microdata
-                );
-
-                if (!string.IsNullOrEmpty (linkMarkup)) {
-                    markupBuilder.Append ("<li>" + linkMarkup + "</li>");
-                    count++;
-                }
-            }
-
-            var markup = markupBuilder.ToString ();
-            if (!string.IsNullOrEmpty (markup)) {
-                return ((count == 1)? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
-            }
-
-            return string.Empty;
-        }
 
         #region Bindable properties
 
@@ -108,8 +78,12 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
             get {
                 var eduProgramDocuments = GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduProgram));
                 if (!eduProgramDocuments.IsNullOrEmpty ()) {
-                    return FormatDocumentLinks (
+                    return FormatHelper.FormatDocumentLinks (
                         eduProgramDocuments,
+                        Context,
+                        "<li>{0}</li>",
+                        "<ul class=\"list-inline\">{0}</ul>",
+                        "<ul>{0}</ul>",
                         "itemprop=\"OOP_main\"",
                         DocumentGroupPlacement.AfterTitle,
                         delegate {
@@ -135,8 +109,12 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         public string EduPlan_Links
         {
             get { 
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduPlan)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     "itemprop=\"education_plan\"",
                     DocumentGroupPlacement.InTitle
                 );
@@ -146,8 +124,12 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         public string EduSchedule_Links
         {
             get { 
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     "itemprop=\"education_shedule\"",
                     DocumentGroupPlacement.InTitle
                 );
@@ -157,8 +139,12 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         public string WorkProgramAnnotation_Links
         {
             get {
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     "itemprop=\"education_annotation\"",
                     DocumentGroupPlacement.InTitle
                 );
@@ -168,8 +154,12 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         public string EduMaterial_Links
         {
             get {
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     "itemprop=\"methodology\"",
                     DocumentGroupPlacement.InTitle
                 );
@@ -179,8 +169,12 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         public string Contingent_Links
         {
             get {
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.Contingent)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\"",
                     DocumentGroupPlacement.InTitle
                 );
@@ -190,8 +184,12 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         public string ContingentMovement_Links
         {
             get {
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\"",
                     DocumentGroupPlacement.InTitle
                 );
