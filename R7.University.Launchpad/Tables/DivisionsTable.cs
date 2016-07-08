@@ -23,8 +23,8 @@ using System.Collections.Generic;
 using System.Data;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.Models;
+using R7.University.Launchpad.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -36,11 +36,7 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var divisions = UniversityRepository.Instance.DataProvider.FindObjects<DivisionInfo> (
-                                @"WHERE CONCAT([Title], ' ', [ShortTitle], ' ', [Location], ' ', [Phone], ' ',
-                [Fax], ' ', [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ', [WorkingHours])
-                LIKE N'%{0}%'", search, false);
-            
+            var divisions = new FindDivisionQuery (modelContext).Execute (search);
             return DataTableConstructor.FromIEnumerable (divisions);
         }
     }
