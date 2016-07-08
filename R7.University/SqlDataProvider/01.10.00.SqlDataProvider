@@ -60,3 +60,9 @@ IF NOT EXISTS (select * from sys.indexes where object_id = object_id (N'{databas
     CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_Documents_Items]
         ON {databaseOwner}[{objectQualifier}University_Documents] (EduProgramProfileID ASC, EduProgramID ASC)
 GO
+
+-- Drop stored procedures
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_GetHeadEmployee]') and type in (N'P'))
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
+GO

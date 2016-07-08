@@ -37,9 +37,10 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.DivisionDirectory.Components;
+using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.DivisionDirectory.Queries;
+using R7.University.ViewModels;
 
 namespace R7.University.DivisionDirectory
 {
@@ -337,17 +338,15 @@ namespace R7.University.DivisionDirectory
                 else
                     linkDocument.Visible = false;
 
-                // contact person (head employee)
-                var contactPerson = DivisionRepository.Instance.GetHeadEmployee (
-                                        division.DivisionID,
-                                        division.HeadPositionID);
-                
-                if (contactPerson != null && contactPerson.IsPublished ()) {
-                    linkContactPerson.Text = contactPerson.AbbrName;
-                    linkContactPerson.ToolTip = contactPerson.FullName;
+                // get head employee
+                var headEmployee = new HeadEmployeeQuery (ModelContext).Execute (division.DivisionID, division.HeadPositionID);
+
+                if (headEmployee != null && headEmployee.IsPublished ()) {
+                    linkContactPerson.Text = headEmployee.AbbrName;
+                    linkContactPerson.ToolTip = headEmployee.FullName;
                     linkContactPerson.NavigateUrl = EditUrl (
                         "employee_id",
-                        contactPerson.EmployeeID.ToString (),
+                        headEmployee.EmployeeID.ToString (),
                         "EmployeeDetails");
                 }
             }
@@ -379,21 +378,18 @@ namespace R7.University.DivisionDirectory
 
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
-                // contact person (head employee)
-                var contactPerson = DivisionRepository.Instance.GetHeadEmployee (
-                                        division.DivisionID,
-                                        division.HeadPositionID);
+                // get head employee
+                var headEmployee = new HeadEmployeeQuery (ModelContext).Execute (division.DivisionID, division.HeadPositionID);
                 
-                if (contactPerson != null && contactPerson.IsPublished ()) {
-                    var headPosition = new HeadPositionQuery (ModelContext)
-                        .Execute (contactPerson.EmployeeID, division.HeadPositionID);
-
-                    var positionTitle = (!string.IsNullOrWhiteSpace (headPosition.Position.ShortTitle)) ?
-                        headPosition.Position.ShortTitle : headPosition.Position.Title;
+                if (headEmployee != null && headEmployee.IsPublished ()) {
+                    var headPosition = headEmployee.Positions
+                        .Single (op => op.DivisionID == division.DivisionID && op.PositionID == division.HeadPositionID);
+                    
+                    var positionTitle = FormatHelper.FormatShortTitle (headPosition.Position.ShortTitle, headPosition.Position.Title);
 
                     literalContactPerson.Text = "<strong><a href=\""
-                    + EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails")
-                    + "\" itemprop=\"Fio\">" + contactPerson.FullName + "</a></strong><br />"
+                    + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
+                    + "\" itemprop=\"Fio\">" + headEmployee.FullName + "</a></strong><br />"
                     + TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
                 }
 

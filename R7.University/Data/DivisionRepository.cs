@@ -57,15 +57,5 @@ namespace R7.University.Data
             return DataProvider.GetObjectsFromSp<DivisionInfo> ("{databaseOwner}[{objectQualifier}University_FindDivisions]", 
                 searchText, true, divisionId);
         }
-
-        public EmployeeInfo GetHeadEmployee (int divisionId, int? headPositionId)
-        {
-            if (headPositionId != null) {
-                return DataProvider.GetObjectsFromSp<EmployeeInfo> ("{databaseOwner}[{objectQualifier}University_GetHeadEmployee]", 
-                    divisionId, headPositionId.Value).FirstOrDefault ();
-            }
-
-            return null;
-        }
     }
 }
