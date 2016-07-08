@@ -92,7 +92,7 @@ namespace R7.University.Employee
 
         protected EmployeeInfo GetEmployee_Internal ()
         {
-            return new EmployeeQuery (ModelContext).Execute (Settings.EmployeeID);
+            return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
         }
 
         protected EmployeeInfo GetEmployee_CurrentUser_Internal ()

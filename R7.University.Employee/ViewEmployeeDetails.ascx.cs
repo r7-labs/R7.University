@@ -101,7 +101,7 @@ namespace R7.University.Employee
 
                         if (employeeId != null) {
                             // get employee by querystring param
-                            _employee = ModelContext.Get<EmployeeInfo> (employeeId.Value);
+                            _employee = new EmployeeQuery (ModelContext).SingleOrDefault (employeeId.Value);
                         }
                         else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee") {
                             // if employee id is not in the querystring, 
@@ -126,7 +126,7 @@ namespace R7.University.Employee
                 }
             }
 
-            return ModelContext.Get<EmployeeInfo> (Settings.EmployeeID);
+            return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
         }
 
 
@@ -403,8 +403,7 @@ namespace R7.University.Employee
         void EduPrograms (EmployeeInfo employee)
         {
             // get employee edu programs
-            var disciplines = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeDisciplineInfoEx> (
-                                  "WHERE [EmployeeID] = @0", employee.EmployeeID).OrderBy (d => d.Code);
+            var disciplines = employee.Disciplines.OrderBy (ed => ed.EduProgramProfile.EduProgram.Code);
 
             if (disciplines.Any ()) {
                 gridEduPrograms.DataSource = DataTableConstructor.FromIEnumerable (disciplines);

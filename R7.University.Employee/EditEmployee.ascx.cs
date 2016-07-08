@@ -268,7 +268,7 @@ namespace R7.University.Employee
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = new EmployeeQuery (ModelContext).Execute (itemId.Value);
+                        var item = new EmployeeQuery (ModelContext).SingleOrDefault (itemId.Value);
 
                         if (item != null) {
                             textLastName.Text = item.LastName;

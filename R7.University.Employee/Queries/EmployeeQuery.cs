@@ -32,7 +32,7 @@ namespace R7.University.Employee.Queries
         {
         }
 
-        public EmployeeInfo Execute (int employeeId)
+        public EmployeeInfo SingleOrDefault (int employeeId)
         {
             return ModelContext.QueryOne<EmployeeInfo> (e => e.EmployeeID == employeeId)
                 .Include (e => e.Positions)
