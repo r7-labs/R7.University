@@ -61,6 +61,12 @@ IF NOT EXISTS (select * from sys.indexes where object_id = object_id (N'{databas
         ON {databaseOwner}[{objectQualifier}University_Documents] (EduProgramProfileID ASC, EduProgramID ASC)
 GO
 
+-- Drop views
+
+IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]') and type in (N'V'))
+    DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
+GO
+
 -- Drop stored procedures
 
 IF EXISTS (select * from sys.objects where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_GetHeadEmployee]') and type in (N'P'))

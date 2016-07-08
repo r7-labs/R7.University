@@ -128,9 +128,6 @@ GO
 DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
 GO
 
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
-GO
-
 -- Drop tables
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
