@@ -80,7 +80,6 @@ namespace R7.University.Data
         }
 
         public void AddEmployee (EmployeeInfo employee, 
-            IList<OccupiedPositionInfo> occupiedPositions, 
             IList<EmployeeAchievementInfo> achievements,
             IList<EmployeeDisciplineInfo> eduPrograms)
         {
@@ -90,12 +89,6 @@ namespace R7.University.Data
                 try {
                     // add Employee
                     DataProvider.Add<EmployeeInfo> (employee);
-
-                    // add new OccupiedPositions
-                    foreach (var op in occupiedPositions) {
-                        op.EmployeeID = employee.EmployeeID;
-                        DataProvider.Add<OccupiedPositionInfo> (op);
-                    }
 
                     // add new EmployeeAchievements
                     foreach (var ach in achievements) {
@@ -121,7 +114,6 @@ namespace R7.University.Data
         }
 
         public void UpdateEmployee (EmployeeInfo employee, 
-            IList<OccupiedPositionInfo> occupiedPositions, 
             IList<EmployeeAchievementInfo> achievements,
             IList<EmployeeDisciplineInfo> disciplines)
         {
@@ -131,28 +123,6 @@ namespace R7.University.Data
                 try {
                     // update Employee
                     DataProvider.Update<EmployeeInfo> (employee);
-
-                    var occupiedPositonIDs = occupiedPositions.Select (op => op.OccupiedPositionID.ToString ());
-                    if (occupiedPositonIDs.Any ()) {
-                        DataProvider.Delete<OccupiedPositionInfo> (
-                            string.Format ("WHERE [EmployeeID] = {0} AND [OccupiedPositionID] NOT IN ({1})", 
-                                employee.EmployeeID, TextUtils.FormatList (", ", occupiedPositonIDs))); 
-                    }
-                    else {
-                        // delete all employee occupied positions 
-                        DataProvider.Delete<OccupiedPositionInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID); 
-                    }
-
-                    // add new OccupiedPositions
-                    foreach (var op in occupiedPositions) {
-                        // REVIEW: Do we really need to set EmployeeID here?
-                        op.EmployeeID = employee.EmployeeID;
-
-                        if (op.OccupiedPositionID <= 0)
-                            DataProvider.Add<OccupiedPositionInfo> (op);
-                        else
-                            DataProvider.Update<OccupiedPositionInfo> (op);
-                    }
 
                     var employeeAchievementIDs = achievements.Select (a => a.EmployeeAchievementID.ToString ());
                     if (employeeAchievementIDs.Any ()) {

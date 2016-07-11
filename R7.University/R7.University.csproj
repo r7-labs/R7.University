@@ -196,6 +196,7 @@
     <Compile Include="Queries\FlatQuery.cs" />
     <Compile Include="Commands\UpdateDocumentsCommand.cs" />
     <Compile Include="Commands\UpdateEduProgramProfileFormsCommand.cs" />
+    <Compile Include="Commands\UpdateOccupiedPositionsCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

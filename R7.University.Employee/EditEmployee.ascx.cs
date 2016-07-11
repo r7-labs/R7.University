@@ -36,6 +36,7 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Data;
@@ -427,8 +428,11 @@ namespace R7.University.Employee
                     item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
                     // add employee
-                    EmployeeRepository.Instance.AddEmployee (item, GetOccupiedPositions (), 
+                    EmployeeRepository.Instance.AddEmployee (item, 
                         GetEmployeeAchievements (), GetEmployeeDisciplines ());
+
+                    new UpdateOccupiedPositionsCommand (ModelContext)
+                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
 
                     // then adding new employee from Employee or EmployeeDetails modules, 
                     // set calling module to display new employee
@@ -446,8 +450,11 @@ namespace R7.University.Employee
                     item.LastModifiedOnDate = DateTime.Now;
 
                     // update employee
-                    EmployeeRepository.Instance.UpdateEmployee (item, GetOccupiedPositions (), 
+                    EmployeeRepository.Instance.UpdateEmployee (item,
                         GetEmployeeAchievements (), GetEmployeeDisciplines ());
+
+                    new UpdateOccupiedPositionsCommand (ModelContext)
+                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
                 }
 
                 ModuleController.SynchronizeModule (ModuleId);
