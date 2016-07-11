@@ -43,7 +43,7 @@ namespace R7.University.Commands
                 .ToList ();
             
             foreach (var discipline in disciplines) {
-                var originalDiscipline = originalDisciplines.SingleOrDefault (ed => ed.EmployeeDisciplineID == discipline.EmployeeDisciplineID);
+                var originalDiscipline = originalDisciplines.SingleOrDefault (op => op.EmployeeDisciplineID == discipline.EmployeeDisciplineID);
                 if (originalDiscipline == null) {
                     discipline.EmployeeID = employeeId;
                     ModelContext.Add<EmployeeDisciplineInfo> (discipline);
