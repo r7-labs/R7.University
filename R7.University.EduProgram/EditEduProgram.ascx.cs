@@ -30,8 +30,9 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Commands;
+using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EduProgram.Components;
 using R7.University.Models;
 using R7.University.Queries;
@@ -162,7 +163,7 @@ namespace R7.University.EduProgram
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = new GetByKeyQuery<EduProgramInfo> (ModelContext).Execute (itemId.Value);
+                        var item = ModelContext.Get<EduProgramInfo> (itemId.Value);
 
                         if (item != null) {
                             textCode.Text = item.Code;
@@ -226,7 +227,7 @@ namespace R7.University.EduProgram
                 }
                 else {
                     // update existing record
-                    item = new GetByKeyQuery<EduProgramInfo> (ModelContext).Execute (itemId.Value);
+                    item = ModelContext.Get<EduProgramInfo> (itemId.Value);
                 }
 
                 // fill the object
@@ -244,7 +245,8 @@ namespace R7.University.EduProgram
                     item.LastModifiedOnDate = item.CreatedOnDate;
                     item.CreatedByUserID = UserInfo.UserID;
                     item.LastModifiedByUserID = item.CreatedByUserID;
-                    EduProgramRepository.Instance.AddEduProgram (item, formEditDocuments.GetData ());
+
+                    ModelContext.Add<EduProgramInfo> (item);
                 }
                 else {
                     item.LastModifiedOnDate = DateTime.Now;
@@ -256,7 +258,7 @@ namespace R7.University.EduProgram
                         item.CreatedByUserID = item.LastModifiedByUserID;
                     }
 
-                    EduProgramRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
+                    ModelContext.Update<EduProgramInfo> (item);
                 }
 
                 // update EduProgram module settings then adding new item
@@ -264,6 +266,14 @@ namespace R7.University.EduProgram
                     var settings = new EduProgramSettings (this);
                     settings.EduProgramId = item.EduProgramID;
                 }
+
+                // update related documents
+                new UpdateDocumentsCommand (ModelContext)
+                    .UpdateDocuments (formEditDocuments.GetData (), "EduProgram", item.EduProgramID);
+                
+                ModelContext.SaveChanges (true);
+
+                CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -287,7 +297,17 @@ namespace R7.University.EduProgram
         {
             try {
                 if (itemId != null) {
-                    EduProgramRepository.Instance.DeleteEduProgram (itemId.Value);
+
+                    // TODO: Also remove documents
+
+                    var item = ModelContext.Get<EduProgramInfo> (itemId.Value);
+                    ModelContext.Remove (item);
+                    ModelContext.SaveChanges (true);
+
+                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
+
+                    ModuleController.SynchronizeModule (ModuleId);
+
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }
