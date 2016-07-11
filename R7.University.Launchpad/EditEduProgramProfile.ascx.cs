@@ -226,7 +226,12 @@ namespace R7.University.Launchpad
         protected override int AddItem (EduProgramProfileInfo item)
         {
             ModelContext.Add (item);
+            new UpdateDocumentsCommand (ModelContext)
+                .UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfile", item.EduProgramProfileID);
+            
             ModelContext.SaveChanges (true);
+
+            CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
             return item.EduProgramProfileID;
         }
@@ -250,8 +255,12 @@ namespace R7.University.Launchpad
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
+            // TODO: Also remove documents
+
             ModelContext.Remove (item);
             ModelContext.SaveChanges (true);
+
+            CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
 
         #endregion
