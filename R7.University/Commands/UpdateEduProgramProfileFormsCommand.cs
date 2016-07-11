@@ -1,5 +1,5 @@
 ﻿//
-//  UpdateEduFormsCommand.cs
+//  UpdateEduProgramProfileFormsCommand.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,38 +26,38 @@ using R7.University.Models;
 
 namespace R7.University.Commands
 {
-    public class UpdateEduFormsCommand
+    public class UpdateEduProgramProfileFormsCommand
     {
         protected readonly IModelContext ModelContext;
 
-        public UpdateEduFormsCommand (IModelContext modelContext)
+        public UpdateEduProgramProfileFormsCommand (IModelContext modelContext)
         {
             ModelContext = modelContext;
         }
 
-        public void UpdateEduForms (IList<EduProgramProfileFormInfo> eduForms, int eduProgramProfileId)
+        public void UpdateEduProgramProfileForms (IList<EduProgramProfileFormInfo> eduProgramProfileForms, int eduProgramProfileId)
         {
-            var originalEduForms = ModelContext.Query<EduProgramProfileFormInfo> ()
+            var originalEduProgramProfileForms = ModelContext.Query<EduProgramProfileFormInfo> ()
                 .Where (eppf => eppf.EduProgramProfileID == eduProgramProfileId)
                 .ToList ();
             
-            foreach (var eduForm in eduForms) {
-                var originalEduForm = originalEduForms.SingleOrDefault (eppf => eppf.EduProgramProfileFormID == eduForm.EduProgramProfileFormID);
-                if (originalEduForm == null) {
-                    eduForm.EduProgramProfileID = eduProgramProfileId;
-                    ModelContext.Add<EduProgramProfileFormInfo> (eduForm);
+            foreach (var eppf in eduProgramProfileForms) {
+                var oeppf = originalEduProgramProfileForms.SingleOrDefault (_eppf => _eppf.EduProgramProfileFormID == eppf.EduProgramProfileFormID);
+                if (oeppf == null) {
+                    eppf.EduProgramProfileID = eduProgramProfileId;
+                    ModelContext.Add<EduProgramProfileFormInfo> (eppf);
                 }
                 else {
-                    ModelContext.Update<EduProgramProfileFormInfo> (originalEduForm);
+                    ModelContext.Update<EduProgramProfileFormInfo> (oeppf);
 
                     // do not delete this document later
-                    originalEduForms.Remove (originalEduForm);
+                    originalEduProgramProfileForms.Remove (oeppf);
                 }
             }
 
             // should delete all remaining edu. forms
-            foreach (var originalEduForm in originalEduForms) {
-                ModelContext.Remove<EduProgramProfileFormInfo> (originalEduForm);
+            foreach (var oeppf in originalEduProgramProfileForms) {
+                ModelContext.Remove<EduProgramProfileFormInfo> (oeppf);
             }
         }
     }

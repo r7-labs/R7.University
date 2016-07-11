@@ -226,8 +226,14 @@ namespace R7.University.Launchpad
         protected override int AddItem (EduProgramProfileInfo item)
         {
             ModelContext.Add (item);
+
+            ModelContext.SaveChanges (false);
+
             new UpdateDocumentsCommand (ModelContext)
                 .UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfile", item.EduProgramProfileID);
+
+            new UpdateEduProgramProfileFormsCommand (ModelContext)
+                .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
             
             ModelContext.SaveChanges (true);
 
@@ -241,14 +247,14 @@ namespace R7.University.Launchpad
             // REVIEW: Use single transaction to update main entity along with all dependent ones?
 
             ModelContext.Update (item);
+
             new UpdateDocumentsCommand (ModelContext)
                 .UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfile", item.EduProgramProfileID);
-            
-            ModelContext.SaveChanges (true);
 
-            EduProgramProfileFormRepository.Instance.UpdateEduProgramProfileForms (
-                formEditEduForms.GetData (),
-                item.EduProgramProfileID);
+            new UpdateEduProgramProfileFormsCommand (ModelContext)
+                .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+
+            ModelContext.SaveChanges (true);
 
             CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
