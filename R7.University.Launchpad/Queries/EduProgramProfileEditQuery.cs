@@ -38,6 +38,8 @@ namespace R7.University.Launchpad.Queries
                 .Include (epp => epp.EduProgram)
                 .Include (epp => epp.EduProgram.EduLevel)
                 .Include (epp => epp.EduLevel)
+                .Include (epp => epp.EduProgramProfileForms)
+                .Include (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm))
                 .Include (epp => epp.Documents)
                 .Include (epp => epp.Documents.Select (d => d.DocumentType))
                 .SingleOrDefault ();
