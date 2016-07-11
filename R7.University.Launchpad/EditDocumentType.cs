@@ -91,7 +91,7 @@ namespace R7.University.Launchpad
         protected override int AddItem (DocumentTypeInfo item)
         {
             ModelContext.Add<DocumentTypeInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
 
             return item.DocumentTypeID;
         }
@@ -99,13 +99,13 @@ namespace R7.University.Launchpad
         protected override void UpdateItem (DocumentTypeInfo item)
         {
             ModelContext.Update<DocumentTypeInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (DocumentTypeInfo item)
         {
             ModelContext.Remove<DocumentTypeInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         #endregion

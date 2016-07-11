@@ -247,6 +247,7 @@ namespace R7.University.EduProgram
                     item.LastModifiedByUserID = item.CreatedByUserID;
 
                     ModelContext.Add<EduProgramInfo> (item);
+                    ModelContext.SaveChanges (false);
                 }
                 else {
                     item.LastModifiedOnDate = DateTime.Now;
@@ -271,7 +272,7 @@ namespace R7.University.EduProgram
                 new UpdateDocumentsCommand (ModelContext)
                     .UpdateDocuments (formEditDocuments.GetData (), "EduProgram", item.EduProgramID);
                 
-                ModelContext.SaveChanges (true);
+                ModelContext.SaveChanges ();
 
                 CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
@@ -302,7 +303,7 @@ namespace R7.University.EduProgram
 
                     var item = ModelContext.Get<EduProgramInfo> (itemId.Value);
                     ModelContext.Remove (item);
-                    ModelContext.SaveChanges (true);
+                    ModelContext.SaveChanges ();
 
                     CacheHelper.RemoveCacheByPrefix ("//r7_University");
 

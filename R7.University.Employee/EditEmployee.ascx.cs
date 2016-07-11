@@ -458,7 +458,7 @@ namespace R7.University.Employee
                 new UpdateEmployeeDisciplinesCommand (ModelContext)
                     .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
 
-                ModelContext.SaveChanges (true);
+                ModelContext.SaveChanges ();
 
                 CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
@@ -524,7 +524,7 @@ namespace R7.University.Employee
 
                     var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
                     ModelContext.Remove (employee);
-                    ModelContext.SaveChanges (true);
+                    ModelContext.SaveChanges ();
 
                     CacheHelper.RemoveCacheByPrefix ("//r7_University");
 

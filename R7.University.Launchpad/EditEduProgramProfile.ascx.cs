@@ -235,7 +235,7 @@ namespace R7.University.Launchpad
             new UpdateEduProgramProfileFormsCommand (ModelContext)
                 .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
             
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
 
             CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
@@ -254,7 +254,7 @@ namespace R7.University.Launchpad
             new UpdateEduProgramProfileFormsCommand (ModelContext)
                 .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
 
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
 
             CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
@@ -264,7 +264,7 @@ namespace R7.University.Launchpad
             // TODO: Also remove documents
 
             ModelContext.Remove (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
 
             CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }

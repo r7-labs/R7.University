@@ -153,7 +153,7 @@ namespace R7.University.Launchpad
                     ModelContext.Update<AchievementInfo> (item);
                 }
 
-                ModelContext.SaveChanges (true);
+                ModelContext.SaveChanges ();
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -180,7 +180,7 @@ namespace R7.University.Launchpad
                     
                     var item = ModelContext.Get<AchievementInfo> (itemId.Value);
                     ModelContext.Remove<AchievementInfo> (item);
-                    ModelContext.SaveChanges (true);
+                    ModelContext.SaveChanges ();
 
                     Response.Redirect (Globals.NavigateURL (), true);
                 }

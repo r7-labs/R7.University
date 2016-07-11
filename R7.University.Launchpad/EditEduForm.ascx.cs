@@ -91,7 +91,7 @@ namespace R7.University.Launchpad
         protected override int AddItem (EduFormInfo item)
         {
             ModelContext.Add<EduFormInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
 
             return item.EduFormID;
         }
@@ -99,13 +99,13 @@ namespace R7.University.Launchpad
         protected override void UpdateItem (EduFormInfo item)
         {
             ModelContext.Update<EduFormInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduFormInfo item)
         {
             ModelContext.Remove<EduFormInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         #endregion

@@ -254,7 +254,7 @@ namespace R7.University.Division
             item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 
             ModelContext.Add<DivisionInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
 
             // then adding new division from Division module, 
             // set calling module to display new division info
@@ -272,13 +272,13 @@ namespace R7.University.Division
             item.LastModifiedOnDate = DateTime.Now;
 
             ModelContext.Update<DivisionInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (DivisionInfo item)
         {
             ModelContext.Remove<DivisionInfo> (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         #endregion

@@ -45,7 +45,7 @@ namespace R7.University.Models
 
         void Remove<TEntity> (TEntity entity) where TEntity: class;
 
-        bool SaveChanges (bool dispose = false);
+        bool SaveChanges (bool dispose = true);
     }
 }
 

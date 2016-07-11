@@ -120,7 +120,7 @@ namespace R7.University.Models
             return Context.Set<TEntity> ().Local.Any (e => e == entity);
         }
 
-        public virtual bool SaveChanges (bool dispose = false)
+        public virtual bool SaveChanges (bool dispose = true)
         {
             var result = Context.SaveChanges () > 0;
 

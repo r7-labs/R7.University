@@ -94,7 +94,7 @@ namespace R7.University.Launchpad
         protected override int AddItem (EduLevelInfo item)
         {
             ModelContext.Add (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
 
             return item.EduLevelID;
         }
@@ -102,13 +102,13 @@ namespace R7.University.Launchpad
         protected override void UpdateItem (EduLevelInfo item)
         {
             ModelContext.Update (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduLevelInfo item)
         {
             ModelContext.Remove (item);
-            ModelContext.SaveChanges (true);
+            ModelContext.SaveChanges ();
         }
 
         #endregion
