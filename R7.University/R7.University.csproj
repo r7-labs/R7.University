@@ -141,7 +141,6 @@
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
-    <Compile Include="Data\DocumentRepository.cs" />
     <Compile Include="Data\EduProgramProfileFormRepository.cs" />
     <Compile Include="Data\UniversityDataProvider.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
@@ -197,6 +196,7 @@
     <Compile Include="Queries\QueryBase.cs" />
     <Compile Include="ModelExtensions\DivisionExtensions.cs" />
     <Compile Include="Queries\FlatQuery.cs" />
+    <Compile Include="Commands\UpdateDocumentsCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -217,6 +217,7 @@
     <Folder Include="Patterns\" />
     <Folder Include="Data\Mappings\" />
     <Folder Include="Queries\" />
+    <Folder Include="Commands\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

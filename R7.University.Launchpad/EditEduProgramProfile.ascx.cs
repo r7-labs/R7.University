@@ -31,6 +31,8 @@ using R7.University.Data;
 using R7.University.Launchpad.Queries;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Commands;
+using R7.University.Components;
 
 namespace R7.University.Launchpad
 {
@@ -231,17 +233,19 @@ namespace R7.University.Launchpad
 
         protected override void UpdateItem (EduProgramProfileInfo item)
         {
+            // REVIEW: Use single transaction to update main entity along with all dependent ones?
+
             ModelContext.Update (item);
+            new UpdateDocumentsCommand (ModelContext)
+                .UpdateDocuments (formEditDocuments.GetData (), "EduProgramProfile", item.EduProgramProfileID);
+            
             ModelContext.SaveChanges (true);
 
-            // update referenced items
-            DocumentRepository.Instance.UpdateDocuments (
-                formEditDocuments.GetData (),
-                "EduProgramProfile",
-                item.EduProgramProfileID);
             EduProgramProfileFormRepository.Instance.UpdateEduProgramProfileForms (
                 formEditEduForms.GetData (),
                 item.EduProgramProfileID);
+
+            CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
