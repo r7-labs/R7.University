@@ -21,12 +21,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using DotNetNuke.Data;
 using R7.DotNetNuke.Extensions.Data;
-using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 
@@ -77,85 +73,6 @@ namespace R7.University.Data
                     searchText, teachersOnly, true, divisionId)
                 .Where (e => includeNonPublished || e.IsPublished ())
                 .Distinct (new EmployeeEqualityComparer ());
-        }
-
-        public void AddEmployee (EmployeeInfo employee, IList<EmployeeAchievementInfo> achievements)
-        {
-            using (var ctx = DataContext.Instance ()) {
-                ctx.BeginTransaction ();
-
-                try {
-                    // add Employee
-                    DataProvider.Add<EmployeeInfo> (employee);
-
-                    // add new EmployeeAchievements
-                    foreach (var ach in achievements) {
-                        ach.EmployeeID = employee.EmployeeID;
-                        DataProvider.Add<EmployeeAchievementInfo> (ach);
-                    }
-
-                    ctx.Commit ();
-
-                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
-                }
-                catch {
-                    ctx.RollbackTransaction ();
-                    throw;
-                }
-            }
-        }
-
-        public void UpdateEmployee (EmployeeInfo employee, IList<EmployeeAchievementInfo> achievements)
-        {
-            using (var ctx = DataContext.Instance ()) {
-                ctx.BeginTransaction ();
-
-                try {
-                    // update Employee
-                    DataProvider.Update<EmployeeInfo> (employee);
-
-                    var employeeAchievementIDs = achievements.Select (a => a.EmployeeAchievementID.ToString ());
-                    if (employeeAchievementIDs.Any ()) {
-                        // delete those not in current list
-                        DataProvider.Delete<EmployeeAchievementInfo> (
-                            string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeAchievementID] NOT IN ({1})", 
-                                employee.EmployeeID, TextUtils.FormatList (", ", employeeAchievementIDs))); 
-                    }
-                    else {
-                        // delete all employee achievements
-                        DataProvider.Delete<EmployeeAchievementInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
-                    }
-
-                    // add new EmployeeAchievements
-                    foreach (var ach in achievements) {
-                        if (ach.AchievementID != null) {
-                            // reset linked properties
-                            ach.Title = null;
-                            ach.ShortTitle = null;
-                            ach.AchievementType = null;
-                        }
-
-                        ach.EmployeeID = employee.EmployeeID;
-                        if (ach.EmployeeAchievementID <= 0)
-                            DataProvider.Add<EmployeeAchievementInfo> (ach);
-                        else
-                            DataProvider.Update<EmployeeAchievementInfo> (ach);
-                    }
-
-                    ctx.Commit ();
-                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
-                }
-                catch {
-                    ctx.RollbackTransaction ();
-                    throw;
-                }
-            }
-        }
-
-        public void DeleteEmployee (int employeeId)
-        {
-            DataProvider.Delete<EmployeeInfo> (employeeId);
-            CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
     }
 }

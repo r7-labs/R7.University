@@ -39,7 +39,6 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.Employee.Components;
 using R7.University.Employee.Queries;
 using R7.University.Employee.ViewModels;
@@ -428,7 +427,8 @@ namespace R7.University.Employee
                     item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
                     // add employee
-                    EmployeeRepository.Instance.AddEmployee (item, GetEmployeeAchievements ());
+                    ModelContext.Add<EmployeeInfo> (item);
+                    ModelContext.SaveChanges (false);
                     
                     // then adding new employee from Employee or EmployeeDetails modules, 
                     // set calling module to display new employee
@@ -446,16 +446,21 @@ namespace R7.University.Employee
                     item.LastModifiedOnDate = DateTime.Now;
 
                     // update employee
-                    EmployeeRepository.Instance.UpdateEmployee (item, GetEmployeeAchievements ());
+                    ModelContext.Update<EmployeeInfo> (item);
                 }
 
                 new UpdateOccupiedPositionsCommand (ModelContext)
                     .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
 
+                new UpdateEmployeeAchievementsCommand (ModelContext)
+                    .UpdateEmployeeAchievements (GetEmployeeAchievements (), item.EmployeeID);
+                
                 new UpdateEmployeeDisciplinesCommand (ModelContext)
                     .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
 
                 ModelContext.SaveChanges (true);
+
+                CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -516,7 +521,15 @@ namespace R7.University.Employee
             try {
                 // ALT: if (!Null.IsNull (itemId))
                 if (itemId.HasValue) {
-                    EmployeeRepository.Instance.DeleteEmployee (itemId.Value);
+
+                    var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
+                    ModelContext.Remove (employee);
+                    ModelContext.SaveChanges (true);
+
+                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
+
+                    ModuleController.SynchronizeModule (ModuleId);
+
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }

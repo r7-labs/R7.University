@@ -27,39 +27,39 @@ using R7.University.Models;
 
 namespace R7.University.Commands
 {
-    public class UpdateEmployeeDisciplinesCommand
+    public class UpdateEmployeeAchievementsCommand
     {
         protected readonly IModelContext ModelContext;
 
-        public UpdateEmployeeDisciplinesCommand (IModelContext modelContext)
+        public UpdateEmployeeAchievementsCommand (IModelContext modelContext)
         {
             ModelContext = modelContext;
         }
 
-        public void UpdateEmployeeDisciplines (IList<EmployeeDisciplineInfo> disciplines, int employeeId)
+        public void UpdateEmployeeAchievements (IList<EmployeeAchievementInfo> achievements, int employeeId)
         {
-            var originalDisciplines = ModelContext.Query<EmployeeDisciplineInfo> ()
+            var originalAchievements = ModelContext.Query<EmployeeAchievementInfo> ()
                 .Where (op => op.EmployeeID == employeeId)
                 .ToList ();
             
-            foreach (var discipline in disciplines) {
-                var originalDiscipline = originalDisciplines.SingleOrDefault (op => op.EmployeeDisciplineID == discipline.EmployeeDisciplineID);
-                if (originalDiscipline == null) {
-                    discipline.EmployeeID = employeeId;
-                    ModelContext.Add<EmployeeDisciplineInfo> (discipline);
+            foreach (var achievement in achievements) {
+                var originalAchievement = originalAchievements.SingleOrDefault (ea => ea.EmployeeAchievementID == achievement.EmployeeAchievementID);
+                if (originalAchievement == null) {
+                    achievement.EmployeeID = employeeId;
+                    ModelContext.Add<EmployeeAchievementInfo> (achievement);
                 }
                 else {
-                    CopyCstor.Copy<EmployeeDisciplineInfo> (discipline, originalDiscipline);
-                    ModelContext.Update<EmployeeDisciplineInfo> (originalDiscipline);
+                    CopyCstor.Copy<EmployeeAchievementInfo> (achievement, originalAchievement);
+                    ModelContext.Update<EmployeeAchievementInfo> (originalAchievement);
 
                     // do not delete this document later
-                    originalDisciplines.Remove (originalDiscipline);
+                    originalAchievements.Remove (originalAchievement);
                 }
             }
 
             // should delete all remaining edu. forms
-            foreach (var originalDiscipline in originalDisciplines) {
-                ModelContext.Remove<EmployeeDisciplineInfo> (originalDiscipline);
+            foreach (var originalAchievement in originalAchievements) {
+                ModelContext.Remove<EmployeeAchievementInfo> (originalAchievement);
             }
         }
     }

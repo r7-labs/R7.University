@@ -198,6 +198,7 @@
     <Compile Include="Commands\UpdateEduProgramProfileFormsCommand.cs" />
     <Compile Include="Commands\UpdateOccupiedPositionsCommand.cs" />
     <Compile Include="Commands\UpdateEmployeeDisciplinesCommand.cs" />
+    <Compile Include="Commands\UpdateEmployeeAchievementsCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
