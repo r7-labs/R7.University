@@ -79,9 +79,7 @@ namespace R7.University.Data
                 .Distinct (new EmployeeEqualityComparer ());
         }
 
-        public void AddEmployee (EmployeeInfo employee, 
-            IList<EmployeeAchievementInfo> achievements,
-            IList<EmployeeDisciplineInfo> eduPrograms)
+        public void AddEmployee (EmployeeInfo employee, IList<EmployeeAchievementInfo> achievements)
         {
             using (var ctx = DataContext.Instance ()) {
                 ctx.BeginTransaction ();
@@ -96,12 +94,6 @@ namespace R7.University.Data
                         DataProvider.Add<EmployeeAchievementInfo> (ach);
                     }
 
-                    // add new EmployeeEduPrograms
-                    foreach (var ep in eduPrograms) {
-                        ep.EmployeeID = employee.EmployeeID;
-                        DataProvider.Add<EmployeeDisciplineInfo> (ep);
-                    }
-
                     ctx.Commit ();
 
                     CacheHelper.RemoveCacheByPrefix ("//r7_University");
@@ -113,9 +105,7 @@ namespace R7.University.Data
             }
         }
 
-        public void UpdateEmployee (EmployeeInfo employee, 
-            IList<EmployeeAchievementInfo> achievements,
-            IList<EmployeeDisciplineInfo> disciplines)
+        public void UpdateEmployee (EmployeeInfo employee, IList<EmployeeAchievementInfo> achievements)
         {
             using (var ctx = DataContext.Instance ()) {
                 ctx.BeginTransaction ();
@@ -150,27 +140,6 @@ namespace R7.University.Data
                             DataProvider.Add<EmployeeAchievementInfo> (ach);
                         else
                             DataProvider.Update<EmployeeAchievementInfo> (ach);
-                    }
-
-                    var employeeDisciplineIDs = disciplines.Select (a => a.EmployeeDisciplineID.ToString ());
-                    if (employeeDisciplineIDs.Any ()) {
-                        // delete those not in current list
-                        DataProvider.Delete<EmployeeDisciplineInfo> (
-                            string.Format ("WHERE [EmployeeID] = {0} AND [EmployeeDisciplineID] NOT IN ({1})", 
-                                employee.EmployeeID, TextUtils.FormatList (", ", employeeDisciplineIDs))); 
-                    }
-                    else {
-                        // delete all employee disciplines
-                        DataProvider.Delete<EmployeeDisciplineInfo> ("WHERE [EmployeeID] = @0", employee.EmployeeID);
-                    }
-
-                    // add new employee disciplines
-                    foreach (var discipline in disciplines) {
-                        discipline.EmployeeID = employee.EmployeeID;
-                        if (discipline.EmployeeDisciplineID <= 0)
-                            DataProvider.Add<EmployeeDisciplineInfo> (discipline);
-                        else
-                            DataProvider.Update<EmployeeDisciplineInfo> (discipline);
                     }
 
                     ctx.Commit ();

@@ -428,12 +428,8 @@ namespace R7.University.Employee
                     item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
                     // add employee
-                    EmployeeRepository.Instance.AddEmployee (item, 
-                        GetEmployeeAchievements (), GetEmployeeDisciplines ());
-
-                    new UpdateOccupiedPositionsCommand (ModelContext)
-                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
-
+                    EmployeeRepository.Instance.AddEmployee (item, GetEmployeeAchievements ());
+                    
                     // then adding new employee from Employee or EmployeeDetails modules, 
                     // set calling module to display new employee
                     if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" ||
@@ -450,12 +446,16 @@ namespace R7.University.Employee
                     item.LastModifiedOnDate = DateTime.Now;
 
                     // update employee
-                    EmployeeRepository.Instance.UpdateEmployee (item,
-                        GetEmployeeAchievements (), GetEmployeeDisciplines ());
-
-                    new UpdateOccupiedPositionsCommand (ModelContext)
-                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+                    EmployeeRepository.Instance.UpdateEmployee (item, GetEmployeeAchievements ());
                 }
+
+                new UpdateOccupiedPositionsCommand (ModelContext)
+                    .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+
+                new UpdateEmployeeDisciplinesCommand (ModelContext)
+                    .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+
+                ModelContext.SaveChanges (true);
 
                 ModuleController.SynchronizeModule (ModuleId);
 
