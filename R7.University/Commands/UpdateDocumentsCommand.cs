@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 
@@ -61,6 +62,7 @@ namespace R7.University.Commands
                     ModelContext.Add<DocumentInfo> (document);
                 }
                 else {
+                    CopyCstor.Copy<DocumentInfo> (document, originalDocument);
                     ModelContext.Update<DocumentInfo> (originalDocument);
 
                     // do not delete this document later

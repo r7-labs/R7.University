@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using R7.University.Components;
 using R7.University.Models;
 
 namespace R7.University.Commands
@@ -48,6 +49,7 @@ namespace R7.University.Commands
                     ModelContext.Add<EduProgramProfileFormInfo> (eppf);
                 }
                 else {
+                    CopyCstor.Copy<EduProgramProfileFormInfo> (eppf, oeppf);
                     ModelContext.Update<EduProgramProfileFormInfo> (oeppf);
 
                     // do not delete this document later
