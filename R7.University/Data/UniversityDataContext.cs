@@ -22,12 +22,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
 using DotNetNuke.Common.Utilities;
-using R7.University.Models;
 
 namespace R7.University.Data
 {
@@ -94,14 +94,26 @@ namespace R7.University.Data
         public IEnumerable<TEntity> ExecuteFunction<TEntity> (string functionName, params KeyValuePair<string,object> [] parameters) 
             where TEntity: class
         {
-            var objectContext = ((IObjectContextAdapter) this).ObjectContext;
+            var sqlParameters = new SqlParameter [parameters.Length];
+            var strParameters = new StringBuilder ();
+            var first = true;
 
-            var objectParameters = new ObjectParameter [parameters.Length];
             for (var i = 0; i < parameters.Length; i++) {
-                objectParameters [i] = new ObjectParameter (parameters [i].Key, parameters [i].Value);
+                sqlParameters [i] = new SqlParameter (parameters [i].Key, parameters [i].Value);
+
+                if (first) {
+                    strParameters.AppendFormat (" @{0}", parameters [i].Key);
+                    first = false;
+                }
+                else {
+                    strParameters.AppendFormat (", @{0}", parameters [i].Key);    
+                }
             }
 
-            return objectContext.ExecuteFunction<TEntity> (functionName, objectParameters);
+            // databaseOwner is set by modelBuilder.HasDefaultSchema
+            functionName = functionName.Replace ("{objectQualifier}", Config.GetObjectQualifer ());
+
+            return Database.SqlQuery<TEntity> (functionName + strParameters, sqlParameters).ToList ();
         }
 
         public void WasModified<TEntity> (TEntity entity) where TEntity: class
@@ -110,17 +122,6 @@ namespace R7.University.Data
         }
 
         #endregion
-    }
-
-    public class test {
-
-        public void test1 ()
-        {
-            var context = new UniversityDataContext ();
-            foreach (var o in context.ExecuteFunction<EmployeeInfo> ("")) {
-            }
-
-        }
     }
 }
 
