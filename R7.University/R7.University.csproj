@@ -125,7 +125,6 @@
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="Models\IEmployee.cs" />
     <Compile Include="ModelExtensions\EmployeeExtensions.cs" />
-    <Compile Include="Data\EmployeeRepository.cs" />
     <Compile Include="Models\IDivision.cs" />
     <Compile Include="ModelExtensions\EnumerableExtensions.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />

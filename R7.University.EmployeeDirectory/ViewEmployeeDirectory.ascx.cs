@@ -345,8 +345,8 @@ namespace R7.University.EmployeeDirectory
 
         protected void DoSearch (string searchText, int searchDivision, bool teachersOnly)
         {
-            var employees = EmployeeRepository.Instance.FindEmployees (searchText, 
-                                IsEditable, teachersOnly, searchDivision);
+            var employees = new EmployeeQuery (ModelContext).FindEmployees (searchText, teachersOnly, searchDivision)
+                .Where (e => IsEditable || e.IsPublished ());
             
             if (employees.IsNullOrEmpty ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
