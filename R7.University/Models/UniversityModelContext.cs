@@ -20,8 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using R7.University.Components;
 using R7.University.Data;
 
 namespace R7.University.Models
@@ -36,11 +37,23 @@ namespace R7.University.Models
         {
         }
 
-        #region DataRepositoryBase implementation
+        #region ModelContextBase implementation
 
         public override IDataContext CreateDataContext ()
         {
             return UniversityDataContextFactory.Instance.Create ();
+        }
+
+        public override bool SaveChanges (bool dispose = true)
+        {
+            var result = base.SaveChanges (dispose);
+
+            // drop cache on final call
+            if (dispose) {
+                CacheHelper.RemoveCacheByPrefix ("//r7_University");
+            }
+
+            return result;
         }
 
         #endregion

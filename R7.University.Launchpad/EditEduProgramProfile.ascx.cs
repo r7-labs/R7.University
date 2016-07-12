@@ -237,8 +237,6 @@ namespace R7.University.Launchpad
             
             ModelContext.SaveChanges ();
 
-            CacheHelper.RemoveCacheByPrefix ("//r7_University");
-
             return item.EduProgramProfileID;
         }
 
@@ -255,8 +253,6 @@ namespace R7.University.Launchpad
                 .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
 
             ModelContext.SaveChanges ();
-
-            CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
@@ -265,8 +261,6 @@ namespace R7.University.Launchpad
 
             ModelContext.Remove (item);
             ModelContext.SaveChanges ();
-
-            CacheHelper.RemoveCacheByPrefix ("//r7_University");
         }
 
         #endregion

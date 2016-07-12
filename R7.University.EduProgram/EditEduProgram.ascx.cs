@@ -274,8 +274,6 @@ namespace R7.University.EduProgram
                 
                 ModelContext.SaveChanges ();
 
-                CacheHelper.RemoveCacheByPrefix ("//r7_University");
-
                 ModuleController.SynchronizeModule (ModuleId);
 
                 Response.Redirect (Globals.NavigateURL (), true);
@@ -304,8 +302,6 @@ namespace R7.University.EduProgram
                     var item = ModelContext.Get<EduProgramInfo> (itemId.Value);
                     ModelContext.Remove (item);
                     ModelContext.SaveChanges ();
-
-                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
                     ModuleController.SynchronizeModule (ModuleId);
 

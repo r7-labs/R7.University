@@ -460,8 +460,6 @@ namespace R7.University.Employee
 
                 ModelContext.SaveChanges ();
 
-                CacheHelper.RemoveCacheByPrefix ("//r7_University");
-
                 ModuleController.SynchronizeModule (ModuleId);
 
                 Response.Redirect (Globals.NavigateURL (), true);
@@ -525,8 +523,6 @@ namespace R7.University.Employee
                     var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
                     ModelContext.Remove (employee);
                     ModelContext.SaveChanges ();
-
-                    CacheHelper.RemoveCacheByPrefix ("//r7_University");
 
                     ModuleController.SynchronizeModule (ModuleId);
 
