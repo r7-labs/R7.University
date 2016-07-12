@@ -76,7 +76,7 @@ namespace R7.University.Models
 
         public virtual IEnumerable<TEntity> Query<TEntity> (string queryName, params KeyValuePair<string,object> [] parameters) where TEntity: class
         {
-            return Context.ExecuteFunction<TEntity> (queryName, parameters);
+            return Context.ExecuteQuery<TEntity> (queryName, parameters);
         }
 
         public virtual TEntity Get<TEntity> (object key) where TEntity: class

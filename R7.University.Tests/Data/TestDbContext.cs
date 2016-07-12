@@ -48,7 +48,7 @@ namespace R7.University.Tests.Data
             throw new NotImplementedException ();
         }
 
-        public IEnumerable<TEntity> ExecuteFunction<TEntity> (string functionName, params KeyValuePair<string,object> [] parameters) where TEntity : class
+        public IEnumerable<TEntity> ExecuteQuery<TEntity> (string queryName, params KeyValuePair<string,object> [] parameters) where TEntity : class
         {
             throw new NotImplementedException ();
         }

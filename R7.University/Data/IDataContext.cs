@@ -29,7 +29,7 @@ namespace R7.University.Data
     {
         IDbSet<TEntity> Set<TEntity> () where TEntity: class;
 
-        IEnumerable<TEntity> ExecuteFunction<TEntity> (string functionName, params KeyValuePair<string,object> [] parameters) 
+        IEnumerable<TEntity> ExecuteQuery<TEntity> (string queryName, params KeyValuePair<string,object> [] parameters) 
             where TEntity: class;
         
         void WasModified<TEntity> (TEntity entity) where TEntity: class;

@@ -91,7 +91,7 @@ namespace R7.University.Data
             return base.Set<TEntity> ();
         }
 
-        public IEnumerable<TEntity> ExecuteFunction<TEntity> (string functionName, params KeyValuePair<string,object> [] parameters) 
+        public IEnumerable<TEntity> ExecuteQuery<TEntity> (string queryName, params KeyValuePair<string,object> [] parameters) 
             where TEntity: class
         {
             var sqlParameters = new SqlParameter [parameters.Length];
@@ -111,9 +111,9 @@ namespace R7.University.Data
             }
 
             // databaseOwner is set by modelBuilder.HasDefaultSchema
-            functionName = functionName.Replace ("{objectQualifier}", Config.GetObjectQualifer ());
+            queryName = queryName.Replace ("{objectQualifier}", Config.GetObjectQualifer ());
 
-            return Database.SqlQuery<TEntity> (functionName + strParameters, sqlParameters).ToList ();
+            return Database.SqlQuery<TEntity> (queryName + strParameters, sqlParameters).ToList ();
         }
 
         public void WasModified<TEntity> (TEntity entity) where TEntity: class
