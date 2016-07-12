@@ -31,9 +31,9 @@ using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Commands;
-using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EduProgram.Components;
+using R7.University.EduProgram.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -163,7 +163,7 @@ namespace R7.University.EduProgram
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = ModelContext.Get<EduProgramInfo> (itemId.Value);
+                        var item = new EduProgramQuery (ModelContext).Execute (itemId.Value);
 
                         if (item != null) {
                             textCode.Text = item.Code;
@@ -177,7 +177,7 @@ namespace R7.University.EduProgram
 
                             auditControl.Bind (item);
 
-                            var documents = ModelContext.QueryDocuments_ForEduProgram (item.EduProgramID)
+                            var documents = item.Documents
                                 .OrderBy (d => d.Group)
                                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                                 .ThenBy (d => d.SortIndex)

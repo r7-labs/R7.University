@@ -62,11 +62,6 @@ namespace R7.University.Models
 
         // TODO: Convert to queries
 
-        public IQueryable<DocumentInfo> QueryDocuments_ForEduProgram (int eduProgramId)
-        {
-            return Query<DocumentInfo> ().Include (d => d.DocumentType).Where (d => d.EduProgramId == eduProgramId);
-        }
-
         public IQueryable<EduProgramInfo> QueryEduPrograms ()
         {
             return Query<EduProgramInfo> ()
