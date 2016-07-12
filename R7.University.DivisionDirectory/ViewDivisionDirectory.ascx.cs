@@ -227,8 +227,7 @@ namespace R7.University.DivisionDirectory
         protected void DoSearch (string searchText, int searchDivision)
         {
             // REVIEW: If division is not published, it's child divisions also should not
-            var divisions = DivisionRepository.Instance
-                .FindDivisions (searchText, searchDivision)
+            var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
                 .Where (d => d.IsPublished || IsEditable); 
 
             if (!divisions.Any ()) {

@@ -1,5 +1,5 @@
 ﻿//
-//  DivisionRepository.cs
+//  DivisionQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,42 +21,27 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using R7.DotNetNuke.Extensions.Data;
-using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.Queries;
 
-namespace R7.University.Data
+namespace R7.University.DivisionDirectory.Queries
 {
-    [Obsolete]
-    public class DivisionRepository
+    public class DivisionQuery: QueryBase
     {
-        protected Dal2DataProvider DataProvider;
-
-        public DivisionRepository (Dal2DataProvider dataProvider)
+        public DivisionQuery (IModelContext modelContext): base (modelContext)
         {
-            DataProvider = dataProvider;
         }
-
-        #region Singleton implementation
-
-        private static readonly Lazy<DivisionRepository> instance = new Lazy<DivisionRepository> (
-            () => new DivisionRepository (UniversityDataProvider.Instance)
-        );
-
-        public static DivisionRepository Instance
-        {
-            get { return instance.Value; }
-        }
-
-        #endregion
 
         public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
         {
-            // TODO: Remove @includeSubdivision argument from sp
-            return DataProvider.GetObjectsFromSp<DivisionInfo> ("{databaseOwner}[{objectQualifier}University_FindDivisions]", 
-                searchText, true, divisionId);
+            // TODO: Remove @includeSubdivisions parameter from University_FindDivisions sp
+            KeyValuePair<string, object> [] parameters = {
+                new KeyValuePair<string, object> ("searchText", searchText),
+                new KeyValuePair<string, object> ("includeSubdivisions", true),
+                new KeyValuePair<string, object> ("divisionId", divisionId)
+            };
+                  
+            return ModelContext.Query<DivisionInfo> ("{objectQualifier}University_FindDivisions", parameters);
         }
     }
 }
