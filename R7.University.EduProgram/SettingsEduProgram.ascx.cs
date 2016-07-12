@@ -87,7 +87,7 @@ namespace R7.University.EduProgram
                 if (!IsPostBack)
                 {
                     if (Settings.EduProgramId != null) {
-                        var eduProgram = new GetByKeyQuery<EduProgramInfo> (ModelContext).Execute (Settings.EduProgramId.Value);
+                        var eduProgram = ModelContext.Get<EduProgramInfo> (Settings.EduProgramId.Value);
                         comboEduLevel.SelectByValue (eduProgram.EduLevelID);
                         BindEduPrograms (eduProgram.EduLevelID);
                         comboEduProgram.SelectByValue (eduProgram.EduProgramID);

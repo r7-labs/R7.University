@@ -182,7 +182,6 @@
     <Compile Include="Models\ModelContextBase.cs" />
     <Compile Include="Models\UniversityModelContext.cs" />
     <Compile Include="Models\QueryableExtensions.cs" />
-    <Compile Include="Queries\GetByKeyQuery.cs" />
     <Compile Include="Queries\EduLevelsQuery.cs" />
     <Compile Include="Data\Mappings\EmployeeDisciplineMapping.cs" />
     <Compile Include="Data\Mappings\EmployeeAchievementMapping.cs" />
