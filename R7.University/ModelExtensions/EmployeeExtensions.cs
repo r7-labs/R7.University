@@ -33,21 +33,5 @@ namespace R7.University.ModelExtensions
         {
             return ModelHelper.IsPublished (employee.StartDate, employee.EndDate);
         }
-
-        [Obsolete]
-        public static IEnumerable<IEmployee> WithAchievements (this IEnumerable<IEmployee> employees)
-        {
-            if (!employees.IsNullOrEmpty ()) {
-                var commonAchievements = EmployeeAchievementRepository.Instance.GetAchievements_ForEmployees (
-                    employees.Select (e => e.EmployeeID));
-
-                foreach (var employee in employees) {
-                    employee.Achievements = commonAchievements.Where (ca => ca.EmployeeID == employee.EmployeeID)
-                        .ToList ();
-                }
-            }
-
-            return employees;
-        }
     }
 }

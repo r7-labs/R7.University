@@ -37,8 +37,8 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.EmployeeList.Components;
+using R7.University.EmployeeList.Queries;
 using R7.University.EmployeeList.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -97,13 +97,15 @@ namespace R7.University.EmployeeList
 
         protected EmployeeListViewModel GetViewModel_Internal ()
         {
+            var employeeQuery = new EmployeeQuery (ModelContext);
+
             // get employees by DivisionID
+            var employeeIds = employeeQuery.ByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType)
+                .Select (e => e.EmployeeID);
+            
             return new EmployeeListViewModel (
-                EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
-                    Settings.IncludeSubdivisions, Settings.SortType)
-                    .WithAchievements (),
-                    // .WithOccupiedPositions (Settings.DivisionID),
-                    ModelContext.Get<DivisionInfo> (Settings.DivisionID)
+                employeeQuery.GetEmployees (employeeIds),
+                ModelContext.Get<DivisionInfo> (Settings.DivisionID)
             );
         }
 

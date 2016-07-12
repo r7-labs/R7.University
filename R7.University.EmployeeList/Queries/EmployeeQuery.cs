@@ -18,15 +18,50 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EmployeeList.Queries
 {
-    public class EmployeeQuery
+    public class EmployeeQuery: QueryBase
     {
-        public EmployeeQuery ()
+        public EmployeeQuery (IModelContext modelContext): base (modelContext)
         {
         }
+
+        public IEnumerable<EmployeeInfo> ByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
+        {
+            KeyValuePair<string, object> [] parameters = {
+                new KeyValuePair<string, object> ("divisionId", divisionId),
+                new KeyValuePair<string, object> ("sortType", sortType)
+            };
+
+            var queryName = includeSubDivisions 
+                ? "{objectQualifier}University_GetEmployees_ByDivisionID_Recursive" 
+                : "{objectQualifier}University_GetEmployees_ByDivisionID";
+            
+            return ModelContext.Query<EmployeeInfo> (queryName, parameters);
+        }
+
+        public IEnumerable<EmployeeInfo> GetEmployees (IEnumerable<int> employeeIds)
+        {
+            if (employeeIds.Any ()) {
+                return ModelContext.Query<EmployeeInfo> ()
+                    .Include (e => e.Achievements)
+                    .Include (e => e.Achievements.Select (ea => ea.Achievement))
+                    .Include (e => e.Positions)
+                    .Include (e => e.Positions.Select (op => op.Position))
+                    .Include (e => e.Positions.Select (op => op.Division))
+                    .Where (e => employeeIds.Contains (e.EmployeeID))
+                    .ToList ();
+            }
+
+            return Enumerable.Empty<EmployeeInfo> ();
+        }
+
     }
 }
-

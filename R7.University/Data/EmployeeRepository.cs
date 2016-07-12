@@ -51,16 +51,6 @@ namespace R7.University.Data
 
         #endregion
 
-        public IEnumerable<EmployeeInfo> GetEmployees_ByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
-        {
-            // TODO: Expose weghtMod sp argument
-            return DataProvider.GetObjectsFromSp<EmployeeInfo> (
-                includeSubDivisions // which SP to use
-                    ? "{databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]" 
-                    : "{databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]", 
-                divisionId, sortType);
-        }
-
         public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool includeNonPublished, 
             bool teachersOnly, int divisionId)
         {

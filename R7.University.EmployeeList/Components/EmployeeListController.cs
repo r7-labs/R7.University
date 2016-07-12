@@ -23,8 +23,9 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
-using R7.University.Data;
 using R7.University.ModelExtensions;
+using R7.University.EmployeeList.Queries;
+using R7.University.Models;
 
 namespace R7.University.EmployeeList.Components
 {
@@ -37,8 +38,12 @@ namespace R7.University.EmployeeList.Components
             var searchDocs = new List<SearchDocument> ();
             var settings = new EmployeeListSettings (modInfo);
 
-            var employees = EmployeeRepository.Instance.GetEmployees_ByDivisionId (settings.DivisionID,
-                                settings.IncludeSubdivisions, settings.SortType);
+            IEnumerable<EmployeeInfo> employees = null;
+
+            using (var modelContext = new UniversityModelContext ()) {
+                employees = new EmployeeQuery (modelContext).ByDivisionId (
+                    settings.DivisionID, settings.IncludeSubdivisions, settings.SortType);
+            }
 
             foreach (var employee in employees) {
                 if (employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
