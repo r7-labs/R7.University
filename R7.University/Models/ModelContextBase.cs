@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using R7.University.Data;
@@ -71,6 +72,11 @@ namespace R7.University.Models
             }
 
             return Context.Set<TEntity> ().Where (keySelector).Take (1);
+        }
+
+        public virtual IEnumerable<TEntity> Query<TEntity> (string queryName, params KeyValuePair<string,object> [] parameters) where TEntity: class
+        {
+            return Context.ExecuteFunction<TEntity> (queryName, parameters);
         }
 
         public virtual TEntity Get<TEntity> (object key) where TEntity: class

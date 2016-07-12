@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace R7.University.Data
@@ -28,6 +29,9 @@ namespace R7.University.Data
     {
         IDbSet<TEntity> Set<TEntity> () where TEntity: class;
 
+        IEnumerable<TEntity> ExecuteFunction<TEntity> (string functionName, params KeyValuePair<string,object> [] parameters) 
+            where TEntity: class;
+        
         void WasModified<TEntity> (TEntity entity) where TEntity: class;
 
         int SaveChanges ();

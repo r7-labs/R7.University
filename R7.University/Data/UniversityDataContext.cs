@@ -20,10 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using DotNetNuke.Common.Utilities;
+using R7.University.Models;
 
 namespace R7.University.Data
 {
@@ -80,11 +84,24 @@ namespace R7.University.Data
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-        #region IUniversityDbContext implementation
+        #region IUniversityDataContext implementation
 
         public new IDbSet<TEntity> Set<TEntity> () where TEntity: class
         {
             return base.Set<TEntity> ();
+        }
+
+        public IEnumerable<TEntity> ExecuteFunction<TEntity> (string functionName, params KeyValuePair<string,object> [] parameters) 
+            where TEntity: class
+        {
+            var objectContext = ((IObjectContextAdapter) this).ObjectContext;
+
+            var objectParameters = new ObjectParameter [parameters.Length];
+            for (var i = 0; i < parameters.Length; i++) {
+                objectParameters [i] = new ObjectParameter (parameters [i].Key, parameters [i].Value);
+            }
+
+            return objectContext.ExecuteFunction<TEntity> (functionName, objectParameters);
         }
 
         public void WasModified<TEntity> (TEntity entity) where TEntity: class
@@ -93,6 +110,17 @@ namespace R7.University.Data
         }
 
         #endregion
+    }
+
+    public class test {
+
+        public void test1 ()
+        {
+            var context = new UniversityDataContext ();
+            foreach (var o in context.ExecuteFunction<EmployeeInfo> ("")) {
+            }
+
+        }
     }
 }
 

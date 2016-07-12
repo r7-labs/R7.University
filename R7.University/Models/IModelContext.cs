@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -30,6 +31,8 @@ namespace R7.University.Models
         IQueryable<TEntity> Query<TEntity> () where TEntity: class;
 
         IQueryable<TEntity> QueryOne<TEntity> (Expression<Func<TEntity,bool>> keySelector) where TEntity: class;
+
+        IEnumerable<TEntity> Query<TEntity> (string queryName, params KeyValuePair<string,object> [] parameters) where TEntity: class;
 
         TEntity Get<TEntity> (object key) where TEntity: class;
 
