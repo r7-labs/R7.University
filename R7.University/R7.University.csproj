@@ -97,7 +97,6 @@
     <Compile Include="Controls\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
-    <Compile Include="Data\UniversityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\CacheHelper.cs" />
     <Compile Include="Components\CopyCstor.cs" />
@@ -120,7 +119,6 @@
     <Compile Include="ViewModels\FormatHelper.cs" />
     <Compile Include="Models\IEduLevel.cs" />
     <Compile Include="Models\IUniversityBaseEntity.cs" />
-    <Compile Include="Data\EmployeeAchievementRepository.cs" />
     <Compile Include="Components\UniversityConfig.cs" />
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="Models\IEmployee.cs" />
@@ -138,7 +136,6 @@
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
-    <Compile Include="Data\UniversityDataProvider.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
