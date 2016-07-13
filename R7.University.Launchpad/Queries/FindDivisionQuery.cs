@@ -27,13 +27,13 @@ using R7.University.Queries;
 
 namespace R7.University.Launchpad.Queries
 {
-    public class FindDivisionQuery: QueryBase
+    internal class FindDivisionQuery: QueryBase
     {
         public FindDivisionQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<DivisionInfo> Execute (string search)
+        public IList<DivisionInfo> List (string search)
         {
             // REVIEW: Cannot set comparison options
             return ((search != null)

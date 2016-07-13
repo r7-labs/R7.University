@@ -26,7 +26,7 @@ using R7.University.Queries;
 
 namespace R7.University.Launchpad.Queries
 {
-    public class EduProgramProfileEditQuery: QueryBase
+    internal class EduProgramProfileEditQuery: QueryBase
     {
         public EduProgramProfileEditQuery (IModelContext modelContext): base (modelContext)
         {

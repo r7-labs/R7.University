@@ -36,7 +36,7 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var divisions = new FindDivisionQuery (modelContext).Execute (search);
+            var divisions = new FindDivisionQuery (modelContext).List (search);
             return DataTableConstructor.FromIEnumerable (divisions);
         }
     }

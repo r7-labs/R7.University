@@ -27,13 +27,13 @@ using R7.University.Queries;
 
 namespace R7.University.Launchpad.Queries
 {
-    public class FindEduProgramProfileQuery: QueryBase
+    internal class FindEduProgramProfileQuery: QueryBase
     {
         public FindEduProgramProfileQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<EduProgramProfileInfo> Execute (string search)
+        public IList<EduProgramProfileInfo> List (string search)
         {
             // REVIEW: Cannot set comparison options
             return ((search != null)
