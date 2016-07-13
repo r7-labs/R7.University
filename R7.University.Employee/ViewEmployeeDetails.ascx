@@ -85,7 +85,8 @@
                         <SelectedRowStyle CssClass="dnnFormError" />
                         <FooterStyle CssClass="dnnGridFooter" />
                         <Columns>
-                            <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
+                            <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />
+                            <%-- TODO: Add column for EduProgramProfie.EduLevel --%>
                             <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
                         </Columns>
                     </asp:GridView>

@@ -54,9 +54,6 @@
     <data name="DocumentUrl.Column">
         <value>Document</value>
     </data>
-    <data name="EduProfile.Column">
-        <value>Educational Profile</value>
-    </data>
     <data name="EduProgramProfile.Column">
         <value>Educational Profile</value>
     </data>

@@ -39,10 +39,10 @@ using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.Employee.Components;
 using R7.University.Employee.Queries;
 using R7.University.Employee.SharedLogic;
+using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
@@ -406,7 +406,7 @@ namespace R7.University.Employee
             var disciplines = employee.Disciplines.OrderBy (ed => ed.EduProgramProfile.EduProgram.Code);
 
             if (disciplines.Any ()) {
-                gridEduPrograms.DataSource = DataTableConstructor.FromIEnumerable (disciplines);
+                gridEduPrograms.DataSource = disciplines.Select (ed => new EmployeeDisciplineViewModel (ed));
                 gridEduPrograms.DataBind ();
             }
             else {

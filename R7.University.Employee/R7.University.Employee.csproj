@@ -136,6 +136,7 @@
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="ViewModels\EmployeeDisciplineEditViewModel.cs" />
     <Compile Include="ViewModels\OccupiedPositionEditViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeDisciplineViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
