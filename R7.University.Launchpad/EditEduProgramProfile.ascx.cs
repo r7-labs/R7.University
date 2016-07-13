@@ -111,7 +111,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // get and bind edu. levels
-            var eduProgramLevels = new EduProgramLevelsQuery (ModelContext).Execute ();
+            var eduProgramLevels = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduProgramLevel.DataSource = eduProgramLevels;
             comboEduProgramLevel.DataBind ();
 

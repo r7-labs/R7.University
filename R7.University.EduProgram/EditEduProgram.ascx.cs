@@ -127,7 +127,7 @@ namespace R7.University.EduProgram
                 + Localization.GetString ("DeleteItem") + "');");
 
             // bind education levels
-            comboEduLevel.DataSource = new EduProgramLevelsQuery (ModelContext).Execute ();
+            comboEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduLevel.DataBind ();
 
             var documentTypes = new FlatQuery<DocumentTypeInfo> (ModelContext).List ();

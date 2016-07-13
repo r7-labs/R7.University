@@ -32,9 +32,17 @@ namespace R7.University.Queries
         {
         }
 
-        public IEnumerable<EduLevelInfo> GetAll ()
+        public IList<EduLevelInfo> List ()
         {
             return ModelContext.Query<EduLevelInfo> ()
+                .OrderBy (el => el.SortIndex)
+                .ToList ();
+        }
+
+        public IList<EduLevelInfo> ListForEduProgram ()
+        {
+            return ModelContext.Query<EduLevelInfo> ()
+                .Where (el => el.ParentEduLevelId == null)
                 .OrderBy (el => el.SortIndex)
                 .ToList ();
         }

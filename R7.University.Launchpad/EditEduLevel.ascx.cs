@@ -58,7 +58,7 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            comboParentEduLevel.DataSource = new EduProgramLevelsQuery (ModelContext).Execute ();
+            comboParentEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboParentEduLevel.DataBind ();
             comboParentEduLevel.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

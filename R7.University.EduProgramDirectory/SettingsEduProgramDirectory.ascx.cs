@@ -60,7 +60,7 @@ namespace R7.University.EduProgramDirectory
             base.OnInit (e);
 
             // fill edulevels list
-            var eduLevels = new EduProgramLevelsQuery (ModelContext).Execute ();
+            var eduLevels = new EduLevelQuery (ModelContext).ListForEduProgram ();
            
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem {

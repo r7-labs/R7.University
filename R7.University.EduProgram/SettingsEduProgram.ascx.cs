@@ -59,7 +59,7 @@ namespace R7.University.EduProgram
         {
             base.OnInit (e);
 
-            comboEduLevel.DataSource = new EduProgramLevelsQuery (ModelContext).Execute ();
+            comboEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduLevel.DataBind ();
 
             BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
