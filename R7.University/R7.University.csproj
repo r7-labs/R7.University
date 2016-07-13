@@ -180,7 +180,6 @@
     <Compile Include="Data\Mappings\EmployeeDisciplineMapping.cs" />
     <Compile Include="Data\Mappings\EmployeeAchievementMapping.cs" />
     <Compile Include="Data\Mappings\AchievementMapping.cs" />
-    <Compile Include="Queries\OccupiedPositionsByEmployeeQuery.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="Queries\QueryBase.cs" />
     <Compile Include="ModelExtensions\DivisionExtensions.cs" />

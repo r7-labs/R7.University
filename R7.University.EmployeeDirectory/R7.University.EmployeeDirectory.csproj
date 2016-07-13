@@ -103,6 +103,7 @@
     <Compile Include="ViewModels\EmployeeDirectoryTeachersViewModel.cs" />
     <Compile Include="Queries\TeachersQuery.cs" />
     <Compile Include="Queries\EmployeeQuery.cs" />
+    <Compile Include="Queries\OccupiedPositionQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

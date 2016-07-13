@@ -23,16 +23,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Models;
+using R7.University.Queries;
 
-namespace R7.University.Queries
+namespace R7.University.EmployeeDirectory.Queries
 {
-    public class OccupiedPositionsByEmployeeQuery: QueryBase
+    internal class OccupiedPositionQuery: QueryBase
     {
-        public OccupiedPositionsByEmployeeQuery (IModelContext modelContext): base (modelContext)
+        public OccupiedPositionQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IList<OccupiedPositionInfo> Execute (int employeeId)
+        public OccupiedPositionInfo PrimePosition (int employeeId)
         {
             return ModelContext.Query<OccupiedPositionInfo> ()
                 .Include (op => op.Position)
@@ -40,7 +41,7 @@ namespace R7.University.Queries
                 .Where (op => op.EmployeeID == employeeId)
                 .OrderByDescending (op => op.IsPrime)
                 .ThenByDescending (op => op.Position.Weight)
-                .ToList ();
+                .FirstOrDefault ();
         }
     }
 }

@@ -425,9 +425,7 @@ namespace R7.University.EmployeeDirectory
                 workingPlace.Text = employee.WorkingPlace;
 
                 // try to get prime position:
-                var primePosition = new OccupiedPositionsByEmployeeQuery (ModelContext)
-                    .Execute (employee.EmployeeID)
-                    .FirstOrDefault ();
+                var primePosition = new OccupiedPositionQuery (ModelContext).PrimePosition (employee.EmployeeID);
 
                 if (primePosition != null) {
                     position.Text = TextUtils.FormatList (": ",
