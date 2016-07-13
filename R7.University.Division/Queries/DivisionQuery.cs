@@ -33,7 +33,7 @@ namespace R7.University.Division.Queries
         {
         }
 
-        public IList<DivisionInfo> Execute (int? divisionId)
+        public IList<DivisionInfo> AllExcept (int? divisionId)
         {
             return ModelContext.Query<DivisionInfo> ()
                 .Where (d => (divisionId == null || divisionId != d.DivisionID))
