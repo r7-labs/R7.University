@@ -26,13 +26,13 @@ using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    public class HeadPositionQuery: QueryBase
+    internal class HeadPositionQuery: QueryBase
     {
         public HeadPositionQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public OccupiedPositionInfo Execute (int employeeId, int? positionId)
+        public OccupiedPositionInfo FirstOrDefault (int employeeId, int? positionId)
         {
             return ModelContext.Query<OccupiedPositionInfo> ()
                 .Include (op => op.Position)

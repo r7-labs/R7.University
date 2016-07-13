@@ -185,7 +185,7 @@ namespace R7.University.DivisionDirectory
                     }
                     else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
 
-                        var divisions = new DivisionHierarchyQuery (ModelContext).Execute ();
+                        var divisions = new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
 
                         if (!divisions.IsNullOrEmpty ()) {
                             // bind divisions to the grid
@@ -338,7 +338,7 @@ namespace R7.University.DivisionDirectory
                     linkDocument.Visible = false;
 
                 // get head employee
-                var headEmployee = new HeadEmployeeQuery (ModelContext).Execute (division.DivisionID, division.HeadPositionID);
+                var headEmployee = new HeadEmployeeQuery (ModelContext).SingleOrDefault (division.DivisionID, division.HeadPositionID);
 
                 if (headEmployee != null && headEmployee.IsPublished ()) {
                     linkContactPerson.Text = headEmployee.AbbrName;
@@ -378,7 +378,7 @@ namespace R7.University.DivisionDirectory
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
                 // get head employee
-                var headEmployee = new HeadEmployeeQuery (ModelContext).Execute (division.DivisionID, division.HeadPositionID);
+                var headEmployee = new HeadEmployeeQuery (ModelContext).SingleOrDefault (division.DivisionID, division.HeadPositionID);
                 
                 if (headEmployee != null && headEmployee.IsPublished ()) {
                     var headPosition = headEmployee.Positions

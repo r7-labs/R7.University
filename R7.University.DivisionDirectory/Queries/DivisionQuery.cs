@@ -26,7 +26,7 @@ using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    public class DivisionQuery: QueryBase
+    internal class DivisionQuery: QueryBase
     {
         public DivisionQuery (IModelContext modelContext): base (modelContext)
         {

@@ -26,13 +26,13 @@ using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    public class HeadEmployeeQuery: QueryBase
+    internal class HeadEmployeeQuery: QueryBase
     {
         public HeadEmployeeQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public EmployeeInfo Execute (int divisionId, int? headPositionId)
+        public EmployeeInfo SingleOrDefault (int divisionId, int? headPositionId)
         {
             if (headPositionId != null) {
                 return ModelContext.Query<EmployeeInfo> ()

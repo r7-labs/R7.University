@@ -28,18 +28,19 @@ using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    public class DivisionHierarchyQuery: QueryBase
+    internal class DivisionHierarchyQuery: QueryBase
     {
         public DivisionHierarchyQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<DivisionInfo> Execute ()
+        public IList<DivisionInfo> ListHierarchy ()
         {
             return ModelContext.Query<DivisionInfo> ().ToList ()
                 .CalculateLevelAndPath<DivisionInfo> ()
                 .OrderBy (d => d.Path)
-                .ThenBy (d => d.Title);
+                .ThenBy (d => d.Title)
+                .ToList ();
         }
     }
 }
