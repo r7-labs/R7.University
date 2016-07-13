@@ -32,7 +32,7 @@ namespace R7.University.EduProgram.Queries
         {
         }
 
-        public EduProgramInfo Execute (int eduProgramId)
+        public EduProgramInfo SingleOrDefault (int eduProgramId)
         {
             return ModelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
                 .Include (ep => ep.EduLevel)

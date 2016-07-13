@@ -62,7 +62,7 @@ namespace R7.University.EduProgram
 
                 EduProgramInfo eduProgram;
                 using (var modelContext = new UniversityModelContext ()) {
-                    eduProgram = new EduProgramQuery (modelContext).Execute (Settings.EduProgramId.Value);
+                    eduProgram = new EduProgramQuery (modelContext).SingleOrDefault (Settings.EduProgramId.Value);
                 }
 
                 if (eduProgram == null) {

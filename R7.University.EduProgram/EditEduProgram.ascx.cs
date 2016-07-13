@@ -163,7 +163,7 @@ namespace R7.University.EduProgram
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = new EduProgramQuery (ModelContext).Execute (itemId.Value);
+                        var item = new EduProgramQuery (ModelContext).SingleOrDefault (itemId.Value);
 
                         if (item != null) {
                             textCode.Text = item.Code;
