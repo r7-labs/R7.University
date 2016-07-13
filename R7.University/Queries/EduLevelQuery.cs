@@ -1,5 +1,5 @@
 ﻿//
-//  EduLevelsQuery.cs
+//  EduLevelQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,13 +26,13 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class EduLevelsQuery: QueryBase
+    public class EduLevelQuery: QueryBase
     {
-        public EduLevelsQuery (IModelContext modelContext): base (modelContext)
+        public EduLevelQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<EduLevelInfo> Execute ()
+        public IEnumerable<EduLevelInfo> GetAll ()
         {
             return ModelContext.Query<EduLevelInfo> ()
                 .OrderBy (el => el.SortIndex)

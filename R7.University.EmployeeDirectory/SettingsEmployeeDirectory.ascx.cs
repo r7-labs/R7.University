@@ -64,7 +64,7 @@ namespace R7.University.EmployeeDirectory
             comboMode.DataBind ();
 
             // fill edulevels list
-            var eduLevels = new EduLevelsQuery (ModelContext).Execute ();
+            var eduLevels = new EduLevelQuery (ModelContext).GetAll ();
             foreach (var eduLevel in eduLevels) {
                 listEduLevels.Items.Add (new DnnListBoxItem
                     { 

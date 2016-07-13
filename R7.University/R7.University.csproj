@@ -179,7 +179,6 @@
     <Compile Include="Models\ModelContextBase.cs" />
     <Compile Include="Models\UniversityModelContext.cs" />
     <Compile Include="Models\QueryableExtensions.cs" />
-    <Compile Include="Queries\EduLevelsQuery.cs" />
     <Compile Include="Data\Mappings\EmployeeDisciplineMapping.cs" />
     <Compile Include="Data\Mappings\EmployeeAchievementMapping.cs" />
     <Compile Include="Data\Mappings\AchievementMapping.cs" />
@@ -193,6 +192,7 @@
     <Compile Include="Commands\UpdateOccupiedPositionsCommand.cs" />
     <Compile Include="Commands\UpdateEmployeeDisciplinesCommand.cs" />
     <Compile Include="Commands\UpdateEmployeeAchievementsCommand.cs" />
+    <Compile Include="Queries\EduLevelQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
