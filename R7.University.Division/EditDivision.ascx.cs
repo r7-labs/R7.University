@@ -122,7 +122,7 @@ namespace R7.University.Division
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // fill divisions dropdown
-            var divisions = new DivisionQuery (ModelContext).AllExcept (itemId);
+            var divisions = new DivisionQuery (ModelContext).ListExcept (itemId);
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

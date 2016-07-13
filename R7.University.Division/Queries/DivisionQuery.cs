@@ -27,13 +27,13 @@ using R7.University.Queries;
 
 namespace R7.University.Division.Queries
 {
-    public class DivisionQuery: QueryBase
+    internal class DivisionQuery: QueryBase
     {
         public DivisionQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IList<DivisionInfo> AllExcept (int? divisionId)
+        public IList<DivisionInfo> ListExcept (int? divisionId)
         {
             return ModelContext.Query<DivisionInfo> ()
                 .Where (d => (divisionId == null || divisionId != d.DivisionID))
