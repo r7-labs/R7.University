@@ -27,7 +27,7 @@ using R7.University.Queries;
 
 namespace R7.University.EmployeeDirectory.Queries
 {
-    public class EmployeeQuery: QueryBase
+    internal class EmployeeQuery: QueryBase
     {
         public EmployeeQuery (IModelContext modelContext): base (modelContext)
         {

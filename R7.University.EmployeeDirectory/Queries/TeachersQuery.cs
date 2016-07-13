@@ -27,13 +27,13 @@ using R7.University.Queries;
 
 namespace R7.University.EmployeeDirectory.Queries
 {
-    public class TeachersQuery: QueryBase
+    internal class TeachersQuery: QueryBase
     {
         public TeachersQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<EmployeeInfo> Execute ()
+        public IList<EmployeeInfo> List ()
         {
             return ModelContext.Query<EmployeeInfo> ()
                 .Include (e => e.Positions)

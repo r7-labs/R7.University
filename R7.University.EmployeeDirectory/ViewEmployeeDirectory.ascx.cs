@@ -179,7 +179,7 @@ namespace R7.University.EmployeeDirectory
 
             if (eduProgramProfiles.Count > 0) {
 
-                var teachers = new TeachersQuery (ModelContext).Execute ();
+                var teachers = new TeachersQuery (ModelContext).List ();
 
                 IEnumerable<IEmployee> eduProgramProfileTeachers;
 
