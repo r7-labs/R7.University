@@ -38,7 +38,7 @@ namespace R7.University.Tests.Models
 
         public override IDataContext CreateDataContext ()
         {
-            return new TestDbContextFactory ().Create ();
+            return new TestDataContextFactory ().Create ();
         }
     }
 }

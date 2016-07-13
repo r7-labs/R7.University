@@ -57,13 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultPortalConfigTests.cs" />
-    <Compile Include="Data\TestDbContext.cs" />
-    <Compile Include="Data\TestDbContextFactory.cs" />
-    <Compile Include="Data\DbContextTests.cs" />
     <Compile Include="Data\TestDbSet.cs" />
     <Compile Include="Models\TestEntity.cs" />
     <Compile Include="Models\TestModelContext.cs" />
     <Compile Include="Models\ModelContextTests.cs" />
+    <Compile Include="Data\DataContextTests.cs" />
+    <Compile Include="Data\TestDataContext.cs" />
+    <Compile Include="Data\TestDataContextFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />

@@ -1,5 +1,5 @@
 ﻿//
-//  TestDbContextFactory.cs
+//  TestDataContextFactory.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,11 +25,11 @@ using R7.University.Patterns;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbContextFactory: FactoryBase<IDataContext>
+    public class TestDataContextFactory: FactoryBase<IDataContext>
     {
         public override IDataContext Create ()
         {
-            return new TestDbContext ();
+            return new TestDataContext ();
         }
     }
 }

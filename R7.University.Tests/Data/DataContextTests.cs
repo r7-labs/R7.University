@@ -1,5 +1,5 @@
 ﻿//
-//  DbContextTests.cs
+//  DataContextTests.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,12 +26,12 @@ using Xunit;
 
 namespace R7.University.Tests.Data
 {
-    public class DbContextTests
+    public class DataContextTests
     {
         [Fact]
         public void CreateDbContextTest ()
         {
-            var dbContextFactory = new TestDbContextFactory ();
+            var dbContextFactory = new TestDataContextFactory ();
             using (var db = dbContextFactory.Create ()) {
                 db.Set<EmployeeInfo> ().Add (new EmployeeInfo ());
                 db.SaveChanges ();

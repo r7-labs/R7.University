@@ -1,5 +1,5 @@
 ﻿//
-//  TestDbContext.cs
+//  TestDataContext.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,7 +26,7 @@ using R7.University.Data;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbContext: IDataContext
+    public class TestDataContext: IDataContext
     {
         private IDictionary<Type,object> dictEntities = new Dictionary<Type,object> ();
 
