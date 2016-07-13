@@ -32,9 +32,12 @@ namespace R7.University.Tests.Data
     {
         private HashSet<TEntity> entities;
 
+        private IQueryable query;
+
         public TestDbSet ()
         {
             entities = new HashSet<TEntity> ();
+            query = entities.AsQueryable ();
         }
 
         public TEntity Add (TEntity entity)
@@ -86,17 +89,17 @@ namespace R7.University.Tests.Data
 
         public Expression Expression
         {
-            get { throw new NotImplementedException (); }
+            get { return query.Expression; }
         }
 
         public Type ElementType
         {
-            get { return typeof (TEntity); }
+            get { return query.ElementType; }
         }
 
         public IQueryProvider Provider
         {
-            get { throw new NotImplementedException (); }
+            get { return query.Provider; }
         }
     }
 }
