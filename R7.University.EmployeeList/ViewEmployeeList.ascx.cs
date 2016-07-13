@@ -100,11 +100,11 @@ namespace R7.University.EmployeeList
             var employeeQuery = new EmployeeQuery (ModelContext);
 
             // get employees by DivisionID
-            var employeeIds = employeeQuery.ByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType)
+            var employeeIds = employeeQuery.ListByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType)
                 .Select (e => e.EmployeeID);
             
             return new EmployeeListViewModel (
-                employeeQuery.GetEmployees (employeeIds),
+                employeeQuery.ListByIds (employeeIds),
                 ModelContext.Get<DivisionInfo> (Settings.DivisionID)
             );
         }

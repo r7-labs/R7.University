@@ -27,13 +27,13 @@ using R7.University.Queries;
 
 namespace R7.University.EmployeeList.Queries
 {
-    public class EmployeeQuery: QueryBase
+    internal class EmployeeQuery: QueryBase
     {
         public EmployeeQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<EmployeeInfo> ByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
+        public IEnumerable<EmployeeInfo> ListByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
         {
             KeyValuePair<string, object> [] parameters = {
                 new KeyValuePair<string, object> ("divisionId", divisionId),
@@ -47,7 +47,7 @@ namespace R7.University.EmployeeList.Queries
             return ModelContext.Query<EmployeeInfo> (queryName, parameters);
         }
 
-        public IEnumerable<EmployeeInfo> GetEmployees (IEnumerable<int> employeeIds)
+        public IList<EmployeeInfo> ListByIds (IEnumerable<int> employeeIds)
         {
             if (employeeIds.Any ()) {
                 return ModelContext.Query<EmployeeInfo> ()
@@ -60,7 +60,7 @@ namespace R7.University.EmployeeList.Queries
                     .ToList ();
             }
 
-            return Enumerable.Empty<EmployeeInfo> ();
+            return new List<EmployeeInfo> ();
         }
 
     }

@@ -41,7 +41,7 @@ namespace R7.University.EmployeeList.Components
             IEnumerable<EmployeeInfo> employees = null;
 
             using (var modelContext = new UniversityModelContext ()) {
-                employees = new EmployeeQuery (modelContext).ByDivisionId (
+                employees = new EmployeeQuery (modelContext).ListByDivisionId (
                     settings.DivisionID, settings.IncludeSubdivisions, settings.SortType);
             }
 
