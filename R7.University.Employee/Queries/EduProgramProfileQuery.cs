@@ -27,13 +27,13 @@ using R7.University.Queries;
 
 namespace R7.University.Employee.Queries
 {
-    public class EduProgramProfileQuery: QueryBase
+    internal class EduProgramProfileQuery: QueryBase
     {
         public EduProgramProfileQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<EduProgramProfileInfo> ByEduLevel (int eduLevelId)
+        public IList<EduProgramProfileInfo> ListByEduLevel (int eduLevelId)
         {
             return ModelContext.Query<EduProgramProfileInfo> ().Where (epp => epp.EduLevelId == eduLevelId).ToList ();
         }

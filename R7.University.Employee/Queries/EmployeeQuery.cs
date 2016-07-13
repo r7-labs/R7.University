@@ -26,7 +26,7 @@ using R7.University.Queries;
 
 namespace R7.University.Employee.Queries
 {
-    public class EmployeeQuery: QueryBase
+    internal class EmployeeQuery: QueryBase
     {
         public EmployeeQuery (IModelContext modelContext): base (modelContext)
         {
@@ -46,7 +46,7 @@ namespace R7.University.Employee.Queries
                 .SingleOrDefault ();
         }
 
-        public EmployeeInfo ByUserId (int userId)
+        public EmployeeInfo SingleOrDefaultByUserId (int userId)
         {
             return ModelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
                 .Include (e => e.Positions)

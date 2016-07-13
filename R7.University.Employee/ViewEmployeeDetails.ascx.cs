@@ -121,7 +121,7 @@ namespace R7.University.Employee
             if (Settings.ShowCurrentUser) {
                 var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
                 if (userId != null) {
-                    return new EmployeeQuery (ModelContext).ByUserId (userId.Value);
+                    return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
                 }
             }
 
