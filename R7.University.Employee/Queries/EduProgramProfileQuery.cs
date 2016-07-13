@@ -37,5 +37,14 @@ namespace R7.University.Employee.Queries
         {
             return ModelContext.Query<EduProgramProfileInfo> ().Where (epp => epp.EduLevelId == eduLevelId).ToList ();
         }
+
+        public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
+        {
+            return ModelContext.QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
+                .Include (epp => epp.EduProgram)
+                .Include (epp => epp.EduProgram.EduLevel)
+                .Include (epp => epp.EduLevel)
+                .SingleOrDefault ();
+        }
     }
 }

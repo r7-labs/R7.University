@@ -91,14 +91,6 @@ namespace R7.University.Models
                 .Where (ep => ep.DivisionId == divisionId);
         }
 
-        public IQueryable<EduProgramProfileInfo> QueryEduProgramProfile (int eduProgramProfileId)
-        {
-            return QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
-                .Include (epp => epp.EduProgram)
-                .Include (epp => epp.EduProgram.EduLevel)
-                .Include (epp => epp.EduLevel);
-        }
-
         #endregion
     }
 }
