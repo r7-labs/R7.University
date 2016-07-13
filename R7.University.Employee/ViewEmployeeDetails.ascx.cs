@@ -315,7 +315,7 @@ namespace R7.University.Employee
             }
 
             // occupied positions
-            var occupiedPositions = new OccupiedPositionsByEmployeeQuery (ModelContext).Execute (employee.EmployeeID);
+            var occupiedPositions = employee.Positions.ToList ();
             if (occupiedPositions.Count > 0) {
                 repeaterPositions.DataSource = occupiedPositions.GroupByDivision (); 
                 repeaterPositions.DataBind ();
