@@ -72,7 +72,7 @@ namespace R7.University.EduProgram
 
         protected void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (ModelContext).Execute (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (ModelContext).ListByEduLevel (eduLevelId);
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

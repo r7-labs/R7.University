@@ -32,7 +32,7 @@ namespace R7.University.Queries
         {
         }
 
-        public IEnumerable<EduProgramInfo> Execute (int eduLevelId)
+        public IList<EduProgramInfo> ListByEduLevel (int eduLevelId)
         {
             return ModelContext.Query<EduProgramInfo> ()
                 .Where (ep => ep.EduLevelID == eduLevelId)
