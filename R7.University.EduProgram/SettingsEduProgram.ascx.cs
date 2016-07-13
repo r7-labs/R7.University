@@ -29,6 +29,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EduProgram.Components;
+using R7.University.EduProgram.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -72,7 +73,7 @@ namespace R7.University.EduProgram
 
         protected void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = new EduProgramsByEduLevelQuery (ModelContext).ListByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramQuery (ModelContext).ListByEduLevel (eduLevelId);
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

@@ -26,7 +26,7 @@ using R7.University.Queries;
 
 namespace R7.University.EduProgram.Queries
 {
-    internal class EduProgramQuery: QueryBase
+    internal class EduProgramQuery: EduProgramCommonQuery
     {
         public EduProgramQuery (IModelContext modelContext): base (modelContext)
         {

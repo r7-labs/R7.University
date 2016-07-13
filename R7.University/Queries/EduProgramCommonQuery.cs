@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramsByEduLevelsQuery.cs
+//  EduProgramCommonQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,9 +26,9 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public class EduProgramsByEduLevelQuery: QueryBase
+    public class EduProgramCommonQuery: QueryBase
     {
-        public EduProgramsByEduLevelQuery (IModelContext modelContext): base (modelContext)
+        public EduProgramCommonQuery (IModelContext modelContext): base (modelContext)
         {
         }
 

@@ -162,8 +162,10 @@ namespace R7.University.EduProgram
                     // check we have an item to lookup
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
+                        
                         // load the item
-                        var item = new EduProgramQuery (ModelContext).SingleOrDefault (itemId.Value);
+                        var item = new R7.University.EduProgram.Queries.EduProgramQuery (ModelContext)
+                            .SingleOrDefault (itemId.Value);
 
                         if (item != null) {
                             textCode.Text = item.Code;
