@@ -35,15 +35,16 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employee.Components;
+using R7.University.Employee.Queries;
 using R7.University.Employee.SharedLogic;
+using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.ViewModels;
-using R7.University.Employee.Queries;
-using R7.University.Employee.ViewModels;
 
 namespace R7.University.Employee
 {
@@ -184,7 +185,7 @@ namespace R7.University.Employee
 
             // Employee titles
             var titles = employee.Achievements
-                .Select (ach => new EmployeeAchievementViewModel (ach))
+                .Select (ach => new EmployeeAchievementViewModel (ach, new ViewModelContext (this)))
                 .Where (ach => ach.IsTitle)
                 .Select (ach => R7.University.Utilities.Utils.FirstCharToLower (
                     FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix)));

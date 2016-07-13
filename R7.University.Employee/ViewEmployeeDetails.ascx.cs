@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
@@ -37,6 +36,7 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Employee.Components;
@@ -45,7 +45,6 @@ using R7.University.Employee.SharedLogic;
 using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.ViewModels;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
@@ -496,8 +495,10 @@ namespace R7.University.Employee
                                   ach.AchievementType == AchievementType.Work)
                 .OrderByDescending (exp => exp.YearBegin);
 
+            var viewModelContext = new ViewModelContext (this);
+
             if (experiences.Any ()) {
-                gridExperience.DataSource = AchievementsDataTable (experiences);
+                gridExperience.DataSource = experiences.Select (exp => new EmployeeAchievementViewModel (exp, viewModelContext));
                 gridExperience.DataBind ();
             }
             else if (noExpYears) {
@@ -515,46 +516,13 @@ namespace R7.University.Employee
                 .ToList ();
 			
             if (achievements.Any ()) {
-                gridAchievements.DataSource = AchievementsDataTable (achievements);
+                gridAchievements.DataSource = achievements.Select (ach => new EmployeeAchievementViewModel (ach, viewModelContext));
                 gridAchievements.DataBind ();
             }
             else {	
                 // hide achievements tab
                 linkAchievements.Visible = false;
             }
-        }
-
-        private DataTable AchievementsDataTable (IEnumerable<EmployeeAchievementInfo> achievements)
-        {
-            var dt = new DataTable ();
-            DataRow dr;
-			
-            dt.Columns.Add (new DataColumn (LocalizeString ("Years.Column"), typeof (string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("Title.Column"), typeof (string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("AchievementType.Column"), typeof (string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("DocumentUrl.Column"), typeof (string)));
-		
-            // add description column (no need to localize as it's hidden)
-            dt.Columns.Add (new DataColumn ("Description.Column", typeof (string)));
-					
-            foreach (DataColumn column in dt.Columns)
-                column.AllowDBNull = true;
-
-            var atTheMoment = LocalizeString ("AtTheMoment.Text");
-
-            foreach (var achievement in achievements) {
-                var col = 0;
-                dr = dt.NewRow ();
-                dr [col++] = FormatHelper.FormatYears (achievement.YearBegin, achievement.YearEnd).Replace ("{ATM}", atTheMoment);
-                dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
-                dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
-                dr [col++] = achievement.DocumentURL; 
-                dr [col++] = achievement.Description;
-					
-                dt.Rows.Add (dr);
-            }
-
-            return dt;
         }
 
         protected void grid_RowCreated (object sender, GridViewRowEventArgs e)
@@ -565,40 +533,9 @@ namespace R7.University.Employee
             }
         }
 
-        protected void gridExperience_RowDataBound (object sender, GridViewRowEventArgs e)
-        {
-            // hide description column
-            e.Row.Cells [4].Visible = false;
-			
-            // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                var description = e.Row.Cells [4].Text;
-                if (!string.IsNullOrWhiteSpace (Server.HtmlDecode (description))) {
-                    // convert to hyperlink
-                    e.Row.Cells [1].Text = string.Format ("<a data-module-id=\"{2}\" "
-                        + "data-description=\"{1}\" "
-                        + "data-dialog-title=\"{0}\" "
-                        + "onclick=\"showEmployeeAchievementDescriptionDialog(this)\">{0}</a>", 
-                        e.Row.Cells [1].Text, description, ModuleId);
-                }
-
-                // make link to the document
-                // WTF: empty DocumentURL's cells contains non-breakable spaces?
-                var documentUrl = Server.HtmlDecode (e.Row.Cells [3].Text.Replace ("&nbsp;", ""));
-                if (!string.IsNullOrWhiteSpace (documentUrl)) {
-                    e.Row.Cells [3].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                        R7.University.Utilities.UrlUtils.LinkClickIdnHack (documentUrl, TabId, ModuleId),
-                        LocalizeString ("DocumentUrl.Text"));
-                }
-            }
-        }
-
         protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             RepeaterPositionsLogic.ItemDataBound (this, sender, e);
         }
     }
-    // class
 }
-// namespace
-

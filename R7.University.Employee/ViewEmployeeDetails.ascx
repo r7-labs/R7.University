@@ -53,25 +53,37 @@
     		<div id="employeeExperience" class="_tab">	
     			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
     			<div class="_section" style="margin-bottom:10px">
-    				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid grid-experience"
-                            UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
-    						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-    				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-    				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
-    				        <SelectedRowStyle CssClass="dnnFormError" />
-    				        <FooterStyle CssClass="dnnGridFooter" />
+    				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid grid-experience"
+                        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
+						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+				        <SelectedRowStyle CssClass="dnnFormError" />
+				        <FooterStyle CssClass="dnnGridFooter" />
+                        <Columns>
+                            <asp:BoundField DataField="Years_String" HeaderText="Years" />
+                            <asp:BoundField DataField="Title_String" HeaderText="Title" />
+                            <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
+                            <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
+                        </Columns>
     			    </asp:GridView>
     			</div>
     		</div>
     		<div id="employeeAchievements" class="_tab">
     			<div class="_section" style="margin-bottom:10px">
-    				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="true" CssClass="dnnGrid grid-achievements"
-    						UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridExperience_RowDataBound" GridLines="None">
-    						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-    				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-    				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
-    				        <SelectedRowStyle CssClass="dnnFormError" />
-    				        <FooterStyle CssClass="dnnGridFooter" />
+    				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid grid-achievements"
+    			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
+						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+				        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+				        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+				        <SelectedRowStyle CssClass="dnnFormError" />
+				        <FooterStyle CssClass="dnnGridFooter" />
+                        <Columns>
+                            <asp:BoundField DataField="Years_String" HeaderText="Years" />
+                            <asp:BoundField DataField="Title_Link" HeaderText="Title" HtmlEncode="false" />
+                            <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
+                            <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
+                        </Columns>
     			    </asp:GridView>
     			</div>		
     		</div>
