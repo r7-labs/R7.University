@@ -26,9 +26,9 @@ using System.Linq;
 
 namespace R7.University.Queries
 {
-    public class EduProgramProfileQueryBase: QueryBase
+    public abstract class EduProgramProfileQueryBase: QueryBase
     {
-        public EduProgramProfileQueryBase (IModelContext modelContext): base (modelContext)
+        protected EduProgramProfileQueryBase (IModelContext modelContext): base (modelContext)
         {
         }
 
@@ -48,27 +48,6 @@ namespace R7.University.Queries
                 .ThenBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle)
                 .ThenBy (epp => epp.EduLevel.SortIndex);
-        }
-
-        public IList<EduProgramProfileInfo> ListByEduLevels (IEnumerable<int> eduLevelIds)
-        {
-            return OrderBy (QueryEduProgramProfiles (eduLevelIds)).ToList ();
-        }
-
-        public IList<EduProgramProfileInfo> ListByEduLevelsWithEduForms (IEnumerable<int> eduLevelIds)
-        {
-            return OrderBy (QueryEduProgramProfiles (eduLevelIds)
-                .Include (epp => epp.EduProgramProfileForms)
-                .Include (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm))
-            ).ToList ();
-        }
-
-        public IList<EduProgramProfileInfo> ListByEduLevelsWithDocuments (IEnumerable<int> eduLevelIds)
-        {
-            return OrderBy (QueryEduProgramProfiles (eduLevelIds)
-                .Include (epp => epp.Documents)
-                .Include (epp => epp.Documents.Select (d => d.DocumentType))
-            ).ToList ();
         }
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Queries\TeachersQuery.cs" />
     <Compile Include="Queries\EmployeeQuery.cs" />
     <Compile Include="Queries\OccupiedPositionQuery.cs" />
+    <Compile Include="Queries\EduProgramProfileQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

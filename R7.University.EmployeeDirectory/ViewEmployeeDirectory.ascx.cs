@@ -33,7 +33,6 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EmployeeDirectory.Components;
 using R7.University.EmployeeDirectory.Queries;
 using R7.University.EmployeeDirectory.ViewModels;
@@ -161,7 +160,7 @@ namespace R7.University.EmployeeDirectory
         {
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
-            var eduProgramProfiles = new EduProgramProfileQueryBase (ModelContext).ListByEduLevels (Settings.EduLevels)
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).ListByEduLevels (Settings.EduLevels)
                 .Select (epp => new EduProgramProfileViewModel (epp, viewModel))
                 .ToList ();
 
