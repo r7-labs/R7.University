@@ -161,7 +161,7 @@ namespace R7.University.EmployeeDirectory
         {
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
-            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).Execute (Settings.EduLevels)
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).ListByEduLevels (Settings.EduLevels)
                 .Select (epp => new EduProgramProfileViewModel (epp, viewModel))
                 .ToList ();
 

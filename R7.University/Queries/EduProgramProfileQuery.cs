@@ -50,12 +50,12 @@ namespace R7.University.Queries
                 .ThenBy (epp => epp.EduLevel.SortIndex);
         }
 
-        public IEnumerable<EduProgramProfileInfo> Execute (IEnumerable<int> eduLevelIds)
+        public IList<EduProgramProfileInfo> ListByEduLevels (IEnumerable<int> eduLevelIds)
         {
             return OrderBy (QueryEduProgramProfiles (eduLevelIds)).ToList ();
         }
 
-        public IEnumerable<EduProgramProfileInfo> WithEduForms (IEnumerable<int> eduLevelIds)
+        public IList<EduProgramProfileInfo> ListByEduLevelsWithEduForms (IEnumerable<int> eduLevelIds)
         {
             return OrderBy (QueryEduProgramProfiles (eduLevelIds)
                 .Include (epp => epp.EduProgramProfileForms)
@@ -63,7 +63,7 @@ namespace R7.University.Queries
             ).ToList ();
         }
 
-        public IEnumerable<EduProgramProfileInfo> WithDocuments (IEnumerable<int> eduLevelIds)
+        public IList<EduProgramProfileInfo> ListByEduLevelsWithDocuments (IEnumerable<int> eduLevelIds)
         {
             return OrderBy (QueryEduProgramProfiles (eduLevelIds)
                 .Include (epp => epp.Documents)
