@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramProfileQuery.cs
+//  EduProgramProfileQueryBase.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,9 +26,9 @@ using System.Linq;
 
 namespace R7.University.Queries
 {
-    public class EduProgramProfileQuery: QueryBase
+    public class EduProgramProfileQueryBase: QueryBase
     {
-        public EduProgramProfileQuery (IModelContext modelContext): base (modelContext)
+        public EduProgramProfileQueryBase (IModelContext modelContext): base (modelContext)
         {
         }
 
