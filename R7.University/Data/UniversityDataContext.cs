@@ -49,6 +49,9 @@ namespace R7.University.Data
 
             // we don't autotodetect changes nor use lazy loading, so disable proxies
             Configuration.ProxyCreationEnabled = false;
+
+            // don't validate entities
+            Configuration.ValidateOnSaveEnabled = false;
         }
 
         protected override void OnModelCreating (DbModelBuilder modelBuilder)
