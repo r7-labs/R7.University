@@ -23,21 +23,11 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Models
 {
-    // More attributes for class:
-    // Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]
-    // Explicit mapping declaration: [DeclareColumns]
-    // More attributes for class properties:
-    // Custom column name: [ColumnName("DivisionID")]
-    // Explicit include column: [IncludeColumn]
-    // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
-    [TableName ("University_Divisions")]
-    [PrimaryKey ("DivisionID", AutoIncrement = true)]
     public class DivisionInfo: IDivision
     {
         /// <summary>
@@ -102,18 +92,15 @@ namespace R7.University.Models
 
         public DateTime CreatedOnDate { get; set; }
 
-        [IgnoreColumn]
         public virtual ICollection<DivisionInfo> SubDivisions { get; set; }
 
-        [IgnoreColumn]
         public int Level { get; set; }
 
-        [IgnoreColumn]
         public string Path { get; set; }
 
         #endregion
 
-        [IgnoreColumn]
+        // TODO: Replace with extension method
         public bool IsPublished
         {
             get {
@@ -122,7 +109,6 @@ namespace R7.University.Models
             }
         }
 
-        [IgnoreColumn]
         public string FileName
         {
 			// replace all non-word character with spaces, 
@@ -133,7 +119,6 @@ namespace R7.University.Models
             } 
         }
 
-        [IgnoreColumn]
         public string FormatWebSiteLabel
         {
             get {
@@ -142,7 +127,6 @@ namespace R7.University.Models
             }
         }
 
-        [IgnoreColumn]
         public string FormatWebSiteUrl
         {
             get {
@@ -151,13 +135,11 @@ namespace R7.University.Models
             }
         }
 
-        [IgnoreColumn]
         public string FormatEmailUrl
         {
             get { return "mailto:" + Email; }
         }
 
-        [IgnoreColumn]
         public VCard VCard
         {
             get {
@@ -199,7 +181,6 @@ namespace R7.University.Models
             }
         }
 
-        [IgnoreColumn]
         public bool HasUniqueShortTitle
         {
             get { 
@@ -210,8 +191,6 @@ namespace R7.University.Models
             }
         }
 
-
-        [IgnoreColumn]
         public string SearchDocumentText
         {
             get {

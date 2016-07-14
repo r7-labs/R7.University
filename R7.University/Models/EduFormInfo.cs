@@ -20,48 +20,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University.Models
 {
-    [TableName ("University_EduForms")]
-    [PrimaryKey ("EduFormID", AutoIncrement = true)]
-    [Cacheable ("//r7_University/Entities/EduForms")]
     public class EduFormInfo: IEduForm
     {
         #region IEduForm implementation
 
-        /// <summary>
-        /// Gets or sets the edu form I.
-        /// </summary>
-        /// <value>The edu form I.</value>
         public int EduFormID { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance is system.
-        /// </summary>
-        /// <value><c>true</c> if this instance is system; otherwise, <c>false</c>.</value>
         public bool IsSystem { get; set; }
 
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        /// <value>The title.</value>
         public string Title { get; set; }
 
-        /// <summary>
-        /// Gets or sets the short title.
-        /// </summary>
-        /// <value>The short title.</value>
         public string ShortTitle { get; set; }
 
         #endregion
 
-        [IgnoreColumn]
-        /// <summary>
-        /// Gets the system edu form.
-        /// </summary>
-        /// <value>The system edu form.</value>
         public SystemEduForm SystemEduForm
         {
             get {

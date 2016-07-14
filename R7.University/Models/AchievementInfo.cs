@@ -20,12 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University.Models
 {
-    [TableName ("University_Achievements")]
-    [PrimaryKey ("AchievementID", AutoIncrement = true)]
     [Serializable]
     public class AchievementInfo: IAchievement
     {
@@ -37,7 +34,6 @@ namespace R7.University.Models
 
         public string ShortTitle  { get; set; }
 
-        [IgnoreColumn]
         public AchievementType AchievementType
         {
             get { return (AchievementType) AchievementTypeString [0]; }
@@ -46,7 +42,6 @@ namespace R7.University.Models
 
         #endregion
 
-        [ColumnName ("AchievementType")]
         public string AchievementTypeString { get; set; }
     }
 }

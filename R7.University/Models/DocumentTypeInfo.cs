@@ -19,14 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
-
 namespace R7.University.Models
 {
-    [TableName ("University_DocumentTypes")]
-    [PrimaryKey ("DocumentTypeID", AutoIncrement = true)]
-    [Cacheable ("//r7_University/Entities/DocumentTypes")]
     public class DocumentTypeInfo: IDocumentType
     {
         #region IDocumentType implementation

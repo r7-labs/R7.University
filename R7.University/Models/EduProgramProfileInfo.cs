@@ -21,13 +21,10 @@
 
 using System;
 using System.Collections.Generic;
-using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.University.ViewModels;
 
 namespace R7.University.Models
 {
-    [TableName ("University_EduProgramProfiles")]
-    [PrimaryKey ("EduProgramProfileID", AutoIncrement = true)]
     public class EduProgramProfileInfo: IEduProgramProfile
     {
         public EduProgramProfileInfo ()
@@ -68,24 +65,19 @@ namespace R7.University.Models
 
         public DateTime CreatedOnDate { get; set; }
 
-        [IgnoreColumn]
         public virtual EduProgramInfo EduProgram { get; set; }
 
-        [IgnoreColumn]
         public virtual EduLevelInfo EduLevel { get; set; }
 
-        [IgnoreColumn]
         public virtual DivisionInfo Division { get; set; }
 
-        [IgnoreColumn] 
         public virtual ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
 
-        [IgnoreColumn] 
         public virtual ICollection<DocumentInfo> Documents { get; set; }
 
         #endregion
 
-        [IgnoreColumn]
+        // TODO: Move to viewmodel
         public string EduProgramProfileString
         {
             get {

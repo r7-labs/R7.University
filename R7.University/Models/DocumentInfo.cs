@@ -20,12 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University.Models
 {
-    [TableName ("University_Documents")]
-    [PrimaryKey ("DocumentID", AutoIncrement = true)]
     public class DocumentInfo: IDocument
     {
         #region IDocument implementation
@@ -50,7 +47,6 @@ namespace R7.University.Models
 
         public DateTime? EndDate { get; set; }
 
-        [IgnoreColumn]
         public virtual DocumentTypeInfo DocumentType { get; set; }
 
         #endregion

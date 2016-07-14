@@ -19,14 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
-
 namespace R7.University.Models
 {
     // TODO: Add Unique constraint to OccupiedPositions table FK's
-    [TableName ("University_OccupiedPositions")]
-    [PrimaryKey ("OccupiedPositionID", AutoIncrement = true)]
     public class OccupiedPositionInfo: IOccupiedPosition
     {
         #region IOccupiedPosition implementation
@@ -43,13 +38,10 @@ namespace R7.University.Models
 
         public string TitleSuffix { get; set; }
 
-        [IgnoreColumn]
-        public PositionInfo Position { get; set; }
+        public virtual PositionInfo Position { get; set; }
 
-        [IgnoreColumn]
-        public DivisionInfo Division { get; set; }
+        public virtual DivisionInfo Division { get; set; }
 
-        [IgnoreColumn]
         public EmployeeInfo Employee { get; set; }
 
         #endregion

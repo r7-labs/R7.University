@@ -20,19 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
 
 namespace R7.University.Models
 {
-    // More attributes for class:
-    // Set caching for table: [Cacheable("R7.University_Divisions", CacheItemPriority.Default, 20)]
-    // Explicit mapping declaration: [DeclareColumns]
-    // More attributes for class properties:
-    // Custom column name: [ColumnName("DivisionID")]
-    // Explicit include column: [IncludeColumn]
-    // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
-    [TableName ("University_EmployeeAchievements")]
-    [PrimaryKey ("EmployeeAchievementID", AutoIncrement = true)]
     [Serializable]
     public class EmployeeAchievementInfo: IEmployeeAchievement
     {
@@ -60,7 +50,6 @@ namespace R7.University.Models
 
         public string TitleSuffix { get; set; }
 
-        [IgnoreColumn]
         public AchievementType? AchievementType
         {
             get { 
@@ -77,12 +66,10 @@ namespace R7.University.Models
             }
         }
 
+        public virtual AchievementInfo Achievement { get; set; }
+
         #endregion
 
-        [ColumnName ("AchievementType")]
         public string AchievementTypeString { get; set; }
-
-        [IgnoreColumn]
-        public virtual AchievementInfo Achievement { get; set; }
     }
 }

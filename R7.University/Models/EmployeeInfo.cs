@@ -22,20 +22,10 @@
 using System;
 using System.Collections.Generic;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.ComponentModel.DataAnnotations;
 using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Models
 {
-    // More attributes for class:
-    // Set caching for table: [Cacheable("University_Employees", CacheItemPriority.Default, 20)]
-    // Explicit mapping declaration: [DeclareColumns]
-    // More attributes for class properties:
-    // Custom column name: [ColumnName("EmployeeID")]
-    // Explicit include column: [IncludeColumn]
-    // Note: DAL 2 have no AutoJoin analogs from PetaPOCO at this time
-    [TableName ("University_Employees")]
-    [PrimaryKey ("EmployeeID", AutoIncrement = true)]
     public class EmployeeInfo: IEmployee
     {
         public EmployeeInfo ()
@@ -99,20 +89,16 @@ namespace R7.University.Models
 
         public bool ShowBarcode { get; set; }
 
-        [IgnoreColumn]
         public virtual ICollection<EmployeeAchievementInfo> Achievements { get; set; }
 
-        [IgnoreColumn]
         public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
 
-        [IgnoreColumn]
         public virtual ICollection<OccupiedPositionInfo> Positions { get; set; }
 
         #endregion
 
         #region Calculated properties
 
-        [IgnoreColumn]
         public string AbbrName
         {
             get {
@@ -131,19 +117,16 @@ namespace R7.University.Models
             return string.Format ("{0}_{1}", lastName, firstName.Substring (0, 1)); 
         }
 
-        [IgnoreColumn]
         public string FileName
         {
             get { return GetFileName (FirstName, LastName, OtherName); }
         }
 
-        [IgnoreColumn]
         public string FullName
         {
             get { return TextUtils.FormatList (" ", LastName, FirstName, OtherName); }
         }
 
-        [IgnoreColumn]
         public string SearchDocumentText
         {
             get {
@@ -169,7 +152,6 @@ namespace R7.University.Models
 
         #endregion
 
-        [IgnoreColumn]
         public VCard VCard
         {
             get {
@@ -224,7 +206,6 @@ namespace R7.University.Models
                 return vcard;
             }
         }
-
     }
 }
 	

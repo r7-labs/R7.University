@@ -19,13 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
-
 namespace R7.University.Models
 {
-    [TableName ("University_EduProgramProfileForms")]
-    [PrimaryKey ("EduProgramProfileFormID", AutoIncrement = true)]
     public class EduProgramProfileFormInfo: IEduProgramProfileForm
     {
         #region IEduProgramProfileForm implementation
@@ -41,15 +36,11 @@ namespace R7.University.Models
         // REVIEW: Rename?
         public bool IsAdmissive { get; set; }
 
-        [IgnoreColumn]
         public virtual EduFormInfo EduForm { get; set; }
-
-        /*
-        [IgnoreColumn]
-        public IEduProgramProfile EduProgramProfile { get; set; }*/
 
         #endregion
 
+        // TODO: Remove as unused
         public void SetTimeToLearn (int years, int months)
         {
             TimeToLearn = years * 12 + months;

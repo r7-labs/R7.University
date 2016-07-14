@@ -19,13 +19,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DotNetNuke.ComponentModel.DataAnnotations;
-
 namespace R7.University.Models
 {
-    [TableName ("University_EmployeeDisciplines")]
-    [PrimaryKey ("EmployeeDisciplineID", AutoIncrement = true)]
     public class EmployeeDisciplineInfo: IEmployeeDiscipline
     {
         #region IEmployeeDiscipline implementation
@@ -38,10 +33,8 @@ namespace R7.University.Models
 
         public string Disciplines { get; set; }
 
-        [IgnoreColumn]
         public virtual EmployeeInfo Employee { get; set; }
 
-        [IgnoreColumn]
         public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
 
         #endregion
