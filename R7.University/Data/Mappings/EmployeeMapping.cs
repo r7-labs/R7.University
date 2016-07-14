@@ -63,9 +63,9 @@ namespace R7.University.Data.Mappings
 
             Property (m => m.ShowBarcode);
 
-            HasMany (m => m.Positions).WithRequired ().HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);
-            HasMany (m => m.Disciplines).WithRequired (ed => ed.Employee).HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);
-            HasMany (m => m.Achievements).WithRequired ().HasForeignKey (x => x.EmployeeID).WillCascadeOnDelete (true);
+            HasMany (m => m.Positions).WithRequired ().HasForeignKey (x => x.EmployeeID);
+            HasMany (m => m.Disciplines).WithRequired (ed => ed.Employee).HasForeignKey (x => x.EmployeeID);
+            HasMany (m => m.Achievements).WithRequired ().HasForeignKey (x => x.EmployeeID);
         }
     }
 }

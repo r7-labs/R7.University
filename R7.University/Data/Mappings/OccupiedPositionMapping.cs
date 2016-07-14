@@ -37,9 +37,9 @@ namespace R7.University.Data.Mappings
             Property (m => m.DivisionID).IsRequired ();
             Property (m => m.EmployeeID).IsRequired ();
 
-            HasRequired<PositionInfo> (m => m.Position).WithMany ().HasForeignKey (m => m.PositionID).WillCascadeOnDelete (true);
-            HasRequired<DivisionInfo> (m => m.Division).WithMany ().HasForeignKey (m => m.DivisionID).WillCascadeOnDelete (true);
-            HasRequired<EmployeeInfo> (m => m.Employee).WithMany ().HasForeignKey (m => m.EmployeeID).WillCascadeOnDelete (true);
+            HasRequired<PositionInfo> (m => m.Position).WithMany ().HasForeignKey (m => m.PositionID);
+            HasRequired<DivisionInfo> (m => m.Division).WithMany ().HasForeignKey (m => m.DivisionID);
+            HasRequired<EmployeeInfo> (m => m.Employee).WithMany ().HasForeignKey (m => m.EmployeeID);
 
             Property (m => m.IsPrime);
             Property (m => m.TitleSuffix);

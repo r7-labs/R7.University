@@ -32,8 +32,8 @@ namespace R7.University.Data.Mappings
         {
             HasKey (m => m.PositionID);
             Property (m => m.PositionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
-            Property (m => m.Title).IsRequired ().HasMaxLength (100);
-            Property (m => m.ShortTitle).HasMaxLength (64);
+            Property (m => m.Title).IsRequired ();
+            Property (m => m.ShortTitle).IsOptional ();
             Property (m => m.Weight).IsRequired ();
             Property (m => m.IsTeacher).IsRequired ();
         }
