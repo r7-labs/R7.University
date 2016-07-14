@@ -26,13 +26,11 @@ using System.Text.RegularExpressions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Commands;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.Launchpad.Queries;
 using R7.University.Models;
 using R7.University.Queries;
-using R7.University.Commands;
-using R7.University.Components;
 
 namespace R7.University.Launchpad
 {
@@ -150,37 +148,48 @@ namespace R7.University.Launchpad
 
         protected override void LoadItem (EduProgramProfileInfo item)
         {
-            textProfileCode.Text = item.ProfileCode;
-            textProfileTitle.Text = item.ProfileTitle;
-            textLanguages.Text = item.Languages;
-            dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
-            dateCommunityAccreditedToDate.SelectedDate = item.CommunityAccreditedToDate;
-            datetimeStartDate.SelectedDate = item.StartDate;
-            datetimeEndDate.SelectedDate = item.EndDate;
-            comboEduLevel.SelectByValue (item.EduLevelId);
-            treeDivision.SelectAndExpandByValue (item.DivisionId.ToString ());
+            var epp = GetItemWithDependencies (ItemId.Value);
+
+            textProfileCode.Text = epp.ProfileCode;
+            textProfileTitle.Text = epp.ProfileTitle;
+            textLanguages.Text = epp.Languages;
+            dateAccreditedToDate.SelectedDate = epp.AccreditedToDate;
+            dateCommunityAccreditedToDate.SelectedDate = epp.CommunityAccreditedToDate;
+            datetimeStartDate.SelectedDate = epp.StartDate;
+            datetimeEndDate.SelectedDate = epp.EndDate;
+            comboEduLevel.SelectByValue (epp.EduLevelId);
+            treeDivision.SelectAndExpandByValue (epp.DivisionId.ToString ());
 
             // update comboEduProgram, if needed
             var currentEduLevelId = int.Parse (comboEduProgramLevel.SelectedValue);
-            if (item.EduProgram.EduLevelID != currentEduLevelId) {
-                comboEduProgramLevel.SelectByValue (item.EduProgram.EduLevelID);
-                BindEduPrograms (item.EduProgram.EduLevelID);
+            if (epp.EduProgram.EduLevelID != currentEduLevelId) {
+                comboEduProgramLevel.SelectByValue (epp.EduProgram.EduLevelID);
+                BindEduPrograms (epp.EduProgram.EduLevelID);
             }
 
-            comboEduProgram.SelectByValue (item.EduProgramID);
-            comboEduLevel.SelectByValue (item.EduLevelId);
+            comboEduProgram.SelectByValue (epp.EduProgramID);
+            comboEduLevel.SelectByValue (epp.EduLevelId);
 
-            auditControl.Bind (item);
+            auditControl.Bind (epp);
 
             // sort documents
-            var documents = item.Documents
+            var documents = epp.Documents
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
                 .ToList ();
 
-            formEditDocuments.SetData (documents, item.EduProgramProfileID);
-            formEditEduForms.SetData (item.EduProgramProfileForms.ToList (), item.EduProgramProfileID);
+            formEditDocuments.SetData (documents, epp.EduProgramProfileID);
+            formEditEduForms.SetData (epp.EduProgramProfileForms.ToList (), epp.EduProgramProfileID);
+        }
+
+        protected override void OnButtonUpdateClick (object sender, EventArgs e)
+        {
+            // HACK: Dispose current model context used in load to create new one for update
+            modelContext.Dispose ();
+            modelContext = null;
+
+            base.OnButtonUpdateClick (sender, e);
         }
 
         protected override void BeforeUpdateItem (EduProgramProfileInfo item)
@@ -193,8 +202,14 @@ namespace R7.University.Launchpad
             item.CommunityAccreditedToDate = dateCommunityAccreditedToDate.SelectedDate;
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
+
+            // update references
             item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
+            item.EduProgram = ModelContext.Get<EduProgramInfo> (item.EduProgramID);
+
             item.EduLevelId = int.Parse (comboEduLevel.SelectedValue);
+            item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelId);
+
             item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 
             if (ItemId == null) {
@@ -216,11 +231,16 @@ namespace R7.University.Launchpad
             }
         }
 
+        protected EduProgramProfileInfo GetItemWithDependencies (int itemId)
+        {
+            return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
+        }
+
         #region implemented abstract members of EditPortalModuleBase
 
         protected override EduProgramProfileInfo GetItem (int itemId)
         {
-            return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
+            return ModelContext.Get<EduProgramProfileInfo> (itemId);
         }
 
         protected override int AddItem (EduProgramProfileInfo item)
