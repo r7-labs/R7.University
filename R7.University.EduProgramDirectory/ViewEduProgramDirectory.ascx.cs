@@ -32,8 +32,8 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EduProgramDirectory.Components;
+using R7.University.EduProgramDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
@@ -103,10 +103,10 @@ namespace R7.University.EduProgramDirectory
                 if (!IsPostBack) {
                     IEnumerable<IEduProgram> baseEduPrograms;
                     if (Settings.DivisionId == null) {
-                        baseEduPrograms = ModelContext.QueryEduPrograms_ByEduLevels (Settings.EduLevels);
+                        baseEduPrograms = new EduProgramQuery (ModelContext).ListByEduLevels (Settings.EduLevels);
                     }
                     else {
-                        baseEduPrograms = ModelContext.QueryEduPrograms_ByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
+                        baseEduPrograms = new EduProgramQuery (ModelContext).ListByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
                     }
 
                     var viewModelIndexer = new ViewModelIndexer (1);

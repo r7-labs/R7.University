@@ -20,8 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using R7.University.Components;
 using R7.University.Data;
 
@@ -57,41 +55,5 @@ namespace R7.University.Models
         }
 
         #endregion
-
-        #region Custom methods
-
-        // TODO: Convert to queries
-
-        public IQueryable<EduProgramInfo> QueryEduPrograms ()
-        {
-            return Query<EduProgramInfo> ()
-                .Include (ep => ep.EduLevel)
-                .Include (ep => ep.Documents)
-                .Include (ep => ep.Documents.Select (d => d.DocumentType));
-        }
-
-        public IQueryable<EduProgramInfo> QueryEduPrograms_ByEduLevels (IList<int> eduLevelIds)
-        {
-            if (eduLevelIds.Count > 0) {
-                return QueryEduPrograms ()
-                   .Where (ep => eduLevelIds.Contains (ep.EduLevelID));
-            }
-
-            return QueryEduPrograms ();
-        }
-
-        public IQueryable<EduProgramInfo> QueryEduPrograms_ByDivisionAndEduLevels (int divisionId, IList<int> eduLevelIds)
-        {
-            if (eduLevelIds.Count > 0) {
-                return QueryEduPrograms ()
-                    .Where (ep => ep.DivisionId == divisionId && eduLevelIds.Contains (ep.EduLevelID));
-            }
-
-            return QueryEduPrograms ()
-                .Where (ep => ep.DivisionId == divisionId);
-        }
-
-        #endregion
     }
 }
-
