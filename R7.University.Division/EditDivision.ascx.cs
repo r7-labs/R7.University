@@ -215,8 +215,10 @@ namespace R7.University.Division
         protected override void OnButtonUpdateClick (object sender, EventArgs e)
         {
             // HACK: Dispose current model context used in load to create new one for update
-            modelContext.Dispose ();
-            modelContext = null;
+            if (modelContext != null) {
+                modelContext.Dispose ();
+                modelContext = null;
+            }
 
             base.OnButtonUpdateClick (sender, e);
         }

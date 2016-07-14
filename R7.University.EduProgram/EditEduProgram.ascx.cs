@@ -217,8 +217,10 @@ namespace R7.University.EduProgram
         protected void buttonUpdate_Click (object sender, EventArgs e)
         {
             // HACK: Dispose current model context used in load to create new one for update
-            modelContext.Dispose ();
-            modelContext = null;
+            if (modelContext != null) {
+                modelContext.Dispose ();
+                modelContext = null;
+            }
 
             try {
                 EduProgramInfo item;
