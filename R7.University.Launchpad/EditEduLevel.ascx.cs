@@ -76,6 +76,15 @@ namespace R7.University.Launchpad
             comboParentEduLevel.SelectByValue (item.ParentEduLevelId);
         }
 
+        protected override void OnButtonUpdateClick (object sender, EventArgs e)
+        {
+            // HACK: Dispose current model context used in load to create new one for update
+            modelContext.Dispose ();
+            modelContext = null;
+
+            base.OnButtonUpdateClick (sender, e);
+        }
+
         protected override void BeforeUpdateItem (EduLevelInfo item)
         {
             item.Title = textTitle.Text.Trim ();
