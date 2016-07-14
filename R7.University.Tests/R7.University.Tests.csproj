@@ -77,7 +77,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ModelExtensions\" />
     <Folder Include="Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
