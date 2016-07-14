@@ -216,6 +216,10 @@ namespace R7.University.EduProgram
         /// </param>
         protected void buttonUpdate_Click (object sender, EventArgs e)
         {
+            // HACK: Dispose current model context used in load to create new one for update
+            modelContext.Dispose ();
+            modelContext = null;
+
             try {
                 EduProgramInfo item;
                 var isNew = false;
@@ -238,8 +242,11 @@ namespace R7.University.EduProgram
                 item.Generation = textGeneration.Text.Trim ();
                 item.StartDate = datetimeStartDate.SelectedDate;
                 item.EndDate = datetimeEndDate.SelectedDate;
-                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
                 item.HomePage = urlHomePage.Url;
+
+                // update references
+                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
+                item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
                 item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 
                 if (itemId == null) {
