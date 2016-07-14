@@ -135,7 +135,7 @@ namespace R7.University.Controls
 
         public void SetTargetItemId (int targetItemId, string targetItemKey)
         {
-            DocumentExtensions.SetModelId (this, targetItemKey, targetItemId);
+            this.SetModelId ((DocumentModel) Enum.Parse (typeof (DocumentModel), targetItemKey), targetItemId);
         }
 
         #endregion

@@ -37,16 +37,16 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void UpdateDocuments (IList<DocumentInfo> documents, string model, int itemId)
+        public void UpdateDocuments (IList<DocumentInfo> documents, DocumentModel model, int itemId)
         {
             var originalDocuments = default (IList<DocumentInfo>);
 
-            if (model == "EduProgram") {
+            if (model == DocumentModel.EduProgram) {
                 originalDocuments = ModelContext.Query<DocumentInfo> ()
                     .Where (d => d.EduProgramId == itemId)
                     .ToList ();
             }
-            else if (model == "EduProgramProfile") {
+            else if (model == DocumentModel.EduProgramProfile) {
                 originalDocuments = ModelContext.Query<DocumentInfo> ()
                     .Where (d => d.EduProgramProfileId == itemId)
                     .ToList ();

@@ -191,6 +191,7 @@
     <Compile Include="Queries\EduLevelQuery.cs" />
     <Compile Include="Queries\EduProgramCommonQuery.cs" />
     <Compile Include="Queries\EduProgramProfileQueryBase.cs" />
+    <Compile Include="Models\DocumentModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
