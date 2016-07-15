@@ -24,7 +24,7 @@
     <data name="labelAutoTitle.Text">
         <value>Automatic Title:</value>
     </data>
-    <data name="labelEduProgram.Help">
+    <data name="labelAutoTitle.Help">
         <value>Check to use displayed educational program title as module title.</value>
     </data>
 </root>
