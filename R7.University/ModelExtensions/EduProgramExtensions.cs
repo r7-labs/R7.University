@@ -28,45 +28,6 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramExtensions
     {
-        public static IEnumerable<IEduProgram> WithEduLevel (this IEnumerable<IEduProgram> eduPrograms,
-            IEnumerable<IEduLevel> eduLevels)
-        {
-            return eduPrograms.Join (eduLevels, ep => ep.EduLevelID, el => el.EduLevelID,
-                (ep, el) => {
-                    ep.EduLevel = el;
-                    return ep;
-                }
-            );
-        }
-
-        public static IEduProgram WithEduProgramProfiles (this IEduProgram eduProgram, IEnumerable<IEduProgramProfile> eduProgramProfiles)
-        {
-            eduProgram.EduProgramProfiles = eduProgramProfiles
-                .Where (epp => epp.EduProgramID == eduProgram.EduProgramID)
-                .ToList ();
-            
-            return eduProgram;
-        }
-
-        public static IEnumerable<IEduProgram> WithDocuments (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocument> documents)
-        {
-            return eduPrograms.GroupJoin (documents.DefaultIfEmpty (), ep => "EduProgramID=" + ep.EduProgramID, d => d.ItemID,
-                (ep, docs) => {
-                    ep.Documents = docs.ToList ();
-                    return ep;
-                }
-            );
-        }
-
-        public static IEnumerable<IEduProgram> WithDocumentTypes (this IEnumerable<IEduProgram> eduPrograms, IEnumerable<IDocumentType> documentTypes)
-        {
-            foreach (var eduProgram in eduPrograms) {
-                eduProgram.Documents = eduProgram.Documents.WithDocumentType (documentTypes).ToList ();
-            }
-
-            return eduPrograms;
-        }
-
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgram eduProgram, SystemDocumentType documentType)
         {
             return eduProgram.Documents.Where (d => d.GetSystemDocumentType () == documentType);

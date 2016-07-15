@@ -30,19 +30,20 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
-using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
+using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.Employee.Components;
+using R7.University.Employee.Queries;
+using R7.University.Employee.ViewModels;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 
@@ -64,6 +65,25 @@ namespace R7.University.Employee
         #endregion
 
         private int? itemId = null;
+
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
 
         #region Properties
 
@@ -120,12 +140,30 @@ namespace R7.University.Employee
             get { 
                 var commonAchievements = ViewState ["commonAchievements"] as List<AchievementInfo>;
                 if (commonAchievements == null) {
-                    commonAchievements = UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ().ToList ();
+                    commonAchievements = (List<AchievementInfo>) new FlatQuery<AchievementInfo> (ModelContext).List ();
                     ViewState ["commonAchievements"] = commonAchievements;
                 }
 				
                 return commonAchievements;
             }
+        }
+
+        protected List<OccupiedPositionEditViewModel> OccupiedPositions
+        {
+            get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditViewModel>> (ViewState ["occupiedPositions"]); }
+            set { ViewState ["occupiedPositions"] = XmlSerializationHelper.Serialize (value); }
+        }
+
+        protected List<EmployeeDisciplineEditViewModel> Disciplines
+        {
+            get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineEditViewModel>> (ViewState ["disciplines"]); }
+            set { ViewState ["disciplines"] = XmlSerializationHelper.Serialize (value); }
+        }
+
+        protected List<EmployeeAchievementEditViewModel> Achievements
+        {
+            get { return XmlSerializationHelper.Deserialize<List<EmployeeAchievementEditViewModel>> (ViewState ["achievements"]); }
+            set { ViewState ["achievements"] = XmlSerializationHelper.Serialize (value); }
         }
 
         protected string EditIconUrl
@@ -170,35 +208,25 @@ namespace R7.University.Employee
             WorkingHoursLogic.Init (this, comboWorkingHours);
 
             // if results are null or empty, lists were empty too
-            var positions = new List<PositionInfo> (UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ()
-                .OrderBy (p => p.Title));
 
-            var divisions = new List<DivisionInfo> (DivisionRepository.Instance.GetDivisions ()
-                .OrderBy (d => d.Title));
-            
-            var commonAchievements = new List<AchievementInfo> (UniversityRepository.Instance.DataProvider.GetObjects<AchievementInfo> ()
-                .OrderBy (a => a.Title));
+            var positions = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
+
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
+
+            var commonAchievements = new FlatQuery<AchievementInfo> (ModelContext).ListOrderBy (a => a.Title);
 
             ViewState ["commonAchievements"] = commonAchievements;
-
-            // add default items
-            positions.Insert (0, new PositionInfo {
-                Title = LocalizeString ("NotSelected.Text"), PositionID = Null.NullInteger
-            });
-
-            commonAchievements.Insert (0, new AchievementInfo {
-                Title = LocalizeString ("NotSelected.Text"), AchievementID = Null.NullInteger
-            });
-
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             // bind positions
             comboPositions.DataSource = positions;
             comboPositions.DataBind ();
+            comboPositions.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         
             // bind achievements
             comboAchievement.DataSource = commonAchievements;
             comboAchievement.DataBind ();
+            comboAchievement.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         
             // bind divisions
             treeDivisions.DataSource = divisions;
@@ -211,7 +239,7 @@ namespace R7.University.Employee
             comboAchievementTypes.DataBind ();
 
             // get and bind edu levels
-            var eduLevels = UniversityRepository.Instance.GetEduLevels ();
+            var eduLevels = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduLevel.DataSource = eduLevels;
             comboEduLevel.DataBind ();
 
@@ -243,7 +271,7 @@ namespace R7.University.Employee
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
                         // load the item
-                        var item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
+                        var item = new EmployeeQuery (ModelContext).SingleOrDefault (itemId.Value);
 
                         if (item != null) {
                             textLastName.Text = item.LastName;
@@ -292,48 +320,30 @@ namespace R7.University.Employee
                                 }
                             }
 
-                            // read OccupiedPositions data
-                            var occupiedPositionInfoExs = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                                                              "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC", itemId.Value);
-
                             // fill view list
-                            var occupiedPositions = new List<OccupiedPositionView> ();
-                            foreach (var op in occupiedPositionInfoExs)
-                                occupiedPositions.Add (new OccupiedPositionView (op));
+                            var occupiedPositions = item.Positions
+                                .Select (op => new OccupiedPositionEditViewModel (op)).ToList ();
 
                             // bind occupied positions
-                            ViewState ["occupiedPositions"] = occupiedPositions;
-                            gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                            OccupiedPositions = occupiedPositions;
+                            gridOccupiedPositions.DataSource = occupiedPositions;
                             gridOccupiedPositions.DataBind ();
 
-                            // read employee achievements
-                            var achievementInfos = EmployeeAchievementRepository.Instance
-                                .GetEmployeeAchievements (itemId.Value);
-
                             // fill achievements list
-                            var achievements = new List<EmployeeAchievementView> ();
-                            foreach (var achievement in achievementInfos) {
-                                var achView = new EmployeeAchievementView (achievement);
-                                achView.Localize (LocalResourceFile);
-                                achievements.Add (achView);
-                            }
+                            var achievements = item.Achievements
+                                .Select (ea => new EmployeeAchievementEditViewModel (ea, LocalResourceFile)).ToList ();
 
                             // bind achievements
-                            ViewState ["achievements"] = achievements;
+                            Achievements = achievements;
                             gridAchievements.DataSource = AchievementsDataTable (achievements);
                             gridAchievements.DataBind ();
 
-                            // read employee educational programs 
-                            var disciplineInfos = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeDisciplineInfoEx> (
-                                                      "WHERE [EmployeeID] = @0", itemId.Value);
-
                             // fill disciplines list
-                            var disciplines = new List<EmployeeDisciplineView> ();
-                            foreach (var eduprogram in disciplineInfos)
-                                disciplines.Add (new EmployeeDisciplineView (eduprogram));
-
+                            var disciplines = item.Disciplines
+                                .Select (ed => new EmployeeDisciplineEditViewModel (ed)).ToList ();
+                    
                             // bind disciplines
-                            ViewState ["disciplines"] = disciplines;
+                            Disciplines = disciplines;
                             gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
                             gridDisciplines.DataBind ();
 
@@ -381,7 +391,7 @@ namespace R7.University.Employee
                 }
                 else {
                     // update existing record
-                    item = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (itemId.Value);
+                    item = ModelContext.Get<EmployeeInfo> (itemId.Value);
                 }
 
                 // fill the object
@@ -420,9 +430,9 @@ namespace R7.University.Employee
                     item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 	
                     // add employee
-                    EmployeeRepository.Instance.AddEmployee (item, GetOccupiedPositions (), 
-                        GetEmployeeAchievements (), GetEmployeeDisciplines ());
-
+                    ModelContext.Add<EmployeeInfo> (item);
+                    ModelContext.SaveChanges (false);
+                    
                     // then adding new employee from Employee or EmployeeDetails modules, 
                     // set calling module to display new employee
                     if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" ||
@@ -439,9 +449,19 @@ namespace R7.University.Employee
                     item.LastModifiedOnDate = DateTime.Now;
 
                     // update employee
-                    EmployeeRepository.Instance.UpdateEmployee (item, GetOccupiedPositions (), 
-                        GetEmployeeAchievements (), GetEmployeeDisciplines ());
+                    ModelContext.Update<EmployeeInfo> (item);
                 }
+
+                new UpdateOccupiedPositionsCommand (ModelContext)
+                    .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+
+                new UpdateEmployeeAchievementsCommand (ModelContext)
+                    .UpdateEmployeeAchievements (GetEmployeeAchievements (), item.EmployeeID);
+                
+                new UpdateEmployeeDisciplinesCommand (ModelContext)
+                    .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+
+                ModelContext.SaveChanges ();
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -454,7 +474,7 @@ namespace R7.University.Employee
 
         private List<OccupiedPositionInfo> GetOccupiedPositions ()
         {
-            var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+            var occupiedPositions = OccupiedPositions;
 					
             var occupiedPositionInfos = new List<OccupiedPositionInfo> ();
             if (occupiedPositions != null)
@@ -466,7 +486,7 @@ namespace R7.University.Employee
 
         private List<EmployeeAchievementInfo> GetEmployeeAchievements ()
         {
-            var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+            var achievements = Achievements;
 				
             var achievementInfos = new List<EmployeeAchievementInfo> ();
             if (achievements != null)
@@ -478,7 +498,7 @@ namespace R7.University.Employee
 
         private List<EmployeeDisciplineInfo> GetEmployeeDisciplines ()
         {
-            var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
+            var disciplines = Disciplines;
 
             var disciplineInfos = new List<EmployeeDisciplineInfo> ();
             if (disciplines != null)
@@ -502,7 +522,13 @@ namespace R7.University.Employee
             try {
                 // ALT: if (!Null.IsNull (itemId))
                 if (itemId.HasValue) {
-                    EmployeeRepository.Instance.DeleteEmployee (itemId.Value);
+
+                    var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
+                    ModelContext.Remove (employee);
+                    ModelContext.SaveChanges ();
+
+                    ModuleController.SynchronizeModule (ModuleId);
+
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }
@@ -647,17 +673,13 @@ namespace R7.University.Employee
                 var divisionID = int.Parse (treeDivisions.SelectedValue);
 
                 if (!Null.IsNull (positionID) && !Null.IsNull (divisionID)) {
-                    OccupiedPositionView occupiedPosition;
+                    OccupiedPositionEditViewModel occupiedPosition;
 
-                    var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
-
-                    // creating new list, if none
-                    if (occupiedPositions == null)
-                        occupiedPositions = new List<OccupiedPositionView> ();
+                    var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionEditViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        occupiedPosition = new OccupiedPositionView ();
+                        occupiedPosition = new OccupiedPositionEditViewModel ();
                     }
                     else { // update 
                         // restore ItemID from hidden field
@@ -679,8 +701,8 @@ namespace R7.University.Employee
 
                     ResetEditPositionForm ();
 
-                    ViewState ["occupiedPositions"] = occupiedPositions;
-                    gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                    OccupiedPositions = occupiedPositions;
+                    gridOccupiedPositions.DataSource = occupiedPositions;
                     gridOccupiedPositions.DataBind ();
                 }
             }
@@ -745,7 +767,7 @@ namespace R7.University.Employee
         protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                var occupiedPositions = OccupiedPositions;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -777,7 +799,7 @@ namespace R7.University.Employee
         protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
         {
             try {
-                var occupiedPositions = ViewState ["occupiedPositions"] as List<OccupiedPositionView>;
+                var occupiedPositions = OccupiedPositions;
                 if (occupiedPositions != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -786,9 +808,10 @@ namespace R7.University.Employee
 				
                     if (opFound != null) {
                         occupiedPositions.Remove (opFound);
-                        ViewState ["occupiedPositions"] = occupiedPositions;
+
+                        OccupiedPositions = occupiedPositions;
 	
-                        gridOccupiedPositions.DataSource = OccupiedPositionsDataTable (occupiedPositions);
+                        gridOccupiedPositions.DataSource = occupiedPositions;
                         gridOccupiedPositions.DataBind ();
 
                         // reset form if we deleting currently edited position
@@ -802,17 +825,12 @@ namespace R7.University.Employee
             }
         }
 
-        private DataTable OccupiedPositionsDataTable (List<OccupiedPositionView> occupiedPositions)
-        {
-            return DataTableConstructor.FromIEnumerable (occupiedPositions);
-        }
-
-        private DataTable AchievementsDataTable (List<EmployeeAchievementView> achievements)
+        private DataTable AchievementsDataTable (List<EmployeeAchievementEditViewModel> achievements)
         {
             return DataTableConstructor.FromIEnumerable (achievements);
         }
 
-        private DataTable DisciplinesDataTable (List<EmployeeDisciplineView> eduPrograms)
+        private DataTable DisciplinesDataTable (List<EmployeeDisciplineEditViewModel> eduPrograms)
         {
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
@@ -820,7 +838,7 @@ namespace R7.University.Employee
         protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                var achievements = Achievements;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -832,7 +850,7 @@ namespace R7.University.Employee
                         achievements.Remove (achievement);
 						
                         // refresh viewstate
-                        ViewState ["achievements"] = achievements;
+                        Achievements = achievements;
 	
                         // bind achievements to the gridview
                         gridAchievements.DataSource = AchievementsDataTable (achievements);
@@ -852,7 +870,7 @@ namespace R7.University.Employee
         protected void linkEditAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
+                var achievements = Achievements;
                 if (achievements != null) {
                     var itemID = e.CommandArgument.ToString ();
 	
@@ -944,18 +962,14 @@ namespace R7.University.Employee
         protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                EmployeeAchievementView achievement;
+                EmployeeAchievementEditViewModel achievement;
 
                 // get achievements list from viewstate
-                var achievements = ViewState ["achievements"] as List<EmployeeAchievementView>;
-				
-                // creating new list, if none
-                if (achievements == null)
-                    achievements = new List<EmployeeAchievementView> ();
+                var achievements = Achievements ?? new List<EmployeeAchievementEditViewModel> ();
 
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add") {
-                    achievement = new EmployeeAchievementView ();
+                    achievement = new EmployeeAchievementEditViewModel ();
                 }
                 else {
                     // restore ItemID from hidden field
@@ -971,7 +985,7 @@ namespace R7.University.Employee
                         comboAchievementTypes.SelectedValue);
                 }
                 else {
-                    var ach = CommonAchievements.Find (a => a.AchievementID.ToString () ==
+                    var ach = CommonAchievements.Single (a => a.AchievementID.ToString () ==
                         comboAchievement.SelectedValue);
 
                     achievement.Title = ach.Title;
@@ -995,7 +1009,7 @@ namespace R7.University.Employee
                 ResetEditAchievementForm ();
 
                 // refresh viewstate
-                ViewState ["achievements"] = achievements;
+                Achievements = achievements;
 
                 // bind achievements to the gridview
                 gridAchievements.DataSource = AchievementsDataTable (achievements);
@@ -1010,14 +1024,14 @@ namespace R7.University.Employee
         {
             try {
                 if (!Null.IsNull (int.Parse (comboEduProgramProfile.SelectedValue))) {
-                    EmployeeDisciplineView discipline;
+                    EmployeeDisciplineEditViewModel discipline;
 
                     // get disciplines list from viewstate
-                    var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView> ?? new List<EmployeeDisciplineView> ();
+                    var disciplines = Disciplines ?? new List<EmployeeDisciplineEditViewModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        discipline = new EmployeeDisciplineView ();
+                        discipline = new EmployeeDisciplineEditViewModel ();
                     }
                     else {
                         // restore ItemID from hidden field
@@ -1034,7 +1048,8 @@ namespace R7.University.Employee
                         discipline.EduProgramProfileID = eduProgramProfileId;
                         discipline.Disciplines = textDisciplines.Text.Trim ();
 
-                        var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+                        var profile = new R7.University.Employee.Queries.EduProgramProfileQuery (ModelContext)
+                            .SingleOrDefault (discipline.EduProgramProfileID);
 
                         discipline.Code = profile.EduProgram.Code;
                         discipline.Title = profile.EduProgram.Title;
@@ -1048,7 +1063,7 @@ namespace R7.University.Employee
                         ResetEditDisciplinesForm ();
 
                         // refresh viewstate
-                        ViewState ["disciplines"] = disciplines;
+                        Disciplines = disciplines;
 
                         // bind items to the gridview
                         gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
@@ -1068,7 +1083,7 @@ namespace R7.University.Employee
         protected void linkEditDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
+                var disciplines = Disciplines;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
@@ -1076,7 +1091,9 @@ namespace R7.University.Employee
                     var discipline = disciplines.Find (d => d.ItemID.ToString () == itemID);
 
                     if (discipline != null) {
-                        var profile = EduProgramProfileRepository.Instance.Get (discipline.EduProgramProfileID);
+                        var profile = new R7.University.Employee.Queries.EduProgramProfileQuery (ModelContext)
+                            .SingleOrDefault (discipline.EduProgramProfileID);
+                        
                         var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
                         var newEduLevelId = profile.EduLevelId;
                         if (eduLevelId != newEduLevelId) {
@@ -1105,7 +1122,7 @@ namespace R7.University.Employee
         protected void linkDeleteDisciplines_Command (object sender, CommandEventArgs e)
         {
             try {
-                var disciplines = ViewState ["disciplines"] as List<EmployeeDisciplineView>;
+                var disciplines = Disciplines;
                 if (disciplines != null) {
                     var itemID = e.CommandArgument.ToString ();
 
@@ -1117,7 +1134,7 @@ namespace R7.University.Employee
                         disciplines.RemoveAt (disciplinesIndex);
 
                         // refresh viewstate
-                        ViewState ["disciplines"] = disciplines;
+                        Disciplines = disciplines;
 
                         // bind edu discipline to the gridview
                         gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
@@ -1162,7 +1179,7 @@ namespace R7.University.Employee
 
         private void BindEduProgramProfiles (int eduLevelId)
         {
-            var epps = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevel (eduLevelId);
+            var epps = new R7.University.Employee.Queries.EduProgramProfileQuery (ModelContext).ListByEduLevel (eduLevelId);
             comboEduProgramProfile.DataSource = epps;
             comboEduProgramProfile.DataBind ();
         }

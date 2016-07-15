@@ -21,13 +21,31 @@
 
 using System;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
     public partial class EditEduForm: EditPortalModuleBase<EduFormInfo,int>
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected EditEduForm () : base ("eduform_id")
         {
         }
@@ -67,23 +85,27 @@ namespace R7.University.Launchpad
 
         protected override EduFormInfo GetItem (int itemId)
         {
-            return UniversityDataProvider.Instance.Get<EduFormInfo> (itemId);
+            return ModelContext.Get<EduFormInfo> (itemId);
         }
 
         protected override int AddItem (EduFormInfo item)
         {
-            UniversityDataProvider.Instance.Add<EduFormInfo> (item);
+            ModelContext.Add<EduFormInfo> (item);
+            ModelContext.SaveChanges ();
+
             return item.EduFormID;
         }
 
         protected override void UpdateItem (EduFormInfo item)
         {
-            UniversityDataProvider.Instance.Update<EduFormInfo> (item);
+            ModelContext.Update<EduFormInfo> (item);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduFormInfo item)
         {
-            UniversityDataProvider.Instance.Delete<EduFormInfo> (item);
+            ModelContext.Remove<EduFormInfo> (item);
+            ModelContext.SaveChanges ();
         }
 
         #endregion

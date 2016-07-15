@@ -32,6 +32,10 @@ namespace R7.University.Models
         int EduProgramProfileID { get; set; }
 
         string Disciplines { get; set; }
+
+        EmployeeInfo Employee { get; set; }
+
+        EduProgramProfileInfo EduProgramProfile { get; set; }
     }
 }
 

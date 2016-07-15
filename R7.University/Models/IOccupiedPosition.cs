@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using R7.University.Data;
 
 namespace R7.University.Models
 {
@@ -36,6 +37,12 @@ namespace R7.University.Models
         bool IsPrime { get; set; }
 
         string TitleSuffix { get; set; }
+
+        PositionInfo Position { get; set; }
+
+        DivisionInfo Division { get; set; }
+
+        EmployeeInfo Employee { get; set; }
     }
 }
 

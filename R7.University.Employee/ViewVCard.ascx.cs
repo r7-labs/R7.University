@@ -24,6 +24,7 @@ using System.Text;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Employee
 {
@@ -43,7 +44,12 @@ namespace R7.University.Employee
                 if (!IsPostBack) {
                     var employee_id = Request.QueryString ["employee_id"];
                     if (!string.IsNullOrWhiteSpace (employee_id)) {
-                        var employee = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (int.Parse (employee_id));
+
+                        var employee = default (EmployeeInfo);
+                        using (var modelContext = new UniversityModelContext ()) {
+                            employee = modelContext.Get<EmployeeInfo> (int.Parse (employee_id));
+                        }
+
                         if (employee != null) {
                             var vcard = employee.VCard;
 
@@ -58,18 +64,21 @@ namespace R7.University.Employee
                                 Response.ContentEncoding = Encoding.GetEncoding (1251);
                                 vcard.Encoding = Response.ContentEncoding;
                             }
-                            else
+                            else {
                                 Response.ContentEncoding = Encoding.UTF8;
+                            }
 
                             Response.Write (vcard.ToString ());
                             Response.Flush ();
                             Response.Close ();
                         }
-                        else
+                        else {
                             throw new Exception ("No employee found with EmployeeID=" + employee_id);
+                        }
                     }
-                    else
+                    else {
                         throw new Exception ("\"employee_id\" query parameter should not be empty");
+                    }
                 } 
             }
             catch (Exception ex) {
@@ -80,7 +89,4 @@ namespace R7.University.Employee
         #endregion
 
     }
-    // class
 }
-// namespace
-

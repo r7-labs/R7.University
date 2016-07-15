@@ -25,6 +25,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
 using R7.University.Data;
 using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.Employee.Components
 {
@@ -36,8 +37,12 @@ namespace R7.University.Employee.Components
         {
             var searchDocs = new List<SearchDocument> ();
             var settings = new EmployeeSettings (modInfo);
-            var employee = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (settings.EmployeeID);
-		
+
+            var employee = default (EmployeeInfo);
+            using (var modelContext = new UniversityModelContext ()) {
+                employee = modelContext.Get<EmployeeInfo> (settings.EmployeeID);
+            }
+
             if (employee != null && employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
                 var aboutEmployee = employee.SearchDocumentText;
                 var sd = new SearchDocument ()

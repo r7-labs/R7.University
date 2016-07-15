@@ -26,6 +26,7 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
@@ -67,14 +68,14 @@ namespace R7.University.Launchpad
             Grid.PageSize = pageSize;
         }
 
-        public virtual void DataBind (PortalModuleBase module, string search = null)
+        public virtual void DataBind (PortalModuleBase module, UniversityModelContext modelContext, string search = null)
         {
-            Grid.DataSource = GetDataTable (module, search);
+            Grid.DataSource = GetDataTable (module, modelContext, search);
             module.Session [Grid.ID] = Grid.DataSource;
             Grid.DataBind ();
         }
 
-        public abstract DataTable GetDataTable (PortalModuleBase module, string search);
+        public abstract DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search);
 
         public virtual string GetAddUrl (PortalModuleBase module)
         {

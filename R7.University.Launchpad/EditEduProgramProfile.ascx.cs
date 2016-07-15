@@ -20,19 +20,41 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Commands;
 using R7.University.ControlExtensions;
-using R7.University.Data;
-using R7.University.ModelExtensions;
+using R7.University.Launchpad.Queries;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
     public partial class EditEduProgramProfile: EditPortalModuleBase<EduProgramProfileInfo,int>
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected int SelectedTab
@@ -87,7 +109,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // get and bind edu. levels
-            var eduProgramLevels = UniversityRepository.Instance.GetEduProgramLevels ();
+            var eduProgramLevels = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduProgramLevel.DataSource = eduProgramLevels;
             comboEduProgramLevel.DataBind ();
 
@@ -95,11 +117,11 @@ namespace R7.University.Launchpad
             BindEduPrograms (eduProgramLevels.First ().EduLevelID);
 
             // init edit forms
-            formEditEduForms.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<EduFormInfo> ());
-            formEditDocuments.OnInit (this, UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ());
+            formEditEduForms.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).List ());
+            formEditDocuments.OnInit (this, new FlatQuery<DocumentTypeInfo> (ModelContext).List ());
 
             // fill divisions dropdown
-            var divisions = DivisionRepository.Instance.GetDivisions ().ToList ();
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;
@@ -108,14 +130,14 @@ namespace R7.University.Launchpad
 
         private void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramCommonQuery (ModelContext).ListByEduLevel (eduLevelId);
             comboEduProgram.DataBind ();
 
-            var eduProgramProfileLevels = UniversityRepository.Instance.GetEduLevels ()
-                .Where (el => el.ParentEduLevelId == eduLevelId || el.EduLevelID == eduLevelId)
-                .OrderBy (el => el.ParentEduLevelId != null); 
+            comboEduLevel.DataSource = ModelContext.Query<EduLevelInfo> ()
+                    .Where (el => el.ParentEduLevelId == eduLevelId || el.EduLevelID == eduLevelId)
+                    .OrderBy (el => el.ParentEduLevelId != null)
+                    .ToList ();
             
-            comboEduLevel.DataSource = eduProgramProfileLevels;
             comboEduLevel.DataBind ();
         }
 
@@ -126,45 +148,50 @@ namespace R7.University.Launchpad
 
         protected override void LoadItem (EduProgramProfileInfo item)
         {
-            textProfileCode.Text = item.ProfileCode;
-            textProfileTitle.Text = item.ProfileTitle;
-            textLanguages.Text = item.Languages;
-            dateAccreditedToDate.SelectedDate = item.AccreditedToDate;
-            dateCommunityAccreditedToDate.SelectedDate = item.CommunityAccreditedToDate;
-            datetimeStartDate.SelectedDate = item.StartDate;
-            datetimeEndDate.SelectedDate = item.EndDate;
-            comboEduLevel.SelectByValue (item.EduLevelId);
-            treeDivision.SelectAndExpandByValue (item.DivisionId.ToString ());
+            var epp = GetItemWithDependencies (ItemId.Value);
+
+            textProfileCode.Text = epp.ProfileCode;
+            textProfileTitle.Text = epp.ProfileTitle;
+            textLanguages.Text = epp.Languages;
+            dateAccreditedToDate.SelectedDate = epp.AccreditedToDate;
+            dateCommunityAccreditedToDate.SelectedDate = epp.CommunityAccreditedToDate;
+            datetimeStartDate.SelectedDate = epp.StartDate;
+            datetimeEndDate.SelectedDate = epp.EndDate;
+            comboEduLevel.SelectByValue (epp.EduLevelId);
+            treeDivision.SelectAndExpandByValue (epp.DivisionId.ToString ());
 
             // update comboEduProgram, if needed
             var currentEduLevelId = int.Parse (comboEduProgramLevel.SelectedValue);
-            if (item.EduProgram.EduLevelID != currentEduLevelId) {
-                comboEduProgramLevel.SelectByValue (item.EduProgram.EduLevelID);
-                BindEduPrograms (item.EduProgram.EduLevelID);
+            if (epp.EduProgram.EduLevelID != currentEduLevelId) {
+                comboEduProgramLevel.SelectByValue (epp.EduProgram.EduLevelID);
+                BindEduPrograms (epp.EduProgram.EduLevelID);
             }
 
-            comboEduProgram.SelectByValue (item.EduProgramID);
-            comboEduLevel.SelectByValue (item.EduLevelId);
+            comboEduProgram.SelectByValue (epp.EduProgramID);
+            comboEduLevel.SelectByValue (epp.EduLevelId);
 
-            auditControl.Bind (item);
+            auditControl.Bind (epp);
 
-            var documents = DocumentRepository.Instance.GetDocuments ("EduProgramProfileID=" + item.EduProgramProfileID)
-                .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
+            // sort documents
+            var documents = epp.Documents
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
-                .Cast<DocumentInfo> ()
                 .ToList ();
 
-            formEditDocuments.SetData (documents, item.EduProgramProfileID);
+            formEditDocuments.SetData (documents, epp.EduProgramProfileID);
+            formEditEduForms.SetData (epp.EduProgramProfileForms.ToList (), epp.EduProgramProfileID);
+        }
 
-            var eppForms = UniversityRepository.Instance.DataProvider.GetObjects<EduProgramProfileFormInfo> (
-                               "WHERE EduProgramProfileID = @0", item.EduProgramProfileID)
-                .WithEduForms (UniversityRepository.Instance.GetEduForms ())
-                .Cast<EduProgramProfileFormInfo> ()
-                .ToList ();
-            
-            formEditEduForms.SetData (eppForms, item.EduProgramProfileID);
+        protected override void OnButtonUpdateClick (object sender, EventArgs e)
+        {
+            // HACK: Dispose current model context used in load to create new one for update
+            if (modelContext != null) {
+                modelContext.Dispose ();
+                modelContext = null;
+            }
+
+            base.OnButtonUpdateClick (sender, e);
         }
 
         protected override void BeforeUpdateItem (EduProgramProfileInfo item)
@@ -177,8 +204,14 @@ namespace R7.University.Launchpad
             item.CommunityAccreditedToDate = dateCommunityAccreditedToDate.SelectedDate;
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
+
+            // update references
             item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
+            item.EduProgram = ModelContext.Get<EduProgramInfo> (item.EduProgramID);
+
             item.EduLevelId = int.Parse (comboEduLevel.SelectedValue);
+            item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelId);
+
             item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 
             if (ItemId == null) {
@@ -200,36 +233,56 @@ namespace R7.University.Launchpad
             }
         }
 
+        protected EduProgramProfileInfo GetItemWithDependencies (int itemId)
+        {
+            return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
+        }
+
         #region implemented abstract members of EditPortalModuleBase
 
         protected override EduProgramProfileInfo GetItem (int itemId)
         {
-            return EduProgramProfileRepository.Instance.Get (itemId);
+            return ModelContext.Get<EduProgramProfileInfo> (itemId);
         }
 
         protected override int AddItem (EduProgramProfileInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Add<EduProgramProfileInfo> (item);
+            ModelContext.Add (item);
+
+            ModelContext.SaveChanges (false);
+
+            new UpdateDocumentsCommand (ModelContext)
+                .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
+
+            new UpdateEduProgramProfileFormsCommand (ModelContext)
+                .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+            
+            ModelContext.SaveChanges ();
+
             return item.EduProgramProfileID;
         }
 
         protected override void UpdateItem (EduProgramProfileInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Update<EduProgramProfileInfo> (item);
+            // REVIEW: Use single transaction to update main entity along with all dependent ones?
 
-            // update referenced items
-            DocumentRepository.Instance.UpdateDocuments (
-                formEditDocuments.GetData (),
-                "EduProgramProfileID",
-                item.EduProgramProfileID);
-            EduProgramProfileFormRepository.Instance.UpdateEduProgramProfileForms (
-                formEditEduForms.GetData (),
-                item.EduProgramProfileID);
+            ModelContext.Update (item);
+
+            new UpdateDocumentsCommand (ModelContext)
+                .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
+
+            new UpdateEduProgramProfileFormsCommand (ModelContext)
+                .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Delete<EduProgramProfileInfo> (item);
+            // TODO: Also remove documents
+
+            ModelContext.Remove (item);
+            ModelContext.SaveChanges ();
         }
 
         #endregion

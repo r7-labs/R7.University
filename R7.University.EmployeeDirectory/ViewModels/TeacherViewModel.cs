@@ -64,12 +64,12 @@ namespace R7.University.EmployeeDirectory.ViewModels
         public string Positions_String
         {
             get {
-                var positions = Model.OccupiedPositions
+                var positions = Model.Positions
                     .OrderByDescending (op => op.IsPrime)
-                    .ThenByDescending (op => op.PositionWeight);
+                    .ThenByDescending (op => op.Position.Weight);
 
                 return TextUtils.FormatList ("; ", 
-                    positions.Select (op => TextUtils.FormatList (": ", op.PositionTitle, op.DivisionTitle))
+                    positions.Select (op => TextUtils.FormatList (": ", op.Position.Title, op.Division.Title))
                 );
             }
         }

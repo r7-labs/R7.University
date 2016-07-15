@@ -111,9 +111,6 @@ GO
 DROP PROCEDURE {databaseOwner}[{objectQualifier}University_FindDivisions]
 GO
 
-DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetHeadEmployee]
-GO
-
 DROP FUNCTION {databaseOwner}[{objectQualifier}University_DivisionsHierarchy]
 GO
 
@@ -129,9 +126,6 @@ DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeesTotalWeight]
 GO
 
 DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
-GO
-
-DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeDisciplines]
 GO
 
 -- Drop tables

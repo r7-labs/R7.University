@@ -53,11 +53,12 @@ namespace R7.University.EduProgramDirectory.Components
             set { WriteModuleSetting<int?> ("EduProgramDirectory_DivisionId", value); }
         }
 
-        public IList<string> EduLevels
+        public IList<int> EduLevels
         {
             get {
                 return ReadSetting<string> ("EduProgramDirectory_EduLevels", string.Empty)
                     .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select (el => int.Parse (el))
                     .ToList ();
             }
             set {

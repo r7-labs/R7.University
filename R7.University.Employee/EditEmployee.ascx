@@ -337,7 +337,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="ItemID" />
-                            <asp:BoundField DataField="EduProfileString" HeaderText="EduProfile" />
+                            <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />
                             <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
                         </Columns>
                     </asp:GridView>

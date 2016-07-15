@@ -23,8 +23,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Data;
+using R7.University.Models;
 using R7.University.ViewModels;
+using DotNetNuke.UI.Modules;
 
 namespace R7.University.ModelExtensions
 {
@@ -35,21 +36,21 @@ namespace R7.University.ModelExtensions
         /// </summary>
         /// <returns>The occupied positions grouped by division.</returns>
         /// <param name="occupiedPositions">The occupied positions to group by division.</param>
-        public static IEnumerable<OccupiedPositionInfoEx> GroupByDivision (this IEnumerable<OccupiedPositionInfoEx> occupiedPositions)
+        public static IEnumerable<OccupiedPositionInfo> GroupByDivision (this IEnumerable<OccupiedPositionInfo> occupiedPositions)
         {
             var opList = occupiedPositions.ToList ();
 
             for (var i = 0; i < opList.Count; i++) {
                 var op = opList [i];
                 // first combine position short title with it's suffix
-                op.PositionShortTitle = TextUtils.FormatList (" ", 
-                    FormatHelper.FormatShortTitle (op.PositionShortTitle, op.PositionTitle), 
+                op.Position.ShortTitle = TextUtils.FormatList (" ", 
+                    FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title), 
                     op.TitleSuffix);
 
                 for (var j = i + 1; j < opList.Count;) {
                     if (op.DivisionID == opList [j].DivisionID) {
-                        op.PositionShortTitle += ", " + TextUtils.FormatList (" ", 
-                            FormatHelper.FormatShortTitle (opList [j].PositionShortTitle, opList [j].PositionTitle), 
+                        op.Position.ShortTitle += ", " + TextUtils.FormatList (" ", 
+                            FormatHelper.FormatShortTitle (opList [j].Position.ShortTitle, opList [j].Position.Title), 
                             opList [j].TitleSuffix);
 
                         // remove groupped item
@@ -61,6 +62,21 @@ namespace R7.University.ModelExtensions
             }
 
             return opList;
+        }
+
+        public static string FormatDivisionLink (this OccupiedPositionInfo op, IModuleControl module)
+        {
+            // do not display division title for high-level divisions
+            if (op.Division.ParentDivisionID != null) {
+                var strDivision = FormatHelper.FormatShortTitle (op.Division.ShortTitle, op.Division.Title);
+                if (!string.IsNullOrWhiteSpace (op.Division.HomePage))
+                    strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
+                        R7.University.Utilities.Utils.FormatURL (module, op.Division.HomePage, false), strDivision);
+
+                return strDivision;
+            }
+
+            return string.Empty;
         }
     }
 }

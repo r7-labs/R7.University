@@ -60,6 +60,13 @@
     <Reference Include="R7.DotNetNuke.Extensions">
       <HintPath>..\packages\R7.DotNetNuke.Extensions.0.8.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
@@ -78,7 +85,6 @@
       <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\SystemEduForm.cs" />
-    <Compile Include="ModelExtensions\EduProgramProfileFormExtensions.cs" />
     <Compile Include="Controls\EditEduForms.ascx.controls.cs">
       <DependentUpon>Controls\EditEduForms.ascx</DependentUpon>
     </Compile>
@@ -91,7 +97,6 @@
     <Compile Include="Controls\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
-    <Compile Include="Data\UniversityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\CacheHelper.cs" />
     <Compile Include="Components\CopyCstor.cs" />
@@ -105,44 +110,19 @@
     <Compile Include="ViewModels\ViewNumerator.cs" />
     <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
-    <Compile Include="Data\EduProgramProfileRepository.cs" />
-    <Compile Include="Data\EduProgramRepository.cs" />
-    <Compile Include="Data\EduProgramInfo.cs" />
     <Compile Include="Models\IEduProgram.cs" />
     <Compile Include="Models\IEduProgramProfile.cs" />
-    <Compile Include="Data\EduProgramProfileInfo.cs" />
-    <Compile Include="Data\EduProgramProfileFormInfo.cs" />
     <Compile Include="Models\IEduProgramProfileForm.cs" />
     <Compile Include="Models\IEduForm.cs" />
-    <Compile Include="Data\EduFormInfo.cs" />
     <Compile Include="Models\IDocument.cs" />
-    <Compile Include="Data\DocumentInfo.cs" />
-    <Compile Include="Data\AchievementInfo.cs" />
-    <Compile Include="Data\AchievementTypeInfo.cs" />
-    <Compile Include="Data\DivisionInfo.cs" />
-    <Compile Include="Data\DocumentTypeInfo.cs" />
     <Compile Include="Models\IDocumentType.cs" />
-    <Compile Include="Data\EduLevelInfo.cs" />
-    <Compile Include="Data\EmployeeAchievementInfo.cs" />
-    <Compile Include="Data\EmployeeDisciplineInfo.cs" />
-    <Compile Include="Data\EmployeeDisciplineInfoEx.cs" />
-    <Compile Include="Data\VCard.cs" />
-    <Compile Include="Data\VCardPhone.cs" />
-    <Compile Include="Data\OccupiedPositionInfo.cs" />
-    <Compile Include="Data\OccupiedPositionInfoEx.cs" />
-    <Compile Include="Data\EmployeeInfo.cs" />
-    <Compile Include="Data\EmployeeEqualityComparer.cs" />
-    <Compile Include="Data\PositionInfo.cs" />
     <Compile Include="ViewModels\FormatHelper.cs" />
     <Compile Include="Models\IEduLevel.cs" />
     <Compile Include="Models\IUniversityBaseEntity.cs" />
-    <Compile Include="Data\EmployeeAchievementRepository.cs" />
-    <Compile Include="Data\OccupiedPositionRepository.cs" />
     <Compile Include="Components\UniversityConfig.cs" />
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="Models\IEmployee.cs" />
     <Compile Include="ModelExtensions\EmployeeExtensions.cs" />
-    <Compile Include="Data\EmployeeRepository.cs" />
     <Compile Include="Models\IDivision.cs" />
     <Compile Include="ModelExtensions\EnumerableExtensions.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />
@@ -152,19 +132,66 @@
     <Compile Include="Models\IAchievement.cs" />
     <Compile Include="Models\AchievementType.cs" />
     <Compile Include="Models\IEmployeeDiscipline.cs" />
-    <Compile Include="Data\EmployeeDisciplineRepository.cs" />
-    <Compile Include="Data\DivisionRepository.cs" />
     <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
-    <Compile Include="Data\DocumentRepository.cs" />
-    <Compile Include="Data\EduProgramProfileFormRepository.cs" />
-    <Compile Include="Data\UniversityDataProvider.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
     <Compile Include="Components\ModuleHelper.cs" />
+    <Compile Include="Data\IDataContext.cs" />
+    <Compile Include="Data\UniversityDataContext.cs" />
+    <Compile Include="Data\UniversityDataContextFactory.cs" />
+    <Compile Include="Patterns\FactoryBase.cs" />
+    <Compile Include="Models\AchievementInfo.cs" />
+    <Compile Include="Models\AchievementTypeInfo.cs" />
+    <Compile Include="Models\DivisionInfo.cs" />
+    <Compile Include="Models\DocumentInfo.cs" />
+    <Compile Include="Models\DocumentTypeInfo.cs" />
+    <Compile Include="Models\EduFormInfo.cs" />
+    <Compile Include="Models\EduLevelInfo.cs" />
+    <Compile Include="Models\EduProgramInfo.cs" />
+    <Compile Include="Models\EduProgramProfileFormInfo.cs" />
+    <Compile Include="Models\EduProgramProfileInfo.cs" />
+    <Compile Include="Models\EmployeeAchievementInfo.cs" />
+    <Compile Include="Models\EmployeeDisciplineInfo.cs" />
+    <Compile Include="Models\EmployeeEqualityComparer.cs" />
+    <Compile Include="Models\EmployeeInfo.cs" />
+    <Compile Include="Models\OccupiedPositionInfo.cs" />
+    <Compile Include="Models\PositionInfo.cs" />
+    <Compile Include="Models\VCard.cs" />
+    <Compile Include="Models\VCardPhone.cs" />
+    <Compile Include="Data\Mappings\PositionMapping.cs" />
+    <Compile Include="Data\Mappings\EmployeeMapping.cs" />
+    <Compile Include="Data\Mappings\DivisionMapping.cs" />
+    <Compile Include="Data\Mappings\OccupiedPositionMapping.cs" />
+    <Compile Include="Data\Mappings\EduLevelMapping.cs" />
+    <Compile Include="Data\Mappings\DocumentTypeMapping.cs" />
+    <Compile Include="Data\Mappings\DocumentMapping.cs" />
+    <Compile Include="Data\Mappings\EduProgramMapping.cs" />
+    <Compile Include="Data\Mappings\EduFormMapping.cs" />
+    <Compile Include="Data\Mappings\EduProgramProfileFormMapping.cs" />
+    <Compile Include="Data\Mappings\EduProgramProfileMapping.cs" />
+    <Compile Include="Models\IModelContext.cs" />
+    <Compile Include="Models\ModelContextBase.cs" />
+    <Compile Include="Models\UniversityModelContext.cs" />
+    <Compile Include="Models\QueryableExtensions.cs" />
+    <Compile Include="Data\Mappings\EmployeeDisciplineMapping.cs" />
+    <Compile Include="Data\Mappings\EmployeeAchievementMapping.cs" />
+    <Compile Include="Data\Mappings\AchievementMapping.cs" />
+    <Compile Include="Queries\QueryBase.cs" />
+    <Compile Include="ModelExtensions\DivisionExtensions.cs" />
+    <Compile Include="Queries\FlatQuery.cs" />
+    <Compile Include="Commands\UpdateDocumentsCommand.cs" />
+    <Compile Include="Commands\UpdateEduProgramProfileFormsCommand.cs" />
+    <Compile Include="Commands\UpdateOccupiedPositionsCommand.cs" />
+    <Compile Include="Commands\UpdateEmployeeDisciplinesCommand.cs" />
+    <Compile Include="Commands\UpdateEmployeeAchievementsCommand.cs" />
+    <Compile Include="Queries\EduLevelQuery.cs" />
+    <Compile Include="Queries\EduProgramCommonQuery.cs" />
+    <Compile Include="Queries\EduProgramProfileQueryBase.cs" />
+    <Compile Include="Models\DocumentModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -182,6 +209,10 @@
     <Folder Include="ViewModels\" />
     <Folder Include="SharedLogic\" />
     <Folder Include="js\" />
+    <Folder Include="Patterns\" />
+    <Folder Include="Data\Mappings\" />
+    <Folder Include="Queries\" />
+    <Folder Include="Commands\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -231,6 +262,7 @@
     <None Include="SqlDataProvider\01.08.00.SqlDataProvider" />
     <None Include="R7.University.yml" />
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.10.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

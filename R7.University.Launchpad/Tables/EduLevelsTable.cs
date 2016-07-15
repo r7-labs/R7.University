@@ -20,9 +20,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Data;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -32,11 +34,14 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var eduLevels = UniversityRepository.Instance.DataProvider.FindObjects<EduLevelInfo> (
-                                @"WHERE CONCAT([Title], ' ', [ShortTitle]) LIKE N'%{0}%'", search, false);
-
+            // REVIEW: Cannot set comparison options
+            var eduLevels = (search == null)
+                ? new FlatQuery<EduLevelInfo> (modelContext).List ()
+                : new FlatQuery<EduLevelInfo> (modelContext)
+                    .ListWhere (p => p.Title.Contains (search) || p.ShortTitle.Contains (search)).ToList ();
+            
             return DataTableConstructor.FromIEnumerable (eduLevels);
         }
     }

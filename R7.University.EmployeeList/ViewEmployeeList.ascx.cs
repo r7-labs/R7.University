@@ -37,8 +37,8 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.EmployeeList.Components;
+using R7.University.EmployeeList.Queries;
 using R7.University.EmployeeList.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -49,6 +49,25 @@ namespace R7.University.EmployeeList
 {
     public partial class ViewEmployeeList: PortalModuleBase<EmployeeListSettings>, IActionable
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected string EditIconUrl
@@ -78,13 +97,15 @@ namespace R7.University.EmployeeList
 
         protected EmployeeListViewModel GetViewModel_Internal ()
         {
+            var employeeQuery = new EmployeeQuery (ModelContext);
+
             // get employees by DivisionID
+            var employeeIds = employeeQuery.ListByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType)
+                .Select (e => e.EmployeeID);
+            
             return new EmployeeListViewModel (
-                EmployeeRepository.Instance.GetEmployees_ByDivisionId (Settings.DivisionID,
-                    Settings.IncludeSubdivisions, Settings.SortType)
-                    .WithAchievements ()
-                    .WithOccupiedPositions (Settings.DivisionID),
-                DivisionRepository.Instance.GetDivision (Settings.DivisionID)
+                employeeQuery.ListByIds (employeeIds),
+                ModelContext.Get<DivisionInfo> (Settings.DivisionID)
             );
         }
 
@@ -282,14 +303,14 @@ namespace R7.University.EmployeeList
                 linkUserProfile.Visible = false;
 
             // get current employee occupied positions
-            var ops = employee.OccupiedPositions;
+            var ops = employee.Positions;
 
             // build positions value
             var positionsVisible = false;
             if (!ops.IsNullOrEmpty ()) {
                 var strOps = string.Empty;
                 foreach (var op in ops) {
-                    var strOp = FormatHelper.FormatShortTitle (op.PositionShortTitle, op.PositionTitle);
+                    var strOp = FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title);
 
                     // op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
                     strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", strOp, 

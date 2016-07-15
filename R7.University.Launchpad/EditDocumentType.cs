@@ -20,13 +20,31 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
     public partial class EditDocumentType: EditPortalModuleBase<DocumentTypeInfo,int>
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected EditDocumentType () : base ("documenttype_id")
         {
         }
@@ -67,26 +85,29 @@ namespace R7.University.Launchpad
 
         protected override DocumentTypeInfo GetItem (int itemId)
         {
-            return UniversityDataProvider.Instance.Get<DocumentTypeInfo> (itemId);
+            return ModelContext.Get<DocumentTypeInfo> (itemId);
         }
 
         protected override int AddItem (DocumentTypeInfo item)
         {
-            UniversityDataProvider.Instance.Add<DocumentTypeInfo> (item);
+            ModelContext.Add<DocumentTypeInfo> (item);
+            ModelContext.SaveChanges ();
+
             return item.DocumentTypeID;
         }
 
         protected override void UpdateItem (DocumentTypeInfo item)
         {
-            UniversityDataProvider.Instance.Update<DocumentTypeInfo> (item);
+            ModelContext.Update<DocumentTypeInfo> (item);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (DocumentTypeInfo item)
         {
-            UniversityDataProvider.Instance.Delete<DocumentTypeInfo> (item);
+            ModelContext.Remove<DocumentTypeInfo> (item);
+            ModelContext.SaveChanges ();
         }
 
         #endregion
     }
 }
-

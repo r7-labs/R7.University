@@ -22,7 +22,8 @@
 using System.Data;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -37,9 +38,13 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var documents = DocumentRepository.Instance.FindDocuments (search);
+            // REVIEW: Cannot set comparison options
+            var documents = (search == null)
+                ? new FlatQuery<DocumentInfo> (modelContext).List ()
+                : new FlatQuery<DocumentInfo> (modelContext)
+                    .ListWhere (p => p.Title.Contains (search) || p.Url.Contains (search));
 
             return DataTableConstructor.FromIEnumerable (documents);
         }

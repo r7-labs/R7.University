@@ -27,7 +27,7 @@ using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Controls
 {
@@ -39,11 +39,6 @@ namespace R7.University.Controls
         public string ForModel { get; set; }
 
         #endregion
-
-        protected override string TargetItemKey
-        {
-            get { return ForModel + "ID="; }
-        }
 
         public void OnInit (PortalModuleBase module, IEnumerable<DocumentTypeInfo> documentTypes)
         {
@@ -94,7 +89,7 @@ namespace R7.University.Controls
             item.Title = textDocumentTitle.Text.Trim ();
             item.Group = textDocumentGroup.Text.Trim ();
             item.DocumentTypeID = int.Parse (comboDocumentType.SelectedValue);
-            item.DocumentType = GetDocumentType (item.DocumentTypeID);
+            item.DocumentTypeViewModel = GetDocumentType (item.DocumentTypeID);
             item.SortIndex = TypeUtils.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
             item.StartDate = datetimeDocumentStartDate.SelectedDate;
             item.EndDate = datetimeDocumentEndDate.SelectedDate;

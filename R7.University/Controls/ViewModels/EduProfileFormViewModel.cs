@@ -44,7 +44,7 @@ namespace R7.University.Controls
         {
             var viewModel = new EduProgramProfileFormViewModel ();
             CopyCstor.Copy<IEduProgramProfileForm> (model, viewModel);
-            viewModel.EduForm = new EduFormViewModel (model.EduForm, context);
+            viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
             viewModel.Context = context;
 
             return viewModel;
@@ -83,16 +83,10 @@ namespace R7.University.Controls
         public bool IsAdmissive { get; set; }
 
         [XmlIgnore]
-        public IEduForm EduForm { get; set; }
+        [Obsolete ("Use EduFormViewModel property instead", true)] 
+        public EduFormInfo EduForm { get; set; }
 
-        [XmlIgnore]
-        public IEduProgramProfile EduProgramProfile { get; set; }
-
-        public EduFormViewModel EduFormViewModel
-        {
-            get { return (EduFormViewModel) EduForm; }
-            set { EduForm = value; }
-        }
+        public EduFormViewModel EduFormViewModel { get; set; }
 
         #endregion
 

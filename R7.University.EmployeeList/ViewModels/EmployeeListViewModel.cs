@@ -55,7 +55,7 @@ namespace R7.University.EmployeeList.ViewModels
                 var divisionId = Context.Settings.DivisionID;
 
                 // filter out selected division's head employee (according to settings)
-                return employees.Where (e => !hideHeadEmployee || !e.OccupiedPositions
+                return employees.Where (e => !hideHeadEmployee || !e.Positions
                     .Any (op => op.DivisionID == divisionId && op.PositionID == Division.HeadPositionID));
             }
             protected set { employees = value; }

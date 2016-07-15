@@ -30,10 +30,12 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Commands;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EduProgram.Components;
-using R7.University.ModelExtensions;
+using R7.University.EduProgram.Queries;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EduProgram
 {
@@ -47,6 +49,25 @@ namespace R7.University.EduProgram
 
     public partial class EditEduProgram : PortalModuleBase
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected EditEduProgramTab SelectedTab
         {
             get {
@@ -106,14 +127,14 @@ namespace R7.University.EduProgram
                 + Localization.GetString ("DeleteItem") + "');");
 
             // bind education levels
-            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduProgramLevels ();
+            comboEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduLevel.DataBind ();
 
-            var documentTypes = UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ();
+            var documentTypes = new FlatQuery<DocumentTypeInfo> (ModelContext).List ();
             formEditDocuments.OnInit (this, documentTypes);
 
-            // fill divisions dropdown
-            var divisions = DivisionRepository.Instance.GetDivisions ().ToList ();
+            // fill divisions treeview
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             treeDivision.DataSource = divisions;
@@ -141,8 +162,10 @@ namespace R7.University.EduProgram
                     // check we have an item to lookup
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
+                        
                         // load the item
-                        var item = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (itemId.Value);
+                        var item = new R7.University.EduProgram.Queries.EduProgramQuery (ModelContext)
+                            .SingleOrDefault (itemId.Value);
 
                         if (item != null) {
                             textCode.Text = item.Code;
@@ -156,12 +179,10 @@ namespace R7.University.EduProgram
 
                             auditControl.Bind (item);
 
-                            var documents = DocumentRepository.Instance.GetDocuments ("EduProgramID=" + item.EduProgramID)
-                                .WithDocumentType (UniversityRepository.Instance.DataProvider.GetObjects<DocumentTypeInfo> ())
+                            var documents = item.Documents
                                 .OrderBy (d => d.Group)
                                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                                 .ThenBy (d => d.SortIndex)
-                                .Cast<DocumentInfo> ()
                                 .ToList ();
                             
                             formEditDocuments.SetData (documents, item.EduProgramID);
@@ -195,6 +216,12 @@ namespace R7.University.EduProgram
         /// </param>
         protected void buttonUpdate_Click (object sender, EventArgs e)
         {
+            // HACK: Dispose current model context used in load to create new one for update
+            if (modelContext != null) {
+                modelContext.Dispose ();
+                modelContext = null;
+            }
+
             try {
                 EduProgramInfo item;
                 var isNew = false;
@@ -208,7 +235,7 @@ namespace R7.University.EduProgram
                 }
                 else {
                     // update existing record
-                    item = UniversityRepository.Instance.DataProvider.Get<EduProgramInfo> (itemId.Value);
+                    item = ModelContext.Get<EduProgramInfo> (itemId.Value);
                 }
 
                 // fill the object
@@ -217,8 +244,11 @@ namespace R7.University.EduProgram
                 item.Generation = textGeneration.Text.Trim ();
                 item.StartDate = datetimeStartDate.SelectedDate;
                 item.EndDate = datetimeEndDate.SelectedDate;
-                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
                 item.HomePage = urlHomePage.Url;
+
+                // update references
+                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
+                item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
                 item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
 
                 if (itemId == null) {
@@ -226,7 +256,9 @@ namespace R7.University.EduProgram
                     item.LastModifiedOnDate = item.CreatedOnDate;
                     item.CreatedByUserID = UserInfo.UserID;
                     item.LastModifiedByUserID = item.CreatedByUserID;
-                    EduProgramRepository.Instance.AddEduProgram (item, formEditDocuments.GetData ());
+
+                    ModelContext.Add<EduProgramInfo> (item);
+                    ModelContext.SaveChanges (false);
                 }
                 else {
                     item.LastModifiedOnDate = DateTime.Now;
@@ -238,7 +270,7 @@ namespace R7.University.EduProgram
                         item.CreatedByUserID = item.LastModifiedByUserID;
                     }
 
-                    EduProgramRepository.Instance.UpdateEduProgram (item, formEditDocuments.GetData ());
+                    ModelContext.Update<EduProgramInfo> (item);
                 }
 
                 // update EduProgram module settings then adding new item
@@ -246,6 +278,12 @@ namespace R7.University.EduProgram
                     var settings = new EduProgramSettings (this);
                     settings.EduProgramId = item.EduProgramID;
                 }
+
+                // update related documents
+                new UpdateDocumentsCommand (ModelContext)
+                    .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
+                
+                ModelContext.SaveChanges ();
 
                 ModuleController.SynchronizeModule (ModuleId);
 
@@ -269,7 +307,15 @@ namespace R7.University.EduProgram
         {
             try {
                 if (itemId != null) {
-                    EduProgramRepository.Instance.DeleteEduProgram (itemId.Value);
+
+                    // TODO: Also remove documents
+
+                    var item = ModelContext.Get<EduProgramInfo> (itemId.Value);
+                    ModelContext.Remove (item);
+                    ModelContext.SaveChanges ();
+
+                    ModuleController.SynchronizeModule (ModuleId);
+
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }

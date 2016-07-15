@@ -49,6 +49,8 @@ namespace R7.University.Models
         string TitleSuffix { get; set; }
 
         AchievementType? AchievementType { get; set; }
+
+        AchievementInfo Achievement { get; set; }
     }
 }
 

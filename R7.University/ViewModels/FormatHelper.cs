@@ -204,6 +204,26 @@ namespace R7.University.ViewModels
             return (!string.IsNullOrWhiteSpace (websiteLabel)) ? websiteLabel : 
                 website.Contains ("://") ? website.Remove (0, website.IndexOf ("://") + 3) : website;
         }
+
+        public static string FormatYears (int? yearBegin, int? yearEnd)
+        {
+            if (yearBegin != null && yearEnd == null)
+                return yearBegin.ToString (); 
+
+            if (yearBegin == null && yearEnd != null) {
+                if (yearEnd.Value != 0)
+                    return "? - " + yearEnd; 
+            }
+
+            if (yearBegin != null && yearEnd != null) {
+                if (yearEnd.Value != 0)
+                    return string.Format ("{0} - {1}", yearBegin, yearEnd);
+
+                return yearBegin + " - {ATM}";
+            }
+
+            return string.Empty;
+        }
     }
 }
 

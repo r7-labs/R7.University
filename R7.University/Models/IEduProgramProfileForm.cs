@@ -35,9 +35,9 @@ namespace R7.University.Models
 
         bool IsAdmissive { get; set; }
 
-        IEduForm EduForm { get; set; }
+        EduFormInfo EduForm { get; set; }
 
-        IEduProgramProfile EduProgramProfile { get; set; }
+        /*EduProgramProfileInfo EduProgramProfile { get; set; }*/
     }
 }
 

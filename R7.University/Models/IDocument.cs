@@ -29,7 +29,9 @@ namespace R7.University.Models
 
         int DocumentTypeID { get; set; }
 
-        string ItemID { get; set; }
+        int? EduProgramId { get; set; }
+
+        int? EduProgramProfileId { get; set; }
 
         string Title { get; set; }
 
@@ -43,7 +45,7 @@ namespace R7.University.Models
 
         DateTime? EndDate { get; set; }
 
-        IDocumentType DocumentType { get; set; }
+        DocumentTypeInfo DocumentType { get; set; }
     }
 
     public delegate string GetDocumentTitle (IDocument document);

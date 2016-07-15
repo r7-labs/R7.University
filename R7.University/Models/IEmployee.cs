@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using R7.University.Data;
 
 namespace R7.University.Models
 {
@@ -73,10 +72,10 @@ namespace R7.University.Models
 
         bool ShowBarcode { get; set; }
 
-        IList<IEmployeeAchievement> Achievements { get; set; }
+        ICollection<EmployeeAchievementInfo> Achievements { get; set; }
 
-        IList<IEmployeeDiscipline> Disciplines { get; set; }
+        ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
 
-        IList<OccupiedPositionInfoEx> OccupiedPositions { get; set; }
+        ICollection<OccupiedPositionInfo> Positions { get; set; }
     }
 }

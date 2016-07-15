@@ -20,27 +20,46 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EmployeeList.Components;
+using R7.University.Models;
+using R7.University.Queries;
 using R7.University.Utilities;
 
 namespace R7.University.EmployeeList
 {
     public partial class SettingsEmployeeList: ModuleSettingsBase<EmployeeListSettings>
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
             // get divisions
-            var divisions = DivisionRepository.Instance.GetDivisions ().OrderBy (d => d.Title).ToList ();
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));

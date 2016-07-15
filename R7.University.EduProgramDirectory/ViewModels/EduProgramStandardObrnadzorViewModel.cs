@@ -22,9 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DotNetNuke.Common;
-using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -43,36 +41,6 @@ namespace R7.University.EduProgramDirectory
         {
             Context = context;
             Indexer = indexer;
-        }
-
-        [Obsolete ("Use FormatHelper.FormatDocumentLinks instead")]
-        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
-        {
-            var markupBuilder = new StringBuilder ();
-            var count = 0;
-            foreach (var document in documents) {
-                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
-                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
-                    Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile),
-                    true,
-                    groupPlacement,
-                    Context.Module.TabId,
-                    Context.Module.ModuleId,
-                    microdata
-                );
-
-                if (!string.IsNullOrEmpty (linkMarkup)) {
-                    markupBuilder.Append ("<li>" + linkMarkup + "</li>");
-                    count++;
-                }
-            }
-
-            var markup = markupBuilder.ToString ();
-            if (!string.IsNullOrEmpty (markup)) {
-                return ((count == 1)? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
-            }
-
-            return string.Empty;
         }
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
@@ -109,8 +77,12 @@ namespace R7.University.EduProgramDirectory
         public string EduStandard_Links
         {
             get { 
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduStandard)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     "itemprop=\"EduStandartDoc\"",
                     DocumentGroupPlacement.InTitle
                 );
@@ -120,8 +92,12 @@ namespace R7.University.EduProgramDirectory
         public string ProfStandard_Links
         {
             get { 
-                return FormatDocumentLinks (
+                return FormatHelper.FormatDocumentLinks (
                     GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.ProfStandard)),
+                    Context,
+                    "<li>{0}</li>",
+                    "<ul class=\"list-inline\">{0}</ul>",
+                    "<ul>{0}</ul>",
                     string.Empty,
                     DocumentGroupPlacement.InTitle
                 );

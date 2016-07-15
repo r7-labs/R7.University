@@ -35,10 +35,12 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.Employee.Components;
+using R7.University.Employee.Queries;
 using R7.University.Employee.SharedLogic;
+using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SharedLogic;
@@ -48,34 +50,49 @@ namespace R7.University.Employee
 {
     public partial class ViewEmployee: PortalModuleBase<EmployeeSettings>, IActionable
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Get data
 
-        protected IEmployee GetEmployee ()
+        protected EmployeeInfo GetEmployee ()
         {
             if (Settings.ShowCurrentUser) {
                 return GetEmployee_CurrentUser_Internal ();
             }
 
-            return DataCache.GetCachedData<IEmployee> (new CacheItemArgs ("//r7_University/Modules/Employee?ModuleId=" + ModuleId,
-                UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
+            return DataCache.GetCachedData<EmployeeInfo> (new CacheItemArgs ("//r7_University/Modules/Employee?ModuleId=" + ModuleId,
+                    UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEmployee_Internal ()
             );
         }
 
-        protected IEmployee GetEmployee_Internal ()
+        protected EmployeeInfo GetEmployee_Internal ()
         {
-            return EmployeeRepository.Instance.GetEmployee (Settings.EmployeeID)
-                .WithAchievements ()
-                .WithOccupiedPositions ();
+            return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
         }
 
-        protected IEmployee GetEmployee_CurrentUser_Internal ()
+        protected EmployeeInfo GetEmployee_CurrentUser_Internal ()
         {
             var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
             if (userId != null) {
-                return EmployeeRepository.Instance.GetEmployee_ByUserId (userId.Value)
-                    .WithAchievements ()
-                    .WithOccupiedPositions ();
+                return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
             }
 
             return null;
@@ -148,8 +165,8 @@ namespace R7.University.Employee
         /// <param name="employee">Employee.</param>
         protected void Display (IEmployee employee)
         {
-            if (employee.OccupiedPositions.Any ()) {
-                repeaterPositions.DataSource = employee.OccupiedPositions;
+            if (employee.Positions.Any ()) {
+                repeaterPositions.DataSource = employee.Positions;
                 repeaterPositions.DataBind ();
             }
             else
@@ -168,6 +185,7 @@ namespace R7.University.Employee
 
             // Employee titles
             var titles = employee.Achievements
+                .Select (ach => new EmployeeAchievementViewModel (ach, new ViewModelContext (this)))
                 .Where (ach => ach.IsTitle)
                 .Select (ach => R7.University.Utilities.Utils.FirstCharToLower (
                     FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix)));

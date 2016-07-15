@@ -37,7 +37,11 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.Data;
 using R7.University.DivisionDirectory.Components;
+using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
+using R7.University.Models;
+using R7.University.Queries;
+using R7.University.ViewModels;
 
 namespace R7.University.DivisionDirectory
 {
@@ -45,6 +49,25 @@ namespace R7.University.DivisionDirectory
 
     public partial class ViewDivisionDirectory : PortalModuleBase<DivisionDirectorySettings>
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Session properties
 
         protected string SearchText
@@ -107,9 +130,8 @@ namespace R7.University.DivisionDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                var divisions = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
-                    .Where (d => d.IsPublished || IsEditable)
-                    .OrderBy (d => d.Title).ToList ();
+                var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
+                    .Where (d => d.IsPublished || IsEditable);
                 
                 treeDivisions.DataSource = divisions;
                 treeDivisions.DataBind ();
@@ -162,16 +184,10 @@ namespace R7.University.DivisionDirectory
                         }
                     }
                     else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
-                        // getting all root divisions
-                        var rootDivisions = DivisionRepository.Instance.GetRootDivisions ().OrderBy (d => d.Title);
 
-                        if (rootDivisions.Any ()) {
-                            var divisions = new List<DivisionInfo> ();
+                        var divisions = new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
 
-                            foreach (var rootDivision in rootDivisions) {
-                                divisions.AddRange (DivisionRepository.Instance.GetSubDivisions (rootDivision.DivisionID));
-                            }
-
+                        if (!divisions.IsNullOrEmpty ()) {
                             // bind divisions to the grid
                             var divisionViewModels = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
                             gridObrnadzorDivisions.DataSource = divisionViewModels;
@@ -211,8 +227,7 @@ namespace R7.University.DivisionDirectory
         protected void DoSearch (string searchText, int searchDivision)
         {
             // REVIEW: If division is not published, it's child divisions also should not
-            var divisions = DivisionRepository.Instance
-                .FindDivisions (searchText, searchDivision)
+            var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
                 .Where (d => d.IsPublished || IsEditable); 
 
             if (!divisions.Any ()) {
@@ -322,17 +337,15 @@ namespace R7.University.DivisionDirectory
                 else
                     linkDocument.Visible = false;
 
-                // contact person (head employee)
-                var contactPerson = DivisionRepository.Instance.GetHeadEmployee (
-                                        division.DivisionID,
-                                        division.HeadPositionID);
-                
-                if (contactPerson != null && contactPerson.IsPublished ()) {
-                    linkContactPerson.Text = contactPerson.AbbrName;
-                    linkContactPerson.ToolTip = contactPerson.FullName;
+                // get head employee
+                var headEmployee = new HeadEmployeeQuery (ModelContext).SingleOrDefault (division.DivisionID, division.HeadPositionID);
+
+                if (headEmployee != null && headEmployee.IsPublished ()) {
+                    linkContactPerson.Text = headEmployee.AbbrName;
+                    linkContactPerson.ToolTip = headEmployee.FullName;
                     linkContactPerson.NavigateUrl = EditUrl (
                         "employee_id",
-                        contactPerson.EmployeeID.ToString (),
+                        headEmployee.EmployeeID.ToString (),
                         "EmployeeDetails");
                 }
             }
@@ -364,22 +377,18 @@ namespace R7.University.DivisionDirectory
 
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
-                // contact person (head employee)
-                var contactPerson = DivisionRepository.Instance.GetHeadEmployee (
-                                        division.DivisionID,
-                                        division.HeadPositionID);
+                // get head employee
+                var headEmployee = new HeadEmployeeQuery (ModelContext).SingleOrDefault (division.DivisionID, division.HeadPositionID);
                 
-                if (contactPerson != null && contactPerson.IsPublished ()) {
-                    var headPosition = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                                           "WHERE [EmployeeID] = @0 AND [PositionID] = @1", 
-                                           contactPerson.EmployeeID, division.HeadPositionID).FirstOrDefault ();
-
-                    var positionTitle = (!string.IsNullOrWhiteSpace (headPosition.PositionShortTitle)) ?
-                        headPosition.PositionShortTitle : headPosition.PositionTitle;
+                if (headEmployee != null && headEmployee.IsPublished ()) {
+                    var headPosition = headEmployee.Positions
+                        .Single (op => op.DivisionID == division.DivisionID && op.PositionID == division.HeadPositionID);
+                    
+                    var positionTitle = FormatHelper.FormatShortTitle (headPosition.Position.ShortTitle, headPosition.Position.Title);
 
                     literalContactPerson.Text = "<strong><a href=\""
-                    + EditUrl ("employee_id", contactPerson.EmployeeID.ToString (), "EmployeeDetails")
-                    + "\" itemprop=\"Fio\">" + contactPerson.FullName + "</a></strong><br />"
+                    + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
+                    + "\" itemprop=\"Fio\">" + headEmployee.FullName + "</a></strong><br />"
                     + TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
                 }
 

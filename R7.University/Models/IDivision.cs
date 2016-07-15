@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace R7.University.Models
 {
@@ -62,5 +63,11 @@ namespace R7.University.Models
         DateTime? StartDate { get; set; }
 
         DateTime? EndDate { get; set; }
+
+        ICollection<DivisionInfo> SubDivisions { get; set; }
+
+        int Level { get; set; }
+
+        string Path { get; set; }
     }
 }

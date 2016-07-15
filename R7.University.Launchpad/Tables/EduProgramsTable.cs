@@ -22,7 +22,9 @@
 using System.Data;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Models;
+using System.Collections.Generic;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -32,11 +34,14 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var eduPrograms = UniversityRepository.Instance.DataProvider.FindObjects<EduProgramInfo> (
-                                  @"WHERE CONCAT([Code], ' ', [Title]) LIKE N'%{0}%'", search, false);
-
+            // REVIEW: Cannot set comparison options
+            var eduPrograms = (search == null)
+                ? new FlatQuery<EduProgramInfo> (modelContext).List ()
+                : new FlatQuery<EduProgramInfo> (modelContext)
+                    .ListWhere (ep => ep.Code.Contains (search) || ep.Title.Contains (search));
+            
             return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
     }

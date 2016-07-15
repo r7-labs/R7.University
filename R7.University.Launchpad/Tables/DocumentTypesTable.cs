@@ -19,10 +19,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Data;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -32,10 +34,13 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var documentTypes = UniversityRepository.Instance.DataProvider.FindObjects<DocumentTypeInfo> (
-                                    @"WHERE CONCAT([Type], ' ', [Description]) LIKE N'%{0}%'", search, false);
+            // REVIEW: Cannot set comparison options
+            var documentTypes = (search == null)
+                ? new FlatQuery<DocumentTypeInfo> (modelContext).List ()
+                : new FlatQuery<DocumentTypeInfo> (modelContext)
+                    .ListWhere (dt => dt.Type.Contains (search) || dt.Description.Contains (search));
 
             return DataTableConstructor.FromIEnumerable (documentTypes);
         }

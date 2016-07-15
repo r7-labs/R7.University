@@ -65,6 +65,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -100,6 +101,10 @@
     <Compile Include="ViewModels\TeacherViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeDirectoryTeachersViewModel.cs" />
+    <Compile Include="Queries\TeachersQuery.cs" />
+    <Compile Include="Queries\EmployeeQuery.cs" />
+    <Compile Include="Queries\OccupiedPositionQuery.cs" />
+    <Compile Include="Queries\EduProgramProfileQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

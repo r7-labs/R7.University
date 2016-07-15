@@ -23,8 +23,9 @@ using System.Data;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Launchpad.Queries;
 using R7.University.Launchpad.ViewModels;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
@@ -34,9 +35,9 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var eduProgramProfiles = EduProgramProfileRepository.Instance.FindEduProgramProfiles (search)
+            var eduProgramProfiles = new FindEduProgramProfileQuery (modelContext).List (search)
                 .Select (epp => new EduProgramProfileViewModel (epp));
             
             return DataTableConstructor.FromIEnumerable (eduProgramProfiles);

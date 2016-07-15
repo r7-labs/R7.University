@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
@@ -37,11 +36,13 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.Employee.Components;
+using R7.University.Employee.Queries;
 using R7.University.Employee.SharedLogic;
+using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SharedLogic;
@@ -52,6 +53,25 @@ namespace R7.University.Employee
 {
     public partial class ViewEmployeeDetails: PortalModuleBase<EmployeeSettings>, IActionable
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected bool InPopup
@@ -80,7 +100,7 @@ namespace R7.University.Employee
 
                         if (employeeId != null) {
                             // get employee by querystring param
-                            _employee = UniversityRepository.Instance.DataProvider.Get<EmployeeInfo> (employeeId.Value);
+                            _employee = new EmployeeQuery (ModelContext).SingleOrDefault (employeeId.Value);
                         }
                         else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee") {
                             // if employee id is not in the querystring, 
@@ -100,11 +120,12 @@ namespace R7.University.Employee
         {
             if (Settings.ShowCurrentUser) {
                 var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
-                if (userId != null)
-                    return EmployeeRepository.Instance.GetEmployee_ByUserId (userId.Value);
+                if (userId != null) {
+                    return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
+                }
             }
 
-            return EmployeeRepository.Instance.GetEmployee (Settings.EmployeeID);
+            return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
         }
 
 
@@ -293,11 +314,9 @@ namespace R7.University.Employee
             }
 
             // occupied positions
-            var occupiedPositions = UniversityRepository.Instance.DataProvider.GetObjects<OccupiedPositionInfoEx> (
-                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC", employee.EmployeeID);
-            
-            if (occupiedPositions.Any ()) {
-                repeaterPositions.DataSource = occupiedPositions.GroupByDivision ();
+            var occupiedPositions = employee.Positions.ToList ();
+            if (occupiedPositions.Count > 0) {
+                repeaterPositions.DataSource = occupiedPositions.GroupByDivision (); 
                 repeaterPositions.DataBind ();
             }
             else
@@ -383,11 +402,10 @@ namespace R7.University.Employee
         void EduPrograms (EmployeeInfo employee)
         {
             // get employee edu programs
-            var disciplines = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeDisciplineInfoEx> (
-                                  "WHERE [EmployeeID] = @0", employee.EmployeeID).OrderBy (d => d.Code);
+            var disciplines = employee.Disciplines.OrderBy (ed => ed.EduProgramProfile.EduProgram.Code);
 
             if (disciplines.Any ()) {
-                gridEduPrograms.DataSource = DataTableConstructor.FromIEnumerable (disciplines);
+                gridEduPrograms.DataSource = disciplines.Select (ed => new EmployeeDisciplineViewModel (ed));
                 gridEduPrograms.DataBind ();
             }
             else {
@@ -457,8 +475,7 @@ namespace R7.University.Employee
             }
 
             // get all empoyee achievements
-            var achievements = EmployeeAchievementRepository.Instance
-                .GetEmployeeAchievements (employee.EmployeeID);
+            var achievements = employee.Achievements;
             
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
@@ -478,8 +495,10 @@ namespace R7.University.Employee
                                   ach.AchievementType == AchievementType.Work)
                 .OrderByDescending (exp => exp.YearBegin);
 
+            var viewModelContext = new ViewModelContext (this);
+
             if (experiences.Any ()) {
-                gridExperience.DataSource = AchievementsDataTable (experiences);
+                gridExperience.DataSource = experiences.Select (exp => new EmployeeAchievementViewModel (exp, viewModelContext));
                 gridExperience.DataBind ();
             }
             else if (noExpYears) {
@@ -493,49 +512,17 @@ namespace R7.University.Employee
                 ach.AchievementType != AchievementType.AcademicDegree &&
                 ach.AchievementType != AchievementType.Training &&
                 ach.AchievementType != AchievementType.Work)
-                .OrderByDescending (ach => ach.YearBegin);
+                .OrderByDescending (ach => ach.YearBegin)
+                .ToList ();
 			
             if (achievements.Any ()) {
-                gridAchievements.DataSource = AchievementsDataTable (achievements);
+                gridAchievements.DataSource = achievements.Select (ach => new EmployeeAchievementViewModel (ach, viewModelContext));
                 gridAchievements.DataBind ();
             }
             else {	
                 // hide achievements tab
                 linkAchievements.Visible = false;
             }
-        }
-
-        private DataTable AchievementsDataTable (IEnumerable<EmployeeAchievementInfo> achievements)
-        {
-            var dt = new DataTable ();
-            DataRow dr;
-			
-            dt.Columns.Add (new DataColumn (LocalizeString ("Years.Column"), typeof (string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("Title.Column"), typeof (string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("AchievementType.Column"), typeof (string)));
-            dt.Columns.Add (new DataColumn (LocalizeString ("DocumentUrl.Column"), typeof (string)));
-		
-            // add description column (no need to localize as it's hidden)
-            dt.Columns.Add (new DataColumn ("Description.Column", typeof (string)));
-					
-            foreach (DataColumn column in dt.Columns)
-                column.AllowDBNull = true;
-
-            var atTheMoment = LocalizeString ("AtTheMoment.Text");
-
-            foreach (var achievement in achievements) {
-                var col = 0;
-                dr = dt.NewRow ();
-                dr [col++] = achievement.FormatYears.Replace ("{ATM}", atTheMoment);
-                dr [col++] = achievement.Title + " " + achievement.TitleSuffix;
-                dr [col++] = LocalizeString (AchievementTypeInfo.GetResourceKey (achievement.AchievementType));
-                dr [col++] = achievement.DocumentURL; 
-                dr [col++] = achievement.Description;
-					
-                dt.Rows.Add (dr);
-            }
-
-            return dt;
         }
 
         protected void grid_RowCreated (object sender, GridViewRowEventArgs e)
@@ -546,40 +533,9 @@ namespace R7.University.Employee
             }
         }
 
-        protected void gridExperience_RowDataBound (object sender, GridViewRowEventArgs e)
-        {
-            // hide description column
-            e.Row.Cells [4].Visible = false;
-			
-            // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                var description = e.Row.Cells [4].Text;
-                if (!string.IsNullOrWhiteSpace (Server.HtmlDecode (description))) {
-                    // convert to hyperlink
-                    e.Row.Cells [1].Text = string.Format ("<a data-module-id=\"{2}\" "
-                        + "data-description=\"{1}\" "
-                        + "data-dialog-title=\"{0}\" "
-                        + "onclick=\"showEmployeeAchievementDescriptionDialog(this)\">{0}</a>", 
-                        e.Row.Cells [1].Text, description, ModuleId);
-                }
-
-                // make link to the document
-                // WTF: empty DocumentURL's cells contains non-breakable spaces?
-                var documentUrl = Server.HtmlDecode (e.Row.Cells [3].Text.Replace ("&nbsp;", ""));
-                if (!string.IsNullOrWhiteSpace (documentUrl)) {
-                    e.Row.Cells [3].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                        R7.University.Utilities.UrlUtils.LinkClickIdnHack (documentUrl, TabId, ModuleId),
-                        LocalizeString ("DocumentUrl.Text"));
-                }
-            }
-        }
-
         protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             RepeaterPositionsLogic.ItemDataBound (this, sender, e);
         }
     }
-    // class
 }
-// namespace
-

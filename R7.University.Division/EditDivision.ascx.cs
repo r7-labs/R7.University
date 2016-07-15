@@ -22,16 +22,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.Division.Components;
+using R7.University.Division.Queries;
+using R7.University.Models;
+using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 
@@ -49,6 +49,25 @@ namespace R7.University.Division
             Contacts,
             Documents,
             Bindings
+        }
+
+        #endregion
+
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
         }
 
         #endregion
@@ -103,9 +122,7 @@ namespace R7.University.Division
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // fill divisions dropdown
-            var divisions = DivisionRepository.Instance.GetDivisions ()
-                            // exclude current division
-                .Where (d => (itemId == null || itemId != d.DivisionID)).OrderBy (dd => dd.Title).ToList ();
+            var divisions = new DivisionQuery (ModelContext).ListExcept (itemId);
 
             // insert default item
             divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
@@ -131,15 +148,9 @@ namespace R7.University.Division
             treeDivisionTerms.DataBind ();
 
             // bind positions
-            var positions = UniversityRepository.Instance.DataProvider.GetObjects<PositionInfo> ().OrderBy (p => p.Title).ToList ();
-            positions.Insert (0, new PositionInfo {
-                    Title = LocalizeString ("NotSelected.Text"),
-                    PositionID = Null.NullInteger
-                }
-            );
-            
-            comboHeadPosition.DataSource = positions;
+            comboHeadPosition.DataSource = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
             comboHeadPosition.DataBind ();
+            comboHeadPosition.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
 
         protected override void InitControls ()
@@ -201,6 +212,17 @@ namespace R7.University.Division
             ctlAudit.Bind (item);
         }
 
+        protected override void OnButtonUpdateClick (object sender, EventArgs e)
+        {
+            // HACK: Dispose current model context used in load to create new one for update
+            if (modelContext != null) {
+                modelContext.Dispose ();
+                modelContext = null;
+            }
+
+            base.OnButtonUpdateClick (sender, e);
+        }
+
         protected override void BeforeUpdateItem (DivisionInfo item)
         {
             // fill the object
@@ -233,7 +255,7 @@ namespace R7.University.Division
 
         protected override DivisionInfo GetItem (int itemId)
         {
-            return UniversityRepository.Instance.DataProvider.Get<DivisionInfo> (itemId);
+            return ModelContext.Get<DivisionInfo> (itemId);
         }
 
         protected override int AddItem (DivisionInfo item)
@@ -242,7 +264,8 @@ namespace R7.University.Division
             item.CreatedByUserID = item.LastModifiedByUserID = UserId;
             item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
 
-            UniversityRepository.Instance.DataProvider.Add<DivisionInfo> (item);
+            ModelContext.Add<DivisionInfo> (item);
+            ModelContext.SaveChanges ();
 
             // then adding new division from Division module, 
             // set calling module to display new division info
@@ -259,12 +282,14 @@ namespace R7.University.Division
             item.LastModifiedByUserID = UserId;
             item.LastModifiedOnDate = DateTime.Now;
 
-            UniversityRepository.Instance.DataProvider.Update<DivisionInfo> (item);
+            ModelContext.Update<DivisionInfo> (item);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (DivisionInfo item)
         {
-            UniversityRepository.Instance.DataProvider.Delete<DivisionInfo> (item);
+            ModelContext.Remove<DivisionInfo> (item);
+            ModelContext.SaveChanges ();
         }
 
         #endregion

@@ -126,31 +126,31 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
-        public IEduProgram EduProgram
+        public EduProgramInfo EduProgram
         {
             get { return Model.EduProgram; }
             set { throw new NotImplementedException (); }
         }
 
-        public IEduLevel EduLevel
+        public EduLevelInfo EduLevel
         {
             get { return Model.EduLevel; }
             set { throw new NotImplementedException (); }
         }
 
-        public IDivision Division
+        public DivisionInfo Division
         {
             get { return Model.Division; }
             set { throw new NotImplementedException (); }
         }
 
-        public IList<IEduProgramProfileForm> EduProgramProfileForms
+        public ICollection<EduProgramProfileFormInfo> EduProgramProfileForms
         {
             get { return Model.EduProgramProfileForms; }
             set { throw new NotImplementedException (); }
         }
 
-        public IList<IDocument> Documents
+        public ICollection<DocumentInfo> Documents
         {
             get { return Model.Documents; }
             set { throw new NotImplementedException (); }

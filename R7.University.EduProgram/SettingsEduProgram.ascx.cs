@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
@@ -27,18 +28,39 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EduProgram.Components;
+using R7.University.EduProgram.Queries;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EduProgram
 {    
     public partial class SettingsEduProgram : ModuleSettingsBase<EduProgramSettings>
     {
+        #region Repository handling
+
+        private IModelContext modelContext;
+        protected IModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
-            comboEduLevel.DataSource = UniversityRepository.Instance.GetEduProgramLevels ();
+            comboEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduLevel.DataBind ();
 
             BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
@@ -51,7 +73,7 @@ namespace R7.University.EduProgram
 
         protected void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = EduProgramRepository.Instance.GetEduPrograms_ByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramQuery (ModelContext).ListByEduLevel (eduLevelId);
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
@@ -66,7 +88,7 @@ namespace R7.University.EduProgram
                 if (!IsPostBack)
                 {
                     if (Settings.EduProgramId != null) {
-                        var eduProgram = EduProgramRepository.Instance.GetEduProgram (Settings.EduProgramId.Value);
+                        var eduProgram = ModelContext.Get<EduProgramInfo> (Settings.EduProgramId.Value);
                         comboEduLevel.SelectByValue (eduProgram.EduLevelID);
                         BindEduPrograms (eduProgram.EduLevelID);
                         comboEduProgram.SelectByValue (eduProgram.EduProgramID);

@@ -193,21 +193,21 @@ namespace R7.University.ViewModels
             set { throw new NotImplementedException (); }
         }
 
-        public IList<IEmployeeAchievement> Achievements
+        public ICollection<EmployeeAchievementInfo> Achievements
         {
             get { return Model.Achievements; }
             set { throw new NotImplementedException (); }
         }
 
-        public IList<IEmployeeDiscipline> Disciplines
+        public ICollection<EmployeeDisciplineInfo> Disciplines
         {
             get { return Model.Disciplines; }
             set { throw new NotImplementedException (); }
         }
 
-        public IList<OccupiedPositionInfoEx> OccupiedPositions
+        public ICollection<OccupiedPositionInfo> Positions
         {
-            get { return Model.OccupiedPositions; }
+            get { return Model.Positions; }
             set { throw new NotImplementedException (); }
         }
 

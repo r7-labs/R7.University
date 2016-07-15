@@ -92,12 +92,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EduProgramProfileDirectoryDocumentsViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileDirectoryEduFormsViewModel.cs" />
+    <Compile Include="Queries\EduProgramProfileQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="App_LocalResources\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Properties\" />
+    <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\SettingsEduProgramProfileDirectory.ascx.resx" />

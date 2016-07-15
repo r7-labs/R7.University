@@ -21,18 +21,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Division.Components
 {
-    public class DivisionController : ModuleSearchBase, IPortable
+    public class DivisionController : ModuleSearchBase
     {
         #region ModuleSearchBase implementaion
 
@@ -40,76 +35,29 @@ namespace R7.University.Division.Components
         {
             var searchDocs = new List<SearchDocument> ();
             var settings = new DivisionSettings (modInfo);
-            var division = UniversityRepository.Instance.DataProvider.Get<DivisionInfo> (settings.DivisionID);
-		
-            if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
-                var aboutDivision = division.SearchDocumentText;
-                var sd = new SearchDocument ()
-                {
-                    PortalId = modInfo.PortalID,
-                    AuthorUserId = division.LastModifiedByUserID,
-                    Title = division.Title,
-                    // Description = HtmlUtils.Shorten (aboutDivision, 255, "..."),
-                    Body = aboutDivision,
-                    ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),
-                    UniqueKey = string.Format ("University_Division_{0}", division.DivisionID),
-                    Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
-                    IsActive = true // division.IsPublished
-                };
+
+            using (var modelContext = new UniversityModelContext ()) {
+
+                var division = modelContext.Get<DivisionInfo> (settings.DivisionID);
+                if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
+                    var aboutDivision = division.SearchDocumentText;
+                    var sd = new SearchDocument ()
+                    {
+                        PortalId = modInfo.PortalID,
+                        AuthorUserId = division.LastModifiedByUserID,
+                        Title = division.Title,
+                        // Description = HtmlUtils.Shorten (aboutDivision, 255, "..."),
+                        Body = aboutDivision,
+                        ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),
+                        UniqueKey = string.Format ("University_Division_{0}", division.DivisionID),
+                        Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
+                        IsActive = true // division.IsPublished
+                    };
 	
-                searchDocs.Add (sd);
-            }
-			
-            return searchDocs;
-        }
-
-        #endregion
-
-        #region IPortable members
-
-        /// <summary>
-        /// Exports a module to XML
-        /// </summary>
-        /// <param name="ModuleID">a module ID</param>
-        /// <returns>XML string with module representation</returns>
-        public string ExportModule (int moduleId)
-        {
-            var sb = new StringBuilder ();
-            var infos = DivisionRepository.Instance.GetDivisions ();
-
-            if (infos.Any ()) {
-                sb.Append ("<Divisions>");
-                foreach (var info in infos) {
-                    sb.Append ("<Division>");
-                    sb.Append ("<content>");
-                    sb.Append (XmlUtils.XMLEncode (info.Title));
-                    sb.Append ("</content>");
-                    sb.Append ("</Division>");
+                    searchDocs.Add (sd);
                 }
-                sb.Append ("</Divisions>");
-            }
 			
-            return sb.ToString ();
-        }
-
-        /// <summary>
-        /// Imports a module from an XML
-        /// </summary>
-        /// <param name="ModuleID"></param>
-        /// <param name="Content"></param>
-        /// <param name="Version"></param>
-        /// <param name="UserID"></param>
-        public void ImportModule (int ModuleID, string Content, string Version, int UserID)
-        {
-            var infos = Globals.GetContent (Content, "Divisions");
-		
-            foreach (XmlNode info in infos.SelectNodes("Division")) {
-                var item = new DivisionInfo ();
-
-                item.Title = info.SelectSingleNode ("content").InnerText;
-                item.CreatedByUserID = UserID;
-
-                UniversityRepository.Instance.DataProvider.Add<DivisionInfo> (item);
+                return searchDocs;
             }
         }
 

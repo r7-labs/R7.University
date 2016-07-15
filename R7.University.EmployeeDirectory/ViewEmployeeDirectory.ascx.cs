@@ -33,11 +33,12 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EmployeeDirectory.Components;
+using R7.University.EmployeeDirectory.Queries;
 using R7.University.EmployeeDirectory.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory
@@ -45,7 +46,26 @@ namespace R7.University.EmployeeDirectory
     // TODO: Make module instances co-exist on same page
 
     public partial class ViewEmployeeDirectory: PortalModuleBase<EmployeeDirectorySettings>
-    {
+    {   
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         private ViewModelContext viewModelContext;
@@ -112,9 +132,9 @@ namespace R7.University.EmployeeDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
-                treeDivisions.DataSource = UniversityRepository.Instance.DataProvider.GetObjects <DivisionInfo> ()
-                    .Where (d => d.IsPublished || IsEditable)
-                    .OrderBy (d => d.Title);
+                treeDivisions.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
+                    .Where (d => d.IsPublished || IsEditable);
+                
                 treeDivisions.DataBind ();
 
                 // select first node
@@ -140,13 +160,7 @@ namespace R7.University.EmployeeDirectory
         {
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
-            var eduProgramProfiles = EduProgramProfileRepository.Instance.GetEduProgramProfiles_ByEduLevels (Settings.EduLevels)
-                .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
-                .OrderBy (epp => epp.EduLevel.SortIndex)
-                .ThenBy (epp => epp.EduProgram.Code)
-                .ThenBy (epp => epp.EduProgram.Title)
-                .ThenBy (epp => epp.ProfileCode)
-                .ThenBy (epp => epp.ProfileTitle)
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).ListByEduLevels (Settings.EduLevels)
                 .Select (epp => new EduProgramProfileViewModel (epp, viewModel))
                 .ToList ();
 
@@ -164,14 +178,8 @@ namespace R7.University.EmployeeDirectory
             }
 
             if (eduProgramProfiles.Count > 0) {
-                
-                var teachers = EmployeeRepository.Instance.GetTeachers ()
-                    .WithDisciplines (UniversityRepository.Instance.DataProvider
-                        .GetObjects<EmployeeDisciplineInfo> ())
-                    .WithOccupiedPositions (UniversityRepository.Instance.DataProvider
-                        .GetObjects<OccupiedPositionInfoEx> ())
-                    .WithAchievements (EmployeeAchievementRepository.Instance.GetEmployeeAchievements ());
 
+                var teachers = new TeachersQuery (ModelContext).List ();
 
                 IEnumerable<IEmployee> eduProgramProfileTeachers;
 
@@ -336,8 +344,8 @@ namespace R7.University.EmployeeDirectory
 
         protected void DoSearch (string searchText, int searchDivision, bool teachersOnly)
         {
-            var employees = EmployeeRepository.Instance.FindEmployees (searchText, 
-                                IsEditable, teachersOnly, searchDivision);
+            var employees = new EmployeeQuery (ModelContext).FindEmployees (searchText, teachersOnly, searchDivision)
+                .Where (e => IsEditable || e.IsPublished ());
             
             if (employees.IsNullOrEmpty ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
@@ -416,13 +424,11 @@ namespace R7.University.EmployeeDirectory
                 workingPlace.Text = employee.WorkingPlace;
 
                 // try to get prime position:
-                var primePosition = UniversityRepository.Instance.DataProvider.GetObjects <OccupiedPositionInfoEx> (
-                                        "WHERE [EmployeeID] = @0 ORDER BY [IsPrime] DESC, [PositionWeight] DESC",
-                                        employee.EmployeeID).FirstOrDefault ();
+                var primePosition = new OccupiedPositionQuery (ModelContext).PrimePosition (employee.EmployeeID);
 
                 if (primePosition != null) {
                     position.Text = TextUtils.FormatList (": ",
-                        FormatHelper.FormatShortTitle (primePosition.PositionShortTitle, primePosition.PositionTitle, 
+                        FormatHelper.FormatShortTitle (primePosition.Position.ShortTitle, primePosition.Position.Title, 
                             primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }
 

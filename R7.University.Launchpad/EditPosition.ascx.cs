@@ -25,8 +25,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.Launchpad
 {
@@ -34,6 +33,25 @@ namespace R7.University.Launchpad
     {
         // ALT: private int itemId = Null.NullInteger;
         private int? itemId = null;
+
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
 
         #region Handlers
 
@@ -72,9 +90,9 @@ namespace R7.University.Launchpad
                     // check we have an item to lookup
                     // ALT: if (!Null.IsNull (itemId) 
                     if (itemId.HasValue) {
-                        // load the item
-                        var item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
 
+                        // load the item
+                        var item = ModelContext.Get<PositionInfo> (itemId.Value);
                         if (item != null) {
 											
                             txtTitle.Text = item.Title;
@@ -118,23 +136,24 @@ namespace R7.University.Launchpad
                 }
                 else {
                     // update existing record
-                    item = UniversityRepository.Instance.DataProvider.Get<PositionInfo> (itemId.Value);
+                    item = ModelContext.Get<PositionInfo> (itemId.Value);
                 }
 
-                // fill the object
-                item.Title = txtTitle.Text.Trim ();
-                item.ShortTitle = txtShortTitle.Text.Trim ();
-                item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
-                item.IsTeacher = checkIsTeacher.Checked;
+                if (item != null) {
+                    
+                    // fill the object
+                    item.Title = txtTitle.Text.Trim ();
+                    item.ShortTitle = txtShortTitle.Text.Trim ();
+                    item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
+                    item.IsTeacher = checkIsTeacher.Checked;
 
-                if (!itemId.HasValue)
-                    UniversityRepository.Instance.DataProvider.Add<PositionInfo> (item);
-                else
-                    UniversityRepository.Instance.DataProvider.Update<PositionInfo> (item);
+                    ModelContext.AddOrUpdate (item); 
+                    ModelContext.SaveChanges ();
 
-                ModuleController.SynchronizeModule (ModuleId);
+                    ModuleController.SynchronizeModule (ModuleId);
 
-                Response.Redirect (Globals.NavigateURL (), true);
+                    Response.Redirect (Globals.NavigateURL (), true);
+                }
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -153,9 +172,11 @@ namespace R7.University.Launchpad
         protected void buttonDelete_Click (object sender, EventArgs e)
         {
             try {
-                // ALT: if (!Null.IsNull (itemId))
                 if (itemId.HasValue) {
-                    UniversityRepository.Instance.DataProvider.Delete<PositionInfo> (itemId.Value);
+                    var item = ModelContext.Get<PositionInfo> (itemId.Value);
+                    ModelContext.Remove (item);
+                    ModelContext.SaveChanges ();
+
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }

@@ -32,8 +32,8 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.EduProgramDirectory.Components;
+using R7.University.EduProgramDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
@@ -42,6 +42,25 @@ namespace R7.University.EduProgramDirectory
 {
     public partial class ViewEduProgramDirectory: PortalModuleBase<EduProgramDirectorySettings>, IActionable
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         #region Properties
 
         protected string EditIconUrl
@@ -84,28 +103,27 @@ namespace R7.University.EduProgramDirectory
                 if (!IsPostBack) {
                     IEnumerable<IEduProgram> baseEduPrograms;
                     if (Settings.DivisionId == null) {
-                        baseEduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByEduLevels (Settings.EduLevels);
+                        baseEduPrograms = new EduProgramQuery (ModelContext).ListByEduLevels (Settings.EduLevels);
                     }
                     else {
-                        baseEduPrograms = EduProgramRepository.Instance.GetEduPrograms_ByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
+                        baseEduPrograms = new EduProgramQuery (ModelContext).ListByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
                     }
 
                     var viewModelIndexer = new ViewModelIndexer (1);
                     var eduPrograms = baseEduPrograms
-                        .WithDocuments (DocumentRepository.Instance.GetDocuments_ForItemType ("EduProgramID"))
-                        .WithDocumentTypes (UniversityRepository.Instance.GetDocumentTypes ())
-                        .WithEduLevel (UniversityRepository.Instance.GetEduLevels ())
                         .OrderBy (ep => ep.EduLevel.SortIndex)
                         .ThenBy (ep => ep.Code)
                         .ThenBy (ep => ep.Title)
-                        .Select (ep => new EduProgramStandardObrnadzorViewModel (
-                                              ep,
-                                              ViewModelContext,
-                                              viewModelIndexer))
                         .ToList ();
-                    
-                    if (eduPrograms.Count > 0) {
-                        gridEduStandards.DataSource = eduPrograms.Where (ep => ep.IsPublished () || IsEditable);
+
+                    var eduProgramViewModels = eduPrograms
+                        .Select (ep => new EduProgramStandardObrnadzorViewModel (
+                            ep,
+                            ViewModelContext,
+                            viewModelIndexer));
+                     
+                    if (eduProgramViewModels.Any ()) {
+                        gridEduStandards.DataSource = eduProgramViewModels.Where (ep => ep.IsPublished () || IsEditable);
                         gridEduStandards.DataBind ();
                     }
                     else {

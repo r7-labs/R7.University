@@ -20,17 +20,36 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
-using DotNetNuke.Common.Utilities;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Data;
+using R7.University.Models;
+using R7.University.ControlExtensions;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
     public partial class EditEduLevel: EditPortalModuleBase<EduLevelInfo,int>
     {
+        #region Model context
+
+        private UniversityModelContext modelContext;
+        protected UniversityModelContext ModelContext
+        {
+            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
+        }
+
+        public override void Dispose ()
+        {
+            if (modelContext != null) {
+                modelContext.Dispose ();
+            }
+
+            base.Dispose ();
+        }
+
+        #endregion
+
         protected EditEduLevel () : base ("edulevel_id")
         {
         }
@@ -39,16 +58,9 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            var eduProgramLevels = UniversityRepository.Instance.GetEduProgramLevels ().ToList ();
-            eduProgramLevels.Insert (0, new EduLevelInfo {
-                    EduLevelID = Null.NullInteger,
-                    ParentEduLevelId = null,
-                    Title = LocalizeString ("NotSelected.Text")
-                }
-            );
-
-            comboParentEduLevel.DataSource = eduProgramLevels;
+            comboParentEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboParentEduLevel.DataBind ();
+            comboParentEduLevel.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
 
         protected override void InitControls ()
@@ -64,6 +76,17 @@ namespace R7.University.Launchpad
             comboParentEduLevel.SelectByValue (item.ParentEduLevelId);
         }
 
+        protected override void OnButtonUpdateClick (object sender, EventArgs e)
+        {
+            // HACK: Dispose current model context used in load to create new one for update
+            if (modelContext != null) {
+                modelContext.Dispose ();
+                modelContext = null;
+            }
+
+            base.OnButtonUpdateClick (sender, e);
+        }
+
         protected override void BeforeUpdateItem (EduLevelInfo item)
         {
             item.Title = textTitle.Text.Trim ();
@@ -76,23 +99,27 @@ namespace R7.University.Launchpad
 
         protected override EduLevelInfo GetItem (int itemId)
         {
-            return UniversityDataProvider.Instance.Get<EduLevelInfo> (itemId);
+            return ModelContext.Get<EduLevelInfo> (itemId);
         }
 
         protected override int AddItem (EduLevelInfo item)
         {
-            UniversityDataProvider.Instance.Add<EduLevelInfo> (item);
+            ModelContext.Add (item);
+            ModelContext.SaveChanges ();
+
             return item.EduLevelID;
         }
 
         protected override void UpdateItem (EduLevelInfo item)
         {
-            UniversityDataProvider.Instance.Update<EduLevelInfo> (item);
+            ModelContext.Update (item);
+            ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduLevelInfo item)
         {
-            UniversityDataProvider.Instance.Delete<EduLevelInfo> (item);
+            ModelContext.Remove (item);
+            ModelContext.SaveChanges ();
         }
 
         #endregion

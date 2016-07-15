@@ -32,7 +32,7 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
+using R7.University.Models;
 
 namespace R7.University.DivisionDirectory
 {
@@ -45,14 +45,6 @@ namespace R7.University.DivisionDirectory
         protected ViewModelContext Context { get; set; }
 
         public string Order { get; protected set; }
-
-        public int Level { get; protected set; }
-
-        // TODO: Implement this
-        // public string HeadEmployee
-        // {
-        //      get { throw new NotImplementedException (); }
-        // }
 
         public string TitleLink
         {
@@ -152,23 +144,22 @@ namespace R7.University.DivisionDirectory
             var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext))
                 .Where (d => d.IsPublished || viewModelContext.Module.IsEditable)
                 .ToList ();
-            
-            CalculateOrderAndLevel (divisionViewModels);
+
+            CalculateOrder (divisionViewModels);
 
             return divisionViewModels;
         }
 
         /// <summary>
-        /// Calculates the hierarchical order and level of divisions.
+        /// Calculates the hierarchical order of divisions.
         /// </summary>
-        /// <param name="divisions">Divisions. Must be properly sorted before the call.</param>
-        protected static void CalculateOrderAndLevel (IList<DivisionObrnadzorViewModel> divisions)
+        /// <param name="divisions">Divisions that must be properly sorted before the call.</param>
+        protected static void CalculateOrder (IList<DivisionObrnadzorViewModel> divisions)
         {
-            // TODO: Get hierarchical data from DB, without recalculating it
+            // REVIEW: Get hierarchical data from DB, without recalculating it?
 
             const string separator = ".";
             var orderCounter = 1;
-            var level = 0;
             var orderStack = new List<int> ();
             var returnStack = new Stack<DivisionObrnadzorViewModel> ();
            
@@ -178,27 +169,21 @@ namespace R7.University.DivisionDirectory
             {
                 if (prevDivision != null)
                 {
-                    if (division.ParentDivisionID == prevDivision.ParentDivisionID)
-                    {
+                    if (division.ParentDivisionID == prevDivision.ParentDivisionID) {
                         // moving on same level
                         orderCounter++;
                     }
-                    else if (division.ParentDivisionID == prevDivision.DivisionID)
-                    {
+                    else if (division.ParentDivisionID == prevDivision.DivisionID) {
                         // moving down
                         orderStack.Add (orderCounter);
                         returnStack.Push (prevDivision);
                         orderCounter = 1;
-                        level++;
                     }
-                    else
-                    {
+                    else {
                         // moving up
-                        while (returnStack.Count > 0 && orderStack.Count > 0) 
-                        {
+                        while (returnStack.Count > 0 && orderStack.Count > 0) {
                             orderCounter = orderStack [orderStack.Count - 1];
                             orderStack.RemoveAt (orderStack.Count - 1);
-                            level--;
 
                             if (division.ParentDivisionID == returnStack.Pop ().ParentDivisionID) {
                                 break;
@@ -210,15 +195,12 @@ namespace R7.University.DivisionDirectory
                 }
 
                 // format order value
-                if (orderStack.Count == 0)
-                {
+                if (orderStack.Count == 0) {
                     division.Order = orderCounter + separator;
                     division.Level = 0;
                 }
-                else
-                {
+                else {
                     division.Order = TextUtils.FormatList (separator, orderStack) + separator + orderCounter + separator;
-                    division.Level = level;
                 }
 
                 prevDivision = division;

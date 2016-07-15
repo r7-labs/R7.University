@@ -20,17 +20,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
-using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.Data;
-using R7.University.Employee.Components;
 using R7.University.Components;
+using R7.University.ControlExtensions;
+using R7.University.Employee.Components;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Employee
 {
@@ -41,15 +41,12 @@ namespace R7.University.Employee
             base.OnInit (e);
 
             // bind employees to the combobox
-            comboEmployees.DataSource = UniversityRepository.Instance.DataProvider.GetObjects<EmployeeInfo> ().OrderBy (em => em.LastName);
-            comboEmployees.DataBind ();
+            using (var modelContext = new UniversityModelContext ()) {
+                comboEmployees.DataSource = new FlatQuery<EmployeeInfo> (modelContext).ListOrderBy (empl => empl.LastName);
+                comboEmployees.DataBind ();
+            }
 
-            // add default item
-            comboEmployees.Items.Insert (
-                0,
-                new ListItem (
-                    LocalizeString ("NotSelected.Text"),
-                    Null.NullInteger.ToString ()));
+            comboEmployees.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
 
         /// <summary>

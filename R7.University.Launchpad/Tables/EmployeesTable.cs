@@ -24,8 +24,9 @@ using System.Data;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.Launchpad.ViewModels;
+using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
@@ -35,14 +36,25 @@ namespace R7.University.Launchpad
         {
         }
 
-        public override DataTable GetDataTable (PortalModuleBase module, string search)
+        public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            var employees = UniversityRepository.Instance.DataProvider.FindObjects<EmployeeInfo> (
-                @"WHERE CONCAT([LastName], ' ', [FirstName], ' ', [OtherName], ' ',
-                [Phone], ' ', [CellPhone], ' ', [Fax], ' ', 
-                [Email], ' ', [SecondaryEmail], ' ', [WebSite], ' ',
-                [WorkingHours]) LIKE N'%{0}%'", search, false);
-            
+            // REVIEW: Cannot set comparison options
+            var employees = (search == null)
+                ? new FlatQuery<EmployeeInfo> (modelContext).List ()
+                : new FlatQuery<EmployeeInfo> (modelContext)
+                    .ListWhere (e => e.LastName.Contains (search)
+                                || e.FirstName.Contains (search)
+                                || e.OtherName.Contains (search)
+                                || e.CellPhone.Contains (search)
+                                || e.Phone.Contains (search)
+                                || e.Fax.Contains (search)
+                                || e.Email.Contains (search)
+                                || e.SecondaryEmail.Contains (search)
+                                || e.WebSite.Contains (search)
+                                || e.WebSiteLabel.Contains (search)
+                                || e.WorkingHours.Contains (search)
+                            );
+
             return DataTableConstructor.FromIEnumerable (employees.Select (e => new EmployeeViewModel (e)));
         }
     }
