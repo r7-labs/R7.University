@@ -65,7 +65,12 @@ namespace R7.University.Controls
             };
         }
 
-        #region implemented abstract members of GridAndFormEditControlBase
+        #region Implemented abstract members of GridAndFormEditControlBase
+
+        protected override string TargetItemKey
+        {
+            get { return ForModel; }
+        }
 
         protected override void OnInitControls ()
         {

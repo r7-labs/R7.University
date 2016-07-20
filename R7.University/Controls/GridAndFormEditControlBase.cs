@@ -115,11 +115,8 @@ namespace R7.University.Controls
             set { ViewState ["targetItemId"] = value; }
         }
 
-        protected virtual string TargetItemKey
-        {
-            get { return string.Empty; }
-        }
-
+        protected abstract string TargetItemKey { get; }
+   
         #endregion
 
         #region Set and get data
