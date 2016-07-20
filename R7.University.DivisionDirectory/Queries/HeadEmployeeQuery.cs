@@ -32,14 +32,14 @@ namespace R7.University.DivisionDirectory.Queries
         {
         }
 
-        public EmployeeInfo SingleOrDefault (int divisionId, int? headPositionId)
+        public EmployeeInfo FirstOrDefault (int divisionId, int? headPositionId)
         {
             if (headPositionId != null) {
                 return ModelContext.Query<EmployeeInfo> ()
                     .Include (e => e.Positions)
                     .Include (e => e.Positions.Select (op => op.Position))
                     .Where (e => e.Positions.Any (op => op.DivisionID == divisionId && op.PositionID == headPositionId))
-                    .SingleOrDefault ();
+                    .FirstOrDefault ();
             }
 
             return null;
