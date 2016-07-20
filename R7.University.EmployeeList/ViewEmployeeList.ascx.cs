@@ -313,7 +313,10 @@ namespace R7.University.EmployeeList
                 linkUserProfile.Visible = false;
 
             // get current employee occupied positions
-            var ops = employee.Positions;
+            // TODO: Restore grouping
+            var ops = employee.Positions
+                .OrderByDescending (op => op.DivisionID == Settings.DivisionID)
+                .ThenByDescending (op => op.Position.Weight);
 
             // build positions value
             var positionsVisible = false;
