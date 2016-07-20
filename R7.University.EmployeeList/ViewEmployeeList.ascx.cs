@@ -99,12 +99,19 @@ namespace R7.University.EmployeeList
         {
             var employeeQuery = new EmployeeQuery (ModelContext);
 
-            // get employees by DivisionID
-            var employeeIds = employeeQuery.ListByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType)
-                .Select (e => e.EmployeeID);
-            
+            // get employees (w/o references, sorted)
+            var sortedEmployees = employeeQuery.ListByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType).ToList ();
+
+            // get employees (with references, unsorted)
+            var filledEmployees = employeeQuery.ListByIds (sortedEmployees.Select (se => se.EmployeeID));
+
+            // update sorted employees list
+            for (var i = 0; i < sortedEmployees.Count; i++) {
+                sortedEmployees [i] = filledEmployees.Single (fe => fe.EmployeeID == sortedEmployees [i].EmployeeID);
+            }
+
             return new EmployeeListViewModel (
-                employeeQuery.ListByIds (employeeIds),
+                sortedEmployees,
                 ModelContext.Get<DivisionInfo> (Settings.DivisionID)
             );
         }
