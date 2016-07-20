@@ -29,7 +29,7 @@ using R7.University.Models;
 
 namespace R7.University.EduProgramProfileDirectory.ViewModels
 {
-    public class EduProgramProfileObrnadzorEduFormsViewModel: EduProgramProfileViewModelBase
+    internal class EduProgramProfileObrnadzorEduFormsViewModel: EduProgramProfileViewModelBase
     {
         public EduProgramProfileDirectoryEduFormsViewModel RootViewModel { get; protected set; }
 

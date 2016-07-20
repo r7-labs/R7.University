@@ -26,7 +26,7 @@ using R7.University.Models;
 
 namespace R7.University.Division
 {
-    public class SubDivisionViewModel: DivisionInfo
+    internal class SubDivisionViewModel: DivisionInfo
     {
         protected ViewModelContext Context { get; set; }
 

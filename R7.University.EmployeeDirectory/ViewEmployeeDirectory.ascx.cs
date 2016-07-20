@@ -147,7 +147,7 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
-        protected EmployeeDirectoryTeachersViewModel GetViewModel ()
+        internal EmployeeDirectoryTeachersViewModel GetViewModel ()
         {
             return DataCache.GetCachedData<EmployeeDirectoryTeachersViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EmployeeDirectory?ModuleId=" + ModuleId,
@@ -156,7 +156,7 @@ namespace R7.University.EmployeeDirectory
             ).SetContext (ViewModelContext);
         }
 
-        protected EmployeeDirectoryTeachersViewModel GetViewModel_Internal ()
+        internal EmployeeDirectoryTeachersViewModel GetViewModel_Internal ()
         {
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 

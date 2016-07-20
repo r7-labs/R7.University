@@ -29,7 +29,7 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditViewModel: IEmployeeAchievement
+    internal class EmployeeAchievementEditViewModel: IEmployeeAchievement
     {
         #region IEmployeeAchievement implementation
 

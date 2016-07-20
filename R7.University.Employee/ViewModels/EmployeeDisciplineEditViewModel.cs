@@ -28,7 +28,7 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeDisciplineEditViewModel: IEmployeeDiscipline
+    internal class EmployeeDisciplineEditViewModel: IEmployeeDiscipline
     {
         #region IEmployeeDiscipline implementation
 

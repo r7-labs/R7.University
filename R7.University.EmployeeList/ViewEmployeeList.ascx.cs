@@ -86,7 +86,7 @@ namespace R7.University.EmployeeList
         #region Handlers
 
         // REVIEW: Move to repository class?
-        protected EmployeeListViewModel GetViewModel ()
+        internal EmployeeListViewModel GetViewModel ()
         {
             var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
             return DataCache.GetCachedData<EmployeeListViewModel> (
@@ -95,7 +95,7 @@ namespace R7.University.EmployeeList
             ).SetContext (ViewModelContext);
         }
 
-        protected EmployeeListViewModel GetViewModel_Internal ()
+        internal EmployeeListViewModel GetViewModel_Internal ()
         {
             var employeeQuery = new EmployeeQuery (ModelContext);
 

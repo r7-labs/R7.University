@@ -27,7 +27,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Launchpad.ViewModels
 {
-    public class EmployeeViewModel: EmployeeViewModelBase
+    internal class EmployeeViewModel: EmployeeViewModelBase
     {
         public EmployeeViewModel (IEmployee model): base (model)
         {

@@ -25,7 +25,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory.ViewModels
 {
-    public class EduProgramProfileDirectoryDocumentsViewModel
+    internal class EduProgramProfileDirectoryDocumentsViewModel
     {
         public IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> EduProgramProfiles { get; set; }
 

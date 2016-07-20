@@ -30,7 +30,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramDirectory
 {
-    public class EduProgramStandardObrnadzorViewModel: EduProgramViewModelBase
+    internal class EduProgramStandardObrnadzorViewModel: EduProgramViewModelBase
     {
         public IIndexer Indexer { get; protected set; }
 

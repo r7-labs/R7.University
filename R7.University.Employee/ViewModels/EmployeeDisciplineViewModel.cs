@@ -25,7 +25,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Employee.ViewModels
 {
-    public class EmployeeDisciplineViewModel: IEmployeeDiscipline
+    internal class EmployeeDisciplineViewModel: IEmployeeDiscipline
     {
         public IEmployeeDiscipline Model { get; protected set; }
 

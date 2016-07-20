@@ -24,7 +24,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgram.ViewModels
 {
-    public class EduProgramModuleViewModel
+    internal class EduProgramModuleViewModel
     {
         public ViewModelContext Context { get; protected set; }
 

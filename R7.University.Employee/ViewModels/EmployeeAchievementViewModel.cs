@@ -28,7 +28,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Employee.ViewModels
 {
-    public class EmployeeAchievementViewModel: EmployeeAchievementViewModelBase
+    internal class EmployeeAchievementViewModel: EmployeeAchievementViewModelBase
     {
         public ViewModelContext Context { get; protected set; }
 

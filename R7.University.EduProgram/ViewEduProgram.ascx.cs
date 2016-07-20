@@ -47,7 +47,7 @@ namespace R7.University.EduProgram
     {
         #region Get data
 
-        protected EduProgramModuleViewModel GetViewModel ()
+        internal EduProgramModuleViewModel GetViewModel ()
         {
             return DataCache.GetCachedData<EduProgramModuleViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId,
@@ -55,7 +55,7 @@ namespace R7.University.EduProgram
                 c => GetViewModel_Internal ()).SetContext (new ViewModelContext (this));
         }
 
-        protected EduProgramModuleViewModel GetViewModel_Internal ()
+        internal EduProgramModuleViewModel GetViewModel_Internal ()
         {
             // TODO: Restore sorting of edu. program profiles
             if (Settings.EduProgramId != null) {

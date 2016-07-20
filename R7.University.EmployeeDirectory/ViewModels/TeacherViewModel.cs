@@ -30,7 +30,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
-    public class TeacherViewModel: EmployeeViewModelBase
+    internal class TeacherViewModel: EmployeeViewModelBase
     {
         public EmployeeDirectoryTeachersViewModel RootViewModel { get; protected set; }
 

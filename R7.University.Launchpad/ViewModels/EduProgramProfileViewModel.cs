@@ -26,7 +26,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Launchpad.ViewModels
 {
-    public class EduProgramProfileViewModel: EduProgramProfileViewModelBase
+    internal class EduProgramProfileViewModel: EduProgramProfileViewModelBase
     {
         public string Code
         {

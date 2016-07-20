@@ -25,7 +25,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
-    public class EmployeeAchievementViewModel: EmployeeAchievementViewModelBase
+    internal class EmployeeAchievementViewModel: EmployeeAchievementViewModelBase
     {
         public EmployeeAchievementViewModel (IEmployeeAchievement model): base (model)
         {

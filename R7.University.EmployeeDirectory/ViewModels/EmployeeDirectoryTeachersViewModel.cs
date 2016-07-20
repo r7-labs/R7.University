@@ -25,7 +25,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
-    public class EmployeeDirectoryTeachersViewModel
+    internal class EmployeeDirectoryTeachersViewModel
     {
         public IEnumerable<EduProgramProfileViewModel> EduProgramProfiles { get; set; }
 

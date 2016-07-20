@@ -90,7 +90,7 @@ namespace R7.University.EduProgramProfileDirectory
 
         #region Get data
 
-        protected EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel ()
+        internal EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel ()
         {
             return DataCache.GetCachedData<EduProgramProfileDirectoryEduFormsViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
@@ -99,7 +99,7 @@ namespace R7.University.EduProgramProfileDirectory
             ).SetContext (ViewModelContext);
         }
 
-        protected EduProgramProfileDirectoryDocumentsViewModel GetDocumentsViewModel ()
+        internal EduProgramProfileDirectoryDocumentsViewModel GetDocumentsViewModel ()
         {
             return DataCache.GetCachedData<EduProgramProfileDirectoryDocumentsViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
@@ -108,7 +108,7 @@ namespace R7.University.EduProgramProfileDirectory
             ).SetContext (ViewModelContext);
         }
 
-        protected EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel_Internal ()
+        internal EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel_Internal ()
         {
             var viewModel = new EduProgramProfileDirectoryEduFormsViewModel ();
             var indexer = new ViewModelIndexer (1);
@@ -122,7 +122,7 @@ namespace R7.University.EduProgramProfileDirectory
             return viewModel;
         }
 
-        protected EduProgramProfileDirectoryDocumentsViewModel GetDocumentsViewModel_Internal ()
+        internal EduProgramProfileDirectoryDocumentsViewModel GetDocumentsViewModel_Internal ()
         {
             var viewModel = new EduProgramProfileDirectoryDocumentsViewModel ();
             var indexer = new ViewModelIndexer (1);

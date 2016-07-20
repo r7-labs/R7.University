@@ -36,7 +36,7 @@ using R7.University.Models;
 
 namespace R7.University.DivisionDirectory
 {
-    public class DivisionObrnadzorViewModel: DivisionInfo
+    internal class DivisionObrnadzorViewModel: DivisionInfo
     {
         private const string linkFormat = "<a href=\"{0}\" {2}>{1}</a>";
 

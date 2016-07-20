@@ -28,7 +28,7 @@ using R7.University.Models;
 
 namespace R7.University.EmployeeList.ViewModels
 {
-    public class EmployeeListViewModel
+    internal class EmployeeListViewModel
     {
         public EmployeeListViewModel (IEnumerable<IEmployee> employees, IDivision division)
         {

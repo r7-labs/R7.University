@@ -148,19 +148,19 @@ namespace R7.University.Employee
             }
         }
 
-        protected List<OccupiedPositionEditViewModel> OccupiedPositions
+        internal List<OccupiedPositionEditViewModel> OccupiedPositions
         {
             get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditViewModel>> (ViewState ["occupiedPositions"]); }
             set { ViewState ["occupiedPositions"] = XmlSerializationHelper.Serialize (value); }
         }
 
-        protected List<EmployeeDisciplineEditViewModel> Disciplines
+        internal List<EmployeeDisciplineEditViewModel> Disciplines
         {
             get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineEditViewModel>> (ViewState ["disciplines"]); }
             set { ViewState ["disciplines"] = XmlSerializationHelper.Serialize (value); }
         }
 
-        protected List<EmployeeAchievementEditViewModel> Achievements
+        internal List<EmployeeAchievementEditViewModel> Achievements
         {
             get { return XmlSerializationHelper.Deserialize<List<EmployeeAchievementEditViewModel>> (ViewState ["achievements"]); }
             set { ViewState ["achievements"] = XmlSerializationHelper.Serialize (value); }
