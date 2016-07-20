@@ -250,7 +250,10 @@ namespace R7.University.EmployeeList
             linkFullName.NavigateUrl = employeeDetailsUrl;
 
             // get current employee title achievements
-            var achievements = employee.Achievements.Where (ach => ach.IsTitle);
+            var achievements = employee.Achievements
+                .Select (ea => new EmployeeAchievementViewModel (ea))
+                .Where (ach => ach.IsTitle);
+            
             var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (
                 FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix)));
 			
