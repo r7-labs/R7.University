@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
 using R7.DotNetNuke.Extensions.Utilities;
@@ -89,10 +90,19 @@ namespace R7.University.EmployeeDirectory.ViewModels
             }
         }
 
+        private IEnumerable<EmployeeAchievementViewModel> achievementViewModels;
+        protected IEnumerable<EmployeeAchievementViewModel> AchievementViewModels
+        {
+            get { 
+                return achievementViewModels
+                    ?? (achievementViewModels = Model.Achievements.Select (a => new EmployeeAchievementViewModel (a))); 
+            }
+        }
+
         public string AcademicDegrees_String
         {
             get {
-                return TextUtils.FormatList ("; ", Model.Achievements
+                return TextUtils.FormatList ("; ", AchievementViewModels
                     .Where (ach => ach.AchievementType == AchievementType.AcademicDegree)
                     .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
@@ -102,7 +112,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         public string AcademicTitles_String
         {
             get {
-                return TextUtils.FormatList ("; ", Model.Achievements
+                return TextUtils.FormatList ("; ", AchievementViewModels
                     .Where (ach => ach.AchievementType == AchievementType.AcademicTitle)
                     .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
@@ -112,7 +122,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         public string Education_String
         {
             get {
-                return TextUtils.FormatList ("; ", Model.Achievements
+                return TextUtils.FormatList ("; ", AchievementViewModels
                     .Where (ach => ach.AchievementType == AchievementType.Education)
                     .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
@@ -123,7 +133,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         public string Training_String
         {
             get {
-                return TextUtils.FormatList ("; ", Model.Achievements
+                return TextUtils.FormatList ("; ", AchievementViewModels
                     .Where (ach => ach.AchievementType == AchievementType.Training)
                     .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
