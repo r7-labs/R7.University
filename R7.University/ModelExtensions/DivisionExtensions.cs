@@ -33,7 +33,7 @@ namespace R7.University.ModelExtensions
         {
             var rootDivisions = divisions.Where (d => d.ParentDivisionID == null);
             foreach (var root in rootDivisions) {
-                CalculateLevelAndPath (root, 0, string.Empty);
+                CalculateLevelAndPath (root, -1, string.Empty);
             }
 
             return divisions;
@@ -42,14 +42,12 @@ namespace R7.University.ModelExtensions
         private static void CalculateLevelAndPath<TDivision> (TDivision division, int level, string path) 
             where TDivision: IDivision
         {
-            division.Level = level;
-            division.Path = path;
+            division.Level = level + 1;
+            division.Path = path + "/" + division.DivisionID.ToString ().PadLeft (10, '0');
 
             if (division.SubDivisions != null) {
                 foreach (var subDivision in division.SubDivisions) {
-                    CalculateLevelAndPath (subDivision, level + 1, 
-                        path + "/" + subDivision.ParentDivisionID.ToString ().PadLeft (10, '0')
-                    );
+                    CalculateLevelAndPath (subDivision, division.Level, division.Path);
                 }
             }
         }
