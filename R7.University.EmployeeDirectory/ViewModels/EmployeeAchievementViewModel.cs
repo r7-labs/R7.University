@@ -21,98 +21,14 @@
 
 using System;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
-    public class EmployeeAchievementViewModel: IEmployeeAchievement
+    public class EmployeeAchievementViewModel: EmployeeAchievementViewModelBase
     {
-        public IEmployeeAchievement Model { get; protected set; }
-
-        public EmployeeAchievementViewModel (IEmployeeAchievement model)
+        public EmployeeAchievementViewModel (IEmployeeAchievement model): base (model)
         {
-            Model = model;
         }
-
-        #region IEmployeeAchievement implementation
-
-        public int EmployeeAchievementID
-        {
-            get { return Model.EmployeeAchievementID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int EmployeeID
-        {
-            get { return Model.EmployeeID; } 
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? AchievementID
-        {
-            get { return Model.AchievementID; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Title
-        {
-            get { return (AchievementID != null) ? Model.Achievement.Title : Model.Title; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string ShortTitle
-        {
-            get { return (AchievementID != null) ? Model.Achievement.ShortTitle : Model.ShortTitle; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string Description
-        {
-            get { return Model.Description; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? YearBegin
-        {
-            get { return Model.YearBegin; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public int? YearEnd
-        {
-            get { return Model.YearEnd; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public bool IsTitle
-        {
-            get { return Model.IsTitle; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string DocumentURL
-        {
-            get { return Model.DocumentURL; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public string TitleSuffix
-        {
-            get { return Model.TitleSuffix; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public AchievementType? AchievementType
-        {
-            get { return (AchievementID != null) ? Model.Achievement.AchievementType : Model.AchievementType; }
-            set { throw new NotImplementedException (); }
-        }
-
-        public AchievementInfo Achievement
-        {
-            get { return Model.Achievement; }
-            set { throw new NotImplementedException (); }
-        }
-
-        #endregion
     }
 }
