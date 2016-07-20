@@ -64,6 +64,7 @@
     <Compile Include="Data\DataContextTests.cs" />
     <Compile Include="Data\TestDataContext.cs" />
     <Compile Include="Data\TestDataContextFactory.cs" />
+    <Compile Include="ModelExtensions\DivisionExtensionsTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />
@@ -79,5 +80,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Models\" />
+    <Folder Include="ModelExtensions\" />
   </ItemGroup>
 </Project>
