@@ -27,7 +27,7 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    internal class OccupiedPositionEditViewModel: IOccupiedPosition
+    public class OccupiedPositionEditViewModel: IOccupiedPosition
     {
         #region IOccupiedPosition implementation
 
