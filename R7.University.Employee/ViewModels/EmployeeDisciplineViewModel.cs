@@ -39,37 +39,37 @@ namespace R7.University.Employee.ViewModels
         public long EmployeeDisciplineID
         {
             get { return Model.EmployeeDisciplineID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int EmployeeID
         {
             get { return Model.EmployeeID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int EduProgramProfileID
         {
             get { return Model.EduProgramProfileID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Disciplines
         {
             get { return Model.Disciplines; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public EmployeeInfo Employee
         {
             get { return Model.Employee; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public EduProgramProfileInfo EduProgramProfile
         {
             get { return Model.EduProgramProfile; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         #endregion

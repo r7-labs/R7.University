@@ -38,79 +38,79 @@ namespace R7.University.ViewModels
         public int EmployeeAchievementID
         {
             get { return Model.EmployeeAchievementID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int EmployeeID
         {
             get { return Model.EmployeeID; } 
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? AchievementID
         {
             get { return Model.AchievementID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Title
         {
             get { return (AchievementID != null) ? Model.Achievement.Title : Model.Title; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string ShortTitle
         {
             get { return (AchievementID != null) ? Model.Achievement.ShortTitle : Model.ShortTitle; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Description
         {
             get { return Model.Description; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? YearBegin
         {
             get { return Model.YearBegin; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? YearEnd
         {
             get { return Model.YearEnd; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public bool IsTitle
         {
             get { return Model.IsTitle; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string DocumentURL
         {
             get { return Model.DocumentURL; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string TitleSuffix
         {
             get { return Model.TitleSuffix; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public AchievementType? AchievementType
         {
             get { return (AchievementID != null) ? Model.Achievement.AchievementType : Model.AchievementType; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public AchievementInfo Achievement
         {
             get { return Model.Achievement; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         #endregion

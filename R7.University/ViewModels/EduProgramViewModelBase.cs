@@ -39,103 +39,103 @@ namespace R7.University.ViewModels
         public int EduProgramID
         {
             get { return Model.EduProgramID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int EduLevelID
         {
             get { return Model.EduLevelID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? DivisionId
         {
             get { return Model.DivisionId; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Code
         {
             get { return Model.Code; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Title
         {
             get { return Model.Title; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Generation
         {
             get { return Model.Generation; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string HomePage
         {
             get { return Model.HomePage; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime? StartDate
         {
             get { return Model.StartDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime? EndDate
         {
             get { return Model.EndDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int LastModifiedByUserID
         {
             get { return Model.LastModifiedByUserID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime LastModifiedOnDate
         {
             get { return Model.LastModifiedOnDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int CreatedByUserID
         {
             get { return Model.CreatedByUserID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime CreatedOnDate
         {
             get { return Model.CreatedOnDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public EduLevelInfo EduLevel
         {
             get { return Model.EduLevel; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DivisionInfo Division
         {
             get { return Model.Division; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public ICollection<DocumentInfo> Documents
         {
             get { return Model.Documents; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public ICollection<EduProgramProfileInfo> EduProgramProfiles
         {
             get { return Model.EduProgramProfiles; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         #endregion

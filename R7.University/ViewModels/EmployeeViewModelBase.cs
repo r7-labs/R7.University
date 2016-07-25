@@ -40,175 +40,175 @@ namespace R7.University.ViewModels
         public int EmployeeID
         {
             get { return Model.EmployeeID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? UserID
         {
             get { return Model.UserID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? PhotoFileID
         {
             get { return Model.PhotoFileID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Phone
         {
             get { return Model.Phone; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string CellPhone
         {
             get { return Model.CellPhone; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Fax
         {
             get { return Model.Fax; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string LastName
         {
             get { return Model.LastName; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string FirstName
         {
             get { return Model.FirstName; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string OtherName
         {
             get { return Model.OtherName; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Email
         {
             get { return Model.Email; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string SecondaryEmail
         {
             get { return Model.SecondaryEmail; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string WebSite
         {
             get { return Model.WebSite; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string WebSiteLabel
         {
             get { return Model.WebSiteLabel; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Messenger
         {
             get { return Model.Messenger; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string WorkingPlace
         {
             get { return Model.WorkingPlace; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string WorkingHours
         {
             get { return Model.WorkingHours; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public string Biography
         {
             get { return Model.Biography; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? ExperienceYears
         {
             get { return Model.ExperienceYears; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int? ExperienceYearsBySpec
         {
             get { return Model.ExperienceYearsBySpec; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime? StartDate
         {
             get { return Model.StartDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime? EndDate
         {
             get { return Model.EndDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int LastModifiedByUserID
         {
             get { return Model.LastModifiedByUserID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime LastModifiedOnDate
         {
             get { return Model.LastModifiedOnDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public int CreatedByUserID
         {
             get { return Model.CreatedByUserID; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public DateTime CreatedOnDate
         {
             get { return Model.CreatedOnDate; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public bool ShowBarcode
         {
             get { return Model.ShowBarcode; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public ICollection<EmployeeAchievementInfo> Achievements
         {
             get { return Model.Achievements; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public ICollection<EmployeeDisciplineInfo> Disciplines
         {
             get { return Model.Disciplines; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         public ICollection<OccupiedPositionInfo> Positions
         {
             get { return Model.Positions; }
-            set { throw new NotImplementedException (); }
+            set { throw new InvalidOperationException (); }
         }
 
         #endregion
