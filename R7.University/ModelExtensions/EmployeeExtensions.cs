@@ -20,18 +20,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
 {
     public static class EmployeeExtensions
     {
-        public static bool IsPublished (this IEmployee employee)
+        public static bool IsPublished (this IEmployee employee, DateTime now)
         {
-            return ModelHelper.IsPublished (employee.StartDate, employee.EndDate);
+            return ModelHelper.IsPublished (now, employee.StartDate, employee.EndDate);
         }
     }
 }

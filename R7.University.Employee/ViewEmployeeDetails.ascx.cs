@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -220,11 +221,13 @@ namespace R7.University.Employee
 
             try {
                 if (!IsPostBack) {
+                    var now = HttpContext.Current.Timestamp;
+
                     // can we display module content?
-                    var displayContent = Employee != null && (IsEditable || Employee.IsPublished ());
+                    var displayContent = Employee != null && (IsEditable || Employee.IsPublished (now));
 
                     // can we display something (content or messages)?
-                    var displaySomething = IsEditable || (Employee != null && Employee.IsPublished ());
+                    var displaySomething = IsEditable || (Employee != null && Employee.IsPublished (now));
 
                     // something went wrong in popup mode - reload page
                     if (InPopup && !displaySomething) {
@@ -244,7 +247,7 @@ namespace R7.University.Employee
                             // employee isn't set or not found
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                         }
-                        else if (!Employee.IsPublished ()) {
+                        else if (!Employee.IsPublished (now)) {
                             // employee don't published
                             this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
                         }

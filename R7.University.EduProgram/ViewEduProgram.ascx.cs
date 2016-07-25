@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
@@ -99,6 +100,7 @@ namespace R7.University.EduProgram
                 if (!IsPostBack)
                 {
                     var shouldBind = true;
+                    var now = HttpContext.Current.Timestamp;
 
                     var viewModel = GetViewModel ();
                     if (viewModel.IsEmpty ()) {
@@ -107,7 +109,7 @@ namespace R7.University.EduProgram
                         }
                         shouldBind = false;
                     }
-                    else if (!viewModel.EduProgram.IsPublished ()) {
+                    else if (!viewModel.EduProgram.IsPublished (now)) {
                         if (IsEditable) {
                             this.Message ("NotPublished.Text", MessageType.Warning, true);
                         }
@@ -148,9 +150,10 @@ namespace R7.University.EduProgram
                 var listEduProgramProfiles = (ListView) formEduProgram.FindControl ("listEduProgramProfiles");
 
                 var viewModel = (EduProgramViewModel) formEduProgram.DataItem;
+                var now = HttpContext.Current.Timestamp;
 
                 listEduProgramProfiles.DataSource = viewModel.EduProgramProfileViewModels
-                    .Where (epp => epp.IsPublished () || IsEditable);
+                    .Where (epp => epp.IsPublished (now) || IsEditable);
 
                 listEduProgramProfiles.DataBind ();
             }

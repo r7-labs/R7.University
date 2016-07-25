@@ -25,9 +25,8 @@ namespace R7.University.Models
 {
     public static class ModelHelper
     {
-        public static bool IsPublished (DateTime? startDate, DateTime? endDate)
+        public static bool IsPublished (DateTime now, DateTime? startDate, DateTime? endDate)
         {
-            var now = DateTime.Now;
             return (startDate == null || now >= startDate) && (endDate == null || now < endDate);
         }
 

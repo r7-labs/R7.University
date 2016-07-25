@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -34,9 +33,9 @@ namespace R7.University.ModelExtensions
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
         }
 
-        public static bool IsPublished (this IEduProgramProfile eduProgramProfile)
+        public static bool IsPublished (this IEduProgramProfile eduProgramProfile, DateTime now)
         {
-            return ModelHelper.IsPublished (eduProgramProfile.StartDate, eduProgramProfile.EndDate);
+            return ModelHelper.IsPublished (now, eduProgramProfile.StartDate, eduProgramProfile.EndDate);
         }
     }
 }

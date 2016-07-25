@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
@@ -37,12 +38,11 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.EduProgramProfileDirectory.Queries;
 using R7.University.EduProgramProfileDirectory.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Queries;
 using R7.University.ViewModels;
-using R7.University.EduProgramProfileDirectory.Queries;
 
 namespace R7.University.EduProgramProfileDirectory
 {
@@ -216,8 +216,9 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void ObrnadzorEduFormsView ()
         {
+            var now = HttpContext.Current.Timestamp;
             var eduProgramProfiles = GetEduFormsViewModel ().EduProgramProfiles
-                .Where (epp => epp.IsPublished () || IsEditable);
+                .Where (epp => epp.IsPublished (now) || IsEditable);
 
             if (!eduProgramProfiles.IsNullOrEmpty ()) {
                 gridEduProgramProfileObrnadzorEduForms.DataSource = eduProgramProfiles;
@@ -230,8 +231,9 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void ObrnadzorDocumentsView ()
         {
+            var now = HttpContext.Current.Timestamp;
             var eduProgramProfiles = GetDocumentsViewModel ().EduProgramProfiles
-                .Where (epp => epp.IsPublished () || IsEditable);
+                .Where (epp => epp.IsPublished (now) || IsEditable);
 
             if (!eduProgramProfiles.IsNullOrEmpty ()) {
                 gridEduProgramProfileObrnadzorDocuments.DataSource = eduProgramProfiles;
@@ -244,6 +246,8 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void gridEduProgramProfileObrnadzorEduForms_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // hiding the columns of second row header (created on binding)
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
@@ -276,7 +280,7 @@ namespace R7.University.EduProgramProfileDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!eduProgramProfile.IsPublished ()) {
+                if (!eduProgramProfile.IsPublished (now)) {
                     e.Row.CssClass = "not-published";
                 }
             }
@@ -340,6 +344,8 @@ namespace R7.University.EduProgramProfileDirectory
 
         protected void gridEduProgramProfileObrnadzorDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
@@ -365,7 +371,7 @@ namespace R7.University.EduProgramProfileDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!eduProgramProfile.IsPublished ()) {
+                if (!eduProgramProfile.IsPublished (now)) {
                     e.Row.CssClass = "not-published";
                 }
             }

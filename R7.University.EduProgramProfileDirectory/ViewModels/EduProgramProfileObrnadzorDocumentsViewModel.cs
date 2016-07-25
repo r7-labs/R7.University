@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using DotNetNuke.Services.Localization;
+using System.Web;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -55,8 +55,9 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
         {
+            var now = HttpContext.Current.Timestamp;
             return documents
-                .Where (d => Context.Module.IsEditable || d.IsPublished ())
+                .Where (d => Context.Module.IsEditable || d.IsPublished (now))
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.SortIndex);
         }
@@ -209,6 +210,8 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 var markupBuilder = new StringBuilder ();
                 var groupMarkupBuilder = new StringBuilder ();
 
+                var now = HttpContext.Current.Timestamp;
+
                 var groupCount = 0;
                 foreach (var group in groups) {
                     var index = 0;
@@ -220,7 +223,8 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                                          DocumentGroupPlacement.None,
                                          Context.Module.TabId,
                                          Context.Module.ModuleId,
-                                         "itemprop=\"EduPr\""
+                                         "itemprop=\"EduPr\"",
+                                         now
                                      );
 
                         if (!string.IsNullOrEmpty (linkMarkup)) {

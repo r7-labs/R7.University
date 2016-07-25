@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
@@ -101,7 +102,10 @@ namespace R7.University.EduProgramDirectory
 			
             try {
                 if (!IsPostBack) {
+
+                    var now = HttpContext.Current.Timestamp;
                     IEnumerable<IEduProgram> baseEduPrograms;
+
                     if (Settings.DivisionId == null) {
                         baseEduPrograms = new EduProgramQuery (ModelContext).ListByEduLevels (Settings.EduLevels);
                     }
@@ -123,7 +127,7 @@ namespace R7.University.EduProgramDirectory
                             viewModelIndexer));
                      
                     if (eduProgramViewModels.Any ()) {
-                        gridEduStandards.DataSource = eduProgramViewModels.Where (ep => ep.IsPublished () || IsEditable);
+                        gridEduStandards.DataSource = eduProgramViewModels.Where (ep => ep.IsPublished (now) || IsEditable);
                         gridEduStandards.DataBind ();
                     }
                     else {
@@ -175,6 +179,8 @@ namespace R7.University.EduProgramDirectory
 
         protected void gridEduStandards_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
@@ -203,7 +209,7 @@ namespace R7.University.EduProgramDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!eduProgram.IsPublished ()) {
+                if (!eduProgram.IsPublished (now)) {
                     e.Row.CssClass = "not-published";
                 }
             }

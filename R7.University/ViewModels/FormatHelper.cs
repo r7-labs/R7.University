@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
@@ -114,7 +115,7 @@ namespace R7.University.ViewModels
         }
 
         public static string FormatDocumentLink_WithMicrodata (this IDocument document, string documentTitle,
-            string defaultTitle, bool preferDocumentTitle, DocumentGroupPlacement groupPlacement, int tabId, int moduleId, string microdata)
+            string defaultTitle, bool preferDocumentTitle, DocumentGroupPlacement groupPlacement, int tabId, int moduleId, string microdata, DateTime now)
         {
             var title = (preferDocumentTitle && !string.IsNullOrWhiteSpace (documentTitle)) 
                 ? ((groupPlacement == DocumentGroupPlacement.InTitle)
@@ -130,7 +131,7 @@ namespace R7.University.ViewModels
                 + "\" "
                 + TextUtils.FormatList (" ",
                     Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,
-                    !document.IsPublished () ? "class=\"not-published-document\"" : string.Empty,
+                    !document.IsPublished (now) ? "class=\"not-published-document\"" : string.Empty,
                     microdata)
                 + ">"
                 + title
@@ -162,7 +163,8 @@ namespace R7.University.ViewModels
                     groupPlacement,
                     context.Module.TabId,
                     context.Module.ModuleId,
-                    microdata
+                    microdata,
+                    HttpContext.Current.Timestamp
                 );
 
                 if (!string.IsNullOrEmpty (linkMarkup)) {

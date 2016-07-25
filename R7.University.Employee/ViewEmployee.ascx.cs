@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
@@ -114,6 +115,7 @@ namespace R7.University.Employee
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
 
                     var employee = GetEmployee ();
+                    var now = HttpContext.Current.Timestamp;
 
                     if (employee == null) {
                         // employee isn't set or not found
@@ -121,7 +123,7 @@ namespace R7.University.Employee
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                         }
                     }
-                    else if (!employee.IsPublished ()) {
+                    else if (!employee.IsPublished (now)) {
                         // employee isn't published
                         if (IsEditable) {
                             this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
@@ -132,10 +134,10 @@ namespace R7.University.Employee
                     						
                     // display module only in edit mode
                     // only if we have published data to display
-                    ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished ());
+                    ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished (now));
 											
                     // display module content only if it exists and published (or in edit mode)
-                    var displayContent = hasData && (IsEditable || employee.IsPublished ());
+                    var displayContent = hasData && (IsEditable || employee.IsPublished (now));
 
                     panelEmployee.Visible = displayContent;
 					

@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -35,7 +36,6 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
-using R7.University.Data;
 using R7.University.DivisionDirectory.Components;
 using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
@@ -267,6 +267,8 @@ namespace R7.University.DivisionDirectory
 
         protected void gridDivisions_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+            
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
@@ -340,7 +342,7 @@ namespace R7.University.DivisionDirectory
                 // get head employee
                 var headEmployee = new HeadEmployeeQuery (ModelContext).FirstOrDefault (division.DivisionID, division.HeadPositionID);
 
-                if (headEmployee != null && headEmployee.IsPublished ()) {
+                if (headEmployee != null && headEmployee.IsPublished (now)) {
                     linkContactPerson.Text = headEmployee.AbbrName;
                     linkContactPerson.ToolTip = headEmployee.FullName;
                     linkContactPerson.NavigateUrl = EditUrl (
@@ -355,6 +357,8 @@ namespace R7.University.DivisionDirectory
 
         protected void gridObrnadzorDivisions_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
@@ -380,7 +384,7 @@ namespace R7.University.DivisionDirectory
                 // get head employee
                 var headEmployee = new HeadEmployeeQuery (ModelContext).FirstOrDefault (division.DivisionID, division.HeadPositionID);
                 
-                if (headEmployee != null && headEmployee.IsPublished ()) {
+                if (headEmployee != null && headEmployee.IsPublished (now)) {
                     var headPosition = headEmployee.Positions
                         .Single (op => op.DivisionID == division.DivisionID && op.PositionID == division.HeadPositionID);
                     

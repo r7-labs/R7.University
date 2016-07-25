@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using DotNetNuke.Common;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -45,13 +46,15 @@ namespace R7.University.EduProgramDirectory
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
         {
+            var now = HttpContext.Current.Timestamp;
+
             return documents
-                .Where (d => Context.Module.IsEditable || d.IsPublished ())
+                .Where (d => Context.Module.IsEditable || d.IsPublished (now))
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.SortIndex);
         }
 
-        public int Order 
+        public int Order
         {
             get { return Indexer.GetNextIndex (); }
         }

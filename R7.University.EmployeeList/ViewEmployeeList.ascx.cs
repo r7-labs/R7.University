@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
@@ -126,10 +127,10 @@ namespace R7.University.EmployeeList
 			
             try {
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
-
+                    var now = HttpContext.Current.Timestamp;
                     // get employees
                     var employees = GetViewModel ().Employees
-                        .Where (empl => IsEditable || empl.IsPublished ());
+                        .Where (empl => IsEditable || empl.IsPublished (now));
             
                     // check if we have some content to display, 
                     // otherwise display a message for module editors or hide module from regular users
@@ -194,9 +195,11 @@ namespace R7.University.EmployeeList
         /// <param name="e"></param>
         protected void listEmployees_ItemDataBound (object sender, System.Web.UI.WebControls.DataListItemEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // e.Item.DataItem is of EmployeeListInfo class
             var employee = (IEmployee) e.Item.DataItem;
-			
+
             // find controls in DataList item template
             var linkEdit = (HyperLink) e.Item.FindControl ("linkEdit");
             var imageEdit = (Image) e.Item.FindControl ("imageEdit");
@@ -227,7 +230,7 @@ namespace R7.University.EmployeeList
             imageEdit.Visible = IsEditable;
             
             // mark non-published employees, as they visible only to editors
-            if (!employee.IsPublished ()) {
+            if (!employee.IsPublished (now)) {
                 if (e.Item.ItemType == ListItemType.Item) {
                     e.Item.CssClass = listEmployees.ItemStyle.CssClass + " _nonpublished";
                 }

@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Text;
+using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
@@ -127,7 +128,7 @@ namespace R7.University.EduProgram.ViewModels
 
         public string CssClass
         {
-            get { return Model.IsPublished () ? string.Empty : "u8y-not-published"; }
+            get { return Model.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; }
         }
 
         public bool Division_Visible

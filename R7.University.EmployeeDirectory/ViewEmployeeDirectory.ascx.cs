@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
@@ -218,6 +219,9 @@ namespace R7.University.EmployeeDirectory
             base.OnLoad (e);
             
             try {
+
+                var now = HttpContext.Current.Timestamp;
+
                 if (!IsPostBack) {
                     if (Settings.Mode == EmployeeDirectoryMode.Search) {
                         if (!string.IsNullOrWhiteSpace (SearchText) || !Null.IsNull (SearchDivision)) {
@@ -244,7 +248,7 @@ namespace R7.University.EmployeeDirectory
                     }
                     else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
                         repeaterEduProgramProfiles.DataSource = GetViewModel ().EduProgramProfiles
-                            .Where (epp => epp.IsPublished () || IsEditable);
+                            .Where (epp => epp.IsPublished (now) || IsEditable);
                         repeaterEduProgramProfiles.DataBind ();
                     }
                 }
@@ -258,6 +262,8 @@ namespace R7.University.EmployeeDirectory
 
         protected void repeaterEduProgramProfiles_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+                
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
                 var eduProgramProfile = (EduProgramProfileViewModel) e.Item.DataItem;
 
@@ -271,10 +277,10 @@ namespace R7.University.EmployeeDirectory
                 literalEduProgramProfileAnchor.Text = "<a id=\"eduprogramprofile-" + anchorName + "\"" +
                 " name=\"eduprogramprofile-" + anchorName + "\"></a>";
 
-                var publishedTeachers = eduProgramProfile.Teachers.Where (t => IsEditable || t.IsPublished ());
+                var publishedTeachers = eduProgramProfile.Teachers.Where (t => IsEditable || t.IsPublished (now));
                 if (publishedTeachers.Any ()) {
                     // mark edu. program profile as not published
-                    if (!eduProgramProfile.IsPublished ()) {
+                    if (!eduProgramProfile.IsPublished (now)) {
                         panelTeachers.CssClass = "not-published";
                     }
 
@@ -290,6 +296,8 @@ namespace R7.University.EmployeeDirectory
 
         protected void gridTeachers_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
@@ -306,7 +314,7 @@ namespace R7.University.EmployeeDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!teacher.IsPublished ()) {
+                if (!teacher.IsPublished (now)) {
                     // mark teacher as not published
                     e.Row.CssClass += " not-published";
                 }
@@ -344,8 +352,10 @@ namespace R7.University.EmployeeDirectory
 
         protected void DoSearch (string searchText, int searchDivision, bool teachersOnly)
         {
+            var now = HttpContext.Current.Timestamp;
+
             var employees = new EmployeeQuery (ModelContext).FindEmployees (searchText, teachersOnly, searchDivision)
-                .Where (e => IsEditable || e.IsPublished ());
+                .Where (e => IsEditable || e.IsPublished (now));
             
             if (employees.IsNullOrEmpty ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
@@ -386,6 +396,8 @@ namespace R7.University.EmployeeDirectory
 
         protected void gridEmployees_RowDataBound (object sender, GridViewRowEventArgs e)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
@@ -433,7 +445,7 @@ namespace R7.University.EmployeeDirectory
                 }
 
                 // mark not published employees, as they visible only to editors
-                if (!employee.IsPublished ()) {
+                if (!employee.IsPublished (now)) {
                     e.Row.CssClass = "not-published";
                 }
 

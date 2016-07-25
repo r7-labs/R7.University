@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using DotNetNuke.Common;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -48,8 +49,10 @@ namespace R7.University.EduProgram.ViewModels
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
         {
+            var now = HttpContext.Current.Timestamp;
+
             return documents
-                .Where (d => Context.Module.IsEditable || d.IsPublished ())
+                .Where (d => Context.Module.IsEditable || d.IsPublished (now))
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.SortIndex);
         }
@@ -99,12 +102,18 @@ namespace R7.University.EduProgram.ViewModels
 
         public string CssClass
         {
-            get { return Model.IsPublished () ? string.Empty : "u8y-not-published"; }
+            get {
+                return Model.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; 
+            }
         }
 
         public bool EduProgramProfiles_Visible
         {
-            get { return EduProgramProfileViewModels.Any (epp => epp.IsPublished () || Context.Module.IsEditable); }
+            get { 
+                return EduProgramProfileViewModels.Any (epp => epp.IsPublished (HttpContext.Current.Timestamp) 
+                    || Context.Module.IsEditable
+                ); 
+            }
         }
 
         public bool Division_Visible
