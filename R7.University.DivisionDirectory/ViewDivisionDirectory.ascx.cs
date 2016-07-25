@@ -130,8 +130,9 @@ namespace R7.University.DivisionDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
+                var now = HttpContext.Current.Timestamp;
                 var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
-                    .Where (d => d.IsPublished || IsEditable);
+                    .Where (d => d.IsPublished (now) || IsEditable);
                 
                 treeDivisions.DataSource = divisions;
                 treeDivisions.DataBind ();
@@ -226,9 +227,11 @@ namespace R7.University.DivisionDirectory
 
         protected void DoSearch (string searchText, int searchDivision)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // REVIEW: If division is not published, it's child divisions also should not
             var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
-                .Where (d => d.IsPublished || IsEditable); 
+                .Where (d => d.IsPublished (now) || IsEditable); 
 
             if (!divisions.Any ()) {
                 this.Message ("NoDivisionsFound.Warning", MessageType.Warning, true);
@@ -285,7 +288,7 @@ namespace R7.University.DivisionDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                if (!division.IsPublished) {
+                if (!division.IsPublished (now)) {
                     e.Row.CssClass = "not-published";
                 }
 
@@ -398,7 +401,7 @@ namespace R7.University.DivisionDirectory
 
                 #endregion
 
-                if (!division.IsPublished) {
+                if (!division.IsPublished (now)) {
                     e.Row.CssClass = "not-published";
                 }
 

@@ -20,8 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Web;
 using DotNetNuke.Common;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.Division
@@ -44,7 +46,7 @@ namespace R7.University.Division
 
         public string CssClass
         {
-            get { return !IsPublished ? "not-published-division" : string.Empty; }
+            get { return !this.IsPublished (HttpContext.Current.Timestamp) ? "not-published-division" : string.Empty; }
         }
 
         public SubDivisionViewModel (DivisionInfo division, ViewModelContext context)

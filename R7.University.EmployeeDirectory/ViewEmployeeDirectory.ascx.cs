@@ -133,8 +133,9 @@ namespace R7.University.EmployeeDirectory
                 // display search hint
                 this.Message ("SearchHint.Info", MessageType.Info, true); 
 
+                var now = HttpContext.Current.Timestamp;
                 treeDivisions.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
-                    .Where (d => d.IsPublished || IsEditable);
+                    .Where (d => d.IsPublished (now) || IsEditable);
                 
                 treeDivisions.DataBind ();
 

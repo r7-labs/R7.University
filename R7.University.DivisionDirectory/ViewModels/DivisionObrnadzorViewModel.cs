@@ -27,11 +27,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.DivisionDirectory
@@ -140,9 +142,11 @@ namespace R7.University.DivisionDirectory
 
         public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext viewModelContext)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // REVIEW: If division is not published, it's child divisions also should not
             var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext))
-                .Where (d => d.IsPublished || viewModelContext.Module.IsEditable)
+                .Where (d => d.IsPublished (now) || viewModelContext.Module.IsEditable)
                 .ToList ();
 
             CalculateOrder (divisionViewModels);

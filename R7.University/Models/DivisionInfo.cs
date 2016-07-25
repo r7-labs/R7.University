@@ -100,15 +100,6 @@ namespace R7.University.Models
 
         #endregion
 
-        // TODO: Replace with extension method
-        public bool IsPublished
-        {
-            get {
-                var now = DateTime.Now;
-                return (StartDate == null || now >= StartDate) && (EndDate == null || now < EndDate);
-            }
-        }
-
         public string FileName
         {
 			// replace all non-word character with spaces, 

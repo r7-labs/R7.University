@@ -21,6 +21,7 @@
 
 using System;
 using System.Linq;
+using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Content.Taxonomy;
@@ -36,10 +37,10 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Data;
 using R7.University.Division.Components;
-using R7.University.Models;
 using R7.University.Division.Queries;
+using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.Division
 {
@@ -241,9 +242,11 @@ namespace R7.University.Division
             imageBarcode.ToolTip = Localization.GetString ("imageBarcode.ToolTip", LocalResourceFile);
             imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
 
+            var now = HttpContext.Current.Timestamp;
+
             // get & bind subdivisions
             var subDivisions = division.SubDivisions
-                .Where (d => IsEditable || d.IsPublished)
+                .Where (d => IsEditable || d.IsPublished (now))
                 .OrderBy (d => d.Title)
                 .Select (d => new SubDivisionViewModel (d, ViewModelContext)); 
 			
