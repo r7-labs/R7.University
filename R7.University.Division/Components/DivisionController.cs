@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.Division.Components
@@ -51,7 +52,7 @@ namespace R7.University.Division.Components
                         ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),
                         UniqueKey = string.Format ("University_Division_{0}", division.DivisionID),
                         Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
-                        IsActive = true // division.IsPublished
+                        IsActive = division.IsPublished (DateTime.Now)
                     };
 	
                     searchDocs.Add (sd);
