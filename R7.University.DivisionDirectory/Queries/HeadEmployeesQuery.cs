@@ -20,29 +20,30 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using R7.University.Models;
 using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    internal class HeadEmployeeQuery: QueryBase
+    internal class HeadEmployeesQuery: QueryBase
     {
-        public HeadEmployeeQuery (IModelContext modelContext): base (modelContext)
+        public HeadEmployeesQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public EmployeeInfo FirstOrDefault (int divisionId, int? headPositionId)
+        public IEnumerable<EmployeeInfo> GetHeadEmployees (int divisionId, int? headPositionId)
         {
             if (headPositionId != null) {
                 return ModelContext.Query<EmployeeInfo> ()
                     .Include (e => e.Positions)
                     .Include (e => e.Positions.Select (op => op.Position))
                     .Where (e => e.Positions.Any (op => op.DivisionID == divisionId && op.PositionID == headPositionId))
-                    .FirstOrDefault ();
+                    .ToList ();
             }
 
-            return null;
+            return Enumerable.Empty<EmployeeInfo> ();
         }
     }
 }

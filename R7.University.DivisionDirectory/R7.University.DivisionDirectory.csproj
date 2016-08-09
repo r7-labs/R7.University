@@ -101,8 +101,8 @@
     <Compile Include="Components\DivisionDirectorySettings.cs" />
     <Compile Include="Queries\HeadPositionQuery.cs" />
     <Compile Include="Queries\DivisionHierarchyQuery.cs" />
-    <Compile Include="Queries\HeadEmployeeQuery.cs" />
     <Compile Include="Queries\DivisionQuery.cs" />
+    <Compile Include="Queries\HeadEmployeesQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
