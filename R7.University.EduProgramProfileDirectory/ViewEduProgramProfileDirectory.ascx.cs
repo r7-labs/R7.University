@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
@@ -113,7 +112,8 @@ namespace R7.University.EduProgramProfileDirectory
             var viewModel = new EduProgramProfileDirectoryEduFormsViewModel ();
             var indexer = new ViewModelIndexer (1);
 
-            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).ListByEduLevelsWithEduForms (Settings.EduLevels);
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
+                .ListByEduLevelsAndDivisionWithEduForms (Settings.EduLevels, Settings.DivisionId, Settings.DivisionLevel);
                
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
                 eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
@@ -127,7 +127,8 @@ namespace R7.University.EduProgramProfileDirectory
             var viewModel = new EduProgramProfileDirectoryDocumentsViewModel ();
             var indexer = new ViewModelIndexer (1);
 
-            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).ListByEduLevelsWithDocuments (Settings.EduLevels);
+            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
+                .ListByEduLevelsAndDivisionWithDocuments (Settings.EduLevels, Settings.DivisionId, Settings.DivisionLevel);
 
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
                 eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))

@@ -19,9 +19,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -33,20 +33,34 @@ namespace R7.University.EduProgramProfileDirectory.Queries
         {
         }
 
-        public IList<EduProgramProfileInfo> ListByEduLevelsWithEduForms (IEnumerable<int> eduLevelIds)
+        public IList<EduProgramProfileInfo> ListByEduLevelsAndDivisionWithEduForms (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
-            return OrderBy (QueryEduProgramProfiles (eduLevelIds)
+            return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
                 .Include (epp => epp.EduProgramProfileForms)
                 .Include (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm))
-            ).ToList ();
+             )).ToList ();
         }
 
-        public IList<EduProgramProfileInfo> ListByEduLevelsWithDocuments (IEnumerable<int> eduLevelIds)
+        public IList<EduProgramProfileInfo> ListByEduLevelsAndDivisionWithDocuments (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
-            return OrderBy (QueryEduProgramProfiles (eduLevelIds)
+            return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
                 .Include (epp => epp.Documents)
                 .Include (epp => epp.Documents.Select (d => d.DocumentType))
-            ).ToList ();
+            )).ToList ();
+        }
+
+        protected IQueryable<EduProgramProfileInfo> WhereDivision (int? divisionId, DivisionLevel divisionLevel, IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        { 
+            if (divisionId != null) {
+                if (divisionLevel == DivisionLevel.EduProgram) {
+                    return eduProgramProfiles.Where (epp => epp.EduProgram.DivisionId == divisionId);
+                } 
+                if (divisionLevel == DivisionLevel.EduProgramProfile) {
+                    return eduProgramProfiles.Where (epp => epp.DivisionId == divisionId);
+                }
+            }
+
+            return eduProgramProfiles;
         }
     }
 }

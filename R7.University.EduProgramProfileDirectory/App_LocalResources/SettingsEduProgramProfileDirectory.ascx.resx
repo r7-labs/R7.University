@@ -30,4 +30,22 @@
     <data name="labelEduLevels.Help" xml:space="preserve">
         <value>Check educational levels the module should display.</value>
     </data>
+	<data name="labelDivision.Text" xml:space="preserve">
+        <value>Division:</value>
+    </data>
+    <data name="labelDivision.Help" xml:space="preserve">
+        <value>Select division to display educational program profiles associated with it (directly or via educational program).</value>
+    </data>
+	<data name="labelDivisionLevel.Text" xml:space="preserve">
+        <value>Division Level:</value>
+    </data>
+    <data name="labelDivisionLevel.Help" xml:space="preserve">
+        <value>Select to which object level the selected division will apply. Setting will not have any effect if no division selected above.</value>
+	</data>
+    <data name="DivisionLevel_EduProgram.Text" xml:space="preserve">
+        <value>Edu. Program</value>
+    </data>
+	<data name="DivisionLevel_EduProgramProfile.Text" xml:space="preserve">
+        <value>Edu. Program Profile</value>
+    </data>
 </root>

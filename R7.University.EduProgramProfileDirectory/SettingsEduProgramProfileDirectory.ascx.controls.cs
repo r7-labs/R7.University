@@ -11,6 +11,8 @@ namespace R7.University.EduProgramProfileDirectory
 {
     public partial class SettingsEduProgramProfileDirectory
     {
+        protected DnnTreeView treeDivision;
+        protected RadioButtonList radioDivisionLevel;
         protected DropDownList comboMode;
         protected DnnListBox listEduLevels;
     }

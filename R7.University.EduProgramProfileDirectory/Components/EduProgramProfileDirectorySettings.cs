@@ -66,6 +66,16 @@ namespace R7.University.EduProgramProfileDirectory.Components
             set { WriteModuleSetting<EduProgramProfileDirectoryMode?> ("EduProgramProfileDirectory_Mode", value); }
         }
 
+        public int? DivisionId {
+            get { return ReadSetting<int?> ("EduProgramProfileDirectory_DivisionId", null); }
+            set { WriteModuleSetting<int?> ("EduProgramProfileDirectory_DivisionId", value); }
+        }
+
+        public DivisionLevel DivisionLevel {
+            get { return ReadSetting<DivisionLevel> ("EduProgramProfileDirectory_DivisionLevel", DivisionLevel.EduProgram); }
+            set { WriteModuleSetting<DivisionLevel> ("EduProgramProfileDirectory_DivisionLevel", value); }
+        }
+
         #endregion
     }
 }
