@@ -60,6 +60,9 @@
     <data name="Disciplines.Column">
         <value>Disciplines</value>
     </data>
+    <data name="EduLevel.Column">
+        <value>Education Level</value>
+    </data>
     <data name="DocumentUrl.Text">
         <value>View</value>
     </data>

@@ -43,6 +43,7 @@ namespace R7.University.Employee.Queries
                 .Include (e => e.Disciplines)
                 .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile))
                 .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduProgram))
+                .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduLevel))
                 .SingleOrDefault ();
         }
 
@@ -57,6 +58,7 @@ namespace R7.University.Employee.Queries
                 .Include (e => e.Disciplines)
                 .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile))
                 .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduProgram))
+                .Include (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduLevel))
                 .SingleOrDefault ();
         }
     }

@@ -338,6 +338,7 @@
                             </asp:TemplateField>
                             <asp:BoundField DataField="ItemID" />
                             <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />
+							<asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel" />
                             <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
                         </Columns>
                     </asp:GridView>

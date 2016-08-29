@@ -46,6 +46,7 @@ using R7.University.Models;
 using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
@@ -1055,6 +1056,7 @@ namespace R7.University.Employee
                         discipline.Title = profile.EduProgram.Title;
                         discipline.ProfileCode = profile.ProfileCode;
                         discipline.ProfileTitle = profile.ProfileTitle;
+                        discipline.EduLevel_String = FormatHelper.FormatShortTitle (profile.EduLevel.ShortTitle, profile.EduLevel.Title);
 
                         if (command == "Add") {
                             disciplines.Add (discipline);
@@ -1101,7 +1103,7 @@ namespace R7.University.Employee
                             BindEduProgramProfiles (newEduLevelId);
                         }
 
-                        // fill achievements form
+                        // fill disciplines form
                         comboEduProgramProfile.SelectByValue (discipline.EduProgramProfileID);
                         textDisciplines.Text = discipline.Disciplines;
 

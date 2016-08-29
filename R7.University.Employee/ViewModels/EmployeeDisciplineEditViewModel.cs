@@ -58,6 +58,8 @@ namespace R7.University.Employee.ViewModels
 
         public string ProfileTitle { get; set; }
 
+        public string EduLevel_String { get; set; }
+
         #endregion
 
         #region Bindable properties
@@ -84,6 +86,7 @@ namespace R7.University.Employee.ViewModels
             Title = employeeDiscipline.EduProgramProfile.EduProgram.Title;
             ProfileCode = employeeDiscipline.EduProgramProfile.ProfileCode;
             ProfileTitle = employeeDiscipline.EduProgramProfile.ProfileTitle;
+            EduLevel_String = FormatHelper.FormatShortTitle (employeeDiscipline.EduProgramProfile.EduLevel.ShortTitle, employeeDiscipline.EduProgramProfile.EduLevel.Title);
         }
 
         public EmployeeDisciplineInfo NewEmployeeDisciplineInfo ()

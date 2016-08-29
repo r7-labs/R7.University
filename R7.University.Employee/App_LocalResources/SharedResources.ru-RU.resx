@@ -60,6 +60,9 @@
     <data name="Disciplines.Column">
         <value>Дисциплины</value>
     </data>
+	<data name="EduLevel.Column">
+        <value>Уровень образования</value>
+    </data>
     <data name="DocumentUrl.Text">
         <value>Просмотр</value>
     </data>

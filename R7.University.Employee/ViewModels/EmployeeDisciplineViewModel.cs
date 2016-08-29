@@ -85,6 +85,15 @@ namespace R7.University.Employee.ViewModels
                 );
             }
         }
+
+        public string EduLevel_String {
+            get {
+                return FormatHelper.FormatShortTitle (
+                    Model.EduProgramProfile.EduLevel.ShortTitle,
+                    Model.EduProgramProfile.EduLevel.Title
+                );
+            }
+        }
     }
 }
     
