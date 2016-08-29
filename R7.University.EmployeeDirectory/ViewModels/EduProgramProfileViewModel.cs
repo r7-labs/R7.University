@@ -19,8 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.ViewModels;
@@ -49,8 +48,9 @@ namespace R7.University.EmployeeDirectory.ViewModels
         public string Title_String
         {
             get {
-                return FormatHelper.FormatEduProgramProfileTitle (
-                    EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle
+                return TextUtils.FormatList (" - ",
+                    FormatHelper.FormatEduProgramProfileTitle (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle),
+                    (EduLevel != null) ? EduLevel.Title : null
                 );
             }
         }
