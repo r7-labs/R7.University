@@ -106,6 +106,7 @@
     <None Include="App_LocalResources\SettingsEduProgramProfileDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEduProgramProfileDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEduProgramProfileDirectory.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\SettingsEduProgramProfileDirectory.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">

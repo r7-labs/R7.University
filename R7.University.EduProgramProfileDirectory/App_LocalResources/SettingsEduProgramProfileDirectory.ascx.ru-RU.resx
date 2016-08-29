@@ -1,51 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
     <data name="ControlTitle_settings.Text" xml:space="preserve">
-        <value>EduProgramProfileDirectory Settings</value>
+        <value>Настройки каталога профилей обр. программ</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;p&gt;About EduProgramProfileDirectory settings module&lt;/p&gt;</value>
+        <value>&lt;p&gt;О настройках модуля EduProgramProfileDirectory&lt;/p&gt;</value>
     </data>
     <data name="NotSelected.Text" xml:space="preserve">
-        <value>&lt; Not Selected &gt;</value>
+        <value>&lt; Не выбрано &gt;</value>
     </data>
     <data name="EduProgramProfileDirectoryMode_Default.Text" xml:space="preserve">
-        <value>&lt; Not Selected &gt;</value>
+        <value>&lt; Не выбран &gt;</value>
     </data>
     <data name="EduProgramProfileDirectoryMode_ObrnadzorEduForms.Text" xml:space="preserve">
-        <value>Education Forms</value>
+        <value>Формы и сроки обучения</value>
     </data>
     <data name="EduProgramProfileDirectoryMode_ObrnadzorDocuments.Text" xml:space="preserve">
-        <value>Documents</value>
+        <value>Документы</value>
     </data>
     <data name="labelMode.Text" xml:space="preserve">
-        <value>Mode:</value>
+        <value>Режим отображения:</value>
     </data>
     <data name="labelMode.Help" xml:space="preserve">
-        <value>Select module display mode.</value>
+        <value>Выберите режим отображения данных модуля.</value>
     </data>
     <data name="labelEduLevels.Text" xml:space="preserve">
-        <value>Educational Levels:</value>
+        <value>Уровни образования:</value>
     </data>
     <data name="labelEduLevels.Help" xml:space="preserve">
-        <value>Check educational levels the module should display.</value>
+        <value>Отметьте уровни образования, которые должен отображать данный модуль.</value>
     </data>
 	<data name="labelDivision.Text" xml:space="preserve">
-        <value>Division:</value>
+        <value>Подразделение:</value>
     </data>
     <data name="labelDivision.Help" xml:space="preserve">
-        <value>Select division to display educational program profiles associated with it (directly or via educational program).</value>
+        <value>Выберите подразделение для отображения только тех профилей образовательных программ, что связаны с ним (непосредственно, или через образовательную программу).</value>
     </data>
 	<data name="labelDivisionLevel.Text" xml:space="preserve">
-        <value>Division Level:</value>
+        <value>Подразделение относится к:</value>
     </data>
     <data name="labelDivisionLevel.Help" xml:space="preserve">
-        <value>Select to which object level the selected division will apply. Setting will not have any effect if no division selected above.</value>
+        <value>Выберите, к какому уровню объектов относится выбранное подразделение. Данная настройка имеет смысл только в том случае, если выше выбрано какое-либо подразделение.</value>
 	</data>
     <data name="DivisionLevel_EduProgram.Text" xml:space="preserve">
-        <value>Edu. Program</value>
+        <value>Обр. программе</value>
     </data>
 	<data name="DivisionLevel_EduProgramProfile.Text" xml:space="preserve">
-        <value>Edu. Program Profile</value>
+        <value>Профилю образовательной программы</value>
     </data>
 </root>
