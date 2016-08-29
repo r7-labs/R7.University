@@ -72,4 +72,13 @@
     <data name="TimeToLearnMonths.Format3" xml:space="preserve">
         <value>{0} months</value>
     </data>
+	<data name="TimeToLearnHours.Format1" xml:space="preserve">
+        <value>{0} hour</value>
+    </data>
+    <data name="TimeToLearnHours.Format2" xml:space="preserve">
+        <value>{0} hours</value>
+    </data>
+    <data name="TimeToLearnHours.Format3" xml:space="preserve">
+        <value>{0} hours</value>
+    </data>
 </root>

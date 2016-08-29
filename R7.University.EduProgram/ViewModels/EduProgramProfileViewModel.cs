@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Text;
 using System.Web;
 using DotNetNuke.Common;
@@ -103,8 +104,8 @@ namespace R7.University.EduProgram.ViewModels
                     foreach (var eppf in Model.EduProgramProfileForms) {
                         sb.AppendFormat ("<li>{0} &ndash; {1}</li>", 
                             Localization.GetString ("TimeToLearn" + eppf.EduForm.Title + ".Text", Context.LocalResourceFile),
-                            FormatHelper.FormatTimeToLearn (eppf.TimeToLearn,
-                                "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
+                            FormatHelper.FormatTimeToLearn (eppf.TimeToLearn, (TimeToLearnUnit) eppf.TimeToLearnUnit [0],
+                                "TimeToLearnYears.Format", "TimeToLearnMonths.Format", "TimeToLearnHours.Format", Context.LocalResourceFile)
                         );
                     }
 

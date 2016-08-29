@@ -88,8 +88,8 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 }
 
                 return TimeToLearnApplyMarkup ("TimeToLearnFullTime.Column",
-                    FormatHelper.FormatTimeToLearn (FullTimeForm.TimeToLearn,
-                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (FullTimeForm.TimeToLearn, (TimeToLearnUnit) FullTimeForm.TimeToLearnUnit [0],
+                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", "TimeToLearnHours.Format", Context.LocalResourceFile)
                 );
             }
         }
@@ -102,8 +102,8 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 }
 
                 return TimeToLearnApplyMarkup ("TimeToLearnPartTime.Column",
-                    FormatHelper.FormatTimeToLearn (PartTimeForm.TimeToLearn,
-                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (PartTimeForm.TimeToLearn, (TimeToLearnUnit) PartTimeForm.TimeToLearnUnit [0],
+                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", "TimeToLearnHours.Format", Context.LocalResourceFile)
                 );
             }
         }
@@ -116,8 +116,8 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 }
 
                 return TimeToLearnApplyMarkup ("TimeToLearnExtramural.Column",
-                    FormatHelper.FormatTimeToLearn (ExtramuralForm.TimeToLearn,
-                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (ExtramuralForm.TimeToLearn, (TimeToLearnUnit) ExtramuralForm.TimeToLearnUnit [0],
+                        "TimeToLearnYears.Format", "TimeToLearnMonths.Format", "TimeToLearnHours.Format", Context.LocalResourceFile)
                 );
             }
         }
