@@ -33,7 +33,7 @@ namespace R7.University.EduProgramProfileDirectory.Queries
         {
         }
 
-        public IList<EduProgramProfileInfo> ListByEduLevelsAndDivisionWithEduForms (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
+        public IList<EduProgramProfileInfo> ListWithEduForms (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
             return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
                 .Include (epp => epp.EduProgramProfileForms)
@@ -41,7 +41,7 @@ namespace R7.University.EduProgramProfileDirectory.Queries
              )).ToList ();
         }
 
-        public IList<EduProgramProfileInfo> ListByEduLevelsAndDivisionWithDocuments (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
+        public IList<EduProgramProfileInfo> ListWithDocuments (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
             return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
                 .Include (epp => epp.Documents)
