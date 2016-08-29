@@ -139,7 +139,7 @@
 			<fieldset>
 				<div class="dnnFormItem">
 					<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-						GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound" Style="margin-bottom:30px;width:775px">
+						GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound" Style="width:100%;margin-bottom:30px">
 							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
 					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -205,7 +205,7 @@
 			<fieldset>
 				<div class="dnnFormItem">
 					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound" Style="margin-bottom:30px;width:775px">
+						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound" Style="width:100%;margin-bottom:30px">
 							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
 					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
 					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -315,7 +315,7 @@
                     DisplayMode="SingleParagraph" CssClass="dnnFormMessage dnnFormWarning" />
                 <div class="dnnFormItem">
                     <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                            GridLines="None" OnRowDataBound="gridDisciplines_RowDataBound" Style="margin-bottom:30px;width:775px">
+                            GridLines="None" OnRowDataBound="gridDisciplines_RowDataBound" Style="width:100%;margin-bottom:30px">
                         <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                         <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
                         <AlternatingRowStyle CssClass="dnnGridAltItem" />
