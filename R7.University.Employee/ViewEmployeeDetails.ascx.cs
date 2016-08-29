@@ -317,9 +317,10 @@ namespace R7.University.Employee
             }
 
             // occupied positions
-            var occupiedPositions = employee.Positions.ToList ();
-            if (occupiedPositions.Count > 0) {
-                repeaterPositions.DataSource = occupiedPositions.GroupByDivision (); 
+            if (employee.Positions.Any ()) {
+                repeaterPositions.DataSource = employee.Positions
+                    .OrderByDescending (op => op.Position.Weight)
+                    .GroupByDivision ();
                 repeaterPositions.DataBind ();
             }
             else
