@@ -168,7 +168,9 @@ namespace R7.University.Employee
         protected void Display (IEmployee employee)
         {
             if (employee.Positions.Any ()) {
-                repeaterPositions.DataSource = employee.Positions;
+                repeaterPositions.DataSource = employee.Positions
+                    .OrderByDescending (op => op.Position.Weight)
+                    .GroupByDivision ();
                 repeaterPositions.DataBind ();
             }
             else
