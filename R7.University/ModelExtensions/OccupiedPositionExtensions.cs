@@ -26,6 +26,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.ViewModels;
 using DotNetNuke.UI.Modules;
+using System.Xml.Schema;
 
 namespace R7.University.ModelExtensions
 {
@@ -44,14 +45,12 @@ namespace R7.University.ModelExtensions
                 var op = opList [i];
                 // first combine position short title with it's suffix
                 op.Position.ShortTitle = TextUtils.FormatList (" ", 
-                    FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title), 
-                    op.TitleSuffix);
+                    FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title), op.TitleSuffix);
 
                 for (var j = i + 1; j < opList.Count;) {
                     if (op.DivisionID == opList [j].DivisionID) {
                         op.Position.ShortTitle += ", " + TextUtils.FormatList (" ", 
-                            FormatHelper.FormatShortTitle (opList [j].Position.ShortTitle, opList [j].Position.Title), 
-                            opList [j].TitleSuffix);
+                            FormatHelper.FormatShortTitle (opList [j].Position.ShortTitle, opList [j].Position.Title), opList [j].TitleSuffix);
 
                         // remove groupped item
                         opList.RemoveAt (j);
@@ -64,6 +63,34 @@ namespace R7.University.ModelExtensions
             return opList;
         }
 
+
+        public static IEnumerable<GroupedOccupiedPosition> GroupByDivision2 (this IEnumerable<OccupiedPositionInfo> occupiedPositions)
+        {
+            var gops = occupiedPositions.Select (op => new GroupedOccupiedPosition (op)).ToList ();
+
+            for (var i = 0; i < gops.Count; i++) {
+                var gop = gops [i];
+                var gopp = gop.OccupiedPosition;
+
+                // first combine position short title with it's suffix
+                gop.Title = TextUtils.FormatList (" ",
+                    FormatHelper.FormatShortTitle (gopp.Position.ShortTitle, gopp.Position.Title), gopp.TitleSuffix);
+
+                for (var j = i + 1; j < gops.Count;) {
+                    if (gopp.DivisionID == gops [j].OccupiedPosition.DivisionID) {
+                        gop.Title += ", " + TextUtils.FormatList (" ",
+                            FormatHelper.FormatShortTitle (gops [j].OccupiedPosition.Position.ShortTitle, gops [j].OccupiedPosition.Position.Title), gops [j].OccupiedPosition.TitleSuffix);
+
+                        // remove groupped item
+                        gops.RemoveAt (j);
+                        continue;
+                    }
+                    j++;
+                }
+            }
+
+            return gops;
+        }
         public static string FormatDivisionLink (this OccupiedPositionInfo op, IModuleControl module)
         {
             // do not display division title for high-level divisions

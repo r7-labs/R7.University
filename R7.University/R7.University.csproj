@@ -193,6 +193,7 @@
     <Compile Include="Queries\EduProgramProfileQueryBase.cs" />
     <Compile Include="Models\DocumentModel.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
+    <Compile Include="Models\GroupedOccupiedPosition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

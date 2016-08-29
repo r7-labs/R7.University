@@ -315,23 +315,21 @@ namespace R7.University.EmployeeList
             else
                 linkUserProfile.Visible = false;
 
-            // get current employee occupied positions
-            // TODO: Restore grouping
-            var ops = employee.Positions
-                .OrderByDescending (op => op.DivisionID == Settings.DivisionID)
-                .ThenByDescending (op => op.Position.Weight);
-
+            // get current employee occupied positions, grouped
+            var gops = employee.Positions
+                .GroupByDivision2 ()
+                .OrderByDescending (gop => gop.OccupiedPosition.DivisionID == Settings.DivisionID)
+                .ThenByDescending (gop => gop.OccupiedPosition.Position.Weight);
+                
             // build positions value
             var positionsVisible = false;
-            if (!ops.IsNullOrEmpty ()) {
+            if (!gops.IsNullOrEmpty ()) {
                 var strOps = string.Empty;
-                foreach (var op in ops) {
-                    var strOp = FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title);
-
-                    // op.PositionShortTitle is a comma-separated list of positions, including TitleSuffix
-                    strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", strOp, 
+                foreach (var gop in gops) {
+                    // gop.Title is a comma-separated list of grouped positions
+                    strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", gop.Title, 
                         // do not display division title also for current division
-                            (op.DivisionID != Settings.DivisionID) ? op.FormatDivisionLink (this) : string.Empty));
+                        (gop.OccupiedPosition.DivisionID != Settings.DivisionID) ? gop.OccupiedPosition.FormatDivisionLink (this) : string.Empty));
                 }
 
                 if (!string.IsNullOrWhiteSpace (strOps)) {
