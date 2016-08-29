@@ -317,9 +317,9 @@ namespace R7.University.EmployeeList
 
             // get current employee occupied positions, grouped
             var gops = employee.Positions
-                .GroupByDivision2 ()
-                .OrderByDescending (gop => gop.OccupiedPosition.DivisionID == Settings.DivisionID)
-                .ThenByDescending (gop => gop.OccupiedPosition.Position.Weight);
+                .OrderByDescending (op => op.DivisionID == Settings.DivisionID)
+                .ThenByDescending (op => op.Position.Weight)
+                .GroupByDivision ();
                 
             // build positions value
             var positionsVisible = false;

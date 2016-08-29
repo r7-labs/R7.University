@@ -34,13 +34,14 @@ namespace R7.University.Employee.SharedLogic
         {
             // exclude header & footer
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-                var op = (OccupiedPositionInfo) e.Item.DataItem;
+                var gop = (GroupedOccupiedPosition) e.Item.DataItem;
+                var op = gop.OccupiedPosition;
 
                 var labelPosition = (Label) e.Item.FindControl ("labelPosition");
                 var labelDivision = (Label) e.Item.FindControl ("labelDivision");
                 var linkDivision = (HyperLink) e.Item.FindControl ("linkDivision");
 
-                labelPosition.Text = FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title);
+                labelPosition.Text = gop.Title;
 
                 // don't display division title for highest level divisions
                 if (TypeUtils.IsNull (op.Division.ParentDivisionID)) {

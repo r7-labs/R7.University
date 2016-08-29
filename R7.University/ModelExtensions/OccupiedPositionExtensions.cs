@@ -19,14 +19,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.ViewModels;
-using DotNetNuke.UI.Modules;
-using System.Xml.Schema;
 
 namespace R7.University.ModelExtensions
 {
@@ -37,34 +35,7 @@ namespace R7.University.ModelExtensions
         /// </summary>
         /// <returns>The occupied positions grouped by division.</returns>
         /// <param name="occupiedPositions">The occupied positions to group by division.</param>
-        public static IEnumerable<OccupiedPositionInfo> GroupByDivision (this IEnumerable<OccupiedPositionInfo> occupiedPositions)
-        {
-            var opList = occupiedPositions.ToList ();
-
-            for (var i = 0; i < opList.Count; i++) {
-                var op = opList [i];
-                // first combine position short title with it's suffix
-                op.Position.ShortTitle = TextUtils.FormatList (" ", 
-                    FormatHelper.FormatShortTitle (op.Position.ShortTitle, op.Position.Title), op.TitleSuffix);
-
-                for (var j = i + 1; j < opList.Count;) {
-                    if (op.DivisionID == opList [j].DivisionID) {
-                        op.Position.ShortTitle += ", " + TextUtils.FormatList (" ", 
-                            FormatHelper.FormatShortTitle (opList [j].Position.ShortTitle, opList [j].Position.Title), opList [j].TitleSuffix);
-
-                        // remove groupped item
-                        opList.RemoveAt (j);
-                        continue;
-                    }
-                    j++;
-                }
-            }
-
-            return opList;
-        }
-
-
-        public static IEnumerable<GroupedOccupiedPosition> GroupByDivision2 (this IEnumerable<OccupiedPositionInfo> occupiedPositions)
+        public static IEnumerable<GroupedOccupiedPosition> GroupByDivision (this IEnumerable<OccupiedPositionInfo> occupiedPositions)
         {
             var gops = occupiedPositions.Select (op => new GroupedOccupiedPosition (op)).ToList ();
 
