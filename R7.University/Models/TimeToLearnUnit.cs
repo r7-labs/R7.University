@@ -1,10 +1,10 @@
 ﻿//
-//  EduProgramProfileFormInfo.cs
+//  TimeToLearnUnit.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,28 +19,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+
 namespace R7.University.Models
 {
-    public class EduProgramProfileFormInfo: IEduProgramProfileForm
+    public enum TimeToLearnUnit
     {
-        #region IEduProgramProfileForm implementation
-
-        public long EduProgramProfileFormID { get; set; }
-
-        public int EduProgramProfileID { get; set; }
-
-        public int EduFormID { get; set; }
-
-        public int TimeToLearn { get; set; }
-
-        public string TimeToLearnUnit { get; set; }
-
-        // REVIEW: Rename?
-        public bool IsAdmissive { get; set; }
-
-        public virtual EduFormInfo EduForm { get; set; }
-
-        #endregion
+        Months = 'M',
+        Hours = 'h'
     }
 }
-

@@ -194,6 +194,7 @@
     <Compile Include="Models\DocumentModel.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
+    <Compile Include="Models\TimeToLearnUnit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -265,6 +266,7 @@
     <None Include="R7.University.yml" />
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.10.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.11.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

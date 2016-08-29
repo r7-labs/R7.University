@@ -80,6 +80,8 @@ namespace R7.University.Controls
 
         public int TimeToLearn { get; set; }
 
+        public string TimeToLearnUnit { get; set; }
+
         public bool IsAdmissive { get; set; }
 
         [XmlIgnore]

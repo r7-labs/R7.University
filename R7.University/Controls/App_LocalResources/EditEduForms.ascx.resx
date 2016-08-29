@@ -22,7 +22,7 @@
         <value>Time to Learn:</value>
     </data>
     <data name="labelTimeToLearn.Help">
-        <value>Enter time to learn in years and months.</value>
+        <value>Enter time to learn in years and months or in hours.</value>
     </data>
     <data name="labelIsAdmissive.Text">
         <value>Is Admissive:</value>
@@ -48,6 +48,9 @@
     <data name="Months.Text">
         <value>Months</value>
     </data>
+	<data name="Hours.Text">
+        <value>Hours</value>
+    </data>
     <data name="TimeToLearnYears.Invalid">
         <value>Years should be integer value from 0 to 7.</value>
     </data>
@@ -59,6 +62,12 @@
     </data>
     <data name="TimeToLearnMonths.Required">
         <value>The months value is required.</value>
+    </data>
+	<data name="TimeToLearnHours.Invalid">
+        <value>Hours should be integer value from 0 to 99999.</value>
+    </data>
+    <data name="TimeToLearnHours.Required">
+        <value>The hours value is required.</value>
     </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>

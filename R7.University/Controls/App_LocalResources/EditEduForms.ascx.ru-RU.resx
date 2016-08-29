@@ -22,7 +22,7 @@
         <value>Срок обучения:</value>
     </data>
     <data name="labelTimeToLearn.Help">
-        <value>Введите нормативный срок обучения в годах и месяцах.</value>
+        <value>Введите нормативный срок обучения в годах и месяцах или же в часах.</value>
     </data>
     <data name="labelIsAdmissive.Text">
         <value>Ведется прием:</value>
@@ -48,6 +48,9 @@
     <data name="Months.Text">
         <value>Месяцев</value>
     </data>
+	<data name="Hours.Text">
+        <value>Часов</value>
+    </data>
     <data name="TimeToLearnYears.Invalid">
         <value>Число лет дожно быть целым числом от 0 до 7.</value>
     </data>
@@ -59,6 +62,12 @@
     </data>
     <data name="TimeToLearnMonths.Required">
         <value>Введите число месяцев.</value>
+    </data>
+	<data name="TimeToLearnHours.Invalid">
+        <value>Число часов должно быть целым числом от 0 до 99999.</value>
+    </data>
+    <data name="TimeToLearnHours.Required">
+        <value>Введите число часов.</value>
     </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>

@@ -15,6 +15,7 @@ namespace R7.University.Controls
         protected CheckBox checkIsAdmissive;
         protected TextBox textTimeToLearnYears;
         protected TextBox textTimeToLearnMonths;
+        protected TextBox textTimeToLearnHours;
         protected HiddenField hiddenEduFormItemID;
         protected LinkButton buttonAddEduForm;
         protected LinkButton buttonUpdateEduForm;

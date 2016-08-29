@@ -33,6 +33,8 @@ namespace R7.University.Models
 
         int TimeToLearn { get; set; }
 
+        string TimeToLearnUnit { get; set; }
+
         bool IsAdmissive { get; set; }
 
         EduFormInfo EduForm { get; set; }

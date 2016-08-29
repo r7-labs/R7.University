@@ -68,8 +68,17 @@ namespace R7.University.Controls
         {
             radioEduForm.SelectByValue (item.EduFormID);
             checkIsAdmissive.Checked = item.IsAdmissive;
-            textTimeToLearnYears.Text = (item.TimeToLearn / 12).ToString ();
-            textTimeToLearnMonths.Text = (item.TimeToLearn % 12).ToString ();
+
+            if (item.TimeToLearnUnit [0] == (char) TimeToLearnUnit.Hours) {
+                textTimeToLearnYears.Text = "0";
+                textTimeToLearnMonths.Text = "0";
+                textTimeToLearnHours.Text = item.TimeToLearn.ToString ();
+            }
+            else {
+                textTimeToLearnYears.Text = (item.TimeToLearn / 12).ToString ();
+                textTimeToLearnMonths.Text = (item.TimeToLearn % 12).ToString ();
+                textTimeToLearnHours.Text = "0";
+            }
         }
 
         protected override void OnUpdateItem (EduProgramProfileFormViewModel item)
@@ -77,7 +86,15 @@ namespace R7.University.Controls
             item.EduFormID = int.Parse (radioEduForm.SelectedValue);
             item.EduFormViewModel = GetEduForm (item.EduFormID);
             item.IsAdmissive = checkIsAdmissive.Checked;
-            item.TimeToLearn = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
+
+            if (!string.IsNullOrWhiteSpace (textTimeToLearnHours.Text)) {
+                item.TimeToLearn = int.Parse (textTimeToLearnHours.Text);
+                item.TimeToLearnUnit = ((char) TimeToLearnUnit.Hours).ToString ();
+            }
+            else {
+                item.TimeToLearn = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
+                item.TimeToLearnUnit = ((char) TimeToLearnUnit.Months).ToString ();
+            }
         }
 
         protected override void OnResetForm ()
@@ -85,6 +102,7 @@ namespace R7.University.Controls
             radioEduForm.SelectedIndex = 0;
             textTimeToLearnYears.Text = "0";
             textTimeToLearnMonths.Text = "0";
+            textTimeToLearnHours.Text = "0";
             checkIsAdmissive.Checked = false;
         }
 
