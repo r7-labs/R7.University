@@ -18,13 +18,13 @@
     <data name="Barcode.Action" xml:space="preserve">
         <value><![CDATA[<span class="glyphicon glyphicon-qrcode"></span> Show QR-code]]></value>
     </data>
-    <data name="ExperienceYears.Format1" xml:space="preserve">
+    <data name="ExperienceYears1.Format" xml:space="preserve">
         <value>Total work experience (years): {0}</value>
     </data>
-    <data name="ExperienceYears.Format2" xml:space="preserve">
+    <data name="ExperienceYears2.Format" xml:space="preserve">
         <value>Work experience by speciality (years): {0}</value>
     </data>
-    <data name="ExperienceYears.Format3" xml:space="preserve">
+    <data name="ExperienceYears3.Format" xml:space="preserve">
         <value>Total work experience (years): {0}, in which by speciality: {1}</value>
     </data>
 </root>

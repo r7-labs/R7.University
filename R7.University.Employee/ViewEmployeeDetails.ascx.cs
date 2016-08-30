@@ -459,15 +459,15 @@ namespace R7.University.Employee
 			
             if (exp1 && !exp2) {
                 labelExperienceYears.Text = string.Format (
-                    LocalizeString ("ExperienceYears.Format1"), employee.ExperienceYears.Value);
+                    LocalizeString ("ExperienceYears1.Format"), employee.ExperienceYears.Value);
             }
             else if (!exp1 && exp2) {
                 labelExperienceYears.Text = string.Format (
-                    LocalizeString ("ExperienceYears.Format2"), employee.ExperienceYearsBySpec);
+                    LocalizeString ("ExperienceYears2.Format"), employee.ExperienceYearsBySpec);
             }
             else if (exp1 && exp2) {
                 labelExperienceYears.Text = string.Format (
-                    LocalizeString ("ExperienceYears.Format3"), 
+                    LocalizeString ("ExperienceYears3.Format"), 
                     employee.ExperienceYears.Value, employee.ExperienceYearsBySpec);
             }
             else {
