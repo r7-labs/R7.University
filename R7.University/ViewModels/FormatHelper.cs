@@ -62,18 +62,17 @@ namespace R7.University.ViewModels
         }
 
         public static string FormatTimeToLearn (
-            int timeToLearn,
+            int timeToLearn, 
             TimeToLearnUnit timeToLearnUnit,
-            string yearsKeyBase,
-            string monthsKeyBase,
-            string hoursKeyBase,
+            string keyBase,
             string resourceFile)
         {
             var culture = CultureInfo.CurrentUICulture;
 
             if (timeToLearnUnit == TimeToLearnUnit.Hours) {
                 var hoursPlural = getPlural (timeToLearn, culture) + 1;
-                return string.Format (Localization.GetString (hoursKeyBase + hoursPlural, resourceFile), timeToLearn);
+                var hoursKey = keyBase + "Hours" + hoursPlural + ".Format";
+                return string.Format (Localization.GetString (hoursKey, resourceFile), timeToLearn);
             }
            
             var years = timeToLearn / 12;
@@ -82,16 +81,19 @@ namespace R7.University.ViewModels
             var yearsPlural = getPlural (years, culture) + 1;
             var monthsPlural = getPlural (months, culture) + 1;
 
+            var yearsKey = keyBase + "Years" + yearsPlural + ".Format";
+            var monthsKey = keyBase + "Months" + monthsPlural + ".Format";
+
             if (months == 0) {
-                return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years);
+                return string.Format (Localization.GetString (yearsKey, resourceFile), years);
             }
 
             if (years == 0) {
-                return string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
+                return string.Format (Localization.GetString (monthsKey, resourceFile), months);
             }
 
-            return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years)
-            + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
+            return string.Format (Localization.GetString (yearsKey, resourceFile), years)
+                + " " + string.Format (Localization.GetString (monthsKey, resourceFile), months);
         }
 
         public static string FormatEduProgramTitle (string code, string title)

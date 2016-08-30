@@ -105,7 +105,7 @@ namespace R7.University.EduProgram.ViewModels
                         sb.AppendFormat ("<li>{0} &ndash; {1}</li>", 
                             Localization.GetString ("TimeToLearn" + eppf.EduForm.Title + ".Text", Context.LocalResourceFile),
                             FormatHelper.FormatTimeToLearn (eppf.TimeToLearn, (TimeToLearnUnit) eppf.TimeToLearnUnit [0],
-                                "TimeToLearnYears.Format", "TimeToLearnMonths.Format", "TimeToLearnHours.Format", Context.LocalResourceFile)
+                                                            "TimeToLearn", Context.LocalResourceFile)
                         );
                     }
 

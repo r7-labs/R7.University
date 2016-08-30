@@ -54,31 +54,31 @@
     <data name="TimeToLearnExtramural.Text" xml:space="preserve">
         <value>Extramural</value>
     </data>
-    <data name="TimeToLearnYears.Format1" xml:space="preserve">
+    <data name="TimeToLearnYears1.Format" xml:space="preserve">
         <value>{0} year</value>
     </data>
-    <data name="TimeToLearnYears.Format2" xml:space="preserve">
+    <data name="TimeToLearnYears2.Format" xml:space="preserve">
         <value>{0} years</value>
     </data>
-    <data name="TimeToLearnYears.Format3" xml:space="preserve">
+    <data name="TimeToLearnYears3.Format" xml:space="preserve">
         <value>{0} years</value>
     </data>
-    <data name="TimeToLearnMonths.Format1" xml:space="preserve">
+    <data name="TimeToLearnMonths1.Format" xml:space="preserve">
         <value>{0} month</value>
     </data>
-    <data name="TimeToLearnMonths.Format2" xml:space="preserve">
+    <data name="TimeToLearnMonths2.Format" xml:space="preserve">
         <value>{0} months</value>
     </data>
-    <data name="TimeToLearnMonths.Format3" xml:space="preserve">
+    <data name="TimeToLearnMonths3.Format" xml:space="preserve">
         <value>{0} months</value>
     </data>
-	<data name="TimeToLearnHours.Format1" xml:space="preserve">
+	<data name="TimeToLearnHours1.Format" xml:space="preserve">
         <value>{0} hour</value>
     </data>
-    <data name="TimeToLearnHours.Format2" xml:space="preserve">
+    <data name="TimeToLearnHours2.Format" xml:space="preserve">
         <value>{0} hours</value>
     </data>
-    <data name="TimeToLearnHours.Format3" xml:space="preserve">
+    <data name="TimeToLearnHours3.Format" xml:space="preserve">
         <value>{0} hours</value>
     </data>
 </root>

@@ -106,7 +106,7 @@ namespace R7.University.Controls
         {
             get { 
                 return FormatHelper.FormatTimeToLearn (TimeToLearn, (TimeToLearnUnit) TimeToLearnUnit [0], 
-                    "TimeToLearnYears.Format", "TimeToLearnMonths.Format", "TimeToLearnHours.Format", Context.LocalResourceFile);
+                                                       "TimeToLearn", Context.LocalResourceFile);
             }
         }
     }
