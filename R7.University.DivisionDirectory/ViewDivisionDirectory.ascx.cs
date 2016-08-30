@@ -344,7 +344,7 @@ namespace R7.University.DivisionDirectory
 
                 // get head employee
                 var headEmployee = new HeadEmployeesQuery (ModelContext)
-                    .GetHeadEmployees (division.DivisionID, division.HeadPositionID)
+                    .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
                     .FirstOrDefault (he => he.IsPublished (now));
                 
                 if (headEmployee != null) {
@@ -388,7 +388,7 @@ namespace R7.University.DivisionDirectory
 
                 // get head employee
                 var headEmployee = new HeadEmployeesQuery (ModelContext)
-                    .GetHeadEmployees (division.DivisionID, division.HeadPositionID)
+                    .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
                     .FirstOrDefault (he => he.IsPublished (now));
                 
                 if (headEmployee != null) {

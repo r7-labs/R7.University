@@ -33,7 +33,7 @@ namespace R7.University.DivisionDirectory.Queries
         {
         }
 
-        public IEnumerable<EmployeeInfo> GetHeadEmployees (int divisionId, int? headPositionId)
+        public IEnumerable<EmployeeInfo> ListHeadEmployees (int divisionId, int? headPositionId)
         {
             if (headPositionId != null) {
                 return ModelContext.Query<EmployeeInfo> ()
