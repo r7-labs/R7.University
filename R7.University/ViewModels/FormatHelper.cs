@@ -75,24 +75,23 @@ namespace R7.University.ViewModels
                 var hoursPlural = getPlural (timeToLearn, culture) + 1;
                 return string.Format (Localization.GetString (hoursKeyBase + hoursPlural, resourceFile), timeToLearn);
             }
-            else {
-                var years = timeToLearn / 12;
-                var months = timeToLearn % 12;
+           
+            var years = timeToLearn / 12;
+            var months = timeToLearn % 12;
 
-                var yearsPlural = getPlural (years, culture) + 1;
-                var monthsPlural = getPlural (months, culture) + 1;
+            var yearsPlural = getPlural (years, culture) + 1;
+            var monthsPlural = getPlural (months, culture) + 1;
 
-                if (months == 0) {
-                    return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years);
-                }
-
-                if (years == 0) {
-                    return string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
-                }
-
-                return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years)
-                + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
+            if (months == 0) {
+                return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years);
             }
+
+            if (years == 0) {
+                return string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
+            }
+
+            return string.Format (Localization.GetString (yearsKeyBase + yearsPlural, resourceFile), years)
+            + " " + string.Format (Localization.GetString (monthsKeyBase + monthsPlural, resourceFile), months);
         }
 
         public static string FormatEduProgramTitle (string code, string title)
