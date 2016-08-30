@@ -195,6 +195,7 @@
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
     <Compile Include="Models\TimeToLearnUnit.cs" />
+    <Compile Include="Components\CultureHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

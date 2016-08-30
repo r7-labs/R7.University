@@ -29,6 +29,7 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 
@@ -47,20 +48,6 @@ namespace R7.University.ViewModels
             return !string.IsNullOrWhiteSpace (titleSuffix) ? shortTitleWoSuffix + " " + titleSuffix : shortTitleWoSuffix; 
         }
 
-        private static int getPlural (int n, CultureInfo culture)
-        {
-            // http://localization-guide.readthedocs.org/en/latest/l10n/pluralforms.html
-
-            // TODO: Add more languages here
-            if (culture.TwoLetterISOLanguageName == "ru") {   
-                // nplurals=3;
-                return (n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);
-            }
-
-            // nplurals=2;
-            return (n != 1) ? 1 : 0;
-        }
-
         public static string FormatTimeToLearn (
             int timeToLearn, 
             TimeToLearnUnit timeToLearnUnit,
@@ -70,7 +57,7 @@ namespace R7.University.ViewModels
             var culture = CultureInfo.CurrentUICulture;
 
             if (timeToLearnUnit == TimeToLearnUnit.Hours) {
-                var hoursPlural = getPlural (timeToLearn, culture) + 1;
+                var hoursPlural = CultureHelper.GetPlural (timeToLearn, culture) + 1;
                 var hoursKey = keyBase + "Hours" + hoursPlural + ".Format";
                 return string.Format (Localization.GetString (hoursKey, resourceFile), timeToLearn);
             }
@@ -78,8 +65,8 @@ namespace R7.University.ViewModels
             var years = timeToLearn / 12;
             var months = timeToLearn % 12;
 
-            var yearsPlural = getPlural (years, culture) + 1;
-            var monthsPlural = getPlural (months, culture) + 1;
+            var yearsPlural = CultureHelper.GetPlural (years, culture) + 1;
+            var monthsPlural = CultureHelper.GetPlural (months, culture) + 1;
 
             var yearsKey = keyBase + "Years" + yearsPlural + ".Format";
             var monthsKey = keyBase + "Months" + monthsPlural + ".Format";
