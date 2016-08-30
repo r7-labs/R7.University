@@ -209,6 +209,8 @@ namespace R7.University.Employee
             }
 
             gridEduPrograms.LocalizeColumns (LocalResourceFile);
+            gridExperience.LocalizeColumns (LocalResourceFile);
+            gridAchievements.LocalizeColumns (LocalResourceFile);
         }
 
         /// <summary>
