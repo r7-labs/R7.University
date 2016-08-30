@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.EduProgram</RootNamespace>
     <AssemblyName>R7.University.EduProgram</AssemblyName>
-    <ReleaseVersion>1.10.1</ReleaseVersion>
+    <ReleaseVersion>1.11.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
