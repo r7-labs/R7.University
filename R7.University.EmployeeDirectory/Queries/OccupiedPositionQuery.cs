@@ -33,7 +33,7 @@ namespace R7.University.EmployeeDirectory.Queries
         {
         }
 
-        public OccupiedPositionInfo PrimePosition (int employeeId)
+        public OccupiedPositionInfo FirstOrDefaultPrimePosition (int employeeId)
         {
             return ModelContext.Query<OccupiedPositionInfo> ()
                 .Include (op => op.Position)
