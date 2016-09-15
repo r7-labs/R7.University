@@ -240,7 +240,7 @@ namespace R7.University.Employee
             comboAchievementTypes.DataBind ();
 
             // get and bind edu levels
-            var eduLevels = new EduLevelQuery (ModelContext).ListForEduProgram ();
+            var eduLevels = new EduLevelQuery (ModelContext).List ();
             comboEduLevel.DataSource = eduLevels;
             comboEduLevel.DataBind ();
 
