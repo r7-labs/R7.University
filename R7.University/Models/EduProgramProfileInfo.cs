@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using R7.University.ViewModels;
 
 namespace R7.University.Models
 {
@@ -76,26 +75,5 @@ namespace R7.University.Models
         public virtual ICollection<DocumentInfo> Documents { get; set; }
 
         #endregion
-
-        // TODO: Move to viewmodel
-        public string EduProgramProfileString
-        {
-            get {
-                if (EduProgram != null) {
-                    return FormatHelper.FormatEduProgramProfileTitle (
-                        EduProgram.Code,
-                        EduProgram.Title,
-                        ProfileCode,
-                        ProfileTitle); 
-                }
-
-                return FormatHelper.FormatEduProgramProfileTitle (
-                    string.Empty,
-                    string.Empty,
-                    ProfileCode,
-                    ProfileTitle);
-            }
-        }
     }
 }
-
