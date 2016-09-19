@@ -1181,7 +1181,9 @@ namespace R7.University.Employee
 
         private void BindEduProgramProfiles (int eduLevelId)
         {
-            var epps = new R7.University.Employee.Queries.EduProgramProfileQuery (ModelContext).ListByEduLevel (eduLevelId);
+            var epps = new EduProgramProfileQuery (ModelContext).ListByEduLevel (eduLevelId)
+                .Select (epp => new EduProgramProfileViewModel (epp));
+            
             comboEduProgramProfile.DataSource = epps;
             comboEduProgramProfile.DataBind ();
         }

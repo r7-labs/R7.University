@@ -356,7 +356,7 @@
                     <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
                     <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-ac-combobox"
                         DataValueField="EduProgramProfileID"
-                        DataTextField="EduProgramProfileString" />
+                        DataTextField="Title_String" />
                     <asp:CustomValidator id="valEduProgramProfile" runat="server" ControlToValidate="comboEduProgramProfile"
                         Display="None" EnableClientScript="false" ValidationGroup="Disciplines" />
                 </div>

@@ -35,7 +35,9 @@ namespace R7.University.Employee.Queries
 
         public IList<EduProgramProfileInfo> ListByEduLevel (int eduLevelId)
         {
-            return ModelContext.Query<EduProgramProfileInfo> ().Where (epp => epp.EduLevelId == eduLevelId).ToList ();
+            return ModelContext.Query<EduProgramProfileInfo> ()
+                               .Include (epp => epp.EduProgram)
+                               .Where (epp => epp.EduLevelId == eduLevelId).ToList ();
         }
 
         public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
