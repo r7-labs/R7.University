@@ -34,8 +34,8 @@ See *R7.University* modules in action on the official website of *Volgograd Stat
 
 ## License
 
-[![GPLv3](http://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl.txt)
+[![AGPLv3](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.html)
 
 The *R7.University* is free software: you can redistribute it and/or modify it under the terms of 
-the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, 
+the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, 
 or (at your option) any later version.
