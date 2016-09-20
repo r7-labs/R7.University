@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -268,6 +267,10 @@
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.10.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.11.00.SqlDataProvider" />
+    <None Include="Controls\AgplFooter.ascx" />
+    <Compile Include="Controls\AgplFooter.ascx.cs">
+	    <DependentUpon>Controls\AgplFooter.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
