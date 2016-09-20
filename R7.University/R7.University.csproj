@@ -271,6 +271,7 @@
     <Compile Include="Controls\AgplFooter.ascx.cs">
 	    <DependentUpon>Controls\AgplFooter.ascx</DependentUpon>
     </Compile>
+    <None Include="css\module.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
