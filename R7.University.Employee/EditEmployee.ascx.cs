@@ -1182,7 +1182,11 @@ namespace R7.University.Employee
         private void BindEduProgramProfiles (int eduLevelId)
         {
             var epps = new EduProgramProfileQuery (ModelContext).ListByEduLevel (eduLevelId)
-                .Select (epp => new EduProgramProfileViewModel (epp));
+                                                                .Select (epp => new EduProgramProfileViewModel (epp))
+                                                                .OrderBy (epp => epp.EduProgram.Code)
+                                                                .ThenBy (epp => epp.EduProgram.Title)
+                                                                .ThenBy (epp => epp.ProfileCode)
+                                                                .ThenBy (epp => epp.ProfileTitle);
             
             comboEduProgramProfile.DataSource = epps;
             comboEduProgramProfile.DataBind ();
