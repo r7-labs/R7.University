@@ -77,7 +77,19 @@ namespace R7.University.Employee
 
         protected bool InPopup
         {
-            get { return Request.QueryString ["popup"] != null; }
+            get {
+                var popupArg = Request.QueryString ["popup"];
+                if (string.IsNullOrEmpty (popupArg)) {
+                    return false;
+                }
+
+                bool popup;
+                if (bool.TryParse (popupArg, out popup)) {
+                    return popup;
+                }
+
+                return false;
+            }
         }
 
         protected bool InViewModule
