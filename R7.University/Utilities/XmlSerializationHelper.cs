@@ -23,7 +23,7 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace R7.University.Components
+namespace R7.University.Utilities
 {
     public static class XmlSerializationHelper
     {

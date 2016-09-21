@@ -26,8 +26,8 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Components;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.Controls
 {

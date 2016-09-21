@@ -100,7 +100,6 @@
     <Compile Include="Components\CopyCstor.cs" />
     <Compile Include="Components\DataTableConstructor.cs" />
     <Compile Include="Components\UniversityController.cs" />
-    <Compile Include="Components\XmlSerializationHelper.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="ViewModels\ViewModelIndexer.cs" />
     <Compile Include="ViewModels\ViewNumerator.cs" />
@@ -194,6 +193,7 @@
     <Compile Include="Utilities\CultureHelper.cs" />
     <Compile Include="Utilities\ModuleHelper.cs" />
     <Compile Include="Utilities\CacheHelper.cs" />
+    <Compile Include="Utilities\XmlSerializationHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
