@@ -34,6 +34,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
@@ -191,8 +192,7 @@ namespace R7.University.Employee
             var titles = employee.Achievements
                 .Select (ach => new EmployeeAchievementViewModel (ach, new ViewModelContext (this)))
                 .Where (ach => ach.IsTitle)
-                .Select (ach => R7.University.Utilities.Utils.FirstCharToLower (
-                    FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix)));
+                .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
 			
             var strTitles = TextUtils.FormatList (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))

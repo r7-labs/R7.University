@@ -45,6 +45,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.ViewModels;
+using R7.DotNetNuke.Extensions.TextExtensions;
 
 namespace R7.University.EmployeeList
 {
@@ -264,8 +265,7 @@ namespace R7.University.EmployeeList
                 .Select (ea => new EmployeeAchievementViewModel (ea))
                 .Where (ach => ach.IsTitle);
             
-            var titles = achievements.Select (ach => R7.University.Utilities.Utils.FirstCharToLower (
-                FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix)));
+            var titles = achievements.Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
 			
             // employee title achievements
             var strTitles = TextUtils.FormatList (", ", titles);

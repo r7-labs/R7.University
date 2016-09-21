@@ -83,17 +83,6 @@ namespace R7.University.Utilities
             }
         }
 
-        public static string FirstCharToLower (string s)
-        {
-            if (!string.IsNullOrWhiteSpace (s))
-            if (s.Length == 1)
-                return s.ToLower ();
-            else
-                return s.ToLower () [0].ToString () + s.Substring (1);
-		
-            return s;
-        }
-
         public static int GetViewIndexByID (MultiView mview, string viewName)
         {
             for (var i = 0; i < mview.Views.Count; i++)
