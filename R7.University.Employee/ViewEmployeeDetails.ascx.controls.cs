@@ -6,6 +6,7 @@ using System.Linq;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.UI.WebControls;
 using R7.University;
+using R7.University.Controls;
 
 namespace R7.University.Employee
 {
@@ -40,5 +41,6 @@ namespace R7.University.Employee
         protected GridView gridAchievements;
         protected GridView gridEduPrograms;
         protected HyperLink linkBarcode;
+        protected AgplFooter agplFooter;
     }
 }
