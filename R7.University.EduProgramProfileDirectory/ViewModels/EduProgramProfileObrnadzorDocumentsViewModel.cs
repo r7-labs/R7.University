@@ -25,6 +25,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
+using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -260,15 +261,27 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 if (Languages != null) {
                     var languages = Languages
                         .Split (languageCodeSeparator, StringSplitOptions.RemoveEmptyEntries)
-                        .Select (l => CultureInfo.GetCultureInfoByIetfLanguageTag (l).NativeName)
+                        .Select (L => SafeGetLanguageName (L))
                         .ToList ();
 
                     if (languages.Count > 0) {
-                        return "<span itemprop=\"language\">" + TextUtils.FormatList (", ", languages) + "</span>";
+                        return "<span itemprop=\"language\">" 
+                            + HttpUtility.HtmlEncode (TextUtils.FormatList (", ", languages))
+                            + "</span>";
                     }
                 }
 
                 return string.Empty;
+            }
+        }
+
+        private string SafeGetLanguageName (string ietfTag)
+        {
+            try {
+                return CultureInfo.GetCultureInfoByIetfLanguageTag (ietfTag).NativeName;
+            }
+            catch (CultureNotFoundException) {
+                return Localization.GetString ("UnknownLanguage.Text", Context.LocalResourceFile);
             }
         }
 

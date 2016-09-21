@@ -93,4 +93,7 @@
     <data name="LinkOpen.Text" xml:space="preserve">
         <value>open</value>
     </data>
+	<data name="UnknownLanguage.Text" xml:space="preserve">
+        <value>&lt;unknown language&gt;</value>
+    </data>
 </root>
