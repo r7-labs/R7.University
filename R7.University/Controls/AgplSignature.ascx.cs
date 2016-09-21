@@ -23,6 +23,7 @@ using System;
 using System.Reflection;
 using System.Web.UI;
 using DotNetNuke.Services.Localization;
+using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 
 namespace R7.University.Controls
 {
@@ -42,7 +43,7 @@ namespace R7.University.Controls
         {
             get {
                 if (localResourceFile == null) {
-                    localResourceFile = Localization.GetResourceFile (this, "AgplSignature.ascx");
+                    localResourceFile = DnnWebUiUtilities.GetLocalResourceFile (this);
                 }
 
                 return localResourceFile;
