@@ -267,15 +267,15 @@
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.10.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.11.00.SqlDataProvider" />
-    <None Include="Controls\AgplFooter.ascx" />
-    <Compile Include="Controls\AgplFooter.ascx.cs">
-	    <DependentUpon>Controls\AgplFooter.ascx</DependentUpon>
+    <None Include="Controls\AgplSignature.ascx" />
+    <Compile Include="Controls\AgplSignature.ascx.cs">
+	    <DependentUpon>AgplSignature.ascx</DependentUpon>
     </Compile>
     <None Include="css\module.css" />
-    <None Include="Controls\App_LocalResources\AgplFooter.ascx.resx">
+    <None Include="Controls\App_LocalResources\AgplSignature.ascx.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Controls\App_LocalResources\AgplFooter.ascx.ru-RU.resx">
+    <None Include="Controls\App_LocalResources\AgplSignature.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>

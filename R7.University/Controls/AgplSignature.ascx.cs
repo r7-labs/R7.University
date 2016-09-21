@@ -1,5 +1,5 @@
-﻿//
-//  AgplFooter.ascx.cs
+//
+//  AgplSignature.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,7 +26,7 @@ using DotNetNuke.Services.Localization;
 
 namespace R7.University.Controls
 {
-    public class AgplFooter: UserControl
+    public class AgplSignature: UserControl
     {
         private bool showRule = true;
 
@@ -42,7 +42,7 @@ namespace R7.University.Controls
         {
             get {
                 if (localResourceFile == null) {
-                    localResourceFile = Localization.GetResourceFile (this, "AgplFooter.ascx");
+                    localResourceFile = Localization.GetResourceFile (this, "AgplSignature.ascx");
                 }
 
                 return localResourceFile;
