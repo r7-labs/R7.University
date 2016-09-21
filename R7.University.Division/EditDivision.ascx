@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="controls" TagName="AgplFooter" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplFooter.ascx" %>
+<%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
@@ -146,7 +146,7 @@
 	</ul>
 	<hr />
 	<dnn:Audit id="ctlAudit" runat="server" />
-	<controls:AgplFooter id="agplFooter" runat="server" />
+	<controls:AgplSignature runat="server" />
 </div>
 <script type="text/javascript">
 (function($, Sys) {

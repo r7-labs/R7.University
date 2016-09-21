@@ -1,4 +1,4 @@
-﻿using System.Web;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
@@ -41,6 +41,6 @@ namespace R7.University.Employee
         protected GridView gridAchievements;
         protected GridView gridEduPrograms;
         protected HyperLink linkBarcode;
-        protected AgplFooter agplFooter;
+        protected AgplSignature agplSignature;
     }
 }

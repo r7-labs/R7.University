@@ -208,7 +208,7 @@ namespace R7.University.Employee
                 linkReturn.NavigateUrl = Globals.NavigateURL ();
             }
 
-            agplFooter.Visible = InPopup;
+            agplSignature.Visible = InPopup;
 
             gridEduPrograms.LocalizeColumns (LocalResourceFile);
             gridExperience.LocalizeColumns (LocalResourceFile);

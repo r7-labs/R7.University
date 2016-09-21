@@ -1,7 +1,7 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditEduForm.ascx.cs" Inherits="R7.University.Launchpad.EditEduForm" %>
+<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditEduForm.ascx.cs" Inherits="R7.University.Launchpad.EditEduForm" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
-<%@ Register TagPrefix="controls" TagName="AgplFooter" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplFooter.ascx" %>
+<%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
 
@@ -25,6 +25,6 @@
 		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
-	<controls:AgplFooter id="agplFooter" runat="server" />
+	<controls:AgplSignature runat="server" />
 </div>
 

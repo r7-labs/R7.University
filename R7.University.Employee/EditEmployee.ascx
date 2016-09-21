@@ -6,7 +6,7 @@
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="controls" TagName="AgplFooter" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplFooter.ascx" %>
+<%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
@@ -399,7 +399,7 @@
 	</ul>
 	<hr />
 	<dnn:Audit id="ctlAudit" runat="server" />
-    <controls:AgplFooter runat="server" />
+    <controls:AgplSignature runat="server" />
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">

@@ -1,7 +1,7 @@
 <%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ViewDivisionDirectory.ascx.cs" Inherits="R7.University.DivisionDirectory.ViewDivisionDirectory" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="controls" TagName="AgplFooter" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplFooter.ascx" %>
+<%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
 
 <dnn:DnnJsInclude runat="server" FilePath="dnn.jquery.js" PathNameAlias="SharedScripts" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.DivisionDirectory/js/tree.js" />
@@ -103,5 +103,5 @@
             </div>
         </asp:View>
     </asp:MultiView>
-	<controls:AgplFooter id="agplFooter" runat="server" />
+	<controls:AgplSignature runat="server" />
 </div>
