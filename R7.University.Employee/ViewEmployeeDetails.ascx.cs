@@ -24,6 +24,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
@@ -47,7 +48,6 @@ using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
 
 namespace R7.University.Employee
 {
@@ -210,7 +210,7 @@ namespace R7.University.Employee
 
             if (InPopup) {
                 linkReturn.Attributes.Add ("onclick", "javascript:return " +
-                    DnnUrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
+                    UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
             }
             else if (InViewModule) {
                 linkReturn.Visible = false;
