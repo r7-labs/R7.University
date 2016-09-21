@@ -603,8 +603,8 @@ namespace R7.University.Employee
                                            textLastName.Text, textOtherName.Text);
 
                     // REVIEW: EmployeeInfo should contain culture data?
-                    var employeeNameTL = R7.University.Utilities.TextUtils.Transliterate (employeeName, 
-                        R7.University.Utilities.TextUtils.RuTranslitTable).ToLowerInvariant ();
+                    var employeeNameTL = CultureHelper.Transliterate (employeeName, CultureHelper.RuTranslitTable)
+                                                      .ToLowerInvariant ();
 
                     // get files from default folder recursively
                     foreach (var file in FolderManager.Instance.GetFiles (folder, true)) {

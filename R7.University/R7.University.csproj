@@ -103,7 +103,6 @@
     <Compile Include="Components\UniversityController.cs" />
     <Compile Include="Components\XmlSerializationHelper.cs" />
     <Compile Include="Utilities\UrlUtils.cs" />
-    <Compile Include="Utilities\TextUtils.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="ViewModels\ViewModelIndexer.cs" />
     <Compile Include="ViewModels\ViewNumerator.cs" />
