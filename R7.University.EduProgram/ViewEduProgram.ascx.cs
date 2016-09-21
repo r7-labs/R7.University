@@ -40,6 +40,7 @@ using R7.University.EduProgram.Queries;
 using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgram

@@ -136,7 +136,6 @@
     <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
-    <Compile Include="Components\ModuleHelper.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\UniversityDataContext.cs" />
     <Compile Include="Data\UniversityDataContextFactory.cs" />
@@ -194,6 +193,7 @@
     <Compile Include="Models\TimeToLearnUnit.cs" />
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="Utilities\CultureHelper.cs" />
+    <Compile Include="Utilities\ModuleHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
