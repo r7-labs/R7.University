@@ -22,6 +22,7 @@
 using System;
 using System.Reflection;
 using System.Web.UI;
+using DotNetNuke.Services.Localization;
 
 namespace R7.University.Controls
 {
@@ -35,12 +36,32 @@ namespace R7.University.Controls
             set { showRule = value; }
         }
 
-        protected string Text
+        private string localResourceFile;
+
+        protected string LocalResourceFile
         {
             get {
-                var assemblyName = Assembly.GetExecutingAssembly ().GetName ();
-                return assemblyName.Name + " v" + assemblyName.Version.ToString (3);
+                if (localResourceFile == null) {
+                    localResourceFile = Localization.GetResourceFile (this, "AgplFooter.ascx");
+                }
+
+                return localResourceFile;
             }
+        }
+
+        protected string LocalizeString (string key)
+        {
+            return Localization.GetString (key, LocalResourceFile);
+        }
+
+        protected string AppName
+        {
+            get { return Assembly.GetExecutingAssembly ().GetName ().Name; }
+        }
+
+        protected Version AppVersion
+        {
+            get { return Assembly.GetExecutingAssembly ().GetName ().Version; }
         }
     }
 }
