@@ -24,7 +24,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EmployeeList.Components;
 using R7.University.Models;
@@ -82,7 +81,7 @@ namespace R7.University.EmployeeList
             try {
                 if (!IsPostBack) {
                     // select node and expand tree to it
-                    Utils.SelectAndExpandByValue (treeDivisions, Settings.DivisionID.ToString ());
+                    treeDivisions.SelectAndExpandByValue (Settings.DivisionID.ToString ());
 
                     checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
                     checkHideHeadEmployee.Checked = Settings.HideHeadEmployee;

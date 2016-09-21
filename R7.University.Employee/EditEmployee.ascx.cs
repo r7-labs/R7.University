@@ -362,7 +362,7 @@ namespace R7.University.Employee
                     // then edit / add from EmployeeList, divisionId query param
                     // can be set to current division ID
                     var divisionId = Request.QueryString ["division_id"];
-                    Utils.SelectAndExpandByValue (treeDivisions, divisionId);
+                    treeDivisions.SelectAndExpandByValue (divisionId);
                 }
             }
             catch (Exception ex) {
@@ -657,8 +657,7 @@ namespace R7.University.Employee
 
             // reset divisions treeview
             var divisionId = Request.QueryString ["division_id"];
-            Utils.SelectAndExpandByValue (treeDivisions, 
-                !string.IsNullOrWhiteSpace (divisionId) ? divisionId : Null.NullInteger.ToString ());
+            treeDivisions.SelectAndExpandByValue (!string.IsNullOrWhiteSpace (divisionId) ? divisionId : Null.NullInteger.ToString ());
 		
             // reset other controls
             comboPositions.SelectedIndex = 0;
@@ -778,7 +777,7 @@ namespace R7.University.Employee
                     if (occupiedPosition != null) {
                         // fill the form
                         treeDivisions.CollapseAllNodes ();
-                        Utils.SelectAndExpandByValue (treeDivisions, occupiedPosition.DivisionID.ToString ());
+                        treeDivisions.SelectAndExpandByValue (occupiedPosition.DivisionID.ToString ());
                         comboPositions.SelectByValue (occupiedPosition.PositionID);
                         checkIsPrime.Checked = occupiedPosition.IsPrime;
                         textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;

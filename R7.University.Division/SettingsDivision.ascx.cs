@@ -22,11 +22,11 @@
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Division.Components;
 using R7.University.Models;
 using R7.University.Queries;
-using R7.University.Utilities;
 
 namespace R7.University.Division
 {
@@ -69,7 +69,7 @@ namespace R7.University.Division
                     treeDivisions.DataBind ();
 
                     // select node and expand tree to it
-                    Utils.SelectAndExpandByValue (treeDivisions, Settings.DivisionID.ToString ());
+                    treeDivisions.SelectAndExpandByValue (Settings.DivisionID.ToString ());
                 }
             }
             catch (Exception ex) {

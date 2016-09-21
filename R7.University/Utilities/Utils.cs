@@ -41,32 +41,6 @@ namespace R7.University.Utilities
             return (user != null) ? user.DisplayName : defName;
         }
 
-        /// <summary>
-        /// Expands node with specified value and all it's parent nodes
-        /// </summary>
-        /// <param name="treeview">DNN or RAD treeview.</param>
-        /// <param name="value">Value of the node.</param>
-        /// <param name="ignoreCase">If set to <c>true</c> ignore value case.</param>
-        public static void SelectAndExpandByValue (
-            Telerik.Web.UI.RadTreeView treeview,
-            string value,
-            bool ignoreCase = false)
-        {
-            if (!string.IsNullOrWhiteSpace (value)) {
-                var treeNode = treeview.FindNodeByValue (value, ignoreCase);
-                if (treeNode != null) {
-                    treeNode.Selected = true;
-	
-                    // expand all parent nodes
-                    treeNode = treeNode.ParentNode;
-                    while (treeNode != null) {
-                        treeNode.Expanded = true;
-                        treeNode = treeNode.ParentNode;
-                    } 
-                }
-            }
-        }
-
         public static void ExpandToLevel (Telerik.Web.UI.RadTreeView tree, int maxLevel)
         {
             foreach (Telerik.Web.UI.RadTreeNode node in tree.Nodes)

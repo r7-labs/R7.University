@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Localization;
@@ -33,7 +32,6 @@ using R7.University.Division.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.SharedLogic;
-using R7.University.Utilities;
 
 namespace R7.University.Division
 {
@@ -178,7 +176,7 @@ namespace R7.University.Division
             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
             // select parent division
-            Utils.SelectAndExpandByValue (treeParentDivisions, item.ParentDivisionID.ToString ());
+            treeParentDivisions.SelectAndExpandByValue (item.ParentDivisionID.ToString ());
 
             // select taxonomy term
             var treeNode = treeDivisionTerms.FindNodeByValue (item.DivisionTermID.ToString ());
