@@ -32,6 +32,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.ViewModels
 {
@@ -123,7 +124,7 @@ namespace R7.University.ViewModels
               
             if (!string.IsNullOrWhiteSpace (document.Url)) {
                 var linkMarkup = "<a href=\""
-                + R7.University.Utilities.UrlUtils.LinkClickIdnHack (document.Url, tabId, moduleId)
+                + UrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId)
                 + "\" "
                 + TextUtils.FormatList (" ",
                     Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,

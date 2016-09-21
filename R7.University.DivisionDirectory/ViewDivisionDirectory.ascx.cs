@@ -41,6 +41,7 @@ using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.DivisionDirectory
@@ -305,7 +306,7 @@ namespace R7.University.DivisionDirectory
                                         " ({0})",
                                         division.ShortTitle) : string.Empty);
                 if (!string.IsNullOrWhiteSpace (division.HomePage)) {
-                    linkTitle.NavigateUrl = R7.University.Utilities.Utils.FormatURL (this, division.HomePage, false);
+                    linkTitle.NavigateUrl = UrlHelper.FormatURL (this, division.HomePage, false);
                     linkTitle.Text = divisionTitle;
                     labelTitle.Visible = false;
                 }

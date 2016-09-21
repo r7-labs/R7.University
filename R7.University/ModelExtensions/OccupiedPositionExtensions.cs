@@ -24,6 +24,7 @@ using System.Linq;
 using DotNetNuke.UI.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions
@@ -69,7 +70,7 @@ namespace R7.University.ModelExtensions
                 var strDivision = FormatHelper.FormatShortTitle (op.Division.ShortTitle, op.Division.Title);
                 if (!string.IsNullOrWhiteSpace (op.Division.HomePage))
                     strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
-                        R7.University.Utilities.Utils.FormatURL (module, op.Division.HomePage, false), strDivision);
+                        UrlHelper.FormatURL (module, op.Division.HomePage, false), strDivision);
 
                 return strDivision;
             }

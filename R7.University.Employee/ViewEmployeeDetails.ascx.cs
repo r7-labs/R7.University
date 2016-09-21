@@ -20,12 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
@@ -47,6 +45,7 @@ using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SharedLogic;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 using DnnUrlUtils = DotNetNuke.Common.Utilities.UrlUtils;
 
@@ -441,7 +440,7 @@ namespace R7.University.Employee
 
                 // barcode image
                 var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
-                imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
+                imageBarcode.ImageUrl = UrlHelper.FullUrl (string.Format (
                         "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                         barcodeWidth, barcodeWidth, 
                         Server.UrlEncode (employee.VCard.ToString ()

@@ -24,6 +24,7 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Employee.ViewModels
@@ -64,7 +65,7 @@ namespace R7.University.Employee.ViewModels
             get {
                 if (!string.IsNullOrWhiteSpace (DocumentURL)) {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                        R7.University.Utilities.UrlUtils.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
+                        UrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrl.Text",  Context.LocalResourceFile));
                 }
 

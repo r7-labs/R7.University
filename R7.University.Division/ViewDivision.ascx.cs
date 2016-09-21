@@ -41,6 +41,7 @@ using R7.University.Division.Components;
 using R7.University.Division.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.Division
 {
@@ -232,7 +233,7 @@ namespace R7.University.Division
 
             // barcode image
             var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
-            imageBarcode.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
+            imageBarcode.ImageUrl = UrlHelper.FullUrl (string.Format (
                     "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                     barcodeWidth, barcodeWidth,
                     Server.UrlEncode (division.VCard.ToString ()

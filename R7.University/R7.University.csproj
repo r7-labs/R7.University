@@ -102,7 +102,6 @@
     <Compile Include="Components\DataTableConstructor.cs" />
     <Compile Include="Components\UniversityController.cs" />
     <Compile Include="Components\XmlSerializationHelper.cs" />
-    <Compile Include="Utilities\UrlUtils.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="ViewModels\ViewModelIndexer.cs" />
     <Compile Include="ViewModels\ViewNumerator.cs" />
@@ -194,6 +193,7 @@
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
     <Compile Include="Models\TimeToLearnUnit.cs" />
     <Compile Include="Components\CultureHelper.cs" />
+    <Compile Include="Utilities\UrlHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

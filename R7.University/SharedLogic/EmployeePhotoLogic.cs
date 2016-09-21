@@ -28,6 +28,7 @@ using DotNetNuke.Services.FileSystem;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.SharedLogic
@@ -61,7 +62,7 @@ namespace R7.University.SharedLogic
 
                 // do we need to scale image?
                 if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
-                    imagePhoto.ImageUrl = R7.University.Utilities.UrlUtils.FullUrl (string.Format (
+                    imagePhoto.ImageUrl = UrlHelper.FullUrl (string.Format (
                             "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth));
                 }
                 else {

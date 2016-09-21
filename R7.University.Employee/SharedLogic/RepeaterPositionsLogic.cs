@@ -25,6 +25,7 @@ using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ViewModels;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.Employee.SharedLogic
 {
@@ -56,7 +57,7 @@ namespace R7.University.Employee.SharedLogic
                     if (!string.IsNullOrWhiteSpace (op.Division.HomePage)) {
                         // link to division's homepage
                         labelDivision.Visible = false;
-                        linkDivision.NavigateUrl = R7.University.Utilities.Utils.FormatCrossPortalTabUrl (
+                        linkDivision.NavigateUrl = UrlHelper.FormatCrossPortalTabUrl (
                             module,
                             int.Parse (op.Division.HomePage),
                             false);
