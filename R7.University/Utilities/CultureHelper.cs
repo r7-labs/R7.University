@@ -22,7 +22,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace R7.University.Components
+namespace R7.University.Utilities
 {
     public static class CultureHelper
     {

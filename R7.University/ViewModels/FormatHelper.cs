@@ -29,7 +29,6 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
