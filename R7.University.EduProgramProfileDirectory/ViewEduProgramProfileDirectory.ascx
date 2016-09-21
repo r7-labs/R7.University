@@ -1,5 +1,9 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewEduProgramProfileDirectory.ascx.cs" 
-    Inherits="R7.University.EduProgramProfileDirectory.ViewEduProgramProfileDirectory" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewEduProgramProfileDirectory.ascx.cs" Inherits="R7.University.EduProgramProfileDirectory.ViewEduProgramProfileDirectory" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register TagPrefix="controls" TagName="AgplFooter" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplFooter.ascx" %>
+
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
+
 <div class="dnnForm dnnClear eduprogramprofile-directory">
     <asp:MultiView id="mviewEduProgramProfileDirectory" runat="server">
         <asp:View runat="server">
@@ -65,4 +69,5 @@
             </div>
         </asp:View>
     </asp:MultiView>
+	<controls:AgplFooter id="agplFooter" runat="server" />
 </div>
