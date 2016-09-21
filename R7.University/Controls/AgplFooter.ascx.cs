@@ -27,6 +27,14 @@ namespace R7.University.Controls
 {
     public class AgplFooter: UserControl
     {
+        private bool showRule = true;
+
+        public bool ShowRule
+        {
+            get { return showRule; }
+            set { showRule = value; }
+        }
+
         protected string Text
         {
             get {
