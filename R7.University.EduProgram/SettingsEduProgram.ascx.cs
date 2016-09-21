@@ -20,18 +20,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EduProgram.Components;
 using R7.University.EduProgram.Queries;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Utilities;
 
 namespace R7.University.EduProgram
 {    
@@ -114,7 +113,6 @@ namespace R7.University.EduProgram
                 Settings.AutoTitle = checkAutoTitle.Checked;
  
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId);
-
                 ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex)

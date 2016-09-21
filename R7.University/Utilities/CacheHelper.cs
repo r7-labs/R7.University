@@ -24,7 +24,7 @@ using System.Collections.ObjectModel;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Cache;
 
-namespace R7.University.Components
+namespace R7.University.Utilities
 {
     public static class CacheHelper
     {

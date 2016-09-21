@@ -28,10 +28,10 @@ using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory

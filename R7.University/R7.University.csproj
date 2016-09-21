@@ -97,7 +97,6 @@
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Components\CacheHelper.cs" />
     <Compile Include="Components\CopyCstor.cs" />
     <Compile Include="Components\DataTableConstructor.cs" />
     <Compile Include="Components\UniversityController.cs" />
@@ -194,6 +193,7 @@
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="Utilities\CultureHelper.cs" />
     <Compile Include="Utilities\ModuleHelper.cs" />
+    <Compile Include="Utilities\CacheHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

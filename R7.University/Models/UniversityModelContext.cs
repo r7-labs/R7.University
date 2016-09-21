@@ -20,8 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Components;
 using R7.University.Data;
+using R7.University.Utilities;
 
 namespace R7.University.Models
 {
