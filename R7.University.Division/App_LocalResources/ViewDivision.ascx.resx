@@ -6,6 +6,9 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Nothing to display: division doesn't set or was deleted.</value>
     </data>
+	<data name="DivisionNotPublished.Text" xml:space="preserve">
+        <value>Selected division not published.</value>
+    </data>
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (fax)</value>
     </data>

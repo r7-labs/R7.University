@@ -90,26 +90,35 @@ namespace R7.University.Division
 			
             try {
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
-                    var display = false;
-                    if (!Null.IsNull (Settings.DivisionID)) {
-                        var item = new DivisionQuery (ModelContext).SingleOrDefault (Settings.DivisionID);
-                        if (item != null) {	
-                            display = true;
-                            DisplayDivision (item);
+                    
+                    var division = new DivisionQuery (ModelContext).SingleOrDefault (Settings.DivisionID);
+                    var hasData = division != null;
+                    var now = HttpContext.Current.Timestamp;
+
+                    if (!hasData) {
+                        // division wasn't set or not found
+                        if (IsEditable) {
+                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                        }
+                    }
+                    else if (!division.IsPublished (now)) {
+                        // division isn't published
+                        if (IsEditable) {
+                            this.Message ("DivisionNotPublished.Text", MessageType.Warning, true);
                         }
                     }
 
-                    if (!display) {
-                        if (IsEditable) {
-                            // REVIEW: If division not published, hide module for non-editors?
+                    // display module only in edit mode and only if we have published data to display
+                    ContainerControl.Visible = IsEditable || (hasData && division.IsPublished (now));
 
-                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-                            // hide only module content
-                            panelDivision.Visible = false;
-                        }
-                        else
-							// hide entire module from regular users
-							ContainerControl.Visible = false;
+                    // display module content only if it exists and published (or in edit mode)
+                    var displayContent = hasData && (IsEditable || division.IsPublished (now));
+
+                    panelDivision.Visible = displayContent;
+
+                    if (displayContent) {
+                        // display division info
+                        DisplayDivision (division);
                     }
                 }
             }

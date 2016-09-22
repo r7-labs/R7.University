@@ -6,6 +6,9 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать: подразделение не задано или было удалено.</value>
     </data>
+	<data name="DivisionNotPublished.Text" xml:space="preserve">
+        <value>Выбранное подразделение не опубликовано.</value>
+    </data>
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (факс)</value>
     </data>
