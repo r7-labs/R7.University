@@ -209,24 +209,14 @@ namespace R7.University.Division
 
             // document
             if (!string.IsNullOrWhiteSpace (division.DocumentUrl)) {
-                // apply CSS class according to url type or file extension
-                var urlType = Globals.GetURLType (division.DocumentUrl);
-                if (urlType == TabType.File) {
-                    var file = FileManager.Instance.GetFile (int.Parse (division.DocumentUrl.Remove (0, "FileID=".Length)));
-                    linkDocumentUrl.CssClass += " " + file.Extension.ToLowerInvariant ();
-                }
-                else if (urlType == TabType.Tab)
-                    linkDocumentUrl.CssClass += " page";
-                else
-                    linkDocumentUrl.CssClass += " url";
-
                 linkDocumentUrl.Text = LocalizeString ("DocumentUrl.Text");
                 linkDocumentUrl.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
                 linkDocumentUrl.Target = "_blank";
             }
-            else
+            else {
                 linkDocumentUrl.Visible = false;
-            
+            }
+
             // setup barcode button
             linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
             linkBarcode.Attributes.Add ("data-dialog-title", division.Title);

@@ -330,15 +330,7 @@ namespace R7.University.DivisionDirectory
                 if (!string.IsNullOrWhiteSpace (division.DocumentUrl)) {
                     linkDocument.Text = LocalizeString ("Regulations.Text");
                     linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
-
-                    // REVIEW: Add GetUrlCssClass() method to the utils or use IconController.GetFileIconUrl () method
-                    // set link CSS class according to file extension
-                    if (Globals.GetURLType (division.DocumentUrl) == TabType.File) {
-                        var fileId = int.Parse (division.DocumentUrl.Remove (0, "FileId=".Length));
-                        var file = FileManager.Instance.GetFile (fileId);
-                        if (file != null)
-                            linkDocument.CssClass = file.Extension.ToLowerInvariant ();
-                    }
+                    linkDocument.Target = "_blank";
                 }
                 else
                     linkDocument.Visible = false;
