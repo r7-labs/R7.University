@@ -330,7 +330,6 @@ namespace R7.University.DivisionDirectory
                 if (!string.IsNullOrWhiteSpace (division.DocumentUrl)) {
                     linkDocument.Text = LocalizeString ("Regulations.Text");
                     linkDocument.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
-                    linkDocument.Target = "_blank";
                 }
                 else
                     linkDocument.Visible = false;

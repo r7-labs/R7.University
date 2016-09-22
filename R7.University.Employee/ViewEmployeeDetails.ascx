@@ -38,7 +38,7 @@
     				<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
     				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
     				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
-                    <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" CssClass="_userprofile more" />
+                    <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" Target="_blank" CssClass="_userprofile more" />
     			</div>
                 <div class="_section">
     				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />

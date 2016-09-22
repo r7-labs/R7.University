@@ -40,7 +40,7 @@ namespace R7.University.DivisionDirectory
 {
     internal class DivisionObrnadzorViewModel: DivisionInfo
     {
-        private const string linkFormat = "<a href=\"{0}\" {2}>{1}</a>";
+        private const string linkFormat = "<a href=\"{0}\" target=\"_blank\" {2}>{1}</a>";
 
         #region Properties
             

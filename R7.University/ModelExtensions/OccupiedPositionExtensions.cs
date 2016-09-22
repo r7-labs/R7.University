@@ -69,7 +69,7 @@ namespace R7.University.ModelExtensions
             if (op.Division.ParentDivisionID != null) {
                 var strDivision = FormatHelper.FormatShortTitle (op.Division.ShortTitle, op.Division.Title);
                 if (!string.IsNullOrWhiteSpace (op.Division.HomePage))
-                    strDivision = string.Format ("<a href=\"{0}\">{1}</a>", 
+                    strDivision = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
                         UrlHelper.FormatURL (module, op.Division.HomePage, false), strDivision);
 
                 return strDivision;

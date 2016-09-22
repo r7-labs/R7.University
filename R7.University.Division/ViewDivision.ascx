@@ -6,12 +6,12 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/js/module.js" />
 <asp:Panel id="panelDivision" runat="server" CssClass="university-division">
 	<asp:Label id="labelTitle" runat="server" CssClass="_section" />
-	<asp:HyperLink id="linkHomePage" runat="server" CssClass="_section" />
+	<asp:HyperLink id="linkHomePage" runat="server" Target="_blank" CssClass="_section" />
 
-	<asp:HyperLink id="linkSearchByTerm" runat="server" resourcekey="linkSearchByTerm" CssClass="_section tag" />
+	<asp:HyperLink id="linkSearchByTerm" runat="server" resourcekey="linkSearchByTerm" Target="_blank" CssClass="_section tag" />
 
 	<div class="_section">
-		<asp:HyperLink id="linkDocumentUrl" runat="server" CssClass="email" />
+		<asp:HyperLink id="linkDocumentUrl" runat="server" Target="_blank" CssClass="email" />
 	</div>	 
 
 	<div class="_section">

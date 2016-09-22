@@ -122,16 +122,9 @@ namespace R7.University.ViewModels
                     : defaultTitle);
               
             if (!string.IsNullOrWhiteSpace (document.Url)) {
-                var linkMarkup = "<a href=\""
-                + UrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId)
-                + "\" "
-                + TextUtils.FormatList (" ",
-                    Globals.GetURLType (document.Url) == TabType.Url ? "target=\"_blank\"" : string.Empty,
-                    !document.IsPublished (now) ? "class=\"not-published-document\"" : string.Empty,
-                    microdata)
-                + ">"
-                + title
-                + "</a>";
+                var linkMarkup = "<a href=\"" + UrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
+                + TextUtils.FormatList (" ", !document.IsPublished (now) ? "class=\"not-published-document\"" : string.Empty, microdata)
+                + " target=\"_blank\">" + title + "</a>";
                 
                 if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {
                     return TextUtils.FormatList (": ", document.Group, linkMarkup);

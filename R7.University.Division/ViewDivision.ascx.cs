@@ -211,7 +211,6 @@ namespace R7.University.Division
             if (!string.IsNullOrWhiteSpace (division.DocumentUrl)) {
                 linkDocumentUrl.Text = LocalizeString ("DocumentUrl.Text");
                 linkDocumentUrl.NavigateUrl = Globals.LinkClick (division.DocumentUrl, TabId, ModuleId);
-                linkDocumentUrl.Target = "_blank";
             }
             else {
                 linkDocumentUrl.Visible = false;
