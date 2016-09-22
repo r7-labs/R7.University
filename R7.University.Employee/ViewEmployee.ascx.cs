@@ -116,10 +116,11 @@ namespace R7.University.Employee
                 if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
 
                     var employee = GetEmployee ();
+                    var hasData = employee != null;
                     var now = HttpContext.Current.Timestamp;
 
-                    if (employee == null) {
-                        // employee isn't set or not found
+                    if (!hasData) {
+                        // employee wasn't set or not found
                         if (IsEditable) {
                             this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                         }
@@ -130,11 +131,8 @@ namespace R7.University.Employee
                             this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
                         }
                     }
-
-                    var hasData = employee != null;
                     						
-                    // display module only in edit mode
-                    // only if we have published data to display
+                    // display module only in edit mode and only if we have published data to display
                     ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished (now));
 											
                     // display module content only if it exists and published (or in edit mode)
@@ -152,8 +150,7 @@ namespace R7.University.Employee
                         // display employee info
                         Display (employee);
                     }
-
-                } // if (!IsPostBack)
+                }
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
