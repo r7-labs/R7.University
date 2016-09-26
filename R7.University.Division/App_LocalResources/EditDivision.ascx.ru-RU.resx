@@ -115,7 +115,7 @@
 		<value>Введите описание времени (расписания) работы подразделения.</value>
 	</data>
 	<data name="checkAddToVocabulary.Text">
-		<value>Сохранить в словаре:</value>
+		<value>Сохранить в словаре?</value>
 	</data>
 	<data name="labelStartDate.Text">
 		<value>Начало публикации:</value>

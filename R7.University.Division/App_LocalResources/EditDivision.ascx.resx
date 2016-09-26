@@ -115,7 +115,7 @@
 		<value>Enter description for custom working hours (schedule) for the division.</value>
 	</data>
 	<data name="checkAddToVocabulary.Text">
-		<value>Add to Vocabulary:</value>
+		<value>Add to Vocabulary?</value>
 	</data>
 	<data name="labelStartDate.Text">
 		<value>Start Publication:</value>
