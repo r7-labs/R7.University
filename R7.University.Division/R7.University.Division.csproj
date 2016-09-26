@@ -85,6 +85,7 @@
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditDivision.ascx.resx" />
+    <None Include="App_LocalResources\EditDivision.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewDivision.ascx.cs">

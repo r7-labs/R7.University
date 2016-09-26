@@ -13,147 +13,147 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;About Edit Division&lt;/P&gt;</value>
+        <value>&lt;P&gt;О редакторе подразделения&lt;/P&gt;</value>
     </data>
     <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Division</value>
+        <value>Редактировать подразделение</value>
     </data>
 	<data name="lblTitle.Text" xml:space="preserve">
-        <value>Title:</value>
+        <value>Наименование:</value>
     </data>
 	<data name="lblTitle.Help" xml:space="preserve">
-        <value>Enter a title for division</value>
+        <value>Введите наименование подразделения.</value>
     </data>
 	<data name="lblShortTitle.Text" xml:space="preserve">
-        <value>Short Title:</value>
+        <value>Краткое имя:</value>
     </data>
 	<data name="lblShortTitle.Help" xml:space="preserve">
-        <value>Enter a short title for division</value>
+        <value>Введите краткое имя подразделения.</value>
     </data>
 	<data name="lblParentDivision.Text" xml:space="preserve">
-        <value>Parent Division:</value>
+        <value>Подчиняется:</value>
     </data>
 	<data name="lblParentDivision.Help" xml:space="preserve">
-        <value>Select a parent division for this division</value>
+        <value>Выберите подразделение, которому подчиняется данное подразделение.</value>
     </data>
 	<data name="lblDivisionTerm.Text" xml:space="preserve">
-        <value>Associated Term:</value>
+        <value>Связанная метка:</value>
     </data>
 	<data name="lblDivisionTerm.Help" xml:space="preserve">
-        <value>Select taxonomy term, associated with this division</value>
+        <value>Выберите метку из таксономии, связанную с подразделением.</value>
     </data>
 	<data name="lblHomePage.Text" xml:space="preserve">
-        <value>Home Page:</value>
+        <value>Домашняя страница:</value>
     </data>
 	<data name="lblHomePage.Help" xml:space="preserve">
-        <value>Specify a home page for this division.</value>
+        <value>Укажите домашнюю страницу подразделения.</value>
     </data>
 	<data name="labelDocumentUrl.Text" xml:space="preserve">
-        <value>Document:</value>
+        <value>Документ:</value>
     </data>
 	<data name="labelDocumentUrl.Help" xml:space="preserve">
-        <value>Specify main / regulations document for this division.</value>
+        <value>Укажите главный документ подразделения (положение о подразделении).</value>
     </data>
 	<data name="lblWebSite.Text" xml:space="preserve">
-        <value>Website:</value>
+        <value>Веб-сайт:</value>
     </data>
 	<data name="lblWebSite.Help" xml:space="preserve">
-        <value>A separate website for this division, if available</value>
+        <value>Отдельный веб-сайт подразделения, при наличии.</value>
     </data>
 	<data name="labelWebSiteLabel.Text" xml:space="preserve">
-        <value>Website Label:</value>
+        <value>Метка веб-сайта:</value>
     </data>
 	<data name="labelWebSiteLabel.Help" xml:space="preserve">
-        <value>Optional label for division website. If not specified, website URL will be used instead.</value>
+        <value>Необязательная текстовая метка веб-сайта подразделения. Если не задана, вместо нее будет использован URL веб-сайта.</value>
     </data>
 	<data name="lblPhone.Text" xml:space="preserve">
-        <value>Phone:</value>
+        <value>Телефон:</value>
     </data>
 	<data name="lblPhone.Help" xml:space="preserve">
-        <value>Enter the division's phone number</value>
+        <value>Введите номер телефона подразделения.</value>
     </data>
 	<data name="lblFax.Text" xml:space="preserve">
-        <value>Fax:</value>
+        <value>Факс:</value>
     </data>
 	<data name="lblFax.Help" xml:space="preserve">
-        <value>Enter the division's fax number</value>
+        <value>Введите номер факса подразделения.</value>
     </data>
 	<data name="lblEmail.Text" xml:space="preserve">
-        <value>Email:</value>
+        <value>Эл. почта:</value>
     </data>
 	<data name="lblEmail.Help" xml:space="preserve">
-        <value>Enter the division's email address</value>
+        <value>Введите адрес электронной почты подразделения.</value>
     </data>
 	<data name="lblSecondaryEmail.Text" xml:space="preserve">
-        <value>Secondary Email:</value>
+        <value>Дополнительная эл. почта:</value>
     </data>
 	<data name="lblSecondaryEmail.Help" xml:space="preserve">
-        <value>Enter the division's secondary email address</value>
+        <value>Введите дополнительный адрес электронной почты подразделения.</value>
     </data>
 	<data name="labelAddress.Text" xml:space="preserve">
-        <value>Address:</value>
+        <value>Адрес:</value>
     </data>
 	<data name="labelAddress.Help" xml:space="preserve">
-        <value>Enter post address of the division.</value>
+        <value>Введите почтовый адрес подразделения.</value>
     </data>
 	<data name="lblLocation.Text" xml:space="preserve">
-        <value>Location:</value>
+        <value>Место нахождения:</value>
     </data>
 	<data name="lblLocation.Help" xml:space="preserve">
-        <value>Enter location of the division, e.g. office and cabinet number</value>
+        <value>Введите место нахождения подразделения, например номер офиса и кабинета.</value>
     </data>
 	<data name="labelWorkingHours.Text">
-		<value>Working Hours:</value>
+		<value>Время работы:</value>
 	</data>
 	<data name="labelWorkingHours.Help">
-		<value>Select working hours (schedule) for the division from a list</value>
+		<value>Выберите время работы (расписание) подразделения из списка.</value>
 	</data>
 	<data name="labelCustomWorkingHours.Text">
-		<value>Custom Working Hours:</value>
+		<value>Другое время работы:</value>
 	</data>
 	<data name="labelCustomWorkingHours.Help">
-		<value>Enter description for custom working hours (schedule) for the division</value>
+		<value>Введите описание времени (расписания) работы подразделения.</value>
 	</data>
 	<data name="checkAddToVocabulary.Text">
-		<value>Add to Vocabulary:</value>
+		<value>Сохранить в словаре:</value>
 	</data>
 	<data name="labelStartDate.Text">
-		<value>Start Publication:</value>
+		<value>Начало публикации:</value>
 	</data>
 	<data name="labelStartDate.Help">
-		<value>Enter the date from current division should be published on the site.</value>
+		<value>Введите дату, начиная с которой текущее подразделение будет опубликовано на сайте.</value>
 	</data>
 	<data name="labelEndDate.Text">
 		<value>End Publication:</value>
 	</data>
 	<data name="labelEndDate.Help">
-		<value>Enter the date from current division should be removed from publication on the site.</value>
+		<value>Введите дату, начиная с которой текущее подразделение будет снято с публикации на сайте.</value>
 	</data>
 	<data name="labelIsVirtual.Text">
-		<value>Is Virtual:</value>
+		<value>Виртуальное?</value>
 	</data>
 	<data name="labelIsVirtual.Help">
-		<value>Check if this division is not intended to have any employees in it and used only to organize other divisions.</value>
+		<value>Отметьте этот флажок, если данное подразделение не должно иметь сотрудников и используется только для организации подразделений в иерархию.</value>
 	</data>
 	<data name="labelHeadPosition.Text">
-		<value>Head Employee Position:</value>
+		<value>Должность руководителя:</value>
 	</data>
 	<data name="labelHeadPosition.Help">
-		<value>Select the position which relates to the division head employee 
-        (the specific employee will be determined automatically by the system).
-        If you not select a position, then head employee cannot be determined -
-        this leaves the division without a head.</value>
+		<value>Выберите должность, относящуюся к руководителю подразделения.
+        Конкретный сотрудник, являющийся руководителем, будет определен системой автоматически.
+        Если не выбрать должность, система не сможет определить руководителя -
+        поэтому подразделение окажется без руководителя.</value>
 	</data>
 	<data name="Common.Tab">
-		<value>Common</value>
+		<value>Подразделение</value>
 	</data>
 	<data name="Contacts.Tab">
-		<value>Contacts</value>
+		<value>Контакты</value>
 	</data>
 	<data name="Documents.Tab">
-		<value>Documents</value>
+		<value>Документы</value>
 	</data>
 	<data name="Bindings.Tab">
-		<value>Website Bindings</value>
+		<value>Привязки</value>
 	</data>
 </root>
