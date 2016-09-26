@@ -70,6 +70,8 @@ namespace R7.University.Division
 
                     // select node and expand tree to it
                     treeDivisions.SelectAndExpandByValue (Settings.DivisionID.ToString ());
+
+                    checkShowAddress.Checked = Settings.ShowAddress;
                 }
             }
             catch (Exception ex) {
@@ -84,6 +86,7 @@ namespace R7.University.Division
         {
             try {
                 Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
+                Settings.ShowAddress = checkShowAddress.Checked;
 
                 ModuleController.SynchronizeModule (ModuleId);
             }

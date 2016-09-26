@@ -65,6 +65,12 @@ namespace R7.University.Division.Components
             }
         }
 
+        public bool ShowAddress
+        {
+            get { return ReadSetting ("Division_ShowAddress", false); }
+            set { WriteTabModuleSetting ("Division_ShowAddress", value); }
+        }
+
         #endregion
     }
 }
