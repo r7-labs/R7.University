@@ -48,6 +48,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.Fax);
             Property (m => m.Email);
             Property (m => m.SecondaryEmail);
+            Property (m => m.Address);
             Property (m => m.Location);
             Property (m => m.WorkingHours);
             Property (m => m.DocumentUrl);

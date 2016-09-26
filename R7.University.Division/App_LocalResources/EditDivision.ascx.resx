@@ -72,12 +72,18 @@
 	<data name="lblSecondaryEmail.Help" xml:space="preserve">
     <value>Enter the division's secondary email address</value>
   </data>
+    <data name="labelAddress.Text" xml:space="preserve">
+        <value>Address:</value>
+    </data>
+    <data name="labelAddress.Help" xml:space="preserve">
+        <value>Enter post address of the division.</value>
+    </data>
 	<data name="lblLocation.Text" xml:space="preserve">
-    <value>Location:</value>
-  </data>
+        <value>Location:</value>
+    </data>
 	<data name="lblLocation.Help" xml:space="preserve">
-    <value>Enter location of the division, e.g. office and cabinet number</value>
-  </data>
+        <value>Enter location of the division, e.g. office and cabinet number</value>
+    </data>
 	<data name="labelWorkingHours.Text">
 		<value>Working Hours:</value>
 	</data>
