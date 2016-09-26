@@ -123,10 +123,11 @@ namespace R7.University.DivisionDirectory
 
         public string LocationString
         {
-            get
-            { 
-                if (!string.IsNullOrWhiteSpace (Location))
-                    return "<span itemprop=\"AddressStr\">" + Location + "</span>";
+            get {
+                var location = TextUtils.FormatList (", ", Address, Location);
+                if (!string.IsNullOrWhiteSpace (location)) {
+                    return "<span itemprop=\"AddressStr\">" + location  + "</span>";
+                }
 
                 return string.Empty;
             }
