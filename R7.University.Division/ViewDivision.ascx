@@ -26,7 +26,10 @@
 	</div>
 
 	<div class="_section">
-		<asp:Label id="labelLocation" runat="server" CssClass="_label" />
+	    <asp:Label id="labelLocation" runat="server" CssClass="_label" />
+	</div>
+	
+	<div class="_section">
 		<asp:Label id="labelWorkingHours" runat="server" CssClass="_label" />
 	</div>
 

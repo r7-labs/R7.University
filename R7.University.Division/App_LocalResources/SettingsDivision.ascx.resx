@@ -1,21 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>Division Settings</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>About Division Settings</value>
+    </data>
 	<data name="labelDivision.Text" xml:space="preserve">
 		<value>Division:</value>
 	</data>
 	<data name="labelDivision.Help" xml:space="preserve">
-		<value>Select a division from a tree to display it's employees.</value>
+		<value>Select a division from a tree.</value>
 	</data>
-	<data name="ControlTitle_settings.Text" xml:space="preserve">
-		<value>Division Settings</value>
-	</data>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-		<value>About Division Settings</value>
-	</data>
-	<data name="labelBarcodeWidth.Text" xml:space="preserve">
-		<value>Barcode Width:</value>
-	</data>
-	<data name="labelBarcodeWidth.Help" xml:space="preserve">
-		<value>Specify width in pixels for barcode image with division contact info.</value>
-	</data>
+	<data name="labelShowAddress.Text" xml:space="preserve">
+        <value>Show Address:</value>
+    </data>
+    <data name="labelShowAddress.Help" xml:space="preserve">
+        <value>Check to show address of the division in the location info.</value>
+    </data>
 </root>

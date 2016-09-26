@@ -277,6 +277,7 @@
     <None Include="Controls\App_LocalResources\AgplSignature.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SqlDataProvider\01.12.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

@@ -164,6 +164,7 @@ namespace R7.University.Division
             textWebSiteLabel.Text = item.WebSiteLabel;
             txtEmail.Text = item.Email;
             txtSecondaryEmail.Text = item.SecondaryEmail;
+            textAddress.Text = item.Address;
             txtLocation.Text = item.Location;
             txtPhone.Text = item.Phone;
             txtFax.Text = item.Fax;
@@ -230,6 +231,7 @@ namespace R7.University.Division
             item.SecondaryEmail = txtSecondaryEmail.Text.Trim ().ToLowerInvariant ();
             item.Phone = txtPhone.Text.Trim ();
             item.Fax = txtFax.Text.Trim ();
+            item.Address = textAddress.Text.Trim ();
             item.Location = txtLocation.Text.Trim ();
             item.WebSite = txtWebSite.Text.Trim ();
             item.WebSiteLabel = textWebSiteLabel.Text.Trim ();

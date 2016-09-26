@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsDivision.ascx.cs" Inherits="R7.University.Division.SettingsDivision" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsDivision.ascx.cs" Inherits="R7.University.Division.SettingsDivision" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
@@ -16,6 +16,10 @@
 				DataValueField="DivisionID"
 				DataTextField="Title"
 			/> 
+		</div>
+		<div class="dnnFormItem">
+            <dnn:Label id="labelShowAddress" runat="server" ControlName="checkShowAddress" />
+			<asp:CheckBox id="checkShowAddress" runat="server" />
 		</div>
 	</fieldset>	
 </div>

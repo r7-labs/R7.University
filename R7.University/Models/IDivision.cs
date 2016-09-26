@@ -50,6 +50,8 @@ namespace R7.University.Models
 
         string SecondaryEmail { get; set; }
 
+        string Address { get; set; }
+
         string Location { get; set; }
 
         string WorkingHours { get; set; }

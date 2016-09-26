@@ -85,6 +85,10 @@
         			<dnn:Label id="lblSecondaryEmail" runat="server" ControlName="txtSecondaryEmail" />
         			<asp:TextBox id="txtSecondaryEmail" runat="server" MaxLength="250" />
         		</div>
+				<div class="dnnFormItem">
+                    <dnn:Label id="labelAddress" runat="server" ControlName="textAddress" />
+                    <asp:TextBox id="textAddress" runat="server" MaxLength="250" />
+                </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="lblLocation" runat="server" ControlName="txtLocation" />
                     <asp:TextBox id="txtLocation" runat="server" MaxLength="128" />

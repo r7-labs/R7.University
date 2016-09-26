@@ -42,6 +42,7 @@ namespace R7.University.Division
         protected TextBox txtEmail;
         protected LabelControl lblSecondaryEmail;
         protected TextBox txtSecondaryEmail;
+        protected TextBox textAddress;
         protected LabelControl lblLocation;
         protected TextBox txtLocation;
         protected LabelControl labelWorkingHours;

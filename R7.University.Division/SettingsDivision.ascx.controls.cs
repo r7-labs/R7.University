@@ -1,4 +1,4 @@
-﻿using System.Web;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
@@ -15,5 +15,6 @@ namespace R7.University.Division
         protected DnnTreeView treeDivisions;
         protected LabelControl labelBarcodeWidth;
         protected TextBox textBarcodeWidth;
+        protected CheckBox checkShowAddress;
     }
 }

@@ -28,13 +28,12 @@ using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
-using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Division.Components;
@@ -205,10 +204,16 @@ namespace R7.University.Division
                 labelFax.Visible = false;
 
             // location
-            if (!string.IsNullOrWhiteSpace (division.Location))
-                labelLocation.Text = division.Location;
-            else
+            var location = Settings.ShowAddress
+                                   ? TextUtils.FormatList (", ", division.Address, division.Location)
+                                   : division.Location;
+
+            if (!string.IsNullOrWhiteSpace (location)) {
+                labelLocation.Text = location;
+            }
+            else {
                 labelLocation.Visible = false;
+            }
 
             // working hours
             if (!string.IsNullOrWhiteSpace (division.WorkingHours))
