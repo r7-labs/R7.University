@@ -1,81 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;About Edit Division&lt;/P&gt;</value>
+    </data>
+    <data name="ControlTitle_edit.Text" xml:space="preserve">
+        <value>Edit Division</value>
+    </data>
 	<data name="lblTitle.Text" xml:space="preserve">
-    <value>Title:</value>
-  </data>
+        <value>Title:</value>
+    </data>
 	<data name="lblTitle.Help" xml:space="preserve">
-    <value>Enter a title for division</value>
-  </data>
+        <value>Enter a title for division</value>
+    </data>
 	<data name="lblShortTitle.Text" xml:space="preserve">
-    <value>Short Title:</value>
-  </data>
+        <value>Short Title:</value>
+    </data>
 	<data name="lblShortTitle.Help" xml:space="preserve">
-    <value>Enter a short title for division</value>
-  </data>
+        <value>Enter a short title for division</value>
+    </data>
 	<data name="lblParentDivision.Text" xml:space="preserve">
-    <value>Parent Division:</value>
-  </data>
+        <value>Parent Division:</value>
+    </data>
 	<data name="lblParentDivision.Help" xml:space="preserve">
-    <value>Select a parent division for this division</value>
-  </data>
+        <value>Select a parent division for this division</value>
+    </data>
 	<data name="lblDivisionTerm.Text" xml:space="preserve">
-    <value>Associated Term:</value>
-  </data>
+        <value>Associated Term:</value>
+    </data>
 	<data name="lblDivisionTerm.Help" xml:space="preserve">
-    <value>Select taxonomy term, associated with this division</value>
-  </data>
+        <value>Select taxonomy term, associated with this division</value>
+    </data>
 	<data name="lblHomePage.Text" xml:space="preserve">
-    <value>Home Page:</value>
-  </data>
+        <value>Home Page:</value>
+    </data>
 	<data name="lblHomePage.Help" xml:space="preserve">
-    <value>Specify a home page for this division.</value>
-  </data>
-    <data name="labelDocumentUrl.Text" xml:space="preserve">
-    <value>Document:</value>
-  </data>
-    <data name="labelDocumentUrl.Help" xml:space="preserve">
-    <value>Specify main / regualations document for this division.</value>
-  </data>
+        <value>Specify a home page for this division.</value>
+    </data>
+	<data name="labelDocumentUrl.Text" xml:space="preserve">
+        <value>Document:</value>
+    </data>
+	<data name="labelDocumentUrl.Help" xml:space="preserve">
+        <value>Specify main / regulations document for this division.</value>
+    </data>
 	<data name="lblWebSite.Text" xml:space="preserve">
-    <value>Website:</value>
-  </data>
+        <value>Website:</value>
+    </data>
 	<data name="lblWebSite.Help" xml:space="preserve">
-    <value>A separate website for this division, if available</value>
-  </data>
-    <data name="labelWebSiteLabel.Text" xml:space="preserve">
-    <value>Website Label:</value>
-  </data>
-    <data name="labelWebSiteLabel.Help" xml:space="preserve">
-    <value>Optional label for division website. If not specified, website URL will be used instead.</value>
-  </data>
+        <value>A separate website for this division, if available</value>
+    </data>
+	<data name="labelWebSiteLabel.Text" xml:space="preserve">
+        <value>Website Label:</value>
+    </data>
+	<data name="labelWebSiteLabel.Help" xml:space="preserve">
+        <value>Optional label for division website. If not specified, website URL will be used instead.</value>
+    </data>
 	<data name="lblPhone.Text" xml:space="preserve">
-    <value>Phone:</value>
-  </data>
+        <value>Phone:</value>
+    </data>
 	<data name="lblPhone.Help" xml:space="preserve">
-    <value>Enter the division's phone number</value>
-  </data>
+        <value>Enter the division's phone number</value>
+    </data>
 	<data name="lblFax.Text" xml:space="preserve">
-    <value>Fax:</value>
-  </data>
+        <value>Fax:</value>
+    </data>
 	<data name="lblFax.Help" xml:space="preserve">
-    <value>Enter the division's fax number</value>
-  </data>
+        <value>Enter the division's fax number</value>
+    </data>
 	<data name="lblEmail.Text" xml:space="preserve">
-    <value>Email:</value>
-  </data>
+        <value>Email:</value>
+    </data>
 	<data name="lblEmail.Help" xml:space="preserve">
-    <value>Enter the division's email address</value>
-  </data>
-    <data name="lblSecondaryEmail.Text" xml:space="preserve">
-    <value>Secondary Email:</value>
-  </data>
+        <value>Enter the division's email address</value>
+    </data>
+	<data name="lblSecondaryEmail.Text" xml:space="preserve">
+        <value>Secondary Email:</value>
+    </data>
 	<data name="lblSecondaryEmail.Help" xml:space="preserve">
-    <value>Enter the division's secondary email address</value>
-  </data>
-    <data name="labelAddress.Text" xml:space="preserve">
+        <value>Enter the division's secondary email address</value>
+    </data>
+	<data name="labelAddress.Text" xml:space="preserve">
         <value>Address:</value>
     </data>
-    <data name="labelAddress.Help" xml:space="preserve">
+	<data name="labelAddress.Help" xml:space="preserve">
         <value>Enter post address of the division.</value>
     </data>
 	<data name="lblLocation.Text" xml:space="preserve">
@@ -99,49 +117,43 @@
 	<data name="checkAddToVocabulary.Text">
 		<value>Add to Vocabulary:</value>
 	</data>
-    <data name="labelStartDate.Text">
-        <value>Start Publication:</value>
-    </data>
-    <data name="labelStartDate.Help">
-        <value>Enter the date from current division should be published on the site.</value>
-    </data>
-    <data name="labelEndDate.Text">
-        <value>End Publication:</value>
-    </data>
-    <data name="labelEndDate.Help">
-        <value>Enter the date from current division should be removed from publication on the site.</value>
-    </data>
-    <data name="labelIsVirtual.Text">
-        <value>Is Virtual:</value>
-    </data>
-    <data name="labelIsVirtual.Help">
-        <value>Check if this division is not intended to have any employees in it and used only to organize other divisions.</value>
-    </data>
-    <data name="labelHeadPosition.Text">
-        <value>Head Employee Position:</value>
-    </data>
-    <data name="labelHeadPosition.Help">
-        <value>Select the position which relates to the division head employee 
+	<data name="labelStartDate.Text">
+		<value>Start Publication:</value>
+	</data>
+	<data name="labelStartDate.Help">
+		<value>Enter the date from current division should be published on the site.</value>
+	</data>
+	<data name="labelEndDate.Text">
+		<value>End Publication:</value>
+	</data>
+	<data name="labelEndDate.Help">
+		<value>Enter the date from current division should be removed from publication on the site.</value>
+	</data>
+	<data name="labelIsVirtual.Text">
+		<value>Is Virtual:</value>
+	</data>
+	<data name="labelIsVirtual.Help">
+		<value>Check if this division is not intended to have any employees in it and used only to organize other divisions.</value>
+	</data>
+	<data name="labelHeadPosition.Text">
+		<value>Head Employee Position:</value>
+	</data>
+	<data name="labelHeadPosition.Help">
+		<value>Select the position which relates to the division head employee 
         (the specific employee will be determined automatically by the system).
         If you not select a position, then head employee cannot be determined -
         this leaves the division without a head.</value>
-    </data>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-	<value>&lt;P&gt;A Edit division module&lt;/P&gt;</value>
 	</data>
-	<data name="ControlTitle_edit.Text" xml:space="preserve">
-    <value>Edit Division</value>
-  </data>
-    <data name="Common.Tab">
-        <value>Common</value>
-    </data>
-    <data name="Contacts.Tab">
-        <value>Contacts</value>
-    </data>
-    <data name="Documents.Tab">
-        <value>Documents</value>
-    </data>
-    <data name="Bindings.Tab">
-        <value>Website Bindings</value>
-    </data>
+	<data name="Common.Tab">
+		<value>Common</value>
+	</data>
+	<data name="Contacts.Tab">
+		<value>Contacts</value>
+	</data>
+	<data name="Documents.Tab">
+		<value>Documents</value>
+	</data>
+	<data name="Bindings.Tab">
+		<value>Website Bindings</value>
+	</data>
 </root>
