@@ -16,7 +16,7 @@
         <value>By Title</value>
     </data>
 	<data name="DivisionSelectionMode_Tree.Text" xml:space="preserve">
-        <value>From Structure</value>
+        <value>From Org. Structure</value>
     </data>
 	<data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Not Selected &gt;</value>

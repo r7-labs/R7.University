@@ -16,7 +16,7 @@
         <value>По названию</value>
     </data>
 	<data name="DivisionSelectionMode_Tree.Text" xml:space="preserve">
-        <value>Из структуры</value>
+        <value>Из орг. структуры</value>
     </data>
 	<data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Не выбрано &gt;</value>
