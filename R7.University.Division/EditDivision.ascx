@@ -32,8 +32,8 @@
         			<asp:TextBox id="txtShortTitle" runat="server" MaxLength="64" />
         		</div>
         		<div class="dnnFormItem">
-        			<dnn:Label id="lblParentDivision" runat="server" ControlName="divisionParentDivision" />
-					<controls:DivisionSelector id="divisionParentDivision" runat="server" DefaultMode="List" />
+        			<dnn:Label id="lblParentDivision" runat="server" ControlName="parentDivisionSelector" />
+					<controls:DivisionSelector id="parentDivisionSelector" runat="server" DefaultMode="List" />
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHeadPosition" runat="server" ControlName="comboHeadPosition" />

@@ -58,8 +58,8 @@ namespace R7.University.EmployeeList
         {
             base.OnInit (e);
 
-            divisionDivision.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisionDivision.DataBind ();
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisionSelector.DataBind ();
 
             // sort type
             comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeight.Text"), "0");
@@ -74,7 +74,7 @@ namespace R7.University.EmployeeList
         {
             try {
                 if (!IsPostBack) {
-                    divisionDivision.DivisionId = Settings.DivisionID;
+                    divisionSelector.DivisionId = Settings.DivisionID;
                     checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
                     checkHideHeadEmployee.Checked = Settings.HideHeadEmployee;
                     comboSortType.SelectByValue (Settings.SortType);
@@ -92,7 +92,7 @@ namespace R7.University.EmployeeList
         public override void UpdateSettings ()
         {
             try {
-                Settings.DivisionID = divisionDivision.DivisionId ?? Null.NullInteger;
+                Settings.DivisionID = divisionSelector.DivisionId ?? Null.NullInteger;
                 Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
                 Settings.HideHeadEmployee = checkHideHeadEmployee.Checked;
                 Settings.SortType = int.Parse (comboSortType.SelectedValue);

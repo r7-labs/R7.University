@@ -120,8 +120,8 @@ namespace R7.University.Division
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // FIXME: Possible circular dependency as list can still contain childrens of current division
-            divisionParentDivision.DataSource = new DivisionQuery (ModelContext).ListExcept (itemId).OrderBy (d => d.Title);
-            divisionParentDivision.DataBind ();
+            parentDivisionSelector.DataSource = new DivisionQuery (ModelContext).ListExcept (itemId).OrderBy (d => d.Title);
+            parentDivisionSelector.DataBind ();
 
             // init working hours
             WorkingHoursLogic.Init (this, comboWorkingHours);
@@ -171,7 +171,7 @@ namespace R7.University.Division
             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
             // select parent division
-            divisionParentDivision.DivisionId = item.ParentDivisionID;
+            parentDivisionSelector.DivisionId = item.ParentDivisionID;
 
             // select taxonomy term
             var treeNode = treeDivisionTerms.FindNodeByValue (item.DivisionTermID.ToString ());
@@ -229,7 +229,7 @@ namespace R7.University.Division
             item.Location = txtLocation.Text.Trim ();
             item.WebSite = txtWebSite.Text.Trim ();
             item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
-            item.ParentDivisionID = divisionParentDivision.DivisionId;
+            item.ParentDivisionID = parentDivisionSelector.DivisionId;
             item.DivisionTermID = TypeUtils.ParseToNullable<int> (treeDivisionTerms.SelectedValue);
             item.HomePage = urlHomePage.Url;
             item.DocumentUrl = urlDocumentUrl.Url;

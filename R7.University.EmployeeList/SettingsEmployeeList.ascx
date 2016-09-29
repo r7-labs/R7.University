@@ -12,8 +12,8 @@
 <div class="dnnForm dnnClear">
 	<fieldset>	
 		<div class="dnnFormItem">
-			<dnn:Label id="labelDivision" runat="server" ControlName="divisionDivision" />
-            <controls:DivisionSelector id="divisionDivision" runat="server" DefaultMode="List" />
+			<dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
+            <controls:DivisionSelector id="divisionSelector" runat="server" DefaultMode="List" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelIncludeSubdivisions" runat="server" ControlName="checkIncludeSubdivisions" />

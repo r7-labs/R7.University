@@ -5,7 +5,7 @@ namespace R7.University.Division
 {
     public partial class SettingsDivision
     {
-        protected DivisionSelector divisionDivision;
+        protected DivisionSelector divisionSelector;
         protected TextBox textBarcodeWidth;
         protected CheckBox checkShowAddress;
     }

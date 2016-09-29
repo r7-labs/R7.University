@@ -59,9 +59,9 @@ namespace R7.University.Division
             try {
                 if (!IsPostBack) {
 
-                    divisionDivision.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-                    divisionDivision.DataBind ();
-                    divisionDivision.DivisionId = Settings.DivisionID;
+                    divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+                    divisionSelector.DataBind ();
+                    divisionSelector.DivisionId = Settings.DivisionID;
 
                     checkShowAddress.Checked = Settings.ShowAddress;
                 }
@@ -77,7 +77,7 @@ namespace R7.University.Division
         public override void UpdateSettings ()
         {
             try {
-                Settings.DivisionID = divisionDivision.DivisionId ?? Null.NullInteger;
+                Settings.DivisionID = divisionSelector.DivisionId ?? Null.NullInteger;
                 Settings.ShowAddress = checkShowAddress.Checked;
 
                 ModuleController.SynchronizeModule (ModuleId);

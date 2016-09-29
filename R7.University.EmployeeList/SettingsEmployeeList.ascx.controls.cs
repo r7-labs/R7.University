@@ -5,7 +5,7 @@ namespace R7.University.EmployeeList
 {
     public partial class SettingsEmployeeList
     {
-        protected DivisionSelector divisionDivision;
+        protected DivisionSelector divisionSelector;
         protected CheckBox checkIncludeSubdivisions;
         protected CheckBox checkHideHeadEmployee;
         protected DropDownList comboSortType;
