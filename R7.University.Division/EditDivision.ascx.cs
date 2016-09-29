@@ -119,15 +119,9 @@ namespace R7.University.Division
             // parse QueryString
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
-            // fill divisions dropdown
-            var divisions = new DivisionQuery (ModelContext).ListExcept (itemId);
-
-            // insert default item
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
-
-            // bind divisions to the tree
-            treeParentDivisions.DataSource = divisions;
-            treeParentDivisions.DataBind ();
+            // FIXME: Possible circular dependency as list can still contain childrens of current division
+            divisionParentDivision.DataSource = new DivisionQuery (ModelContext).ListExcept (itemId).OrderBy (d => d.Title);
+            divisionParentDivision.DataBind ();
 
             // init working hours
             WorkingHoursLogic.Init (this, comboWorkingHours);
@@ -177,7 +171,7 @@ namespace R7.University.Division
             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
 
             // select parent division
-            treeParentDivisions.SelectAndExpandByValue (item.ParentDivisionID.ToString ());
+            divisionParentDivision.DivisionId = item.ParentDivisionID;
 
             // select taxonomy term
             var treeNode = treeDivisionTerms.FindNodeByValue (item.DivisionTermID.ToString ());
@@ -235,7 +229,7 @@ namespace R7.University.Division
             item.Location = txtLocation.Text.Trim ();
             item.WebSite = txtWebSite.Text.Trim ();
             item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
-            item.ParentDivisionID = TypeUtils.ParseToNullable<int> (treeParentDivisions.SelectedValue);
+            item.ParentDivisionID = divisionParentDivision.DivisionId;
             item.DivisionTermID = TypeUtils.ParseToNullable<int> (treeDivisionTerms.SelectedValue);
             item.HomePage = urlHomePage.Url;
             item.DocumentUrl = urlDocumentUrl.Url;

@@ -5,6 +5,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
+<%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
@@ -31,14 +32,9 @@
         			<asp:TextBox id="txtShortTitle" runat="server" MaxLength="64" />
         		</div>
         		<div class="dnnFormItem">
-        			<dnn:Label id="lblParentDivision" runat="server" ControlName="treeParentDivisions" />
-                    <dnn:DnnTreeView id="treeParentDivisions" runat="server"
-                        DataFieldID="DivisionID"
-                        DataFieldParentID="ParentDivisionID"
-                        DataValueField="DivisionID"
-                        DataTextField="Title"
-                    />
-        		</div>
+        			<dnn:Label id="lblParentDivision" runat="server" ControlName="divisionParentDivision" />
+					<controls:DivisionSelector id="divisionParentDivision" runat="server" DefaultMode="List" />
+                </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHeadPosition" runat="server" ControlName="comboHeadPosition" />
                     <asp:DropDownList id="comboHeadPosition" runat="server" CssClass="dnn-ac-combobox"
