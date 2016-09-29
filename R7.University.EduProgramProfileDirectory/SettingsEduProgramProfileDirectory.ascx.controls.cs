@@ -1,17 +1,12 @@
-﻿using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.UI.WebControls;
+﻿using System.Web.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
-using R7.University;
+using R7.University.Controls;
 
 namespace R7.University.EduProgramProfileDirectory
 {
     public partial class SettingsEduProgramProfileDirectory
     {
-        protected DnnTreeView treeDivision;
+        protected DivisionSelector divisionSelector;
         protected RadioButtonList radioDivisionLevel;
         protected DropDownList comboMode;
         protected DnnListBox listEduLevels;

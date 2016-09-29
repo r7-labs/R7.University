@@ -26,7 +26,6 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.Models;
@@ -81,11 +80,9 @@ namespace R7.University.EduProgramProfileDirectory
             radioDivisionLevel.DataSource = EnumViewModel<DivisionLevel>.GetValues (ViewModelContext, false);
             radioDivisionLevel.DataBind ();
 
-              // fill divisions dropdown
-            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
-            treeDivision.DataSource = divisions;
-            treeDivision.DataBind ();
+            // bind divisions
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisionSelector.DataBind ();
 
             // fill edulevels list
             var eduLevels = new EduLevelQuery (ModelContext).List ();
@@ -107,7 +104,7 @@ namespace R7.University.EduProgramProfileDirectory
                 if (!IsPostBack) {
 
                     radioDivisionLevel.SelectByValue (Settings.DivisionLevel.ToString ());
-                    treeDivision.SelectAndExpandByValue (Settings.DivisionId.ToString ());
+                    divisionSelector.DivisionId = Settings.DivisionId;
                     comboMode.SelectByValue (Settings.Mode);
 
                     // check edulevels list items
@@ -135,7 +132,7 @@ namespace R7.University.EduProgramProfileDirectory
                     (EduProgramProfileDirectoryMode?) mode : null;
 
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
-                Settings.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
+                Settings.DivisionId = divisionSelector.DivisionId;
                 Settings.DivisionLevel = (DivisionLevel) Enum.Parse (typeof (DivisionLevel), radioDivisionLevel.SelectedValue, true);
 
                 ModuleController.SynchronizeModule (ModuleId);
