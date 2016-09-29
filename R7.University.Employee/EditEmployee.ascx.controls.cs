@@ -1,15 +1,11 @@
-﻿using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
+﻿using System.Web.UI.WebControls;
 using DotNetNuke.UI.UserControls;
-using DotNetNuke.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
-using R7.University;
+using R7.University.Controls;
 
 namespace R7.University.Employee
 {
-	public partial class EditEmployee
+    public partial class EditEmployee
 	{
 		protected ModuleAuditControl ctlAudit;
 		protected LinkButton buttonUpdate;
@@ -70,7 +66,7 @@ namespace R7.University.Employee
         protected DropDownList comboPositions;
 		protected LabelControl labelPositionTitleSuffix;
 		protected TextBox textPositionTitleSuffix;
-		protected DnnTreeView treeDivisions;
+        protected DivisionSelector divisionSelector;
 		protected LabelControl labelIsPrime;
 		protected CheckBox checkIsPrime;
 		protected LinkButton buttonAddPosition;
