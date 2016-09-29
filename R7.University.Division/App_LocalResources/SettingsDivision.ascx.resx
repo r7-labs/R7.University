@@ -22,7 +22,7 @@
 		<value>Division:</value>
 	</data>
 	<data name="labelDivision.Help" xml:space="preserve">
-		<value>Select a division from a tree.</value>
+		<value>Select a division to display.</value>
 	</data>
 	<data name="labelShowAddress.Text" xml:space="preserve">
         <value>Show Address:</value>

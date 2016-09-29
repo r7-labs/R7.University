@@ -22,7 +22,7 @@
         <value>Подразделение:</value>
     </data>
     <data name="labelDivision.Help" xml:space="preserve">
-        <value>Выберите подразделение из древовидного списка.</value>
+        <value>Выберите подразделение для отображения.</value>
     </data>
     <data name="labelShowAddress.Text" xml:space="preserve">
         <value>Показывать адрес:</value>

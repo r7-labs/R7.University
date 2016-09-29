@@ -10,7 +10,7 @@
         <value>Division:</value>
     </data>
 	<data name="labelDivision.Help" xml:space="preserve">
-        <value>Select a division from a tree to display it's employees.</value>
+        <value>Select a division to display it's employees.</value>
     </data>
 	<data name="labelIncludeSubdivisions.Text" xml:space="preserve">
         <value>Include Subdivisions?</value>
