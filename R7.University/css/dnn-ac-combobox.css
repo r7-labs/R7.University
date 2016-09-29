@@ -15,6 +15,9 @@
 .dnn-ac-combobox {
     position:relative;
     display:inline-block;
+}
+
+.dnnFormItem > .dnn-ac-combobox {
     width:45%;
     max-width:445px;
 }
