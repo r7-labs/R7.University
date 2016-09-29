@@ -1,15 +1,8 @@
-﻿using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Linq;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.UI.WebControls;
-using R7.University;
+﻿using System.Web.UI.WebControls;
 
 namespace R7.University.Employee
 {
-	public partial class ViewEmployee
+    public partial class ViewEmployee
 	{
 		protected Panel panelEmployee;
 		protected Image imagePhoto;
@@ -21,10 +14,7 @@ namespace R7.University.Employee
 		protected Label labelCellPhone;
 		protected Label labelFax;
 		protected Label labelMessenger;
-		//protected Label labelWorkingHours;
-		//protected Label labelWorkingPlace;
 		protected Label labelWorkingPlaceAndHours;
-
 		protected HyperLink linkWebSite;
 		protected HyperLink linkEmail;
 		protected HyperLink linkSecondaryEmail;

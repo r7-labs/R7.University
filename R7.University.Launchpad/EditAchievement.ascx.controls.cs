@@ -1,11 +1,4 @@
-﻿using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.UI.WebControls;
-using DotNetNuke.Web.UI.WebControls;
-using R7.University;
+﻿using System.Web.UI.WebControls;
 
 namespace R7.University.Launchpad
 {
@@ -14,11 +7,8 @@ namespace R7.University.Launchpad
         protected LinkButton buttonUpdate;
         protected LinkButton buttonDelete;
         protected HyperLink linkCancel;
-        protected LabelControl labelTitle;
         protected TextBox textTitle;
-        protected LabelControl labelShortTitle;
         protected TextBox textShortTitle;
-        protected LabelControl labelAchievementType;
         protected DropDownList comboAchievementType;
     }
 }

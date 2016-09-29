@@ -1,10 +1,4 @@
-﻿using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.UI.WebControls;
-using R7.University;
+﻿using System.Web.UI.WebControls;
 
 namespace R7.University.Launchpad
 {
@@ -13,13 +7,9 @@ namespace R7.University.Launchpad
         protected LinkButton buttonUpdate;
         protected LinkButton buttonDelete;
         protected HyperLink linkCancel;
-        protected LabelControl lblTitle;
         protected TextBox txtTitle;
-        protected LabelControl lblShortTitle;
         protected TextBox txtShortTitle;
-        protected LabelControl lblWeight;
         protected TextBox txtWeight;
-        protected LabelControl labelIsTeacher;
         protected CheckBox checkIsTeacher;
     }
 }

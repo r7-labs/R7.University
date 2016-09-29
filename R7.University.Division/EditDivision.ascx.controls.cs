@@ -11,38 +11,20 @@ namespace R7.University.Division
         protected LinkButton buttonUpdate;
         protected LinkButton buttonDelete;
         protected HyperLink linkCancel;
-
-        protected LabelControl lblTitle;
         protected TextBox txtTitle;
-        protected LabelControl lblShortTitle;
         protected TextBox txtShortTitle;
-
-        protected LabelControl lblParentDivision;
         protected DivisionSelector parentDivisionSelector;
-        protected LabelControl lblDivisionTerm;
         protected DnnTreeView treeDivisionTerms;
-
-        protected LabelControl lblHomePage;
         protected DnnUrlControl urlHomePage;
-        protected LabelControl lblWebSite;
         protected TextBox txtWebSite;
-        protected LabelControl labelWebSiteLabel;
         protected TextBox textWebSiteLabel;
-        protected LabelControl labelDocumentUrl;
         protected DnnUrlControl urlDocumentUrl;
-        protected LabelControl lblPhone;
         protected TextBox txtPhone;
-        protected LabelControl lblFax;
         protected TextBox txtFax;
-        protected LabelControl lblEmail;
         protected TextBox txtEmail;
-        protected LabelControl lblSecondaryEmail;
         protected TextBox txtSecondaryEmail;
         protected TextBox textAddress;
-        protected LabelControl lblLocation;
         protected TextBox txtLocation;
-        protected LabelControl labelWorkingHours;
-        protected LabelControl labelCustomWorkingHours;
         protected DropDownList comboWorkingHours;
         protected TextBox textWorkingHours;
         protected CheckBox checkAddToVocabulary;
