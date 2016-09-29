@@ -6,6 +6,7 @@
 <%@ Register TagPrefix="controls" TagName="EditEduForms" Src="~/DesktopModules/R7.University/R7.University/Controls/EditEduForms.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/R7.University/R7.University/Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
+<%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" Priority="200" />
@@ -83,13 +84,8 @@
         <div id="eduprogramprofile-bindings-tab">
             <fieldset>
                 <div class="dnnFormItem">
-                    <dnn:Label id="labelDivision" runat="server" ControlName="treeDivision" />
-                    <dnn:DnnTreeView id="treeDivision" runat="server"
-                        DataFieldID="DivisionID"
-                        DataFieldParentID="ParentDivisionID"
-                        DataValueField="DivisionID"
-                        DataTextField="Title"
-                    />
+                    <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
+					<controls:DivisionSelector id="divisionSelector" runat="server" />
                 </div>
             </fieldset>
         </div>

@@ -1,19 +1,11 @@
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using DotNetNuke.UI.UserControls;
-using DotNetNuke.UI.WebControls;
-using DotNetNuke.Web.UI.WebControls;
-using R7.University;
+using R7.University.Controls;
 
 namespace R7.University.Division
 {
     public partial class SettingsDivision
     {
-        protected LabelControl labelDivision;
-        protected DnnTreeView treeDivisions;
-        protected LabelControl labelBarcodeWidth;
+        protected DivisionSelector divisionSelector;
         protected TextBox textBarcodeWidth;
         protected CheckBox checkShowAddress;
     }

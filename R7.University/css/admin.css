@@ -1,5 +1,10 @@
 ﻿/* DnnDatePicker & DnnDateTimePicker style fix */
 
+.dnnForm .full-width {
+    width:100%;
+    max-width:inherit;
+}
+
 .dnnForm .RadPicker_Default,
 .dnnForm .RadPicker_Input  
 {   
@@ -21,10 +26,14 @@
     float:left;
     margin-bottom:10px;
     padding:10px;
-    width:45%;
-    max-width:445px;
     overflow:hidden;
     background-color:#eee;
+}
+
+.dnnFormItem > .RadTreeView_Default
+{
+    width:45%;
+    max-width:445px;
 }
 
 .dnnFormItem .dnn-form-control { margin-bottom:18px; }

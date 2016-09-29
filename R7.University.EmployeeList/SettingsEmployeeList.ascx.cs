@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
@@ -57,15 +58,8 @@ namespace R7.University.EmployeeList
         {
             base.OnInit (e);
 
-            // get divisions
-            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-
-            // insert default item
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
-
-            // bind divisions to the tree
-            treeDivisions.DataSource = divisions;
-            treeDivisions.DataBind ();
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisionSelector.DataBind ();
 
             // sort type
             comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeight.Text"), "0");
@@ -80,9 +74,7 @@ namespace R7.University.EmployeeList
         {
             try {
                 if (!IsPostBack) {
-                    // select node and expand tree to it
-                    treeDivisions.SelectAndExpandByValue (Settings.DivisionID.ToString ());
-
+                    divisionSelector.DivisionId = Settings.DivisionID;
                     checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
                     checkHideHeadEmployee.Checked = Settings.HideHeadEmployee;
                     comboSortType.SelectByValue (Settings.SortType);
@@ -100,7 +92,7 @@ namespace R7.University.EmployeeList
         public override void UpdateSettings ()
         {
             try {
-                Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
+                Settings.DivisionID = divisionSelector.DivisionId ?? Null.NullInteger;
                 Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
                 Settings.HideHeadEmployee = checkHideHeadEmployee.Checked;
                 Settings.SortType = int.Parse (comboSortType.SelectedValue);

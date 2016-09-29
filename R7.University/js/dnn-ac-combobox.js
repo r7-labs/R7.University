@@ -6,7 +6,7 @@ function dnnAcCombobox_Init ($) {
 
         _create: function() {
             this.wrapper = $("<div>")
-                .addClass("dnn-ac-combobox")
+                .attr("class", this.element.attr("class"))
                 .insertAfter(this.element);
             this.element.hide();
             this._createAutocomplete();

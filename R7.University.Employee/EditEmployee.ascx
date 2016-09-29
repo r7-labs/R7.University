@@ -7,6 +7,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
+<%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Employee/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
@@ -170,12 +171,8 @@
 				        </asp:GridView>
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelDivisions" runat="server" ControlName="treeDivisions" />
-					<dnn:DnnTreeView id="treeDivisions" runat="server"
-						DataTextField="Title"
-						DataValueField="DivisionID"
-						DataFieldID = "DivisionID"
-						DataFieldParentID="ParentDivisionID" />
+					<dnn:Label id="labelDivisions" runat="server" ControlName="divisionSelector" />
+					<controls:DivisionSelector id="divisionSelector" runat="server" />
 				</div>
 				<div class="dnnFormItem">
     				<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />

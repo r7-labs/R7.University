@@ -102,10 +102,11 @@ namespace R7.University.Employee
                         return EditEmployeeTab.Common;
                     }
 
-                    if (eventTarget.Contains ("$" +  buttonCancelEditPosition.ID) ||
-                        eventTarget.Contains ("$" +  buttonAddPosition.ID) ||
-                        eventTarget.Contains ("$" +  buttonUpdatePosition.ID) ||
-                        eventTarget.Contains ("$" +  gridOccupiedPositions.ID)) {
+                    if (eventTarget.Contains ("$" + buttonCancelEditPosition.ID) ||
+                        eventTarget.Contains ("$" + buttonAddPosition.ID) ||
+                        eventTarget.Contains ("$" + buttonUpdatePosition.ID) ||
+                        eventTarget.Contains ("$" + divisionSelector.ID) ||
+                        eventTarget.Contains ("$" + gridOccupiedPositions.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Positions;
                         return EditEmployeeTab.Positions;
                     }
@@ -213,7 +214,6 @@ namespace R7.University.Employee
             var positions = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
 
             var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
 
             var commonAchievements = new FlatQuery<AchievementInfo> (ModelContext).ListOrderBy (a => a.Title);
 
@@ -228,12 +228,10 @@ namespace R7.University.Employee
             comboAchievement.DataSource = commonAchievements;
             comboAchievement.DataBind ();
             comboAchievement.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
-        
+
             // bind divisions
-            treeDivisions.DataSource = divisions;
-            treeDivisions.DataBind ();
-            // select first (default) node - fix for issue #8
-            treeDivisions.Nodes [0].Selected = true;
+            divisionSelector.DataSource = divisions;
+            divisionSelector.DataBind ();
 
             // bind achievement types
             comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
@@ -362,7 +360,7 @@ namespace R7.University.Employee
                     // then edit / add from EmployeeList, divisionId query param
                     // can be set to current division ID
                     var divisionId = Request.QueryString ["division_id"];
-                    treeDivisions.SelectAndExpandByValue (divisionId);
+                    divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
                 }
             }
             catch (Exception ex) {
@@ -655,10 +653,10 @@ namespace R7.University.Employee
             buttonAddPosition.Visible = true;
             buttonUpdatePosition.Visible = false;
 
-            // reset divisions treeview
+            // reset selected division
             var divisionId = Request.QueryString ["division_id"];
-            treeDivisions.SelectAndExpandByValue (!string.IsNullOrWhiteSpace (divisionId) ? divisionId : Null.NullInteger.ToString ());
-		
+            divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
+	
             // reset other controls
             comboPositions.SelectedIndex = 0;
             textPositionTitleSuffix.Text = "";
@@ -670,9 +668,9 @@ namespace R7.University.Employee
         {
             try {
                 var positionID = int.Parse (comboPositions.SelectedValue);
-                var divisionID = int.Parse (treeDivisions.SelectedValue);
+                var divisionID = divisionSelector.DivisionId;
 
-                if (!Null.IsNull (positionID) && !Null.IsNull (divisionID)) {
+                if (!Null.IsNull (positionID) && divisionID != null) {
                     OccupiedPositionEditViewModel occupiedPosition;
 
                     var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionEditViewModel> ();
@@ -689,9 +687,9 @@ namespace R7.University.Employee
 					
                     // fill the object
                     occupiedPosition.PositionID = positionID;
-                    occupiedPosition.DivisionID = divisionID;
+                    occupiedPosition.DivisionID = divisionID.Value;
                     occupiedPosition.PositionShortTitle = comboPositions.SelectedItem.Text;
-                    occupiedPosition.DivisionShortTitle = treeDivisions.SelectedNode.Text;
+                    occupiedPosition.DivisionShortTitle = divisionSelector.DivisionTitle;
                     occupiedPosition.IsPrime = checkIsPrime.Checked;
                     occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text.Trim ();
 					
@@ -776,8 +774,7 @@ namespace R7.University.Employee
 	
                     if (occupiedPosition != null) {
                         // fill the form
-                        treeDivisions.CollapseAllNodes ();
-                        treeDivisions.SelectAndExpandByValue (occupiedPosition.DivisionID.ToString ());
+                        divisionSelector.DivisionId = occupiedPosition.DivisionID;
                         comboPositions.SelectByValue (occupiedPosition.PositionID);
                         checkIsPrime.Checked = occupiedPosition.IsPrime;
                         textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;

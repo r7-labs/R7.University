@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Division.Components;
 using R7.University.Models;
@@ -58,18 +58,10 @@ namespace R7.University.Division
         {
             try {
                 if (!IsPostBack) {
-                    // get divisions
-                    var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
 
-                    // insert default item
-                    divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
-
-                    // bind divisions to the tree
-                    treeDivisions.DataSource = divisions;
-                    treeDivisions.DataBind ();
-
-                    // select node and expand tree to it
-                    treeDivisions.SelectAndExpandByValue (Settings.DivisionID.ToString ());
+                    divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+                    divisionSelector.DataBind ();
+                    divisionSelector.DivisionId = Settings.DivisionID;
 
                     checkShowAddress.Checked = Settings.ShowAddress;
                 }
@@ -85,7 +77,7 @@ namespace R7.University.Division
         public override void UpdateSettings ()
         {
             try {
-                Settings.DivisionID = int.Parse (treeDivisions.SelectedValue);
+                Settings.DivisionID = divisionSelector.DivisionId ?? Null.NullInteger;
                 Settings.ShowAddress = checkShowAddress.Checked;
 
                 ModuleController.SynchronizeModule (ModuleId);

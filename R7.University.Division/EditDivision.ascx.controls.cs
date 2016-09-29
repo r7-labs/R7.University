@@ -1,11 +1,7 @@
-﻿using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
+﻿using System.Web.UI.WebControls;
 using DotNetNuke.UI.UserControls;
-using DotNetNuke.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
-using R7.University;
+using R7.University.Controls;
 
 namespace R7.University.Division
 {
@@ -22,7 +18,7 @@ namespace R7.University.Division
         protected TextBox txtShortTitle;
 
         protected LabelControl lblParentDivision;
-        protected DnnTreeView treeParentDivisions;
+        protected DivisionSelector parentDivisionSelector;
         protected LabelControl lblDivisionTerm;
         protected DnnTreeView treeDivisionTerms;
 
