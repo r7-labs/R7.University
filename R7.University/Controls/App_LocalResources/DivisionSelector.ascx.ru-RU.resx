@@ -12,10 +12,13 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="DocumentSelectionMode_List.Text" xml:space="preserve">
-        <value>Список</value>
+	<data name="DivisionSelectionMode_List.Text" xml:space="preserve">
+        <value>По названию</value>
     </data>
-	<data name="DocumentSelectionMode_Tree.Text" xml:space="preserve">
-        <value>Дерево</value>
+	<data name="DivisionSelectionMode_Tree.Text" xml:space="preserve">
+        <value>Из структуры</value>
+    </data>
+	<data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Не выбрано &gt;</value>
     </data>
 </root>

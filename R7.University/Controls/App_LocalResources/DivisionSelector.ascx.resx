@@ -12,10 +12,13 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="DocumentSelectionMode_List.Text" xml:space="preserve">
-        <value>List</value>
+	<data name="DivisionSelectionMode_List.Text" xml:space="preserve">
+        <value>By Title</value>
     </data>
-	<data name="DocumentSelectionMode_Tree.Text" xml:space="preserve">
-        <value>Tree</value>
+	<data name="DivisionSelectionMode_Tree.Text" xml:space="preserve">
+        <value>From Structure</value>
+    </data>
+	<data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Not Selected &gt;</value>
     </data>
 </root>

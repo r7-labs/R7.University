@@ -1,10 +1,10 @@
 //
-//  DocumentSelector.ascx.cs
+//  DivisionSelector.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2016 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,55 +21,102 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.UI;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services.Localization;
+using DotNetNuke.UI.Modules;
+using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Models;
-using R7.University.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
-using System.Web.UI.WebControls;
-using R7.University.Queries;
+using R7.University.ControlExtensions;
+using R7.University.Models;
 
 namespace R7.University.Controls
 {
-    public enum DivisionSelectionMode { List, Tree }
+    public enum DivisionSelectionMode { List = 0, Tree = 1 }
 
-    public partial class DocumentSelector: UserControl
+    public partial class DivisionSelector: UserControl
     {
         #region Control properties
 
-        public PortalModuleBase Module { get; set; }
+        public DivisionSelectionMode DefaultMode { get; set; }
 
-        public IEnumerable<DivisionInfo> Divisions { get; set; }
+        public IEnumerable<DivisionInfo> DataSource { get; set; }
+
+        public int? DivisionId
+        {
+            get {
+                if (IsCurrentMode (DivisionSelectionMode.List)) {
+                    return TypeUtils.ParseToNullable<int> (comboDivision.SelectedValue);
+                }
+                return TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
+            }
+            set {
+                if (IsCurrentMode (DivisionSelectionMode.List)) {
+                    comboDivision.SelectByValue (value != null ? value.Value : Null.NullInteger);
+                }
+                else {
+                    treeDivision.SelectAndExpandByValue (value != null ? value.Value.ToString () : Null.NullInteger.ToString ());
+                }
+            }
+        }
 
         #endregion
 
-        protected List<TreeNode> GetDivisionNodes (IEnumerable<DivisionInfo> divisions)
+        private ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
         {
-            var nodes = new List<TreeNode> ();
-            foreach (var division in divisions) {
-                nodes.Add (new TreeNode (division.Title, division.DivisionID.ToString ()));
+            get {
+                if (viewModelContext == null) {
+                    viewModelContext = new ViewModelContext (this, this.FindParentOfType<IModuleControl> ());
+                }
+                return viewModelContext;
             }
+        }
 
-            return nodes;
+        protected bool IsCurrentMode (DivisionSelectionMode mode)
+        {
+            return radioSelectionMode.SelectedIndex == (int) mode;
+        }
+
+        public override void DataBind ()
+        {
+            var notSelectedText = Localization.GetString ("NotSelected.Text", ViewModelContext.LocalResourceFile);
+
+            comboDivision.DataSource = DataSource;
+            comboDivision.DataBind ();
+            comboDivision.InsertDefaultItem (notSelectedText);
+
+            treeDivision.DataSource = DataSource;
+            treeDivision.DataBind ();
+            treeDivision.Nodes.Insert (0, new DnnTreeNode { Value = Null.NullInteger.ToString (), Text = notSelectedText });
         }
 
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
-            radioSelectionMode.DataSource = EnumViewModel<DivisionSelectionMode>.GetValues (new ViewModelContext (this, Module), false);
+            radioSelectionMode.DataSource = EnumViewModel<DivisionSelectionMode>.GetValues (ViewModelContext, false);
             radioSelectionMode.DataBind ();
+            radioSelectionMode.SelectedIndex = (int) DefaultMode;
 
-            treeDivision.DataSource = GetDivisionNodes (Divisions);
+            comboDivision.Visible = DefaultMode == DivisionSelectionMode.List;
+            treeDivision.Visible = DefaultMode == DivisionSelectionMode.Tree;
         }
 
-        protected override void OnLoad (EventArgs e)
+        protected void radioSelectionMode_SelectedIndexChanged (object sender, EventArgs e)
         {
-            base.OnLoad (e);
+            if (IsCurrentMode (DivisionSelectionMode.List)) {
+                comboDivision.Visible = true;
+                comboDivision.SelectByValue (treeDivision.SelectedValue);
+                treeDivision.Visible = false;
+            }
+            else {
+                treeDivision.Visible = true;
+                treeDivision.SelectAndExpandByValue (comboDivision.SelectedValue);
+                comboDivision.Visible = false;
+            }
         }
     }
 }

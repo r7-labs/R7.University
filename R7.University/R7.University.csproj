@@ -194,6 +194,13 @@
     <Compile Include="Utilities\ModuleHelper.cs" />
     <Compile Include="Utilities\CacheHelper.cs" />
     <Compile Include="Utilities\XmlSerializationHelper.cs" />
+    <Compile Include="Controls\DivisionSelector.ascx.cs">
+      <DependentUpon>DivisionSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DivisionSelector.ascx.controls.cs">
+      <DependentUpon>DivisionSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ControlExtensions\ControlExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -278,6 +285,13 @@
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
     <None Include="SqlDataProvider\01.12.00.SqlDataProvider" />
+    <None Include="Controls\DivisionSelector.ascx" />
+    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.ru-RU.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

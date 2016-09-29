@@ -1,11 +1,12 @@
 ﻿using System.Web.UI.WebControls;
+using DotNetNuke.Web.UI.WebControls;
 
 namespace R7.University.Controls
 {
-    public partial class DocumentSelector
+    public partial class DivisionSelector
     {
         protected RadioButtonList radioSelectionMode;
-        protected TreeView treeDivision;
+        protected DnnTreeView treeDivision;
         protected DropDownList comboDivision;
     }
 }
