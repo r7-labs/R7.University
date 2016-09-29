@@ -33,7 +33,7 @@
         		</div>
         		<div class="dnnFormItem">
         			<dnn:Label id="lblParentDivision" runat="server" ControlName="parentDivisionSelector" />
-					<controls:DivisionSelector id="parentDivisionSelector" runat="server" DefaultMode="List" />
+					<controls:DivisionSelector id="parentDivisionSelector" runat="server" />
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHeadPosition" runat="server" ControlName="comboHeadPosition" />

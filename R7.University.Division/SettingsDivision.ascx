@@ -13,7 +13,7 @@
     <fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
-			<controls:DivisionSelector id="divisionSelector" runat="server" DefaultMode="List" />
+			<controls:DivisionSelector id="divisionSelector" runat="server" />
 		</div>
 		<div class="dnnFormItem">
             <dnn:Label id="labelShowAddress" runat="server" ControlName="checkShowAddress" />

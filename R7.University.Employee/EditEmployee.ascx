@@ -172,7 +172,7 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelDivisions" runat="server" ControlName="divisionSelector" />
-					<controls:DivisionSelector id="divisionSelector" runat="server" DefaultMode="List" />
+					<controls:DivisionSelector id="divisionSelector" runat="server" />
 				</div>
 				<div class="dnnFormItem">
     				<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
