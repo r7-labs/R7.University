@@ -57,8 +57,19 @@ namespace R7.University.Controls
                     comboDivision.SelectByValue (value != null ? value.Value : Null.NullInteger);
                 }
                 else {
+                    treeDivision.CollapseAllNodes ();
                     treeDivision.SelectAndExpandByValue (value != null ? value.Value.ToString () : Null.NullInteger.ToString ());
                 }
+            }
+        }
+
+        public string DivisionTitle
+        {
+            get {
+                if (IsCurrentMode (DivisionSelectionMode.List)) {
+                    return comboDivision.SelectedItem.Text;
+                }
+                return treeDivision.SelectedNode != null ? treeDivision.SelectedNode.Text : string.Empty;
             }
         }
 
