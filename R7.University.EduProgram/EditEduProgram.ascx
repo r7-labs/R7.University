@@ -6,9 +6,12 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/R7.University/R7.University/Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
+<%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/dnn-ac-combobox.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
     <div id="eduprogram-tabs" class="dnnForm dnnClear">
@@ -57,13 +60,8 @@
         <div id="eduprogram-bindings">
             <fieldset>
                 <div class="dnnFormItem">
-                    <dnn:Label id="labelDivision" runat="server" ControlName="treeDivision" />
-                    <dnn:DnnTreeView id="treeDivision" runat="server"
-                        DataFieldID="DivisionID"
-                        DataFieldParentID="ParentDivisionID"
-                        DataValueField="DivisionID"
-                        DataTextField="Title"
-                    />
+                    <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
+					<controls:DivisionSelector id="divisionSelector" runat="server" DefaultMode="List" />
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHomePage" runat="server" ControlName="urlHomePage" />
@@ -90,11 +88,14 @@
 	<controls:AgplSignature runat="server" />
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
+
 <script type="text/javascript">
 (function($, Sys) {
     function setupModule() {
         var selectedTab = document.getElementById("hiddenSelectedTab").value;
         $("#eduprogram-tabs").dnnTabs(selectedTab);
+	    dnnAcCombobox_Init($);
+        $(".dnn-ac-combobox").combobox();
     };
     $(document).ready(function() {
         setupModule();

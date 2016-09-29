@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Modules;
@@ -83,7 +82,8 @@ namespace R7.University.EduProgram
                     }
 
                     // check if postback initiator is on Bindings tab
-                    if (eventTarget.Contains ("$" + urlHomePage.ID)) {
+                    if (eventTarget.Contains ("$" + urlHomePage.ID) ||
+                        eventTarget.Contains ("$" + divisionSelector.ID)) {
                         ViewState ["SelectedTab"] = EditEduProgramTab.Bindings;
                         return EditEduProgramTab.Bindings;
                     }
@@ -133,12 +133,9 @@ namespace R7.University.EduProgram
             var documentTypes = new FlatQuery<DocumentTypeInfo> (ModelContext).List ();
             formEditDocuments.OnInit (this, documentTypes);
 
-            // fill divisions treeview
-            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
-
-            treeDivision.DataSource = divisions;
-            treeDivision.DataBind ();
+            // bind divisions
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisionSelector.DataBind ();
         }
 
         /// <summary>
@@ -164,7 +161,7 @@ namespace R7.University.EduProgram
                     if (itemId.HasValue) {
                         
                         // load the item
-                        var item = new R7.University.EduProgram.Queries.EduProgramQuery (ModelContext)
+                        var item = new EduProgramQuery (ModelContext)
                             .SingleOrDefault (itemId.Value);
 
                         if (item != null) {
@@ -175,7 +172,7 @@ namespace R7.University.EduProgram
                             datetimeEndDate.SelectedDate = item.EndDate;
                             comboEduLevel.SelectByValue (item.EduLevelID);
                             urlHomePage.Url = item.HomePage;
-                            treeDivision.SelectAndExpandByValue (item.DivisionId.ToString ());
+                            divisionSelector.DivisionId = item.DivisionId;
 
                             auditControl.Bind (item);
 
@@ -249,7 +246,7 @@ namespace R7.University.EduProgram
                 // update references
                 item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
                 item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
-                item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
+                item.DivisionId = divisionSelector.DivisionId;
 
                 if (itemId == null) {
                     item.CreatedOnDate = DateTime.Now;
