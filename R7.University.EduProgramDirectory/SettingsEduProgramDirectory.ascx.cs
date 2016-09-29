@@ -77,12 +77,9 @@ namespace R7.University.EduProgramDirectory
                 });
             }
 
-            // fill divisions dropdown
-            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
-
-            treeDivision.DataSource = divisions;
-            treeDivision.DataBind ();
+            // bind divisions
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisionSelector.DataBind ();
         }
 
         /// <summary>
@@ -108,7 +105,7 @@ namespace R7.University.EduProgramDirectory
                         }
                     }
 
-                    treeDivision.SelectAndExpandByValue (Settings.DivisionId.ToString ());
+                    divisionSelector.DivisionId = Settings.DivisionId;
                 }
             }
             catch (Exception ex) {
@@ -124,7 +121,7 @@ namespace R7.University.EduProgramDirectory
             try {
                 Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
                 Settings.Columns = listColumns.CheckedItems.Select (i => i.Value).ToList ();
-                Settings.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
+                Settings.DivisionId = divisionSelector.DivisionId;
 
                 ModuleController.SynchronizeModule (ModuleId);
             }
