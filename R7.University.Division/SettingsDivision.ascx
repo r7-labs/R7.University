@@ -10,8 +10,7 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
-	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
-	<fieldset>	
+    <fieldset>	
 		<div class="dnnFormItem">
 			<dnn:Label id="labelDivision" runat="server" ControlName="divisionDivision" />
 			<controls:DivisionSelector id="divisionDivision" runat="server" DefaultMode="List" />
