@@ -51,6 +51,7 @@ namespace R7.University.Division.Components
         /// <summary>
         /// Division ID
         /// </summary>
+        // TODO: Convert to Nullable<int>
         public int DivisionID
         {
             get {
