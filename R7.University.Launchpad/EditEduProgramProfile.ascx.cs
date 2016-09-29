@@ -65,6 +65,12 @@ namespace R7.University.Launchpad
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
 
+                    // check if postback initiator is on Bindings tab
+                    if (eventTarget.Contains ("$" + divisionSelector.ID)) {
+                        ViewState ["SelectedTab"] = 3;
+                        return 1;
+                    }
+
                     // check if postback initiator is on EduForms tab
                     if (eventTarget.Contains ("$" + formEditEduForms.ID)) {
                         ViewState ["SelectedTab"] = 2;
@@ -120,12 +126,9 @@ namespace R7.University.Launchpad
             formEditEduForms.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).List ());
             formEditDocuments.OnInit (this, new FlatQuery<DocumentTypeInfo> (ModelContext).List ());
 
-            // fill divisions dropdown
-            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisions.Insert (0, DivisionInfo.DefaultItem (LocalizeString ("NotSelected.Text")));
-
-            treeDivision.DataSource = divisions;
-            treeDivision.DataBind ();
+            // bind divisions
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisionSelector.DataBind ();
         }
 
         private void BindEduPrograms (int eduLevelId)
@@ -158,7 +161,7 @@ namespace R7.University.Launchpad
             datetimeStartDate.SelectedDate = epp.StartDate;
             datetimeEndDate.SelectedDate = epp.EndDate;
             comboEduLevel.SelectByValue (epp.EduLevelId);
-            treeDivision.SelectAndExpandByValue (epp.DivisionId.ToString ());
+            divisionSelector.DivisionId = epp.DivisionId;
 
             // update comboEduProgram, if needed
             var currentEduLevelId = int.Parse (comboEduProgramLevel.SelectedValue);
@@ -212,7 +215,7 @@ namespace R7.University.Launchpad
             item.EduLevelId = int.Parse (comboEduLevel.SelectedValue);
             item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelId);
 
-            item.DivisionId = TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
+            item.DivisionId = divisionSelector.DivisionId;
 
             if (ItemId == null) {
                 item.CreatedOnDate = DateTime.Now;
