@@ -53,6 +53,7 @@ namespace R7.University.EmployeeList.Components
         /// <summary>
         /// Division's ID to show employees from
         /// </summary>
+        // TODO: Convert to Nullable<int>
         public int DivisionID
         {
             get { 
