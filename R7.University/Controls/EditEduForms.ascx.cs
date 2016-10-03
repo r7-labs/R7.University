@@ -86,8 +86,9 @@ namespace R7.University.Controls
             item.EduFormViewModel = GetEduForm (item.EduFormID);
             item.IsAdmissive = checkIsAdmissive.Checked;
 
-            if (!string.IsNullOrWhiteSpace (textTimeToLearnHours.Text)) {
-                item.TimeToLearn = int.Parse (textTimeToLearnHours.Text);
+            var timeToLearnHours = int.Parse (textTimeToLearnHours.Text);
+            if (timeToLearnHours > 0) {
+                item.TimeToLearn = timeToLearnHours;
                 item.TimeToLearnUnit = ((char) TimeToLearnUnit.Hours).ToString ();
             }
             else {
