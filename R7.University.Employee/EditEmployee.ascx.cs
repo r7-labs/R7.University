@@ -644,7 +644,6 @@ namespace R7.University.Employee
             // restore default buttons visibility
             buttonAddDisciplines.Visible = true;
             buttonUpdateDisciplines.Visible = false;
-            textDisciplines.Text = string.Empty;
         }
 
         private void ResetEditPositionForm ()
@@ -1171,8 +1170,16 @@ namespace R7.University.Employee
 
         protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
         {
+            // store currently selected edu. program profile title
+            var selectedEduProgramProfileTitle = comboEduProgramProfile.SelectedItem?.Text;
+
             var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
             BindEduProgramProfiles (eduLevelId);
+
+            // try to select edu. program profile with same title
+            if (!string.IsNullOrEmpty (selectedEduProgramProfileTitle)) {
+                comboEduProgramProfile.SelectByText (selectedEduProgramProfileTitle, StringComparison.CurrentCulture);
+            }
         }
 
         private void BindEduProgramProfiles (int eduLevelId)
