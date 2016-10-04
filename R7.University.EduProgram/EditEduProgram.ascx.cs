@@ -33,6 +33,7 @@ using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.EduProgram.Components;
 using R7.University.EduProgram.Queries;
+using R7.University.EduProgram.ViewModels;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -42,6 +43,7 @@ namespace R7.University.EduProgram
     public enum EditEduProgramTab
     {
         Common,
+        EduProgramProfiles,
         Bindings,
         Documents
     }
@@ -136,6 +138,8 @@ namespace R7.University.EduProgram
             // bind divisions
             divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisionSelector.DataBind ();
+
+            gridEduProgramProfiles.LocalizeColumns (LocalResourceFile);
         }
 
         /// <summary>
@@ -183,6 +187,13 @@ namespace R7.University.EduProgram
                                 .ToList ();
                             
                             formEditDocuments.SetData (documents, item.EduProgramID);
+
+                            gridEduProgramProfiles.DataSource = item.EduProgramProfiles
+                                .Select (epp => new EduProgramProfileEditViewModel (epp, ViewModelContext))
+                                .OrderBy (epp => epp.ProfileCode)
+                                .ThenBy (epp => epp.ProfileTitle);
+
+                            gridEduProgramProfiles.DataBind ();
                         }
                         else
                             Response.Redirect (Globals.NavigateURL (), true);

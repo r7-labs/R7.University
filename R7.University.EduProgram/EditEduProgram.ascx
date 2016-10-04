@@ -17,6 +17,7 @@
     <div id="eduprogram-tabs" class="dnnForm dnnClear">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduprogram-common"><%= LocalizeString ("Common.Tab") %></a></li>
+			<li><a href="#eduprogram-profiles"><%= LocalizeString ("EduProgramProfiles.Tab") %></a></li>
             <li><a href="#eduprogram-bindings"><%= LocalizeString ("Bindings.Tab") %></a></li>
             <li><a href="#eduprogram-documents"><%= LocalizeString ("Documents.Tab") %></a></li>
         </ul>
@@ -57,6 +58,29 @@
                 </div>
         	</fieldset>
         </div>
+		<div id="eduprogram-profiles">
+            <fieldset>
+                <div class="dnnFormItem">
+					<asp:GridView id="gridEduProgramProfiles" runat="server" AutoGenerateColumns="false" 
+                            GridLines="None" CssClass="dnnGrid" Style="width:100%;margin-bottom:30px">
+                        <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
+                        <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
+                        <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:HyperLink runat="server" IconKey="Edit" NavigateUrl='<%# Eval ("Edit_Url") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />
+                            <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel" />
+							<asp:BoundField DataField="StartDate" HeaderText="StartDate" DataFormatString="{0:d}" />
+							<asp:BoundField DataField="EndDate" HeaderText="EndDate" DataFormatString="{0:d}" />
+                        </Columns>
+                    </asp:GridView>
+			    </div>
+			</fieldset>	
+        </div>
         <div id="eduprogram-bindings">
             <fieldset>
                 <div class="dnnFormItem">
@@ -77,7 +101,7 @@
         <div id="eduprogram-documents">
             <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgram" />
         </div>
-        <ul class="dnnActions dnnClear">
+		<ul class="dnnActions dnnClear">
             <li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="EduProgram" OnClick="buttonUpdate_Click" /></li>
             <li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" OnClick="buttonDelete_Click" /></li>
             <li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>

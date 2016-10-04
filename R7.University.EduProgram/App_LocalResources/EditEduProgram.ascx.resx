@@ -18,11 +18,26 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Educational Program</value>
     </data>
+	<data name="EduProgramProfiles.Tab" xml:space="preserve">
+        <value>Edu. Program Profiles</value>
+    </data>
     <data name="Bindings.Tab" xml:space="preserve">
         <value>Bingings</value>
     </data>
     <data name="Documents.Tab" xml:space="preserve">
         <value>Documents</value>
+    </data>
+	<data name="EduProgramProfile.Column" xml:space="preserve">
+        <value>Edu. Program Profile</value>
+    </data>
+	<data name="EduLevel.Column" xml:space="preserve">
+        <value>Education Level</value>
+    </data>
+	<data name="StartDate.Column" xml:space="preserve">
+        <value>Start Date</value>
+    </data>
+	<data name="EndDate.Column" xml:space="preserve">
+        <value>End Date</value>
     </data>
     <data name="labelCode.Text" xml:space="preserve">
         <value>Code:</value>

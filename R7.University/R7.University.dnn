@@ -1005,6 +1005,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgramProfile</controlKey>
+                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program Profile</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
                                         <controlSrc>DesktopModules/R7.University/R7.University.EduProgramDirectory/SettingsEduProgramDirectory.ascx</controlSrc>

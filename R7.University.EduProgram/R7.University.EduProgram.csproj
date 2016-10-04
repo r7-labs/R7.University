@@ -85,6 +85,7 @@
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EduProgramModuleViewModel.cs" />
     <Compile Include="Queries\EduProgramQuery.cs" />
+    <Compile Include="ViewModels\EduProgramProfileEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />

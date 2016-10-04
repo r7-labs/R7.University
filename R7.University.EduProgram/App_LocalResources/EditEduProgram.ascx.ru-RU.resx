@@ -18,11 +18,26 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Образовательная программа</value>
     </data>
+	<data name="EduProgramProfiles.Tab" xml:space="preserve">
+        <value>Профили обр. программы</value>
+    </data>
     <data name="Bindings.Tab" xml:space="preserve">
         <value>Привязки</value>
     </data>
     <data name="Documents.Tab" xml:space="preserve">
         <value>Документы</value>
+    </data>
+	<data name="EduProgramProfile.Column" xml:space="preserve">
+        <value>Профиль обр. программы</value>
+    </data>
+    <data name="EduLevel.Column" xml:space="preserve">
+        <value>Уровень образования</value>
+    </data>
+	<data name="StartDate.Column" xml:space="preserve">
+        <value>Начало</value>
+    </data>
+    <data name="EndDate.Column" xml:space="preserve">
+        <value>Окончание</value>
     </data>
     <data name="labelCode.Text" xml:space="preserve">
         <value>Код:</value>
