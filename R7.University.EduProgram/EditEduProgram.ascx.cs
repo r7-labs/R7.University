@@ -140,6 +140,8 @@ namespace R7.University.EduProgram
             divisionSelector.DataBind ();
 
             gridEduProgramProfiles.LocalizeColumns (LocalResourceFile);
+
+            linkAddEduProgramProfile.NavigateUrl = EditUrl ("EditEduProgramProfile");
         }
 
         /// <summary>
@@ -201,6 +203,7 @@ namespace R7.University.EduProgram
                     else {
                         auditControl.Visible = false;
                         buttonDelete.Visible = false;
+                        linkAddEduProgramProfile.Visible = false;
                     }
                 }
             }

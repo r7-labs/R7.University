@@ -93,6 +93,9 @@
     <data name="labelDivision.Help">
         <value>Выберите подразделение, реализующее данную образовательную программу. Обычно это факультет или институт.</value>
     </data>
+	<data name="AddEduProgramProfile.Text">
+        <value>Добавить профиль обр. программы</value>
+    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;Модуль редактирования образовательной программы&lt;/P&gt;</value>
     </data>

@@ -79,6 +79,10 @@
                         </Columns>
                     </asp:GridView>
 			    </div>
+				<div class="dnnFormItem">
+					<label class="dnnLabel" />
+					<asp:HyperLink id="linkAddEduProgramProfile" runat="server" CssClass="dnnPrimaryAction" resourcekey="AddEduProgramProfile.Text" />
+                </div>
 			</fieldset>	
         </div>
         <div id="eduprogram-bindings">

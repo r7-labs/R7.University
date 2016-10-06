@@ -22,5 +22,6 @@ namespace R7.University.EduProgram
         protected DnnUrlControl urlHomePage;
         protected DivisionSelector divisionSelector;
         protected GridView gridEduProgramProfiles;
+        protected HyperLink linkAddEduProgramProfile;
     }
 }

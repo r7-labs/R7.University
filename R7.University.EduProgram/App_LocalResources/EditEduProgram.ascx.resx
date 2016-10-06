@@ -93,6 +93,9 @@
     <data name="labelDivision.Help">
         <value>Select division, which implements the educational program. Generally it's a faculty or an institute.</value>
     </data>
+	<data name="AddEduProgramProfile.Text">
+        <value>Add Edu. Program Profile</value>
+    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;An Edit education program module&lt;/P&gt;</value>
     </data>
