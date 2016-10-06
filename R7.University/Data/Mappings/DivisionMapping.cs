@@ -53,6 +53,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.WorkingHours);
             Property (m => m.DocumentUrl);
             Property (m => m.IsVirtual);
+            Property (m => m.IsInformal);
 
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();

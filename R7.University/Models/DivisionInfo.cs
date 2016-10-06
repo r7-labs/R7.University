@@ -80,6 +80,8 @@ namespace R7.University.Models
 
         public bool IsVirtual { get; set; }
 
+        public bool IsInformal { get; set; }
+
         public int? HeadPositionID { get; set; }
 
         public DateTime? StartDate { get; set; }

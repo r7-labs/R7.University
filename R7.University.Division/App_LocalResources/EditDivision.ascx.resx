@@ -135,6 +135,12 @@
 	<data name="labelIsVirtual.Help">
 		<value>Check if this division is not intended to have any employees in it and used only to organize other divisions.</value>
 	</data>
+	<data name="labelIsInformal.Text">
+        <value>Is Informal?</value>
+    </data>
+    <data name="labelIsInformal.Help">
+        <value>Check if this division is not formal one. Informal divisions can be filtered out from the DivisionDirectory module view.</value>
+    </data>
 	<data name="labelHeadPosition.Text">
 		<value>Head Employee Position:</value>
 	</data>

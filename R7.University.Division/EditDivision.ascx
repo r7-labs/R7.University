@@ -53,6 +53,10 @@
                     <dnn:Label id="labelIsVirtual" runat="server" ControlName="checkIsVirtual" />
                     <asp:CheckBox id="checkIsVirtual" runat="server" />
                 </div>
+				<div class="dnnFormItem">
+                    <dnn:Label id="labelIsInformal" runat="server" ControlName="checkIsInformal" />
+                    <asp:CheckBox id="checkIsInformal" runat="server" />
+                </div>
             </fieldset>
         </div>
         <div id="division-contacts-tab">
