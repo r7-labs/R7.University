@@ -30,6 +30,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.DivisionDirectory.Components;
 
 namespace R7.University.DivisionDirectory
 {
@@ -39,7 +40,7 @@ namespace R7.University.DivisionDirectory
 
         #region Properties
             
-        protected ViewModelContext Context { get; set; }
+        protected ViewModelContext<DivisionDirectorySettings> Context { get; set; }
 
         public string Order { get; protected set; }
 
@@ -130,19 +131,20 @@ namespace R7.University.DivisionDirectory
 
         #endregion
 
-        public DivisionObrnadzorViewModel (DivisionInfo division, ViewModelContext context)
+        public DivisionObrnadzorViewModel (DivisionInfo division, ViewModelContext<DivisionDirectorySettings> context)
         {
             CopyCstor.Copy<DivisionInfo> (division, this);
             Context = context;
         }
 
-        public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext viewModelContext)
+        public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext<DivisionDirectorySettings> viewModelContext)
         {
             var now = HttpContext.Current.Timestamp;
 
             // REVIEW: If division is not published, it's child divisions also should not
             var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext))
                 .Where (d => d.IsPublished (now) || viewModelContext.Module.IsEditable)
+                .Where (d => !d.IsInformal || viewModelContext.Settings.ShowInformal)
                 .ToList ();
 
             CalculateOrder (divisionViewModels);

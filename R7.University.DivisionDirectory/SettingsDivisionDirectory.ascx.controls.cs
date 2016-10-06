@@ -5,5 +5,6 @@ namespace R7.University.DivisionDirectory
     public partial class SettingsDivisionDirectory
     {
         protected DropDownList comboMode;
+        protected CheckBox checkShowInformal;
     }
 }

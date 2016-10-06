@@ -46,6 +46,7 @@ namespace R7.University.DivisionDirectory
             try {
                 if (!IsPostBack) {
                     comboMode.SelectByValue (Settings.Mode);
+                    checkShowInformal.Checked = Settings.ShowInformal;
                 }
             }
             catch (Exception ex) {
@@ -62,6 +63,7 @@ namespace R7.University.DivisionDirectory
                 Settings.Mode = (DivisionDirectoryMode) Enum.Parse (
                     typeof (DivisionDirectoryMode),
                     comboMode.SelectedValue);
+                Settings.ShowInformal = checkShowInformal.Checked;
 
                 ModuleController.SynchronizeModule (ModuleId);
             }

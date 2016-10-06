@@ -12,4 +12,10 @@
     <data name="labelMode.Help" xml:space="preserve">
         <value>Select module mode from the list.</value>
     </data>
+	<data name="labelShowInformal.Text" xml:space="preserve">
+        <value>Show Informal?</value>
+    </data>
+    <data name="labelShowInformal.Help" xml:space="preserve">
+        <value>If checked, module will show also informal divisions.</value>
+    </data>
 </root>

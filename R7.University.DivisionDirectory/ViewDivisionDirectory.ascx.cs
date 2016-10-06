@@ -102,12 +102,12 @@ namespace R7.University.DivisionDirectory
 
         #endregion
 
-        private ViewModelContext viewModelContext;
-        protected ViewModelContext ViewModelContext
+        private ViewModelContext<DivisionDirectorySettings> viewModelContext;
+        protected ViewModelContext<DivisionDirectorySettings> ViewModelContext
         {
-            get { 
+            get {
                 if (viewModelContext == null)
-                    viewModelContext = new ViewModelContext (this);
+                    viewModelContext = new ViewModelContext<DivisionDirectorySettings> (this);
 
                 return viewModelContext;
             }
@@ -232,7 +232,8 @@ namespace R7.University.DivisionDirectory
 
             // REVIEW: If division is not published, it's child divisions also should not
             var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
-                .Where (d => d.IsPublished (now) || IsEditable); 
+                .Where (d => d.IsPublished (now) || IsEditable)
+                .Where (d => !d.IsInformal || Settings.ShowInformal);
 
             if (!divisions.Any ()) {
                 this.Message ("NoDivisionsFound.Warning", MessageType.Warning, true);

@@ -10,5 +10,9 @@
             <dnn:Label id="labelMode" runat="server" ControlName="comboMode" />
             <asp:DropDownList id="comboMode" runat="server" />
         </div>
+		<div class="dnnFormItem">
+            <dnn:Label id="labelShowInformal" runat="server" ControlName="checkShowInformal" />
+            <asp:CheckBox id="checkShowInformal" runat="server" />
+        </div>
     </fieldset>
 </div>

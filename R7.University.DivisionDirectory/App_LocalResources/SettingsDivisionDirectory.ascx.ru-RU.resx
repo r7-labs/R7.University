@@ -12,4 +12,10 @@
     <data name="labelMode.Help" xml:space="preserve">
         <value>Выберите режим работы модуля из списка.</value>
     </data>
+	<data name="labelShowInformal.Text" xml:space="preserve">
+        <value>Показывать неформальные?</value>
+    </data>
+    <data name="labelShowInformal.Help" xml:space="preserve">
+        <value>Если отмечено, модуль будет отображать также неформальные подразделения.</value>
+    </data>
 </root>

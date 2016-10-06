@@ -52,6 +52,16 @@ namespace R7.University.DivisionDirectory.Components
         }
 
         #endregion
+
+        #region TabModule settings
+
+        public bool ShowInformal
+        {
+            get { return ReadSetting ("DivisionDirectory_ShowInformal", false); }
+            set { WriteTabModuleSetting ("DivisionDirectory_ShowInformal", value); }
+        }
+
+        #endregion
     }
 }
 
