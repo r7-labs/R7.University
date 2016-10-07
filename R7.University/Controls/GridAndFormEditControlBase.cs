@@ -140,7 +140,7 @@ namespace R7.University.Controls
             var viewModels = items.Select (i => (TViewModel) convertor.FromModel (i, ViewModelContext)).ToList ();
             ViewStateItems = viewModels;
 
-            GridItems.DataSource = DataTableConstructor.FromIEnumerable (viewModels);
+            GridItems.DataSource = viewModels;
             GridItems.DataBind ();
         }
 
@@ -220,7 +220,7 @@ namespace R7.University.Controls
                 }
 
                 // bind items to the gridview
-                GridItems.DataSource = DataTableConstructor.FromIEnumerable (items);
+                GridItems.DataSource = items;
                 GridItems.DataBind ();
 
             }
@@ -319,7 +319,7 @@ namespace R7.University.Controls
                         }
 
                         // bind items to the gridview
-                        GridItems.DataSource = DataTableConstructor.FromIEnumerable (items);
+                        GridItems.DataSource = items;
                         GridItems.DataBind ();
 
                         // reset form if we deleting currently edited item
