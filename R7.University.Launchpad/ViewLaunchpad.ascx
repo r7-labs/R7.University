@@ -83,9 +83,11 @@
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
                         <asp:BoundField DataField="IsVirtual" SortExpression="IsVirtual" HeaderText="IsVirtual" />
+						<asp:BoundField DataField="IsInformal" SortExpression="IsInformal" HeaderText="IsInformal" />
                         <asp:BoundField DataField="DocumentUrl" SortExpression="DocumentUrl" HeaderText="DocumentUrl" />
                         <asp:BoundField DataField="HomePage" SortExpression="HomePage" HeaderText="HomePage" />
-                        <asp:BoundField DataField="Location" SortExpression="Location" HeaderText="Location" />
+                        <asp:BoundField DataField="Address" SortExpression="Address" HeaderText="Address" />
+						<asp:BoundField DataField="Location" SortExpression="Location" HeaderText="Location" />
                         <asp:BoundField DataField="Phone" SortExpression="Phone" HeaderText="Phone" />
                         <asp:BoundField DataField="Fax" SortExpression="Fax" HeaderText="Fax" />
                         <asp:BoundField DataField="Email" SortExpression="Email" HeaderText="Email" />

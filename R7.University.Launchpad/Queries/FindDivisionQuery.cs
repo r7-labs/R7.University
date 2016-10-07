@@ -40,6 +40,7 @@ namespace R7.University.Launchpad.Queries
                 ? ModelContext.Query<DivisionInfo> ()
                     .Where (d => d.Title.Contains (search) 
                         || d.ShortTitle.Contains (search)
+                        || d.Address.Contains (search)
                         || d.Location.Contains (search)
                         || d.Phone.Contains (search)
                         || d.Fax.Contains (search)
