@@ -1,5 +1,33 @@
 ﻿<div style="white-space:normal">
 
+<h3>Version 1.12.0</h3>
+<p>This release features GNU AGPLv3+ transition as long as some division model changes, usability improvements and fixes.</p>
+<ul>
+    <li>R7.University code is now under the terms of GNU Aferro GPL version 3 or any later version (#140). AGPL signature was added to major views.</li>
+    <li>Fixed bug with edu. form learn time could be entered in hours only (#150).</li>
+	<li>Division now have Address property for post address, used along with existing Location property (#133).</li>
+    <li>Division now have IsInformal property to mark informal divisions, which can be filtered out from DivisionDirectory view (#145).</li>
+	<li>All division selection now handled via new DivisionSelector control (#142).</li>
+    <li>Division module now have a setting to control how address and location is displayed.</li>
+    <li>EduProgramDirectory will no longer crash on unknown language, but will display "&lt;unknown language&gt;" instead.</li>
+	<li>Dropped support for setting CSS class for division's document according to URL type and file extension (not used).</li>
+	<li>More target="_blank" attribute for links (#134).</li>
+	<li>Division module now hides itself for regular users if division is not published - same as the Employee and EduProgram modules (#132).</li>
+	<li>Restored sorting in edu. program profile dropdown in employee disciplines editing.</li>
+	<li>Improved employee disciplines editing by preserving disciplines field content between operations and by smarter switching between edu. levels (#149).</li>
+    <li>Edu. program edit form now have separate tab with list of profiles and add/edit buttons (#139).</li>
+	<li>Disciplines linked to not published edu. program profiles in the employee edit form now marked by color .</li>
+    <li>Not published profiles in the edu. program edit form now marked by color.</li>
+	<li>Not published documents in the edit form now marked by color.</li>
+	<li>Disciplines with not published edu. program profiles now removed from employee details view (#153).</li>
+	<li>Implemented ability to add default profile along with new edu. program (#151).</li>
+	<li>Cancel now close popup window w/o reloading the page (#152).</li>
+	<li>Added text labels to employee details view to describe positions and constacts info sections.</li>
+    <li>General localization resources update, more UI parts translated to russian.</li>
+    <li>Some autocomplete combobox and CSS improvements.</li>
+	<li>Code refactoring and cleanup.</li>
+</ul>
+	
 <h3>Version 1.11.0</h3>
 <ul>
     <li>Implemented ability to store and display time to learn in hours (#129).</li>
