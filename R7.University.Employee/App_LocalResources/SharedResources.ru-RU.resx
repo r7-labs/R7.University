@@ -55,7 +55,7 @@
         <value>Документ</value>
     </data>
     <data name="EduProgramProfile.Column">
-        <value>Профиль подготовки (специализация)</value>
+        <value>Образовательная программа (профиль подготовки, специализация)</value>
     </data>
     <data name="Disciplines.Column">
         <value>Дисциплины</value>

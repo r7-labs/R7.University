@@ -286,7 +286,7 @@
         <value>Select education level from the dropdown.</value>
     </data>
     <data name="labelEduProgramProfile.Text">
-        <value>Edu. Program Profile:</value>
+        <value>Edu. Program (Profile):</value>
     </data>
     <data name="labelEduProgramProfile.Help">
         <value>Select educational program profile from the dropdown.</value>

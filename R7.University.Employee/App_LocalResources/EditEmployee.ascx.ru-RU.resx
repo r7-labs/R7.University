@@ -205,7 +205,7 @@
         <value>Выберите уровень образования из выпадающего списка.</value>
     </data>
     <data name="labelEduProgramProfile.Text">
-        <value>Профиль обр. программы:</value>
+        <value>Обр. программа (профиль):</value>
     </data>
     <data name="labelEduProgramProfile.Help">
         <value>Выберите профиль образовательной программы из выпадающего списка.</value>
