@@ -96,6 +96,12 @@
 	<data name="AddEduProgramProfile.Text">
         <value>Добавить профиль обр. программы</value>
     </data>
+	<data name="labelAddDefaultProfile.Text">
+        <value>Добавить профиль по-умолчанию?</value>
+    </data>
+    <data name="labelAddDefaultProfile.Help">
+        <value>Отметьте, чтобы добавить профиль обр. программы по-умолчанию. Этот профиль будет создан, но не будет опубликован.</value>
+    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;Модуль редактирования образовательной программы&lt;/P&gt;</value>
     </data>

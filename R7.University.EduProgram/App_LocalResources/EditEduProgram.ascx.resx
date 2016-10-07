@@ -96,6 +96,12 @@
 	<data name="AddEduProgramProfile.Text">
         <value>Add Edu. Program Profile</value>
     </data>
+	<data name="labelAddDefaultProfile.Text">
+        <value>Add Default Profile?</value>
+    </data>
+    <data name="labelAddDefaultProfile.Help">
+        <value>Check to add default edu. program profile. This profile will be created, but not published.</value>
+    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;An Edit education program module&lt;/P&gt;</value>
     </data>

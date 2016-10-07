@@ -23,5 +23,7 @@ namespace R7.University.EduProgram
         protected DivisionSelector divisionSelector;
         protected GridView gridEduProgramProfiles;
         protected HyperLink linkAddEduProgramProfile;
+        protected Panel panelAddDefaultProfile;
+        protected CheckBox checkAddDefaultProfile;
     }
 }

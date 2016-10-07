@@ -207,6 +207,7 @@ namespace R7.University.EduProgram
                         auditControl.Visible = false;
                         buttonDelete.Visible = false;
                         linkAddEduProgramProfile.Visible = false;
+                        panelAddDefaultProfile.Visible = true;
                     }
                 }
             }
@@ -273,6 +274,24 @@ namespace R7.University.EduProgram
 
                     ModelContext.Add<EduProgramInfo> (item);
                     ModelContext.SaveChanges (false);
+
+                    if (checkAddDefaultProfile.Checked) {
+                        var defaultProfile = new EduProgramProfileInfo {
+                            ProfileCode = string.Empty,
+                            ProfileTitle = string.Empty,
+                            EduProgramID = item.EduProgramID,
+                            EduLevelId = item.EduLevelID,
+                            CreatedOnDate = item.CreatedOnDate,
+                            LastModifiedOnDate = item.LastModifiedOnDate,
+                            CreatedByUserID = item.CreatedByUserID,
+                            LastModifiedByUserID = item.LastModifiedByUserID,
+                            // unpublish profile
+                            EndDate = item.CreatedOnDate.Date
+                        };
+
+                        ModelContext.Add<EduProgramProfileInfo> (defaultProfile);
+                        ModelContext.SaveChanges (false);
+                    }
                 }
                 else {
                     item.LastModifiedOnDate = DateTime.Now;
