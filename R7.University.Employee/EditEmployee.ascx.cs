@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -335,7 +334,7 @@ namespace R7.University.Employee
 
                             // bind achievements
                             Achievements = achievements;
-                            gridAchievements.DataSource = AchievementsDataTable (achievements);
+                            gridAchievements.DataSource = achievements;
                             gridAchievements.DataBind ();
 
                             // fill disciplines list
@@ -829,11 +828,6 @@ namespace R7.University.Employee
             }
         }
 
-        private DataTable AchievementsDataTable (List<EmployeeAchievementEditViewModel> achievements)
-        {
-            return DataTableConstructor.FromIEnumerable (achievements);
-        }
-
         protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
@@ -852,7 +846,7 @@ namespace R7.University.Employee
                         Achievements = achievements;
 	
                         // bind achievements to the gridview
-                        gridAchievements.DataSource = AchievementsDataTable (achievements);
+                        gridAchievements.DataSource = achievements;
                         gridAchievements.DataBind ();
 
                         // reset form if we deleting currently edited achievement
@@ -1011,7 +1005,7 @@ namespace R7.University.Employee
                 Achievements = achievements;
 
                 // bind achievements to the gridview
-                gridAchievements.DataSource = AchievementsDataTable (achievements);
+                gridAchievements.DataSource = achievements;
                 gridAchievements.DataBind ();
             }
             catch (Exception ex) {
