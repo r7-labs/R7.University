@@ -32,7 +32,7 @@ namespace R7.University.Employee
         protected HyperLink linkEdit;
         protected GridView gridExperience;
         protected GridView gridAchievements;
-        protected GridView gridEduPrograms;
+        protected GridView gridDisciplines;
         protected HyperLink linkBarcode;
         protected AgplSignature agplSignature;
     }

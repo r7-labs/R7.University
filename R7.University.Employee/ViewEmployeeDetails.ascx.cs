@@ -221,7 +221,7 @@ namespace R7.University.Employee
 
             agplSignature.Visible = InPopup;
 
-            gridEduPrograms.LocalizeColumns (LocalResourceFile);
+            gridDisciplines.LocalizeColumns (LocalResourceFile);
             gridExperience.LocalizeColumns (LocalResourceFile);
             gridAchievements.LocalizeColumns (LocalResourceFile);
         }
@@ -414,18 +414,18 @@ namespace R7.University.Employee
             }
 			
             Experience (employee);
-            EduPrograms (employee);
+            Disciplines (employee);
             Barcode (employee);
         }
 
-        void EduPrograms (EmployeeInfo employee)
+        void Disciplines (EmployeeInfo employee)
         {
-            // get employee edu programs
+            // get employee disciplines
             var disciplines = employee.Disciplines.OrderBy (ed => ed.EduProgramProfile.EduProgram.Code);
 
             if (disciplines.Any ()) {
-                gridEduPrograms.DataSource = disciplines.Select (ed => new EmployeeDisciplineViewModel (ed));
-                gridEduPrograms.DataBind ();
+                gridDisciplines.DataSource = disciplines.Select (ed => new EmployeeDisciplineViewModel (ed));
+                gridDisciplines.DataBind ();
             }
             else {
                 linkDisciplines.Visible = false;

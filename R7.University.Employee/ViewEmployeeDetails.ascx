@@ -91,7 +91,7 @@
     		</div>
     		<div id="employeeDisciplines" class="_tab">
                 <div class="_section">
-                    <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid grid-eduprograms" 
+                    <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid grid-disciplines" 
                         UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
                         <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                         <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
