@@ -21,6 +21,8 @@
 
 using System;
 using System.Linq;
+using System.Web;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
@@ -34,6 +36,7 @@ using R7.University.ControlExtensions;
 using R7.University.EduProgram.Components;
 using R7.University.EduProgram.Queries;
 using R7.University.EduProgram.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -332,6 +335,16 @@ namespace R7.University.EduProgram
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
+            }
+        }
+
+        protected void gridEduProgramProfiles_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
+                var eduProfile = (IEduProgramProfile) e.Row.DataItem;
+                if (!eduProfile.IsPublished (HttpContext.Current.Timestamp)) {
+                    e.Row.CssClass = gridEduProgramProfiles.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
+                }
             }
         }
 
