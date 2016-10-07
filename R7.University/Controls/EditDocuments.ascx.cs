@@ -19,13 +19,16 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.ControlExtensions;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
 
@@ -63,6 +66,16 @@ namespace R7.University.Controls
                 Type = string.Empty,
                 DocumentTypeID = Null.NullInteger
             };
+        }
+
+        protected void gridDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow) {
+                var document = (IDocument) e.Row.DataItem;
+                if (!document.IsPublished (HttpContext.Current.Timestamp)) {
+                    e.Row.CssClass = gridDocuments.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
+                }
+            }
         }
 
         #region Implemented abstract members of GridAndFormEditControlBase
