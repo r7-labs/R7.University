@@ -420,8 +420,12 @@ namespace R7.University.Employee
 
         void Disciplines (EmployeeInfo employee)
         {
+            var now = HttpContext.Current.Timestamp;
+
             // get employee disciplines
-            var disciplines = employee.Disciplines.OrderBy (ed => ed.EduProgramProfile.EduProgram.Code);
+            var disciplines = employee.Disciplines
+                                      .Where (ed => ed.EduProgramProfile.IsPublished (now))
+                                      .OrderBy (ed => ed.EduProgramProfile.EduProgram.Code);
 
             if (disciplines.Any ()) {
                 gridDisciplines.DataSource = disciplines.Select (ed => new EmployeeDisciplineViewModel (ed));
