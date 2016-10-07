@@ -32,6 +32,7 @@ using R7.University.Division.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.SharedLogic;
+using R7.University.Utilities;
 
 namespace R7.University.Division
 {
@@ -115,6 +116,10 @@ namespace R7.University.Division
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
+
+            // HACK: Cancel link setup must be done in the base class
+            linkCancel.Attributes.Remove ("onclick");
+            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
 
             // parse QueryString
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);

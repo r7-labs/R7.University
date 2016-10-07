@@ -27,6 +27,7 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -64,7 +65,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             // set url for Cancel link
-            linkCancel.NavigateUrl = Globals.NavigateURL ();
+            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
 
             // add confirmation dialog to delete button
             buttonDelete.Attributes.Add (

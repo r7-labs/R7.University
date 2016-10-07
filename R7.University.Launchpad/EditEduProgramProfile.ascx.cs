@@ -20,17 +20,16 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.Launchpad.Queries;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -113,6 +112,10 @@ namespace R7.University.Launchpad
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
+
+            // HACK: Cancel link setup must be done in the base class
+            linkCancel.Attributes.Remove ("onclick");
+            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
 
             // get and bind edu. levels
             var eduProgramLevels = new EduLevelQuery (ModelContext).ListForEduProgram ();

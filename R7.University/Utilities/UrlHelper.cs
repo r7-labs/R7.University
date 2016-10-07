@@ -19,8 +19,8 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Linq;
+using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Portals;
@@ -91,6 +91,30 @@ namespace R7.University.Utilities
             }
         }
 
+        // TODO: Move to the base library
+        public static string GetCancelUrl (bool inPopup, bool refresh = false)
+        {
+            if (inPopup) {
+                return UrlUtils.ClosePopUp (refresh: refresh, url: "", onClickEvent: false);
+            }
+            return Globals.NavigateURL ();
+        }
+
+        // TODO: Move to the base library
+        public static bool IsInPopup (HttpRequest request)
+        {
+            var popupArg = request.QueryString ["popup"];
+            if (string.IsNullOrEmpty (popupArg)) {
+                return false;
+            }
+
+            bool popupValue;
+            if (bool.TryParse (popupArg, out popupValue)) {
+                return popupValue;
+            }
+
+            return false;
+        }
     }
 }
 

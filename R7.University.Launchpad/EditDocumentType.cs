@@ -19,8 +19,10 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -47,6 +49,15 @@ namespace R7.University.Launchpad
 
         protected EditDocumentType () : base ("documenttype_id")
         {
+        }
+
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            // HACK: Cancel link setup must be done in the base class
+            linkCancel.Attributes.Remove ("onclick");
+            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
         }
 
         protected override void InitControls ()

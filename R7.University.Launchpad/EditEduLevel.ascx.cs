@@ -23,9 +23,10 @@ using System;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Models;
 using R7.University.ControlExtensions;
+using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -58,6 +59,10 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
+            // HACK: Cancel link setup must be done in the base class
+            linkCancel.Attributes.Remove ("onclick");
+            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
+        
             comboParentEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboParentEduLevel.DataBind ();
             comboParentEduLevel.InsertDefaultItem (LocalizeString ("NotSelected.Text"));

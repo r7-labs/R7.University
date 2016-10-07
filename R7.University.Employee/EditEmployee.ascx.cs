@@ -191,7 +191,7 @@ namespace R7.University.Employee
             base.OnInit (e);
 
             // set url for Cancel link
-            linkCancel.NavigateUrl = Globals.NavigateURL ();
+            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
 
             // add confirmation dialog to delete button
             buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" +

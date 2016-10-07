@@ -39,6 +39,7 @@ using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Utilities;
 
 namespace R7.University.EduProgram
 {
@@ -125,7 +126,7 @@ namespace R7.University.EduProgram
             base.OnInit (e);
 
             // set url for Cancel link
-            linkCancel.NavigateUrl = Globals.NavigateURL ();
+            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
 
             // add confirmation dialog to delete button
             buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('"

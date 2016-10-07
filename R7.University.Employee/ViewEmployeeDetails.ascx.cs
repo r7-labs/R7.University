@@ -74,21 +74,9 @@ namespace R7.University.Employee
 
         #region Properties
 
-        protected bool InPopup
+        protected bool IsInPopup
         {
-            get {
-                var popupArg = Request.QueryString ["popup"];
-                if (string.IsNullOrEmpty (popupArg)) {
-                    return false;
-                }
-
-                bool popup;
-                if (bool.TryParse (popupArg, out popup)) {
-                    return popup;
-                }
-
-                return false;
-            }
+            get { return UrlHelper.IsInPopup (Request); }
         }
 
         protected bool InViewModule
@@ -208,18 +196,14 @@ namespace R7.University.Employee
         {
             base.OnInit (e);
 
-            if (InPopup) {
-                linkReturn.Attributes.Add ("onclick", "javascript:return " +
-                    UrlUtils.ClosePopUp (refresh: false, url: "", onClickEvent: true));
-            }
-            else if (InViewModule) {
+            if (InViewModule) {
                 linkReturn.Visible = false;
             }
             else {
-                linkReturn.NavigateUrl = Globals.NavigateURL ();
+                linkReturn.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
             }
 
-            agplSignature.Visible = InPopup;
+            agplSignature.Visible = IsInPopup;
 
             gridDisciplines.LocalizeColumns (LocalResourceFile);
             gridExperience.LocalizeColumns (LocalResourceFile);
@@ -245,7 +229,7 @@ namespace R7.University.Employee
                     var displaySomething = IsEditable || (Employee != null && Employee.IsPublished (now));
 
                     // something went wrong in popup mode - reload page
-                    if (InPopup && !displaySomething) {
+                    if (IsInPopup && !displaySomething) {
                         ReloadPage ();
                         return;
                     }
@@ -318,7 +302,7 @@ namespace R7.University.Employee
         {
             var fullname = employee.FullName;
 
-            if (InPopup) {
+            if (IsInPopup) {
                 // set popup title to employee name
                 ((CDefault) this.Page).Title = fullname;
             }
