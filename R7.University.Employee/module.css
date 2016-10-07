@@ -77,3 +77,6 @@
 
 .university-employee-details .dialog-employee-barcode, 
 .university-employee-details .dialog-employee-achievement-description { display:none }
+
+.university-employee-details label { font-weight:bold }
+.university-employee-details label.u8y-label-contacts { display:block }

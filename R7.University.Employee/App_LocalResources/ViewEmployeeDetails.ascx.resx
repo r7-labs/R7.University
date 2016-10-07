@@ -27,4 +27,10 @@
     <data name="ExperienceYears3.Format" xml:space="preserve">
         <value>Total work experience (years): {0}, in which by speciality: {1}</value>
     </data>
+	<data name="OccupiedPositions.Text" xml:space="preserve">
+        <value>Occupied Positions:</value>
+    </data>
+	<data name="Contacts.Text" xml:space="preserve">
+        <value>Contacts:</value>
+    </data>
 </root>

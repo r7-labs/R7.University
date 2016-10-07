@@ -22,9 +22,10 @@
     			<li><asp:HyperLink id="linkAbout" runat="server" href="#employeeAbout"><%= LocalizeString("About.Tab") %></asp:HyperLink></li>
     		</ul>
     		<div id="employeeCommon" class="_tab">
-    			<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />
+    			<p><asp:Label id="labelAcademicDegreeAndTitle" runat="server" /></p>
+                <label><%: LocalizeString ("OccupiedPositions.Text") %></label>
     			<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
-    				<HeaderTemplate><ul class="_positions"></HeaderTemplate>
+    				<HeaderTemplate><ul></HeaderTemplate>
     				<ItemTemplate>
     					<li>
     						<asp:Label id="labelPosition" runat="server" />
@@ -35,6 +36,7 @@
     				<FooterTemplate></ul></FooterTemplate>
     			</asp:Repeater>
     			<div class="_section">
+					<label class="u8y-label-contacts"><%: LocalizeString ("Contacts.Text") %></label>
     				<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
     				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
     				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
