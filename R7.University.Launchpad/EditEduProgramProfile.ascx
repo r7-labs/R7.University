@@ -101,9 +101,9 @@
 		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
+	<controls:AgplSignature runat="server" ShowRule="false" />
     <hr />
     <dnn:Audit id="auditControl" runat="server" />
-	<controls:AgplSignature runat="server" />
 </div>
 <script type="text/javascript">
 (function($, Sys) {

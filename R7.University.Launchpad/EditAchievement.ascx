@@ -30,5 +30,5 @@
 		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" OnClick="buttonDelete_Click" /></li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
-	<controls:AgplSignature runat="server" />
+	<controls:AgplSignature runat="server" ShowRule="false" />
 </div>

@@ -122,7 +122,7 @@
         </li>
         <li><asp:HyperLink id="linkEdit" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdEdit" Visible="false" /></li>
     </ul>
-	<controls:AgplSignature id="agplSignature" runat="server" />
+	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />
 </asp:Panel>
 <div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%= ModuleId %>"></div>
 <div class="dialog-employee-barcode" id="dialog-employee-barcode-<%= ModuleId %>">
