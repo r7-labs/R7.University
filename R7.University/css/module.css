@@ -2,4 +2,4 @@
 .u8y-agpl-footer > a { font-size:xx-small;color:#ccc }
 
 tr.u8y-not-published { background-color:#ffc }
-tr.u8y-not-published.hover { background-color:#fefe97 }
+tr.u8y-not-published:hover { background-color:#fefe97 }
