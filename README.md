@@ -32,6 +32,7 @@ See *R7.University* modules in action on the official website of *Volgograd Stat
 - [EmployeeDirectory module](http://www.volgau.com/sveden/employees)
 - [EduProgramProfileDirectory modules](http://www.volgau.com/sveden/education)
 - [EduProgramDirectory modules](http://www.volgau.com/sveden/edustandarts)
+- [EduProgram module](http://www.volgau.com/LinkClick.aspx?link=7276)
 
 ## Short TODO
 
