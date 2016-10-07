@@ -8,6 +8,14 @@ Modules and base library for DNN Platfrom designed to present and manage various
 (e.g. divisions, employees, educational programs, documents) for high school educational organization website,
 compatible with [obrnadzor.gov.ru](http://obrnadzor.gov.ru/microformats) microdata requirements.
 
+## License
+
+[![AGPLv3](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.html)
+
+The *R7.University* is free software: you can redistribute it and/or modify it under the terms of 
+the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, 
+or (at your option) any later version.
+
 ## Dependencies
 
 - DNN Platform 7.4.2
@@ -32,10 +40,3 @@ See *R7.University* modules in action on the official website of *Volgograd Stat
 - [ ] Allow manage multiple organizations
 - [x] Add portal-level configuration options
 
-## License
-
-[![AGPLv3](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.html)
-
-The *R7.University* is free software: you can redistribute it and/or modify it under the terms of 
-the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, 
-or (at your option) any later version.
