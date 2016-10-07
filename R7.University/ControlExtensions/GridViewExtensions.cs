@@ -19,7 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+using System.Diagnostics.Contracts;
 using System.Web.UI.WebControls;
 using DotNetNuke.Services.Localization;
 
@@ -31,6 +31,13 @@ namespace R7.University.ControlExtensions
         {
             foreach (DataControlField column in gv.Columns)
                 column.HeaderText = Localization.GetString (column.HeaderText + ".Column", resourceFile);
+        }
+
+        public static TableItemStyle GetDataRowStyle (this GridView gv, GridViewRow row)
+        {
+            Contract.Requires (row.RowType == DataControlRowType.DataRow);
+
+            return (row.DataItemIndex % 2 == 0) ? gv.RowStyle : gv.AlternatingRowStyle;
         }
     }
 }
