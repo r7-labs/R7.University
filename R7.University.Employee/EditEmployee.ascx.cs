@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -343,7 +344,7 @@ namespace R7.University.Employee
                     
                             // bind disciplines
                             Disciplines = disciplines;
-                            gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
+                            gridDisciplines.DataSource = disciplines;
                             gridDisciplines.DataBind ();
 
                             // setup audit control
@@ -738,6 +739,13 @@ namespace R7.University.Employee
         protected void gridDisciplines_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             grids_RowDataBound (sender, e);
+
+            if (e.Row.RowType == DataControlRowType.DataRow) {
+                var discipline = (EmployeeDisciplineEditViewModel) e.Row.DataItem;
+                if (!ModelHelper.IsPublished (HttpContext.Current.Timestamp, discipline.ProfileStartDate, discipline.ProfileEndDate)) {
+                    e.Row.CssClass = gridDisciplines.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
+                }
+            }
         }
 
         private void grids_RowDataBound (object sender, GridViewRowEventArgs e)
@@ -824,11 +832,6 @@ namespace R7.University.Employee
         private DataTable AchievementsDataTable (List<EmployeeAchievementEditViewModel> achievements)
         {
             return DataTableConstructor.FromIEnumerable (achievements);
-        }
-
-        private DataTable DisciplinesDataTable (List<EmployeeDisciplineEditViewModel> eduPrograms)
-        {
-            return DataTableConstructor.FromIEnumerable (eduPrograms);
         }
 
         protected void linkDeleteAchievement_Command (object sender, CommandEventArgs e)
@@ -1044,13 +1047,14 @@ namespace R7.University.Employee
                         discipline.EduProgramProfileID = eduProgramProfileId;
                         discipline.Disciplines = textDisciplines.Text.Trim ();
 
-                        var profile = new R7.University.Employee.Queries.EduProgramProfileQuery (ModelContext)
-                            .SingleOrDefault (discipline.EduProgramProfileID);
+                        var profile = new EduProgramProfileQuery (ModelContext).SingleOrDefault (discipline.EduProgramProfileID);
 
                         discipline.Code = profile.EduProgram.Code;
                         discipline.Title = profile.EduProgram.Title;
                         discipline.ProfileCode = profile.ProfileCode;
                         discipline.ProfileTitle = profile.ProfileTitle;
+                        discipline.ProfileStartDate = profile.StartDate;
+                        discipline.ProfileEndDate = profile.EndDate;
                         discipline.EduLevel_String = FormatHelper.FormatShortTitle (profile.EduLevel.ShortTitle, profile.EduLevel.Title);
 
                         if (command == "Add") {
@@ -1063,7 +1067,7 @@ namespace R7.University.Employee
                         Disciplines = disciplines;
 
                         // bind items to the gridview
-                        gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
+                        gridDisciplines.DataSource = disciplines;
                         gridDisciplines.DataBind ();
                     }
                     else {
@@ -1134,7 +1138,7 @@ namespace R7.University.Employee
                         Disciplines = disciplines;
 
                         // bind edu discipline to the gridview
-                        gridDisciplines.DataSource = DisciplinesDataTable (disciplines);
+                        gridDisciplines.DataSource = disciplines;
                         gridDisciplines.DataBind ();
 
                         // reset form if we deleting currently edited discipline

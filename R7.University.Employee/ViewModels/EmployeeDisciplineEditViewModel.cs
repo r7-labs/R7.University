@@ -58,6 +58,10 @@ namespace R7.University.Employee.ViewModels
 
         public string ProfileTitle { get; set; }
 
+        public DateTime? ProfileStartDate { get; set; }
+
+        public DateTime? ProfileEndDate { get; set; }
+
         public string EduLevel_String { get; set; }
 
         #endregion
@@ -86,6 +90,8 @@ namespace R7.University.Employee.ViewModels
             Title = employeeDiscipline.EduProgramProfile.EduProgram.Title;
             ProfileCode = employeeDiscipline.EduProgramProfile.ProfileCode;
             ProfileTitle = employeeDiscipline.EduProgramProfile.ProfileTitle;
+            ProfileStartDate = employeeDiscipline.EduProgramProfile.StartDate;
+            ProfileEndDate = employeeDiscipline.EduProgramProfile.EndDate;
             EduLevel_String = FormatHelper.FormatShortTitle (employeeDiscipline.EduProgramProfile.EduLevel.ShortTitle, employeeDiscipline.EduProgramProfile.EduLevel.Title);
         }
 
