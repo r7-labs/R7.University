@@ -66,7 +66,7 @@
 				        <FooterStyle CssClass="dnnGridFooter" />
                         <Columns>
                             <asp:BoundField DataField="Years_String" HeaderText="Years" />
-                            <asp:BoundField DataField="Title_String" HeaderText="Title" />
+                            <asp:BoundField DataField="Title_Link" HeaderText="Title" HtmlEncode="false" />
                             <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
                             <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
                         </Columns>
