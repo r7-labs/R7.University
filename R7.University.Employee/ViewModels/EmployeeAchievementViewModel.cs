@@ -19,7 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+using System.Web;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
@@ -53,10 +53,10 @@ namespace R7.University.Employee.ViewModels
                         + "data-description=\"{1}\" "
                         + "data-dialog-title=\"{0}\" "
                         + "onclick=\"showEmployeeAchievementDescriptionDialog(this)\">{0}</a>", 
-                        Title_String, Description, Context.Module.ModuleId);
+                        HttpUtility.HtmlEncode (Title_String), HttpUtility.HtmlEncode (Description), Context.Module.ModuleId);
                 }
 
-                return Title_String;
+                return HttpUtility.HtmlEncode (Title_String);
             }
         }
 
