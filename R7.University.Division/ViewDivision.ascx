@@ -34,9 +34,7 @@
 	</div>
 
     <asp:Panel id="panelSubDivisions" runat="server" CssClass="panel-subdivisions">
-        <p>
-            <asp:Label id="labelSubDivisions" runat="server" resourcekey="labelSubDivisions" />
-        </p>
+        <label><%: LocalizeString ("SubDivisions.Text") %></label>
         <asp:Repeater id="repeatSubDivisions" runat="server">
     		<HeaderTemplate><ul></HeaderTemplate>
     		<ItemTemplate>

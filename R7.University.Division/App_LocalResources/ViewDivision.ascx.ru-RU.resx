@@ -30,7 +30,7 @@
     <data name="DocumentUrl.Text" xml:space="preserve">
         <value>Положение</value>
     </data>
-    <data name="labelSubDivisions.Text" xml:space="preserve">
+    <data name="SubDivisions.Text" xml:space="preserve">
         <value>Подчиненные подразделения:</value>
     </data>
     <data name="linkBarcode.Text" xml:space="preserve">

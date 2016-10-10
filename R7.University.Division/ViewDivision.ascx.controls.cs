@@ -18,7 +18,6 @@ namespace R7.University.Division
         protected Label labelWorkingHours;
         protected Image imageBarcode;
         protected Panel panelSubDivisions;
-        protected Label labelSubDivisions;
         protected Repeater repeatSubDivisions;
         protected HyperLink linkBarcode;
     }
