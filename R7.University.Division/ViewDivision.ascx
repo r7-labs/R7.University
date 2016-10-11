@@ -4,6 +4,8 @@
 
 <dnn:jQuery runat="server" jQueryUI="true" DnnjQueryPlugins="true" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Division/js/module.js" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
+
 <asp:Panel id="panelDivision" runat="server" CssClass="university-division">
 	<asp:Label id="labelTitle" runat="server" CssClass="_section" />
 	<asp:HyperLink id="linkHomePage" runat="server" Target="_blank" CssClass="_section" />

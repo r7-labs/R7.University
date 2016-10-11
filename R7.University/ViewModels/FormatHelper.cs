@@ -123,7 +123,7 @@ namespace R7.University.ViewModels
               
             if (!string.IsNullOrWhiteSpace (document.Url)) {
                 var linkMarkup = "<a href=\"" + UrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
-                + TextUtils.FormatList (" ", !document.IsPublished (now) ? "class=\"not-published-document\"" : string.Empty, microdata)
+                + TextUtils.FormatList (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
                 + " target=\"_blank\">" + title + "</a>";
                 
                 if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {

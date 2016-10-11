@@ -3,15 +3,11 @@
 .university-division ._section,
 .university-division .panel-subdivisions,
 .university-division .link-barcode { margin-top:8px }
-}	
 
 .university-division ._label
 { 
 	display:inline-block;
 	margin-right:8px
 }
-
-.university-division li.not-published-division { color:#ddd }
-.university-division li.not-published-division a { color:#ddd }
 
 .university-division .dialog-division-barcode { display:none }

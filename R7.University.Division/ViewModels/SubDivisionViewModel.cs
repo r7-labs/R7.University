@@ -46,7 +46,7 @@ namespace R7.University.Division
 
         public string CssClass
         {
-            get { return !this.IsPublished (HttpContext.Current.Timestamp) ? "not-published-division" : string.Empty; }
+            get { return !this.IsPublished (HttpContext.Current.Timestamp) ? "u8y-not-published-element" : string.Empty; }
         }
 
         public SubDivisionViewModel (DivisionInfo division, ViewModelContext context)

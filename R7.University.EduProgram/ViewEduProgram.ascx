@@ -1,4 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ViewEduProgram.ascx.cs" Inherits="R7.University.EduProgram.ViewEduProgram" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
+
 <asp:FormView id="formEduProgram" runat="server" OnDataBound="formEduProgram_DataBound" RenderOuterTable="false">
     <ItemTemplate>
         <div class="u8y-eduprogram">
