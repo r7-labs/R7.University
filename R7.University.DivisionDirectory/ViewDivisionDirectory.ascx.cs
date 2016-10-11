@@ -289,7 +289,7 @@ namespace R7.University.DivisionDirectory
                 }
 
                 if (!division.IsPublished (now)) {
-                    e.Row.CssClass = "not-published";
+                    e.Row.AddCssClass ("u8y-not-published");
                 }
 
                 var labelTitle = (Label) e.Row.FindControl ("labelTitle");

@@ -29,6 +29,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
+using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
@@ -210,7 +211,7 @@ namespace R7.University.EduProgramDirectory
                 }
 
                 if (!eduProgram.IsPublished (now)) {
-                    e.Row.CssClass = "not-published";
+                    e.Row.AddCssClass ("u8y-not-published");
                 }
             }
         }

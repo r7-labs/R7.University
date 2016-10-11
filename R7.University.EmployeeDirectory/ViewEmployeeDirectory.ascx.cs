@@ -41,6 +41,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.ViewModels;
+using DotNetNuke.Web.UI.WebControls.Extensions;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -317,7 +318,7 @@ namespace R7.University.EmployeeDirectory
 
                 if (!teacher.IsPublished (now)) {
                     // mark teacher as not published
-                    e.Row.CssClass += " not-published";
+                    e.Row.AddCssClass ("u8y-not-published");
                 }
 
                 // apply obrnadzor.gov.ru microdata
@@ -447,7 +448,7 @@ namespace R7.University.EmployeeDirectory
 
                 // mark not published employees, as they visible only to editors
                 if (!employee.IsPublished (now)) {
-                    e.Row.CssClass = "not-published";
+                    e.Row.AddCssClass ("u8y-not-published");
                 }
 
             }
