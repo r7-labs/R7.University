@@ -20,16 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
-using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.FileSystem;
+using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
@@ -399,24 +397,21 @@ namespace R7.University.DivisionDirectory
                 #endregion
 
                 if (!division.IsPublished (now)) {
-                    e.Row.CssClass = "not-published";
+                    e.Row.AddCssClass ("u8y-not-published");
                 }
 
-                #region Beautify (Bootstrap-specific)
-
+                // apply CSS classes for level indents and returns
                 if (division.Level > 0) {
-                    e.Row.Cells [2].CssClass = "level-" + division.Level;
+                    e.Row.Cells [2].AddCssClass ("level-" + division.Level);
                 }
 
                 if (prevLevel >= 0) {
                     if (division.Level < prevLevel) {
-                        e.Row.CssClass = "return return-" + (prevLevel - division.Level);
+                        e.Row.AddCssClass ("return return-" + (prevLevel - division.Level));
                     }
                 }
 
                 prevLevel = division.Level;
-
-                #endregion
             }
         }
     }
