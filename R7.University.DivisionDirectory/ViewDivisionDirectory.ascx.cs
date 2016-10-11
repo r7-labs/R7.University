@@ -373,10 +373,9 @@ namespace R7.University.DivisionDirectory
 
                 #region Contact person
 
-                // REVIEW: Should not access database here, maybe in the model? 
-
                 var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
 
+                // TODO: Don't call to database here!
                 // get head employee
                 var headEmployee = new HeadEmployeesQuery (ModelContext)
                     .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
