@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
@@ -31,6 +32,7 @@ using R7.University.EduProgram.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgram
 {    
@@ -72,7 +74,9 @@ namespace R7.University.EduProgram
 
         protected void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = new EduProgramQuery (ModelContext).ListByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramQuery (ModelContext).ListByEduLevel (eduLevelId)
+                .Select (ep => new ListItemViewModel (ep.EduProgramID, FormatHelper.FormatEduProgramTitle (ep.Code, ep.Title)));
+            
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

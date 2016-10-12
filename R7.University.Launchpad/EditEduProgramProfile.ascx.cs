@@ -30,6 +30,7 @@ using R7.University.Launchpad.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.Launchpad
 {
@@ -136,7 +137,9 @@ namespace R7.University.Launchpad
 
         private void BindEduPrograms (int eduLevelId)
         {
-            comboEduProgram.DataSource = new EduProgramCommonQuery (ModelContext).ListByEduLevel (eduLevelId);
+            comboEduProgram.DataSource = new EduProgramCommonQuery (ModelContext).ListByEduLevel (eduLevelId)
+                .Select (ep => new ListItemViewModel (ep.EduProgramID, FormatHelper.FormatEduProgramTitle (ep.Code, ep.Title)));
+            
             comboEduProgram.DataBind ();
 
             comboEduLevel.DataSource = ModelContext.Query<EduLevelInfo> ()

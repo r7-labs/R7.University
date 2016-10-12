@@ -20,8 +20,8 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
             <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
-                DataValueField="EduProgramID"
-                DataTextField="EduProgramString" />
+                DataValueField="Value"
+                DataTextField="Text" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" />

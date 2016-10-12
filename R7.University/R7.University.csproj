@@ -201,6 +201,7 @@
       <DependentUpon>DivisionSelector.ascx</DependentUpon>
     </Compile>
     <Compile Include="ControlExtensions\ControlExtensions.cs" />
+    <Compile Include="ViewModels\ListItemViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

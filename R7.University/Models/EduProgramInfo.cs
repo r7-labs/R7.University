@@ -70,11 +70,5 @@ namespace R7.University.Models
         public virtual ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
 
         #endregion
-
-        // TODO: Move to viewmodel
-        public string EduProgramString
-        {
-            get { return TextUtils.FormatList (" ", Code, Title); }
-        }
     }
 }
