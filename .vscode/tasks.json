@@ -29,6 +29,14 @@
 			"args": ["/t:Build", "/p:Configuration=Release"],
 			// Use the standard MS compiler pattern to detect errors, warnings and infos
 			"problemMatcher": "$msCompile"
+		},
+		{
+			"taskName": "make install package",
+			"args": ["/p:Configuration=Release", "Packaging/InstallPackage.targets" ]
+		},
+		{
+			"taskName": "do local deploy",
+			"args": ["/p:Configuration=Debug", "Packaging/LocalDeploy.targets" ]
 		}
 	]
 }
