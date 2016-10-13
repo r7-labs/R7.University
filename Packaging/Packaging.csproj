@@ -21,6 +21,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>Custom</type>
+          <name>Make Install Package</name>
+          <command>xbuild /p:Configuration=${ProjectConfigName} InstallPackage.targets</command>
+        </Command>
+        <Command>
+          <type>Custom</type>
+          <name>Do Local Deploy</name>
+          <command>xbuild /p:Configuration=${ProjectConfigName} LocalDeploy.targets</command>
+        </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>xbuild /p:Configuration=${ProjectConfigName} LocalDeploy.targets</command>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -31,19 +49,6 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\MSBuildTasks.1.5.0.196\tools\MSBuild.Community.Tasks.Targets" />
-  <PropertyGroup>
-    <PackageExtension>zip</PackageExtension>
-    <PackageName>R7.University</PackageName>
-    <PackageOutputPath>output</PackageOutputPath>
-    <DnnLocalDeployPath Condition="'$(OS)' == 'Unix'">/home/redhound/mnt/dnn</DnnLocalDeployPath>
-    <DnnLocalDeployPath Condition="'$(OS)' != 'Unix'">C:\Dotnetnuke7</DnnLocalDeployPath>
-    <MainProjectOutputPath>..\R7.University\bin\$(Configuration)</MainProjectOutputPath>
-    <TRAVIS_CI Condition="'$(TRAVIS_CI)' == ''">false</TRAVIS_CI>
-  </PropertyGroup>
-  <Import Project="InstallPackage.targets" />
-  <Import Project="LocalDeploy.targets" />
-  <Target Name="AfterBuild" DependsOnTargets="DoLocalDeploy;MakeInstallPackage" />
   <ItemGroup>
     <None Include="Packaging.csproj" />
     <None Include="InstallPackage.targets" />
