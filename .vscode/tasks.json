@@ -16,16 +16,19 @@
 	"suppressTaskName": true,
 	// Show the output window only if unrecognized errors occur.
 	"showOutput": "silent",
-	// Use the standard MS compiler pattern to detect errors, warnings and infos
-	"problemMatcher": "$msCompile",
 	"tasks": [
 		{
 			"taskName": "build debug",
-			"args": ["/t:Build", "/p:Configuration=Debug"]
+			"isBuildCommand": true,
+			"args": ["/t:Build", "/p:Configuration=Debug"],
+			// Use the standard MS compiler pattern to detect errors, warnings and infos
+			"problemMatcher": "$msCompile"
 		},
 		{
 			"taskName": "build release",
-			"args": ["/t:Build", "/p:Configuration=Release"]
+			"args": ["/t:Build", "/p:Configuration=Release"],
+			// Use the standard MS compiler pattern to detect errors, warnings and infos
+			"problemMatcher": "$msCompile"
 		}
 	]
 }
