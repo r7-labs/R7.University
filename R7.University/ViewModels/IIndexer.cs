@@ -19,8 +19,6 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
 namespace R7.University.ViewModels
 {
     public interface IIndexer

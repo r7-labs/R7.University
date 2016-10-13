@@ -1,5 +1,4 @@
-﻿using System;
-using DotNetNuke.Entities.Modules;
+﻿using DotNetNuke.Entities.Modules;
 
 namespace R7.University.Launchpad.Components
 {

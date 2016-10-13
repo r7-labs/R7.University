@@ -21,7 +21,6 @@
 
 using System;
 using System.Linq;
-using R7.University.Tests.Models;
 using Xunit;
 
 namespace R7.University.Tests.Models

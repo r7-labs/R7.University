@@ -29,7 +29,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Utilities;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;

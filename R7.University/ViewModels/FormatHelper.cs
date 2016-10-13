@@ -24,8 +24,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Web;
-using DotNetNuke.Common;
-using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;

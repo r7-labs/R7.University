@@ -23,7 +23,6 @@ using System.Data;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Models;
-using System.Collections.Generic;
 using R7.University.Queries;
 
 namespace R7.University.Launchpad

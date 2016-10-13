@@ -24,7 +24,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;

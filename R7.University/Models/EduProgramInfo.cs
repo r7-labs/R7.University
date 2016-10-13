@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Models
 {

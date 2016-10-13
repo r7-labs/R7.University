@@ -23,7 +23,6 @@ using System;
 using System.Text;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.University.Data;
 using R7.University.Models;
 
 namespace R7.University.Employee
