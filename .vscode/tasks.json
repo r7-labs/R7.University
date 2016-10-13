@@ -2,20 +2,30 @@
 	// See http://go.microsoft.com/fwlink/?LinkId=733558
 	// for the documentation about the tasks.json format
 	"version": "0.1.0",
-	"command": "xbuild",
+	"windows": {
+		"command": "msbuild"
+	},
+	"linux": {
+		"command": "xbuild"
+	},
 	"args": [
 		// Ask msbuild to generate full paths for file names.
 		"/property:GenerateFullPaths=true"
 	],
-	"taskSelector": "/t:",
+	// Don't pass task name as an argument
+	"suppressTaskName": true,
+	// Show the output window only if unrecognized errors occur.
 	"showOutput": "silent",
+	// Use the standard MS compiler pattern to detect errors, warnings and infos
+	"problemMatcher": "$msCompile",
 	"tasks": [
 		{
-			"taskName": "build",
-			// Show the output window only if unrecognized errors occur.
-			"showOutput": "silent",
-			// Use the standard MS compiler pattern to detect errors, warnings and infos
-			"problemMatcher": "$msCompile"
+			"taskName": "build debug",
+			"args": ["/t:Build", "/p:Configuration=Debug"]
+		},
+		{
+			"taskName": "build release",
+			"args": ["/t:Build", "/p:Configuration=Release"]
 		}
 	]
 }
