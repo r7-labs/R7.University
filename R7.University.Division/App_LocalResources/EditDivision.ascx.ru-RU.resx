@@ -124,7 +124,7 @@
 		<value>Введите дату, начиная с которой текущее подразделение будет опубликовано на сайте.</value>
 	</data>
 	<data name="labelEndDate.Text">
-		<value>End Publication:</value>
+		<value>Окончание публикации:</value>
 	</data>
 	<data name="labelEndDate.Help">
 		<value>Введите дату, начиная с которой текущее подразделение будет снято с публикации на сайте.</value>
