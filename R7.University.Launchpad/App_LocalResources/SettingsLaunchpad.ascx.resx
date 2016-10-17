@@ -1,21 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
 	<data name="labelPageSize.Text" xml:space="preserve">
-    <value>Page Size:</value>
-  </data>
+        <value>Page Size:</value>
+    </data>
 	<data name="labelPageSize.Help" xml:space="preserve">
-    <value>Select preferable page size for data grids of this module.</value>
-  </data>
+        <value>Select preferable page size for data grids of this module.</value>
+    </data>
 	<data name="labelTables.Text" xml:space="preserve">
-    <value>Tables:</value>
-  </data>
+        <value>Tables:</value>
+    </data>
 	<data name="labelTables.Help" xml:space="preserve">
-    <value>Select tables to display in this module.</value>
-  </data>
+        <value>Select tables to display in this module.</value>
+    </data>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>Launchpad Settings</value>
-  </data>
+        <value>Launchpad Settings</value>
+    </data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-    <value>About Launchpad Settings</value>
-  </data>
+        <value>About Launchpad Settings</value>
+    </data>
 </root>
