@@ -109,6 +109,7 @@
     </None>
     <None Include="App_LocalResources\EditPosition.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditAchievement.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewLaunchpad.ascx.cs">

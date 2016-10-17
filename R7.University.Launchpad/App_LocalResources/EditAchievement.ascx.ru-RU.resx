@@ -13,27 +13,27 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
 	<data name="labelTitle.Text" xml:space="preserve">
-    	<value>Title:</value>
+    	<value>Название:</value>
   	</data>
 	<data name="labelTitle.Help" xml:space="preserve">
-    	<value>Enter the title for an employee achievement.</value>
+    	<value>Введите название достижения сотрудника.</value>
   	</data>
 	<data name="labelShortTitle.Text" xml:space="preserve">
-    	<value>Short Title:</value>
+    	<value>Краткое название:</value>
  	</data>
 	<data name="labelShortTitle.Help" xml:space="preserve">
-    	<value>Enter the short title for employee achievement.</value>
+    	<value>Введите краткое название достижения сотрудника.</value>
   	</data>
 	<data name="labelAchievementTypes.Text">
-		<value>Achievement Type:</value>
+		<value>Тип достижения:</value>
 	</data>
 	<data name="labelAchievementTypes.Help">
-        <value>Select employee achievement type from the dropdown.</value>
+		<value>Выберите тип достижения сотрудника из выпадающего списка.</value>
 	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;An Edit achievement module&lt;/P&gt;</value>
+    	<value>&lt;P&gt;Модуль редактирования достижения&lt;/P&gt;</value>
   	</data>
 	<data name="ControlTitle_edit.Text" xml:space="preserve">
-    	<value>Edit Achievement</value>
+    	<value>Редактирование достижения</value>
   	</data>
 </root>
