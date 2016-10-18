@@ -13,33 +13,33 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="labelType.Text" xml:space="preserve">
-        <value>Type:</value>
+        <value>Тип:</value>
     </data>
     <data name="labelType.Help" xml:space="preserve">
-        <value>Enter document type name.</value>
+        <value>Введите название типа документа.</value>
     </data>
     <data name="Type.Required" xml:space="preserve">
-        <value>Please specify the document type name.</value>
+        <value>Укажите название типа документа.</value>
     </data>
     <data name="labelDescription.Text" xml:space="preserve">
-        <value>Description:</value>
+        <value>Описание:</value>
     </data>
     <data name="labelDescription.Help" xml:space="preserve">
-        <value>Enter document type description.</value>
+        <value>Введите описание типа документа.</value>
     </data>
     <data name="Description.MaxLength" xml:space="preserve">
-        <value>Description length must be less or equal to 255 characters.</value>
+        <value>Длина описания не должна превышать 255 символов.</value>
     </data>
     <data name="labelIsSystem.Text">
-        <value>Is System?</value>
+        <value>Системный?</value>
     </data>
     <data name="labelIsSystem.Help">
-        <value>System document types have special meaning for the system work, therefore cannot be deleted, and only description can be changed for them.</value>
+        <value>Системные типы документов имеют особое значение для работы системы, поэтому их нельзя удалить, а изменить можно только их описание.</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;About Edit Document Type Module&lt;/P&gt;</value>
+        <value>&lt;P&gt;О модуле редактирования типа документа&lt;/P&gt;</value>
     </data>
     <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Document Type</value>
+        <value>Редактирование типа документа</value>
     </data>
 </root>
