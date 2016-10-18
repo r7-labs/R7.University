@@ -18,4 +18,16 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
         <value>О настройках Launchpad</value>
     </data>
+	<data name="labelPageSize.Text" xml:space="preserve">
+        <value>Записей на страницу:</value>
+    </data>
+    <data name="labelPageSize.Help" xml:space="preserve">
+        <value>Выберите количество записей, отображаемых на одной странице.</value>
+    </data>
+    <data name="labelTables.Text" xml:space="preserve">
+        <value>Таблицы:</value>
+    </data>
+    <data name="labelTables.Help" xml:space="preserve">
+        <value>Отметьте таблицы, которые необходимо отобразить в модуле.</value>
+    </data>
 </root>

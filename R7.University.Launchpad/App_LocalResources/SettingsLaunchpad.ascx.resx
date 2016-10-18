@@ -12,22 +12,22 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>Launchpad Settings</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>About Launchpad Settings</value>
+    </data>
 	<data name="labelPageSize.Text" xml:space="preserve">
         <value>Page Size:</value>
     </data>
 	<data name="labelPageSize.Help" xml:space="preserve">
-        <value>Select preferable page size for data grids of this module.</value>
+        <value>Select the number of records displayed on a single page.</value>
     </data>
 	<data name="labelTables.Text" xml:space="preserve">
         <value>Tables:</value>
     </data>
 	<data name="labelTables.Help" xml:space="preserve">
         <value>Select tables to display in this module.</value>
-    </data>
-	<data name="ControlTitle_settings.Text" xml:space="preserve">
-        <value>Launchpad Settings</value>
-    </data>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-        <value>About Launchpad Settings</value>
     </data>
 </root>
