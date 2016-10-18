@@ -13,7 +13,7 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
-    	<value>Employee Settings</value>
+    	<value>Employee Module Settings</value>
   	</data>
 	<data name="ModuleHelp.Text" xml:space="preserve">
     	<value>&lt;p&gt;About Employee module settings&lt;/p&gt;</value>
@@ -28,7 +28,7 @@
         <value>Show Current User?</value>
     </data>
     <data name="labelShowCurrentUser.Help" xml:space="preserve">
-        <value>If checked, module will try to display employee record, associated with current userid querystring param. If no employee record exist, module hides ifself. Consider enabling this setting with &quot;Auto Title&quot; enabled and &quot;Data Cache Duration&quot; set to 0.</value>
+        <value>If checked, module will try to display employee record, associated with current userid querystring param. If no employee record exist, module hides ifself. Consider enabling this setting with &quot;Auto Title&quot; enabled.</value>
     </data>
 	<data name="labelAutoTitle.Text" xml:space="preserve">
     	<value>Auto Title?</value>

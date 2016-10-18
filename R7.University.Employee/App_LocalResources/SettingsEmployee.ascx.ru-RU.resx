@@ -12,17 +12,35 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>Настройки модуля Employee</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;О настройках модуля Employee&lt;/p&gt;</value>
+    </data>
     <data name="labelEmployee.Text" xml:space="preserve">
         <value>Сотрудник:</value>
     </data>
     <data name="labelEmployee.Help" xml:space="preserve">
         <value>Выберите сотрудника для отображения в данном модуле.</value>
     </data>
-    <data name="ControlTitle_settings.Text" xml:space="preserve">
-        <value>Настройки модуля Employee</value>
+	<data name="labelShowCurrentUser.Text" xml:space="preserve">
+        <value>Показать текущего пользователя?</value>
     </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;p&gt;О настройках модуля Employee&lt;/p&gt;</value>
+    <data name="labelShowCurrentUser.Help" xml:space="preserve">
+        <value>Если отмечено, модуль будет пытаться отобразить сотрудника, связанного с текущим значением параметра строки запроса userid. Если такая запись не существует, модуль скрывается. Рекомендуем включать эту настройку одновременно с настройкой &quot;Автоматический заголовок&quot;.</value>
+    </data>
+    <data name="labelAutoTitle.Text" xml:space="preserve">
+        <value>Автоматический заголовок?</value>
+    </data>
+    <data name="labelAutoTitle.Help" xml:space="preserve">
+        <value>Если отмечено, имя отображаемого сотрудника будет использоваться в качестве заголовка модуля.</value>
+    </data>
+	<data name="labelPhotoWidth.Text" xml:space="preserve">
+        <value>Ширина фото:</value>
+    </data>
+    <data name="labelPhotoWidth.Help" xml:space="preserve">
+        <value>Введите ширину фото в пикселах или оставьте поле пустым для того, чтобы использовать оригинальные размеры фото.</value>
     </data>
     <data name="PhotoWidth.Required" xml:space="preserve">
         <value>Укажите ширину фото.</value>
