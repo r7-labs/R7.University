@@ -13,7 +13,7 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
 	<data name="ControlTitle_settings.Text" xml:space="preserve">
-        <value>Настройки каталога профилей обр. программ</value>
+        <value>Настройки EduProgramProfileDirectory</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;О настройках модуля EduProgramProfileDirectory&lt;/p&gt;</value>
