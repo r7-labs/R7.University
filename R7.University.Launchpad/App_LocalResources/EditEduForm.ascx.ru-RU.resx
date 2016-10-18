@@ -13,27 +13,27 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="labelTitle.Text" xml:space="preserve">
-        <value>Title:</value>
+        <value>Наименование:</value>
     </data>
     <data name="labelTitle.Help" xml:space="preserve">
-        <value>Enter the title for an educational form.</value>
+        <value>Введите наименование формы обучения.</value>
     </data>
     <data name="labelShortTitle.Text" xml:space="preserve">
-        <value>Short Title:</value>
+        <value>Краткое наименование:</value>
     </data>
     <data name="labelShortTitle.Help" xml:space="preserve">
-        <value>Enter the short title for an educational form.</value>
+        <value>Введите кратное наименование формы обучения.</value>
     </data>
     <data name="labelIsSystem.Text">
-        <value>Is System?</value>
+        <value>Системная?</value>
     </data>
     <data name="labelIsSystem.Help">
-        <value>System educational forms have special meaning for the system work, therefore they cannot be changed or deleted.</value>
+        <value>Системные формы обучения имеют особое значение для работы системы, поэтому не могут быть удалены или изменены или удалены.</value>
     </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;About Edit Educational Form Module&lt;/P&gt;</value>
+        <value>&lt;P&gt;О модуле редактирования формы обучения&lt;/P&gt;</value>
     </data>
     <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Educational Form</value>
+        <value>Редактирование формы обучения</value>
     </data>
 </root>
