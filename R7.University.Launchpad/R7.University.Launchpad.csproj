@@ -98,15 +98,9 @@
     <None Include="App_LocalResources\EditAchievement.ascx.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.resx" />
     <None Include="App_LocalResources\EditDocumentType.ascx.resx" />
-    <None Include="App_LocalResources\EditEduLevel.ascx.resx">
-      <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="App_LocalResources\EditEduForm.ascx.resx">
-      <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="App_LocalResources\EditEduLevel.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduLevel.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="App_LocalResources\EditEduLevel.ascx.resx" />
+    <None Include="App_LocalResources\EditEduForm.ascx.resx" />
+    <None Include="App_LocalResources\EditEduLevel.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditPosition.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.ru-RU.resx" />
