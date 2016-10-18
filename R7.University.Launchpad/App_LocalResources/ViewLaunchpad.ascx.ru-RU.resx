@@ -15,8 +15,8 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt; Модуль Launchpad&lt;/P&gt;</value>
     </data>
-	<data name="NothingToDisplay.Text" xml:space="preserve">
-  	    <value>Нечего отображать, добавьте элементы.</value>
+	<data name="NotConfigured.Text" xml:space="preserve">
+  	    <value>Выберите таблицы для отображения в настройках модуля.</value>
     </data>
     <data name="AddItem.Text" xml:space="preserve">
         <value>Добавить</value>
