@@ -18,11 +18,44 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
         <value>О настройках модуля EmployeeList</value>
     </data>
+	<data name="labelDivision.Text" xml:space="preserve">
+        <value>Подразделение:</value>
+    </data>
+    <data name="labelDivision.Help" xml:space="preserve">
+        <value>Выберите подразделение для отображения сотрудников в нем.</value>
+    </data>
+    <data name="labelIncludeSubdivisions.Text" xml:space="preserve">
+        <value>Включая подчиненные?</value>
+    </data>
+    <data name="labelIncludeSubdivisions.Help" xml:space="preserve">
+        <value>Отметьте, чтобы показать также сотрудников всех подчиненных подразделений.</value>
+    </data>
+	<data name="labelHideHeadEmployee.Text" xml:space="preserve">
+        <value>Скрыть руководителя?</value>
+    </data>
+    <data name="labelHideHeadEmployee.Help" xml:space="preserve">
+        <value>Отметьте, чтобы не отображать руководителя выбранного подразделения в списке сотрудников. Эта настройка по-умолчанию выключена.</value>
+    </data>
+	<data name="SortTypeByMaxWeight.Text" xml:space="preserve">
+        <value>По макс. весу должности</value>
+    </data>
+    <data name="SortTypeByTotalWeight.Text" xml:space="preserve">
+        <value>По суммарному весу должностей</value>
+    </data>
+    <data name="SortTypeByName.Text" xml:space="preserve">
+        <value>По имени сотрудника</value>
+    </data>
     <data name="labelHideHeadEmployee.Text" xml:space="preserve">
         <value>Скрыть руководителя?</value>
     </data>
     <data name="labelHideHeadEmployee.Help" xml:space="preserve">
         <value>Отметьте, чтобы скрыть в списке сотрудников руководителя выбранного подразделения. Эта настройка выключена по-умолчанию.</value>
+    </data>
+	<data name="labelPhotoWidth.Text" xml:space="preserve">
+        <value>Ширина фото:</value>
+    </data>
+    <data name="labelPhotoWidth.Help" xml:space="preserve">
+        <value>Введите ширину фото в пикселах или оставьте поле пустым для того, чтобы использовать оригинальные размеры фото.</value>
     </data>
     <data name="PhotoWidth.Required" xml:space="preserve">
         <value>Укажите ширину фото.</value>

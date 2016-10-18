@@ -43,7 +43,7 @@
         <value>Select a sort type from the list to use with this module.</value>
     </data>
 	<data name="SortTypeByMaxWeight.Text" xml:space="preserve">
-    <value>By max position weight</value>
+        <value>By max position weight</value>
     </data>
 	<data name="SortTypeByTotalWeight.Text" xml:space="preserve">
         <value>By total positions weight</value>
