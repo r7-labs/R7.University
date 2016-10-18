@@ -12,7 +12,13 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="labelTitle.Text" xml:space="preserve">
+    <data name="ControlTitle_editachievement.Text" xml:space="preserve">
+        <value>Редактирование достижения</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;Модуль редактирования достижения&lt;/P&gt;</value>
+    </data>
+    <data name="labelTitle.Text" xml:space="preserve">
     	<value>Название:</value>
   	</data>
 	<data name="labelTitle.Help" xml:space="preserve">
@@ -30,10 +36,4 @@
 	<data name="labelAchievementTypes.Help">
 		<value>Выберите тип достижения сотрудника из выпадающего списка.</value>
 	</data>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-    	<value>&lt;P&gt;Модуль редактирования достижения&lt;/P&gt;</value>
-  	</data>
-	<data name="ControlTitle_edit.Text" xml:space="preserve">
-    	<value>Редактирование достижения</value>
-  	</data>
 </root>

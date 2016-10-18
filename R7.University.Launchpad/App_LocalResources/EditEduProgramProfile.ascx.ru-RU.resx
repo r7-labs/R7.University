@@ -12,11 +12,11 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="ControlTitle_editeduprogramprofile.Text" xml:space="preserve">
+        <value>Редактирование профиля обр. программы</value>
+    </data>
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;Модуль для редактирования профиля образовательной программы&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Редактирование профиля обр. программы</value>
     </data>
     <data name="Common.Tab" xml:space="preserve">
         <value>Профиль образовательной программы</value>

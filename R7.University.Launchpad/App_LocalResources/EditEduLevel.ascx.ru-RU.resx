@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="ControlTitle_editedulevel.Text" xml:space="preserve">
+        <value>Редактирование уровня образования</value>
+    </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;Модуль редактирования уровня образования&lt;/P&gt;</value>
+    </data>
     <data name="labelTitle.Text" xml:space="preserve">
         <value>Название:</value>
     </data>
@@ -38,11 +44,5 @@
     </data>
     <data name="labelParentEduLevel.Help" xml:space="preserve">
         <value>Выберите вышестоящий уровень образования (обычно это уровень образовательной программы).</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;Модуль редактирования уровня образования&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Редактирование уровня образования</value>
     </data>
 </root>

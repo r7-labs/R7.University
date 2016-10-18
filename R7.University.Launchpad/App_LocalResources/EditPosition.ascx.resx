@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+	<data name="ControlTitle_editposition.Text" xml:space="preserve">
+        <value>Edit Position</value>
+    </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;An Edit position module&lt;/p&gt;</value>
+    </data>
     <data name="lblTitle.Text" xml:space="preserve">
         <value>Title:</value>
     </data>
@@ -38,11 +44,5 @@
     </data>
     <data name="labelIsTeacher.Help" xml:space="preserve">
         <value>Check if this position is a teacher position. This flag is used to distinct teachers from other employees.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;p&gt;An Edit position module&lt;/p&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Position</value>
     </data>
 </root>

@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="ControlTitle_editdocumenttype.Text" xml:space="preserve">
+        <value>Редактирование типа документа</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;О модуле редактирования типа документа&lt;/P&gt;</value>
+    </data>
     <data name="labelType.Text" xml:space="preserve">
         <value>Тип:</value>
     </data>
@@ -35,11 +41,5 @@
     </data>
     <data name="labelIsSystem.Help">
         <value>Системные типы документов имеют особое значение для работы системы, поэтому их нельзя удалить, а изменить можно только их описание.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;О модуле редактирования типа документа&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Редактирование типа документа</value>
     </data>
 </root>

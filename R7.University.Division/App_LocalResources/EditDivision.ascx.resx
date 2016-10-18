@@ -12,13 +12,13 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;About Division Editor&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <data name="ControlTitle_editdivision.Text" xml:space="preserve">
         <value>Edit Division</value>
     </data>
-	<data name="lblTitle.Text" xml:space="preserve">
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;About Division Editor&lt;/P&gt;</value>
+    </data>
+    <data name="lblTitle.Text" xml:space="preserve">
         <value>Title:</value>
     </data>
 	<data name="lblTitle.Help" xml:space="preserve">

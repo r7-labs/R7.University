@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+	<data name="ControlTitle_editeduprogram.Text" xml:space="preserve">
+        <value>Редактирование обр. программы</value>
+    </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;Модуль редактирования образовательной программы&lt;/P&gt;</value>
+    </data>
     <data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Не выбрано &gt;</value>
     </data>
@@ -101,11 +107,5 @@
     </data>
     <data name="labelAddDefaultProfile.Help">
         <value>Отметьте, чтобы добавить профиль обр. программы по-умолчанию. Этот профиль будет создан, но не будет опубликован.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;Модуль редактирования образовательной программы&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Редактирование обр. программы</value>
     </data>
 </root>

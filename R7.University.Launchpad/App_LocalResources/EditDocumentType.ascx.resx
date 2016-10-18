@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+	<data name="ControlTitle_editdocumenttype.Text" xml:space="preserve">
+        <value>Edit Document Type</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;About Edit Document Type Module&lt;/P&gt;</value>
+    </data>
     <data name="labelType.Text" xml:space="preserve">
         <value>Type:</value>
     </data>
@@ -35,11 +41,5 @@
     </data>
     <data name="labelIsSystem.Help">
         <value>System document types have special meaning for the system work, therefore cannot be deleted, and only description can be changed for them.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;About Edit Document Type Module&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Document Type</value>
     </data>
 </root>

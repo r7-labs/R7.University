@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+	<data name="ControlTitle_editposition.Text" xml:space="preserve">
+        <value>Редактирование должности</value>
+    </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;p&gt;Модуль редактирования должности&lt;/p&gt;</value>
+    </data>
     <data name="lblTitle.Text" xml:space="preserve">
         <value>Название:</value>
     </data>
@@ -38,11 +44,5 @@
     </data>
     <data name="labelIsTeacher.Help" xml:space="preserve">
         <value>Отметьте, если данная должность относится к должностям преподавателей. Этот флаг используется для выделения преподавателей среди других сотрудников.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;p&gt;Модуль редактирования должности&lt;/p&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Редактирование должности</value>
     </data>
 </root>

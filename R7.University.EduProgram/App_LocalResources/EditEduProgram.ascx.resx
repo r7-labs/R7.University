@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="ControlTitle_editeduprogram.Text" xml:space="preserve">
+        <value>Edit Educational Program</value>
+    </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;An Edit educational program module&lt;/P&gt;</value>
+    </data>
     <data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Not Selected &gt;</value>
     </data>
@@ -101,11 +107,5 @@
     </data>
     <data name="labelAddDefaultProfile.Help">
         <value>Check to add default edu. program profile. This profile will be created, but not published.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;An Edit education program module&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Edit Education Program</value>
     </data>
 </root>

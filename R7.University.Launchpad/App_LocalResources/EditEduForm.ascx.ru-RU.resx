@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+	<data name="ControlTitle_editeduform.Text" xml:space="preserve">
+        <value>Редактирование формы обучения</value>
+    </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;О модуле редактирования формы обучения&lt;/P&gt;</value>
+    </data>
     <data name="labelTitle.Text" xml:space="preserve">
         <value>Наименование:</value>
     </data>
@@ -29,11 +35,5 @@
     </data>
     <data name="labelIsSystem.Help">
         <value>Системные формы обучения имеют особое значение для работы системы, поэтому не могут быть удалены или изменены или удалены.</value>
-    </data>
-    <data name="ModuleHelp.Text" xml:space="preserve">
-        <value>&lt;P&gt;О модуле редактирования формы обучения&lt;/P&gt;</value>
-    </data>
-    <data name="ControlTitle_edit.Text" xml:space="preserve">
-        <value>Редактирование формы обучения</value>
     </data>
 </root>
