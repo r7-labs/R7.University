@@ -15,9 +15,6 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt; Модуль EmployeeList&lt;/P&gt;</value>
     </data>
-	<data name="DefaultContent.Text" xml:space="preserve">
-        <value>Что-то вместо содержимого</value>
-    </data>
 	<data name="NothingToDisplay.Text" xml:space="preserve">
   	    <value>Нечего отображать, добавьте элементы.</value>
     </data>
