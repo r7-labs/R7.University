@@ -3,7 +3,7 @@
 	// for the documentation about the tasks.json format
 	"version": "0.1.0",
 	"windows": {
-		"command": "msbuild"
+		"command": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\MSBuild.exe"
 	},
 	"linux": {
 		"command": "xbuild"
