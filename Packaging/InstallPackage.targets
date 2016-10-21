@@ -83,7 +83,7 @@
             <InstallResourceZipFiles Include="$(TmpDir)/Resources/**/*.*" />
         </ItemGroup>
         <!-- Create Resources.zip -->
-        <Zip Condition=" '$(OS)' != 'Unix' " Files="@(InstallResourceZipFiles)" WorkingDirectory="$(TmpDir)/Resources" ZipFileName="Resources.zip" />
+        <Zip Condition=" '$(OS)' != 'Unix' " Files="@(InstallResourceZipFiles)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp\Resources" ZipFileName="$(TmpDir)/Resources/Resources.zip" />
         <Exec Condition=" '$(OS)' == 'Unix' " Command="zip -r -6 -UN=UTF8 &quot;Resources.zip&quot; ." WorkingDirectory="$(TmpDir)/Resources" />
         <!-- Move Resources.zip to tmp/Package dir -->
         <Copy SourceFiles="$(TmpDir)/Resources/Resources.zip" DestinationFolder="$(TmpDir)/Package/" />
@@ -93,7 +93,7 @@
             <InstallPackageFiles Include="$(TmpDir)/Package/**/*.*" />
         </ItemGroup>
         <!-- Create the install package -->
-        <Zip Condition=" '$(OS)' != 'Unix' " Files="@(InstallPackageFiles)" WorkingDirectory="$(TmpDir)/Package" ZipFileName="$(PackageFileName)" />
+        <Zip Condition=" '$(OS)' != 'Unix' " Files="@(InstallPackageFiles)" WorkingDirectory="$(MSBuildProjectDirectory)\tmp\Package" ZipFileName="$(TmpDir)/Package/$(PackageFileName)" />
         <Exec Condition=" '$(OS)' == 'Unix' " Command="zip -r -6 -UN=UTF8 &quot;$(PackageFileName)&quot; ." WorkingDirectory="$(TmpDir)/Package" />
         <!-- Move the install package to the output directory -->
         <Copy SourceFiles="$(TmpDir)/Package/$(PackageFileName)" DestinationFolder="$(PackageOutputPath)/" />
