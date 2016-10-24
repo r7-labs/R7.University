@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="DoLocalDeploy">
-	<Target Name="DoLocalDeploy">
-		<PropertyGroup>
-			<PackageName>R7.University</PackageName>
-            <PackageOutputPath>bin/Packages</PackageOutputPath>
-            <MainProjectPath>../$(PackageName)</MainProjectPath>
-            <MainProjectOutputPath>$(MainProjectPath)/bin/$(Configuration)</MainProjectOutputPath>
-            <DnnLocalDeployPath Condition="'$(OS)' == 'Unix'">/home/redhound/mnt/dnn</DnnLocalDeployPath>
-            <DnnLocalDeployPath Condition="'$(OS)' != 'Unix'">C:\Dotnetnuke7</DnnLocalDeployPath>
-        </PropertyGroup>
+	<Import Project="BuildSettings.targets" Condition=" '$(PackageName)' == '' " />
+	
+	<PropertyGroup>
+		<!-- Enable local deploy by default for the Debug and unspecified configuration -->
+    	<EnableLocalDeploy Condition=" '$(Configuration)|$(EnableLocalDeploy)' == 'Debug|' Or '$(Configuration)|$(EnableLocalDeploy)' == '|' ">true</EnableLocalDeploy>
+		<!-- In configuration not specified explicitly, do not deploy binaries -->
+		<EnableDeployBinaries Condition=" '$(Configuration)' == ''">false</EnableDeployBinaries>
+	</PropertyGroup>
+	<Target Name="DoLocalDeploy" Condition=" '$(EnableLocalDeploy)' == 'true' ">
+
 		<!-- Declare binaries -->
         <ItemGroup>
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/R7.University*.dll" />
@@ -51,7 +52,7 @@
             <LocalDeployResourceFilteredFiles Include="@(LocalDeployResourceFiles)" Exclude="@(LocalDeployExcludeFiles)" />
         </ItemGroup>
 		<!-- Copy binaries -->
-        <Copy SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnLocalDeployPath)/bin" SkipUnchangedFiles="true" />
+        <Copy Condition=" '$(EnableDeployBinaries)' == 'true' " SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnLocalDeployPath)/bin" SkipUnchangedFiles="true" />
         <!-- Copy filtered Resource files to tmp/Resources dir -->
         <Copy SourceFiles="@(LocalDeployResourceFilteredFiles)" DestinationFolder="$(DnnLocalDeployPath)/DesktopModules/R7.University/%(RecursiveDir)" SkipUnchangedFiles="true" />
     </Target>

@@ -1,0 +1,20 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+    <!-- Import MSBuild.Community.Tasks -->
+    <Import Project="../packages/MSBuildTasks.1.5.0.196/tools/MSBuild.Community.Tasks.Targets" />
+    
+    <!-- Main properties -->
+    <PropertyGroup>
+        <PackageName>R7.University</PackageName>
+        <PackageOutputPath>bin/Package</PackageOutputPath>
+        <TmpDir>bin/tmp</TmpDir>
+        <DnnLocalDeployPath Condition=" '$(OS)' == 'Unix' ">/home/redhound/mnt/dnn</DnnLocalDeployPath>
+        <DnnLocalDeployPath Condition=" '$(OS)' != 'Unix' ">C:\Dotnetnuke7</DnnLocalDeployPath>
+    </PropertyGroup>
+
+    <!-- Derieved properties -->
+    <PropertyGroup>
+        <MainProjectPath>../$(PackageName)</MainProjectPath>
+        <MainProjectOutputPath>$(MainProjectPath)/bin/$(Configuration)</MainProjectOutputPath>
+    </PropertyGroup>
+</Project>

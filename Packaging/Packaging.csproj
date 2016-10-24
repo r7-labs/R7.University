@@ -24,18 +24,14 @@
     <CustomCommands>
       <CustomCommands>
         <Command>
-          <type>Custom</type>
+        <type>Custom</type>
+          <name>Re-deploy Assets</name>
+          <command>xbuild LocalDeploy.targets</command>
+        </Command>
+        <Command>
+        <type>Custom</type>
           <name>Make Install Package</name>
-          <command>xbuild /p:Configuration=${ProjectConfigName} InstallPackage.targets</command>
-        </Command>
-        <Command>
-          <type>Custom</type>
-          <name>Do Local Deploy</name>
-          <command>xbuild /p:Configuration=${ProjectConfigName} LocalDeploy.targets</command>
-        </Command>
-        <Command>
-          <type>AfterBuild</type>
-          <command>xbuild /p:Configuration=${ProjectConfigName} LocalDeploy.targets</command>
+          <command>xbuild /t:Build /p:Configuration=${ProjectConfigName} /p:EnableInstallPackage=true /p:EnableLocalDeploy=false ../R7.University.sln</command>
         </Command>
       </CustomCommands>
     </CustomCommands>
@@ -49,8 +45,13 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="BuildSettings.targets" />
+  <Import Project="LocalDeploy.targets" />
+  <Import Project="InstallPackage.targets" />
+  <Target Name="AfterBuild" DependsOnTargets="DoLocalDeploy;MakeInstallPackage" Condition=" '$(EnableAfterBuild)' != 'false' " />
   <ItemGroup>
     <None Include="Packaging.csproj" />
+    <None Include="BuildSettings.targets" />
     <None Include="InstallPackage.targets" />
     <None Include="LocalDeploy.targets" />
     <None Include="packages.config" />

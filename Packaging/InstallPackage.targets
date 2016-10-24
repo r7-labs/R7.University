@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="MakeInstallPackage">
-	<Import Project="..\packages\MSBuildTasks.1.5.0.196\tools\MSBuild.Community.Tasks.Targets" />
-    <Target Name="MakeInstallPackage">
-		<PropertyGroup>
-			<PackageName>R7.University</PackageName>
-            <PackageOutputPath>bin/Packages</PackageOutputPath>
-            <MainProjectPath>../$(PackageName)</MainProjectPath>
-            <MainProjectOutputPath>$(MainProjectPath)/bin/$(Configuration)</MainProjectOutputPath>
-            <TmpDir>tmp</TmpDir>
-        </PropertyGroup>
+	<Import Project="BuildSettings.targets" Condition=" '$(PackageName)' == '' " />
+
+	<PropertyGroup>
+		<!-- Enable install package creation by default for the Release configuration -->
+    	<EnableInstallPackage Condition=" '$(Configuration)|$(EnableInstallPackage)' == 'Release|' ">true</EnableInstallPackage>
+  	</PropertyGroup>
+	<Target Name="MakeInstallPackage" Condition=" '$(EnableInstallPackage)' == 'true' ">
+
 		<!-- Remove tmp directory (if previous build failed) -->
 		<RemoveDir Directories="$(TmpDir)" />
         <!-- Read package version from the manifest -->
