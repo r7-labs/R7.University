@@ -10,6 +10,7 @@
         <TmpDir>bin/tmp</TmpDir>
         <DnnLocalDeployPath Condition=" '$(OS)' == 'Unix' ">/home/redhound/mnt/dnn</DnnLocalDeployPath>
         <DnnLocalDeployPath Condition=" '$(OS)' != 'Unix' ">C:\Dotnetnuke7</DnnLocalDeployPath>
+        <BuildSettingsImported>true</BuildSettingsImported>
     </PropertyGroup>
 
     <!-- Derieved properties -->

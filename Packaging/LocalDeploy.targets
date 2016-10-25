@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="DoLocalDeploy">
-	<Import Project="BuildSettings.targets" Condition=" '$(PackageName)' == '' " />
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="LocalDeploy">
+	<Import Project="BuildSettings.targets" Condition=" '$(BuildSettingsImported)' == '' " />
+	<Import Project="Tests.targets" Condition=" '$(TestsImported)' == '' "/>
 	
 	<PropertyGroup>
-		<!-- Enable local deploy by default for the Debug and unspecified configuration -->
-    	<EnableLocalDeploy Condition=" '$(Configuration)|$(EnableLocalDeploy)' == 'Debug|' Or '$(Configuration)|$(EnableLocalDeploy)' == '|' ">true</EnableLocalDeploy>
-		<!-- In configuration not specified explicitly, do not deploy binaries -->
-		<EnableDeployBinaries Condition=" '$(Configuration)' == ''">false</EnableDeployBinaries>
+		<!-- Enable local deploy by default (standalone) -->
+    	<EnableLocalDeploy Condition=" '$(EnableLocalDeploy)' == '' ">true</EnableLocalDeploy>
+		<!-- Include binary files in local deploy by default -->
+		<LocalDeployIncludeBinaries Condition=" '$(LocalDeployIncludeBinaries)' == '' ">true</LocalDeployIncludeBinaries>
 	</PropertyGroup>
-	<Target Name="DoLocalDeploy" Condition=" '$(EnableLocalDeploy)' == 'true' ">
+	<Target Name="LocalDeploy" Condition=" '$(EnableLocalDeploy)' == 'true' " DependsOnTargets="Tests">
 
 		<!-- Declare binaries -->
         <ItemGroup>
@@ -52,7 +53,7 @@
             <LocalDeployResourceFilteredFiles Include="@(LocalDeployResourceFiles)" Exclude="@(LocalDeployExcludeFiles)" />
         </ItemGroup>
 		<!-- Copy binaries -->
-        <Copy Condition=" '$(EnableDeployBinaries)' == 'true' " SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnLocalDeployPath)/bin" SkipUnchangedFiles="true" />
+        <Copy Condition=" '$(LocalDeployIncludeBinaries)' == 'true' " SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnLocalDeployPath)/bin" SkipUnchangedFiles="true" />
         <!-- Copy filtered Resource files to tmp/Resources dir -->
         <Copy SourceFiles="@(LocalDeployResourceFilteredFiles)" DestinationFolder="$(DnnLocalDeployPath)/DesktopModules/R7.University/%(RecursiveDir)" SkipUnchangedFiles="true" />
     </Target>
