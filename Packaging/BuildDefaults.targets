@@ -9,8 +9,13 @@
         <EnableTests Condition=" '$(EnableTests)' == '' ">false</EnableTests>
         <EnableLocalDeploy Condition=" '$(EnableLocalDeploy)' == '' ">true</EnableLocalDeploy>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' And '$(TRAVIS_SOLUTION)' == '' ">
         <EnableInstallPackage Condition=" '$(EnableInstallPackage)' == '' ">true</EnableInstallPackage>
+        <EnableTests Condition=" '$(EnableTests)' == '' ">true</EnableTests>
+        <EnableLocalDeploy Condition=" '$(EnableLocalDeploy)' == '' ">false</EnableLocalDeploy>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' And '$(TRAVIS_SOLUTION)' != '' ">
+        <EnableInstallPackage Condition=" '$(EnableInstallPackage)' == '' ">false</EnableInstallPackage>
         <EnableTests Condition=" '$(EnableTests)' == '' ">true</EnableTests>
         <EnableLocalDeploy Condition=" '$(EnableLocalDeploy)' == '' ">false</EnableLocalDeploy>
     </PropertyGroup>
