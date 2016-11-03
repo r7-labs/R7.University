@@ -72,4 +72,10 @@
         и (или) выберите подразделение, затем нажмите &quot;Поиск&quot;. Подробная информация 
         о подразделении доступна на странице подразделения по ссылке с его названием.</value>
     </data>
+    <data name="HeadPosition_IsVacant.Text" xml:space="preserve">
+        <value>должность вакантна</value>
+    </data>
+    <data name="HeadPosition_NotApplicable.Text" xml:space="preserve">
+        <value>не применимо</value>
+    </data>
 </root>

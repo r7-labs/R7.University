@@ -67,7 +67,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="HeadEmployee">
                         <ItemTemplate>
-                            <asp:HyperLink id="linkHeadEmployee" runat="server" />
+                            <asp:Literal id="literalHeadEmployee" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

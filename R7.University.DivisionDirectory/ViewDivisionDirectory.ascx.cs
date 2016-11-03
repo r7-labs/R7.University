@@ -298,7 +298,7 @@ namespace R7.University.DivisionDirectory
                 var linkEmail = (HyperLink) e.Row.FindControl ("linkEmail");
                 var literalLocation = (Literal) e.Row.FindControl ("literalLocation");
                 var linkDocument = (HyperLink) e.Row.FindControl ("linkDocument");
-                var linkHeadEmployee = (HyperLink) e.Row.FindControl ("linkHeadEmployee");
+                var literalHeadEmployee = (Literal) e.Row.FindControl ("literalHeadEmployee");
 
                 // division label / link
                 var divisionTitle = division.Title + ((division.HasUniqueShortTitle) ? string.Format (
@@ -339,12 +339,17 @@ namespace R7.University.DivisionDirectory
                     .FirstOrDefault (he => he.IsPublished (now));
                 
                 if (headEmployee != null) {
-                    linkHeadEmployee.Text = headEmployee.AbbrName;
-                    linkHeadEmployee.ToolTip = headEmployee.FullName;
-                    linkHeadEmployee.NavigateUrl = EditUrl (
-                        "employee_id",
-                        headEmployee.EmployeeID.ToString (),
-                        "EmployeeDetails");
+                    literalHeadEmployee.Text = "<a href=\""
+                    + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
+                    + "\" title=\"" + headEmployee.FullName + "\">" + headEmployee.AbbrName + "</a>";
+                }
+                else if (!division.IsVirtual) {
+                    if (division.HeadPositionID != null) {
+                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
+                    }
+                    else {
+                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
+                    }
                 }
             }
         }
@@ -391,6 +396,14 @@ namespace R7.University.DivisionDirectory
                     + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
                     + "\" itemprop=\"Fio\">" + headEmployee.FullName + "</a></strong><br />"
                     + TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
+                }
+                else if (!division.IsVirtual) {
+                    if (division.HeadPositionID != null) {
+                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
+                    }
+                    else {
+                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
+                    }
                 }
 
                 #endregion

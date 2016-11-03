@@ -69,4 +69,10 @@
         select a division, then press &quot;Search&quot;. Division details 
         are available on division's homepage by the link with its title.</value>
     </data>
+	<data name="HeadPosition_IsVacant.Text" xml:space="preserve">
+        <value>the position is vacant</value>
+    </data>
+	<data name="HeadPosition_NotApplicable.Text" xml:space="preserve">
+        <value>not applicable</value>
+    </data>
 </root>
