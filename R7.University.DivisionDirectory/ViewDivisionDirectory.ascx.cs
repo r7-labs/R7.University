@@ -230,8 +230,8 @@ namespace R7.University.DivisionDirectory
 
             // REVIEW: If division is not published, it's child divisions also should not
             var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
-                .Where (d => d.IsPublished (now) || IsEditable)
-                .Where (d => !d.IsInformal || Settings.ShowInformal);
+                                                            .Where (d => d.IsPublished (now) || IsEditable)
+                                                            .Where (d => !d.IsInformal || Settings.ShowInformal || IsEditable);
 
             if (!divisions.Any ()) {
                 this.Message ("NoDivisionsFound.Warning", MessageType.Warning, true);
@@ -290,6 +290,10 @@ namespace R7.University.DivisionDirectory
 
                 if (!division.IsPublished (now)) {
                     e.Row.AddCssClass ("u8y-not-published");
+                }
+
+                if (division.IsInformal && IsEditable) {
+                    e.Row.AddCssClass ("u8y-informal-division");
                 }
 
                 var labelTitle = (Label) e.Row.FindControl ("labelTitle");
@@ -410,6 +414,10 @@ namespace R7.University.DivisionDirectory
 
                 if (!division.IsPublished (now)) {
                     e.Row.AddCssClass ("u8y-not-published");
+                }
+
+                if (division.IsInformal && IsEditable) {
+                    e.Row.AddCssClass ("u8y-informal-division");
                 }
 
                 // apply CSS classes for level indents and returns

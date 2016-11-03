@@ -28,6 +28,6 @@
         <value>Show Informal?</value>
     </data>
     <data name="labelShowInformal.Help" xml:space="preserve">
-        <value>If checked, module will show also informal divisions.</value>
+        <value>If checked, module will show informal divisions for regular users. If unchecked, editors will be albe to see such divisions.</value>
     </data>
 </root>

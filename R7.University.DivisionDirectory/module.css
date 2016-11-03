@@ -72,3 +72,6 @@
 .division-directory table tr.return.return-8 { border-top-width: 9px }
 .division-directory table tr.return.return-9 { border-top-width: 10px }
 .division-directory table tr.return.return-10 { border-top-width: 11px }
+
+.division-directory .u8y-informal-division { color:#ddd }
+.division-directory .u8y-informal-division a { color:#ddd!important }

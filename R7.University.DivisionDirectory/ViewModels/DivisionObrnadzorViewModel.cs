@@ -143,7 +143,7 @@ namespace R7.University.DivisionDirectory
             // REVIEW: If division is not published, it's child divisions also should not
             var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext))
                 .Where (d => d.IsPublished (now) || viewModelContext.Module.IsEditable)
-                .Where (d => !d.IsInformal || viewModelContext.Settings.ShowInformal)
+                .Where (d => !d.IsInformal || viewModelContext.Settings.ShowInformal || viewModelContext.Module.IsEditable)
                 .ToList ();
 
             CalculateOrder (divisionViewModels);
