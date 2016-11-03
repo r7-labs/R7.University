@@ -145,10 +145,10 @@
 		<value>Head Employee Position:</value>
 	</data>
 	<data name="labelHeadPosition.Help">
-		<value>Select the position which relates to the division head employee.
-        The specific employee will be determined automatically by the system.
-        If you not select a position, then head employee cannot be determined -
-        this leaves the division without a head.</value>
+		<value>Select the position which define the division's head employee.
+        The specific employee will be determined automatically. For non-virtual divisions -
+		if system cannot determine head employee, the corresponding position will be considered vacant; 
+		if no head position is set, then the division will be considered as one which cannot have head employee.</value>
 	</data>
 	<data name="Common.Tab">
 		<value>Common</value>
