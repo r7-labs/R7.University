@@ -42,8 +42,8 @@
     <data xml:space="preserve" name="Document.Column">
         <value>Положение</value>
     </data>
-    <data xml:space="preserve" name="ContactPerson.Column">
-        <value>Руководитель (контактное лицо)</value>
+    <data xml:space="preserve" name="HeadEmployee.Column">
+        <value>Руководитель</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
         <value>N п/п</value>

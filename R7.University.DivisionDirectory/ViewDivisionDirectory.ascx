@@ -65,9 +65,9 @@
                             <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="ContactPerson">
+                    <asp:TemplateField HeaderText="HeadEmployee">
                         <ItemTemplate>
-                            <asp:HyperLink id="linkContactPerson" runat="server" />
+                            <asp:HyperLink id="linkHeadEmployee" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -93,9 +93,9 @@
                         <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor" HtmlEncode="false" />
                         <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor" HtmlEncode="false" />
                         <asp:BoundField DataField="DocumentLink" HeaderText="Document" HtmlEncode="false" />
-                        <asp:TemplateField HeaderText="ContactPerson">
+                        <asp:TemplateField HeaderText="HeadEmployee">
                             <ItemTemplate>
-                                <asp:Literal id="literalContactPerson" runat="server" /> 
+                                <asp:Literal id="literalHeadEmployee" runat="server" /> 
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

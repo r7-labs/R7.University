@@ -298,7 +298,7 @@ namespace R7.University.DivisionDirectory
                 var linkEmail = (HyperLink) e.Row.FindControl ("linkEmail");
                 var literalLocation = (Literal) e.Row.FindControl ("literalLocation");
                 var linkDocument = (HyperLink) e.Row.FindControl ("linkDocument");
-                var linkContactPerson = (HyperLink) e.Row.FindControl ("linkContactPerson");
+                var linkHeadEmployee = (HyperLink) e.Row.FindControl ("linkHeadEmployee");
 
                 // division label / link
                 var divisionTitle = division.Title + ((division.HasUniqueShortTitle) ? string.Format (
@@ -339,9 +339,9 @@ namespace R7.University.DivisionDirectory
                     .FirstOrDefault (he => he.IsPublished (now));
                 
                 if (headEmployee != null) {
-                    linkContactPerson.Text = headEmployee.AbbrName;
-                    linkContactPerson.ToolTip = headEmployee.FullName;
-                    linkContactPerson.NavigateUrl = EditUrl (
+                    linkHeadEmployee.Text = headEmployee.AbbrName;
+                    linkHeadEmployee.ToolTip = headEmployee.FullName;
+                    linkHeadEmployee.NavigateUrl = EditUrl (
                         "employee_id",
                         headEmployee.EmployeeID.ToString (),
                         "EmployeeDetails");
@@ -371,9 +371,9 @@ namespace R7.University.DivisionDirectory
                     iconEdit.ImageUrl = IconController.IconURL ("Edit");
                 }
 
-                #region Contact person
+                #region Head Employee
 
-                var literalContactPerson = (Literal) e.Row.FindControl ("literalContactPerson");
+                var literalHeadEmployee = (Literal) e.Row.FindControl ("literalHeadEmployee");
 
                 // TODO: Don't call to database here!
                 // get head employee
@@ -387,7 +387,7 @@ namespace R7.University.DivisionDirectory
                     
                     var positionTitle = FormatHelper.FormatShortTitle (headPosition.Position.ShortTitle, headPosition.Position.Title);
 
-                    literalContactPerson.Text = "<strong><a href=\""
+                    literalHeadEmployee.Text = "<strong><a href=\""
                     + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
                     + "\" itemprop=\"Fio\">" + headEmployee.FullName + "</a></strong><br />"
                     + TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix);

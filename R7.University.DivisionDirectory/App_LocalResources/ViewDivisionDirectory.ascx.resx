@@ -42,8 +42,8 @@
     <data xml:space="preserve" name="Document.Column">
         <value>Document</value>
     </data>
-    <data xml:space="preserve" name="ContactPerson.Column">
-        <value>Contact Person (Head)</value>
+    <data xml:space="preserve" name="HeadEmployee.Column">
+        <value>Head Employee</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
         <value>#</value>
