@@ -108,14 +108,14 @@
 <script type="text/javascript">
 (function($, Sys) {
     function setupModule() {
+	    $("#eduprogramprofile-tabs").dnnTabs({selected: <%= SelectedTab %>});
         dnnAcCombobox_Init($);
         $(".dnn-ac-combobox").combobox();
     };
     $(document).ready(function() {
-        $("#eduprogramprofile-tabs").dnnTabs({selected: <%= SelectedTab %>});
         setupModule();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
-            setupModule();
+            $("#eduprogramprofile-common-tab .dnn-ac-combobox").combobox();
         });
     });
 } (jQuery, window.Sys));
