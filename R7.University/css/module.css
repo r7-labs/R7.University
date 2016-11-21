@@ -5,4 +5,5 @@ tr.u8y-not-published { background-color:#ffc }
 tr.u8y-not-published:hover { background-color:#fefe97!important }
 
 .u8y-not-published-element { color:#ddd }
-.u8y-not-published-element a { color:#ddd }
+.u8y-not-published-element a,
+a.u8y-not-published-element { color:#ddd }
