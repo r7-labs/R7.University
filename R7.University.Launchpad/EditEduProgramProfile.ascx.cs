@@ -34,7 +34,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduProgramProfile: EditPortalModuleBase<EduProgramProfileInfo,int>
+    public partial class EditEduProgramProfile : EditPortalModuleBase<EduProgramProfileInfo, int>
     {
         #region Model context
 
@@ -123,8 +123,22 @@ namespace R7.University.Launchpad
             comboEduProgramLevel.DataSource = eduProgramLevels;
             comboEduProgramLevel.DataBind ();
 
-            // get and bind edu. profiles
-            BindEduPrograms (eduProgramLevels.First ().EduLevelID);
+            // try to select edu. program
+            var eduProgramId = GetQueryId ("eduprogram_id");
+            if (eduProgramId != null) {
+                var eduProgram = ModelContext.Get<EduProgramInfo> (eduProgramId.Value);
+                BindEduPrograms (eduProgram.EduLevelID);
+                comboEduProgram.SelectByValue (eduProgramId);
+                comboEduProgramLevel.SelectByValue (eduProgram.EduLevelID);
+
+                // set edu. level for edu. program profile same as for edu. program
+                comboEduLevel.SelectByValue (eduProgram.EduLevelID);
+            }
+            else {
+                BindEduPrograms (eduProgramLevels.First ().EduLevelID);
+            }
+
+            // TODO: Disable edu. program selection the adding or editing from EditEduProgram
 
             // init edit forms
             formEditEduForms.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).List ());
@@ -133,6 +147,19 @@ namespace R7.University.Launchpad
             // bind divisions
             divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisionSelector.DataBind ();
+        }
+
+        private int? GetQueryId (string key)
+        {
+            var idParam = Request.QueryString [key];
+            if (idParam != null) {
+                int Id;
+                if (int.TryParse (idParam, out Id)) {
+                    return Id;
+                }
+            }
+
+            return null;
         }
 
         private void BindEduPrograms (int eduLevelId)

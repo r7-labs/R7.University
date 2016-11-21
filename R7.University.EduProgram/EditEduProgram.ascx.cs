@@ -144,8 +144,6 @@ namespace R7.University.EduProgram
             divisionSelector.DataBind ();
 
             gridEduProgramProfiles.LocalizeColumns (LocalResourceFile);
-
-            linkAddEduProgramProfile.NavigateUrl = EditUrl ("EditEduProgramProfile");
         }
 
         /// <summary>
@@ -193,6 +191,9 @@ namespace R7.University.EduProgram
                                 .ToList ();
                             
                             formEditDocuments.SetData (documents, item.EduProgramID);
+
+                            // setup link for adding new edu. program profile
+                            linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", item.EduProgramID.ToString (), "EditEduProgramProfile");
 
                             gridEduProgramProfiles.DataSource = item.EduProgramProfiles
                                 .Select (epp => new EduProgramProfileEditViewModel (epp, ViewModelContext))
