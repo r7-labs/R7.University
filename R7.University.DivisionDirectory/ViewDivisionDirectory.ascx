@@ -11,7 +11,7 @@
     <asp:MultiView id="mviewDivisionDirectory" runat="server">
         <asp:View id="viewSearch" runat="server">
             <asp:Panel runat="server" DefaultButton="linkSearch" CssClass="dnnFormItem dnnClear">
-                <div class="wrapperSearchFlags" />
+                <div class="wrapperSearchFlags"></div>
                 <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
                 <div class="wrapperDivisions">
                     <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('.division-directory #hiddenDivisions').toggle ()"></a>
