@@ -36,14 +36,20 @@
     <data name="labelHideHeadEmployee.Help" xml:space="preserve">
         <value>Отметьте, чтобы не отображать руководителя выбранного подразделения в списке сотрудников. Эта настройка по-умолчанию выключена.</value>
     </data>
+	<data name="labelSortType.Text" xml:space="preserve">
+        <value>Сортировать по:</value>
+    </data>
+    <data name="labelSortType.Help" xml:space="preserve">
+        <value>Выберите способ сортировки записей о сотрудниках.</value>
+    </data>
 	<data name="SortTypeByMaxWeight.Text" xml:space="preserve">
-        <value>По макс. весу должности</value>
+        <value>Макс. весу должности</value>
     </data>
     <data name="SortTypeByTotalWeight.Text" xml:space="preserve">
-        <value>По суммарному весу должностей</value>
+        <value>Суммарному весу всех должностей</value>
     </data>
     <data name="SortTypeByName.Text" xml:space="preserve">
-        <value>По имени сотрудника</value>
+        <value>Имени сотрудника</value>
     </data>
     <data name="labelHideHeadEmployee.Text" xml:space="preserve">
         <value>Скрыть руководителя?</value>

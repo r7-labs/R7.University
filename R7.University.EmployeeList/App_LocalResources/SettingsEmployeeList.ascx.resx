@@ -37,19 +37,19 @@
         <value>Check to hide selected division's head employee in the list. This option is disabled by default.</value>
     </data>
 	<data name="labelSortType.Text" xml:space="preserve">
-        <value>Sort Type:</value>
+        <value>Sort by:</value>
     </data>
-	<data name="labelIncludeSubdivisions.Help" xml:space="preserve">
-        <value>Select a sort type from the list to use with this module.</value>
+	<data name="labelSortType.Help" xml:space="preserve">
+        <value>Select a sort type for employee records.</value>
     </data>
 	<data name="SortTypeByMaxWeight.Text" xml:space="preserve">
-        <value>By max position weight</value>
+        <value>Max. Position Weight</value>
     </data>
 	<data name="SortTypeByTotalWeight.Text" xml:space="preserve">
-        <value>By total positions weight</value>
+        <value>Total Weight of Positions</value>
     </data>
 	<data name="SortTypeByName.Text" xml:space="preserve">
-        <value>By employee name</value>
+        <value>Employee Name</value>
     </data>
 	<data name="labelPhotoWidth.Text" xml:space="preserve">
 	    <value>Photo Width:</value>
