@@ -41,16 +41,6 @@ namespace R7.University.ControlExtensions
             return false;
         }
 
-        public static void AddItem (this ListControl listControl, string text, string value)
-        {
-            listControl.Items.Add (new ListItem (text, value));
-        }
-
-        public static void InsertDefaultItem (this ListControl listControl, string text, int value = -1)
-        {
-            listControl.Items.Insert (0, new ListItem (text, value.ToString ()));
-        }
-
         public static IEnumerable<ListItem> AsEnumerable (this ListItemCollection itemCollection)
         {
             var enumerator = itemCollection.GetEnumerator ();

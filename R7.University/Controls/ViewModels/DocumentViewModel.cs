@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -84,7 +84,7 @@ namespace R7.University.Controls
             get { 
                 if (!string.IsNullOrWhiteSpace (Url)) {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                        UrlHelper.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId),
+                        UniversityUrlHelper.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrlLabel.Text", Context.LocalResourceFile)
                     );
                 }

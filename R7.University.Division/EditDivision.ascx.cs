@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -259,7 +259,7 @@ namespace R7.University.Division
             return ModelContext.Get<DivisionInfo> (itemId);
         }
 
-        protected override int AddItem (DivisionInfo item)
+        protected override void AddItem (DivisionInfo item)
         {
             // update audit info
             item.CreatedByUserID = item.LastModifiedByUserID = UserId;
@@ -273,8 +273,6 @@ namespace R7.University.Division
             if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division") {
                 Settings.DivisionID = item.DivisionID;
             }
-
-            return item.DivisionID;
         }
 
         protected override void UpdateItem (DivisionInfo item)

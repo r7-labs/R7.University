@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -309,7 +309,7 @@ namespace R7.University.DivisionDirectory
                                         " ({0})",
                                         division.ShortTitle) : string.Empty);
                 if (!string.IsNullOrWhiteSpace (division.HomePage)) {
-                    linkTitle.NavigateUrl = UrlHelper.FormatURL (this, division.HomePage, false);
+                    linkTitle.NavigateUrl = UniversityUrlHelper.FormatURL (this, division.HomePage, false);
                     linkTitle.Text = divisionTitle;
                     labelTitle.Visible = false;
                 }

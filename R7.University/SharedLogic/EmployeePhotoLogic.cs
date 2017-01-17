@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -61,7 +61,7 @@ namespace R7.University.SharedLogic
 
                 // do we need to scale image?
                 if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
-                    imagePhoto.ImageUrl = UrlHelper.FullUrl (string.Format (
+                    imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl (string.Format (
                             "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth));
                 }
                 else {

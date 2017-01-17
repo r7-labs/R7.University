@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -56,7 +56,7 @@ namespace R7.University.Employee.SharedLogic
                     if (!string.IsNullOrWhiteSpace (op.Division.HomePage)) {
                         // link to division's homepage
                         labelDivision.Visible = false;
-                        linkDivision.NavigateUrl = UrlHelper.FormatCrossPortalTabUrl (
+                        linkDivision.NavigateUrl = UniversityUrlHelper.FormatCrossPortalTabUrl (
                             module,
                             int.Parse (op.Division.HomePage),
                             false);

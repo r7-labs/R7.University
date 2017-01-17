@@ -26,11 +26,10 @@ using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.University.ControlExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Employee.Components;
 using R7.University.Models;
 using R7.University.Queries;
-using R7.University.Utilities;
 
 namespace R7.University.Employee
 {

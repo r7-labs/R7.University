@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -728,7 +728,7 @@ namespace R7.University.Employee
                 var documentUrl = Server.HtmlDecode (e.Row.Cells [7].Text.Replace ("&nbsp;", ""));
                 if (!string.IsNullOrWhiteSpace (documentUrl))
                     e.Row.Cells [7].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                        UrlHelper.LinkClickIdnHack (documentUrl, TabId, ModuleId),
+                        UniversityUrlHelper.LinkClickIdnHack (documentUrl, TabId, ModuleId),
                         LocalizeString ("DocumentUrl.Text"));
             }
 

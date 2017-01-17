@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -427,7 +427,7 @@ namespace R7.University.Employee
 
                 // barcode image
                 var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
-                imageBarcode.ImageUrl = UrlHelper.FullUrl (string.Format (
+                imageBarcode.ImageUrl = UniversityUrlHelper.FullUrl (string.Format (
                         "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                         barcodeWidth, barcodeWidth, 
                         Server.UrlEncode (employee.VCard.ToString ()

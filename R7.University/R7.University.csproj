@@ -192,10 +192,9 @@
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
     <Compile Include="Models\TimeToLearnUnit.cs" />
-    <Compile Include="Utilities\UrlHelper.cs" />
+    <Compile Include="Utilities\UniversityUrlHelper.cs" />
     <Compile Include="Utilities\CultureHelper.cs" />
     <Compile Include="Utilities\ModuleHelper.cs" />
-    <Compile Include="Utilities\CacheHelper.cs" />
     <Compile Include="Utilities\XmlSerializationHelper.cs" />
     <Compile Include="Controls\DivisionSelector.ascx.cs">
       <DependentUpon>DivisionSelector.ascx</DependentUpon>
@@ -203,7 +202,6 @@
     <Compile Include="Controls\DivisionSelector.ascx.controls.cs">
       <DependentUpon>DivisionSelector.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ControlExtensions\ControlExtensions.cs" />
     <Compile Include="ViewModels\ListItemViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

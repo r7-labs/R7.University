@@ -1,10 +1,10 @@
 //
-//  UrlHelper.cs
+//  UniversityUrlHelper.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -29,7 +29,7 @@ using DotNetNuke.UI.Modules;
 
 namespace R7.University.Utilities
 {
-    public static class UrlHelper
+    public static class UniversityUrlHelper
     {
         public static string FullUrl (string url)
         {
@@ -89,31 +89,6 @@ namespace R7.University.Utilities
             catch {
                 return string.Empty;
             }
-        }
-
-        // TODO: Move to the base library
-        public static string GetCancelUrl (bool inPopup, bool refresh = false)
-        {
-            if (inPopup) {
-                return UrlUtils.ClosePopUp (refresh: refresh, url: "", onClickEvent: false);
-            }
-            return Globals.NavigateURL ();
-        }
-
-        // TODO: Move to the base library
-        public static bool IsInPopup (HttpRequest request)
-        {
-            var popupArg = request.QueryString ["popup"];
-            if (string.IsNullOrEmpty (popupArg)) {
-                return false;
-            }
-
-            bool popupValue;
-            if (bool.TryParse (popupArg, out popupValue)) {
-                return popupValue;
-            }
-
-            return false;
         }
     }
 }

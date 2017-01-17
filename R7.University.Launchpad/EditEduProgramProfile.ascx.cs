@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,12 +24,12 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.Launchpad.Queries;
 using R7.University.Models;
 using R7.University.Queries;
-using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Launchpad
@@ -269,7 +269,7 @@ namespace R7.University.Launchpad
             }
         }
 
-        protected EduProgramProfileInfo GetItemWithDependencies (int itemId)
+        protected override EduProgramProfileInfo GetItemWithDependencies (int itemId)
         {
             return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }
@@ -281,7 +281,7 @@ namespace R7.University.Launchpad
             return ModelContext.Get<EduProgramProfileInfo> (itemId);
         }
 
-        protected override int AddItem (EduProgramProfileInfo item)
+        protected override void AddItem (EduProgramProfileInfo item)
         {
             ModelContext.Add (item);
 
@@ -294,8 +294,6 @@ namespace R7.University.Launchpad
                 .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
             
             ModelContext.SaveChanges ();
-
-            return item.EduProgramProfileID;
         }
 
         protected override void UpdateItem (EduProgramProfileInfo item)

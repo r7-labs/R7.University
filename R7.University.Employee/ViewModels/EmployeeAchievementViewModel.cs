@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -65,7 +65,7 @@ namespace R7.University.Employee.ViewModels
             get {
                 if (!string.IsNullOrWhiteSpace (DocumentURL)) {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                        UrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
+                        UniversityUrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrl.Text",  Context.LocalResourceFile));
                 }
 

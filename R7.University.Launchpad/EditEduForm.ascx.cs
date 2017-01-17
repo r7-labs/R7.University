@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,8 +21,8 @@
 
 using System;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
-using R7.University.Utilities;
 
 namespace R7.University.Launchpad
 {
@@ -98,12 +98,10 @@ namespace R7.University.Launchpad
             return ModelContext.Get<EduFormInfo> (itemId);
         }
 
-        protected override int AddItem (EduFormInfo item)
+        protected override void AddItem (EduFormInfo item)
         {
             ModelContext.Add<EduFormInfo> (item);
             ModelContext.SaveChanges ();
-
-            return item.EduFormID;
         }
 
         protected override void UpdateItem (EduFormInfo item)

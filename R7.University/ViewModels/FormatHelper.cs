@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -120,7 +120,7 @@ namespace R7.University.ViewModels
                     : defaultTitle);
               
             if (!string.IsNullOrWhiteSpace (document.Url)) {
-                var linkMarkup = "<a href=\"" + UrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
+                var linkMarkup = "<a href=\"" + UniversityUrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
                 + TextUtils.FormatList (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
                 + " target=\"_blank\">" + title + "</a>";
                 
