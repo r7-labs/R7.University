@@ -41,22 +41,25 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="DotNetNuke">
-      <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\DotNetNuke.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data">
-      <HintPath>..\packages\DotNetNuke.Core.7.4.2.216\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web">
-      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.Web.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.Web.8.0.4.226\lib\net40\DotNetNuke.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI">
-      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\Telerik.Web.UI.dll</HintPath>
+    <Reference Include="DotNetNuke.Web.Deprecated">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\DotNetNuke.Web.Deprecated.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.WebUtility">
-      <HintPath>..\packages\DotNetNuke.Web.7.4.2.216\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="R7.DotNetNuke.Extensions">
-      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.8.0\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
+      <HintPath>..\packages\R7.DotNetNuke.Extensions.0.10.0-beta5\lib\net45\R7.DotNetNuke.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -89,10 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
-    <Content Include="packages.config" />
     <Content Include="SettingsEduProgram.ascx" />
     <Content Include="ViewEduProgram.ascx" />
     <Content Include="EditEduProgram.ascx" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\SettingsEduProgram.ascx.resx" />

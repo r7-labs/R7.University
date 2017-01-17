@@ -12,9 +12,9 @@
 			<license src="license.htm" />
 			<releaseNotes src="releaseNotes.htm" />
 			<dependencies>
-				<dependency type="CoreVersion">07.04.00</dependency>
-                <dependency type="managedPackage" version="0.8.0">R7.DotNetNuke.Extensions</dependency>
-                <dependency type="managedPackage" version="1.0.0">R7.ImageHandler</dependency>
+				<dependency type="CoreVersion">08.00.04</dependency>
+                <dependency type="managedPackage" version="0.10.0">R7.DotNetNuke.Extensions</dependency>
+                <dependency type="managedPackage" version="1.1.0">R7.ImageHandler</dependency>
 			</dependencies>
 			<components>
 				<component type="Script">
