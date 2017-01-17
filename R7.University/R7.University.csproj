@@ -233,7 +233,6 @@
     <None Include="SqlDataProvider\01.00.07.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.01.SqlDataProvider" />
-    <None Include="SqlDataProvider\Tweaks.SqlDataProvider" />
     <None Include="SqlDataProvider\Uninstall.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.02.SqlDataProvider" />
     <None Include="images\nophoto_en.png" />
