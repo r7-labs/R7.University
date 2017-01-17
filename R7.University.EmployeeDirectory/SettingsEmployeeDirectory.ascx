@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsEmployeeDirectory.ascx.cs" Inherits="R7.University.EmployeeDirectory.SettingsEmployeeDirectory" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
-<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.EmployeeDirectory/admin.css" Priority="200" />
@@ -14,7 +13,7 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
-            <dnn:DnnListBox id="listEduLevels" runat="server" CheckBoxes="true" CssClass="dnn-form-control" />
+            <asp:CheckBoxList id="listEduLevels" runat="server" CssClass="dnn-form-control" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelShowAllTeachers" runat="server" ControlName="checkShowAllTeachers" />

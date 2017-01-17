@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,12 +23,12 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.EduProgramDirectory.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
 using R7.University.Queries;
+using R7.University.ControlExtensions;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -58,21 +58,13 @@ namespace R7.University.EduProgramDirectory
             base.OnInit (e);
 
             // fill edulevels list
-            var eduLevels = new EduLevelQuery (ModelContext).ListForEduProgram ();
-           
-            foreach (var eduLevel in eduLevels) {
-                listEduLevels.Items.Add (new DnnListBoxItem {
-                    Text = FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title),
-                    Value = eduLevel.EduLevelID.ToString ()
-                });
+            foreach (var eduLevel in new EduLevelQuery (ModelContext).ListForEduProgram ()) {
+                listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
 
             // fill columns list
             foreach (var column in Enum.GetNames (typeof (EduProgramDirectoryColumn))) {
-                listColumns.Items.Add (new DnnListBoxItem {
-                    Text = LocalizeString ("EduProgram" + column + ".Column"),
-                    Value = column
-                });
+                listColumns.AddItem (LocalizeString ("EduProgram" + column + ".Column"), column);
             }
 
             // bind divisions
@@ -89,17 +81,17 @@ namespace R7.University.EduProgramDirectory
                 if (!IsPostBack) {
                     // check edulevels list items
                     foreach (var eduLevelId in Settings.EduLevels) {
-                        var item = listEduLevels.FindItemByValue (eduLevelId.ToString ());
+                        var item = listEduLevels.Items.FindByValue (eduLevelId.ToString ());
                         if (item != null) {
-                            item.Checked = true;
+                            item.Selected = true;
                         }
                     }
 
                     // check columns list items
                     foreach (var columnString in Settings.Columns) {
-                        var item = listColumns.FindItemByValue (columnString);
+                        var item = listColumns.Items.FindByValue (columnString);
                         if (item != null) {
-                            item.Checked = true;
+                            item.Selected = true;
                         }
                     }
 
@@ -117,8 +109,8 @@ namespace R7.University.EduProgramDirectory
         public override void UpdateSettings ()
         {
             try {
-                Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
-                Settings.Columns = listColumns.CheckedItems.Select (i => i.Value).ToList ();
+                Settings.EduLevels = listEduLevels.Items.AsEnumerable ().Where (i => i.Selected).Select (i => int.Parse (i.Value)).ToList ();
+                Settings.Columns = listColumns.Items.AsEnumerable ().Where (i => i.Selected).Select (i => i.Value).ToList ();
                 Settings.DivisionId = divisionSelector.DivisionId;
 
                 ModuleController.SynchronizeModule (ModuleId);

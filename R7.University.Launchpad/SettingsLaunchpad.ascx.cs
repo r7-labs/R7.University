@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +24,9 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.University.ControlExtensions;
 using R7.University.Launchpad.Components;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 
 namespace R7.University.Launchpad
 {
@@ -47,9 +49,9 @@ namespace R7.University.Launchpad
             comboPageSize.AddItem ("100", "100");
 
             // fill tables list
-            foreach (var table in LaunchpadTables.Tables)
-                listTables.Items.Add (new Telerik.Web.UI.RadListBoxItem (
-                        LocalizeString (table.ResourceKey), table.Name));
+            foreach (var table in LaunchpadTables.Tables) {
+                listTables.AddItem (LocalizeString (table.ResourceKey), table.Name);
+            }
         }
 
         /// <summary>
@@ -60,13 +62,14 @@ namespace R7.University.Launchpad
             try {
                 if (!IsPostBack) {
                     // TODO: Allow select nearest pagesize value
-                    comboPageSize.Select (Settings.PageSize.ToString (), false);
+                    comboPageSize.SelectByValue (Settings.PageSize);
 
                     // check table list items
                     foreach (var table in Settings.Tables) {
-                        var item = listTables.FindItemByValue (table);
-                        if (item != null)
-                            item.Checked = true;
+                        var item = listTables.Items.FindByValue (table);
+                        if (item != null) {
+                            item.Selected = true;
+                        }
                     }
                 }
             }
@@ -82,7 +85,7 @@ namespace R7.University.Launchpad
         {
             try {
                 Settings.PageSize = int.Parse (comboPageSize.SelectedValue);
-                Settings.Tables = listTables.CheckedItems.Select (i => i.Value).ToList ();
+                Settings.Tables = listTables.Items.AsEnumerable ().Where (i => i.Selected).Select (i => i.Value).ToList ();
 
                 // remove session variable for active view,
                 // since view set may be changed

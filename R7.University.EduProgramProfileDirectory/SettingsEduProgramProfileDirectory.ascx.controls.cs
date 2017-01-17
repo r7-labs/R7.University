@@ -9,6 +9,6 @@ namespace R7.University.EduProgramProfileDirectory
         protected DivisionSelector divisionSelector;
         protected RadioButtonList radioDivisionLevel;
         protected DropDownList comboMode;
-        protected DnnListBox listEduLevels;
+        protected CheckBoxList listEduLevels;
     }
 }

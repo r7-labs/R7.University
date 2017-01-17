@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,10 +23,10 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.ControlExtensions;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.Models;
 using R7.University.Queries;
@@ -85,13 +85,8 @@ namespace R7.University.EduProgramProfileDirectory
             divisionSelector.DataBind ();
 
             // fill edulevels list
-            var eduLevels = new EduLevelQuery (ModelContext).List ();
-            foreach (var eduLevel in eduLevels) {
-                listEduLevels.Items.Add (new DnnListBoxItem
-                    { 
-                        Text = FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title),
-                        Value = eduLevel.EduLevelID.ToString ()
-                    });
+            foreach (var eduLevel in new EduLevelQuery (ModelContext).List ()) {
+                listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
         }
 
@@ -109,9 +104,9 @@ namespace R7.University.EduProgramProfileDirectory
 
                     // check edulevels list items
                     foreach (var eduLevelId in Settings.EduLevels) {
-                        var item = listEduLevels.FindItemByValue (eduLevelId.ToString ());
+                        var item = listEduLevels.Items.FindByValue (eduLevelId.ToString ());
                         if (item != null) {
-                            item.Checked = true;
+                            item.Selected = true;
                         }
                     }
                 }
@@ -131,7 +126,7 @@ namespace R7.University.EduProgramProfileDirectory
                 Settings.Mode = Enum.TryParse<EduProgramProfileDirectoryMode> (comboMode.SelectedValue, out mode) ? 
                     (EduProgramProfileDirectoryMode?) mode : null;
 
-                Settings.EduLevels = listEduLevels.CheckedItems.Select (i => int.Parse (i.Value)).ToList ();
+                Settings.EduLevels = listEduLevels.Items.AsEnumerable ().Where (i => i.Selected).Select (i => int.Parse (i.Value)).ToList ();
                 Settings.DivisionId = divisionSelector.DivisionId;
                 Settings.DivisionLevel = (DivisionLevel) Enum.Parse (typeof (DivisionLevel), radioDivisionLevel.SelectedValue, true);
 

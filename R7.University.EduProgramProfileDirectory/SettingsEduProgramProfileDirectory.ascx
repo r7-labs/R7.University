@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="SettingsEduProgramProfileDirectory.ascx.cs" 
     Inherits="R7.University.EduProgramProfileDirectory.SettingsEduProgramProfileDirectory" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
-<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
@@ -34,7 +33,7 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
-            <dnn:DnnListBox id="listEduLevels" runat="server" CheckBoxes="true" />
+            <asp:CheckBoxList id="listEduLevels" runat="server" CssClass="dnn-form-control" />
         </div>
     </fieldset>	
 </div>
