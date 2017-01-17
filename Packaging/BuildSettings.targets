@@ -8,8 +8,8 @@
         <PackageName>R7.University</PackageName>
         <PackageOutputPath>bin/Package</PackageOutputPath>
         <TmpDir>bin/tmp</TmpDir>
-        <DnnLocalDeployPath Condition=" '$(OS)' == 'Unix' ">/home/redhound/mnt/dnn</DnnLocalDeployPath>
-        <DnnLocalDeployPath Condition=" '$(OS)' != 'Unix' ">C:\Dotnetnuke7</DnnLocalDeployPath>
+        <DnnLocalDeployPath Condition=" '$(OS)' == 'Unix' ">$(HOME)/mnt/dnn</DnnLocalDeployPath>
+        <DnnLocalDeployPath Condition=" '$(OS)' != 'Unix' ">C:\Dotnetnuke804</DnnLocalDeployPath>
         <BuildSettingsImported>true</BuildSettingsImported>
     </PropertyGroup>
 
