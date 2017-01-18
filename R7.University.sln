@@ -92,7 +92,7 @@ Global
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null
-		$1.scope = image/svg+xml
+		$1.scope = application/config+xml
 		$1.FileWidth = 120
 		$1.NoTabsAfterNonTabs = True
 		$1.inheritsScope = text/plain
@@ -146,7 +146,7 @@ Global
 		$7.scope = text/microsoft-resx
 		$0.XmlFormattingPolicy = $8
 		$8.inheritsSet = null
-		$8.scope = application/config+xml
+		$8.scope = image/svg+xml
 		$8.inheritsScope = application/xml
 		$0.TextStylePolicy = $9
 		$9.inheritsSet = null
@@ -320,6 +320,6 @@ Global
 		$45.LineAlign = 0
 		$45.IncludeDirectoryPaths = True
 		$44.inheritsSet = Mono
-		version = 1.12.1
+		version = 1.13.0
 	EndGlobalSection
 EndGlobal
