@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,48 +19,22 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.UI.Modules;
-using R7.DotNetNuke.Extensions.Modules;
+using System;
+using DotNetNuke.Entities.Modules.Settings;
 
 namespace R7.University.DivisionDirectory.Components
 {
     /// <summary>
     /// Provides strong typed access to settings used by module
     /// </summary>
-    public class DivisionDirectorySettings : SettingsWrapper
+    [Serializable]
+    public class DivisionDirectorySettings
     {
-        public DivisionDirectorySettings ()
-        {
-        }
+        [ModuleSetting (Prefix = "DivisionDirectory_")]
+        public DivisionDirectoryMode Mode { get; set; } = DivisionDirectoryMode.Search;
 
-        public DivisionDirectorySettings (IModuleControl module) : base (module)
-        {
-        }
-
-        public DivisionDirectorySettings (ModuleInfo module) : base (module)
-        {
-        }
-
-        #region Module settings
-
-        public DivisionDirectoryMode Mode
-        {
-            get { return ReadSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", DivisionDirectoryMode.Search); }
-            set { WriteModuleSetting<DivisionDirectoryMode> ("DivisionDirectory_Mode", value); }
-        }
-
-        #endregion
-
-        #region TabModule settings
-
-        public bool ShowInformal
-        {
-            get { return ReadSetting ("DivisionDirectory_ShowInformal", false); }
-            set { WriteTabModuleSetting ("DivisionDirectory_ShowInformal", value); }
-        }
-
-        #endregion
+        [TabModuleSetting (Prefix = "DivisionDirectory_")]
+        public bool ShowInformal { get; set; } = false;
     }
 }
 

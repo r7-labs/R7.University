@@ -65,6 +65,8 @@ namespace R7.University.DivisionDirectory
                     comboMode.SelectedValue);
                 Settings.ShowInformal = checkShowInformal.Checked;
 
+                SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+
                 ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {
