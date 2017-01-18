@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -84,7 +84,10 @@ namespace R7.University.Employee
                 Settings.AutoTitle = checkAutoTitle.Checked;
                 Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
 
+                SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+
                 ModuleController.SynchronizeModule (ModuleId);
+
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/Employee?ModuleId=" + ModuleId);
             }
             catch (Exception ex) {

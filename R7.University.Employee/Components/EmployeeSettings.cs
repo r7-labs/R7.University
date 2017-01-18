@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,10 +19,10 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using System.Web;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.UI.Modules;
-using R7.DotNetNuke.Extensions.Modules;
+using DotNetNuke.Entities.Modules.Settings;
 using R7.University.Components;
 
 namespace R7.University.Employee.Components
@@ -30,24 +30,16 @@ namespace R7.University.Employee.Components
     /// <summary>
     /// Provides strong typed access to settings used by module
     /// </summary>
-    public class EmployeeSettings : SettingsWrapper
+    [Serializable]
+    public class EmployeeSettings
     {
         public EmployeeSettings ()
         {
+            if (HttpContext.Current != null) {
+                PhotoWidth = UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
+            }
         }
-
-        public EmployeeSettings (IModuleControl module) : base (module)
-        {
-        }
-
-        public EmployeeSettings (ModuleInfo module) : base (module)
-        {
-        }
-
-        #region Module settings
-
-        private int? employeeId;
-
+ 
         /// <summary>
         /// Gets or sets the EmployeeID setting value. 
         /// Use <see cref="EmployeePortalModuleBase.GetEmployee()"/> 
@@ -55,43 +47,17 @@ namespace R7.University.Employee.Components
         /// to get employee info in the view contols.
         /// </summary>
         /// <value>The employee Id.</value>
-        public int EmployeeID
-        {
-            get { 
-                if (employeeId == null)
-                    employeeId = ReadSetting<int> ("Employee_EmployeeID", Null.NullInteger); 
-				
-                return employeeId.Value;
-            }
-            set { 
-                WriteModuleSetting<int> ("Employee_EmployeeID", value); 
-                employeeId = value;
-            }
-        }
+        // TODO: Convert to Nullable<int>
+        [ModuleSetting (Prefix = "Employee_")]
+        public int EmployeeID { get; set; } = Null.NullInteger;
 
-        public bool ShowCurrentUser
-        {
-            get { return ReadSetting<bool> ("Employee_ShowCurrentUser", false); }
-            set { WriteModuleSetting<bool> ("Employee_ShowCurrentUser", value); }
-        }
+        [ModuleSetting (Prefix = "Employee_")]
+        public bool ShowCurrentUser { get; set; } = false;
 
-        #endregion
+        [TabModuleSetting (Prefix = "Employee_")]
+        public bool AutoTitle { get; set; } = true;
 
-        #region TabModule settings
-
-        public bool AutoTitle
-        {
-            get { return ReadSetting<bool> ("Employee_AutoTitle", true); }
-            set { WriteTabModuleSetting<bool> ("Employee_AutoTitle", value); }
-        }
-
-        public int PhotoWidth
-        {
-			get { return ReadSetting<int> ("Employee_PhotoWidth", UniversityConfig.Instance.EmployeePhoto.DefaultWidth); }
-            set { WriteTabModuleSetting<int> ("Employee_PhotoWidth", value); }
-        }
-
-        #endregion
+        [TabModuleSetting (Prefix = "Employee_")]
+        public int PhotoWidth { get; set; }
     }
 }
-

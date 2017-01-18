@@ -243,7 +243,9 @@ namespace R7.University.Employee
             comboEduLevel.DataBind ();
 
             // get and bind edu profiles
-            BindEduProgramProfiles (eduLevels.First ().EduLevelID);
+            if (eduLevels.Count > 0) {
+                BindEduProgramProfiles (eduLevels.First ().EduLevelID);
+            }
 
             // localize bounded gridviews
             gridAchievements.LocalizeColumns (LocalResourceFile);
@@ -440,6 +442,7 @@ namespace R7.University.Employee
 
                         // we adding new employee, so he/she should be displayed in the module
                         Settings.ShowCurrentUser = false;
+                        SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
                     }
                 }
                 else {
