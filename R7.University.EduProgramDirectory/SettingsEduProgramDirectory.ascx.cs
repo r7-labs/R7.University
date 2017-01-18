@@ -114,6 +114,8 @@ namespace R7.University.EduProgramDirectory
                 Settings.Columns = listColumns.Items.AsEnumerable ().Where (i => i.Selected).Select (i => i.Value).ToList ();
                 Settings.DivisionId = divisionSelector.DivisionId;
 
+                SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+
                 ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {

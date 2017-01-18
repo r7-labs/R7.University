@@ -109,6 +109,7 @@
     <Compile Include="Components\EduProgramDirectorySettings.cs" />
     <Compile Include="Components\EduProgramDirectoryColumn.cs" />
     <Compile Include="Queries\EduProgramQuery.cs" />
+    <Compile Include="Components\EduProgramDirectorySettingsRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
