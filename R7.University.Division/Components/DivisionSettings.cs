@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,59 +19,28 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.UI.Modules;
-using R7.DotNetNuke.Extensions.Modules;
+using DotNetNuke.Entities.Modules.Settings;
 
 namespace R7.University.Division.Components
 {
     /// <summary>
     /// Provides strong typed access to settings used by module
     /// </summary>
-    public class DivisionSettings : SettingsWrapper
+    [Serializable]
+    public class DivisionSettings
     {
-        public DivisionSettings ()
-        {
-        }
-
-        public DivisionSettings (IModuleControl module) : base (module)
-        {
-        }
-
-        public DivisionSettings (ModuleInfo module) : base (module)
-        {
-        }
-
-        #region Properties for settings
-
-        private int? divisionId;
-
         /// <summary>
         /// Division ID
         /// </summary>
         // TODO: Convert to Nullable<int>
-        public int DivisionID
-        {
-            get {
-                if (divisionId == null)
-                    divisionId = ReadSetting<int> ("Division_DivisionID", Null.NullInteger); 
-			
-                return divisionId.Value;
-            }
-            set { 
-                WriteModuleSetting<int> ("Division_DivisionID", value); 
-                divisionId = value;
-            }
-        }
+        [ModuleSetting (Prefix = "Division_")]
+        public int DivisionID { get; set; } = Null.NullInteger;
 
-        public bool ShowAddress
-        {
-            get { return ReadSetting ("Division_ShowAddress", false); }
-            set { WriteTabModuleSetting ("Division_ShowAddress", value); }
-        }
-
-        #endregion
+        /// <value><c>true</c> if show address; otherwise, <c>false</c>.</value>
+        [TabModuleSetting (Prefix = "Division_")]
+        public bool ShowAddress { get; set; } = false;
     }
 }
 

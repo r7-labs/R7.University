@@ -117,6 +117,7 @@
     <Compile Include="Components\DivisionController.cs" />
     <Compile Include="Components\DivisionSettings.cs" />
     <Compile Include="Queries\DivisionQuery.cs" />
+    <Compile Include="Components\DivisionSettingsRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

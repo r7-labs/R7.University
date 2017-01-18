@@ -35,7 +35,7 @@ namespace R7.University.Division.Components
         public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
         {
             var searchDocs = new List<SearchDocument> ();
-            var settings = new DivisionSettings (modInfo);
+            var settings = new DivisionSettingsRepository ().GetSettings (modInfo);
 
             using (var modelContext = new UniversityModelContext ()) {
 

@@ -18,13 +18,12 @@
 //
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
+
+using DotNetNuke.Entities.Modules.Settings;
+
 namespace R7.University.Division.Components
 {
-    public class DivisionSettingsRepository
+    public class DivisionSettingsRepository: SettingsRepository<DivisionSettings>
     {
-        public DivisionSettingsRepository ()
-        {
-        }
     }
 }

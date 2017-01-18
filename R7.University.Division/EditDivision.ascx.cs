@@ -32,7 +32,6 @@ using R7.University.Division.Queries;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.SharedLogic;
-using R7.University.Utilities;
 
 namespace R7.University.Division
 {
@@ -74,10 +73,9 @@ namespace R7.University.Division
         #region Properties
 
         private DivisionSettings settings;
-
         protected new DivisionSettings Settings
         {
-            get { return settings ?? (settings = new DivisionSettings (this)); }
+            get { return settings ?? (settings = new DivisionSettingsRepository ().GetSettings (ModuleConfiguration)); }
         }
 
         protected EditDivisionTab SelectedTab
@@ -272,6 +270,7 @@ namespace R7.University.Division
             // set calling module to display new division info
             if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division") {
                 Settings.DivisionID = item.DivisionID;
+                new DivisionSettingsRepository ().SaveSettings (ModuleConfiguration, Settings);
             }
         }
 

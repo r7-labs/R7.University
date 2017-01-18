@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="DivisionSelector.ascx.cs" Inherits="R7.University.Controls.DivisionSelector" %>
-<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 
 <div class="dnn-form-control-group">
     <asp:RadioButtonList id="radioSelectionMode" runat="server"
