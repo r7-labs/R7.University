@@ -130,7 +130,10 @@ namespace R7.University.EduProgramProfileDirectory
                 Settings.DivisionId = divisionSelector.DivisionId;
                 Settings.DivisionLevel = (DivisionLevel) Enum.Parse (typeof (DivisionLevel), radioDivisionLevel.SelectedValue, true);
 
+                SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+
                 ModuleController.SynchronizeModule (ModuleId);
+
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId);
             }
             catch (Exception ex) {

@@ -97,6 +97,7 @@
     <Compile Include="ViewModels\EduProgramProfileDirectoryEduFormsViewModel.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="Components\DivisionLevel.cs" />
+    <Compile Include="Components\EduProgramProfileDirectorySettingsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />

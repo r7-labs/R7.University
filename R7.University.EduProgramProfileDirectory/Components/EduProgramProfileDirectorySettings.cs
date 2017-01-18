@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -22,61 +22,40 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.UI.Modules;
-using R7.DotNetNuke.Extensions.Modules;
+using DotNetNuke.Entities.Modules.Settings;
 
 namespace R7.University.EduProgramProfileDirectory.Components
 {
     /// <summary>
     /// Provides strong typed access to settings used by module
     /// </summary>
-    public class EduProgramProfileDirectorySettings : SettingsWrapper
+    [Serializable]
+    public class EduProgramProfileDirectorySettings
     {
-        public EduProgramProfileDirectorySettings ()
-        {
-        }
-
-        public EduProgramProfileDirectorySettings (IModuleControl module) : base (module)
-        {
-        }
-
-        public EduProgramProfileDirectorySettings (ModuleInfo module) : base (module)
-        {
-        }
-
-        #region Properties for settings
+        [ModuleSetting (Prefix = "EduProgramProfileDirectory_", ParameterName = "EduLevels")]
+        public string EduLevelsInternal { get; set; } = string.Empty;
 
         public IList<int> EduLevels
         {
             get {
-                return ReadSetting<string> ("EduProgramProfileDirectory_EduLevels", string.Empty)
+                return EduLevelsInternal
                     .Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
                     .ToList ()
                     .ConvertAll (s => int.Parse (s));
             }
             set {
-                WriteModuleSetting<string> ("EduProgramProfileDirectory_EduLevels", string.Join (";", value));
+                EduLevelsInternal = string.Join (";", value);
             }
         }
 
-        public EduProgramProfileDirectoryMode? Mode
-        {
-            get { return ReadSetting<EduProgramProfileDirectoryMode?> ("EduProgramProfileDirectory_Mode", null); }
-            set { WriteModuleSetting<EduProgramProfileDirectoryMode?> ("EduProgramProfileDirectory_Mode", value); }
-        }
+        [ModuleSetting (Prefix = "EduProgramProfileDirectory_")]
+        public EduProgramProfileDirectoryMode? Mode { get; set; }
+   
+        [ModuleSetting (Prefix = "EduProgramProfileDirectory_")]
+        public int? DivisionId { get; set; }
 
-        public int? DivisionId {
-            get { return ReadSetting<int?> ("EduProgramProfileDirectory_DivisionId", null); }
-            set { WriteModuleSetting<int?> ("EduProgramProfileDirectory_DivisionId", value); }
-        }
-
-        public DivisionLevel DivisionLevel {
-            get { return ReadSetting<DivisionLevel> ("EduProgramProfileDirectory_DivisionLevel", DivisionLevel.EduProgram); }
-            set { WriteModuleSetting<DivisionLevel> ("EduProgramProfileDirectory_DivisionLevel", value); }
-        }
-
-        #endregion
+        [ModuleSetting (Prefix = "EduProgramProfileDirectory_")]
+        public DivisionLevel DivisionLevel { get; set; } = DivisionLevel.EduProgram;
     }
 }
 
