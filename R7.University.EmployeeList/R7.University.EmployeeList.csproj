@@ -104,6 +104,7 @@
     <Compile Include="ViewModels\EmployeeListViewModel.cs" />
     <Compile Include="Queries\EmployeeQuery.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
+    <Compile Include="Components\EmployeeListSettingsRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

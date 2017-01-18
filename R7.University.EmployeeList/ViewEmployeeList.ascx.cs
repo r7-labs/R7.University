@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -79,14 +79,14 @@ namespace R7.University.EmployeeList
         private ViewModelContext<EmployeeListSettings> viewModelContext;
         protected ViewModelContext<EmployeeListSettings> ViewModelContext
         {
-            get { return viewModelContext ?? (viewModelContext = new ViewModelContext<EmployeeListSettings> (this)); }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext<EmployeeListSettings> (this, Settings)); }
         }
 
         #endregion
 
         #region Handlers
 
-        // REVIEW: Move to repository class?
+        // REVIEW: Move to repository class?,
         internal EmployeeListViewModel GetViewModel ()
         {
             var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;

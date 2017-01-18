@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -36,7 +36,7 @@ namespace R7.University.EmployeeList.Components
         public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
         {
             var searchDocs = new List<SearchDocument> ();
-            var settings = new EmployeeListSettings (modInfo);
+            var settings = new EmployeeListSettingsRepository ().GetSettings (modInfo);
 
             IEnumerable<EmployeeInfo> employees = null;
 
@@ -71,4 +71,3 @@ namespace R7.University.EmployeeList.Components
         #endregion
     }
 }
-
