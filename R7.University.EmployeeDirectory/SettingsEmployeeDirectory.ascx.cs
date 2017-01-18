@@ -105,7 +105,10 @@ namespace R7.University.EmployeeDirectory
                 Settings.EduLevels = listEduLevels.Items.AsEnumerable ().Where (i => i.Selected).Select (i => int.Parse (i.Value)).ToList ();
                 Settings.ShowAllTeachers = checkShowAllTeachers.Checked;
 
+                SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+
                 ModuleController.SynchronizeModule (ModuleId);
+
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EmployeeDirectory");
             }
             catch (Exception ex) {

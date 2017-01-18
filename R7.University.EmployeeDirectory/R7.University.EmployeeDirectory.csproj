@@ -109,6 +109,7 @@
     <Compile Include="Queries\OccupiedPositionQuery.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
+    <Compile Include="Components\EmployeeDirectorySettingsRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
