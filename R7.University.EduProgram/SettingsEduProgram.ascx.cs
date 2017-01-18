@@ -62,7 +62,9 @@ namespace R7.University.EduProgram
             comboEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboEduLevel.DataBind ();
 
-            BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
+            if (comboEduLevel.Items.Count > 0) {
+                BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
+            }
         }
 
         protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
@@ -113,8 +115,11 @@ namespace R7.University.EduProgram
             {
                 Settings.EduProgramId = TypeUtils.ParseToNullable<int> (comboEduProgram.SelectedValue);
                 Settings.AutoTitle = checkAutoTitle.Checked;
- 
+
+                SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+
                 CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId);
+
                 ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex)

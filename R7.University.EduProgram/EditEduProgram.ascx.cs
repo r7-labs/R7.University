@@ -310,8 +310,10 @@ namespace R7.University.EduProgram
 
                 // update EduProgram module settings then adding new item
                 if (isNew && ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
-                    var settings = new EduProgramSettings (this);
+                    var settingsRepository = new EduProgramSettingsRepository ();
+                    var settings = settingsRepository.GetSettings (ModuleConfiguration);
                     settings.EduProgramId = item.EduProgramID;
+                    settingsRepository.SaveSettings (ModuleConfiguration, settings);
                 }
 
                 // update related documents

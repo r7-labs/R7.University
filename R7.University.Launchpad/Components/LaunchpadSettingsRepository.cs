@@ -1,10 +1,10 @@
-//
-//  R7.University.EduProgramSettings.cs
+﻿//
+//  LaunchpadSettingsRepository.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -18,23 +18,13 @@
 //
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
-using DotNetNuke.Entities.Modules.Settings;
-
-namespace R7.University.EduProgram.Components
+namespace R7.University.Launchpad.Components
 {
-    /// <summary>
-    /// Provides strong typed access to settings used by module
-    /// </summary>
-    [Serializable]
-    public class EduProgramSettings
+    public class LaunchpadSettingsRepository
     {
-        [ModuleSetting (Prefix = "EduProgram_")]
-        public int? EduProgramId { get; set; }
-
-        [TabModuleSetting (Prefix = "EduProgram_")]
-        public bool AutoTitle { get; set; } = true;
+        public LaunchpadSettingsRepository ()
+        {
+        }
     }
 }
-
