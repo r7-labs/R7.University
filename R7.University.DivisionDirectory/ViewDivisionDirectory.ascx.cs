@@ -105,7 +105,7 @@ namespace R7.University.DivisionDirectory
         {
             get {
                 if (viewModelContext == null)
-                    viewModelContext = new ViewModelContext<DivisionDirectorySettings> (this);
+                    viewModelContext = new ViewModelContext<DivisionDirectorySettings> (this, Settings);
 
                 return viewModelContext;
             }
