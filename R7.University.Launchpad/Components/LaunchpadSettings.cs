@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,8 +21,8 @@
 
 using System;
 using System.Collections.Generic;
-using DotNetNuke.UI.Modules;
-using R7.DotNetNuke.Extensions.Modules;
+using System.Linq;
+using DotNetNuke.Entities.Modules.Settings;
 using R7.DotNetNuke.Extensions.Utilities;
 
 namespace R7.University.Launchpad.Components
@@ -30,45 +30,26 @@ namespace R7.University.Launchpad.Components
     /// <summary>
     /// Provides strong typed access to settings used by module
     /// </summary>
-    public class LaunchpadSettings : SettingsWrapper
+    [Serializable]
+    public class LaunchpadSettings
     {
-        public LaunchpadSettings ()
-        {
-        }
+        [TabModuleSetting (Prefix = "Launchpad_")]
+        public int PageSize { get; set; } = 20;
 
-        public LaunchpadSettings (IModuleControl module) : base (module)
-        {
-        }
-
-        #region Properties for settings
-
-        public int PageSize
-        {
-            get { return ReadSetting<int> ("Launchpad_PageSize", 20); }
-            set { WriteTabModuleSetting<int> ("Launchpad_PageSize", value); }
-        }
+        [TabModuleSetting (Prefix = "Launchpad_", ParameterName = "Tables")]
+        public string TablesInternal { get; set; } = string.Empty;
 
         private List<string> tables;
-
         public List<string> Tables
         {
-            get { 
-                if (tables == null) {
-                    tables = new List<string> ();
-                    tables.AddRange (
-                        ReadSetting<string> ("Launchpad_Tables", string.Empty)
-						.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries));
-                }
-				
-                return tables;
+            get {
+                return tables ?? (tables = TablesInternal.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList ());
             }
-            set { 
-                WriteTabModuleSetting<string> ("Launchpad_Tables", TextUtils.FormatList (";", value.ToArray ())); 
+            set {
+                tables = value;
+                TablesInternal = TextUtils.FormatList (";", value.ToArray ());
             }
         }
-
-        #endregion
-	
     }
 }
 

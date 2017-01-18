@@ -91,6 +91,8 @@ namespace R7.University.Launchpad
                 // since view set may be changed
                 Session.Remove ("Launchpad_ActiveView_" + TabModuleId);
 
+                SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+
                 ModuleController.SynchronizeModule (ModuleId);
             }
             catch (Exception ex) {

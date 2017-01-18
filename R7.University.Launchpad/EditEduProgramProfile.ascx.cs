@@ -135,7 +135,9 @@ namespace R7.University.Launchpad
                 comboEduLevel.SelectByValue (eduProgram.EduLevelID);
             }
             else {
-                BindEduPrograms (eduProgramLevels.First ().EduLevelID);
+                if (eduProgramLevels.Count > 0) {
+                    BindEduPrograms (eduProgramLevels.First ().EduLevelID);
+                }
             }
 
             // TODO: Disable edu. program selection the adding or editing from EditEduProgram
