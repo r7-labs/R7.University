@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Linq;
-using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Portals;
@@ -44,15 +43,15 @@ namespace R7.University.Utilities
         public static string LinkClickIdnHack (string url, int tabId, int moduleId)
         {
             switch (Globals.GetURLType (url)) {
-                case TabType.Url:
-                    return url;
-                    
-                default:
-                    return Globals.LinkClick (url, tabId, moduleId);
+            case TabType.Url:
+                return url;
+
+            default:
+                return Globals.LinkClick (url, tabId, moduleId);
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Formats the URL by DNN rules.
         /// </summary>
         /// <returns>Formatted URL.</returns>
@@ -89,6 +88,31 @@ namespace R7.University.Utilities
             catch {
                 return string.Empty;
             }
+        }
+
+        /// <summary>
+        /// Temp workaround for issue with IE and Unicode characters in EditURL-generated URL:
+        /// https://dnntracker.atlassian.net/browse/DNN-9280
+        /// </summary>
+        /// <returns>The raw edit URL.</returns>
+        /// <param name="module">Module control.</param>
+        /// <param name="keyName">Key name.</param>
+        /// <param name="keyValue">Key value.</param>
+        /// <param name="controlKey">Control key.</param>
+        public static string IESafeEditUrl (IModuleControl module, string keyName, string keyValue, string controlKey)
+        {
+            if (PortalSettings.Current.EnablePopUps) {
+                // generate edit URL with /default.aspx?tabid=xxx instead of friendly page name
+                var rawEditUrl = Globals.AddHTTP ($"{module.ModuleContext.PortalAlias.HTTPAlias}/default.aspx" +
+                                              $"?tabid={module.ModuleContext.TabId}" +
+                                              $"&mid={module.ModuleContext.ModuleId}" +
+                                              $"&ctl={controlKey}" +
+                                              $"&{keyName}={keyValue}");
+                return $"javascript:dnnModal.show('{rawEditUrl}&popUp=true',/*showReturn*/false,550,950,true,'')";
+            }
+
+            // popups disabled, it's safe to use default implementation
+            return module.ModuleContext.EditUrl (keyName, keyValue, controlKey);
         }
     }
 }

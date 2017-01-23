@@ -45,6 +45,7 @@ using R7.University.Models;
 using R7.University.SharedLogic;
 using R7.University.ViewModels;
 using R7.DotNetNuke.Extensions.TextExtensions;
+using R7.University.Utilities;
 
 namespace R7.University.EmployeeList
 {
@@ -244,7 +245,7 @@ namespace R7.University.EmployeeList
             // employee photo
             EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth, true);
 
-            var employeeDetailsUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
+            var employeeDetailsUrl = UniversityUrlHelper.IESafeEditUrl (this, "employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
                 
             // photo fallback
             if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl)) {
