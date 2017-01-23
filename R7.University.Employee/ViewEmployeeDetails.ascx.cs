@@ -496,7 +496,7 @@ namespace R7.University.Employee
             
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
-                                     .Select (ach => ach.Title.FirstCharToLower ());
+                                     .Select (ach => TextUtils.FormatList (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
             
             var strTitles = TextUtils.FormatList (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
