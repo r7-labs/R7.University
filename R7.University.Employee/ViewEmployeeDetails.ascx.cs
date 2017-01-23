@@ -50,7 +50,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
-    public partial class ViewEmployeeDetails: PortalModuleBase<EmployeeSettings>, IActionable
+    public partial class ViewEmployeeDetails : PortalModuleBase<EmployeeSettings>, IActionable
     {
         #region Model context
 
@@ -73,6 +73,17 @@ namespace R7.University.Employee
 
         #region Properties
 
+        protected int PhotoWidth
+        {
+            get {
+                switch (ModuleConfiguration.ModuleDefinition.DefinitionName) {
+                    case "R7.University.Employee": return Settings.PhotoWidth;
+                    case "R7.University.EmployeeDetails": return Settings.PhotoWidth;
+                    default: return UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
+                }
+            }
+        }
+       
         protected bool IsInPopup
         {
             get { return UrlHelper.IsInPopup (Request); }
@@ -323,8 +334,8 @@ namespace R7.University.Employee
             }
             else
                 repeaterPositions.Visible = false;
-			
-            EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth);
+
+            EmployeePhotoLogic.Bind (employee, imagePhoto, PhotoWidth);
 					
             // Phone
             if (!string.IsNullOrWhiteSpace (employee.Phone))

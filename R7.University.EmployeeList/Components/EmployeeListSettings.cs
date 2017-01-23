@@ -20,13 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.UI.Modules;
-using R7.University.Components;
 using System.Web;
-using System.Net.Http;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules.Settings;
+using R7.University.Components;
 
 namespace R7.University.EmployeeList.Components
 {
