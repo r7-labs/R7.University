@@ -121,7 +121,7 @@ namespace R7.University.Controls
 
         #region Set and get data
 
-        public List<TModel> GetData ()
+        public virtual List<TModel> GetData ()
         {
             var items = ViewStateItems;
             if (items != null) {
@@ -131,7 +131,7 @@ namespace R7.University.Controls
             return new List<TModel> ();
         }
 
-        public void SetData (List<TModel> items, int targetItemId)
+        public virtual void SetData (List<TModel> items, int targetItemId)
         {
             TargetItemId = targetItemId;
 
