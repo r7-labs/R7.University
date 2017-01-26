@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,8 +23,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Tabs;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ControlExtensions;
@@ -125,5 +127,18 @@ namespace R7.University.Controls
         }
 
         #endregion
+
+        public override void SetData (List<DocumentInfo> items, int targetItemId)
+        {
+            base.SetData (items, targetItemId);
+
+            // speedup adding new documents by autoselecting first document's folder
+            if (items.Count > 0) {
+                var firstItem = items [0];
+                if (Globals.GetURLType (firstItem.Url) == TabType.File) {
+                    urlDocumentUrl.Url = firstItem.Url;
+                }
+            }
+        }
     }
 }
