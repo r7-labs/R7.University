@@ -180,7 +180,7 @@ namespace R7.University.Employee
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth);
 
-            var popupUrl = UniversityUrlHelper.IESafeEditUrl (this, "employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
+            var popupUrl = UniversityUrlHelper.IESafeEditUrl (this, Request, "employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
          		
             // alter popup window height
             linkPhoto.NavigateUrl = popupUrl;

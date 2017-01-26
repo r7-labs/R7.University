@@ -19,7 +19,9 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Linq;
+using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Portals;
@@ -96,19 +98,23 @@ namespace R7.University.Utilities
         /// </summary>
         /// <returns>The raw edit URL.</returns>
         /// <param name="module">Module control.</param>
+        /// <param name="request">HTTP request.</param>
         /// <param name="keyName">Key name.</param>
         /// <param name="keyValue">Key value.</param>
         /// <param name="controlKey">Control key.</param>
-        public static string IESafeEditUrl (IModuleControl module, string keyName, string keyValue, string controlKey)
+        public static string IESafeEditUrl (IModuleControl module, HttpRequest request, string keyName, string keyValue, string controlKey)
         {
             if (PortalSettings.Current.EnablePopUps) {
-                // generate edit URL with /default.aspx?tabid=xxx instead of friendly page name
-                var rawEditUrl = Globals.AddHTTP ($"{module.ModuleContext.PortalAlias.HTTPAlias}/default.aspx" +
-                                              $"?tabid={module.ModuleContext.TabId}" +
-                                              $"&mid={module.ModuleContext.ModuleId}" +
-                                              $"&ctl={controlKey}" +
-                                              $"&{keyName}={keyValue}");
-                return $"javascript:dnnModal.show('{rawEditUrl}&popUp=true',/*showReturn*/false,550,950,true,'')";
+                // for any IE browser except Edge, return non-popup edit URL
+                if (!request.UserAgent.Contains ("Edge")) {
+                    var browserName = request.Browser.Browser.ToUpperInvariant ();
+                    if (browserName.StartsWith ("IE", StringComparison.Ordinal)
+                        || browserName.Contains ("MSIE")
+                        || browserName == "INTERNETEXPLORER") {
+                        return Globals.NavigateURL (controlKey, keyName, keyValue, 
+                                                    "mid", module.ModuleContext.ModuleId.ToString ());
+                    }
+                }
             }
 
             // popups disabled, it's safe to use default implementation

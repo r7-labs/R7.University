@@ -245,7 +245,7 @@ namespace R7.University.EmployeeList
             // employee photo
             EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth, true);
 
-            var employeeDetailsUrl = UniversityUrlHelper.IESafeEditUrl (this, "employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
+            var employeeDetailsUrl = UniversityUrlHelper.IESafeEditUrl (this, Request, "employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
                 
             // photo fallback
             if (string.IsNullOrWhiteSpace (imagePhoto.ImageUrl)) {
