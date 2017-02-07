@@ -24,5 +24,9 @@ namespace R7.University.Security
     public interface ISecurityContext
     {
         bool IsAdmin { get; }
+
+        bool CanAdd<TEntity> () where TEntity : class;
+
+        bool CanDelete<TEntity> (TEntity entity) where TEntity : class;
     }
 }

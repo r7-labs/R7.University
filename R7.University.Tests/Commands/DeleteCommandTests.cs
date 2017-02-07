@@ -22,31 +22,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Commands;
+using R7.University.Models;
 using R7.University.Tests.Models;
 using R7.University.Tests.Security;
 using Xunit;
 
 namespace R7.University.Tests.Commands
 {
-    public class DeleteMainEntityCommandTests
+    public class DeleteCommandTests
     {
         [Theory]
         [MemberData (nameof (TestData))]
-        public void DeleteMainEntityCommandTest (bool isAdmin)
+        public void DeleteCommandTest (bool isAdmin)
         {
             using (var modelContext = new TestModelContext ()) {
-                var entity = new TestEntity { Id = 1 };
+                var entity = new DivisionInfo { DivisionID = 1 };
                 modelContext.Add (entity);
 
                 var securityContext = new TestSecurityContext (isAdmin);
-                var command = new DeleteMainEntityCommand<TestEntity> (modelContext, securityContext);
-
-                Assert.Equal (isAdmin, command.CanDelete (entity));
+                var command = new DeleteCommand<DivisionInfo> (modelContext, securityContext);
 
                 command.Delete (entity);
 
                 Assert.Equal (isAdmin, null == modelContext
-                              .QueryOne<TestEntity> (d => d.Id == entity.Id)
+                              .QueryOne<DivisionInfo> (d => d.DivisionID == entity.DivisionID)
                               .SingleOrDefault ());
             }
         }

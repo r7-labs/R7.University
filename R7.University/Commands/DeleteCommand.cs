@@ -24,24 +24,22 @@ using R7.University.Security;
 
 namespace R7.University.Commands
 {
-    public abstract class DeleteCommand<TEntity> : ISecureCommand
+    public class DeleteCommand<TEntity> : ISecureCommand
         where TEntity : class
     {
         public IModelContext ModelContext { get; set; }
 
         public ISecurityContext SecurityContext { get; set; }
 
-        protected DeleteCommand (IModelContext modelContext, ISecurityContext securityContext)
+        public DeleteCommand (IModelContext modelContext, ISecurityContext securityContext)
         {
             ModelContext = modelContext;
             SecurityContext = securityContext;
         }
 
-        public abstract bool CanDelete (TEntity entity);
-
         public void Delete (TEntity entity)
         {
-            if (CanDelete (entity)) {
+            if (SecurityContext.CanDelete (entity)) {
                 ModelContext.Remove (entity);
             }
         }

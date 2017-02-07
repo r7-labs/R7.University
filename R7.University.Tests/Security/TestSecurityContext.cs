@@ -31,5 +31,15 @@ namespace R7.University.Tests.Security
         {
             IsAdmin = isAdmin;
         }
+
+        public bool CanAdd<TEntity> () where TEntity : class
+        {
+            return IsAdmin;
+        }
+
+        public bool CanDelete<TEntity> (TEntity entity) where TEntity : class
+        {
+            return IsAdmin;
+        }
     }
 }

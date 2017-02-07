@@ -322,13 +322,13 @@ namespace R7.University.Launchpad
 
         protected override bool CanDeleteItem (EduProgramProfileInfo item)
         {
-            return new DeleteMainEntityCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).CanDelete (item);
+            return SecurityContext.CanDelete (item);
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
             // TODO: Also remove documents
-            new DeleteMainEntityCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Delete (item);
+            new DeleteCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }
 

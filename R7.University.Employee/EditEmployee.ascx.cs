@@ -352,7 +352,7 @@ namespace R7.University.Employee
                             // setup audit control
                             ctlAudit.Bind (item);
 
-                            buttonDelete.Visible = new DeleteMainEntityCommand<EmployeeInfo> (ModelContext, SecurityContext).CanDelete (item);
+                            buttonDelete.Visible = SecurityContext.CanDelete (item);
                         }
                         else
                             Response.Redirect (Globals.NavigateURL (), true);
@@ -535,7 +535,7 @@ namespace R7.University.Employee
                 if (itemId.HasValue) {
 
                     var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
-                    new DeleteMainEntityCommand<EmployeeInfo> (ModelContext, SecurityContext).Delete (employee);
+                    new DeleteCommand<EmployeeInfo> (ModelContext, SecurityContext).Delete (employee);
                     ModelContext.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);

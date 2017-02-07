@@ -294,12 +294,12 @@ namespace R7.University.Division
 
         protected override bool CanDeleteItem (DivisionInfo item)
         {
-            return new DeleteMainEntityCommand<DivisionInfo> (ModelContext, SecurityContext).CanDelete (item);
+            return SecurityContext.CanDelete (item);
         }
 
         protected override void DeleteItem (DivisionInfo item)
         {
-            new DeleteMainEntityCommand<DivisionInfo> (ModelContext, SecurityContext).Delete (item);
+            new DeleteCommand<DivisionInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }
 

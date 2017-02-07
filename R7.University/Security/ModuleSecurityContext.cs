@@ -20,16 +20,41 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DotNetNuke.Entities.Users;
+using R7.University.Models;
 
 namespace R7.University.Security
 {
-    public class ModuleSecurityContext: ISecurityContext
+    public class ModuleSecurityContext : ISecurityContext
     {
         public bool IsAdmin { get; protected set; }
 
         public ModuleSecurityContext (UserInfo user)
         {
             IsAdmin = user.IsSuperUser || user.IsInRole ("Administrators");
+        }
+
+        public bool CanAdd<TEntity> () where TEntity : class
+        {
+            if (typeof (TEntity) == typeof (DivisionInfo)
+                || typeof (TEntity) == typeof (EmployeeInfo)
+                || typeof (TEntity) == typeof (EduProgramInfo)
+                || typeof (TEntity) == typeof (EduProgramProfileInfo)) {
+                return IsAdmin;
+            }
+
+            return true;
+        }
+
+        public bool CanDelete<TEntity> (TEntity entity) where TEntity : class
+        {
+            if (entity is DivisionInfo
+                || entity is EmployeeInfo
+                || entity is EduProgramInfo
+                || entity is EduProgramProfileInfo) {
+                return IsAdmin;
+            }
+
+            return true;
         }
     }
 }

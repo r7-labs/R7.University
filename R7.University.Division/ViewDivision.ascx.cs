@@ -274,13 +274,13 @@ namespace R7.University.Division
                 var existingDivision = !Null.IsNull (Settings.DivisionID);
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     Localization.GetString ("AddDivision.Action", LocalResourceFile),
-                    ModuleActionType.AddContent, 
-                    "", 
+                    ModuleActionType.AddContent,
+                    "",
                     IconController.IconURL ("Add"),
                     EditUrl ("EditDivision"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
                     !existingDivision,
                     false
