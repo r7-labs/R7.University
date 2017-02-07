@@ -66,6 +66,8 @@
     <Compile Include="Data\TestDataContextFactory.cs" />
     <Compile Include="ModelExtensions\DivisionExtensionsTests.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensionsTests.cs" />
+    <Compile Include="Security\TestSecurityContext.cs" />
+    <Compile Include="Commands\MainEntityDeleteCommandTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />
@@ -82,5 +84,7 @@
     <Folder Include="Data\" />
     <Folder Include="Models\" />
     <Folder Include="ModelExtensions\" />
+    <Folder Include="Security\" />
+    <Folder Include="Commands\" />
   </ItemGroup>
 </Project>

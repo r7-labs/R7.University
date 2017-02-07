@@ -203,6 +203,10 @@
       <DependentUpon>DivisionSelector.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ListItemViewModel.cs" />
+    <Compile Include="Commands\ISecureCommand.cs" />
+    <Compile Include="Security\ISecurityContext.cs" />
+    <Compile Include="Security\ModuleSecurityContext.cs" />
+    <Compile Include="Commands\MainEntityDeleteCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -224,6 +228,7 @@
     <Folder Include="Data\Mappings\" />
     <Folder Include="Queries\" />
     <Folder Include="Commands\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

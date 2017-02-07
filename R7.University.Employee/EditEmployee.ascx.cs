@@ -44,6 +44,7 @@ using R7.University.Employee.Queries;
 using R7.University.Employee.ViewModels;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
@@ -350,6 +351,8 @@ namespace R7.University.Employee
 
                             // setup audit control
                             ctlAudit.Bind (item);
+
+                            buttonDelete.Visible = EmployeeCommand.CanDelete (item);
                         }
                         else
                             Response.Redirect (Globals.NavigateURL (), true);
@@ -510,6 +513,12 @@ namespace R7.University.Employee
             return disciplineInfos;
         }
 
+        MainEntityDeleteCommand<EmployeeInfo> employeeCommand;
+        protected MainEntityDeleteCommand<EmployeeInfo> EmployeeCommand
+        {
+            get { return employeeCommand ?? (employeeCommand = new MainEntityDeleteCommand<EmployeeInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
+        }
+
         /// <summary>
         /// Handles Click event for Delete button
         /// </summary>
@@ -526,11 +535,10 @@ namespace R7.University.Employee
                 if (itemId.HasValue) {
 
                     var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
-                    ModelContext.Remove (employee);
+                    EmployeeCommand.Delete (employee);
                     ModelContext.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);
-
                     Response.Redirect (Globals.NavigateURL (), true);
                 }
             }

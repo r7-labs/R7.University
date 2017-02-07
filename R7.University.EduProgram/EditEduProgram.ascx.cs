@@ -39,7 +39,7 @@ using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
-using R7.University.Utilities;
+using R7.University.Security;
 
 namespace R7.University.EduProgram
 {
@@ -201,6 +201,9 @@ namespace R7.University.EduProgram
                                 .ThenBy (epp => epp.ProfileTitle);
 
                             gridEduProgramProfiles.DataBind ();
+
+                            buttonDelete.Visible = EduProgramCommand.CanDelete (item);
+
                         }
                         else
                             Response.Redirect (Globals.NavigateURL (), true);
@@ -331,6 +334,12 @@ namespace R7.University.EduProgram
             }
         }
 
+        MainEntityDeleteCommand<EduProgramInfo> eduProgramCommand;
+        protected MainEntityDeleteCommand<EduProgramInfo> EduProgramCommand
+        {
+            get { return eduProgramCommand ?? (eduProgramCommand = new MainEntityDeleteCommand<EduProgramInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
+        }
+
         /// <summary>
         /// Handles Click event for Delete button
         /// </summary>
@@ -347,8 +356,8 @@ namespace R7.University.EduProgram
 
                     // TODO: Also remove documents
 
-                    var item = ModelContext.Get<EduProgramInfo> (itemId.Value);
-                    ModelContext.Remove (item);
+                    var eduProgram = ModelContext.Get<EduProgramInfo> (itemId.Value);
+                    EduProgramCommand.Delete (eduProgram);
                     ModelContext.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);

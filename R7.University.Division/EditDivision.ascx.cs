@@ -26,11 +26,13 @@ using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.Division.Components;
 using R7.University.Division.Queries;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 using R7.University.SharedLogic;
 
 namespace R7.University.Division
@@ -284,9 +286,20 @@ namespace R7.University.Division
             ModelContext.SaveChanges ();
         }
 
+        MainEntityDeleteCommand<DivisionInfo> divisionCommand;
+        protected MainEntityDeleteCommand<DivisionInfo> DivisionCommand
+        {
+            get { return divisionCommand ?? (divisionCommand = new MainEntityDeleteCommand<DivisionInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
+        }
+
+        protected override bool CanDeleteItem (DivisionInfo item)
+        {
+            return DivisionCommand.CanDelete (item);
+        }
+
         protected override void DeleteItem (DivisionInfo item)
         {
-            ModelContext.Remove<DivisionInfo> (item);
+            DivisionCommand.Delete (item);
             ModelContext.SaveChanges ();
         }
 

@@ -30,6 +30,7 @@ using R7.University.ControlExtensions;
 using R7.University.Launchpad.Queries;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 using R7.University.ViewModels;
 
 namespace R7.University.Launchpad
@@ -313,11 +314,21 @@ namespace R7.University.Launchpad
             ModelContext.SaveChanges ();
         }
 
+        MainEntityDeleteCommand<EduProgramProfileInfo> eduProgramProfileCommand;
+        protected MainEntityDeleteCommand<EduProgramProfileInfo> EduProgramProfileCommand
+        {
+            get { return eduProgramProfileCommand ?? (eduProgramProfileCommand = new MainEntityDeleteCommand<EduProgramProfileInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
+        }
+
+        protected override bool CanDeleteItem (EduProgramProfileInfo item)
+        {
+            return EduProgramProfileCommand.CanDelete (item);
+        }
+
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
             // TODO: Also remove documents
-
-            ModelContext.Remove (item);
+            EduProgramProfileCommand.Delete (item);
             ModelContext.SaveChanges ();
         }
 
