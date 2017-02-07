@@ -1,5 +1,5 @@
 ﻿//
-//  MainEntityDeleteCommand.cs
+//  DeleteMainEntityCommand.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -24,29 +24,17 @@ using R7.University.Security;
 
 namespace R7.University.Commands
 {
-    public class MainEntityDeleteCommand<TEntity> : ISecureCommand
+    public class DeleteMainEntityCommand<TEntity> : DeleteCommand<TEntity>
         where TEntity : class
     {
-        public IModelContext ModelContext { get; set; }
-
-        public ISecurityContext SecurityContext { get; set; }
-
-        public MainEntityDeleteCommand (IModelContext modelContext, ISecurityContext securityContext)
+        public DeleteMainEntityCommand (IModelContext modelContext, ISecurityContext securityContext)
+            : base (modelContext, securityContext)
         {
-            ModelContext = modelContext;
-            SecurityContext = securityContext;
         }
 
-        public bool CanDelete (TEntity entity)
+        public override bool CanDelete (TEntity entity)
         {
             return SecurityContext.IsAdmin;
-        }
-
-        public void Delete (TEntity entity)
-        {
-            if (CanDelete (entity)) {
-                ModelContext.Remove (entity);
-            }
         }
     }
 }

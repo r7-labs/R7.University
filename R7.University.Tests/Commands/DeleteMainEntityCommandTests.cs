@@ -1,5 +1,5 @@
 ﻿//
-//  MainEntityDeleteCommandTests.cs
+//  DeleteMainEntityCommandTests.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -28,18 +28,18 @@ using Xunit;
 
 namespace R7.University.Tests.Commands
 {
-    public class MainEntityDeleteCommandTests
+    public class DeleteMainEntityCommandTests
     {
         [Theory]
         [MemberData (nameof (TestData))]
-        public void MainEntityDeleteCommandTest (bool isAdmin)
+        public void DeleteMainEntityCommandTest (bool isAdmin)
         {
             using (var modelContext = new TestModelContext ()) {
                 var entity = new TestEntity { Id = 1 };
                 modelContext.Add (entity);
 
                 var securityContext = new TestSecurityContext (isAdmin);
-                var command = new MainEntityDeleteCommand<TestEntity> (modelContext, securityContext);
+                var command = new DeleteMainEntityCommand<TestEntity> (modelContext, securityContext);
 
                 Assert.Equal (isAdmin, command.CanDelete (entity));
 

@@ -207,7 +207,7 @@ namespace R7.University.EduProgram
 
                             gridEduProgramProfiles.DataBind ();
 
-                            buttonDelete.Visible = new MainEntityDeleteCommand<EduProgramInfo> (ModelContext, SecurityContext).CanDelete (item);
+                            buttonDelete.Visible = new DeleteMainEntityCommand<EduProgramInfo> (ModelContext, SecurityContext).CanDelete (item);
                         }
                         else
                             Response.Redirect (Globals.NavigateURL (), true);
@@ -355,7 +355,7 @@ namespace R7.University.EduProgram
                     // TODO: Also remove documents
 
                     var eduProgram = ModelContext.Get<EduProgramInfo> (itemId.Value);
-                    new MainEntityDeleteCommand<EduProgramInfo> (ModelContext, SecurityContext).Delete (eduProgram);
+                    new DeleteMainEntityCommand<EduProgramInfo> (ModelContext, SecurityContext).Delete (eduProgram);
                     ModelContext.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);
