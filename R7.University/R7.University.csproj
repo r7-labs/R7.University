@@ -207,6 +207,7 @@
     <Compile Include="Security\ISecurityContext.cs" />
     <Compile Include="Security\ModuleSecurityContext.cs" />
     <Compile Include="Commands\MainEntityDeleteCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

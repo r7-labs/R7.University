@@ -1,5 +1,5 @@
 ﻿//
-//  ISecureCommand.cs
+//  ICommand.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,12 +19,12 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using R7.University.Security;
+using R7.University.Models;
 
 namespace R7.University.Commands
 {
-    public interface ISecureCommand: ICommand
+    public interface ICommand
     {
-        ISecurityContext SecurityContext { get; set; }
+        IModelContext ModelContext { get; set; }
     }
 }

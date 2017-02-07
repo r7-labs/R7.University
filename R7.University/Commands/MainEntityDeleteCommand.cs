@@ -24,12 +24,12 @@ using R7.University.Security;
 
 namespace R7.University.Commands
 {
-    public class MainEntityDeleteCommand<TEntity>: ISecureCommand
-        where TEntity: class
+    public class MainEntityDeleteCommand<TEntity> : ISecureCommand
+        where TEntity : class
     {
-        public IModelContext ModelContext { get; protected set; }
+        public IModelContext ModelContext { get; set; }
 
-        public ISecurityContext SecurityContext { get; protected set; }
+        public ISecurityContext SecurityContext { get; set; }
 
         public MainEntityDeleteCommand (IModelContext modelContext, ISecurityContext securityContext)
         {

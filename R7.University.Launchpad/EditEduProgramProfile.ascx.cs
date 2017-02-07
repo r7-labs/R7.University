@@ -96,6 +96,12 @@ namespace R7.University.Launchpad
             set { ViewState ["SelectedTab"] = value; }
         }
 
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
         #endregion
 
         protected EditEduProgramProfile () : base ("eduprogramprofile_id")
@@ -314,21 +320,15 @@ namespace R7.University.Launchpad
             ModelContext.SaveChanges ();
         }
 
-        MainEntityDeleteCommand<EduProgramProfileInfo> eduProgramProfileCommand;
-        protected MainEntityDeleteCommand<EduProgramProfileInfo> EduProgramProfileCommand
-        {
-            get { return eduProgramProfileCommand ?? (eduProgramProfileCommand = new MainEntityDeleteCommand<EduProgramProfileInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
-        }
-
         protected override bool CanDeleteItem (EduProgramProfileInfo item)
         {
-            return EduProgramProfileCommand.CanDelete (item);
+            return new MainEntityDeleteCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).CanDelete (item);
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
             // TODO: Also remove documents
-            EduProgramProfileCommand.Delete (item);
+            new MainEntityDeleteCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }
 

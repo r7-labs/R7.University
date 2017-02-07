@@ -352,7 +352,7 @@ namespace R7.University.Employee
                             // setup audit control
                             ctlAudit.Bind (item);
 
-                            buttonDelete.Visible = EmployeeCommand.CanDelete (item);
+                            buttonDelete.Visible = new MainEntityDeleteCommand<EmployeeInfo> (ModelContext, SecurityContext).CanDelete (item);
                         }
                         else
                             Response.Redirect (Globals.NavigateURL (), true);
@@ -513,10 +513,10 @@ namespace R7.University.Employee
             return disciplineInfos;
         }
 
-        MainEntityDeleteCommand<EmployeeInfo> employeeCommand;
-        protected MainEntityDeleteCommand<EmployeeInfo> EmployeeCommand
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
         {
-            get { return employeeCommand ?? (employeeCommand = new MainEntityDeleteCommand<EmployeeInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         /// <summary>
@@ -535,7 +535,7 @@ namespace R7.University.Employee
                 if (itemId.HasValue) {
 
                     var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
-                    EmployeeCommand.Delete (employee);
+                    new MainEntityDeleteCommand<EmployeeInfo> (ModelContext, SecurityContext).Delete (employee);
                     ModelContext.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);

@@ -107,10 +107,15 @@ namespace R7.University.EduProgram
         }
 
         private ViewModelContext viewModelContext;
-
         protected ViewModelContext ViewModelContext
         {
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
+        }
+
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         private int? itemId = null;
@@ -202,8 +207,7 @@ namespace R7.University.EduProgram
 
                             gridEduProgramProfiles.DataBind ();
 
-                            buttonDelete.Visible = EduProgramCommand.CanDelete (item);
-
+                            buttonDelete.Visible = new MainEntityDeleteCommand<EduProgramInfo> (ModelContext, SecurityContext).CanDelete (item);
                         }
                         else
                             Response.Redirect (Globals.NavigateURL (), true);
@@ -322,7 +326,7 @@ namespace R7.University.EduProgram
                 // update related documents
                 new UpdateDocumentsCommand (ModelContext)
                     .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
-                
+
                 ModelContext.SaveChanges ();
 
                 ModuleController.SynchronizeModule (ModuleId);
@@ -332,12 +336,6 @@ namespace R7.University.EduProgram
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
-        }
-
-        MainEntityDeleteCommand<EduProgramInfo> eduProgramCommand;
-        protected MainEntityDeleteCommand<EduProgramInfo> EduProgramCommand
-        {
-            get { return eduProgramCommand ?? (eduProgramCommand = new MainEntityDeleteCommand<EduProgramInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
         }
 
         /// <summary>
@@ -357,7 +355,7 @@ namespace R7.University.EduProgram
                     // TODO: Also remove documents
 
                     var eduProgram = ModelContext.Get<EduProgramInfo> (itemId.Value);
-                    EduProgramCommand.Delete (eduProgram);
+                    new MainEntityDeleteCommand<EduProgramInfo> (ModelContext, SecurityContext).Delete (eduProgram);
                     ModelContext.SaveChanges ();
 
                     ModuleController.SynchronizeModule (ModuleId);

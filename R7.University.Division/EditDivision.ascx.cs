@@ -286,20 +286,20 @@ namespace R7.University.Division
             ModelContext.SaveChanges ();
         }
 
-        MainEntityDeleteCommand<DivisionInfo> divisionCommand;
-        protected MainEntityDeleteCommand<DivisionInfo> DivisionCommand
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
         {
-            get { return divisionCommand ?? (divisionCommand = new MainEntityDeleteCommand<DivisionInfo> (ModelContext, new ModuleSecurityContext (UserInfo))); }
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         protected override bool CanDeleteItem (DivisionInfo item)
         {
-            return DivisionCommand.CanDelete (item);
+            return new MainEntityDeleteCommand<DivisionInfo> (ModelContext, SecurityContext).CanDelete (item);
         }
 
         protected override void DeleteItem (DivisionInfo item)
         {
-            DivisionCommand.Delete (item);
+            new MainEntityDeleteCommand<DivisionInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }
 
