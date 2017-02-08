@@ -35,10 +35,7 @@ namespace R7.University.Security
 
         public bool CanAdd<TEntity> () where TEntity : class
         {
-            if (typeof (TEntity) == typeof (DivisionInfo)
-                || typeof (TEntity) == typeof (EmployeeInfo)
-                || typeof (TEntity) == typeof (EduProgramInfo)
-                || typeof (TEntity) == typeof (EduProgramProfileInfo)) {
+            if (ModelHelper.IsMainEntity (typeof (TEntity))) {
                 return IsAdmin;
             }
 
@@ -47,10 +44,7 @@ namespace R7.University.Security
 
         public bool CanDelete<TEntity> (TEntity entity) where TEntity : class
         {
-            if (entity is DivisionInfo
-                || entity is EmployeeInfo
-                || entity is EduProgramInfo
-                || entity is EduProgramProfileInfo) {
+            if (ModelHelper.IsMainEntity (entity.GetType ())) {
                 return IsAdmin;
             }
 
