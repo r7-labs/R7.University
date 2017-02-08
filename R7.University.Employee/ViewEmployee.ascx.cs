@@ -272,14 +272,12 @@ namespace R7.University.Employee
         public ModuleActionCollection ModuleActions
         {
             get {
-                // create a new action to add an item, this will be added 
-                // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
                 var employee = GetEmployee ();
 
                 actions.Add (
                     GetNextActionID (), 
-                    Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
+                    LocalizeString ("AddEmployee.Action"),
                     ModuleActionType.AddContent, 
                     "", 
                     IconController.IconURL ("Add"), 
@@ -290,47 +288,44 @@ namespace R7.University.Employee
                     false
                 );
 
-                if (employee != null) {
-                    // otherwise, add "edit" action
-                    actions.Add (
-                        GetNextActionID (), 
-                        LocalizeString ("EditEmployee.Action"),
-                        ModuleActionType.EditContent, 
-                        "", 
-                        IconController.IconURL ("Edit"),
-                        EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee"),
-                        false, 
-                        SecurityAccessLevel.Edit,
-                        true, 
-                        false
-                    );
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("EditEmployee.Action"),
+                    ModuleActionType.EditContent, 
+                    "", 
+                    IconController.IconURL ("Edit"),
+                    EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee"),
+                    false, 
+                    SecurityAccessLevel.Edit,
+                    employee != null, 
+                    false
+                );
 
-                    actions.Add (
-                        GetNextActionID (), 
-                        LocalizeString ("Details.Action"),
-                        ModuleActionType.ContentOptions, 
-                        "", 
-                        IconController.IconURL ("View"),
-                        EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails"),
-                        false, 
-                        SecurityAccessLevel.View,
-                        true, 
-                        false
-                    );
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("Details.Action"),
+                    ModuleActionType.ContentOptions, 
+                    "", 
+                    IconController.IconURL ("View"),
+                    EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails"),
+                    false, 
+                    SecurityAccessLevel.View,
+                    employee != null, 
+                    false
+                );
 
-                    actions.Add (
-                        GetNextActionID (), 
-                        LocalizeString ("VCard.Action"),
-                        ModuleActionType.ContentOptions, 
-                        "", 
-                        IconController.IconURL ("View"),
-                        EditUrl ("employee_id", employee.EmployeeID.ToString (), "VCard"),
-                        false,
-                        SecurityAccessLevel.View,
-                        true,
-                        true
-                    );
-                }
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("VCard.Action"),
+                    ModuleActionType.ContentOptions, 
+                    "", 
+                    IconController.IconURL ("View"),
+                    EditUrl ("employee_id", employee.EmployeeID.ToString (), "VCard"),
+                    false,
+                    SecurityAccessLevel.View,
+                    employee != null,
+                    NewWindow: true 
+                );
 
                 return actions;
             }

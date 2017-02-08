@@ -170,18 +170,16 @@ namespace R7.University.EmployeeList
         public ModuleActionCollection ModuleActions
         {
             get {
-                // create a new action to add an item, this will be added 
-                // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
                 actions.Add (
                     GetNextActionID (), 
-                    Localization.GetString ("AddEmployee.Action", this.LocalResourceFile),
-                    ModuleActionType.AddContent, 
+                    LocalizeString ("AddEmployee.Action"),
+                    ModuleActionType.AddContent,
                     "", 
                     IconController.IconURL ("Add"),
                     Null.IsNull (Settings.DivisionID) ?
                         EditUrl ("EditEmployee")
-                    // pass division_id to select division in which to add employee
+                        // pass division_id to select division in which to add employee
                         : EditUrl ("division_id", Settings.DivisionID.ToString (), "EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,

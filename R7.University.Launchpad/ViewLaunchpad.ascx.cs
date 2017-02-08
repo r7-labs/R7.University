@@ -254,12 +254,10 @@ namespace R7.University.Launchpad
         public ModuleActionCollection ModuleActions
         {
             get {
-                // create a new action to add an item, this will be added 
-                // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
-
-                foreach (var table in Tables.Tables)
+                foreach (var table in Tables.Tables) {
                     actions.Add (table.GetAction (this));
+                }
 
                 return actions;
             }

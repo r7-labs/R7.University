@@ -155,8 +155,6 @@ namespace R7.University.EduProgramDirectory
         public ModuleActionCollection ModuleActions
         {
             get {
-                // create a new action to add an item, 
-                // this will be added to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
                 actions.Add (
                     GetNextActionID (), 

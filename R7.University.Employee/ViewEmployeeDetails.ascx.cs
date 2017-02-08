@@ -145,14 +145,11 @@ namespace R7.University.Employee
             return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
         }
 
-
         #region IActionable implementation
 
         public ModuleActionCollection ModuleActions
         {
             get {
-                // create a new action to add an item, this will be added 
-                // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
 
                 actions.Add (
@@ -168,34 +165,31 @@ namespace R7.University.Employee
                     false
                 );
 
-                if (Employee != null) {
-                    // otherwise, add "edit" action
-                    actions.Add (
-                        GetNextActionID (), 
-                        LocalizeString ("EditEmployee.Action"),
-                        ModuleActionType.EditContent, 
-                        "", 
-                        IconController.IconURL ("Edit"), 
-                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee"),
-                        false, 
-                        SecurityAccessLevel.Edit,
-                        true, 
-                        false
-                    );
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("EditEmployee.Action"),
+                    ModuleActionType.EditContent, 
+                    "", 
+                    IconController.IconURL ("Edit"), 
+                    EditUrl ("employee_id", Employee.EmployeeID.ToString (), "EditEmployee"),
+                    false, 
+                    SecurityAccessLevel.Edit,
+                    Employee != null, 
+                    false
+                );
 
-                    actions.Add (
-                        GetNextActionID (), 
-                        LocalizeString ("VCard.Action"),
-                        ModuleActionType.ContentOptions, 
-                        "", 
-                        IconController.IconURL ("View"), 
-                        EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard"),
-                        false,
-                        SecurityAccessLevel.View,
-                        true,
-                        true
-                    );
-                }
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("VCard.Action"),
+                    ModuleActionType.ContentOptions, 
+                    "", 
+                    IconController.IconURL ("View"), 
+                    EditUrl ("employee_id", Employee.EmployeeID.ToString (), "VCard"),
+                    false,
+                    SecurityAccessLevel.View,
+                    Employee != null,
+                    NewWindow: true
+                );
 
                 return actions;
             }

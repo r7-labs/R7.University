@@ -275,14 +275,12 @@ namespace R7.University.Division
         public ModuleActionCollection ModuleActions
         {
             get {
-                // create a new action to add an item, this will be added 
-                // to the controls dropdown menu
                 var actions = new ModuleActionCollection ();
                 var existingDivision = !Null.IsNull (Settings.DivisionID);
 
                 actions.Add (
                     GetNextActionID (),
-                    Localization.GetString ("AddDivision.Action", LocalResourceFile),
+                    LocalizeString ("AddDivision.Action"),
                     ModuleActionType.AddContent,
                     "",
                     IconController.IconURL ("Add"),
@@ -295,7 +293,7 @@ namespace R7.University.Division
 
                 actions.Add (
                     GetNextActionID (), 
-                    Localization.GetString ("EditDivision.Action", LocalResourceFile),
+                    LocalizeString ("EditDivision.Action"),
                     ModuleActionType.EditContent, 
                     "", 
                     IconController.IconURL ("Edit"),
@@ -308,15 +306,15 @@ namespace R7.University.Division
 
                 actions.Add (
                     GetNextActionID (), 
-                    Localization.GetString ("VCard.Action", LocalResourceFile),
+                    LocalizeString ("VCard.Action"),
                     ModuleActionType.ContentOptions, 
                     "", 
                     IconController.IconURL ("View"),
                     EditUrl ("division_id", Settings.DivisionID.ToString (), "VCard"),
                     false, 
                     SecurityAccessLevel.View,
-                    existingDivision, 
-                    true // open in new window
+                    existingDivision,
+                    NewWindow: true
                 );
 
                 return actions;
