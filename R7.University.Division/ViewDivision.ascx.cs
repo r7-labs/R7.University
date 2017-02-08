@@ -40,6 +40,7 @@ using R7.University.Division.Components;
 using R7.University.Division.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Security;
 using R7.University.Utilities;
 
 namespace R7.University.Division
@@ -56,6 +57,12 @@ namespace R7.University.Division
 
                 return viewModelContext;
             }
+        }
+
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         #region Model context
@@ -282,7 +289,7 @@ namespace R7.University.Division
                     EditUrl ("EditDivision"),
                     false,
                     SecurityAccessLevel.Edit,
-                    !existingDivision,
+                    !existingDivision && SecurityContext.CanAdd<DivisionInfo> (),
                     false
                 );
 

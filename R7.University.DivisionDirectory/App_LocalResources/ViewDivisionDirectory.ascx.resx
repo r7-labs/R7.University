@@ -15,6 +15,9 @@
     <data xml:space="preserve" name="ModuleHelp.Text">
         <value>&lt;P&gt;A R7.DivisionDirectory module&lt;/P&gt;</value>
     </data>
+	<data xml:space="preserve" name="AddDivision.Action">
+        <value>Add Division</value>
+    </data>
     <data xml:space="preserve" name="Title.Column">
         <value>Division</value>
     </data>

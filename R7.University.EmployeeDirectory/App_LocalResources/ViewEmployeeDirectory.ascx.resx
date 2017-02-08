@@ -12,8 +12,8 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data xml:space="preserve" name="AddContent.Action">
-        <value>Add Content</value>
+    <data xml:space="preserve" name="AddEmployee.Action">
+        <value>Add Employee</value>
     </data>
     <data xml:space="preserve" name="ModuleHelp.Text">
         <value>&lt;P&gt;A R7.EmployeeDirectory module&lt;/P&gt;</value>

@@ -40,6 +40,7 @@ using R7.University.EduProgram.Queries;
 using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Security;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
@@ -47,6 +48,12 @@ namespace R7.University.EduProgram
 {
     public partial class ViewEduProgram : PortalModuleBase<EduProgramSettings>, IActionable
     {
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
         #region Get data
 
         internal EduProgramModuleViewModel GetViewModel ()
@@ -169,34 +176,32 @@ namespace R7.University.EduProgram
             get
             {
                 var actions = new ModuleActionCollection ();
-                if (Settings.EduProgramId == null) {
-                    actions.Add (
-                        GetNextActionID (), 
-                        LocalizeString ("AddEduProgram.Action"),
-                        ModuleActionType.AddContent, 
-                        "", 
-                        IconController.IconURL ("Add"), 
-                        EditUrl ("EditEduProgram"),
-                        false, 
-                        SecurityAccessLevel.Edit,
-                        true, 
-                        false
-                    );
-                }
-                else {
-                    actions.Add (
-                        GetNextActionID (),
-                        LocalizeString ("EditEduProgram.Action"),
-                        ModuleActionType.EditContent, 
-                        "", 
-                        IconController.IconURL ("Edit"), 
-                        EditUrl ("eduprogram_id", Settings.EduProgramId.Value.ToString (), "EditEduProgram"),
-                        false, 
-                        SecurityAccessLevel.Edit,
-                        true, 
-                        false
-                    );
-                }
+
+                actions.Add (
+                    GetNextActionID (), 
+                    LocalizeString ("AddEduProgram.Action"),
+                    ModuleActionType.AddContent, 
+                    "", 
+                    IconController.IconURL ("Add"), 
+                    EditUrl ("EditEduProgram"),
+                    false, 
+                    SecurityAccessLevel.Edit,
+                    Settings.EduProgramId == null && SecurityContext.CanAdd<EduProgramInfo> (), 
+                    false
+                );
+
+                actions.Add (
+                    GetNextActionID (),
+                    LocalizeString ("EditEduProgram.Action"),
+                    ModuleActionType.EditContent, 
+                    "", 
+                    IconController.IconURL ("Edit"), 
+                    EditUrl ("eduprogram_id", Settings.EduProgramId.Value.ToString (), "EditEduProgram"),
+                    false, 
+                    SecurityAccessLevel.Edit,
+                    Settings.EduProgramId != null, 
+                    false
+                );
 
                 return actions;
             }

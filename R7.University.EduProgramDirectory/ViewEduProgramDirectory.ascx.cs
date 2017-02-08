@@ -38,6 +38,7 @@ using R7.University.EduProgramDirectory.Components;
 using R7.University.EduProgramDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Security;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramDirectory
@@ -80,6 +81,12 @@ namespace R7.University.EduProgramDirectory
 
                 return viewModelContext;
             }
+        }
+
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         #endregion
@@ -160,7 +167,7 @@ namespace R7.University.EduProgramDirectory
                     EditUrl ("EditEduProgram"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    true, 
+                    SecurityContext.CanAdd<EduProgramInfo> (), 
                     false
                 );
 			

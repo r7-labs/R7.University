@@ -44,6 +44,7 @@ using R7.University.Employee.SharedLogic;
 using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Security;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
@@ -124,6 +125,12 @@ namespace R7.University.Employee
             }
         }
 
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
         #endregion
 
         protected EmployeeInfo GetEmployee ()
@@ -157,7 +164,7 @@ namespace R7.University.Employee
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    Employee == null, 
+                    Employee == null && SecurityContext.CanAdd<EmployeeInfo> (), 
                     false
                 );
 

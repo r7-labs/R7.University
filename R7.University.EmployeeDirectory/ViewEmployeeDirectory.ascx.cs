@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,11 @@ using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
+using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
@@ -40,14 +44,14 @@ using R7.University.EmployeeDirectory.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 using R7.University.ViewModels;
-using DotNetNuke.Web.UI.WebControls.Extensions;
 
 namespace R7.University.EmployeeDirectory
 {
     // TODO: Make module instances co-exist on same page
 
-    public partial class ViewEmployeeDirectory: PortalModuleBase<EmployeeDirectorySettings>
+    public partial class ViewEmployeeDirectory: PortalModuleBase<EmployeeDirectorySettings>, IActionable
     {   
         #region Model context
 
@@ -82,6 +86,12 @@ namespace R7.University.EmployeeDirectory
             }
         }
 
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
         #endregion
 
         #region Session state properties
@@ -112,6 +122,31 @@ namespace R7.University.EmployeeDirectory
                 return objSearchTeachersOnly != null ? (bool) objSearchTeachersOnly : false;
             }
             set { Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId] = value; }
+        }
+
+        #endregion
+
+         #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions
+        {
+            get {
+                var actions = new ModuleActionCollection ();
+                actions.Add (
+                    GetNextActionID (),
+                    LocalizeString ("AddEmployee.Action"),
+                    ModuleActionType.AddContent,
+                    "",
+                    IconController.IconURL ("Add"),
+                    EditUrl ("EditEmployee"),
+                    false,
+                    SecurityAccessLevel.Edit,
+                    SecurityContext.CanAdd<EmployeeInfo> (),
+                    false
+                );
+
+                return actions;
+            }
         }
 
         #endregion

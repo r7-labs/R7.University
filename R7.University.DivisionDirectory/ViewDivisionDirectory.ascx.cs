@@ -26,6 +26,9 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
@@ -39,6 +42,7 @@ using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
@@ -46,7 +50,7 @@ namespace R7.University.DivisionDirectory
 {
     // TODO: Make module instances co-exist on same page
 
-    public partial class ViewDivisionDirectory : PortalModuleBase<DivisionDirectorySettings>
+    public partial class ViewDivisionDirectory : PortalModuleBase<DivisionDirectorySettings>, IActionable
     {
         #region Model context
 
@@ -66,6 +70,8 @@ namespace R7.University.DivisionDirectory
         }
 
         #endregion
+
+
 
         #region Session properties
 
@@ -110,6 +116,37 @@ namespace R7.University.DivisionDirectory
                 return viewModelContext;
             }
         }
+
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
+        #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions
+        {
+            get {
+                var actions = new ModuleActionCollection ();
+                actions.Add (
+                    GetNextActionID (),
+                    LocalizeString ("AddDivision.Action"),
+                    ModuleActionType.AddContent,
+                    "",
+                    IconController.IconURL ("Add"),
+                    EditUrl ("EditDivision"),
+                    false,
+                    SecurityAccessLevel.Edit,
+                    SecurityContext.CanAdd<DivisionInfo> (),
+                    false
+                );
+
+                return actions;
+            }
+        }
+
+        #endregion
 
         #region Handlers
 

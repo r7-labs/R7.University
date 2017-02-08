@@ -34,6 +34,7 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
+using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
@@ -42,10 +43,10 @@ using R7.University.EmployeeList.Queries;
 using R7.University.EmployeeList.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Security;
 using R7.University.SharedLogic;
-using R7.University.ViewModels;
-using R7.DotNetNuke.Extensions.TextExtensions;
 using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.EmployeeList
 {
@@ -81,6 +82,12 @@ namespace R7.University.EmployeeList
         protected ViewModelContext<EmployeeListSettings> ViewModelContext
         {
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext<EmployeeListSettings> (this, Settings)); }
+        }
+
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         #endregion
@@ -178,7 +185,7 @@ namespace R7.University.EmployeeList
                         : EditUrl ("division_id", Settings.DivisionID.ToString (), "EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    true, 
+                    SecurityContext.CanAdd<EmployeeInfo> (),
                     false
                 );
 			

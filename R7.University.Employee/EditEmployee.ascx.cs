@@ -179,6 +179,12 @@ namespace R7.University.Employee
             get { return IconController.IconURL ("Delete"); }
         }
 
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
         #endregion
 
         #region Handlers
@@ -511,12 +517,6 @@ namespace R7.University.Employee
                     disciplineInfos.Add (ep.NewEmployeeDisciplineInfo ());
 
             return disciplineInfos;
-        }
-
-        ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         /// <summary>
