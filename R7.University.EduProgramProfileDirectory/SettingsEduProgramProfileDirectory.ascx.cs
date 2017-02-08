@@ -56,16 +56,10 @@ namespace R7.University.EduProgramProfileDirectory
 
         #endregion
 
-        private ViewModelContext viewModelContext;
-
+        ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
         {
-            get { 
-                if (viewModelContext == null)
-                    viewModelContext = new ViewModelContext (this);
-
-                return viewModelContext;
-            }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
         }
 
         protected override void OnInit (EventArgs e)

@@ -47,16 +47,10 @@ namespace R7.University.Division
 {
     public partial class ViewDivision : PortalModuleBase<DivisionSettings>, IActionable
     {
-        private ViewModelContext viewModelContext;
-
+        ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
         {
-            get { 
-                if (viewModelContext == null)
-                    viewModelContext = new ViewModelContext (this);
-
-                return viewModelContext;
-            }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
         }
 
         ISecurityContext securityContext;

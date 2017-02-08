@@ -106,7 +106,7 @@ namespace R7.University.EduProgram
             set { ViewState ["SelectedTab"] = value; }
         }
 
-        private ViewModelContext viewModelContext;
+        ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
         {
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }

@@ -106,15 +106,10 @@ namespace R7.University.DivisionDirectory
 
         #endregion
 
-        private ViewModelContext<DivisionDirectorySettings> viewModelContext;
+        ViewModelContext<DivisionDirectorySettings> viewModelContext;
         protected ViewModelContext<DivisionDirectorySettings> ViewModelContext
         {
-            get {
-                if (viewModelContext == null)
-                    viewModelContext = new ViewModelContext<DivisionDirectorySettings> (this, Settings);
-
-                return viewModelContext;
-            }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext<DivisionDirectorySettings> (this, Settings)); }
         }
 
         ISecurityContext securityContext;

@@ -75,16 +75,10 @@ namespace R7.University.EduProgramProfileDirectory
             get { return IconController.IconURL ("Edit"); }
         }
 
-        private ViewModelContext viewModelContext;
-
+        ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
         {
-            get { 
-                if (viewModelContext == null)
-                    viewModelContext = new ViewModelContext (this);
-
-                return viewModelContext;
-            }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
         }
 
         ISecurityContext securityContext;

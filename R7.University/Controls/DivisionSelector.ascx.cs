@@ -75,15 +75,10 @@ namespace R7.University.Controls
 
         #endregion
 
-        private ViewModelContext viewModelContext;
+        ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
         {
-            get {
-                if (viewModelContext == null) {
-                    viewModelContext = new ViewModelContext (this, this.FindParentOfType<IModuleControl> ());
-                }
-                return viewModelContext;
-            }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this, this.FindParentOfType<IModuleControl> ())); }
         }
 
         protected bool IsCurrentMode (DivisionSelectionMode mode)

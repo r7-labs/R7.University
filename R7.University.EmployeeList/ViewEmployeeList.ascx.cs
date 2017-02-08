@@ -78,7 +78,7 @@ namespace R7.University.EmployeeList
             get { return IconController.IconURL ("Edit"); }
         }
 
-        private ViewModelContext<EmployeeListSettings> viewModelContext;
+        ViewModelContext<EmployeeListSettings> viewModelContext;
         protected ViewModelContext<EmployeeListSettings> ViewModelContext
         {
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext<EmployeeListSettings> (this, Settings)); }
