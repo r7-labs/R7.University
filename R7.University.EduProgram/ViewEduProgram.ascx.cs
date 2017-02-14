@@ -196,7 +196,7 @@ namespace R7.University.EduProgram
                     ModuleActionType.EditContent, 
                     "", 
                     IconController.IconURL ("Edit"), 
-                    EditUrl ("eduprogram_id", Settings.EduProgramId.Value.ToString (), "EditEduProgram"),
+                    EditUrl ("eduprogram_id", Settings.EduProgramId.ToString (), "EditEduProgram"),
                     false, 
                     SecurityAccessLevel.Edit,
                     Settings.EduProgramId != null, 
