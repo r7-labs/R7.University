@@ -30,18 +30,6 @@ namespace R7.University.Models
             return (startDate == null || now >= startDate) && (endDate == null || now < endDate);
         }
 
-        public static bool IsMainEntity (Type entityType)
-        {
-            if (entityType == typeof (DivisionInfo)
-                || entityType == typeof (EmployeeInfo)
-                || entityType == typeof (EduProgramInfo)
-                || entityType == typeof (EduProgramProfileInfo)) {
-                return true;
-            }
-
-            return false;
-        }
-
         #region Extension methods
 
         public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)

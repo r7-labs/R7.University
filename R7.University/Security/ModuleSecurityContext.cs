@@ -38,7 +38,7 @@ namespace R7.University.Security
 
         public bool CanAdd<TEntity> () where TEntity : class
         {
-            if (ModelHelper.IsMainEntity (typeof (TEntity))) {
+            if (typeof (IUniversityBaseEntity).IsAssignableFrom (typeof (TEntity))) {
                 return IsAdmin;
             }
 
@@ -47,7 +47,7 @@ namespace R7.University.Security
 
         public bool CanDelete<TEntity> (TEntity entity) where TEntity : class
         {
-            if (ModelHelper.IsMainEntity (entity.GetType ())) {
+            if (entity is IUniversityBaseEntity) {
                 return IsAdmin;
             }
 
