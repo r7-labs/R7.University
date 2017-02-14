@@ -23,6 +23,8 @@ namespace R7.University.Security
 {
     public interface ISecurityContext
     {
+        int UserId { get; }
+
         bool IsAdmin { get; }
 
         bool CanAdd<TEntity> () where TEntity : class;

@@ -26,10 +26,13 @@ namespace R7.University.Security
 {
     public class ModuleSecurityContext : ISecurityContext
     {
+        public int UserId { get; protected set; }
+
         public bool IsAdmin { get; protected set; }
 
         public ModuleSecurityContext (UserInfo user)
         {
+            UserId = user.UserID;
             IsAdmin = user.IsSuperUser || user.IsInRole ("Administrators");
         }
 

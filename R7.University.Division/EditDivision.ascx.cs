@@ -244,12 +244,6 @@ namespace R7.University.Division
             item.IsVirtual = checkIsVirtual.Checked;
             item.IsInformal = checkIsInformal.Checked;
             item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
-
-            // update working hours
-            item.WorkingHours = WorkingHoursLogic.Update (
-                comboWorkingHours,
-                textWorkingHours.Text,
-                checkAddToVocabulary.Checked);
         }
 
         #region implemented abstract members of EditPortalModuleBase
@@ -261,23 +255,36 @@ namespace R7.University.Division
 
         protected override void AddItem (DivisionInfo item)
         {
-            // update audit info
-            item.CreatedByUserID = item.LastModifiedByUserID = UserId;
-            item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
+            if (SecurityContext.CanAdd<DivisionInfo> ()) {
 
-            ModelContext.Add<DivisionInfo> (item);
-            ModelContext.SaveChanges ();
+                // update working hours
+                item.WorkingHours = WorkingHoursLogic.Update (
+                    comboWorkingHours,
+                    textWorkingHours.Text,
+                    checkAddToVocabulary.Checked
+                );
 
-            // then adding new division from Division module, 
-            // set calling module to display new division info
-            if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division") {
-                Settings.DivisionID = item.DivisionID;
-                new DivisionSettingsRepository ().SaveSettings (ModuleConfiguration, Settings);
+                new AddCommand<DivisionInfo> (ModelContext, SecurityContext).Add (item);
+                ModelContext.SaveChanges ();
+
+                // then adding new division from Division module, 
+                // set calling module to display new division info
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division") {
+                    Settings.DivisionID = item.DivisionID;
+                    new DivisionSettingsRepository ().SaveSettings (ModuleConfiguration, Settings);
+                }
             }
         }
 
         protected override void UpdateItem (DivisionInfo item)
         {
+            // update working hours
+            item.WorkingHours = WorkingHoursLogic.Update (
+                comboWorkingHours,
+                textWorkingHours.Text,
+                checkAddToVocabulary.Checked
+            );
+
             // update audit info
             item.LastModifiedByUserID = UserId;
             item.LastModifiedOnDate = DateTime.Now;

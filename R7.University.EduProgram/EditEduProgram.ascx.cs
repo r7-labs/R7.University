@@ -248,14 +248,12 @@ namespace R7.University.EduProgram
 
             try {
                 EduProgramInfo item;
-                var isNew = false;
 
                 // determine if we are adding or updating
                 // ALT: if (Null.IsNull (itemId))
-                if (!itemId.HasValue) {
+                if (itemId == null) {
                     // add new record
                     item = new EduProgramInfo ();
-                    isNew = true;
                 }
                 else {
                     // update existing record
@@ -275,13 +273,10 @@ namespace R7.University.EduProgram
                 item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
                 item.DivisionId = divisionSelector.DivisionId;
 
-                if (itemId == null) {
-                    item.CreatedOnDate = DateTime.Now;
-                    item.LastModifiedOnDate = item.CreatedOnDate;
-                    item.CreatedByUserID = UserInfo.UserID;
-                    item.LastModifiedByUserID = item.CreatedByUserID;
+                if (itemId == null && SecurityContext.CanAdd<EduProgramInfo> ()) {
 
-                    ModelContext.Add<EduProgramInfo> (item);
+                    var now = DateTime.Now;
+                    new AddCommand<EduProgramInfo> (ModelContext, SecurityContext).Add (item, now);
                     ModelContext.SaveChanges (false);
 
                     if (checkAddDefaultProfile.Checked) {
@@ -290,16 +285,20 @@ namespace R7.University.EduProgram
                             ProfileTitle = string.Empty,
                             EduProgramID = item.EduProgramID,
                             EduLevelId = item.EduLevelID,
-                            CreatedOnDate = item.CreatedOnDate,
-                            LastModifiedOnDate = item.LastModifiedOnDate,
-                            CreatedByUserID = item.CreatedByUserID,
-                            LastModifiedByUserID = item.LastModifiedByUserID,
                             // unpublish profile
                             EndDate = item.CreatedOnDate.Date
                         };
 
-                        ModelContext.Add<EduProgramProfileInfo> (defaultProfile);
+                        new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (defaultProfile, now);
                         ModelContext.SaveChanges (false);
+                    }
+
+                    // update EduProgram module settings then adding new item
+                    if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
+                        var settingsRepository = new EduProgramSettingsRepository ();
+                        var settings = settingsRepository.GetSettings (ModuleConfiguration);
+                        settings.EduProgramId = item.EduProgramID;
+                        settingsRepository.SaveSettings (ModuleConfiguration, settings);
                     }
                 }
                 else {
@@ -315,19 +314,13 @@ namespace R7.University.EduProgram
                     ModelContext.Update<EduProgramInfo> (item);
                 }
 
-                // update EduProgram module settings then adding new item
-                if (isNew && ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
-                    var settingsRepository = new EduProgramSettingsRepository ();
-                    var settings = settingsRepository.GetSettings (ModuleConfiguration);
-                    settings.EduProgramId = item.EduProgramID;
-                    settingsRepository.SaveSettings (ModuleConfiguration, settings);
-                }
-
                 // update related documents
-                new UpdateDocumentsCommand (ModelContext)
-                    .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
+                if (itemId != null || SecurityContext.CanAdd<EduProgramInfo> ()) {
+                    new UpdateDocumentsCommand (ModelContext)
+                        .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
 
-                ModelContext.SaveChanges ();
+                    ModelContext.SaveChanges ();
+                }
 
                 ModuleController.SynchronizeModule (ModuleId);
 

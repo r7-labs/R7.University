@@ -25,10 +25,13 @@ namespace R7.University.Tests.Security
 {
     public class TestSecurityContext : ISecurityContext
     {
+        public int UserId { get; protected set; }
+
         public bool IsAdmin { get; protected set; }
 
-        public TestSecurityContext (bool isAdmin)
+        public TestSecurityContext (int userId, bool isAdmin)
         {
+            UserId = userId;
             IsAdmin = isAdmin;
         }
 

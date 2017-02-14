@@ -49,6 +49,7 @@ namespace R7.University.SharedLogic
                 textWorkingHours.Text = workingHours;
         }
 
+        // TODO: Need separate methods to get and update 
         public static string Update (DropDownList comboWorkingHours, string workingHours, bool addToVocabulary)
         {
             workingHours = workingHours.Trim ();

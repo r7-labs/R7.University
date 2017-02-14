@@ -39,7 +39,7 @@ namespace R7.University.Tests.Commands
                 var entity = new DivisionInfo { DivisionID = 1 };
                 modelContext.Add (entity);
 
-                var securityContext = new TestSecurityContext (isAdmin);
+                var securityContext = new TestSecurityContext (1, isAdmin);
                 var command = new DeleteCommand<DivisionInfo> (modelContext, securityContext);
 
                 command.Delete (entity);

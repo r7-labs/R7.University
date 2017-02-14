@@ -395,7 +395,7 @@ namespace R7.University.Employee
 
                 // determine if we are adding or updating
                 // ALT: if (Null.IsNull (itemId))
-                if (!itemId.HasValue) {
+                if (itemId == null) {
                     // to add new record
                     item = new EmployeeInfo ();
                 }
@@ -419,14 +419,8 @@ namespace R7.University.Employee
                 item.WorkingPlace = textWorkingPlace.Text.Trim ();
                 item.Biography = textBiography.Text.Trim ();
                 item.ShowBarcode = checkShowBarcode.Checked;
-				
-                // update working hours
-                item.WorkingHours = WorkingHoursLogic.Update (comboWorkingHours, textWorkingHours.Text, 
-                    checkAddToVocabulary.Checked);
-
-                item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
+				item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
                 item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
-
                 item.StartDate = datetimeStartDate.SelectedDate;
                 item.EndDate = datetimeEndDate.SelectedDate;
 
@@ -434,13 +428,17 @@ namespace R7.University.Employee
                 item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
                 item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
 
-                if (!itemId.HasValue) {		
-                    // update audit info
-                    item.CreatedByUserID = item.LastModifiedByUserID = this.UserId;
-                    item.CreatedOnDate = item.LastModifiedOnDate = DateTime.Now;
-	
-                    // add employee
-                    ModelContext.Add<EmployeeInfo> (item);
+                if (itemId == null && SecurityContext.CanAdd<EmployeeInfo> ()) {
+
+                    // update working hours
+                    item.WorkingHours = WorkingHoursLogic.Update (
+                        comboWorkingHours,
+                        textWorkingHours.Text,
+                        checkAddToVocabulary.Checked
+                    );
+
+                    // add employeee
+                    new AddCommand<EmployeeInfo> (ModelContext, SecurityContext).Add (item);
                     ModelContext.SaveChanges (false);
                     
                     // then adding new employee from Employee or EmployeeDetails modules, 
@@ -455,6 +453,13 @@ namespace R7.University.Employee
                     }
                 }
                 else {
+                    // update working hours
+                    item.WorkingHours = WorkingHoursLogic.Update (
+                        comboWorkingHours,
+                        textWorkingHours.Text,
+                        checkAddToVocabulary.Checked
+                    );
+
                     // update audit info
                     item.LastModifiedByUserID = UserId;
                     item.LastModifiedOnDate = DateTime.Now;
@@ -463,16 +468,19 @@ namespace R7.University.Employee
                     ModelContext.Update<EmployeeInfo> (item);
                 }
 
-                new UpdateOccupiedPositionsCommand (ModelContext)
-                    .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+                if (itemId != null || SecurityContext.CanAdd<EmployeeInfo> ()) {
+                    
+                    new UpdateOccupiedPositionsCommand (ModelContext)
+                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
 
-                new UpdateEmployeeAchievementsCommand (ModelContext)
-                    .UpdateEmployeeAchievements (GetEmployeeAchievements (), item.EmployeeID);
-                
-                new UpdateEmployeeDisciplinesCommand (ModelContext)
-                    .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+                    new UpdateEmployeeAchievementsCommand (ModelContext)
+                        .UpdateEmployeeAchievements (GetEmployeeAchievements (), item.EmployeeID);
 
-                ModelContext.SaveChanges ();
+                    new UpdateEmployeeDisciplinesCommand (ModelContext)
+                        .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+
+                    ModelContext.SaveChanges ();
+                }
 
                 ModuleController.SynchronizeModule (ModuleId);
 

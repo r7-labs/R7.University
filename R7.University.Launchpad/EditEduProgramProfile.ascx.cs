@@ -260,10 +260,6 @@ namespace R7.University.Launchpad
             item.DivisionId = divisionSelector.DivisionId;
 
             if (ItemId == null) {
-                item.CreatedOnDate = DateTime.Now;
-                item.LastModifiedOnDate = item.CreatedOnDate;
-                item.CreatedByUserID = UserInfo.UserID;
-                item.LastModifiedByUserID = item.CreatedByUserID;
             }
             else {
                 item.LastModifiedOnDate = DateTime.Now;
@@ -292,17 +288,19 @@ namespace R7.University.Launchpad
 
         protected override void AddItem (EduProgramProfileInfo item)
         {
-            ModelContext.Add (item);
+            if (SecurityContext.CanAdd<EduProgramProfileInfo> ()) {
 
-            ModelContext.SaveChanges (false);
+                new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (item);
+                ModelContext.SaveChanges (false);
 
-            new UpdateDocumentsCommand (ModelContext)
-                .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
+                new UpdateDocumentsCommand (ModelContext)
+                    .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
 
-            new UpdateEduProgramProfileFormsCommand (ModelContext)
-                .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
-            
-            ModelContext.SaveChanges ();
+                new UpdateEduProgramProfileFormsCommand (ModelContext)
+                    .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
+
+                ModelContext.SaveChanges ();
+            }
         }
 
         protected override void UpdateItem (EduProgramProfileInfo item)
