@@ -27,6 +27,6 @@ namespace R7.University.Security
     {
         IModuleControl Module { get; }
 
-        bool CanChangeModuleSettings ();
+        bool CanManageModule ();
     }
 }

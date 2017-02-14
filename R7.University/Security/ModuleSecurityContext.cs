@@ -62,7 +62,7 @@ namespace R7.University.Security
             return true;
         }
 
-        public bool CanChangeModuleSettings ()
+        public bool CanManageModule ()
         {
             return IsAdmin;
         }
