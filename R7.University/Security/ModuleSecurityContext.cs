@@ -20,20 +20,28 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DotNetNuke.Entities.Users;
+using DotNetNuke.UI.Modules;
 using R7.University.Models;
 
 namespace R7.University.Security
 {
-    public class ModuleSecurityContext : ISecurityContext
+    public class ModuleSecurityContext : IModuleSecurityContext
     {
         public int UserId { get; protected set; }
 
         public bool IsAdmin { get; protected set; }
 
+        public IModuleControl Module { get; protected set; }
+
         public ModuleSecurityContext (UserInfo user)
         {
             UserId = user.UserID;
             IsAdmin = user.IsSuperUser || user.IsInRole ("Administrators");
+        }
+
+        public ModuleSecurityContext (UserInfo user, IModuleControl module): this (user)
+        {
+            Module = module;
         }
 
         public bool CanAdd<TEntity> () where TEntity : class
@@ -52,6 +60,11 @@ namespace R7.University.Security
             }
 
             return true;
+        }
+
+        public bool CanChangeModuleSettings ()
+        {
+            return IsAdmin;
         }
     }
 }
