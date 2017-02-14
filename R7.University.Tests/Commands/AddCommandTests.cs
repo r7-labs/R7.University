@@ -1,5 +1,5 @@
 ﻿//
-//  DeleteCommandTests.cs
+//  AddCommandTests.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Commands;
@@ -29,24 +30,31 @@ using Xunit;
 
 namespace R7.University.Tests.Commands
 {
-    public class DeleteCommandTests
+    public class AddCommandTests
     {
         [Theory]
         [MemberData (nameof (TestData))]
-        public void DeleteCommandTest (bool isAdmin)
+        public void AddCommandTest (bool isAdmin)
         {
             using (var modelContext = new TestModelContext ()) {
+                var userId = 100;
+                var now = DateTime.Now;
                 var entity = new DivisionInfo { DivisionID = 1 };
-                modelContext.Add (entity);
+                var securityContext = new TestSecurityContext (userId, isAdmin);
+                var command = new AddCommand<DivisionInfo> (modelContext, securityContext);
 
-                var securityContext = new TestSecurityContext (1, isAdmin);
-                var command = new DeleteCommand<DivisionInfo> (modelContext, securityContext);
+                command.Add (entity, now);
 
-                command.Delete (entity);
+                var entityLoaded = modelContext
+                    .QueryOne<DivisionInfo> (d => d.DivisionID == entity.DivisionID)
+                    .SingleOrDefault ();
+                
+                Assert.Equal (isAdmin, null != entityLoaded);
 
-                Assert.Equal (isAdmin, null == modelContext
-                              .QueryOne<DivisionInfo> (d => d.DivisionID == entity.DivisionID)
-                              .SingleOrDefault ());
+                Assert.Equal (now, entityLoaded.CreatedOnDate);
+                Assert.Equal (now, entityLoaded.LastModifiedOnDate);
+                Assert.Equal (userId, entityLoaded.CreatedByUserID);
+                Assert.Equal (userId, entityLoaded.LastModifiedByUserID);
             }
         }
 
