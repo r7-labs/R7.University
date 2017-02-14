@@ -215,9 +215,11 @@ namespace R7.University.EduProgram
                     else {
                         auditControl.Visible = false;
                         buttonDelete.Visible = false;
-                        linkAddEduProgramProfile.Visible = false;
-                        panelAddDefaultProfile.Visible = true;
                     }
+
+                    // show/hide add default profile controls
+                    linkAddEduProgramProfile.Visible = itemId != null && SecurityContext.CanAdd<EduProgramProfileInfo> ();
+                    panelAddDefaultProfile.Visible = itemId == null && SecurityContext.CanAdd<EduProgramProfileInfo> ();
                 }
             }
             catch (Exception ex) {

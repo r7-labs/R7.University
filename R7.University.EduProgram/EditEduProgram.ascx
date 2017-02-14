@@ -84,7 +84,7 @@
 					<label class="dnnLabel" />
 					<asp:HyperLink id="linkAddEduProgramProfile" runat="server" CssClass="dnnPrimaryAction" resourcekey="AddEduProgramProfile.Text" />
                 </div>
-				<asp:Panel id="panelAddDefaultProfile" runat="server" CssClass="dnnFormItem" Visible="false">
+				<asp:Panel id="panelAddDefaultProfile" runat="server" CssClass="dnnFormItem">
                     <dnn:Label id="labelAddDefaultProfile" runat="server" ControlName="checkAddDefaultProfile" />
                     <asp:CheckBox id="checkAddDefaultProfile" runat="server" Checked="true" />
                 </asp:Panel>
