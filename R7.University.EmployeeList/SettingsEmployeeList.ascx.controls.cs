@@ -5,6 +5,7 @@ namespace R7.University.EmployeeList
 {
     public partial class SettingsEmployeeList
     {
+        protected Panel panelGeneralSettings;
         protected DivisionSelector divisionSelector;
         protected CheckBox checkIncludeSubdivisions;
         protected CheckBox checkHideHeadEmployee;

@@ -30,11 +30,18 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Employee.Components;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 
 namespace R7.University.Employee
 {
     public partial class SettingsEmployee : ModuleSettingsBase<EmployeeSettings>
     {
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -44,6 +51,8 @@ namespace R7.University.Employee
                 comboEmployees.DataSource = new FlatQuery<EmployeeInfo> (modelContext).ListOrderBy (empl => empl.LastName);
                 comboEmployees.DataBind ();
             }
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
 
             comboEmployees.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

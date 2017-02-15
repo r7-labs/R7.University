@@ -6,16 +6,21 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Launchpad/admin.css" Priority="200" />
 
 <div class="dnnForm dnnClear university-launchpad-settings">
-	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
-	<fieldset>	
-		<div class="dnnFormItem">
-			<dnn:Label id="labelTables" runat="server" ControlName="listTables" />
-			<asp:CheckBoxList id="listTables" runat="server" CssClass="dnn-form-control" />
-		</div>
+	<asp:Panel id="panelGeneralSettings" runat="server">
+	    <h2 class="dnnFormSectionHead"><a href="#"><asp:Label runat="server" ResourceKey="GeneralSettings.Section" /></a></h2>
+    	<fieldset>
+    		<div class="dnnFormItem">
+    			<dnn:Label id="labelTables" runat="server" ControlName="listTables" />
+    			<asp:CheckBoxList id="listTables" runat="server" CssClass="dnn-form-control" />
+    		</div>
+        </fieldset>
+    </asp:Panel>
+	<h2 class="dnnFormSectionHead"><a href="#"><asp:Label runat="server" ResourceKey="DisplaySettings.Section" /></a></h2>
+	<fieldset>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelPageSize" runat="server" ControlName="comboPageSize" />
 			<asp:DropDownList id="comboPageSize" runat="server" />
 		</div>
-	</fieldset>	
+	</fieldset>
 </div>
 

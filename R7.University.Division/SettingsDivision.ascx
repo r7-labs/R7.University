@@ -9,11 +9,17 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
-    <fieldset>	
-		<div class="dnnFormItem">
-			<dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
-			<controls:DivisionSelector id="divisionSelector" runat="server" />
-		</div>
+	<asp:Panel id="panelGeneralSettings" runat="server">
+		<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("GeneralSettings.Section") %></a></h2>
+        <fieldset>
+    		<div class="dnnFormItem">
+    			<dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
+    			<controls:DivisionSelector id="divisionSelector" runat="server" />
+    		</div>
+    	</fieldset>		
+    </asp:Panel>
+	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
+	<fieldset>
 		<div class="dnnFormItem">
             <dnn:Label id="labelShowAddress" runat="server" ControlName="checkShowAddress" />
 			<asp:CheckBox id="checkShowAddress" runat="server" />

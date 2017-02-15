@@ -6,19 +6,22 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/admin.css" />
 
 <div class="dnnForm dnnClear employee-directory-settings">
-    <fieldset>  
-        <div class="dnnFormItem">
-            <dnn:Label id="labelMode" runat="server" ControlName="comboMode" />
-            <asp:DropDownList id="comboMode" runat="server" />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
-            <asp:CheckBoxList id="listEduLevels" runat="server" CssClass="dnn-form-control" />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelShowAllTeachers" runat="server" ControlName="checkShowAllTeachers" />
-            <asp:CheckBox id="checkShowAllTeachers" runat="server" />
-        </div>
-    </fieldset>
+	<asp:Panel id="panelGeneralSettings" runat="server">
+        <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("GeneralSettings.Section") %></a></h2>
+        <fieldset>  
+            <div class="dnnFormItem">
+                <dnn:Label id="labelMode" runat="server" ControlName="comboMode" />
+                <asp:DropDownList id="comboMode" runat="server" />
+            </div>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
+                <asp:CheckBoxList id="listEduLevels" runat="server" CssClass="dnn-form-control" />
+            </div>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelShowAllTeachers" runat="server" ControlName="checkShowAllTeachers" />
+                <asp:CheckBox id="checkShowAllTeachers" runat="server" />
+            </div>
+        </fieldset>
+	</asp:Panel>	
 </div>
 

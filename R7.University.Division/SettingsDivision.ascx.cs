@@ -27,6 +27,7 @@ using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Division.Components;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 
 namespace R7.University.Division
 {
@@ -50,6 +51,19 @@ namespace R7.University.Division
         }
 
         #endregion
+
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
+
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
+        }
 
         /// <summary>
         /// Handles the loading of the module setting for this control

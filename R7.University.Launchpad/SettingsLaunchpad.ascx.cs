@@ -23,10 +23,11 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
+using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.ControlExtensions;
 using R7.University.Launchpad.Components;
-using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.University.Security;
 
 namespace R7.University.Launchpad
 {
@@ -35,6 +36,12 @@ namespace R7.University.Launchpad
         #region Properties
 
         protected LaunchpadTables LaunchpadTables = new LaunchpadTables ();
+
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
 
         #endregion
 
@@ -52,6 +59,8 @@ namespace R7.University.Launchpad
             foreach (var table in LaunchpadTables.Tables) {
                 listTables.AddItem (LocalizeString (table.ResourceKey), table.Name);
             }
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

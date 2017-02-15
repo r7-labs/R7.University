@@ -8,19 +8,24 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
-	<h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBaseSettings.Text" /></a></h2>
-	<fieldset>	
-		<div class="dnnFormItem">
-			<dnn:Label id="labelEmployee" runat="server" ControlName="comboEmployees" />
-            <asp:DropDownList id="comboEmployees" runat="server" CssClass="dnn-ac-combobox"
-                DataValueField="EmployeeID"
-                DataTextField="AbbrName"
-            />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" />
-            <asp:CheckBox id="checkShowCurrentUser" runat="server" Checked="false" />
-        </div>
+	<asp:Panel id="panelGeneralSettings" runat="server">
+    	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("GeneralSettings.Section") %></a></h2>
+    	<fieldset>
+    		<div class="dnnFormItem">
+    			<dnn:Label id="labelEmployee" runat="server" ControlName="comboEmployees" />
+                <asp:DropDownList id="comboEmployees" runat="server" CssClass="dnn-ac-combobox"
+                    DataValueField="EmployeeID"
+                    DataTextField="AbbrName"
+                />
+            </div>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelShowCurrentUser" runat="server" ControlName="checkShowCurrentUser" />
+                <asp:CheckBox id="checkShowCurrentUser" runat="server" Checked="false" />
+            </div>
+    	</fieldset>
+	</asp:Panel>
+	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
+	<fieldset>
         <div class="dnnFormItem">
             <dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" />
             <asp:CheckBox id="checkAutoTitle" runat="server" Checked="true" />

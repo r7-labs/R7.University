@@ -7,23 +7,28 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
-    <h2 class="dnnFormSectionHead"><a href=""><asp:Label runat="server" ResourceKey="sectionBasicSettings.Text" /></a></h2>
+	<asp:Panel id="panelGeneralSettings" runat="server">
+        <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("GeneralSettings.Section") %></a></h2>
+        <fieldset>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+                <asp:DropDownList id="comboEduLevel" runat="server" 
+                    AutoPostBack="true"
+                    OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
+                    DataValueField="EduLevelID"
+                    DataTextField="Title" />
+            </div>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
+                <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
+                    DataValueField="Value"
+                    DataTextField="Text" />
+            </div>
+        </fieldset>
+	</asp:Panel>	
+	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
     <fieldset>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-            <asp:DropDownList id="comboEduLevel" runat="server" 
-                AutoPostBack="true"
-                OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
-                DataValueField="EduLevelID"
-                DataTextField="Title" />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-            <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
-                DataValueField="Value"
-                DataTextField="Text" />
-        </div>
-        <div class="dnnFormItem">
+		<div class="dnnFormItem">
             <dnn:Label id="labelAutoTitle" runat="server" ControlName="checkAutoTitle" />
             <asp:CheckBox id="checkAutoTitle" runat="server" />
         </div>

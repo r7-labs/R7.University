@@ -18,6 +18,12 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
         <value>О настройках модуля EmployeeList</value>
     </data>
+	<data name="GeneralSettings.Section" xml:space="preserve">
+        <value>Основные настройки</value>
+    </data>
+    <data name="DisplaySettings.Section" xml:space="preserve">
+        <value>Настройки отображения</value>
+    </data>
 	<data name="labelDivision.Text" xml:space="preserve">
         <value>Подразделение:</value>
     </data>

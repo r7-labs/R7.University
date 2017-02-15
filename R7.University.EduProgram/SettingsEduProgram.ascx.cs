@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -30,6 +30,7 @@ using R7.University.EduProgram.Components;
 using R7.University.EduProgram.Queries;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgram
@@ -55,6 +56,12 @@ namespace R7.University.EduProgram
 
         #endregion
 
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -65,6 +72,8 @@ namespace R7.University.EduProgram
             if (comboEduLevel.Items.Count > 0) {
                 BindEduPrograms (int.Parse (comboEduLevel.SelectedValue));
             }
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)

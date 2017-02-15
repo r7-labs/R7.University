@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -25,17 +25,26 @@ using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.DivisionDirectory.Components;
+using R7.University.Security;
 
 namespace R7.University.DivisionDirectory
 {
     public partial class SettingsDivisionDirectory : ModuleSettingsBase<DivisionDirectorySettings>
     {
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
             comboMode.DataSource = Enum.GetNames (typeof (DivisionDirectoryMode));
             comboMode.DataBind ();
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

@@ -18,6 +18,12 @@
     <data xml:space="preserve" name="ModuleHelp.Text">
         <value>About DivisionDirectory Settings</value>
     </data>
+	<data name="GeneralSettings.Section" xml:space="preserve">
+        <value>General Settings</value>
+    </data>
+    <data name="DisplaySettings.Section" xml:space="preserve">
+        <value>Display Settings</value>
+    </data>
     <data name="labelMode.Text" xml:space="preserve">
         <value>Mode:</value>
     </data>

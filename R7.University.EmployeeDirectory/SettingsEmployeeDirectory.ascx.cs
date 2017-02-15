@@ -31,6 +31,7 @@ using R7.University.Models;
 using R7.University.Queries;
 using R7.University.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
+using R7.University.Security;
 
 namespace R7.University.EmployeeDirectory
 {
@@ -55,6 +56,12 @@ namespace R7.University.EmployeeDirectory
 
         #endregion
 
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -66,6 +73,8 @@ namespace R7.University.EmployeeDirectory
             foreach (var eduLevel in new EduLevelQuery (ModelContext).List ()) {
                 listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

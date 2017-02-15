@@ -5,11 +5,17 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.DivisionDirectory/admin.css" Priority="200" />
 
 <div class="dnnForm dnnClear">
-    <fieldset>  
+	<asp:Panel id="panelGeneralSettings" runat="server">
+    <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("GeneralSettings.Section") %></a></h2>
+    <fieldset>
         <div class="dnnFormItem">
             <dnn:Label id="labelMode" runat="server" ControlName="comboMode" />
             <asp:DropDownList id="comboMode" runat="server" />
         </div>
+	</fieldset>
+	</asp:Panel>
+	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
+	<fieldset>
 		<div class="dnnFormItem">
             <dnn:Label id="labelShowInformal" runat="server" ControlName="checkShowInformal" />
             <asp:CheckBox id="checkShowInformal" runat="server" />

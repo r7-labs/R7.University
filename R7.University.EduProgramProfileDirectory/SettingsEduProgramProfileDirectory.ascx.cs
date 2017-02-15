@@ -31,6 +31,7 @@ using R7.University.ControlExtensions;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
@@ -62,6 +63,12 @@ namespace R7.University.EduProgramProfileDirectory
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
         }
 
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -82,6 +89,8 @@ namespace R7.University.EduProgramProfileDirectory
             foreach (var eduLevel in new EduLevelQuery (ModelContext).List ()) {
                 listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

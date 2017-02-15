@@ -9,15 +9,21 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear eduprogram-directory-settings">
+	<asp:Panel id="panelGeneralSettings" runat="server">
+        <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("GeneralSettings.Section") %></a></h2>
+    	<fieldset>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
+                <controls:DivisionSelector id="divisionSelector" runat="server" />
+            </div>
+            <div class="dnnFormItem">
+                <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
+                <asp:CheckBoxList id="listEduLevels" runat="server" CssClass="dnn-form-control" />
+            </div>
+    	</fieldset>
+	</asp:Panel>
+	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
 	<fieldset>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
-            <controls:DivisionSelector id="divisionSelector" runat="server" />
-        </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
-            <asp:CheckBoxList id="listEduLevels" runat="server" CssClass="dnn-form-control" />
-        </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelColumns" runat="server" ControlName="listColumns" />
             <asp:CheckBoxList id="listColumns" runat="server" CssClass="dnn-form-control" />

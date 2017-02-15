@@ -29,6 +29,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.EmployeeList.Components;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.Security;
 
 namespace R7.University.EmployeeList
 {
@@ -53,6 +54,12 @@ namespace R7.University.EmployeeList
 
         #endregion
 
+        IModuleSecurityContext securityContext;
+        protected IModuleSecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -64,6 +71,8 @@ namespace R7.University.EmployeeList
             comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeight.Text"), "0");
             comboSortType.AddItem (LocalizeString ("SortTypeByTotalWeight.Text"), "1");
             comboSortType.AddItem (LocalizeString ("SortTypeByName.Text"), "2");
+
+            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

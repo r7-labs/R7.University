@@ -18,6 +18,12 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>About Launchpad Settings</value>
     </data>
+	<data name="GeneralSettings.Section" xml:space="preserve">
+        <value>General Settings</value>
+    </data>
+	<data name="DisplaySettings.Section" xml:space="preserve">
+        <value>Display Settings</value>
+    </data>
 	<data name="labelPageSize.Text" xml:space="preserve">
         <value>Page Size:</value>
     </data>
