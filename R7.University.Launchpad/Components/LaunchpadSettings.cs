@@ -36,7 +36,7 @@ namespace R7.University.Launchpad.Components
         [TabModuleSetting (Prefix = "Launchpad_")]
         public int PageSize { get; set; } = 20;
 
-        [TabModuleSetting (Prefix = "Launchpad_", ParameterName = "Tables")]
+        [ModuleSetting (Prefix = "Launchpad_", ParameterName = "Tables")]
         public string TablesInternal { get; set; } = string.Empty;
 
         private List<string> tables;
