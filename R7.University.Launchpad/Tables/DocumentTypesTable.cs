@@ -29,7 +29,7 @@ namespace R7.University.Launchpad
 {
     public class DocumentTypesTable: LaunchpadTableBase
     {
-        public DocumentTypesTable () : base ("DocumentTypes")
+        public DocumentTypesTable () : base ("DocumentTypes", typeof (DocumentTypeInfo))
         {
         }
 

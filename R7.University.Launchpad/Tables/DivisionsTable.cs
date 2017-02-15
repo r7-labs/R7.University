@@ -29,7 +29,7 @@ namespace R7.University.Launchpad
 {
     public class DivisionsTable: LaunchpadTableBase
     {
-        public DivisionsTable () : base ("Divisions")
+        public DivisionsTable () : base ("Divisions", typeof (DivisionInfo))
         {
         }
 

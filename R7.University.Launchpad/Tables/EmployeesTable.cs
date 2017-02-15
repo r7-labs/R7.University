@@ -31,7 +31,7 @@ namespace R7.University.Launchpad
 {
     public class EmployeesTable: LaunchpadTableBase
     {
-        public EmployeesTable () : base ("Employees")
+        public EmployeesTable () : base ("Employees", typeof (EmployeeInfo))
         {
         }
 

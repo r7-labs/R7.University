@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Data;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Icons;
@@ -48,12 +49,15 @@ namespace R7.University.Launchpad
             get { return true; }
         }
 
+        public Type EntityType { get; protected set; }
+
         #endregion
 
-        protected LaunchpadTableBase (string name)
+        protected LaunchpadTableBase (string name, Type entityType)
         {
             Name = name.ToLowerInvariant ();
             ResourceKey = name + ".Text";
+            EntityType = entityType;
 
             // remove ending "s" and add "_id"
             var baseName = name + "\n";

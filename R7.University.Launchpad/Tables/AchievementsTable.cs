@@ -29,7 +29,7 @@ namespace R7.University.Launchpad
 {
     public class AchievementsTable: LaunchpadTableBase
     {
-        public AchievementsTable () : base ("Achievements")
+        public AchievementsTable () : base ("Achievements", typeof (AchievementInfo))
         {
         }
 

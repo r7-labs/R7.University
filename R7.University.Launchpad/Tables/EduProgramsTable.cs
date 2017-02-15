@@ -29,7 +29,7 @@ namespace R7.University.Launchpad
 {
     public class EduProgramsTable: LaunchpadTableBase
     {
-        public EduProgramsTable () : base ("EduPrograms")
+        public EduProgramsTable () : base ("EduPrograms", typeof (EduProgramInfo))
         {
         }
 

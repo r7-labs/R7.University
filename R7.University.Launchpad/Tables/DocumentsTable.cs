@@ -34,7 +34,7 @@ namespace R7.University.Launchpad
             get { return false; }
         }
 
-        public DocumentsTable () : base ("Documents")
+        public DocumentsTable () : base ("Documents", typeof (DocumentInfo))
         {
         }
 
