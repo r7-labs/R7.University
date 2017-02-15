@@ -24,19 +24,18 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.EduProgramProfileDirectory.Components;
 using R7.University.Models;
+using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.Security;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory
 {
-    public partial class SettingsEduProgramProfileDirectory: ModuleSettingsBase<EduProgramProfileDirectorySettings>
+    public partial class SettingsEduProgramProfileDirectory: UniversityModuleSettingsBase<EduProgramProfileDirectorySettings>
     {
         #region Model context
 
@@ -63,12 +62,6 @@ namespace R7.University.EduProgramProfileDirectory
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
         }
 
-        IModuleSecurityContext securityContext;
-        protected IModuleSecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
-        }
-
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -89,8 +82,6 @@ namespace R7.University.EduProgramProfileDirectory
             foreach (var eduLevel in new EduLevelQuery (ModelContext).List ()) {
                 listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
-
-            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

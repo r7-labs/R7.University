@@ -4,7 +4,6 @@ namespace R7.University.Launchpad
 {
     public partial class SettingsLaunchpad
     {
-        protected Panel panelGeneralSettings;
         protected CheckBoxList listTables;
         protected DropDownList comboPageSize;
     }

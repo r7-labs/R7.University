@@ -23,28 +23,19 @@ using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.University.DivisionDirectory.Components;
-using R7.University.Security;
+using R7.University.Modules;
 
 namespace R7.University.DivisionDirectory
 {
-    public partial class SettingsDivisionDirectory : ModuleSettingsBase<DivisionDirectorySettings>
+    public partial class SettingsDivisionDirectory : UniversityModuleSettingsBase<DivisionDirectorySettings>
     {
-        IModuleSecurityContext securityContext;
-        protected IModuleSecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
-        }
-
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
             comboMode.DataSource = Enum.GetNames (typeof (DivisionDirectoryMode));
             comboMode.DataBind ();
-
-            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

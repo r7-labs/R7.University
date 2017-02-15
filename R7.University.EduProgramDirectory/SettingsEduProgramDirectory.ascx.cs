@@ -23,18 +23,17 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.University.EduProgramDirectory.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
 using R7.University.Queries;
 using R7.University.ControlExtensions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.University.Security;
+using R7.University.Modules;
 
 namespace R7.University.EduProgramDirectory
 {
-    public partial class SettingsEduProgramDirectory : ModuleSettingsBase<EduProgramDirectorySettings>
+    public partial class SettingsEduProgramDirectory : UniversityModuleSettingsBase<EduProgramDirectorySettings>
     {
         #region Model context
 
@@ -55,12 +54,6 @@ namespace R7.University.EduProgramDirectory
 
         #endregion
 
-        IModuleSecurityContext securityContext;
-        protected IModuleSecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
-        }
-
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -78,8 +71,6 @@ namespace R7.University.EduProgramDirectory
             // bind divisions
             divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisionSelector.DataBind ();
-
-            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>

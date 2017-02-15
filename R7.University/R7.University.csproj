@@ -210,6 +210,7 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Security\IModuleSecurityContext.cs" />
+    <Compile Include="Modules\UniversityModuleSettingsBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -232,6 +233,7 @@
     <Folder Include="Queries\" />
     <Folder Include="Commands\" />
     <Folder Include="Security\" />
+    <Folder Include="Modules\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

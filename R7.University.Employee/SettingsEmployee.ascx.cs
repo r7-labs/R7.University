@@ -25,23 +25,16 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Employee.Components;
 using R7.University.Models;
+using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.Security;
 
 namespace R7.University.Employee
 {
-    public partial class SettingsEmployee : ModuleSettingsBase<EmployeeSettings>
+    public partial class SettingsEmployee : UniversityModuleSettingsBase<EmployeeSettings>
     {
-        IModuleSecurityContext securityContext;
-        protected IModuleSecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
-        }
-
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -51,8 +44,6 @@ namespace R7.University.Employee
                 comboEmployees.DataSource = new FlatQuery<EmployeeInfo> (modelContext).ListOrderBy (empl => empl.LastName);
                 comboEmployees.DataBind ();
             }
-
-            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
 
             comboEmployees.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

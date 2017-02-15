@@ -24,18 +24,17 @@ using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.University.EmployeeDirectory.Components;
 using R7.University.ViewModels;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.University.Security;
+using R7.University.Modules;
 
 namespace R7.University.EmployeeDirectory
 {
-    public partial class SettingsEmployeeDirectory: ModuleSettingsBase<EmployeeDirectorySettings>
+    public partial class SettingsEmployeeDirectory: UniversityModuleSettingsBase<EmployeeDirectorySettings>
     {
         #region Model context
 
@@ -56,12 +55,6 @@ namespace R7.University.EmployeeDirectory
 
         #endregion
 
-        IModuleSecurityContext securityContext;
-        protected IModuleSecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo, this)); }
-        }
-
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -73,8 +66,6 @@ namespace R7.University.EmployeeDirectory
             foreach (var eduLevel in new EduLevelQuery (ModelContext).List ()) {
                 listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
-
-            panelGeneralSettings.Visible = SecurityContext.CanManageModule ();
         }
 
         /// <summary>
