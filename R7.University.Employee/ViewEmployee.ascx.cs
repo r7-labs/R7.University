@@ -284,7 +284,7 @@ namespace R7.University.Employee
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    employee == null && SecurityContext.CanAdd<EmployeeInfo> (),
+                    employee == null && SecurityContext.CanAdd (typeof (EmployeeInfo)),
                     false
                 );
 

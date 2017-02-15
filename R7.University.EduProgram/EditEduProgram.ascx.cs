@@ -218,8 +218,8 @@ namespace R7.University.EduProgram
                     }
 
                     // show/hide add default profile controls
-                    linkAddEduProgramProfile.Visible = itemId != null && SecurityContext.CanAdd<EduProgramProfileInfo> ();
-                    panelAddDefaultProfile.Visible = itemId == null && SecurityContext.CanAdd<EduProgramProfileInfo> ();
+                    linkAddEduProgramProfile.Visible = itemId != null && SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
+                    panelAddDefaultProfile.Visible = itemId == null && SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
                 }
             }
             catch (Exception ex) {
@@ -275,7 +275,7 @@ namespace R7.University.EduProgram
                 item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
                 item.DivisionId = divisionSelector.DivisionId;
 
-                if (itemId == null && SecurityContext.CanAdd<EduProgramInfo> ()) {
+                if (itemId == null && SecurityContext.CanAdd (typeof (EduProgramInfo))) {
 
                     var now = DateTime.Now;
                     new AddCommand<EduProgramInfo> (ModelContext, SecurityContext).Add (item, now);
@@ -317,7 +317,7 @@ namespace R7.University.EduProgram
                 }
 
                 // update related documents
-                if (itemId != null || SecurityContext.CanAdd<EduProgramInfo> ()) {
+                if (itemId != null || SecurityContext.CanAdd (typeof (EduProgramInfo))) {
                     new UpdateDocumentsCommand (ModelContext)
                         .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
 

@@ -186,7 +186,7 @@ namespace R7.University.EduProgram
                     EditUrl ("EditEduProgram"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    Settings.EduProgramId == null && SecurityContext.CanAdd<EduProgramInfo> (), 
+                    Settings.EduProgramId == null && SecurityContext.CanAdd (typeof (EduProgramInfo)), 
                     false
                 );
 

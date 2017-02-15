@@ -281,7 +281,7 @@ namespace R7.University.Division
                     EditUrl ("EditDivision"),
                     false,
                     SecurityAccessLevel.Edit,
-                    !existingDivision && SecurityContext.CanAdd<DivisionInfo> (),
+                    !existingDivision && SecurityContext.CanAdd (typeof (DivisionInfo)),
                     false
                 );
 

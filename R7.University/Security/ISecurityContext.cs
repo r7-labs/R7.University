@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+
 namespace R7.University.Security
 {
     public interface ISecurityContext
@@ -27,7 +29,7 @@ namespace R7.University.Security
 
         bool IsAdmin { get; }
 
-        bool CanAdd<TEntity> () where TEntity : class;
+        bool CanAdd (Type entityType);
 
         bool CanDelete<TEntity> (TEntity entity) where TEntity : class;
     }

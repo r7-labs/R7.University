@@ -255,7 +255,7 @@ namespace R7.University.Division
 
         protected override void AddItem (DivisionInfo item)
         {
-            if (SecurityContext.CanAdd<DivisionInfo> ()) {
+            if (SecurityContext.CanAdd (typeof (DivisionInfo))) {
 
                 // update working hours
                 item.WorkingHours = WorkingHoursLogic.Update (

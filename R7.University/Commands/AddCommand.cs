@@ -45,7 +45,7 @@ namespace R7.University.Commands
 
         public void Add (TEntity entity, DateTime dateTime)
         {
-            if (SecurityContext.CanAdd<TEntity> ()) {
+            if (SecurityContext.CanAdd (typeof (TEntity))) {
 
                 entity.CreatedByUserID = entity.LastModifiedByUserID = SecurityContext.UserId;
                 entity.CreatedOnDate = entity.LastModifiedOnDate = dateTime;

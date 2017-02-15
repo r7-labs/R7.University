@@ -156,7 +156,7 @@ namespace R7.University.EduProgramProfileDirectory
                     EditUrl ("EditEduProgramProfile"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    SecurityContext.CanAdd<EduProgramProfileInfo> (), 
+                    SecurityContext.CanAdd (typeof (EduProgramProfileInfo)), 
                     false
                 );
 

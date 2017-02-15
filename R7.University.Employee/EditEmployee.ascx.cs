@@ -428,7 +428,7 @@ namespace R7.University.Employee
                 item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
                 item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
 
-                if (itemId == null && SecurityContext.CanAdd<EmployeeInfo> ()) {
+                if (itemId == null && SecurityContext.CanAdd (typeof (EmployeeInfo))) {
 
                     // update working hours
                     item.WorkingHours = WorkingHoursLogic.Update (
@@ -468,7 +468,7 @@ namespace R7.University.Employee
                     ModelContext.Update<EmployeeInfo> (item);
                 }
 
-                if (itemId != null || SecurityContext.CanAdd<EmployeeInfo> ()) {
+                if (itemId != null || SecurityContext.CanAdd (typeof (EmployeeInfo))) {
                     
                     new UpdateOccupiedPositionsCommand (ModelContext)
                         .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);

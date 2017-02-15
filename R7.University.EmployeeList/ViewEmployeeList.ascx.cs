@@ -183,7 +183,7 @@ namespace R7.University.EmployeeList
                         : EditUrl ("division_id", Settings.DivisionID.ToString (), "EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    SecurityContext.CanAdd<EmployeeInfo> (),
+                    SecurityContext.CanAdd (typeof (EmployeeInfo)),
                     false
                 );
 			

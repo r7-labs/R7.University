@@ -133,7 +133,7 @@ namespace R7.University.DivisionDirectory
                     EditUrl ("EditDivision"),
                     false,
                     SecurityAccessLevel.Edit,
-                    SecurityContext.CanAdd<DivisionInfo> (),
+                    SecurityContext.CanAdd (typeof (DivisionInfo)),
                     false
                 );
 

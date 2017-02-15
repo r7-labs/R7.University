@@ -288,7 +288,7 @@ namespace R7.University.Launchpad
 
         protected override void AddItem (EduProgramProfileInfo item)
         {
-            if (SecurityContext.CanAdd<EduProgramProfileInfo> ()) {
+            if (SecurityContext.CanAdd (typeof (EduProgramProfileInfo))) {
 
                 new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (item);
                 ModelContext.SaveChanges (false);

@@ -135,7 +135,7 @@ namespace R7.University.EmployeeDirectory
                     EditUrl ("EditEmployee"),
                     false,
                     SecurityAccessLevel.Edit,
-                    SecurityContext.CanAdd<EmployeeInfo> (),
+                    SecurityContext.CanAdd (typeof (EmployeeInfo)),
                     false
                 );
 
