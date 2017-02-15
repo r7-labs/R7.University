@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,6 +31,7 @@ using R7.DotNetNuke.Extensions.ModuleExtensions;
 using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Launchpad.Components;
 using R7.University.Models;
+using R7.University.Security;
 
 namespace R7.University.Launchpad
 {
@@ -65,6 +66,12 @@ namespace R7.University.Launchpad
         }
 
         #endregion
+
+        private ISecurityContext securityContext;
+        public ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
 
         #region Handlers
 
@@ -215,9 +222,9 @@ namespace R7.University.Launchpad
                 table.DataBind (this, ModelContext);
             }
 
-            // set URL to add new item
+            // setup link to add new item
             linkAddItem.NavigateUrl = table.GetAddUrl (this);
-            linkAddItem.Enabled = table.IsEditable;
+            linkAddItem.Visible = table.IsEditable && SecurityContext.CanAdd (table.EntityType);
         }
 
         /// <summary>
@@ -255,8 +262,12 @@ namespace R7.University.Launchpad
         {
             get {
                 var actions = new ModuleActionCollection ();
-                foreach (var table in Tables.Tables) {
-                    actions.Add (table.GetAction (this));
+                // add module actions for tables configured in settings
+                foreach (var tableName in Settings.Tables) {
+                    var table = Tables.GetByName (tableName);
+                    if (table.IsEditable && SecurityContext.CanAdd (table.EntityType)) {
+                        actions.Add (table.GetAction (this));
+                    }
                 }
 
                 return actions;
@@ -333,7 +344,7 @@ namespace R7.University.Launchpad
 
                 // assuming what e.Row.Cells[1] contains item ID
                 linkEdit.NavigateUrl = table.GetEditUrl (this, e.Row.Cells [1].Text);
-                linkEdit.Enabled = table.IsEditable;
+                linkEdit.Visible = table.IsEditable;
             }
         }
 
