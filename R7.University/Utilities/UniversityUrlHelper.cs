@@ -120,6 +120,20 @@ namespace R7.University.Utilities
             // popups disabled, it's safe to use default implementation
             return module.ModuleContext.EditUrl (keyName, keyValue, controlKey);
         }
+
+        // TODO: Move to the base library, add tests
+        /// <summary>
+        /// Little hack to adjust popup URL parameters w/o reimplementing <see cref="M:DotNetNuke.UI.Modules.ModuleInstanceContext.EditUrl()"/>.
+        /// </summary>
+        /// <returns>The popup URL.</returns>
+        /// <param name="popupUrl">Popup URL.</param>
+        /// <param name="windowWidth">Window width.</param>
+        /// <param name="windowHeight">Window height.</param>
+        /// <param name="responseRedirect">If set to <c>true</c> use response redirect when closing popup window.</param>
+        public static string AdjustPopupUrl (string popupUrl, int windowWidth = 950, int windowHeight = 550, bool responseRedirect = true)
+        {
+            return popupUrl.Replace (",550,950,true,'')", $",{windowHeight},{windowWidth},{responseRedirect.ToString ().ToLowerInvariant ()},'')");
+        }
     }
 }
 
