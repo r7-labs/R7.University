@@ -967,7 +967,6 @@ namespace R7.University.Employee
             textYearBegin.Text = "";
             textYearEnd.Text = "";
             checkIsTitle.Checked = false;
-            urlDocumentURL.UrlType = "N";
             hiddenAchievementItemID.Value = "";
         }
 
