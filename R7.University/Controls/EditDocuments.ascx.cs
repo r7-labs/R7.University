@@ -27,6 +27,7 @@ using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.ControlExtensions;
@@ -54,6 +55,11 @@ namespace R7.University.Controls
 
             comboDocumentType.DataSource = documentTypeViewModels.OrderBy (dt => dt.LocalizedType);
             comboDocumentType.DataBind ();
+
+            // TODO: Add match to the DocumentType model, generate JSON
+            // comboDocumentType.Attributes.Add ("data-validation", "[{\"id\": \"5\", \"match\": \"^annot_[a-z0-9_]+_\\\\d{8}$\" }]");
+
+            valDocumentUrl.Attributes.Add ("data-message-template", Localization.GetString ("FileName.Invalid", LocalResourceFile));
         }
 
         protected DocumentTypeViewModel GetDocumentType (int? documentTypeId)

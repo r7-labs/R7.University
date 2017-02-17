@@ -2,10 +2,13 @@
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/Controls/js/editDocuments.js" ForceProvider="DnnFormBottomProvider" />
 
 <div id="eduProgramDocuments" class="eduProgramDocuments">
     <fieldset>
-        <div class="dnnFormItem" style="width:auto;margin-right:1.5em">
+		<div class="dnnFormItem" style="width:auto;margin-right:1.5em">
             <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" 
 					OnRowDataBound="gridDocuments_RowDataBound"
 					CssClass="dnnGrid" GridLines="None" Style="width:100%;margin-bottom:30px">
@@ -51,13 +54,16 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
             <dnn:Url id="urlDocumentUrl" runat="server" UrlType="N" 
-                IncludeActiveTab="true"
-                ShowFiles="true" ShowTabs="true"
-                ShowUrls="true" ShowUsers="true"
+                ShowNone="true" ShowFiles="true"
+				ShowTabs="true" IncludeActiveTab="true"
+				ShowUrls="true" ShowUsers="true"
                 ShowLog="false" ShowTrack="false"
-                ShowNone="true" ShowNewWindow="false" 
-            />   
-        </div>
+                ShowNewWindow="false" 
+            />
+			<asp:CustomValidator id="valDocumentUrl" runat="server" ValidationGroup="Documents"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
+				EnableClientScript="true" ClientValidationFunction="validateDocumentUrl" />
+		</div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
             <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
@@ -84,7 +90,7 @@
                 <dnn:DnnDateTimePicker id="datetimeDocumentEndDate" runat="server" />
             </div>
         </fieldset>
-        <div class="dnnFormItem">
+		<div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <asp:LinkButton id="buttonAddDocument" runat="server" resourcekey="buttonAddDocument" 
                 CssClass="dnnPrimaryAction" CommandArgument="Add"
@@ -93,7 +99,7 @@
                 CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update"
                 CausesValidation="true" ValidationGroup="Documents" />
             <asp:LinkButton id="buttonCancelEditDocument" runat="server" resourcekey="buttonCancelEditDocument" 
-                        CssClass="dnnSecondaryAction" />
+                CssClass="dnnSecondaryAction" />
         </div>
         <asp:HiddenField id="hiddenDocumentItemID" runat="server" />
     </fieldset>

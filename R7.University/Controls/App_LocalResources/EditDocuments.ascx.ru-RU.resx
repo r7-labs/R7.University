@@ -144,4 +144,7 @@
     <data name="DocumentEndDate.Column">
         <value>Окончание</value>
     </data>
+	<data name="FileName.Invalid">
+        <value>Имя выбранного файла не соответствует проверочному выражению &quot;{regex}&quot; для выбранного типа документа.</value>
+    </data>
 </root>

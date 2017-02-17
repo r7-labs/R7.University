@@ -234,6 +234,7 @@
     <Folder Include="Commands\" />
     <Folder Include="Security\" />
     <Folder Include="Modules\" />
+    <Folder Include="Controls\js\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -303,6 +304,7 @@
     <None Include="Controls\App_LocalResources\DivisionSelector.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Controls\js\editDocuments.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
