@@ -38,8 +38,6 @@ namespace R7.University.Division
 {
     public partial class EditDivision: UniversityEditPortalModuleBase<DivisionInfo>
     {
-        private int? itemId;
-
         #region Types
 
         public enum EditDivisionTab
@@ -53,12 +51,6 @@ namespace R7.University.Division
         #endregion
 
         #region Properties
-
-        private DivisionSettings settings;
-        protected new DivisionSettings Settings
-        {
-            get { return settings ?? (settings = new DivisionSettingsRepository ().GetSettings (ModuleConfiguration)); }
-        }
 
         protected EditDivisionTab SelectedTab
         {
@@ -98,7 +90,7 @@ namespace R7.University.Division
             base.OnInit (e);
 
             // parse QueryString
-            itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
+            var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // FIXME: Possible circular dependency as list can still contain childrens of current division
             parentDivisionSelector.DataSource = new DivisionQuery (ModelContext).ListExcept (itemId).OrderBy (d => d.Title);
@@ -230,8 +222,10 @@ namespace R7.University.Division
                 // then adding new division from Division module, 
                 // set calling module to display new division info
                 if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division") {
-                    Settings.DivisionID = item.DivisionID;
-                    new DivisionSettingsRepository ().SaveSettings (ModuleConfiguration, Settings);
+                    var settingsRepository = new DivisionSettingsRepository ();
+                    var settings = settingsRepository.GetSettings (ModuleConfiguration);
+                    settings.DivisionID = item.DivisionID;
+                    settingsRepository.SaveSettings (ModuleConfiguration, settings);
                 }
             }
         }
