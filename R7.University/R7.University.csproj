@@ -211,6 +211,7 @@
     <Compile Include="Commands\AddCommand.cs" />
     <Compile Include="Security\IModuleSecurityContext.cs" />
     <Compile Include="Modules\UniversityModuleSettingsBase.cs" />
+    <Compile Include="Modules\UniversityEditPortalModuleBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

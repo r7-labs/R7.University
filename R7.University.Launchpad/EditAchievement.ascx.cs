@@ -21,32 +21,13 @@
 
 using System;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Models;
+using R7.University.Modules;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditAchievement : EditPortalModuleBase<AchievementInfo, int>
+    public partial class EditAchievement : UniversityEditPortalModuleBase<AchievementInfo>
     {
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         protected EditAchievement () : base ("achievement_id")
         {
         }
@@ -78,12 +59,7 @@ namespace R7.University.Launchpad
             item.AchievementType = (AchievementType) Enum.Parse (typeof (AchievementType), comboAchievementType.SelectedValue);
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override AchievementInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<AchievementInfo> (itemId);
-        }
+        #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (AchievementInfo item)
         {

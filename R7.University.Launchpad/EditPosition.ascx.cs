@@ -19,33 +19,14 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.Modules;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditPosition : EditPortalModuleBase<PositionInfo, int>
+    public partial class EditPosition : UniversityEditPortalModuleBase<PositionInfo>
     {
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         protected EditPosition () : base ("position_id")
         {
         }
@@ -73,11 +54,6 @@ namespace R7.University.Launchpad
 
         #region implemented abstract members of EditPortalModuleBase
 
-        protected override PositionInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<PositionInfo> (itemId);
-        }
-
         protected override void AddItem (PositionInfo item)
         {
             ModelContext.Add (item);
@@ -97,7 +73,5 @@ namespace R7.University.Launchpad
         }
 
         #endregion
-
     }
 }
-

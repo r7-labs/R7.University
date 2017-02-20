@@ -19,32 +19,13 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Models;
+using R7.University.Modules;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditDocumentType: EditPortalModuleBase<DocumentTypeInfo,int>
+    public partial class EditDocumentType: UniversityEditPortalModuleBase<DocumentTypeInfo>
     {
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         protected EditDocumentType () : base ("documenttype_id")
         {
         }
@@ -52,11 +33,6 @@ namespace R7.University.Launchpad
         protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
-        }
-
-        protected override bool CanDeleteItem (DocumentTypeInfo item)
-        {
-            return !item.IsSystem;
         }
 
         protected override void LoadItem (DocumentTypeInfo item)
@@ -83,12 +59,12 @@ namespace R7.University.Launchpad
             item.FilenameFormat = textFilenameFormat.Text.Trim ();
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override DocumentTypeInfo GetItem (int itemId)
+        protected override bool CanDeleteItem (DocumentTypeInfo item)
         {
-            return ModelContext.Get<DocumentTypeInfo> (itemId);
+            return base.CanDeleteItem (item) && !item.IsSystem;
         }
+
+        #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (DocumentTypeInfo item)
         {

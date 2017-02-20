@@ -21,34 +21,15 @@
 
 using System;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
+using R7.University.Modules;
 using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduLevel: EditPortalModuleBase<EduLevelInfo,int>
+    public partial class EditEduLevel: UniversityEditPortalModuleBase<EduLevelInfo>
     {
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         protected EditEduLevel () : base ("edulevel_id")
         {
         }
@@ -75,17 +56,6 @@ namespace R7.University.Launchpad
             comboParentEduLevel.SelectByValue (item.ParentEduLevelId);
         }
 
-        protected override void OnButtonUpdateClick (object sender, EventArgs e)
-        {
-            // HACK: Dispose current model context used in load to create new one for update
-            if (modelContext != null) {
-                modelContext.Dispose ();
-                modelContext = null;
-            }
-
-            base.OnButtonUpdateClick (sender, e);
-        }
-
         protected override void BeforeUpdateItem (EduLevelInfo item)
         {
             item.Title = textTitle.Text.Trim ();
@@ -94,12 +64,7 @@ namespace R7.University.Launchpad
             item.ParentEduLevelId = TypeUtils.ParseToNullable<int> (comboParentEduLevel.SelectedValue);
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override EduLevelInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<EduLevelInfo> (itemId);
-        }
+        #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (EduLevelInfo item)
         {

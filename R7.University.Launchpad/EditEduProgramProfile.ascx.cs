@@ -23,38 +23,19 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.Launchpad.Queries;
 using R7.University.Models;
+using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.Security;
 using R7.University.ViewModels;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduProgramProfile : EditPortalModuleBase<EduProgramProfileInfo, int>
+    public partial class EditEduProgramProfile : UniversityEditPortalModuleBase<EduProgramProfileInfo>
     {
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         #region Properties
 
         protected int SelectedTab
@@ -93,12 +74,6 @@ namespace R7.University.Launchpad
                 return 0;
             }
             set { ViewState ["SelectedTab"] = value; }
-        }
-
-        ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         #endregion
@@ -223,17 +198,6 @@ namespace R7.University.Launchpad
             formEditEduForms.SetData (epp.EduProgramProfileForms.ToList (), epp.EduProgramProfileID);
         }
 
-        protected override void OnButtonUpdateClick (object sender, EventArgs e)
-        {
-            // HACK: Dispose current model context used in load to create new one for update
-            if (modelContext != null) {
-                modelContext.Dispose ();
-                modelContext = null;
-            }
-
-            base.OnButtonUpdateClick (sender, e);
-        }
-
         protected override void BeforeUpdateItem (EduProgramProfileInfo item)
         {
             // fill the object
@@ -274,12 +238,7 @@ namespace R7.University.Launchpad
             return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override EduProgramProfileInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<EduProgramProfileInfo> (itemId);
-        }
+        #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (EduProgramProfileInfo item)
         {
@@ -311,11 +270,6 @@ namespace R7.University.Launchpad
                 .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
 
             ModelContext.SaveChanges ();
-        }
-
-        protected override bool CanDeleteItem (EduProgramProfileInfo item)
-        {
-            return SecurityContext.CanDelete (item);
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)

@@ -19,32 +19,13 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using R7.DotNetNuke.Extensions.Modules;
 using R7.University.Models;
+using R7.University.Modules;
 
 namespace R7.University.Launchpad
 {
-    public partial class EditEduForm: EditPortalModuleBase<EduFormInfo,int>
+    public partial class EditEduForm: UniversityEditPortalModuleBase<EduFormInfo>
     {
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         protected EditEduForm () : base ("eduform_id")
         {
         }
@@ -77,15 +58,10 @@ namespace R7.University.Launchpad
 
         protected override bool CanDeleteItem (EduFormInfo item)
         {
-            return !item.IsSystem;
+            return base.CanDeleteItem (item) && !item.IsSystem;
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override EduFormInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<EduFormInfo> (itemId);
-        }
+        #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (EduFormInfo item)
         {

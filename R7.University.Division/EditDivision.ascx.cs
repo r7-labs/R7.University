@@ -24,20 +24,19 @@ using System.Linq;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.Division.Components;
 using R7.University.Division.Queries;
 using R7.University.Models;
+using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.Security;
 using R7.University.SharedLogic;
 
 namespace R7.University.Division
 {
-    public partial class EditDivision: EditPortalModuleBase<DivisionInfo,int>
+    public partial class EditDivision: UniversityEditPortalModuleBase<DivisionInfo>
     {
         private int? itemId;
 
@@ -49,25 +48,6 @@ namespace R7.University.Division
             Contacts,
             Documents,
             Bindings
-        }
-
-        #endregion
-
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
         }
 
         #endregion
@@ -207,17 +187,6 @@ namespace R7.University.Division
             ctlAudit.Bind (item);
         }
 
-        protected override void OnButtonUpdateClick (object sender, EventArgs e)
-        {
-            // HACK: Dispose current model context used in load to create new one for update
-            if (modelContext != null) {
-                modelContext.Dispose ();
-                modelContext = null;
-            }
-
-            base.OnButtonUpdateClick (sender, e);
-        }
-
         protected override void BeforeUpdateItem (DivisionInfo item)
         {
             // fill the object
@@ -242,12 +211,7 @@ namespace R7.University.Division
             item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override DivisionInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<DivisionInfo> (itemId);
-        }
+        #region Implemented abstract members of UniverisityEditPortalModuleBase
 
         protected override void AddItem (DivisionInfo item)
         {
@@ -287,17 +251,6 @@ namespace R7.University.Division
 
             ModelContext.Update<DivisionInfo> (item);
             ModelContext.SaveChanges ();
-        }
-
-        ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
-        }
-
-        protected override bool CanDeleteItem (DivisionInfo item)
-        {
-            return SecurityContext.CanDelete (item);
         }
 
         protected override void DeleteItem (DivisionInfo item)

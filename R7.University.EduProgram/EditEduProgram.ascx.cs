@@ -24,7 +24,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
@@ -33,8 +32,8 @@ using R7.University.EduProgram.Queries;
 using R7.University.EduProgram.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.Security;
 
 namespace R7.University.EduProgram
 {
@@ -47,27 +46,8 @@ namespace R7.University.EduProgram
         Documents
     }
 
-    public partial class EditEduProgram : EditPortalModuleBase<EduProgramInfo, int>
+    public partial class EditEduProgram : UniversityEditPortalModuleBase<EduProgramInfo>
     {
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
-        }
-
-        #endregion
-
         protected EditEduProgramTab SelectedTab
         {
             get {
@@ -105,12 +85,6 @@ namespace R7.University.EduProgram
         protected ViewModelContext ViewModelContext
         {
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
-        }
-
-        ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         protected EditEduProgram () : base ("eduprogram_id")
@@ -218,12 +192,7 @@ namespace R7.University.EduProgram
             return new EduProgramQuery (ModelContext).SingleOrDefault (itemId);
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override EduProgramInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<EduProgramInfo> (itemId);
-        }
+        #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (EduProgramInfo item)
         {
@@ -274,11 +243,6 @@ namespace R7.University.EduProgram
             ModelContext.SaveChanges ();
         }
 
-        protected override bool CanDeleteItem (EduProgramInfo item)
-        {
-            return SecurityContext.CanDelete (item);
-        }
-
         protected override void DeleteItem (EduProgramInfo item)
         {
             // TODO: Also remove documents
@@ -289,17 +253,6 @@ namespace R7.University.EduProgram
         #endregion
 
         #region Handlers
-
-        protected override void OnButtonUpdateClick (object sender, EventArgs e)
-        {
-            // HACK: Dispose current model context used in load to create new one for update
-            if (modelContext != null) {
-                modelContext.Dispose ();
-                modelContext = null;
-            }
-
-            base.OnButtonUpdateClick (sender, e);
-        }
 
         protected void gridEduProgramProfiles_RowDataBound (object sender, GridViewRowEventArgs e)
         {

@@ -33,7 +33,6 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
@@ -42,6 +41,7 @@ using R7.University.Employee.Components;
 using R7.University.Employee.Queries;
 using R7.University.Employee.ViewModels;
 using R7.University.Models;
+using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.Security;
 using R7.University.SharedLogic;
@@ -50,7 +50,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
-    public partial class EditEmployee: EditPortalModuleBase<EmployeeInfo, int>
+    public partial class EditEmployee: UniversityEditPortalModuleBase<EmployeeInfo>
     {
         #region Types
 
@@ -61,25 +61,6 @@ namespace R7.University.Employee
             Achievements,
             Disciplines,
             About
-        }
-
-        #endregion
-
-        #region Model context
-
-        private UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        public override void Dispose ()
-        {
-            if (modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose ();
         }
 
         #endregion
@@ -174,12 +155,6 @@ namespace R7.University.Employee
         protected string DeleteIconUrl
         {
             get { return IconController.IconURL ("Delete"); }
-        }
-
-        ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext
-        {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
         #endregion
@@ -383,12 +358,7 @@ namespace R7.University.Employee
             return new EmployeeQuery (ModelContext).SingleOrDefault (itemId);
         }
 
-        #region implemented abstract members of EditPortalModuleBase
-
-        protected override EmployeeInfo GetItem (int itemId)
-        {
-            return ModelContext.Get<EmployeeInfo> (itemId);
-        }
+        #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (EmployeeInfo item)
         {
@@ -458,11 +428,6 @@ namespace R7.University.Employee
             ModelContext.SaveChanges ();
         }
 
-        protected override bool CanDeleteItem (EmployeeInfo item)
-        {
-            return SecurityContext.CanDelete (item);
-        }
-
         protected override void DeleteItem (EmployeeInfo item)
         {
             // TODO: Delete also photo and other assets
@@ -471,17 +436,6 @@ namespace R7.University.Employee
         }
 
         #endregion
-
-        protected override void OnButtonUpdateClick (object sender, EventArgs e)
-        {
-            // HACK: Dispose current model context used in load to create new one for update
-            if (modelContext != null) {
-                modelContext.Dispose ();
-                modelContext = null;
-            }
-
-            base.OnButtonUpdateClick (sender, e);
-        }
 
         private List<OccupiedPositionInfo> GetOccupiedPositions ()
         {
