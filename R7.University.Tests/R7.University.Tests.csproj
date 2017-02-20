@@ -10,7 +10,7 @@
     <RootNamespace>R7.University.Tests</RootNamespace>
     <AssemblyName>R7.University.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ReleaseVersion>1.13.0</ReleaseVersion>
+    <ReleaseVersion>1.14.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
