@@ -51,7 +51,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
-    public partial class EditEmployee: PortalModuleBase<EmployeeSettings>
+    public partial class EditEmployee: PortalModuleBase
     {
         #region Types
 
@@ -440,16 +440,18 @@ namespace R7.University.Employee
                     // add employeee
                     new AddCommand<EmployeeInfo> (ModelContext, SecurityContext).Add (item);
                     ModelContext.SaveChanges (false);
-                    
+
                     // then adding new employee from Employee or EmployeeDetails modules, 
                     // set calling module to display new employee
                     if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" ||
                     ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails") {
-                        Settings.EmployeeID = item.EmployeeID;
+                        var settingsRepository = new EmployeeSettingsRepository ();
+                        var settings = settingsRepository.GetSettings (ModuleConfiguration);
+                        settings.EmployeeID = item.EmployeeID;
 
                         // we adding new employee, so he/she should be displayed in the module
-                        Settings.ShowCurrentUser = false;
-                        SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
+                        settings.ShowCurrentUser = false;
+                        settingsRepository.SaveSettings (ModuleConfiguration, settings);
                     }
                 }
                 else {
