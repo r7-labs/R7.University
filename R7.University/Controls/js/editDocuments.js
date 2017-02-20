@@ -1,5 +1,4 @@
 ﻿function validateDocumentUrl (sender, e) {
-    e.IsValid = true;
     var filesComboBox = jQuery ("[id $= 'urlDocumentUrl_ctlFile_FilesComboBox_state']").first ();
     if (filesComboBox.length === 1) {
         var filesComboBoxState = JSON.parse (filesComboBox.val ());
