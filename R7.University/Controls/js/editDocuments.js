@@ -5,7 +5,7 @@
         var filesComboBoxState = JSON.parse (filesComboBox.val ());
         // TODO: Add separate validation for document URL is required
         if (filesComboBoxState.selectedItem.key != -1) {
-            var selectedFileName = getFilenameWithoutExtension (filesComboBoxState.selectedItem.value);
+            var selectedFileName = filesComboBoxState.selectedItem.value;
             var comboDocumentType = jQuery ("[id $= 'comboDocumentType']").first ();
             var selectedTypeId = comboDocumentType.val ();
             var regexesAttr = comboDocumentType.attr ("data-validation");
@@ -14,7 +14,7 @@
                     return elem.id == selectedTypeId;
                 });
                 if (regexes.length > 0) {
-                    var regex = new RegExp (regexes [0].match);
+                    var regex = new RegExp ("^" + regexes [0].match + "$");
                     if (!regex.test (selectedFileName)) {
                         e.IsValid = false;
                         var valDocumentUrl = jQuery ("[id $= 'valDocumentUrl']").first ();
@@ -24,12 +24,4 @@
             }
         }
     }
-}
-
-function getFilenameWithoutExtension (filename) {
-    var lastDotIndex = filename.lastIndexOf (".");
-    if (lastDotIndex >= 0) {
-        return filename.substring (0, lastDotIndex);
-    }
-    return filename;
 }

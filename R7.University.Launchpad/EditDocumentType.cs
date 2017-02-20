@@ -19,9 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using R7.DotNetNuke.Extensions.Modules;
-using R7.DotNetNuke.Extensions.Utilities;
 using R7.University.Models;
 
 namespace R7.University.Launchpad
@@ -51,15 +49,6 @@ namespace R7.University.Launchpad
         {
         }
 
-        protected override void OnInit (EventArgs e)
-        {
-            base.OnInit (e);
-
-            // HACK: Cancel link setup must be done in the base class
-            linkCancel.Attributes.Remove ("onclick");
-            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
-        }
-
         protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
@@ -75,6 +64,7 @@ namespace R7.University.Launchpad
             textType.Text = item.Type;
             textDescription.Text = item.Description;
             checkIsSystem.Checked = item.IsSystem;
+            textFilenameFormat.Text = item.FilenameFormat;
 
             // disable textType for system types
             textType.Enabled = !item.IsSystem;
@@ -90,6 +80,7 @@ namespace R7.University.Launchpad
             }
 
             item.Description = textDescription.Text.Trim ();
+            item.FilenameFormat = textFilenameFormat.Text.Trim ();
         }
 
         #region implemented abstract members of EditPortalModuleBase

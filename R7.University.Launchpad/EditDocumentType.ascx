@@ -22,6 +22,10 @@
                 ValidationExpression="[\s\S]{0,255}">
             </asp:RegularExpressionValidator>
 		</div>
+		<div class="dnnFormItem">
+            <dnn:Label id="labelFilenameFormat" runat="server" ControlName="textFilenameFormat" />
+            <asp:TextBox id="textFilenameFormat" runat="server" MaxLength="255" />
+        </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsSystem" runat="server" ControlName="checkIsSystem" />
             <asp:CheckBox id="checkIsSystem" runat="server" Enabled="false" />

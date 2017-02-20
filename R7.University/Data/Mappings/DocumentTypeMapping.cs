@@ -34,6 +34,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.Type).IsRequired ();
             Property (m => m.Description).IsOptional ();
             Property (m => m.IsSystem).IsRequired ();
+            Property (m => m.FilenameFormat).IsOptional ();
         }
     }
 }

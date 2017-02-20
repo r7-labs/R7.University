@@ -10,5 +10,6 @@ namespace R7.University.Launchpad
         protected TextBox textType;
         protected TextBox textDescription;
         protected CheckBox checkIsSystem;
+        protected TextBox textFilenameFormat;
     }
 }

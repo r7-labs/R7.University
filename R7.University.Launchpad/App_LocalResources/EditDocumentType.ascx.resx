@@ -40,6 +40,15 @@
         <value>Is System?</value>
     </data>
     <data name="labelIsSystem.Help">
-        <value>System document types have special meaning for the system work, therefore cannot be deleted, and only description can be changed for them.</value>
+        <value>System document types have special meaning for the system work, therefore cannot be deleted, and only description and filename format can be changed for them.</value>
+    </data>
+	<data name="labelFilenameFormat.Text" xml:space="preserve">
+        <value>Filename Format:</value>
+    </data>
+    <data name="labelFilenameFormat.Help">
+        <value>Enter JavaScript regex which will be used to validate filenames for new documents of this type.
+			E.g. the &quot;order_(.+)\.(pdf|od[tsp])&quot; expression will allow PDF and LibreOffice/OpenOffice documents (ODT, ODS and ODP)
+		    which have &quot;order_&quot; prefix. The start &quot;^&quot; and end &quot;$&quot; tokens will be added automatically,
+			comparison is case-sensitive. You can test your regex'es at https://regex101.com/</value>
     </data>
 </root>

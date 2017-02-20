@@ -1,0 +1,81 @@
+﻿--
+--  01.14.00.SqlDataProvider
+--
+--  Author:
+--       Roman M. Yagodin <roman.yagodin@gmail.com>
+--
+--  Copyright (c) 2017 Roman M. Yagodin
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU Affero General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.
+--
+--  This program is distributed in the hope that it will be useful,
+--  but WITHOUT ANY WARRANTY; without even the implied warranty of
+--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU Affero General Public License for more details.
+--
+--  You should have received a copy of the GNU Affero General Public License
+--  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_DocumentTypes]') and name = N'FilenameFormat')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        ADD [FilenameFormat] nvarchar (255) NULL
+GO
+
+IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [FilenameFormat] is not null)
+BEGIN
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'prikaz_priem_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'OrderEnrollment'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'prikaz_otch_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'OrderExpulsion'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'prikaz_vosst_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'OrderRestoration'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'prikaz_perevod_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'OrderTransfer'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'prikaz_academ_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'OrderAcademicLeave'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'standart_[a-z0-9_]+\.pdf' WHERE [Type] = N'EduStandard'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'prof_standart_[a-z0-9_]+\.pdf' WHERE [Type] = N'ProfStandard'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'oop_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduProgram'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'graf_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduSchedule'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'edu_plan_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduPlan'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'metod_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduMaterial'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'annot_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'WorkProgramAnnotation'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'rp_praktika_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'WorkProgramOfPractice'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'chislen_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'Contingent'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'perevod_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'ContingentMovement'
+
+    UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
+        SET [FilenameFormat] = N'nir_[a-z0-9_]+_\d{8}\.(pdf|odt|docx?)' WHERE [Type] = N'ScienceInfo'
+END
+GO

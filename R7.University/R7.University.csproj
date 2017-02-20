@@ -305,6 +305,7 @@
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
     <None Include="Controls\js\editDocuments.js" />
+    <None Include="SqlDataProvider\01.14.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

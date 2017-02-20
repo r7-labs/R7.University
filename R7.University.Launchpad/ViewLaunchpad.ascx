@@ -324,6 +324,7 @@
                         <asp:BoundField DataField="DocumentTypeID" SortExpression="DocumentTypeID" HeaderText="DocumentTypeID" />
                         <asp:BoundField DataField="Type" SortExpression="Type" HeaderText="Type" />
                         <asp:BoundField DataField="Description" SortExpression="Description" HeaderText="Description" ConvertEmptyStringToNull="false" />
+						<asp:BoundField DataField="FilenameFormat" SortExpression="FilenameFormat" HeaderText="FilenameFormat" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
