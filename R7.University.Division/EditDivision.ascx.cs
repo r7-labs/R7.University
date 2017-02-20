@@ -117,10 +117,6 @@ namespace R7.University.Division
         {
             base.OnInit (e);
 
-            // HACK: Cancel link setup must be done in the base class
-            linkCancel.Attributes.Remove ("onclick");
-            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
-
             // parse QueryString
             itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
 

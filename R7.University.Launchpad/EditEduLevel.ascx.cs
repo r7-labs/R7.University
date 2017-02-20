@@ -56,10 +56,6 @@ namespace R7.University.Launchpad
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
-
-            // HACK: Cancel link setup must be done in the base class
-            linkCancel.Attributes.Remove ("onclick");
-            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
         
             comboParentEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboParentEduLevel.DataBind ();
