@@ -28,7 +28,6 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
-using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
@@ -51,7 +50,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
-    public partial class EditEmployee: PortalModuleBase
+    public partial class EditEmployee: EditPortalModuleBase<EmployeeInfo, int>
     {
         #region Types
 
@@ -65,8 +64,6 @@ namespace R7.University.Employee
         }
 
         #endregion
-
-        private int? itemId = null;
 
         #region Model context
 
@@ -187,23 +184,19 @@ namespace R7.University.Employee
 
         #endregion
 
-        #region Handlers
+        protected EditEmployee () : base ("employee_id")
+        {
+        }
 
-        /// <summary>
-        /// Handles Init event for a control.
-        /// </summary>
-        /// <param name="e">Event args.</param>
+        protected override void InitControls ()
+        {
+            InitControls (buttonUpdate, buttonDelete, linkCancel, ctlAudit);
+        }
+
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
 
-            // set url for Cancel link
-            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
-
-            // add confirmation dialog to delete button
-            buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('" +
-                Localization.GetString ("DeleteItem") + "');");
-           
             // setup filepicker
             pickerPhoto.FolderPath = UniversityConfig.Instance.EmployeePhoto.DefaultPath;
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
@@ -260,237 +253,234 @@ namespace R7.University.Employee
             gridDisciplines.LocalizeColumns (LocalResourceFile);
         }
 
-        /// <summary>
-        /// Handles Load event for a control.
-        /// </summary>
-        /// <param name="e">Event args.</param>
-        protected override void OnLoad (EventArgs e)
+        protected override void LoadItem (EmployeeInfo item)
         {
-            base.OnLoad (e);
-             
-            try {
-                // parse querystring parameters
-                itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
-      
-                if (!IsPostBack) {
-                    // load the data into the control the first time we hit this page
+            var employee = GetItemWithDependencies (ItemId.Value);
 
-                    // check we have an item to lookup
-                    // ALT: if (!Null.IsNull (itemId) 
-                    if (itemId.HasValue) {
-                        // load the item
-                        var item = new EmployeeQuery (ModelContext).SingleOrDefault (itemId.Value);
+            textLastName.Text = employee.LastName;
+            textFirstName.Text = employee.FirstName;
+            textOtherName.Text = employee.OtherName;
+            textPhone.Text = employee.Phone;
+            textCellPhone.Text = employee.CellPhone;
+            textFax.Text = employee.Fax;
+            textEmail.Text = employee.Email;
+            textSecondaryEmail.Text = employee.SecondaryEmail;
+            textWebSite.Text = employee.WebSite;
+            textWebSiteLabel.Text = employee.WebSiteLabel;
+            textMessenger.Text = employee.Messenger;
+            textWorkingPlace.Text = employee.WorkingPlace;
+            textBiography.Text = employee.Biography;
+            checkShowBarcode.Checked = employee.ShowBarcode;
 
-                        if (item != null) {
-                            textLastName.Text = item.LastName;
-                            textFirstName.Text = item.FirstName;
-                            textOtherName.Text = item.OtherName;
-                            textPhone.Text = item.Phone;
-                            textCellPhone.Text = item.CellPhone;
-                            textFax.Text = item.Fax;
-                            textEmail.Text = item.Email;
-                            textSecondaryEmail.Text = item.SecondaryEmail;
-                            textWebSite.Text = item.WebSite;
-                            textWebSiteLabel.Text = item.WebSiteLabel;
-                            textMessenger.Text = item.Messenger;
-                            textWorkingPlace.Text = item.WorkingPlace;
-                            textBiography.Text = item.Biography;
-                            checkShowBarcode.Checked = item.ShowBarcode;
-							
-                            // load working hours
-                            WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, item.WorkingHours);
+            // load working hours
+            WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, employee.WorkingHours);
 
-                            if (!Null.IsNull (item.ExperienceYears))
-                                textExperienceYears.Text = item.ExperienceYears.ToString ();
+            if (!Null.IsNull (employee.ExperienceYears)) {
+                textExperienceYears.Text = employee.ExperienceYears.ToString ();
+            }
 
-                            if (!Null.IsNull (item.ExperienceYearsBySpec))
-                                textExperienceYearsBySpec.Text = item.ExperienceYearsBySpec.ToString ();
+            if (!Null.IsNull (employee.ExperienceYearsBySpec)) {
+                textExperienceYearsBySpec.Text = employee.ExperienceYearsBySpec.ToString ();
+            }
 
-                            datetimeStartDate.SelectedDate = item.StartDate;
-                            datetimeEndDate.SelectedDate = item.EndDate;
+            datetimeStartDate.SelectedDate = employee.StartDate;
+            datetimeEndDate.SelectedDate = employee.EndDate;
 
-                            // set photo
-                            if (!TypeUtils.IsNull (item.PhotoFileID)) {
-                                var photo = FileManager.Instance.GetFile (item.PhotoFileID.Value);
-                                if (photo != null) {
-                                    pickerPhoto.FileID = photo.FileId;
-                                }
-                            }
-
-                            if (!Null.IsNull (item.UserID)) {
-                                var user = UserController.GetUserById (this.PortalId, item.UserID.Value);
-                                if (user != null) {
-                                    // add previously selected user to user list...
-                                    comboUsers.Items.Add (new ListItem (
-                                            user.Username + " / " + user.Email,
-                                            user.UserID.ToString ()));
-                                    comboUsers.SelectedIndex = 1;
-                                }
-                            }
-
-                            // fill view list
-                            var occupiedPositions = item.Positions
-                                .Select (op => new OccupiedPositionEditViewModel (op)).ToList ();
-
-                            // bind occupied positions
-                            OccupiedPositions = occupiedPositions;
-                            gridOccupiedPositions.DataSource = occupiedPositions;
-                            gridOccupiedPositions.DataBind ();
-
-                            // fill achievements list
-                            var achievements = item.Achievements
-                                .Select (ea => new EmployeeAchievementEditViewModel (ea, LocalResourceFile)).ToList ();
-
-                            // bind achievements
-                            Achievements = achievements;
-                            gridAchievements.DataSource = achievements;
-                            gridAchievements.DataBind ();
-
-                            // fill disciplines list
-                            var disciplines = item.Disciplines
-                                .Select (ed => new EmployeeDisciplineEditViewModel (ed)).ToList ();
-                    
-                            // bind disciplines
-                            Disciplines = disciplines;
-                            gridDisciplines.DataSource = disciplines;
-                            gridDisciplines.DataBind ();
-
-                            // setup audit control
-                            ctlAudit.Bind (item);
-
-                            buttonDelete.Visible = SecurityContext.CanDelete (item);
-                        }
-                        else
-                            Response.Redirect (Globals.NavigateURL (), true);
-                    }
-                    else {
-                        buttonDelete.Visible = false;
-                        ctlAudit.Visible = false;
-                    }
-
-                    // then edit / add from EmployeeList, divisionId query param
-                    // can be set to current division ID
-                    var divisionId = Request.QueryString ["division_id"];
-                    divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
+            // set photo
+            if (!TypeUtils.IsNull (employee.PhotoFileID)) {
+                var photo = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
+                if (photo != null) {
+                    pickerPhoto.FileID = photo.FileId;
                 }
             }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
+
+            if (!Null.IsNull (employee.UserID)) {
+                var user = UserController.GetUserById (this.PortalId, employee.UserID.Value);
+                if (user != null) {
+                    // add previously selected user to user list...
+                    comboUsers.Items.Add (new ListItem (
+                            user.Username + " / " + user.Email,
+                            user.UserID.ToString ()));
+                    comboUsers.SelectedIndex = 1;
+                }
+            }
+
+            // fill view list
+            var occupiedPositions = employee.Positions
+                .Select (op => new OccupiedPositionEditViewModel (op)).ToList ();
+
+            // bind occupied positions
+            OccupiedPositions = occupiedPositions;
+            gridOccupiedPositions.DataSource = occupiedPositions;
+            gridOccupiedPositions.DataBind ();
+
+            // fill achievements list
+            var achievements = employee.Achievements
+                .Select (ea => new EmployeeAchievementEditViewModel (ea, LocalResourceFile)).ToList ();
+
+            // bind achievements
+            Achievements = achievements;
+            gridAchievements.DataSource = achievements;
+            gridAchievements.DataBind ();
+
+            // fill disciplines list
+            var disciplines = employee.Disciplines
+                .Select (ed => new EmployeeDisciplineEditViewModel (ed)).ToList ();
+
+            // bind disciplines
+            Disciplines = disciplines;
+            gridDisciplines.DataSource = disciplines;
+            gridDisciplines.DataBind ();
+
+            // setup audit control
+            ctlAudit.Bind (employee);
+
+            SetupDivisionSelector ();
+        }
+
+        protected override void LoadNewItem ()
+        {
+            SetupDivisionSelector ();
+        }
+
+        void SetupDivisionSelector ()
+        {
+            // then edit / add from EmployeeList, divisionId query param
+            // can be set to current division ID
+            var divisionId = Request.QueryString ["division_id"];
+            divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
+        }
+
+        protected override void BeforeUpdateItem (EmployeeInfo item)
+        {
+            // fill the object
+            item.LastName = textLastName.Text.Trim ();
+            item.FirstName = textFirstName.Text.Trim ();
+            item.OtherName = textOtherName.Text.Trim ();
+            item.Phone = textPhone.Text.Trim ();
+            item.CellPhone = textCellPhone.Text.Trim ();
+            item.Fax = textFax.Text.Trim ();
+            item.Email = textEmail.Text.Trim ().ToLowerInvariant ();
+            item.SecondaryEmail = textSecondaryEmail.Text.Trim ().ToLowerInvariant ();
+            item.WebSite = textWebSite.Text.Trim ();
+            item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
+            item.Messenger = textMessenger.Text.Trim ();
+            item.WorkingPlace = textWorkingPlace.Text.Trim ();
+            item.Biography = textBiography.Text.Trim ();
+            item.ShowBarcode = checkShowBarcode.Checked;
+            item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
+            item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
+            item.StartDate = datetimeStartDate.SelectedDate;
+            item.EndDate = datetimeEndDate.SelectedDate;
+
+            // pickerPhoto.FileID may be 0 by default
+            item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
+            item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
+        }
+
+        protected override EmployeeInfo GetItemWithDependencies (int itemId)
+        {
+            return new EmployeeQuery (ModelContext).SingleOrDefault (itemId);
+        }
+
+        #region implemented abstract members of EditPortalModuleBase
+
+        protected override EmployeeInfo GetItem (int itemId)
+        {
+            return ModelContext.Get<EmployeeInfo> (itemId);
+        }
+
+        protected override void AddItem (EmployeeInfo item)
+        {
+            if (SecurityContext.CanAdd (typeof (EmployeeInfo))) {
+                // update working hours
+                item.WorkingHours = WorkingHoursLogic.Update (
+                    comboWorkingHours,
+                    textWorkingHours.Text,
+                    checkAddToVocabulary.Checked
+                );
+
+                // add employeee
+                new AddCommand<EmployeeInfo> (ModelContext, SecurityContext).Add (item);
+                ModelContext.SaveChanges (false);
+
+                // then adding new employee from Employee or EmployeeDetails modules, 
+                // set calling module to display new employee
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" ||
+                ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails") {
+                    var settingsRepository = new EmployeeSettingsRepository ();
+                    var settings = settingsRepository.GetSettings (ModuleConfiguration);
+                    settings.EmployeeID = item.EmployeeID;
+
+                    // we adding new employee, so he/she should be displayed in the module
+                    settings.ShowCurrentUser = false;
+                    settingsRepository.SaveSettings (ModuleConfiguration, settings);
+                }
+
+                new UpdateOccupiedPositionsCommand (ModelContext)
+                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+
+                new UpdateEmployeeAchievementsCommand (ModelContext)
+                    .UpdateEmployeeAchievements (GetEmployeeAchievements (), item.EmployeeID);
+
+                new UpdateEmployeeDisciplinesCommand (ModelContext)
+                    .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+
+                ModelContext.SaveChanges ();
             }
         }
 
-        /// <summary>
-        /// Handles Click event for Update button
-        /// </summary>
-        /// <param name='sender'>
-        /// Sender.
-        /// </param>
-        /// <param name='e'>
-        /// Event args.
-        /// </param>
-        protected void buttonUpdate_Click (object sender, EventArgs e)
+        protected override void UpdateItem (EmployeeInfo item)
         {
-            try {
-                EmployeeInfo item;
+            // update working hours
+            item.WorkingHours = WorkingHoursLogic.Update (
+                comboWorkingHours,
+                textWorkingHours.Text,
+                checkAddToVocabulary.Checked
+            );
 
-                // determine if we are adding or updating
-                // ALT: if (Null.IsNull (itemId))
-                if (itemId == null) {
-                    // to add new record
-                    item = new EmployeeInfo ();
-                }
-                else {
-                    // update existing record
-                    item = ModelContext.Get<EmployeeInfo> (itemId.Value);
-                }
+            // update audit info
+            item.LastModifiedByUserID = UserId;
+            item.LastModifiedOnDate = DateTime.Now;
 
-                // fill the object
-                item.LastName = textLastName.Text.Trim ();
-                item.FirstName = textFirstName.Text.Trim ();
-                item.OtherName = textOtherName.Text.Trim ();
-                item.Phone = textPhone.Text.Trim ();
-                item.CellPhone = textCellPhone.Text.Trim ();
-                item.Fax = textFax.Text.Trim ();
-                item.Email = textEmail.Text.Trim ().ToLowerInvariant ();
-                item.SecondaryEmail = textSecondaryEmail.Text.Trim ().ToLowerInvariant ();
-                item.WebSite = textWebSite.Text.Trim ();
-                item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
-                item.Messenger = textMessenger.Text.Trim ();
-                item.WorkingPlace = textWorkingPlace.Text.Trim ();
-                item.Biography = textBiography.Text.Trim ();
-                item.ShowBarcode = checkShowBarcode.Checked;
-				item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
-                item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
-                item.StartDate = datetimeStartDate.SelectedDate;
-                item.EndDate = datetimeEndDate.SelectedDate;
+            // update employee
+            ModelContext.Update (item);
 
-                // pickerPhoto.FileID may be 0 by default
-                item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
-                item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
-
-                if (itemId == null && SecurityContext.CanAdd (typeof (EmployeeInfo))) {
-
-                    // update working hours
-                    item.WorkingHours = WorkingHoursLogic.Update (
-                        comboWorkingHours,
-                        textWorkingHours.Text,
-                        checkAddToVocabulary.Checked
-                    );
-
-                    // add employeee
-                    new AddCommand<EmployeeInfo> (ModelContext, SecurityContext).Add (item);
-                    ModelContext.SaveChanges (false);
-
-                    // then adding new employee from Employee or EmployeeDetails modules, 
-                    // set calling module to display new employee
-                    if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" ||
-                    ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails") {
-                        var settingsRepository = new EmployeeSettingsRepository ();
-                        var settings = settingsRepository.GetSettings (ModuleConfiguration);
-                        settings.EmployeeID = item.EmployeeID;
-
-                        // we adding new employee, so he/she should be displayed in the module
-                        settings.ShowCurrentUser = false;
-                        settingsRepository.SaveSettings (ModuleConfiguration, settings);
-                    }
-                }
-                else {
-                    // update working hours
-                    item.WorkingHours = WorkingHoursLogic.Update (
-                        comboWorkingHours,
-                        textWorkingHours.Text,
-                        checkAddToVocabulary.Checked
-                    );
-
-                    // update audit info
-                    item.LastModifiedByUserID = UserId;
-                    item.LastModifiedOnDate = DateTime.Now;
-
-                    // update employee
-                    ModelContext.Update<EmployeeInfo> (item);
-                }
-
-                if (itemId != null || SecurityContext.CanAdd (typeof (EmployeeInfo))) {
-                    
-                    new UpdateOccupiedPositionsCommand (ModelContext)
+            new UpdateOccupiedPositionsCommand (ModelContext)
                         .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
 
-                    new UpdateEmployeeAchievementsCommand (ModelContext)
-                        .UpdateEmployeeAchievements (GetEmployeeAchievements (), item.EmployeeID);
+            new UpdateEmployeeAchievementsCommand (ModelContext)
+                .UpdateEmployeeAchievements (GetEmployeeAchievements (), item.EmployeeID);
 
-                    new UpdateEmployeeDisciplinesCommand (ModelContext)
-                        .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+            new UpdateEmployeeDisciplinesCommand (ModelContext)
+                .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
 
-                    ModelContext.SaveChanges ();
-                }
+            ModelContext.SaveChanges ();
+        }
 
-                ModuleController.SynchronizeModule (ModuleId);
+        protected override bool CanDeleteItem (EmployeeInfo item)
+        {
+            return SecurityContext.CanDelete (item);
+        }
 
-                Response.Redirect (Globals.NavigateURL (), true);
+        protected override void DeleteItem (EmployeeInfo item)
+        {
+            // TODO: Delete also photo and other assets
+            new DeleteCommand<EmployeeInfo> (ModelContext, SecurityContext).Delete (item);
+            ModelContext.SaveChanges ();
+        }
+
+        #endregion
+
+        protected override void OnButtonUpdateClick (object sender, EventArgs e)
+        {
+            // HACK: Dispose current model context used in load to create new one for update
+            if (modelContext != null) {
+                modelContext.Dispose ();
+                modelContext = null;
             }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
+
+            base.OnButtonUpdateClick (sender, e);
         }
 
         private List<OccupiedPositionInfo> GetOccupiedPositions ()
@@ -527,34 +517,6 @@ namespace R7.University.Employee
                     disciplineInfos.Add (ep.NewEmployeeDisciplineInfo ());
 
             return disciplineInfos;
-        }
-
-        /// <summary>
-        /// Handles Click event for Delete button
-        /// </summary>
-        /// <param name='sender'>
-        /// Sender.
-        /// </param>
-        /// <param name='e'>
-        /// Event args.
-        /// </param>
-        protected void buttonDelete_Click (object sender, EventArgs e)
-        {
-            try {
-                // ALT: if (!Null.IsNull (itemId))
-                if (itemId.HasValue) {
-
-                    var employee = ModelContext.Get<EmployeeInfo> (itemId.Value);
-                    new DeleteCommand<EmployeeInfo> (ModelContext, SecurityContext).Delete (employee);
-                    ModelContext.SaveChanges ();
-
-                    ModuleController.SynchronizeModule (ModuleId);
-                    Response.Redirect (Globals.NavigateURL (), true);
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
         }
 
         protected void buttonUserLookup_Click (object sender, EventArgs e)
@@ -1213,8 +1175,6 @@ namespace R7.University.Employee
             comboEduProgramProfile.DataSource = epps;
             comboEduProgramProfile.DataBind ();
         }
-
-        #endregion
     }
 }
 
