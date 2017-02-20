@@ -21,11 +21,9 @@
 
 namespace R7.University.Models
 {
-    public interface IEduForm
+    public interface IEduForm: ISystemEntity
     {
         int EduFormID { get; set; }
-
-        bool IsSystem { get; set; }
 
         string Title { get; set; }
 

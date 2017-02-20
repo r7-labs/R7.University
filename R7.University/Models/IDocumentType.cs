@@ -21,15 +21,13 @@
 
 namespace R7.University.Models
 {
-    public interface IDocumentType
+    public interface IDocumentType: ISystemEntity
     {
         int DocumentTypeID { get; set; }
 
         string Type { get; set; }
 
         string Description { get; set; }
-
-        bool IsSystem { get; set; }
 
         string FilenameFormat { get; set; }
     }

@@ -56,11 +56,6 @@ namespace R7.University.Launchpad
             item.ShortTitle = textShortTitle.Text.Trim ();
         }
 
-        protected override bool CanDeleteItem (EduFormInfo item)
-        {
-            return base.CanDeleteItem (item) && !item.IsSystem;
-        }
-
         #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (EduFormInfo item)

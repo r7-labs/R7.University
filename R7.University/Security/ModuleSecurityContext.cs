@@ -56,11 +56,17 @@ namespace R7.University.Security
 
         public bool CanDelete<TEntity> (TEntity entity) where TEntity : class
         {
+            var canDelete = true;
+
             if (entity is IUniversityBaseEntity) {
-                return IsAdmin;
+                canDelete &= IsAdmin;
             }
 
-            return true;
+            if (entity is ISystemEntity) {
+                canDelete &= !((ISystemEntity) entity).IsSystem;
+            }
+
+            return canDelete;
         }
 
         public bool CanManageModule ()

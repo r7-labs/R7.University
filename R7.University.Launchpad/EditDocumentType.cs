@@ -59,11 +59,6 @@ namespace R7.University.Launchpad
             item.FilenameFormat = textFilenameFormat.Text.Trim ();
         }
 
-        protected override bool CanDeleteItem (DocumentTypeInfo item)
-        {
-            return base.CanDeleteItem (item) && !item.IsSystem;
-        }
-
         #region Implemented abstract members of UniversityEditPortalModuleBase
 
         protected override void AddItem (DocumentTypeInfo item)
