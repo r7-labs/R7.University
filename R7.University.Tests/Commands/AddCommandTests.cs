@@ -51,10 +51,12 @@ namespace R7.University.Tests.Commands
                 
                 Assert.Equal (isAdmin, null != entityLoaded);
 
-                Assert.Equal (now, entityLoaded.CreatedOnDate);
-                Assert.Equal (now, entityLoaded.LastModifiedOnDate);
-                Assert.Equal (userId, entityLoaded.CreatedByUserID);
-                Assert.Equal (userId, entityLoaded.LastModifiedByUserID);
+                if (entityLoaded != null) {
+                    Assert.Equal (now, entityLoaded.CreatedOnDate);
+                    Assert.Equal (now, entityLoaded.LastModifiedOnDate);
+                    Assert.Equal (userId, entityLoaded.CreatedByUserID);
+                    Assert.Equal (userId, entityLoaded.LastModifiedByUserID);
+                }
             }
         }
 
