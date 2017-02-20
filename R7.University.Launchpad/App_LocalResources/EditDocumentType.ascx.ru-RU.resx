@@ -51,4 +51,7 @@
 			имеющие префикс &quot;order_&quot;. Метки начала &quot;^&quot; и конца &quot;$&quot; будут добавлены автоматически, 
 			сравнение производится с учетом регистра. Вы можете протестировать свои регулярные выражения здесь: https://regex101.com/</value>
     </data>
+	<data name="FilenameFormat.Invalid" xml:space="preserve">
+        <value>Не является корректным регулярным выражением JavaScript.</value>
+    </data>
 </root>

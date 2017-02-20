@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/R7.University/R7.University/Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University/css/module.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.Launchpad/js/editDocumentType.js" ForceProvider="DnnFormBottomProvider" />
 
 <div class="dnnForm dnnClear">
 	<fieldset>	
@@ -25,6 +26,9 @@
 		<div class="dnnFormItem">
             <dnn:Label id="labelFilenameFormat" runat="server" ControlName="textFilenameFormat" />
             <asp:TextBox id="textFilenameFormat" runat="server" MaxLength="255" />
+			<asp:CustomValidator runat="server" ControlToValidate="textFilenameFormat"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="FilenameFormat.Invalid"
+			    EnableClientScript="true" ClientValidationFunction="validateFilenameFormat" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsSystem" runat="server" ControlName="checkIsSystem" />

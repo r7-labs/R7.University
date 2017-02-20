@@ -76,6 +76,7 @@
     <Folder Include="Tables\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Queries\" />
+    <Folder Include="js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -89,6 +90,7 @@
     <Content Include="EditEduForm.ascx" />
     <Content Include="admin.css" />
     <Content Include="packages.config" />
+    <Content Include="js\editDocumentType.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
