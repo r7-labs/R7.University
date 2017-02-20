@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,13 +23,8 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-using DotNetNuke.Common;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Framework;
-using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.Modules;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
@@ -52,7 +47,7 @@ namespace R7.University.EduProgram
         Documents
     }
 
-    public partial class EditEduProgram : PortalModuleBase
+    public partial class EditEduProgram : EditPortalModuleBase<EduProgramInfo, int>
     {
         #region Model context
 
@@ -118,24 +113,18 @@ namespace R7.University.EduProgram
             get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
-        private int? itemId = null;
+        protected EditEduProgram () : base ("eduprogram_id")
+        {
+        }
 
-        #region Overrides
+        protected override void InitControls ()
+        {
+            InitControls (buttonUpdate, buttonDelete, linkCancel, auditControl);
+        }
 
-        /// <summary>
-        /// Handles Init event for a control.
-        /// </summary>
-        /// <param name="e">Event args.</param>
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
-
-            // set url for Cancel link
-            linkCancel.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
-
-            // add confirmation dialog to delete button
-            buttonDelete.Attributes.Add ("onClick", "javascript:return confirm('"
-                + Localization.GetString ("DeleteItem") + "');");
 
             // bind education levels
             comboEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
@@ -151,96 +140,157 @@ namespace R7.University.EduProgram
             gridEduProgramProfiles.LocalizeColumns (LocalResourceFile);
         }
 
-        /// <summary>
-        /// Handles Load event for a control.
-        /// </summary>
-        /// <param name="e">Event args.</param>
-        protected override void OnLoad (EventArgs e)
+        protected override void LoadItem (EduProgramInfo item)
         {
-            base.OnLoad (e);
-            	
-            if (AJAX.IsInstalled ())
-                AJAX.RegisterScriptManager ();
-            
-            try {
-                // parse querystring parameters
-                itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
-      
-                if (!IsPostBack) {
-                    // load the data into the control the first time we hit this page
+            var ep = GetItemWithDependencies (ItemId.Value);
 
-                    // check we have an item to lookup
-                    // ALT: if (!Null.IsNull (itemId) 
-                    if (itemId.HasValue) {
-                        
-                        // load the item
-                        var item = new EduProgramQuery (ModelContext)
-                            .SingleOrDefault (itemId.Value);
+            textCode.Text = ep.Code;
+            textTitle.Text = ep.Title;
+            textGeneration.Text = ep.Generation;
+            datetimeStartDate.SelectedDate = ep.StartDate;
+            datetimeEndDate.SelectedDate = ep.EndDate;
+            comboEduLevel.SelectByValue (ep.EduLevelID);
+            urlHomePage.Url = ep.HomePage;
+            divisionSelector.DivisionId = ep.DivisionId;
 
-                        if (item != null) {
-                            textCode.Text = item.Code;
-                            textTitle.Text = item.Title;
-                            textGeneration.Text = item.Generation;
-                            datetimeStartDate.SelectedDate = item.StartDate;
-                            datetimeEndDate.SelectedDate = item.EndDate;
-                            comboEduLevel.SelectByValue (item.EduLevelID);
-                            urlHomePage.Url = item.HomePage;
-                            divisionSelector.DivisionId = item.DivisionId;
+            auditControl.Bind (ep);
 
-                            auditControl.Bind (item);
+            var documents = ep.Documents
+                .OrderBy (d => d.Group)
+                .ThenBy (d => d.DocumentType.DocumentTypeID)
+                .ThenBy (d => d.SortIndex)
+                .ToList ();
 
-                            var documents = item.Documents
-                                .OrderBy (d => d.Group)
-                                .ThenBy (d => d.DocumentType.DocumentTypeID)
-                                .ThenBy (d => d.SortIndex)
-                                .ToList ();
-                            
-                            formEditDocuments.SetData (documents, item.EduProgramID);
+            formEditDocuments.SetData (documents, ep.EduProgramID);
 
-                            // setup link for adding new edu. program profile
-                            linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", item.EduProgramID.ToString (), "EditEduProgramProfile");
+            // setup link for adding new edu. program profile
+            linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", ep.EduProgramID.ToString (), "EditEduProgramProfile");
 
-                            gridEduProgramProfiles.DataSource = item.EduProgramProfiles
-                                .Select (epp => new EduProgramProfileEditViewModel (epp, ViewModelContext))
-                                .OrderBy (epp => epp.ProfileCode)
-                                .ThenBy (epp => epp.ProfileTitle);
+            gridEduProgramProfiles.DataSource = ep.EduProgramProfiles
+                .Select (epp => new EduProgramProfileEditViewModel (epp, ViewModelContext))
+                .OrderBy (epp => epp.ProfileCode)
+                .ThenBy (epp => epp.ProfileTitle);
 
-                            gridEduProgramProfiles.DataBind ();
+            gridEduProgramProfiles.DataBind ();
 
-                            buttonDelete.Visible = SecurityContext.CanDelete (item);
-                        }
-                        else
-                            Response.Redirect (Globals.NavigateURL (), true);
-                    }
-                    else {
-                        auditControl.Visible = false;
-                        buttonDelete.Visible = false;
-                    }
+            buttonDelete.Visible = SecurityContext.CanDelete (ep);
+            linkAddEduProgramProfile.Visible = SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
+            panelAddDefaultProfile.Visible = false;
+        }
 
-                    // show/hide add default profile controls
-                    linkAddEduProgramProfile.Visible = itemId != null && SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
-                    panelAddDefaultProfile.Visible = itemId == null && SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
+        protected override void LoadNewItem ()
+        {
+            linkAddEduProgramProfile.Visible = false;
+            panelAddDefaultProfile.Visible = SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
+        }
+
+        protected override void BeforeUpdateItem (EduProgramInfo item)
+        {
+            // fill the object
+            item.Code = textCode.Text.Trim ();
+            item.Title = textTitle.Text.Trim ();
+            item.Generation = textGeneration.Text.Trim ();
+            item.StartDate = datetimeStartDate.SelectedDate;
+            item.EndDate = datetimeEndDate.SelectedDate;
+            item.HomePage = urlHomePage.Url;
+
+            // update references
+            item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
+            item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
+            item.DivisionId = divisionSelector.DivisionId;
+
+            if (ItemId == null) {
+            }
+            else {
+                item.LastModifiedOnDate = DateTime.Now;
+                item.LastModifiedByUserID = UserInfo.UserID;
+
+                // REVIEW: Solve on SqlDataProvider level on upgrage to 2.0.0?
+                if (item.CreatedOnDate == default (DateTime)) {
+                    item.CreatedOnDate = item.LastModifiedOnDate;
+                    item.CreatedByUserID = item.LastModifiedByUserID;
                 }
             }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
+        }
+
+        protected override EduProgramInfo GetItemWithDependencies (int itemId)
+        {
+            return new EduProgramQuery (ModelContext).SingleOrDefault (itemId);
+        }
+
+        #region implemented abstract members of EditPortalModuleBase
+
+        protected override EduProgramInfo GetItem (int itemId)
+        {
+            return ModelContext.Get<EduProgramInfo> (itemId);
+        }
+
+        protected override void AddItem (EduProgramInfo item)
+        {
+            if (SecurityContext.CanAdd (typeof (EduProgramInfo))) {
+
+                var now = DateTime.Now;
+                new AddCommand<EduProgramInfo> (ModelContext, SecurityContext).Add (item, now);
+                ModelContext.SaveChanges (false);
+
+                if (checkAddDefaultProfile.Checked) {
+                    var defaultProfile = new EduProgramProfileInfo {
+                        ProfileCode = string.Empty,
+                        ProfileTitle = string.Empty,
+                        EduProgramID = item.EduProgramID,
+                        EduLevelId = item.EduLevelID,
+                        // unpublish profile
+                        EndDate = item.CreatedOnDate.Date
+                    };
+
+                    new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (defaultProfile, now);
+                    ModelContext.SaveChanges (false);
+                }
+
+                // update EduProgram module settings then adding new item
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
+                    var settingsRepository = new EduProgramSettingsRepository ();
+                    var settings = settingsRepository.GetSettings (ModuleConfiguration);
+                    settings.EduProgramId = item.EduProgramID;
+                    settingsRepository.SaveSettings (ModuleConfiguration, settings);
+                }
+
+                new UpdateDocumentsCommand (ModelContext)
+                    .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
+
+                ModelContext.SaveChanges ();
             }
+        }
+
+        protected override void UpdateItem (EduProgramInfo item)
+        {
+            // REVIEW: Use single transaction to update main entity along with all dependent ones?
+
+            ModelContext.Update (item);
+
+            new UpdateDocumentsCommand (ModelContext)
+                .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
+
+            ModelContext.SaveChanges ();
+        }
+
+        protected override bool CanDeleteItem (EduProgramInfo item)
+        {
+            return SecurityContext.CanDelete (item);
+        }
+
+        protected override void DeleteItem (EduProgramInfo item)
+        {
+            // TODO: Also remove documents
+            new DeleteCommand<EduProgramInfo> (ModelContext, SecurityContext).Delete (item);
+            ModelContext.SaveChanges ();
         }
 
         #endregion
 
         #region Handlers
 
-        /// <summary>
-        /// Handles Click event for Update button
-        /// </summary>
-        /// <param name='sender'>
-        /// Sender.
-        /// </param>
-        /// <param name='e'>
-        /// Event args.
-        /// </param>
-        protected void buttonUpdate_Click (object sender, EventArgs e)
+        protected override void OnButtonUpdateClick (object sender, EventArgs e)
         {
             // HACK: Dispose current model context used in load to create new one for update
             if (modelContext != null) {
@@ -248,119 +298,7 @@ namespace R7.University.EduProgram
                 modelContext = null;
             }
 
-            try {
-                EduProgramInfo item;
-
-                // determine if we are adding or updating
-                // ALT: if (Null.IsNull (itemId))
-                if (itemId == null) {
-                    // add new record
-                    item = new EduProgramInfo ();
-                }
-                else {
-                    // update existing record
-                    item = ModelContext.Get<EduProgramInfo> (itemId.Value);
-                }
-
-                // fill the object
-                item.Code = textCode.Text.Trim ();
-                item.Title = textTitle.Text.Trim ();
-                item.Generation = textGeneration.Text.Trim ();
-                item.StartDate = datetimeStartDate.SelectedDate;
-                item.EndDate = datetimeEndDate.SelectedDate;
-                item.HomePage = urlHomePage.Url;
-
-                // update references
-                item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
-                item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
-                item.DivisionId = divisionSelector.DivisionId;
-
-                if (itemId == null && SecurityContext.CanAdd (typeof (EduProgramInfo))) {
-
-                    var now = DateTime.Now;
-                    new AddCommand<EduProgramInfo> (ModelContext, SecurityContext).Add (item, now);
-                    ModelContext.SaveChanges (false);
-
-                    if (checkAddDefaultProfile.Checked) {
-                        var defaultProfile = new EduProgramProfileInfo {
-                            ProfileCode = string.Empty,
-                            ProfileTitle = string.Empty,
-                            EduProgramID = item.EduProgramID,
-                            EduLevelId = item.EduLevelID,
-                            // unpublish profile
-                            EndDate = item.CreatedOnDate.Date
-                        };
-
-                        new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (defaultProfile, now);
-                        ModelContext.SaveChanges (false);
-                    }
-
-                    // update EduProgram module settings then adding new item
-                    if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
-                        var settingsRepository = new EduProgramSettingsRepository ();
-                        var settings = settingsRepository.GetSettings (ModuleConfiguration);
-                        settings.EduProgramId = item.EduProgramID;
-                        settingsRepository.SaveSettings (ModuleConfiguration, settings);
-                    }
-                }
-                else {
-                    item.LastModifiedOnDate = DateTime.Now;
-                    item.LastModifiedByUserID = UserInfo.UserID;
-
-                    // REVIEW: Solve on SqlDataProvider level on upgrage to 2.0.0?
-                    if (item.CreatedOnDate == default (DateTime)) {
-                        item.CreatedOnDate = item.LastModifiedOnDate;
-                        item.CreatedByUserID = item.LastModifiedByUserID;
-                    }
-
-                    ModelContext.Update<EduProgramInfo> (item);
-                }
-
-                // update related documents
-                if (itemId != null || SecurityContext.CanAdd (typeof (EduProgramInfo))) {
-                    new UpdateDocumentsCommand (ModelContext)
-                        .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
-
-                    ModelContext.SaveChanges ();
-                }
-
-                ModuleController.SynchronizeModule (ModuleId);
-
-                Response.Redirect (Globals.NavigateURL (), true);
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        /// <summary>
-        /// Handles Click event for Delete button
-        /// </summary>
-        /// <param name='sender'>
-        /// Sender.
-        /// </param>
-        /// <param name='e'>
-        /// Event args.
-        /// </param>
-        protected void buttonDelete_Click (object sender, EventArgs e)
-        {
-            try {
-                if (itemId != null) {
-
-                    // TODO: Also remove documents
-
-                    var eduProgram = ModelContext.Get<EduProgramInfo> (itemId.Value);
-                    new DeleteCommand<EduProgramInfo> (ModelContext, SecurityContext).Delete (eduProgram);
-                    ModelContext.SaveChanges ();
-
-                    ModuleController.SynchronizeModule (ModuleId);
-
-                    Response.Redirect (Globals.NavigateURL (), true);
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
+            base.OnButtonUpdateClick (sender, e);
         }
 
         protected void gridEduProgramProfiles_RowDataBound (object sender, GridViewRowEventArgs e)
