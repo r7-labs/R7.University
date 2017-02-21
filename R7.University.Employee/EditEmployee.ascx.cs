@@ -679,24 +679,12 @@ namespace R7.University.Employee
 
         protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
         {
-            // hide description
-            e.Row.Cells [6].Visible = false;
-
-            // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                // add description as row tooltip
-                e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [6].Text);
-
-                // make link to the document
-                // WTF: empty DocumentURL's cells contains non-breakable spaces?
-                var documentUrl = Server.HtmlDecode (e.Row.Cells [7].Text.Replace ("&nbsp;", ""));
-                if (!string.IsNullOrWhiteSpace (documentUrl))
-                    e.Row.Cells [7].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                        UniversityUrlHelper.LinkClickIdnHack (documentUrl, TabId, ModuleId),
-                        LocalizeString ("DocumentUrl.Text"));
-            }
-
             grids_RowDataBound (sender, e);
+
+            if (e.Row.RowType == DataControlRowType.DataRow) {
+                var employeeAchievement = (EmployeeAchievementEditModel) e.Row.DataItem;
+                e.Row.ToolTip = Server.HtmlDecode (employeeAchievement.Description);
+            }
         }
 
         protected void gridDisciplines_RowDataBound (object sender, GridViewRowEventArgs e)

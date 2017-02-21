@@ -230,8 +230,8 @@
                                 <asp:BoundField DataField="Title_String" HeaderText="Title" />
                                 <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
                                 <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle" />
-                                <asp:BoundField DataField="Description" HeaderText="AchievementType" />
-                                <asp:BoundField DataField="DocumentUrl" HeaderText="DocumentUrl" />
+                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
+							    <asp:BoundField DataField="Description" Visible="false" />
 							</Columns>
 				    </asp:GridView>
 				</div>

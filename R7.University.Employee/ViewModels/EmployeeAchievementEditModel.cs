@@ -26,6 +26,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Employee.ViewModels
@@ -88,6 +89,19 @@ namespace R7.University.Employee.ViewModels
         public string Title_String
         { 
             get { return Title + " " + TitleSuffix; }
+        }
+
+        public string DocumentUrl_Link
+        {
+            get {
+                if (!string.IsNullOrWhiteSpace (DocumentURL)) {
+                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
+                                          UniversityUrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
+                                          Localization.GetString ("DocumentUrl.Text", Context.LocalResourceFile));
+                }
+
+                return string.Empty;
+            }
         }
 
         #endregion
