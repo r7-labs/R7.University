@@ -134,11 +134,11 @@
     <Compile Include="Components\EmployeeSettings.cs" />
     <Compile Include="SharedLogic\RepeaterPositionsLogic.cs" />
     <Compile Include="Queries\EmployeeQuery.cs" />
-    <Compile Include="ViewModels\EmployeeAchievementEditViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeAchievementEditModel.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
-    <Compile Include="ViewModels\EmployeeDisciplineEditViewModel.cs" />
-    <Compile Include="ViewModels\OccupiedPositionEditViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeDisciplineEditModel.cs" />
+    <Compile Include="ViewModels\OccupiedPositionEditModel.cs" />
     <Compile Include="ViewModels\EmployeeDisciplineViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="Components\EmployeeSettingsRepository.cs" />
