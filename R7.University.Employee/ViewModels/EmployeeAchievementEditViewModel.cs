@@ -110,6 +110,14 @@ namespace R7.University.Employee.ViewModels
         {
             var achievement = new EmployeeAchievementInfo ();
             CopyCstor.Copy<IEmployeeAchievement> (this, achievement);
+
+            if (achievement.AchievementID != null) {
+                achievement.Title = null;
+                achievement.ShortTitle = null;
+                achievement.AchievementTypeId = null;
+                achievement.AchievementType = null;
+            }
+
             return achievement;
         }
     }
