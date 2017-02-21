@@ -65,22 +65,26 @@ namespace R7.University.Employee.ViewModels
 
         #endregion
 
+        #region Bindable properties
+
         public int ItemID { get; set; }
 
-        public string ViewYears { get; set; }
+        public string Years_String { get; set; }
 
-        public string ViewAchievementType { get; set; }
+        public string AchievementType_String { get; set; }
 
-        public string ViewTitle
+        public string Title_String
         { 
             get { return Title + " " + TitleSuffix; }
         }
 
+        #endregion
+
         public void Localize (string resourceFile)
         {
-            ViewYears = FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
+            Years_String = FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
 
-            ViewAchievementType = Localization.GetString (
+            AchievementType_String = Localization.GetString (
                 "SystemAchievementType_" + AchievementType.GetSystemAchievementType () + ".Text",
                 resourceFile
             );
