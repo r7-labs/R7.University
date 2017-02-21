@@ -22,15 +22,16 @@
 using System;
 using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
-using R7.University.ModelExtensions;
 
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditModel: IEmployeeAchievement
+    public class EmployeeAchievementEditModel: IEmployeeAchievement, IViewModel
     {
         #region IEmployeeAchievement implementation
 
@@ -69,9 +70,20 @@ namespace R7.University.Employee.ViewModels
 
         public int ItemID { get; set; }
 
-        public string Years_String { get; set; }
+        public string Years_String
+        {
+            get { return FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile)); }
+        }
 
-        public string AchievementType_String { get; set; }
+        public string AchievementType_String
+        {
+            get {
+                return Localization.GetString (
+                    "SystemAchievementType_" + AchievementType.GetSystemAchievementType () + ".Text",
+                    Context.LocalResourceFile
+                );
+            }
+        }
 
         public string Title_String
         { 
@@ -80,14 +92,11 @@ namespace R7.University.Employee.ViewModels
 
         #endregion
 
-        public void Localize (string resourceFile)
-        {
-            Years_String = FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
+        protected ViewModelContext Context;
 
-            AchievementType_String = Localization.GetString (
-                "SystemAchievementType_" + AchievementType.GetSystemAchievementType () + ".Text",
-                resourceFile
-            );
+        public void SetContext (ViewModelContext context)
+        {
+            Context = context;
         }
 
         public EmployeeAchievementEditModel ()
@@ -95,9 +104,11 @@ namespace R7.University.Employee.ViewModels
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeAchievementEditModel (IEmployeeAchievement achievement, string resourceFile) : this ()
+        public EmployeeAchievementEditModel (IEmployeeAchievement achievement, ViewModelContext context) : this ()
         {
             CopyCstor.Copy<IEmployeeAchievement> (achievement, this);
+
+            SetContext (context);
 
             // use base achievement values
             if (achievement.Achievement != null) {
@@ -106,8 +117,6 @@ namespace R7.University.Employee.ViewModels
                 AchievementTypeId = achievement.Achievement.AchievementID;
                 AchievementType = achievement.Achievement.AchievementType;
             }
-
-            Localize (resourceFile);
         }
 
         public EmployeeAchievementInfo NewEmployeeAchievementInfo ()

@@ -173,6 +173,12 @@ namespace R7.University.Employee
             get { return IconController.IconURL ("Delete"); }
         }
 
+        ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
+        }
+
         #endregion
 
         protected EditEmployee () : base ("employee_id")
@@ -228,9 +234,8 @@ namespace R7.University.Employee
             divisionSelector.DataBind ();
 
             // bind achievement types
-            var viewModelContext = new ViewModelContext (this);
             comboAchievementTypes.DataSource = achievementTypes
-                .Select (at => new AchievementTypeViewModel (at, viewModelContext));
+                .Select (at => new AchievementTypeViewModel (at, ViewModelContext));
             comboAchievementTypes.DataBind ();
             comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
 
@@ -313,7 +318,7 @@ namespace R7.University.Employee
 
             // fill achievements list
             var achievements = employee.Achievements
-                .Select (ea => new EmployeeAchievementEditModel (ea, LocalResourceFile)).ToList ();
+                                       .Select (ea => new EmployeeAchievementEditModel (ea, ViewModelContext)).ToList ();
 
             // bind achievements
             Achievements = achievements;
@@ -952,8 +957,6 @@ namespace R7.University.Employee
                 achievement.YearEnd = TypeUtils.ParseToNullable<int> (textYearEnd.Text);
                 achievement.DocumentURL = urlDocumentURL.Url;
 
-                achievement.Localize (LocalResourceFile);
-
                 if (command == "Add") {
                     achievements.Add (achievement);
                 }
@@ -964,7 +967,7 @@ namespace R7.University.Employee
                 Achievements = achievements;
 
                 // bind achievements to the gridview
-                gridAchievements.DataSource = achievements;
+                gridAchievements.DataSource = achievements.SetContext (ViewModelContext);
                 gridAchievements.DataBind ();
             }
             catch (Exception ex) {
