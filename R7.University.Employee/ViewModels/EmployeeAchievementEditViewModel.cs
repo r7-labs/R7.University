@@ -25,6 +25,7 @@ using DotNetNuke.Services.Localization;
 using R7.University.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee.ViewModels
 {
@@ -38,6 +39,8 @@ namespace R7.University.Employee.ViewModels
         public int EmployeeID { get; set; }
 
         public int? AchievementID { get; set; }
+
+        public int? AchievementTypeId { get; set; }
 
         public string Title { get; set; }
 
@@ -55,7 +58,7 @@ namespace R7.University.Employee.ViewModels
 
         public string TitleSuffix { get; set; }
 
-        public AchievementType? AchievementType { get; set; }
+        public AchievementTypeInfo AchievementType { get; set; }
 
         [XmlIgnore]
         public AchievementInfo Achievement { get; set; }
@@ -78,7 +81,9 @@ namespace R7.University.Employee.ViewModels
             ViewYears = FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
 
             ViewAchievementType = Localization.GetString (
-                AchievementTypeInfo.GetResourceKey (AchievementType), resourceFile);
+                "SystemAchievementType_" + AchievementType.GetSystemAchievementType () + ".Text",
+                resourceFile
+            );
         }
 
         public EmployeeAchievementEditViewModel ()
@@ -94,6 +99,7 @@ namespace R7.University.Employee.ViewModels
             if (achievement.Achievement != null) {
                 Title = achievement.Achievement.Title;
                 ShortTitle = achievement.Achievement.ShortTitle;
+                AchievementTypeId = achievement.Achievement.AchievementID;
                 AchievementType = achievement.Achievement.AchievementType;
             }
 

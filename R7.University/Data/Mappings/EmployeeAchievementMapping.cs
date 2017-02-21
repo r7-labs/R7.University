@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -32,6 +32,7 @@ namespace R7.University.Data.Mappings
             HasKey (m => m.EmployeeAchievementID);
             Property (m => m.EmployeeAchievementID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.AchievementID).IsOptional ();
+            Property (m => m.AchievementTypeId).IsOptional ();
             Property (m => m.Description).IsOptional ();
             Property (m => m.Title).IsOptional ();
             Property (m => m.ShortTitle).IsOptional ();
@@ -40,10 +41,9 @@ namespace R7.University.Data.Mappings
             Property (m => m.IsTitle).IsRequired ();
             Property (m => m.DocumentURL).IsRequired ();
             Property (m => m.TitleSuffix).IsOptional ();
-            Property (m => m.AchievementTypeString).HasColumnName ("AchievementType").IsRequired ();
-            Ignore (m => m.AchievementType);
 
             HasOptional (m => m.Achievement).WithMany ().HasForeignKey (m => m.AchievementID);
+            HasOptional (m => m.AchievementType).WithMany ().HasForeignKey (m => m.AchievementTypeId);
         }
     }
 }

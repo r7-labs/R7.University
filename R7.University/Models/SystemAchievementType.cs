@@ -1,10 +1,10 @@
 //
-//  IEmployeeAchievement.cs
+//  SystemAchievementType.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,35 +21,18 @@
 
 namespace R7.University.Models
 {
-    public interface IEmployeeAchievement
+    public enum SystemAchievementType
     {
-        int EmployeeAchievementID { get; set; }
-
-        int EmployeeID { get; set; }
-
-        int? AchievementID { get; set; }
-
-        int? AchievementTypeId { get; set; }
-
-        string Title { get; set; }
-
-        string ShortTitle { get; set; }
-
-        string Description { get; set; }
-
-        int? YearBegin { get; set; }
-
-        int? YearEnd { get; set; }
-
-        bool IsTitle { get; set; }
-
-        string DocumentURL { get; set; }
-
-        string TitleSuffix { get; set; }
-
-        AchievementInfo Achievement { get; set; }
-
-        AchievementTypeInfo AchievementType { get; set; }
+        Achievement,
+        Education,
+        Training,
+        ProfTraining,
+        Work,
+        Title,
+        AcademicTitle,
+        AcademicDegree,
+        Authorship,
+        Custom
     }
 }
-
+   

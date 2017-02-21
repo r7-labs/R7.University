@@ -1,10 +1,10 @@
-//
-//  AchievementType.cs
+﻿//
+//  AchievementTypeMapping.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,16 +19,21 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace R7.University.Models
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+using R7.University.Models;
+
+namespace R7.University.Data.Mappings
 {
-    public enum AchievementType
+    public class AchievementTypeMapping: EntityTypeConfiguration<AchievementTypeInfo>
     {
-        Achievement = 'A',
-        Education = 'E',
-        Training = 'T',
-        Work = 'W',
-        AcademicTitle = 'R', // as 'Rank'
-        AcademicDegree = 'D'
+        public AchievementTypeMapping ()
+        {
+            HasKey (m => m.AchievementTypeId);
+            Property (m => m.AchievementTypeId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
+            Property (m => m.Type).IsRequired ();
+            Property (m => m.Description).IsOptional ();
+            Property (m => m.IsSystem).IsRequired ();
+        }
     }
 }
-   

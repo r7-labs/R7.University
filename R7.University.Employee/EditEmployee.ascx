@@ -246,8 +246,8 @@
                 <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
                     <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
                     <asp:DropDownList id="comboAchievementTypes" runat="server" 
-                        DataTextField="LocalizedAchivementType"
-                        DataValueField="AchievementType" />
+                        DataTextField="LocalizedType"
+                        DataValueField="AchievementTypeId" />
                 </asp:Panel>
 				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />

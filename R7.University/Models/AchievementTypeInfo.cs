@@ -19,59 +19,17 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
-
 namespace R7.University.Models
 {
-    public class AchievementTypeInfo
+    public class AchievementTypeInfo : IAchievementType
     {
-        public AchievementType AchievementType { get; set; }
+        public int AchievementTypeId { get; set; }
 
-        public string LocalizedAchivementType
-        {
-            get { return OnLocalize != null ? OnLocalize (ResourceKey) : ResourceKey; }
-        }
+        public string Type { get; set; }
 
-        public AchievementTypeInfo (AchievementType achievementType)
-        {
-            AchievementType = achievementType;
-        }
+        public string Description { get; set; }
 
-        #region Private members
-
-        private event LocalizeHandler OnLocalize;
-
-        private string ResourceKey
-        {
-            get { return GetResourceKey (AchievementType); } 
-        }
-
-        #endregion
-
-        #region Static members
-
-        public static List<AchievementTypeInfo> GetLocalizedAchievementTypes (LocalizeHandler localizeHandler)
-        {
-            var achievementTypes = new List<AchievementTypeInfo> ();
-            foreach (AchievementType achievementType in Enum.GetValues(typeof(AchievementType))) {   
-                var achievement = new AchievementTypeInfo (achievementType);
-                achievement.OnLocalize += new LocalizeHandler (localizeHandler);
-                achievementTypes.Add (achievement);
-            }
-
-            return achievementTypes;
-        }
-
-        public static string GetResourceKey (AchievementType? achievementType)
-        {
-            if (achievementType != null)
-                return "AchievementType" + (char) achievementType.Value + ".Text";
-		
-            return "AchievementTypeN.Text";
-        }
-
-        #endregion
+        public bool IsSystem { get; set; }
     }
 }
 

@@ -34,6 +34,8 @@ namespace R7.University.Models
 
         public int? AchievementID { get; set; }
 
+        public int? AchievementTypeId { get; set; }
+
         public string Description { get; set; }
 
         public string Title { get; set; }
@@ -50,26 +52,10 @@ namespace R7.University.Models
 
         public string TitleSuffix { get; set; }
 
-        public AchievementType? AchievementType
-        {
-            get { 
-                if (!string.IsNullOrWhiteSpace (AchievementTypeString))
-                    return (AchievementType) AchievementTypeString [0];
-
-                return null;
-            }
-            set { 
-                if (value != null)
-                    AchievementTypeString = ((char) value).ToString ();
-                else
-                    AchievementTypeString = null;
-            }
-        }
+        public virtual AchievementTypeInfo AchievementType { get; set; }
 
         public virtual AchievementInfo Achievement { get; set; }
-
+ 
         #endregion
-
-        public string AchievementTypeString { get; set; }
     }
 }

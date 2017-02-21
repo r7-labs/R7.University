@@ -25,11 +25,13 @@ namespace R7.University.Models
     {
         int AchievementID { get; set; }
 
+        int? AchievementTypeId { get; set; }
+
         string Title { get; set; }
 
         string ShortTitle  { get; set; }
 
-        AchievementType AchievementType { get; set; }
+        AchievementTypeInfo AchievementType { get; set; }
     }
 }
 

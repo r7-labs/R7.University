@@ -492,8 +492,10 @@ namespace R7.University.Employee
                 noExpYears = true;
             }
 
+            var viewModelContext = new ViewModelContext (this);
+
             // get all empoyee achievements
-            var achievements = employee.Achievements;
+            var achievements = employee.Achievements.Select (ach => new EmployeeAchievementViewModel (ach, viewModelContext));
             
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
@@ -507,16 +509,14 @@ namespace R7.University.Employee
 
             // get only experience-related achievements
             var experiences = achievements
-                .Where (ach => ach.AchievementType == AchievementType.Education ||
-                                  ach.AchievementType == AchievementType.AcademicDegree ||
-                                  ach.AchievementType == AchievementType.Training ||
-                                  ach.AchievementType == AchievementType.Work)
+                .Where (ach => ach.AchievementType.Is (SystemAchievementType.Education) ||
+                        ach.AchievementType.Is (SystemAchievementType.AcademicDegree) ||
+                        ach.AchievementType.Is (SystemAchievementType.Training) ||
+                        ach.AchievementType.Is (SystemAchievementType.Work))
                 .OrderByDescending (exp => exp.YearBegin);
-
-            var viewModelContext = new ViewModelContext (this);
-
+            
             if (experiences.Any ()) {
-                gridExperience.DataSource = experiences.Select (exp => new EmployeeAchievementViewModel (exp, viewModelContext));
+                gridExperience.DataSource = experiences;
                 gridExperience.DataBind ();
             }
             else if (noExpYears) {
@@ -525,16 +525,16 @@ namespace R7.University.Employee
             }
 		
             // get all other achievements
-            achievements = achievements
-                .Where (ach => ach.AchievementType != AchievementType.Education &&
-                ach.AchievementType != AchievementType.AcademicDegree &&
-                ach.AchievementType != AchievementType.Training &&
-                ach.AchievementType != AchievementType.Work)
+            var otherAchievements = achievements
+                .Where (ach => !ach.AchievementType.Is (SystemAchievementType.Education) &&
+                        !ach.AchievementType.Is (SystemAchievementType.AcademicDegree) &&
+                        !ach.AchievementType.Is (SystemAchievementType.Training) &&
+                        !ach.AchievementType.Is (SystemAchievementType.Work))
                 .OrderByDescending (ach => ach.YearBegin)
                 .ToList ();
 			
-            if (achievements.Any ()) {
-                gridAchievements.DataSource = achievements.Select (ach => new EmployeeAchievementViewModel (ach, viewModelContext));
+            if (otherAchievements.Any ()) {
+                gridAchievements.DataSource = otherAchievements;
                 gridAchievements.DataBind ();
             }
             else {	

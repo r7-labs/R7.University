@@ -183,6 +183,10 @@
 			               </ItemTemplate>
 			        	</asp:TemplateField>
 					</Columns>
+					    <asp:BoundField DataField="AchievementID" SortExpression="AchievementID" HeaderText="AchievementID" />
+					    <asp:BoundField DataField="AchievementTypeId" SortExpression="AchievementTypeId" HeaderText="AchievementTypeId" />
+                        <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
+                        <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
 					<PagerSettings Mode="NumericFirstLast" Visible="true" />
 		        </asp:GridView>
 		        <br />

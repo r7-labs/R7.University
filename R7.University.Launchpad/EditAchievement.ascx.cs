@@ -23,6 +23,13 @@ using System;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.University.Models;
 using R7.University.Modules;
+using R7.University.Queries;
+using R7.DotNetNuke.Extensions.Utilities;
+using System.Linq;
+using System.Runtime.InteropServices;
+using R7.University.Controls;
+using DotNetNuke.Web.UI;
+using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.Launchpad
 {
@@ -41,22 +48,26 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            comboAchievementType.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
+            var viewModelContext = new ViewModelContext (this);
+            comboAchievementType.DataSource = new FlatQuery<AchievementTypeInfo> (ModelContext).List ()
+                .Select (at => new AchievementTypeViewModel (at, viewModelContext));
+            
             comboAchievementType.DataBind ();
+            comboAchievementType.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }
 
         protected override void LoadItem (AchievementInfo item)
         {
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
-            comboAchievementType.SelectByValue (item.AchievementType);
+            comboAchievementType.SelectByValue (item.AchievementTypeId);
         }
 
         protected override void BeforeUpdateItem (AchievementInfo item)
         {
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
-            item.AchievementType = (AchievementType) Enum.Parse (typeof (AchievementType), comboAchievementType.SelectedValue);
+            item.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementType.SelectedValue);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase

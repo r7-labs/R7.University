@@ -47,6 +47,9 @@ using R7.University.Security;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
+using DotNetNuke.Web.UI;
+using R7.University.Controls;
+using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.Employee
 {
@@ -129,6 +132,19 @@ namespace R7.University.Employee
             }
         }
 
+        private List<AchievementTypeInfo> CommonAchievementTypes
+        {
+            get {
+                var achievementTypes = ViewState ["commonAchievementTypes"] as List<AchievementTypeInfo>;
+                if (achievementTypes == null) {
+                    achievementTypes = (List<AchievementTypeInfo>) new FlatQuery<AchievementTypeInfo> (ModelContext).List ();
+                    ViewState ["commonAchievementTypes"] = achievementTypes;
+                }
+
+                return achievementTypes;
+            }
+        }
+
         internal List<OccupiedPositionEditViewModel> OccupiedPositions
         {
             get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditViewModel>> (ViewState ["occupiedPositions"]); }
@@ -192,7 +208,10 @@ namespace R7.University.Employee
 
             var commonAchievements = new FlatQuery<AchievementInfo> (ModelContext).ListOrderBy (a => a.Title);
 
+            var achievementTypes = new FlatQuery<AchievementTypeInfo> (ModelContext).List ();
+
             ViewState ["commonAchievements"] = commonAchievements;
+            ViewState ["commonAchievementTypes"] = achievementTypes;
 
             // bind positions
             comboPositions.DataSource = positions;
@@ -209,8 +228,11 @@ namespace R7.University.Employee
             divisionSelector.DataBind ();
 
             // bind achievement types
-            comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
+            var viewModelContext = new ViewModelContext (this);
+            comboAchievementTypes.DataSource = achievementTypes
+                .Select (at => new AchievementTypeViewModel (at, viewModelContext));
             comboAchievementTypes.DataBind ();
+            comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
 
             // get and bind edu levels
             var eduLevels = new EduLevelQuery (ModelContext).List ();
@@ -910,8 +932,8 @@ namespace R7.University.Employee
                 if (achievement.AchievementID == null) {
                     achievement.Title = textAchievementTitle.Text.Trim ();
                     achievement.ShortTitle = textAchievementShortTitle.Text.Trim ();
-                    achievement.AchievementType = (AchievementType) Enum.Parse (typeof (AchievementType), 
-                        comboAchievementTypes.SelectedValue);
+                    achievement.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementTypes.SelectedValue);
+                    achievement.AchievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == achievement.AchievementTypeId);
                 }
                 else {
                     var ach = CommonAchievements.Single (a => a.AchievementID.ToString () ==
@@ -919,7 +941,8 @@ namespace R7.University.Employee
 
                     achievement.Title = ach.Title;
                     achievement.ShortTitle = ach.ShortTitle;
-                    achievement.AchievementType = ach.AchievementType;
+                    achievement.AchievementTypeId = ach.AchievementTypeId;
+                    achievement.AchievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == ach.AchievementTypeId);
                 }
 
                 achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim ();
