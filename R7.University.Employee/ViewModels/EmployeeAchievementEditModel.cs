@@ -73,7 +73,8 @@ namespace R7.University.Employee.ViewModels
 
         public string Years_String
         {
-            get { return FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile)); }
+            get { return FormatHelper.FormatYears (YearBegin, YearEnd,
+                                                   Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile)); }
         }
 
         public string AchievementType_String

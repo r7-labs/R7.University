@@ -194,7 +194,7 @@ namespace R7.University.ViewModels
                 website.Contains ("://") ? website.Remove (0, website.IndexOf ("://") + 3) : website;
         }
 
-        public static string FormatYears (int? yearBegin, int? yearEnd)
+        public static string FormatYears (int? yearBegin, int? yearEnd, string atTheMoment)
         {
             if (yearBegin != null && yearEnd == null)
                 return yearBegin.ToString (); 
@@ -208,7 +208,7 @@ namespace R7.University.ViewModels
                 if (yearEnd.Value != 0)
                     return string.Format ("{0} - {1}", yearBegin, yearEnd);
 
-                return yearBegin + " - {ATM}";
+                return yearBegin + " - " + atTheMoment;
             }
 
             return string.Empty;
