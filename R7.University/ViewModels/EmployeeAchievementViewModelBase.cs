@@ -1,5 +1,5 @@
 //
-//  EmployeeAchievementViewModel.cs
+//  EmployeeAchievementViewModelBase.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
