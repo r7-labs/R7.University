@@ -20,16 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.DotNetNuke.Extensions.Utilities;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
-using R7.DotNetNuke.Extensions.Utilities;
-using System.Linq;
-using System.Runtime.InteropServices;
-using R7.University.Controls;
-using DotNetNuke.Web.UI;
-using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.ViewModels;
 
 namespace R7.University.Launchpad
 {

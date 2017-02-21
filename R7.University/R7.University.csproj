@@ -216,7 +216,7 @@
     <Compile Include="Data\Mappings\AchievementTypeMapping.cs" />
     <Compile Include="Models\SystemAchievementType.cs" />
     <Compile Include="ModelExtensions\AchievementTypeExtensions.cs" />
-    <Compile Include="Controls\ViewModels\AchievementTypeViewModel.cs" />
+    <Compile Include="ViewModels\AchievementTypeViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

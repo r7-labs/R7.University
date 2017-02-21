@@ -28,7 +28,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Models;
 
-namespace R7.University.Controls
+namespace R7.University.ViewModels
 {
     [Serializable]
     public class AchievementTypeViewModel: IAchievementType
