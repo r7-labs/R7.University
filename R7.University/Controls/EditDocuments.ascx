@@ -105,7 +105,15 @@
     </fieldset>
 </div>
 <script type="text/javascript">
-jQuery(document).ready(function () {
-    $("#eduProgramDocuments").dnnPanels({defaultState: "closed"});
-});
+(function($, Sys) {
+    function setupEditDocuments() {
+        $("#eduProgramDocuments").dnnPanels({defaultState: "closed"});
+    };
+    $(document).ready(function() {
+        setupEditDocuments();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setupEditDocuments();
+        });
+    });
+} (jQuery, window.Sys));
 </script>
