@@ -130,40 +130,8 @@ namespace R7.University.Launchpad
 
         void InitTables ()
         {
-            var pageSize = Settings.PageSize;
             foreach (var table in Tables.Tables) {
-                switch (table.Name) {
-                    case "achievements":
-                        table.Init (this, gridAchievements, pageSize);
-                        break;
-                    case "positions":
-                        table.Init (this, gridPositions, pageSize);
-                        break;
-                    case "divisions":
-                        table.Init (this, gridDivisions, pageSize);
-                        break;
-                    case "employees":
-                        table.Init (this, gridEmployees, pageSize);
-                        break;
-                    case "edulevels":
-                        table.Init (this, gridEduLevels, pageSize);
-                        break;
-                    case "eduprograms":
-                        table.Init (this, gridEduPrograms, pageSize);
-                        break;
-                    case "eduprogramprofiles":
-                        table.Init (this, gridEduProgramProfiles, pageSize);
-                        break;
-                    case "documenttypes":
-                        table.Init (this, gridDocumentTypes, pageSize);
-                        break;
-                    case "documents":
-                        table.Init (this, gridDocuments, pageSize);
-                        break;
-                    case "eduforms":
-                        table.Init (this, gridEduForms, pageSize);
-                        break;
-                }
+                table.Init (this, (GridView) FindControl ("grid" + table.Name), Settings.PageSize);
             }
 
             // can bind grid.ID => table now
