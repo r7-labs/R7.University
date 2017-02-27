@@ -1,5 +1,5 @@
 //
-//  EmployeeAchievementEditViewModel.cs
+//  EmployeeAchievementEditModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -22,14 +22,17 @@
 using System;
 using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
+using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditViewModel: IEmployeeAchievement
+    public class EmployeeAchievementEditModel: IEmployeeAchievement, IViewModel
     {
         #region IEmployeeAchievement implementation
 
@@ -38,6 +41,8 @@ namespace R7.University.Employee.ViewModels
         public int EmployeeID { get; set; }
 
         public int? AchievementID { get; set; }
+
+        public int? AchievementTypeId { get; set; }
 
         public string Title { get; set; }
 
@@ -55,55 +60,92 @@ namespace R7.University.Employee.ViewModels
 
         public string TitleSuffix { get; set; }
 
-        public AchievementType? AchievementType { get; set; }
+        public AchievementTypeInfo AchievementType { get; set; }
 
         [XmlIgnore]
         public AchievementInfo Achievement { get; set; }
 
         #endregion
 
+        #region Bindable properties
+
         public int ItemID { get; set; }
 
-        public string ViewYears { get; set; }
+        public string Years_String
+        {
+            get { return FormatHelper.FormatYears (YearBegin, YearEnd,
+                                                   Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile)); }
+        }
 
-        public string ViewAchievementType { get; set; }
+        public string AchievementType_String
+        {
+            get {
+                return Localization.GetString (
+                    "SystemAchievementType_" + AchievementType.GetSystemAchievementType () + ".Text",
+                    Context.LocalResourceFile
+                );
+            }
+        }
 
-        public string ViewTitle
+        public string Title_String
         { 
             get { return Title + " " + TitleSuffix; }
         }
 
-        public void Localize (string resourceFile)
+        public string DocumentUrl_Link
         {
-            ViewYears = FormatHelper.FormatYears (YearBegin, YearEnd).Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", resourceFile));
+            get {
+                if (!string.IsNullOrWhiteSpace (DocumentURL)) {
+                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
+                                          UniversityUrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
+                                          Localization.GetString ("DocumentUrl.Text", Context.LocalResourceFile));
+                }
 
-            ViewAchievementType = Localization.GetString (
-                AchievementTypeInfo.GetResourceKey (AchievementType), resourceFile);
+                return string.Empty;
+            }
         }
 
-        public EmployeeAchievementEditViewModel ()
+        #endregion
+
+        protected ViewModelContext Context;
+
+        public void SetContext (ViewModelContext context)
+        {
+            Context = context;
+        }
+
+        public EmployeeAchievementEditModel ()
         {
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeAchievementEditViewModel (IEmployeeAchievement achievement, string resourceFile) : this ()
+        public EmployeeAchievementEditModel (IEmployeeAchievement achievement, ViewModelContext context) : this ()
         {
             CopyCstor.Copy<IEmployeeAchievement> (achievement, this);
+
+            SetContext (context);
 
             // use base achievement values
             if (achievement.Achievement != null) {
                 Title = achievement.Achievement.Title;
                 ShortTitle = achievement.Achievement.ShortTitle;
+                AchievementTypeId = achievement.Achievement.AchievementID;
                 AchievementType = achievement.Achievement.AchievementType;
             }
-
-            Localize (resourceFile);
         }
 
         public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
         {
             var achievement = new EmployeeAchievementInfo ();
             CopyCstor.Copy<IEmployeeAchievement> (this, achievement);
+
+            if (achievement.AchievementID != null) {
+                achievement.Title = null;
+                achievement.ShortTitle = null;
+                achievement.AchievementTypeId = null;
+                achievement.AchievementType = null;
+            }
+
             return achievement;
         }
     }

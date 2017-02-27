@@ -1,10 +1,10 @@
-//
-//  IEmployeeAchievement.cs
+﻿//
+//  ViewModelExtensions.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,37 +19,20 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace R7.University.Models
+using System.Collections.Generic;
+using R7.DotNetNuke.Extensions.ViewModels;
+
+namespace R7.University.ViewModels
 {
-    public interface IEmployeeAchievement
+    public static class ViewModelExtensions
     {
-        int EmployeeAchievementID { get; set; }
+        public static IEnumerable<IViewModel> SetContext (this IEnumerable<IViewModel> viewModels, ViewModelContext context)
+        {
+            foreach (var viewModel in viewModels) {
+                viewModel.SetContext (context);
+            }
 
-        int EmployeeID { get; set; }
-
-        int? AchievementID { get; set; }
-
-        int? AchievementTypeId { get; set; }
-
-        string Title { get; set; }
-
-        string ShortTitle { get; set; }
-
-        string Description { get; set; }
-
-        int? YearBegin { get; set; }
-
-        int? YearEnd { get; set; }
-
-        bool IsTitle { get; set; }
-
-        string DocumentURL { get; set; }
-
-        string TitleSuffix { get; set; }
-
-        AchievementInfo Achievement { get; set; }
-
-        AchievementTypeInfo AchievementType { get; set; }
+            return viewModels;
+        }
     }
 }
-

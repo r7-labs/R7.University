@@ -16,6 +16,7 @@ namespace R7.University.Launchpad
         protected GridView gridDivisions;
         protected GridView gridEmployees;
         protected GridView gridAchievements;
+        protected GridView gridAchievementTypes;
         protected GridView gridEduLevels;
         protected GridView gridEduPrograms;
         protected GridView gridEduProgramProfiles;

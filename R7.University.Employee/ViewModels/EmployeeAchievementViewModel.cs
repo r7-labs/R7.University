@@ -26,6 +26,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee.ViewModels
 {
@@ -76,8 +77,8 @@ namespace R7.University.Employee.ViewModels
         public string Years_String
         {
             get {  
-                return FormatHelper.FormatYears (Model.YearBegin, Model.YearEnd)
-                    .Replace ("{ATM}", Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
+                return FormatHelper.FormatYears (Model.YearBegin, Model.YearEnd,
+                                                 Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
             }
         }
 
@@ -85,12 +86,12 @@ namespace R7.University.Employee.ViewModels
         {
             get {
                 return Localization.GetString (
-                    AchievementTypeInfo.GetResourceKey (AchievementType),
-                    Context.LocalResourceFile);
+                    "SystemAchievementType_" + AchievementType.GetSystemAchievementType () + ".Text",
+                    Context.LocalResourceFile
+                );
             }
         }
 
         #endregion
     }
 }
-

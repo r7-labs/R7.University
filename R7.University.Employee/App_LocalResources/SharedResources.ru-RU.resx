@@ -33,23 +33,32 @@
     <data name="VisitProfile.Text" xml:space="preserve">
         <value>Профайл</value>
     </data>
-    <data name="AchievementTypeA.Text">
+    <data name="SystemAchievementType_Custom.Text">
         <value>Достижение</value>
     </data>
-    <data name="AchievementTypeT.Text">
+    <data name="SystemAchievementType_Training.Text">
         <value>Повышение квалификации</value>
     </data>
-    <data name="AchievementTypeE.Text">
+    <data name="SystemAchievementType_ProfTraining.Text">
+        <value>Проф. переподготовка</value>
+    </data>
+    <data name="SystemAchievementType_Education.Text">
         <value>Образование</value>
     </data>
-    <data name="AchievementTypeW.Text">
+    <data name="SystemAchievementType_Work.Text">
         <value>Работа</value>
     </data>
-    <data name="AchievementTypeR.Text">
+    <data name="SystemAchievementType_Title.Text">
+        <value>Звание</value>
+    </data>
+    <data name="SystemAchievementType_AcademicTitle.Text">
         <value>Ученое звание</value>
     </data>
-    <data name="AchievementTypeD.Text">
+    <data name="SystemAchievementType_AcademicDegree.Text">
         <value>Ученая степень</value>
+    </data>
+    <data name="SystemAchievementType_Authorship.Text">
+        <value>Автор</value>
     </data>
     <data name="Years.Column">
         <value>Год(ы)</value>

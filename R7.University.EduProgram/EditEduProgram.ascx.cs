@@ -141,7 +141,7 @@ namespace R7.University.EduProgram
             linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", ep.EduProgramID.ToString (), "EditEduProgramProfile");
 
             gridEduProgramProfiles.DataSource = ep.EduProgramProfiles
-                .Select (epp => new EduProgramProfileEditViewModel (epp, ViewModelContext))
+                .Select (epp => new EduProgramProfileEditModel (epp, ViewModelContext))
                 .OrderBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle);
 

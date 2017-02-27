@@ -128,7 +128,6 @@
     <Compile Include="Models\IOccupiedPosition.cs" />
     <Compile Include="Models\IPosition.cs" />
     <Compile Include="Models\IAchievement.cs" />
-    <Compile Include="Models\AchievementType.cs" />
     <Compile Include="Models\IEmployeeDiscipline.cs" />
     <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
@@ -189,7 +188,7 @@
     <Compile Include="Queries\EduProgramCommonQuery.cs" />
     <Compile Include="Queries\EduProgramProfileQueryBase.cs" />
     <Compile Include="Models\DocumentModel.cs" />
-    <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeAchievementViewModelBase.cs" />
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
     <Compile Include="Models\TimeToLearnUnit.cs" />
     <Compile Include="Utilities\UniversityUrlHelper.cs" />
@@ -213,6 +212,13 @@
     <Compile Include="Modules\UniversityModuleSettingsBase.cs" />
     <Compile Include="Modules\UniversityEditPortalModuleBase.cs" />
     <Compile Include="Models\ISystemEntity.cs" />
+    <Compile Include="Models\IAchievementType.cs" />
+    <Compile Include="Data\Mappings\AchievementTypeMapping.cs" />
+    <Compile Include="Models\SystemAchievementType.cs" />
+    <Compile Include="ModelExtensions\AchievementTypeExtensions.cs" />
+    <Compile Include="ViewModels\AchievementTypeViewModel.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

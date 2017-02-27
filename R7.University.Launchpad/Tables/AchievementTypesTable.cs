@@ -1,10 +1,10 @@
 //
-//  EduLevelsTable.cs
+//  AchievementTypesTable.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Data;
-using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.University.Components;
 using R7.University.Models;
@@ -28,21 +27,22 @@ using R7.University.Queries;
 
 namespace R7.University.Launchpad
 {
-    public class EduLevelsTable: LaunchpadTableBase
+    public class AchievementTypesTable: LaunchpadTableBase
     {
-        public EduLevelsTable () : base (typeof (EduLevelInfo))
+        public AchievementTypesTable () : base (typeof (AchievementTypeInfo))
         {
         }
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
             // REVIEW: Cannot set comparison options
-            var eduLevels = (search == null)
-                ? new FlatQuery<EduLevelInfo> (modelContext).List ()
-                : new FlatQuery<EduLevelInfo> (modelContext)
-                    .ListWhere (p => p.Title.Contains (search) || p.ShortTitle.Contains (search)).ToList ();
-            
-            return DataTableConstructor.FromIEnumerable (eduLevels);
+            var achievementTypes = (search == null)
+                ? new FlatQuery<AchievementTypeInfo> (modelContext).List ()
+                : new FlatQuery<AchievementTypeInfo> (modelContext)
+                    .ListWhere (at => at.Type.Contains (search) || at.Description.Contains (search));
+
+            return DataTableConstructor.FromIEnumerable (achievementTypes);
         }
     }
 }
+

@@ -1,5 +1,5 @@
 //
-//  OccupiedPositionEditViewModel.cs
+//  OccupiedPositionEditModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -27,7 +27,7 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class OccupiedPositionEditViewModel: IOccupiedPosition
+    public class OccupiedPositionEditModel: IOccupiedPosition
     {
         #region IOccupiedPosition implementation
 
@@ -73,7 +73,7 @@ namespace R7.University.Employee.ViewModels
 
         public int ItemID { get; set; }
 
-        public OccupiedPositionEditViewModel ()
+        public OccupiedPositionEditModel ()
         {
             ItemID = ViewNumerator.GetNextItemID ();
         }
@@ -90,7 +90,7 @@ namespace R7.University.Employee.ViewModels
             return op;
         }
 
-        public OccupiedPositionEditViewModel (IOccupiedPosition op) : this ()
+        public OccupiedPositionEditModel (IOccupiedPosition op) : this ()
         {
             PositionID = op.PositionID;
             DivisionID = op.DivisionID;

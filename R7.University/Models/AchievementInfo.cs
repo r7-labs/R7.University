@@ -30,18 +30,14 @@ namespace R7.University.Models
 
         public int AchievementID { get; set; }
 
+        public int? AchievementTypeId { get; set; }
+
         public string Title { get; set; }
 
         public string ShortTitle  { get; set; }
 
-        public AchievementType AchievementType
-        {
-            get { return (AchievementType) AchievementTypeString [0]; }
-            set { AchievementTypeString = ((char) value).ToString (); }
-        }
+        public AchievementTypeInfo AchievementType { get; set; }
 
         #endregion
-
-        public string AchievementTypeString { get; set; }
     }
 }

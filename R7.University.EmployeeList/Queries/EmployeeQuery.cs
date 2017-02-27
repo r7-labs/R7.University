@@ -52,6 +52,8 @@ namespace R7.University.EmployeeList.Queries
                 return ModelContext.Query<EmployeeInfo> ()
                     .Include (e => e.Achievements)
                     .Include (e => e.Achievements.Select (ea => ea.Achievement))
+                    .Include (e => e.Achievements.Select (ea => ea.Achievement.AchievementType))
+                    .Include (e => e.Achievements.Select (ea => ea.AchievementType))
                     .Include (e => e.Positions)
                     .Include (e => e.Positions.Select (op => op.Position))
                     .Include (e => e.Positions.Select (op => op.Division))

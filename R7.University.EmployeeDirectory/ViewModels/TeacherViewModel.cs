@@ -26,6 +26,7 @@ using R7.DotNetNuke.Extensions.Utilities;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
@@ -92,7 +93,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         private IEnumerable<EmployeeAchievementViewModel> achievementViewModels;
         protected IEnumerable<EmployeeAchievementViewModel> AchievementViewModels
         {
-            get { 
+            get {
                 return achievementViewModels
                     ?? (achievementViewModels = Model.Achievements.Select (a => new EmployeeAchievementViewModel (a))); 
             }
@@ -102,8 +103,8 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                    .Where (ach => ach.AchievementType == AchievementType.AcademicDegree)
-                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.AcademicDegree))
+                                             .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
             }
         }
@@ -112,8 +113,8 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                    .Where (ach => ach.AchievementType == AchievementType.AcademicTitle)
-                    .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.AcademicTitle))
+                                             .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
             }
         }
@@ -122,8 +123,8 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                    .Where (ach => ach.AchievementType == AchievementType.Education)
-                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
+                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.Education))
+                                             .Select (ach => TextUtils.FormatList ("&nbsp;- ",
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
                 );
             }
@@ -133,8 +134,8 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                    .Where (ach => ach.AchievementType == AchievementType.Training)
-                    .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
+                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.Training))
+                                             .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
                 );
             }

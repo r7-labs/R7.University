@@ -33,23 +33,32 @@
     <data name="VisitProfile.Text" xml:space="preserve">
     	<value>Visit profile</value>
     </data>
-    <data name="AchievementTypeA.Text">
+    <data name="SystemAchievementType_Custom.Text">
     	<value>Achievement</value>
     </data>
-    <data name="AchievementTypeT.Text">
+    <data name="SystemAchievementType_Training.Text">
     	<value>Training</value>
     </data>
-    <data name="AchievementTypeE.Text">
+	<data name="SystemAchievementType_ProfTraining.Text">
+        <value>Professional Training</value>
+    </data>
+    <data name="SystemAchievementType_Education.Text">
     	<value>Education</value>
     </data>
-    <data name="AchievementTypeW.Text">
+    <data name="SystemAchievementType_Work.Text">
     	<value>Work</value>
     </data>
-    <data name="AchievementTypeR.Text">
+	<data name="SystemAchievementType_Title.Text">
+        <value>Title</value>
+    </data>
+    <data name="SystemAchievementType_AcademicTitle.Text">
         <value>Academic Title</value>
     </data>
-    <data name="AchievementTypeD.Text">
+    <data name="SystemAchievementType_AcademicDegree.Text">
         <value>Academic Degree</value>
+    </data>
+	<data name="SystemAchievementType_Authorship.Text">
+        <value>Author</value>
     </data>
     <data name="Years.Column">
         <value>Year(s)</value>

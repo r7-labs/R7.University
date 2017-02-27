@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramProfileEditViewModel.cs
+//  EduProgramProfileEditModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,11 +25,11 @@ using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.EduProgram.ViewModels
 {
-    public class EduProgramProfileEditViewModel: EduProgramProfileViewModelBase
+    public class EduProgramProfileEditModel: EduProgramProfileViewModelBase
     {
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramProfileEditViewModel (IEduProgramProfile model, ViewModelContext context): base (model)
+        public EduProgramProfileEditModel (IEduProgramProfile model, ViewModelContext context): base (model)
         {
             Context = context;
         }

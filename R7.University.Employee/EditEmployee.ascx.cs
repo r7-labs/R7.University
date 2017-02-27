@@ -47,6 +47,9 @@ using R7.University.Security;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
+using DotNetNuke.Web.UI;
+using R7.University.Controls;
+using R7.DotNetNuke.Extensions.ViewModels;
 
 namespace R7.University.Employee
 {
@@ -129,21 +132,34 @@ namespace R7.University.Employee
             }
         }
 
-        internal List<OccupiedPositionEditViewModel> OccupiedPositions
+        private List<AchievementTypeInfo> CommonAchievementTypes
         {
-            get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditViewModel>> (ViewState ["occupiedPositions"]); }
+            get {
+                var achievementTypes = ViewState ["commonAchievementTypes"] as List<AchievementTypeInfo>;
+                if (achievementTypes == null) {
+                    achievementTypes = (List<AchievementTypeInfo>) new FlatQuery<AchievementTypeInfo> (ModelContext).List ();
+                    ViewState ["commonAchievementTypes"] = achievementTypes;
+                }
+
+                return achievementTypes;
+            }
+        }
+
+        internal List<OccupiedPositionEditModel> OccupiedPositions
+        {
+            get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditModel>> (ViewState ["occupiedPositions"]); }
             set { ViewState ["occupiedPositions"] = XmlSerializationHelper.Serialize (value); }
         }
 
-        internal List<EmployeeDisciplineEditViewModel> Disciplines
+        internal List<EmployeeDisciplineEditModel> Disciplines
         {
-            get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineEditViewModel>> (ViewState ["disciplines"]); }
+            get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineEditModel>> (ViewState ["disciplines"]); }
             set { ViewState ["disciplines"] = XmlSerializationHelper.Serialize (value); }
         }
 
-        internal List<EmployeeAchievementEditViewModel> Achievements
+        internal List<EmployeeAchievementEditModel> Achievements
         {
-            get { return XmlSerializationHelper.Deserialize<List<EmployeeAchievementEditViewModel>> (ViewState ["achievements"]); }
+            get { return XmlSerializationHelper.Deserialize<List<EmployeeAchievementEditModel>> (ViewState ["achievements"]); }
             set { ViewState ["achievements"] = XmlSerializationHelper.Serialize (value); }
         }
 
@@ -155,6 +171,12 @@ namespace R7.University.Employee
         protected string DeleteIconUrl
         {
             get { return IconController.IconURL ("Delete"); }
+        }
+
+        ViewModelContext viewModelContext;
+        protected ViewModelContext ViewModelContext
+        {
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
         }
 
         #endregion
@@ -192,7 +214,10 @@ namespace R7.University.Employee
 
             var commonAchievements = new FlatQuery<AchievementInfo> (ModelContext).ListOrderBy (a => a.Title);
 
+            var achievementTypes = new FlatQuery<AchievementTypeInfo> (ModelContext).List ();
+
             ViewState ["commonAchievements"] = commonAchievements;
+            ViewState ["commonAchievementTypes"] = achievementTypes;
 
             // bind positions
             comboPositions.DataSource = positions;
@@ -209,8 +234,10 @@ namespace R7.University.Employee
             divisionSelector.DataBind ();
 
             // bind achievement types
-            comboAchievementTypes.DataSource = AchievementTypeInfo.GetLocalizedAchievementTypes (LocalizeString);
+            comboAchievementTypes.DataSource = achievementTypes
+                .Select (at => new AchievementTypeViewModel (at, ViewModelContext));
             comboAchievementTypes.DataBind ();
+            comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
 
             // get and bind edu levels
             var eduLevels = new EduLevelQuery (ModelContext).List ();
@@ -282,7 +309,7 @@ namespace R7.University.Employee
 
             // fill view list
             var occupiedPositions = employee.Positions
-                .Select (op => new OccupiedPositionEditViewModel (op)).ToList ();
+                .Select (op => new OccupiedPositionEditModel (op)).ToList ();
 
             // bind occupied positions
             OccupiedPositions = occupiedPositions;
@@ -291,7 +318,7 @@ namespace R7.University.Employee
 
             // fill achievements list
             var achievements = employee.Achievements
-                .Select (ea => new EmployeeAchievementEditViewModel (ea, LocalResourceFile)).ToList ();
+                                       .Select (ea => new EmployeeAchievementEditModel (ea, ViewModelContext)).ToList ();
 
             // bind achievements
             Achievements = achievements;
@@ -300,7 +327,7 @@ namespace R7.University.Employee
 
             // fill disciplines list
             var disciplines = employee.Disciplines
-                .Select (ed => new EmployeeDisciplineEditViewModel (ed)).ToList ();
+                .Select (ed => new EmployeeDisciplineEditModel (ed)).ToList ();
 
             // bind disciplines
             Disciplines = disciplines;
@@ -607,13 +634,13 @@ namespace R7.University.Employee
                 var divisionID = divisionSelector.DivisionId;
 
                 if (!Null.IsNull (positionID) && divisionID != null) {
-                    OccupiedPositionEditViewModel occupiedPosition;
+                    OccupiedPositionEditModel occupiedPosition;
 
-                    var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionEditViewModel> ();
+                    var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionEditModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        occupiedPosition = new OccupiedPositionEditViewModel ();
+                        occupiedPosition = new OccupiedPositionEditModel ();
                     }
                     else { // update 
                         // restore ItemID from hidden field
@@ -652,24 +679,12 @@ namespace R7.University.Employee
 
         protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
         {
-            // hide description
-            e.Row.Cells [6].Visible = false;
-
-            // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                // add description as row tooltip
-                e.Row.ToolTip = Server.HtmlDecode (e.Row.Cells [6].Text);
-
-                // make link to the document
-                // WTF: empty DocumentURL's cells contains non-breakable spaces?
-                var documentUrl = Server.HtmlDecode (e.Row.Cells [7].Text.Replace ("&nbsp;", ""));
-                if (!string.IsNullOrWhiteSpace (documentUrl))
-                    e.Row.Cells [7].Text = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
-                        UniversityUrlHelper.LinkClickIdnHack (documentUrl, TabId, ModuleId),
-                        LocalizeString ("DocumentUrl.Text"));
-            }
-
             grids_RowDataBound (sender, e);
+
+            if (e.Row.RowType == DataControlRowType.DataRow) {
+                var employeeAchievement = (EmployeeAchievementEditModel) e.Row.DataItem;
+                e.Row.ToolTip = Server.HtmlDecode (employeeAchievement.Description);
+            }
         }
 
         protected void gridDisciplines_RowDataBound (object sender, GridViewRowEventArgs e)
@@ -677,7 +692,7 @@ namespace R7.University.Employee
             grids_RowDataBound (sender, e);
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                var discipline = (EmployeeDisciplineEditViewModel) e.Row.DataItem;
+                var discipline = (EmployeeDisciplineEditModel) e.Row.DataItem;
                 if (!ModelHelper.IsPublished (HttpContext.Current.Timestamp, discipline.ProfileStartDate, discipline.ProfileEndDate)) {
                     e.Row.CssClass = gridDisciplines.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
                 }
@@ -891,14 +906,14 @@ namespace R7.University.Employee
         protected void buttonAddAchievement_Command (object sender, CommandEventArgs e)
         {
             try {
-                EmployeeAchievementEditViewModel achievement;
+                EmployeeAchievementEditModel achievement;
 
                 // get achievements list from viewstate
-                var achievements = Achievements ?? new List<EmployeeAchievementEditViewModel> ();
+                var achievements = Achievements ?? new List<EmployeeAchievementEditModel> ();
 
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add") {
-                    achievement = new EmployeeAchievementEditViewModel ();
+                    achievement = new EmployeeAchievementEditModel ();
                 }
                 else {
                     // restore ItemID from hidden field
@@ -910,8 +925,8 @@ namespace R7.University.Employee
                 if (achievement.AchievementID == null) {
                     achievement.Title = textAchievementTitle.Text.Trim ();
                     achievement.ShortTitle = textAchievementShortTitle.Text.Trim ();
-                    achievement.AchievementType = (AchievementType) Enum.Parse (typeof (AchievementType), 
-                        comboAchievementTypes.SelectedValue);
+                    achievement.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementTypes.SelectedValue);
+                    achievement.AchievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == achievement.AchievementTypeId);
                 }
                 else {
                     var ach = CommonAchievements.Single (a => a.AchievementID.ToString () ==
@@ -919,7 +934,8 @@ namespace R7.University.Employee
 
                     achievement.Title = ach.Title;
                     achievement.ShortTitle = ach.ShortTitle;
-                    achievement.AchievementType = ach.AchievementType;
+                    achievement.AchievementTypeId = ach.AchievementTypeId;
+                    achievement.AchievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == ach.AchievementTypeId);
                 }
 
                 achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim ();
@@ -928,8 +944,6 @@ namespace R7.University.Employee
                 achievement.YearBegin = TypeUtils.ParseToNullable<int> (textYearBegin.Text);
                 achievement.YearEnd = TypeUtils.ParseToNullable<int> (textYearEnd.Text);
                 achievement.DocumentURL = urlDocumentURL.Url;
-
-                achievement.Localize (LocalResourceFile);
 
                 if (command == "Add") {
                     achievements.Add (achievement);
@@ -941,7 +955,7 @@ namespace R7.University.Employee
                 Achievements = achievements;
 
                 // bind achievements to the gridview
-                gridAchievements.DataSource = achievements;
+                gridAchievements.DataSource = achievements.SetContext (ViewModelContext);
                 gridAchievements.DataBind ();
             }
             catch (Exception ex) {
@@ -953,14 +967,14 @@ namespace R7.University.Employee
         {
             try {
                 if (!Null.IsNull (int.Parse (comboEduProgramProfile.SelectedValue))) {
-                    EmployeeDisciplineEditViewModel discipline;
+                    EmployeeDisciplineEditModel discipline;
 
                     // get disciplines list from viewstate
-                    var disciplines = Disciplines ?? new List<EmployeeDisciplineEditViewModel> ();
+                    var disciplines = Disciplines ?? new List<EmployeeDisciplineEditModel> ();
 
                     var command = e.CommandArgument.ToString ();
                     if (command == "Add") {
-                        discipline = new EmployeeDisciplineEditViewModel ();
+                        discipline = new EmployeeDisciplineEditModel ();
                     }
                     else {
                         // restore ItemID from hidden field

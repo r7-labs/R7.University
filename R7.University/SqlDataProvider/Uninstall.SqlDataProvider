@@ -57,6 +57,14 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
 	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_University_Achievements] 
 GO
 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_AchievementTypes] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Achievements]
+    DROP CONSTRAINT [FK_{objectQualifier}University_Achievements_AchievementTypes] 
+GO
+
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduLevels]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduLevels_ParentEduLevels]
 GO
@@ -170,4 +178,7 @@ DROP TABLE {databaseOwner}[{objectQualifier}University_Divisions]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_Employees]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_AchievementTypes]
 GO

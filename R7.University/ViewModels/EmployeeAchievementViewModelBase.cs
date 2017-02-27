@@ -1,10 +1,10 @@
 //
-//  EmployeeAchievementViewModel.cs
+//  EmployeeAchievementViewModelBase.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -53,15 +53,21 @@ namespace R7.University.ViewModels
             set { throw new InvalidOperationException (); }
         }
 
+        public int? AchievementTypeId
+        {
+            get { return Model.AchievementTypeId; }
+            set { throw new InvalidOperationException (); }
+        }
+
         public string Title
         {
-            get { return (AchievementID != null) ? Model.Achievement.Title : Model.Title; }
+            get { return (Achievement != null) ? Model.Achievement.Title : Model.Title; }
             set { throw new InvalidOperationException (); }
         }
 
         public string ShortTitle
         {
-            get { return (AchievementID != null) ? Model.Achievement.ShortTitle : Model.ShortTitle; }
+            get { return (Achievement != null) ? Model.Achievement.ShortTitle : Model.ShortTitle; }
             set { throw new InvalidOperationException (); }
         }
 
@@ -101,9 +107,9 @@ namespace R7.University.ViewModels
             set { throw new InvalidOperationException (); }
         }
 
-        public AchievementType? AchievementType
+        public AchievementTypeInfo AchievementType
         {
-            get { return (AchievementID != null) ? Model.Achievement.AchievementType : Model.AchievementType; }
+            get { return (Model.Achievement != null) ? Model.Achievement.AchievementType : Model.AchievementType; }
             set { throw new InvalidOperationException (); }
         }
 

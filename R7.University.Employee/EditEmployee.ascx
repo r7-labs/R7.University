@@ -226,12 +226,12 @@
 					               </ItemTemplate>
 					        	</asp:TemplateField>
                                 <asp:BoundField DataField="ItemID" />
-                                <asp:BoundField DataField="ViewYears" HeaderText="Years" />
-                                <asp:BoundField DataField="ViewTitle" HeaderText="Title" />
-                                <asp:BoundField DataField="ViewAchievementType" HeaderText="AchievementType" />
+                                <asp:BoundField DataField="Years_String" HeaderText="Years" />
+                                <asp:BoundField DataField="Title_String" HeaderText="Title" />
+                                <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
                                 <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle" />
-                                <asp:BoundField DataField="Description" HeaderText="AchievementType" />
-                                <asp:BoundField DataField="DocumentUrl" HeaderText="DocumentUrl" />
+                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
+							    <asp:BoundField DataField="Description" Visible="false" />
 							</Columns>
 				    </asp:GridView>
 				</div>
@@ -246,8 +246,8 @@
                 <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
                     <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
                     <asp:DropDownList id="comboAchievementTypes" runat="server" 
-                        DataTextField="LocalizedAchivementType"
-                        DataValueField="AchievementType" />
+                        DataTextField="LocalizedType"
+                        DataValueField="AchievementTypeId" />
                 </asp:Panel>
 				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
 					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
