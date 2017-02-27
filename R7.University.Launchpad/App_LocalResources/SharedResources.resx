@@ -48,6 +48,9 @@
     <data name="Achievements.Text" xml:space="preserve">
         <value>Achievements</value>
     </data>
+	<data name="AchievementTypes.Text" xml:space="preserve">
+        <value>Achievement Types</value>
+    </data>
     <data name="EduPrograms.Text" xml:space="preserve">
         <value>Educational Programs</value>
     </data>
