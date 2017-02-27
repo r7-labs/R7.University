@@ -49,7 +49,7 @@
                             <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                             <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
                             <asp:BoundField DataField="Weight" SortExpression="Weight" HeaderText="Weight" />
-                            <asp:BoundField DataField="IsTeacher" SortExpression="IsTeacher" HeaderText="IsTeacher" />
+                            <asp:CheckBoxField DataField="IsTeacher" SortExpression="IsTeacher" HeaderText="IsTeacher" />
 						</Columns>
 						<PagerSettings Mode="NumericFirstLast" Visible="true" />
 			        </asp:GridView>
@@ -82,8 +82,8 @@
                         <asp:BoundField DataField="ParentDivisionID" SortExpression="ParentDivisionID" HeaderText="ParentDivisionID" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
-                        <asp:BoundField DataField="IsVirtual" SortExpression="IsVirtual" HeaderText="IsVirtual" />
-						<asp:BoundField DataField="IsInformal" SortExpression="IsInformal" HeaderText="IsInformal" />
+                        <asp:CheckBoxField DataField="IsVirtual" SortExpression="IsVirtual" HeaderText="IsVirtual" />
+						<asp:CheckBoxField DataField="IsInformal" SortExpression="IsInformal" HeaderText="IsInformal" />
                         <asp:BoundField DataField="DocumentUrl" SortExpression="DocumentUrl" HeaderText="DocumentUrl" />
                         <asp:BoundField DataField="HomePage" SortExpression="HomePage" HeaderText="HomePage" />
                         <asp:BoundField DataField="Address" SortExpression="Address" HeaderText="Address" />
@@ -361,7 +361,7 @@
                         <asp:BoundField DataField="Type" SortExpression="Type" HeaderText="Type" />
                         <asp:BoundField DataField="Description" SortExpression="Description" HeaderText="Description" ConvertEmptyStringToNull="false" />
 						<asp:BoundField DataField="FilenameFormat" SortExpression="FilenameFormat" HeaderText="FilenameFormat" ConvertEmptyStringToNull="false" />
-                        <asp:BoundField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
+                        <asp:CheckBoxField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>
@@ -430,7 +430,7 @@
                         <asp:BoundField DataField="EduFormID" SortExpression="EduFormID" HeaderText="EduFormID" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
-                        <asp:BoundField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
+                        <asp:CheckBoxField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>
