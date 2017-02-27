@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -53,16 +53,17 @@ namespace R7.University.Launchpad
 
         #endregion
 
-        protected LaunchpadTableBase (string name, Type entityType)
+        protected LaunchpadTableBase (Type entityType)
         {
-            Name = name.ToLowerInvariant ();
-            ResourceKey = name + ".Text";
+            var name = entityType.Name.Replace ("Info", string.Empty);
+            var namePlural = name + "s";
+
+            Name = namePlural.ToLowerInvariant ();
+            ResourceKey = namePlural + ".Text";
             EntityType = entityType;
 
-            // remove ending "s" and add "_id"
-            var baseName = name + "\n";
-            EditControlKey = "edit" + baseName.Replace ("s\n", string.Empty);
-            EditQueryKey = baseName.Replace ("s\n", "_id");
+            EditControlKey = "edit" + name;
+            EditQueryKey = name + "_id";
         }
 
         public virtual void Init (PortalModuleBase module, GridView gridView, int pageSize)

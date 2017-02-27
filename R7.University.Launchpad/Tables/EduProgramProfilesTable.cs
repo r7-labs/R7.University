@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,7 +31,7 @@ namespace R7.University.Launchpad
 {
     public class EduProgramProfilesTable: LaunchpadTableBase
     {
-        public EduProgramProfilesTable () : base ("EduProgramProfiles", typeof (EduProgramProfileInfo))
+        public EduProgramProfilesTable () : base (typeof (EduProgramProfileInfo))
         {
         }
 
