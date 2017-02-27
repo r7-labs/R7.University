@@ -152,14 +152,15 @@
 	<hr />
 	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
+<input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">
 (function($, Sys) {
     function setupModule() {
+	    $("#division-tabs").dnnTabs({selected: document.getElementById("hiddenSelectedTab").value});
         dnnAcCombobox_Init($);
         $(".dnn-ac-combobox").combobox();
     };
     $(document).ready(function() {
-        $("#division-tabs").dnnTabs({selected: <%= (int)SelectedTab %>});
         setupModule();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
             setupModule();
