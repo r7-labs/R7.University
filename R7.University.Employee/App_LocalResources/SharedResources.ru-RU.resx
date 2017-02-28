@@ -40,6 +40,9 @@
         <value>Повышение квалификации</value>
     </data>
     <data name="SystemAchievementType_ProfTraining.Text">
+        <value>Проф. подготовка</value>
+    </data>
+	<data name="SystemAchievementType_ProfRetraining.Text">
         <value>Проф. переподготовка</value>
     </data>
     <data name="SystemAchievementType_Education.Text">

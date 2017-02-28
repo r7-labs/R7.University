@@ -105,8 +105,9 @@ IF (select count (*) from {databaseOwner}[{objectQualifier}University_Achievemen
 BEGIN
     EXECUTE sp_executesql 'INSERT INTO {databaseOwner}[{objectQualifier}University_AchievementTypes] (Type, IsSystem, TmpAchievementType) VALUES
         (N''Education'', 1, N''E''),
-        (N''Training'', 1, N''T''),
         (N''ProfTraining'', 1, N''+''),
+        (N''Training'', 1, N''T''),
+        (N''ProfRetraining'', 1, N''+''),
         (N''Work'', 1, N''W''),
         (N''AcademicTitle'', 1, N''R''),
         (N''AcademicDegree'', 1, N''D''),

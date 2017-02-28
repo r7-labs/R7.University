@@ -42,6 +42,9 @@
 	<data name="SystemAchievementType_ProfTraining.Text">
         <value>Professional Training</value>
     </data>
+	<data name="SystemAchievementType_ProfRetraining.Text">
+        <value>Professional Retraining</value>
+    </data>
     <data name="SystemAchievementType_Education.Text">
     	<value>Education</value>
     </data>

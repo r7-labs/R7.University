@@ -25,8 +25,9 @@ namespace R7.University.Models
     {
         Achievement,
         Education,
-        Training,
         ProfTraining,
+        Training,
+        ProfRetraining,
         Work,
         Title,
         AcademicTitle,
