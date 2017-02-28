@@ -512,6 +512,8 @@ namespace R7.University.Employee
                 .Where (ach => ach.AchievementType.Is (SystemAchievementType.Education) ||
                         ach.AchievementType.Is (SystemAchievementType.AcademicDegree) ||
                         ach.AchievementType.Is (SystemAchievementType.Training) ||
+                        ach.AchievementType.Is (SystemAchievementType.ProfTraining) ||
+                        ach.AchievementType.Is (SystemAchievementType.ProfRetraining) ||
                         ach.AchievementType.Is (SystemAchievementType.Work))
                 .OrderByDescending (exp => exp.YearBegin);
             
@@ -529,6 +531,8 @@ namespace R7.University.Employee
                 .Where (ach => !ach.AchievementType.Is (SystemAchievementType.Education) &&
                         !ach.AchievementType.Is (SystemAchievementType.AcademicDegree) &&
                         !ach.AchievementType.Is (SystemAchievementType.Training) &&
+                        !ach.AchievementType.Is (SystemAchievementType.ProfTraining) &&
+                        !ach.AchievementType.Is (SystemAchievementType.ProfRetraining) &&
                         !ach.AchievementType.Is (SystemAchievementType.Work))
                 .OrderByDescending (ach => ach.YearBegin)
                 .ToList ();
