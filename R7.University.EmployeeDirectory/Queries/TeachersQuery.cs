@@ -41,6 +41,8 @@ namespace R7.University.EmployeeDirectory.Queries
                 .Include (e => e.Disciplines)
                 .Include (e => e.Achievements)
                 .Include (e => e.Achievements.Select (ea => ea.Achievement))
+                .Include (e => e.Achievements.Select (ea => ea.Achievement.AchievementType))
+                .Include (e => e.Achievements.Select (ea => ea.AchievementType))
                 .Where (e => e.Positions.Any (op => op.Position.IsTeacher))
                 .ToList ();
         }
