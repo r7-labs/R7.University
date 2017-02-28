@@ -509,12 +509,12 @@ namespace R7.University.Employee
 
             // get only experience-related achievements
             var experiences = achievements
-                .Where (ach => ach.AchievementType.Is (SystemAchievementType.Education) ||
-                        ach.AchievementType.Is (SystemAchievementType.AcademicDegree) ||
-                        ach.AchievementType.Is (SystemAchievementType.Training) ||
-                        ach.AchievementType.Is (SystemAchievementType.ProfTraining) ||
-                        ach.AchievementType.Is (SystemAchievementType.ProfRetraining) ||
-                        ach.AchievementType.Is (SystemAchievementType.Work))
+                .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education,
+                                                            SystemAchievementType.AcademicDegree,
+                                                            SystemAchievementType.Training,
+                                                            SystemAchievementType.ProfTraining,
+                                                            SystemAchievementType.ProfRetraining,
+                                                            SystemAchievementType.Work))
                 .OrderByDescending (exp => exp.YearBegin);
             
             if (experiences.Any ()) {
@@ -528,12 +528,12 @@ namespace R7.University.Employee
 		
             // get all other achievements
             var otherAchievements = achievements
-                .Where (ach => !ach.AchievementType.Is (SystemAchievementType.Education) &&
-                        !ach.AchievementType.Is (SystemAchievementType.AcademicDegree) &&
-                        !ach.AchievementType.Is (SystemAchievementType.Training) &&
-                        !ach.AchievementType.Is (SystemAchievementType.ProfTraining) &&
-                        !ach.AchievementType.Is (SystemAchievementType.ProfRetraining) &&
-                        !ach.AchievementType.Is (SystemAchievementType.Work))
+                .Where (ach => !ach.AchievementType.IsOneOf (SystemAchievementType.Education,
+                                                             SystemAchievementType.AcademicDegree,
+                                                             SystemAchievementType.Training,
+                                                             SystemAchievementType.ProfTraining,
+                                                             SystemAchievementType.ProfRetraining,
+                                                             SystemAchievementType.Work))
                 .OrderByDescending (ach => ach.YearBegin)
                 .ToList ();
 			

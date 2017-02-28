@@ -38,9 +38,16 @@ namespace R7.University.ModelExtensions
             return SystemAchievementType.Custom;
         }
 
-        public static bool Is (this IAchievementType achievementType, SystemAchievementType systemAchievementType)
+        public static bool IsOneOf (this IAchievementType achievementType, params SystemAchievementType [] systemAchievementTypes)
         {
-            return GetSystemAchievementType (achievementType) == systemAchievementType;
+            var achievementTypeParsed = GetSystemAchievementType (achievementType);
+            foreach (var systemAchievementType in systemAchievementTypes) {
+                if (systemAchievementType == achievementTypeParsed) {
+                    return true;
+                }
+            }
+        
+            return false;
         }
     }
 }

@@ -103,7 +103,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.AcademicDegree))
+                                             .Where (ach => ach.AchievementType.GetSystemAchievementType () == SystemAchievementType.AcademicDegree)
                                              .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
             }
@@ -113,7 +113,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.AcademicTitle))
+                                             .Where (ach => ach.AchievementType.GetSystemAchievementType () == SystemAchievementType.AcademicTitle)
                                              .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
             }
@@ -123,7 +123,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.Education) || ach.AchievementType.Is (SystemAchievementType.ProfTraining))
+                                             .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education, SystemAchievementType.ProfTraining))
                                              .Select (ach => TextUtils.FormatList ("&nbsp;- ",
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
                 );
@@ -134,7 +134,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.Is (SystemAchievementType.Training) || ach.AchievementType.Is (SystemAchievementType.ProfRetraining))
+                                             .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Training, SystemAchievementType.ProfRetraining))
                                              .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
                 );
