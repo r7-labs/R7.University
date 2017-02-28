@@ -121,12 +121,11 @@
     </div>
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
-
 <script type="text/javascript">
 (function($, Sys) {
     function setupModule() {
         var selectedTab = document.getElementById("hiddenSelectedTab").value;
-        $("#eduprogram-tabs").dnnTabs(selectedTab);
+        $("#eduprogram-tabs").dnnTabs({selected: selectedTab});
 	    dnnAcCombobox_Init($);
         $(".dnn-ac-combobox").combobox();
     };
