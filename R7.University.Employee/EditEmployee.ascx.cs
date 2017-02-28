@@ -837,7 +837,7 @@ namespace R7.University.Employee
 	
                             textAchievementTitle.Text = achievement.Title;
                             textAchievementShortTitle.Text = achievement.ShortTitle;
-                            comboAchievementTypes.SelectByValue (achievement.AchievementType);
+                            comboAchievementTypes.SelectByValue (achievement.AchievementType.AchievementTypeId);
 							
                             panelAchievementTitle.Visible = true;
                             panelAchievementShortTitle.Visible = true;
