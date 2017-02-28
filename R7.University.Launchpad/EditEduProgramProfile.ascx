@@ -23,34 +23,30 @@
         </ul>
         <div id="eduprogramprofile-common-tab" class="dnnForm dnnClear">
         	<fieldset>
-                <asp:UpdatePanel id="updatePanelEduProgram" runat="server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="dnnFormItem">
-                            <dnn:Label id="labelEduProgramLevel" runat="server" ControlName="comboEduProgramLevel" />
-                            <asp:DropDownList id="comboEduProgramLevel" runat="server" 
-                                AutoPostBack="true"
-                                OnSelectedIndexChanged="comboEduProgramLevel_SelectedIndexChanged"
-                                DataValueField="EduLevelID"
-                                DataTextField="Title" />
-                        </div>
-                        <div class="dnnFormItem">
-                            <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
-                            <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
-                                DataValueField="Value"
-                                DataTextField="Text" />
-                            <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
-                                OnClick="linkEditEduProgram_Click" CssClass="edit-button-right">
-                                <img src="<%= DotNetNuke.Entities.Icons.IconController.IconURL ("Edit") %>" />
-                            </asp:LinkButton>
-                        </div>
-                        <div class="dnnFormItem">
-                            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-                            <asp:DropDownList id="comboEduLevel" runat="server"
-                                DataValueField="EduLevelID"
-                                DataTextField="Title" />
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEduProgramLevel" runat="server" ControlName="comboEduProgramLevel" />
+                    <asp:DropDownList id="comboEduProgramLevel" runat="server" 
+                        AutoPostBack="true"
+                        OnSelectedIndexChanged="comboEduProgramLevel_SelectedIndexChanged"
+                        DataValueField="EduLevelID"
+                        DataTextField="Title" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEduProgram" runat="server" ControlName="comboEduProgram" />
+                    <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
+                        DataValueField="Value"
+                        DataTextField="Text" />
+                    <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
+                        OnClick="linkEditEduProgram_Click" CssClass="edit-button-right">
+                        <img src="<%= DotNetNuke.Entities.Icons.IconController.IconURL ("Edit") %>" />
+                    </asp:LinkButton>
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+                    <asp:DropDownList id="comboEduLevel" runat="server"
+                        DataValueField="EduLevelID"
+                        DataTextField="Title" />
+                </div>
                 <div class="dnnFormItem">
                     <dnn:Label ID="labelProfileCode" runat="server" ControlName="textProfileCode" />
                     <asp:TextBox ID="textProfileCode" runat="server" MaxLength="64" />
@@ -105,17 +101,18 @@
     <hr />
     <dnn:Audit id="auditControl" runat="server" />
 </div>
+<input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">
 (function($, Sys) {
     function setupModule() {
-	    $("#eduprogramprofile-tabs").dnnTabs({selected: <%= SelectedTab %>});
+	    $("#eduprogramprofile-tabs").dnnTabs({selected: document.getElementById("hiddenSelectedTab").value});
         dnnAcCombobox_Init($);
         $(".dnn-ac-combobox").combobox();
     };
     $(document).ready(function() {
         setupModule();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
-            $("#eduprogramprofile-common-tab .dnn-ac-combobox").combobox();
+            setupModule();
         });
     });
 } (jQuery, window.Sys));
