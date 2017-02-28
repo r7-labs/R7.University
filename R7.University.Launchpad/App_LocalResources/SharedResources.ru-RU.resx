@@ -18,25 +18,7 @@
 	<data name="AddContent.Action" xml:space="preserve">
         <value>Добавить содержимое</value>
     </data>
-	<data name="AchievementTypeA.Text">
-        <value>Достижение</value>
-    </data>
-    <data name="AchievementTypeT.Text">
-        <value>Повышение квалификации</value>
-    </data>
-    <data name="AchievementTypeE.Text">
-        <value>Образование</value>
-    </data>
-    <data name="AchievementTypeW.Text">
-        <value>Работа</value>
-    </data>
-    <data name="AchievementTypeR.Text">
-        <value>Ученое звание</value>
-    </data>
-    <data name="AchievementTypeD.Text">
-        <value>Ученая степень</value>
-    </data>
-    <data name="Employees.Text" xml:space="preserve">
+	<data name="Employees.Text" xml:space="preserve">
         <value>Сотрудники</value>
     </data>
     <data name="Divisions.Text" xml:space="preserve">

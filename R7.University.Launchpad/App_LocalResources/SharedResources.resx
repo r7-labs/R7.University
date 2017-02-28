@@ -18,24 +18,6 @@
     <data name="AddContent.Action" xml:space="preserve">
         <value>Add Content</value>
     </data>
-	<data name="AchievementTypeA.Text">
-		<value>Achievement</value>
-	</data>
-	<data name="AchievementTypeT.Text">
-		<value>Training</value>
-	</data>
-	<data name="AchievementTypeE.Text">
-		<value>Education</value>
-	</data>
-	<data name="AchievementTypeW.Text">
-		<value>Work</value>
-	</data>
-    <data name="AchievementTypeR.Text">
-        <value>Academic Title</value>
-    </data>
-    <data name="AchievementTypeD.Text">
-        <value>Academic Degree</value>
-    </data>
     <data name="Employees.Text" xml:space="preserve">
         <value>Employees</value>
     </data>
