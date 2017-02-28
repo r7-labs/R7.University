@@ -64,7 +64,7 @@ namespace R7.University.Controls
                     filenameFormats.Append (",");
                 }
                 first = false;
-                filenameFormats.Append ($"{{\"id\":\"{documentType.DocumentTypeID}\",\"match\":\"{documentType.FilenameFormat.Replace ("\\","\\\\")}\"}}");
+                filenameFormats.Append ($"{{\"id\":\"{documentType.DocumentTypeID}\",\"match\":\"{documentType.FilenameFormat?.Replace ("\\","\\\\")}\"}}");
             }
 
             comboDocumentType.Attributes.Add ("data-validation", $"[{filenameFormats}]");

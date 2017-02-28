@@ -13,14 +13,20 @@
                     return elem.id == selectedTypeId;
                 });
                 if (regexes.length > 0) {
-                    var regex = new RegExp ("^" + regexes [0].match + "$");
-                    if (!regex.test (selectedFileName)) {
-                        e.IsValid = false;
-                        var valDocumentUrl = jQuery ("[id $= 'valDocumentUrl']").first ();
-                        valDocumentUrl.text (valDocumentUrl.attr ("data-message-template").replace ("{regex}", regexes [0].match));
+                    if (!isNullUndefinedOrEmpty (regexes [0].match)) {
+                        var regex = new RegExp ("^" + regexes [0].match + "$");
+                        if (!regex.test (selectedFileName)) {
+                            e.IsValid = false;
+                            var valDocumentUrl = jQuery ("[id $= 'valDocumentUrl']").first ();
+                            valDocumentUrl.text (valDocumentUrl.attr ("data-message-template").replace ("{regex}", regexes [0].match));
+                        }
                     }
                 }
             }
         }
     }
+}
+
+function isNullUndefinedOrEmpty(str) {
+    return !str || str.length === 0;
 }
