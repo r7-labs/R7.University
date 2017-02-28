@@ -26,7 +26,7 @@ namespace R7.University.ModelExtensions
 {
     public static class AchievementTypeExtensions
     {
-        public static SystemAchievementType GetSystemAchievementType (this IAchievementType achievementType)
+        public static SystemAchievementType GetSystemType (this IAchievementType achievementType)
         {
             if (achievementType != null) {
                 SystemAchievementType result;
@@ -40,7 +40,7 @@ namespace R7.University.ModelExtensions
 
         public static bool IsOneOf (this IAchievementType achievementType, params SystemAchievementType [] systemAchievementTypes)
         {
-            var achievementTypeParsed = GetSystemAchievementType (achievementType);
+            var achievementTypeParsed = GetSystemType (achievementType);
             foreach (var systemAchievementType in systemAchievementTypes) {
                 if (systemAchievementType == achievementTypeParsed) {
                     return true;

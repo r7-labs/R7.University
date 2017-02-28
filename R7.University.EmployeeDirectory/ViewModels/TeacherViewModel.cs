@@ -103,7 +103,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.GetSystemAchievementType () == SystemAchievementType.AcademicDegree)
+                                             .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicDegree)
                                              .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
             }
@@ -113,7 +113,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.GetSystemAchievementType () == SystemAchievementType.AcademicTitle)
+                                             .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicTitle)
                                              .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
                 );
             }

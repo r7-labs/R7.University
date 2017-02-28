@@ -86,7 +86,7 @@ namespace R7.University.Employee.ViewModels
         {
             get {
                 return Localization.GetString (
-                    "SystemAchievementType_" + AchievementType.GetSystemAchievementType () + ".Text",
+                    "SystemAchievementType_" + AchievementType.GetSystemType () + ".Text",
                     Context.LocalResourceFile
                 );
             }
