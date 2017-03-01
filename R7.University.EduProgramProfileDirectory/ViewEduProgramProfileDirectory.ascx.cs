@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
@@ -94,7 +95,8 @@ namespace R7.University.EduProgramProfileDirectory
         internal EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel ()
         {
             return DataCache.GetCachedData<EduProgramProfileDirectoryEduFormsViewModel> (
-                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
+                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId 
+                                   + "&Culture=" + CultureInfo.CurrentCulture.TwoLetterISOLanguageName, 
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEduFormsViewModel_Internal ()
             ).SetContext (ViewModelContext);
@@ -103,7 +105,8 @@ namespace R7.University.EduProgramProfileDirectory
         internal EduProgramProfileDirectoryDocumentsViewModel GetDocumentsViewModel ()
         {
             return DataCache.GetCachedData<EduProgramProfileDirectoryDocumentsViewModel> (
-                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId, 
+                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId
+                                   + "&Culture=" + CultureInfo.CurrentCulture.TwoLetterISOLanguageName, 
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetDocumentsViewModel_Internal ()
             ).SetContext (ViewModelContext);
