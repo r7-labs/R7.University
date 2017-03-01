@@ -9,6 +9,7 @@ function dnnAcCombobox_Init ($) {
                 .attr("class", this.element.attr("class"))
                 .insertAfter(this.element);
             this.element.hide();
+            this.options.disabled = this.element.attr("disabled") ? true : false;
             this._createAutocomplete();
             this._createShowAllButton();
         },
@@ -24,6 +25,7 @@ function dnnAcCombobox_Init ($) {
             .addClass("dnn-ac-combobox-input ui-widget ui-widget-content ui-state-default")
             .autocomplete({
                 delay: 0,
+                disabled: this.options.disabled,
                 minLength: 0,
                 source: $.proxy(this, "_source")
             });
