@@ -46,7 +46,6 @@ namespace R7.University.Launchpad
         {
             base.OnInit (e);
 
-            var viewModelContext = new ViewModelContext (this);
             comboAchievementType.DataSource = new FlatQuery<AchievementTypeInfo> (ModelContext).List ()
                 .Select (at => new ListItemViewModel (at.AchievementTypeId, LocalizeString ("SystemAchievementType_" + at.Type + ".Text")));
             
