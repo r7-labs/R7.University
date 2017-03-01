@@ -103,7 +103,7 @@ GO
 
 IF (select count (*) from {databaseOwner}[{objectQualifier}University_AchievementTypes]) = 0
 BEGIN
-    EXECUTE sp_executesql 'INSERT INTO {databaseOwner}[{objectQualifier}University_AchievementTypes] (Type, IsSystem, TmpAchievementType) VALUES
+    EXECUTE sp_executesql N'INSERT INTO {databaseOwner}[{objectQualifier}University_AchievementTypes] (Type, IsSystem, TmpAchievementType) VALUES
         (N''Education'', 1, N''E''),
         (N''ProfTraining'', 1, N''+''),
         (N''Training'', 1, N''T''),
@@ -114,13 +114,13 @@ BEGIN
         (N''Title'', 1, N''+''),
         (N''Authorship'', 1, N''+'')'
 
-    EXECUTE sp_executesql 'UPDATE {databaseOwner}[{objectQualifier}University_Achievements]
+    EXECUTE sp_executesql N'UPDATE {databaseOwner}[{objectQualifier}University_Achievements]
         SET AchievementTypeID = (select [AchievementTypeID]
             from {databaseOwner}[{objectQualifier}University_AchievementTypes] AS AT
                 where A.AchievementType = AT.TmpAchievementType)
         FROM {databaseOwner}[{objectQualifier}University_Achievements] AS A'
 
-    EXECUTE sp_executesql 'UPDATE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+    EXECUTE sp_executesql N'UPDATE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
         SET AchievementTypeID = (select [AchievementTypeID]
             from {databaseOwner}[{objectQualifier}University_AchievementTypes] AS AT
                 where EA.AchievementType = AT.TmpAchievementType)
@@ -141,16 +141,16 @@ IF NOT EXISTS (select * from sys.foreign_keys where name = N'FK_{objectQualifier
 GO
 
 IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_AchievementTypes]') and name = N'TmpAchievementType')
-    EXECUTE sp_executesql 'ALTER TABLE {databaseOwner}[{objectQualifier}University_AchievementTypes]
+    EXECUTE sp_executesql N'ALTER TABLE {databaseOwner}[{objectQualifier}University_AchievementTypes]
         DROP COLUMN [TmpAchievementType]'
 GO
 
 IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Achievements]') and name = N'AchievementType')
-    EXECUTE sp_executesql 'ALTER TABLE {databaseOwner}[{objectQualifier}University_Achievements]
+    EXECUTE sp_executesql N'ALTER TABLE {databaseOwner}[{objectQualifier}University_Achievements]
         DROP COLUMN [AchievementType]'
 GO
 
 IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeAchievements]') and name = N'AchievementType')
-    EXECUTE sp_executesql 'ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+    EXECUTE sp_executesql N'ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
         DROP COLUMN [AchievementType]'
 GO
