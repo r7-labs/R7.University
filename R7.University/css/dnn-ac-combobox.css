@@ -57,3 +57,7 @@
 .dnn-ac-combobox .dnnSecondaryAction {
     box-shadow:none;
 }
+
+.dnn-ac-combobox.aspNetDisabled * {
+    cursor:not-allowed;
+}

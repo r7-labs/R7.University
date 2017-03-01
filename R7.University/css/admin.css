@@ -112,7 +112,3 @@
     position: absolute;
     width: 1px;
 }
-
-.aspNetDisabled input, .aspNetDisabled a {
-    cursor:not-allowed;
-}
