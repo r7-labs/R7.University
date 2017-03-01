@@ -34,7 +34,7 @@
     	<value>Visit profile</value>
     </data>
     <data name="SystemAchievementType_Custom.Text">
-    	<value>Achievement</value>
+    	<value></value>
     </data>
     <data name="SystemAchievementType_Training.Text">
     	<value>Training</value>

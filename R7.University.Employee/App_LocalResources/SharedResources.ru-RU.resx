@@ -34,7 +34,7 @@
         <value>Профайл</value>
     </data>
     <data name="SystemAchievementType_Custom.Text">
-        <value>Достижение</value>
+        <value></value>
     </data>
     <data name="SystemAchievementType_Training.Text">
         <value>Повышение квалификации</value>
