@@ -174,7 +174,7 @@ namespace R7.University.EmployeeDirectory
                     treeDivisions.Nodes [0].Selected = true;
                 }
 
-                // REVIEW: Level should be set in settings?
+                // TODO: Level should be set in settings?
                 R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
             }
         }
@@ -481,16 +481,6 @@ namespace R7.University.EmployeeDirectory
                 }
 
             }
-            /* HACK: Set empty CssClass for gridEmployees to remove borders around empty data message
-            else if (e.Row.RowType == DataControlRowType.EmptyDataRow)
-            {
-                gridEmployees.CssClass = string.Empty;
-            }
-            else if (e.Row.RowType == DataControlRowType.Header)
-            {
-                gridEmployees.CssClass = "dnnGrid";
-            }
-            */
         }
     }
 }

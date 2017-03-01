@@ -173,7 +173,7 @@ namespace R7.University.DivisionDirectory
                     treeDivisions.Nodes [0].Selected = true;
                 }
 
-                // REVIEW: Level should be set in settings?
+                // TODO: Level should be set in settings?
                 R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
 
                 gridDivisions.LocalizeColumns (LocalResourceFile);
@@ -260,7 +260,7 @@ namespace R7.University.DivisionDirectory
         {
             var now = HttpContext.Current.Timestamp;
 
-            // REVIEW: If division is not published, it's child divisions also should not
+            // TODO: If parent division not published, ensure what child divisions also not
             var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
                                                             .Where (d => d.IsPublished (now) || IsEditable)
                                                             .Where (d => !d.IsInformal || Settings.ShowInformal || IsEditable);

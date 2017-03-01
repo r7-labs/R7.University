@@ -126,7 +126,7 @@ namespace R7.University.EduProgram.ViewModels
                 if (Model.Division != null) {
                     if (!string.IsNullOrWhiteSpace (Model.Division.HomePage)) {
                         return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                            // REVIEW: Model.Division.HomePage could not contain tabId
+                            // TODO: Model.Division.HomePage may not contain tabId
                             Globals.NavigateURL (int.Parse (Model.Division.HomePage)), Model.Division.Title
                         );
                     }

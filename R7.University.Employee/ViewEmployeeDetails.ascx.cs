@@ -304,7 +304,6 @@ namespace R7.University.Employee
         /// </summary>
         protected void ReloadPage ()
         {
-            // REVIEW: Move to extension methods?
             Response.Redirect (Globals.NavigateURL (), false);
             Context.ApplicationInstance.CompleteRequest ();
         }

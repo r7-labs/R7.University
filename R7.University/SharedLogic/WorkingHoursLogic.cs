@@ -56,7 +56,7 @@ namespace R7.University.SharedLogic
             var workingHoursNonEmpty = !string.IsNullOrWhiteSpace (workingHours);
 
             if (comboWorkingHours.SelectedIndex <= 0 || workingHoursNonEmpty) {
-                // REVIEW: Shouldn't we try to add term after updating main item?
+                // TODO: Shouldn't we try to add term after updating main item?
                 if (addToVocabulary && workingHoursNonEmpty) {
                     // try add new term to University_WorkingHours vocabulary
                     var vocCtrl = new VocabularyController ();

@@ -92,9 +92,6 @@ namespace R7.University.EmployeeList
 
         #endregion
 
-        #region Handlers
-
-        // REVIEW: Move to repository class?,
         internal EmployeeListViewModel GetViewModel ()
         {
             var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
@@ -124,6 +121,8 @@ namespace R7.University.EmployeeList
                 ModelContext.Get<DivisionInfo> (Settings.DivisionID)
             );
         }
+
+         #region Handlers
 
         /// <summary>
         /// Handles Load event for a control

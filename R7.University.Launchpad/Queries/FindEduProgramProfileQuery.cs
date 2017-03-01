@@ -34,7 +34,7 @@ namespace R7.University.Launchpad.Queries
 
         public IList<EduProgramProfileInfo> List (string search)
         {
-            // REVIEW: Cannot set comparison options
+            // FIXME: Cannot set comparison options
             return ((search != null)
                 ? ModelContext.Query<EduProgramProfileInfo> ()
                     .Include (epp => epp.EduProgram)

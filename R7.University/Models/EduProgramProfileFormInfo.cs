@@ -35,7 +35,7 @@ namespace R7.University.Models
 
         public string TimeToLearnUnit { get; set; }
 
-        // REVIEW: Rename?
+        // TODO: Rename?
         public bool IsAdmissive { get; set; }
 
         public virtual EduFormInfo EduForm { get; set; }

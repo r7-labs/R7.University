@@ -34,7 +34,7 @@ namespace R7.University.Models
     {
         private bool _disposed = false;
 
-        // REVIEW: Use factory, not data context?
+        // TODO: Use factory, not data context?
         private IDataContext _context;
         protected IDataContext Context
         {
@@ -110,7 +110,7 @@ namespace R7.University.Models
             }
         }
 
-        // TODO: Test this
+        // TODO: Test UpdateExternal
         public virtual void UpdateExternal<TEntity> (TEntity entity) where TEntity: class
         {
             Context.Set<TEntity> ().Attach (entity);

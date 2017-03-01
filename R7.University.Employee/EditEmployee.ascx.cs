@@ -564,7 +564,7 @@ namespace R7.University.Employee
                     var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, 
                                            textLastName.Text, textOtherName.Text);
 
-                    // REVIEW: EmployeeInfo should contain culture data?
+                    // TODO: EmployeeInfo should contain culture data?
                     var employeeNameTL = CultureHelper.Transliterate (employeeName, CultureHelper.RuTranslitTable)
                                                       .ToLowerInvariant ();
 

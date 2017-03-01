@@ -41,11 +41,12 @@ namespace R7.University.Launchpad
         protected int SelectedTab
         {
             get {
+                // TODO: Replace magic tab numbers with enum
                 // get postback initiator control
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
-
+                    
                     // check if postback initiator is on Bindings tab
                     if (eventTarget.Contains ("$" + divisionSelector.ID)) {
                         ViewState ["SelectedTab"] = 3;
@@ -117,7 +118,7 @@ namespace R7.University.Launchpad
                 }
             }
 
-            // TODO: Disable edu. program selection the adding or editing from EditEduProgram
+            // TODO: Disable edu. program selection then adding or editing from EditEduProgram
 
             // init edit forms
             formEditEduForms.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).List ());
@@ -223,13 +224,6 @@ namespace R7.University.Launchpad
             else {
                 item.LastModifiedOnDate = DateTime.Now;
                 item.LastModifiedByUserID = UserInfo.UserID;
-
-                // HACK: Set missing CreatedOnDate value
-                // REVIEW: Solve on SqlDataProvider level on upgrage to 2.0.0?
-                if (item.CreatedOnDate == default (DateTime)) {
-                    item.CreatedOnDate = item.LastModifiedOnDate;
-                    item.CreatedByUserID = item.LastModifiedByUserID;
-                }
             }
         }
 
@@ -259,7 +253,7 @@ namespace R7.University.Launchpad
 
         protected override void UpdateItem (EduProgramProfileInfo item)
         {
-            // REVIEW: Use single transaction to update main entity along with all dependent ones?
+            // TODO: Use single transaction to update main entity along with all dependent ones?
 
             ModelContext.Update (item);
 

@@ -280,7 +280,7 @@ namespace R7.University.Launchpad
             }
 
             // Save new values in ViewState.
-            // REVIEW: How this behave in case of multiple GridView's?
+            // TODO: Test how this behave in case of multiple GridView's?
             ViewState ["SortDirection"] = sortDirection;
             ViewState [controlID + "SortExpression"] = column;
 

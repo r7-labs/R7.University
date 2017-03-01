@@ -35,7 +35,7 @@ namespace R7.University.Launchpad
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
-            // REVIEW: Cannot set comparison options
+            // FIXME: Cannot set comparison options
             var eduPrograms = (search == null)
                 ? new FlatQuery<EduProgramInfo> (modelContext).List ()
                 : new FlatQuery<EduProgramInfo> (modelContext)

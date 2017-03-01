@@ -140,7 +140,7 @@ namespace R7.University.DivisionDirectory
         {
             var now = HttpContext.Current.Timestamp;
 
-            // REVIEW: If division is not published, it's child divisions also should not
+            // TODO: If parent division not published, ensure what child divisions also not
             var divisionViewModels = divisions.Select (d => new DivisionObrnadzorViewModel (d, viewModelContext))
                 .Where (d => d.IsPublished (now) || viewModelContext.Module.IsEditable)
                 .Where (d => !d.IsInformal || viewModelContext.Settings.ShowInformal || viewModelContext.Module.IsEditable)
@@ -157,7 +157,7 @@ namespace R7.University.DivisionDirectory
         /// <param name="divisions">Divisions that must be properly sorted before the call.</param>
         protected static void CalculateOrder (IList<DivisionObrnadzorViewModel> divisions)
         {
-            // REVIEW: Get hierarchical data from DB, without recalculating it?
+            // TODO: Get hierarchical data from DB, without recalculating it?
 
             const string separator = ".";
             var orderCounter = 1;

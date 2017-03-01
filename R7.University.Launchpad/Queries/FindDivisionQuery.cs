@@ -34,7 +34,7 @@ namespace R7.University.Launchpad.Queries
 
         public IList<DivisionInfo> List (string search)
         {
-            // REVIEW: Cannot set comparison options
+            // FIXME: Cannot set comparison options
             return ((search != null)
                 ? ModelContext.Query<DivisionInfo> ()
                     .Where (d => d.Title.Contains (search) 

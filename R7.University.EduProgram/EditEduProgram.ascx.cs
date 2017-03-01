@@ -178,12 +178,6 @@ namespace R7.University.EduProgram
             else {
                 item.LastModifiedOnDate = DateTime.Now;
                 item.LastModifiedByUserID = UserInfo.UserID;
-
-                // REVIEW: Solve on SqlDataProvider level on upgrage to 2.0.0?
-                if (item.CreatedOnDate == default (DateTime)) {
-                    item.CreatedOnDate = item.LastModifiedOnDate;
-                    item.CreatedByUserID = item.LastModifiedByUserID;
-                }
             }
         }
 
@@ -233,7 +227,7 @@ namespace R7.University.EduProgram
 
         protected override void UpdateItem (EduProgramInfo item)
         {
-            // REVIEW: Use single transaction to update main entity along with all dependent ones?
+            // TODO: Use single transaction to update main entity along with all dependent ones?
 
             ModelContext.Update (item);
 
