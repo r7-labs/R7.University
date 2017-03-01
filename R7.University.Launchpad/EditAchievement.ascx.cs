@@ -48,7 +48,7 @@ namespace R7.University.Launchpad
 
             var viewModelContext = new ViewModelContext (this);
             comboAchievementType.DataSource = new FlatQuery<AchievementTypeInfo> (ModelContext).List ()
-                .Select (at => new AchievementTypeViewModel (at, viewModelContext));
+                .Select (at => new ListItemViewModel (at.AchievementTypeId, LocalizeString ("SystemAchievementType_" + at.Type + ".Text")));
             
             comboAchievementType.DataBind ();
             comboAchievementType.InsertDefaultItem (LocalizeString ("NotSelected.Text"));

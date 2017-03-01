@@ -216,7 +216,6 @@
     <Compile Include="Data\Mappings\AchievementTypeMapping.cs" />
     <Compile Include="Models\SystemAchievementType.cs" />
     <Compile Include="ModelExtensions\AchievementTypeExtensions.cs" />
-    <Compile Include="ViewModels\AchievementTypeViewModel.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
   </ItemGroup>

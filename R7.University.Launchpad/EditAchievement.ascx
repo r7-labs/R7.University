@@ -19,8 +19,8 @@
 		<div class="dnnFormItem">
 			<dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementType" />
 			<asp:DropDownList id="comboAchievementType" runat="server" 
-				DataTextField="LocalizedType"
-				DataValueField="AchievementTypeId"
+				DataTextField="Text"
+				DataValueField="Value"
 			/>
 		</div>
 	</fieldset>
