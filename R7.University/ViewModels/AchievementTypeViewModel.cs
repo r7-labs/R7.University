@@ -59,28 +59,10 @@ namespace R7.University.ViewModels
             }
         }
 
-        public AchievementTypeViewModel ()
-        {
-        }
-
         public AchievementTypeViewModel (IAchievementType achievementType, ViewModelContext context)
         {
-            CopyCstor.Copy<IAchievementType> (achievementType, this);
+            CopyCstor.Copy (achievementType, this);
             Context = context;
-        }
-
-        public static List<AchievementTypeViewModel> GetBindableList (IEnumerable<AchievementTypeInfo> achievementTypes, 
-            ViewModelContext context)
-        {
-            return achievementTypes.Select (at => new AchievementTypeViewModel (at, context)).ToList ();
-        }
-
-        public AchievementTypeInfo ToModel ()
-        {
-            var achievement = new AchievementTypeInfo ();
-            CopyCstor.Copy<IAchievementType> (this, achievement);
-
-            return achievement;
         }
     }
 }
