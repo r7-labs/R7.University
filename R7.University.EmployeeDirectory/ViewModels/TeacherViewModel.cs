@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -57,90 +57,120 @@ namespace R7.University.EmployeeDirectory.ViewModels
             get { return Indexer.GetNextIndex (); }
         }
 
+        string _fullName;
         public string FullName
         {
-            get { return FormatHelper.FullName (Model.FirstName, Model.LastName, Model.OtherName); }
+            get { return _fullName ?? (_fullName = FormatHelper.FullName (Model.FirstName, Model.LastName, Model.OtherName)); }
         }
 
+        string _positionsString;
         public string Positions_String
         {
-            get {
-                var positions = Model.Positions
-                    .OrderByDescending (op => op.IsPrime)
-                    .ThenByDescending (op => op.Position.Weight);
-
-                return TextUtils.FormatList ("; ", 
-                    positions.Select (op => TextUtils.FormatList (": ", op.Position.Title, op.Division.Title))
-                );
-            }
+            get { return _positionsString ?? (_positionsString = GetPositionsString ()); }
         }
 
+        string _disciplinesString;
         public string Disciplines_String
         {
-            get {
-                if (!Null.IsNull (EduProgramProfile.EduProgramProfileID)) {
-                    var disciplines = Model.Disciplines
-                        .FirstOrDefault (d => d.EduProgramProfileID == EduProgramProfile.EduProgramProfileID);
-
-                    if (disciplines != null) {
-                        return disciplines.Disciplines;
-                    }
-                }
-                return string.Empty;
-            }
+            get { return _disciplinesString ?? (_disciplinesString = GetDisciplinesString ()); }
         }
 
-        private IEnumerable<EmployeeAchievementViewModel> achievementViewModels;
+        string _academicDegreesString;
+        public string AcademicDegrees_String
+        {
+            get { return _academicDegreesString ?? (_academicDegreesString = GetAcademicDegreesString ()); }
+        }
+
+        string _academicTitlesString;
+        public string AcademicTitles_String
+        {
+            get { return _academicTitlesString ?? (_academicTitlesString = GetAcademicTitlesString ()); }
+        }
+
+        string _educationString;
+        public string Education_String
+        {
+            get { return _educationString ?? (_educationString = GetEducationString ()); }
+        }
+
+        string _trainingString;
+        public string Training_String
+        {
+            get { return _trainingString ?? (_trainingString = GetTrainingString ()); }
+        }
+
+        #endregion
+
+        IEnumerable<EmployeeAchievementViewModel> achievementViewModels;
         protected IEnumerable<EmployeeAchievementViewModel> AchievementViewModels
         {
             get {
                 return achievementViewModels
-                    ?? (achievementViewModels = Model.Achievements.Select (a => new EmployeeAchievementViewModel (a))); 
+                    ?? (achievementViewModels = Model.Achievements.Select (a => new EmployeeAchievementViewModel (a)));
             }
         }
 
-        public string AcademicDegrees_String
+        string GetPositionsString ()
         {
-            get {
-                return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicDegree)
-                                             .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
-                );
-            }
+            var positions = Model.Positions
+                        .OrderByDescending (op => op.IsPrime)
+                        .ThenByDescending (op => op.Position.Weight);
+
+            return TextUtils.FormatList ("; ",
+                positions.Select (op => TextUtils.FormatList (": ", op.Position.Title, op.Division.Title))
+            );
         }
 
-        public string AcademicTitles_String
+        string GetDisciplinesString ()
         {
-            get {
-                return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicTitle)
-                                             .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
-                );
+            if (!Null.IsNull (EduProgramProfile.EduProgramProfileID)) {
+                var disciplines = Model.Disciplines
+                    .FirstOrDefault (d => d.EduProgramProfileID == EduProgramProfile.EduProgramProfileID);
+
+                if (disciplines != null) {
+                    return disciplines.Disciplines;
+                }
             }
+
+            return string.Empty;
         }
 
-        public string Education_String
+        string GetAcademicDegreesString ()
         {
-            get {
-                return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education, SystemAchievementType.ProfTraining))
-                                             .Select (ach => TextUtils.FormatList ("&nbsp;- ",
+            return TextUtils.FormatList ("; ", 
+                                         AchievementViewModels
+                                         .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicDegree)
+                                         .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+            );
+        }
+
+        string GetAcademicTitlesString ()
+        {
+            return TextUtils.FormatList ("; ", 
+                                         AchievementViewModels
+                                         .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicTitle)
+                                         .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+            );
+        }
+
+        string GetEducationString ()
+        {
+            return TextUtils.FormatList ("; ", 
+                                         AchievementViewModels
+                                         .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education, SystemAchievementType.ProfTraining))
+                                         .Select (ach => TextUtils.FormatList ("&nbsp;- ",
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
-                );
-            }
+            );
         }
 
-        public string Training_String
+        string GetTrainingString ()
         {
-            get {
-                return TextUtils.FormatList ("; ", AchievementViewModels
-                                             .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Training, SystemAchievementType.ProfRetraining))
-                                             .Select (ach => TextUtils.FormatList ("&nbsp;- ", 
+            return TextUtils.FormatList ("; ", 
+                                         AchievementViewModels
+                                         .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Training, SystemAchievementType.ProfRetraining))
+                                         .Select (ach => TextUtils.FormatList ("&nbsp;- ",
                         FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
-                );
-            }
+            );
         }
-
-        #endregion
     }
 }
