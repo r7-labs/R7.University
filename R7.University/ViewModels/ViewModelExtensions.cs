@@ -26,7 +26,7 @@ namespace R7.University.ViewModels
 {
     public static class ViewModelExtensions
     {
-        public static IEnumerable<IViewModel> SetContext (this IEnumerable<IViewModel> viewModels, ViewModelContext context)
+        public static IEnumerable<IViewModel> WithContext (this IEnumerable<IViewModel> viewModels, ViewModelContext context)
         {
             foreach (var viewModel in viewModels) {
                 viewModel.SetContext (context);

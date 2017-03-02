@@ -321,7 +321,7 @@ namespace R7.University.Employee
 
             // bind achievements
             Achievements = achievements;
-            gridAchievements.DataSource = achievements.SetContext (ViewModelContext);
+            gridAchievements.DataSource = achievements.WithContext (ViewModelContext);
             gridAchievements.DataBind ();
 
             // fill disciplines list
@@ -797,7 +797,7 @@ namespace R7.University.Employee
                         Achievements = achievements;
 	
                         // bind achievements to the gridview
-                        gridAchievements.DataSource = achievements.SetContext (ViewModelContext);
+                        gridAchievements.DataSource = achievements.WithContext (ViewModelContext);
                         gridAchievements.DataBind ();
 
                         // reset form if we deleting currently edited achievement
@@ -954,7 +954,7 @@ namespace R7.University.Employee
                 Achievements = achievements;
 
                 // bind achievements to the gridview
-                gridAchievements.DataSource = achievements.SetContext (ViewModelContext);
+                gridAchievements.DataSource = achievements.WithContext (ViewModelContext);
                 gridAchievements.DataBind ();
             }
             catch (Exception ex) {
