@@ -119,11 +119,9 @@ namespace R7.University.Employee.ViewModels
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeAchievementEditModel (IEmployeeAchievement achievement, ViewModelContext context) : this ()
+        public EmployeeAchievementEditModel (IEmployeeAchievement achievement) : this ()
         {
-            CopyCstor.Copy<IEmployeeAchievement> (achievement, this);
-
-            SetContext (context);
+            CopyCstor.Copy (achievement, this);
 
             // use base achievement values
             if (achievement.Achievement != null) {

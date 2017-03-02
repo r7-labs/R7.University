@@ -317,12 +317,11 @@ namespace R7.University.Employee
             gridOccupiedPositions.DataBind ();
 
             // fill achievements list
-            var achievements = employee.Achievements
-                                       .Select (ea => new EmployeeAchievementEditModel (ea, ViewModelContext)).ToList ();
+            var achievements = employee.Achievements.Select (ea => new EmployeeAchievementEditModel (ea)).ToList ();
 
             // bind achievements
             Achievements = achievements;
-            gridAchievements.DataSource = achievements;
+            gridAchievements.DataSource = achievements.SetContext (ViewModelContext);
             gridAchievements.DataBind ();
 
             // fill disciplines list
@@ -798,7 +797,7 @@ namespace R7.University.Employee
                         Achievements = achievements;
 	
                         // bind achievements to the gridview
-                        gridAchievements.DataSource = achievements;
+                        gridAchievements.DataSource = achievements.SetContext (ViewModelContext);
                         gridAchievements.DataBind ();
 
                         // reset form if we deleting currently edited achievement
