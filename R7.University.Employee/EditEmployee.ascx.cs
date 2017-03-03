@@ -43,13 +43,11 @@ using R7.University.Employee.ViewModels;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.Security;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using DotNetNuke.Web.UI;
-using R7.University.Controls;
 using R7.DotNetNuke.Extensions.ViewModels;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee
 {
@@ -235,13 +233,7 @@ namespace R7.University.Employee
 
             // bind achievement types
             comboAchievementTypes.DataSource = achievementTypes
-                .Select (at => new ListItemViewModel (
-                    at.AchievementTypeId,
-                    LocalizationHelper.GetStringWithFallback (
-                        "SystemAchievementType_" + at.Type + ".Text",
-                        LocalResourceFile,
-                        at.Type
-                    )));
+                .Select (at => new ListItemViewModel (at.AchievementTypeId, at.Localize (LocalResourceFile)));
             
             comboAchievementTypes.DataBind ();
             comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
@@ -932,7 +924,8 @@ namespace R7.University.Employee
                     achievement.Title = textAchievementTitle.Text.Trim ();
                     achievement.ShortTitle = textAchievementShortTitle.Text.Trim ();
                     achievement.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementTypes.SelectedValue);
-                    achievement.Type = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == achievement.AchievementTypeId).Type;
+                    var achievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == achievement.AchievementTypeId);
+                    achievement.Type = (achievementType != null)? achievementType.Type : string.Empty;
                 }
                 else {
                     var ach = CommonAchievements.Single (a => a.AchievementID.ToString () ==
@@ -941,7 +934,8 @@ namespace R7.University.Employee
                     achievement.Title = ach.Title;
                     achievement.ShortTitle = ach.ShortTitle;
                     achievement.AchievementTypeId = ach.AchievementTypeId;
-                    achievement.Type = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == ach.AchievementTypeId).Type;
+                    var achievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == ach.AchievementTypeId);
+                    achievement.Type = (achievementType != null) ? achievementType.Type : string.Empty;
                 }
 
                 achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim ();

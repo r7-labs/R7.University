@@ -27,6 +27,7 @@ using R7.University.Components;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee.ViewModels
 {
@@ -84,9 +85,9 @@ namespace R7.University.Employee.ViewModels
         public string AchievementType_String
         {
             get {
-                return LocalizationHelper.GetStringWithFallback (
-                    "SystemAchievementType_" + Type + ".Text", Context.LocalResourceFile, Type
-                );
+                // TODO: Don't create new object here?
+                var achievementType = (AchievementTypeId != null) ? new AchievementTypeInfo { Type = Type } : null;
+                return achievementType.Localize (Context.LocalResourceFile); 
             }
         }
 
@@ -131,7 +132,9 @@ namespace R7.University.Employee.ViewModels
                 Title = achievement.Achievement.Title;
                 ShortTitle = achievement.Achievement.ShortTitle;
                 AchievementTypeId = achievement.Achievement.AchievementTypeId;
-                Type = achievement.Achievement.AchievementType.Type;
+                if (achievement.Achievement.AchievementType != null) {
+                    Type = achievement.Achievement.AchievementType.Type;
+                }
             }
             else if (achievement.AchievementType != null) {
                 Type = achievement.AchievementType.Type;

@@ -218,7 +218,7 @@
     <Compile Include="ModelExtensions\AchievementTypeExtensions.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
-    <Compile Include="Utilities\LocalizationHelper.cs" />
+    <Compile Include="ViewModels\LocalizationHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

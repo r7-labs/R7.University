@@ -20,7 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DotNetNuke.Services.Localization;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions
 {
@@ -48,6 +50,17 @@ namespace R7.University.ModelExtensions
             }
         
             return false;
+        }
+
+        public static string Localize (this IAchievementType achievementType, string resourceFile)
+        {
+            if (achievementType != null) {
+                return LocalizationHelper.GetStringWithFallback (
+                    "SystemAchievementType_" + achievementType.Type + ".Text", resourceFile, achievementType.Type
+                );
+            }
+
+            return Localization.GetString ("SystemAchievementType_Custom.Text", resourceFile);
         }
     }
 }

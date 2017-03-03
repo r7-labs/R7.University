@@ -26,6 +26,7 @@ using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Employee.ViewModels
 {
@@ -83,11 +84,7 @@ namespace R7.University.Employee.ViewModels
 
         public string AchievementType_String
         {
-            get {
-                return LocalizationHelper.GetStringWithFallback (
-                    "SystemAchievementType_" + AchievementType.Type + ".Text", Context.LocalResourceFile, AchievementType.Type
-                );
-            }
+            get { return AchievementType.Localize (Context.LocalResourceFile); }
         }
 
         #endregion

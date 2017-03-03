@@ -26,7 +26,7 @@ using System.Xml.Serialization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Models;
-using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.Controls
 {
