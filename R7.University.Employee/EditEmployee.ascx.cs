@@ -837,7 +837,7 @@ namespace R7.University.Employee
 	
                             textAchievementTitle.Text = achievement.Title;
                             textAchievementShortTitle.Text = achievement.ShortTitle;
-                            comboAchievementTypes.SelectByValue (achievement.AchievementType.AchievementTypeId);
+                            comboAchievementTypes.SelectByValue (achievement.AchievementTypeId);
 							
                             panelAchievementTitle.Visible = true;
                             panelAchievementShortTitle.Visible = true;
@@ -926,7 +926,7 @@ namespace R7.University.Employee
                     achievement.Title = textAchievementTitle.Text.Trim ();
                     achievement.ShortTitle = textAchievementShortTitle.Text.Trim ();
                     achievement.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementTypes.SelectedValue);
-                    achievement.AchievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == achievement.AchievementTypeId);
+                    achievement.Type = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == achievement.AchievementTypeId).Type;
                 }
                 else {
                     var ach = CommonAchievements.Single (a => a.AchievementID.ToString () ==
@@ -935,7 +935,7 @@ namespace R7.University.Employee
                     achievement.Title = ach.Title;
                     achievement.ShortTitle = ach.ShortTitle;
                     achievement.AchievementTypeId = ach.AchievementTypeId;
-                    achievement.AchievementType = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == ach.AchievementTypeId);
+                    achievement.Type = CommonAchievementTypes.SingleOrDefault (a => a.AchievementTypeId == ach.AchievementTypeId).Type;
                 }
 
                 achievement.TitleSuffix = textAchievementTitleSuffix.Text.Trim ();
