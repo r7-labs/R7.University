@@ -71,10 +71,9 @@ namespace R7.University.Controls
         public string LocalizedType
         { 
             get {
-                var localizedType = Localization.GetString ("SystemDocumentType_" + DocumentTypeViewModel.Type + ".Text", 
-                    Context.LocalResourceFile);
-                    
-                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : DocumentTypeViewModel.Type;
+                return LocalizationHelper.GetStringWithFallback (
+                    "SystemDocumentType_" + DocumentTypeViewModel.Type + ".Text", Context.LocalResourceFile, DocumentTypeViewModel.Type
+                );
             }
         }
 

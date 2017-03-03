@@ -23,10 +23,10 @@ using System;
 using System.Linq;
 using R7.DotNetNuke.Extensions.ControlExtensions;
 using R7.DotNetNuke.Extensions.Utilities;
-using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Launchpad
@@ -47,7 +47,13 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             comboAchievementType.DataSource = new FlatQuery<AchievementTypeInfo> (ModelContext).List ()
-                .Select (at => new ListItemViewModel (at.AchievementTypeId, LocalizeString ("SystemAchievementType_" + at.Type + ".Text")));
+                .Select (at => new ListItemViewModel (
+                    at.AchievementTypeId, 
+                    LocalizationHelper.GetStringWithFallback (
+                        "SystemAchievementType_" + at.Type + ".Text",
+                        LocalResourceFile,
+                        at.Type
+                    )));
             
             comboAchievementType.DataBind ();
             comboAchievementType.InsertDefaultItem (LocalizeString ("NotSelected.Text"));

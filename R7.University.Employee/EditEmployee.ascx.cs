@@ -235,7 +235,13 @@ namespace R7.University.Employee
 
             // bind achievement types
             comboAchievementTypes.DataSource = achievementTypes
-                .Select (at => new ListItemViewModel (at.AchievementTypeId, LocalizeString ("SystemAchievementType_" + at.Type + ".Text")));
+                .Select (at => new ListItemViewModel (
+                    at.AchievementTypeId,
+                    LocalizationHelper.GetStringWithFallback (
+                        "SystemAchievementType_" + at.Type + ".Text",
+                        LocalResourceFile,
+                        at.Type
+                    )));
             
             comboAchievementTypes.DataBind ();
             comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
