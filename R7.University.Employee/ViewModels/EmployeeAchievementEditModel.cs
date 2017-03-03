@@ -84,10 +84,10 @@ namespace R7.University.Employee.ViewModels
         public string AchievementType_String
         {
             get {
-                return Localization.GetString (
-                    "SystemAchievementType_" + Type + ".Text",
-                    Context.LocalResourceFile
-                );
+                var localizedType = Localization.GetString ("SystemAchievementType_" + Type + ".Text",
+                                        Context.LocalResourceFile);
+
+                return (!string.IsNullOrEmpty (localizedType)) ? localizedType : Type;
             }
         }
 
