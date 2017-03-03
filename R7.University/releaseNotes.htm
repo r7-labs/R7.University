@@ -1,5 +1,15 @@
 ﻿<div style="white-space:normal">
 
+<h3>Version 1.14.1</h3>
+<p>This release focused on resolving issues with editing and displaying employee achievements, introdiced in v1.14.0.</p>
+<ul>
+    <li>Fix duplicate AchievementType records created then editing employee achievements (#170).</li>
+    <li>Resolve errors on editing and deleting employee achievements.</li>
+	<li>Fix custom achievement type name not displayed.</li>
+	<li>Improve performance of EmployeeDirectory (teachers mode) and EduProgramProfileDirectory (documents mode) by flattening viewmodels (#130).</li>
+    <li>More code refactoring.</li>
+</ul>
+
 <h3>Version 1.14.0</h3>
 <ul>
     <li>Only admins can delete employees, divisions, edu. programs and edu. program profiles (#22).</li>
@@ -7,7 +17,7 @@
 	<li>Only admins can change module-level (general) settings (#157).</li>
     <li>Implemented validation of filenames for documents based on FilenameFormat regex (#162).</li>
     <li>Added AchievementTypes table for system and custom achievement types (#113).</li>
-	<li>Four new system achievement types: title, authorship, professional training and professional retraining.</li>	
+	<li>Four new system achievement types: title, authorship, professional training and professional retraining.</li>
 	<li>Enabled partial rendering for all edit forms which require postback.</li>
     <li>Launchpad: enabled partial rendering for main view.</li>        
     <li>Launchpad: module actions displayed only for tables configured in settings.</li>
