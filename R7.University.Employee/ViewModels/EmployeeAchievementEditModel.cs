@@ -24,7 +24,6 @@ using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
 using R7.DotNetNuke.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
@@ -60,12 +59,17 @@ namespace R7.University.Employee.ViewModels
 
         public string TitleSuffix { get; set; }
 
+        [XmlIgnore]
+        [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public AchievementTypeInfo AchievementType { get; set; }
 
         [XmlIgnore]
+        [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public AchievementInfo Achievement { get; set; }
 
         #endregion
+
+        public string Type { get; set; }
 
         #region Bindable properties
 
@@ -81,7 +85,7 @@ namespace R7.University.Employee.ViewModels
         {
             get {
                 return Localization.GetString (
-                    "SystemAchievementType_" + AchievementType.GetSystemType () + ".Text",
+                    "SystemAchievementType_" + Type + ".Text",
                     Context.LocalResourceFile
                 );
             }
@@ -127,8 +131,11 @@ namespace R7.University.Employee.ViewModels
             if (achievement.Achievement != null) {
                 Title = achievement.Achievement.Title;
                 ShortTitle = achievement.Achievement.ShortTitle;
-                AchievementTypeId = achievement.Achievement.AchievementID;
-                AchievementType = achievement.Achievement.AchievementType;
+                AchievementTypeId = achievement.Achievement.AchievementTypeId;
+                Type = achievement.Achievement.AchievementType.Type;
+            }
+            else if (achievement.AchievementType != null) {
+                Type = achievement.AchievementType.Type;
             }
         }
 
@@ -141,7 +148,6 @@ namespace R7.University.Employee.ViewModels
                 achievement.Title = null;
                 achievement.ShortTitle = null;
                 achievement.AchievementTypeId = null;
-                achievement.AchievementType = null;
             }
 
             return achievement;
