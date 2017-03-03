@@ -249,15 +249,17 @@
                         DataTextField="Text"
                         DataValueField="Value" />
                 </asp:Panel>
-				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem">
+				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem dnnFormRequired">
 					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
 					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
-                    <asp:RegularExpressionValidator runat="server"
+					<asp:RequiredFieldValidator runat="server" resourcekey="AchievementTitle.Required" 
+					    ControlToValidate="textAchievementTitle" ValidationGroup="Achievements"
+						Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+					<asp:RegularExpressionValidator runat="server"
                         CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
                         ControlToValidate="textAchievementTitle" Display="Dynamic"
-                        ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements">
-                    </asp:RegularExpressionValidator>
-				</asp:Panel>
+                        ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements" />
+                </asp:Panel>
                 <div class="dnnFormItem">
 					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
 					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
