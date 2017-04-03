@@ -58,7 +58,7 @@ BEGIN
         SET [FilenameFormat] = N'graf_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduSchedule'
 
     UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
-        SET [FilenameFormat] = N'edu_plan_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduPlan'
+        SET [FilenameFormat] = N'ucheb_plan_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduPlan'
 
     UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes]
         SET [FilenameFormat] = N'metod_[a-z0-9_]+_\d{8}\.pdf' WHERE [Type] = N'EduMaterial'
