@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Tests">
+    <PropertyGroup>
+        <!-- Enable tests by default (standalone) -->
+        <EnableTests Condition=" '$(EnableTests)' == '' ">true</EnableTests>
+        <TestsImported>true</TestsImported>
+    </PropertyGroup>
+    <Target Name="Tests" Condition=" '$(EnableTests)' == 'true' ">
+        <Exec Condition=" '$(OS)' == 'Unix' " Command="mono ../packages/xunit.runner.console.2.1.0/tools/xunit.console.exe ..\R7.University.Tests\bin\$(Configuration)\R7.University.Tests.dll" />
+        <Exec Condition=" '$(OS)' != 'Unix' " Command="..\packages\xunit.runner.console.2.1.0\tools\xunit.console ..\R7.University.Tests\bin\$(Configuration)\R7.University.Tests.dll" />
+    </Target>
+</Project>
