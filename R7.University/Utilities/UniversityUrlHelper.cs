@@ -65,6 +65,7 @@ namespace R7.University.Utilities
             return Globals.LinkClick (link, module.ModuleContext.TabId, module.ModuleContext.ModuleId, trackClicks);
         }
 
+        // TODO: Move to the base library
         public static string FormatCrossPortalTabUrl (IModuleControl module, int tabId, bool trackClicks)
         {
             try {
@@ -92,6 +93,7 @@ namespace R7.University.Utilities
             }
         }
 
+        // TODO: Move to the base library
         /// <summary>
         /// Temp workaround for issue with IE and Unicode characters in EditURL-generated URL:
         /// https://dnntracker.atlassian.net/browse/DNN-9280
