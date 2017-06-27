@@ -14,8 +14,7 @@
         <ItemGroup>
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition="'$(Configuration)' == 'Debug'" />
-			<LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/YamlDotNet.dll" />
-            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/EntityFramework*.dll" />
+		    <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/EntityFramework*.dll" />
         </ItemGroup>
         <!-- Declare resource files -->
         <ItemGroup>

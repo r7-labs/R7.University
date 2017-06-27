@@ -21,7 +21,6 @@
             <InstallBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />
             <InstallBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition="'$(Configuration)' == 'Debug'" />
 			<InstallBinaryFiles Include="$(MainProjectOutputPath)/EntityFramework*.dll" />
-            <InstallBinaryFiles Include="$(MainProjectOutputPath)/YamlDotNet.dll" />
         </ItemGroup>
         <!-- Declare manifest files -->
         <ItemGroup>

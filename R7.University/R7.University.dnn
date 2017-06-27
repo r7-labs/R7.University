@@ -139,15 +139,6 @@
                         <basePath>bin</basePath>
                         <assembly>
                             <path>bin</path>
-                            <name>YamlDotNet.dll</name>
-                        </assembly>
-                    </assemblies>
-                </component>
-                <component type="Assembly">
-                    <assemblies>
-                        <basePath>bin</basePath>
-                        <assembly>
-                            <path>bin</path>
                             <name>EntityFramework.dll</name>
                         </assembly>
                         <assembly>
