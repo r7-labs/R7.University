@@ -19,7 +19,7 @@
 			<components>
 				<component type="Script">
 					<scripts>
-						<basePath>DesktopModules\R7.University</basePath>
+						<basePath>DesktopModules\MVC\R7.University</basePath>
 						<script type="Install">
 							<name>SqlDataProvider\01.00.00.SqlDataProvider</name>
 							<version>01.00.00</version>
@@ -158,7 +158,7 @@
                 </component>
 				<component type="ResourceFile">
 					<resourceFiles>
-						<basePath>DesktopModules/R7.University</basePath>
+						<basePath>DesktopModules/MVC</basePath>
 						<resourceFile>
 							<name>Resources.zip</name>
 						</resourceFile>
@@ -196,7 +196,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/ViewLaunchpad.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Launchpad/ViewLaunchpad.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -207,7 +207,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/SettingsLaunchpad.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Launchpad/SettingsLaunchpad.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -218,7 +218,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -229,7 +229,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Division/EditDivision.ascx</controlSrc>
                                         <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -240,7 +240,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditPosition</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditPosition.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditPosition.ascx</controlSrc>
                                         <controlTitle>Edit Position</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -251,7 +251,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditAchievement</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditAchievement.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditAchievement.ascx</controlSrc>
                                         <controlTitle>Edit Achievement</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -262,7 +262,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEduLevel</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduLevel.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditEduLevel.ascx</controlSrc>
                                         <controlTitle>Edit Education Level</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -273,7 +273,7 @@
 									</moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduForm</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduForm.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditEduForm.ascx</controlSrc>
                                         <controlTitle>Edit Educational Form</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -284,7 +284,7 @@
                                     </moduleControl>
 									<moduleControl>
 										<controlKey>EditEduProgram</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -295,7 +295,7 @@
 									</moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -306,7 +306,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditDocumentType</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditDocumentType.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditDocumentType.ascx</controlSrc>
                                         <controlTitle>Edit Document Type</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -317,7 +317,7 @@
                                     </moduleControl>
 									<moduleControl>
                                         <controlKey>EditAchievementType</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditAchievementType.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditAchievementType.ascx</controlSrc>
                                         <controlTitle>Edit Achievement Type</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -372,7 +372,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewEmployee.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -383,7 +383,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -394,7 +394,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>VCard</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewVCard.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewVCard.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -405,7 +405,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -416,7 +416,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
 										<controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -471,7 +471,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -482,7 +482,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>VCard</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewVCard.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewVCard.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -493,7 +493,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -504,7 +504,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
                                         <controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -550,7 +550,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/R7.University/R7.University.EmployeeList/ViewEmployeeList.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.EmployeeList/ViewEmployeeList.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -561,7 +561,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -572,7 +572,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -583,7 +583,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.EmployeeList/SettingsEmployeeList.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.EmployeeList/SettingsEmployeeList.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -638,7 +638,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/R7.University/R7.University.Division/ViewDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Division/ViewDivision.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -649,7 +649,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>VCard</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Division/ViewVCard.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Division/ViewVCard.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -660,7 +660,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Division/EditDivision.ascx</controlSrc>
                                         <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -671,7 +671,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Division/SettingsDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Division/SettingsDivision.ascx</controlSrc>
                                         <controlTitle>Division Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -726,7 +726,7 @@
 				       			<moduleControls>
 				         			<moduleControl>
 					           			<controlKey />
-				           				<controlSrc>DesktopModules/R7.University/R7.University.EmployeeDirectory/ViewEmployeeDirectory.ascx</controlSrc>
+				           				<controlSrc>DesktopModules/MVC/R7.University.EmployeeDirectory/ViewEmployeeDirectory.ascx</controlSrc>
 				           				<controlTitle />
 				           				<controlType>View</controlType>
 				          				<iconFile />
@@ -737,7 +737,7 @@
 					         		</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -748,7 +748,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -759,7 +759,7 @@
 									</moduleControl>
 				         			<moduleControl>
 						           		<controlKey>Settings</controlKey>
-						           		<controlSrc>DesktopModules/R7.University/R7.University.EmployeeDirectory/SettingsEmployeeDirectory.ascx</controlSrc>
+						           		<controlSrc>DesktopModules/MVC/R7.University.EmployeeDirectory/SettingsEmployeeDirectory.ascx</controlSrc>
 						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />
@@ -814,7 +814,7 @@
 				       			<moduleControls>
 				         			<moduleControl>
 					           			<controlKey />
-				           				<controlSrc>DesktopModules/R7.University/R7.University.DivisionDirectory/ViewDivisionDirectory.ascx</controlSrc>
+				           				<controlSrc>DesktopModules/MVC/R7.University.DivisionDirectory/ViewDivisionDirectory.ascx</controlSrc>
 				           				<controlTitle />
 				           				<controlType>View</controlType>
 				          				<iconFile />
@@ -825,7 +825,7 @@
 					         		</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -836,7 +836,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -847,7 +847,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
-										<controlSrc>DesktopModules/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University.Division/EditDivision.ascx</controlSrc>
                                         <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -858,7 +858,7 @@
 									</moduleControl>
 									<moduleControl>
 						           		<controlKey>Settings</controlKey>
-						           		<controlSrc>DesktopModules/R7.University/R7.University.DivisionDirectory/SettingsDivisionDirectory.ascx</controlSrc>
+						           		<controlSrc>DesktopModules/MVC/R7.University.DivisionDirectory/SettingsDivisionDirectory.ascx</controlSrc>
 						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />
@@ -912,7 +912,7 @@
                                 <moduleControls>
                                     <moduleControl>
                                         <controlKey />
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/ViewEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgram/ViewEduProgram.ascx</controlSrc>
                                         <controlTitle />
                                         <controlType>View</controlType>
                                         <iconFile />
@@ -923,7 +923,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -934,7 +934,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -945,7 +945,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/SettingsEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgram/SettingsEduProgram.ascx</controlSrc>
                                         <controlTitle>EduProgram Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1000,7 +1000,7 @@
                                 <moduleControls>
                                     <moduleControl>
                                         <controlKey />
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramDirectory/ViewEduProgramDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgramDirectory/ViewEduProgramDirectory.ascx</controlSrc>
                                         <controlTitle />
                                         <controlType>View</controlType>
                                         <iconFile />
@@ -1011,7 +1011,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1022,7 +1022,7 @@
                                     </moduleControl>
 									<moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1033,7 +1033,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramDirectory/SettingsEduProgramDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgramDirectory/SettingsEduProgramDirectory.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1088,7 +1088,7 @@
                                 <moduleControls>
                                     <moduleControl>
                                         <controlKey />
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramProfileDirectory/ViewEduProgramProfileDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgramProfileDirectory/ViewEduProgramProfileDirectory.ascx</controlSrc>
                                         <controlTitle />
                                         <controlType>View</controlType>
                                         <iconFile />
@@ -1099,7 +1099,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1110,7 +1110,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1121,7 +1121,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
-                                        <controlSrc>DesktopModules/R7.University/R7.University.EduProgramProfileDirectory/SettingsEduProgramProfileDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University.EduProgramProfileDirectory/SettingsEduProgramProfileDirectory.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />

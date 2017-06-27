@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/R7.University/R7.University.DivisionDirectory/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University.DivisionDirectory/admin.css" Priority="200" />
 
 <div class="dnnForm dnnClear">
 	<asp:Panel id="panelGeneralSettings" runat="server">

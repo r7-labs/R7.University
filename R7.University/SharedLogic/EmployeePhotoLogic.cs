@@ -75,7 +75,7 @@ namespace R7.University.SharedLogic
                 imageHeight = square ? UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth : UniversityConfig.Instance.EmployeePhoto.DefaultWidth * 4 / 3;
 
                 // TODO: Make fallback image resizable through image handler
-                imagePhoto.ImageUrl = string.Format ("/DesktopModules/R7.University/R7.University/images/nophoto_{0}{1}.png", 
+                imagePhoto.ImageUrl = string.Format ("/DesktopModules/MVC/R7.University/images/nophoto_{0}{1}.png", 
                     CultureInfo.CurrentCulture.TwoLetterISOLanguageName, square ? 
                         UniversityConfig.Instance.EmployeePhoto.SquareSuffix : "");
             }
