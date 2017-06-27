@@ -34,49 +34,51 @@
 
 /* Employee details styles */
 
-.university-employee-details .employeeDetailsTable 
+.u8y-employee-details .employeeDetailsTable 
 { 
     display:table;
     width:100%
 }
 
-.university-employee-details ._section,
-.university-employee-details ._positions,
-.university-employee-details ._website,
-.university-employee-details ._userprofile
+.u8y-employee-details ._section,
+.u8y-employee-details ._positions,
+.u8y-employee-details ._website,
+.u8y-employee-details ._userprofile
 {
 	display:block
 }
 
-.university-employee-details ._section,
-.university-employee-details ._positions,
-.university-employee-details ._userprofile { margin-top:8px }
+.u8y-employee-details ._section,
+.u8y-employee-details ._positions,
+.u8y-employee-details ._userprofile { margin-top:8px }
     
-.university-employee-details ._label,
-.university-employee-details ._email { display:inline-block }
+.u8y-employee-details ._label,
+.u8y-employee-details ._email { display:inline-block }
 }
 
-.university-employee-details ._label,
-.university-employee-details ._email,
-.university-employee-details ._website { margin-right:8px }
+.u8y-employee-details ._label,
+.u8y-employee-details ._email,
+.u8y-employee-details ._website { margin-right:8px }
 
-.university-employee-details ._photo
-{
-    display:table-cell;
-	margin-right:10px;
-	margin-top:3px
+.u8y-employee-details ._photo {
+    display:table-cell
 }
 
-.university-employee-details ._tabs 
+.u8y-employee-details ._tabs 
 { 
     display:table-cell;
     vertical-align:top;
 }
 
-.university-employee-details ul.dnnActions { display:block }
+.u8y-employee-details .tab-content {
+    margin-left:18px; /* compensate left margin of ul */
+    margin-top:1em
+}
 
-.university-employee-details .dialog-employee-barcode, 
-.university-employee-details .dialog-employee-achievement-description { display:none }
+.u8y-employee-details ul.dnnActions { display:block }
 
-.university-employee-details label { font-weight:bold }
-.university-employee-details label.u8y-label-contacts { display:block }
+.u8y-employee-details .dialog-employee-barcode, 
+.u8y-employee-details .dialog-employee-achievement-description { display:none }
+
+.u8y-employee-details label { font-weight:bold }
+.u8y-employee-details label.u8y-label-contacts { display:block }
