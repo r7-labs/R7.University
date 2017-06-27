@@ -24,7 +24,7 @@ using System.IO;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.Dnn.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.Models;
 using R7.University.Utilities;

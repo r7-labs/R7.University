@@ -28,7 +28,7 @@ using R7.University.Models;
 using R7.University.ViewModels;
 using R7.University.Queries;
 using R7.University.ControlExtensions;
-using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.ControlExtensions;
 using R7.University.Modules;
 
 namespace R7.University.EduProgramDirectory

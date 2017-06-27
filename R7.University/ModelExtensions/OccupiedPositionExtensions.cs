@@ -22,7 +22,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.UI.Modules;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;

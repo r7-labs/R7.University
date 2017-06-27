@@ -23,13 +23,13 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.DotNetNuke.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.ControlExtensions;
 using R7.University.EmployeeDirectory.Components;
 using R7.University.ViewModels;
 using R7.University.Models;
 using R7.University.Queries;
 using R7.University.ControlExtensions;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.Dnn.Extensions.Utilities;
 using R7.University.Modules;
 
 namespace R7.University.EmployeeDirectory

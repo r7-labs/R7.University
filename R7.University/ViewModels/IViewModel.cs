@@ -1,4 +1,4 @@
-﻿using R7.DotNetNuke.Extensions.ViewModels;
+﻿using R7.Dnn.Extensions.ViewModels;
 
 namespace R7.University.ViewModels
 {

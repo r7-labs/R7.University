@@ -32,11 +32,11 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.ModuleExtensions;
-using R7.DotNetNuke.Extensions.Modules;
-using R7.DotNetNuke.Extensions.TextExtensions;
-using R7.DotNetNuke.Extensions.Utilities;
-using R7.DotNetNuke.Extensions.ViewModels;
+using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Modules;
+using R7.Dnn.Extensions.TextExtensions;
+using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employee.Components;
 using R7.University.Employee.Queries;
@@ -187,7 +187,7 @@ namespace R7.University.Employee
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth);
 
-            var employeeDetailsUrl = UniversityUrlHelper.AdjustPopupUrl (
+            var employeeDetailsUrl = UrlHelper.AdjustPopupUrl (
                 UniversityUrlHelper.IESafeEditUrl (this, Request, "employee_id", employee.EmployeeID.ToString (), "EmployeeDetails"),
                 responseRedirect: false
             );

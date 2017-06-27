@@ -20,8 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;

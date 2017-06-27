@@ -32,22 +32,22 @@ using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
-using R7.DotNetNuke.Extensions.ControlExtensions;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Employee.Components;
 using R7.University.Employee.Queries;
 using R7.University.Employee.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using R7.DotNetNuke.Extensions.ViewModels;
-using R7.University.ModelExtensions;
 
 namespace R7.University.Employee
 {

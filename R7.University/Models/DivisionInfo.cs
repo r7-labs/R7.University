@@ -23,7 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DotNetNuke.Common.Utilities;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.Dnn.Extensions.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.Models

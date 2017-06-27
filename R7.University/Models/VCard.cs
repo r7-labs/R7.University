@@ -22,7 +22,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using R7.DotNetNuke.Extensions.Utilities;
+using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {

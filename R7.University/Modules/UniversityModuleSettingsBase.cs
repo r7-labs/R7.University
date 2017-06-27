@@ -21,7 +21,7 @@
 
 using System;
 using System.Web.UI.WebControls;
-using R7.DotNetNuke.Extensions.Modules;
+using R7.Dnn.Extensions.Modules;
 using R7.University.Security;
 
 namespace R7.University.Modules

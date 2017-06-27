@@ -21,7 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.DotNetNuke.Extensions.ViewModels;
+using R7.Dnn.Extensions.ViewModels;
 using R7.University.EmployeeList.Components;
 using R7.University.Models;
 
