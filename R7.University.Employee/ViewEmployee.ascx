@@ -3,7 +3,7 @@
 <asp:Panel id="panelEmployee" runat="server" CssClass="Employee">
 	<div class="_photo">
         <asp:HyperLink id="linkPhoto" runat="server" >
-			<asp:Image id="imagePhoto" runat="server" />
+			<asp:Image id="imagePhoto" runat="server" CssClass="img-rounded" />
 		</asp:HyperLink>
 	</div>
 	<div class="_name">

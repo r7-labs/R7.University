@@ -11,7 +11,7 @@
 </script>
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear university-employee-details">
     <div class="employeeDetailsTable">
-    	<asp:Image id="imagePhoto" runat="server" CssClass="_photo" />	
+    	<asp:Image id="imagePhoto" runat="server" CssClass="img-rounded _photo" />	
     	<div id="employeeTabs_<%= ModuleId %>" class="dnnForm dnnClear _tabs">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="dnnAdminTabNav dnnClear">
