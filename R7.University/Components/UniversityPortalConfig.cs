@@ -23,27 +23,27 @@ namespace R7.University.Components
 {
     public class UniversityPortalConfig
     {
-        public EmployeePhotoConfig EmployeePhoto { get; set; }
+        public EmployeePhotoConfig EmployeePhoto { get; set; } = new EmployeePhotoConfig ();
 
-        public BarcodeConfig Barcode { get; set; }
+        public BarcodeConfig Barcode { get; set; } = new BarcodeConfig ();
 
-        public int DataCacheTime { get; set; }
+        public int DataCacheTime { get; set; } = 1200;
     }
 
     public class EmployeePhotoConfig
     {
-        public string DefaultPath { get; set; }
+        public string DefaultPath { get; set; } = "Images/faces/";
 
-        public string SquareSuffix { get; set; }
+        public string SquareSuffix { get; set; } = "_square";
 
-        public int DefaultWidth { get; set; }
+        public int DefaultWidth { get; set; } = 192;
 
-        public int SquareDefaultWidth { get; set; }
+        public int SquareDefaultWidth { get; set; } = 120;
     }
 
     public class BarcodeConfig
     {
-        public int DefaultWidth { get; set; }
+        public int DefaultWidth { get; set; } = 192;
     }
 }
 
