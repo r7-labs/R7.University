@@ -4,14 +4,16 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/css/module.css" />
 
-<asp:DataList ID="listEmployees" DataKeyField="EmployeeID" runat="server" CssClass="dnnGrid EmployeeList" 
+<asp:DataList ID="listEmployees" DataKeyField="EmployeeID" runat="server" CssClass="u8y-employee-list" 
 	OnItemDataBound="listEmployees_ItemDataBound">
 	<ItemTemplate>
-		<div class="_listitemwrapper">
-			<asp:HyperLink id="linkDetails" runat="server" CssClass="_detailslink">	
-				<asp:Image id="imagePhoto" runat="server" CssClass="_photo" />
-			</asp:HyperLink>
-			<div class="_info">	
+		<div class="media">
+			<div class="media-left media-top">
+    			<asp:HyperLink id="linkDetails" runat="server">	
+    				<asp:Image id="imagePhoto" runat="server" CssClass="img-circle" />
+    			</asp:HyperLink>
+			</div>	
+			<div class="media-body">
 				<asp:HyperLink id="linkEdit" runat="server" CssClass="_editlink">
 					<asp:Image id="imageEdit" runat="server" ImageUrl="<%# EditIconUrl %>" AlternateText="Edit" ResourceKey="Edit" />
 				</asp:HyperLink>
@@ -26,7 +28,5 @@
 			</div>
 		</div>
 	</ItemTemplate>
-	<ItemStyle CssClass="_listitem dnnGridItem" />
-	<AlternatingItemStyle CssClass="_listitem dnnGridAltItem" />
 </asp:DataList>
 <controls:AgplSignature runat="server" />

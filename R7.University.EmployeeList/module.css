@@ -1,53 +1,29 @@
-﻿.EmployeeList { width:100% }	
-			
-.EmployeeList ._listitem { text-align:left }
+﻿.u8y-employee-list { margin-bottom:1em }
+.u8y-employee-list ._nonpublished { background-color:#ffc }
+.u8y-employee-list ._editlink { margin-right:4px }
+.u8y-employee-list ._fullname { font-style:italic }
 
-.EmployeeList ._listitemwrapper { display:table-row }
-
-.EmployeeList ._listitem._nonpublished { background-color:#ffc }
-
-.EmployeeList ._editlink { margin-right:4px }
-
-.EmployeeList ._fullname { font-style:italic }
-
-.EmployeeList ._info, 
-.EmployeeList ._detailslink 
-{ 
-	display:table-cell
-}
-
-.EmployeeList ._info 
-{ 
-	vertical-align:top;
-	padding-bottom:8px 
-}
-
-.EmployeeList ._email, 
-.EmployeeList ._website,
-.EmployeeList ._userprofile,
-.EmployeeList ._photo 
-{ 
+.u8y-employee-list ._email, 
+.u8y-employee-list ._website,
+.u8y-employee-list ._userprofile {
 	margin-right:8px 
 }
 
-.EmployeeList ._positions,
-.EmployeeList ._phones,
-.EmployeeList ._email, 
-.EmployeeList ._website,
-.EmployeeList ._userprofile  
-{
+.u8y-employee-list ._positions,
+.u8y-employee-list ._phones,
+.u8y-employee-list ._email, 
+.u8y-employee-list ._website,
+.u8y-employee-list ._userprofile {
 	margin-top:8px 
 }
 
-.EmployeeList ._positions,
-.EmployeeList ._phones
-{ 
+.u8y-employee-list ._positions,
+.u8y-employee-list ._phones {
 	display:block
 }
 
-.EmployeeList ._email, 
-.EmployeeList ._website,
-.EmployeeList ._userprofile  
-{  
+.u8y-employee-list ._email, 
+.u8y-employee-list ._website,
+.u8y-employee-list ._userprofile {
 	display:inline-block
 }
