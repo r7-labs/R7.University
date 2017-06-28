@@ -108,7 +108,6 @@
     </div>
     <ul class="dnnActions dnnClear">
         <li><asp:HyperLink id="linkReturn" runat="server" CssClass="btn btn-primary" ResourceKey="cmdReturn" /></li>
-        <li><asp:HyperLink id="linkVCard" runat="server" CssClass="btn btn-default" ResourceKey="VCard.Action" Visible="false" /></li>
         <li><asp:HyperLink id="linkEdit" runat="server" CssClass="btn btn-default" ResourceKey="cmdEdit" Visible="false" /></li>
     </ul>
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />

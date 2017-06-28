@@ -25,7 +25,6 @@ namespace R7.University.Employee
         protected Repeater repeaterPositions;
         protected Label labelExperienceYears;
         protected HyperLink linkReturn;
-        protected HyperLink linkVCard;
         protected HyperLink linkEdit;
         protected GridView gridExperience;
         protected GridView gridAchievements;

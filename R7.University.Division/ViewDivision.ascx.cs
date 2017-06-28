@@ -298,19 +298,6 @@ namespace R7.University.Division
                     false
                 );
 
-                actions.Add (
-                    GetNextActionID (), 
-                    LocalizeString ("VCard.Action"),
-                    ModuleActionType.ContentOptions, 
-                    "", 
-                    IconController.IconURL ("View"),
-                    EditUrl ("division_id", Settings.DivisionID.ToString (), "VCard"),
-                    false, 
-                    SecurityAccessLevel.View,
-                    existingDivision,
-                    NewWindow: true
-                );
-
                 return actions;
             }
         }

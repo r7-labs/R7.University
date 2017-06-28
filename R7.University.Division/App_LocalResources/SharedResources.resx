@@ -24,7 +24,4 @@
 	<data name="EditDivision.Action" xml:space="preserve">
 		<value>Edit Division</value>
 	</data>
-	<data name="VCard.Action" xml:space="preserve">
-        <value>vCard</value>
-    </data>
 </root>

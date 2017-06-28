@@ -77,7 +77,6 @@
     <Content Include="module.css" />
     <Content Include="ViewDivision.ascx" />
     <Content Include="SettingsDivision.ascx" />
-    <Content Include="ViewVCard.ascx" />
     <Content Include="EditDivision.ascx" />
     <Content Include="admin.css" />
     <Content Include="js\module.js" />
@@ -105,9 +104,6 @@
     </Compile>
     <Compile Include="SettingsDivision.ascx.controls.cs">
       <DependentUpon>SettingsDivision.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewVCard.ascx.cs">
-      <DependentUpon>ViewVCard.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditDivision.ascx.cs">
       <DependentUpon>EditDivision.ascx</DependentUpon>

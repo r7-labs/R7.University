@@ -85,7 +85,6 @@
     <Content Include="module.css" />
     <Content Include="ViewEmployee.ascx" />
     <Content Include="SettingsEmployee.ascx" />
-    <Content Include="ViewVCard.ascx" />
     <Content Include="ViewEmployeeDetails.ascx" />
     <Content Include="EditEmployee.ascx" />
     <Content Include="admin.css" />
@@ -116,9 +115,6 @@
     </Compile>
     <Compile Include="SettingsEmployee.ascx.controls.cs">
       <DependentUpon>SettingsEmployee.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewVCard.ascx.cs">
-      <DependentUpon>ViewVCard.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewEmployeeDetails.ascx.cs">
       <DependentUpon>ViewEmployeeDetails.ascx</DependentUpon>

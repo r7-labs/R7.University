@@ -270,15 +270,6 @@ namespace R7.University.Employee
 						
                         // don't show action buttons in view module
                         if (!InViewModule) {
-                            // show vCard button only for editors
-                            if (IsEditable) {
-                                linkVCard.Visible = true;
-                                linkVCard.NavigateUrl = EditUrl (
-                                    "employee_id",
-                                    Employee.EmployeeID.ToString (),
-                                    "VCard");
-                            }
-
                             // show edit button only for editors or superusers (in popup)
                             if (IsEditable || UserInfo.IsSuperUser) {
                                 linkEdit.Visible = true;

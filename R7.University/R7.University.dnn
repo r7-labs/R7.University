@@ -383,18 +383,7 @@
 										<supportsPopUps>True</supportsPopUps>
 										<viewOrder>0</viewOrder>
 									</moduleControl>
-									<moduleControl>
-										<controlKey>VCard</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewVCard.ascx</controlSrc>
-										<controlTitle />
-										<controlType>View</controlType>
-										<iconFile />
-										<helpUrl />
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>False</supportsPopUps>
-										<viewOrder>0</viewOrder>
-									</moduleControl>
-									<moduleControl>
+                                    <moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
@@ -471,18 +460,7 @@
 										<supportsPopUps>False</supportsPopUps>
 										<viewOrder>0</viewOrder>
 									</moduleControl>
-									<moduleControl>
-										<controlKey>VCard</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University.Employee/ViewVCard.ascx</controlSrc>
-										<controlTitle />
-										<controlType>View</controlType>
-										<iconFile />
-										<helpUrl />
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>False</supportsPopUps>
-										<viewOrder>0</viewOrder>
-									</moduleControl>
-									<moduleControl>
+                                    <moduleControl>
 										<controlKey>EditEmployee</controlKey>
 										<controlSrc>DesktopModules/MVC/R7.University.Employee/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
@@ -638,18 +616,7 @@
 										<supportsPopUps>False</supportsPopUps>
 										<viewOrder>0</viewOrder>
 									</moduleControl>
-									<moduleControl>
-										<controlKey>VCard</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University.Division/ViewVCard.ascx</controlSrc>
-										<controlTitle />
-										<controlType>View</controlType>
-										<iconFile />
-										<helpUrl />
-										<supportsPartialRendering>False</supportsPartialRendering>
-										<supportsPopUps>False</supportsPopUps>
-										<viewOrder>0</viewOrder>
-									</moduleControl>
-									<moduleControl>
+                                    <moduleControl>
 										<controlKey>EditDivision</controlKey>
 										<controlSrc>DesktopModules/MVC/R7.University.Division/EditDivision.ascx</controlSrc>
                                         <controlTitle>Edit Division</controlTitle>
