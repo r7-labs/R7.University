@@ -1,12 +1,14 @@
 # User-specific
 *.userprefs
 *.usertasks
+*.csproj.user
 
 # Build output
-*/bin/*
-*/obj/*
-Packaging/output/*
+bin/
+obj/
 
-# Downloaded NuGet packages
-packages/*
-Packages/*
+# Packages
+/packages/
+/Packages/
+/node_modules/
+

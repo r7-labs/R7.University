@@ -44,6 +44,7 @@
             <LocalDeployResourceExcludeFiles Include="../.git/**/*" />
             <LocalDeployResourceExcludeFiles Include="../.vscode/**/*" />
             <LocalDeployResourceExcludeFiles Include="../packages/**/*" />
+			<LocalDeployResourceExcludeFiles Include="../node_modules/**/*" />
             <LocalDeployResourceExcludeFiles Include="../Deploy/**/*" />
             <LocalDeployResourceExcludeFiles Include="../.*" />
             <LocalDeployResourceExcludeFiles Include="$(MainProjectPath)/license.htm" />
@@ -54,8 +55,13 @@
         <ItemGroup>
             <LocalDeployResourceFilteredFiles Include="@(LocalDeployResourceFiles)" Exclude="@(LocalDeployResourceExcludeFiles)" />
         </ItemGroup>
+		<!-- Declare Bootstrap files -->
+        <ItemGroup>
+            <LocalDeployBootstrapFiles Include="../node_modules/bootstrap/dist/**/*" />
+        </ItemGroup>
         <!-- Copy files -->
         <Copy Condition=" '$(LocalDeployIncludeBinaries)' == 'true' " SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnBinPath)" SkipUnchangedFiles="true" />
         <Copy SourceFiles="@(LocalDeployResourceFilteredFiles)" DestinationFolder="$(DnnModulesPath)/%(RecursiveDir)" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(LocalDeployBootstrapFiles)" DestinationFolder="$(DnnModulesPath)/R7.University/bootstrap/%(RecursiveDir)" SkipUnchangedFiles="true" />
     </Target>
 </Project>
