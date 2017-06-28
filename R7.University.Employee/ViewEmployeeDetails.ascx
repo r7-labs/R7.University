@@ -10,14 +10,14 @@
     	<div id="employeeTabs_<%= ModuleId %>" class="dnnForm dnnClear _tabs">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="nav nav-tabs">
-    		    <li class="active"><a href="#employeeCommon" data-toggle="tab"><%= LocalizeString("Common.Tab") %></a></li>
-    			<li><asp:HyperLink id="linkExperience" runat="server" data-toggle="tab" href="#employeeExperience"><%= LocalizeString("Experience.Tab") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkAchievements" runat="server" data-toggle="tab" href="#employeeAchievements"><%= LocalizeString("Achievements.Tab") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkDisciplines" runat="server" data-toggle="tab" href="#employeeDisciplines"><%= LocalizeString("Disciplines.Tab") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkAbout" runat="server" data-toggle="tab" href="#employeeAbout"><%= LocalizeString("About.Tab") %></asp:HyperLink></li>
+    		    <li class="active"><a href="#employeeCommon-<%= ModuleId %>" data-toggle="tab"><%= LocalizeString("Common.Tab") %></a></li>
+    			<li><asp:HyperLink id="linkExperience" runat="server" data-toggle="tab"><%= LocalizeString("Experience.Tab") %></asp:HyperLink></li>
+    			<li><asp:HyperLink id="linkAchievements" runat="server" data-toggle="tab"><%= LocalizeString("Achievements.Tab") %></asp:HyperLink></li>
+    			<li><asp:HyperLink id="linkDisciplines" runat="server" data-toggle="tab"><%= LocalizeString("Disciplines.Tab") %></asp:HyperLink></li>
+    			<li><asp:HyperLink id="linkAbout" runat="server" data-toggle="tab"><%= LocalizeString("About.Tab") %></asp:HyperLink></li>
     		</ul>
 			<div class="tab-content">
-        		<div id="employeeCommon" class="tab-pane fade in active">
+        		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade in active">
         			<p><asp:Label id="labelAcademicDegreeAndTitle" runat="server" /></p>
                     <label><%: LocalizeString ("OccupiedPositions.Text") %></label>
         			<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
@@ -50,7 +50,7 @@
         				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
         			</div>
         		</div>
-        		<div id="employeeExperience" class="tab-pane fade">	
+        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">	
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
         			<div class="_section" style="margin-bottom:10px">
         				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-stripped table-bordered table-hover grid-experience"
@@ -64,7 +64,7 @@
         			    </asp:GridView>
         			</div>
         		</div>
-        		<div id="employeeAchievements" class="tab-pane fade">
+        		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade">
         			<div class="_section" style="margin-bottom:10px">
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-stripped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
@@ -77,7 +77,7 @@
         			    </asp:GridView>
         			</div>		
         		</div>
-        		<div id="employeeDisciplines" class="tab-pane fade">
+        		<div id="employeeDisciplines-<%= ModuleId %>" class="tab-pane fade">
                     <div class="_section">
                         <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-stripped table-bordered table-hover grid-disciplines" 
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
@@ -90,7 +90,7 @@
                     </div>
         			<asp:Literal id="litDisciplines" runat="server" />
         		</div>
-        		<div id="employeeAbout" class="tab-pane fade">
+        		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade">
         			<asp:Literal id="litAbout" runat="server" />
         		</div>
 			</div>	

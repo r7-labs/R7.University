@@ -216,6 +216,11 @@ namespace R7.University.Employee
 
             agplSignature.Visible = IsInPopup;
 
+            linkExperience.Attributes.Add ("href", "#employeeExperience-" + ModuleId);
+            linkAchievements.Attributes.Add ("href", "#employeeAchievements-" + ModuleId);
+            linkDisciplines.Attributes.Add ("href", "#employeeDisciplines-" + ModuleId);
+            linkAbout.Attributes.Add ("href", "#employeeAbout-" + ModuleId);
+
             gridDisciplines.LocalizeColumns (LocalResourceFile);
             gridExperience.LocalizeColumns (LocalResourceFile);
             gridAchievements.LocalizeColumns (LocalResourceFile);
