@@ -5,9 +5,13 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/css/module.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University.Employee/js/module.js" />
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
-    <div class="employeeDetailsTable">
-    	<asp:Image id="imagePhoto" runat="server" CssClass="img-rounded _photo" />	
-    	<div id="employeeTabs_<%= ModuleId %>" class="dnnForm dnnClear _tabs">
+    <div class="media">
+		<div class="media-left media-top">
+    	    <asp:Image id="imagePhoto" runat="server" CssClass="img-rounded" />
+			<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action"
+			    CssClass="btn btn-sm btn-default btn-block" onclick="showEmployeeBarcodeDialog(this)" />
+		</div>	
+    	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="nav nav-tabs">
     		    <li class="active"><a href="#employeeCommon-<%= ModuleId %>" data-toggle="tab"><%= LocalizeString("Common.Tab") %></a></li>
@@ -99,9 +103,6 @@
     <ul class="dnnActions dnnClear">
         <li><asp:HyperLink id="linkReturn" runat="server" CssClass="btn btn-primary" ResourceKey="cmdReturn" /></li>
         <li><asp:HyperLink id="linkVCard" runat="server" CssClass="btn btn-default" ResourceKey="VCard.Action" Visible="false" /></li>
-        <li><asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" 
-            CssClass="btn btn-default" onclick="showEmployeeBarcodeDialog(this)" />
-        </li>
         <li><asp:HyperLink id="linkEdit" runat="server" CssClass="btn btn-default" ResourceKey="cmdEdit" Visible="false" /></li>
     </ul>
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />

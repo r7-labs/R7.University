@@ -18,7 +18,6 @@
 }
 
 .Employee ._section,
-.Employee ._photo,
 .Employee ._name
 { 
 	text-align:center;
@@ -33,12 +32,6 @@
 .Employee ._fullname { font-style:italic; }
 
 /* Employee details styles */
-
-.u8y-employee-details .employeeDetailsTable 
-{ 
-    display:table;
-    width:100%
-}
 
 .u8y-employee-details ._section,
 .u8y-employee-details ._positions,
@@ -59,16 +52,6 @@
 .u8y-employee-details ._label,
 .u8y-employee-details ._email,
 .u8y-employee-details ._website { margin-right:8px }
-
-.u8y-employee-details ._photo {
-    display:table-cell
-}
-
-.u8y-employee-details ._tabs 
-{ 
-    display:table-cell;
-    vertical-align:top;
-}
 
 .u8y-employee-details .tab-content {
     margin-left:18px; /* compensate left margin of ul */
