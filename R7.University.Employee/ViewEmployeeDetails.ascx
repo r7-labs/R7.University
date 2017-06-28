@@ -11,10 +11,10 @@
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="nav nav-tabs">
     		    <li class="active"><a href="#employeeCommon-<%= ModuleId %>" data-toggle="tab"><%= LocalizeString("Common.Tab") %></a></li>
-    			<li><asp:HyperLink id="linkExperience" runat="server" data-toggle="tab"><%= LocalizeString("Experience.Tab") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkAchievements" runat="server" data-toggle="tab"><%= LocalizeString("Achievements.Tab") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkDisciplines" runat="server" data-toggle="tab"><%= LocalizeString("Disciplines.Tab") %></asp:HyperLink></li>
-    			<li><asp:HyperLink id="linkAbout" runat="server" data-toggle="tab"><%= LocalizeString("About.Tab") %></asp:HyperLink></li>
+    			<li id="tabExperience" runat="server"><a data-toggle="tab" href="#employeeExperience-<%= ModuleId %>"><%= LocalizeString("Experience.Tab") %></a></li>
+    			<li id="tabAchievements" runat="server"><a data-toggle="tab" href="#employeeAchievements-<%= ModuleId %>"><%= LocalizeString("Achievements.Tab") %></a></li>
+    			<li id="tabDisciplines" runat="server"><a data-toggle="tab" href="#employeeDisciplines-<%= ModuleId %>"><%= LocalizeString("Disciplines.Tab") %></a></li>
+    			<li id="tabAbout" runat="server"><a data-toggle="tab" href="#employeeAbout-<%= ModuleId %>"><%= LocalizeString("About.Tab") %></a></li>
     		</ul>
 			<div class="tab-content">
         		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade in active">

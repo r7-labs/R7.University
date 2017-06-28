@@ -1,3 +1,4 @@
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using R7.University.Controls;
 
@@ -17,10 +18,6 @@ namespace R7.University.Employee
         protected Label labelWorkingPlaceAndHours;
         protected Literal litAbout;
         protected Literal litDisciplines;
-        protected HyperLink linkAbout;
-        protected HyperLink linkDisciplines;
-        protected HyperLink linkAchievements;
-        protected HyperLink linkExperience;
         protected HyperLink linkEmail;
         protected HyperLink linkSecondaryEmail;
         protected HyperLink linkWebSite;
@@ -35,5 +32,9 @@ namespace R7.University.Employee
         protected GridView gridDisciplines;
         protected HyperLink linkBarcode;
         protected AgplSignature agplSignature;
+        protected HtmlControl tabAbout;
+        protected HtmlControl tabDisciplines;
+        protected HtmlControl tabAchievements;
+        protected HtmlControl tabExperience;
     }
 }

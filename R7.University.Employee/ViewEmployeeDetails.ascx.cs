@@ -216,11 +216,6 @@ namespace R7.University.Employee
 
             agplSignature.Visible = IsInPopup;
 
-            linkExperience.Attributes.Add ("href", "#employeeExperience-" + ModuleId);
-            linkAchievements.Attributes.Add ("href", "#employeeAchievements-" + ModuleId);
-            linkDisciplines.Attributes.Add ("href", "#employeeDisciplines-" + ModuleId);
-            linkAbout.Attributes.Add ("href", "#employeeAbout-" + ModuleId);
-
             gridDisciplines.LocalizeColumns (LocalResourceFile);
             gridExperience.LocalizeColumns (LocalResourceFile);
             gridAchievements.LocalizeColumns (LocalResourceFile);
@@ -409,7 +404,7 @@ namespace R7.University.Employee
                 litAbout.Text = Server.HtmlDecode (employee.Biography);
             else {
                 // hide entire About tab
-                linkAbout.Visible = false;
+                tabAbout.Visible = false;
             }
 			
             Experience (employee);
@@ -431,7 +426,7 @@ namespace R7.University.Employee
                 gridDisciplines.DataBind ();
             }
             else {
-                linkDisciplines.Visible = false;
+                tabDisciplines.Visible = false;
             }
         }
 
@@ -527,7 +522,7 @@ namespace R7.University.Employee
             }
             else if (noExpYears) {
                 // hide experience tab
-                linkExperience.Visible = false;
+                tabExperience.Visible = false;
             }
 		
             // get all other achievements
@@ -547,7 +542,7 @@ namespace R7.University.Employee
             }
             else {	
                 // hide achievements tab
-                linkAchievements.Visible = false;
+                tabAchievements.Visible = false;
             }
         }
 
