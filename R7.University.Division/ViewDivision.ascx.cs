@@ -42,6 +42,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
 using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.Division
 {
@@ -131,11 +132,12 @@ namespace R7.University.Division
 
         protected void DisplayDivision (DivisionInfo division)
         {
+            /**
             // division title
             var divisionTitle = division.Title;
 
             // add division short title
-            if (division.HasUniqueShortTitle) {
+            if (ModelHelper.HasUniqueShortTitle (division.ShortTitle, division.Title)) {
                 divisionTitle += string.Format (" ({0})", division.ShortTitle);
             }
 
@@ -165,17 +167,18 @@ namespace R7.University.Division
                 }
             }
 
-            if (!displaySearchByTerm)
+            if (!displaySearchByTerm) {
                 linkSearchByTerm.Visible = false;
+            }
 
             // WebSite
             if (!string.IsNullOrWhiteSpace (division.WebSite)) {
-                linkWebSite.NavigateUrl = division.FormatWebSiteUrl;
-                linkWebSite.Text = division.FormatWebSiteLabel;
+                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (division.WebSite);
+                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (division.WebSite, division.WebSiteLabel);
             }
             else
                 linkWebSite.Visible = false;
-				
+			
             // email
             if (!string.IsNullOrWhiteSpace (division.Email)) {
                 linkEmail.Text = division.Email;
@@ -191,24 +194,25 @@ namespace R7.University.Division
             }
             else
                 linkSecondaryEmail.Visible = false;
+            
 
             // phone
             if (!string.IsNullOrWhiteSpace (division.Phone))
                 labelPhone.Text = division.Phone;
             else
                 labelPhone.Visible = false;
-
+            
             // fax
             if (!string.IsNullOrWhiteSpace (division.Fax))
                 labelFax.Text = string.Format (Localization.GetString ("Fax.Format", LocalResourceFile), division.Fax);
             else
                 labelFax.Visible = false;
-
+            
             // location
             var location = Settings.ShowAddress
                                    ? TextUtils.FormatList (", ", division.Address, division.Location)
                                    : division.Location;
-
+            
             if (!string.IsNullOrWhiteSpace (location)) {
                 labelLocation.Text = location;
             }
@@ -235,17 +239,19 @@ namespace R7.University.Division
             linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
             linkBarcode.Attributes.Add ("data-dialog-title", division.Title);
 
+
             // barcode image
             var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
             imageBarcode.ImageUrl = UniversityUrlHelper.FullUrl (string.Format (
                     "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                     barcodeWidth, barcodeWidth,
-                    Server.UrlEncode (division.VCard.ToString ()
+                    Server.UrlEncode (division.GetVCard ().ToString ()
 				    .Replace ("+", "%2b")) // fix for "+" signs in phone numbers
                 ));
 
             imageBarcode.ToolTip = Localization.GetString ("imageBarcode.ToolTip", LocalResourceFile);
             imageBarcode.AlternateText = Localization.GetString ("imageBarcode.AlternateText", LocalResourceFile);
+           
 
             var now = HttpContext.Current.Timestamp;
 
@@ -262,6 +268,7 @@ namespace R7.University.Division
             else {
                 panelSubDivisions.Visible = false;
             }
+            **/
         }
 
         #region IActionable implementation

@@ -188,10 +188,10 @@ namespace R7.University.ViewModels
                 "http://" + website.ToLowerInvariant ();
         }
 
-        public static string FormatWebSiteLabel (string website, string websiteLabel)
+        public static string FormatWebSiteLabel (string websiteUrl, string websiteLabel)
         {
             return (!string.IsNullOrWhiteSpace (websiteLabel)) ? websiteLabel : 
-                website.Contains ("://") ? website.Remove (0, website.IndexOf ("://") + 3) : website;
+                websiteUrl.Contains ("://") ? websiteUrl.Remove (0, websiteUrl.IndexOf ("://") + 3) : websiteUrl;
         }
 
         public static string FormatYears (int? yearBegin, int? yearEnd, string atTheMoment)

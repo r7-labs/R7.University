@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -30,6 +30,14 @@ namespace R7.University.Models
             return (startDate == null || now >= startDate) && (endDate == null || now < endDate);
         }
 
+        public static bool HasUniqueShortTitle (string shortTitle, string title)
+        {
+            return !string.IsNullOrEmpty (shortTitle)
+                          && !string.IsNullOrEmpty (title)
+                          && shortTitle.Length < title.Length
+                          && !title.StartsWith (shortTitle, StringComparison.CurrentCulture);
+        }
+   
         #region Extension methods
 
         public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)

@@ -56,5 +56,51 @@ namespace R7.University.ModelExtensions
         {
             return ModelHelper.IsPublished (now, division.StartDate, division.EndDate);
         }
+
+        public static VCard GetVCard (this IDivision division)
+        {
+            var vcard = new VCard ();
+
+            // org. name
+            if (!string.IsNullOrWhiteSpace (division.Title)) {
+                vcard.OrganizationName = division.Title;
+            }
+
+            // email
+            if (!string.IsNullOrWhiteSpace (division.Email)) {
+                vcard.Emails.Add (division.Email);
+            }
+
+            // secondary email
+            if (!string.IsNullOrWhiteSpace (division.SecondaryEmail)) {
+                vcard.Emails.Add (division.SecondaryEmail);
+            }
+
+            // phone
+            if (!string.IsNullOrWhiteSpace (division.Phone)) {
+                vcard.Phones.Add (new VCardPhone () { Number = division.Phone, Type = VCardPhoneType.Work });
+            }
+
+            // fax
+            if (!string.IsNullOrWhiteSpace (division.Fax)) {
+                vcard.Phones.Add (new VCardPhone () { Number = division.Fax, Type = VCardPhoneType.Fax });
+            }
+
+            // website
+            if (!string.IsNullOrWhiteSpace (division.WebSite)) {
+                vcard.Url = division.WebSite;
+            }
+
+            // location
+            if (!string.IsNullOrWhiteSpace (division.Location)) {
+                // TODO: Add organization address
+                vcard.DeliveryAddress = division.Location;
+            }
+
+            // revision
+            vcard.LastRevision = division.LastModifiedOnDate;
+
+            return vcard;
+        }
     }
 }

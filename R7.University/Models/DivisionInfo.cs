@@ -21,10 +21,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using DotNetNuke.Common.Utilities;
 using R7.Dnn.Extensions.Utilities;
-using R7.University.ViewModels;
+using Telerik.Web.UI.PivotGrid.Core.Totals;
 
 namespace R7.University.Models
 {
@@ -104,94 +103,12 @@ namespace R7.University.Models
 
         #endregion
 
-        public string FileName
-        {
-			// replace all non-word character with spaces, 
-			// trim resulting string and then replace all spaces with single underscore
-            get { 
-                return Regex.Replace (Regex.Replace (
-                    FormatHelper.FormatShortTitle (ShortTitle, Title), @"\W", " ").Trim (), @"\s+", "_"); 
-            } 
-        }
-
-        public string FormatWebSiteLabel
-        {
-            get {
-                return (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
-					WebSite.Contains ("://") ? WebSite.Remove (0, WebSite.IndexOf ("://") + 3) : WebSite;
-            }
-        }
-
-        public string FormatWebSiteUrl
-        {
-            get {
-                return WebSite.Contains ("://") ? WebSite.ToLowerInvariant () : 
-					"http://" + WebSite.ToLowerInvariant ();
-            }
-        }
-
-        public string FormatEmailUrl
-        {
-            get { return "mailto:" + Email; }
-        }
-
-        public VCard VCard
-        {
-            get {
-                var vcard = new VCard ();
-
-                // org. name
-                if (!string.IsNullOrWhiteSpace (Title))
-                    vcard.OrganizationName = Title;
-
-                // email
-                if (!string.IsNullOrWhiteSpace (Email))
-                    vcard.Emails.Add (Email);
-
-                // secondary email
-                if (!string.IsNullOrWhiteSpace (SecondaryEmail))
-                    vcard.Emails.Add (SecondaryEmail);
-
-                // phone
-                if (!string.IsNullOrWhiteSpace (Phone))
-                    vcard.Phones.Add (new VCardPhone () { Number = Phone, Type = VCardPhoneType.Work });
-
-                // fax
-                if (!string.IsNullOrWhiteSpace (Fax))
-                    vcard.Phones.Add (new VCardPhone () { Number = Fax, Type = VCardPhoneType.Fax });
-
-                // website
-                if (!string.IsNullOrWhiteSpace (WebSite))
-                    vcard.Url = WebSite;
-
-                // location
-                if (!string.IsNullOrWhiteSpace (Location))
-				// TODO: Add organization address
-				vcard.DeliveryAddress = Location;
-
-                // revision
-                vcard.LastRevision = LastModifiedOnDate;
-
-                return vcard;
-            }
-        }
-
-        public bool HasUniqueShortTitle
-        {
-            get { 
-                return !string.IsNullOrEmpty (ShortTitle) &&
-                !string.IsNullOrEmpty (Title) &&
-                ShortTitle.Length < Title.Length &&
-                !Title.StartsWith (ShortTitle);
-            }
-        }
-
         public string SearchDocumentText
         {
             get {
                 var text = TextUtils.FormatList (", ",
                     Title,
-                    HasUniqueShortTitle ? ShortTitle : null,
+                    ModelHelper.HasUniqueShortTitle (ShortTitle, Title) ? ShortTitle : null,
                     Phone,
                     Fax,
                     Email,

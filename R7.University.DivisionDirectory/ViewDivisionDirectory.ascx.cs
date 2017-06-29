@@ -337,7 +337,7 @@ namespace R7.University.DivisionDirectory
                 var literalHeadEmployee = (Literal) e.Row.FindControl ("literalHeadEmployee");
 
                 // division label / link
-                var divisionTitle = division.Title + ((division.HasUniqueShortTitle) ? string.Format (
+                var divisionTitle = division.Title + ((ModelHelper.HasUniqueShortTitle (division.ShortTitle, division.Title)) ? string.Format (
                                         " ({0})",
                                         division.ShortTitle) : string.Empty);
                 if (!string.IsNullOrWhiteSpace (division.HomePage)) {
@@ -356,7 +356,7 @@ namespace R7.University.DivisionDirectory
                 // email
                 if (!string.IsNullOrWhiteSpace (division.Email)) {
                     linkEmail.Text = division.Email;
-                    linkEmail.NavigateUrl = division.FormatEmailUrl;
+                    linkEmail.NavigateUrl = "mailto:" + division.Email;
                 }
                 else
                     linkEmail.Visible = false;

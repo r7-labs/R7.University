@@ -1,13 +1,13 @@
-﻿.university-division ._section { display:block }
+﻿.u8y-division ._section { display:block }
 
-.university-division ._section,
-.university-division .panel-subdivisions,
-.university-division .link-barcode { margin-top:8px }
+.u8y-division ._section,
+.u8y-division .panel-subdivisions,
+.u8y-division .link-barcode { margin-top:8px }
 
-.university-division ._label
+.u8y-division ._label
 { 
 	display:inline-block;
 	margin-right:8px
 }
 
-.university-division .dialog-division-barcode { display:none }
+.u8y-division .dialog-division-barcode { display:none }

@@ -607,7 +607,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/MVC/R7.University.Division/ViewDivision.ascx</controlSrc>
+										<controlSrc>R7.University.Division.Controllers/Division/Index.mvc</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
