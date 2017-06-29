@@ -79,7 +79,7 @@
         		</ul>
         	</div>
         }
-    	<a class="btn btn-default link-barcode" data-module-id="@Dnn.ModuleContext.ModuleId" data-dialog-title="@Model.Title"
+    	<a class="btn btn-default btn-sm link-barcode" data-module-id="@Dnn.ModuleContext.ModuleId" data-dialog-title="@Model.Title"
     	    onclick="showDivisionBarcodeDialog(this)">@Html.Raw(Dnn.LocalizeString("linkBarcode.Text"))</a>
         <div class="dialog-division-barcode" id="dialog-division-barcode-@Dnn.ModuleContext.ModuleId">
             <img class="center-block" style="margin-top:10px" src="@Model.BarcodeImageUrl"
