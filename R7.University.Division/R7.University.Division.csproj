@@ -103,7 +103,6 @@
     <Content Include="SettingsDivision.ascx" />
     <Content Include="EditDivision.ascx" />
     <Content Include="admin.css" />
-    <Content Include="js\module.js" />
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Division\Index.cshtml" />
@@ -163,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="js\" />
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
     <Folder Include="Queries\" />
