@@ -22,15 +22,26 @@
 using System;
 
 namespace R7.University.Models
-{
+{   
     public interface ITrackableEntity
     {
-        int LastModifiedByUserID { get; set; }
+        int LastModifiedByUserID { get; }
 
-        DateTime LastModifiedOnDate { get; set; }
+        DateTime LastModifiedOnDate { get; }
 
-        int CreatedByUserID { get; set; }
+        int CreatedByUserID { get; }
 
-        DateTime CreatedOnDate { get; set; }
+        DateTime CreatedOnDate { get; }
+    }
+
+    public interface ITrackableEntityWritable: ITrackableEntity
+    {
+        new int LastModifiedByUserID { get; set; }
+
+        new DateTime LastModifiedOnDate { get; set; }
+
+        new int CreatedByUserID { get; set; }
+
+        new DateTime CreatedOnDate { get; set; }
     }
 }

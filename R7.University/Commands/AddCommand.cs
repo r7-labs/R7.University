@@ -26,7 +26,7 @@ using R7.University.Security;
 namespace R7.University.Commands
 {
     public class AddCommand<TEntity> : ISecureCommand
-        where TEntity : class, ITrackableEntity
+        where TEntity : class, ITrackableEntityWritable
     {
         public IModelContext ModelContext { get; set; }
 
