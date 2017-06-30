@@ -24,54 +24,105 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IDivision: ITrackableEntityWritable
+    public interface IDivision: ITrackableEntity
     {
-        string Title { get; set; }
+        string Title { get; }
 
-        string ShortTitle { get; set; }
+        string ShortTitle { get; }
 
-        int DivisionID { get; set; }
+        int DivisionID { get; }
 
-        int? ParentDivisionID  { get; set; }
+        int? ParentDivisionID  { get; }
 
-        int? DivisionTermID  { get; set; }
+        int? DivisionTermID  { get; }
 
-        string HomePage { get; set; }
+        string HomePage { get; }
 
-        string WebSite { get; set; }
+        string WebSite { get; }
 
-        string WebSiteLabel { get; set; }
+        string WebSiteLabel { get; }
 
-        string Phone { get; set; }
+        string Phone { get; }
 
-        string Fax { get; set; }
+        string Fax { get; }
 
-        string Email { get; set; }
+        string Email { get; }
 
-        string SecondaryEmail { get; set; }
+        string SecondaryEmail { get; }
 
-        string Address { get; set; }
+        string Address { get; }
 
-        string Location { get; set; }
+        string Location { get; }
 
-        string WorkingHours { get; set; }
+        string WorkingHours { get; }
 
-        string DocumentUrl { get; set; }
+        string DocumentUrl { get; }
 
-        bool IsVirtual { get; set; }
+        bool IsVirtual { get; }
 
-        bool IsInformal { get; set; }
+        bool IsInformal { get; }
 
-        int? HeadPositionID { get; set; }
+        int? HeadPositionID { get; }
 
-        DateTime? StartDate { get; set; }
+        DateTime? StartDate { get; }
 
-        DateTime? EndDate { get; set; }
+        DateTime? EndDate { get; }
 
-        ICollection<DivisionInfo> SubDivisions { get; set; }
+        ICollection<DivisionInfo> SubDivisions { get; }
 
-        int Level { get; set; }
+        int Level { get; }
 
-        string Path { get; set; }
+        string Path { get; }
+    }
+
+    public interface IDivisionWritable: IDivision, ITrackableEntityWritable
+    {
+        new string Title { get; set; }
+
+        new string ShortTitle { get; set; }
+
+        new int DivisionID { get; set; }
+
+        new int? ParentDivisionID  { get; set; }
+
+        new int? DivisionTermID  { get; set; }
+
+        new string HomePage { get; set; }
+
+        new string WebSite { get; set; }
+
+        new string WebSiteLabel { get; set; }
+
+        new string Phone { get; set; }
+
+        new string Fax { get; set; }
+
+        new string Email { get; set; }
+
+        new string SecondaryEmail { get; set; }
+
+        new string Address { get; set; }
+
+        new string Location { get; set; }
+
+        new string WorkingHours { get; set; }
+
+        new string DocumentUrl { get; set; }
+
+        new bool IsVirtual { get; set; }
+
+        new bool IsInformal { get; set; }
+
+        new int? HeadPositionID { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new ICollection<DivisionInfo> SubDivisions { get; set; }
+
+        new int Level { get; set; }
+
+        new string Path { get; set; }
     }
 }

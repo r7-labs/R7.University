@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -29,7 +29,7 @@ namespace R7.University.ModelExtensions
     public static class DivisionExtensions
     {
         public static IEnumerable<TDivision> CalculateLevelAndPath<TDivision> (this IEnumerable<TDivision> divisions)
-            where TDivision: IDivision
+            where TDivision: IDivisionWritable
         {
             var rootDivisions = divisions.Where (d => d.ParentDivisionID == null);
             foreach (var root in rootDivisions) {
@@ -40,7 +40,7 @@ namespace R7.University.ModelExtensions
         }
 
         private static void CalculateLevelAndPath<TDivision> (TDivision division, int level, string path) 
-            where TDivision: IDivision
+            where TDivision: IDivisionWritable
         {
             division.Level = level + 1;
             division.Path = path + "/" + division.DivisionID.ToString ().PadLeft (10, '0');

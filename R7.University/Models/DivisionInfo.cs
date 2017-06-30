@@ -26,7 +26,7 @@ using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {
-    public class DivisionInfo: IDivision
+    public class DivisionInfo: IDivisionWritable
     {
         /// <summary>
         /// Empty division to use as default item with lists and treeviews
