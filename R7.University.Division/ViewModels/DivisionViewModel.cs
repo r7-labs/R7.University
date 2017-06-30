@@ -21,7 +21,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
+using DotNetNuke.Common;
+using DotNetNuke.Entities.Content.Taxonomy;
+using DotNetNuke.Entities.Portals;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
@@ -31,11 +35,6 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using DotNetNuke.Common;
-using DotNetNuke.Entities.Content.Taxonomy;
-using DotNetNuke.Entities.Portals;
-using System.Linq;
-using System.Net.Http.Headers;
 
 namespace R7.University.Division.ViewModels
 {
@@ -54,12 +53,7 @@ namespace R7.University.Division.ViewModels
             Division = division;
             Context = context;
 
-            if (Division.SubDivisions != null) {
-                _subDivisionViewModels = Division.SubDivisions.Select (d => new DivisionViewModel (d, Context)).ToList (); 
-            }
-            else {
-                _subDivisionViewModels = new List<DivisionViewModel> ();
-            }
+            _subDivisionViewModels = Division.SubDivisions.Select (d => new DivisionViewModel (d, Context)).ToList (); 
         }
 
         #region IDivision implementation
