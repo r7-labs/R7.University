@@ -58,146 +58,61 @@ namespace R7.University.Division.ViewModels
 
         #region IDivision implementation
 
-        public string Address {
-            get { return Division.Address; }
-            set { throw new NotImplementedException (); }
-        }
+        public string Address => Division.Address;
 
-        public int CreatedByUserID {
-            get { return Division.CreatedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
+        public int CreatedByUserID => Division.CreatedByUserID;
 
-        public DateTime CreatedOnDate {
-            get { return Division.CreatedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
+        public DateTime CreatedOnDate => Division.CreatedOnDate;
 
-        public int DivisionID {
-            get { return Division.DivisionID; }
-            set { throw new NotImplementedException (); }
-        }
+        public int DivisionID => Division.DivisionID;
 
-        public int? DivisionTermID {
-            get { return Division.DivisionTermID; }
-            set { throw new NotImplementedException (); }
-        }
+        public int? DivisionTermID => Division.DivisionTermID;
 
-        public string DocumentUrl {
-            get { return Division.DocumentUrl; }
-            set { throw new NotImplementedException (); }
-        }
+        public string DocumentUrl => Division.DocumentUrl;
 
-        public string Email {
-            get { return Division.Email; }
-            set { throw new NotImplementedException (); }
-        }
+        public string Email => Division.Email;
 
-        public DateTime? EndDate {
-            get { return Division.EndDate; }
-            set { throw new NotImplementedException (); }
-        }
+        public DateTime? EndDate => Division.EndDate;
 
-        public string Fax {
-            get { return Division.Fax; }
-            set { throw new NotImplementedException (); }
-        }
+        public string Fax => Division.Fax;
 
-        public int? HeadPositionID {
-            get { return Division.HeadPositionID; }
-            set { throw new NotImplementedException (); }
-        }
+        public int? HeadPositionID => Division.HeadPositionID;
 
-        public string HomePage {
-            get { return Division.HomePage; }
-            set { throw new NotImplementedException (); }
-        }
+        public string HomePage => Division.HomePage;
 
-        public bool IsInformal {
-            get { return Division.IsInformal; }
-            set { throw new NotImplementedException (); }
-        }
+        public bool IsInformal => Division.IsInformal;
 
-        public bool IsVirtual {
-            get { return Division.IsVirtual; }
-            set { throw new NotImplementedException (); }
-        }
+        public bool IsVirtual => Division.IsVirtual;
 
-        public int LastModifiedByUserID {
-            get { return Division.LastModifiedByUserID; }
-            set { throw new NotImplementedException (); }
-        }
+        public int LastModifiedByUserID => Division.LastModifiedByUserID;
 
-        public DateTime LastModifiedOnDate {
-            get { return Division.LastModifiedOnDate; }
-            set { throw new NotImplementedException (); }
-        }
+        public DateTime LastModifiedOnDate => Division.LastModifiedOnDate;
 
-        public int Level {
-            get { return Division.Level; }
-            set { throw new NotImplementedException (); }
-        }
+        public int Level => Division.Level;
 
-        public string Location {
-            get { return Division.Location; }
-            set { throw new NotImplementedException (); }
-        }
+        public string Location => Division.Location;
 
-        public int? ParentDivisionID {
-            get { return Division.ParentDivisionID; }
-            set { throw new NotImplementedException (); }
-        }
+        public int? ParentDivisionID => Division.ParentDivisionID;
 
-        public string Path
-        {
-            get { return Division.Path; }
-            set { throw new NotImplementedException (); }
-        }
+        public string Path => Division.Path;
 
-        public string Phone {
-            get { return Division.Phone; }
-            set { throw new NotImplementedException (); }
-        }
+        public string Phone => Division.Phone;
 
-        public string SecondaryEmail {
-            get { return Division.SecondaryEmail; }
-            set { throw new NotImplementedException (); }
-        }
+        public string SecondaryEmail => Division.SecondaryEmail;
 
-        public string ShortTitle {
-            get { return Division.ShortTitle; }
-            set { throw new NotImplementedException (); }
-        }
+        public string ShortTitle => Division.ShortTitle;
 
-        public DateTime? StartDate {
-            get { return Division.StartDate; }
-            set { throw new NotImplementedException (); }
-        }
+        public DateTime? StartDate => Division.StartDate;
 
-        public ICollection<DivisionInfo> SubDivisions {
-            get { return Division.SubDivisions; }
-            set { throw new NotImplementedException (); }
-        }
+        public ICollection<DivisionInfo> SubDivisions => Division.SubDivisions;
 
-        public string Title {
-            get { return Division.Title; }
-            set { throw new NotImplementedException (); }
-        }
+        public string Title => Division.Title;
 
-        public string WebSite {
-            get { return Division.WebSite; }
-            set { throw new NotImplementedException (); }
-        }
+        public string WebSite => Division.WebSite;
 
-        public string WebSiteLabel {
-            get { return Division.WebSiteLabel; }
-            set { throw new NotImplementedException (); }
-        }
+        public string WebSiteLabel => Division.WebSiteLabel;
 
-        public string WorkingHours {
-            get { return Division.WorkingHours; }
-            set { throw new NotImplementedException (); }
-        }
+        public string WorkingHours => Division.WorkingHours;
 
         #endregion
 
