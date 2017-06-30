@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -28,13 +28,6 @@ namespace R7.University.Models
 {
     public class EmployeeInfo: IEmployee
     {
-        public EmployeeInfo ()
-        {
-            Achievements = new HashSet<EmployeeAchievementInfo> ();
-            Disciplines = new HashSet<EmployeeDisciplineInfo> ();
-            Positions = new HashSet<OccupiedPositionInfo> ();
-        }
-        
         #region IEmployee implementation
 
         public int EmployeeID { get; set; }
@@ -89,11 +82,11 @@ namespace R7.University.Models
 
         public bool ShowBarcode { get; set; }
 
-        public virtual ICollection<EmployeeAchievementInfo> Achievements { get; set; }
+        public virtual ICollection<EmployeeAchievementInfo> Achievements { get; set; } = new HashSet<EmployeeAchievementInfo> ();
 
-        public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
+        public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; } = new HashSet<EmployeeDisciplineInfo> ();
 
-        public virtual ICollection<OccupiedPositionInfo> Positions { get; set; }
+        public virtual ICollection<OccupiedPositionInfo> Positions { get; set; } = new HashSet<OccupiedPositionInfo> ();
 
         #endregion
 

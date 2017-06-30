@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -26,12 +26,6 @@ namespace R7.University.Models
 {
     public class EduProgramProfileInfo: IEduProgramProfile
     {
-        public EduProgramProfileInfo ()
-        {
-            EduProgramProfileForms = new HashSet<EduProgramProfileFormInfo> ();
-            Documents = new HashSet<DocumentInfo> ();
-        }
-
         #region IEduProgramProfile implementation
 
         public int EduProgramProfileID { get; set; }
@@ -70,9 +64,9 @@ namespace R7.University.Models
 
         public virtual DivisionInfo Division { get; set; }
 
-        public virtual ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
+        public virtual ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; } = new HashSet<EduProgramProfileFormInfo> ();
 
-        public virtual ICollection<DocumentInfo> Documents { get; set; }
+        public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
 
         #endregion
     }
