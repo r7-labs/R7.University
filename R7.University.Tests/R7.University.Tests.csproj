@@ -90,6 +90,7 @@
     <Compile Include="Security\TestSecurityContext.cs" />
     <Compile Include="Commands\DeleteCommandTests.cs" />
     <Compile Include="Commands\AddCommandTests.cs" />
+    <Compile Include="Models\InterfaceInheritanceTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />
