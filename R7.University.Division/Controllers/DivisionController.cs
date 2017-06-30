@@ -41,8 +41,7 @@ namespace R7.University.Division.Controllers
         ViewModelContext<DivisionSettings> viewModelContext;
         protected ViewModelContext<DivisionSettings> ViewModelContext
         {
-            get { return viewModelContext ?? (viewModelContext =
-                                              new ViewModelContext<DivisionSettings> (ModuleContext, LocalResourceFile, new DivisionSettingsRepository ().GetSettings (ActiveModule))); }
+            get { return viewModelContext ?? (viewModelContext = new ViewModelContext<DivisionSettings> (ModuleContext, LocalResourceFile, Settings)); }
         }
 
         ISecurityContext securityContext;
@@ -61,40 +60,12 @@ namespace R7.University.Division.Controllers
             using (var modelContext = new UniversityModelContext ()) {
                 // TODO: Use cache
                 var division = new DivisionQuery (modelContext).SingleOrDefault (Settings.DivisionID);
-
-                // TODO: Move to the view
-                /*
-                 var hasData = division != null;
-                 var now = Request.RequestContext.HttpContext.Timestamp;
-                if (!hasData) {
-                    // division wasn't set or not found
-                    if (ModuleContext.IsEditable) {
-                        this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-                    }
-                }
-                else if (!division.IsPublished (now)) {
-                    // division isn't published
-                    if (ModuleContext.IsEditable) {
-                        this.Message ("DivisionNotPublished.Text", MessageType.Warning, true);
-                    }
-                }
-
-                // display module only in edit mode and only if we have published data to display
-                ContainerControl.Visible = IsEditable || (hasData && division.IsPublished (now));
-
-                // display module content only if it exists and published (or in edit mode)
-                var displayContent = hasData && (IsEditable || division.IsPublished (now));
-
-                panelDivision.Visible = displayContent;
-
-                if (displayContent) {
-                    // display division info
-                    DisplayDivision (division
-                    }
-                 */
-                
                 if (division != null) {
-                    return View (new DivisionViewModel (division, ViewModelContext));
+                    return View (
+                        new DivisionViewModel (division,
+                            new ViewModelContext<DivisionSettings> (ModuleContext, LocalResourceFile, Settings)
+                        )
+                    );
                 }
 
                 return View (new DivisionViewModel ());

@@ -8,11 +8,33 @@
 @using DotNetNuke.Framework.JavaScriptLibraries
 @using DotNetNuke.Common
 @using DotNetNuke.Common.Utilities
+@using R7.University.ModelExtensions
 @using R7.University.Division.ViewModels
 @{
     ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/R7.University/css/module.css");
+    var now = Request.RequestContext.HttpContext.Timestamp;
+    var displayContent = true;
+    if (Dnn.ModuleContext.IsEditable) {
+        if (Model.IsEmpty) {
+            // division wasn't set or not found
+            <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NothingToDisplay.Text")</p>
+            displayContent = false;
+        }
+        else if (!Model.IsPublished (now)) {
+            // division isn't published
+            <p class="dnnFormMessage dnnFormWarning">@Dnn.LocalizeString("DivisionNotPublished.Text")</p>
+        }
+    }
+    else {
+        if (Model.IsEmpty || !Model.IsPublished (now)) {
+            var containerControl = Globals.FindControlRecursiveDown (Dnn.DnnPage, "ctr" + Dnn.ModuleContext.ModuleId);
+            containerControl.Visible = false;
+            displayContent = false;
+        }
+    }
 }
-@if (!Model.IsEmpty) {
+
+@if (displayContent) {
     <div class="u8y-division">
     	@if (Model.HasHomePage) {
     	    <a href="@Model.HomePageUrl" target="_blank" class="_section">@Model.DisplayTitle</a>
