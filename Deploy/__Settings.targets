@@ -8,8 +8,7 @@
         <PackageName>R7.University</PackageName>
         <DnnLocalDeployPath Condition=" '$(OS)' == 'Unix' ">$(HOME)/mnt/dnn8</DnnLocalDeployPath>
         <DnnLocalDeployPath Condition=" '$(OS)' != 'Unix' ">C:\Dotnetnuke804</DnnLocalDeployPath>
-        <!-- Set to /MVC for MVC modules -->
-        <DnnModulesPathPrefix>/MVC</DnnModulesPathPrefix>
+        <DnnModulesPathPrefix>/MVC/R7.University</DnnModulesPathPrefix>
         <CustomExcludeFiles>../doc/**/*</CustomExcludeFiles>
     </PropertyGroup>
     <!-- Derieved settings -->

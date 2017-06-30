@@ -3,8 +3,8 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:jQuery runat="server" jQueryUI="true" DnnjQueryPlugins="true" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University.Division/js/module.js" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/css/module.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Division/js/module.js" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 
 <asp:Panel id="panelDivision" runat="server" CssClass="university-division">
 	<asp:Label id="labelTitle" runat="server" CssClass="_section" />
