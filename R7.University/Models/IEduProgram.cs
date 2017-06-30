@@ -24,32 +24,61 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEduProgram: ITrackableEntityWritable
+    public interface IEduProgram: ITrackableEntity
     {
-        int EduProgramID { get; set; }
+        int EduProgramID { get; }
 
-        int EduLevelID { get; set; }
+        int EduLevelID { get; }
 
-        int? DivisionId { get; set; }
+        int? DivisionId { get; }
 
-        string Code { get; set; }
+        string Code { get; }
 
-        string Title { get; set; }
+        string Title { get; }
 
-        string Generation { get; set; }
+        string Generation { get; }
 
-        string HomePage { get; set; }
+        string HomePage { get; }
 
-        DateTime? StartDate { get; set; }
+        DateTime? StartDate { get; }
 
-        DateTime? EndDate { get; set; }
+        DateTime? EndDate { get; }
 
-        EduLevelInfo EduLevel { get; set; }
+        EduLevelInfo EduLevel { get; }
 
-        DivisionInfo Division { get; set; }
+        DivisionInfo Division { get; }
 
-        ICollection<DocumentInfo> Documents { get; set; }
+        ICollection<DocumentInfo> Documents { get; }
 
-        ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
+        ICollection<EduProgramProfileInfo> EduProgramProfiles { get; }
+    }
+
+    public interface IEduProgramWritable: IEduProgram, ITrackableEntityWritable
+    {
+        new int EduProgramID { get; set; }
+
+        new int EduLevelID { get; set; }
+
+        new int? DivisionId { get; set; }
+
+        new string Code { get; set; }
+
+        new string Title { get; set; }
+
+        new string Generation { get; set; }
+
+        new string HomePage { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new EduLevelInfo EduLevel { get; set; }
+
+        new DivisionInfo Division { get; set; }
+
+        new ICollection<DocumentInfo> Documents { get; set; }
+
+        new ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
     }
 }

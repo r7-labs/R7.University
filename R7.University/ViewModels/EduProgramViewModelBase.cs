@@ -27,116 +27,48 @@ namespace R7.University.ViewModels
 {
     public abstract class EduProgramViewModelBase: IEduProgram
     {
-        public IEduProgram Model { get; protected set; }
+        public IEduProgram EduProgram { get; protected set; }
 
         protected EduProgramViewModelBase (IEduProgram model)
         {
-            Model = model;
+            EduProgram = model;
         }
 
         #region IEduProgram implementation
 
-        public int EduProgramID
-        {
-            get { return Model.EduProgramID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int EduProgramID => EduProgram.EduProgramID;
 
-        public int EduLevelID
-        {
-            get { return Model.EduLevelID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int EduLevelID => EduProgram.EduLevelID;
 
-        public int? DivisionId
-        {
-            get { return Model.DivisionId; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int? DivisionId => EduProgram.DivisionId;
 
-        public string Code
-        {
-            get { return Model.Code; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string Code => EduProgram.Code;
 
-        public string Title
-        {
-            get { return Model.Title; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string Title => EduProgram.Title;
 
-        public string Generation
-        {
-            get { return Model.Generation; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string Generation => EduProgram.Generation;
 
-        public string HomePage
-        {
-            get { return Model.HomePage; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string HomePage => EduProgram.HomePage;
 
-        public DateTime? StartDate
-        {
-            get { return Model.StartDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime? StartDate => EduProgram.StartDate;
 
-        public DateTime? EndDate
-        {
-            get { return Model.EndDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime? EndDate => EduProgram.EndDate;
 
-        public int LastModifiedByUserID
-        {
-            get { return Model.LastModifiedByUserID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int LastModifiedByUserID => EduProgram.LastModifiedByUserID;
 
-        public DateTime LastModifiedOnDate
-        {
-            get { return Model.LastModifiedOnDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime LastModifiedOnDate => EduProgram.LastModifiedOnDate;
 
-        public int CreatedByUserID
-        {
-            get { return Model.CreatedByUserID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int CreatedByUserID => EduProgram.CreatedByUserID;
 
-        public DateTime CreatedOnDate
-        {
-            get { return Model.CreatedOnDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime CreatedOnDate => EduProgram.CreatedOnDate;
 
-        public EduLevelInfo EduLevel
-        {
-            get { return Model.EduLevel; }
-            set { throw new InvalidOperationException (); }
-        }
+        public EduLevelInfo EduLevel => EduProgram.EduLevel;
 
-        public DivisionInfo Division
-        {
-            get { return Model.Division; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DivisionInfo Division => EduProgram.Division;
 
-        public ICollection<DocumentInfo> Documents
-        {
-            get { return Model.Documents; }
-            set { throw new InvalidOperationException (); }
-        }
+        public ICollection<DocumentInfo> Documents => EduProgram.Documents;
 
-        public ICollection<EduProgramProfileInfo> EduProgramProfiles
-        {
-            get { return Model.EduProgramProfiles; }
-            set { throw new InvalidOperationException (); }
-        }
+        public ICollection<EduProgramProfileInfo> EduProgramProfiles => EduProgram.EduProgramProfiles;
 
         #endregion
     }

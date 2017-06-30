@@ -61,13 +61,13 @@ namespace R7.University.EduProgramDirectory
         public string Title_Link
         {
             get {
-                if (!string.IsNullOrWhiteSpace (Model.HomePage)) {
+                if (!string.IsNullOrWhiteSpace (EduProgram.HomePage)) {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                        Globals.NavigateURL (int.Parse (Model.HomePage)),
-                        Model.Title);
+                        Globals.NavigateURL (int.Parse (EduProgram.HomePage)),
+                        EduProgram.Title);
                 }
 
-                return Model.Title;
+                return EduProgram.Title;
             }
         }
 
@@ -80,7 +80,7 @@ namespace R7.University.EduProgramDirectory
         {
             get { 
                 return FormatHelper.FormatDocumentLinks (
-                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduStandard)),
+                    GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)),
                     Context,
                     "<li>{0}</li>",
                     "<ul class=\"list-inline\">{0}</ul>",
@@ -95,7 +95,7 @@ namespace R7.University.EduProgramDirectory
         {
             get { 
                 return FormatHelper.FormatDocumentLinks (
-                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.ProfStandard)),
+                    GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard)),
                     Context,
                     "<li>{0}</li>",
                     "<ul class=\"list-inline\">{0}</ul>",

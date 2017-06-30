@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -60,24 +60,24 @@ namespace R7.University.EduProgram.ViewModels
 
         public string Title_String
         {
-            get { return FormatHelper.FormatEduProgramTitle (Model.Code, Model.Title); }
+            get { return FormatHelper.FormatEduProgramTitle (EduProgram.Code, EduProgram.Title); }
         }
 
         public string EduLevel_Title
         {
-            get { return Model.EduLevel.Title; }
+            get { return EduProgram.EduLevel.Title; }
         }
 
         public bool EduStandard_Visible
         {
-            get { return GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduStandard)).Any (); }
+            get { return GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)).Any (); }
         }
 
         public string EduStandard_Links
         {
             get { 
                 return FormatHelper.FormatDocumentLinks (
-                    GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduStandard)),
+                    GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)),
                     Context,
                     "<li>{0}</li>",
                     "<ul class=\"list-inline u8y-inline\">{0}</ul>",
@@ -93,7 +93,7 @@ namespace R7.University.EduProgram.ViewModels
             get {
                 return Context.Module.EditUrl (
                     "eduprogram_id",
-                    Model.EduProgramID.ToString (),
+                    EduProgram.EduProgramID.ToString (),
                     "EditEduProgram"
                 );
             }
@@ -102,7 +102,7 @@ namespace R7.University.EduProgram.ViewModels
         public string CssClass
         {
             get {
-                return Model.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; 
+                return EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; 
             }
         }
 
@@ -117,20 +117,20 @@ namespace R7.University.EduProgram.ViewModels
 
         public bool Division_Visible
         {
-            get { return Model.Division != null; }
+            get { return EduProgram.Division != null; }
         }
 
         public string Division_Link
         {
             get { 
-                if (Model.Division != null) {
-                    if (!string.IsNullOrWhiteSpace (Model.Division.HomePage)) {
+                if (EduProgram.Division != null) {
+                    if (!string.IsNullOrWhiteSpace (EduProgram.Division.HomePage)) {
                         return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
                             // TODO: Model.Division.HomePage may not contain tabId
-                            Globals.NavigateURL (int.Parse (Model.Division.HomePage)), Model.Division.Title
+                            Globals.NavigateURL (int.Parse (EduProgram.Division.HomePage)), EduProgram.Division.Title
                         );
                     }
-                    return Model.Division.Title;
+                    return EduProgram.Division.Title;
                 }
                 return string.Empty;
             }
