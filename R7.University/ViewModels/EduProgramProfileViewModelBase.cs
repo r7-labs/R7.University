@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,134 +27,54 @@ namespace R7.University.ViewModels
 {
     public abstract class EduProgramProfileViewModelBase: IEduProgramProfile
     {
-        public IEduProgramProfile Model { get; protected set; }
+        public IEduProgramProfile EduProgramProfile { get; protected set; }
 
         protected EduProgramProfileViewModelBase (IEduProgramProfile model)
         {
-            Model = model;
+            EduProgramProfile = model;
         }
 
         #region IEduProgramProfile implementation
 
-        public int EduProgramProfileID
-        {
-            get { return Model.EduProgramProfileID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int EduProgramProfileID => EduProgramProfile.EduProgramProfileID;
 
-        public int EduProgramID
-        {
-            get { return Model.EduProgramID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int EduProgramID => EduProgramProfile.EduProgramID;
 
-        public int EduLevelId
-        {
-            get { return Model.EduLevelId; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int EduLevelId => EduProgramProfile.EduLevelId;
 
-        public int? DivisionId
-        {
-            get { return Model.EduLevelId; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int? DivisionId => EduProgramProfile.EduLevelId;
 
-        public string ProfileCode
-        {
-            get { return Model.ProfileCode; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string ProfileCode => EduProgramProfile.ProfileCode;
 
-        public string ProfileTitle
-        {
-            get { return Model.ProfileTitle; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string ProfileTitle => EduProgramProfile.ProfileTitle;
 
-        public string Languages
-        {
-            get { return Model.Languages; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string Languages => EduProgramProfile.Languages;
 
-        public DateTime? AccreditedToDate
-        {
-            get { return Model.AccreditedToDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime? AccreditedToDate => EduProgramProfile.AccreditedToDate;
 
-        public DateTime? CommunityAccreditedToDate
-        {
-            get { return Model.CommunityAccreditedToDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime? CommunityAccreditedToDate => EduProgramProfile.CommunityAccreditedToDate;
 
-        public DateTime? StartDate
-        {
-            get { return Model.StartDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime? StartDate => EduProgramProfile.StartDate;
 
-        public DateTime? EndDate
-        {
-            get { return Model.EndDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime? EndDate => EduProgramProfile.EndDate;
 
-        public int LastModifiedByUserID
-        {
-            get { return Model.LastModifiedByUserID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int LastModifiedByUserID => EduProgramProfile.LastModifiedByUserID;
 
-        public DateTime LastModifiedOnDate
-        {
-            get { return Model.LastModifiedOnDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime LastModifiedOnDate => EduProgramProfile.LastModifiedOnDate;
 
-        public int CreatedByUserID
-        {
-            get { return Model.CreatedByUserID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int CreatedByUserID => EduProgramProfile.CreatedByUserID;
 
-        public DateTime CreatedOnDate
-        {
-            get { return Model.CreatedOnDate; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DateTime CreatedOnDate => EduProgramProfile.CreatedOnDate;
 
-        public EduProgramInfo EduProgram
-        {
-            get { return Model.EduProgram; }
-            set { throw new InvalidOperationException (); }
-        }
+        public EduProgramInfo EduProgram => EduProgramProfile.EduProgram;
 
-        public EduLevelInfo EduLevel
-        {
-            get { return Model.EduLevel; }
-            set { throw new InvalidOperationException (); }
-        }
+        public EduLevelInfo EduLevel => EduProgramProfile.EduLevel;
 
-        public DivisionInfo Division
-        {
-            get { return Model.Division; }
-            set { throw new InvalidOperationException (); }
-        }
+        public DivisionInfo Division => EduProgramProfile.Division;
 
-        public ICollection<EduProgramProfileFormInfo> EduProgramProfileForms
-        {
-            get { return Model.EduProgramProfileForms; }
-            set { throw new InvalidOperationException (); }
-        }
+        public ICollection<EduProgramProfileFormInfo> EduProgramProfileForms => EduProgramProfile.EduProgramProfileForms;
 
-        public ICollection<DocumentInfo> Documents
-        {
-            get { return Model.Documents; }
-            set { throw new InvalidOperationException (); }
-        }
+        public ICollection<DocumentInfo> Documents => EduProgramProfile.Documents;
 
         #endregion
     }

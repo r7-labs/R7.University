@@ -1,4 +1,4 @@
-﻿//
+//
 //  EduProgramProfileEditModel.cs
 //
 //  Author:
@@ -38,12 +38,12 @@ namespace R7.University.EduProgram.ViewModels
 
         public string EduProgramProfile_String
         {
-            get { return FormatHelper.FormatEduProgramTitle (Model.ProfileCode, Model.ProfileTitle); }
+            get { return FormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle); }
         }
 
         public string EduLevel_String
         {
-            get { return Model.EduLevel.Title; }
+            get { return EduProgramProfile.EduLevel.Title; }
         }
 
         public string Edit_Url
@@ -51,7 +51,7 @@ namespace R7.University.EduProgram.ViewModels
             get {
                 return Context.Module.EditUrl (
                     "eduprogramprofile_id",
-                    Model.EduProgramProfileID.ToString (),
+                    EduProgramProfile.EduProgramProfileID.ToString (),
                     "EditEduProgramProfile"
                 );
             }

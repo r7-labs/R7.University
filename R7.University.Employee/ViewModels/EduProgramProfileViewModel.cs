@@ -34,10 +34,10 @@ namespace R7.University.Employee.ViewModels
         {
             get {
                 return FormatHelper.FormatEduProgramProfileTitle (
-                    Model.EduProgram.Code,
-                    Model.EduProgram.Title,
-                    Model.ProfileCode,
-                    Model.ProfileTitle
+                    EduProgramProfile.EduProgram.Code,
+                    EduProgramProfile.EduProgram.Title,
+                    EduProgramProfile.ProfileCode,
+                    EduProgramProfile.ProfileTitle
                 );
             }
         }

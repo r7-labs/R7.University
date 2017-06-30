@@ -137,7 +137,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         }
         string GetEduProgramLinks ()
         {
-            var eduProgramDocuments = GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduProgram));
+            var eduProgramDocuments = GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduProgram));
             if (!eduProgramDocuments.IsNullOrEmpty ()) {
                 return FormatHelper.FormatDocumentLinks (
                     eduProgramDocuments,
@@ -164,7 +164,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         string GetEduPlanLinks ()
         {
             return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduPlan)),
+                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
                                 Context,
                                 "<li>{0}</li>",
                                 "<ul class=\"list-inline\">{0}</ul>",
@@ -177,7 +177,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         string GetEduScheduleLinks ()
         {
             return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
+                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
                                 Context,
                                 "<li>{0}</li>",
                                 "<ul class=\"list-inline\">{0}</ul>",
@@ -190,7 +190,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         string GetWorkProgramAnnotationLinks ()
         {
             return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
+                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
                                 Context,
                                 "<li>{0}</li>",
                                 "<ul class=\"list-inline\">{0}</ul>",
@@ -203,7 +203,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         string GetEduMaterialLinks ()
         {
             return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
+                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
                                 Context,
                                 "<li>{0}</li>",
                                 "<ul class=\"list-inline\">{0}</ul>",
@@ -216,7 +216,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         string GetContingentLinks ()
         {
             return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.Contingent)),
+                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.Contingent)),
                                 Context,
                                 "<li>{0}</li>",
                                 "<ul class=\"list-inline\">{0}</ul>",
@@ -229,7 +229,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         string GetContingentMovementLinks ()
         {
             return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
+                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
                                 Context,
                                 "<li>{0}</li>",
                                 "<ul class=\"list-inline\">{0}</ul>",
@@ -241,7 +241,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
         string GetWorkProgramOfPracticeLinks ()
         {
-            var wpopDocuments = GetDocuments (Model.GetDocumentsOfType (SystemDocumentType.WorkProgramOfPractice));
+            var wpopDocuments = GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramOfPractice));
 
             // get all groups
             var groups = wpopDocuments

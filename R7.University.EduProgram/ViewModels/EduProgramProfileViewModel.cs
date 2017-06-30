@@ -52,55 +52,55 @@ namespace R7.University.EduProgram.ViewModels
             get {
                 return TextUtils.FormatList (": ", 
                     Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
-                    FormatHelper.FormatEduProgramTitle (Model.ProfileCode, Model.ProfileTitle)
+                    FormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle)
                 );
             }
         }
 
         public bool AccreditedToDate_Visible
         {
-            get { return Model.AccreditedToDate != null; }
+            get { return EduProgramProfile.AccreditedToDate != null; }
         }
 
         public string AccreditedToDate_String
         {
             get { 
-                return Model.AccreditedToDate != null ?
-                    Model.AccreditedToDate.Value.ToShortDateString () :
+                return EduProgramProfile.AccreditedToDate != null ?
+                    EduProgramProfile.AccreditedToDate.Value.ToShortDateString () :
                     string.Empty;
             }
         }
 
         public bool CommunityAccreditedToDate_Visible
         {
-            get { return Model.CommunityAccreditedToDate != null; }
+            get { return EduProgramProfile.CommunityAccreditedToDate != null; }
         }
 
         public string CommunityAccreditedToDate_String
         {
             get { 
-                return Model.CommunityAccreditedToDate != null ?
-                    Model.CommunityAccreditedToDate.Value.ToShortDateString () :
+                return EduProgramProfile.CommunityAccreditedToDate != null ?
+                    EduProgramProfile.CommunityAccreditedToDate.Value.ToShortDateString () :
                     string.Empty;
             }
         }
 
         public string EduLevel_Title
         {
-            get { return Model.EduLevel.Title; }
+            get { return EduProgramProfile.EduLevel.Title; }
         }
 
         public bool EduForms_Visible
         {
-            get { return !Model.EduProgramProfileForms.IsNullOrEmpty (); }
+            get { return !EduProgramProfile.EduProgramProfileForms.IsNullOrEmpty (); }
         }
 
         public string EduForms_String
         {
             get {
-                if (Model.EduProgramProfileForms != null) {
+                if (EduProgramProfile.EduProgramProfileForms != null) {
                     var sb = new StringBuilder ();
-                    foreach (var eppf in Model.EduProgramProfileForms) {
+                    foreach (var eppf in EduProgramProfile.EduProgramProfileForms) {
                         sb.AppendFormat ("<li>{0} &ndash; {1}</li>", 
                             Localization.GetString ("TimeToLearn" + eppf.EduForm.Title + ".Text", Context.LocalResourceFile),
                             FormatHelper.FormatTimeToLearn (eppf.TimeToLearn, (TimeToLearnUnit) eppf.TimeToLearnUnit [0],
@@ -120,7 +120,7 @@ namespace R7.University.EduProgram.ViewModels
             get {
                 return Context.Module.EditUrl (
                     "eduprogramprofile_id",
-                    Model.EduProgramProfileID.ToString (),
+                    EduProgramProfile.EduProgramProfileID.ToString (),
                     "EditEduProgramProfile"
                 );
             }
@@ -128,25 +128,25 @@ namespace R7.University.EduProgram.ViewModels
 
         public string CssClass
         {
-            get { return Model.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; }
+            get { return EduProgramProfile.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; }
         }
 
         public bool Division_Visible
         {
-            get { return Model.Division != null; }
+            get { return EduProgramProfile.Division != null; }
         }
 
         public string Division_Link
         {
             get { 
-                if (Model.Division != null) {
-                    if (!string.IsNullOrWhiteSpace (Model.Division.HomePage)) {
+                if (EduProgramProfile.Division != null) {
+                    if (!string.IsNullOrWhiteSpace (EduProgramProfile.Division.HomePage)) {
                         return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
                             // TODO: Model.Division.HomePage may not contain tabId
-                            Globals.NavigateURL (int.Parse (Model.Division.HomePage)), Model.Division.Title
+                            Globals.NavigateURL (int.Parse (EduProgramProfile.Division.HomePage)), EduProgramProfile.Division.Title
                         );
                     }
-                    return Model.Division.Title;
+                    return EduProgramProfile.Division.Title;
                 }
                 return string.Empty;
             }

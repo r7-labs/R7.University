@@ -24,39 +24,74 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEduProgramProfile: ITrackableEntityWritable
+    public interface IEduProgramProfile: ITrackableEntity
     {
-        int EduProgramProfileID { get; set; }
+        int EduProgramProfileID { get; }
 
-        int EduProgramID { get; set; }
+        int EduProgramID { get; }
 
-        int EduLevelId { get; set; }
+        int EduLevelId { get; }
 
-        int? DivisionId { get; set; }
+        int? DivisionId { get; }
 
-        string ProfileCode { get; set; }
+        string ProfileCode { get; }
 
-        string ProfileTitle { get; set; }
+        string ProfileTitle { get; }
 
-        string Languages { get; set; }
+        string Languages { get; }
 
-        DateTime? AccreditedToDate { get; set; }
+        DateTime? AccreditedToDate { get; }
 
-        DateTime? CommunityAccreditedToDate { get; set; }
+        DateTime? CommunityAccreditedToDate { get; }
 
-        DateTime? StartDate { get; set; }
+        DateTime? StartDate { get; }
 
-        DateTime? EndDate { get; set; }
+        DateTime? EndDate { get; }
 
-        EduProgramInfo EduProgram { get; set; }
+        EduProgramInfo EduProgram { get; }
 
-        EduLevelInfo EduLevel { get; set; }
+        EduLevelInfo EduLevel { get; }
 
-        DivisionInfo Division { get; set; }
+        DivisionInfo Division { get; }
 
-        ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
+        ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; }
 
-        ICollection<DocumentInfo> Documents { get; set; }
+        ICollection<DocumentInfo> Documents { get; }
+    }
+
+    public interface IEduProgramProfileWritable: IEduProgramProfile, ITrackableEntityWritable
+    {
+        new int EduProgramProfileID { get; set; }
+
+        new int EduProgramID { get; set; }
+
+        new int EduLevelId { get; set; }
+
+        new int? DivisionId { get; set; }
+
+        new string ProfileCode { get; set; }
+
+        new string ProfileTitle { get; set; }
+
+        new string Languages { get; set; }
+
+        new DateTime? AccreditedToDate { get; set; }
+
+        new DateTime? CommunityAccreditedToDate { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new EduProgramInfo EduProgram { get; set; }
+
+        new EduLevelInfo EduLevel { get; set; }
+
+        new DivisionInfo Division { get; set; }
+
+        new ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
+
+        new ICollection<DocumentInfo> Documents { get; set; }
     }
 }
 
