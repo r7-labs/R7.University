@@ -38,25 +38,6 @@ namespace R7.University.Division.Controllers
     [DnnHandleError]
     public class DivisionController : DnnController
     {
-        #region Model context
-
-        UniversityModelContext modelContext;
-        protected UniversityModelContext ModelContext
-        {
-            get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
-        }
-
-        protected override void Dispose (bool disposing)
-        {   
-            if (disposing && modelContext != null) {
-                modelContext.Dispose ();
-            }
-
-            base.Dispose (disposing);
-        }
-
-        #endregion
-
         ViewModelContext<DivisionSettings> viewModelContext;
         protected ViewModelContext<DivisionSettings> ViewModelContext
         {
@@ -70,57 +51,60 @@ namespace R7.University.Division.Controllers
             get { return securityContext ?? (securityContext = new ModuleSecurityContext (User)); }
         }
 
+        DivisionSettings _settings;
+        protected DivisionSettings Settings =>
+            _settings ?? (_settings = new DivisionSettingsRepository ().GetSettings (ActiveModule));
+
         [ModuleActionItems]
         public ActionResult Index ()
         {
-            var settings = new DivisionSettingsRepository ().GetSettings (ActiveModule);
-            // TODO: Use cache
-            var division = new DivisionQuery (ModelContext).SingleOrDefault (settings.DivisionID);
+            using (var modelContext = new UniversityModelContext ()) {
+                // TODO: Use cache
+                var division = new DivisionQuery (modelContext).SingleOrDefault (Settings.DivisionID);
 
-            // TODO: Move to the view
-            /*
-             var hasData = division != null;
-             var now = Request.RequestContext.HttpContext.Timestamp;
-            if (!hasData) {
-                // division wasn't set or not found
-                if (ModuleContext.IsEditable) {
-                    this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                // TODO: Move to the view
+                /*
+                 var hasData = division != null;
+                 var now = Request.RequestContext.HttpContext.Timestamp;
+                if (!hasData) {
+                    // division wasn't set or not found
+                    if (ModuleContext.IsEditable) {
+                        this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                    }
                 }
-            }
-            else if (!division.IsPublished (now)) {
-                // division isn't published
-                if (ModuleContext.IsEditable) {
-                    this.Message ("DivisionNotPublished.Text", MessageType.Warning, true);
+                else if (!division.IsPublished (now)) {
+                    // division isn't published
+                    if (ModuleContext.IsEditable) {
+                        this.Message ("DivisionNotPublished.Text", MessageType.Warning, true);
+                    }
                 }
-            }
 
-            // display module only in edit mode and only if we have published data to display
-            ContainerControl.Visible = IsEditable || (hasData && division.IsPublished (now));
+                // display module only in edit mode and only if we have published data to display
+                ContainerControl.Visible = IsEditable || (hasData && division.IsPublished (now));
 
-            // display module content only if it exists and published (or in edit mode)
-            var displayContent = hasData && (IsEditable || division.IsPublished (now));
+                // display module content only if it exists and published (or in edit mode)
+                var displayContent = hasData && (IsEditable || division.IsPublished (now));
 
-            panelDivision.Visible = displayContent;
+                panelDivision.Visible = displayContent;
 
-            if (displayContent) {
-                // display division info
-                DisplayDivision (division
+                if (displayContent) {
+                    // display division info
+                    DisplayDivision (division
+                    }
+                 */
+                
+                if (division != null) {
+                    return View (new DivisionViewModel (division, ViewModelContext));
                 }
-             */
-            
-            if (division != null) {
-                return View (new DivisionViewModel (division, ViewModelContext));
-            }
 
-            return View (new DivisionViewModel ());
+                return View (new DivisionViewModel ());
+            }
         }
 
         public ModuleActionCollection GetIndexActions ()
         {
             var actions = new ModuleActionCollection ();
-            var settings = new DivisionSettingsRepository ().GetSettings (ActiveModule);
-
-            var existingDivision = !Null.IsNull (settings.DivisionID);
+            var existingDivision = !Null.IsNull (Settings.DivisionID);
 
             actions.Add (
                 -1,
@@ -141,7 +125,7 @@ namespace R7.University.Division.Controllers
                 ModuleActionType.EditContent,
                 "",
                 IconController.IconURL ("Edit"),
-                ModuleContext.EditUrl ("division_id", settings.DivisionID.ToString (), "EditDivision"),
+                ModuleContext.EditUrl ("division_id", Settings.DivisionID.ToString (), "EditDivision"),
                 false,
                 SecurityAccessLevel.Edit,
                 existingDivision,
