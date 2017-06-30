@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEmployee: IUniversityBaseEntity
+    public interface IEmployee: ITrackableEntity
     {
         int EmployeeID { get; set; }
 

@@ -1,4 +1,4 @@
-﻿//
+//
 //  ModuleSecurityContext.cs
 //
 //  Author:
@@ -47,7 +47,7 @@ namespace R7.University.Security
 
         public bool CanAdd (Type entityType)
         {
-            if (typeof (IUniversityBaseEntity).IsAssignableFrom (entityType)) {
+            if (typeof (ITrackableEntity).IsAssignableFrom (entityType)) {
                 return IsAdmin;
             }
 
@@ -58,7 +58,7 @@ namespace R7.University.Security
         {
             var canDelete = true;
 
-            if (entity is IUniversityBaseEntity) {
+            if (entity is ITrackableEntity) {
                 canDelete &= IsAdmin;
             }
 

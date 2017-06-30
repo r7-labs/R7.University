@@ -1,4 +1,4 @@
-﻿//
+//
 //  AddCommand.cs
 //
 //  Author:
@@ -26,7 +26,7 @@ using R7.University.Security;
 namespace R7.University.Commands
 {
     public class AddCommand<TEntity> : ISecureCommand
-        where TEntity : class, IUniversityBaseEntity
+        where TEntity : class, ITrackableEntity
     {
         public IModelContext ModelContext { get; set; }
 

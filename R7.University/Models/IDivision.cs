@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IDivision: IUniversityBaseEntity
+    public interface IDivision: ITrackableEntity
     {
         string Title { get; set; }
 

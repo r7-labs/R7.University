@@ -28,7 +28,7 @@ namespace R7.University.ControlExtensions
 {
     public static class ModuleAuditControlExtensions
     {
-        public static void Bind (this ModuleAuditControl auditControl, IUniversityBaseEntity item)
+        public static void Bind (this ModuleAuditControl auditControl, ITrackableEntity item)
         {
             auditControl.CreatedDate = item.CreatedOnDate.ToLongDateString ();
             auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, Null.NullInteger.ToString ());

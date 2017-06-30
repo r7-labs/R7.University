@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEduProgramProfile: IUniversityBaseEntity
+    public interface IEduProgramProfile: ITrackableEntity
     {
         int EduProgramProfileID { get; set; }
 
