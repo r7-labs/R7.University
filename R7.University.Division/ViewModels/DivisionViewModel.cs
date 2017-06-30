@@ -38,7 +38,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Division.ViewModels
 {
-    public class DivisionViewModel: IDivision
+    internal class DivisionViewModel: IDivision
     {
         protected IDivision Division;
 
