@@ -94,7 +94,7 @@ namespace R7.University.Models
 
         public DateTime CreatedOnDate { get; set; }
 
-        public virtual ICollection<DivisionInfo> SubDivisions { get; set; } = new List<DivisionInfo> ();
+        public virtual ICollection<DivisionInfo> SubDivisions { get; set; } = new HashSet<DivisionInfo> ();
 
         public int Level { get; set; }
 
