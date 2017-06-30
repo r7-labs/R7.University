@@ -99,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
-    <Content Include="ViewDivision.ascx" />
     <Content Include="SettingsDivision.ascx" />
     <Content Include="EditDivision.ascx" />
     <Content Include="admin.css" />
@@ -119,12 +118,6 @@
     <None Include="App_LocalResources\EditDivision.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewDivision.ascx.cs">
-      <DependentUpon>ViewDivision.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewDivision.ascx.controls.cs">
-      <DependentUpon>ViewDivision.ascx</DependentUpon>
-    </Compile>
     <Compile Include="SettingsDivision.ascx.cs">
       <DependentUpon>SettingsDivision.ascx</DependentUpon>
     </Compile>
