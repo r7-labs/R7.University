@@ -24,58 +24,113 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEmployee: ITrackableEntityWritable
+    public interface IEmployee: ITrackableEntity
     {
-        int EmployeeID { get; set; }
+        int EmployeeID { get; }
 
-        int? UserID { get; set; }
+        int? UserID { get; }
 
-        int? PhotoFileID { get; set; }
+        int? PhotoFileID { get; }
 
-        string Phone { get; set; }
+        string Phone { get; }
 
-        string CellPhone { get; set; }
+        string CellPhone { get; }
 
-        string Fax { get; set; }
+        string Fax { get; }
 
-        string LastName { get; set; }
+        string LastName { get; }
 
-        string FirstName { get; set; }
+        string FirstName { get; }
 
-        string OtherName { get; set; }
+        string OtherName { get; }
 
-        string Email { get; set; }
+        string Email { get; }
 
-        string SecondaryEmail { get; set; }
+        string SecondaryEmail { get; }
 
-        string WebSite { get; set; }
+        string WebSite { get; }
 
-        string WebSiteLabel { get; set; }
+        string WebSiteLabel { get; }
 
-        string Messenger { get; set; }
+        string Messenger { get; }
 
-        string WorkingPlace { get; set; }
+        string WorkingPlace { get; }
 
-        string WorkingHours { get; set; }
+        string WorkingHours { get; }
 
-        string Biography { get; set; }
+        string Biography { get; }
 
         // employee stage may be not continuous, so using starting date is not possible
-        int? ExperienceYears { get; set; }
+        int? ExperienceYears { get; }
 
         // employee ExpYearsBySpec even more unbinded to dates
-        int? ExperienceYearsBySpec { get; set; }
+        int? ExperienceYearsBySpec { get; }
 
-        DateTime? StartDate { get; set; }
+        DateTime? StartDate { get; }
 
-        DateTime? EndDate { get; set; }
+        DateTime? EndDate { get; }
 
-        bool ShowBarcode { get; set; }
+        bool ShowBarcode { get; }
 
-        ICollection<EmployeeAchievementInfo> Achievements { get; set; }
+        ICollection<EmployeeAchievementInfo> Achievements { get; }
 
-        ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
+        ICollection<EmployeeDisciplineInfo> Disciplines { get; }
 
-        ICollection<OccupiedPositionInfo> Positions { get; set; }
+        ICollection<OccupiedPositionInfo> Positions { get; }
+    }
+
+    public interface IEmployeeWritable: IEmployee, ITrackableEntityWritable
+    {
+        new int EmployeeID { get; set; }
+
+        new int? UserID { get; set; }
+
+        new int? PhotoFileID { get; set; }
+
+        new string Phone { get; set; }
+
+        new string CellPhone { get; set; }
+
+        new string Fax { get; set; }
+
+        new string LastName { get; set; }
+
+        new string FirstName { get; set; }
+
+        new string OtherName { get; set; }
+
+        new string Email { get; set; }
+
+        new string SecondaryEmail { get; set; }
+
+        new string WebSite { get; set; }
+
+        new string WebSiteLabel { get; set; }
+
+        new string Messenger { get; set; }
+
+        new string WorkingPlace { get; set; }
+
+        new string WorkingHours { get; set; }
+
+        new string Biography { get; set; }
+
+        // employee stage may be not continuous, so using starting date is not possible
+        new int? ExperienceYears { get; set; }
+
+        // employee ExpYearsBySpec even more unbinded to dates
+        new int? ExperienceYearsBySpec { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new bool ShowBarcode { get; set; }
+
+        new ICollection<EmployeeAchievementInfo> Achievements { get; set; }
+
+        new ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
+
+        new ICollection<OccupiedPositionInfo> Positions { get; set; }
     }
 }

@@ -60,7 +60,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         string _fullName;
         public string FullName
         {
-            get { return _fullName ?? (_fullName = FormatHelper.FullName (Model.FirstName, Model.LastName, Model.OtherName)); }
+            get { return _fullName ?? (_fullName = FormatHelper.FullName (Employee.FirstName, Employee.LastName, Employee.OtherName)); }
         }
 
         string _positionsString;
@@ -106,13 +106,13 @@ namespace R7.University.EmployeeDirectory.ViewModels
         {
             get {
                 return achievementViewModels
-                    ?? (achievementViewModels = Model.Achievements.Select (a => new EmployeeAchievementViewModel (a)));
+                    ?? (achievementViewModels = Employee.Achievements.Select (a => new EmployeeAchievementViewModel (a)));
             }
         }
 
         string GetPositionsString ()
         {
-            var positions = Model.Positions
+            var positions = Employee.Positions
                         .OrderByDescending (op => op.IsPrime)
                         .ThenByDescending (op => op.Position.Weight);
 
@@ -124,7 +124,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         string GetDisciplinesString ()
         {
             if (!Null.IsNull (EduProgramProfile.EduProgramProfileID)) {
-                var disciplines = Model.Disciplines
+                var disciplines = Employee.Disciplines
                     .FirstOrDefault (d => d.EduProgramProfileID == EduProgramProfile.EduProgramProfileID);
 
                 if (disciplines != null) {

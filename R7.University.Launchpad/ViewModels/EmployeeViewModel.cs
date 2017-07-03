@@ -36,14 +36,14 @@ namespace R7.University.Launchpad.ViewModels
 
         public string WebSite_String
         {
-            get { return TextUtils.FormatList (": ", Model.WebSiteLabel, Model.WebSite); }
+            get { return TextUtils.FormatList (": ", Employee.WebSiteLabel, Employee.WebSite); }
         }
 
         public string Biography_String
         {
             get { 
-                return !string.IsNullOrWhiteSpace (Model.Biography) ? 
-                    HtmlUtils.Shorten (Model.Biography, 16, "...") : string.Empty;
+                return !string.IsNullOrWhiteSpace (Employee.Biography) ? 
+                    HtmlUtils.Shorten (Employee.Biography, 16, "...") : string.Empty;
             }
         }
 

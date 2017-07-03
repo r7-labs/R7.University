@@ -26,9 +26,9 @@ using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {
-    public class EmployeeInfo: IEmployee
+    public class EmployeeInfo: IEmployeeWritable
     {
-        #region IEmployee implementation
+        #region IEmployeeWritable implementation
 
         public int EmployeeID { get; set; }
 
