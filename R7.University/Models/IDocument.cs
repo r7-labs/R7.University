@@ -72,7 +72,4 @@ namespace R7.University.Models
 
         new DocumentTypeInfo DocumentType { get; set; }
     }
-
-    public delegate string GetDocumentTitle (IDocument document);
 }
-
