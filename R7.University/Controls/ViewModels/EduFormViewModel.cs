@@ -32,12 +32,12 @@ using R7.University.Models;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class EduFormViewModel: IEduForm
+    public class EduFormViewModel: IEduFormWritable
     {
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
-        #region IEduForm implementation
+        #region IEduFormWritable implementation
 
         public int EduFormID { get; set; }
 

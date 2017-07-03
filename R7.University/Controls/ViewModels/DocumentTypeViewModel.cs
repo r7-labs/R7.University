@@ -31,12 +31,12 @@ using R7.University.ViewModels;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class DocumentTypeViewModel: IDocumentType
+    public class DocumentTypeViewModel: IDocumentTypeWritable
     {
         [XmlIgnore]
         protected ViewModelContext Context { get; set; }
 
-        #region IDocumentType implementation
+        #region IDocumentTypeWritable implementation
 
         public int DocumentTypeID { get; set; }
 

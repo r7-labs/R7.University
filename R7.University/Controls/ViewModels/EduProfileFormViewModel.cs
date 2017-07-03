@@ -29,7 +29,7 @@ using R7.University.Models;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class EduProgramProfileFormViewModel: IEduProgramProfileForm, IEditControlViewModel<EduProgramProfileFormInfo>
+    public class EduProgramProfileFormViewModel: IEduProgramProfileFormWritable, IEditControlViewModel<EduProgramProfileFormInfo>
     {
         #region IEditControlViewModel implementation
 
@@ -69,7 +69,7 @@ namespace R7.University.Controls
             ViewItemID = ViewNumerator.GetNextItemID ();
         }
 
-        #region IEduProgramProfileForm implementation
+        #region IEduProgramProfileFormWritable implementation
 
         public long EduProgramProfileFormID { get; set; }
 
