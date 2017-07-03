@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -27,50 +26,26 @@ namespace R7.University.Employee.ViewModels
 {
     internal class EmployeeDisciplineViewModel: IEmployeeDiscipline
     {
-        public IEmployeeDiscipline Model { get; protected set; }
+        public IEmployeeDiscipline EmployeeDiscipline { get; protected set; }
 
         public EmployeeDisciplineViewModel (IEmployeeDiscipline model)
         {
-            Model = model;
+            EmployeeDiscipline = model;
         }
 
         #region IEmployeeDiscipline implementation
 
-        public long EmployeeDisciplineID
-        {
-            get { return Model.EmployeeDisciplineID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public long EmployeeDisciplineID => EmployeeDiscipline.EmployeeDisciplineID;
 
-        public int EmployeeID
-        {
-            get { return Model.EmployeeID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int EmployeeID => EmployeeDiscipline.EmployeeID;
 
-        public int EduProgramProfileID
-        {
-            get { return Model.EduProgramProfileID; }
-            set { throw new InvalidOperationException (); }
-        }
+        public int EduProgramProfileID => EmployeeDiscipline.EduProgramProfileID;
 
-        public string Disciplines
-        {
-            get { return Model.Disciplines; }
-            set { throw new InvalidOperationException (); }
-        }
+        public string Disciplines => EmployeeDiscipline.Disciplines;
 
-        public EmployeeInfo Employee
-        {
-            get { return Model.Employee; }
-            set { throw new InvalidOperationException (); }
-        }
+        public EmployeeInfo Employee => EmployeeDiscipline.Employee;
 
-        public EduProgramProfileInfo EduProgramProfile
-        {
-            get { return Model.EduProgramProfile; }
-            set { throw new InvalidOperationException (); }
-        }
+        public EduProgramProfileInfo EduProgramProfile => EmployeeDiscipline.EduProgramProfile;
 
         #endregion
 
@@ -78,10 +53,10 @@ namespace R7.University.Employee.ViewModels
         {
             get {
                 return FormatHelper.FormatEduProgramProfileTitle (
-                    Model.EduProgramProfile.EduProgram.Code,
-                    Model.EduProgramProfile.EduProgram.Title,
-                    Model.EduProgramProfile.ProfileCode,
-                    Model.EduProgramProfile.ProfileTitle
+                    EmployeeDiscipline.EduProgramProfile.EduProgram.Code,
+                    EmployeeDiscipline.EduProgramProfile.EduProgram.Title,
+                    EmployeeDiscipline.EduProgramProfile.ProfileCode,
+                    EmployeeDiscipline.EduProgramProfile.ProfileTitle
                 );
             }
         }
@@ -89,8 +64,8 @@ namespace R7.University.Employee.ViewModels
         public string EduLevel_String {
             get {
                 return FormatHelper.FormatShortTitle (
-                    Model.EduProgramProfile.EduLevel.ShortTitle,
-                    Model.EduProgramProfile.EduLevel.Title
+                    EmployeeDiscipline.EduProgramProfile.EduLevel.ShortTitle,
+                    EmployeeDiscipline.EduProgramProfile.EduLevel.Title
                 );
             }
         }

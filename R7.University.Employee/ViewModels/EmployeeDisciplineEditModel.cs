@@ -28,9 +28,9 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeDisciplineEditModel: IEmployeeDiscipline
+    public class EmployeeDisciplineEditModel: IEmployeeDisciplineWritable
     {
-        #region IEmployeeDiscipline implementation
+        #region IEmployeeDisciplineWritable implementation
 
         public long EmployeeDisciplineID { get; set; }
 
@@ -82,9 +82,9 @@ namespace R7.University.Employee.ViewModels
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeDisciplineEditModel (IEmployeeDiscipline employeeDiscipline) : this ()
+        public EmployeeDisciplineEditModel (IEmployeeDisciplineWritable employeeDiscipline) : this ()
         {
-            CopyCstor.Copy<IEmployeeDiscipline> (employeeDiscipline, this);
+            CopyCstor.Copy<IEmployeeDisciplineWritable> (employeeDiscipline, this);
 
             Code = employeeDiscipline.EduProgramProfile.EduProgram.Code;
             Title = employeeDiscipline.EduProgramProfile.EduProgram.Title;

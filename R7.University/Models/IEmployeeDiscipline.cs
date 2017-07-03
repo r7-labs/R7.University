@@ -23,17 +23,32 @@ namespace R7.University.Models
 {
     public interface IEmployeeDiscipline
     {
-        long EmployeeDisciplineID { get; set; }
+        long EmployeeDisciplineID { get; }
 
-        int EmployeeID { get; set; }
+        int EmployeeID { get; }
 
-        int EduProgramProfileID { get; set; }
+        int EduProgramProfileID { get; }
 
-        string Disciplines { get; set; }
+        string Disciplines { get; }
 
-        EmployeeInfo Employee { get; set; }
+        EmployeeInfo Employee { get; }
 
-        EduProgramProfileInfo EduProgramProfile { get; set; }
+        EduProgramProfileInfo EduProgramProfile { get; }
+    }
+
+    public interface IEmployeeDisciplineWritable: IEmployeeDiscipline
+    {
+        new long EmployeeDisciplineID { get; set; }
+
+        new int EmployeeID { get; set; }
+
+        new int EduProgramProfileID { get; set; }
+
+        new string Disciplines { get; set; }
+
+        new EmployeeInfo Employee { get; set; }
+
+        new EduProgramProfileInfo EduProgramProfile { get; set; }
     }
 }
 

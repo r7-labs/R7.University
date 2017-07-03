@@ -21,7 +21,7 @@
 
 namespace R7.University.Models
 {
-    public class EmployeeDisciplineInfo: IEmployeeDiscipline
+    public class EmployeeDisciplineInfo: IEmployeeDisciplineWritable
     {
         #region IEmployeeDiscipline implementation
 
