@@ -24,7 +24,7 @@ using System;
 namespace R7.University.Models
 {
     [Serializable]
-    public class EmployeeAchievementInfo: IEmployeeAchievement
+    public class EmployeeAchievementInfo: IEmployeeAchievementWritable
     {
         #region IEmployeeAchievement implementation
 
