@@ -35,9 +35,9 @@ using R7.University.ModelExtensions;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class DocumentViewModel: IDocument, IEditControlViewModel<DocumentInfo>
+    public class DocumentViewModel: IDocumentWritable, IEditControlViewModel<DocumentInfo>
     {
-        #region IDocument implementation
+        #region IDocumentWritable implementation
 
         public int DocumentID { get; set; }
 

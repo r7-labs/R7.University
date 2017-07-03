@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,10 +23,8 @@ using System;
 
 namespace R7.University.Models
 {
-    public class DocumentInfo: IDocument
+    public class DocumentInfo: IDocumentWritable
     {
-        #region IDocument implementation
-
         public int DocumentID { get; set; }
 
         public int DocumentTypeID { get; set; }
@@ -48,8 +46,6 @@ namespace R7.University.Models
         public DateTime? EndDate { get; set; }
 
         public virtual DocumentTypeInfo DocumentType { get; set; }
-
-        #endregion
     }
 }
 

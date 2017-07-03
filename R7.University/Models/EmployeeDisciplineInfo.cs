@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,8 +23,6 @@ namespace R7.University.Models
 {
     public class EmployeeDisciplineInfo: IEmployeeDisciplineWritable
     {
-        #region IEmployeeDiscipline implementation
-
         public long EmployeeDisciplineID { get; set; }
 
         public int EmployeeID { get; set; }
@@ -36,8 +34,6 @@ namespace R7.University.Models
         public virtual EmployeeInfo Employee { get; set; }
 
         public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
-
-        #endregion
     }
 }
 

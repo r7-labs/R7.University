@@ -23,13 +23,24 @@ namespace R7.University.Models
 {
     public interface IDocumentType: ISystemEntity
     {
-        int DocumentTypeID { get; set; }
+        int DocumentTypeID { get; }
 
-        string Type { get; set; }
+        string Type { get; }
 
-        string Description { get; set; }
+        string Description { get; }
 
-        string FilenameFormat { get; set; }
+        string FilenameFormat { get; }
+    }
+
+    public interface IDocumentTypeWritable: IDocumentType, ISystemEntityWritable
+    {
+        new int DocumentTypeID { get; set; }
+
+        new string Type { get; set; }
+
+        new string Description { get; set; }
+
+        new string FilenameFormat { get; set; }
     }
 }
 

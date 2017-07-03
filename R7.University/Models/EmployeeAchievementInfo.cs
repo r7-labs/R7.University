@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -26,8 +26,6 @@ namespace R7.University.Models
     [Serializable]
     public class EmployeeAchievementInfo: IEmployeeAchievementWritable
     {
-        #region IEmployeeAchievement implementation
-
         public int EmployeeAchievementID { get; set; }
 
         public int EmployeeID  { get; set; }
@@ -55,7 +53,5 @@ namespace R7.University.Models
         public virtual AchievementTypeInfo AchievementType { get; set; }
 
         public virtual AchievementInfo Achievement { get; set; }
- 
-        #endregion
     }
 }

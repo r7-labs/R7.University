@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -25,27 +25,52 @@ namespace R7.University.Models
 {
     public interface IDocument
     {
-        int DocumentID { get; set; }
+        int DocumentID { get; }
 
-        int DocumentTypeID { get; set; }
+        int DocumentTypeID { get; }
 
-        int? EduProgramId { get; set; }
+        int? EduProgramId { get; }
 
-        int? EduProgramProfileId { get; set; }
+        int? EduProgramProfileId { get; }
 
-        string Title { get; set; }
+        string Title { get; }
 
-        string Group { get; set; }
+        string Group { get; }
 
-        string Url { get; set; }
+        string Url { get; }
 
-        int SortIndex { get; set; }
+        int SortIndex { get; }
 
-        DateTime? StartDate { get; set; }
+        DateTime? StartDate { get; }
 
-        DateTime? EndDate { get; set; }
+        DateTime? EndDate { get; }
 
-        DocumentTypeInfo DocumentType { get; set; }
+        DocumentTypeInfo DocumentType { get; }
+    }
+
+    public interface IDocumentWritable: IDocument
+    {
+        new int DocumentID { get; set; }
+
+        new int DocumentTypeID { get; set; }
+
+        new int? EduProgramId { get; set; }
+
+        new int? EduProgramProfileId { get; set; }
+
+        new string Title { get; set; }
+
+        new string Group { get; set; }
+
+        new string Url { get; set; }
+
+        new int SortIndex { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new DocumentTypeInfo DocumentType { get; set; }
     }
 
     public delegate string GetDocumentTitle (IDocument document);

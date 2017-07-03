@@ -21,10 +21,8 @@
 
 namespace R7.University.Models
 {
-    public class EduLevelInfo: IEduLevel
+    public class EduLevelInfo: IEduLevelWritable
     {
-        #region IEduLevel implementation
-
         public int EduLevelID { get; set; }
 
         public string Title { get; set; }
@@ -36,8 +34,6 @@ namespace R7.University.Models
         public int? ParentEduLevelId { get; set; }
 
         public virtual EduLevelInfo ParentEduLevel { get; set; }
-
-        #endregion
     }
 }
 

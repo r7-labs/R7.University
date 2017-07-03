@@ -2,6 +2,11 @@
 {
     public interface ISystemEntity
     {
-        bool IsSystem { get; set; }
+        bool IsSystem { get; }
+    }
+
+    public interface ISystemEntityWritable: ISystemEntity
+    {
+        new bool IsSystem { get; set; }
     }
 }

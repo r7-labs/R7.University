@@ -37,7 +37,7 @@ namespace R7.University.ModelExtensions
             return Enum.TryParse<SystemDocumentType> (document.DocumentType.Type, out result) ? result : SystemDocumentType.Custom;
         }
 
-        public static void SetModelId (this IDocument document, DocumentModel model, int modelId)
+        public static void SetModelId (this IDocumentWritable document, DocumentModel model, int modelId)
         {
             if (model == DocumentModel.EduProgram) {
                 document.EduProgramId = modelId;

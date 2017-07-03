@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,21 +23,40 @@ namespace R7.University.Models
 {
     public interface IEduProgramProfileForm
     {
-        long EduProgramProfileFormID { get; set; }
+        long EduProgramProfileFormID { get; }
 
-        int EduProgramProfileID { get; set; }
+        int EduProgramProfileID { get; }
 
-        int EduFormID { get; set; }
+        int EduFormID { get; }
 
-        int TimeToLearn { get; set; }
+        int TimeToLearn { get; }
 
-        string TimeToLearnUnit { get; set; }
+        string TimeToLearnUnit { get; }
 
-        bool IsAdmissive { get; set; }
+        bool IsAdmissive { get; }
 
-        EduFormInfo EduForm { get; set; }
+        EduFormInfo EduForm { get; }
 
-        /*EduProgramProfileInfo EduProgramProfile { get; set; }*/
+        // EduProgramProfileInfo EduProgramProfile { get; }
+    }
+
+    public interface IEduProgramProfileFormWritable: IEduProgramProfileForm
+    {
+        new long EduProgramProfileFormID { get; set; }
+
+        new int EduProgramProfileID { get; set; }
+
+        new int EduFormID { get; set; }
+
+        new int TimeToLearn { get; set; }
+
+        new string TimeToLearnUnit { get; set; }
+
+        new bool IsAdmissive { get; set; }
+
+        new EduFormInfo EduForm { get; set; }
+
+
     }
 }
 

@@ -26,8 +26,6 @@ namespace R7.University.Models
 {
     public class EduProgramProfileInfo: IEduProgramProfileWritable
     {
-        #region IEduProgramProfile implementation
-
         public int EduProgramProfileID { get; set; }
 
         public int EduProgramID { get; set; }
@@ -67,7 +65,5 @@ namespace R7.University.Models
         public virtual ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; } = new HashSet<EduProgramProfileFormInfo> ();
 
         public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
-
-        #endregion
     }
 }

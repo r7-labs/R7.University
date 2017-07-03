@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,15 +23,28 @@ namespace R7.University.Models
 {
     public interface IAchievement
     {
-        int AchievementID { get; set; }
+        int AchievementID { get; }
 
-        int? AchievementTypeId { get; set; }
+        int? AchievementTypeId { get; }
 
-        string Title { get; set; }
+        string Title { get; }
 
-        string ShortTitle  { get; set; }
+        string ShortTitle  { get; }
 
-        AchievementTypeInfo AchievementType { get; set; }
+        AchievementTypeInfo AchievementType { get; }
+    }
+
+    public interface IAchievementWritable: IAchievement
+    {
+        new int AchievementID { get; set; }
+
+        new int? AchievementTypeId { get; set; }
+
+        new string Title { get; set; }
+
+        new string ShortTitle  { get; set; }
+
+        new AchievementTypeInfo AchievementType { get; set; }
     }
 }
 

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,23 +23,44 @@ namespace R7.University.Models
 {
     public interface IOccupiedPosition
     {
-        int OccupiedPositionID { get; set; }
+        int OccupiedPositionID { get; }
 
-        int PositionID { get; set; }
+        int PositionID { get; }
 
-        int DivisionID { get; set; }
+        int DivisionID { get; }
 
-        int EmployeeID { get; set; }
+        int EmployeeID { get; }
 
-        bool IsPrime { get; set; }
+        bool IsPrime { get; }
 
-        string TitleSuffix { get; set; }
+        string TitleSuffix { get; }
 
-        PositionInfo Position { get; set; }
+        PositionInfo Position { get; }
 
-        DivisionInfo Division { get; set; }
+        DivisionInfo Division { get; }
 
-        EmployeeInfo Employee { get; set; }
+        EmployeeInfo Employee { get; }
+    }
+
+    public interface IOccupiedPositionWritable: IOccupiedPosition
+    {
+        new int OccupiedPositionID { get; set; }
+
+        new int PositionID { get; set; }
+
+        new int DivisionID { get; set; }
+
+        new int EmployeeID { get; set; }
+
+        new bool IsPrime { get; set; }
+
+        new string TitleSuffix { get; set; }
+
+        new PositionInfo Position { get; set; }
+
+        new DivisionInfo Division { get; set; }
+
+        new EmployeeInfo Employee { get; set; }
     }
 }
 

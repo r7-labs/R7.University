@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,17 +23,32 @@ namespace R7.University.Models
 {
     public interface IEduLevel
     {
-        int EduLevelID { get; set; }
+        int EduLevelID { get; }
 
-        int SortIndex { get; set; }
+        int SortIndex { get; }
 
-        string Title { get; set; }
+        string Title { get; }
 
-        string ShortTitle { get; set; }
+        string ShortTitle { get; }
 
-        int? ParentEduLevelId { get; set; }
+        int? ParentEduLevelId { get; }
 
-        EduLevelInfo ParentEduLevel { get; set; }
+        EduLevelInfo ParentEduLevel { get; }
+    }
+
+    public interface IEduLevelWritable: IEduLevel
+    {
+        new int EduLevelID { get; set; }
+
+        new int SortIndex { get; set; }
+
+        new string Title { get; set; }
+
+        new string ShortTitle { get; set; }
+
+        new int? ParentEduLevelId { get; set; }
+
+        new EduLevelInfo ParentEduLevel { get; set; }
     }
 }
 

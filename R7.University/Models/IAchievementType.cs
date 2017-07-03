@@ -23,10 +23,19 @@ namespace R7.University.Models
 {
     public interface IAchievementType: ISystemEntity
     {
-        int AchievementTypeId { get; set; }
+        int AchievementTypeId { get; }
 
-        string Type { get; set; }
+        string Type { get; }
 
-        string Description { get; set; }
+        string Description { get; }
+    }
+
+    public interface IAchievementTypeWritable: IAchievementType, ISystemEntityWritable
+    {
+        new int AchievementTypeId { get; set; }
+
+        new string Type { get; set; }
+
+        new string Description { get; set; }
     }
 }

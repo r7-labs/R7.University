@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,11 +23,20 @@ namespace R7.University.Models
 {
     public interface IEduForm: ISystemEntity
     {
-        int EduFormID { get; set; }
+        int EduFormID { get; }
 
-        string Title { get; set; }
+        string Title { get; }
 
-        string ShortTitle { get; set; }
+        string ShortTitle { get; }
+    }
+
+    public interface IEduFormWritable: IEduForm, ISystemEntityWritable
+    {
+        new int EduFormID { get; set; }
+
+        new string Title { get; set; }
+
+        new string ShortTitle { get; set; }
     }
 }
 

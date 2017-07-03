@@ -21,10 +21,8 @@
 
 namespace R7.University.Models
 {
-    public class DocumentTypeInfo: IDocumentType
+    public class DocumentTypeInfo: IDocumentTypeWritable
     {
-        #region IDocumentType implementation
-
         public int DocumentTypeID { get; set; }
 
         public string Type { get; set; }
@@ -34,8 +32,6 @@ namespace R7.University.Models
         public bool IsSystem { get; set; }
 
         public string FilenameFormat { get; set; }
-
-        #endregion
     }
 }
 
