@@ -77,7 +77,7 @@ namespace R7.University.Employee.ViewModels
         public string Years_String
         {
             get {  
-                return FormatHelper.FormatYears (Model.YearBegin, Model.YearEnd,
+                return FormatHelper.FormatYears (EmployeeAchievement.YearBegin, EmployeeAchievement.YearEnd,
                                                  Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
             }
         }
