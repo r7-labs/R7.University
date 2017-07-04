@@ -313,6 +313,7 @@
     </None>
     <None Include="Controls\js\editDocuments.js" />
     <None Include="SqlDataProvider\01.14.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\01.15.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

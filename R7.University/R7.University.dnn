@@ -120,6 +120,10 @@
                             <name>SqlDataProvider\01.14.00.SqlDataProvider</name>
                             <version>01.14.00</version>
                         </script>
+						<script type="Install">
+                            <name>SqlDataProvider\01.15.00.SqlDataProvider</name>
+                            <version>01.15.00</version>
+                        </script>
                         <script type="UnInstall">
                             <name>SqlDataProvider\Uninstall.SqlDataProvider</name>
                         </script>
