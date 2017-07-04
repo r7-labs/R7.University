@@ -24,6 +24,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
@@ -87,7 +88,7 @@ namespace R7.University.Employee
        
         protected bool IsInPopup
         {
-            get { return UrlHelper.IsInPopup (Request); }
+            get { return UrlUtils.InPopUp (); }
         }
 
         protected bool InViewModule
@@ -211,7 +212,7 @@ namespace R7.University.Employee
                 linkReturn.Visible = false;
             }
             else {
-                linkReturn.NavigateUrl = UrlHelper.GetCancelUrl (UrlHelper.IsInPopup (Request));
+                linkReturn.NavigateUrl = UrlHelper.GetCancelUrl (UrlUtils.InPopUp ());
             }
 
             agplSignature.Visible = IsInPopup;
