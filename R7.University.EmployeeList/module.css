@@ -27,3 +27,11 @@
 .u8y-employee-list ._userprofile {
 	display:inline-block
 }
+
+.u8y-employee-list .employee-list-item {
+    display:block
+}
+
+.u8y-employee-list > br {
+    display:none
+}
