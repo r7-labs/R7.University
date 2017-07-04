@@ -221,7 +221,7 @@ namespace R7.University.Division
 
                 // then adding new division from Division module, 
                 // set calling module to display new division info
-                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Division") {
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_Division") {
                     var settingsRepository = new DivisionSettingsRepository ();
                     var settings = settingsRepository.GetSettings (ModuleConfiguration);
                     settings.DivisionID = item.DivisionID;

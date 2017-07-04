@@ -401,8 +401,8 @@ namespace R7.University.Employee
 
                 // then adding new employee from Employee or EmployeeDetails modules, 
                 // set calling module to display new employee
-                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee" ||
-                ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EmployeeDetails") {
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_Employee" ||
+                ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EmployeeDetails") {
                     var settingsRepository = new EmployeeSettingsRepository ();
                     var settings = settingsRepository.GetSettings (ModuleConfiguration);
                     settings.EmployeeID = item.EmployeeID;

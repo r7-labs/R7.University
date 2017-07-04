@@ -211,7 +211,7 @@ namespace R7.University.EduProgram
                 }
 
                 // update EduProgram module settings then adding new item
-                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.EduProgram") {
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduProgram") {
                     var settingsRepository = new EduProgramSettingsRepository ();
                     var settings = settingsRepository.GetSettings (ModuleConfiguration);
                     settings.EduProgramId = item.EduProgramID;

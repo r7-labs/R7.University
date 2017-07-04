@@ -51,6 +51,9 @@ BEGIN
         SET DefinitionName = N'R7_University_EmployeeList' WHERE DefinitionName = N'R7.University.EmployeeList'
 
     UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_EmployeeDetails' WHERE DefinitionName = N'R7.University.EmployeeDetails'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
         SET DefinitionName = N'R7_University_Launchpad' WHERE DefinitionName = N'R7.University.Launchpad'
 END
 GO
