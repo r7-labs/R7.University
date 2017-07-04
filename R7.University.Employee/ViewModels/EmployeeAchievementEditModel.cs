@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -32,9 +32,9 @@ using R7.University.ModelExtensions;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditModel: IEmployeeAchievement, IViewModel
+    public class EmployeeAchievementEditModel: IEmployeeAchievementWritable, IViewModel
     {
-        #region IEmployeeAchievement implementation
+        #region IEmployeeAchievementWritable implementation
 
         public int EmployeeAchievementID { get; set; }
 
@@ -123,7 +123,7 @@ namespace R7.University.Employee.ViewModels
             ItemID = ViewNumerator.GetNextItemID ();
         }
 
-        public EmployeeAchievementEditModel (IEmployeeAchievement achievement) : this ()
+        public EmployeeAchievementEditModel (IEmployeeAchievementWritable achievement) : this ()
         {
             CopyCstor.Copy (achievement, this);
 
@@ -144,7 +144,7 @@ namespace R7.University.Employee.ViewModels
         public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
         {
             var achievement = new EmployeeAchievementInfo ();
-            CopyCstor.Copy<IEmployeeAchievement> (this, achievement);
+            CopyCstor.Copy<IEmployeeAchievementWritable> (this, achievement);
 
             if (achievement.AchievementID != null) {
                 achievement.Title = null;

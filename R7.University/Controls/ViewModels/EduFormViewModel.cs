@@ -63,9 +63,9 @@ namespace R7.University.Controls
         {
         }
 
-        public EduFormViewModel (IEduForm eduForm, ViewModelContext context)
+        public EduFormViewModel (IEduFormWritable eduForm, ViewModelContext context)
         {
-            CopyCstor.Copy<IEduForm> (eduForm, this);
+            CopyCstor.Copy<IEduFormWritable> (eduForm, this);
             Context = context;
         }
 

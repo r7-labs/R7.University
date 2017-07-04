@@ -64,9 +64,9 @@ namespace R7.University.Controls
         {
         }
 
-        public DocumentTypeViewModel (IDocumentType documentType, ViewModelContext context)
+        public DocumentTypeViewModel (IDocumentTypeWritable documentType, ViewModelContext context)
         {
-            CopyCstor.Copy<IDocumentType> (documentType, this);
+            CopyCstor.Copy<IDocumentTypeWritable> (documentType, this);
             Context = context;
         }
 
@@ -79,7 +79,7 @@ namespace R7.University.Controls
         public DocumentTypeInfo ToModel ()
         {
             var document = new DocumentTypeInfo ();
-            CopyCstor.Copy<IDocumentType> (this, document);
+            CopyCstor.Copy<IDocumentTypeWritable> (this, document);
 
             return document;
         }

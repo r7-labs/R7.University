@@ -42,7 +42,7 @@ namespace R7.University.Controls
             EduProgramProfileFormInfo model, ViewModelContext context)
         {
             var viewModel = new EduProgramProfileFormViewModel ();
-            CopyCstor.Copy<IEduProgramProfileForm> (model, viewModel);
+            CopyCstor.Copy<IEduProgramProfileFormWritable> (model, viewModel);
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
             viewModel.Context = context;
 

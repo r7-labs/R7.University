@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,9 +27,9 @@ using R7.University.ViewModels;
 namespace R7.University.Employee.ViewModels
 {
     [Serializable]
-    public class OccupiedPositionEditModel: IOccupiedPosition
+    public class OccupiedPositionEditModel: IOccupiedPositionWritable
     {
-        #region IOccupiedPosition implementation
+        #region IOccupiedPositionWritable implementation
 
         public int OccupiedPositionID { get; set; }
 

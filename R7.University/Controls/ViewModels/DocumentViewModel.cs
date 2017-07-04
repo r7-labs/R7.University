@@ -115,7 +115,7 @@ namespace R7.University.Controls
         public IEditControlViewModel<DocumentInfo> FromModel (DocumentInfo model, ViewModelContext viewContext)
         {
             var viewModel = new DocumentViewModel ();
-            CopyCstor.Copy<IDocument> (model, viewModel);
+            CopyCstor.Copy<IDocumentWritable> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
             viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
