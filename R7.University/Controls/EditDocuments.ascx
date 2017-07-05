@@ -55,9 +55,9 @@
             <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
             <dnn:Url id="urlDocumentUrl" runat="server"
 				ShowNone="true" ShowFiles="true"
-				ShowTabs="true" IncludeActiveTab="true"
-				ShowUrls="true" ShowUsers="true"
-                ShowLog="false" ShowTrack="false"
+				ShowTabs="true" ShowUrls="true"
+				IncludeActiveTab="true"
+				ShowLog="false" ShowTrack="false"
                 ShowNewWindow="false" 
             />
 			<asp:CustomValidator id="valDocumentUrl" runat="server" ValidationGroup="Documents"
