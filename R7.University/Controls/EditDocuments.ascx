@@ -6,7 +6,7 @@
 
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDocuments.js" ForceProvider="DnnFormBottomProvider" />
 
-<div id="eduProgramDocuments" class="eduProgramDocuments">
+<asp:Panel id="panelEditDocuments" runat="server">
     <fieldset>
 		<div class="dnnFormItem" style="width:auto;margin-right:1.5em">
             <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" 
@@ -116,11 +116,11 @@
         </div>
         <asp:HiddenField id="hiddenDocumentItemID" runat="server" />
     </fieldset>
-</div>
+</asp:Panel>
 <script type="text/javascript">
 (function($, Sys) {
     function setupEditDocuments() {
-        $("#eduProgramDocuments").dnnPanels({defaultState: "closed"});
+        $("[id $= 'panelEditDocuments']").dnnPanels({defaultState: "closed"});
     };
     $(document).ready(function() {
         setupEditDocuments();
