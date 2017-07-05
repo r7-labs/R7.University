@@ -198,8 +198,11 @@ namespace R7.University.Controls
 
         protected void OnUpdateItemCommand (object sender, CommandEventArgs e)
         {
-            // TODO: Check form is valid
             try {
+                if (!Module.Page.IsValid) {
+                    return;
+                }
+
                 TViewModel item;
 
                 // get item list from viewstate
@@ -238,7 +241,6 @@ namespace R7.University.Controls
                 // bind items to the gridview
                 GridItems.DataSource = items;
                 GridItems.DataBind ();
-
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
