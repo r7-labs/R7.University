@@ -104,17 +104,10 @@ namespace R7.University.Controls
 
         #endregion
 
-        private string localResourceFile;
-
+        string _localResourceFile;
         public string LocalResourceFile
         {
-            get {
-                if (localResourceFile == null) {
-                    localResourceFile = DnnWebUiUtilities.GetLocalResourceFile (this);
-                }
-
-                return localResourceFile;
-            }
+            get { return _localResourceFile ?? (_localResourceFile = DnnWebUiUtilities.GetLocalResourceFile (this)); }
         }
 
         protected string LocalizeString (string value)
@@ -165,11 +158,10 @@ namespace R7.University.Controls
 
         #endregion
 
-        private ViewModelContext viewModelContext;
-
+        ViewModelContext _viewModelContext;
         protected ViewModelContext ViewModelContext
         {
-            get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this, Module)); }
+            get { return _viewModelContext ?? (_viewModelContext = new ViewModelContext (this, Module)); }
         }
 
         protected List<TViewModel> ViewStateItems
@@ -277,20 +269,6 @@ namespace R7.University.Controls
             }
         }
 
-        void SwitchToAddMode ()
-        {
-            ButtonAddItem.Visible = true;
-            ButtonCancelEditItem.Visible = false;
-            ButtonUpdateItem.Visible = false;
-        }
-
-        void SwitchToUpdateMode ()
-        {
-            ButtonAddItem.Visible = false;
-            ButtonCancelEditItem.Visible = true;
-            ButtonUpdateItem.Visible = true;
-        }
-
         protected void OnGridItemsRowDataBound (object sender, GridViewRowEventArgs e)
         {
             // hide ViewItemID column, also in header
@@ -376,6 +354,20 @@ namespace R7.University.Controls
         }
 
         #endregion
+
+        void SwitchToAddMode ()
+        {
+            ButtonAddItem.Visible = true;
+            ButtonCancelEditItem.Visible = false;
+            ButtonUpdateItem.Visible = false;
+        }
+
+        void SwitchToUpdateMode ()
+        {
+            ButtonAddItem.Visible = false;
+            ButtonCancelEditItem.Visible = true;
+            ButtonUpdateItem.Visible = true;
+        }
     }
 }
 
