@@ -17,6 +17,7 @@ namespace R7.University.Controls
         protected LinkButton buttonAddDocument;
         protected LinkButton buttonUpdateDocument;
         protected LinkButton buttonCancelEditDocument;
+        protected LinkButton buttonResetForm;
         protected CustomValidator valDocumentUrl;
     }
 }

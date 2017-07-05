@@ -105,7 +105,7 @@ namespace R7.University.Controls
         protected override void OnInitControls ()
         {
             InitControls (gridDocuments, hiddenDocumentItemID, 
-                buttonAddDocument, buttonUpdateDocument, buttonCancelEditDocument);
+                          buttonAddDocument, buttonUpdateDocument, buttonCancelEditDocument, buttonResetForm);
         }
 
         protected override void OnLoadItem (DocumentViewModel item)
@@ -131,14 +131,23 @@ namespace R7.University.Controls
             item.Url = urlDocumentUrl.Url;
         }
 
+        protected override void OnCancelEdit (DocumentViewModel item)
+        {
+            // fix for DnnUrlControl looses its state on postback
+            urlDocumentUrl.Url = item.Url;
+
+            base.OnCancelEdit (item);
+        }
+
         protected override void OnResetForm ()
         {
-            // comboDocumentType.SelectedIndex = 0;
             textDocumentTitle.Text = string.Empty;
+            textDocumentGroup.Text = string.Empty;
+            comboDocumentType.SelectedIndex = 0;
             textDocumentSortIndex.Text = "0";
             datetimeDocumentStartDate.SelectedDate = null;
             datetimeDocumentEndDate.SelectedDate = null;
-            // urlDocumentUrl.UrlType = "N";
+            urlDocumentUrl.UrlType = "F";
         }
 
         #endregion

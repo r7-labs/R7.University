@@ -53,8 +53,8 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
-            <dnn:Url id="urlDocumentUrl" runat="server" UrlType="F" 
-                ShowNone="true" ShowFiles="true"
+            <dnn:Url id="urlDocumentUrl" runat="server"
+				ShowNone="true" ShowFiles="true"
 				ShowTabs="true" IncludeActiveTab="true"
 				ShowUrls="true" ShowUsers="true"
                 ShowLog="false" ShowTrack="false"
@@ -99,6 +99,8 @@
                 CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update"
                 CausesValidation="true" ValidationGroup="Documents" />
             <asp:LinkButton id="buttonCancelEditDocument" runat="server" resourcekey="buttonCancelEditDocument" 
+                CssClass="dnnSecondaryAction" />
+			<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="buttonResetForm" 
                 CssClass="dnnSecondaryAction" />
         </div>
         <asp:HiddenField id="hiddenDocumentItemID" runat="server" />

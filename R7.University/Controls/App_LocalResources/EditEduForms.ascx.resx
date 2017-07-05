@@ -39,6 +39,9 @@
     <data name="buttonCancelEditEduForm.Text">
         <value>Cancel</value>
     </data>
+	<data name="buttonResetForm.Text">
+        <value>Reset</value>
+    </data>
     <data name="TimeToLearn.Format">
         <value>{0} years {1} months</value>
     </data>

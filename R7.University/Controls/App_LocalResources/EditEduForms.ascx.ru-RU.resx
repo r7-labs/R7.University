@@ -39,6 +39,9 @@
     <data name="buttonCancelEditEduForm.Text">
         <value>Отмена</value>
     </data>
+	<data name="buttonResetForm.Text">
+        <value>Очистить</value>
+    </data>
     <data name="TimeToLearn.Format">
         <value>{0} г. {1} мес.</value>
     </data>

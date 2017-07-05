@@ -96,6 +96,8 @@
                 CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
             <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="buttonCancelEditEduForm" 
                 CssClass="dnnSecondaryAction" />
+			<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="buttonResetForm" 
+                CssClass="dnnSecondaryAction" />
         </div>
         <asp:HiddenField id="hiddenEduFormItemID" runat="server" />
     </fieldset>

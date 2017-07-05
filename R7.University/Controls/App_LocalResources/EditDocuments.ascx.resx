@@ -117,6 +117,9 @@
     <data name="buttonCancelEditDocument.Text">
         <value>Cancel</value>
     </data>
+	<data name="buttonResetForm.Text">
+        <value>Reset</value>
+    </data>
     <data name="DocumentTitle.Column">
         <value>Title</value>
     </data>

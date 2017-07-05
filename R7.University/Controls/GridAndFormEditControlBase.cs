@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -41,10 +41,16 @@ namespace R7.University.Controls
         #region Controls
 
         protected GridView GridItems;
+
         protected HiddenField HiddenViewItemID;
+
         protected LinkButton ButtonAddItem;
+
         protected LinkButton ButtonUpdateItem;
+
         protected LinkButton ButtonCancelEditItem;
+
+        protected LinkButton ButtonResetForm;
 
         #endregion
 
@@ -54,6 +60,19 @@ namespace R7.University.Controls
 
         protected abstract void OnUpdateItem (TViewModel item);
 
+        /// <summary>
+        /// Called user clicks the cancel edit button.
+        /// Override this to fix wierd behavior of controls like DnnUrlControl which loose its state on postback.
+        /// </summary>
+        /// <param name="item">Item.</param>
+        protected virtual void OnCancelEdit (TViewModel item)
+        {
+        }
+
+        /// <summary>
+        /// Called when form initialized and when user clicks the reset form button.
+        /// Implementation must contain code to reset form to default values.
+        /// </summary>
         protected abstract void OnResetForm ();
 
         protected abstract void OnInitControls ();
@@ -61,13 +80,14 @@ namespace R7.University.Controls
         #endregion
 
         protected void InitControls (GridView gridItems, HiddenField hiddenViewItemId, LinkButton buttonAddItem, 
-            LinkButton buttonUpdateItem, LinkButton buttonCancelEditItem)
+                                     LinkButton buttonUpdateItem, LinkButton buttonCancelEditItem, LinkButton buttonResetForm)
         {
             GridItems = gridItems;
             HiddenViewItemID = hiddenViewItemId;
             ButtonAddItem = buttonAddItem;
             ButtonUpdateItem = buttonUpdateItem;
             ButtonCancelEditItem = buttonCancelEditItem;
+            ButtonResetForm = buttonResetForm;
         }
 
         #region Bindable icons
@@ -170,10 +190,13 @@ namespace R7.University.Controls
             ButtonAddItem.Command += OnUpdateItemCommand;
             ButtonUpdateItem.Command += OnUpdateItemCommand;
             ButtonCancelEditItem.Click += OnCancelEditItemClick;
+            ButtonResetForm.Click += OnResetFormClick;
             GridItems.RowDataBound += OnGridItemsRowDataBound;
 
             // localize gridview columns
             GridItems.LocalizeColumns (LocalResourceFile);
+
+            OnResetForm ();
         }
 
         #endregion
@@ -182,6 +205,7 @@ namespace R7.University.Controls
 
         protected void OnUpdateItemCommand (object sender, CommandEventArgs e)
         {
+            // TODO: Check form is valid
             try {
                 TViewModel item;
 
@@ -208,7 +232,7 @@ namespace R7.University.Controls
                     items.Add (item);
                 }
 
-                ResetForm ();
+                SwitchToAddMode ();
 
                 // refresh viewstate
                 ViewStateItems = items;
@@ -231,20 +255,40 @@ namespace R7.University.Controls
         protected void OnCancelEditItemClick (object sender, EventArgs e)
         {
             try {
-                ResetForm ();
+                var item = ViewStateItems.FirstOrDefault (i => i.ViewItemID.ToString () == HiddenViewItemID.Value);
+                if (item != null) {
+                    OnCancelEdit (item);
+                }
+
+                SwitchToAddMode ();
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
             }
         }
 
-        void ResetForm ()
+        protected void OnResetFormClick (object sender, EventArgs e)
         {
-            // restore default buttons visibility
-            ButtonAddItem.Visible = true;
-            ButtonUpdateItem.Visible = false;
+            try {
+                OnResetForm ();
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (Module, ex);
+            }
+        }
 
-            OnResetForm ();
+        void SwitchToAddMode ()
+        {
+            ButtonAddItem.Visible = true;
+            ButtonCancelEditItem.Visible = false;
+            ButtonUpdateItem.Visible = false;
+        }
+
+        void SwitchToUpdateMode ()
+        {
+            ButtonAddItem.Visible = false;
+            ButtonCancelEditItem.Visible = true;
+            ButtonUpdateItem.Visible = true;
         }
 
         protected void OnGridItemsRowDataBound (object sender, GridViewRowEventArgs e)
@@ -284,9 +328,7 @@ namespace R7.University.Controls
                         // store ViewItemID in the hidden field
                         HiddenViewItemID.Value = item.ViewItemID.ToString ();
 
-                        // show / hide buttons
-                        ButtonAddItem.Visible = false;
-                        ButtonUpdateItem.Visible = true;
+                        SwitchToUpdateMode ();
                     }
                 }
             }
@@ -321,9 +363,9 @@ namespace R7.University.Controls
                         GridItems.DataSource = items;
                         GridItems.DataBind ();
 
-                        // reset form if we deleting currently edited item
+                        // return to Add mode if we deleting currently edited item
                         if (ButtonUpdateItem.Visible && HiddenViewItemID.Value == itemId) {
-                            ResetForm ();
+                            SwitchToAddMode ();
                         }
                     }
                 }
