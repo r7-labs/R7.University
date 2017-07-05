@@ -114,12 +114,6 @@
     <data name="buttonUpdateDocument.Text">
         <value>Сохранить документ</value>
     </data>
-    <data name="buttonCancelEditDocument.Text">
-        <value>Отмена</value>
-    </data>
-	<data name="buttonResetForm.Text">
-        <value>Очистить</value>
-    </data>
     <data name="DocumentTitle.Column">
         <value>Название</value>
     </data>

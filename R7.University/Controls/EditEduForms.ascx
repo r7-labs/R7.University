@@ -100,12 +100,12 @@
                         CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
 				</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="buttonCancelEditEduForm" 
+				    <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
-					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="buttonResetForm" 
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
                         CssClass="dnnSecondaryAction" />
 				</li>
 			</ul>	
