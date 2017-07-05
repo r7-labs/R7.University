@@ -6,7 +6,7 @@
 
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDocuments.js" ForceProvider="DnnFormBottomProvider" />
 
-<asp:Panel id="panelEditDocuments" runat="server">
+<asp:Panel id="panelEditDocuments" runat="server" CssClass="u8y-edit-documents">
     <fieldset>
 		<div class="dnnFormItem" style="width:auto;margin-right:1.5em">
             <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" 

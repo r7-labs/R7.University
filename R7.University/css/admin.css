@@ -63,6 +63,10 @@
     margin-left:1.75em;
 }
 
+.u8y-edit-documents .urlControl .dnnClear br {
+    display:none
+}
+
 /* jQuery UI excerpt */
 .ui-menu {
     list-style: none;
