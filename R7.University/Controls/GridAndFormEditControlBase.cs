@@ -61,7 +61,7 @@ namespace R7.University.Controls
         protected abstract void OnUpdateItem (TViewModel item);
 
         /// <summary>
-        /// Called user clicks the cancel edit button.
+        /// Called when user clicks the cancel edit button.
         /// Override this to fix wierd behavior of controls like DnnUrlControl which loose its state on postback.
         /// </summary>
         /// <param name="item">Item.</param>
@@ -189,6 +189,7 @@ namespace R7.University.Controls
             GridItems.LocalizeColumns (LocalResourceFile);
 
             OnResetForm ();
+            SwitchToAddMode ();
         }
 
         #endregion

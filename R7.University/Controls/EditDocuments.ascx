@@ -92,16 +92,27 @@
         </fieldset>
 		<div class="dnnFormItem">
             <div class="dnnLabel"></div>
-            <asp:LinkButton id="buttonAddDocument" runat="server" resourcekey="buttonAddDocument" 
-                CssClass="dnnPrimaryAction" CommandArgument="Add"
-                CausesValidation="true" ValidationGroup="Documents" />
-            <asp:LinkButton id="buttonUpdateDocument" runat="server" resourcekey="buttonUpdateDocument" 
-                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update"
-                CausesValidation="true" ValidationGroup="Documents" />
-            <asp:LinkButton id="buttonCancelEditDocument" runat="server" resourcekey="buttonCancelEditDocument" 
-                CssClass="dnnSecondaryAction" />
-			<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="buttonResetForm" 
-                CssClass="dnnSecondaryAction" />
+			<ul class="dnnActions">
+                <li>
+					<asp:LinkButton id="buttonAddDocument" runat="server" resourcekey="buttonAddDocument" 
+                        CssClass="dnnPrimaryAction" CommandArgument="Add"
+                        CausesValidation="true" ValidationGroup="Documents" />
+				</li>	
+                <li>
+					<asp:LinkButton id="buttonUpdateDocument" runat="server" resourcekey="buttonUpdateDocument" 
+                        CssClass="dnnPrimaryAction" CommandArgument="Update"
+                        CausesValidation="true" ValidationGroup="Documents" />
+				</li>	
+                <li>
+					<asp:LinkButton id="buttonCancelEditDocument" runat="server" resourcekey="buttonCancelEditDocument" 
+                        CssClass="dnnSecondaryAction" />
+				</li>
+				<li>&nbsp;</li>
+    			<li>
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="buttonResetForm" 
+                    CssClass="dnnSecondaryAction" />
+				</li>	
+			</ul>	
         </div>
         <asp:HiddenField id="hiddenDocumentItemID" runat="server" />
     </fieldset>

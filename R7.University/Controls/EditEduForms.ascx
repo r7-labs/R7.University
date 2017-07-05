@@ -88,16 +88,27 @@
         </div>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
-            <asp:LinkButton id="buttonAddEduForm" runat="server" resourcekey="buttonAddEduForm" 
-                CssClass="dnnPrimaryAction" CommandArgument="Add" 
-                CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
-            <asp:LinkButton id="buttonUpdateEduForm" runat="server" resourcekey="buttonUpdateEduForm" 
-                CssClass="dnnPrimaryAction" Visible="false" CommandArgument="Update" 
-                CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
-            <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="buttonCancelEditEduForm" 
-                CssClass="dnnSecondaryAction" />
-			<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="buttonResetForm" 
-                CssClass="dnnSecondaryAction" />
+			<ul class="dnnActions">
+				<li>
+                    <asp:LinkButton id="buttonAddEduForm" runat="server" resourcekey="buttonAddEduForm" 
+                        CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                        CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
+				</li>	
+                <li>
+				    <asp:LinkButton id="buttonUpdateEduForm" runat="server" resourcekey="buttonUpdateEduForm" 
+                        CssClass="dnnPrimaryAction" CommandArgument="Update" 
+                        CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
+				</li>
+                <li>
+				    <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="buttonCancelEditEduForm" 
+                        CssClass="dnnSecondaryAction" />
+				</li>
+				<li>&nbsp;</li>
+    			<li>
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="buttonResetForm" 
+                        CssClass="dnnSecondaryAction" />
+				</li>
+			</ul>	
         </div>
         <asp:HiddenField id="hiddenEduFormItemID" runat="server" />
     </fieldset>
