@@ -29,7 +29,7 @@ using R7.University.Utilities;
 namespace R7.University.Controls
 {
     public partial class EditEduForms: 
-        GridAndFormEditControlBase<EduProgramProfileFormInfo,EduProgramProfileFormViewModel>
+        GridAndFormControlBase<EduProgramProfileFormInfo,EduProgramProfileFormViewModel>
     {
         public void OnInit (PortalModuleBase module, IEnumerable<EduFormInfo> eduForms)
         {

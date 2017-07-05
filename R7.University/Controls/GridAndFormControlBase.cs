@@ -1,5 +1,5 @@
 //
-//  GridAndFormEditControlBase.cs
+//  GridAndFormControlBase.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -35,7 +35,7 @@ using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 
 namespace R7.University.Controls
 {
-    public abstract class GridAndFormEditControlBase<TModel,TViewModel>: UserControl
+    public abstract class GridAndFormControlBase<TModel,TViewModel>: UserControl
         where TViewModel: class, IEditControlViewModel<TModel>, new()
     {
         #region Controls

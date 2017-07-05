@@ -39,7 +39,7 @@ using R7.University.Utilities;
 namespace R7.University.Controls
 {
     public partial class EditDocuments: 
-        GridAndFormEditControlBase<DocumentInfo,DocumentViewModel>
+        GridAndFormControlBase<DocumentInfo,DocumentViewModel>
     {
         #region Control properties
 
