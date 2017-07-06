@@ -27,6 +27,7 @@ using DotNetNuke.Security;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.Division.Components;
 using R7.University.Division.Queries;
 using R7.University.Division.ViewModels;
@@ -57,18 +58,26 @@ namespace R7.University.Division.Controllers
         [ModuleActionItems]
         public ActionResult Index ()
         {
-            using (var modelContext = new UniversityModelContext ()) {
-                // TODO: Use cache
-                var division = new DivisionQuery (modelContext).SingleOrDefault (Settings.DivisionID);
-                if (division != null) {
-                    return View (
-                        new DivisionViewModel (division,
-                            new ViewModelContext<DivisionSettings> (ModuleContext, LocalResourceFile, Settings)
-                        )
-                    );
-                }
+            var division = DataCache.GetCachedData<IDivision> (
+                new CacheItemArgs ("//r7_University/Division?ModuleId=" + ActiveModule.ModuleID, UniversityConfig.Instance.DataCacheTime),
+                (c) => GetDivision ()
+            );
 
-                return View (new DivisionViewModel ());
+            if (division != null) {
+                return View (
+                    new DivisionViewModel (division,
+                        new ViewModelContext<DivisionSettings> (ModuleContext, LocalResourceFile, Settings)
+                    )
+                );
+            }
+
+            return View (new DivisionViewModel ());
+        }
+
+        IDivision GetDivision ()
+        {
+            using (var modelContext = new UniversityModelContext ()) {
+                return new DivisionQuery (modelContext).SingleOrDefault (Settings.DivisionID);
             }
         }
 
