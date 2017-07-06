@@ -158,8 +158,8 @@ namespace R7.University.Controls
 
             // speedup adding new documents by autoselecting first document's folder
             if (items.Count > 0) {
-                var firstItem = items [0];
-                if (Globals.GetURLType (firstItem.Url) == TabType.File) {
+                var firstItem = items.FirstOrDefault (d => Globals.GetURLType (d.Url) == TabType.File);
+                if (firstItem != null) {
                     urlDocumentUrl.Url = firstItem.Url;
                 }
             }
