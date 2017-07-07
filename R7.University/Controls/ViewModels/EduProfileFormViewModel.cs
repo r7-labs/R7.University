@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ using System;
 using System.Xml.Serialization;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Controls.ViewModels;
 using R7.University.ViewModels;
 using R7.University.Models;
 
