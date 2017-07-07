@@ -39,7 +39,7 @@ namespace R7.University.Controls
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
-        public IEditControlViewModel<EduProgramProfileFormInfo> FromModel (
+        public IEditControlViewModel<EduProgramProfileFormInfo> Create (
             EduProgramProfileFormInfo model, ViewModelContext context)
         {
             var viewModel = new EduProgramProfileFormViewModel ();
@@ -50,7 +50,7 @@ namespace R7.University.Controls
             return viewModel;
         }
 
-        public EduProgramProfileFormInfo ToModel ()
+        public EduProgramProfileFormInfo CreateModel ()
         {
             var model = new EduProgramProfileFormInfo ();
             CopyCstor.Copy<IEduProgramProfileForm> (this, model);

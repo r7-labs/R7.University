@@ -113,7 +113,7 @@ namespace R7.University.Controls
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
-        public IEditControlViewModel<DocumentInfo> FromModel (DocumentInfo model, ViewModelContext viewContext)
+        public IEditControlViewModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
         {
             var viewModel = new DocumentViewModel ();
             CopyCstor.Copy<IDocumentWritable> (model, viewModel);
@@ -125,7 +125,7 @@ namespace R7.University.Controls
             return viewModel;
         }
 
-        public DocumentInfo ToModel ()
+        public DocumentInfo CreateModel ()
         {
             var model = new DocumentInfo ();
             CopyCstor.Copy<IDocument> (this, model);

@@ -139,7 +139,7 @@ namespace R7.University.Controls
         {
             var items = ViewStateItems;
             if (items != null) {
-                return items.Select (i => i.ToModel ()).ToList ();
+                return items.Select (i => i.CreateModel ()).ToList ();
             }
 
             return new List<TModel> ();
@@ -150,7 +150,7 @@ namespace R7.University.Controls
             TargetItemId = targetItemId;
 
             var convertor = new TViewModel ();
-            var viewModels = items.Select (i => (TViewModel) convertor.FromModel (i, ViewModelContext)).ToList ();
+            var viewModels = items.Select (i => (TViewModel) convertor.Create (i, ViewModelContext)).ToList ();
             ViewStateItems = viewModels;
 
             GridItems.DataSource = viewModels;

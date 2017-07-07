@@ -29,9 +29,9 @@ namespace R7.University.Controls.ViewModels
 
         ViewModelContext Context { get; set; }
 
-        TModel ToModel ();
+        TModel CreateModel ();
 
-        IEditControlViewModel<TModel> FromModel (TModel model, ViewModelContext context);
+        IEditControlViewModel<TModel> Create (TModel model, ViewModelContext context);
 
         void SetTargetItemId (int targetItemId, string targetItemKey);
     }
