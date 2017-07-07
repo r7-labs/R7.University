@@ -67,6 +67,28 @@
     display:none
 }
 
+.u8y-edit-marker {
+    display:inline-block;
+    width:16px;
+    height:16px;
+    border-radius:8px;
+    color:transparent;
+    vertical-align:bottom;
+    margin-left:1em
+}
+
+.u8y-deleted {
+    background-color:#C00
+}
+
+.u8y-added {
+    background-color:#0C0
+}
+
+.u8y-updated {
+    background-color:#00C
+}
+
 /* jQuery UI excerpt */
 .ui-menu {
     list-style: none;

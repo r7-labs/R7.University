@@ -39,6 +39,14 @@ namespace R7.University.Controls
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
+        ModelEditState _editState;
+        public ModelEditState EditState {
+            get { return _editState; }
+            set { PrevEditState = _editState; _editState = value; }
+        }
+
+        public ModelEditState PrevEditState { get; set; }
+
         public IEditControlViewModel<EduProgramProfileFormInfo> Create (
             EduProgramProfileFormInfo model, ViewModelContext context)
         {
@@ -61,6 +69,22 @@ namespace R7.University.Controls
         public void SetTargetItemId (int targetItemId, string targetItemKey)
         {
             EduProgramProfileID = targetItemId;
+        }
+
+        [XmlIgnore]
+        public string CssClass {
+            get {
+                var cssClass = string.Empty;
+                if (EditState == ModelEditState.Deleted) {
+                    cssClass += " u8y-deleted";
+                } else if (EditState == ModelEditState.Added) {
+                    cssClass += " u8y-added";
+                } else if (EditState == ModelEditState.Updated) {
+                    cssClass += " u8y-updated";
+                }
+
+                return cssClass.TrimStart ();
+            }
         }
 
         #endregion

@@ -85,6 +85,7 @@ namespace R7.University.Controls
             };
         }
 
+        // TODO: Move to the base class by introducing IPublishable
         protected void gridDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow) {

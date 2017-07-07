@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Web;
 using System.Xml.Serialization;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
@@ -28,10 +29,10 @@ using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Controls.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using R7.University.ModelExtensions;
 
 namespace R7.University.Controls
 {
@@ -113,6 +114,14 @@ namespace R7.University.Controls
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
+        ModelEditState _editState;
+        public ModelEditState EditState {
+            get { return _editState; }
+            set { PrevEditState = _editState; _editState = value; }
+        }
+
+        public ModelEditState PrevEditState { get; set; }
+
         public IEditControlViewModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
         {
             var viewModel = new DocumentViewModel ();
@@ -136,6 +145,26 @@ namespace R7.University.Controls
         public void SetTargetItemId (int targetItemId, string targetItemKey)
         {
             this.SetModelId ((DocumentModel) Enum.Parse (typeof (DocumentModel), targetItemKey), targetItemId);
+        }
+
+        [XmlIgnore]
+        public string CssClass {
+            get {
+                var cssClass = string.Empty;
+                if (!this.IsPublished (HttpContext.Current.Timestamp)) {
+                    cssClass += " u8y-not-published";
+                }
+
+                if (EditState == ModelEditState.Deleted) {
+                    cssClass += " u8y-deleted";
+                } else if (EditState == ModelEditState.Added) {
+                    cssClass += " u8y-added";
+                } else if (EditState == ModelEditState.Updated) {
+                    cssClass += " u8y-updated";
+                }
+
+                return cssClass.TrimStart ();
+            }
         }
 
         #endregion

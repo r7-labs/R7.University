@@ -31,6 +31,7 @@ using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.Controls.ViewModels;
+using R7.University.Models;
 using R7.University.Utilities;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 
@@ -101,6 +102,11 @@ namespace R7.University.Controls
         protected string DeleteIconUrl
         {
             get { return IconController.IconURL ("Delete"); }
+        }
+
+        protected string UndeleteIconUrl
+        {
+            get { return "~/DesktopModules/MVC/R7.University/R7.University/images/Rollback_16x16_Standard.png"; }
         }
 
         #endregion
@@ -215,11 +221,16 @@ namespace R7.University.Controls
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add") {
                     item = new TViewModel ();
+                    item.EditState = ModelEditState.Added;
                 }
                 else {
                     // restore ItemID from hidden field
                     var hiddenViewItemId = int.Parse (HiddenViewItemID.Value);
                     item = items.Find (i => i.ViewItemID == hiddenViewItemId);
+
+                    if (item.EditState != ModelEditState.Added) {
+                        item.EditState = ModelEditState.Updated;
+                    }
                 }
 
                 OnUpdateItem (item);
@@ -282,15 +293,26 @@ namespace R7.University.Controls
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 // find edit and delete linkbuttons
                 var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
+                var linkUndelete = e.Row.Cells [0].FindControl ("linkUndelete") as LinkButton;
                 var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
+                var labelEditMarker = (Label) e.Row.Cells [0].FindControl ("labelEditMarker");
 
-                // set record Id to delete
+                // set itemId
                 linkEdit.CommandArgument = e.Row.Cells [1].Text;
                 linkDelete.CommandArgument = e.Row.Cells [1].Text;
+                linkUndelete.CommandArgument = e.Row.Cells [1].Text;
 
-                // add confirmation dialog to delete link
-                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('"
-                    + Localization.GetString ("DeleteItem") + "');");
+                var item = (IEditControlViewModel<TModel>) e.Row.DataItem;
+
+                if (item.EditState == ModelEditState.Deleted) {
+                    linkDelete.Visible = false;
+                    linkUndelete.Visible = true;
+                }
+                else {
+                    linkUndelete.Visible = false;
+                }
+
+                labelEditMarker.CssClass = "u8y-edit-marker " + item.CssClass;
             }
         }
 
@@ -331,7 +353,17 @@ namespace R7.University.Controls
 
                     if (itemIndex >= 0) {
                         // remove item
-                        items.RemoveAt (itemIndex);
+
+                        // TODO: Remove old code
+                        // items.RemoveAt (itemIndex);
+
+                        var item = items [itemIndex];
+                        if (item.EditState != ModelEditState.Added) {
+                            item.EditState = ModelEditState.Deleted;    
+                        }
+                        else {
+                            items.RemoveAt (itemIndex);
+                        }
 
                         // refresh viewstate
                         ViewStateItems = items;
@@ -349,6 +381,37 @@ namespace R7.University.Controls
                         if (ButtonUpdateItem.Visible && HiddenViewItemID.Value == itemId) {
                             SwitchToAddMode ();
                         }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Exceptions.ProcessModuleLoadException (Module, ex);
+            }
+        }
+
+        protected void OnUndeleteItemCommand (object sender, CommandEventArgs e)
+        {
+            try {
+                var items = ViewStateItems;
+                if (items != null) {
+                    var itemId = e.CommandArgument.ToString ();
+                    var item = items.Find (i => i.ViewItemID.ToString () == itemId);
+                    if (item != null) {
+
+                        // restore previous edit state
+                        item.EditState = item.PrevEditState;
+                  
+                        // refresh viewstate
+                        ViewStateItems = items;
+
+                        // rebind viewmodels to context
+                        foreach (var form in items) {
+                            form.Context = ViewModelContext;
+                        }
+
+                        // bind items to the gridview
+                        GridItems.DataSource = items;
+                        GridItems.DataBind ();
                     }
                 }
             }

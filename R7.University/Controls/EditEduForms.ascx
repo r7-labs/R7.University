@@ -26,6 +26,10 @@
                                 <asp:LinkButton id="linkDelete" runat="server" OnCommand="OnDeleteItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
                                 </asp:LinkButton>
+                                <asp:LinkButton id="linkUndelete" runat="server" OnCommand="OnUndeleteItemCommand" >
+                                    <asp:Image runat="server" ImageUrl="<%# UndeleteIconUrl %>" />
+                                </asp:LinkButton>
+								<asp:Label id="labelEditMarker" runat="server" />
                             </span>
                        </ItemTemplate>
                     </asp:TemplateField>

@@ -5,12 +5,13 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDocuments.js" ForceProvider="DnnFormBottomProvider" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
 
 <asp:Panel id="panelEditDocuments" runat="server" CssClass="u8y-edit-documents">
     <fieldset>
 		<div class="dnnFormItem" style="width:auto;margin-right:1.5em">
             <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" 
-					OnRowDataBound="gridDocuments_RowDataBound"
+                    OnRowDataBound="gridDocuments_RowDataBound"
 					CssClass="dnnGrid" GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                 <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
@@ -29,7 +30,11 @@
                                 <asp:LinkButton id="linkDelete" runat="server" OnCommand="OnDeleteItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
                                 </asp:LinkButton>
-                            </span>
+								<asp:LinkButton id="linkUndelete" runat="server" OnCommand="OnUndeleteItemCommand" >
+                                    <asp:Image runat="server" ImageUrl="<%# UndeleteIconUrl %>" />
+                                </asp:LinkButton>
+                                <asp:Label id="labelEditMarker" runat="server" />
+							</span>
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
