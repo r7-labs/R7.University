@@ -151,6 +151,16 @@ namespace R7.University.Controls
             return new List<TModel> ();
         }
 
+        public virtual IEnumerable<TViewModel> GetModifiedData ()
+        {
+            var items = ViewStateItems;
+            if (items != null) {
+                return items.Where (i => i.EditState != ModelEditState.Untouched).ToList ();
+            }
+
+            return new List<TViewModel> ();
+        }
+
         public virtual void SetData (List<TModel> items, int targetItemId)
         {
             TargetItemId = targetItemId;

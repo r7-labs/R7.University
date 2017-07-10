@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,10 +19,8 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using R7.University.Components;
+using R7.University.Controls.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 
@@ -37,42 +35,22 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void UpdateDocuments (IList<DocumentInfo> documents, DocumentModel model, int itemId)
+        public void UpdateDocuments (IEnumerable<IEditControlViewModel<DocumentInfo>> documents, DocumentModel model, int itemId)
         {
-            var originalDocuments = default (IList<DocumentInfo>);
-
-            if (model == DocumentModel.EduProgram) {
-                originalDocuments = ModelContext.Query<DocumentInfo> ()
-                    .Where (d => d.EduProgramId == itemId)
-                    .ToList ();
-            }
-            else if (model == DocumentModel.EduProgramProfile) {
-                originalDocuments = ModelContext.Query<DocumentInfo> ()
-                    .Where (d => d.EduProgramProfileId == itemId)
-                    .ToList ();
-            }
-            else {
-                throw new ArgumentException ("Wrong model argument.");
-            }
-
             foreach (var document in documents) {
-                var originalDocument = originalDocuments.SingleOrDefault (d => d.DocumentID == document.DocumentID);
-                if (originalDocument == null) {
-                    document.SetModelId (model, itemId);
-                    ModelContext.Add<DocumentInfo> (document);
+                var d = document.CreateModel ();
+                switch (document.EditState) {
+                    case ModelEditState.Added:
+                        d.SetModelId (model, itemId);
+                        ModelContext.Add (d);
+                        break;
+                    case ModelEditState.Updated:
+                        ModelContext.UpdateExternal (d);
+                        break;
+                    case ModelEditState.Deleted:
+                        ModelContext.RemoveExternal (d);
+                        break;
                 }
-                else {
-                    CopyCstor.Copy<DocumentInfo> (document, originalDocument);
-                    ModelContext.Update<DocumentInfo> (originalDocument);
-
-                    // do not delete this document later
-                    originalDocuments.Remove (originalDocument);
-                }
-            }
-
-            // should delete all remaining documents
-            foreach (var originalDocument in originalDocuments) {
-                ModelContext.Remove<DocumentInfo> (originalDocument);
             }
         }
     }

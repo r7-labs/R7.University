@@ -219,7 +219,8 @@ namespace R7.University.EduProgram
                 }
 
                 new UpdateDocumentsCommand (ModelContext)
-                    .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
+                    .UpdateDocuments (formEditDocuments.GetModifiedData(),
+                                              DocumentModel.EduProgram, item.EduProgramID);
 
                 ModelContext.SaveChanges ();
             }
@@ -232,8 +233,9 @@ namespace R7.University.EduProgram
             ModelContext.Update (item);
 
             new UpdateDocumentsCommand (ModelContext)
-                .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgram, item.EduProgramID);
-
+                .UpdateDocuments (formEditDocuments.GetModifiedData(),
+                                          DocumentModel.EduProgram, item.EduProgramID);
+ 
             ModelContext.SaveChanges ();
         }
 

@@ -242,7 +242,7 @@ namespace R7.University.Launchpad
                 ModelContext.SaveChanges (false);
 
                 new UpdateDocumentsCommand (ModelContext)
-                    .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
+                    .UpdateDocuments (formEditDocuments.GetModifiedData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
 
                 new UpdateEduProgramProfileFormsCommand (ModelContext)
                     .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
@@ -258,7 +258,7 @@ namespace R7.University.Launchpad
             ModelContext.Update (item);
 
             new UpdateDocumentsCommand (ModelContext)
-                .UpdateDocuments (formEditDocuments.GetData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
+                .UpdateDocuments (formEditDocuments.GetModifiedData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
 
             new UpdateEduProgramProfileFormsCommand (ModelContext)
                 .UpdateEduProgramProfileForms (formEditEduForms.GetData (), item.EduProgramProfileID);
