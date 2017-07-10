@@ -69,12 +69,11 @@
 
 .u8y-edit-marker {
     display:inline-block;
-    width:16px;
-    height:16px;
-    border-radius:8px;
+    width:8px;
+    height:8px;
+    border-radius:4px;
     color:transparent;
-    vertical-align:bottom;
-    margin-left:1em
+    margin-left:.5em
 }
 
 .u8y-deleted {
