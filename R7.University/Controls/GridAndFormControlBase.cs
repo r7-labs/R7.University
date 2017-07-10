@@ -141,6 +141,7 @@ namespace R7.University.Controls
 
         #region Set and get data
 
+        [Obsolete]
         public virtual List<TModel> GetData ()
         {
             var items = ViewStateItems;

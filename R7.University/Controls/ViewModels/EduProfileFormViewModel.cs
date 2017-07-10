@@ -61,7 +61,7 @@ namespace R7.University.Controls
         public EduProgramProfileFormInfo CreateModel ()
         {
             var model = new EduProgramProfileFormInfo ();
-            CopyCstor.Copy<IEduProgramProfileForm> (this, model);
+            CopyCstor.Copy<IEduProgramProfileFormWritable> (this, model);
 
             return model;
         }
