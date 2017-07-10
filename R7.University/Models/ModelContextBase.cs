@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -114,11 +114,18 @@ namespace R7.University.Models
         public virtual void UpdateExternal<TEntity> (TEntity entity) where TEntity: class
         {
             Context.Set<TEntity> ().Attach (entity);
+            Context.WasModified (entity);
         }
 
         public virtual void Remove<TEntity> (TEntity entity) where TEntity: class
         {
             Context.Set<TEntity> ().Remove (entity);
+        }
+
+        public virtual void RemoveExternal<TEntity> (TEntity entity) where TEntity: class
+        {
+            Context.Set<TEntity> ().Attach (entity);
+            Context.WasRemoved (entity);
         }
 
         public bool Exists<TEntity> (TEntity entity) where TEntity : class

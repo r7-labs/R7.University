@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -44,6 +44,11 @@ namespace R7.University.Tests.Data
         }
 
         public void WasModified<TEntity> (TEntity entity) where TEntity : class
+        {
+            throw new NotImplementedException ();
+        }
+
+        public void WasRemoved<TEntity> (TEntity entity) where TEntity : class
         {
             throw new NotImplementedException ();
         }
