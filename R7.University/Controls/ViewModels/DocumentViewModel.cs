@@ -137,7 +137,7 @@ namespace R7.University.Controls
         public DocumentInfo CreateModel ()
         {
             var model = new DocumentInfo ();
-            CopyCstor.Copy<IDocument> (this, model);
+            CopyCstor.Copy<IDocumentWritable> (this, model);
 
             return model;
         }
