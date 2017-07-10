@@ -44,7 +44,7 @@ namespace R7.University.Commands
                         d.SetModelId (model, itemId);
                         ModelContext.Add (d);
                         break;
-                    case ModelEditState.Updated:
+                    case ModelEditState.Modified:
                         ModelContext.UpdateExternal (d);
                         break;
                     case ModelEditState.Deleted:

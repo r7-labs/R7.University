@@ -159,7 +159,7 @@ namespace R7.University.Controls
                     cssClass += " u8y-deleted";
                 } else if (EditState == ModelEditState.Added) {
                     cssClass += " u8y-added";
-                } else if (EditState == ModelEditState.Updated) {
+                } else if (EditState == ModelEditState.Modified) {
                     cssClass += " u8y-updated";
                 }
 

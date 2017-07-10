@@ -23,9 +23,9 @@ namespace R7.University.Models
 {
     public enum ModelEditState
     {
-        Untouched,
+        Unchanged,
         Added,
-        Updated,
+        Modified,
         Deleted
     }
 }

@@ -155,7 +155,7 @@ namespace R7.University.Controls
         {
             var items = ViewStateItems;
             if (items != null) {
-                return items.Where (i => i.EditState != ModelEditState.Untouched).ToList ();
+                return items.Where (i => i.EditState != ModelEditState.Unchanged).ToList ();
             }
 
             return new List<TViewModel> ();
@@ -239,7 +239,7 @@ namespace R7.University.Controls
                     item = items.Find (i => i.ViewItemID == hiddenViewItemId);
 
                     if (item.EditState != ModelEditState.Added) {
-                        item.EditState = ModelEditState.Updated;
+                        item.EditState = ModelEditState.Modified;
                     }
                 }
 
