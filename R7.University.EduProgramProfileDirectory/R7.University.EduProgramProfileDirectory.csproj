@@ -108,6 +108,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Properties\" />
     <Folder Include="Queries\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\SettingsEduProgramProfileDirectory.ascx.resx" />

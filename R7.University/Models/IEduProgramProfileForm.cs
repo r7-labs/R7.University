@@ -31,7 +31,7 @@ namespace R7.University.Models
 
         int TimeToLearn { get; }
 
-        string TimeToLearnUnit { get; }
+        int TimeToLearnHours { get; }
 
         bool IsAdmissive { get; }
 
@@ -50,7 +50,7 @@ namespace R7.University.Models
 
         new int TimeToLearn { get; set; }
 
-        new string TimeToLearnUnit { get; set; }
+        new int TimeToLearnHours { get; set; }
 
         new bool IsAdmissive { get; set; }
 

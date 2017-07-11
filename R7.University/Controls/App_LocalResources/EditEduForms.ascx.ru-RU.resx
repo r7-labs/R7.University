@@ -22,7 +22,13 @@
         <value>Срок обучения:</value>
     </data>
     <data name="labelTimeToLearn.Help">
-        <value>Введите нормативный срок обучения в годах и месяцах или же в часах.</value>
+        <value>Введите нормативный срок обучения в годах и месяцах.</value>
+    </data>
+	<data name="labelTimeToLearnHours.Text">
+        <value>Часов по учебному плану:</value>
+    </data>
+    <data name="labelTimeToLearnHours.Help">
+        <value>Введите количество времени на обучение по учебному плану в часах.</value>
     </data>
     <data name="labelIsAdmissive.Text">
         <value>Ведется прием:</value>
@@ -83,6 +89,9 @@
     </data>
     <data name="TimeToLearn.Column">
         <value>Срок обучения</value>
+    </data>
+	<data name="TimeToLearnHours.Column">
+        <value>Часы</value>
     </data>
     <data name="IsAdmissive.Column">
         <value>Ведется прием</value>

@@ -34,7 +34,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.EduProgramProfileID).IsRequired ();
             Property (m => m.EduFormID).IsRequired ();
             Property (m => m.TimeToLearn).IsRequired ();
-            Property (m => m.TimeToLearnUnit).IsRequired ();
+            Property (m => m.TimeToLearnHours).IsRequired ();
             Property (m => m.IsAdmissive).IsRequired ();
 
             HasRequired (m => m.EduForm).WithMany ().HasForeignKey (m => m.EduFormID);

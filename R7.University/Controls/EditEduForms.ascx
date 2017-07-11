@@ -36,6 +36,7 @@
                     <asp:BoundField DataField="ViewItemID" />
                     <asp:BoundField DataField="EduFormTitleLocalized" HeaderText="EduFormTitle" />
                     <asp:BoundField DataField="TimeToLearnString" HeaderText="TimeToLearn" />
+					<asp:BoundField DataField="TimeToLearnHoursString" HeaderText="TimeToLearnHours" />
                     <asp:BoundField DataField="IsAdmissive" HeaderText="IsAdmissive" />
                 </Columns>
             </asp:GridView>
@@ -74,10 +75,9 @@
                 ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         </div>
-        <div class="dnnFormItem">
-            <div class="dnnLabel"></div>
-            <asp:TextBox id="textTimeToLearnHours" runat="server" Value="0" Style="width:7em;margin-right:0.5em;" />
-            <asp:Label runat="server" resourcekey="Hours.Text" />
+	    <div class="dnnFormItem">
+            <dnn:Label id="labelTimeToLearnHours" runat="server" ControlName="textTimeToLearnHours" />
+            <asp:TextBox id="textTimeToLearnHours" runat="server" Value="0" />
             <asp:RangeValidator runat="server" resourcekey="TimeToLearnHours.Invalid"
                 ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms" 
                 Type="Integer" MinimumValue="0" MaximumValue="99999"

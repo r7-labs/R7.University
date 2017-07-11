@@ -46,22 +46,15 @@ namespace R7.University.ViewModels
             return !string.IsNullOrWhiteSpace (titleSuffix) ? shortTitleWoSuffix + " " + titleSuffix : shortTitleWoSuffix; 
         }
 
-        public static string FormatTimeToLearn (
-            int timeToLearn, 
-            TimeToLearnUnit timeToLearnUnit,
+        public static string FormatTimeToLearnMonths (
+            int timeToLearnMonths, 
             string keyBase,
             string resourceFile)
         {
             var culture = CultureInfo.CurrentUICulture;
 
-            if (timeToLearnUnit == TimeToLearnUnit.Hours) {
-                var hoursPlural = CultureHelper.GetPlural (timeToLearn, culture) + 1;
-                var hoursKey = keyBase + "Hours" + hoursPlural + ".Format";
-                return string.Format (Localization.GetString (hoursKey, resourceFile), timeToLearn);
-            }
-           
-            var years = timeToLearn / 12;
-            var months = timeToLearn % 12;
+            var years = timeToLearnMonths / 12;
+            var months = timeToLearnMonths % 12;
 
             var yearsPlural = CultureHelper.GetPlural (years, culture) + 1;
             var monthsPlural = CultureHelper.GetPlural (months, culture) + 1;
@@ -79,6 +72,40 @@ namespace R7.University.ViewModels
 
             return string.Format (Localization.GetString (yearsKey, resourceFile), years)
                 + " " + string.Format (Localization.GetString (monthsKey, resourceFile), months);
+        }
+
+        public static string FormatTimeToLearnHours (
+            int timeToLearnHours, 
+            string keyBase,
+            string resourceFile)
+        {
+            var culture = CultureInfo.CurrentUICulture;
+            var hoursKey = keyBase + (CultureHelper.GetPlural (timeToLearnHours, culture) + 1) + ".Format";
+
+            return string.Format (Localization.GetString (hoursKey, resourceFile), timeToLearnHours);
+        }
+
+        public static string FormatTimeToLearn (int timeToLearn, int timeToLearnHours, TimeToLearnDisplayMode displayMode, string keyBase, string resourceFile)
+        {
+            var timeBuilder = new StringBuilder ();
+
+            if (displayMode == TimeToLearnDisplayMode.YearsMonths || displayMode == TimeToLearnDisplayMode.Both) {
+                timeBuilder.Append (FormatTimeToLearnMonths (timeToLearn, keyBase, resourceFile));
+            }
+
+            if (displayMode == TimeToLearnDisplayMode.Both) {
+                timeBuilder.Append (" (");
+            }
+
+            if (displayMode == TimeToLearnDisplayMode.Hours || displayMode == TimeToLearnDisplayMode.Both) {
+                timeBuilder.Append (FormatTimeToLearnHours (timeToLearnHours, keyBase + "Hours", resourceFile));
+            }
+
+            if (displayMode == TimeToLearnDisplayMode.Both) {
+                timeBuilder.Append (")");
+            }
+
+            return timeBuilder.ToString ();
         }
 
         public static string FormatEduProgramTitle (string code, string title)

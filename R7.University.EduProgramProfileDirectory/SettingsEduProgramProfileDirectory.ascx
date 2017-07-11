@@ -23,19 +23,26 @@
                     DataValueField="Value"
                     DataTextField="ValueLocalized"
                     RepeatDirection="Horizontal"
-                    CssClass="dnn-form-control"
-               />
+                    CssClass="dnn-form-control" />
             </div>
             <div class="dnnFormItem">
                 <dnn:Label id="labelMode" runat="server" ControlName="comboMode" />
                 <asp:DropDownList id="comboMode" runat="server"
                     DataValueField="Value"
-                    DataTextField="ValueLocalized"
-                />
+                    DataTextField="ValueLocalized" />
             </div>
             <div class="dnnFormItem">
                 <dnn:Label id="labelEduLevels" runat="server" ControlName="listEduLevels" />
                 <asp:CheckBoxList id="listEduLevels" runat="server" CssClass="dnn-form-control" />
+            </div>
+			<!-- TODO: Move to display settings? -->
+			<div class="dnnFormItem">
+                <dnn:Label id="labelTimeToLearnDisplayMode" runat="server" ControlName="radioTimeToLearnDisplayMode" />
+                <asp:RadioButtonList id="radioTimeToLearnDisplayMode" runat="server"
+					DataValueField="Value"
+					DataTextField="ValueLocalized"
+					RepeatDirection="Horizontal"
+					CssClass="dnn-form-control" />
             </div>
         </fieldset>
 	</asp:Panel>

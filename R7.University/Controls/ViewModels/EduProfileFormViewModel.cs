@@ -104,7 +104,7 @@ namespace R7.University.Controls
 
         public int TimeToLearn { get; set; }
 
-        public string TimeToLearnUnit { get; set; }
+        public int TimeToLearnHours { get; set; }
 
         public bool IsAdmissive { get; set; }
 
@@ -129,8 +129,15 @@ namespace R7.University.Controls
         public string TimeToLearnString
         {
             get { 
-                return FormatHelper.FormatTimeToLearn (TimeToLearn, (TimeToLearnUnit) TimeToLearnUnit [0], 
-                                                       "TimeToLearn", Context.LocalResourceFile);
+                return FormatHelper.FormatTimeToLearnMonths (TimeToLearn, "TimeToLearn", Context.LocalResourceFile);
+            }
+        }
+
+        [XmlIgnore]
+        public string TimeToLearnHoursString
+        {
+            get { 
+                return FormatHelper.FormatTimeToLearnHours (TimeToLearnHours, "TimeToLearnHours", Context.LocalResourceFile);
             }
         }
     }

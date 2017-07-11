@@ -57,3 +57,38 @@ BEGIN
         SET DefinitionName = N'R7_University_Launchpad' WHERE DefinitionName = N'R7.University.Launchpad'
 END
 GO
+
+IF EXISTS (select * from sys.procedures where name = N'{objectQualifier}r7_DropDefaultConstraint')
+    DROP PROCEDURE {databaseOwner}[{objectQualifier}r7_DropDefaultConstraint]
+GO
+
+-- TODO: Move to the base library
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}r7_DropDefaultConstraint]
+    @tableName nvarchar (255),
+    @columnName nvarchar (255)
+AS
+BEGIN
+    DECLARE @sql nvarchar (max)
+    SELECT TOP (1) @sql = N'ALTER TABLE {databaseOwner}[{objectQualifier}'+ @tableName +'] DROP CONSTRAINT [' + DC.name + N']'
+        FROM sys.default_constraints DC
+        JOIN sys.columns C ON C.default_object_id = DC.object_id
+        WHERE DC.parent_object_id = OBJECT_ID (@tableName) AND C.name = @columnName
+    IF @@ROWCOUNT = 1 EXECUTE sp_executesql @sql
+END
+GO
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfileForms]') and name = N'TimeToLearnHours')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        ADD TimeToLearnHours int NOT NULL DEFAULT (0)
+
+    EXECUTE sp_executesql N'UPDATE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        SET TimeToLearnHours = TimeToLearn, TimeToLearn = 0
+        WHERE TimeToLearnUnit = N''h'''
+
+    EXECUTE {databaseOwner}[{objectQualifier}r7_DropDefaultConstraint] @tableName = N'University_EduProgramProfileForms', @columnName = N'TimeToLearnUnit'
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        DROP COLUMN TimeToLearnUnit
+END
+GO

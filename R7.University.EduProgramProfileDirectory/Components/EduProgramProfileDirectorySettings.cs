@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
+using R7.University.Models;
 
 namespace R7.University.EduProgramProfileDirectory.Components
 {
@@ -56,6 +57,9 @@ namespace R7.University.EduProgramProfileDirectory.Components
 
         [ModuleSetting (Prefix = "EduProgramProfileDirectory_")]
         public DivisionLevel DivisionLevel { get; set; } = DivisionLevel.EduProgram;
+
+        [TabModuleSetting (Prefix = "EduProgramProfileDirectory_")]
+        public TimeToLearnDisplayMode TimeToLearnDisplayMode { get; set; } = TimeToLearnDisplayMode.YearsMonths;
     }
 }
 

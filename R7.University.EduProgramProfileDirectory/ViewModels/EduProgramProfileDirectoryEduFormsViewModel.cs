@@ -21,6 +21,7 @@
 
 using R7.University.ViewModels;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.EduProgramProfileDirectory.Components;
 
 namespace R7.University.EduProgramProfileDirectory.ViewModels
 {
@@ -28,9 +29,9 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
     {
         public IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> EduProgramProfiles { get; set; }
 
-        public ViewModelContext Context { get; protected set; }
+        public ViewModelContext<EduProgramProfileDirectorySettings> Context { get; protected set; }
 
-        public EduProgramProfileDirectoryEduFormsViewModel SetContext (ViewModelContext context)
+        public EduProgramProfileDirectoryEduFormsViewModel SetContext (ViewModelContext<EduProgramProfileDirectorySettings> context)
         {
             Context = context;
             return this;

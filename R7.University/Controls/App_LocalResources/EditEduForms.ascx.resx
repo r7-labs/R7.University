@@ -22,7 +22,13 @@
         <value>Time to Learn:</value>
     </data>
     <data name="labelTimeToLearn.Help">
-        <value>Enter time to learn in years and months or in hours.</value>
+        <value>Enter time to learn in years and months.</value>
+    </data>
+    <data name="labelTimeToLearnHours.Text">
+        <value>Hours by by Educational Plan:</value>
+    </data>
+    <data name="labelTimeToLearnHours.Help">
+        <value>Enter amount of time to learn by educational plan in hours.</value>
     </data>
     <data name="labelIsAdmissive.Text">
         <value>Is Admissive:</value>
@@ -84,6 +90,9 @@
     <data name="TimeToLearn.Column">
         <value>Time to Learn</value>
     </data>
+    <data name="TimeToLearnHours.Column">
+        <value>Hours</value>
+    </data>	
     <data name="IsAdmissive.Column">
         <value>Is Admissive</value>
     </data>

@@ -68,16 +68,9 @@ namespace R7.University.Controls
             radioEduForm.SelectByValue (item.EduFormID);
             checkIsAdmissive.Checked = item.IsAdmissive;
 
-            if (item.TimeToLearnUnit [0] == (char) TimeToLearnUnit.Hours) {
-                textTimeToLearnYears.Text = "0";
-                textTimeToLearnMonths.Text = "0";
-                textTimeToLearnHours.Text = item.TimeToLearn.ToString ();
-            }
-            else {
-                textTimeToLearnYears.Text = (item.TimeToLearn / 12).ToString ();
-                textTimeToLearnMonths.Text = (item.TimeToLearn % 12).ToString ();
-                textTimeToLearnHours.Text = "0";
-            }
+            textTimeToLearnYears.Text = (item.TimeToLearn / 12).ToString ();
+            textTimeToLearnMonths.Text = (item.TimeToLearn % 12).ToString ();
+            textTimeToLearnHours.Text = item.TimeToLearnHours.ToString ();
         }
 
         protected override void OnUpdateItem (EduProgramProfileFormViewModel item)
@@ -86,15 +79,8 @@ namespace R7.University.Controls
             item.EduFormViewModel = GetEduForm (item.EduFormID);
             item.IsAdmissive = checkIsAdmissive.Checked;
 
-            var timeToLearnHours = int.Parse (textTimeToLearnHours.Text);
-            if (timeToLearnHours > 0) {
-                item.TimeToLearn = timeToLearnHours;
-                item.TimeToLearnUnit = ((char) TimeToLearnUnit.Hours).ToString ();
-            }
-            else {
-                item.TimeToLearn = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
-                item.TimeToLearnUnit = ((char) TimeToLearnUnit.Months).ToString ();
-            }
+            item.TimeToLearnHours = int.Parse (textTimeToLearnHours.Text);
+            item.TimeToLearn = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
         }
 
         protected override void OnResetForm ()

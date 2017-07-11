@@ -60,10 +60,25 @@
     <data name="labelDivisionLevel.Help" xml:space="preserve">
         <value>Select to which object level the selected division will apply. Setting will not have any effect if no division selected above.</value>
 	</data>
+	<data name="labelTimeToLearnDisplayMode.Text" xml:space="preserve">
+        <value>Time to Learn Display Mode:</value>
+    </data>
+    <data name="labelTimeToLearnDisplayMode.Help" xml:space="preserve">
+        <value>Select display mode for time to learn.</value>
+    </data>
     <data name="DivisionLevel_EduProgram.Text" xml:space="preserve">
         <value>Edu. Program</value>
     </data>
 	<data name="DivisionLevel_EduProgramProfile.Text" xml:space="preserve">
         <value>Edu. Program Profile</value>
+    </data>
+	<data name="TimeToLearnDisplayMode_YearsMonths.Text" xml:space="preserve">
+        <value>Years &amp; Months</value>
+    </data>
+	<data name="TimeToLearnDisplayMode_Hours.Text" xml:space="preserve">
+        <value>Hours</value>
+    </data>
+	<data name="TimeToLearnDisplayMode_Both.Text" xml:space="preserve">
+        <value>Both</value>
     </data>
 </root>

@@ -9,5 +9,6 @@ namespace R7.University.EduProgramProfileDirectory
         protected RadioButtonList radioDivisionLevel;
         protected DropDownList comboMode;
         protected CheckBoxList listEduLevels;
+        protected RadioButtonList radioTimeToLearnDisplayMode;
     }
 }

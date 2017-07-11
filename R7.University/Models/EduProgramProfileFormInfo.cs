@@ -31,7 +31,7 @@ namespace R7.University.Models
 
         public int TimeToLearn { get; set; }
 
-        public string TimeToLearnUnit { get; set; }
+        public int TimeToLearnHours { get; set; }
 
         // TODO: Rename?
         public bool IsAdmissive { get; set; }

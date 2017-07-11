@@ -74,6 +74,9 @@ namespace R7.University.EduProgramProfileDirectory
             radioDivisionLevel.DataSource = EnumViewModel<DivisionLevel>.GetValues (ViewModelContext, false);
             radioDivisionLevel.DataBind ();
 
+            radioTimeToLearnDisplayMode.DataSource = EnumViewModel<TimeToLearnDisplayMode>.GetValues (ViewModelContext, false);
+            radioTimeToLearnDisplayMode.DataBind ();
+
             // bind divisions
             divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisionSelector.DataBind ();
@@ -93,6 +96,7 @@ namespace R7.University.EduProgramProfileDirectory
                 if (!IsPostBack) {
 
                     radioDivisionLevel.SelectByValue (Settings.DivisionLevel.ToString ());
+                    radioTimeToLearnDisplayMode.SelectByValue (Settings.TimeToLearnDisplayMode.ToString ());
                     divisionSelector.DivisionId = Settings.DivisionId;
                     comboMode.SelectByValue (Settings.Mode);
 
@@ -123,6 +127,7 @@ namespace R7.University.EduProgramProfileDirectory
                 Settings.EduLevels = listEduLevels.Items.AsEnumerable ().Where (i => i.Selected).Select (i => int.Parse (i.Value)).ToList ();
                 Settings.DivisionId = divisionSelector.DivisionId;
                 Settings.DivisionLevel = (DivisionLevel) Enum.Parse (typeof (DivisionLevel), radioDivisionLevel.SelectedValue, true);
+                Settings.TimeToLearnDisplayMode = (TimeToLearnDisplayMode) Enum.Parse (typeof (TimeToLearnDisplayMode), radioDivisionLevel.SelectedValue, true);
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 

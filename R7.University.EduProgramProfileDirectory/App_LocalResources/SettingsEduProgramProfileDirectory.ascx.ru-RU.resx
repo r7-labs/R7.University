@@ -60,10 +60,25 @@
     <data name="labelDivisionLevel.Help" xml:space="preserve">
         <value>Выберите, к какому уровню объектов относится выбранное подразделение. Данная настройка имеет смысл только в том случае, если выше выбрано какое-либо подразделение.</value>
 	</data>
+	<data name="labelTimeToLearnDisplayMode.Text" xml:space="preserve">
+        <value>Режим отображения срока обучения:</value>
+    </data>
+    <data name="labelTimeToLearnDisplayMode.Help" xml:space="preserve">
+        <value>Выберите режим отображения срока обучения.</value>
+    </data>
     <data name="DivisionLevel_EduProgram.Text" xml:space="preserve">
         <value>Обр. программе</value>
     </data>
 	<data name="DivisionLevel_EduProgramProfile.Text" xml:space="preserve">
         <value>Профилю образовательной программы</value>
+    </data>
+	<data name="TimeToLearnDisplayMode_YearsMonths.Text" xml:space="preserve">
+        <value>Год и месяц</value>
+    </data>
+    <data name="TimeToLearnDisplayMode_Hours.Text" xml:space="preserve">
+        <value>Часы</value>
+    </data>
+    <data name="TimeToLearnDisplayMode_Both.Text" xml:space="preserve">
+        <value>Все</value>
     </data>
 </root>
