@@ -46,63 +46,59 @@ namespace R7.University.ViewModels
             return !string.IsNullOrWhiteSpace (titleSuffix) ? shortTitleWoSuffix + " " + titleSuffix : shortTitleWoSuffix; 
         }
 
-        public static string FormatTimeToLearnMonths (
-            int timeToLearnMonths, 
-            string keyBase,
-            string resourceFile)
+        public static string FormatTimeToLearnMonths (int totalMonths, string keyBase, string resourceFile)
         {
-            var culture = CultureInfo.CurrentUICulture;
+            var years = totalMonths / 12;
+            var months = totalMonths % 12;
 
-            var years = timeToLearnMonths / 12;
-            var months = timeToLearnMonths % 12;
+            var timeBuilder = new StringBuilder ();
 
-            var yearsPlural = CultureHelper.GetPlural (years, culture) + 1;
-            var monthsPlural = CultureHelper.GetPlural (months, culture) + 1;
-
-            var yearsKey = keyBase + "Years" + yearsPlural + ".Format";
-            var monthsKey = keyBase + "Months" + monthsPlural + ".Format";
-
-            if (months == 0) {
-                return string.Format (Localization.GetString (yearsKey, resourceFile), years);
+            if (years > 0) {
+                var yearsKey = keyBase + "Years" + GetPlural (years) + ".Format";
+                timeBuilder.AppendFormat (" " + Localization.GetString (yearsKey, resourceFile), years);
             }
 
-            if (years == 0) {
-                return string.Format (Localization.GetString (monthsKey, resourceFile), months);
+            if (months > 0) {
+                var monthsKey = keyBase + "Months" + GetPlural (months) + ".Format";
+                timeBuilder.AppendFormat (" " + Localization.GetString (monthsKey, resourceFile), months);
             }
 
-            return string.Format (Localization.GetString (yearsKey, resourceFile), years)
-                + " " + string.Format (Localization.GetString (monthsKey, resourceFile), months);
+            return timeBuilder.ToString ().TrimStart ();
         }
 
-        public static string FormatTimeToLearnHours (
-            int timeToLearnHours, 
-            string keyBase,
-            string resourceFile)
+        public static string FormatTimeToLearnHours (int hours, string keyBase, string resourceFile)
         {
-            var culture = CultureInfo.CurrentUICulture;
-            var hoursKey = keyBase + (CultureHelper.GetPlural (timeToLearnHours, culture) + 1) + ".Format";
+            if (hours > 0) {
+                var hoursKey = keyBase + GetPlural (hours) + ".Format";
+                return string.Format (Localization.GetString (hoursKey, resourceFile), hours);
+            }
 
-            return string.Format (Localization.GetString (hoursKey, resourceFile), timeToLearnHours);
+            return string.Empty;
         }
 
-        public static string FormatTimeToLearn (int timeToLearn, int timeToLearnHours, TimeToLearnDisplayMode displayMode, string keyBase, string resourceFile)
+        static int GetPlural (int value)
+        {
+            return CultureHelper.GetPlural (value, CultureInfo.CurrentCulture) + 1;
+        }
+
+        public static string FormatTimeToLearn (int totalMonths, int hours, TimeToLearnDisplayMode displayMode, string keyBase, string resourceFile)
         {
             var timeBuilder = new StringBuilder ();
 
             if (displayMode == TimeToLearnDisplayMode.YearsMonths || displayMode == TimeToLearnDisplayMode.Both) {
-                timeBuilder.Append (FormatTimeToLearnMonths (timeToLearn, keyBase, resourceFile));
+                timeBuilder.Append (FormatTimeToLearnMonths (totalMonths, keyBase, resourceFile));
             }
 
-            if (displayMode == TimeToLearnDisplayMode.Both) {
-                timeBuilder.Append (" (");
-            }
-
-            if (displayMode == TimeToLearnDisplayMode.Hours || displayMode == TimeToLearnDisplayMode.Both) {
-                timeBuilder.Append (FormatTimeToLearnHours (timeToLearnHours, keyBase + "Hours", resourceFile));
-            }
-
-            if (displayMode == TimeToLearnDisplayMode.Both) {
-                timeBuilder.Append (")");
+            if (hours > 0) {
+                if (displayMode == TimeToLearnDisplayMode.Both && totalMonths > 0) {
+                    timeBuilder.Append (" (");
+                }
+                if (displayMode == TimeToLearnDisplayMode.Hours || displayMode == TimeToLearnDisplayMode.Both) {
+                    timeBuilder.Append (FormatTimeToLearnHours (hours, keyBase + "Hours", resourceFile));
+                }
+                if (displayMode == TimeToLearnDisplayMode.Both && totalMonths > 0) {
+                    timeBuilder.Append (")");
+                }
             }
 
             return timeBuilder.ToString ();
