@@ -39,6 +39,7 @@ using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Employee.Components;
+using R7.University.Employee.Models;
 using R7.University.Employee.Queries;
 using R7.University.Employee.ViewModels;
 using R7.University.ModelExtensions;

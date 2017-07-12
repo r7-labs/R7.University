@@ -39,7 +39,7 @@ using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Employee.Components;
+using R7.University.Employee.Models;
 using R7.University.Employee.Queries;
 using R7.University.Employee.SharedLogic;
 using R7.University.Employee.ViewModels;

@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Search.Entities;
+using R7.University.Employee.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 
