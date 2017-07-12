@@ -121,9 +121,6 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
             }
         }
 
-        // TODO: Move to FormatHelper
-
-
         public int Order
         {
             get { return Indexer.GetNextIndex (); }
