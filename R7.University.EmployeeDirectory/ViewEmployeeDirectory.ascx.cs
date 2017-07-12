@@ -38,7 +38,7 @@ using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.EmployeeDirectory.Components;
+using R7.University.EmployeeDirectory.Models;
 using R7.University.EmployeeDirectory.Queries;
 using R7.University.EmployeeDirectory.ViewModels;
 using R7.University.ModelExtensions;

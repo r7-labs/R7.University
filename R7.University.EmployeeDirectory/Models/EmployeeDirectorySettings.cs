@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
 
-namespace R7.University.EmployeeDirectory.Components
+namespace R7.University.EmployeeDirectory.Models
 {
     /// <summary>
     /// Provides strong typed access to settings used by module
