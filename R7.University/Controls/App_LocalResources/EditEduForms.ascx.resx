@@ -18,17 +18,23 @@
     <data name="labelEduForm.Help">
         <value>Select education form.</value>
     </data>
-    <data name="labelTimeToLearn.Text">
-        <value>Time to Learn:</value>
+    <data name="labelTimeToLearnYears.Text">
+        <value>Years:</value>
     </data>
-    <data name="labelTimeToLearn.Help">
-        <value>Enter time to learn in years and months.</value>
+    <data name="labelTimeToLearnYears.Help">
+        <value>Enter amount of years in the normative time to learn.</value>
+    </data>
+	<data name="labelTimeToLearnMonths.Text">
+        <value>Months:</value>s
+    </data>
+    <data name="labelTimeToLearnMonths.Help">
+        <value>Enter amount of months in the normative time to learn.</value>
     </data>
     <data name="labelTimeToLearnHours.Text">
-        <value>Hours by by Educational Plan:</value>
+        <value>Hours:</value>
     </data>
     <data name="labelTimeToLearnHours.Help">
-        <value>Enter amount of time to learn by educational plan in hours.</value>
+        <value>Enter amount of hours to master the program by educational plan.</value>
     </data>
     <data name="labelIsAdmissive.Text">
         <value>Is Admissive:</value>
@@ -55,7 +61,7 @@
         <value>Hours</value>
     </data>
     <data name="TimeToLearnYears.Invalid">
-        <value>Years should be integer value from 0 to 7.</value>
+        <value>Years should be integer value from 0 to 11.</value>
     </data>
     <data name="TimeToLearnYears.Required">
         <value>The years value is required.</value>
@@ -67,7 +73,7 @@
         <value>The months value is required.</value>
     </data>
 	<data name="TimeToLearnHours.Invalid">
-        <value>Hours should be integer value from 0 to 99999.</value>
+        <value>Hours should be integer value greater than 0.</value>
     </data>
     <data name="TimeToLearnHours.Required">
         <value>The hours value is required.</value>
@@ -87,40 +93,16 @@
     <data name="EduFormTitle.Column">
         <value>Edu Form</value>
     </data>
-    <data name="TimeToLearn.Column">
-        <value>Time to Learn</value>
+    <data name="TimeToLearnYears.Column">
+        <value>Years</value>
+    </data>
+	<data name="TimeToLearnMonths.Column">
+        <value>Months</value>
     </data>
     <data name="TimeToLearnHours.Column">
         <value>Hours</value>
     </data>	
     <data name="IsAdmissive.Column">
         <value>Is Admissive</value>
-    </data>
-    <data name="TimeToLearnYears1.Format" xml:space="preserve">
-        <value>{0} year</value>
-    </data>
-    <data name="TimeToLearnYears2.Format" xml:space="preserve">
-        <value>{0} years</value>
-    </data>
-    <data name="TimeToLearnYears3.Format" xml:space="preserve">
-        <value>{0} years</value>
-    </data>
-    <data name="TimeToLearnMonths1.Format" xml:space="preserve">
-        <value>{0} month</value>
-    </data>
-    <data name="TimeToLearnMonths2.Format" xml:space="preserve">
-        <value>{0} months</value>
-    </data>
-    <data name="TimeToLearnMonths3.Format" xml:space="preserve">
-        <value>{0} months</value>
-    </data>
-	<data name="TimeToLearnHours1.Format" xml:space="preserve">
-        <value>{0} hour</value>
-    </data>
-	<data name="TimeToLearnHours2.Format" xml:space="preserve">
-        <value>{0} hours</value>
-    </data>
-	<data name="TimeToLearnHours3.Format" xml:space="preserve">
-        <value>{0} hours</value>
     </data>
 </root>

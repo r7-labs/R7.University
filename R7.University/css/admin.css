@@ -63,6 +63,10 @@
     margin-left:1.75em;
 }
 
+.dnnFormItem .dnnGrid input[type="checkbox"] + span {
+    margin:0
+}
+
 .u8y-edit-documents .urlControl .dnnClear br {
     display:none
 }

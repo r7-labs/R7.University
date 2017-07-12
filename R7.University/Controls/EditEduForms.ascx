@@ -8,7 +8,7 @@
     <fieldset>
         <div class="dnnFormItem">
             <asp:GridView id="gridEduForms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                GridLines="None" Style="margin-bottom:30px;width:775px">
+                GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                 <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -35,9 +35,10 @@
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
                     <asp:BoundField DataField="EduFormTitleLocalized" HeaderText="EduFormTitle" />
-                    <asp:BoundField DataField="TimeToLearnString" HeaderText="TimeToLearn" />
-					<asp:BoundField DataField="TimeToLearnHoursString" HeaderText="TimeToLearnHours" />
-                    <asp:BoundField DataField="IsAdmissive" HeaderText="IsAdmissive" />
+                    <asp:BoundField DataField="TimeToLearnYears_String" HeaderText="TimeToLearnYears" />
+					<asp:BoundField DataField="TimeToLearnMonths_String" HeaderText="TimeToLearnMonths" />
+					<asp:BoundField DataField="TimeToLearnHours_String" HeaderText="TimeToLearnHours" />
+                    <asp:CheckBoxField DataField="IsAdmissive" HeaderText="IsAdmissive" />
                 </Columns>
             </asp:GridView>
         </div>
@@ -51,39 +52,36 @@
             /> 
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelTimeToLearn" runat="server" ControlName="textTimeToLearnYears" />
-            <div class="dnn-form-control-group">
-                <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" 
-                    CssClass="dnn-form-control-quarter-width" Style="margin-right:0.5em;" />
-                <asp:Label runat="server" resourcekey="Years.Text" />
-                <asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" 
-                    CssClass="dnn-form-control-quarter-width" Style="margin-left:1em;margin-right:0.5em;" />
-				<asp:Label runat="server" resourcekey="Months.Text" />
-			</div>
-            <asp:RangeValidator runat="server" resourcekey="TimeToLearnYears.Invalid"
-                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
-                Type="Integer" MinimumValue="0" MaximumValue="7"
-                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-            <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnYears.Required"
+            <dnn:Label id="labelTimeToLearnYears" runat="server" ControlName="textTimeToLearnYears" />
+            <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
+			<asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnYears.Required"
                 ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-            <asp:RangeValidator runat="server" resourcekey="TimeToLearnMonths.Invalid"
+			<asp:RangeValidator runat="server" resourcekey="TimeToLearnYears.Invalid"
+                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
+                Type="Integer" MinimumValue="0" MaximumValue="11"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+		</div>
+		<div class="dnnFormItem">
+			<dnn:Label id="labelTimeToLearnMonths" runat="server" ControlName="textTimeToLearnMonths" />
+			<asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" />
+			<asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnMonths.Required"
+                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+			<asp:RangeValidator runat="server" resourcekey="TimeToLearnMonths.Invalid"
                 ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
                 Type="Integer" MinimumValue="0" MaximumValue="11"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-            <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnMonths.Required"
-                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
-                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-        </div>
+		</div>
 	    <div class="dnnFormItem">
             <dnn:Label id="labelTimeToLearnHours" runat="server" ControlName="textTimeToLearnHours" />
             <asp:TextBox id="textTimeToLearnHours" runat="server" Value="0" />
+			<asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnHours.Required"
+                ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
             <asp:RangeValidator runat="server" resourcekey="TimeToLearnHours.Invalid"
                 ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms" 
-                Type="Integer" MinimumValue="0" MaximumValue="99999"
-                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-            <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnHours.Required"
-                ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms" 
+                Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         </div>
         <div class="dnnFormItem">

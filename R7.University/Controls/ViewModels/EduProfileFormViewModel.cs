@@ -126,19 +126,13 @@ namespace R7.University.Controls
         }
 
         [XmlIgnore]
-        public string TimeToLearnString
-        {
-            get { 
-                return FormatHelper.FormatTimeToLearnMonths (TimeToLearn, "TimeToLearn", Context.LocalResourceFile);
-            }
-        }
+        public string TimeToLearnYears_String => (TimeToLearn / 12 > 0) ? (TimeToLearn / 12).ToString () : string.Empty;
 
         [XmlIgnore]
-        public string TimeToLearnHoursString
-        {
-            get { 
-                return FormatHelper.FormatTimeToLearnHours (TimeToLearnHours, "TimeToLearnHours", Context.LocalResourceFile);
-            }
-        }
+        public string TimeToLearnMonths_String => (TimeToLearn % 12 > 0) ? (TimeToLearn % 12).ToString () : string.Empty;
+
+        [XmlIgnore]
+        public string TimeToLearnHours_String => (TimeToLearnHours > 0) ? TimeToLearnHours.ToString () : string.Empty;
+
     }
 }
