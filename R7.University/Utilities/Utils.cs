@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -22,6 +22,7 @@
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Users;
+using DotNetNuke.Web.UI.WebControls;
 
 namespace R7.University.Utilities
 {
@@ -42,14 +43,13 @@ namespace R7.University.Utilities
         }
 
         // TODO: Move to the base library
-        public static void ExpandToLevel (Telerik.Web.UI.RadTreeView tree, int maxLevel)
+        public static void ExpandToLevel (DnnTreeView tree, int maxLevel)
         {
             foreach (Telerik.Web.UI.RadTreeNode node in tree.Nodes)
                 ExpandNodeToLevel (node, 0, maxLevel);
         }
 
-        // TODO: Move to the base library
-        private static void ExpandNodeToLevel (Telerik.Web.UI.RadTreeNode node, int level, int maxLevel)
+        static void ExpandNodeToLevel (Telerik.Web.UI.RadTreeNode node, int level, int maxLevel)
         {
             if (level < maxLevel) {
                 node.Expanded = true;
