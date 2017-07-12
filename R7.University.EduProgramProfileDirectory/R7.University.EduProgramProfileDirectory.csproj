@@ -85,22 +85,21 @@
       <DependentUpon>ViewEduProgramProfileDirectory.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\EduProgramProfileDirectoryController.cs" />
-    <Compile Include="Components\EduProgramProfileDirectorySettings.cs" />
     <Compile Include="SettingsEduProgramProfileDirectory.ascx.cs">
       <DependentUpon>SettingsEduProgramProfileDirectory.ascx</DependentUpon>
     </Compile>
     <Compile Include="SettingsEduProgramProfileDirectory.ascx.controls.cs">
       <DependentUpon>SettingsEduProgramProfileDirectory.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\EduProgramProfileDirectoryMode.cs" />
     <Compile Include="ViewModels\EduProgramProfileObrnadzorEduFormsViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileObrnadzorDocumentsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EduProgramProfileDirectoryDocumentsViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileDirectoryEduFormsViewModel.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
-    <Compile Include="Components\DivisionLevel.cs" />
-    <Compile Include="Components\EduProgramProfileDirectorySettingsRepository.cs" />
+    <Compile Include="Models\EduProgramProfileDirectorySettings.cs" />
+    <Compile Include="Models\DivisionLevel.cs" />
+    <Compile Include="Models\EduProgramProfileDirectoryMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />

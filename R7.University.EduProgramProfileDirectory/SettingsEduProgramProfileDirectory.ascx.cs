@@ -27,7 +27,7 @@ using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ControlExtensions;
-using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.EduProgramProfileDirectory.Models;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;

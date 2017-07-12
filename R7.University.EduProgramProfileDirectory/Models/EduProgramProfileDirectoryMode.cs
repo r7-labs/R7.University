@@ -1,10 +1,10 @@
 //
-//  DivisionLevel.cs
+//  EduProgramProfileDirectoryMode.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2015 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,11 +19,12 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace R7.University.EduProgramProfileDirectory.Components
+namespace R7.University.EduProgramProfileDirectory.Models
 {
-    public enum DivisionLevel
+    public enum EduProgramProfileDirectoryMode
     {
-        EduProgram,
-        EduProgramProfile
+        ObrnadzorEduForms,
+        ObrnadzorDocuments
     }
 }
+

@@ -28,7 +28,7 @@ using System.Web;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.EduProgramProfileDirectory.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;

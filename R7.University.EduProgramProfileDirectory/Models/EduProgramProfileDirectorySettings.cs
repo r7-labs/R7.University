@@ -25,7 +25,7 @@ using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
 using R7.University.Models;
 
-namespace R7.University.EduProgramProfileDirectory.Components
+namespace R7.University.EduProgramProfileDirectory.Models
 {
     /// <summary>
     /// Provides strong typed access to settings used by module

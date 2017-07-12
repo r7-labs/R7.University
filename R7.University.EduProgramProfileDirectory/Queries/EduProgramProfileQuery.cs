@@ -21,7 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.EduProgramProfileDirectory.Components;
+using R7.University.EduProgramProfileDirectory.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
