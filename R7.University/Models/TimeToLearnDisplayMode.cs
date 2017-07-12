@@ -21,7 +21,6 @@
 
 namespace R7.University.Models
 {
-    // TODO: Review member names
     public enum TimeToLearnDisplayMode
     {
         YearsMonths,
