@@ -25,7 +25,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
-using R7.University.EmployeeList.Components;
+using R7.University.EmployeeList.Models;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;

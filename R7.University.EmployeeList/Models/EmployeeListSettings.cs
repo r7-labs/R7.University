@@ -25,7 +25,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules.Settings;
 using R7.University.Components;
 
-namespace R7.University.EmployeeList.Components
+namespace R7.University.EmployeeList.Models
 {
     /// <summary>
     /// Provides strong typed access to settings used by module
