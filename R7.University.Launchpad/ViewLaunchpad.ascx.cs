@@ -29,7 +29,7 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
-using R7.University.Launchpad.Components;
+using R7.University.Launchpad.Models;
 using R7.University.Models;
 using R7.University.Security;
 

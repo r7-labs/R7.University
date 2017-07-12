@@ -25,7 +25,7 @@ using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
 using R7.Dnn.Extensions.Utilities;
 
-namespace R7.University.Launchpad.Components
+namespace R7.University.Launchpad.Models
 {
     /// <summary>
     /// Provides strong typed access to settings used by module
