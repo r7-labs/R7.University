@@ -72,6 +72,7 @@
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
     <Folder Include="Queries\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -103,12 +104,11 @@
     <Compile Include="ViewModels\DivisionObrnadzorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\DivisionDirectoryController.cs" />
-    <Compile Include="Components\DivisionDirectoryMode.cs" />
-    <Compile Include="Components\DivisionDirectorySettings.cs" />
     <Compile Include="Queries\DivisionHierarchyQuery.cs" />
     <Compile Include="Queries\DivisionQuery.cs" />
     <Compile Include="Queries\HeadEmployeesQuery.cs" />
-    <Compile Include="Components\DivisionDirectorySettingsRepository.cs" />
+    <Compile Include="Models\DivisionDirectoryMode.cs" />
+    <Compile Include="Models\DivisionDirectorySettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

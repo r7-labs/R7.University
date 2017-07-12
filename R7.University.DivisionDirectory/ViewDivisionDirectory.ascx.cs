@@ -37,7 +37,7 @@ using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ControlExtensions;
-using R7.University.DivisionDirectory.Components;
+using R7.University.DivisionDirectory.Models;
 using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;

@@ -23,7 +23,7 @@ using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ControlExtensions;
-using R7.University.DivisionDirectory.Components;
+using R7.University.DivisionDirectory.Models;
 using R7.University.Modules;
 
 namespace R7.University.DivisionDirectory
