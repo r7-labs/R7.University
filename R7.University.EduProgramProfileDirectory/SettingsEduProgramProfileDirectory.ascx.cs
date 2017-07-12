@@ -127,7 +127,7 @@ namespace R7.University.EduProgramProfileDirectory
                 Settings.EduLevels = listEduLevels.Items.AsEnumerable ().Where (i => i.Selected).Select (i => int.Parse (i.Value)).ToList ();
                 Settings.DivisionId = divisionSelector.DivisionId;
                 Settings.DivisionLevel = (DivisionLevel) Enum.Parse (typeof (DivisionLevel), radioDivisionLevel.SelectedValue, true);
-                Settings.TimeToLearnDisplayMode = (TimeToLearnDisplayMode) Enum.Parse (typeof (TimeToLearnDisplayMode), radioDivisionLevel.SelectedValue, true);
+                Settings.TimeToLearnDisplayMode = (TimeToLearnDisplayMode) Enum.Parse (typeof (TimeToLearnDisplayMode), radioTimeToLearnDisplayMode.SelectedValue, true);
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 
