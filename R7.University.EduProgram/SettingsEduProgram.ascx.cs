@@ -26,7 +26,7 @@ using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.EduProgram.Components;
+using R7.University.EduProgram.Models;
 using R7.University.EduProgram.Queries;
 using R7.University.Models;
 using R7.University.Modules;

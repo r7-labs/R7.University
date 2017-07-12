@@ -80,7 +80,6 @@
       <DependentUpon>ViewEduProgram.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\EduProgramController.cs" />
-    <Compile Include="Components\EduProgramSettings.cs" />
     <Compile Include="EditEduProgram.ascx.cs">
       <DependentUpon>EditEduProgram.ascx</DependentUpon>
     </Compile>
@@ -92,7 +91,8 @@
     <Compile Include="ViewModels\EduProgramModuleViewModel.cs" />
     <Compile Include="Queries\EduProgramQuery.cs" />
     <Compile Include="ViewModels\EduProgramProfileEditModel.cs" />
-    <Compile Include="Components\EduProgramSettingsRepository.cs" />
+    <Compile Include="Models\EduProgramSettings.cs" />
+    <Compile Include="Models\EduProgramSettingsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -132,5 +132,6 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Queries\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>

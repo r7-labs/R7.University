@@ -21,7 +21,7 @@
 
 using DotNetNuke.Entities.Modules.Settings;
 
-namespace R7.University.EduProgram.Components
+namespace R7.University.EduProgram.Models
 {
     public class EduProgramSettingsRepository: SettingsRepository<EduProgramSettings>
     {
