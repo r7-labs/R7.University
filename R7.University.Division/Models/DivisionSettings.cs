@@ -23,7 +23,7 @@ using System;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules.Settings;
 
-namespace R7.University.Division.Components
+namespace R7.University.Division.Models
 {
     /// <summary>
     /// Provides strong typed access to settings used by module

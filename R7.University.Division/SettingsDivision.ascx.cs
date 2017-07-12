@@ -23,7 +23,7 @@ using System;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.University.Division.Components;
+using R7.University.Division.Models;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;

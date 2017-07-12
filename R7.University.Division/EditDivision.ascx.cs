@@ -28,6 +28,7 @@ using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.Division.Components;
+using R7.University.Division.Models;
 using R7.University.Division.Queries;
 using R7.University.Models;
 using R7.University.Modules;

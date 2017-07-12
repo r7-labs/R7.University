@@ -43,10 +43,10 @@
 		      <command>msbuild /t:Build /p:Configuration=${ProjectConfigName} /p:EnableTests=true /p:EnableInstallPackage=false /p:EnableLocalDeploy=false ../R7.University.sln</command>
 		    </Command>
 		    <Command>
-              <type>Custom</type>
-              <name>Re-deploy</name>
-              <command>msbuild /p:Configuration=${ProjectConfigName} /p:LocalDeployIncludeBinaries=true /p:EnableTests=false LocalDeploy.targets</command>
-            </Command>
+		      <type>Custom</type>
+		      <name>Re-deploy</name>
+		      <command>msbuild /p:Configuration=${ProjectConfigName} /p:LocalDeployIncludeBinaries=true /p:EnableTests=false LocalDeploy.targets</command>
+		    </Command>
 		    <Command>
 		      <type>Custom</type>
 		      <name>Re-deploy Assets</name>

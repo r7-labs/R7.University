@@ -21,7 +21,7 @@
 
 using DotNetNuke.Entities.Modules.Settings;
 
-namespace R7.University.Division.Components
+namespace R7.University.Division.Models
 {
     public class DivisionSettingsRepository: SettingsRepository<DivisionSettings>
     {
