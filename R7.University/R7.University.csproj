@@ -226,8 +226,8 @@
       <DependentUpon>EditAchievements.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewModels\EmployeeAchievementEditModel.cs" />
-    <Compile Include="Controls\ViewModels\AchievementTypeSerializationModel.cs" />
-    <Compile Include="Controls\ViewModels\AchievementSerializationModel.cs" />
+    <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
+    <Compile Include="SerializationModels\AchievementTypeSerializationModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -252,6 +252,7 @@
     <Folder Include="Security\" />
     <Folder Include="Modules\" />
     <Folder Include="Controls\js\" />
+    <Folder Include="SerializationModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

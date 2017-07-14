@@ -1,5 +1,5 @@
 ﻿//
-//  AchievementSerializationModel.cs
+//  AchievementTypeSerializationModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,32 +20,29 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Components;
 using R7.University.Models;
+using R7.University.Components;
 
-namespace R7.University.Controls.ViewModels
+namespace R7.University.SerializationModels
 {
-    // TODO: Move to SerializationModels namespace?
     [Serializable]
-    public class AchievementSerializationModel: IAchievementWritable
+    public class AchievementTypeSerializationModel : IAchievementTypeWritable
     {
-        public AchievementSerializationModel ()
+        public AchievementTypeSerializationModel ()
         {
         }
 
-        public AchievementSerializationModel (IAchievementWritable achievement)
+        public AchievementTypeSerializationModel (IAchievementTypeWritable achievementType)
         {
-            CopyCstor.Copy (achievement, this);
+            CopyCstor.Copy (achievementType, this);
         }
 
-        public int AchievementID { get; set; }
+        public int AchievementTypeId { get; set; }
 
-        public AchievementTypeInfo AchievementType {get; set; }
+        public string Description { get; set; }
 
-        public int? AchievementTypeId { get; set; }
+        public bool IsSystem { get; set; }
 
-        public string ShortTitle  { get; set; }
-
-        public string Title  { get; set; }
+        public string Type { get; set; }
     }
 }
