@@ -60,6 +60,9 @@
     <data name="SystemAchievementType_Authorship.Text">
         <value>Author</value>
     </data>
+    <data name="DocumentUrl.Text">
+        <value>View</value>
+    </data>
     <data name="AtTheMoment.Text">
         <value>ATM</value>
     </data>

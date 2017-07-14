@@ -60,6 +60,9 @@
     <data name="SystemAchievementType_Authorship.Text">
         <value>Автор</value>
     </data>
+	<data name="DocumentUrl.Text">
+        <value>Просмотр</value>
+    </data>
 	<data name="AtTheMoment.Text">
         <value>н/в</value>
     </data> 

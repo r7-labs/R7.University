@@ -67,7 +67,8 @@
     margin:0
 }
 
-.u8y-edit-documents .urlControl .dnnClear br {
+.u8y-edit-documents .urlControl .dnnClear br,
+.u8y-edit-achievements .urlControl .dnnClear br {
     display:none
 }
 

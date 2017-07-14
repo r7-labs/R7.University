@@ -70,10 +70,6 @@
                 ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements" />
         </asp:Panel>
         <div class="dnnFormItem">
-            <dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
-            <asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
-        </div>
-        <div class="dnnFormItem">
             <dnn:Label id="labelYears" runat="server" ControlName="textYearBegin" />
             <div class="dnn-form-control-group">
                 <asp:TextBox id="textYearBegin" runat="server" CssClass="dnn-form-control-half-width" />
@@ -103,6 +99,10 @@
             <div class="dnnFormItem">
                 <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" />
                 <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
+            </div>
+			<div class="dnnFormItem">
+                <dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
+                <asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
             </div>
         </fieldset>
         <div class="dnnFormItem">

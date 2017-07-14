@@ -148,6 +148,14 @@ namespace R7.University.Controls
             item.DocumentURL = urlDocumentURL.Url;
         }
 
+        protected override void OnCancelEdit (EmployeeAchievementEditModel item)
+        {
+            // fix for DnnUrlControl looses its state on postback
+            urlDocumentURL.Url = item.DocumentURL;
+
+            base.OnCancelEdit (item);
+        }
+
         protected override void OnResetForm ()
         {
             // restore default panels visibility
