@@ -23,7 +23,6 @@ using System;
 
 namespace R7.University.Models
 {
-    [Serializable]
     public class AchievementInfo: IAchievementWritable
     {
         public int AchievementID { get; set; }
