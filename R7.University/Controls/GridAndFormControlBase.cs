@@ -136,8 +136,9 @@ namespace R7.University.Controls
             set { ViewState ["targetItemId"] = value; }
         }
 
-        // TODO:  Make virtual?
-        protected abstract string TargetItemKey { get; }
+        protected virtual string TargetItemKey {
+            get { return string.Empty; }
+        }
    
         #endregion
 

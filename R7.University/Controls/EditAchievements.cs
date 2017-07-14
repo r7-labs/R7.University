@@ -74,11 +74,6 @@ namespace R7.University.Controls
 
         #region implemented abstract members of GridAndFormEditControlBase
 
-        protected override string TargetItemKey
-        {
-            get { return string.Empty; }
-        }
-
         protected override void OnInitControls ()
         {
             InitControls (gridAchievements, hiddenAchievementItemID, 
