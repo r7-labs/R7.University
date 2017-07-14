@@ -375,10 +375,6 @@ namespace R7.University.Controls
 
                     if (itemIndex >= 0) {
                         // remove item
-
-                        // TODO: Remove old code
-                        // items.RemoveAt (itemIndex);
-
                         var item = items [itemIndex];
                         if (item.EditState != ModelEditState.Added) {
                             item.EditState = ModelEditState.Deleted;    
