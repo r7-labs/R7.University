@@ -219,6 +219,15 @@
     <Compile Include="Controls\ViewModels\IEditControlViewModel.cs" />
     <Compile Include="Models\ModelEditState.cs" />
     <Compile Include="Models\TimeToLearnDisplayMode.cs" />
+    <Compile Include="Controls\EditAchievements.ascx.controls.cs">
+      <DependentUpon>EditAchievements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditAchievements.cs">
+      <DependentUpon>EditAchievements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewModels\EmployeeAchievementEditModel.cs" />
+    <Compile Include="Controls\ViewModels\AchievementTypeSerializationModel.cs" />
+    <Compile Include="Controls\ViewModels\AchievementSerializationModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -322,6 +331,9 @@
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
     <None Include="images\Rollback_16x16_Standard.png" />
+    <None Include="Controls\EditAchievements.ascx" />
+    <None Include="Controls\App_LocalResources\EditAchievements.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditAchievements.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

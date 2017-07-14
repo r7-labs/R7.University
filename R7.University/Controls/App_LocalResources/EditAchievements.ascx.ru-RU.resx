@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Не выбрано &gt;</value>
+    </data>
+	<data name="Years.Column">
+        <value>Год(ы)</value>
+    </data>
+    <data name="Title.Column">
+        <value>Наименование</value>
+    </data>
+    <data name="IsTitle.Column">
+        <value>Титульное</value>
+    </data>
+    <data name="AchievementType.Column">
+        <value>Категория</value>
+    </data>
+    <data name="DocumentUrl.Column">
+        <value>Документ</value>
+    </data>
+	<data name="SystemAchievementType_Custom.Text">
+        <value></value>
+    </data>
+    <data name="SystemAchievementType_Training.Text">
+        <value>Повышение квалификации</value>
+    </data>
+    <data name="SystemAchievementType_ProfTraining.Text">
+        <value>Проф. подготовка</value>
+    </data>
+    <data name="SystemAchievementType_ProfRetraining.Text">
+        <value>Проф. переподготовка</value>
+    </data>
+    <data name="SystemAchievementType_Education.Text">
+        <value>Образование</value>
+    </data>
+    <data name="SystemAchievementType_Work.Text">
+        <value>Работа</value>
+    </data>
+    <data name="SystemAchievementType_Title.Text">
+        <value>Звание</value>
+    </data>
+    <data name="SystemAchievementType_AcademicTitle.Text">
+        <value>Ученое звание</value>
+    </data>
+    <data name="SystemAchievementType_AcademicDegree.Text">
+        <value>Ученая степень</value>
+    </data>
+    <data name="SystemAchievementType_Authorship.Text">
+        <value>Автор</value>
+    </data>
+	<data name="AtTheMoment.Text">
+        <value>н/в</value>
+    </data> 
+    <data name="labelAchievementTypes.Text">
+        <value>Тип достижения:</value>
+    </data>
+    <data name="labelAchievementTypes.Help">
+        <value>Выберите тип достижения сотрудника из списка.</value>
+    </data>
+    <data name="buttonAddAchievement.Text">
+        <value>Добавить достижение</value>
+    </data>
+    <data name="buttonUpdateAchievement.Text">
+        <value>Сохранить достижение</value>
+    </data>
+    <data name="buttonCancelEditAchievement.Text">
+        <value>Отмена</value>
+    </data>
+    <data name="labelYears.Text">
+        <value>Годы:</value>
+    </data>
+    <data name="labelYears.Help">
+        <value>Введите годы начала и окончания для достижения. Если эти значения недоступны, оставьте поля пустыми или введите -1. Введите 0 в поле года окончания для указания настоящего времени.</value>
+    </data>
+    <data name="labelAchievementTitle.Text">
+        <value>Название (роль):</value>
+    </data>
+    <data name="labelAchievementTitle.Help">
+        <value>Введите название (заголовок) описываемого достижения.</value>
+    </data>
+    <data name="AchievementTitle.Required">
+        <value>Введите название достижения.</value>
+    </data>
+    <data name="AchievementTitle.MaxLength">
+        <value>Название достижения слишком длинное.</value>
+    </data>
+    <data name="labelAchievementShortTitle.Text">
+        <value>Сокращенное название:</value>
+    </data>
+    <data name="labelAchievementShortTitle.Help">
+        <value>Введите необязательное сокращенное название описываемого достижения.</value>
+    </data>
+    <data name="labelAchievementDescription.Text">
+        <value>Описание:</value>
+    </data>
+    <data name="labelAchievementDescription.Help">
+        <value>Введите необязательное описание достижения.</value>
+    </data>
+    <data name="labelAchievementTitleSuffix.Text">
+        <value>Дополнение названия:</value>
+    </data>
+    <data name="labelAchievementTitleSuffix.Help">
+        <value>Введите дополнение к названию достижения.</value>
+    </data>
+    <data name="labelIsTitle.Text">
+        <value>Титульное?</value>
+    </data>
+    <data name="labelIsTitle.Help">
+        <value>Если флажок отмечен, достижение будет отображаться совместно с именем сотрудника.</value>
+    </data>
+    <data name="labelDocumentURL.Text">
+        <value>Документ:</value>
+    </data>
+    <data name="labelDocumentURL.Help">
+        <value>Укажите ссылку на документы, связанный с достижением.</value>
+    </data>
+    <data name="labelAchievements.Text">
+        <value>Достижение:</value>
+    </data>
+    <data name="labelAchievements.Help">
+        <value>Выберите достижение из списка по названию, или выберите тип достижения и введите полное и сокращенное названия достижения вручную.</value>
+    </data>
+    <data name="sectionAdvancedAchievementProperties.Text">
+        <value>Расширенные свойства достижения</value>
+    </data>
+</root>

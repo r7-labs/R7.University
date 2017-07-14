@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<resheader name="resmimetype">
+    <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
     </resheader>
     <resheader name="version">
@@ -12,138 +12,138 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="ControlTitle_editemployee.Text">
+    <data name="ControlTitle_editemployee.Text">
         <value>Редактирование сотрудника</value>
     </data>
-	<data name="ModuleHelp.Text">
-		<value>&lt;p&gt;О модуле Edit Employee&lt;/p&gt;</value>
-	</data>
+    <data name="ModuleHelp.Text">
+        <value>&lt;p&gt;О модуле Edit Employee&lt;/p&gt;</value>
+    </data>
     <data name="labelPhotoLookup.Text">
         <value>Найти фото:</value>
     </data>
     <data name="labelPhotoLookup.Help">
         <value>Нажмите, чтобы попытаться найти фото сотрудника по его имени в папке по-умолчанию.</value>
     </data>
-	<data name="labelPhoto.Text">
-		<value>Фото:</value>
-	</data>
-	<data name="labelPhoto.Help">
-		<value>Добавьте или выберите фото сотрудника.</value>
-	</data>
-	<data name="labelUser.Text">
-		<value>Пользователь:</value>
-	</data>
-	<data name="labelUser.Help">
-		<value>Необязательная ссылка на существующего пользователя сайта.</value>
-	</data>
-	<data name="labelLastName.Text">
-		<value>Фамилия:</value>
-	</data>
-	<data name="labelLastName.Help">
-		<value>Введите фамилию сотрудника.</value>
-	</data>
-	<data name="LastName.Required">
-		<value>Укажите фамилию сотрудника.</value>
-	</data>
-	<data name="labelFirstName.Text">
-		<value>Имя:</value>
-	</data>
-	<data name="labelFirstName.Help">
-		<value>Введите имя сотрудника.</value>
-	</data>
-	<data name="FirstName.Required">
-		<value>Укажите имя сотрудника.</value>
-	</data>
-	<data name="labelOtherName.Text">
-		<value>Отчество:</value>
-	</data>
-	<data name="labelOtherName.Help">
-		<value>Введите отчество сотрудника.</value>
-	</data>
+    <data name="labelPhoto.Text">
+        <value>Фото:</value>
+    </data>
+    <data name="labelPhoto.Help">
+        <value>Добавьте или выберите фото сотрудника.</value>
+    </data>
+    <data name="labelUser.Text">
+        <value>Пользователь:</value>
+    </data>
+    <data name="labelUser.Help">
+        <value>Необязательная ссылка на существующего пользователя сайта.</value>
+    </data>
+    <data name="labelLastName.Text">
+        <value>Фамилия:</value>
+    </data>
+    <data name="labelLastName.Help">
+        <value>Введите фамилию сотрудника.</value>
+    </data>
+    <data name="LastName.Required">
+        <value>Укажите фамилию сотрудника.</value>
+    </data>
+    <data name="labelFirstName.Text">
+        <value>Имя:</value>
+    </data>
+    <data name="labelFirstName.Help">
+        <value>Введите имя сотрудника.</value>
+    </data>
+    <data name="FirstName.Required">
+        <value>Укажите имя сотрудника.</value>
+    </data>
+    <data name="labelOtherName.Text">
+        <value>Отчество:</value>
+    </data>
+    <data name="labelOtherName.Help">
+        <value>Введите отчество сотрудника.</value>
+    </data>
     <data name="labelPhone.Text">
-		<value>Телефон:</value>
-	</data>
-	<data name="labelPhone.Help">
-		<value>Введите номер телефона.</value>
-	</data>
-	<data name="labelCellPhone.Text">
-		<value>Сотовый:</value>
-	</data>
-	<data name="labelCellPhone.Help">
-		<value>Введите дополнительный номер (сотового) телефона.</value>
-	</data>
-	<data name="labelFax.Text">
-		<value>Факс:</value>
-	</data>
-	<data name="labelFax.Help">
-		<value>Введите номер факса.</value>
-	</data>
-	<data name="labelEmail.Text">
-		<value>Эл. почта:</value>
-	</data>
-	<data name="labelEmail.Help">
-		<value>Введите адрес электронной почты.</value>
-	</data>
-	<data name="labelSecondaryEmail.Text">
-		<value>Доп. эл. почта:</value>
-	</data>
-	<data name="labelSecondaryEmail.Help">
-		<value>Введите дополнительный адрес электронной почты.</value>
-	</data>
-	<data name="labelWebSite.Text">
-		<value>Личный веб-сайт:</value>
-	</data>
-	<data name="labelWebSite.Help">
-		<value>Введите адрес личного веб-сайта сотрудника.</value>
-	</data>
+        <value>Телефон:</value>
+    </data>
+    <data name="labelPhone.Help">
+        <value>Введите номер телефона.</value>
+    </data>
+    <data name="labelCellPhone.Text">
+        <value>Сотовый:</value>
+    </data>
+    <data name="labelCellPhone.Help">
+        <value>Введите дополнительный номер (сотового) телефона.</value>
+    </data>
+    <data name="labelFax.Text">
+        <value>Факс:</value>
+    </data>
+    <data name="labelFax.Help">
+        <value>Введите номер факса.</value>
+    </data>
+    <data name="labelEmail.Text">
+        <value>Эл. почта:</value>
+    </data>
+    <data name="labelEmail.Help">
+        <value>Введите адрес электронной почты.</value>
+    </data>
+    <data name="labelSecondaryEmail.Text">
+        <value>Доп. эл. почта:</value>
+    </data>
+    <data name="labelSecondaryEmail.Help">
+        <value>Введите дополнительный адрес электронной почты.</value>
+    </data>
+    <data name="labelWebSite.Text">
+        <value>Личный веб-сайт:</value>
+    </data>
+    <data name="labelWebSite.Help">
+        <value>Введите адрес личного веб-сайта сотрудника.</value>
+    </data>
     <data name="labelWebSiteLabel.Text">
         <value>Метка веб-сайта:</value>
     </data>
     <data name="labelWebSiteLabel.Help">
         <value>Необязательная метка для личного веб-сайта. Если не указано, вместо этого будет использован адрес веб-сайта.</value>
     </data>
-	<data name="labelMessenger.Text">
-		<value>Клиент мновенных сообщений:</value>
-	</data>
-	<data name="labelMessenger.Help">
-		<value>Введите адрес клиента мгновенных сообщений и его тип.</value>
-	</data>
-	<data name="labelWorkingHours.Text">
-		<value>Рабочий график:</value>
-	</data>
-	<data name="labelWorkingHours.Help">
-		<value>Выберите рабочий график сотрудника из списка.</value>
-	</data>
-	<data name="labelCustomWorkingHours.Text">
-		<value>Другой рабочий график:</value>
-	</data>
-	<data name="labelCustomWorkingHours.Help">
-		<value>Укажите другой рабочий график для сотрудника.</value>
-	</data>
-	<data name="labelWorkingPlace.Text">
-		<value>Рабочее место:</value>
-	</data>
-	<data name="labelWorkingPlace.Help">
-		<value>Введите рабочее место сотрудника, например номер офиса (корпуса) и кабинета.</value>
-	</data>
-	<data name="labelExperienceYears.Text">
-		<value>Общий стаж (лет):</value>
-	</data>
-	<data name="labelExperienceYears.Help">
-		<value>Введите общий стаж работы сотрудника (количество полных лет).</value>
-	</data>
-	<data name="labelExperienceYearsBySpec.Text">
-		<value>Стаж по специальности (лет):</value>
-	</data>
-	<data name="labelExperienceYearsBySpec.Help">
-		<value>Введите стаж работы сотрудника по специальности (количество полных лет).</value>
-	</data>
-	<data name="labelBiography.Text">
-		<value>О себе:</value>
-	</data>
-	<data name="labelBiography.Help">
-		<value>Введите биографию сотрудника / предоставленные им сведения о себе.</value>
-	</data>
+    <data name="labelMessenger.Text">
+        <value>Клиент мновенных сообщений:</value>
+    </data>
+    <data name="labelMessenger.Help">
+        <value>Введите адрес клиента мгновенных сообщений и его тип.</value>
+    </data>
+    <data name="labelWorkingHours.Text">
+        <value>Рабочий график:</value>
+    </data>
+    <data name="labelWorkingHours.Help">
+        <value>Выберите рабочий график сотрудника из списка.</value>
+    </data>
+    <data name="labelCustomWorkingHours.Text">
+        <value>Другой рабочий график:</value>
+    </data>
+    <data name="labelCustomWorkingHours.Help">
+        <value>Укажите другой рабочий график для сотрудника.</value>
+    </data>
+    <data name="labelWorkingPlace.Text">
+        <value>Рабочее место:</value>
+    </data>
+    <data name="labelWorkingPlace.Help">
+        <value>Введите рабочее место сотрудника, например номер офиса (корпуса) и кабинета.</value>
+    </data>
+    <data name="labelExperienceYears.Text">
+        <value>Общий стаж (лет):</value>
+    </data>
+    <data name="labelExperienceYears.Help">
+        <value>Введите общий стаж работы сотрудника (количество полных лет).</value>
+    </data>
+    <data name="labelExperienceYearsBySpec.Text">
+        <value>Стаж по специальности (лет):</value>
+    </data>
+    <data name="labelExperienceYearsBySpec.Help">
+        <value>Введите стаж работы сотрудника по специальности (количество полных лет).</value>
+    </data>
+    <data name="labelBiography.Text">
+        <value>О себе:</value>
+    </data>
+    <data name="labelBiography.Help">
+        <value>Введите биографию сотрудника / предоставленные им сведения о себе.</value>
+    </data>
     <data name="labelStartDate.Text">
         <value>Начало публикации:</value>
     </data>
@@ -156,57 +156,57 @@
     <data name="labelEndDate.Help">
         <value>Введите дату, начиная с которой сотрудник должен быть снят с публикации на сайте.</value>
     </data>
-	<data name="labelShowBarcode.Text">
+    <data name="labelShowBarcode.Text">
         <value>Показывать штрих-код:</value>
     </data>
     <data name="labelShowBarcode.Help">
         <value>Снимите флажок, чтобы запретить показ штрих-кода для данного сотрудника.</value>
     </data>
-	<data name="labelUserLookup.Text">
-		<value>Найти пользователя:</value>
-	</data>
-	<data name="labelUserLookup.Help">
-		<value>Введите адрес эл. почты или имя пользователя и нажмите Найти пользователя.</value>
-	</data>
-	<data name="labelPositions.Text">
-		<value>Должность:</value>
-	</data>
-	<data name="labelPositions.Help">
-		<value>Укажите должность сотрудника.</value>
-	</data>
+    <data name="labelUserLookup.Text">
+        <value>Найти пользователя:</value>
+    </data>
+    <data name="labelUserLookup.Help">
+        <value>Введите адрес эл. почты или имя пользователя и нажмите Найти пользователя.</value>
+    </data>
+    <data name="labelPositions.Text">
+        <value>Должность:</value>
+    </data>
+    <data name="labelPositions.Help">
+        <value>Укажите должность сотрудника.</value>
+    </data>
     <data name="labelPositionTitleSuffix.Text">
         <value>Дополнение должности:</value>
     </data>
     <data name="labelPositionTitleSuffix.Help">
         <value>Введите строку, которая будет использоваться в качестве дополнения к наименованию выбранной должности.</value>
     </data>
-	<data name="labelDivisions.Text">
-		<value>Подразделение:</value>
-	</data>
-	<data name="labelDivisions.Help">
-		<value>Укажите подразделение, в котором работает сотрудник.</value>
-	</data>
-	<data name="buttonUserLookup.Text">
-		<value>Найти пользователя</value>
-	</data>
+    <data name="labelDivisions.Text">
+        <value>Подразделение:</value>
+    </data>
+    <data name="labelDivisions.Help">
+        <value>Укажите подразделение, в котором работает сотрудник.</value>
+    </data>
+    <data name="buttonUserLookup.Text">
+        <value>Найти пользователя</value>
+    </data>
     <data name="buttonPhotoLookup.Text">
         <value>Найти фото</value>
     </data>
-	<data name="checkIncludeDeletedUsers.Text">
-		<value>Включая удаленных пользователей?</value>
-	</data>
-	<data name="buttonAddPosition.Text">
-		<value>Добавить должность</value>
-	</data>
+    <data name="checkIncludeDeletedUsers.Text">
+        <value>Включая удаленных пользователей?</value>
+    </data>
+    <data name="buttonAddPosition.Text">
+        <value>Добавить должность</value>
+    </data>
     <data name="buttonUpdatePosition.Text">
         <value>Сохранить должность</value>
     </data>
     <data name="buttonCancelEditPosition.Text">
         <value>Отмена</value>
     </data>
-	<data name="labelIsPrime.Text">
-		<value>Основная?</value>
-	</data>
+    <data name="labelIsPrime.Text">
+        <value>Основная?</value>
+    </data>
     <data name="labelIsPrime.Help">
         <value>Если флажок отмечен, занимаемая должность будет рассматриваться как основная для этого сотрудника.</value>
     </data>
@@ -228,80 +228,8 @@
     <data name="labelDisciplines.Help">
         <value>Перечислите преподаваемые дисциплины.</value>
     </data>
-	<data name="checkAddToVocabulary.Text">
-		<value>Добавить в словарь</value>
-	</data>
-	<data name="labelAchievementTypes.Text">
-		<value>Тип достижения:</value>
-	</data>
-	<data name="labelAchievementTypes.Help">
-		<value>Выберите тип достижения сотрудника из списка.</value>
-	</data>
-	<data name="buttonAddAchievement.Text">
-		<value>Добавить достижение</value>
-	</data>
-	<data name="buttonUpdateAchievement.Text">
-		<value>Сохранить достижение</value>
-	</data>
-	<data name="buttonCancelEditAchievement.Text">
-		<value>Отмена</value>
-	</data>
-	<data name="labelYears.Text">
-		<value>Годы:</value>
-	</data>
-	<data name="labelYears.Help">
-		<value>Введите годы начала и окончания для достижения. Если эти значения недоступны, оставьте поля пустыми или введите -1. Введите 0 в поле года окончания для указания настоящего времени.</value>
-	</data>
-	<data name="labelAchievementTitle.Text">
-		<value>Название (роль):</value>
-	</data>
-	<data name="labelAchievementTitle.Help">
-		<value>Введите название (заголовок) описываемого достижения.</value>
-	</data>
-	<data name="AchievementTitle.Required">
-        <value>Введите название достижения.</value>
-    </data>
-    <data name="AchievementTitle.MaxLength">
-        <value>Название достижения слишком длинное.</value>
-    </data>
-	<data name="labelAchievementShortTitle.Text">
-		<value>Сокращенное название:</value>
-	</data>
-	<data name="labelAchievementShortTitle.Help">
-		<value>Введите необязательное сокращенное название описываемого достижения.</value>
-	</data>
-	<data name="labelAchievementDescription.Text">
-		<value>Описание:</value>
-	</data>
-	<data name="labelAchievementDescription.Help">
-		<value>Введите необязательное описание достижения.</value>
-	</data>
-	<data name="labelAchievementTitleSuffix.Text">
-		<value>Дополнение названия:</value>
-	</data>
-	<data name="labelAchievementTitleSuffix.Help">
-		<value>Введите дополнение к названию достижения.</value>
-	</data>
-	<data name="labelIsTitle.Text">
-		<value>Титульное?</value>
-	</data>
-	<data name="labelIsTitle.Help">
-		<value>Если флажок отмечен, достижение будет отображаться совместно с именем сотрудника.</value>
-	</data>
-	<data name="labelDocumentURL.Text">
-		<value>Документ:</value>
-	</data>
-	<data name="labelDocumentURL.Help">
-		<value>Укажите ссылку на документы, связанный с достижением.</value>
-	</data>
-	<data name="labelAchievements.Text">
-		<value>Достижение:</value>
-	</data>
-	<data name="labelAchievements.Help">
-		<value>Выберите достижение из списка по названию, или выберите тип достижения и введите полное и сокращенное названия достижения вручную.</value>
-	</data>
-    <data name="sectionAdvancedAchievementProperties.Text">
-        <value>Расширенные свойства достижения</value>
+    <data name="checkAddToVocabulary.Text">
+        <value>Добавить в словарь</value>
     </data>
     <data name="Division.Column">
         <value>Подразделение</value>

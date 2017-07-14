@@ -133,8 +133,6 @@
     <Compile Include="Components\EmployeeController.cs" />
     <Compile Include="SharedLogic\RepeaterPositionsLogic.cs" />
     <Compile Include="Queries\EmployeeQuery.cs" />
-    <Compile Include="ViewModels\EmployeeAchievementEditModel.cs" />
-    <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="ViewModels\EmployeeDisciplineEditModel.cs" />
     <Compile Include="ViewModels\OccupiedPositionEditModel.cs" />
@@ -142,6 +140,7 @@
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="Models\EmployeeSettings.cs" />
     <Compile Include="Models\EmployeeSettingsRepository.cs" />
+    <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -135,6 +136,7 @@ namespace R7.University.Controls
             set { ViewState ["targetItemId"] = value; }
         }
 
+        // TODO:  Make virtual?
         protected abstract string TargetItemKey { get; }
    
         #endregion
@@ -167,7 +169,7 @@ namespace R7.University.Controls
             TargetItemId = targetItemId;
 
             var convertor = new TViewModel ();
-            var viewModels = items.Select (i => (TViewModel) convertor.Create (i, ViewModelContext)).ToList ();
+            var viewModels = items.Select (i => DebugEnsureCreatedProperly ((TViewModel) convertor.Create (i, ViewModelContext))).ToList ();
             ViewStateItems = viewModels;
 
             GridItems.DataSource = viewModels;
@@ -175,6 +177,14 @@ namespace R7.University.Controls
         }
 
         #endregion
+
+        TViewModel DebugEnsureCreatedProperly (TViewModel viewModel)
+        {
+            Debug.Assert (viewModel != null);
+            Debug.Assert (viewModel.Context != null);
+
+            return viewModel;
+        }
 
         ViewModelContext _viewModelContext;
         protected ViewModelContext ViewModelContext

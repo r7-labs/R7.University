@@ -6,6 +6,7 @@
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register TagPrefix="controls" TagName="EditAchievements" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditAchievements.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/AgplSignature.ascx" %>
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
@@ -201,114 +202,7 @@
 			</fieldset>
 		</div>
 		<div id="employee-achievements-tab">
-			<fieldset>
-				<div class="dnnFormItem">
-					<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-						GridLines="None" OnRowDataBound="gridAchievements_RowDataBound" Style="width:100%;margin-bottom:30px">
-							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
-					        <SelectedRowStyle CssClass="dnnFormError" />
-					        <EditRowStyle CssClass="dnnFormInput" />
-					        <FooterStyle CssClass="dnnGridFooter" />
-					        <PagerStyle CssClass="dnnGridPager" />
-							<Columns>
-								<asp:TemplateField>
-					               <ItemTemplate>
-										<span style="white-space:nowrap">
-					                		<asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditAchievement_Command" >
-					                			<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-					                		</asp:LinkButton>
-											<asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteAchievement_Command" >
-					                			<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-					                		</asp:LinkButton>
-										</span>
-					               </ItemTemplate>
-					        	</asp:TemplateField>
-                                <asp:BoundField DataField="ItemID" />
-                                <asp:BoundField DataField="Years_String" HeaderText="Years" />
-                                <asp:BoundField DataField="Title_String" HeaderText="Title" />
-                                <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
-                                <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle" />
-                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
-							    <asp:BoundField DataField="Description" Visible="false" />
-							</Columns>
-				    </asp:GridView>
-				</div>
-      			<div class="dnnFormItem">
-					<dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
-                    <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-ac-combobox"
-                        DataValueField="AchievementID"
-                        DataTextField="Title"
-                        AutoPostBack="true"
-                        OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged" />
-                </div>
-                <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
-                    <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
-                    <asp:DropDownList id="comboAchievementTypes" runat="server" 
-                        DataTextField="Text"
-                        DataValueField="Value" />
-                </asp:Panel>
-				<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem dnnFormRequired">
-					<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
-					<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
-					<asp:RequiredFieldValidator runat="server" resourcekey="AchievementTitle.Required" 
-					    ControlToValidate="textAchievementTitle" ValidationGroup="Achievements"
-						Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-					<asp:RegularExpressionValidator runat="server"
-                        CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
-                        ControlToValidate="textAchievementTitle" Display="Dynamic"
-                        ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements" />
-                </asp:Panel>
-                <div class="dnnFormItem">
-					<dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
-					<asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelYears" runat="server" ControlName="textYearBegin" />
-					<div class="dnn-form-control-group">
-                        <asp:TextBox id="textYearBegin" runat="server" CssClass="dnn-form-control-half-width" />
-                        &ndash;
-                        <asp:TextBox id="textYearEnd" runat="server" CssClass="dnn-form-control-half-width" />
-                    </div>
-				</div>
-                <div class="dnnFormItem">
-					<dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />
-					<asp:CheckBox id="checkIsTitle" runat="server" CssClass="dnn-form-control" />
-				</div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" />
-                    <dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
-                        IncludeActiveTab="true"
-                        ShowFiles="true" ShowTabs="true"
-                        ShowUrls="true" ShowUsers="true"
-                        ShowLog="false" ShowTrack="false"
-                        ShowNone="true" ShowNewWindow="false" />      
-                </div>
-                <h2 class="dnnFormSectionHead dnnClear"><a href="#"><%: LocalizeString ("sectionAdvancedAchievementProperties.Text") %></a></h2>
-                <fieldset>
-                    <asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
-                        <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" />
-                        <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
-                    </asp:Panel>
-                    <div class="dnnFormItem">
-                        <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" />
-                        <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
-                    </div>
-                </fieldset>
-				<div class="dnnFormItem">
-					<div class="dnnLabel"></div>
-					<asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
-						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" CommandArgument="Add" 
-                        CausesValidation="true" ValidationGroup="Achievements" />
-					<asp:LinkButton id="buttonUpdateAchievement" runat="server" resourcekey="buttonUpdateAchievement" 
-						CssClass="dnnPrimaryAction" OnCommand="buttonAddAchievement_Command" Visible="false"
-                        CommandArgument="Update" CausesValidation="true" ValidationGroup="Achievements" />
-					<asp:LinkButton id="buttonCancelEditAchievement" runat="server" resourcekey="buttonCancelEditAchievement" 
-						CssClass="dnnSecondaryAction" OnClick="buttonCancelEditAchievement_Click" />
-				</div>
-				<asp:HiddenField id="hiddenAchievementItemID" runat="server" />
-			</fieldset>
+            <controls:EditAchievements id="formEditAchievements" runat="server" />
 		</div>
 		<div id="employee-disciplines-tab">
 			<fieldset>

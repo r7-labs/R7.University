@@ -49,32 +49,15 @@ namespace R7.University.Employee
 		protected LinkButton buttonUpdatePosition;
 		protected LinkButton buttonCancelEditPosition;
 		protected HiddenField hiddenOccupiedPositionItemID;
-        protected GridView gridAchievements;
-		protected DropDownList comboAchievementTypes;
-		protected TextBox textYearBegin;
-		protected TextBox textYearEnd;
-		protected LinkButton buttonAddAchievement;
-		protected LinkButton buttonUpdateAchievement;
-		protected LinkButton buttonCancelEditAchievement;
-		protected TextBox textAchievementTitle;
-		protected TextBox textAchievementShortTitle;
-		protected TextBox textAchievementDescription;
-		protected CheckBox checkIsTitle;
-		protected DnnUrlControl urlDocumentURL;
-		protected HiddenField hiddenAchievementItemID;
-        protected DropDownList comboAchievement;
-		protected Panel panelAchievementTitle;
-		protected Panel panelAchievementShortTitle;
-		protected Panel panelAchievementTypes;
-		protected TextBox textAchievementTitleSuffix;
-        protected GridView gridDisciplines;
         protected TextBox textDisciplines;
         protected DropDownList comboEduLevel;
         protected DropDownList comboEduProgramProfile;
+        protected GridView gridDisciplines;
         protected LinkButton buttonAddDisciplines;
         protected LinkButton buttonUpdateDisciplines;
         protected LinkButton buttonCancelEditDisciplines;
         protected HiddenField hiddenDisciplinesItemID;
         protected CustomValidator valEduProgramProfile;
+        protected EditAchievements formEditAchievements;
 	}
 }

@@ -24,15 +24,15 @@ using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
-using R7.University.ModelExtensions;
 
-namespace R7.University.Employee.ViewModels
+namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditModel: IEmployeeAchievementWritable, IViewModel
+    public class EmployeeAchievementEditModel: IEmployeeAchievementWritable, IEditControlViewModel<EmployeeAchievementInfo>
     {
         #region IEmployeeAchievementWritable implementation
 
@@ -68,23 +68,24 @@ namespace R7.University.Employee.ViewModels
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public AchievementInfo Achievement { get; set; }
 
-        #endregion
-
         public string Type { get; set; }
+
+        #endregion
 
         #region Bindable properties
 
-        public int ItemID { get; set; }
-
         public string Years_String
         {
-            get { return FormatHelper.FormatYears (YearBegin, YearEnd,
-                                                   Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile)); }
+            get {
+                return FormatHelper.FormatYears (YearBegin, YearEnd, 
+                                                 Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
+            }
         }
 
         public string AchievementType_String
         {
             get {
+                
                 // TODO: Don't create new object here?
                 var achievementType = (AchievementTypeId != null) ? new AchievementTypeInfo { Type = Type } : null;
                 return achievementType.Localize (Context.LocalResourceFile); 
@@ -111,37 +112,48 @@ namespace R7.University.Employee.ViewModels
 
         #endregion
 
-        protected ViewModelContext Context;
+        #region IEditControlViewModel implementation
+
+        public int ViewItemID { get; set; }
+
+        [XmlIgnore]
+        public ViewModelContext Context { get; set; }
 
         public void SetContext (ViewModelContext context)
         {
             Context = context;
         }
 
-        public EmployeeAchievementEditModel ()
-        {
-            ItemID = ViewNumerator.GetNextItemID ();
+        ModelEditState _editState;
+        public ModelEditState EditState {
+            get { return _editState; }
+            set { PrevEditState = _editState; _editState = value; }
         }
 
-        public EmployeeAchievementEditModel (IEmployeeAchievementWritable achievement) : this ()
-        {
-            CopyCstor.Copy (achievement, this);
+        public ModelEditState PrevEditState { get; set; }
 
-            // use base achievement values
-            if (achievement.Achievement != null) {
-                Title = achievement.Achievement.Title;
-                ShortTitle = achievement.Achievement.ShortTitle;
-                AchievementTypeId = achievement.Achievement.AchievementTypeId;
-                if (achievement.Achievement.AchievementType != null) {
-                    Type = achievement.Achievement.AchievementType.Type;
+        public void SetTargetItemId (int targetItemId, string targetItemKey)
+        {
+            EmployeeID = targetItemId;
+        }
+
+        [XmlIgnore]
+        public string CssClass {
+            get {
+                var cssClass = string.Empty;
+                if (EditState == ModelEditState.Deleted) {
+                    cssClass += " u8y-deleted";
+                } else if (EditState == ModelEditState.Added) {
+                    cssClass += " u8y-added";
+                } else if (EditState == ModelEditState.Modified) {
+                    cssClass += " u8y-updated";
                 }
-            }
-            else if (achievement.AchievementType != null) {
-                Type = achievement.AchievementType.Type;
+
+                return cssClass.TrimStart ();
             }
         }
 
-        public EmployeeAchievementInfo NewEmployeeAchievementInfo ()
+        public EmployeeAchievementInfo CreateModel ()
         {
             var achievement = new EmployeeAchievementInfo ();
             CopyCstor.Copy<IEmployeeAchievementWritable> (this, achievement);
@@ -153,6 +165,34 @@ namespace R7.University.Employee.ViewModels
             }
 
             return achievement;
+        }
+
+        public IEditControlViewModel<EmployeeAchievementInfo> Create (EmployeeAchievementInfo model, ViewModelContext context)
+        {
+            var viewModel = new EmployeeAchievementEditModel ();
+            CopyCstor.Copy<IEmployeeAchievementWritable> (model, viewModel);
+            viewModel.Context = context;
+
+            if (model.Achievement != null) {
+                viewModel.Title = model.Achievement.Title;
+                viewModel.ShortTitle = model.Achievement.ShortTitle;
+                viewModel.AchievementTypeId = model.Achievement.AchievementTypeId;
+                if (model.Achievement.AchievementType != null) {
+                    viewModel.Type = model.Achievement.AchievementType.Type;
+                }
+            }
+            else if (model.AchievementType != null) {
+                viewModel.Type = model.AchievementType.Type;
+            }
+
+            return viewModel;
+        }
+
+        #endregion
+
+        public EmployeeAchievementEditModel ()
+        {
+            ViewItemID = ViewNumerator.GetNextItemID ();
         }
     }
 }

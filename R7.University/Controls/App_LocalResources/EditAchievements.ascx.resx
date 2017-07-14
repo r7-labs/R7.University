@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Not Selected &gt;</value>
+    </data>
+	<data name="Years.Column">
+        <value>Year(s)</value>
+    </data>
+    <data name="Title.Column">
+        <value>Title</value>
+    </data>
+    <data name="IsTitle.Column">
+        <value>Is Title</value>
+    </data>
+    <data name="AchievementType.Column">
+        <value>Category</value>
+    </data>
+    <data name="DocumentUrl.Column">
+        <value>Document</value>
+    </data>
+    <data name="SystemAchievementType_Custom.Text">
+        <value></value>
+    </data>
+    <data name="SystemAchievementType_Training.Text">
+        <value>Training</value>
+    </data>
+    <data name="SystemAchievementType_ProfTraining.Text">
+        <value>Professional Training</value>
+    </data>
+    <data name="SystemAchievementType_ProfRetraining.Text">
+        <value>Professional Retraining</value>
+    </data>
+    <data name="SystemAchievementType_Education.Text">
+        <value>Education</value>
+    </data>
+    <data name="SystemAchievementType_Work.Text">
+        <value>Work</value>
+    </data>
+    <data name="SystemAchievementType_Title.Text">
+        <value>Title</value>
+    </data>
+    <data name="SystemAchievementType_AcademicTitle.Text">
+        <value>Academic Title</value>
+    </data>
+    <data name="SystemAchievementType_AcademicDegree.Text">
+        <value>Academic Degree</value>
+    </data>
+    <data name="SystemAchievementType_Authorship.Text">
+        <value>Author</value>
+    </data>
+    <data name="AtTheMoment.Text">
+        <value>ATM</value>
+    </data>
+    <data name="labelAchievementTypes.Text">
+        <value>Achievement Type:</value>
+    </data>
+    <data name="labelAchievementTypes.Help">
+        <value>Select employee achievement type from the list.</value>
+    </data>
+    <data name="buttonAddAchievement.Text">
+        <value>Add Achievement</value>
+    </data>
+    <data name="buttonUpdateAchievement.Text">
+        <value>Update Achievement</value>
+    </data>
+    <data name="buttonCancelEditAchievement.Text">
+        <value>Cancel</value>
+    </data>
+    <data name="labelYears.Text">
+        <value>Years:</value>
+    </data>
+    <data name="labelYears.Help">
+        <value>Enter starting and ending years of the achievement. If they are not available, leave fields empty or set to -1. Set end year to 0 to specify ATM value.</value>
+    </data>
+    <data name="labelAchievementTitle.Text">
+        <value>Title:</value>
+    </data>
+    <data name="labelAchievementTitle.Help">
+        <value>Enter the title for the described achievement.</value>
+    </data>
+    <data name="AchievementTitle.Required">
+        <value>Achievement title is required.</value>
+    </data>
+    <data name="AchievementTitle.MaxLength">
+        <value>Achievement title is too long.</value>
+    </data>  
+    <data name="labelAchievementShortTitle.Text">
+        <value>Short Title:</value>
+    </data>
+    <data name="labelAchievementShortTitle.Help">
+        <value>Enter the optional short title for the described achievement.</value>
+    </data>
+    <data name="labelAchievementDescription.Text">
+        <value>Description:</value>
+    </data>
+    <data name="labelAchievementDescription.Help">
+        <value>Enter optional description to describe achievement.</value>
+    </data>
+    <data name="labelAchievementTitleSuffix.Text">
+        <value>Title Suffix:</value>
+    </data>
+    <data name="labelAchievementTitleSuffix.Help">
+        <value>Enter the extension suffix for the achievement title.</value>
+    </data>
+    <data name="labelIsTitle.Text">
+        <value>Is Title?</value>
+    </data>
+    <data name="labelIsTitle.Help">
+        <value>If checked, this achivement will be displayed as one of employee's titles along with his/her name.</value>
+    </data>
+    <data name="labelDocumentURL.Text">
+        <value>Document URL:</value>
+    </data>
+    <data name="labelDocumentURL.Help">
+        <value>Specify URL for a document, associated with the achievement.</value>
+    </data>
+    <data name="labelAchievements.Text">
+        <value>Achievement:</value>
+    </data>
+    <data name="labelAchievements.Help">
+        <value>Select the achievement from dropdown by title or select achivement type and set full and short titles manually.</value>
+    </data>
+    <data name="sectionAdvancedAchievementProperties.Text">
+        <value>Advanced Achievement Properties</value>
+    </data>
+</root>
