@@ -14,7 +14,6 @@ namespace R7.University.Division
         protected TextBox txtTitle;
         protected TextBox txtShortTitle;
         protected DivisionSelector parentDivisionSelector;
-        protected DnnTreeView treeDivisionTerms;
         protected DnnUrlControl urlHomePage;
         protected TextBox txtWebSite;
         protected TextBox textWebSiteLabel;

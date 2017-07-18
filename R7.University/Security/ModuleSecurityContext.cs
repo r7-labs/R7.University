@@ -69,6 +69,17 @@ namespace R7.University.Security
             return canDelete;
         }
 
+        public bool CanUpdate<TEntity> (TEntity entity) where TEntity : class
+        {
+            var canUpdate = true;
+
+            if (entity is ISystemEntity) {
+                canUpdate &= !((ISystemEntity) entity).IsSystem;
+            }
+
+            return canUpdate;
+        }
+
         public bool CanManageModule ()
         {
             return IsAdmin;

@@ -228,6 +228,11 @@
     <Compile Include="Controls\ViewModels\EmployeeAchievementEditModel.cs" />
     <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
     <Compile Include="SerializationModels\AchievementTypeSerializationModel.cs" />
+    <Compile Include="Commands\AddDivisionCommand.cs" />
+    <Compile Include="Commands\UpdateCommand.cs" />
+    <Compile Include="Commands\UpdateDivisionCommand.cs" />
+    <Compile Include="Commands\DeleteDivisionCommand.cs" />
+    <Compile Include="ModelExtensions\TaxonomyExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

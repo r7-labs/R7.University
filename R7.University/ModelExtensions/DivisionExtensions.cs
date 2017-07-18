@@ -102,5 +102,14 @@ namespace R7.University.ModelExtensions
 
             return vcard;
         }
+
+        public static IDivision GetParentDivision (this IDivision division, IModelContext modelContext)
+        {
+            if (division.ParentDivisionID != null) {
+                return modelContext.Get<DivisionInfo> (division.ParentDivisionID.Value); 
+            }
+
+            return  null;
+        }
     }
 }

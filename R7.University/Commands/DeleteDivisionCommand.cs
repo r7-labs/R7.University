@@ -1,5 +1,5 @@
 ﻿//
-//  ISecurityContext.cs
+//  DeleteDivisionCommand.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,20 +19,27 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+using R7.University.ModelExtensions;
+using R7.University.Models;
+using R7.University.Security;
 
-namespace R7.University.Security
+namespace R7.University.Commands
 {
-    public interface ISecurityContext
+    public class DeleteDivisionCommand: DeleteCommand<DivisionInfo> 
     {
-        int UserId { get; }
+        public DeleteDivisionCommand (IModelContext modelContext, ISecurityContext securityContext)
+            : base (modelContext, securityContext)
+        {
+        }
 
-        bool IsAdmin { get; }
-
-        bool CanAdd (Type entityType);
-
-        bool CanDelete<TEntity> (TEntity entity) where TEntity : class;
-
-        bool CanUpdate<TEntity> (TEntity entity) where TEntity : class;
+        public override void Delete (DivisionInfo entity)
+        {
+            if (SecurityContext.CanDelete (entity)) {
+                if (entity.DivisionTermID != null) {
+                    TaxonomyExtensions.DeleteTerm (entity.DivisionTermID.Value);
+                }
+                ModelContext.Remove (entity);
+            }
+        }
     }
 }

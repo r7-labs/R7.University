@@ -1,5 +1,5 @@
 ﻿//
-//  DeleteCommand.cs
+//  AddDivisionCommand.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,28 +19,27 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
 
 namespace R7.University.Commands
 {
-    public class DeleteCommand<TEntity> : ISecureCommand
-        where TEntity : class
+    public class AddDivisionCommand: AddCommand<DivisionInfo> 
     {
-        public IModelContext ModelContext { get; set; }
-
-        public ISecurityContext SecurityContext { get; set; }
-
-        public DeleteCommand (IModelContext modelContext, ISecurityContext securityContext)
+        public AddDivisionCommand (IModelContext modelContext, ISecurityContext securityContext)
+            : base (modelContext, securityContext)
         {
-            ModelContext = modelContext;
-            SecurityContext = securityContext;
         }
 
-        public virtual void Delete (TEntity entity)
+        public override void Add (DivisionInfo entity, DateTime dateTime)
         {
-            if (SecurityContext.CanDelete (entity)) {
-                ModelContext.Remove (entity);
+            if (SecurityContext.CanAdd (typeof (DivisionInfo))) {
+                entity.CreatedByUserID = entity.LastModifiedByUserID = SecurityContext.UserId;
+                entity.CreatedOnDate = entity.LastModifiedOnDate = dateTime;
+                entity.DivisionTermID = entity.AddTerm (ModelContext);
+                ModelContext.Add (entity);
             }
         }
     }

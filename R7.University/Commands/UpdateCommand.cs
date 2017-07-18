@@ -1,5 +1,5 @@
 ﻿//
-//  DeleteCommand.cs
+//  UpdateCommand.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,28 +19,31 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using R7.University.Models;
 using R7.University.Security;
 
 namespace R7.University.Commands
 {
-    public class DeleteCommand<TEntity> : ISecureCommand
-        where TEntity : class
+    public class UpdateCommand<TEntity> : ISecureCommand
+        where TEntity : class, ITrackableEntityWritable
     {
         public IModelContext ModelContext { get; set; }
 
         public ISecurityContext SecurityContext { get; set; }
 
-        public DeleteCommand (IModelContext modelContext, ISecurityContext securityContext)
+        public UpdateCommand (IModelContext modelContext, ISecurityContext securityContext)
         {
             ModelContext = modelContext;
             SecurityContext = securityContext;
         }
 
-        public virtual void Delete (TEntity entity)
+        public virtual void Update (TEntity entity, DateTime dateTime)
         {
-            if (SecurityContext.CanDelete (entity)) {
-                ModelContext.Remove (entity);
+            if (SecurityContext.CanUpdate (entity)) {
+                entity.LastModifiedByUserID = SecurityContext.UserId;
+                entity.LastModifiedOnDate = dateTime;
+                ModelContext.Update (entity);        
             }
         }
     }

@@ -43,13 +43,11 @@ namespace R7.University.Commands
             Add (entity, DateTime.Now);
         }
 
-        public void Add (TEntity entity, DateTime dateTime)
+        public virtual void Add (TEntity entity, DateTime dateTime)
         {
             if (SecurityContext.CanAdd (typeof (TEntity))) {
-
                 entity.CreatedByUserID = entity.LastModifiedByUserID = SecurityContext.UserId;
                 entity.CreatedOnDate = entity.LastModifiedOnDate = dateTime;
-
                 ModelContext.Add (entity);
             }
         }

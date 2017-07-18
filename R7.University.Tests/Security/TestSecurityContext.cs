@@ -45,5 +45,10 @@ namespace R7.University.Tests.Security
         {
             return IsAdmin;
         }
+
+        public bool CanUpdate<TEntity> (TEntity entity) where TEntity : class
+        {
+            return true;
+        }
     }
 }

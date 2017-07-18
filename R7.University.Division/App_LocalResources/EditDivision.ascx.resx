@@ -36,12 +36,6 @@
 	<data name="lblParentDivision.Help" xml:space="preserve">
         <value>Select a parent division for this division.</value>
     </data>
-	<data name="lblDivisionTerm.Text" xml:space="preserve">
-        <value>Associated Term:</value>
-    </data>
-	<data name="lblDivisionTerm.Help" xml:space="preserve">
-        <value>Select taxonomy term, associated with this division.</value>
-    </data>
 	<data name="lblHomePage.Text" xml:space="preserve">
         <value>Home Page:</value>
     </data>

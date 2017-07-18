@@ -36,12 +36,6 @@
 	<data name="lblParentDivision.Help" xml:space="preserve">
         <value>Выберите подразделение, которому подчиняется данное подразделение.</value>
     </data>
-	<data name="lblDivisionTerm.Text" xml:space="preserve">
-        <value>Связанная метка:</value>
-    </data>
-	<data name="lblDivisionTerm.Help" xml:space="preserve">
-        <value>Выберите метку из таксономии, связанную с подразделением.</value>
-    </data>
 	<data name="lblHomePage.Text" xml:space="preserve">
         <value>Домашняя страница:</value>
     </data>

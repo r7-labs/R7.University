@@ -131,15 +131,6 @@
                             ShowLog="false" ShowTrack="false"
                             ShowNone="true" ShowNewWindow="false" />      
                 </div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="lblDivisionTerm" runat="server" ControlName="treeDivisionTerms" />
-                    <dnn:DnnTreeView ID="treeDivisionTerms" runat="server" 
-                        DataFieldID="TermId"
-                        DataFieldParentID="ParentTermId"
-                        DataTextField="Name"
-                        DataValueField="TermId"
-                    />
-                </div>
             </fieldset>
         </div>
     </div>

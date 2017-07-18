@@ -21,13 +21,10 @@
 
 using System;
 using System.Linq;
-using DotNetNuke.Entities.Content.Taxonomy;
-using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
-using R7.University.Division.Components;
 using R7.University.Division.Models;
 using R7.University.Division.Queries;
 using R7.University.Models;
@@ -100,19 +97,6 @@ namespace R7.University.Division
             // init working hours
             WorkingHoursLogic.Init (this, comboWorkingHours);
 
-            // Fill terms list
-            // TODO: Org. structure vocabulary name must be set in settings?
-            var termCtrl = new TermController ();
-            var terms = termCtrl.GetTermsByVocabulary ("University_Structure").ToList (); 
-
-            // add default term, 
-            // TermId = Null.NullInteger is set in cstor
-            terms.Insert (0, new Term (Localization.GetString ("NotSelected.Text", LocalResourceFile)));
-
-            // bind terms to the tree
-            treeDivisionTerms.DataSource = terms;
-            treeDivisionTerms.DataBind ();
-
             // bind positions
             comboHeadPosition.DataSource = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
             comboHeadPosition.DataBind ();
@@ -148,21 +132,6 @@ namespace R7.University.Division
             // select parent division
             parentDivisionSelector.DivisionId = item.ParentDivisionID;
 
-            // select taxonomy term
-            var treeNode = treeDivisionTerms.FindNodeByValue (item.DivisionTermID.ToString ());
-            if (treeNode != null) {
-                treeNode.Selected = true;
-
-                // expand all parent nodes
-                treeNode = treeNode.ParentNode;
-                while (treeNode != null) {
-                    treeNode.Expanded = true;
-                    treeNode = treeNode.ParentNode;
-                } 
-            }
-            else
-                treeDivisionTerms.Nodes [0].Selected = true;
-
             // set HomePage url
             if (!string.IsNullOrWhiteSpace (item.HomePage))
                 urlHomePage.Url = item.HomePage;
@@ -194,7 +163,6 @@ namespace R7.University.Division
             item.WebSite = txtWebSite.Text.Trim ();
             item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
             item.ParentDivisionID = parentDivisionSelector.DivisionId;
-            item.DivisionTermID = TypeUtils.ParseToNullable<int> (treeDivisionTerms.SelectedValue);
             item.HomePage = urlHomePage.Url;
             item.DocumentUrl = urlDocumentUrl.Url;
             item.StartDate = datetimeStartDate.SelectedDate;
@@ -217,7 +185,7 @@ namespace R7.University.Division
                     checkAddToVocabulary.Checked
                 );
 
-                new AddCommand<DivisionInfo> (ModelContext, SecurityContext).Add (item);
+                new AddDivisionCommand (ModelContext, SecurityContext).Add (item, DateTime.Now);
                 ModelContext.SaveChanges ();
 
                 // then adding new division from Division module, 
@@ -240,17 +208,13 @@ namespace R7.University.Division
                 checkAddToVocabulary.Checked
             );
 
-            // update audit info
-            item.LastModifiedByUserID = UserId;
-            item.LastModifiedOnDate = DateTime.Now;
-
-            ModelContext.Update<DivisionInfo> (item);
+            new UpdateDivisionCommand (ModelContext, SecurityContext).Update (item, DateTime.Now);
             ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (DivisionInfo item)
         {
-            new DeleteCommand<DivisionInfo> (ModelContext, SecurityContext).Delete (item);
+            new DeleteDivisionCommand (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }
 
