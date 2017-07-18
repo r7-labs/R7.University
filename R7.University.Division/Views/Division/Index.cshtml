@@ -41,9 +41,6 @@
         } else {
             <span class="_section">@Model.DisplayTitle</span>
         }
-    	@if (Model.DivisionTermID != null) {
-    	    <a href="@Model.DisplayTermUrl" target="_blank" class="_section tag"></a>
-        }
         @if (!string.IsNullOrWhiteSpace (Model.DocumentUrl)) {
         	<div class="_section">
         	    <a href="@Model.DocumentUrl" target="_blank">@Dnn.LocalizeString("DocumentUrl.Text")</a>
@@ -100,7 +97,7 @@
         		</ul>
         	</div>
         }
-    	<button type="button" class="btn btn-default btn-sm link-barcode" data-toggle="modal"
+    	<button type="button" class="btn btn-default btn-sm btn-barcode" data-toggle="modal"
 		        data-target="#division-barcode-dialog-@Dnn.ModuleContext.ModuleId">
 	        @Html.Raw(Dnn.LocalizeString("linkBarcode.Text"))
         </button>
@@ -121,5 +118,8 @@
                 </div>
 		    </div>
 		</div>
+	    @if (Model.DivisionTermID != null) {
+            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-default btn-sm btn-related-content">@Dnn.LocalizeString("RelatedContent.Text")</a>
+        }
     </div>
 }

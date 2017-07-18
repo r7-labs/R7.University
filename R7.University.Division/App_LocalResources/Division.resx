@@ -24,9 +24,6 @@
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (fax)</value>
     </data>
-    <data name="labelSearchByTerm.Text" xml:space="preserve">
-        <value>All content with term:</value>
-    </data>
     <data name="imageBarcode.ToolTip" xml:space="preserve">
         <value>Scan me!</value>
     </data>
@@ -36,8 +33,8 @@
     <data name="BarcodeScan.Text" xml:space="preserve">
         <value>Use your mobile device barcode scanning application to add division's contacts to your address book.</value>
     </data>
-    <data name="linkSearchByTerm.Text" xml:space="preserve">
-        <value>Linked resources</value>
+    <data name="RelatedContent.Text" xml:space="preserve">
+        <value>Find Related Content</value>
     </data>
     <data name="DocumentUrl.Text" xml:space="preserve">
         <value>Regulations</value>

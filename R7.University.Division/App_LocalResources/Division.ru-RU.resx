@@ -24,9 +24,6 @@
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (факс)</value>
     </data>
-    <data name="labelSearchByTerm.Text" xml:space="preserve">
-        <value>Все материалы с тегом:</value>
-    </data>
     <data name="imageBarcode.ToolTip" xml:space="preserve">
         <value>Отсканируй меня!</value>
     </data>
@@ -36,8 +33,8 @@
     <data name="BarcodeScan.Text" xml:space="preserve">
         <value>Используйте приложение "сканер штрих-кодов" Вашего мобильного устройства для того, чтобы добавить контакты подразделения в свою адресную книгу.</value>
     </data>
-    <data name="linkSearchByTerm.Text" xml:space="preserve">
-        <value>Связанные ресурсы</value>
+    <data name="RelatedContent.Text" xml:space="preserve">
+        <value>Найти связанное содержимое</value>
     </data>
     <data name="DocumentUrl.Text" xml:space="preserve">
         <value>Положение</value>
