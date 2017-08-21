@@ -73,16 +73,8 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
 	DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels]
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
-    DROP CONSTRAINT [FK_{objectQualifier}University_EduPrograms_Divisions]
-GO
-
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_EduLevels]
-GO
-
-ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
-    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfiles_Divisions]
 GO
 
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
@@ -103,6 +95,18 @@ GO
 
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeDisciplines]
 	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeDisciplines_EduProgramProfiles] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramDivisions]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_Divisions] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramDivisions]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_EduPrograms] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramDivisions]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_EduProgramProfiles] 
 GO
 
 -- Drop stored procedures & functions
@@ -137,6 +141,9 @@ DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeAchievements]
 GO
 
 -- Drop tables
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramDivisions]
+GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
 GO
