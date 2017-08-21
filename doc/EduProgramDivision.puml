@@ -1,0 +1,22 @@
+@startuml
+
+EduProgram <|- EduProgramProfile
+
+EduProgram "0..*" -- "0..*" Division
+EduProgramProfile "0..*" -- "0..*" Division
+(EduProgram, Division) .. EduProgramDivision
+(EduProgramProfile, Division) .. EduProgramDivision
+
+Division "1" --- "0..*" EduProgramDivision
+
+class EduProgramDivision {
+    EduProgramDivisionID: bigint
+    .. FK ..
+    DivisionID: int
+    EduProgramID: int
+    EduProgramProfileID: int
+    ..
+    DivisionRole: string
+}
+
+@enduml
