@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,20 +19,20 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web;
-using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
-using System.Linq;
 
 namespace R7.University.EduProgram.ViewModels
 {
-    internal class EduProgramProfileViewModel: EduProgramProfileViewModelBase
+    public class EduProgramProfileViewModel: EduProgramProfileViewModelBase
     {
         public EduProgramModuleViewModel RootViewModel { get; protected set; }
 
@@ -131,24 +131,20 @@ namespace R7.University.EduProgram.ViewModels
             get { return EduProgramProfile.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; }
         }
 
-        public bool Division_Visible
+        public bool DivisionsVisible
         {
-            get { return EduProgramProfile.Divisions.Any (); }
+            get {
+                var now = HttpContext.Current.Timestamp;
+                return EduProgramProfile.Divisions.Any (epd => epd.Division.IsPublished (now) || Context.Module.IsEditable);
+            }
         }
 
-        public string Division_Link
-        {
-            get { 
-                if (EduProgramProfile.Division != null) {
-                    if (!string.IsNullOrWhiteSpace (EduProgramProfile.Division.HomePage)) {
-                        return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                            // TODO: Model.Division.HomePage may not contain tabId
-                            Globals.NavigateURL (int.Parse (EduProgramProfile.Division.HomePage)), EduProgramProfile.Division.Title
-                        );
-                    }
-                    return EduProgramProfile.Division.Title;
-                }
-                return string.Empty;
+        public IEnumerable<EduProgramDivisionViewModel> DivisionViewModels {
+            get {
+                var now = HttpContext.Current.Timestamp;
+                return EduProgramProfile.Divisions
+                                        .Where (epd => epd.Division.IsPublished (now) || Context.Module.IsEditable)
+                                        .Select (epd => new EduProgramDivisionViewModel (epd));
             }
         }
 

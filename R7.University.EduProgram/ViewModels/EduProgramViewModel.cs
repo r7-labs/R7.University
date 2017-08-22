@@ -22,7 +22,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DotNetNuke.Common;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -30,7 +29,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgram.ViewModels
 {
-    internal class EduProgramViewModel: EduProgramViewModelBase
+    public class EduProgramViewModel: EduProgramViewModelBase
     {
         public EduProgramModuleViewModel RootViewModel { get; protected set; }
 
@@ -43,8 +42,6 @@ namespace R7.University.EduProgram.ViewModels
         {
             RootViewModel = rootViewModel;
         }
-
-        public IEnumerable<EduProgramProfileViewModel> EduProgramProfileViewModels { get; set; }
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
         {
@@ -111,28 +108,33 @@ namespace R7.University.EduProgram.ViewModels
             get { 
                 return EduProgramProfileViewModels.Any (epp => epp.IsPublished (HttpContext.Current.Timestamp) 
                     || Context.Module.IsEditable
-                ); 
+                );
             }
         }
 
-        public bool Division_Visible
-        {
-            get { return EduProgram.Divisions.Any (); }
+        public IEnumerable<EduProgramProfileViewModel> EduProgramProfileViewModels {
+            get {
+                var now = HttpContext.Current.Timestamp;
+                return EduProgram.EduProgramProfiles
+                                 .Where (epp => epp.IsPublished (now) || Context.Module.IsEditable)
+                                 .Select (epp => new EduProgramProfileViewModel (epp, RootViewModel));
+            }
         }
 
-        public string Division_Link
+        public bool DivisionsVisible
         {
-            get { 
-                if (EduProgram.Division != null) {
-                    if (!string.IsNullOrWhiteSpace (EduProgram.Division.HomePage)) {
-                        return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                            // TODO: Model.Division.HomePage may not contain tabId
-                            Globals.NavigateURL (int.Parse (EduProgram.Division.HomePage)), EduProgram.Division.Title
-                        );
-                    }
-                    return EduProgram.Division.Title;
-                }
-                return string.Empty;
+            get {
+                var now = HttpContext.Current.Timestamp;
+                return EduProgram.Divisions.Any (epd => epd.Division.IsPublished (now) || Context.Module.IsEditable);
+            }
+        }
+
+        public IEnumerable<EduProgramDivisionViewModel> DivisionViewModels {
+            get {
+                var now = HttpContext.Current.Timestamp;
+                return EduProgram.Divisions
+                                 .Where (epd => epd.Division.IsPublished (now) || Context.Module.IsEditable)
+                                 .Select (epd => new EduProgramDivisionViewModel (epd));
             }
         }
 

@@ -3,7 +3,7 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 
-<asp:FormView id="formEduProgram" runat="server" OnDataBound="formEduProgram_DataBound" RenderOuterTable="false">
+<asp:FormView id="formEduProgram" runat="server" ItemType="R7.University.EduProgram.ViewModels.EduProgramViewModel" RenderOuterTable="false">
     <ItemTemplate>
         <div class="u8y-eduprogram">
             <div class="u8y-eduprogram-info">
@@ -11,17 +11,26 @@
                     <label runat="server"><%# LocalizeString ("EduLevel.Text") %></label>
                     <%# Eval ("EduLevel_Title") %>
                 </p>
-                <p runat="server" Visible='<%# Eval ("Division_Visible") %>'>
-                    <label runat="server"><%# LocalizeString ("Faculty.Text") %></label>
-                    <%# HttpUtility.HtmlDecode ((string) Eval ("Division_Link")) %>
-                </p>
+                <div runat="server" Visible='<%# Eval ("DivisionsVisible") %>'>
+                    <label><%# LocalizeString ("Divisions.Text") %></label>
+                    <ul class="u8y-eduprogram-divisions">
+                    <asp:ListView runat="server" DataSource="<%# Item.DivisionViewModels %>" ItemType="R7.University.EduProgram.ViewModels.EduProgramDivisionViewModel" >
+                        <LayoutTemplate>
+                            <div runat="server" id="itemPlaceholder"></div>
+                        </LayoutTemplate>
+                        <ItemTemplate>
+                            <li><%# Item.DivisionLink %></li>
+                        </ItemTemplate>                 
+                    </asp:ListView>
+                    </ul>
+                </div>
                 <div runat="server" Visible='<%# Eval ("EduStandard_Visible") %>' class="u8y-para">
                     <label runat="server"><%# LocalizeString ("EduStandard.Text") %></label>
                     <%# HttpUtility.HtmlDecode ((string) Eval ("EduStandard_Links")) %>
                 </div>
             </div>
             <div runat="server" Visible='<%# Eval ("EduProgramProfiles_Visible") %>'>
-                <asp:ListView id="listEduProgramProfiles" runat="server">
+                <asp:ListView runat="server" DataSource="<%# Item.EduProgramProfileViewModels %>" ItemType="R7.University.EduProgram.ViewModels.EduProgramProfileViewModel">
                     <LayoutTemplate>
                         <div runat="server" class="u8y-eduprogram-profiles">
                             <div runat="server" id="itemPlaceholder"></div>
@@ -37,11 +46,20 @@
                                 <label runat="server"><%# LocalizeString ("EduLevel.Text") %></label>
                                 <%# Eval ("EduLevel_Title") %>
                             </p>
-                            <p runat="server" Visible='<%# Eval ("Division_Visible") %>'>
-                                <label runat="server"><%# LocalizeString ("FacultyDepartment.Text") %></label>
-                                <%# HttpUtility.HtmlDecode ((string) Eval ("Division_Link")) %>
-                            </p>
-                            <div runat="server" Visible='<%# (bool) Eval ("AccreditedToDate_Visible") || (bool) Eval ("CommunityAccreditedToDate_Visible") %>' class="u8y-para">
+							<div runat="server" Visible='<%# Item.DivisionsVisible %>'>
+                                <label><%# LocalizeString ("Divisions.Text") %></label>
+                                <ul class="u8y-eduprogram-profiles-divisions">
+                                <asp:ListView runat="server" DataSource="<%# Item.DivisionViewModels %>" ItemType="R7.University.EduProgram.ViewModels.EduProgramDivisionViewModel" >
+                                    <LayoutTemplate>
+                                        <div runat="server" id="itemPlaceholder"></div>
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <li><%# Item.DivisionLink %></li>
+                                    </ItemTemplate>                 
+                                </asp:ListView>
+                                </ul>
+                            </div>
+							<div runat="server" Visible='<%# (bool) Eval ("AccreditedToDate_Visible") || (bool) Eval ("CommunityAccreditedToDate_Visible") %>' class="u8y-para">
                                 <div runat="server" Visible='<%# Eval ("AccreditedToDate_Visible") %>'>
                                     <label runat="server"><%# LocalizeString ("AccreditedToDate.Text") %></label>
                                     <%# Eval ("AccreditedToDate_String") %>

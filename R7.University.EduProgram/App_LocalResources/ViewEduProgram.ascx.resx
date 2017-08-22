@@ -42,11 +42,8 @@
     <data name="EduForms.Text" xml:space="preserve">
         <value>Education forms and learn time:</value>
     </data>
-    <data name="Faculty.Text" xml:space="preserve">
-        <value>Faculty (institute):</value>
-    </data>
-    <data name="FacultyDepartment.Text" xml:space="preserve">
-        <value>Faculty (institute) department:</value>
+    <data name="Divisions.Text" xml:space="preserve">
+        <value>Divisions:</value>
     </data>
     <data name="EduStandard.Text" xml:space="preserve">
         <value>Educational standard:</value>

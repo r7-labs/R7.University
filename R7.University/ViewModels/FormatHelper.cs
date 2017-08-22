@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Web;
+using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
@@ -234,6 +235,19 @@ namespace R7.University.ViewModels
                 return yearBegin + " - " + atTheMoment;
             }
 
+            return string.Empty;
+        }
+
+        public static string FormatDivisionLink (IDivision division, string role = null, bool isPublished = true) {
+            if (division != null) {
+                var classAttr = isPublished ? string.Empty : " class=\"u8y-not-published-element\"";
+                var roleLabel = !string.IsNullOrEmpty (role) ? role + ": " : string.Empty;
+                if (!string.IsNullOrWhiteSpace (division.HomePage)) {
+                    var url = Globals.NavigateURL (int.Parse (division.HomePage));
+                    return $"<span{classAttr}>{roleLabel}<a href=\"{url}\" target=\"_blank\">{division.Title}</a></span>";
+                }
+                return $"<span{classAttr}>{roleLabel}{division.Title}</span>";
+            }
             return string.Empty;
         }
     }

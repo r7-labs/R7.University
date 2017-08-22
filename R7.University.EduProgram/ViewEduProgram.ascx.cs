@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,10 +21,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Caching;
-using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
@@ -81,8 +79,6 @@ namespace R7.University.EduProgram
 
                 var viewModel = new EduProgramModuleViewModel ();
                 viewModel.EduProgram = new EduProgramViewModel (eduProgram, viewModel);
-                viewModel.EduProgram.EduProgramProfileViewModels = eduProgram.EduProgramProfiles
-                    .Select (epp => new EduProgramProfileViewModel (epp, viewModel));
 
                 return viewModel;
             }
@@ -148,22 +144,6 @@ namespace R7.University.EduProgram
             catch (Exception ex)
             {
                 Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void formEduProgram_DataBound (object sender, EventArgs e)
-        {
-            if (formEduProgram.DataItem != null) {
-
-                var listEduProgramProfiles = (ListView) formEduProgram.FindControl ("listEduProgramProfiles");
-
-                var viewModel = (EduProgramViewModel) formEduProgram.DataItem;
-                var now = HttpContext.Current.Timestamp;
-
-                listEduProgramProfiles.DataSource = viewModel.EduProgramProfileViewModels
-                    .Where (epp => epp.IsPublished (now) || IsEditable);
-
-                listEduProgramProfiles.DataBind ();
             }
         }
 

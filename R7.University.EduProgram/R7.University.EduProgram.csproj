@@ -93,6 +93,7 @@
     <Compile Include="ViewModels\EduProgramProfileEditModel.cs" />
     <Compile Include="Models\EduProgramSettings.cs" />
     <Compile Include="Models\EduProgramSettingsRepository.cs" />
+    <Compile Include="ViewModels\EduProgramDivisionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
