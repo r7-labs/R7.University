@@ -9,9 +9,9 @@
             <div class="u8y-eduprogram-info">
                 <p>
                     <label runat="server"><%# LocalizeString ("EduLevel.Text") %></label>
-                    <%# Eval ("EduLevel_Title") %>
+                    <%# Item.EduLevel_Title %>
                 </p>
-                <div runat="server" Visible='<%# Eval ("DivisionsVisible") %>'>
+                <div runat="server" Visible='<%# Item.DivisionsVisible %>'>
                     <label><%# LocalizeString ("Divisions.Text") %></label>
                     <ul class="u8y-eduprogram-divisions">
                     <asp:ListView runat="server" DataSource="<%# Item.DivisionViewModels %>" ItemType="R7.University.EduProgram.ViewModels.EduProgramDivisionViewModel" >
@@ -24,12 +24,12 @@
                     </asp:ListView>
                     </ul>
                 </div>
-                <div runat="server" Visible='<%# Eval ("EduStandard_Visible") %>' class="u8y-para">
+                <div runat="server" Visible='<%# Item.EduStandard_Visible %>' class="u8y-para">
                     <label runat="server"><%# LocalizeString ("EduStandard.Text") %></label>
-                    <%# HttpUtility.HtmlDecode ((string) Eval ("EduStandard_Links")) %>
+                    <%# HttpUtility.HtmlDecode (Item.EduStandard_Links) %>
                 </div>
             </div>
-            <div runat="server" Visible='<%# Eval ("EduProgramProfiles_Visible") %>'>
+            <div runat="server" Visible='<%# Item.EduProgramProfiles_Visible %>'>
                 <asp:ListView runat="server" DataSource="<%# Item.EduProgramProfileViewModels %>" ItemType="R7.University.EduProgram.ViewModels.EduProgramProfileViewModel">
                     <LayoutTemplate>
                         <div runat="server" class="u8y-eduprogram-profiles">
@@ -38,13 +38,13 @@
                     </LayoutTemplate>
                     <ItemTemplate>
                         <div>
-                            <h3 runat="server" class='<%# Eval ("CssClass") %>'>
-                                <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Eval ("Edit_Url") %>' IconKey="Edit" />
-                                <%# Eval ("Title_String") %>
+                            <h3 runat="server" class='<%# Item.CssClass %>'>
+                                <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Item.Edit_Url %>' IconKey="Edit" />
+                                <%# Item.Title_String %>
                             </h3>
                             <p>
                                 <label runat="server"><%# LocalizeString ("EduLevel.Text") %></label>
-                                <%# Eval ("EduLevel_Title") %>
+                                <%# Item.EduLevel_Title %>
                             </p>
 							<div runat="server" Visible='<%# Item.DivisionsVisible %>'>
                                 <label><%# LocalizeString ("Divisions.Text") %></label>
@@ -59,19 +59,19 @@
                                 </asp:ListView>
                                 </ul>
                             </div>
-							<div runat="server" Visible='<%# (bool) Eval ("AccreditedToDate_Visible") || (bool) Eval ("CommunityAccreditedToDate_Visible") %>' class="u8y-para">
-                                <div runat="server" Visible='<%# Eval ("AccreditedToDate_Visible") %>'>
+							<div runat="server" Visible='<%# Item.AccreditedToDate_Visible || Item.CommunityAccreditedToDate_Visible %>' class="u8y-para">
+                                <div runat="server" Visible='<%# Item.AccreditedToDate_Visible %>'>
                                     <label runat="server"><%# LocalizeString ("AccreditedToDate.Text") %></label>
-                                    <%# Eval ("AccreditedToDate_String") %>
+                                    <%# Item.AccreditedToDate_String %>
                                 </div>
-                                <div runat="server" Visible='<%# Eval ("CommunityAccreditedToDate_Visible") %>'>
+                                <div runat="server" Visible='<%# Item.CommunityAccreditedToDate_Visible %>'>
                                     <label runat="server"><%# LocalizeString ("CommunityAccreditedToDate.Text") %></label>
-                                    <%# Eval ("CommunityAccreditedToDate_String") %>
+                                    <%# Item.CommunityAccreditedToDate_String %>
                                 </div>
                             </div>
-                            <div runat="server" Visible='<%# Eval ("EduForms_Visible") %>' class="u8y-para-end">
+                            <div runat="server" Visible='<%# Item.EduForms_Visible %>' class="u8y-para-end">
                                 <label runat="server"><%# LocalizeString ("EduForms.Text") %></label>
-                                <%# HttpUtility.HtmlDecode ((string) Eval ("EduForms_String")) %>
+                                <%# HttpUtility.HtmlDecode (Item.EduForms_String) %>
                             </div>
                         </div>
                     </ItemTemplate>
