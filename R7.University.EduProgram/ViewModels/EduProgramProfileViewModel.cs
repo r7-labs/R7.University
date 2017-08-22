@@ -102,8 +102,11 @@ namespace R7.University.EduProgram.ViewModels
                 if (EduProgramProfile.EduProgramProfileForms != null) {
                     var sb = new StringBuilder ();
                     foreach (var eppf in EduProgramProfile.EduProgramProfileForms) {
-                        sb.AppendFormat ("<li>{0} &ndash; {1}</li>", 
-                            Localization.GetString ("TimeToLearn" + eppf.EduForm.Title + ".Text", Context.LocalResourceFile),
+                        var eduFormTitle = Localization.GetString ("TimeToLearn" + eppf.EduForm.Title + ".Text", Context.LocalResourceFile);
+                        if (string.IsNullOrEmpty (eduFormTitle)) {
+                            eduFormTitle = eppf.EduForm.Title;
+                        }
+                        sb.AppendFormat ("<li>{0} &ndash; {1}</li>", eduFormTitle,
                             FormatHelper.FormatTimeToLearn (eppf.TimeToLearn, eppf.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
                         );
                     }
