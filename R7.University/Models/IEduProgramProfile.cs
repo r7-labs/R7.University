@@ -60,7 +60,7 @@ namespace R7.University.Models
 
         ICollection<DocumentInfo> Documents { get; }
 
-        ICollection<EduProgramDivisionInfo> EduProgramDivisions { get; }
+        ICollection<EduProgramDivisionInfo> Divisions { get; }
     }
 
     public interface IEduProgramProfileWritable: IEduProgramProfile, ITrackableEntityWritable
@@ -99,7 +99,7 @@ namespace R7.University.Models
 
         new ICollection<DocumentInfo> Documents { get; set; }
 
-        new ICollection<EduProgramDivisionInfo> EduProgramDivisions { get; set; }
+        new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
     }
 }
 

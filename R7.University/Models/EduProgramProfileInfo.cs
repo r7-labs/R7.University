@@ -68,6 +68,6 @@ namespace R7.University.Models
 
         public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
 
-        public virtual ICollection<EduProgramDivisionInfo> EduProgramDivisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
+        public virtual ICollection<EduProgramDivisionInfo> Divisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
     }
 }

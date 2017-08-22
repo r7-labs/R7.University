@@ -62,6 +62,6 @@ namespace R7.University.Models
 
         public virtual ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; } = new HashSet<EduProgramProfileInfo> ();
 
-        public virtual ICollection<EduProgramDivisionInfo> EduProgramDivisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
+        public virtual ICollection<EduProgramDivisionInfo> Divisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
     }
 }

@@ -133,7 +133,7 @@ namespace R7.University.EduProgram.ViewModels
 
         public bool Division_Visible
         {
-            get { return EduProgramProfile.EduProgramDivisions.Any (); }
+            get { return EduProgramProfile.Divisions.Any (); }
         }
 
         public string Division_Link

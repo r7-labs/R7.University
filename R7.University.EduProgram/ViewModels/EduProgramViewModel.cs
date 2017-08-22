@@ -117,7 +117,7 @@ namespace R7.University.EduProgram.ViewModels
 
         public bool Division_Visible
         {
-            get { return EduProgram.EduProgramDivisions.Any (); }
+            get { return EduProgram.Divisions.Any (); }
         }
 
         public string Division_Link

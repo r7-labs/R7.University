@@ -76,7 +76,7 @@ namespace R7.University.ViewModels
 
         public ICollection<DocumentInfo> Documents => EduProgramProfile.Documents;
 
-        public ICollection<EduProgramDivisionInfo> EduProgramDivisions => EduProgramProfile.EduProgramDivisions;
+        public ICollection<EduProgramDivisionInfo> Divisions => EduProgramProfile.Divisions;
 
         #endregion
     }

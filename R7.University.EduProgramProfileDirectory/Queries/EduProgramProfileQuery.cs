@@ -53,10 +53,10 @@ namespace R7.University.EduProgramProfileDirectory.Queries
         { 
             if (divisionId != null) {
                 if (divisionLevel == DivisionLevel.EduProgram) {
-                    return eduProgramProfiles.Where (epp => epp.EduProgram.EduProgramDivisions.Any (epd => epd.DivisionId == divisionId));
+                    return eduProgramProfiles.Where (epp => epp.EduProgram.Divisions.Any (epd => epd.DivisionId == divisionId));
                 } 
                 if (divisionLevel == DivisionLevel.EduProgramProfile) {
-                    return eduProgramProfiles.Where (epp => epp.EduProgramDivisions.Any (epd => epd.DivisionId == divisionId));
+                    return eduProgramProfiles.Where (epp => epp.Divisions.Any (epd => epd.DivisionId == divisionId));
                 }
             }
 

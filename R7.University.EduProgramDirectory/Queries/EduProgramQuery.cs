@@ -47,12 +47,12 @@ namespace R7.University.EduProgramDirectory.Queries
         {
             if (eduLevelIds.Count > 0) {
                 return QueryEduPrograms ()
-                    .Where (ep => ep.EduProgramDivisions.Any (epd => epd.DivisionId == divisionId) && eduLevelIds.Contains (ep.EduLevelID))
+                    .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId) && eduLevelIds.Contains (ep.EduLevelID))
                     .ToList ();
             }
 
             return QueryEduPrograms ()
-                .Where (ep => ep.EduProgramDivisions.Any (epd => epd.DivisionId == divisionId))
+                .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId))
                 .ToList ();
         }
     }
