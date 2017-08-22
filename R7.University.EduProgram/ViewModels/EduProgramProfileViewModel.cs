@@ -28,6 +28,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
+using System.Linq;
 
 namespace R7.University.EduProgram.ViewModels
 {
@@ -132,7 +133,7 @@ namespace R7.University.EduProgram.ViewModels
 
         public bool Division_Visible
         {
-            get { return EduProgramProfile.Division != null; }
+            get { return EduProgramProfile.EduProgramDivisions.Any (); }
         }
 
         public string Division_Link

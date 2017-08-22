@@ -36,7 +36,9 @@ namespace R7.University.Queries
             return ModelContext.Query<EduProgramProfileInfo> ()
                 .Where (epp => eduLevelIds.Contains (epp.EduLevelId))
                 .Include (epp => epp.EduLevel)
-                .Include (epp => epp.EduProgram);
+                .Include (epp => epp.EduProgram)
+                .Include (epp => epp.EduProgramDivisions)
+                .Include (epp => epp.EduProgram.EduProgramDivisions);
         }
 
         protected IQueryable<EduProgramProfileInfo> OrderBy (IQueryable<EduProgramProfileInfo> source)

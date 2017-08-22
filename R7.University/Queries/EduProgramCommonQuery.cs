@@ -35,6 +35,8 @@ namespace R7.University.Queries
         {
             return ModelContext.Query<EduProgramInfo> ()
                 .Include (ep => ep.EduLevel)
+                .Include (ep => ep.EduProgramDivisions)
+                .Include (ep => ep.EduProgramDivisions.Select (d => d.Division))    
                 .Include (ep => ep.Documents)
                 .Include (ep => ep.Documents.Select (d => d.DocumentType));
         }

@@ -233,6 +233,9 @@
     <Compile Include="Commands\UpdateDivisionCommand.cs" />
     <Compile Include="Commands\DeleteDivisionCommand.cs" />
     <Compile Include="ModelExtensions\TaxonomyExtensions.cs" />
+    <Compile Include="Models\IEduProgramDivision.cs" />
+    <Compile Include="Models\EduProgramDivisionInfo.cs" />
+    <Compile Include="Data\Mappings\EduProgramDivisionMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

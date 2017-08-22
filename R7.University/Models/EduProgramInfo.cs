@@ -30,6 +30,7 @@ namespace R7.University.Models
 
         public int EduLevelID { get; set; }
 
+        [Obsolete]
         public int? DivisionId { get; set; }
 
         public string Code { get; set; }
@@ -54,10 +55,13 @@ namespace R7.University.Models
 
         public virtual EduLevelInfo EduLevel { get; set; }
 
+        [Obsolete]
         public virtual DivisionInfo Division { get; set; }
 
         public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
 
         public virtual ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; } = new HashSet<EduProgramProfileInfo> ();
+
+        public virtual ICollection<EduProgramDivisionInfo> EduProgramDivisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
     }
 }

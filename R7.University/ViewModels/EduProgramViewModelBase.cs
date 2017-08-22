@@ -70,6 +70,8 @@ namespace R7.University.ViewModels
 
         public ICollection<EduProgramProfileInfo> EduProgramProfiles => EduProgram.EduProgramProfiles;
 
+        public ICollection<EduProgramDivisionInfo> EduProgramDivisions => EduProgram.EduProgramDivisions;
+
         #endregion
     }
 }

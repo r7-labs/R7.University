@@ -65,12 +65,12 @@ namespace R7.University.Tests.ViewModels
             // var employeeAchievementViewModel = new EmployeeAchievementViewModel (employeeAchievement);
             // CheckProperties (typeof (IEmployeeAchievement), employeeAchievement, employeeAchievementViewModel);
 
-            fixture.Customize<EduProgramInfo> (c => c.Without (ep => ep.Division).Without (ep => ep.EduProgramProfiles).Without (ep => ep.EduLevel));
+            fixture.Customize<EduProgramInfo> (c => c.Without (ep => ep.Division).Without (ep => ep.EduProgramDivisions).Without (ep => ep.EduProgramProfiles).Without (ep => ep.EduLevel));
             var eduProgram = fixture.Create<EduProgramInfo> ();
             var eduProgramViewModel = new EduProgramViewModel (eduProgram);
             CheckPropertiesEqual (typeof (IEduProgram), eduProgram, eduProgramViewModel);
 
-            fixture.Customize<EduProgramProfileInfo> (c => c.Without (ep => ep.Division).Without (ep => ep.EduLevel));
+            fixture.Customize<EduProgramProfileInfo> (c => c.Without (epp => epp.Division).Without (epp => epp.EduProgramDivisions).Without (epp => epp.EduLevel));
             var eduProgramProfile = fixture.Create<EduProgramProfileInfo> ();
             var eduProgramProfileViewModel = new EduProgramProfileViewModel (eduProgramProfile);
             CheckPropertiesEqual (typeof (IEduProgramProfile), eduProgramProfile, eduProgramProfileViewModel);

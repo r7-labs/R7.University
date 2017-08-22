@@ -33,7 +33,6 @@ namespace R7.University.Data.Mappings
             Property (m => m.EduProgramProfileID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.EduProgramID).IsRequired ();
             Property (m => m.EduLevelId).IsRequired ();
-            Property (m => m.DivisionId).IsOptional ();
             Property (m => m.ProfileCode).IsOptional ();
             Property (m => m.ProfileTitle).IsOptional ();
             Property (m => m.Languages).IsOptional ();
@@ -50,10 +49,11 @@ namespace R7.University.Data.Mappings
 
             HasRequired (m => m.EduProgram).WithMany ().HasForeignKey (m => m.EduProgramID);
             HasRequired (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelId);
-            HasOptional (m => m.Division).WithMany ().HasForeignKey (m => m.DivisionId);
-
             HasMany (m => m.Documents).WithOptional ().HasForeignKey (d => d.EduProgramProfileId);
             HasMany (m => m.EduProgramProfileForms).WithRequired ().HasForeignKey (eppf => eppf.EduProgramProfileID);
+
+            Ignore (m => m.DivisionId);
+            Ignore (m => m.Division);
         }
     }
 }

@@ -30,6 +30,7 @@ namespace R7.University.Models
 
         int EduLevelID { get; }
 
+        [Obsolete]
         int? DivisionId { get; }
 
         string Code { get; }
@@ -46,11 +47,14 @@ namespace R7.University.Models
 
         EduLevelInfo EduLevel { get; }
 
+        [Obsolete]
         DivisionInfo Division { get; }
 
         ICollection<DocumentInfo> Documents { get; }
 
         ICollection<EduProgramProfileInfo> EduProgramProfiles { get; }
+
+        ICollection<EduProgramDivisionInfo> EduProgramDivisions { get; }
     }
 
     public interface IEduProgramWritable: IEduProgram, ITrackableEntityWritable
@@ -59,6 +63,7 @@ namespace R7.University.Models
 
         new int EduLevelID { get; set; }
 
+        [Obsolete]
         new int? DivisionId { get; set; }
 
         new string Code { get; set; }
@@ -75,10 +80,13 @@ namespace R7.University.Models
 
         new EduLevelInfo EduLevel { get; set; }
 
+        [Obsolete]
         new DivisionInfo Division { get; set; }
 
         new ICollection<DocumentInfo> Documents { get; set; }
 
         new ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
+
+        new ICollection<EduProgramDivisionInfo> EduProgramDivisions { get; set; }
     }
 }
