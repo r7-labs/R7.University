@@ -5,8 +5,8 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditDocuments.ascx" %>
+<%@ Register TagPrefix="controls" TagName="EditDivisions" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditDivisions.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/AgplSignature.ascx" %>
-<%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
@@ -18,6 +18,7 @@
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduprogram-common"><%= LocalizeString ("Common.Tab") %></a></li>
 			<li><a href="#eduprogram-profiles"><%= LocalizeString ("EduProgramProfiles.Tab") %></a></li>
+			<li><a href="#eduprogram-divisions"><%= LocalizeString ("Divisions.Tab") %></a></li>
             <li><a href="#eduprogram-bindings"><%= LocalizeString ("Bindings.Tab") %></a></li>
             <li><a href="#eduprogram-documents"><%= LocalizeString ("Documents.Tab") %></a></li>
         </ul>
@@ -90,12 +91,11 @@
                 </asp:Panel>
 			</fieldset>	
         </div>
+        <div id="eduprogram-divisions">
+			<controls:EditDivisions id="formEditDivisions" runat="server" ForModel="EduProgram" />
+		</div>
         <div id="eduprogram-bindings">
             <fieldset>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
-					<controls:DivisionSelector id="divisionSelector" runat="server" />
-                </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHomePage" runat="server" ControlName="urlHomePage" />
                     <dnn:Url id="urlHomePage" runat="server" UrlType="T" 

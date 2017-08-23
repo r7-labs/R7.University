@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="labelDivision.Text">
+        <value>Division:</value>
+    </data>
+    <data name="labelDivision.Help">
+        <value>Select division.</value>
+    </data>
+    <data name="labelDivisionRole.Text">
+        <value>Division Role:</value>
+    </data>
+    <data name="labelDivisionRole.Help">
+        <value>Enter division role, e.g. &quot;Graduating department&quot;.</value>
+    </data>
+	<data name="DivisionTitle.Column">
+        <value>Division</value>
+    </data>
+	<data name="DivisionRole.Column">
+        <value>Division Role</value>
+    </data>
+	<data name="buttonAddDivision.Text">
+        <value>Add Division</value>
+    </data>
+	<data name="buttonUpdateDivision.Text">
+        <value>Update Division</value>
+    </data>
+</root>

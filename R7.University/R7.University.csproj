@@ -236,6 +236,13 @@
     <Compile Include="Models\IEduProgramDivision.cs" />
     <Compile Include="Models\EduProgramDivisionInfo.cs" />
     <Compile Include="Data\Mappings\EduProgramDivisionMapping.cs" />
+    <Compile Include="Controls\EditDivisions.controls.ascx.cs">
+      <DependentUpon>EditDivisions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditDivisions.ascx.cs">
+      <DependentUpon>EditDivisions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewModels\EduProgramDivisionEditModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -343,6 +350,13 @@
     <None Include="Controls\EditAchievements.ascx" />
     <None Include="Controls\App_LocalResources\EditAchievements.ascx.resx" />
     <None Include="Controls\App_LocalResources\EditAchievements.ascx.ru-RU.resx" />
+    <None Include="Controls\EditDivisions.ascx" />
+    <None Include="Controls\App_LocalResources\EditDivisions.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Controls\App_LocalResources\EditDivisions.ascx.ru-RU.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

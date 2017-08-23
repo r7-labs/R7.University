@@ -21,8 +21,8 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Профиль образовательной программы</value>
     </data>
-    <data name="Bindings.Tab" xml:space="preserve">
-        <value>Привязки</value>
+    <data name="Divisions.Tab" xml:space="preserve">
+        <value>Подразделения</value>
     </data>
     <data name="EduForms.Tab" xml:space="preserve">
         <value>Формы обучения</value>

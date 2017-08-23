@@ -27,6 +27,9 @@
 	<data name="EduProgramProfiles.Tab" xml:space="preserve">
         <value>Edu. Program Profiles</value>
     </data>
+	<data name="Divisions.Tab" xml:space="preserve">
+        <value>Divisions</value>
+    </data>
     <data name="Bindings.Tab" xml:space="preserve">
         <value>Bingings</value>
     </data>

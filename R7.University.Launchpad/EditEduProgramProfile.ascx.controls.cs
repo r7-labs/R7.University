@@ -22,7 +22,7 @@ namespace R7.University.Launchpad
         protected DropDownList comboEduLevel;
         protected EditDocuments formEditDocuments;
         protected EditEduForms formEditEduForms;
-        protected DivisionSelector divisionSelector;
+        protected EditDivisions formEditDivisions;
         protected ModuleAuditControl auditControl;
     }
 }

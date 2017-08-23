@@ -20,10 +20,10 @@ namespace R7.University.EduProgram
         protected DropDownList comboEduLevel;
         protected EditDocuments formEditDocuments;
         protected DnnUrlControl urlHomePage;
-        protected DivisionSelector divisionSelector;
         protected GridView gridEduProgramProfiles;
         protected HyperLink linkAddEduProgramProfile;
         protected Panel panelAddDefaultProfile;
         protected CheckBox checkAddDefaultProfile;
+        protected EditDivisions formEditDivisions;
     }
 }

@@ -48,15 +48,15 @@ namespace R7.University.Launchpad
                 if (!string.IsNullOrEmpty (eventTarget)) {
                     
                     // check if postback initiator is on Bindings tab
-                    if (eventTarget.Contains ("$" + divisionSelector.ID)) {
-                        ViewState ["SelectedTab"] = 3;
-                        return 1;
+                    if (eventTarget.Contains ("$" + formEditDivisions.ID)) {
+                        ViewState ["SelectedTab"] = 2;
+                        return 2;
                     }
 
                     // check if postback initiator is on EduForms tab
                     if (eventTarget.Contains ("$" + formEditEduForms.ID)) {
-                        ViewState ["SelectedTab"] = 2;
-                        return 2;
+                        ViewState ["SelectedTab"] = 1;
+                        return 1;
                     }
 
                     // check if postback initiator is on Documents tab
@@ -123,10 +123,7 @@ namespace R7.University.Launchpad
             // init edit forms
             formEditEduForms.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).List ());
             formEditDocuments.OnInit (this, new FlatQuery<DocumentTypeInfo> (ModelContext).List ());
-
-            // bind divisions
-            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisionSelector.DataBind ();
+            formEditDivisions.OnInit (this, new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title));
         }
 
         private int? GetQueryId (string key)
@@ -174,7 +171,7 @@ namespace R7.University.Launchpad
             datetimeStartDate.SelectedDate = epp.StartDate;
             datetimeEndDate.SelectedDate = epp.EndDate;
             comboEduLevel.SelectByValue (epp.EduLevelId);
-            divisionSelector.DivisionId = epp.DivisionId;
+            formEditDivisions.SetData (epp.Divisions.ToList (), epp.EduProgramProfileID);
 
             // update comboEduProgram, if needed
             var currentEduLevelId = int.Parse (comboEduProgramLevel.SelectedValue);
@@ -217,8 +214,6 @@ namespace R7.University.Launchpad
             item.EduLevelId = int.Parse (comboEduLevel.SelectedValue);
             item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelId);
 
-            item.DivisionId = divisionSelector.DivisionId;
-
             if (ItemId == null) {
             }
             else {
@@ -246,6 +241,8 @@ namespace R7.University.Launchpad
 
                 new UpdateEduProgramProfileFormsCommand (ModelContext)
                     .UpdateEduProgramProfileForms (formEditEduForms.GetModifiedData (), item.EduProgramProfileID);
+
+                // TODO: Update divisions
 
                 ModelContext.SaveChanges ();
             }

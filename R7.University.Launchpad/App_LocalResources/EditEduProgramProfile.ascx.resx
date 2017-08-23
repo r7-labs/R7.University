@@ -21,8 +21,8 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Educational Program Profile</value>
     </data>
-    <data name="Bindings.Tab" xml:space="preserve">
-        <value>Bindings</value>
+    <data name="Divisions.Tab" xml:space="preserve">
+        <value>Divisions</value>
     </data>
     <data name="EduForms.Tab" xml:space="preserve">
         <value>Education Forms</value>

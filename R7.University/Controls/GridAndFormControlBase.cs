@@ -165,6 +165,7 @@ namespace R7.University.Controls
             return new List<TViewModel> ();
         }
 
+        // TODO: Use IEnumerable
         public virtual void SetData (List<TModel> items, int targetItemId)
         {
             TargetItemId = targetItemId;

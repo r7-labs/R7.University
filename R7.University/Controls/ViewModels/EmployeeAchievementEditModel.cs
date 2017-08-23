@@ -119,11 +119,6 @@ namespace R7.University.Controls.ViewModels
         [XmlIgnore]
         public ViewModelContext Context { get; set; }
 
-        public void SetContext (ViewModelContext context)
-        {
-            Context = context;
-        }
-
         ModelEditState _editState;
         public ModelEditState EditState {
             get { return _editState; }

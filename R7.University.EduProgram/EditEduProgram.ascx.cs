@@ -42,6 +42,7 @@ namespace R7.University.EduProgram
     {
         Common,
         EduProgramProfiles,
+        Divisions,
         Bindings,
         Documents
     }
@@ -56,15 +57,17 @@ namespace R7.University.EduProgram
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
 
-                    // check if postback initiator is on Documents tab
                     if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
                         ViewState ["SelectedTab"] = EditEduProgramTab.Documents;
                         return EditEduProgramTab.Documents;
                     }
 
-                    // check if postback initiator is on Bindings tab
-                    if (eventTarget.Contains ("$" + urlHomePage.ID) ||
-                        eventTarget.Contains ("$" + divisionSelector.ID)) {
+                    if (eventTarget.Contains ("$" + formEditDivisions.ID)) {
+                        ViewState ["SelectedTab"] = EditEduProgramTab.Divisions;
+                        return EditEduProgramTab.Divisions;
+                    }
+
+                    if (eventTarget.Contains ("$" + urlHomePage.ID)) {
                         ViewState ["SelectedTab"] = EditEduProgramTab.Bindings;
                         return EditEduProgramTab.Bindings;
                     }
@@ -107,9 +110,8 @@ namespace R7.University.EduProgram
             var documentTypes = new FlatQuery<DocumentTypeInfo> (ModelContext).List ();
             formEditDocuments.OnInit (this, documentTypes);
 
-            // bind divisions
-            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisionSelector.DataBind ();
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            formEditDivisions.OnInit (this, divisions);
 
             gridEduProgramProfiles.LocalizeColumns (LocalResourceFile);
         }
@@ -125,7 +127,7 @@ namespace R7.University.EduProgram
             datetimeEndDate.SelectedDate = ep.EndDate;
             comboEduLevel.SelectByValue (ep.EduLevelID);
             urlHomePage.Url = ep.HomePage;
-            divisionSelector.DivisionId = ep.DivisionId;
+            formEditDivisions.SetData (ep.Divisions.ToList (), ep.EduProgramID);
 
             auditControl.Bind (ep);
 
@@ -171,7 +173,6 @@ namespace R7.University.EduProgram
             // update references
             item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
             item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
-            item.DivisionId = divisionSelector.DivisionId;
 
             if (ItemId == null) {
             }
@@ -221,6 +222,8 @@ namespace R7.University.EduProgram
                 new UpdateDocumentsCommand (ModelContext)
                     .UpdateDocuments (formEditDocuments.GetModifiedData(),
                                               DocumentModel.EduProgram, item.EduProgramID);
+
+                // TODO: Update divisions
 
                 ModelContext.SaveChanges ();
             }

@@ -27,6 +27,9 @@
 	<data name="EduProgramProfiles.Tab" xml:space="preserve">
         <value>Профили обр. программы</value>
     </data>
+	<data name="Divisions.Tab" xml:space="preserve">
+        <value>Подразделения</value>
+    </data>
     <data name="Bindings.Tab" xml:space="preserve">
         <value>Привязки</value>
     </data>
