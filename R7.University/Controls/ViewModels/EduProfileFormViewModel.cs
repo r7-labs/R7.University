@@ -40,12 +40,16 @@ namespace R7.University.Controls
         public ViewModelContext Context { get; set; }
 
         ModelEditState _editState;
+        ModelEditState _prevEditState;
         public ModelEditState EditState {
             get { return _editState; }
-            set { PrevEditState = _editState; _editState = value; }
+            set { _prevEditState = _editState; _editState = value; }
         }
 
-        public ModelEditState PrevEditState { get; set; }
+        public void RestoreEditState ()
+        {
+            _editState = _prevEditState;
+        }
 
         public IEditControlViewModel<EduProgramProfileFormInfo> Create (
             EduProgramProfileFormInfo model, ViewModelContext context)

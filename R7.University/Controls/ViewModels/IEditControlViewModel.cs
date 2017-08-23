@@ -24,6 +24,7 @@ using R7.University.Models;
 
 namespace R7.University.Controls.ViewModels
 {
+    // TODO: Introduce base class?
     public interface IEditControlViewModel<TModel>
     {
         int ViewItemID { get; set; }
@@ -32,7 +33,7 @@ namespace R7.University.Controls.ViewModels
 
         ModelEditState EditState { get; set; }
 
-        ModelEditState PrevEditState { get; set; }
+        void RestoreEditState ();
 
         string CssClass { get; }
 
