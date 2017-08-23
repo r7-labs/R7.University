@@ -33,7 +33,7 @@ namespace R7.University.Controls.ViewModels
 
         ModelEditState EditState { get; set; }
 
-        void RestoreEditState ();
+        ModelEditState PrevEditState { get; set; }
 
         string CssClass { get; }
 

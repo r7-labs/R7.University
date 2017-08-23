@@ -82,16 +82,12 @@ namespace R7.University.Controls.ViewModels
             }
         }
 
+        public ModelEditState PrevEditState { get; set; }
+
         ModelEditState _editState;
-        ModelEditState _prevEditState;
         public ModelEditState EditState {
             get { return _editState; }
-            set { _prevEditState = _editState; _editState = value; }
-        }
-
-        public void RestoreEditState ()
-        {
-            _editState = _prevEditState;
+            set { PrevEditState = _editState; _editState = value; }
         }
 
         public int ViewItemID { get; set; } = ViewNumerator.GetNextItemID ();

@@ -418,7 +418,7 @@ namespace R7.University.Controls
                     if (item != null) {
 
                         // restore previous edit state
-                        item.RestoreEditState ();
+                        item.EditState = item.PrevEditState;
                   
                         // refresh viewstate
                         ViewStateItems = items;
