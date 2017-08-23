@@ -51,9 +51,6 @@ namespace R7.University.Data.Mappings
             HasRequired (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelId);
             HasMany (m => m.Documents).WithOptional ().HasForeignKey (d => d.EduProgramProfileId);
             HasMany (m => m.EduProgramProfileForms).WithRequired ().HasForeignKey (eppf => eppf.EduProgramProfileID);
-
-            Ignore (m => m.DivisionId);
-            Ignore (m => m.Division);
         }
     }
 }

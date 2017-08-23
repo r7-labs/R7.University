@@ -30,9 +30,6 @@ namespace R7.University.Models
 
         public int EduLevelID { get; set; }
 
-        [Obsolete]
-        public int? DivisionId { get; set; }
-
         public string Code { get; set; }
 
         public string Title { get; set; }
@@ -54,9 +51,6 @@ namespace R7.University.Models
         public DateTime CreatedOnDate { get; set; }
 
         public virtual EduLevelInfo EduLevel { get; set; }
-
-        [Obsolete]
-        public virtual DivisionInfo Division { get; set; }
 
         public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
 

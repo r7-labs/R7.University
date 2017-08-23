@@ -42,8 +42,6 @@ namespace R7.University.ViewModels
 
         public int EduLevelId => EduProgramProfile.EduLevelId;
 
-        public int? DivisionId => EduProgramProfile.DivisionId;
-
         public string ProfileCode => EduProgramProfile.ProfileCode;
 
         public string ProfileTitle => EduProgramProfile.ProfileTitle;
@@ -69,8 +67,6 @@ namespace R7.University.ViewModels
         public EduProgramInfo EduProgram => EduProgramProfile.EduProgram;
 
         public EduLevelInfo EduLevel => EduProgramProfile.EduLevel;
-
-        public DivisionInfo Division => EduProgramProfile.Division;
 
         public ICollection<EduProgramProfileFormInfo> EduProgramProfileForms => EduProgramProfile.EduProgramProfileForms;
 

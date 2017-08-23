@@ -40,8 +40,6 @@ namespace R7.University.ViewModels
 
         public int EduLevelID => EduProgram.EduLevelID;
 
-        public int? DivisionId => EduProgram.DivisionId;
-
         public string Code => EduProgram.Code;
 
         public string Title => EduProgram.Title;
@@ -63,8 +61,6 @@ namespace R7.University.ViewModels
         public DateTime CreatedOnDate => EduProgram.CreatedOnDate;
 
         public EduLevelInfo EduLevel => EduProgram.EduLevel;
-
-        public DivisionInfo Division => EduProgram.Division;
 
         public ICollection<DocumentInfo> Documents => EduProgram.Documents;
 

@@ -32,9 +32,6 @@ namespace R7.University.Models
 
         int EduLevelId { get; }
 
-        [Obsolete]
-        int? DivisionId { get; }
-
         string ProfileCode { get; }
 
         string ProfileTitle { get; }
@@ -53,9 +50,6 @@ namespace R7.University.Models
 
         EduLevelInfo EduLevel { get; }
 
-        [Obsolete]
-        DivisionInfo Division { get; }
-
         ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; }
 
         ICollection<DocumentInfo> Documents { get; }
@@ -70,9 +64,6 @@ namespace R7.University.Models
         new int EduProgramID { get; set; }
 
         new int EduLevelId { get; set; }
-
-        [Obsolete]
-        new int? DivisionId { get; set; }
 
         new string ProfileCode { get; set; }
 
@@ -91,9 +82,6 @@ namespace R7.University.Models
         new EduProgramInfo EduProgram { get; set; }
 
         new EduLevelInfo EduLevel { get; set; }
-
-        [Obsolete]
-        new DivisionInfo Division { get; set; }
 
         new ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
 
