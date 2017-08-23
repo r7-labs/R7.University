@@ -220,10 +220,11 @@ namespace R7.University.EduProgram
 
                 new UpdateDocumentsCommand (ModelContext)
                     .UpdateDocuments (formEditDocuments.GetModifiedData(),
-                                              DocumentModel.EduProgram, item.EduProgramID);
+                                      ModelType.EduProgram, item.EduProgramID);
 
-                // TODO: Update divisions
-
+                new UpdateEduProgramDivisionsCommand (ModelContext)
+                    .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgram, item.EduProgramID);
+                
                 ModelContext.SaveChanges ();
             }
         }
@@ -235,15 +236,17 @@ namespace R7.University.EduProgram
             ModelContext.Update (item);
 
             new UpdateDocumentsCommand (ModelContext)
-                .UpdateDocuments (formEditDocuments.GetModifiedData(),
-                                          DocumentModel.EduProgram, item.EduProgramID);
+                .UpdateDocuments (formEditDocuments.GetModifiedData(), ModelType.EduProgram, item.EduProgramID);
  
+            new UpdateEduProgramDivisionsCommand (ModelContext)
+                .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgram, item.EduProgramID);
+            
             ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduProgramInfo item)
         {
-            // TODO: Also remove documents
+            // TODO: Also remove documents & divisions
             new DeleteCommand<EduProgramInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }

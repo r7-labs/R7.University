@@ -159,6 +159,7 @@ namespace R7.University.Controls
         {
             var items = ViewStateItems;
             if (items != null) {
+                // TODO: Remove ToList()?
                 return items.Where (i => i.EditState != ModelEditState.Unchanged).ToList ();
             }
 

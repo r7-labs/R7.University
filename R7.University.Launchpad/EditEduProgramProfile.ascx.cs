@@ -236,13 +236,14 @@ namespace R7.University.Launchpad
                 ModelContext.SaveChanges (false);
 
                 new UpdateDocumentsCommand (ModelContext)
-                    .UpdateDocuments (formEditDocuments.GetModifiedData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
+                    .UpdateDocuments (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
 
                 new UpdateEduProgramProfileFormsCommand (ModelContext)
                     .UpdateEduProgramProfileForms (formEditEduForms.GetModifiedData (), item.EduProgramProfileID);
 
-                // TODO: Update divisions
-
+                new UpdateEduProgramDivisionsCommand (ModelContext)
+                    .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
+                
                 ModelContext.SaveChanges ();
             }
         }
@@ -254,17 +255,20 @@ namespace R7.University.Launchpad
             ModelContext.Update (item);
 
             new UpdateDocumentsCommand (ModelContext)
-                .UpdateDocuments (formEditDocuments.GetModifiedData (), DocumentModel.EduProgramProfile, item.EduProgramProfileID);
+                .UpdateDocuments (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
 
             new UpdateEduProgramProfileFormsCommand (ModelContext)
                 .UpdateEduProgramProfileForms (formEditEduForms.GetModifiedData (), item.EduProgramProfileID);
 
+            new UpdateEduProgramDivisionsCommand (ModelContext)
+                .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
+            
             ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
-            // TODO: Also remove documents
+            // TODO: Also remove documents, divisions and edu. forms
             new DeleteCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }

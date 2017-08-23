@@ -185,7 +185,7 @@
     <Compile Include="Queries\EduLevelQuery.cs" />
     <Compile Include="Queries\EduProgramCommonQuery.cs" />
     <Compile Include="Queries\EduProgramProfileQueryBase.cs" />
-    <Compile Include="Models\DocumentModel.cs" />
+    <Compile Include="Models\ModelType.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModelBase.cs" />
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
     <Compile Include="Utilities\UniversityUrlHelper.cs" />
@@ -243,6 +243,7 @@
       <DependentUpon>EditDivisions.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewModels\EduProgramDivisionEditModel.cs" />
+    <Compile Include="Commands\UpdateEduProgramDivisionCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

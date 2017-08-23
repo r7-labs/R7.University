@@ -1,10 +1,10 @@
-//
-//  UpdateDocumentsCommand.cs
+﻿//
+//  UpdateEduProgramDivisionsCommand.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,35 +21,35 @@
 
 using System.Collections.Generic;
 using R7.University.Controls.ViewModels;
-using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Commands
 {
-    public class UpdateDocumentsCommand
+    public class UpdateEduProgramDivisionsCommand
     {
         protected readonly IModelContext ModelContext;
 
-        public UpdateDocumentsCommand (IModelContext modelContext)
+        public UpdateEduProgramDivisionsCommand (IModelContext modelContext)
         {
             ModelContext = modelContext;
         }
 
-        public void UpdateDocuments (IEnumerable<IEditControlViewModel<DocumentInfo>> documents, ModelType modelType, int itemId)
+        public void Update (IEnumerable<IEditControlViewModel<EduProgramDivisionInfo>> epDocs, ModelType modelType, int itemId)
         {
-            foreach (var document in documents) {
-                var d = document.CreateModel ();
-                switch (document.EditState) {
-                    case ModelEditState.Added:
-                        d.SetModelId (modelType, itemId);
-                        ModelContext.Add (d);
-                        break;
-                    case ModelEditState.Modified:
-                        ModelContext.UpdateExternal (d);
-                        break;
-                    case ModelEditState.Deleted:
-                        ModelContext.RemoveExternal (d);
-                        break;
+            foreach (var epDoc in epDocs) {
+                var epd = epDoc.CreateModel ();
+                switch (epDoc.EditState) {
+                case ModelEditState.Added:
+                    epd.SetModelId (modelType, itemId);
+                    ModelContext.Add (epd);
+                    break;
+                case ModelEditState.Modified:
+                    ModelContext.UpdateExternal (epd);
+                    break;
+                case ModelEditState.Deleted:
+                    ModelContext.RemoveExternal (epd);
+                    break;
                 }
             }
         }

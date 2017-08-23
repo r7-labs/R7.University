@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -37,16 +37,16 @@ namespace R7.University.ModelExtensions
             return Enum.TryParse<SystemDocumentType> (document.DocumentType.Type, out result) ? result : SystemDocumentType.Custom;
         }
 
-        public static void SetModelId (this IDocumentWritable document, DocumentModel model, int modelId)
+        public static void SetModelId (this IDocumentWritable document, ModelType modelType, int modelId)
         {
-            if (model == DocumentModel.EduProgram) {
+            if (modelType == ModelType.EduProgram) {
                 document.EduProgramId = modelId;
             } 
-            else if (model == DocumentModel.EduProgramProfile) {
+            else if (modelType == ModelType.EduProgramProfile) {
                 document.EduProgramProfileId = modelId;
             }
             else {
-                throw new ArgumentException ("Wrong model argument.");
+                throw new ArgumentException ($"Wrong modelType={modelType} argument.");
             }
         }
     }

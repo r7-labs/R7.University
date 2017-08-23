@@ -24,6 +24,7 @@ using System.Web;
 using System.Xml.Serialization;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -55,16 +56,7 @@ namespace R7.University.Controls.ViewModels
 
         public void SetTargetItemId (int targetItemId, string targetItemKey)
         {
-            // TODO: Refactor this
-            if (targetItemKey == "EduProgram") {
-                EduProgramId = targetItemId;
-            }
-            else if (targetItemKey == "EduProgramProfile") {
-                EduProgramProfileId = targetItemId;
-            }
-            else {
-                throw new ArgumentException ("Wrong targetItemKey argument.");
-            }
+            this.SetModelId ((ModelType) Enum.Parse (typeof (ModelType), targetItemKey), targetItemId);
         }
 
         [XmlIgnore]

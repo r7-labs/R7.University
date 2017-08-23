@@ -148,7 +148,7 @@ namespace R7.University.Controls
 
         public void SetTargetItemId (int targetItemId, string targetItemKey)
         {
-            this.SetModelId ((DocumentModel) Enum.Parse (typeof (DocumentModel), targetItemKey), targetItemId);
+            this.SetModelId ((ModelType) Enum.Parse (typeof (ModelType), targetItemKey), targetItemId);
         }
 
         [XmlIgnore]

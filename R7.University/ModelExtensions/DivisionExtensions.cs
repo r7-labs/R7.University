@@ -111,5 +111,18 @@ namespace R7.University.ModelExtensions
 
             return  null;
         }
+
+        public static void SetModelId (this IEduProgramDivisionWritable division, ModelType modelType, int modelId)
+        {
+            if (modelType == ModelType.EduProgram) {
+                division.EduProgramId = modelId;
+            } 
+            else if (modelType == ModelType.EduProgramProfile) {
+                division.EduProgramProfileId = modelId;
+            }
+            else {
+                throw new ArgumentException ($"Wrong modelType={modelType} argument.");
+            }
+        }
     }
 }
