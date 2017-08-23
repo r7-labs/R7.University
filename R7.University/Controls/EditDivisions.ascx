@@ -42,7 +42,7 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
-            <controls:DivisionSelector id="divisionSelector" runat="server" />
+            <controls:DivisionSelector id="divisionSelector" runat="server" IsRequired="true" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDivisionRole" runat="server" ControlName="textDivisionRole" />

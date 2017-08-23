@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -35,11 +35,11 @@ namespace R7.University.Controls
 {
     public enum DivisionSelectionMode { List = 0, Tree = 1 }
 
-    // TODO: Add IsRequired property
-
     public partial class DivisionSelector: UserControl
     {
         #region Control properties
+
+        public bool IsRequired { get; set; }
 
         public DivisionSelectionMode DefaultMode { get; set; }
 
@@ -93,11 +93,14 @@ namespace R7.University.Controls
 
             comboDivision.DataSource = DataSource;
             comboDivision.DataBind ();
-            comboDivision.InsertDefaultItem (notSelectedText);
 
             treeDivision.DataSource = DataSource;
             treeDivision.DataBind ();
-            treeDivision.Nodes.Insert (0, new DnnTreeNode { Value = Null.NullInteger.ToString (), Text = notSelectedText });
+
+            if (!IsRequired) {
+                comboDivision.InsertDefaultItem (notSelectedText);
+                treeDivision.Nodes.Insert (0, new DnnTreeNode { Value = Null.NullInteger.ToString (), Text = notSelectedText });
+            }
         }
 
         protected override void OnInit (EventArgs e)

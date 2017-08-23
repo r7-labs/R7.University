@@ -59,8 +59,7 @@ namespace R7.University.Controls
 
         protected override void OnUpdateItem (EduProgramDivisionEditModel item)
         {
-            // FIXME: Division is required
-            item.DivisionId = divisionSelector.DivisionId ?? 0;
+            item.DivisionId = (int) divisionSelector.DivisionId;
             item.DivisionTitle = divisionSelector.DivisionTitle;
             item.DivisionRole = textDivisionRole.Text.Trim ();
         }
