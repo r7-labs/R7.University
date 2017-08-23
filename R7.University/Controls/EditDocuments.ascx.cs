@@ -153,12 +153,12 @@ namespace R7.University.Controls
 
         #endregion
 
-        public override void SetData (List<DocumentInfo> items, int targetItemId)
+        public override void SetData (IEnumerable<DocumentInfo> items, int targetItemId)
         {
             base.SetData (items, targetItemId);
 
             // speedup adding new documents by autoselecting first document's folder
-            if (items.Count > 0) {
+            if (items.Any ()) {
                 var firstItem = items.FirstOrDefault (d => Globals.GetURLType (d.Url) == TabType.File);
                 if (firstItem != null) {
                     urlDocumentUrl.Url = firstItem.Url;

@@ -265,7 +265,7 @@ namespace R7.University.Employee
             gridOccupiedPositions.DataBind ();
 
             // TODO: Sort achievements
-            formEditAchievements.SetData (employee.Achievements.ToList (), employee.EmployeeID);
+            formEditAchievements.SetData (employee.Achievements, employee.EmployeeID);
 
             // fill disciplines list
             var disciplines = employee.Disciplines

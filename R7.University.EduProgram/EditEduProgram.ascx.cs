@@ -127,15 +127,14 @@ namespace R7.University.EduProgram
             datetimeEndDate.SelectedDate = ep.EndDate;
             comboEduLevel.SelectByValue (ep.EduLevelID);
             urlHomePage.Url = ep.HomePage;
-            formEditDivisions.SetData (ep.Divisions.ToList (), ep.EduProgramID);
+            formEditDivisions.SetData (ep.Divisions, ep.EduProgramID);
 
             auditControl.Bind (ep);
 
             var documents = ep.Documents
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
-                .ThenBy (d => d.SortIndex)
-                .ToList ();
+                .ThenBy (d => d.SortIndex);
 
             formEditDocuments.SetData (documents, ep.EduProgramID);
 

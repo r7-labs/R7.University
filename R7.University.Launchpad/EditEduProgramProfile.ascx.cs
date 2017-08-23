@@ -171,7 +171,7 @@ namespace R7.University.Launchpad
             datetimeStartDate.SelectedDate = epp.StartDate;
             datetimeEndDate.SelectedDate = epp.EndDate;
             comboEduLevel.SelectByValue (epp.EduLevelId);
-            formEditDivisions.SetData (epp.Divisions.ToList (), epp.EduProgramProfileID);
+            formEditDivisions.SetData (epp.Divisions, epp.EduProgramProfileID);
 
             // update comboEduProgram, if needed
             var currentEduLevelId = int.Parse (comboEduProgramLevel.SelectedValue);
@@ -189,11 +189,10 @@ namespace R7.University.Launchpad
             var documents = epp.Documents
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
-                .ThenBy (d => d.SortIndex)
-                .ToList ();
+                .ThenBy (d => d.SortIndex);
 
             formEditDocuments.SetData (documents, epp.EduProgramProfileID);
-            formEditEduForms.SetData (epp.EduProgramProfileForms.ToList (), epp.EduProgramProfileID);
+            formEditEduForms.SetData (epp.EduProgramProfileForms, epp.EduProgramProfileID);
         }
 
         protected override void BeforeUpdateItem (EduProgramProfileInfo item)
