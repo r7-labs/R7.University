@@ -362,6 +362,7 @@
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
     <None Include="Controls\js\editDivisions.js" />
+    <None Include="Controls\js\editEduForms.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

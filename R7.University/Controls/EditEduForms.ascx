@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editEduForms.js" ForceProvider="DnnFormBottomProvider" />
 <div class="dnnForm dnnClear university-edit-eduforms">
     <fieldset>
         <div class="dnnFormItem">
@@ -51,7 +52,8 @@
                 CssClass="dnn-form-control"
             /> 
         </div>
-        <div class="dnnFormItem">
+		<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduProgramProfileForms" CssClass="dnnFormMessage dnnFormError" />
+	    <div class="dnnFormItem">
             <dnn:Label id="labelTimeToLearnYears" runat="server" ControlName="textTimeToLearnYears" />
             <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
 			<asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnYears.Required"
@@ -61,6 +63,10 @@
                 ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
                 Type="Integer" MinimumValue="0" MaximumValue="11"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+			<asp:CustomValidator runat="server" resourcekey="TimeToLearn.Required"
+			    ControlToValidate="textTimeToLearnYears"
+                ValidationGroup="EduProgramProfileForms" EnableClientScript="true" ClientValidationFunction="validateTimeToLearn"
+                Display="None" CssClass="dnnFormMessage dnnFormError"  />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelTimeToLearnMonths" runat="server" ControlName="textTimeToLearnMonths" />

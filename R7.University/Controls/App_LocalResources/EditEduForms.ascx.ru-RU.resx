@@ -60,6 +60,9 @@
 	<data name="Hours.Text">
         <value>Часов</value>
     </data>
+	<data name="TimeToLearn.Required">
+        <value>Укажите целое значение больше нуля как минимум в одном из полей: Лет, Месяцев, Часов.</value>
+    </data>
     <data name="TimeToLearnYears.Invalid">
         <value>Число лет дожно быть целым числом от 0 до 11.</value>
     </data>

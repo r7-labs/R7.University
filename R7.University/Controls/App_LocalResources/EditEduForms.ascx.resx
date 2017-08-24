@@ -60,6 +60,9 @@
 	<data name="Hours.Text">
         <value>Hours</value>
     </data>
+	<data name="TimeToLearn.Required">
+        <value>Specify integer value greater than zero at least in one of the fields: Years, Months or Hours.</value>
+    </data>
     <data name="TimeToLearnYears.Invalid">
         <value>Years should be integer value from 0 to 11.</value>
     </data>
