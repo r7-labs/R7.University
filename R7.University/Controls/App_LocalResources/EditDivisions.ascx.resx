@@ -36,4 +36,7 @@
 	<data name="buttonUpdateDivision.Text">
         <value>Update Division</value>
     </data>
+    <data name="Division.Invalid">
+        <value>Division must be unique!</value>
+    </data>
 </root>

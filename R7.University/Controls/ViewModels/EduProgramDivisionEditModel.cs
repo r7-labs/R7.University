@@ -22,6 +22,7 @@
 using System;
 using System.Web;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
@@ -60,9 +61,11 @@ namespace R7.University.Controls.ViewModels
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         public string CssClass {
             get {
                 var cssClass = string.Empty;
@@ -103,6 +106,7 @@ namespace R7.University.Controls.ViewModels
         public int DivisionId { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         public DivisionInfo Division { get; set; }
 
         public string DivisionRole { get; set; }

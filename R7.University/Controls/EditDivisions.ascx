@@ -5,6 +5,7 @@
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDivisions.js" ForceProvider="DnnFormBottomProvider" />
 <div class="dnnForm dnnClear u8y-edit-divisions">
     <fieldset>
         <div class="dnnFormItem">
@@ -43,6 +44,8 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
             <controls:DivisionSelector id="divisionSelector" runat="server" IsRequired="true" />
+			<asp:CustomValidator id="valDivision" runat="server" CssClass="dnnFormMessage dnnFormError"
+                Display="Dynamic" EnableClientScript="true" ClientValidationFunction="validateDivision" ValidationGroup="EduProgramDivisions"/>
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDivisionRole" runat="server" ControlName="textDivisionRole" />
@@ -72,6 +75,7 @@
 				</li>
 			</ul>	
         </div>
-        <asp:HiddenField id="hiddenDivisionItemID" runat="server" />
+		<asp:HiddenField id="hiddenDivisionItemID" runat="server" />
+		<asp:HiddenField id="hiddenDivisionID" runat="server" />
     </fieldset>
 </div>

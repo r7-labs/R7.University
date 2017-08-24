@@ -69,6 +69,9 @@
     <Reference Include="R7.Dnn.Extensions">
       <HintPath>..\packages\R7.Dnn.Extensions.0.11.0\lib\net45\R7.Dnn.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <Package>monodevelop</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
@@ -358,6 +361,7 @@
     <None Include="Controls\App_LocalResources\EditDivisions.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Controls\js\editDivisions.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
@@ -36,6 +37,8 @@ namespace R7.University.Controls
 
             divisionSelector.DataSource = divisions;
             divisionSelector.DataBind ();
+
+            valDivision.ErrorMessage = LocalizeString ("Division.Invalid");
         }
 
         #region implemented abstract members of GridAndFormEditControlBase
@@ -55,6 +58,7 @@ namespace R7.University.Controls
         {
             divisionSelector.DivisionId = item.DivisionId;
             textDivisionRole.Text = item.DivisionRole;
+            hiddenDivisionID.Value = item.DivisionId.ToString ();
         }
 
         protected override void OnUpdateItem (EduProgramDivisionEditModel item)
@@ -68,6 +72,13 @@ namespace R7.University.Controls
         {
             divisionSelector.DivisionId = null;
             textDivisionRole.Text = string.Empty;
+        }
+
+        protected override void BindItems (IEnumerable<EduProgramDivisionEditModel> items)
+        {
+            base.BindItems (items);
+
+            gridDivisions.Attributes.Add ("data-items", Json.Serialize (items));
         }
 
         #endregion

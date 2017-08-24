@@ -174,8 +174,7 @@ namespace R7.University.Controls
             var viewModels = items.Select (i => DebugEnsureCreatedProperly ((TViewModel) convertor.Create (i, ViewModelContext))).ToList ();
             ViewStateItems = viewModels;
 
-            GridItems.DataSource = viewModels;
-            GridItems.DataBind ();
+            BindItems (viewModels);
         }
 
         #endregion
@@ -257,7 +256,6 @@ namespace R7.University.Controls
                 }
 
                 OnUpdateItem (item);
-
                 if (command == "Add") {
                     item.SetTargetItemId (TargetItemId, TargetItemKey);
                     items.Add (item);
@@ -273,9 +271,7 @@ namespace R7.University.Controls
                     form.Context = ViewModelContext;
                 }
 
-                // bind items to the gridview
-                GridItems.DataSource = items;
-                GridItems.DataBind ();
+                BindItems (items);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
@@ -392,9 +388,7 @@ namespace R7.University.Controls
                             form.Context = ViewModelContext;
                         }
 
-                        // bind items to the gridview
-                        GridItems.DataSource = items;
-                        GridItems.DataBind ();
+                        BindItems (items);
 
                         // return to Add mode if we deleting currently edited item
                         if (ButtonUpdateItem.Visible && HiddenViewItemID.Value == itemId) {
@@ -428,9 +422,7 @@ namespace R7.University.Controls
                             form.Context = ViewModelContext;
                         }
 
-                        // bind items to the gridview
-                        GridItems.DataSource = items;
-                        GridItems.DataBind ();
+                        BindItems (items);
                     }
                 }
             }
@@ -453,6 +445,12 @@ namespace R7.University.Controls
             ButtonAddItem.Visible = false;
             ButtonCancelEditItem.Visible = true;
             ButtonUpdateItem.Visible = true;
+        }
+
+        protected virtual void BindItems (IEnumerable<TViewModel> items)
+        {
+            GridItems.DataSource = items;
+            GridItems.DataBind ();
         }
     }
 }

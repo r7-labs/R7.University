@@ -36,4 +36,7 @@
 	<data name="buttonUpdateDivision.Text">
         <value>Сохранить подразделение</value>
     </data>
+    <data name="Division.Invalid">
+        <value>Подразделение не должно повторяться!</value>
+    </data>
 </root>
