@@ -21,19 +21,10 @@
 	<data name="GeneralSettings.Section" xml:space="preserve">
         <value>Основные настройки</value>
     </data>
-    <data name="DisplaySettings.Section" xml:space="preserve">
-        <value>Настройки отображения</value>
-    </data>
 	<data name="labelDivision.Text" xml:space="preserve">
         <value>Подразделение:</value>
     </data>
     <data name="labelDivision.Help" xml:space="preserve">
         <value>Выберите подразделение для отображения.</value>
-    </data>
-    <data name="labelShowAddress.Text" xml:space="preserve">
-        <value>Показывать адрес:</value>
-    </data>
-    <data name="labelShowAddress.Help" xml:space="preserve">
-        <value>Отметьте, чтобы показать адрес подразделения в сведениях о его место нахождении.</value>
     </data>
 </root>

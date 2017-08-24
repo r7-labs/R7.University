@@ -18,13 +18,6 @@
     		</div>
     	</fieldset>		
     </asp:Panel>
-	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
-	<fieldset>
-		<div class="dnnFormItem">
-            <dnn:Label id="labelShowAddress" runat="server" ControlName="checkShowAddress" />
-			<asp:CheckBox id="checkShowAddress" runat="server" />
-		</div>
-	</fieldset>	
 </div>
 
 <script type="text/javascript">

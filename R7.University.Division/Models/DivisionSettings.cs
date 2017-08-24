@@ -37,10 +37,6 @@ namespace R7.University.Division.Models
         // TODO: Convert to Nullable<int>
         [ModuleSetting (Prefix = "Division_")]
         public int DivisionID { get; set; } = Null.NullInteger;
-
-        /// <value><c>true</c> if show address; otherwise, <c>false</c>.</value>
-        [TabModuleSetting (Prefix = "Division_")]
-        public bool ShowAddress { get; set; } = false;
     }
 }
 

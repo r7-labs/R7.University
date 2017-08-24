@@ -62,8 +62,6 @@ namespace R7.University.Division
                     divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
                     divisionSelector.DataBind ();
                     divisionSelector.DivisionId = Settings.DivisionID;
-
-                    checkShowAddress.Checked = Settings.ShowAddress;
                 }
             }
             catch (Exception ex) {
@@ -78,7 +76,6 @@ namespace R7.University.Division
         {
             try {
                 Settings.DivisionID = divisionSelector.DivisionId ?? Null.NullInteger;
-                Settings.ShowAddress = checkShowAddress.Checked;
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 

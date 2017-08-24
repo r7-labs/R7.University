@@ -71,10 +71,15 @@
                 }
         	</div>
         }
-        @if (!string.IsNullOrWhiteSpace (Model.DisplayLocation)) {
-        	<div class="_section">
-        		<span class="_label">@Model.DisplayLocation</span>
-        	</div>
+        @if (!string.IsNullOrWhiteSpace (Model.Address) || !string.IsNullOrWhiteSpace (Model.Location)) {
+            <div class="_section">
+		        @if (!string.IsNullOrWhiteSpace (Model.Address)) {
+                    <span class="_label">@Model.Address</span>
+                }
+		        @if (!string.IsNullOrWhiteSpace (Model.Location)) {
+		            <span class="_label">@Model.Location</span>
+                }
+            </div>
         }
     	@if (!string.IsNullOrWhiteSpace (Model.WorkingHours)) {
         	<div class="_section">

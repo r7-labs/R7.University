@@ -7,6 +7,5 @@ namespace R7.University.Division
     {
         protected DivisionSelector divisionSelector;
         protected TextBox textBarcodeWidth;
-        protected CheckBox checkShowAddress;
     }
 }

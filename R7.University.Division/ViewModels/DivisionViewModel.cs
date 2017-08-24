@@ -145,19 +145,6 @@ namespace R7.University.Division.ViewModels
             }
         }
 
-        string _location;
-        public string DisplayLocation {
-            get {
-                if (_location == null) {
-                    _location = Context.Settings.ShowAddress
-                                       ? TextUtils.FormatList (", ", Division.Address, Division.Location)
-                                       : Division.Location;
-                }
-
-                return _location;
-            }
-        }
-
         public string BarcodeImageUrl {
             get {
                 var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
