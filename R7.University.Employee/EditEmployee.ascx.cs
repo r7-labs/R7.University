@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -38,17 +37,14 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
-using R7.University.Employee.Components;
 using R7.University.Employee.Models;
 using R7.University.Employee.Queries;
 using R7.University.Employee.ViewModels;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.SharedLogic;
 using R7.University.Utilities;
-using R7.University.ViewModels;
 
 namespace R7.University.Employee
 {
@@ -97,11 +93,7 @@ namespace R7.University.Employee
                         return EditEmployeeTab.Achievements;
                     }
 
-                    if (eventTarget.Contains ("$" + buttonCancelEditDisciplines.ID) ||
-                        eventTarget.Contains ("$" + buttonAddDisciplines.ID) ||
-                        eventTarget.Contains ("$" + buttonUpdateDisciplines.ID) ||
-                        eventTarget.Contains ("$" + gridDisciplines.ID) ||
-                        eventTarget.Contains ("$" + comboEduLevel.ID)) {
+                    if (eventTarget.Contains ("$" + formEditDisciplines.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Disciplines;
                         return EditEmployeeTab.Disciplines;
                     }
@@ -119,12 +111,6 @@ namespace R7.University.Employee
             get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditModel>> (ViewState ["occupiedPositions"]); }
             set { ViewState ["occupiedPositions"] = XmlSerializationHelper.Serialize (value); }
         }
-
-        internal List<EmployeeDisciplineEditModel> Disciplines
-        {
-            get { return XmlSerializationHelper.Deserialize<List<EmployeeDisciplineEditModel>> (ViewState ["disciplines"]); }
-            set { ViewState ["disciplines"] = XmlSerializationHelper.Serialize (value); }
-        }   
 
         protected string EditIconUrl
         {
@@ -171,36 +157,22 @@ namespace R7.University.Employee
 
             // if results are null or empty, lists were empty too
 
-            var positions = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
-
-            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-
             // bind positions
-            comboPositions.DataSource = positions;
+            comboPositions.DataSource = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
             comboPositions.DataBind ();
             comboPositions.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         
             // bind divisions
-            divisionSelector.DataSource = divisions;
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             divisionSelector.DataBind ();
-
-            // get and bind edu levels
-            var eduLevels = new EduLevelQuery (ModelContext).List ();
-            comboEduLevel.DataSource = eduLevels;
-            comboEduLevel.DataBind ();
-
-            // get and bind edu profiles
-            if (eduLevels.Count > 0) {
-                BindEduProgramProfiles (eduLevels.First ().EduLevelID);
-            }
 
             var achievementTypes = new FlatQuery<AchievementTypeInfo> (ModelContext).List ();
             var achievements = new FlatQuery<AchievementInfo> (ModelContext).List ();
             formEditAchievements.OnInit (this, achievementTypes, achievements);
+            formEditDisciplines.OnInit (this, new EduLevelQuery (ModelContext).List ());
 
             // localize bounded gridviews
             gridOccupiedPositions.LocalizeColumns (LocalResourceFile);
-            gridDisciplines.LocalizeColumns (LocalResourceFile);
         }
 
         protected override void LoadItem (EmployeeInfo item)
@@ -267,15 +239,9 @@ namespace R7.University.Employee
             // TODO: Sort achievements
             formEditAchievements.SetData (employee.Achievements, employee.EmployeeID);
 
-            // fill disciplines list
-            var disciplines = employee.Disciplines
-                .Select (ed => new EmployeeDisciplineEditModel (ed)).ToList ();
-
             // bind disciplines
-            Disciplines = disciplines;
-            gridDisciplines.DataSource = disciplines;
-            gridDisciplines.DataBind ();
-
+            formEditDisciplines.SetData (employee.Disciplines, employee.EmployeeID);
+      
             // setup audit control
             ctlAudit.Bind (employee);
 
@@ -357,13 +323,13 @@ namespace R7.University.Employee
                 }
 
                 new UpdateOccupiedPositionsCommand (ModelContext)
-                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+                    .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
 
                 new UpdateEmployeeAchievementsCommand (ModelContext)
                     .UpdateEmployeeAchievements (formEditAchievements.GetModifiedData (), item.EmployeeID);
 
                 new UpdateEmployeeDisciplinesCommand (ModelContext)
-                    .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+                    .Update (formEditDisciplines.GetModifiedData (), item.EmployeeID);
 
                 ModelContext.SaveChanges ();
             }
@@ -392,7 +358,7 @@ namespace R7.University.Employee
                 .UpdateEmployeeAchievements (formEditAchievements.GetModifiedData (), item.EmployeeID);
 
             new UpdateEmployeeDisciplinesCommand (ModelContext)
-                .UpdateEmployeeDisciplines (GetEmployeeDisciplines (), item.EmployeeID);
+                .Update (formEditDisciplines.GetModifiedData (), item.EmployeeID);
 
             ModelContext.SaveChanges ();
         }
@@ -416,18 +382,6 @@ namespace R7.University.Employee
                     occupiedPositionInfos.Add (op.NewOccupiedPositionInfo ());
 
             return occupiedPositionInfos;
-        }
-
-        private List<EmployeeDisciplineInfo> GetEmployeeDisciplines ()
-        {
-            var disciplines = Disciplines;
-
-            var disciplineInfos = new List<EmployeeDisciplineInfo> ();
-            if (disciplines != null)
-                foreach (var ep in disciplines)
-                    disciplineInfos.Add (ep.NewEmployeeDisciplineInfo ());
-
-            return disciplineInfos;
         }
 
         protected void buttonUserLookup_Click (object sender, EventArgs e)
@@ -513,16 +467,6 @@ namespace R7.University.Employee
             }
         }
 
-        protected void buttonCancelEditDisciplines_Click (object sender, EventArgs e)
-        {
-            try {
-                ResetEditDisciplinesForm ();
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
         protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
         {
             try {
@@ -531,13 +475,6 @@ namespace R7.University.Employee
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
-        }
-
-        private void ResetEditDisciplinesForm ()
-        {
-            // restore default buttons visibility
-            buttonAddDisciplines.Visible = true;
-            buttonUpdateDisciplines.Visible = false;
         }
 
         private void ResetEditPositionForm ()
@@ -605,18 +542,6 @@ namespace R7.University.Employee
         protected void gridOccupiedPositions_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             grids_RowDataBound (sender, e);
-        }
-
-        protected void gridDisciplines_RowDataBound (object sender, GridViewRowEventArgs e)
-        {
-            grids_RowDataBound (sender, e);
-
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                var discipline = (EmployeeDisciplineEditModel) e.Row.DataItem;
-                if (!ModelHelper.IsPublished (HttpContext.Current.Timestamp, discipline.ProfileStartDate, discipline.ProfileEndDate)) {
-                    e.Row.CssClass = gridDisciplines.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
-                }
-            }
         }
 
         private void grids_RowDataBound (object sender, GridViewRowEventArgs e)
@@ -699,168 +624,5 @@ namespace R7.University.Employee
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
         }
-
-        protected void buttonAddDisciplines_Command (object sender, CommandEventArgs e)
-        {
-            try {
-                if (!Null.IsNull (int.Parse (comboEduProgramProfile.SelectedValue))) {
-                    EmployeeDisciplineEditModel discipline;
-
-                    // get disciplines list from viewstate
-                    var disciplines = Disciplines ?? new List<EmployeeDisciplineEditModel> ();
-
-                    var command = e.CommandArgument.ToString ();
-                    if (command == "Add") {
-                        discipline = new EmployeeDisciplineEditModel ();
-                    }
-                    else {
-                        // restore ItemID from hidden field
-                        var hiddenItemID = int.Parse (hiddenDisciplinesItemID.Value);
-                        discipline = disciplines.Find (ep1 => ep1.ItemID == hiddenItemID);
-                    }
-
-                    var eduProgramProfileId = int.Parse (comboEduProgramProfile.SelectedValue);
-
-                    // check for possible duplicates
-                    var discCount = disciplines.Count (d => d.EduProgramProfileID == eduProgramProfileId);
-
-                    if ((command == "Add" && discCount == 0) ||
-                        (command == "Update" && discCount == ((discipline.EduProgramProfileID == eduProgramProfileId)? 1 : 0))) {
-                        discipline.EduProgramProfileID = eduProgramProfileId;
-                        discipline.Disciplines = textDisciplines.Text.Trim ();
-
-                        var profile = new EduProgramProfileQuery (ModelContext).SingleOrDefault (discipline.EduProgramProfileID);
-
-                        discipline.Code = profile.EduProgram.Code;
-                        discipline.Title = profile.EduProgram.Title;
-                        discipline.ProfileCode = profile.ProfileCode;
-                        discipline.ProfileTitle = profile.ProfileTitle;
-                        discipline.ProfileStartDate = profile.StartDate;
-                        discipline.ProfileEndDate = profile.EndDate;
-                        discipline.EduLevel_String = FormatHelper.FormatShortTitle (profile.EduLevel.ShortTitle, profile.EduLevel.Title);
-
-                        if (command == "Add") {
-                            disciplines.Add (discipline);
-                        }
-
-                        ResetEditDisciplinesForm ();
-
-                        // refresh viewstate
-                        Disciplines = disciplines;
-
-                        // bind items to the gridview
-                        gridDisciplines.DataSource = disciplines;
-                        gridDisciplines.DataBind ();
-                    }
-                    else {
-                        valEduProgramProfile.IsValid = false;
-                        valEduProgramProfile.ErrorMessage = LocalizeString ("EduProgramProfile.Warning");
-                    }
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void linkEditDisciplines_Command (object sender, CommandEventArgs e)
-        {
-            try {
-                var disciplines = Disciplines;
-                if (disciplines != null) {
-                    var itemID = e.CommandArgument.ToString ();
-
-                    // find position in a list
-                    var discipline = disciplines.Find (d => d.ItemID.ToString () == itemID);
-
-                    if (discipline != null) {
-                        var profile = new R7.University.Employee.Queries.EduProgramProfileQuery (ModelContext)
-                            .SingleOrDefault (discipline.EduProgramProfileID);
-                        
-                        var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
-                        var newEduLevelId = profile.EduLevelId;
-                        if (eduLevelId != newEduLevelId) {
-                            comboEduLevel.SelectByValue (newEduLevelId);
-                            BindEduProgramProfiles (newEduLevelId);
-                        }
-
-                        // fill disciplines form
-                        comboEduProgramProfile.SelectByValue (discipline.EduProgramProfileID);
-                        textDisciplines.Text = discipline.Disciplines;
-
-                        // store ItemID in the hidden field
-                        hiddenDisciplinesItemID.Value = discipline.ItemID.ToString ();
-
-                        // show / hide buttons
-                        buttonAddDisciplines.Visible = false;
-                        buttonUpdateDisciplines.Visible = true;
-                    }
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void linkDeleteDisciplines_Command (object sender, CommandEventArgs e)
-        {
-            try {
-                var disciplines = Disciplines;
-                if (disciplines != null) {
-                    var itemID = e.CommandArgument.ToString ();
-
-                    // find position in a list
-                    var disciplinesIndex = disciplines.FindIndex (ep => ep.ItemID.ToString () == itemID);
-
-                    if (disciplinesIndex >= 0) {
-                        // remove edu program
-                        disciplines.RemoveAt (disciplinesIndex);
-
-                        // refresh viewstate
-                        Disciplines = disciplines;
-
-                        // bind edu discipline to the gridview
-                        gridDisciplines.DataSource = disciplines;
-                        gridDisciplines.DataBind ();
-
-                        // reset form if we deleting currently edited discipline
-                        if (buttonUpdateDisciplines.Visible && hiddenDisciplinesItemID.Value == itemID) {
-                            ResetEditDisciplinesForm ();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
-        {
-            // store currently selected edu. program profile title
-            var selectedEduProgramProfileTitle = comboEduProgramProfile.SelectedItem?.Text;
-
-            var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
-            BindEduProgramProfiles (eduLevelId);
-
-            // try to select edu. program profile with same title
-            if (!string.IsNullOrEmpty (selectedEduProgramProfileTitle)) {
-                comboEduProgramProfile.SelectByText (selectedEduProgramProfileTitle, StringComparison.CurrentCulture);
-            }
-        }
-
-        private void BindEduProgramProfiles (int eduLevelId)
-        {
-            var epps = new EduProgramProfileQuery (ModelContext).ListByEduLevel (eduLevelId)
-                                                                .Select (epp => new EduProgramProfileViewModel (epp))
-                                                                .OrderBy (epp => epp.EduProgram.Code)
-                                                                .ThenBy (epp => epp.EduProgram.Title)
-                                                                .ThenBy (epp => epp.ProfileCode)
-                                                                .ThenBy (epp => epp.ProfileTitle);
-            
-            comboEduProgramProfile.DataSource = epps;
-            comboEduProgramProfile.DataBind ();
-        }
     }
 }
-

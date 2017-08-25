@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="labelEduLevel.Text">
+        <value>Education Level:</value>
+    </data>
+    <data name="labelEduLevel.Help">
+        <value>Select education level from the dropdown.</value>
+    </data>
+    <data name="labelEduProgramProfile.Text">
+        <value>Edu. Program (Profile):</value>
+    </data>
+    <data name="labelEduProgramProfile.Help">
+        <value>Select educational program profile from the dropdown.</value>
+    </data>
+    <data name="labelDisciplines.Text">
+        <value>Disciplines:</value>
+    </data>
+    <data name="labelDisciplines.Help">
+        <value>Enter disciplines for selected educational program.</value>
+    </data>
+    <data name="buttonAddDiscipline.Text">
+        <value>Add Disciplines</value>
+    </data>
+    <data name="buttonUpdateDiscipline.Text">
+        <value>Update Disciplines</value>
+    </data>
+    <data name="buttonCancelEditDiscipline.Text">
+        <value>Cancel</value>
+    </data>
+    <data name="EduProgramProfile.Warning">
+        <value>Educational program profile should be unique!</value>
+    </data>
+	<data name="EduProgramProfile.Required">
+        <value>Educational program profile is required.</value>
+    </data>
+    <data name="Disciplines.Required">
+        <value>Disciplines field is required.</value>
+    </data>
+	<data name="EduProgramProfile.Column">
+        <value>Educational Program (Profile)</value>
+    </data>
+    <data name="Disciplines.Column">
+        <value>Disciplines</value>
+    </data>
+    <data name="EduLevel.Column">
+        <value>Education Level</value>
+    </data>
+</root>

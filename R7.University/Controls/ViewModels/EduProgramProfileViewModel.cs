@@ -22,7 +22,7 @@
 using R7.University.Models;
 using R7.University.ViewModels;
 
-namespace R7.University.Employee.ViewModels
+namespace R7.University.Controls.ViewModels
 {
     public class EduProgramProfileViewModel : EduProgramProfileViewModelBase
     {

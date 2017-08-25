@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="labelEduLevel.Text">
+        <value>Уровень образования:</value>
+    </data>
+    <data name="labelEduLevel.Help">
+        <value>Выберите уровень образования из выпадающего списка.</value>
+    </data>
+    <data name="labelEduProgramProfile.Text">
+        <value>Обр. программа (профиль):</value>
+    </data>
+    <data name="labelEduProgramProfile.Help">
+        <value>Выберите профиль образовательной программы из выпадающего списка.</value>
+    </data>
+    <data name="labelDisciplines.Text">
+        <value>Дисципины:</value>
+    </data>
+    <data name="labelDisciplines.Help">
+        <value>Перечислите преподаваемые дисциплины.</value>
+    </data>
+    <data name="checkAddToVocabulary.Text">
+        <value>Добавить в словарь</value>
+    </data>
+    <data name="Division.Column">
+        <value>Подразделение</value>
+    </data>
+    <data name="Position.Column">
+        <value>Должность</value>
+    </data>
+    <data name="IsPrime.Column">
+        <value>Основная</value>
+    </data>
+    <data name="buttonAddDiscipline.Text">
+        <value>Добавить дисциплины</value>
+    </data>
+    <data name="buttonUpdateDiscipline.Text">
+        <value>Сохранить дисциплины</value>
+    </data>
+    <data name="buttonCancelEditDiscipline.Text">
+        <value>Отмена</value>
+    </data>
+    <data name="EduProgramProfile.Warning">
+        <value>Профили образовательных программ не должны повторяться!</value>
+    </data>
+	<data name="EduProgramProfile.Required">
+        <value>Выберите профиль образовательной программы.</value>
+    </data>
+    <data name="Disciplines.Required">
+        <value>Введите дисциплины.</value>
+    </data>
+	<data name="EduProgramProfile.Column">
+        <value>Образовательная программа (профиль подготовки, специализация)</value>
+    </data>
+    <data name="Disciplines.Column">
+        <value>Дисциплины</value>
+    </data>
+	<data name="EduLevel.Column">
+        <value>Уровень образования</value>
+    </data>
+</root>

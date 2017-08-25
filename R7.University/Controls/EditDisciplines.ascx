@@ -1,0 +1,97 @@
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditDisciplines.ascx.cs" Inherits="R7.University.Controls.EditDisciplines" %>
+<%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDisciplines.js" ForceProvider="DnnFormBottomProvider" />
+<div class="dnnForm dnnClear u8y-edit-divisions">
+    <fieldset>
+        <div class="dnnFormItem">
+            <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                GridLines="None" Style="width:100%;margin-bottom:30px">
+                <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
+                <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
+                <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                <SelectedRowStyle CssClass="dnnFormError" />
+                <EditRowStyle CssClass="dnnFormInput" />
+                <FooterStyle CssClass="dnnGridFooter" />
+                <PagerStyle CssClass="dnnGridPager" />
+                <Columns>
+                    <asp:TemplateField>
+                       <ItemTemplate>
+                            <span style="white-space:nowrap">
+                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" >
+                                    <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                </asp:LinkButton>
+                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="OnDeleteItemCommand" >
+                                    <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
+                                </asp:LinkButton>
+                                <asp:LinkButton id="linkUndelete" runat="server" OnCommand="OnUndeleteItemCommand" >
+                                    <asp:Image runat="server" ImageUrl="<%# UndeleteIconUrl %>" />
+                                </asp:LinkButton>
+								<asp:Label id="labelEditMarker" runat="server" />
+                            </span>
+                       </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="ViewItemID" />
+                    <asp:BoundField DataField="EduProgramProfileString" HeaderText="EduProgramProfile" />
+                    <asp:BoundField DataField="EduLevelString" HeaderText="EduLevel" />
+                    <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                </Columns>
+            </asp:GridView>
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
+            <asp:DropDownList id="comboEduLevel" runat="server"
+                AutoPostBack="true"
+                OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
+                DataValueField="EduLevelID"
+                DataTextField="Title" />
+        </div>
+        <div class="dnnFormItem dnnFormRequired">
+            <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
+            <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-ac-combobox"
+                DataValueField="EduProgramProfileID"
+                DataTextField="Title_String" />
+			<asp:RequiredFieldValidator runat="server" ControlToValidate="comboEduProgramProfile" Display="Dynamic"
+                CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="EduProgramProfile.Required" />
+            <asp:CustomValidator runat="server" resourcekey="EduProgramProfile.Warning"
+				ControlToValidate="comboEduProgramProfile" ValidationGroup="Disciplines" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
+			    EnableClientScript="true" ClientValidationFunction="validateDiscipline" />
+        </div>
+        <div class="dnnFormItem dnnFormRequired">
+            <dnn:Label id="labelDisciplines" runat="server" ControlName="textDisciplines" />
+            <asp:TextBox id="textDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="textDisciplines" Display="Dynamic"
+                CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="Disciplines.Required" />
+        </div>
+        <div class="dnnFormItem">
+            <div class="dnnLabel"></div>
+			<ul class="dnnActions">
+				<li>
+                    <asp:LinkButton id="buttonAddDiscipline" runat="server" resourcekey="buttonAddDiscipline" 
+                        CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                        CausesValidation="true" ValidationGroup="Disciplines" />
+				</li>	
+                <li>
+				    <asp:LinkButton id="buttonUpdateDiscipline" runat="server" resourcekey="buttonUpdateDiscipline" 
+                        CssClass="dnnPrimaryAction" CommandArgument="Update" 
+                        CausesValidation="true" ValidationGroup="Disciplines" />
+				</li>
+                <li>
+				    <asp:LinkButton id="buttonCancelEditDiscipline" runat="server" resourcekey="CancelEdit" 
+                        CssClass="dnnSecondaryAction" />
+				</li>
+				<li>&nbsp;</li>
+    			<li>
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
+                        CssClass="dnnSecondaryAction" />
+				</li>
+			</ul>	
+        </div>
+		<asp:HiddenField id="hiddenDisciplineItemID" runat="server" />
+		<asp:HiddenField id="hiddenEduProgramProfileID" runat="server" />
+    </fieldset>
+</div>

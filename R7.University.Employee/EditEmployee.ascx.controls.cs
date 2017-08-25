@@ -49,15 +49,7 @@ namespace R7.University.Employee
 		protected LinkButton buttonUpdatePosition;
 		protected LinkButton buttonCancelEditPosition;
 		protected HiddenField hiddenOccupiedPositionItemID;
-        protected TextBox textDisciplines;
-        protected DropDownList comboEduLevel;
-        protected DropDownList comboEduProgramProfile;
-        protected GridView gridDisciplines;
-        protected LinkButton buttonAddDisciplines;
-        protected LinkButton buttonUpdateDisciplines;
-        protected LinkButton buttonCancelEditDisciplines;
-        protected HiddenField hiddenDisciplinesItemID;
-        protected CustomValidator valEduProgramProfile;
         protected EditAchievements formEditAchievements;
+        protected EditDisciplines formEditDisciplines;
 	}
 }

@@ -24,7 +24,7 @@ using System.Linq;
 using R7.University.Models;
 using R7.University.Queries;
 
-namespace R7.University.Employee.Queries
+namespace R7.University.Controls.Queries
 {
     internal class EduProgramProfileQuery: QueryBase
     {

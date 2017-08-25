@@ -222,37 +222,4 @@
     <data name="IsPrime.Column">
         <value>Is Prime</value>
     </data>
-    <data name="labelEduLevel.Text">
-        <value>Education Level:</value>
-    </data>
-    <data name="labelEduLevel.Help">
-        <value>Select education level from the dropdown.</value>
-    </data>
-    <data name="labelEduProgramProfile.Text">
-        <value>Edu. Program (Profile):</value>
-    </data>
-    <data name="labelEduProgramProfile.Help">
-        <value>Select educational program profile from the dropdown.</value>
-    </data>
-    <data name="labelDisciplines.Text">
-        <value>Disciplines:</value>
-    </data>
-    <data name="labelDisciplines.Help">
-        <value>Enter disciplines for selected educational program.</value>
-    </data>
-    <data name="buttonAddDisciplines.Text">
-        <value>Add Disciplines</value>
-    </data>
-    <data name="buttonUpdateDisciplines.Text">
-        <value>Update Disciplines</value>
-    </data>
-    <data name="buttonCancelEditDisciplines.Text">
-        <value>Cancel</value>
-    </data>
-    <data name="EduProgramProfile.Warning">
-        <value>Cannot add or update disciplines entry, as the entry for specified edu. program profile already exists.</value>
-    </data>
-    <data name="Disciplines.Required">
-        <value>Disciplines field is required.</value>
-    </data>
 </root>

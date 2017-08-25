@@ -43,7 +43,7 @@
                 </Columns>
             </asp:GridView>
         </div>
-		<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduProgramProfileForms" CssClass="dnnFormMessage dnnFormError" />
+		<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduProgramProfileForms" CssClass="dnnFormMessage dnnFormWarning" />
         <div class="dnnFormItem">
             <dnn:Label id="labelEduForm" runat="server" ControlName="radioEduForm" />
             <asp:RadioButtonList id="radioEduForm" runat="server" 

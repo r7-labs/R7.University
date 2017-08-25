@@ -13,6 +13,5 @@ namespace R7.University.Controls
         protected LinkButton buttonCancelEditDivision;
         protected LinkButton buttonResetForm;
         protected HiddenField hiddenDivisionID;
-        protected CustomValidator valDivision;
     }
 }

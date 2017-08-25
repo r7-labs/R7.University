@@ -11,7 +11,6 @@ function validateEduForm (sender, e) {
     var items = JSON.parse (jQuery ("[id $= 'gridEduForms']").attr ("data-items"));
     if (items.length > 0) {
         var selectedEduFormId = jQuery ("input[id *= '_radioEduForm_']:checked").val ();
-        console.log ("selectedEduFormId=" + selectedEduFormId);
         var addCmd = jQuery ("[id $= 'buttonAddEduForm']").length === 1;
         var count = items.filter (function (i) {return i.EduFormID == selectedEduFormId; }).length;
         if (addCmd && count === 0) { return; }

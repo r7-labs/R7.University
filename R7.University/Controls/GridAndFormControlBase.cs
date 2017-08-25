@@ -82,6 +82,7 @@ namespace R7.University.Controls
 
         #endregion
 
+        // TODO: Rename to MapControls
         protected void InitControls (GridView gridItems, HiddenField hiddenViewItemId, LinkButton buttonAddItem, 
                                      LinkButton buttonUpdateItem, LinkButton buttonCancelEditItem, LinkButton buttonResetForm)
         {
@@ -193,6 +194,7 @@ namespace R7.University.Controls
             get { return _viewModelContext ?? (_viewModelContext = new ViewModelContext (this, Module)); }
         }
 
+        // TODO: Switch to JSON serialization
         protected List<TViewModel> ViewStateItems
         {
             get { return XmlSerializationHelper.Deserialize<List<TViewModel>> (ViewState ["items"]); }

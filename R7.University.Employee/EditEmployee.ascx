@@ -7,6 +7,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="EditAchievements" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditAchievements.ascx" %>
+<%@ Register TagPrefix="controls" TagName="EditDisciplines" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditDisciplines.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/AgplSignature.ascx" %>
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
@@ -205,76 +206,8 @@
             <controls:EditAchievements id="formEditAchievements" runat="server" />
 		</div>
 		<div id="employee-disciplines-tab">
-			<fieldset>
-                <asp:ValidationSummary runat="server" ValidationGroup="Disciplines" 
-                    DisplayMode="SingleParagraph" CssClass="dnnFormMessage dnnFormWarning" />
-                <div class="dnnFormItem">
-                    <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                            GridLines="None" OnRowDataBound="gridDisciplines_RowDataBound" Style="width:100%;margin-bottom:30px">
-                        <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-                        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-                        <AlternatingRowStyle CssClass="dnnGridAltItem" />
-                        <SelectedRowStyle CssClass="dnnFormError" />
-                        <EditRowStyle CssClass="dnnFormInput" />
-                        <FooterStyle CssClass="dnnGridFooter" />
-                        <PagerStyle CssClass="dnnGridPager" />
-                        <Columns>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <span style="white-space:nowrap">
-                                        <asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditDisciplines_Command" >
-                                            <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-                                        </asp:LinkButton>
-                                        <asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteDisciplines_Command" >
-                                            <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-                                        </asp:LinkButton>
-                                    </span>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="ItemID" />
-                            <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />
-							<asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel" />
-                            <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
-                        </Columns>
-                    </asp:GridView>
-                    <asp:HiddenField id="hiddenDisciplinesItemID" runat="server" />
-                </div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-                    <asp:DropDownList id="comboEduLevel" runat="server"
-                        AutoPostBack="true"
-                        OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
-                        DataValueField="EduLevelID"
-                        DataTextField="Title" />
-                </div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
-                    <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-ac-combobox"
-                        DataValueField="EduProgramProfileID"
-                        DataTextField="Title_String" />
-                    <asp:CustomValidator id="valEduProgramProfile" runat="server" ControlToValidate="comboEduProgramProfile"
-                        Display="None" EnableClientScript="false" ValidationGroup="Disciplines" />
-                </div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelDisciplines" runat="server" ControlName="textDisciplines" />
-                    <asp:TextBox id="textDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="textDisciplines" Display="Dynamic"
-                        CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="Disciplines.Required" />
-                </div>
-                <div class="dnnFormItem">
-                    <div class="dnnLabel"></div>
-                    <asp:LinkButton id="buttonAddDisciplines" runat="server" resourcekey="buttonAddDisciplines" 
-                        CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" CommandArgument="Add" 
-                        CausesValidation="true" ValidationGroup="Disciplines" />
-                    <asp:LinkButton id="buttonUpdateDisciplines" runat="server" resourcekey="buttonUpdateDisciplines" 
-                        CssClass="dnnPrimaryAction" OnCommand="buttonAddDisciplines_Command" Visible="false" CommandArgument="Update" 
-                        CausesValidation="true" ValidationGroup="Disciplines" />
-                    <asp:LinkButton id="buttonCancelEditDisciplines" runat="server" resourcekey="buttonCancelEditDisciplines" 
-                        CssClass="dnnSecondaryAction" OnClick="buttonCancelEditDisciplines_Click" 
-                        CausesValidation="false" />
-                </div>
-            </fieldset>
-		</div>
+            <controls:EditDisciplines id="formEditDisciplines" runat="server" />
+        </div>
         <div id="employee-about-tab">
 			<fieldset>
 				<div class="dnnFormItem">
