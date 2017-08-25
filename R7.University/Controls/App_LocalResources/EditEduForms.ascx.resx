@@ -81,6 +81,9 @@
     <data name="TimeToLearnHours.Required">
         <value>The hours value is required.</value>
     </data>
+	<data name="EduForm.Invalid">
+        <value>Education form must be unique!</value>
+    </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>
     </data>

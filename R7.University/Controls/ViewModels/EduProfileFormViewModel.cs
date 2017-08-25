@@ -21,11 +21,12 @@
 
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Controls.ViewModels;
-using R7.University.ViewModels;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Controls
 {
@@ -37,6 +38,7 @@ namespace R7.University.Controls
         public int ViewItemID { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
         public ModelEditState PrevEditState { get; set; }
@@ -72,6 +74,7 @@ namespace R7.University.Controls
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public string CssClass {
             get {
                 var cssClass = string.Empty;
@@ -109,6 +112,7 @@ namespace R7.University.Controls
         public bool IsAdmissive { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         [Obsolete ("Use EduFormViewModel property instead", true)] 
         public EduFormInfo EduForm { get; set; }
 
@@ -117,6 +121,7 @@ namespace R7.University.Controls
         #endregion
 
         [XmlIgnore]
+        [JsonIgnore]
         public string EduFormTitleLocalized
         {
             get {
@@ -126,12 +131,15 @@ namespace R7.University.Controls
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public string TimeToLearnYears_String => (TimeToLearn / 12 > 0) ? (TimeToLearn / 12).ToString () : string.Empty;
 
         [XmlIgnore]
+        [JsonIgnore]
         public string TimeToLearnMonths_String => (TimeToLearn % 12 > 0) ? (TimeToLearn % 12).ToString () : string.Empty;
 
         [XmlIgnore]
+        [JsonIgnore]
         public string TimeToLearnHours_String => (TimeToLearnHours > 0) ? TimeToLearnHours.ToString () : string.Empty;
 
     }

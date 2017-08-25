@@ -81,6 +81,9 @@
     <data name="TimeToLearnHours.Required">
         <value>Введите число часов.</value>
     </data>
+	<data name="EduForm.Invalid">
+        <value>Формы обучения не должны повторяться!</value>
+    </data>
     <data name="SystemEduForm_Default.Text">
         <value></value>
     </data>

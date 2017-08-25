@@ -15,5 +15,6 @@ namespace R7.University.Controls
         protected LinkButton buttonUpdateEduForm;
         protected LinkButton buttonCancelEditEduForm;
         protected LinkButton buttonResetForm;
+        protected HiddenField hiddenEduFormID;
     }
 }

@@ -43,6 +43,7 @@
                 </Columns>
             </asp:GridView>
         </div>
+		<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduProgramProfileForms" CssClass="dnnFormMessage dnnFormError" />
         <div class="dnnFormItem">
             <dnn:Label id="labelEduForm" runat="server" ControlName="radioEduForm" />
             <asp:RadioButtonList id="radioEduForm" runat="server" 
@@ -50,9 +51,11 @@
                 DataValueField="EduFormID"
                 RepeatDirection="Horizontal"
                 CssClass="dnn-form-control"
-            /> 
+            />
+			<asp:CustomValidator runat="server" resourcekey="EduForm.Invalid" ControlToValidate="radioEduForm"
+                ValidationGroup="EduProgramProfileForms" EnableClientScript="true" ClientValidationFunction="validateEduForm"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError"  />
         </div>
-		<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduProgramProfileForms" CssClass="dnnFormMessage dnnFormError" />
 	    <div class="dnnFormItem">
             <dnn:Label id="labelTimeToLearnYears" runat="server" ControlName="textTimeToLearnYears" />
             <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
@@ -119,5 +122,6 @@
 			</ul>	
         </div>
         <asp:HiddenField id="hiddenEduFormItemID" runat="server" />
+		<asp:HiddenField id="hiddenEduFormID" runat="server" />
     </fieldset>
 </div>

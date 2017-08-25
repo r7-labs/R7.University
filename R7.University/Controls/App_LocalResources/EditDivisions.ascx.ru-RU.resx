@@ -37,6 +37,6 @@
         <value>Сохранить подразделение</value>
     </data>
     <data name="Division.Invalid">
-        <value>Подразделение не должно повторяться!</value>
+        <value>Подразделения не должны повторяться!</value>
     </data>
 </root>

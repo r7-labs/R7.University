@@ -21,6 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.University.Models;
@@ -66,6 +67,8 @@ namespace R7.University.Controls
             textTimeToLearnYears.Text = (item.TimeToLearn / 12).ToString ();
             textTimeToLearnMonths.Text = (item.TimeToLearn % 12).ToString ();
             textTimeToLearnHours.Text = item.TimeToLearnHours.ToString ();
+
+            hiddenEduFormID.Value = item.EduFormID.ToString ();
         }
 
         protected override void OnUpdateItem (EduProgramProfileFormViewModel item)
@@ -85,6 +88,13 @@ namespace R7.University.Controls
             textTimeToLearnMonths.Text = "0";
             textTimeToLearnHours.Text = "0";
             checkIsAdmissive.Checked = false;
+        }
+
+        protected override void BindItems (IEnumerable<EduProgramProfileFormViewModel> items)
+        {
+            base.BindItems (items);
+
+            gridEduForms.Attributes.Add ("data-items", Json.Serialize (items));
         }
 
         #endregion
