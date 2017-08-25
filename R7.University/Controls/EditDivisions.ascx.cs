@@ -37,8 +37,6 @@ namespace R7.University.Controls
 
             divisionSelector.DataSource = divisions;
             divisionSelector.DataBind ();
-
-            valDivision.ErrorMessage = LocalizeString ("Division.Invalid");
         }
 
         #region implemented abstract members of GridAndFormEditControlBase

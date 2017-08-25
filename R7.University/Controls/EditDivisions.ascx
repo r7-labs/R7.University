@@ -44,7 +44,7 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
             <controls:DivisionSelector id="divisionSelector" runat="server" IsRequired="true" />
-			<asp:CustomValidator id="valDivision" runat="server" CssClass="dnnFormMessage dnnFormError"
+			<asp:CustomValidator id="valDivision" runat="server" resourcekey="Division.Invalid" CssClass="dnnFormMessage dnnFormError"
                 Display="Dynamic" EnableClientScript="true" ClientValidationFunction="validateDivision" ValidationGroup="EduProgramDivisions"/>
         </div>
         <div class="dnnFormItem">
