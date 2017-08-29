@@ -75,12 +75,6 @@ namespace R7.University.Controls
 
         #region implemented abstract members of GridAndFormEditControlBase
 
-        protected override void OnInitControls ()
-        {
-            InitControls (gridAchievements, hiddenAchievementItemID, 
-                          buttonAddAchievement, buttonUpdateAchievement, buttonCancelEditAchievement, buttonResetForm);
-        }
-
         protected override void OnLoadItem (EmployeeAchievementEditModel item)
         {
             if (item.AchievementID != null) {
@@ -169,7 +163,7 @@ namespace R7.University.Controls
             textYearBegin.Text = string.Empty;
             textYearEnd.Text = string.Empty;
             checkIsTitle.Checked = false;
-            hiddenAchievementItemID.Value = string.Empty;
+            hiddenViewItemID.Value = string.Empty;
             urlDocumentURL.UrlType = "N";
         }
 

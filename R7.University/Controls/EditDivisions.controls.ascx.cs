@@ -6,12 +6,6 @@ namespace R7.University.Controls
     {
         protected DivisionSelector divisionSelector;
         protected TextBox textDivisionRole;
-        protected GridView gridDivisions;
-        protected HiddenField hiddenDivisionItemID;
-        protected LinkButton buttonAddDivision;
-        protected LinkButton buttonUpdateDivision;
-        protected LinkButton buttonCancelEditDivision;
-        protected LinkButton buttonResetForm;
         protected HiddenField hiddenDivisionID;
     }
 }

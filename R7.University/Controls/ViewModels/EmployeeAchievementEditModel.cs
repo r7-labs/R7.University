@@ -75,6 +75,7 @@ namespace R7.University.Controls.ViewModels
 
         #region Bindable properties
 
+        [JsonIgnore]
         public string Years_String
         {
             get {
@@ -83,6 +84,7 @@ namespace R7.University.Controls.ViewModels
             }
         }
 
+        [JsonIgnore]
         public string AchievementType_String
         {
             get {
@@ -93,11 +95,13 @@ namespace R7.University.Controls.ViewModels
             }
         }
 
+        [JsonIgnore]
         public string Title_String
         { 
             get { return Title + " " + TitleSuffix; }
         }
 
+        [JsonIgnore]
         public string DocumentUrl_Link
         {
             get {

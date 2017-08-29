@@ -43,17 +43,17 @@ namespace R7.University.Controls
     {
         #region Controls
 
-        protected GridView GridItems;
+        protected GridView gridItems;
 
-        protected HiddenField HiddenViewItemID;
+        protected HiddenField hiddenViewItemID;
 
-        protected LinkButton ButtonAddItem;
+        protected LinkButton buttonAddItem;
 
-        protected LinkButton ButtonUpdateItem;
+        protected LinkButton buttonUpdateItem;
 
-        protected LinkButton ButtonCancelEditItem;
+        protected LinkButton buttonCancelEditItem;
 
-        protected LinkButton ButtonResetForm;
+        protected LinkButton buttonResetForm;
 
         #endregion
 
@@ -78,21 +78,7 @@ namespace R7.University.Controls
         /// </summary>
         protected abstract void OnResetForm ();
 
-        protected abstract void OnInitControls ();
-
         #endregion
-
-        // TODO: Rename to MapControls, possibly remove?
-        protected void InitControls (GridView gridItems, HiddenField hiddenViewItemId, LinkButton buttonAddItem, 
-                                     LinkButton buttonUpdateItem, LinkButton buttonCancelEditItem, LinkButton buttonResetForm)
-        {
-            GridItems = gridItems;
-            HiddenViewItemID = hiddenViewItemId;
-            ButtonAddItem = buttonAddItem;
-            ButtonUpdateItem = buttonUpdateItem;
-            ButtonCancelEditItem = buttonCancelEditItem;
-            ButtonResetForm = buttonResetForm;
-        }
 
         #region Bindable icons
 
@@ -195,17 +181,15 @@ namespace R7.University.Controls
         {
             base.OnInit (e);
 
-            OnInitControls ();
-
             // wireup handlers
-            ButtonAddItem.Command += OnUpdateItemCommand;
-            ButtonUpdateItem.Command += OnUpdateItemCommand;
-            ButtonCancelEditItem.Click += OnCancelEditItemClick;
-            ButtonResetForm.Click += OnResetFormClick;
-            GridItems.RowDataBound += OnGridItemsRowDataBound;
+            buttonAddItem.Command += OnUpdateItemCommand;
+            buttonUpdateItem.Command += OnUpdateItemCommand;
+            buttonCancelEditItem.Click += OnCancelEditItemClick;
+            buttonResetForm.Click += OnResetFormClick;
+            gridItems.RowDataBound += OnGridItemsRowDataBound;
 
             // localize gridview columns
-            GridItems.LocalizeColumns (LocalResourceFile);
+            gridItems.LocalizeColumns (LocalResourceFile);
 
             OnResetForm ();
             SwitchToAddMode ();
@@ -237,7 +221,7 @@ namespace R7.University.Controls
                 }
                 else {
                     // restore ItemID from hidden field
-                    var hiddenViewItemId = int.Parse (HiddenViewItemID.Value);
+                    var hiddenViewItemId = int.Parse (hiddenViewItemID.Value);
                     item = items.Find (i => i.ViewItemID == hiddenViewItemId);
 
                     if (item.EditState != ModelEditState.Added) {
@@ -271,7 +255,7 @@ namespace R7.University.Controls
         protected void OnCancelEditItemClick (object sender, EventArgs e)
         {
             try {
-                var item = ViewStateItems.FirstOrDefault (i => i.ViewItemID.ToString () == HiddenViewItemID.Value);
+                var item = ViewStateItems.FirstOrDefault (i => i.ViewItemID.ToString () == hiddenViewItemID.Value);
                 if (item != null) {
                     OnCancelEdit (item);
                 }
@@ -339,7 +323,7 @@ namespace R7.University.Controls
                         OnLoadItem (item);
 
                         // store ViewItemID in the hidden field
-                        HiddenViewItemID.Value = item.ViewItemID.ToString ();
+                        hiddenViewItemID.Value = item.ViewItemID.ToString ();
 
                         SwitchToUpdateMode ();
                     }
@@ -381,7 +365,7 @@ namespace R7.University.Controls
                         BindItems (items);
 
                         // return to Add mode if we deleting currently edited item
-                        if (ButtonUpdateItem.Visible && HiddenViewItemID.Value == itemId) {
+                        if (buttonUpdateItem.Visible && hiddenViewItemID.Value == itemId) {
                             SwitchToAddMode ();
                         }
                     }
@@ -425,22 +409,22 @@ namespace R7.University.Controls
 
         void SwitchToAddMode ()
         {
-            ButtonAddItem.Visible = true;
-            ButtonCancelEditItem.Visible = false;
-            ButtonUpdateItem.Visible = false;
+            buttonAddItem.Visible = true;
+            buttonCancelEditItem.Visible = false;
+            buttonUpdateItem.Visible = false;
         }
 
         void SwitchToUpdateMode ()
         {
-            ButtonAddItem.Visible = false;
-            ButtonCancelEditItem.Visible = true;
-            ButtonUpdateItem.Visible = true;
+            buttonAddItem.Visible = false;
+            buttonCancelEditItem.Visible = true;
+            buttonUpdateItem.Visible = true;
         }
 
         protected virtual void BindItems (IEnumerable<TViewModel> items)
         {
-            GridItems.DataSource = items;
-            GridItems.DataBind ();
+            gridItems.DataSource = items;
+            gridItems.DataBind ();
         }
     }
 }

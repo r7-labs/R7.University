@@ -49,6 +49,7 @@ namespace R7.University.Controls
 
         #endregion
 
+        [JsonIgnore]
         public string TitleLocalized
         { 
             get {   

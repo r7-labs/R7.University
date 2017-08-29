@@ -91,7 +91,7 @@ namespace R7.University.Controls
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var document = (IDocument) e.Row.DataItem;
                 if (!document.IsPublished (HttpContext.Current.Timestamp)) {
-                    e.Row.CssClass = gridDocuments.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
+                    e.Row.CssClass = gridItems.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
                 }
             }
         }
@@ -101,12 +101,6 @@ namespace R7.University.Controls
         protected override string TargetItemKey
         {
             get { return ForModel; }
-        }
-
-        protected override void OnInitControls ()
-        {
-            InitControls (gridDocuments, hiddenDocumentItemID, 
-                          buttonAddDocument, buttonUpdateDocument, buttonCancelEditDocument, buttonResetForm);
         }
 
         protected override void OnLoadItem (DocumentViewModel item)

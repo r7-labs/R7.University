@@ -64,12 +64,6 @@ namespace R7.University.Controls
 
         #region implemented abstract members of GridAndFormEditControlBase
 
-        protected override void OnInitControls ()
-        {
-            InitControls (gridDisciplines, hiddenDisciplineItemID,
-                          buttonAddDiscipline, buttonUpdateDiscipline, buttonCancelEditDiscipline, buttonResetForm);
-        }
-
         protected override void OnLoadItem (EmployeeDisciplineEditModel item)
         {
             using (var modelContext = new UniversityModelContext ()) {
@@ -117,7 +111,7 @@ namespace R7.University.Controls
         {
             base.BindItems (items);
 
-            gridDisciplines.Attributes.Add ("data-items", Json.Serialize (items));
+            gridItems.Attributes.Add ("data-items", Json.Serialize (items));
         }
 
         #endregion

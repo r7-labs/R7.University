@@ -7,18 +7,18 @@
     }
 }
 
-function validateEduForm (sender, e) {
-    var itemsData = jQuery ("[id $= 'gridEduForms']").attr ("data-items");
-    if (!!itemsData) {
-        var items = JSON.parse (itemsData);
-        if (items.length > 0) {
-            var selectedEduFormId = jQuery ("input[id *= '_radioEduForm_']:checked").val ();
-            var addCmd = jQuery ("[id $= 'buttonAddEduForm']").length === 1;
-            var count = items.filter (function (i) {return i.EduFormID == selectedEduFormId && i.EditState != "Deleted"; }).length;
-            if (addCmd && count === 0) { return; }
-            var editedEduFormId = jQuery ("[id $= 'hiddenEduFormID']").val ();
-            if (!addCmd && count === ((selectedEduFormId === editedEduFormId)? 1 : 0)) { return; }
-            e.IsValid = false;
-        }
-    }
+function EduFormUniqueValidator () {
+    GridAndFormUniqueValidator.apply (this, ["EduFormID"]);
 }
+
+EduFormUniqueValidator.prototype = Object.create (GridAndFormUniqueValidator.prototype);
+EduFormUniqueValidator.prototype.constructor = EduFormUniqueValidator;
+EduFormUniqueValidator.prototype.getSelectedFieldId = function (valContext) {
+    return valContext.find ("input[id *= '_radioEduForm_']:checked").val ();
+};
+
+EduFormUniqueValidator.prototype.getEditedFieldId = function (valContext) {
+    return valContext.find ("[id $= 'hiddenEduFormID']").val ();
+};
+
+eduFormUniqueValidator = new EduFormUniqueValidator ();

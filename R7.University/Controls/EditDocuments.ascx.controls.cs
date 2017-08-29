@@ -5,7 +5,6 @@ namespace R7.University.Controls
 {
     public partial class EditDocuments
     {
-        protected GridView gridDocuments;
         protected TextBox textDocumentTitle;
         protected TextBox textDocumentGroup;
         protected DropDownList comboDocumentType;
@@ -13,11 +12,6 @@ namespace R7.University.Controls
         protected TextBox textDocumentSortIndex;
         protected DnnDateTimePicker datetimeDocumentStartDate;
         protected DnnDateTimePicker datetimeDocumentEndDate;
-        protected HiddenField hiddenDocumentItemID;
-        protected LinkButton buttonAddDocument;
-        protected LinkButton buttonUpdateDocument;
-        protected LinkButton buttonCancelEditDocument;
-        protected LinkButton buttonResetForm;
         protected CustomValidator valDocumentUrl;
     }
 }

@@ -4,11 +4,12 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/gridAndForm.js" ForceProvider="DnnFormBottomProvider" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editEduForms.js" ForceProvider="DnnFormBottomProvider" />
 <div class="dnnForm dnnClear university-edit-eduforms">
     <fieldset>
         <div class="dnnFormItem">
-            <asp:GridView id="gridEduForms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                 GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                 <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
@@ -53,7 +54,7 @@
                 CssClass="dnn-form-control"
             />
 			<asp:CustomValidator runat="server" resourcekey="EduForm.Invalid" ControlToValidate="radioEduForm"
-                ValidationGroup="EduProgramProfileForms" EnableClientScript="true" ClientValidationFunction="validateEduForm"
+                ValidationGroup="EduProgramProfileForms" EnableClientScript="true" ClientValidationFunction="eduFormUniqueValidator.validate"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError"  />
         </div>
 	    <div class="dnnFormItem">
@@ -101,17 +102,17 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddEduForm" runat="server" resourcekey="buttonAddEduForm" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddEduForm" 
                         CssClass="dnnPrimaryAction" CommandArgument="Add" 
                         CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
 				</li>	
                 <li>
-				    <asp:LinkButton id="buttonUpdateEduForm" runat="server" resourcekey="buttonUpdateEduForm" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateEduForm" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update" 
                         CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
 				</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditEduForm" runat="server" resourcekey="CancelEdit" 
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
@@ -121,7 +122,7 @@
 				</li>
 			</ul>	
         </div>
-        <asp:HiddenField id="hiddenEduFormItemID" runat="server" />
+        <asp:HiddenField id="hiddenViewItemID" runat="server" />
 		<asp:HiddenField id="hiddenEduFormID" runat="server" />
     </fieldset>
 </div>

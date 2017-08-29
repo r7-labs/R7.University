@@ -8,7 +8,7 @@
 <asp:Panel id="panelEditAchievements" runat="server" CssClass="dnnForm dnnClear u8y-edit-achievements">
     <fieldset>
         <div class="dnnFormItem">
-            <asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                 GridLines="None" OnRowDataBound="gridAchievements_RowDataBound" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                 <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
@@ -109,17 +109,17 @@
             <div class="dnnLabel"></div>
             <ul class="dnnActions">
                 <li>
-                    <asp:LinkButton id="buttonAddAchievement" runat="server" resourcekey="buttonAddAchievement" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddAchievement" 
                         CssClass="dnnPrimaryAction" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Achievements" />
                 </li>   
                 <li>
-                    <asp:LinkButton id="buttonUpdateAchievement" runat="server" resourcekey="buttonUpdateAchievement" 
+                    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateAchievement" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Achievements" />
                 </li>   
                 <li>
-                    <asp:LinkButton id="buttonCancelEditAchievement" runat="server" resourcekey="CancelEdit" 
+                    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />
                 </li>
                 <li>&nbsp;</li>
@@ -129,7 +129,7 @@
                 </li>   
             </ul>   
         </div>
-        <asp:HiddenField id="hiddenAchievementItemID" runat="server" />
+        <asp:HiddenField id="hiddenViewItemID" runat="server" />
 	</fieldset>
 </asp:Panel>
 <script type="text/javascript">

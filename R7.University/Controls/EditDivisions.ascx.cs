@@ -46,12 +46,6 @@ namespace R7.University.Controls
             get { return ForModel; }
         }
 
-        protected override void OnInitControls ()
-        {
-            InitControls (gridDivisions, hiddenDivisionItemID,
-                          buttonAddDivision, buttonUpdateDivision, buttonCancelEditDivision, buttonResetForm);
-        }
-
         protected override void OnLoadItem (EduProgramDivisionEditModel item)
         {
             divisionSelector.DivisionId = item.DivisionId;
@@ -76,7 +70,7 @@ namespace R7.University.Controls
         {
             base.BindItems (items);
 
-            gridDivisions.Attributes.Add ("data-items", Json.Serialize (items));
+            gridItems.Attributes.Add ("data-items", Json.Serialize (items));
         }
 
         #endregion

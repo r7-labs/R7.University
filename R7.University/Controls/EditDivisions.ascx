@@ -5,11 +5,12 @@
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/gridAndForm.js" ForceProvider="DnnFormBottomProvider" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDivisions.js" ForceProvider="DnnFormBottomProvider" />
 <div class="dnnForm dnnClear u8y-edit-divisions">
     <fieldset>
         <div class="dnnFormItem">
-            <asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                 GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                 <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
@@ -45,7 +46,7 @@
             <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
             <controls:DivisionSelector id="divisionSelector" runat="server" IsRequired="true" />
             <asp:CustomValidator runat="server" resourcekey="Division.Invalid" CssClass="dnnFormMessage dnnFormError"
-                Display="Dynamic" EnableClientScript="true" ClientValidationFunction="validateDivision" ValidationGroup="EduProgramDivisions"/>
+                Display="Dynamic" EnableClientScript="true" ClientValidationFunction="divisionUniqueValidator.validate" ValidationGroup="EduProgramDivisions"/>
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDivisionRole" runat="server" ControlName="textDivisionRole" />
@@ -55,17 +56,17 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddDivision" runat="server" resourcekey="buttonAddDivision" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDivision" 
                         CssClass="dnnPrimaryAction" CommandArgument="Add" 
                         CausesValidation="true" ValidationGroup="EduProgramDivisions" />
 				</li>	
                 <li>
-				    <asp:LinkButton id="buttonUpdateDivision" runat="server" resourcekey="buttonUpdateDivision" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDivision" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update" 
                         CausesValidation="true" ValidationGroup="EduProgramDivisions" />
 				</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditDivision" runat="server" resourcekey="CancelEdit" 
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
@@ -75,7 +76,7 @@
 				</li>
 			</ul>	
         </div>
-		<asp:HiddenField id="hiddenDivisionItemID" runat="server" />
+		<asp:HiddenField id="hiddenViewItemID" runat="server" />
 		<asp:HiddenField id="hiddenDivisionID" runat="server" />
     </fieldset>
 </div>

@@ -4,11 +4,12 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/gridAndForm.js" ForceProvider="DnnFormBottomProvider" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDisciplines.js" ForceProvider="DnnFormBottomProvider" />
 <div class="dnnForm dnnClear u8y-edit-divisions">
     <fieldset>
         <div class="dnnFormItem">
-            <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                 GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                 <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
@@ -59,7 +60,7 @@
             <asp:CustomValidator runat="server" resourcekey="EduProgramProfile.Warning"
 				ControlToValidate="comboEduProgramProfile" ValidationGroup="Disciplines" 
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
-			    EnableClientScript="true" ClientValidationFunction="validateDiscipline" />
+			    EnableClientScript="true" ClientValidationFunction="eduProgramProfileUniqueValidator.validate" />
         </div>
         <div class="dnnFormItem dnnFormRequired">
             <dnn:Label id="labelDisciplines" runat="server" ControlName="textDisciplines" />
@@ -71,17 +72,17 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddDiscipline" runat="server" resourcekey="buttonAddDiscipline" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDiscipline" 
                         CssClass="dnnPrimaryAction" CommandArgument="Add" 
                         CausesValidation="true" ValidationGroup="Disciplines" />
 				</li>	
                 <li>
-				    <asp:LinkButton id="buttonUpdateDiscipline" runat="server" resourcekey="buttonUpdateDiscipline" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDiscipline" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update" 
                         CausesValidation="true" ValidationGroup="Disciplines" />
 				</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditDiscipline" runat="server" resourcekey="CancelEdit" 
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
@@ -91,7 +92,7 @@
 				</li>
 			</ul>	
         </div>
-		<asp:HiddenField id="hiddenDisciplineItemID" runat="server" />
+		<asp:HiddenField id="hiddenViewItemID" runat="server" />
 		<asp:HiddenField id="hiddenEduProgramProfileID" runat="server" />
     </fieldset>
 </div>

@@ -52,12 +52,6 @@ namespace R7.University.Controls
 
         #region implemented abstract members of GridAndFormEditControlBase
 
-        protected override void OnInitControls ()
-        {
-            InitControls (gridEduForms, hiddenEduFormItemID, 
-                          buttonAddEduForm, buttonUpdateEduForm, buttonCancelEditEduForm, buttonResetForm);
-        }
-
         protected override void OnLoadItem (EduProgramProfileFormViewModel item)
         {
             radioEduForm.SelectByValue (item.EduFormID);
@@ -93,7 +87,7 @@ namespace R7.University.Controls
         {
             base.BindItems (items);
 
-            gridEduForms.Attributes.Add ("data-items", Json.Serialize (items));
+            gridItems.Attributes.Add ("data-items", Json.Serialize (items));
         }
 
         #endregion

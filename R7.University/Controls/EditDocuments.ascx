@@ -10,7 +10,7 @@
 <asp:Panel id="panelEditDocuments" runat="server" CssClass="u8y-edit-documents">
     <fieldset>
 		<div class="dnnFormItem" style="width:auto;margin-right:1.5em">
-            <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" 
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" 
                     OnRowDataBound="gridDocuments_RowDataBound"
 					CssClass="dnnGrid" GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -99,17 +99,17 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
                 <li>
-					<asp:LinkButton id="buttonAddDocument" runat="server" resourcekey="buttonAddDocument" 
+					<asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDocument" 
                         CssClass="dnnPrimaryAction" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Documents" />
 				</li>	
                 <li>
-					<asp:LinkButton id="buttonUpdateDocument" runat="server" resourcekey="buttonUpdateDocument" 
+					<asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDocument" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Documents" />
 				</li>	
                 <li>
-					<asp:LinkButton id="buttonCancelEditDocument" runat="server" resourcekey="CancelEdit" 
+					<asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
@@ -119,7 +119,7 @@
 				</li>	
 			</ul>	
         </div>
-        <asp:HiddenField id="hiddenDocumentItemID" runat="server" />
+        <asp:HiddenField id="hiddenViewItemID" runat="server" />
     </fieldset>
 </asp:Panel>
 <script type="text/javascript">

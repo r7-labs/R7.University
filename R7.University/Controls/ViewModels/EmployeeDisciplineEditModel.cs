@@ -141,6 +141,7 @@ namespace R7.University.Controls.ViewModels
 
         #region Bindable properties
 
+        [JsonIgnore]
         public string EduProgramProfileString
         {
             get { return FormatHelper.FormatEduProgramProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
