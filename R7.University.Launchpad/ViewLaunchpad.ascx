@@ -281,7 +281,6 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="EduProgramID" SortExpression="EduProgramID" HeaderText="EduProgramID" />
                         <asp:BoundField DataField="EduLevelID" SortExpression="EduLevelID" HeaderText="EduLevelID" />
-                        <asp:BoundField DataField="DivisionId" SortExpression="DivisionId" HeaderText="DivisionId" />
                         <asp:BoundField DataField="Code" SortExpression="Code" HeaderText="Code" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="Generation" SortExpression="Generation" HeaderText="Generation" ConvertEmptyStringToNull="false" />
@@ -319,7 +318,6 @@
                         <asp:BoundField DataField="EduProgramProfileID" SortExpression="EduProgramProfileID" HeaderText="EduProgramProfileID" />
                         <asp:BoundField DataField="EduProgramID" SortExpression="EduProgramID" HeaderText="EduProgramID" />
                         <asp:BoundField DataField="EduLevelId" SortExpression="EduProgramId" HeaderText="EduLevelId" />
-                        <asp:BoundField DataField="DivisionId" SortExpression="DivisionId" HeaderText="DivisionId" />
                         <asp:BoundField DataField="Code" SortExpression="Code" HeaderText="Code" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="ProfileCode" SortExpression="ProfileCode" HeaderText="ProfileCode" ConvertEmptyStringToNull="false" />
