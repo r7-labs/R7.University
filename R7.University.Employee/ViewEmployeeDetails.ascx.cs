@@ -179,19 +179,6 @@ namespace R7.University.Employee
                     false
                 );
 
-                actions.Add (
-                    GetNextActionID (), 
-                    LocalizeString ("VCard.Action"),
-                    ModuleActionType.ContentOptions, 
-                    "", 
-                    IconController.IconURL ("View"), 
-                    EditUrl ("employee_id", Employee?.EmployeeID.ToString (), "VCard"),
-                    false,
-                    SecurityAccessLevel.View,
-                    Employee != null,
-                    NewWindow: true
-                );
-
                 return actions;
             }
         }
