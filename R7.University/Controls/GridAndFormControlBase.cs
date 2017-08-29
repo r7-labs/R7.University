@@ -145,17 +145,6 @@ namespace R7.University.Controls
 
         #region Set and get data
 
-        [Obsolete]
-        public virtual List<TModel> GetData ()
-        {
-            var items = ViewStateItems;
-            if (items != null) {
-                return items.Select (i => i.CreateModel ()).ToList ();
-            }
-
-            return new List<TModel> ();
-        }
-
         public virtual IEnumerable<TViewModel> GetModifiedData ()
         {
             var items = ViewStateItems;
