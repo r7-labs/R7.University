@@ -1,5 +1,5 @@
 //
-//  EduProfileFormViewModel.cs
+//  EduProgramProfileFormEditModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -31,7 +31,7 @@ using R7.University.ViewModels;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class EduProgramProfileFormViewModel: IEduProgramProfileFormWritable, IEditControlViewModel<EduProgramProfileFormInfo>
+    public class EduProgramProfileFormEditModel: IEduProgramProfileFormWritable, IEditControlViewModel<EduProgramProfileFormInfo>
     {
         #region IEditControlViewModel implementation
 
@@ -54,7 +54,7 @@ namespace R7.University.Controls
         public IEditControlViewModel<EduProgramProfileFormInfo> Create (
             EduProgramProfileFormInfo model, ViewModelContext context)
         {
-            var viewModel = new EduProgramProfileFormViewModel ();
+            var viewModel = new EduProgramProfileFormEditModel ();
             CopyCstor.Copy<IEduProgramProfileFormWritable> (model, viewModel);
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
             viewModel.Context = context;
@@ -93,7 +93,7 @@ namespace R7.University.Controls
 
         #endregion
 
-        public EduProgramProfileFormViewModel ()
+        public EduProgramProfileFormEditModel ()
         {
             ViewItemID = ViewNumerator.GetNextItemID ();
         }

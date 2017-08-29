@@ -84,7 +84,7 @@
     <Compile Include="Controls\EditDocuments.ascx.cs">
       <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ViewModels\DocumentViewModel.cs" />
+    <Compile Include="Controls\ViewModels\DocumentEditModel.cs" />
     <Compile Include="Controls\ViewModels\DocumentTypeViewModel.cs" />
     <Compile Include="Controls\EditDocuments.ascx.controls.cs">
       <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>

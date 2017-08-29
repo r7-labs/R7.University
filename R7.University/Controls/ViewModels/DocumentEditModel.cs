@@ -1,5 +1,5 @@
 //
-//  DocumentViewModel.cs
+//  DocumentEditModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -38,7 +38,7 @@ using R7.University.ViewModels;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class DocumentViewModel: IDocumentWritable, IEditControlViewModel<DocumentInfo>
+    public class DocumentEditModel: IDocumentWritable, IEditControlViewModel<DocumentInfo>
     {
         #region IDocumentWritable implementation
 
@@ -128,7 +128,7 @@ namespace R7.University.Controls
 
         public IEditControlViewModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
         {
-            var viewModel = new DocumentViewModel ();
+            var viewModel = new DocumentEditModel ();
             CopyCstor.Copy<IDocumentWritable> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
@@ -173,7 +173,7 @@ namespace R7.University.Controls
 
         #endregion
 
-        public DocumentViewModel ()
+        public DocumentEditModel ()
         {
             ViewItemID = ViewNumerator.GetNextItemID ();
         }

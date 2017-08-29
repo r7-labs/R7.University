@@ -34,12 +34,11 @@ using R7.Dnn.Extensions.Utilities;
 using R7.University.ControlExtensions;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Utilities;
 
 namespace R7.University.Controls
 {
     public partial class EditDocuments: 
-        GridAndFormControlBase<DocumentInfo,DocumentViewModel>
+        GridAndFormControlBase<DocumentInfo,DocumentEditModel>
     {
         #region Control properties
 
@@ -103,7 +102,7 @@ namespace R7.University.Controls
             get { return ForModel; }
         }
 
-        protected override void OnLoadItem (DocumentViewModel item)
+        protected override void OnLoadItem (DocumentEditModel item)
         {
             comboDocumentType.SelectByValue (item.DocumentTypeID);
             textDocumentTitle.Text = item.Title;
@@ -114,7 +113,7 @@ namespace R7.University.Controls
             urlDocumentUrl.Url = item.Url;
         }
 
-        protected override void OnUpdateItem (DocumentViewModel item)
+        protected override void OnUpdateItem (DocumentEditModel item)
         {
             item.Title = textDocumentTitle.Text.Trim ();
             item.Group = textDocumentGroup.Text.Trim ();
@@ -126,7 +125,7 @@ namespace R7.University.Controls
             item.Url = urlDocumentUrl.Url;
         }
 
-        protected override void OnCancelEdit (DocumentViewModel item)
+        protected override void OnCancelEdit (DocumentEditModel item)
         {
             // fix for DnnUrlControl looses its state on postback
             urlDocumentUrl.Url = item.Url;

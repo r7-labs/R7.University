@@ -29,7 +29,7 @@ using R7.University.Models;
 namespace R7.University.Controls
 {
     public partial class EditEduForms: 
-        GridAndFormControlBase<EduProgramProfileFormInfo,EduProgramProfileFormViewModel>
+        GridAndFormControlBase<EduProgramProfileFormInfo,EduProgramProfileFormEditModel>
     {
         public void OnInit (PortalModuleBase module, IEnumerable<EduFormInfo> eduForms)
         {
@@ -52,7 +52,7 @@ namespace R7.University.Controls
 
         #region implemented abstract members of GridAndFormEditControlBase
 
-        protected override void OnLoadItem (EduProgramProfileFormViewModel item)
+        protected override void OnLoadItem (EduProgramProfileFormEditModel item)
         {
             radioEduForm.SelectByValue (item.EduFormID);
             checkIsAdmissive.Checked = item.IsAdmissive;
@@ -64,7 +64,7 @@ namespace R7.University.Controls
             hiddenEduFormID.Value = item.EduFormID.ToString ();
         }
 
-        protected override void OnUpdateItem (EduProgramProfileFormViewModel item)
+        protected override void OnUpdateItem (EduProgramProfileFormEditModel item)
         {
             item.EduFormID = int.Parse (radioEduForm.SelectedValue);
             item.EduFormViewModel = GetEduForm (item.EduFormID);
@@ -83,7 +83,7 @@ namespace R7.University.Controls
             checkIsAdmissive.Checked = false;
         }
 
-        protected override void BindItems (IEnumerable<EduProgramProfileFormViewModel> items)
+        protected override void BindItems (IEnumerable<EduProgramProfileFormEditModel> items)
         {
             base.BindItems (items);
 
