@@ -22,7 +22,7 @@
 using System.Data;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
-using R7.University.Components;
+using R7.University.Launchpad.Components;
 using R7.University.Launchpad.Queries;
 using R7.University.Launchpad.ViewModels;
 using R7.University.Models;

@@ -21,7 +21,7 @@
 
 using System.Data;
 using DotNetNuke.Entities.Modules;
-using R7.University.Components;
+using R7.University.Launchpad.Components;
 using R7.University.Models;
 using R7.University.Queries;
 

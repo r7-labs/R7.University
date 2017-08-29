@@ -195,6 +195,7 @@
       <DependentUpon>EditAchievementType.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\LaunchpadSettings.cs" />
+    <Compile Include="Components\DataTableConstructor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

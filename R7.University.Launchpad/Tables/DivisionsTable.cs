@@ -21,9 +21,9 @@
 
 using System.Data;
 using DotNetNuke.Entities.Modules;
-using R7.University.Components;
 using R7.University.Models;
 using R7.University.Launchpad.Queries;
+using R7.University.Launchpad.Components;
 
 namespace R7.University.Launchpad
 {
