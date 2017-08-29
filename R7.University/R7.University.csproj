@@ -97,7 +97,7 @@
       <DependentUpon>Controls\EditEduForms.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewModels\EduFormViewModel.cs" />
-    <Compile Include="Controls\ViewModels\EduProfileFormViewModel.cs" />
+    <Compile Include="Controls\ViewModels\EduProgramProfileFormEditModel.cs" />
     <Compile Include="Controls\GridAndFormControlBase.cs" />
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
@@ -256,6 +256,7 @@
     <Compile Include="Controls\ViewModels\EmployeeDisciplineEditModel.cs" />
     <Compile Include="Controls\ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="Controls\Queries\EduProgramProfileQuery.cs" />
+    <Compile Include="Controls\ViewModels\EditModelBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

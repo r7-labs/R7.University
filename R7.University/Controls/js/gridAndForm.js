@@ -1,5 +1,4 @@
-﻿function GridAndFormUniqueValidator (uniqueField)
-{
+﻿function GridAndFormUniqueValidator (uniqueField) {
     this.uniqueField = uniqueField;
 }
 

@@ -22,7 +22,6 @@
 using System;
 using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
@@ -33,8 +32,52 @@ using R7.University.ViewModels;
 namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditModel: IEmployeeAchievementWritable, IEditModel<EmployeeAchievementInfo>
+    public class EmployeeAchievementEditModel : EditModelBase<EmployeeAchievementInfo>, IEmployeeAchievementWritable
     {
+        #region IEditControlViewModel implementation
+
+        public override void SetTargetItemId (int targetItemId, string targetItemKey)
+        {
+            EmployeeID = targetItemId;
+        }
+
+        public override EmployeeAchievementInfo CreateModel ()
+        {
+            var achievement = new EmployeeAchievementInfo ();
+            CopyCstor.Copy<IEmployeeAchievementWritable> (this, achievement);
+
+            if (achievement.AchievementID != null) {
+                achievement.Title = null;
+                achievement.ShortTitle = null;
+                achievement.AchievementTypeId = null;
+            }
+
+            return achievement;
+        }
+
+        public override IEditModel<EmployeeAchievementInfo> Create (EmployeeAchievementInfo model, ViewModelContext context)
+        {
+            var viewModel = new EmployeeAchievementEditModel ();
+            CopyCstor.Copy<IEmployeeAchievementWritable> (model, viewModel);
+            viewModel.Context = context;
+
+            if (model.Achievement != null) {
+                viewModel.Title = model.Achievement.Title;
+                viewModel.ShortTitle = model.Achievement.ShortTitle;
+                viewModel.AchievementTypeId = model.Achievement.AchievementTypeId;
+                if (model.Achievement.AchievementType != null) {
+                    viewModel.Type = model.Achievement.AchievementType.Type;
+                }
+            }
+            else if (model.AchievementType != null) {
+                viewModel.Type = model.AchievementType.Type;
+            }
+
+            return viewModel;
+        }
+
+        #endregion
+
         #region IEmployeeAchievementWritable implementation
 
         public int EmployeeAchievementID { get; set; }
@@ -79,7 +122,7 @@ namespace R7.University.Controls.ViewModels
         public string Years_String
         {
             get {
-                return FormatHelper.FormatYears (YearBegin, YearEnd, 
+                return FormatHelper.FormatYears (YearBegin, YearEnd,
                                                  Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
             }
         }
@@ -88,16 +131,16 @@ namespace R7.University.Controls.ViewModels
         public string AchievementType_String
         {
             get {
-                
+
                 // TODO: Don't create new object here?
                 var achievementType = (AchievementTypeId != null) ? new AchievementTypeInfo { Type = Type } : null;
-                return achievementType.Localize (Context.LocalResourceFile); 
+                return achievementType.Localize (Context.LocalResourceFile);
             }
         }
 
         [JsonIgnore]
         public string Title_String
-        { 
+        {
             get { return Title + " " + TitleSuffix; }
         }
 
@@ -116,86 +159,5 @@ namespace R7.University.Controls.ViewModels
         }
 
         #endregion
-
-        #region IEditControlViewModel implementation
-
-        public int ViewItemID { get; set; }
-
-        [JsonIgnore]
-        public ViewModelContext Context { get; set; }
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState PrevEditState { get; set; }
-
-        ModelEditState _editState;
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState EditState {
-            get { return _editState; }
-            set { PrevEditState = _editState; _editState = value; }
-        }
-
-        public void SetTargetItemId (int targetItemId, string targetItemKey)
-        {
-            EmployeeID = targetItemId;
-        }
-
-        [JsonIgnore]
-        public string CssClass {
-            get {
-                var cssClass = string.Empty;
-                if (EditState == ModelEditState.Deleted) {
-                    cssClass += " u8y-deleted";
-                } else if (EditState == ModelEditState.Added) {
-                    cssClass += " u8y-added";
-                } else if (EditState == ModelEditState.Modified) {
-                    cssClass += " u8y-updated";
-                }
-
-                return cssClass.TrimStart ();
-            }
-        }
-
-        public EmployeeAchievementInfo CreateModel ()
-        {
-            var achievement = new EmployeeAchievementInfo ();
-            CopyCstor.Copy<IEmployeeAchievementWritable> (this, achievement);
-
-            if (achievement.AchievementID != null) {
-                achievement.Title = null;
-                achievement.ShortTitle = null;
-                achievement.AchievementTypeId = null;
-            }
-
-            return achievement;
-        }
-
-        public IEditModel<EmployeeAchievementInfo> Create (EmployeeAchievementInfo model, ViewModelContext context)
-        {
-            var viewModel = new EmployeeAchievementEditModel ();
-            CopyCstor.Copy<IEmployeeAchievementWritable> (model, viewModel);
-            viewModel.Context = context;
-
-            if (model.Achievement != null) {
-                viewModel.Title = model.Achievement.Title;
-                viewModel.ShortTitle = model.Achievement.ShortTitle;
-                viewModel.AchievementTypeId = model.Achievement.AchievementTypeId;
-                if (model.Achievement.AchievementType != null) {
-                    viewModel.Type = model.Achievement.AchievementType.Type;
-                }
-            }
-            else if (model.AchievementType != null) {
-                viewModel.Type = model.AchievementType.Type;
-            }
-
-            return viewModel;
-        }
-
-        #endregion
-
-        public EmployeeAchievementEditModel ()
-        {
-            ViewItemID = ViewNumerator.GetNextItemID ();
-        }
     }
 }

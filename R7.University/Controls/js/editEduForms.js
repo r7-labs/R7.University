@@ -3,7 +3,7 @@
     var months = jQuery ("[id $= 'textTimeToLearnMonths']").val ();
     var hours = jQuery ("[id $= 'textTimeToLearnHours']").val ();
     if (years == 0 && months == 0 && hours == 0) {
-            e.IsValid = false;
+        e.IsValid = false;
     }
 }
 

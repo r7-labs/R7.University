@@ -22,19 +22,19 @@
 using System;
 using System.Web;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.ViewModels;
 
 namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EduProgramDivisionEditModel: IEduProgramDivisionWritable, IEditModel<EduProgramDivisionInfo>
+    public class EduProgramDivisionEditModel: EditModelBase<EduProgramDivisionInfo>, IEduProgramDivisionWritable
     {
-        public IEditModel<EduProgramDivisionInfo> Create (EduProgramDivisionInfo model, ViewModelContext context)
+        #region EditModelBase implementation
+
+        public override IEditModel<EduProgramDivisionInfo> Create (EduProgramDivisionInfo model, ViewModelContext context)
         {
             var viewModel = new EduProgramDivisionEditModel ();
 
@@ -47,7 +47,7 @@ namespace R7.University.Controls.ViewModels
             return viewModel;
         }
 
-        public EduProgramDivisionInfo CreateModel ()
+        public override EduProgramDivisionInfo CreateModel ()
         {   
             var epd = new EduProgramDivisionInfo ();
             CopyCstor.Copy<IEduProgramDivisionWritable> (this, epd);
@@ -55,46 +55,23 @@ namespace R7.University.Controls.ViewModels
             return epd;
         }
 
-        public void SetTargetItemId (int targetItemId, string targetItemKey)
+        public override void SetTargetItemId (int targetItemId, string targetItemKey)
         {
             this.SetModelId ((ModelType) Enum.Parse (typeof (ModelType), targetItemKey), targetItemId);
         }
 
         [JsonIgnore]
-        public ViewModelContext Context { get; set; }
-
-        [JsonIgnore]
-        public string CssClass {
+        public override string CssClass {
             get {
-                var cssClass = string.Empty;
+                var cssClass = base.CssClass;
                 if (!ModelHelper.IsPublished (HttpContext.Current.Timestamp, StartDate, EndDate)) {
                     cssClass += " u8y-not-published";
                 }
-
-                if (EditState == ModelEditState.Deleted) {
-                    cssClass += " u8y-deleted";
-                } else if (EditState == ModelEditState.Added) {
-                    cssClass += " u8y-added";
-                } else if (EditState == ModelEditState.Modified) {
-                    cssClass += " u8y-updated";
-                }
-
-                return cssClass.TrimStart ();
+                return cssClass;
             }
         }
 
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState PrevEditState { get; set; }
-
-        ModelEditState _editState;
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState EditState {
-            get { return _editState; }
-            set { PrevEditState = _editState; _editState = value; }
-        }
-
-        public int ViewItemID { get; set; } = ViewNumerator.GetNextItemID ();
+        #endregion
 
         #region IEduProgramDivisionWritable implementation
 
@@ -113,10 +90,14 @@ namespace R7.University.Controls.ViewModels
 
         #endregion
 
+        #region External properties
+
         public string DivisionTitle { get; set; }
 
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        #endregion
     }
 }

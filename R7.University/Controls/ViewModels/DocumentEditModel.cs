@@ -26,7 +26,6 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Controls.ViewModels;
@@ -38,8 +37,48 @@ using R7.University.ViewModels;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class DocumentEditModel: IDocumentWritable, IEditModel<DocumentInfo>
+    public class DocumentEditModel: EditModelBase<DocumentInfo>, IDocumentWritable
     {
+        #region EditModelBase implementation
+
+        public override IEditModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
+        {
+            var viewModel = new DocumentEditModel ();
+            CopyCstor.Copy<IDocumentWritable> (model, viewModel);
+
+            // FIXME: Context not updated for referenced viewmodels
+            viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
+            viewModel.Context = viewContext;
+
+            return viewModel;
+        }
+
+        public override DocumentInfo CreateModel ()
+        {
+            var model = new DocumentInfo ();
+            CopyCstor.Copy<IDocumentWritable> (this, model);
+
+            return model;
+        }
+
+        public override void SetTargetItemId (int targetItemId, string targetItemKey)
+        {
+            this.SetModelId ((ModelType) Enum.Parse (typeof (ModelType), targetItemKey), targetItemId);
+        }
+
+        [JsonIgnore]
+        public override string CssClass {
+            get {
+                var cssClass = base.CssClass;
+                if (!this.IsPublished (HttpContext.Current.Timestamp)) {
+                    cssClass += " u8y-not-published";
+                }
+                return cssClass;
+            }
+        }
+
+        #endregion
+
         #region IDocumentWritable implementation
 
         public int DocumentID { get; set; }
@@ -69,6 +108,8 @@ namespace R7.University.Controls
         public DateTime? EndDate { get; set; }
 
         #endregion
+
+        #region Bindable properties
 
         [JsonIgnore]
         public string LocalizedType
@@ -108,75 +149,6 @@ namespace R7.University.Controls
             }
         }
 
-        #region IEditControlViewModel implementation
-
-        public int ViewItemID { get; set; }
-
-        [JsonIgnore]
-        public ViewModelContext Context { get; set; }
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState PrevEditState { get; set; }
-
-        ModelEditState _editState;
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState EditState {
-            get { return _editState; }
-            set { PrevEditState = _editState; _editState = value; }
-        }
-
-        public IEditModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
-        {
-            var viewModel = new DocumentEditModel ();
-            CopyCstor.Copy<IDocumentWritable> (model, viewModel);
-
-            // FIXME: Context not updated for referenced viewmodels
-            viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
-            viewModel.Context = viewContext;
-
-            return viewModel;
-        }
-
-        public DocumentInfo CreateModel ()
-        {
-            var model = new DocumentInfo ();
-            CopyCstor.Copy<IDocumentWritable> (this, model);
-
-            return model;
-        }
-
-        public void SetTargetItemId (int targetItemId, string targetItemKey)
-        {
-            this.SetModelId ((ModelType) Enum.Parse (typeof (ModelType), targetItemKey), targetItemId);
-        }
-
-        [JsonIgnore]
-        public string CssClass {
-            get {
-                var cssClass = string.Empty;
-                if (!this.IsPublished (HttpContext.Current.Timestamp)) {
-                    cssClass += " u8y-not-published";
-                }
-
-                if (EditState == ModelEditState.Deleted) {
-                    cssClass += " u8y-deleted";
-                } else if (EditState == ModelEditState.Added) {
-                    cssClass += " u8y-added";
-                } else if (EditState == ModelEditState.Modified) {
-                    cssClass += " u8y-updated";
-                }
-
-                return cssClass.TrimStart ();
-            }
-        }
-
         #endregion
-
-        public DocumentEditModel ()
-        {
-            ViewItemID = ViewNumerator.GetNextItemID ();
-        }
     }
 }
-

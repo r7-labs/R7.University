@@ -33,7 +33,6 @@ using R7.University.Controls.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.SerializationModels;
-using R7.University.Utilities;
 
 namespace R7.University.Controls
 {

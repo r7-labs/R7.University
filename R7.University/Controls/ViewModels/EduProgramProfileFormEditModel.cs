@@ -21,37 +21,18 @@
 
 using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.Controls.ViewModels;
 using R7.University.Models;
-using R7.University.ViewModels;
 
-namespace R7.University.Controls
+namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EduProgramProfileFormEditModel: IEduProgramProfileFormWritable, IEditModel<EduProgramProfileFormInfo>
+    public class EduProgramProfileFormEditModel: EditModelBase<EduProgramProfileFormInfo>, IEduProgramProfileFormWritable
     {
-        #region IEditControlViewModel implementation
+        #region EditModelBase implementation
 
-        public int ViewItemID { get; set; }
-
-        [JsonIgnore]
-        public ViewModelContext Context { get; set; }
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState PrevEditState { get; set; }
-
-        ModelEditState _editState;
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState EditState {
-            get { return _editState; }
-            set { PrevEditState = _editState; _editState = value; }
-        }
-
-        public IEditModel<EduProgramProfileFormInfo> Create (
+        public override IEditModel<EduProgramProfileFormInfo> Create (
             EduProgramProfileFormInfo model, ViewModelContext context)
         {
             var viewModel = new EduProgramProfileFormEditModel ();
@@ -62,7 +43,7 @@ namespace R7.University.Controls
             return viewModel;
         }
 
-        public EduProgramProfileFormInfo CreateModel ()
+        public override EduProgramProfileFormInfo CreateModel ()
         {
             var model = new EduProgramProfileFormInfo ();
             CopyCstor.Copy<IEduProgramProfileFormWritable> (this, model);
@@ -70,33 +51,12 @@ namespace R7.University.Controls
             return model;
         }
 
-        public void SetTargetItemId (int targetItemId, string targetItemKey)
+        public override void SetTargetItemId (int targetItemId, string targetItemKey)
         {
             EduProgramProfileID = targetItemId;
         }
 
-        [JsonIgnore]
-        public string CssClass {
-            get {
-                var cssClass = string.Empty;
-                if (EditState == ModelEditState.Deleted) {
-                    cssClass += " u8y-deleted";
-                } else if (EditState == ModelEditState.Added) {
-                    cssClass += " u8y-added";
-                } else if (EditState == ModelEditState.Modified) {
-                    cssClass += " u8y-updated";
-                }
-
-                return cssClass.TrimStart ();
-            }
-        }
-
         #endregion
-
-        public EduProgramProfileFormEditModel ()
-        {
-            ViewItemID = ViewNumerator.GetNextItemID ();
-        }
 
         #region IEduProgramProfileFormWritable implementation
 
@@ -120,6 +80,8 @@ namespace R7.University.Controls
 
         #endregion
 
+        #region Bindable properties
+
         [JsonIgnore]
         public string EduFormTitleLocalized
         {
@@ -137,5 +99,7 @@ namespace R7.University.Controls
 
         [JsonIgnore]
         public string TimeToLearnHours_String => (TimeToLearnHours > 0) ? TimeToLearnHours.ToString () : string.Empty;
+
+        #endregion
     }
 }

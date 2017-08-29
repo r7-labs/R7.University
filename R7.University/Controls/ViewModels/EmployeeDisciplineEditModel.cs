@@ -31,47 +31,22 @@ using R7.University.ViewModels;
 namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EmployeeDisciplineEditModel : IEditModel<EmployeeDisciplineInfo>, IEmployeeDisciplineWritable
+    public class EmployeeDisciplineEditModel : EditModelBase<EmployeeDisciplineInfo>, IEmployeeDisciplineWritable
     {
-        #region IEditControlViewModel implementation
+        #region EditModelBase implementation
 
         [JsonIgnore]
-        public ViewModelContext Context { get; set; }
-
-        [JsonIgnore]
-        public string CssClass {
+        public override string CssClass {
             get {
-                var cssClass = string.Empty;
+                var cssClass = base.CssClass;
                 if (!ModelHelper.IsPublished (HttpContext.Current.Timestamp, ProfileStartDate, ProfileEndDate)) {
                     cssClass += " u8y-not-published";
                 }
-
-                if (EditState == ModelEditState.Deleted) {
-                    cssClass += " u8y-deleted";
-                } else if (EditState == ModelEditState.Added) {
-                    cssClass += " u8y-added";
-                } else if (EditState == ModelEditState.Modified) {
-                    cssClass += " u8y-updated";
-                }
-
-                return cssClass.TrimStart ();
+                return cssClass;
             }
         }
 
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState PrevEditState { get; set; }
-
-        ModelEditState _editState;
-
-        [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState EditState {
-            get { return _editState; }
-            set { PrevEditState = _editState; _editState = value; }
-        }
-
-        public int ViewItemID { get; set; } = ViewNumerator.GetNextItemID ();
-
-        public IEditModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext context)
+        public override IEditModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext context)
         {
             var viewModel = new EmployeeDisciplineEditModel ();
             CopyCstor.Copy<IEmployeeDisciplineWritable> (model, viewModel);
@@ -87,14 +62,14 @@ namespace R7.University.Controls.ViewModels
             return viewModel;
         }
 
-        public EmployeeDisciplineInfo CreateModel ()
+        public override EmployeeDisciplineInfo CreateModel ()
         {
             var model = new EmployeeDisciplineInfo ();
             CopyCstor.Copy<IEmployeeDisciplineWritable> (this, model);
             return model;
         }
 
-        public void SetTargetItemId (int targetItemId, string targetItemKey)
+        public override void SetTargetItemId (int targetItemId, string targetItemKey)
         {
             EmployeeID = targetItemId;
         }
