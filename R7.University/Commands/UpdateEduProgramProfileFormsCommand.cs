@@ -34,7 +34,7 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void UpdateEduProgramProfileForms (IEnumerable<IEditControlViewModel<EduProgramProfileFormInfo>> eppForms, int eduProgramProfileId)
+        public void UpdateEduProgramProfileForms (IEnumerable<IEditModel<EduProgramProfileFormInfo>> eppForms, int eduProgramProfileId)
         {
             foreach (var eppForm in eppForms) {
                 var eppf = eppForm.CreateModel ();

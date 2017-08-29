@@ -31,7 +31,7 @@ using R7.University.ViewModels;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class EduProgramProfileFormEditModel: IEduProgramProfileFormWritable, IEditControlViewModel<EduProgramProfileFormInfo>
+    public class EduProgramProfileFormEditModel: IEduProgramProfileFormWritable, IEditModel<EduProgramProfileFormInfo>
     {
         #region IEditControlViewModel implementation
 
@@ -51,7 +51,7 @@ namespace R7.University.Controls
             set { PrevEditState = _editState; _editState = value; }
         }
 
-        public IEditControlViewModel<EduProgramProfileFormInfo> Create (
+        public IEditModel<EduProgramProfileFormInfo> Create (
             EduProgramProfileFormInfo model, ViewModelContext context)
         {
             var viewModel = new EduProgramProfileFormEditModel ();

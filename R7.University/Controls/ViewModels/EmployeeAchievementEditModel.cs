@@ -33,7 +33,7 @@ using R7.University.ViewModels;
 namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EmployeeAchievementEditModel: IEmployeeAchievementWritable, IEditControlViewModel<EmployeeAchievementInfo>
+    public class EmployeeAchievementEditModel: IEmployeeAchievementWritable, IEditModel<EmployeeAchievementInfo>
     {
         #region IEmployeeAchievementWritable implementation
 
@@ -170,7 +170,7 @@ namespace R7.University.Controls.ViewModels
             return achievement;
         }
 
-        public IEditControlViewModel<EmployeeAchievementInfo> Create (EmployeeAchievementInfo model, ViewModelContext context)
+        public IEditModel<EmployeeAchievementInfo> Create (EmployeeAchievementInfo model, ViewModelContext context)
         {
             var viewModel = new EmployeeAchievementEditModel ();
             CopyCstor.Copy<IEmployeeAchievementWritable> (model, viewModel);

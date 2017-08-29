@@ -35,7 +35,7 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void UpdateDocuments (IEnumerable<IEditControlViewModel<DocumentInfo>> documents, ModelType modelType, int itemId)
+        public void UpdateDocuments (IEnumerable<IEditModel<DocumentInfo>> documents, ModelType modelType, int itemId)
         {
             foreach (var document in documents) {
                 var d = document.CreateModel ();

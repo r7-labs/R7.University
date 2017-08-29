@@ -1,5 +1,5 @@
 //
-//  IEditControlViewModel.cs
+//  IEditModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,7 +25,7 @@ using R7.University.Models;
 namespace R7.University.Controls.ViewModels
 {
     // TODO: Introduce base class?
-    public interface IEditControlViewModel<TModel>
+    public interface IEditModel<TModel>
     {
         int ViewItemID { get; set; }
 
@@ -39,7 +39,7 @@ namespace R7.University.Controls.ViewModels
 
         TModel CreateModel ();
 
-        IEditControlViewModel<TModel> Create (TModel model, ViewModelContext context);
+        IEditModel<TModel> Create (TModel model, ViewModelContext context);
 
         void SetTargetItemId (int targetItemId, string targetItemKey);
     }

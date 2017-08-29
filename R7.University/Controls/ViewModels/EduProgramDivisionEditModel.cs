@@ -1,4 +1,4 @@
-﻿//
+//
 //  EduProgramDivisionEditModel.cs
 //
 //  Author:
@@ -32,9 +32,9 @@ using R7.University.ViewModels;
 namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EduProgramDivisionEditModel: IEduProgramDivisionWritable, IEditControlViewModel<EduProgramDivisionInfo>
+    public class EduProgramDivisionEditModel: IEduProgramDivisionWritable, IEditModel<EduProgramDivisionInfo>
     {
-        public IEditControlViewModel<EduProgramDivisionInfo> Create (EduProgramDivisionInfo model, ViewModelContext context)
+        public IEditModel<EduProgramDivisionInfo> Create (EduProgramDivisionInfo model, ViewModelContext context)
         {
             var viewModel = new EduProgramDivisionEditModel ();
 

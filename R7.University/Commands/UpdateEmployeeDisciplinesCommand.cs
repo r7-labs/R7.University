@@ -34,7 +34,7 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void Update (IEnumerable<IEditControlViewModel<EmployeeDisciplineInfo>> disciplines, int employeeId)
+        public void Update (IEnumerable<IEditModel<EmployeeDisciplineInfo>> disciplines, int employeeId)
         {
             foreach (var discipline in disciplines) {
                 var disc = discipline.CreateModel ();

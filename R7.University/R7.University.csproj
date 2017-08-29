@@ -219,7 +219,7 @@
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
     <Compile Include="ViewModels\LocalizationHelper.cs" />
     <Compile Include="Models\ITrackableEntity.cs" />
-    <Compile Include="Controls\ViewModels\IEditControlViewModel.cs" />
+    <Compile Include="Controls\ViewModels\IEditModel.cs" />
     <Compile Include="Models\ModelEditState.cs" />
     <Compile Include="Models\TimeToLearnDisplayMode.cs" />
     <Compile Include="Controls\EditAchievements.ascx.controls.cs">

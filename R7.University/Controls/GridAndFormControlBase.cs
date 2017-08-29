@@ -39,7 +39,7 @@ using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 namespace R7.University.Controls
 {
     public abstract class GridAndFormControlBase<TModel,TViewModel>: UserControl
-        where TViewModel: class, IEditControlViewModel<TModel>, new()
+        where TViewModel: class, IEditModel<TModel>, new()
     {
         #region Controls
 
@@ -295,7 +295,7 @@ namespace R7.University.Controls
                 linkDelete.CommandArgument = e.Row.Cells [1].Text;
                 linkUndelete.CommandArgument = e.Row.Cells [1].Text;
 
-                var item = (IEditControlViewModel<TModel>) e.Row.DataItem;
+                var item = (IEditModel<TModel>) e.Row.DataItem;
 
                 if (item.EditState == ModelEditState.Deleted) {
                     linkDelete.Visible = false;

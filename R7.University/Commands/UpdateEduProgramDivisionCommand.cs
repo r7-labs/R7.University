@@ -1,4 +1,4 @@
-﻿//
+//
 //  UpdateEduProgramDivisionsCommand.cs
 //
 //  Author:
@@ -35,7 +35,7 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void Update (IEnumerable<IEditControlViewModel<EduProgramDivisionInfo>> epDocs, ModelType modelType, int itemId)
+        public void Update (IEnumerable<IEditModel<EduProgramDivisionInfo>> epDocs, ModelType modelType, int itemId)
         {
             foreach (var epDoc in epDocs) {
                 var epd = epDoc.CreateModel ();

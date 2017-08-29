@@ -38,7 +38,7 @@ using R7.University.ViewModels;
 namespace R7.University.Controls
 {
     [Serializable]
-    public class DocumentEditModel: IDocumentWritable, IEditControlViewModel<DocumentInfo>
+    public class DocumentEditModel: IDocumentWritable, IEditModel<DocumentInfo>
     {
         #region IDocumentWritable implementation
 
@@ -126,7 +126,7 @@ namespace R7.University.Controls
             set { PrevEditState = _editState; _editState = value; }
         }
 
-        public IEditControlViewModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
+        public IEditModel<DocumentInfo> Create (DocumentInfo model, ViewModelContext viewContext)
         {
             var viewModel = new DocumentEditModel ();
             CopyCstor.Copy<IDocumentWritable> (model, viewModel);

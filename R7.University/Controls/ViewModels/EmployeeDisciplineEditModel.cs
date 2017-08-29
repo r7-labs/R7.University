@@ -1,4 +1,4 @@
-﻿//
+//
 //  EmployeeDisciplineViewModel.cs
 //
 //  Author:
@@ -31,7 +31,7 @@ using R7.University.ViewModels;
 namespace R7.University.Controls.ViewModels
 {
     [Serializable]
-    public class EmployeeDisciplineEditModel : IEditControlViewModel<EmployeeDisciplineInfo>, IEmployeeDisciplineWritable
+    public class EmployeeDisciplineEditModel : IEditModel<EmployeeDisciplineInfo>, IEmployeeDisciplineWritable
     {
         #region IEditControlViewModel implementation
 
@@ -71,7 +71,7 @@ namespace R7.University.Controls.ViewModels
 
         public int ViewItemID { get; set; } = ViewNumerator.GetNextItemID ();
 
-        public IEditControlViewModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext context)
+        public IEditModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext context)
         {
             var viewModel = new EmployeeDisciplineEditModel ();
             CopyCstor.Copy<IEmployeeDisciplineWritable> (model, viewModel);

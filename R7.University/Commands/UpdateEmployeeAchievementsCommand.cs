@@ -34,7 +34,7 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void UpdateEmployeeAchievements (IEnumerable<IEditControlViewModel<EmployeeAchievementInfo>> achievements, int employeeId)
+        public void UpdateEmployeeAchievements (IEnumerable<IEditModel<EmployeeAchievementInfo>> achievements, int employeeId)
         {
             foreach (var achievement in achievements) {
                 var ach = achievement.CreateModel ();
