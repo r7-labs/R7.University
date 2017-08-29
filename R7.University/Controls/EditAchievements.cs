@@ -41,13 +41,13 @@ namespace R7.University.Controls
     {
         protected AchievementSerializationModel GetAchievement (int achievementId)
         {
-            return XmlSerializationHelper.Deserialize<List<AchievementSerializationModel>> (ViewState ["achievements"])
+            return Json.Deserialize<List<AchievementSerializationModel>> ((string) ViewState ["achievements"])
                                          .Single (ach => ach.AchievementID == achievementId);
         }
 
         protected AchievementTypeSerializationModel GetAchievementType (int? achievementTypeId)
         {
-            return XmlSerializationHelper.Deserialize<List<AchievementTypeSerializationModel>> (ViewState ["achievementTypes"])
+            return Json.Deserialize<List<AchievementTypeSerializationModel>> ((string) ViewState ["achievementTypes"])
                                          .SingleOrDefault (acht => acht.AchievementTypeId == achievementTypeId);
         }
 
@@ -55,9 +55,9 @@ namespace R7.University.Controls
         {
             Module = module;
 
-            ViewState ["achievements"] = XmlSerializationHelper.Serialize (
+            ViewState ["achievements"] = Json.Serialize (
                 achievements.Select (ach => new AchievementSerializationModel (ach)).ToList ());
-            ViewState ["achievementTypes"] = XmlSerializationHelper.Serialize (
+            ViewState ["achievementTypes"] = Json.Serialize (
                 achievementTypes.Select (acht => new AchievementTypeSerializationModel (acht)).ToList ());
 
             comboAchievement.DataSource = achievements

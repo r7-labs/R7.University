@@ -21,7 +21,6 @@
 
 using System;
 using System.Web;
-using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
@@ -61,11 +60,9 @@ namespace R7.University.Controls.ViewModels
             this.SetModelId ((ModelType) Enum.Parse (typeof (ModelType), targetItemKey), targetItemId);
         }
 
-        [XmlIgnore]
         [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string CssClass {
             get {
@@ -109,7 +106,6 @@ namespace R7.University.Controls.ViewModels
 
         public int DivisionId { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         public DivisionInfo Division { get; set; }
 

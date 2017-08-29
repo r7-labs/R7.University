@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
@@ -35,7 +34,6 @@ namespace R7.University.Controls
     [Serializable]
     public class EduFormViewModel: IEduFormWritable
     {
-        [XmlIgnore]
         [JsonIgnore]
         public ViewModelContext Context { get; set; }
 

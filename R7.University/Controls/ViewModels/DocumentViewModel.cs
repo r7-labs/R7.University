@@ -21,7 +21,6 @@
 
 using System;
 using System.Web;
-using System.Xml.Serialization;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.FileSystem;
@@ -47,7 +46,6 @@ namespace R7.University.Controls
 
         public int DocumentTypeID { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         [Obsolete ("Use DocumentTypeViewModel property instead", true)] 
         public DocumentTypeInfo DocumentType { get; set; }
@@ -72,7 +70,6 @@ namespace R7.University.Controls
 
         #endregion
 
-        [XmlIgnore]
         [JsonIgnore]
         public string LocalizedType
         { 
@@ -83,7 +80,6 @@ namespace R7.University.Controls
             }
         }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string FormattedUrl
         {
@@ -99,7 +95,6 @@ namespace R7.University.Controls
             }
         }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string FileName
         {
@@ -117,7 +112,6 @@ namespace R7.University.Controls
 
         public int ViewItemID { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
@@ -157,7 +151,6 @@ namespace R7.University.Controls
             this.SetModelId ((ModelType) Enum.Parse (typeof (ModelType), targetItemKey), targetItemId);
         }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string CssClass {
             get {

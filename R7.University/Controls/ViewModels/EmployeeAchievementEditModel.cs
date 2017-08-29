@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -62,12 +61,10 @@ namespace R7.University.Controls.ViewModels
 
         public string TitleSuffix { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public AchievementTypeInfo AchievementType { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public AchievementInfo Achievement { get; set; }
@@ -120,7 +117,6 @@ namespace R7.University.Controls.ViewModels
 
         public int ViewItemID { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
@@ -140,7 +136,6 @@ namespace R7.University.Controls.ViewModels
             EmployeeID = targetItemId;
         }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string CssClass {
             get {

@@ -25,7 +25,6 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.University.Models;
-using R7.University.Utilities;
 
 namespace R7.University.Controls
 {
@@ -38,7 +37,7 @@ namespace R7.University.Controls
 
             var eduFormViewModels = EduFormViewModel.GetBindableList (eduForms, ViewModelContext, false);
 
-            ViewState ["eduForms"] = XmlSerializationHelper.Serialize (eduFormViewModels.ToList ());
+            ViewState ["eduForms"] = Json.Serialize (eduFormViewModels.ToList ());
 
             radioEduForm.DataSource = eduFormViewModels;
             radioEduForm.DataBind ();
@@ -47,7 +46,7 @@ namespace R7.University.Controls
 
         protected EduFormViewModel GetEduForm (int eduFormId)
         {
-            var eduForms = XmlSerializationHelper.Deserialize<List<EduFormViewModel>> (ViewState ["eduForms"]);
+            var eduForms = Json.Deserialize<List<EduFormViewModel>> ((string) ViewState ["eduForms"]);
             return eduForms.Single (ef => ef.EduFormID == eduFormId);
         }
 

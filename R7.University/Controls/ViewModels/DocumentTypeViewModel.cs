@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
 using Newtonsoft.Json;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
@@ -34,7 +33,6 @@ namespace R7.University.Controls
     [Serializable]
     public class DocumentTypeViewModel: IDocumentTypeWritable
     {
-        [XmlIgnore]
         [JsonIgnore]
         protected ViewModelContext Context { get; set; }
 
@@ -52,7 +50,6 @@ namespace R7.University.Controls
 
         #endregion
 
-        [XmlIgnore]
         [JsonIgnore]
         public string LocalizedType
         { 

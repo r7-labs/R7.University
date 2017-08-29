@@ -25,6 +25,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
@@ -33,7 +34,6 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
-using R7.University.Utilities;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 
 namespace R7.University.Controls
@@ -82,7 +82,7 @@ namespace R7.University.Controls
 
         #endregion
 
-        // TODO: Rename to MapControls
+        // TODO: Rename to MapControls, possibly remove?
         protected void InitControls (GridView gridItems, HiddenField hiddenViewItemId, LinkButton buttonAddItem, 
                                      LinkButton buttonUpdateItem, LinkButton buttonCancelEditItem, LinkButton buttonResetForm)
         {
@@ -194,11 +194,10 @@ namespace R7.University.Controls
             get { return _viewModelContext ?? (_viewModelContext = new ViewModelContext (this, Module)); }
         }
 
-        // TODO: Switch to JSON serialization
         protected List<TViewModel> ViewStateItems
         {
-            get { return XmlSerializationHelper.Deserialize<List<TViewModel>> (ViewState ["items"]); }
-            set { ViewState ["items"] = XmlSerializationHelper.Serialize<List<TViewModel>> (value); }
+            get { return Json.Deserialize<List<TViewModel>> ((string) ViewState ["items"]); }
+            set { ViewState ["items"] = Json.Serialize (value); }
         }
 
         #region Overrides

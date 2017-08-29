@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
@@ -38,7 +37,6 @@ namespace R7.University.Controls
 
         public int ViewItemID { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
@@ -77,7 +75,6 @@ namespace R7.University.Controls
             EduProgramProfileID = targetItemId;
         }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string CssClass {
             get {
@@ -115,7 +112,6 @@ namespace R7.University.Controls
 
         public bool IsAdmissive { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         [Obsolete ("Use EduFormViewModel property instead", true)] 
         public EduFormInfo EduForm { get; set; }
@@ -124,7 +120,6 @@ namespace R7.University.Controls
 
         #endregion
 
-        [XmlIgnore]
         [JsonIgnore]
         public string EduFormTitleLocalized
         {
@@ -134,17 +129,13 @@ namespace R7.University.Controls
             }
         }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string TimeToLearnYears_String => (TimeToLearn / 12 > 0) ? (TimeToLearn / 12).ToString () : string.Empty;
 
-        [XmlIgnore]
         [JsonIgnore]
         public string TimeToLearnMonths_String => (TimeToLearn % 12 > 0) ? (TimeToLearn % 12).ToString () : string.Empty;
 
-        [XmlIgnore]
         [JsonIgnore]
         public string TimeToLearnHours_String => (TimeToLearnHours > 0) ? TimeToLearnHours.ToString () : string.Empty;
-
     }
 }

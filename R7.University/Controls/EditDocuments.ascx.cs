@@ -52,7 +52,7 @@ namespace R7.University.Controls
             Module = module;
 
             var documentTypeViewModels = DocumentTypeViewModel.GetBindableList (documentTypes, ViewModelContext);
-            ViewState ["documentTypes"] = XmlSerializationHelper.Serialize (documentTypeViewModels);
+            ViewState ["documentTypes"] = Json.Serialize (documentTypeViewModels);
 
             comboDocumentType.DataSource = documentTypeViewModels.OrderBy (dt => dt.LocalizedType);
             comboDocumentType.DataBind ();
@@ -74,7 +74,7 @@ namespace R7.University.Controls
         protected DocumentTypeViewModel GetDocumentType (int? documentTypeId)
         {
             if (documentTypeId != null) {
-                var documentTypes = XmlSerializationHelper.Deserialize<List<DocumentTypeViewModel>> (ViewState ["documentTypes"]);
+                var documentTypes = Json.Deserialize<List<DocumentTypeViewModel>> ((string) ViewState ["documentTypes"]);
                 return documentTypes.Single (dt => dt.DocumentTypeID == documentTypeId.Value);
             }
 

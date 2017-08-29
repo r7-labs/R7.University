@@ -21,7 +21,6 @@
 
 using System;
 using System.Web;
-using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
@@ -36,11 +35,9 @@ namespace R7.University.Controls.ViewModels
     {
         #region IEditControlViewModel implementation
 
-        [XmlIgnore]
         [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         public string CssClass {
             get {
@@ -114,12 +111,10 @@ namespace R7.University.Controls.ViewModels
 
         public string Disciplines { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         [Obsolete]
         public EmployeeInfo Employee { get; set; }
 
-        [XmlIgnore]
         [JsonIgnore]
         [Obsolete]
         public EduProgramProfileInfo EduProgramProfile { get; set; }
