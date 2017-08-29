@@ -44,20 +44,7 @@ namespace R7.University.Controls.ViewModels
             set { PrevEditState = _editState; _editState = value; }
         }
 
-        [JsonIgnore]
-        public virtual string CssClass {
-            get {
-                var cssClass = string.Empty;
-                if (EditState == ModelEditState.Deleted) {
-                    cssClass += " u8y-deleted";
-                } else if (EditState == ModelEditState.Added) {
-                    cssClass += " u8y-added";
-                } else if (EditState == ModelEditState.Modified) {
-                    cssClass += " u8y-updated";
-                }
-                return cssClass.TrimStart ();
-            }
-        }
+        public virtual bool IsPublished => true;
 
         public abstract TModel CreateModel ();
 

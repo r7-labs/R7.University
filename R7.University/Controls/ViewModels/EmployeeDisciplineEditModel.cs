@@ -22,7 +22,6 @@
 using System;
 using System.Web;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Models;
@@ -36,16 +35,9 @@ namespace R7.University.Controls.ViewModels
         #region EditModelBase implementation
 
         [JsonIgnore]
-        public override string CssClass {
-            get {
-                var cssClass = base.CssClass;
-                if (!ModelHelper.IsPublished (HttpContext.Current.Timestamp, ProfileStartDate, ProfileEndDate)) {
-                    cssClass += " u8y-not-published";
-                }
-                return cssClass;
-            }
-        }
-
+        public override bool IsPublished => 
+            ModelHelper.IsPublished (HttpContext.Current.Timestamp, ProfileStartDate, ProfileEndDate);
+      
         public override IEditModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext context)
         {
             var viewModel = new EmployeeDisciplineEditModel ();

@@ -56,8 +56,14 @@ namespace R7.University.Controls
         protected override void OnUpdateItem (EduProgramDivisionEditModel item)
         {
             item.DivisionId = (int) divisionSelector.DivisionId;
-            item.DivisionTitle = divisionSelector.DivisionTitle;
             item.DivisionRole = textDivisionRole.Text.Trim ();
+
+            using (var modelContext = new UniversityModelContext ()) {
+                var division = modelContext.Get<DivisionInfo> (item.DivisionId);
+                item.StartDate = division.StartDate;
+                item.EndDate = division.EndDate;
+                item.DivisionTitle = division.Title;
+            }
         }
 
         protected override void OnResetForm ()

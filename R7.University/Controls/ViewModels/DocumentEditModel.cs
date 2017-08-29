@@ -67,15 +67,7 @@ namespace R7.University.Controls
         }
 
         [JsonIgnore]
-        public override string CssClass {
-            get {
-                var cssClass = base.CssClass;
-                if (!this.IsPublished (HttpContext.Current.Timestamp)) {
-                    cssClass += " u8y-not-published";
-                }
-                return cssClass;
-            }
-        }
+        public override bool IsPublished => this.IsPublished (HttpContext.Current.Timestamp);
 
         #endregion
 

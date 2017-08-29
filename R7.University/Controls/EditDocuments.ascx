@@ -11,8 +11,7 @@
     <fieldset>
 		<div class="dnnFormItem" style="width:auto;margin-right:1.5em">
             <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" 
-                    OnRowDataBound="gridDocuments_RowDataBound"
-					CssClass="dnnGrid" GridLines="None" Style="width:100%;margin-bottom:30px">
+                    CssClass="dnnGrid" GridLines="None" Style="width:100%;margin-bottom:30px">
                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                 <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />

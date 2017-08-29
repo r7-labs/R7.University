@@ -61,15 +61,8 @@ namespace R7.University.Controls.ViewModels
         }
 
         [JsonIgnore]
-        public override string CssClass {
-            get {
-                var cssClass = base.CssClass;
-                if (!ModelHelper.IsPublished (HttpContext.Current.Timestamp, StartDate, EndDate)) {
-                    cssClass += " u8y-not-published";
-                }
-                return cssClass;
-            }
-        }
+        public override bool IsPublished =>
+            ModelHelper.IsPublished (HttpContext.Current.Timestamp, StartDate, EndDate);
 
         #endregion
 

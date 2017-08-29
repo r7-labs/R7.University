@@ -34,7 +34,7 @@ namespace R7.University.Controls.ViewModels
 
         ModelEditState PrevEditState { get; set; }
 
-        string CssClass { get; }
+        bool IsPublished { get; }
 
         TModel CreateModel ();
 

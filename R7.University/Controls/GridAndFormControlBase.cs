@@ -305,7 +305,10 @@ namespace R7.University.Controls
                     linkUndelete.Visible = false;
                 }
 
-                labelEditMarker.CssClass = "u8y-edit-marker " + item.CssClass;
+                labelEditMarker.CssClass = "u8y-edit-marker " + GetMarkerCssClass (item.EditState);
+                if (!item.IsPublished) {
+                    e.Row.CssClass = gridItems.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
+                }
             }
         }
 
@@ -425,6 +428,19 @@ namespace R7.University.Controls
         {
             gridItems.DataSource = items;
             gridItems.DataBind ();
+        }
+
+        string GetMarkerCssClass (ModelEditState editState)
+        {
+            var cssClass = string.Empty;
+            if (editState == ModelEditState.Deleted) {
+                cssClass += " u8y-deleted";
+            } else if (editState == ModelEditState.Added) {
+                cssClass += " u8y-added";
+            } else if (editState == ModelEditState.Modified) {
+                cssClass += " u8y-updated";
+            }
+            return cssClass.TrimStart ();
         }
     }
 }
