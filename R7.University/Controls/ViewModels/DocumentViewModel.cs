@@ -26,6 +26,8 @@ using DotNetNuke.Common;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Controls.ViewModels;
@@ -46,6 +48,7 @@ namespace R7.University.Controls
         public int DocumentTypeID { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         [Obsolete ("Use DocumentTypeViewModel property instead", true)] 
         public DocumentTypeInfo DocumentType { get; set; }
 
@@ -70,6 +73,7 @@ namespace R7.University.Controls
         #endregion
 
         [XmlIgnore]
+        [JsonIgnore]
         public string LocalizedType
         { 
             get {
@@ -80,6 +84,7 @@ namespace R7.University.Controls
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public string FormattedUrl
         {
             get { 
@@ -95,6 +100,7 @@ namespace R7.University.Controls
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public string FileName
         {
             get {
@@ -112,11 +118,15 @@ namespace R7.University.Controls
         public int ViewItemID { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState PrevEditState { get; set; }
 
         ModelEditState _editState;
+
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState EditState {
             get { return _editState; }
             set { PrevEditState = _editState; _editState = value; }
@@ -148,6 +158,7 @@ namespace R7.University.Controls
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public string CssClass {
             get {
                 var cssClass = string.Empty;

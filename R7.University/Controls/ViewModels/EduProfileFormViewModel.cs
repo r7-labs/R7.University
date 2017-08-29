@@ -22,6 +22,7 @@
 using System;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Controls.ViewModels;
@@ -41,9 +42,12 @@ namespace R7.University.Controls
         [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState PrevEditState { get; set; }
 
         ModelEditState _editState;
+
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState EditState {
             get { return _editState; }
             set { PrevEditState = _editState; _editState = value; }

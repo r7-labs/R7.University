@@ -1,5 +1,4 @@
 ﻿function validateDiscipline (sender, e) {
-    // TODO: Propagate changes to other validation scripts
     var itemsData = jQuery ("[id $= 'gridDisciplines']").attr ("data-items");
     if (!!itemsData) {
         var items = JSON.parse (itemsData);

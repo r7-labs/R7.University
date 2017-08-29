@@ -23,6 +23,7 @@ using System;
 using System.Web;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
@@ -85,9 +86,12 @@ namespace R7.University.Controls.ViewModels
             }
         }
 
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState PrevEditState { get; set; }
 
         ModelEditState _editState;
+
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState EditState {
             get { return _editState; }
             set { PrevEditState = _editState; _editState = value; }

@@ -61,7 +61,6 @@ namespace R7.University.Controls.ViewModels
             }
         }
 
-        // TODO: Propagate changes to other edit models
         [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState PrevEditState { get; set; }
 

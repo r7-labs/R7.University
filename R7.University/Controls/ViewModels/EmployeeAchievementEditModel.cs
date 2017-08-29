@@ -22,6 +22,8 @@
 using System;
 using System.Xml.Serialization;
 using DotNetNuke.Services.Localization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.ModelExtensions;
@@ -61,10 +63,12 @@ namespace R7.University.Controls.ViewModels
         public string TitleSuffix { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public AchievementTypeInfo AchievementType { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public AchievementInfo Achievement { get; set; }
 
@@ -117,11 +121,15 @@ namespace R7.University.Controls.ViewModels
         public int ViewItemID { get; set; }
 
         [XmlIgnore]
+        [JsonIgnore]
         public ViewModelContext Context { get; set; }
 
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState PrevEditState { get; set; }
 
         ModelEditState _editState;
+
+        [JsonConverter (typeof (StringEnumConverter))]
         public ModelEditState EditState {
             get { return _editState; }
             set { PrevEditState = _editState; _editState = value; }
@@ -133,6 +141,7 @@ namespace R7.University.Controls.ViewModels
         }
 
         [XmlIgnore]
+        [JsonIgnore]
         public string CssClass {
             get {
                 var cssClass = string.Empty;
