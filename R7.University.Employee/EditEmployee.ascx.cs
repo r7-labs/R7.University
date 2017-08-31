@@ -20,9 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -30,8 +28,6 @@ using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
-using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
@@ -39,7 +35,6 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Employee.Models;
 using R7.University.Employee.Queries;
-using R7.University.Employee.ViewModels;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
@@ -79,11 +74,7 @@ namespace R7.University.Employee
                         return EditEmployeeTab.Common;
                     }
 
-                    if (eventTarget.Contains ("$" + buttonCancelEditPosition.ID) ||
-                        eventTarget.Contains ("$" + buttonAddPosition.ID) ||
-                        eventTarget.Contains ("$" + buttonUpdatePosition.ID) ||
-                        eventTarget.Contains ("$" + divisionSelector.ID) ||
-                        eventTarget.Contains ("$" + gridOccupiedPositions.ID)) {
+                    if (eventTarget.Contains ("$" +  formEditPositions.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Positions;
                         return EditEmployeeTab.Positions;
                     }
@@ -103,13 +94,6 @@ namespace R7.University.Employee
                 return (obj != null) ? (EditEmployeeTab) obj : EditEmployeeTab.Common;
             }
             set { ViewState ["SelectedTab"] = value; }
-        }
-
-
-        internal List<OccupiedPositionEditModel> OccupiedPositions
-        {
-            get { return XmlSerializationHelper.Deserialize<List<OccupiedPositionEditModel>> (ViewState ["occupiedPositions"]); }
-            set { ViewState ["occupiedPositions"] = XmlSerializationHelper.Serialize (value); }
         }
 
         protected string EditIconUrl
@@ -155,24 +139,14 @@ namespace R7.University.Employee
             // init working hours
             WorkingHoursLogic.Init (this, comboWorkingHours);
 
-            // if results are null or empty, lists were empty too
-
-            // bind positions
-            comboPositions.DataSource = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
-            comboPositions.DataBind ();
-            comboPositions.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
-        
-            // bind divisions
-            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisionSelector.DataBind ();
-
             var achievementTypes = new FlatQuery<AchievementTypeInfo> (ModelContext).List ();
             var achievements = new FlatQuery<AchievementInfo> (ModelContext).List ();
+            var positions = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
+            var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+
             formEditAchievements.OnInit (this, achievementTypes, achievements);
             formEditDisciplines.OnInit (this, new EduLevelQuery (ModelContext).List ());
-
-            // localize bounded gridviews
-            gridOccupiedPositions.LocalizeColumns (LocalResourceFile);
+            formEditPositions.OnInit (this, positions, divisions);
         }
 
         protected override void LoadItem (EmployeeInfo item)
@@ -227,19 +201,9 @@ namespace R7.University.Employee
                 }
             }
 
-            // fill view list
-            var occupiedPositions = employee.Positions
-                .Select (op => new OccupiedPositionEditModel (op)).ToList ();
-
-            // bind occupied positions
-            OccupiedPositions = occupiedPositions;
-            gridOccupiedPositions.DataSource = occupiedPositions;
-            gridOccupiedPositions.DataBind ();
-
-            // TODO: Sort achievements
+            // TODO: Sort achievements?
             formEditAchievements.SetData (employee.Achievements, employee.EmployeeID);
-
-            // bind disciplines
+            formEditPositions.SetData (employee.Positions, employee.EmployeeID);
             formEditDisciplines.SetData (employee.Disciplines, employee.EmployeeID);
       
             // setup audit control
@@ -255,10 +219,8 @@ namespace R7.University.Employee
 
         void SetupDivisionSelector ()
         {
-            // then edit / add from EmployeeList, divisionId query param
-            // can be set to current division ID
             var divisionId = Request.QueryString ["division_id"];
-            divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
+            formEditPositions.SetDivision (TypeUtils.ParseToNullable<int> (divisionId));
         }
 
         protected override void BeforeUpdateItem (EmployeeInfo item)
@@ -323,7 +285,7 @@ namespace R7.University.Employee
                 }
 
                 new UpdateOccupiedPositionsCommand (ModelContext)
-                    .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+                    .Update (formEditPositions.GetModifiedData (), item.EmployeeID);
 
                 new UpdateEmployeeAchievementsCommand (ModelContext)
                     .UpdateEmployeeAchievements (formEditAchievements.GetModifiedData (), item.EmployeeID);
@@ -352,7 +314,7 @@ namespace R7.University.Employee
             ModelContext.Update (item);
 
             new UpdateOccupiedPositionsCommand (ModelContext)
-                        .UpdateOccupiedPositions (GetOccupiedPositions (), item.EmployeeID);
+                .Update (formEditPositions.GetModifiedData (), item.EmployeeID);
 
             new UpdateEmployeeAchievementsCommand (ModelContext)
                 .UpdateEmployeeAchievements (formEditAchievements.GetModifiedData (), item.EmployeeID);
@@ -371,18 +333,6 @@ namespace R7.University.Employee
         }
 
         #endregion
-
-        private List<OccupiedPositionInfo> GetOccupiedPositions ()
-        {
-            var occupiedPositions = OccupiedPositions;
-					
-            var occupiedPositionInfos = new List<OccupiedPositionInfo> ();
-            if (occupiedPositions != null)
-                foreach (var op in occupiedPositions)
-                    occupiedPositionInfos.Add (op.NewOccupiedPositionInfo ());
-
-            return occupiedPositionInfos;
-        }
 
         protected void buttonUserLookup_Click (object sender, EventArgs e)
         {
@@ -459,164 +409,6 @@ namespace R7.University.Employee
                             pickerPhoto.FileID = file.FileId;
                             break;
                         }
-                    }
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void buttonCancelEditPosition_Click (object sender, EventArgs e)
-        {
-            try {
-                ResetEditPositionForm ();
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        private void ResetEditPositionForm ()
-        {
-            // restore default buttons visibility
-            buttonAddPosition.Visible = true;
-            buttonUpdatePosition.Visible = false;
-
-            // reset selected division
-            var divisionId = Request.QueryString ["division_id"];
-            divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
-	
-            // reset other controls
-            comboPositions.SelectedIndex = 0;
-            textPositionTitleSuffix.Text = "";
-            checkIsPrime.Checked = false;
-            hiddenOccupiedPositionItemID.Value = "";
-        }
-
-        protected void buttonAddPosition_Command (object sender, CommandEventArgs e)
-        {
-            try {
-                var positionID = int.Parse (comboPositions.SelectedValue);
-                var divisionID = divisionSelector.DivisionId;
-
-                if (!Null.IsNull (positionID) && divisionID != null) {
-                    OccupiedPositionEditModel occupiedPosition;
-
-                    var occupiedPositions = OccupiedPositions ?? new List<OccupiedPositionEditModel> ();
-
-                    var command = e.CommandArgument.ToString ();
-                    if (command == "Add") {
-                        occupiedPosition = new OccupiedPositionEditModel ();
-                    }
-                    else { // update 
-                        // restore ItemID from hidden field
-                        var hiddenItemID = int.Parse (hiddenOccupiedPositionItemID.Value);
-                        occupiedPosition = occupiedPositions.Find (op => op.ItemID == hiddenItemID);
-                    }
-					
-                    // fill the object
-                    occupiedPosition.PositionID = positionID;
-                    occupiedPosition.DivisionID = divisionID.Value;
-                    occupiedPosition.PositionShortTitle = comboPositions.SelectedItem.Text;
-                    occupiedPosition.DivisionShortTitle = divisionSelector.DivisionTitle;
-                    occupiedPosition.IsPrime = checkIsPrime.Checked;
-                    occupiedPosition.TitleSuffix = textPositionTitleSuffix.Text.Trim ();
-					
-                    if (command == "Add") {
-                        occupiedPositions.Add (occupiedPosition);
-                    }
-
-                    ResetEditPositionForm ();
-
-                    OccupiedPositions = occupiedPositions;
-                    gridOccupiedPositions.DataSource = occupiedPositions;
-                    gridOccupiedPositions.DataBind ();
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void gridOccupiedPositions_RowDataBound (object sender, GridViewRowEventArgs e)
-        {
-            grids_RowDataBound (sender, e);
-        }
-
-        private void grids_RowDataBound (object sender, GridViewRowEventArgs e)
-        {
-            // hide ItemID column, also in header
-            e.Row.Cells [1].Visible = false;
-
-            // exclude header
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                // find edit and delete linkbuttons
-                var linkDelete = e.Row.Cells [0].FindControl ("linkDelete") as LinkButton;
-                var linkEdit = e.Row.Cells [0].FindControl ("linkEdit") as LinkButton;
-
-                // set recordId to delete
-                linkEdit.CommandArgument = e.Row.Cells [1].Text;
-                linkDelete.CommandArgument = e.Row.Cells [1].Text;
-
-                // add confirmation dialog to delete link
-                linkDelete.Attributes.Add ("onClick", "javascript:return confirm('" +
-                    Localization.GetString ("DeleteItem") + "');");
-            }
-        }
-
-        protected void linkEditOccupiedPosition_Command (object sender, CommandEventArgs e)
-        {
-            try {
-                var occupiedPositions = OccupiedPositions;
-                if (occupiedPositions != null) {
-                    var itemID = e.CommandArgument.ToString ();
-	
-                    // find position in a list
-                    var occupiedPosition = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
-	
-                    if (occupiedPosition != null) {
-                        // fill the form
-                        divisionSelector.DivisionId = occupiedPosition.DivisionID;
-                        comboPositions.SelectByValue (occupiedPosition.PositionID);
-                        checkIsPrime.Checked = occupiedPosition.IsPrime;
-                        textPositionTitleSuffix.Text = occupiedPosition.TitleSuffix;
-						
-                        // set hidden field value to ItemID of edited item
-                        hiddenOccupiedPositionItemID.Value = occupiedPosition.ItemID.ToString ();
-
-                        // show / hide buttonss
-                        buttonAddPosition.Visible = false;
-                        buttonUpdatePosition.Visible = true;
-                    }
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void linkDeleteOccupiedPosition_Command (object sender, CommandEventArgs e)
-        {
-            try {
-                var occupiedPositions = OccupiedPositions;
-                if (occupiedPositions != null) {
-                    var itemID = e.CommandArgument.ToString ();
-	
-                    // find position in a list
-                    var opFound = occupiedPositions.Find (op => op.ItemID.ToString () == itemID);
-				
-                    if (opFound != null) {
-                        occupiedPositions.Remove (opFound);
-
-                        OccupiedPositions = occupiedPositions;
-	
-                        gridOccupiedPositions.DataSource = occupiedPositions;
-                        gridOccupiedPositions.DataBind ();
-
-                        // reset form if we deleting currently edited position
-                        if (buttonUpdatePosition.Visible && hiddenOccupiedPositionItemID.Value == itemID)
-                            ResetEditPositionForm ();
                     }
                 }
             }

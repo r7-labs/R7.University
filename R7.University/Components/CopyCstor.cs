@@ -23,6 +23,7 @@ namespace R7.University.Components
 {
     public static class CopyCstor
     {
+        // TODO: Return dest?
         /// <summary>
         /// Copy the specified src object properties to dest object.
         /// </summary>

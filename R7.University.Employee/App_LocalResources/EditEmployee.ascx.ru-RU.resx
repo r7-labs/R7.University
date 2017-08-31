@@ -168,24 +168,6 @@
     <data name="labelUserLookup.Help">
         <value>Введите адрес эл. почты или имя пользователя и нажмите Найти пользователя.</value>
     </data>
-    <data name="labelPositions.Text">
-        <value>Должность:</value>
-    </data>
-    <data name="labelPositions.Help">
-        <value>Укажите должность сотрудника.</value>
-    </data>
-    <data name="labelPositionTitleSuffix.Text">
-        <value>Дополнение должности:</value>
-    </data>
-    <data name="labelPositionTitleSuffix.Help">
-        <value>Введите строку, которая будет использоваться в качестве дополнения к наименованию выбранной должности.</value>
-    </data>
-    <data name="labelDivisions.Text">
-        <value>Подразделение:</value>
-    </data>
-    <data name="labelDivisions.Help">
-        <value>Укажите подразделение, в котором работает сотрудник.</value>
-    </data>
     <data name="buttonUserLookup.Text">
         <value>Найти пользователя</value>
     </data>
@@ -194,20 +176,5 @@
     </data>
     <data name="checkIncludeDeletedUsers.Text">
         <value>Включая удаленных пользователей?</value>
-    </data>
-    <data name="buttonAddPosition.Text">
-        <value>Добавить должность</value>
-    </data>
-    <data name="buttonUpdatePosition.Text">
-        <value>Сохранить должность</value>
-    </data>
-    <data name="buttonCancelEditPosition.Text">
-        <value>Отмена</value>
-    </data>
-    <data name="labelIsPrime.Text">
-        <value>Основная?</value>
-    </data>
-    <data name="labelIsPrime.Help">
-        <value>Если флажок отмечен, занимаемая должность будет рассматриваться как основная для этого сотрудника.</value>
     </data>
 </root>

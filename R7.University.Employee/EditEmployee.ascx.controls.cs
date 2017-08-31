@@ -40,16 +40,8 @@ namespace R7.University.Employee
 		protected Label labelUserNames;
 		protected DropDownList comboUsers;
         protected CheckBox checkShowBarcode;
-        protected GridView gridOccupiedPositions;
-		protected DropDownList comboPositions;
-		protected TextBox textPositionTitleSuffix;
-        protected DivisionSelector divisionSelector;
-		protected CheckBox checkIsPrime;
-		protected LinkButton buttonAddPosition;
-		protected LinkButton buttonUpdatePosition;
-		protected LinkButton buttonCancelEditPosition;
-		protected HiddenField hiddenOccupiedPositionItemID;
         protected EditAchievements formEditAchievements;
         protected EditDisciplines formEditDisciplines;
+        protected EditPositions formEditPositions;
 	}
 }

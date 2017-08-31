@@ -168,24 +168,6 @@
     <data name="labelUserLookup.Help">
         <value>Enter user email address or username and press User Lookup to find users.</value>
     </data>
-    <data name="labelPositions.Text">
-        <value>Position:</value>
-    </data>
-    <data name="labelPositions.Help">
-        <value>Specify position for this employee.</value>
-    </data>
-    <data name="labelPositionTitleSuffix.Text">
-        <value>Position Suffix:</value>
-    </data>
-    <data name="labelPositionTitleSuffix.Help">
-        <value>Specify a suffix to use along with the position title.</value>
-    </data>
-    <data name="labelDivisions.Text">
-        <value>Division:</value>
-    </data>
-    <data name="labelDivisions.Help">
-        <value>Specify division for this employee</value>
-    </data>
     <data name="buttonUserLookup.Text">
         <value>User Lookup</value>
     </data>
@@ -195,31 +177,7 @@
     <data name="checkIncludeDeletedUsers.Text">
         <value>Include deleted users?</value>
     </data>
-    <data name="buttonAddPosition.Text">
-        <value>Add Position</value>
-    </data>
-    <data name="buttonUpdatePosition.Text">
-        <value>Update Position</value>
-    </data>
-    <data name="buttonCancelEditPosition.Text">
-        <value>Cancel</value>
-    </data>
-    <data name="labelIsPrime.Text">
-        <value>Is Prime?</value>
-    </data>
-    <data name="labelIsPrime.Help">
-        <value>If checked, this occupied position will be counted as prime for the employee.</value>
-    </data>
     <data name="checkAddToVocabulary.Text">
         <value>Add to Vocabulary</value>
-    </data>
-    <data name="Division.Column">
-        <value>Division</value>
-    </data>
-    <data name="Position.Column">
-        <value>Position</value>
-    </data>
-    <data name="IsPrime.Column">
-        <value>Is Prime</value>
     </data>
 </root>

@@ -256,6 +256,13 @@
     <Compile Include="Controls\ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="Controls\Queries\EduProgramProfileQuery.cs" />
     <Compile Include="Controls\ViewModels\EditModelBase.cs" />
+    <Compile Include="Controls\ViewModels\OccupiedPositionEditModel.cs" />
+    <Compile Include="Controls\EditPositions.ascx.cs">
+      <DependentUpon>EditPositions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditPositions.controls.ascx.cs">
+      <DependentUpon>EditPositions.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -382,6 +389,13 @@
     </None>
     <None Include="Controls\js\editDisciplines.js" />
     <None Include="Controls\js\gridAndForm.js" />
+    <None Include="Controls\EditPositions.ascx" />
+    <None Include="Controls\App_LocalResources\EditPositions.ascx.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Controls\App_LocalResources\EditPositions.ascx.ru-RU.resx">
+      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

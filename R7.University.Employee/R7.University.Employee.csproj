@@ -133,7 +133,6 @@
     <Compile Include="Components\EmployeeController.cs" />
     <Compile Include="SharedLogic\RepeaterPositionsLogic.cs" />
     <Compile Include="Queries\EmployeeQuery.cs" />
-    <Compile Include="ViewModels\OccupiedPositionEditModel.cs" />
     <Compile Include="Models\EmployeeSettings.cs" />
     <Compile Include="Models\EmployeeSettingsRepository.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />

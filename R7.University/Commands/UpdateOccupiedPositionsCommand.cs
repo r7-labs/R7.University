@@ -20,8 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using System.Linq;
-using R7.University.Components;
+using R7.University.Controls.ViewModels;
 using R7.University.Models;
 
 namespace R7.University.Commands
@@ -35,30 +34,22 @@ namespace R7.University.Commands
             ModelContext = modelContext;
         }
 
-        public void UpdateOccupiedPositions (IList<OccupiedPositionInfo> occupiedPositions, int employeeId)
+        public void Update (IEnumerable<IEditModel<OccupiedPositionInfo>> occupiedPositions, int employeeId)
         {
-            var originalOccupiedPositions = ModelContext.Query<OccupiedPositionInfo> ()
-                .Where (op => op.EmployeeID == employeeId)
-                .ToList ();
-            
             foreach (var occupiedPosition in occupiedPositions) {
-                var originalOccupiedPosition = originalOccupiedPositions.SingleOrDefault (op => op.OccupiedPositionID == occupiedPosition.OccupiedPositionID);
-                if (originalOccupiedPosition == null) {
-                    occupiedPosition.EmployeeID = employeeId;
-                    ModelContext.Add<OccupiedPositionInfo> (occupiedPosition);
+                var op = occupiedPosition.CreateModel ();
+                switch (occupiedPosition.EditState) {
+                case ModelEditState.Added:
+                    op.EmployeeID = employeeId;
+                    ModelContext.Add (op);
+                    break;
+                case ModelEditState.Modified:
+                    ModelContext.UpdateExternal (op);
+                    break;
+                case ModelEditState.Deleted:
+                    ModelContext.RemoveExternal (op);
+                    break;
                 }
-                else {
-                    CopyCstor.Copy<OccupiedPositionInfo> (occupiedPosition, originalOccupiedPosition);
-                    ModelContext.Update<OccupiedPositionInfo> (originalOccupiedPosition);
-
-                    // do not delete this document later
-                    originalOccupiedPositions.Remove (originalOccupiedPosition);
-                }
-            }
-
-            // should delete all remaining edu. forms
-            foreach (var originalOccupiedPosition in originalOccupiedPositions) {
-                ModelContext.Remove<OccupiedPositionInfo> (originalOccupiedPosition);
             }
         }
     }

@@ -6,6 +6,7 @@
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+<%@ Register TagPrefix="controls" TagName="EditPositions" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditPositions.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditAchievements" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditAchievements.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDisciplines" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/EditDisciplines.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/AgplSignature.ascx" %>
@@ -141,66 +142,7 @@
 			</fieldset>
 		</div>
 		<div id="employee-positions-tab">
-			<fieldset>
-				<div class="dnnFormItem">
-					<asp:GridView id="gridOccupiedPositions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-						GridLines="None" OnRowDataBound="gridOccupiedPositions_RowDataBound" Style="width:100%;margin-bottom:30px">
-							<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
-					        <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
-					        <AlternatingRowStyle CssClass="dnnGridAltItem" />
-					        <SelectedRowStyle CssClass="dnnFormError" />
-					        <EditRowStyle CssClass="dnnFormInput" />
-					        <FooterStyle CssClass="dnnGridFooter" />
-					        <PagerStyle CssClass="dnnGridPager" />
-							<Columns>
-								<asp:TemplateField>
-					               <ItemTemplate>
-										<span style="white-space:nowrap">
-											<asp:LinkButton id="linkEdit" runat="server" OnCommand="linkEditOccupiedPosition_Command" >
-					                			<asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
-					                		</asp:LinkButton>
-					                		<asp:LinkButton id="linkDelete" runat="server" OnCommand="linkDeleteOccupiedPosition_Command" >
-					                			<asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
-					                		</asp:LinkButton>
-										</span>
-					               </ItemTemplate>
-					        	</asp:TemplateField>
-                                <asp:BoundField DataField="ItemID" />
-                                <asp:BoundField DataField="DivisionShortTitle" HeaderText="Division" />
-                                <asp:BoundField DataField="PositionShortTitleWithSuffix" HeaderText="Position" />
-                                <asp:CheckBoxField DataField="IsPrime" HeaderText="IsPrime" />
-							</Columns>
-				        </asp:GridView>
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelDivisions" runat="server" ControlName="divisionSelector" />
-					<controls:DivisionSelector id="divisionSelector" runat="server" />
-				</div>
-				<div class="dnnFormItem">
-    				<dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
-                    <asp:DropDownList id="comboPositions" runat="server" CssClass="dnn-ac-combobox"
-                        DataValueField="PositionID"
-                        DataTextField="Title" />
-                </div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" />
-					<asp:TextBox id="textPositionTitleSuffix" runat="server" MaxLength="100" />
-				</div>
-				<div class="dnnFormItem" style="margin-bottom:10px">
-					<dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" />
-					<asp:CheckBox id="checkIsPrime" runat="server" />
-				</div>
-				<div class="dnnFormItem">
-					<div class="dnnLabel"></div>
-					<asp:LinkButton id="buttonAddPosition" runat="server" resourcekey="buttonAddPosition" 
-						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command"  CommandArgument="Add" />
-					<asp:LinkButton id="buttonUpdatePosition" runat="server" resourcekey="buttonUpdatePosition" 
-						CssClass="dnnPrimaryAction" OnCommand="buttonAddPosition_Command" Visible="false" CommandArgument="Update" />
-					<asp:LinkButton id="buttonCancelEditPosition" runat="server" resourcekey="buttonCancelEditPosition" 
-								CssClass="dnnSecondaryAction" OnClick="buttonCancelEditPosition_Click" />
-				</div>
-				<asp:HiddenField id="hiddenOccupiedPositionItemID" runat="server" />
-			</fieldset>
+			<controls:EditPositions id="formEditPositions" runat="server" />
 		</div>
 		<div id="employee-achievements-tab">
             <controls:EditAchievements id="formEditAchievements" runat="server" />
