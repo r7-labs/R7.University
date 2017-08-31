@@ -50,6 +50,8 @@ namespace R7.University.Employee
         public enum EditEmployeeTab
         {
             Common,
+            Contacts,
+            WorkExperience,
             Positions,
             Achievements,
             Disciplines,

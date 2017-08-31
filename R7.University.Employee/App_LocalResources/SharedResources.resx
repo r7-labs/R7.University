@@ -96,8 +96,14 @@
     <data name="Common.Tab" xml:space="preserve">
         <value>Common</value>
     </data>
+    <data name="Contacts.Tab" xml:space="preserve">
+        <value>Contacts</value>
+    </data>
     <data name="Experience.Tab" xml:space="preserve">
-        <value>Experience</value>
+        <value>Education &amp; Experience</value>
+    </data>
+	<data name="WorkExperience.Tab" xml:space="preserve">
+        <value>Work Experience</value>
     </data>
     <data name="Disciplines.Tab" xml:space="preserve">
         <value>Disciplines</value>

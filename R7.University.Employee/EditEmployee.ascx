@@ -22,9 +22,11 @@
 	<div id="employee-tabs">
 		<ul class="dnnAdminTabNav dnnClear">
 		    <li><a href="#employee-common-tab"><%= LocalizeString("Common.Tab") %></a></li>
-		    <li><a href="#employee-positions-tab"><%= LocalizeString("Positions.Tab") %></a></li>
-		    <li><a href="#employee-achievements-tab"><%= LocalizeString("Achievements.Tab") %></a></li>
-            <li><a href="#employee-disciplines-tab"><%= LocalizeString("Disciplines.Tab") %></a></li>
+			<li><a href="#employee-contacts-tab"><%= LocalizeString("Contacts.Tab") %></a></li>
+			<li><a href="#employee-work-experience-tab"><%= LocalizeString("WorkExperience.Tab") %></a></li>
+            <li><a href="#employee-positions-tab"><%= LocalizeString("Positions.Tab") %></a></li>
+			<li><a href="#employee-achievements-tab"><%= LocalizeString("Achievements.Tab") %></a></li>
+			<li><a href="#employee-disciplines-tab"><%= LocalizeString("Disciplines.Tab") %></a></li>
 		    <li><a href="#employee-about-tab"><%= LocalizeString("About.Tab") %></a></li>
 		</ul>
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
@@ -68,6 +70,22 @@
                             CssClass="dnnSecondaryAction" Style="margin-left:1em" OnClick="buttonUserLookup_Click" CausesValidation="false" />
                     </div>
 				</div>
+				<div class="dnnFormItem">
+                    <dnn:Label id="labelShowBarcode" runat="server" ControlName="checkShowBarcode" />
+                    <asp:CheckBox id="checkShowBarcode" runat="server" CssClass="dnn-form-control" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelStartDate" runat="server" ControlName="datetimeStartDate" />
+                    <dnn:DnnDateTimePicker id="datetimeStartDate" runat="server" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelEndDate" runat="server" ControlName="datetimeEndDate" />
+                    <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
+                </div>
+			</fieldset>
+		</div>	
+        <div id="employee-contacts-tab">
+			<fieldset>
                 <div class="dnnFormItem">
 					<dnn:Label id="labelPhone" runat="server" ControlName="textPhone" />
 					<asp:TextBox id="textPhone" runat="server" MaxLength="64" />
@@ -107,9 +125,8 @@
 				<div class="dnnFormItem">
 					<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" />
 					<asp:DropDownList id="comboWorkingHours" runat="server"
-								DataTextField="Name"
-								DataValueField="TermId"
-						 />
+						DataTextField="Name"
+						DataValueField="TermId" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" />
@@ -119,31 +136,23 @@
                     <div class="dnnLabel"></div>
                     <asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
 				</div>
-                <div class="dnnFormItem">
-					<dnn:Label id="labelExperienceYears" runat="server" ControlName="textExperienceYears" />
-					<asp:TextBox id="textExperienceYears" runat="server" />
-				</div>
-				<div class="dnnFormItem">
-					<dnn:Label id="labelExperienceYearsBySpec" runat="server" ControlName="textExperienceYearsBySpec" />
-					<asp:TextBox id="textExperienceYearsBySpec" runat="server" />
-				</div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelShowBarcode" runat="server" ControlName="checkShowBarcode" />
-                    <asp:CheckBox id="checkShowBarcode" runat="server" CssClass="dnn-form-control" />
-                </div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelStartDate" runat="server" ControlName="datetimeStartDate" />
-                    <dnn:DnnDateTimePicker id="datetimeStartDate" runat="server" />
-                </div>
-                <div class="dnnFormItem">
-                    <dnn:Label id="labelEndDate" runat="server" ControlName="datetimeEndDate" />
-                    <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
-                </div>
 			</fieldset>
 		</div>
-		<div id="employee-positions-tab">
-			<controls:EditPositions id="formEditPositions" runat="server" />
+		<div id="employee-work-experience-tab">
+			<fieldset>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelExperienceYears" runat="server" ControlName="textExperienceYears" />
+                    <asp:TextBox id="textExperienceYears" runat="server" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelExperienceYearsBySpec" runat="server" ControlName="textExperienceYearsBySpec" />
+                    <asp:TextBox id="textExperienceYearsBySpec" runat="server" />
+                </div>
+            </fieldset>
 		</div>
+		<div id="employee-positions-tab">
+            <controls:EditPositions id="formEditPositions" runat="server" />
+        </div>
 		<div id="employee-achievements-tab">
             <controls:EditAchievements id="formEditAchievements" runat="server" />
 		</div>
