@@ -23,7 +23,7 @@ namespace R7.University.Components
 {
     public static class CopyCstor
     {
-        // TODO: Return dest?
+        // TODO: Move to the base library
         /// <summary>
         /// Copy the specified src object properties to dest object.
         /// </summary>
@@ -32,10 +32,31 @@ namespace R7.University.Components
         /// <typeparam name="T">Common base type for src and dest objects.</typeparam>
         public static void Copy<T> (T src, T dest)
         {
-            foreach (var pi in typeof (T).GetProperties ())
-                if (pi.GetSetMethod () != null)
+            foreach (var pi in typeof (T).GetProperties ()) {
+                if (pi.GetSetMethod () != null) {
                     pi.SetValue (dest, pi.GetValue (src, null), null);
+                }
+            }
+        }
+
+        // TODO: Move to the base library
+        /// <summary>
+        /// Creates copy of object of type T as object if type U.
+        /// </summary>
+        /// <returns>The copy of src object of type U.</returns>
+        /// <param name="src">Source object.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        /// <typeparam name="U">The 2nd type parameter.</typeparam>
+        public static U Copy<T,U> (T src) where U: T, new ()
+        {
+            var dest = new U ();
+            foreach (var pi in typeof (T).GetProperties ()) {
+                if (pi.GetSetMethod () != null) {
+                    pi.SetValue (dest, pi.GetValue (src, null), null);
+                }
+            }
+
+            return dest;
         }
     }
 }
-

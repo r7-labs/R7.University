@@ -36,8 +36,7 @@ namespace R7.University.Controls.ViewModels
 
         public override IEditModel<OccupiedPositionInfo> Create (OccupiedPositionInfo model, ViewModelContext context)
         {
-            var editModel = new OccupiedPositionEditModel ();
-            CopyCstor.Copy<IOccupiedPositionWritable> (model, editModel);
+            var editModel = CopyCstor.Copy<IOccupiedPositionWritable, OccupiedPositionEditModel> (model);
             editModel.Context = context;
             editModel.PositionTitle = FormatHelper.FormatShortTitle (model.Position.ShortTitle, model.Position.Title);
             editModel.DivisionTitle = FormatHelper.FormatShortTitle (model.Division.ShortTitle, model.Division.Title);
@@ -49,9 +48,7 @@ namespace R7.University.Controls.ViewModels
 
         public override OccupiedPositionInfo CreateModel ()
         {
-            var model = new OccupiedPositionInfo ();
-            CopyCstor.Copy<IOccupiedPositionWritable> (this, model);
-            return model;
+            return CopyCstor.Copy<IOccupiedPositionWritable, OccupiedPositionInfo> (this);
         }
 
         public override void SetTargetItemId (int targetItemId, string targetItemKey)

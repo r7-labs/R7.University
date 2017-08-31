@@ -27,12 +27,14 @@ namespace R7.University.ControlExtensions
 {
     public static class GridViewExtensions
     {
+        // TODO: Replace with library method
         public static void LocalizeColumns (this GridView gv, string resourceFile)
         {
             foreach (DataControlField column in gv.Columns)
                 column.HeaderText = Localization.GetString (column.HeaderText + ".Column", resourceFile);
         }
 
+        // TODO: Replace with library method
         public static TableItemStyle GetDataRowStyle (this GridView gv, GridViewRow row)
         {
             Contract.Requires (row.RowType == DataControlRowType.DataRow);
