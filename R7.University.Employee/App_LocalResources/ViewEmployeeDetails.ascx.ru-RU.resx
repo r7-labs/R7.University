@@ -45,4 +45,7 @@
 	<data name="Contacts.Text" xml:space="preserve">
         <value>Контакты:</value>
     </data>
+	<data name="Close.Text" xml:space="preserve">
+        <value>Закрыть</value>
+    </data>
 </root>
