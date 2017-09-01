@@ -210,39 +210,38 @@ namespace R7.University.Employee
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
                 labelAcademicDegreeAndTitle.Visible = false;
-	
-            // Phone
+	        
+            BindContacts (employee);
+        }
+
+        void BindContacts (IEmployee employee)
+        {
             if (!string.IsNullOrWhiteSpace (employee.Phone))
                 labelPhone.Text = employee.Phone;
             else
                 labelPhone.Visible = false;
 
-            // CellPhome
             if (!string.IsNullOrWhiteSpace (employee.CellPhone))
                 labelCellPhone.Text = employee.CellPhone;
             else
                 labelCellPhone.Visible = false;
 
-            // Fax
             if (!string.IsNullOrWhiteSpace (employee.Fax))
                 labelFax.Text = string.Format (Localization.GetString ("Fax.Format", LocalResourceFile), employee.Fax);
             else
                 labelFax.Visible = false;
 
-            // Messenger
             if (!string.IsNullOrWhiteSpace (employee.Messenger))
                 labelMessenger.Text = employee.Messenger;
             else
                 labelMessenger.Visible = false;
 
-            // Working place and Hours
             var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours))
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
             else
                 labelWorkingPlaceAndHours.Visible = false;
-            
-            // WebSite
+
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
                 linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
                 linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
@@ -251,7 +250,6 @@ namespace R7.University.Employee
                 linkWebSite.Visible = false;
             }
 
-            // Email
             if (!string.IsNullOrWhiteSpace (employee.Email)) {
                 linkEmail.NavigateUrl = "mailto:" + employee.Email;
                 linkEmail.Text = employee.Email;
@@ -259,7 +257,6 @@ namespace R7.University.Employee
             else
                 linkEmail.Visible = false;
 
-            // Secondary email
             if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail)) {
                 linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
                 linkSecondaryEmail.Text = employee.SecondaryEmail;
@@ -267,7 +264,6 @@ namespace R7.University.Employee
             else
                 linkSecondaryEmail.Visible = false;
 
-            // Profile link
             if (!TypeUtils.IsNull<int> (employee.UserID))
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
             else
