@@ -156,4 +156,13 @@
 	<data name="Bindings.Tab">
 		<value>Website Bindings</value>
 	</data>
+    <data name="Audit.Tab" xml:space="preserve">
+        <value>Audit</value>
+    </data>
+	<data name="labelAudit.Text" xml:space="preserve">
+        <value>Audit Data:</value>
+    </data>
+    <data name="labelAudit.Help" xml:space="preserve">
+        <value>Audit data for the division.</value>
+    </data>
 </root>

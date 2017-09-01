@@ -28,6 +28,7 @@
 			<li><a href="#employee-achievements-tab"><%= LocalizeString("Achievements.Tab") %></a></li>
 			<li><a href="#employee-disciplines-tab"><%= LocalizeString("Disciplines.Tab") %></a></li>
 		    <li><a href="#employee-about-tab"><%= LocalizeString("About.Tab") %></a></li>
+			<li><a href="#employee-audit-tab"><%= LocalizeString("Audit.Tab") %></a></li>
 		</ul>
 		<asp:ValidationSummary runat="server" CssClass="dnnFormMessage dnnFormError" />
 		<div id="employee-common-tab">
@@ -168,6 +169,14 @@
 				</div>
 			</fieldset>
 		</div>
+		<div id="employee-audit-tab">
+			<fieldset>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAudit" runat="server" ControlName="ctlAudit" /> 
+                    <dnn:Audit id="ctlAudit" runat="server" />
+				</div>	
+			</fieldset>
+        </div>
 	</div>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
@@ -175,8 +184,6 @@
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
     <controls:AgplSignature runat="server" ShowRule="false" />
-	<hr />
-	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">

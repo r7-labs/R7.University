@@ -117,6 +117,9 @@
     <data name="Positions.Tab" xml:space="preserve">
         <value>Positions</value>
     </data>
+	<data name="Audit.Tab" xml:space="preserve">
+        <value>Audit</value>
+    </data>
     <data name="EmployeeNotPublished.Text" xml:space="preserve">
         <value>Selected employee not published.</value>
     </data>

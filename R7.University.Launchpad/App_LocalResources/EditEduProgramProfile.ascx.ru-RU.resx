@@ -30,6 +30,9 @@
     <data name="Documents.Tab" xml:space="preserve">
         <value>Документы</value>
     </data>
+    <data name="Audit.Tab" xml:space="preserve">
+        <value>Аудит</value>
+    </data>	
     <data name="labelProfileCode.Text" xml:space="preserve">
         <value>Код профиля:</value>
     </data>
@@ -98,5 +101,11 @@
     </data>
     <data name="labelDivision.Help">
         <value>Выберите подразделение, связанное с данным профилем (специализацией) образовательной программы. Обычно это выпускающая кафедра.</value>
+    </data>
+    <data name="labelAudit.Text" xml:space="preserve">
+        <value>Данные аудита:</value>
+    </data>
+    <data name="labelAudit.Help" xml:space="preserve">
+        <value>Данные аудита профиля образовательной программы.</value>
     </data>
 </root>

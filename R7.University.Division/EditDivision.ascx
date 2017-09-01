@@ -20,6 +20,7 @@
             <li><a href="#division-contacts-tab"><%= LocalizeString("Contacts.Tab") %></a></li>
             <li><a href="#division-documents-tab"><%= LocalizeString("Documents.Tab") %></a></li>
             <li><a href="#division-bindings-tab"><%= LocalizeString("Bindings.Tab") %></a></li>
+			<li><a href="#division-audit-tab"><%= LocalizeString("Audit.Tab") %></a></li>
         </ul>
         <div id="division-common-tab">
         	<fieldset>	
@@ -133,6 +134,14 @@
                 </div>
             </fieldset>
         </div>
+		<div id="division-audit-tab">
+            <fieldset>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelAudit" runat="server" ControlName="ctlAudit" />
+                    <dnn:Audit id="ctlAudit" runat="server" />
+                </div>
+            </fieldset>
+        </div>
     </div>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
@@ -140,8 +149,6 @@
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
 	<controls:AgplSignature runat="server" ShowRule="false" />
-	<hr />
-	<dnn:Audit id="ctlAudit" runat="server" />
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">

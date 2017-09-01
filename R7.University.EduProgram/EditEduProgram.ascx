@@ -16,13 +16,14 @@
 <div class="dnnForm dnnClear">
     <div id="eduprogram-tabs" class="dnnForm dnnClear">
         <ul class="dnnAdminTabNav dnnClear">
-            <li><a href="#eduprogram-common"><%= LocalizeString ("Common.Tab") %></a></li>
-			<li><a href="#eduprogram-profiles"><%= LocalizeString ("EduProgramProfiles.Tab") %></a></li>
-			<li><a href="#eduprogram-divisions"><%= LocalizeString ("Divisions.Tab") %></a></li>
-            <li><a href="#eduprogram-bindings"><%= LocalizeString ("Bindings.Tab") %></a></li>
-            <li><a href="#eduprogram-documents"><%= LocalizeString ("Documents.Tab") %></a></li>
+            <li><a href="#eduprogram-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
+			<li><a href="#eduprogram-profiles-tab"><%= LocalizeString ("EduProgramProfiles.Tab") %></a></li>
+			<li><a href="#eduprogram-divisions-tab"><%= LocalizeString ("Divisions.Tab") %></a></li>
+            <li><a href="#eduprogram-bindings-tab"><%= LocalizeString ("Bindings.Tab") %></a></li>
+            <li><a href="#eduprogram-documents-tab"><%= LocalizeString ("Documents.Tab") %></a></li>
+			<li><a href="#eduprogram-audit-tab"><%= LocalizeString ("Audit.Tab") %></a></li>
         </ul>
-        <div id="eduprogram-common">
+        <div id="eduprogram-common-tab">
         	<fieldset>
         		<div class="dnnFormItem dnnFormRequired">
                     <dnn:Label ID="labelCode" runat="server" ControlName="textCode" />
@@ -59,7 +60,7 @@
                 </div>
         	</fieldset>
         </div>
-		<div id="eduprogram-profiles">
+		<div id="eduprogram-profiles-tab">
             <fieldset>
                 <div class="dnnFormItem">
 					<asp:GridView id="gridEduProgramProfiles" runat="server" AutoGenerateColumns="false" 
@@ -91,10 +92,10 @@
                 </asp:Panel>
 			</fieldset>	
         </div>
-        <div id="eduprogram-divisions">
+        <div id="eduprogram-divisions-tab">
 			<controls:EditDivisions id="formEditDivisions" runat="server" ForModel="EduProgram" />
 		</div>
-        <div id="eduprogram-bindings">
+        <div id="eduprogram-bindings-tab">
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHomePage" runat="server" ControlName="urlHomePage" />
@@ -107,8 +108,16 @@
                 </div>
             </fieldset>
         </div>
-        <div id="eduprogram-documents">
+        <div id="eduprogram-documents-tab">
             <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgram" />
+        </div>
+		<div id="eduprogram-audit-tab">
+            <fieldset>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelAudit" runat="server" ControlName="auditControl" />
+                    <dnn:Audit id="auditControl" runat="server" />
+                </div>
+            </fieldset>
         </div>
 		<ul class="dnnActions dnnClear">
             <li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="EduProgram" /></li>
@@ -116,8 +125,6 @@
             <li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
         </ul>
 		<controls:AgplSignature runat="server" ShowRule="false" />
-        <hr />
-        <dnn:Audit id="auditControl" runat="server" />
     </div>
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />

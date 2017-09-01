@@ -67,6 +67,12 @@
     margin:0
 }
 
+.dnnModuleAuditControl {
+    display:inline-block;
+    width:45%;
+    max-width:445px   
+}
+
 .u8y-edit-documents .urlControl .dnnClear br,
 .u8y-edit-achievements .urlControl .dnnClear br {
     display:none

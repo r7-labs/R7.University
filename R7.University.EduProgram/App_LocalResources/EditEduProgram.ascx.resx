@@ -36,6 +36,9 @@
     <data name="Documents.Tab" xml:space="preserve">
         <value>Documents</value>
     </data>
+    <data name="Audit.Tab" xml:space="preserve">
+        <value>Audit</value>
+    </data>
 	<data name="EduProgramProfile.Column" xml:space="preserve">
         <value>Edu. Program Profile</value>
     </data>
@@ -110,5 +113,11 @@
     </data>
     <data name="labelAddDefaultProfile.Help">
         <value>Check to add default edu. program profile. This profile will be created, but not published.</value>
+    </data>
+	<data name="labelAudit.Text" xml:space="preserve">
+        <value>Audit Data:</value>
+    </data>
+    <data name="labelAudit.Help" xml:space="preserve">
+        <value>Audit data for the educational program.</value>
     </data>
 </root>

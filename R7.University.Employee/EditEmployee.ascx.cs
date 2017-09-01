@@ -55,7 +55,8 @@ namespace R7.University.Employee
             Positions,
             Achievements,
             Disciplines,
-            About
+            About,
+            Audit
         }
 
         #endregion

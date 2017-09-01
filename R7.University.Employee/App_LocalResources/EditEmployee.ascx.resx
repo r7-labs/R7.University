@@ -180,4 +180,10 @@
     <data name="checkAddToVocabulary.Text">
         <value>Add to Vocabulary</value>
     </data>
+	<data name="labelAudit.Text" xml:space="preserve">
+        <value>Audit Data:</value>
+    </data>
+    <data name="labelAudit.Help" xml:space="preserve">
+        <value>Audit data for the employee.</value>
+    </data>
 </root>

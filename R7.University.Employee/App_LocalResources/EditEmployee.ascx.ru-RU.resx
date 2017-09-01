@@ -177,4 +177,10 @@
     <data name="checkIncludeDeletedUsers.Text">
         <value>Включая удаленных пользователей?</value>
     </data>
+	<data name="labelAudit.Text" xml:space="preserve">
+        <value>Данные аудита:</value>
+    </data>
+    <data name="labelAudit.Help" xml:space="preserve">
+        <value>Данные аудита сотрудника.</value>
+    </data>
 </root>

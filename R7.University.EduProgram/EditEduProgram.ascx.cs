@@ -44,7 +44,8 @@ namespace R7.University.EduProgram
         EduProgramProfiles,
         Divisions,
         Bindings,
-        Documents
+        Documents,
+        Audit
     }
 
     public partial class EditEduProgram : UniversityEditPortalModuleBase<EduProgramInfo>

@@ -30,6 +30,9 @@
     <data name="Documents.Tab" xml:space="preserve">
         <value>Documents</value>
     </data>
+    <data name="Audit.Tab" xml:space="preserve">
+        <value>Audit</value>
+    </data>	
     <data name="labelProfileCode.Text" xml:space="preserve">
         <value>Profile Code:</value>
     </data>
@@ -98,5 +101,11 @@
     </data>
     <data name="labelDivision.Help">
         <value>Select division, which relates to the educational program profile. Generally it's a producting department of a faculty.</value>
+    </data>
+    <data name="labelAudit.Text" xml:space="preserve">
+        <value>Audit Data:</value>
+    </data>
+    <data name="labelAudit.Help" xml:space="preserve">
+        <value>Audit data for the educational program profile.</value>
     </data>
 </root>

@@ -20,8 +20,9 @@
             <li><a href="#eduprogramprofile-eduforms-tab"><%= LocalizeString ("EduForms.Tab") %></a></li>
 			<li><a href="#eduprogramprofile-divisions-tab"><%= LocalizeString ("Divisions.Tab") %></a></li>
             <li><a href="#eduprogramprofile-documents-tab"><%= LocalizeString ("Documents.Tab") %></a></li>
+			<li><a href="#eduprogramprofile-audit-tab"><%= LocalizeString ("Audit.Tab") %></a></li>
         </ul>
-        <div id="eduprogramprofile-common-tab" class="dnnForm dnnClear">
+        <div id="eduprogramprofile-common-tab">
         	<fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelEduProgramLevel" runat="server" ControlName="comboEduProgramLevel" />
@@ -86,15 +87,21 @@
         <div id="eduprogramprofile-documents-tab">
             <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgramProfile" />
         </div>
+		<div id="eduprogramprofile-audit-tab">
+            <fieldset>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelAudit" runat="server" ControlName="auditControl" />
+                    <dnn:Audit id="auditControl" runat="server" />
+                </div> 
+            </fieldset>
+		</div>	
     </div>
-   	<ul class="dnnActions dnnClear">
+    <ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="EduProgramProfile" /></li>
 		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
 	<controls:AgplSignature runat="server" ShowRule="false" />
-    <hr />
-    <dnn:Audit id="auditControl" runat="server" />
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">

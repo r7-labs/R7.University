@@ -43,7 +43,8 @@ namespace R7.University.Division
             Common,
             Contacts,
             Documents,
-            Bindings
+            Bindings,
+            Audit
         }
 
         #endregion

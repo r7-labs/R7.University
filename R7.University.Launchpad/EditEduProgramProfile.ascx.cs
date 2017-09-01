@@ -36,43 +36,41 @@ namespace R7.University.Launchpad
 {
     public partial class EditEduProgramProfile : UniversityEditPortalModuleBase<EduProgramProfileInfo>
     {
+        public enum EditEduProgramProfileTab
+        {
+            Common,
+            EduForms,
+            Divisions,
+            Documents,
+            Audit
+        }
+
         #region Properties
 
-        protected int SelectedTab
+        protected EditEduProgramProfileTab SelectedTab
         {
             get {
-                // TODO: Replace magic tab numbers with enum
                 // get postback initiator control
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
-                    
-                    // check if postback initiator is on Bindings tab
                     if (eventTarget.Contains ("$" + formEditDivisions.ID)) {
-                        ViewState ["SelectedTab"] = 2;
-                        return 2;
+                        ViewState ["SelectedTab"] = EditEduProgramProfileTab.Divisions;
+                        return EditEduProgramProfileTab.Divisions;
                     }
-
-                    // check if postback initiator is on EduForms tab
                     if (eventTarget.Contains ("$" + formEditEduForms.ID)) {
-                        ViewState ["SelectedTab"] = 1;
-                        return 1;
+                        ViewState ["SelectedTab"] = EditEduProgramProfileTab.EduForms;
+                        return EditEduProgramProfileTab.EduForms;
                     }
-
-                    // check if postback initiator is on Documents tab
                     if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
-                        ViewState ["SelectedTab"] = 3;
-                        return 3;
+                        ViewState ["SelectedTab"] = EditEduProgramProfileTab.Documents;
+                        return EditEduProgramProfileTab.Documents;
                     }
                 }
 
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
-                if (obj != null) {
-                    return (int) obj;
-                }
-
-                return 0;
+                return (obj != null) ? (EditEduProgramProfileTab) obj : EditEduProgramProfileTab.Common;
             }
             set { ViewState ["SelectedTab"] = value; }
         }
