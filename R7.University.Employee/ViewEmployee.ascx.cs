@@ -172,14 +172,19 @@ namespace R7.University.Employee
         /// <param name="employee">Employee.</param>
         protected void Display (IEmployee employee)
         {
-            if (employee.Positions.Any ()) {
-                repeaterPositions.DataSource = employee.Positions
-                    .OrderByDescending (op => op.Position.Weight)
-                    .GroupByDivision ();
+            // occupied positions
+            var positions = employee.Positions
+                                    .OrderByDescending (op => op.Position.Weight)
+                                    .GroupByDivision ()
+                                    .Where (p => IsEditable || p.OccupiedPosition.Division.IsPublished (HttpContext.Current.Timestamp));
+
+            if (positions.Any ()) {
+                repeaterPositions.DataSource = positions;
                 repeaterPositions.DataBind ();
             }
-            else
+            else {
                 repeaterPositions.Visible = false;
+            }
 
             // Full name
             var fullName = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);

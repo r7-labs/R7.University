@@ -19,12 +19,14 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.Utilities;
-using R7.University.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
+using R7.University.ViewModels;
 
 namespace R7.University.Employee.SharedLogic
 {
@@ -69,6 +71,12 @@ namespace R7.University.Employee.SharedLogic
                     }
 
                     labelPosition.Text += ": "; // to prev label!
+                }
+
+                if (!op.Division.IsPublished (HttpContext.Current.Timestamp)) {
+                    labelPosition.CssClass = "u8y-not-published-element";
+                    labelDivision.CssClass = "u8y-not-published-element";
+                    linkDivision.CssClass = "u8y-not-published-element";
                 }
             }
         }

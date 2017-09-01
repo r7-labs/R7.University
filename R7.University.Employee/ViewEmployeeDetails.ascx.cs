@@ -305,14 +305,18 @@ namespace R7.University.Employee
             }
 
             // occupied positions
-            if (employee.Positions.Any ()) {
-                repeaterPositions.DataSource = employee.Positions
-                    .OrderByDescending (op => op.Position.Weight)
-                    .GroupByDivision ();
+            var positions = employee.Positions
+                              .OrderByDescending (op => op.Position.Weight)
+                              .GroupByDivision ()
+                              .Where (p => IsEditable || p.OccupiedPosition.Division.IsPublished (HttpContext.Current.Timestamp));
+            
+            if (positions.Any ()) {
+                repeaterPositions.DataSource = positions;
                 repeaterPositions.DataBind ();
             }
-            else
-                repeaterPositions.Visible = false;
+            else {
+                panelPositions.Visible = false;
+            }
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, PhotoWidth);
 					

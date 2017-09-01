@@ -35,5 +35,6 @@ namespace R7.University.Employee
         protected HtmlControl tabDisciplines;
         protected HtmlControl tabAchievements;
         protected HtmlControl tabExperience;
+        protected Panel panelPositions;
     }
 }

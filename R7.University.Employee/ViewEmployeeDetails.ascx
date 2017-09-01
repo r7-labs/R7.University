@@ -28,19 +28,21 @@
     		</ul>
 			<div class="tab-content">
         		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade in active">
-        			<p><asp:Label id="labelAcademicDegreeAndTitle" runat="server" /></p>
-                    <label><%: LocalizeString ("OccupiedPositions.Text") %></label>
-        			<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
-        				<HeaderTemplate><ul></HeaderTemplate>
-        				<ItemTemplate>
-        					<li>
-        						<asp:Label id="labelPosition" runat="server" />
-        						<asp:Label id="labelDivision" runat="server" />
-        						<asp:HyperLink id="linkDivision" runat="server" />
-        					</li>
-        				</ItemTemplate>
-        				<FooterTemplate></ul></FooterTemplate>
-        			</asp:Repeater>
+                    <p><asp:Label id="labelAcademicDegreeAndTitle" runat="server" /></p>
+					<asp:Panel id="panelPositions" runat="server" CssClass="_section">
+                        <label><%: LocalizeString ("OccupiedPositions.Text") %></label>
+            			<asp:Repeater id="repeaterPositions" runat="server" OnItemDataBound="repeaterPositions_ItemDataBound">
+            				<HeaderTemplate><ul></HeaderTemplate>
+            				<ItemTemplate>
+            					<li>
+            						<asp:Label id="labelPosition" runat="server" />
+            						<asp:Label id="labelDivision" runat="server" />
+            						<asp:HyperLink id="linkDivision" runat="server" Target="_blank" />
+            					</li>
+            				</ItemTemplate>
+            				<FooterTemplate></ul></FooterTemplate>
+            			</asp:Repeater>
+				    </asp:Panel>
         			<div class="_section">
     					<label class="u8y-label-contacts"><%: LocalizeString ("Contacts.Text") %></label>
         				<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
