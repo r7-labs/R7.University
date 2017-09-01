@@ -65,3 +65,7 @@
 
 .u8y-employee-details label { font-weight:bold }
 .u8y-employee-details label.u8y-label-contacts { display:block }
+
+.u8y-employee-details table.grid-achievements,
+.u8y-employee-details table.grid-experience,
+.u8y-employee-details table.grid-disciplines { font-size:85% }
