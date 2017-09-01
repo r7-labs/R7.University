@@ -607,8 +607,7 @@
 							<moduleDefinition>
 								<friendlyName>R7.University.Division</friendlyName>
 								<definitionName>R7.University.Division</definitionName>
-								<!-- TODO: Set to 0 -->
-								<defaultCacheTime>1200</defaultCacheTime>
+                                <defaultCacheTime>0</defaultCacheTime>
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
