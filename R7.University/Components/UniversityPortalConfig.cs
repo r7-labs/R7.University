@@ -27,7 +27,7 @@ namespace R7.University.Components
 
         public BarcodeConfig Barcode { get; set; } = new BarcodeConfig ();
 
-        public int DataCacheTime { get; set; } = 1200;
+        public int DataCacheTime { get; set; } = 3600;
     }
 
     public class EmployeePhotoConfig
