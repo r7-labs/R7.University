@@ -321,10 +321,10 @@ namespace R7.University.Employee
             EmployeePhotoLogic.Bind (employee, imagePhoto, PhotoWidth);
 					
             BindContacts (employee);
-            Barcode (employee);
+            BindBarcode (employee);
 
-            Experience (employee);
-            Disciplines (employee);
+            BindExperience (employee);
+            BindDisciplines (employee);
 
             // about
             if (!string.IsNullOrWhiteSpace (employee.Biography))
@@ -410,7 +410,7 @@ namespace R7.University.Employee
             panelContacts.Visible = displayContacts;
         }
 
-        void Disciplines (EmployeeInfo employee)
+        void BindDisciplines (IEmployee employee)
         {
             var now = HttpContext.Current.Timestamp;
 
@@ -428,7 +428,8 @@ namespace R7.University.Employee
             }
         }
 
-        void Barcode (EmployeeInfo employee)
+        // TODO: Use IEmployee
+        void BindBarcode (EmployeeInfo employee)
         {
             if (employee.ShowBarcode) {
                 linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
@@ -451,7 +452,7 @@ namespace R7.University.Employee
             }
         }
 
-        void Experience (EmployeeInfo employee)
+        void BindExperience (IEmployee employee)
         {
             // experience years
             var exp1 = false;
