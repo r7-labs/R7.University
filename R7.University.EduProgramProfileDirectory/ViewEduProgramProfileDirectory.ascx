@@ -13,7 +13,7 @@
             <div class="table-responsive">
                 <asp:GridView id="gridEduProgramProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false" 
                         UseAccessibleHeader="true"
-                        CssClass="table table-bordered table-stripped table-hover grid-eduprogramprofile-obrnadzor-eduforms"
+                        CssClass="table table-bordered table-striped table-hover grid-eduprogramprofile-obrnadzor-eduforms"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorEduForms_RowDataBound"
                         OnRowCreated="gridEduProgramProfileObrnadzorEduForms_RowCreated"
                         >
@@ -42,7 +42,7 @@
             <div class="table-responsive">
                 <asp:GridView id="gridEduProgramProfileObrnadzorDocuments" runat="server" AutoGenerateColumns="false" 
                         UseAccessibleHeader="true"
-                        CssClass="table table-bordered table-stripped table-hover grid-eduprogramprofile-obrnadzor-documents"
+                        CssClass="table table-bordered table-striped table-hover grid-eduprogramprofile-obrnadzor-documents"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorDocuments_RowDataBound">
                     <Columns>
                         <asp:TemplateField>

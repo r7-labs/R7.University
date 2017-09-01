@@ -32,7 +32,7 @@
                     <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
                 </asp:Panel>
                 <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false"
-                    UseAccessibleHeader="true" CssClass="table table-bordered table-stripped table-hover grid-employees"
+                    UseAccessibleHeader="true" CssClass="table table-bordered table-striped table-hover grid-employees"
                     GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEmployees_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
@@ -97,7 +97,7 @@
                         <div class="table-responsive">
                             <asp:GridView id="gridTeachers" runat="server" AutoGenerateColumns="false" 
                                     UseAccessibleHeader="true" OnRowDataBound="gridTeachers_RowDataBound"
-                                    OnRowCreated="grid_RowCreated" CssClass="table table-bordered table-stripped table-hover grid-teachers" 
+                                    OnRowCreated="grid_RowCreated" CssClass="table table-bordered table-striped table-hover grid-teachers" 
                                     GridLines="None">
                                 <Columns>
                                     <asp:TemplateField>
