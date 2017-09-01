@@ -320,67 +320,11 @@ namespace R7.University.Employee
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, PhotoWidth);
 					
-            // Phone
-            if (!string.IsNullOrWhiteSpace (employee.Phone))
-                labelPhone.Text = employee.Phone;
-            else
-                labelPhone.Visible = false;
+            BindContacts (employee);
+            Barcode (employee);
 
-            // CellPhome
-            if (!string.IsNullOrWhiteSpace (employee.CellPhone))
-                labelCellPhone.Text = employee.CellPhone;
-            else
-                labelCellPhone.Visible = false;
-
-            // Fax
-            if (!string.IsNullOrWhiteSpace (employee.Fax))
-                labelFax.Text = string.Format (Localization.GetString ("Fax.Format", LocalResourceFile), employee.Fax);
-            else
-                labelFax.Visible = false;
-
-            // Messenger
-            if (!string.IsNullOrWhiteSpace (employee.Messenger))
-                labelMessenger.Text = employee.Messenger;
-            else
-                labelMessenger.Visible = false;
-
-            // Working place and Hours
-            var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
-            if (!string.IsNullOrWhiteSpace (workingPlaceAndHours))
-                labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
-            else
-                labelWorkingPlaceAndHours.Visible = false;
-
-            // WebSite
-            if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
-                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
-            }
-            else {
-                linkWebSite.Visible = false;
-            }
-
-            // Email
-            if (!string.IsNullOrWhiteSpace (employee.Email)) {
-                linkEmail.NavigateUrl = "mailto:" + employee.Email;
-                linkEmail.Text = employee.Email;
-            }
-            else
-                linkEmail.Visible = false;
-
-            // Secondary email
-            if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail)) {
-                linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
-                linkSecondaryEmail.Text = employee.SecondaryEmail;
-            }
-            else
-                linkSecondaryEmail.Visible = false;
-
-            // Profile link
-            if (!TypeUtils.IsNull<int> (employee.UserID))
-                linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
-            else
-                linkUserProfile.Visible = false;
+            Experience (employee);
+            Disciplines (employee);
 
             // about
             if (!string.IsNullOrWhiteSpace (employee.Biography))
@@ -389,10 +333,81 @@ namespace R7.University.Employee
                 // hide entire About tab
                 tabAbout.Visible = false;
             }
-			
-            Experience (employee);
-            Disciplines (employee);
-            Barcode (employee);
+        }
+
+        void BindContacts (IEmployee employee)
+        {
+            var displayContacts = false;
+
+            if (!string.IsNullOrWhiteSpace (employee.Phone)) {
+                labelPhone.Text = employee.Phone;
+                displayContacts = true;
+            }
+            else
+                labelPhone.Visible = false;
+
+            if (!string.IsNullOrWhiteSpace (employee.CellPhone)) {
+                labelCellPhone.Text = employee.CellPhone;
+                displayContacts = true;
+            }
+            else
+                labelCellPhone.Visible = false;
+
+            if (!string.IsNullOrWhiteSpace (employee.Fax)) {
+                labelFax.Text = string.Format (Localization.GetString ("Fax.Format", LocalResourceFile), employee.Fax);
+                displayContacts = true;
+            }
+            else
+                labelFax.Visible = false;
+
+            if (!string.IsNullOrWhiteSpace (employee.Messenger)) {
+                displayContacts = true;
+                labelMessenger.Text = employee.Messenger;
+            }
+            else
+                labelMessenger.Visible = false;
+
+            if (!string.IsNullOrWhiteSpace (employee.Email)) {
+                linkEmail.NavigateUrl = "mailto:" + employee.Email;
+                linkEmail.Text = employee.Email;
+                displayContacts = true;
+            }
+            else
+                linkEmail.Visible = false;
+
+            if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail)) {
+                linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
+                linkSecondaryEmail.Text = employee.SecondaryEmail;
+                displayContacts = true;
+            }
+            else
+                linkSecondaryEmail.Visible = false;
+
+            if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
+                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
+                displayContacts = true;
+            }
+            else {
+                linkWebSite.Visible = false;
+            }
+
+            if (!TypeUtils.IsNull<int> (employee.UserID)) {
+                linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
+                displayContacts = true;
+            }
+            else
+                linkUserProfile.Visible = false;
+
+            var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            if (!string.IsNullOrWhiteSpace (workingPlaceAndHours)) {
+                labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
+                displayContacts = true;
+            }
+            else
+                labelWorkingPlaceAndHours.Visible = false;
+
+            panelContacts.Visible = displayContacts;
         }
 
         void Disciplines (EmployeeInfo employee)

@@ -43,24 +43,26 @@
             				<FooterTemplate></ul></FooterTemplate>
             			</asp:Repeater>
 				    </asp:Panel>
-        			<div class="_section">
-    					<label class="u8y-label-contacts"><%: LocalizeString ("Contacts.Text") %></label>
-        				<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
-        				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
-        				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
-                        <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" Target="_blank" CssClass="_userprofile more" />
-        			</div>
-                    <div class="_section">
-        				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
-        			</div>
-        			<div class="_section">
-        				<asp:Label id="labelPhone" runat="server" CssClass="_label" />
-        				<asp:Label id="labelFax" runat="server" CssClass="_label" />
-        				<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
-        			</div>
-                    <div class="_section">
-        				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
-        			</div>
+					<asp:Panel id="panelContacts" runat="server" CssClass="_section">
+						<label class="u8y-label-contacts"><%: LocalizeString ("Contacts.Text") %></label>
+            			<div class="_section">
+        					<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
+            				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
+            				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
+                            <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" Target="_blank" CssClass="_userprofile more" />
+            			</div>
+                        <div class="_section">
+            				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
+            			</div>
+            			<div class="_section">
+            				<asp:Label id="labelPhone" runat="server" CssClass="_label" />
+            				<asp:Label id="labelFax" runat="server" CssClass="_label" />
+            				<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
+            			</div>
+                        <div class="_section">
+            				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
+            			</div>
+					</asp:Panel>
         		</div>
         		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">	
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />

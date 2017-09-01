@@ -36,5 +36,6 @@ namespace R7.University.Employee
         protected HtmlControl tabAchievements;
         protected HtmlControl tabExperience;
         protected Panel panelPositions;
+        protected Panel panelContacts;
     }
 }
