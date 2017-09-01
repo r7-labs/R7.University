@@ -117,7 +117,7 @@
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />
 </asp:Panel>
 <div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%= ModuleId %>"></div>
-<div class="dialog-employee-barcode" id="dialog-employee-barcode-<%= ModuleId %>">
+<div class="dialog-employee-barcode" id="dialog-employee-barcode-<%= ModuleId %>" style="display:none">
     <asp:Image id="imageBarcode" runat="server" Style="margin-top:10px" />
     <asp:Label runat="server" resourcekey="BarcodeScan.Text" 
         CssClass="dnnFormMessage" Style="margin-top:10px;margin-bottom:0" />
