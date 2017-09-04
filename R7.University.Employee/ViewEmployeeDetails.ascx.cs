@@ -432,8 +432,8 @@ namespace R7.University.Employee
         void BindBarcode (EmployeeInfo employee)
         {
             if (employee.ShowBarcode) {
-                linkBarcode.Attributes.Add ("data-module-id", ModuleId.ToString ());
-                linkBarcode.Attributes.Add ("data-dialog-title", employee.FullName);
+                labelBarcodeEmployeeName.Text = employee.FullName;
+                linkBarcode.Attributes.Add ("data-target", "#employee-barcode-dialog-" + ModuleId);
 
                 // barcode image
                 var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;

@@ -69,3 +69,5 @@
 .u8y-employee-details table.grid-achievements,
 .u8y-employee-details table.grid-experience,
 .u8y-employee-details table.grid-disciplines { font-size:85% }
+
+.u8y-employee-details .btn-barcode { margin-top:8px }

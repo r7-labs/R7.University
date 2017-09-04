@@ -37,5 +37,6 @@ namespace R7.University.Employee
         protected HtmlControl tabExperience;
         protected Panel panelPositions;
         protected Panel panelContacts;
+        protected Label labelBarcodeEmployeeName;
     }
 }

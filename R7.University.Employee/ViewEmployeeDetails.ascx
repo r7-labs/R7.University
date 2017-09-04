@@ -14,8 +14,8 @@
     <div class="media">
 		<div class="media-left media-top">
     	    <asp:Image id="imagePhoto" runat="server" CssClass="img-rounded" />
-			<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action"
-			    CssClass="btn btn-sm btn-default btn-block" onclick="showEmployeeBarcodeDialog(this)" />
+			<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
+			    CssClass="btn btn-default btn-sm btn-block btn-barcode" data-toggle="modal" />
 		</div>	
     	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
             <asp:Literal id="literalFullName" runat="server" />
@@ -126,9 +126,19 @@
     </ul>
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />
 </asp:Panel>
-<div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%= ModuleId %>"></div>
-<div class="dialog-employee-barcode" id="dialog-employee-barcode-<%= ModuleId %>" style="display:none">
-    <asp:Image id="imageBarcode" runat="server" Style="margin-top:10px" />
-    <asp:Label runat="server" resourcekey="BarcodeScan.Text" 
-        CssClass="dnnFormMessage" Style="margin-top:10px;margin-bottom:0" />
+<div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%: ModuleId %>"></div>
+
+<div id="employee-barcode-dialog-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="employee-barcode-dialog-title-<%: ModuleId %>">
+    <div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+	        <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
+				<h4 id="employee-barcode-dialog-title-<%: ModuleId %>" class="modal-title"><asp:Label id="labelBarcodeEmployeeName" runat="server" /></h4>
+			</div>
+			<div class="modal-body">
+				<p><asp:Label runat="server" resourcekey="BarcodeScan.Text" /></p>
+				<asp:Image id="imageBarcode" runat="server" CssClass="center-block" />
+			</div>
+        </div>	
+	</div>	
 </div>
