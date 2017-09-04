@@ -403,7 +403,40 @@
                 <br />
             </div>
         </asp:View>
-        <asp:View id="viewEduForms" runat="server">
+		<asp:View id="viewEduProgramDivisions" runat="server">
+            <div id="eduprogram-divisions" style="overflow:auto">
+                <asp:GridView id="gridEduProgramDivisions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None" 
+                    OnSorting="gridView_Sorting" 
+                    OnPageIndexChanging="gridView_PageIndexChanging"
+                    OnRowDataBound="gridView_RowDataBound">
+                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                    <SelectedRowStyle CssClass="dnnFormError" />
+                    <EditRowStyle CssClass="dnnFormInput" />
+                    <FooterStyle CssClass="dnnGridFooter" />
+                    <PagerStyle CssClass="dnnGridPager" />
+                    <Columns>
+                        <asp:TemplateField>
+                           <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
+                                </asp:HyperLink>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="EduProgramDivisionId" SortExpression="EduProgramDivisionId" HeaderText="EduProgramDivisionId" />
+						<asp:BoundField DataField="DivisionId" SortExpression="DivisionId" HeaderText="DivisionId" />
+                        <asp:BoundField DataField="EduProgramId" SortExpression="EduProgramId" HeaderText="EduProgramId" />
+						<asp:BoundField DataField="EduProgramProfileId" SortExpression="EduProgramProfileId" HeaderText="EduProgramProfileId" />
+						<asp:BoundField DataField="DivisionRole" SortExpression="DivisionRole" HeaderText="DivisionRole" />
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" Visible="true" />
+                </asp:GridView>
+                <br />
+            </div>
+        </asp:View>
+	    <asp:View id="viewEduForms" runat="server">
             <div id="eduforms" style="overflow:auto">
                 <asp:GridView id="gridEduForms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None" 

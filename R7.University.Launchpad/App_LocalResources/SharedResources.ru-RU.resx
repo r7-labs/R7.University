@@ -51,4 +51,7 @@
     <data name="DocumentTypes.Text" xml:space="preserve">
         <value>Типы документов</value>
     </data>
+	<data name="EduProgramDivisions.Text" xml:space="preserve">
+        <value>Подразделения обр. программы</value>
+    </data>
 </root>

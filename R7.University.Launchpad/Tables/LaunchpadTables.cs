@@ -40,7 +40,8 @@ namespace R7.University.Launchpad
             new EduProgramProfilesTable (),
             new DocumentTypesTable (),
             new DocumentsTable (),
-            new EduFormsTable ()
+            new EduFormsTable (),
+            new EduProgramDivisionsTable ()
         };
 
         public List<string> TableNames
