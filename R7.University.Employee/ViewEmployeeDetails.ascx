@@ -110,17 +110,17 @@
     	</div>
     </div>
     <ul class="dnnActions dnnClear">
+		<li>
+            <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default" Visible="false">
+                <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <%: LocalizeString ("cmdEdit") %>
+            </asp:HyperLink>
+        </li>
         <li>
-			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-default">
+			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-link">
 			    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
 				<%: LocalizeString ("Close.Text") %>
 			</asp:HyperLink>
-		</li>
-        <li>
-			<asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default" Visible="false">
-				<span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
-				<%: LocalizeString ("cmdEdit") %>
-            </asp:HyperLink>
 		</li>
     </ul>
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />
