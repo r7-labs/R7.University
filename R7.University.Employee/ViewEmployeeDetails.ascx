@@ -8,7 +8,6 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/bootstrap/js/bootstrap.min.js" Name="bootstrap" Version="3.0.0" ForceProvider="DnnFormBottomProvider" />
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Employee/js/module.js" />
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="media">
@@ -126,8 +125,6 @@
     </ul>
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />
 </asp:Panel>
-<div class="dialog-employee-achievement-description" id="dialog-employee-achievement-description-<%: ModuleId %>"></div>
-
 <div id="employee-barcode-dialog-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="employee-barcode-dialog-title-<%: ModuleId %>">
     <div class="modal-dialog modal-sm" role="document">
 	    <div class="modal-content">

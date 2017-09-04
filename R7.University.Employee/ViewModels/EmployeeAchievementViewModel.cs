@@ -50,11 +50,9 @@ namespace R7.University.Employee.ViewModels
         {
             get { 
                 if (!string.IsNullOrWhiteSpace (Description)) {
-                    return string.Format ("<a data-module-id=\"{2}\" "
-                        + "data-description=\"{1}\" "
-                        + "data-dialog-title=\"{0}\" "
-                        + "onclick=\"showEmployeeAchievementDescriptionDialog(this)\">{0}</a>", 
-                        HttpUtility.HtmlEncode (Title_String), HttpUtility.HtmlEncode (Description), Context.Module.ModuleId);
+                    var title = HttpUtility.HtmlEncode (Title_String);
+                    return $"<a role=\"button\" tabindex=\"0\" data-toggle=\"popover\" data-trigger=\"focus\" title=\"{title}\" "
+                        + $"data-content=\"{HttpUtility.HtmlEncode (Description)}\">{title}</a>";
                 }
 
                 return HttpUtility.HtmlEncode (Title_String);

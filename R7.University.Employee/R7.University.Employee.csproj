@@ -75,7 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="js\" />
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
     <Folder Include="SharedLogic\" />
@@ -89,7 +88,6 @@
     <Content Include="ViewEmployeeDetails.ascx" />
     <Content Include="EditEmployee.ascx" />
     <Content Include="admin.css" />
-    <Content Include="js\module.js" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
