@@ -10,8 +10,7 @@
 <asp:Panel id="panelEditDocuments" runat="server" CssClass="u8y-edit-documents">
     <fieldset>
 		<div class="dnnFormItem" style="width:auto;margin-right:1.5em">
-            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" 
-                    CssClass="dnnGrid" GridLines="None" Style="width:100%;margin-bottom:30px">
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid u8y-gaf-grid" GridLines="None">
                 <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
                 <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -22,7 +21,7 @@
                 <Columns>
                     <asp:TemplateField>
                        <ItemTemplate>
-                            <span style="white-space:nowrap">
+                            <span class="u8y-gaf-actions">
                                 <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
                                 </asp:LinkButton>

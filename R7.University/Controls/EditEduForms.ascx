@@ -6,11 +6,10 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/gridAndForm.js" ForceProvider="DnnFormBottomProvider" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editEduForms.js" ForceProvider="DnnFormBottomProvider" />
-<div class="dnnForm dnnClear university-edit-eduforms">
+<div class="dnnForm dnnClear u8y-edit-eduforms">
     <fieldset>
         <div class="dnnFormItem">
-            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                GridLines="None" Style="width:100%;margin-bottom:30px">
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid u8y-gaf-grid" GridLines="None">
                 <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                 <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -21,7 +20,7 @@
                 <Columns>
                     <asp:TemplateField>
                        <ItemTemplate>
-                            <span style="white-space:nowrap">
+                            <span class="u8y-gaf-actions">
                                 <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
                                 </asp:LinkButton>

@@ -5,11 +5,10 @@
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
-<div class="dnnForm dnnClear u8y-edit-divisions">
+<div class="dnnForm dnnClear u8y-edit-positions">
     <fieldset>
         <div class="dnnFormItem">
-            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                GridLines="None" Style="width:100%;margin-bottom:30px">
+            <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid u8y-gaf-grid" GridLines="None">
                 <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                 <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
                 <AlternatingRowStyle CssClass="dnnGridAltItem" />
@@ -20,7 +19,7 @@
                 <Columns>
                     <asp:TemplateField>
                        <ItemTemplate>
-                            <span style="white-space:nowrap">
+                            <span class="u8y-gaf-actions">
                                 <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" >
                                     <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
                                 </asp:LinkButton>
