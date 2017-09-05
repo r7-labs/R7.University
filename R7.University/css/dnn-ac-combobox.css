@@ -61,3 +61,13 @@
 .dnn-ac-combobox.aspNetDisabled * {
     cursor:not-allowed;
 }
+
+/* HACK: Cannot use jQuery UI icons */
+.dnn-ac-combobox .ui-button .ui-button-text {
+    display:block;
+    width:16px;
+    height:16px;
+    background-image: url("/images/dnnSpinnerDownArrow.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}

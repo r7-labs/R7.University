@@ -57,8 +57,7 @@ function dnnAcCombobox_Init ($) {
                 // .attr("title", "Show All Items")
                 // .tooltip()
                 .appendTo(this.wrapper)
-                .button({ label: "&#9207;" })
-                .removeClass("ui-corner-all")
+                .button().removeClass("ui-corner-all")
                 .addClass("ui-corner-right dnnSecondaryAction dnn-ac-combobox-toggle")
                 .mousedown(function() {
                     wasOpen = input.autocomplete("widget").is(":visible");
