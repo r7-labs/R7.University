@@ -40,7 +40,7 @@
                     <asp:BoundField DataField="LocalizedType" HeaderText="DocumentType" />
                     <asp:BoundField DataField="Title" HeaderText="DocumentTitle" />
                     <asp:BoundField DataField="Group" HeaderText="DocumentGroup" />
-                    <asp:BoundField DataField="FileName" HeaderText="DocumentFileName" />
+                    <asp:BoundField DataField="FileNameWithPathRaw" HeaderText="DocumentFileName" HtmlEncode="false" />
                     <asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex" />
                     <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate" DataFormatString="{0:d}" />
                     <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate" DataFormatString="{0:d}" />

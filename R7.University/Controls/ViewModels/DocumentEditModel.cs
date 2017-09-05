@@ -129,12 +129,14 @@ namespace R7.University.Controls
         }
 
         [JsonIgnore]
-        public string FileName
+        public string FileNameWithPathRaw
         {
             get {
                 if (Globals.GetURLType (Url) == TabType.File) {
                     var file = FileManager.Instance.GetFile (int.Parse (Url.ToUpperInvariant ().Replace ("FILEID=","")));
-                    return (file != null) ? file.FileName : string.Empty;
+                    if (file != null) {
+                        return $"<span title=\"{file.RelativePath}\">{file.FileName}</span>";
+                    }
                 }
 
                 return string.Empty;
