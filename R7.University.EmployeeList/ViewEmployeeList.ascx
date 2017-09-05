@@ -14,7 +14,7 @@
 		</div>	
 		<div class="media-body">
 			<asp:HyperLink id="linkEdit" runat="server" CssClass="_editlink">
-				<asp:Image id="imageEdit" runat="server" ImageUrl="<%# EditIconUrl %>" AlternateText="Edit" ResourceKey="Edit" />
+				<asp:Image id="imageEdit" runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" AlternateText="Edit" ResourceKey="Edit" />
 			</asp:HyperLink>
 			<asp:HyperLink id="linkFullName" runat="server" CssClass="_fullname" />
 			<asp:Label id="labelAcademicDegreeAndTitle" runat="server" />

@@ -23,7 +23,6 @@ using System;
 using System.Data;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
@@ -38,11 +37,6 @@ namespace R7.University.Launchpad
     public partial class ViewLaunchpad : PortalModuleBase<LaunchpadSettings>, IActionable
     {
         #region Properties
-
-        protected string EditIconUrl
-        {
-            get { return IconController.IconURL ("Edit"); }
-        }
 
         protected LaunchpadTables Tables = new LaunchpadTables ();
 

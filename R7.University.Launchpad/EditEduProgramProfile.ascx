@@ -39,7 +39,7 @@
                         DataTextField="Text" />
                     <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
                         OnClick="linkEditEduProgram_Click" CssClass="edit-button-right">
-                        <img src="<%= DotNetNuke.Entities.Icons.IconController.IconURL ("Edit") %>" />
+                        <img src="<%= R7.University.Components.UniversityIcons.Edit %>" />
                     </asp:LinkButton>
                 </div>
                 <div class="dnnFormItem">

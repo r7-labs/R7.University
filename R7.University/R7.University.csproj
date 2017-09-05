@@ -263,6 +263,7 @@
     <Compile Include="Controls\EditPositions.controls.ascx.cs">
       <DependentUpon>EditPositions.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Components\UniversityIcons.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

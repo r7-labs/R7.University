@@ -22,10 +22,10 @@
 using System;
 using System.Data;
 using System.Web.UI.WebControls;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
+using R7.University.Components;
 using R7.University.Models;
 
 namespace R7.University.Launchpad
@@ -102,7 +102,7 @@ namespace R7.University.Launchpad
                 EditControlKey.Replace ("edit", "Add "),
                 ModuleActionType.AddContent,
                 "",
-                IconController.IconURL ("Add"),
+                UniversityIcons.Add,
                 module.EditUrl (EditControlKey),
                 "",
                 false, 

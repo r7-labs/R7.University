@@ -35,6 +35,7 @@ using R7.University.ControlExtensions;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
+using R7.University.Components;
 
 namespace R7.University.Controls
 {
@@ -84,17 +85,17 @@ namespace R7.University.Controls
 
         protected string EditIconUrl
         {
-            get { return IconController.IconURL ("Edit"); }
+            get { return UniversityIcons.Edit; }
         }
 
         protected string DeleteIconUrl
         {
-            get { return IconController.IconURL ("Delete"); }
+            get { return UniversityIcons.Delete;  }
         }
 
         protected string UndeleteIconUrl
         {
-            get { return "~/DesktopModules/MVC/R7.University/R7.University/images/Rollback_16x16_Standard.png"; }
+            get { return UniversityIcons.Rollback; }
         }
 
         #endregion

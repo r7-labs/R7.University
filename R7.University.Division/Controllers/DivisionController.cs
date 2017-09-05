@@ -1,4 +1,4 @@
-﻿//
+//
 //  DivisionController.cs
 //
 //  Author:
@@ -91,7 +91,7 @@ namespace R7.University.Division.Controllers
                 LocalizeString ("AddDivision.Action"),
                 ModuleActionType.AddContent,
                 "",
-                IconController.IconURL ("Add"),
+                UniversityIcons.Add,
                 ModuleContext.EditUrl ("EditDivision"),
                 false,
                 SecurityAccessLevel.Edit,
@@ -104,7 +104,7 @@ namespace R7.University.Division.Controllers
                 LocalizeString ("EditDivision.Action"),
                 ModuleActionType.EditContent,
                 "",
-                IconController.IconURL ("Edit"),
+                UniversityIcons.Edit,
                 ModuleContext.EditUrl ("division_id", Settings.DivisionID.ToString (), "EditDivision"),
                 false,
                 SecurityAccessLevel.Edit,

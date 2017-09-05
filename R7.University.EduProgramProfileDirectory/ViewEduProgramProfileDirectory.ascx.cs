@@ -26,7 +26,6 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -70,11 +69,6 @@ namespace R7.University.EduProgramProfileDirectory
         #endregion
 
         #region Properties
-
-        protected string EditIconUrl
-        {
-            get { return IconController.IconURL ("Edit"); }
-        }
 
         ViewModelContext<EduProgramProfileDirectorySettings> viewModelContext;
         protected ViewModelContext<EduProgramProfileDirectorySettings> ViewModelContext
@@ -155,7 +149,7 @@ namespace R7.University.EduProgramProfileDirectory
                     LocalizeString ("AddEduProgramProfile.Action"),
                     ModuleActionType.AddContent, 
                     "", 
-                    IconController.IconURL ("Add"), 
+                    UniversityIcons.Add,
                     EditUrl ("EditEduProgramProfile"),
                     false, 
                     SecurityAccessLevel.Edit,
@@ -281,7 +275,7 @@ namespace R7.University.EduProgramProfileDirectory
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id", 
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
-                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                    iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
                 if (!eduProgramProfile.IsPublished (now)) {
@@ -372,7 +366,7 @@ namespace R7.University.EduProgramProfileDirectory
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id", 
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
-                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                    iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
                 if (!eduProgramProfile.IsPublished (now)) {

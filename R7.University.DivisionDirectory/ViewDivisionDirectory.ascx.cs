@@ -25,7 +25,6 @@ using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -36,6 +35,7 @@ using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.DivisionDirectory.Models;
 using R7.University.DivisionDirectory.Queries;
@@ -129,7 +129,7 @@ namespace R7.University.DivisionDirectory
                     LocalizeString ("AddDivision.Action"),
                     ModuleActionType.AddContent,
                     "",
-                    IconController.IconURL ("Add"),
+                    UniversityIcons.Add,
                     EditUrl ("EditDivision"),
                     false,
                     SecurityAccessLevel.Edit,
@@ -317,7 +317,7 @@ namespace R7.University.DivisionDirectory
 
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("division_id", division.DivisionID.ToString (), "EditDivision");
-                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                    iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
                 if (!division.IsPublished (now)) {
@@ -409,7 +409,7 @@ namespace R7.University.DivisionDirectory
 
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("division_id", division.DivisionID.ToString (), "EditDivision");
-                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                    iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
                 #region Head Employee

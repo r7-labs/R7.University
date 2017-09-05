@@ -24,7 +24,6 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.Caching;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -162,7 +161,7 @@ namespace R7.University.EduProgram
                     LocalizeString ("AddEduProgram.Action"),
                     ModuleActionType.AddContent, 
                     "", 
-                    IconController.IconURL ("Add"), 
+                    UniversityIcons.Add,
                     EditUrl ("EditEduProgram"),
                     false, 
                     SecurityAccessLevel.Edit,
@@ -175,7 +174,7 @@ namespace R7.University.EduProgram
                     LocalizeString ("EditEduProgram.Action"),
                     ModuleActionType.EditContent, 
                     "", 
-                    IconController.IconURL ("Edit"), 
+                    UniversityIcons.Edit,
                     EditUrl ("eduprogram_id", Settings.EduProgramId.ToString (), "EditEduProgram"),
                     false, 
                     SecurityAccessLevel.Edit,

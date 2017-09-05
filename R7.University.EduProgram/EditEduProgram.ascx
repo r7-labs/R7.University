@@ -72,7 +72,7 @@
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:HyperLink runat="server" IconKey="Edit" NavigateUrl='<%# Eval ("Edit_Url") %>' />
+                                    <asp:HyperLink runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" NavigateUrl='<%# Eval ("Edit_Url") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />

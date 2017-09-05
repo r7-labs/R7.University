@@ -24,7 +24,6 @@ using System.IO;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
@@ -97,16 +96,6 @@ namespace R7.University.Employee
                 return (obj != null) ? (EditEmployeeTab) obj : EditEmployeeTab.Common;
             }
             set { ViewState ["SelectedTab"] = value; }
-        }
-
-        protected string EditIconUrl
-        {
-            get { return IconController.IconURL ("Edit"); }
-        }
-
-        protected string DeleteIconUrl
-        {
-            get { return IconController.IconURL ("Delete"); }
         }
 
         ViewModelContext viewModelContext;

@@ -26,7 +26,6 @@ using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -72,11 +71,6 @@ namespace R7.University.EmployeeList
         #endregion
 
         #region Properties
-
-        protected string EditIconUrl
-        {
-            get { return IconController.IconURL ("Edit"); }
-        }
 
         ViewModelContext<EmployeeListSettings> viewModelContext;
         protected ViewModelContext<EmployeeListSettings> ViewModelContext
@@ -175,7 +169,7 @@ namespace R7.University.EmployeeList
                     LocalizeString ("AddEmployee.Action"),
                     ModuleActionType.AddContent,
                     "", 
-                    IconController.IconURL ("Add"),
+                    UniversityIcons.Add,
                     Null.IsNull (Settings.DivisionID) ?
                         EditUrl ("EditEmployee")
                         // pass division_id to select division in which to add employee

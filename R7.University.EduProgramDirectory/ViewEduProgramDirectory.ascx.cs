@@ -40,6 +40,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
 using R7.University.ViewModels;
+using R7.University.Components;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -65,11 +66,6 @@ namespace R7.University.EduProgramDirectory
         #endregion
 
         #region Properties
-
-        protected string EditIconUrl
-        {
-            get { return IconController.IconURL ("Edit"); }
-        }
 
         ViewModelContext viewModelContext;
         protected ViewModelContext ViewModelContext
@@ -155,7 +151,7 @@ namespace R7.University.EduProgramDirectory
                     LocalizeString ("AddEduProgram.Action"),
                     ModuleActionType.AddContent, 
                     "", 
-                    IconController.IconURL ("Add"),
+                    UniversityIcons.Add,
                     EditUrl ("EditEduProgram"),
                     false, 
                     SecurityAccessLevel.Edit,
@@ -206,7 +202,7 @@ namespace R7.University.EduProgramDirectory
                         "eduprogram_id",
                         eduProgram.EduProgramID.ToString (),
                         "EditEduProgram");
-                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                    iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
                 if (!eduProgram.IsPublished (now)) {

@@ -25,7 +25,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -131,7 +130,7 @@ namespace R7.University.EmployeeDirectory
                     LocalizeString ("AddEmployee.Action"),
                     ModuleActionType.AddContent,
                     "",
-                    IconController.IconURL ("Add"),
+                    UniversityIcons.Add,
                     EditUrl ("EditEmployee"),
                     false,
                     SecurityAccessLevel.Edit,
@@ -342,7 +341,7 @@ namespace R7.University.EmployeeDirectory
 
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("employee_id", teacher.EmployeeID.ToString (), "EditEmployee");
-                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                    iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
                 if (!teacher.IsPublished (now)) {
@@ -442,7 +441,7 @@ namespace R7.University.EmployeeDirectory
 
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EditEmployee");
-                    iconEdit.ImageUrl = IconController.IconURL ("Edit");
+                    iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
                 var name = (HyperLink) e.Row.FindControl ("linkName");
