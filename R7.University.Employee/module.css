@@ -23,13 +23,15 @@
 	text-align:center;
 }
 
-.Employee ._photo { padding-top:8px }
-
 .Employee ._email { display:inline-block }
 
 .Employee ._userprofile { text-align:right }
 
 .Employee ._fullname { font-style:italic; }
+
+/* Shared styles */
+
+.Employee, .u8y-employee-details { padding-top:.5em }
 
 /* Employee details styles */
 

@@ -1,4 +1,9 @@
-﻿.u8y-employee-list { margin-bottom:1em }
+﻿.u8y-employee-list {
+    display:block;
+    padding-top:.5em;
+    margin-bottom:1em
+}
+
 .u8y-employee-list ._nonpublished { background-color:#ffc }
 .u8y-employee-list ._editlink { margin-right:4px }
 .u8y-employee-list ._fullname { font-style:italic }
