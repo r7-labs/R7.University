@@ -397,6 +397,7 @@
     <None Include="Controls\App_LocalResources\EditPositions.ascx.ru-RU.resx">
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
+    <None Include="images\Rollback_16x16_Gray.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

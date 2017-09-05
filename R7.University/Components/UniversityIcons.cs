@@ -29,10 +29,10 @@ namespace R7.University.Components
 
         public static readonly string Add = IconController.IconURL ("Add");
 
-        public static readonly string Delete = IconController.IconURL ("Delete");
+        public static readonly string Delete = IconController.IconURL ("Delete", IconController.DefaultIconSize, "PermissionGrid");
 
         public static readonly string Details = IconController.IconURL ("View");
 
-        public static readonly string Rollback = "~/DesktopModules/MVC/R7.University/R7.University/images/Rollback_16x16_Standard.png";
+        public static readonly string Rollback = "~/DesktopModules/MVC/R7.University/R7.University/images/Rollback_16x16_Gray.png";
     }
 }
