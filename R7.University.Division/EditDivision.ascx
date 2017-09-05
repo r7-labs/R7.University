@@ -24,9 +24,12 @@
         </ul>
         <div id="division-common-tab">
         	<fieldset>	
-        		<div class="dnnFormItem">
+        		<div class="dnnFormItem dnnFormRequired">
         			<dnn:Label id="lblTitle" runat="server" ControlName="txtTitle" />
         			<asp:TextBox id="txtTitle" runat="server" MaxLength="128" />
+					<asp:RequiredFieldValidator runat="server" resourcekey="Title.Required" 
+						ControlToValidate="txtTitle" Display="Dynamic"
+                        CssClass="dnnFormMessage dnnFormError" />
         		</div>
         		<div class="dnnFormItem">
         			<dnn:Label id="lblShortTitle" runat="server" ControlName="txtShortTitle" />

@@ -24,6 +24,9 @@
 	<data name="lblTitle.Help" xml:space="preserve">
         <value>Введите наименование подразделения.</value>
     </data>
+	<data name="Title.Required" xml:space="preserve">
+        <value>Введите наименование подразделения.</value>
+    </data>
 	<data name="lblShortTitle.Text" xml:space="preserve">
         <value>Краткое имя:</value>
     </data>

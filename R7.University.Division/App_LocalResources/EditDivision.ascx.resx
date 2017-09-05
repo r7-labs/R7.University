@@ -24,6 +24,9 @@
 	<data name="lblTitle.Help" xml:space="preserve">
         <value>Enter a title for division.</value>
     </data>
+	<data name="Title.Required" xml:space="preserve">
+        <value>Division's title is required.</value>
+    </data>
 	<data name="lblShortTitle.Text" xml:space="preserve">
         <value>Short Title:</value>
     </data>
