@@ -360,7 +360,7 @@ namespace R7.University.EduProgramProfileDirectory
 
                 e.Row.Attributes.Add ("data-title", FormatHelper.FormatEduProgramProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
-                    eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle)
+                    eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle) + ": " + eduProgramProfile.EduLevel.Title
                 );
 
                 if (IsEditable) {
