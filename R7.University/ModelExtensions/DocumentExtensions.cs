@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -48,6 +50,16 @@ namespace R7.University.ModelExtensions
             else {
                 throw new ArgumentException ($"Wrong modelType={modelType} argument.");
             }
+        }
+
+        public static IEnumerable<IDocument> WherePublished (this IEnumerable<IDocument> documents, DateTime now, bool isEditable)
+        {
+            return documents.Where (d => isEditable || d.IsPublished (now));
+        }
+
+        public static IEnumerable<IDocument> OrderByGroupDescThenSortIndex (this IEnumerable<IDocument> documents)
+        {
+            return documents.OrderByDescending (d => d.Group, DocumentGroupComparer.Instance).ThenBy (d => d.SortIndex);
         }
     }
 }

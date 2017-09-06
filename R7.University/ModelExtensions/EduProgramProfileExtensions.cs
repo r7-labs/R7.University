@@ -28,6 +28,7 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileExtensions
     {
+        // TODO: Extend IDocument instead, rename to WhereDocumentType
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
         {
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);

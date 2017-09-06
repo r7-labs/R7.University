@@ -264,6 +264,7 @@
       <DependentUpon>EditPositions.ascx</DependentUpon>
     </Compile>
     <Compile Include="Components\UniversityIcons.cs" />
+    <Compile Include="Models\DocumentGroupComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

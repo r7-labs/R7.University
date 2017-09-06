@@ -131,11 +131,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
         {
-            var now = HttpContext.Current.Timestamp;
-            return documents
-                .Where (d => Context.Module.IsEditable || d.IsPublished (now))
-                .OrderBy (d => d.Group)
-                .ThenBy (d => d.SortIndex);
+            return documents.WherePublished (HttpContext.Current.Timestamp, Context.Module.IsEditable).OrderByGroupDescThenSortIndex ();
         }
 
         string _rowId;

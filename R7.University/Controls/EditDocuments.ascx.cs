@@ -138,7 +138,7 @@ namespace R7.University.Controls
         public override void SetData (IEnumerable<DocumentInfo> items, int targetItemId)
         {
             base.SetData (
-                items.OrderBy (d => d.Group)
+                items.OrderByDescending (d => d.Group, DocumentGroupComparer.Instance)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
                 , targetItemId
