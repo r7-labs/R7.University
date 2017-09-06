@@ -154,11 +154,11 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         {
             var docCount = documents.Count ();
             if (docCount > 0) {
-                var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText))? "[" + docCount + "]" : string.Empty;
+                var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText))? " [" + docCount + "]" : string.Empty;
                 var table = new StringBuilder (
                     $"<span{microdata}>"
                   + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
-                    + $" data-table=\"doct-{RowId}-{columnSlug}\">{linkText}{docCountText}</a>"
+                    + $" data-table=\"doct-{RowId}-{columnSlug}\">{linkText}{docCountText.TrimStart ()}</a>"
                   + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
                   + $"<thead><tr><th>{GroupColumnHeader}</th>"
                   + $"<th>{TitleColumnHeader}</th></tr></thead><tbody>"
