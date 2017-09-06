@@ -163,7 +163,8 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 foreach (var document in documents) {
                     var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
                     var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId); 
-                    table.Append ($"<tr><td>{document.Group}</td><td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td></tr>");
+                    var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp)? " class=\"u8y-not-published\"" : string.Empty;
+                    table.Append ($"<tr{rowCssClassAttr}><td>{document.Group}</td><td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td></tr>");
                 }
 
                 table.Append ("</tbody></table></span>");
