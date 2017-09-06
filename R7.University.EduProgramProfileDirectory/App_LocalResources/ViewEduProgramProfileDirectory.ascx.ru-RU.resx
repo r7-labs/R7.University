@@ -76,7 +76,7 @@
         <value>Информация о результатах перевода, восстановления и отчисления</value>
     </data>
 	<data name="DocumentGroup.Column" xml:space="preserve">
-        <value>Год начала освоения</value>
+        <value>Группа документов</value>
     </data>
     <data name="DocumentTitle.Column" xml:space="preserve">
         <value>Документ</value>
