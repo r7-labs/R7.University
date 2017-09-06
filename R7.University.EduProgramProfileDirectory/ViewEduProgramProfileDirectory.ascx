@@ -71,7 +71,7 @@
     </asp:MultiView>
 	<controls:AgplSignature runat="server" />
 	<div id="eduprogram-profile-documents-dialog-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="eduprogram-profile-documents-dialog-title-<%: ModuleId %>">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
