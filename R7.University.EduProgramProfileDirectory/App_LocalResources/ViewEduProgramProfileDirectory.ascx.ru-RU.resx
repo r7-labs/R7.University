@@ -75,6 +75,12 @@
     <data name="ContingentMovement.Column" xml:space="preserve">
         <value>Информация о результатах перевода, восстановления и отчисления</value>
     </data>
+	<data name="DocumentGroup.Column" xml:space="preserve">
+        <value>Год начала освоения</value>
+    </data>
+    <data name="DocumentTitle.Column" xml:space="preserve">
+        <value>Документ</value>
+    </data>
     <data name="TimeToLearnYears1.Format" xml:space="preserve">
         <value>{0} год</value>
     </data>
@@ -103,7 +109,7 @@
         <value>{0} часов</value>
     </data>
     <data name="LinkOpen.Text" xml:space="preserve">
-        <value>открыть</value>
+        <value>[открыть]</value>
     </data>
 	<data name="UnknownLanguage.Text" xml:space="preserve">
         <value>&lt;неизвестный язык&gt;</value>

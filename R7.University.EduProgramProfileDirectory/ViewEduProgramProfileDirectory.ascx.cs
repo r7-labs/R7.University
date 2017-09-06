@@ -358,6 +358,11 @@ namespace R7.University.EduProgramProfileDirectory
             else if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgramProfile = (EduProgramProfileObrnadzorDocumentsViewModel) e.Row.DataItem;
 
+                e.Row.Attributes.Add ("data-title", FormatHelper.FormatEduProgramProfileTitle (
+                    eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
+                    eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle)
+                );
+
                 if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");

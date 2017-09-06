@@ -75,6 +75,12 @@
     <data name="ContingentMovement.Column" xml:space="preserve">
         <value>Contingent Movement</value>
     </data>
+	<data name="DocumentGroup.Column" xml:space="preserve">
+        <value>Group</value>
+    </data>
+    <data name="DocumentTitle.Column" xml:space="preserve">
+        <value>Document</value>
+    </data>
     <data name="TimeToLearnYears1.Format" xml:space="preserve">
         <value>{0} year</value>
     </data>
@@ -103,7 +109,7 @@
         <value>{0} hours</value>
     </data>
     <data name="LinkOpen.Text" xml:space="preserve">
-        <value>open</value>
+        <value>[open]</value>
     </data>
 	<data name="UnknownLanguage.Text" xml:space="preserve">
         <value>&lt;unknown language&gt;</value>

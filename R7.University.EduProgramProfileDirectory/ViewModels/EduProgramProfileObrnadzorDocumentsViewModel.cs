@@ -31,6 +31,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfileDirectory.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfileDirectory.ViewModels
@@ -136,161 +137,112 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 .OrderBy (d => d.Group)
                 .ThenBy (d => d.SortIndex);
         }
-        string GetEduProgramLinks ()
+
+        string _rowId;
+        protected string RowId => _rowId?? (_rowId = $"m{Context.Module.ModuleId}-epp{EduProgramProfileID}");
+
+        string _groupColumnHeader;
+        protected string GroupColumnHeader =>
+            _groupColumnHeader ?? (_groupColumnHeader = Localization.GetString ("DocumentGroup.Column", Context.LocalResourceFile));
+
+        string _titleColumnHeader;
+        protected string TitleColumnHeader =>
+            _titleColumnHeader ?? (_titleColumnHeader = Localization.GetString ("DocumentTitle.Column", Context.LocalResourceFile));
+
+        // TODO: Calculate initial capacity for StringBuilder?
+        string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string linkText, string columnSlug, string microdata = "")
         {
-            var eduProgramDocuments = GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduProgram));
-            if (!eduProgramDocuments.IsNullOrEmpty ()) {
-                return FormatHelper.FormatDocumentLinks (
-                    eduProgramDocuments,
-                    Context,
-                    "<li>{0}</li>",
-                    "<ul class=\"list-inline\">{0}</ul>",
-                    "<ul>{0}</ul>",
-                    "itemprop=\"OOP_main\"",
-                    DocumentGroupPlacement.AfterTitle,
-                    delegate {
-                        return FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title,
-                            ProfileCode,
-                            ProfileTitle);
-                    }
+            var docCount = documents.Count ();
+            if (docCount > 0) {
+                var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText))? "[" + docCount + "]" : string.Empty;
+                var table = new StringBuilder (
+                    $"<span{microdata}>"
+                  + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
+                    + $" data-table=\"doct-{RowId}-{columnSlug}\">{linkText}{docCountText}</a>"
+                  + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
+                  + $"<thead><tr><th>{GroupColumnHeader}</th>"
+                  + $"<th>{TitleColumnHeader}</th></tr></thead><tbody>"
                 );
+
+                foreach (var document in documents) {
+                    var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
+                    var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId); 
+                    table.Append ($"<tr><td>{document.Group}</td><td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td></tr>");
+                }
+
+                table.Append ("</tbody></table></span>");
+                return table.ToString ();
             }
 
-            // show edu. program profile title w/o link
-            return "<span itemprop=\"OOP_main\">"
-                + FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
-                + "</span>";
+            return string.Empty;
+        }
+
+        string GetEduProgramLinks ()
+        {
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
+                FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle),
+                "oop", "itemprop=\"OOP_main\""
+            );
         }
 
         string GetEduPlanLinks ()
         {
-            return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
-                                Context,
-                                "<li>{0}</li>",
-                                "<ul class=\"list-inline\">{0}</ul>",
-                                "<ul>{0}</ul>",
-                                "itemprop=\"education_plan\"",
-                                DocumentGroupPlacement.InTitle
-                            );
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
+                string.Empty, "epl", "itemprop=\"education_plan\""
+            );
         }
 
         string GetEduScheduleLinks ()
         {
-            return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
-                                Context,
-                                "<li>{0}</li>",
-                                "<ul class=\"list-inline\">{0}</ul>",
-                                "<ul>{0}</ul>",
-                                "itemprop=\"education_shedule\"",
-                                DocumentGroupPlacement.InTitle
-                            );
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
+                string.Empty, "esh", "itemprop=\"education_shedule\""
+            );
         }
 
         string GetWorkProgramAnnotationLinks ()
         {
-            return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
-                                Context,
-                                "<li>{0}</li>",
-                                "<ul class=\"list-inline\">{0}</ul>",
-                                "<ul>{0}</ul>",
-                                "itemprop=\"education_annotation\"",
-                                DocumentGroupPlacement.InTitle
-                            );
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
+                string.Empty, "wpa", "itemprop=\"education_annotation\""
+            );
         }
 
         string GetEduMaterialLinks ()
         {
-            return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
-                                Context,
-                                "<li>{0}</li>",
-                                "<ul class=\"list-inline\">{0}</ul>",
-                                "<ul>{0}</ul>",
-                                "itemprop=\"methodology\"",
-                                DocumentGroupPlacement.InTitle
-                            );
-        }
-
-        string GetContingentLinks ()
-        {
-            return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.Contingent)),
-                                Context,
-                                "<li>{0}</li>",
-                                "<ul class=\"list-inline\">{0}</ul>",
-                                "<ul>{0}</ul>",
-                                "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\"",
-                                DocumentGroupPlacement.InTitle
-                            );
-        }
-
-        string GetContingentMovementLinks ()
-        {
-            return FormatHelper.FormatDocumentLinks (
-                                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
-                                Context,
-                                "<li>{0}</li>",
-                                "<ul class=\"list-inline\">{0}</ul>",
-                                "<ul>{0}</ul>",
-                                "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\"",
-                                DocumentGroupPlacement.InTitle
-                            );
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
+                string.Empty, "met", "itemprop=\"methodology\""
+            );
         }
 
         string GetWorkProgramOfPracticeLinks ()
         {
-            var wpopDocuments = GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramOfPractice));
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramOfPractice)),
+                string.Empty, "wpp", "itemprop=\"EduPr\""
+            );
+        }
 
-            // get all groups
-            var groups = wpopDocuments
-                .Select (d => d.Group)
-                .Distinct ();
+        // TODO: Add more itemprops!
+        string GetContingentLinks ()
+        {
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.Contingent)),
+                string.Empty, "cnt", "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\""
+            );
+        }
 
-            var markupBuilder = new StringBuilder ();
-            var groupMarkupBuilder = new StringBuilder ();
-
-            var now = HttpContext.Current.Timestamp;
-
-            var groupCount = 0;
-            foreach (var group in groups) {
-                var index = 0;
-                foreach (var document in wpopDocuments.Where (d => d.Group == group)) {
-                    var linkMarkup = document.FormatDocumentLink_WithMicrodata (
-                                     null,
-                                     (++index).ToString (),
-                                     false,
-                                     DocumentGroupPlacement.None,
-                                     Context.Module.TabId,
-                                     Context.Module.ModuleId,
-                                     "itemprop=\"EduPr\"",
-                                     now
-                                 );
-
-                    if (!string.IsNullOrEmpty (linkMarkup)) {
-                        // use AppendLine to add whitespace between <a> tags
-                        groupMarkupBuilder.AppendLine (linkMarkup);
-                    }
-                }
-
-                var groupMarkup = groupMarkupBuilder.ToString ();
-                if (!string.IsNullOrEmpty (groupMarkup)) {
-                    markupBuilder.Append ("<li>" + TextUtils.FormatList (": ", group, groupMarkup) + "</li>");
-                    groupCount++;
-                }
-
-                // reuse StringBuilder
-                groupMarkupBuilder.Clear ();
-            }
-
-            var markup = markupBuilder.ToString ();
-            if (!string.IsNullOrEmpty (markup)) {
-                return ((groupCount == 1) ? "<ul class=\"list-inline\">" : "<ul>") + markup + "</ul>";
-            }
-
-            return string.Empty;
+        // TODO: Add more itemprops!
+        string GetContingentMovementLinks ()
+        {
+            return FormatDocumentsLinkWithData (
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
+                string.Empty, "cnm",
+                "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\""
+            );
         }
 
         static char [] languageCodeSeparator = { ';' };

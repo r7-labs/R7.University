@@ -70,4 +70,33 @@
         </asp:View>
     </asp:MultiView>
 	<controls:AgplSignature runat="server" />
+	<div id="eduprogram-profile-documents-dialog-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="eduprogram-profile-documents-dialog-title-<%: ModuleId %>">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
+                <h4 id="eduprogram-profile-documents-dialog-title-<%: ModuleId %>" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>  
+    </div>
 </div>
+<script type="text/javascript">
+(function($, document) {
+    function getTh (td) {
+		return td.closest("table").find ("th:nth-child(" + td.index() + ")");
+    }
+    $(document).ready(function() {
+    	$("#eduprogram-profile-documents-dialog-<%: ModuleId %>").on("show.bs.modal", function (event) {
+    		var link = $(event.relatedTarget);
+            var table = $("#" + link.data("table"));
+    		$(this).find(".modal-title").text(link.closest("tr").data("title"));
+    		$(this).find(".modal-body").html(table.clone()).find("table")
+		        .addClass("table table-striped table-bordered table-hover table-condensed small")
+		        .prepend("<caption>" + getTh(link.closest ("td")).text() + "</caption>")
+                .show();
+        });
+    });
+} (jQuery, document));
+</script>		
