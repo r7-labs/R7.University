@@ -183,13 +183,7 @@ namespace R7.University.Launchpad
 
             auditControl.Bind (epp);
 
-            // sort documents
-            var documents = epp.Documents
-                .OrderBy (d => d.Group)
-                .ThenBy (d => d.DocumentType.DocumentTypeID)
-                .ThenBy (d => d.SortIndex);
-
-            formEditDocuments.SetData (documents, epp.EduProgramProfileID);
+            formEditDocuments.SetData (epp.Documents, epp.EduProgramProfileID);
             formEditEduForms.SetData (epp.EduProgramProfileForms, epp.EduProgramProfileID);
         }
 

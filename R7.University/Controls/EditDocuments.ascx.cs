@@ -137,7 +137,12 @@ namespace R7.University.Controls
 
         public override void SetData (IEnumerable<DocumentInfo> items, int targetItemId)
         {
-            base.SetData (items, targetItemId);
+            base.SetData (
+                items.OrderBy (d => d.Group)
+                .ThenBy (d => d.DocumentType.DocumentTypeID)
+                .ThenBy (d => d.SortIndex)
+                , targetItemId
+            );
 
             // speedup adding new documents by autoselecting first document's folder
             if (items.Any ()) {

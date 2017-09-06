@@ -132,12 +132,7 @@ namespace R7.University.EduProgram
 
             auditControl.Bind (ep);
 
-            var documents = ep.Documents
-                .OrderBy (d => d.Group)
-                .ThenBy (d => d.DocumentType.DocumentTypeID)
-                .ThenBy (d => d.SortIndex);
-
-            formEditDocuments.SetData (documents, ep.EduProgramID);
+            formEditDocuments.SetData (ep.Documents, ep.EduProgramID);
 
             // setup link for adding new edu. program profile
             linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", ep.EduProgramID.ToString (), "EditEduProgramProfile");
