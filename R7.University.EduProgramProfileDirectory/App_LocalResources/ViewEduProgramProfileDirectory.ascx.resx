@@ -52,13 +52,13 @@
         <value>Accredited by Community to</value>
     </data>
     <data name="EduPlan.Column" xml:space="preserve">
-        <value>Education Plan</value>
+        <value>Education Plans</value>
     </data>
     <data name="EduSchedule.Column" xml:space="preserve">
-        <value>Education Schedule</value>
+        <value>Education Schedules</value>
     </data>
     <data name="WorkProgramAnnotation.Column" xml:space="preserve">
-        <value>Work Program Annotaion</value>
+        <value>Work Program Annotations</value>
     </data>
     <data name="Languages.Column" xml:space="preserve">
         <value>Education Languages</value>

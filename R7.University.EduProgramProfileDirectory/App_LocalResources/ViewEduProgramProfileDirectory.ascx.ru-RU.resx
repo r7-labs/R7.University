@@ -52,10 +52,10 @@
         <value>Срок действия общественно-профессиональной аккредитации образовательной программы</value>
     </data>
     <data name="EduPlan.Column" xml:space="preserve">
-        <value>Учебный план</value>
+        <value>Учебные планы</value>
     </data>
     <data name="EduSchedule.Column" xml:space="preserve">
-        <value>Календарный учебный график</value>
+        <value>Календарные учебные графики</value>
     </data>
     <data name="WorkProgramAnnotation.Column" xml:space="preserve">
         <value>Аннотации к рабочим программам дисциплин</value>
