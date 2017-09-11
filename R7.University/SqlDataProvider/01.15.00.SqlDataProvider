@@ -74,7 +74,8 @@ BEGIN
         CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_EduPrograms] FOREIGN KEY (EduProgramID)
             REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE SET NULL,
         CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_EduProgramProfiles] FOREIGN KEY (EduProgramProfileID)
-            REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramProfileID) ON DELETE SET NULL
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramProfileID) ON DELETE SET NULL,
+        CONSTRAINT [UN_{objectQualifier}University_EduProgramDivisions] UNIQUE (DivisionID, EduProgramID, EduProgramProfileID)
     )
 
     INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramDivisions] (DivisionID, EduProgramID)
