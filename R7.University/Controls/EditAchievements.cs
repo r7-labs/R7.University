@@ -72,6 +72,16 @@ namespace R7.University.Controls
             comboAchievementTypes.SelectedIndex = 0;
         }
 
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
+
+            // HACK: Fix DnnUrlControl looses its state on async postback
+            if (Page.IsPostBack) {
+                urlDocumentURL.Url = urlDocumentURL.Url;
+            }
+        }
+
         #region implemented abstract members of GridAndFormEditControlBase
 
         protected override void OnLoadItem (EmployeeAchievementEditModel item)
@@ -163,7 +173,6 @@ namespace R7.University.Controls
             textYearEnd.Text = string.Empty;
             checkIsTitle.Checked = false;
             hiddenViewItemID.Value = string.Empty;
-            urlDocumentURL.UrlType = "N";
         }
 
         #endregion

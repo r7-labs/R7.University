@@ -19,11 +19,10 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
@@ -31,14 +30,11 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
-using R7.University.ControlExtensions;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.Controls
 {
-    public partial class EditDocuments: 
-        GridAndFormControlBase<DocumentInfo,DocumentEditModel>
+    public partial class EditDocuments: GridAndFormControlBase<DocumentInfo,DocumentEditModel>
     {
         #region Control properties
 
@@ -68,6 +64,16 @@ namespace R7.University.Controls
 
             comboDocumentType.Attributes.Add ("data-validation", $"[{filenameFormats}]");
             valDocumentUrl.Attributes.Add ("data-message-template", Localization.GetString ("FileName.Invalid", LocalResourceFile));
+        }
+
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
+
+            // HACK: Fix DnnUrlControl looses its state on async postback
+            if (Page.IsPostBack) {
+                urlDocumentUrl.Url = urlDocumentUrl.Url;
+            }
         }
 
         protected DocumentTypeViewModel GetDocumentType (int? documentTypeId)
@@ -114,14 +120,6 @@ namespace R7.University.Controls
             item.Url = urlDocumentUrl.Url;
         }
 
-        protected override void OnCancelEdit (DocumentEditModel item)
-        {
-            // fix for DnnUrlControl looses its state on postback
-            urlDocumentUrl.Url = item.Url;
-
-            base.OnCancelEdit (item);
-        }
-
         protected override void OnResetForm ()
         {
             textDocumentTitle.Text = string.Empty;
@@ -130,7 +128,6 @@ namespace R7.University.Controls
             textDocumentSortIndex.Text = "0";
             datetimeDocumentStartDate.SelectedDate = null;
             datetimeDocumentEndDate.SelectedDate = null;
-            urlDocumentUrl.UrlType = "F";
         }
 
         #endregion
