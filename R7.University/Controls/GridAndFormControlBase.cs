@@ -256,7 +256,7 @@ namespace R7.University.Controls
         protected void OnCancelEditItemClick (object sender, EventArgs e)
         {
             try {
-                var item = ViewStateItems.FirstOrDefault (i => i.ViewItemID.ToString () == hiddenViewItemID.Value);
+                var item = GetCurrentItem ();
                 if (item != null) {
                     OnCancelEdit (item);
                 }
@@ -266,6 +266,11 @@ namespace R7.University.Controls
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (Module, ex);
             }
+        }
+
+        protected TViewModel GetCurrentItem ()
+        {
+            return ViewStateItems.FirstOrDefault (i => i.ViewItemID.ToString () == hiddenViewItemID.Value);
         }
 
         protected void OnResetFormClick (object sender, EventArgs e)
