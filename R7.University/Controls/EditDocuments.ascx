@@ -22,17 +22,17 @@
                     <asp:TemplateField>
                        <ItemTemplate>
                             <span class="u8y-gaf-actions">
-                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" >
+                                <asp:LinkButton id="linkEdit" runat="server" OnCommand="OnEditItemCommand" ToolTip='<%# LocalizeString ("EditItem.Title") %>'>
                                     <asp:Image runat="server" ImageUrl="<%# EditIconUrl %>" />
                                 </asp:LinkButton>
-                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="OnDeleteItemCommand" >
+                                <asp:LinkButton id="linkDelete" runat="server" OnCommand="OnDeleteItemCommand" ToolTip='<%# LocalizeString ("DeleteItem.Title") %>'>
                                     <asp:Image runat="server" ImageUrl="<%# DeleteIconUrl %>" />
                                 </asp:LinkButton>
-								<asp:LinkButton id="linkUndelete" runat="server" OnCommand="OnUndeleteItemCommand" >
+                                <asp:LinkButton id="linkUndelete" runat="server" OnCommand="OnUndeleteItemCommand" ToolTip='<%# LocalizeString ("UndeleteItem.Title") %>'>
                                     <asp:Image runat="server" ImageUrl="<%# UndeleteIconUrl %>" />
                                 </asp:LinkButton>
                                 <asp:Label id="labelEditMarker" runat="server" />
-							</span>
+                            </span>
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />

@@ -18,4 +18,13 @@
 	<data name="ResetForm.Text">
         <value>Очистить форму</value>
     </data>
+	<data name="DeleteItem.Title">
+        <value>Удалить</value>
+    </data>
+    <data name="EditItem.Title">
+        <value>Изменить</value>
+    </data>
+    <data name="UndeleteItem.Title">
+        <value>Отменить удаление</value>
+    </data>
 </root>
