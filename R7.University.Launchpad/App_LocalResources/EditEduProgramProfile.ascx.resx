@@ -49,7 +49,10 @@
         <value>Languages:</value>
     </data>
     <data name="labelLanguages.Help" xml:space="preserve">
-        <value>Enter the list of IETF language tags in 'xx' or 'xx-YY' format, separated by semicolon (;).</value>
+        <value>Enter the list of IETF language tags in "xx" or "xx-YY" format (e.g. "en"), separated by semicolon (;).</value>
+    </data>
+	<data name="Languages.Required" xml:space="preserve">
+        <value>Languages is required.</value>
     </data>
     <data name="labelEduLevel.Text">
         <value>Education Level:</value>

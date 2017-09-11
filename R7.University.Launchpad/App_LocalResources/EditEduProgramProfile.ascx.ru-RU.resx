@@ -49,7 +49,10 @@
         <value>Языки:</value>
     </data>
     <data name="labelLanguages.Help" xml:space="preserve">
-        <value>Введите обозначения языков в формате IETF ('xx' или 'xx-YY'), разделяя их точкой с запятой (;).</value>
+        <value>Введите обозначения языков в формате IETF ("xx" или "xx-YY", например "ru"), разделяя их точкой с запятой (;).</value>
+    </data>
+	<data name="Languages.Required" xml:space="preserve">
+        <value>Укажите языки.</value>
     </data>
     <data name="labelEduLevel.Text">
         <value>Уровень образования:</value>
