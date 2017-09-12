@@ -192,8 +192,8 @@ namespace R7.University.DivisionDirectory
             base.OnLoad (e);
             
             try {
-                if (!IsPostBack) {
-                    if (Settings.Mode == DivisionDirectoryMode.Search) {
+                if (Settings.Mode == DivisionDirectoryMode.Search) {
+                    if (!IsPostBack) {
                         if (!string.IsNullOrWhiteSpace (SearchText) || !Null.IsNull (SearchDivision)) {
 
                             // restore current search
@@ -215,16 +215,15 @@ namespace R7.University.DivisionDirectory
                             }
                         }
                     }
-                    else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
-
-                        var divisions = new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
-
-                        if (!divisions.IsNullOrEmpty ()) {
-                            // bind divisions to the grid
-                            var divisionViewModels = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
-                            gridObrnadzorDivisions.DataSource = divisionViewModels;
-                            gridObrnadzorDivisions.DataBind ();
-                        }
+                }
+                else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
+                    // TODO: Use cache!
+                    var divisions = new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
+                    if (!divisions.IsNullOrEmpty ()) {
+                        // bind divisions to the grid
+                        var divisionViewModels = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
+                        gridObrnadzorDivisions.DataSource = divisionViewModels;
+                        gridObrnadzorDivisions.DataBind ();
                     }
                 }
             }

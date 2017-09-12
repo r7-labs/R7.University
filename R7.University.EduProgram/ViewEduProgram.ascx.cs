@@ -100,44 +100,40 @@ namespace R7.University.EduProgram
             
             try
             {
-                if (!IsPostBack)
-                {
-                    var shouldBind = true;
-                    var now = HttpContext.Current.Timestamp;
+                var shouldBind = true;
+                var now = HttpContext.Current.Timestamp;
 
-                    var viewModel = GetViewModel ();
-                    if (viewModel.IsEmpty ()) {
-                        if (IsEditable) {
-                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-                        }
+                var viewModel = GetViewModel ();
+                if (viewModel.IsEmpty ()) {
+                    if (IsEditable) {
+                        this.Message ("NothingToDisplay.Text", MessageType.Info, true);
+                    }
+                    shouldBind = false;
+                }
+                else if (!viewModel.EduProgram.IsPublished (now)) {
+                    if (IsEditable) {
+                        this.Message ("NotPublished.Text", MessageType.Warning, true);
+                    }
+                    else {
                         shouldBind = false;
                     }
-                    else if (!viewModel.EduProgram.IsPublished (now)) {
-                        if (IsEditable) {
-                            this.Message ("NotPublished.Text", MessageType.Warning, true);
-                        }
-                        else {
-                            shouldBind = false;
-                        }
-                    }
+                }
 
-                    if (shouldBind)
-                    {
-                        // update module title
-                        if (Settings.AutoTitle) {
-                            ModuleHelper.UpdateModuleTitle (TabModuleId,
-                                FormatHelper.FormatEduProgramTitle (viewModel.EduProgram.Code, viewModel.EduProgram.Title)
-                            );
-                        }
-                           
-                        // bind the data
-                        formEduProgram.DataSource = new List<EduProgramViewModel> { viewModel.EduProgram };
-                        formEduProgram.DataBind ();
-                    } 
-                    else {
-                        ContainerControl.Visible = IsEditable;
+                if (shouldBind)
+                {
+                    // update module title
+                    if (Settings.AutoTitle) {
+                        ModuleHelper.UpdateModuleTitle (TabModuleId,
+                            FormatHelper.FormatEduProgramTitle (viewModel.EduProgram.Code, viewModel.EduProgram.Title)
+                        );
                     }
-
+                       
+                    // bind the data
+                    formEduProgram.DataSource = new List<EduProgramViewModel> { viewModel.EduProgram };
+                    formEduProgram.DataBind ();
+                } 
+                else {
+                    ContainerControl.Visible = IsEditable;
                 }
             }
             catch (Exception ex)

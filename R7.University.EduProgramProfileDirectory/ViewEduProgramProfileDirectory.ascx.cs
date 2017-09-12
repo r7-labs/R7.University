@@ -195,16 +195,14 @@ namespace R7.University.EduProgramProfileDirectory
             base.OnLoad (e);
 			
             try {
-                if (!IsPostBack) {
-                    switch (Settings.Mode) {
-                        case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
-                            ObrnadzorEduFormsView ();
-                            break;
-                        
-                        case EduProgramProfileDirectoryMode.ObrnadzorDocuments:
-                            ObrnadzorDocumentsView ();
-                            break;
-                    }
+                switch (Settings.Mode) {
+                    case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
+                        ObrnadzorEduFormsView ();
+                        break;
+                    
+                    case EduProgramProfileDirectoryMode.ObrnadzorDocuments:
+                        ObrnadzorDocumentsView ();
+                        break;
                 }
             }
             catch (Exception ex) {

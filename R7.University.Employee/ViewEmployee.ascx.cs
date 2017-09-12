@@ -119,44 +119,42 @@ namespace R7.University.Employee
             base.OnLoad (e);
 
             try {
-                if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
+                var employee = GetEmployee ();
+                var hasData = employee != null;
+                var now = HttpContext.Current.Timestamp;
 
-                    var employee = GetEmployee ();
-                    var hasData = employee != null;
-                    var now = HttpContext.Current.Timestamp;
-
-                    if (!hasData) {
-                        // employee wasn't set or not found
-                        if (IsEditable) {
-                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-                        }
-                    }
-                    else if (!employee.IsPublished (now)) {
-                        // employee isn't published
-                        if (IsEditable) {
-                            this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
-                        }
-                    }
-                    						
-                    // display module only in edit mode and only if we have published data to display
-                    ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished (now));
-											
-                    // display module content only if it exists and published (or in edit mode)
-                    var displayContent = hasData && (IsEditable || employee.IsPublished (now));
-
-                    panelEmployee.Visible = displayContent;
-					
-                    if (displayContent) {
-                        if (Settings.AutoTitle) {
-                            ModuleHelper.UpdateModuleTitle (TabModuleId, 
-                                FormatHelper.AbbrName (employee.FirstName, employee.LastName, employee.OtherName)
-                            );
-                        }
-
-                        // display employee info
-                        Display (employee);
+                if (!hasData) {
+                    // employee wasn't set or not found
+                    if (IsEditable) {
+                        this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                     }
                 }
+                else if (!employee.IsPublished (now)) {
+                    // employee isn't published
+                    if (IsEditable) {
+                        this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
+                    }
+                }
+                						
+                // display module only in edit mode and only if we have published data to display
+                ContainerControl.Visible = IsEditable || (hasData && employee.IsPublished (now));
+										
+                // display module content only if it exists and published (or in edit mode)
+                var displayContent = hasData && (IsEditable || employee.IsPublished (now));
+
+                panelEmployee.Visible = displayContent;
+				
+                if (displayContent) {
+                    if (Settings.AutoTitle) {
+                        ModuleHelper.UpdateModuleTitle (TabModuleId, 
+                            FormatHelper.AbbrName (employee.FirstName, employee.LastName, employee.OtherName)
+                        );
+                    }
+
+                    // display employee info
+                    Display (employee);
+                }
+
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

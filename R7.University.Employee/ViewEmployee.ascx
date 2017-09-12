@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewEmployee.ascx.cs" Inherits="R7.University.Employee.ViewEmployee" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ViewEmployee.ascx.cs" Inherits="R7.University.Employee.ViewEmployee" %>
 
 <asp:Panel id="panelEmployee" runat="server" CssClass="Employee">
 	<div class="_photo">

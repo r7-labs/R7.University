@@ -75,8 +75,8 @@
         </asp:View>
         <asp:View id="viewObrnadzorDivisions" runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridObrnadzorDivisions" runat="server" AutoGenerateColumns="false" 
-                        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
+                <asp:GridView id="gridObrnadzorDivisions" runat="server" EnableViewState="false" AutoGenerateColumns="false" 
+                    UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
                         CssClass="table table-bordered table-striped table-hover grid-obrnadzor-divisions" GridLines="None">
                     <Columns>
                         <asp:TemplateField>

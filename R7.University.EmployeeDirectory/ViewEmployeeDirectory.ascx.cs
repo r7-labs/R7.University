@@ -249,11 +249,9 @@ namespace R7.University.EmployeeDirectory
             base.OnLoad (e);
             
             try {
-
                 var now = HttpContext.Current.Timestamp;
-
-                if (!IsPostBack) {
-                    if (Settings.Mode == EmployeeDirectoryMode.Search) {
+                if (Settings.Mode == EmployeeDirectoryMode.Search) {
+                    if (!IsPostBack) {
                         if (!string.IsNullOrWhiteSpace (SearchText) || !Null.IsNull (SearchDivision)) {
 
                             // restore current search
@@ -276,11 +274,11 @@ namespace R7.University.EmployeeDirectory
                             }
                         }
                     }
-                    else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
-                        repeaterEduProgramProfiles.DataSource = GetViewModel ().EduProgramProfiles
-                            .Where (epp => epp.IsPublished (now) || IsEditable);
-                        repeaterEduProgramProfiles.DataBind ();
-                    }
+                }
+                else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
+                    repeaterEduProgramProfiles.DataSource = GetViewModel ().EduProgramProfiles
+                        .Where (epp => epp.IsPublished (now) || IsEditable);
+                    repeaterEduProgramProfiles.DataBind ();
                 }
             }
             catch (Exception ex) {

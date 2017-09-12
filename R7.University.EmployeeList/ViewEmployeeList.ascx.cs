@@ -127,28 +127,26 @@ namespace R7.University.EmployeeList
             base.OnLoad (e);
 			
             try {
-                if (!IsPostBack || ViewState.Count == 0) { // Fix for issue #23
-                    var now = HttpContext.Current.Timestamp;
-                    // get employees
-                    var employees = GetViewModel ().Employees
-                        .Where (empl => IsEditable || empl.IsPublished (now));
-            
-                    // check if we have some content to display, 
-                    // otherwise display a message for module editors or hide module from regular users
-                    if (employees.IsNullOrEmpty ()) {
-                        if (IsEditable) {
-                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-                        }
-                        else {
-							// hide entire module
-							ContainerControl.Visible = false;
-                        }
+                var now = HttpContext.Current.Timestamp;
+                // get employees
+                var employees = GetViewModel ().Employees
+                    .Where (empl => IsEditable || empl.IsPublished (now));
+        
+                // check if we have some content to display, 
+                // otherwise display a message for module editors or hide module from regular users
+                if (employees.IsNullOrEmpty ()) {
+                    if (IsEditable) {
+                        this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                     }
                     else {
-                        // bind the data
-                        listEmployees.DataSource = employees;
-                        listEmployees.DataBind ();
+						// hide entire module
+						ContainerControl.Visible = false;
                     }
+                }
+                else {
+                    // bind the data
+                    listEmployees.DataSource = employees;
+                    listEmployees.DataBind ();
                 }
             }
             catch (Exception ex) {

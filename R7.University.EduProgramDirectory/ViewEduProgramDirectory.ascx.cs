@@ -99,38 +99,36 @@ namespace R7.University.EduProgramDirectory
             base.OnLoad (e);
 			
             try {
-                if (!IsPostBack) {
+                var now = HttpContext.Current.Timestamp;
+                IEnumerable<IEduProgram> baseEduPrograms;
 
-                    var now = HttpContext.Current.Timestamp;
-                    IEnumerable<IEduProgram> baseEduPrograms;
+                // TODO: Use cache!
+                if (Settings.DivisionId == null) {
+                    baseEduPrograms = new EduProgramQuery (ModelContext).ListByEduLevels (Settings.EduLevels);
+                }
+                else {
+                    baseEduPrograms = new EduProgramQuery (ModelContext).ListByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
+                }
 
-                    if (Settings.DivisionId == null) {
-                        baseEduPrograms = new EduProgramQuery (ModelContext).ListByEduLevels (Settings.EduLevels);
-                    }
-                    else {
-                        baseEduPrograms = new EduProgramQuery (ModelContext).ListByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
-                    }
+                var viewModelIndexer = new ViewModelIndexer (1);
+                var eduPrograms = baseEduPrograms
+                    .OrderBy (ep => ep.EduLevel.SortIndex)
+                    .ThenBy (ep => ep.Code)
+                    .ThenBy (ep => ep.Title)
+                    .ToList ();
 
-                    var viewModelIndexer = new ViewModelIndexer (1);
-                    var eduPrograms = baseEduPrograms
-                        .OrderBy (ep => ep.EduLevel.SortIndex)
-                        .ThenBy (ep => ep.Code)
-                        .ThenBy (ep => ep.Title)
-                        .ToList ();
-
-                    var eduProgramViewModels = eduPrograms
-                        .Select (ep => new EduProgramStandardObrnadzorViewModel (
-                            ep,
-                            ViewModelContext,
-                            viewModelIndexer));
-                     
-                    if (eduProgramViewModels.Any ()) {
-                        gridEduStandards.DataSource = eduProgramViewModels.Where (ep => ep.IsPublished (now) || IsEditable);
-                        gridEduStandards.DataBind ();
-                    }
-                    else {
-                        this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
-                    }
+                var eduProgramViewModels = eduPrograms
+                    .Select (ep => new EduProgramStandardObrnadzorViewModel (
+                        ep,
+                        ViewModelContext,
+                        viewModelIndexer));
+                 
+                if (eduProgramViewModels.Any ()) {
+                    gridEduStandards.DataSource = eduProgramViewModels.Where (ep => ep.IsPublished (now) || IsEditable);
+                    gridEduStandards.DataBind ();
+                }
+                else {
+                    this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
                 }
             }
             catch (Exception ex) {

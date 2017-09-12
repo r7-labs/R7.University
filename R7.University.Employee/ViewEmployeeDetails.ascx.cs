@@ -135,6 +135,7 @@ namespace R7.University.Employee
 
         protected EmployeeInfo GetEmployee ()
         {
+            // TODO: Use cache!
             if (Settings.ShowCurrentUser) {
                 var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
                 if (userId != null) {
@@ -217,58 +218,55 @@ namespace R7.University.Employee
             base.OnLoad (e);
 
             try {
-                if (!IsPostBack) {
-                    var now = HttpContext.Current.Timestamp;
+                var now = HttpContext.Current.Timestamp;
 
-                    // can we display module content?
-                    var displayContent = Employee != null && (IsEditable || Employee.IsPublished (now));
+                // can we display module content?
+                var displayContent = Employee != null && (IsEditable || Employee.IsPublished (now));
 
-                    // can we display something (content or messages)?
-                    var displaySomething = IsEditable || (Employee != null && Employee.IsPublished (now));
+                // can we display something (content or messages)?
+                var displaySomething = IsEditable || (Employee != null && Employee.IsPublished (now));
 
-                    // something went wrong in popup mode - reload page
-                    if (IsInPopup && !displaySomething) {
-                        ReloadPage ();
-                        return;
+                // something went wrong in popup mode - reload page
+                if (IsInPopup && !displaySomething) {
+                    ReloadPage ();
+                    return;
+                }
+
+                if (InViewModule) {
+                    // display module only in edit mode
+                    // only if we have published data to display
+                    ContainerControl.Visible = displaySomething;
+                }
+
+                // display messages
+                if (IsEditable) {
+                    if (Employee == null) {
+                        // employee isn't set or not found
+                        this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                     }
-
-                    if (InViewModule) {
-                        // display module only in edit mode
-                        // only if we have published data to display
-                        ContainerControl.Visible = displaySomething;
+                    else if (!Employee.IsPublished (now)) {
+                        // employee don't published
+                        this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
                     }
+                }
 
-                    // display messages
-                    if (IsEditable) {
-                        if (Employee == null) {
-                            // employee isn't set or not found
-                            this.Message ("NothingToDisplay.Text", MessageType.Info, true);
-                        }
-                        else if (!Employee.IsPublished (now)) {
-                            // employee don't published
-                            this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
-                        }
-                    }
+                panelEmployeeDetails.Visible = displayContent;
 
-                    panelEmployeeDetails.Visible = displayContent;
-
-                    if (displayContent) {
-                        Display (Employee);
-						
-                        // don't show action buttons in view module
-                        if (!InViewModule) {
-                            // show edit button only for editors or superusers (in popup)
-                            if (IsEditable || UserInfo.IsSuperUser) {
-                                linkEdit.Visible = true;
-                                linkEdit.NavigateUrl = EditUrl (
-                                    "employee_id",
-                                    Employee.EmployeeID.ToString (),
-                                    "EditEmployee");
-                            }
+                if (displayContent) {
+                    Display (Employee);
+					
+                    // don't show action buttons in view module
+                    if (!InViewModule) {
+                        // show edit button only for editors or superusers (in popup)
+                        if (IsEditable || UserInfo.IsSuperUser) {
+                            linkEdit.Visible = true;
+                            linkEdit.NavigateUrl = EditUrl (
+                                "employee_id",
+                                Employee.EmployeeID.ToString (),
+                                "EditEmployee");
                         }
                     }
-
-                } // if (!IsPostBack)
+                }
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
