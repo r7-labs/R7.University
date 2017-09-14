@@ -13,7 +13,7 @@
 			<releaseNotes src="releaseNotes.htm" />
 			<dependencies>
 				<dependency type="CoreVersion">08.00.04</dependency>
-                <dependency type="managedPackage" version="0.11.0">R7.Dnn.Extensions</dependency>
+                <dependency type="managedPackage" version="0.12.0">R7.Dnn.Extensions</dependency>
                 <dependency type="managedPackage" version="1.1.0">R7.ImageHandler</dependency>
 			</dependencies>
 			<components>
