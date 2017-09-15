@@ -21,4 +21,7 @@
     <data name="VisitProfile.Text" xml:space="preserve">
         <value>Visit profile</value>
     </data>
+	<data name="OccupiedPositions.Text" xml:space="preserve">
+        <value>Occupied Positions:</value>
+    </data>
 </root>

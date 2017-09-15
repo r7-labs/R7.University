@@ -21,4 +21,7 @@
     <data name="VisitProfile.Text" xml:space="preserve">
         <value>Профайл</value>
     </data>
+	<data name="OccupiedPositions.Text" xml:space="preserve">
+        <value>Занимаемые должности:</value>
+    </data>
 </root>

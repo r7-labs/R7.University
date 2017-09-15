@@ -332,7 +332,7 @@ namespace R7.University.EmployeeList
                 }
 
                 if (!string.IsNullOrWhiteSpace (strOps)) {
-                    labelPositions.Text = strOps;
+                    labelPositions.Text = $"<label>{LocalizeString ("OccupiedPositions.Text")}</label> {strOps}";
                     positionsVisible = true;
                 }
             }
