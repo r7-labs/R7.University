@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -35,7 +35,7 @@ namespace R7.University.Tests
             var defaultConfigFile = Path.Combine ("..", "..", "..", "R7.University", "R7.University.yml");
 
             using (var configReader = new StringReader (File.ReadAllText (defaultConfigFile))) {
-                var deserializer = new Deserializer (namingConvention: new HyphenatedNamingConvention ());
+                var deserializer = new DeserializerBuilder ().WithNamingConvention (new HyphenatedNamingConvention ()).Build ();
                 Assert.NotNull (deserializer.Deserialize<UniversityPortalConfig> (configReader));
             } 
         }
