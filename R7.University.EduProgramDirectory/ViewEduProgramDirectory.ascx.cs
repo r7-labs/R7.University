@@ -24,23 +24,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls.Extensions;
+using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.ControlExtensions;
+using R7.University.Components;
 using R7.University.EduProgramDirectory.Models;
 using R7.University.EduProgramDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
 using R7.University.ViewModels;
-using R7.University.Components;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -87,7 +86,7 @@ namespace R7.University.EduProgramDirectory
         {
             base.OnInit (e);
 
-            gridEduStandards.LocalizeColumns (LocalResourceFile);
+            gridEduStandards.LocalizeColumnHeaders (LocalResourceFile);
         }
 
         /// <summary>

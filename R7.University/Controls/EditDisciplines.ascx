@@ -35,9 +35,9 @@
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="EduProgramProfileString" HeaderText="EduProgramProfile" />
-                    <asp:BoundField DataField="EduLevelString" HeaderText="EduLevel" />
-                    <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                    <asp:BoundField DataField="EduProgramProfileString" HeaderText="EduProgramProfile.Column" />
+                    <asp:BoundField DataField="EduLevelString" HeaderText="EduLevel.Column" />
+                    <asp:BoundField DataField="Disciplines" HeaderText="Disciplines.Column" />
                 </Columns>
             </asp:GridView>
         </div>

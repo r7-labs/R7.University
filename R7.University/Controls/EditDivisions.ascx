@@ -36,8 +36,8 @@
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="DivisionTitle" HeaderText="DivisionTitle" />
-                    <asp:BoundField DataField="DivisionRole" HeaderText="DivisionRole" />
+                    <asp:BoundField DataField="DivisionTitle" HeaderText="DivisionTitle.Column" />
+                    <asp:BoundField DataField="DivisionRole" HeaderText="DivisionRole.Column" />
                 </Columns>
             </asp:GridView>
         </div>

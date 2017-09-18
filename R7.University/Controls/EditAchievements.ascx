@@ -35,11 +35,11 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="Years_String" HeaderText="Years" />
-                    <asp:BoundField DataField="Title_String" HeaderText="Title" />
-                    <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
-                    <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle" />
-                    <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
+                    <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
+                    <asp:BoundField DataField="Title_String" HeaderText="Title.Column" />
+                    <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
+                    <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle.Column" />
+                    <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                     <asp:BoundField DataField="Description" Visible="false" />
                 </Columns>
             </asp:GridView>

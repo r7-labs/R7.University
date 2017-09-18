@@ -39,33 +39,33 @@
                             </asp:HyperLink>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Title">
+                    <asp:TemplateField HeaderText="Title.Column">
                         <ItemTemplate>
                             <asp:Label id="labelTitle" runat="server" />
                             <asp:HyperLink id="linkTitle" runat="server" target="_blank" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Location">
+                    <asp:TemplateField HeaderText="Location.Column">
                         <ItemTemplate>
                             <asp:Literal id="literalLocation" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Phone">
+                    <asp:TemplateField HeaderText="Phone.Column">
                         <ItemTemplate>
                             <asp:Literal id="literalPhone" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Email">
+                    <asp:TemplateField HeaderText="Email.Column">
                         <ItemTemplate>
                             <asp:HyperLink id="linkEmail" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Document">
+                    <asp:TemplateField HeaderText="Document.Column">
                         <ItemTemplate>
                             <asp:HyperLink id="linkDocument" runat="server" target="_blank" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="HeadEmployee">
+                    <asp:TemplateField HeaderText="HeadEmployee.Column">
                         <ItemTemplate>
                             <asp:Literal id="literalHeadEmployee" runat="server" />
                         </ItemTemplate>
@@ -86,14 +86,14 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Order" HeaderText="Order" />
-                        <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor" HtmlEncode="false" />
-                        <asp:BoundField DataField="LocationString" HeaderText="Location" HtmlEncode="false" />
-                        <asp:BoundField DataField="Phone" HeaderText="Phone" />
-                        <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor" HtmlEncode="false" />
-                        <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor" HtmlEncode="false" />
-                        <asp:BoundField DataField="DocumentLink" HeaderText="Document" HtmlEncode="false" />
-                        <asp:TemplateField HeaderText="HeadEmployee">
+                        <asp:BoundField DataField="Order" HeaderText="Order.Column" />
+                        <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="LocationString" HeaderText="Location.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="Phone" HeaderText="Phone.Column" />
+                        <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="DocumentLink" HeaderText="Document.Column" HtmlEncode="false" />
+                        <asp:TemplateField HeaderText="HeadEmployee.Column">
                             <ItemTemplate>
                                 <asp:Literal id="literalHeadEmployee" runat="server" /> 
                             </ItemTemplate>

@@ -75,10 +75,10 @@
                                     <asp:HyperLink runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" NavigateUrl='<%# Eval ("Edit_Url") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />
-                            <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel" />
-							<asp:BoundField DataField="StartDate" HeaderText="StartDate" DataFormatString="{0:d}" />
-							<asp:BoundField DataField="EndDate" HeaderText="EndDate" DataFormatString="{0:d}" />
+                            <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile.Column" />
+                            <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel.Column" />
+							<asp:BoundField DataField="StartDate" HeaderText="StartDate.Column" DataFormatString="{0:d}" />
+							<asp:BoundField DataField="EndDate" HeaderText="EndDate.Column" DataFormatString="{0:d}" />
                         </Columns>
                     </asp:GridView>
 			    </div>

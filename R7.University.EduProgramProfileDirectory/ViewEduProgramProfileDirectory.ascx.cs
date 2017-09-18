@@ -32,11 +32,11 @@ using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Web.UI.WebControls.Extensions;
+using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.ControlExtensions;
 using R7.University.EduProgramProfileDirectory.Models;
 using R7.University.EduProgramProfileDirectory.Queries;
 using R7.University.EduProgramProfileDirectory.ViewModels;
@@ -172,12 +172,12 @@ namespace R7.University.EduProgramProfileDirectory
             switch (Settings.Mode) {
                 case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
                     mviewEduProgramProfileDirectory.ActiveViewIndex = 1;
-                    gridEduProgramProfileObrnadzorEduForms.LocalizeColumns (LocalResourceFile);
+                    gridEduProgramProfileObrnadzorEduForms.LocalizeColumnHeaders (LocalResourceFile);
                     break;
 
                 case EduProgramProfileDirectoryMode.ObrnadzorDocuments:
                     mviewEduProgramProfileDirectory.ActiveViewIndex = 2;
-                    gridEduProgramProfileObrnadzorDocuments.LocalizeColumns (LocalResourceFile);
+                    gridEduProgramProfileObrnadzorDocuments.LocalizeColumnHeaders (LocalResourceFile);
                     break;
 
                 default:

@@ -114,7 +114,7 @@ namespace R7.University.EduProgram
             var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             formEditDivisions.OnInit (this, divisions);
 
-            gridEduProgramProfiles.LocalizeColumns (LocalResourceFile);
+            gridEduProgramProfiles.LocalizeColumnHeaders (LocalResourceFile);
         }
 
         protected override void LoadItem (EduProgramInfo item)

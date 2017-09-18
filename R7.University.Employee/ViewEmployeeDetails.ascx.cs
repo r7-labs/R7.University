@@ -31,13 +31,13 @@ using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.TextExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.ControlExtensions;
 using R7.University.Employee.Models;
 using R7.University.Employee.Queries;
 using R7.University.Employee.SharedLogic;
@@ -204,9 +204,9 @@ namespace R7.University.Employee
 
             agplSignature.Visible = IsInPopup;
 
-            gridDisciplines.LocalizeColumns (LocalResourceFile);
-            gridExperience.LocalizeColumns (LocalResourceFile);
-            gridAchievements.LocalizeColumns (LocalResourceFile);
+            gridDisciplines.LocalizeColumnHeaders (LocalResourceFile);
+            gridExperience.LocalizeColumnHeaders (LocalResourceFile);
+            gridAchievements.LocalizeColumnHeaders (LocalResourceFile);
         }
 
         /// <summary>

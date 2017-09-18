@@ -36,7 +36,6 @@ using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.ControlExtensions;
 using R7.University.DivisionDirectory.Models;
 using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
@@ -176,10 +175,10 @@ namespace R7.University.DivisionDirectory
                 // TODO: Level should be set in settings?
                 R7.University.Utilities.Utils.ExpandToLevel (treeDivisions, 2);
 
-                gridDivisions.LocalizeColumns (LocalResourceFile);
+                gridDivisions.LocalizeColumnHeaders (LocalResourceFile);
             }
             else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
-                gridObrnadzorDivisions.LocalizeColumns (LocalResourceFile);
+                gridObrnadzorDivisions.LocalizeColumnHeaders (LocalResourceFile);
             }
         }
 

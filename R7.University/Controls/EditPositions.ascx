@@ -34,9 +34,9 @@
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="DivisionTitle" HeaderText="Division" />
-                    <asp:BoundField DataField="PositionTitleWithSuffix" HeaderText="Position" />
-                    <asp:CheckBoxField DataField="IsPrime" HeaderText="IsPrime" />
+                    <asp:BoundField DataField="DivisionTitle" HeaderText="Division.Column" />
+                    <asp:BoundField DataField="PositionTitleWithSuffix" HeaderText="Position.Column" />
+                    <asp:CheckBoxField DataField="IsPrime" HeaderText="IsPrime.Column" />
                 </Columns>
             </asp:GridView>
         </div>

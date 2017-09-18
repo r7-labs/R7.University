@@ -25,15 +25,15 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Order" HeaderText="Order" DataFormatString="{0}." />
+                        <asp:BoundField DataField="Order" HeaderText="Order.Column" DataFormatString="{0}." />
                         <asp:BoundField DataField="Code" HtmlEncode="false" />
                         <asp:BoundField DataField="Title" />
                         <asp:BoundField DataField="EduLevelString" HtmlEncode="false" />
-                        <asp:BoundField DataField="TimeToLearnFullTimeString" HtmlEncode="false" HeaderText="TimeToLearnFullTime" />
-                        <asp:BoundField DataField="TimeToLearnPartTimeString" HtmlEncode="false" HeaderText="TimeToLearnPartTime" />
-                        <asp:BoundField DataField="TimeToLearnExtramuralString" HtmlEncode="false" HeaderText="TimeToLearnExtramural" />
-                        <asp:BoundField DataField="AccreditedToDateString" HtmlEncode="false" HeaderText="AccreditedToDate" />
-                        <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate" />
+                        <asp:BoundField DataField="TimeToLearnFullTimeString" HtmlEncode="false" HeaderText="TimeToLearnFullTime.Column" />
+                        <asp:BoundField DataField="TimeToLearnPartTimeString" HtmlEncode="false" HeaderText="TimeToLearnPartTime.Column" />
+                        <asp:BoundField DataField="TimeToLearnExtramuralString" HtmlEncode="false" HeaderText="TimeToLearnExtramural.Column" />
+                        <asp:BoundField DataField="AccreditedToDateString" HtmlEncode="false" HeaderText="AccreditedToDate.Column" />
+                        <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate.Column" />
                     </Columns>
                 </asp:GridView>
             </div>

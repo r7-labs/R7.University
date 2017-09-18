@@ -19,13 +19,13 @@
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Order" HeaderText="EduProgramOrder" DataFormatString="{0}." />
-                        <asp:BoundField DataField="Code" HeaderText="EduProgramCode" />
-                        <asp:BoundField DataField="Title_Link" HeaderText="EduProgramTitle" HtmlEncode="false" />
-                        <asp:BoundField DataField="EduLevel_String" HeaderText="EduProgramEduLevel" />
-                        <asp:BoundField DataField="Generation" HeaderText="EduProgramGeneration" />
-                        <asp:BoundField DataField="ProfStandard_Links" HeaderText="EduProgramProfStandard" HtmlEncode="false" />
-                        <asp:BoundField DataField="EduStandard_Links" HeaderText="EduProgramEduStandard" HtmlEncode="false" />
+                        <asp:BoundField DataField="Order" HeaderText="EduProgramOrder.Column" DataFormatString="{0}." />
+                        <asp:BoundField DataField="Code" HeaderText="EduProgramCode.Column" />
+                        <asp:BoundField DataField="Title_Link" HeaderText="EduProgramTitle.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="EduLevel_String" HeaderText="EduProgramEduLevel.Column" />
+                        <asp:BoundField DataField="Generation" HeaderText="EduProgramGeneration.Column" />
+                        <asp:BoundField DataField="ProfStandard_Links" HeaderText="EduProgramProfStandard.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="EduStandard_Links" HeaderText="EduProgramEduStandard.Column" HtmlEncode="false" />
                     </Columns>
                 </asp:GridView>
             </div>

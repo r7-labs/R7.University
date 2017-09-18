@@ -69,10 +69,10 @@
         				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-experience"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
-                                <asp:BoundField DataField="Years_String" HeaderText="Years" />
-                                <asp:BoundField DataField="Title_Link" HeaderText="Title" HtmlEncode="false" />
-                                <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
-                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
+                                <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
+                                <asp:BoundField DataField="Title_Link" HeaderText="Title.Column" HtmlEncode="false" />
+                                <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
+                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                             </Columns>
         			    </asp:GridView>
         			</div>
@@ -82,10 +82,10 @@
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
-                                <asp:BoundField DataField="Years_String" HeaderText="Years" />
-                                <asp:BoundField DataField="Title_Link" HeaderText="Title" HtmlEncode="false" />
-                                <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType" />
-                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl" HtmlEncode="false" />
+                                <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
+                                <asp:BoundField DataField="Title_Link" HeaderText="Title.Column" HtmlEncode="false" />
+                                <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
+                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                             </Columns>
         			    </asp:GridView>
         			</div>		
@@ -95,9 +95,9 @@
                         <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-disciplines" 
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
                             <Columns>
-                                <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile" />
-                                <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel" />
-                                <asp:BoundField DataField="Disciplines" HeaderText="Disciplines" />
+                                <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile.Column" />
+                                <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel.Column" />
+                                <asp:BoundField DataField="Disciplines" HeaderText="Disciplines.Column" />
                             </Columns>
                         </asp:GridView>
                     </div>

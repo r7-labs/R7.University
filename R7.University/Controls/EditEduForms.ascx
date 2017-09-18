@@ -35,11 +35,11 @@
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="EduFormTitleLocalized" HeaderText="EduFormTitle" />
-                    <asp:BoundField DataField="TimeToLearnYears_String" HeaderText="TimeToLearnYears" />
-					<asp:BoundField DataField="TimeToLearnMonths_String" HeaderText="TimeToLearnMonths" />
-					<asp:BoundField DataField="TimeToLearnHours_String" HeaderText="TimeToLearnHours" />
-                    <asp:CheckBoxField DataField="IsAdmissive" HeaderText="IsAdmissive" />
+                    <asp:BoundField DataField="EduFormTitleLocalized" HeaderText="EduFormTitle.Column" />
+                    <asp:BoundField DataField="TimeToLearnYears_String" HeaderText="TimeToLearnYears.Column" />
+					<asp:BoundField DataField="TimeToLearnMonths_String" HeaderText="TimeToLearnMonths.Column" />
+					<asp:BoundField DataField="TimeToLearnHours_String" HeaderText="TimeToLearnHours.Column" />
+                    <asp:CheckBoxField DataField="IsAdmissive" HeaderText="IsAdmissive.Column" />
                 </Columns>
             </asp:GridView>
         </div>

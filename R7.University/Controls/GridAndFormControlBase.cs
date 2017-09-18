@@ -190,7 +190,7 @@ namespace R7.University.Controls
             gridItems.RowDataBound += OnGridItemsRowDataBound;
 
             // localize gridview columns
-            gridItems.LocalizeColumns (LocalResourceFile);
+            gridItems.LocalizeColumnHeaders (LocalResourceFile);
 
             OnResetForm ();
             SwitchToAddMode ();
