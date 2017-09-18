@@ -1,5 +1,5 @@
 //
-//  CultureHelper.cs
+//  UniversityCultureHelper.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,12 +19,11 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace R7.University.Utilities
 {
-    public static class CultureHelper
+    public static class UniversityCultureHelper
     {
         // TODO: Add support for other languages?
 

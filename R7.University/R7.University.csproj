@@ -224,7 +224,7 @@
     <Compile Include="ViewModels\EmployeeAchievementViewModelBase.cs" />
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
     <Compile Include="Utilities\UniversityUrlHelper.cs" />
-    <Compile Include="Utilities\CultureHelper.cs" />
+    <Compile Include="Utilities\UniversityCultureHelper.cs" />
     <Compile Include="Utilities\ModuleHelper.cs" />
     <Compile Include="Utilities\XmlSerializationHelper.cs" />
     <Compile Include="Controls\DivisionSelector.ascx.cs">
