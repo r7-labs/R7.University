@@ -21,8 +21,8 @@
 
 using System;
 using Newtonsoft.Json;
+using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.Models;
 
 namespace R7.University.Controls.ViewModels

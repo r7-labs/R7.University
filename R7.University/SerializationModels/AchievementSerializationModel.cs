@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Components;
+using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
 
 namespace R7.University.SerializationModels

@@ -23,8 +23,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
 

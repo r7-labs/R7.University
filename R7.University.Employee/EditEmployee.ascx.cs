@@ -38,7 +38,6 @@ using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.SharedLogic;
-using R7.University.Utilities;
 
 namespace R7.University.Employee
 {
@@ -391,7 +390,7 @@ namespace R7.University.Employee
                                            textLastName.Text, textOtherName.Text);
 
                     // TODO: EmployeeInfo should contain culture data?
-                    var employeeNameTL = CultureHelper.Transliterate (employeeName, CultureHelper.RuTranslitTable)
+                    var employeeNameTL = Utilities.CultureHelper.Transliterate (employeeName, Utilities.CultureHelper.RuTranslitTable)
                                                       .ToLowerInvariant ();
 
                     // get files from default folder recursively

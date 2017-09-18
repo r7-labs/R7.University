@@ -79,7 +79,7 @@ namespace R7.University.ViewModels
 
         static int GetPlural (int value)
         {
-            return CultureHelper.GetPlural (value, CultureInfo.CurrentCulture) + 1;
+            return R7.Dnn.Extensions.Utilities.CultureHelper.GetPluralIndex (value, CultureInfo.CurrentCulture) + 1;
         }
 
         public static string FormatTimeToLearn (int totalMonths, int hours, TimeToLearnDisplayMode displayMode, string keyBase, string resourceFile)

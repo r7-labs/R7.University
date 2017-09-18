@@ -22,8 +22,8 @@
 using System;
 using System.Web;
 using Newtonsoft.Json;
+using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -36,7 +36,7 @@ namespace R7.University.Controls.ViewModels
 
         public override IEditModel<OccupiedPositionInfo> Create (OccupiedPositionInfo model, ViewModelContext context)
         {
-            var editModel = (OccupiedPositionEditModel) CopyCstor.Copy<IOccupiedPositionWritable> (new OccupiedPositionEditModel(), model);
+            var editModel = CopyCstor.New<OccupiedPositionEditModel, IOccupiedPositionWritable> (model);
             editModel.Context = context;
             editModel.PositionTitle = FormatHelper.FormatShortTitle (model.Position.ShortTitle, model.Position.Title);
             editModel.DivisionTitle = FormatHelper.FormatShortTitle (model.Division.ShortTitle, model.Division.Title);
@@ -48,7 +48,7 @@ namespace R7.University.Controls.ViewModels
 
         public override OccupiedPositionInfo CreateModel ()
         {
-            return (OccupiedPositionInfo) CopyCstor.Copy<IOccupiedPositionWritable> (this, new OccupiedPositionInfo ());
+            return CopyCstor.New<OccupiedPositionInfo, IOccupiedPositionWritable> (this);
         }
 
         public override void SetTargetItemId (int targetItemId, string targetItemKey)

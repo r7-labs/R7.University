@@ -21,7 +21,7 @@
 
 using System;
 using R7.University.Models;
-using R7.University.Components;
+using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.SerializationModels
 {
