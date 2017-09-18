@@ -41,6 +41,7 @@ namespace R7.University.ControlExtensions
             return false;
         }
 
+        // TODO: Move to base library
         public static IEnumerable<ListItem> AsEnumerable (this ListItemCollection itemCollection)
         {
             var enumerator = itemCollection.GetEnumerator ();

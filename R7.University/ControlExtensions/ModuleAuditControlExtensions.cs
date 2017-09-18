@@ -26,6 +26,7 @@ using R7.University.Models;
 
 namespace R7.University.ControlExtensions
 {
+    // TODO: Move to the base library
     public static class ModuleAuditControlExtensions
     {
         public static void Bind (this ModuleAuditControl auditControl, ITrackableEntity item)
