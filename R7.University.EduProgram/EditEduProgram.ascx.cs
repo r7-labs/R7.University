@@ -256,7 +256,7 @@ namespace R7.University.EduProgram
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProfile = (IEduProgramProfile) e.Row.DataItem;
                 if (!eduProfile.IsPublished (HttpContext.Current.Timestamp)) {
-                    e.Row.CssClass = gridEduProgramProfiles.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
+                    e.Row.CssClass = gridEduProgramProfiles.GetRowStyle (e.Row).CssClass + " u8y-not-published";
                 }
             }
         }

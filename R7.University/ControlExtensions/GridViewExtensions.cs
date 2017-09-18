@@ -33,14 +33,6 @@ namespace R7.University.ControlExtensions
             foreach (DataControlField column in gv.Columns)
                 column.HeaderText = Localization.GetString (column.HeaderText + ".Column", resourceFile);
         }
-
-        // TODO: Replace with library method
-        public static TableItemStyle GetDataRowStyle (this GridView gv, GridViewRow row)
-        {
-            Contract.Requires (row.RowType == DataControlRowType.DataRow);
-
-            return (row.DataItemIndex % 2 == 0) ? gv.RowStyle : gv.AlternatingRowStyle;
-        }
     }
 }
 

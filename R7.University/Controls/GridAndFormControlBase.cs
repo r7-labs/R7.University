@@ -26,16 +26,16 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
-using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
-using R7.University.Components;
 
 namespace R7.University.Controls
 {
@@ -313,7 +313,7 @@ namespace R7.University.Controls
 
                 labelEditMarker.CssClass = "u8y-edit-marker " + GetMarkerCssClass (item.EditState);
                 if (!item.IsPublished) {
-                    e.Row.CssClass = gridItems.GetDataRowStyle (e.Row).CssClass + " u8y-not-published";
+                    e.Row.CssClass = gridItems.GetRowStyle (e.Row).CssClass + " u8y-not-published";
                 }
             }
         }
