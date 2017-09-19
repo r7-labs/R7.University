@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -79,30 +79,41 @@ namespace R7.University.Employee
 
         #region Get data
 
+        EmployeeInfo _employee;
+
         protected EmployeeInfo GetEmployee ()
         {
-            if (Settings.ShowCurrentUser) {
-                return GetEmployee_CurrentUser_Internal ();
-            }
-
-            return DataCache.GetCachedData<EmployeeInfo> (new CacheItemArgs ("//r7_University/Modules/Employee?ModuleId=" + ModuleId,
-                    UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
-                c => GetEmployee_Internal ()
-            );
+            return _employee ?? (_employee = GetEmployee_Internal ());
         }
 
         protected EmployeeInfo GetEmployee_Internal ()
         {
+            if (Settings.ShowCurrentUser) {
+                return GetEmployee_FromCurrentUser ();
+            }
+            return GetEmployee_FromSettings ();
+        }
+
+        protected EmployeeInfo GetEmployee_FromSettings ()
+        {
+            return DataCache.GetCachedData<EmployeeInfo> (
+                new CacheItemArgs ("//r7_University/Modules/Employee?ModuleId=" + ModuleId,
+                    UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
+                (c) => GetEmployee_FromSettings_Internal ()
+            );
+        }
+
+        protected EmployeeInfo GetEmployee_FromSettings_Internal ()
+        {
             return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
         }
 
-        protected EmployeeInfo GetEmployee_CurrentUser_Internal ()
+        protected EmployeeInfo GetEmployee_FromCurrentUser ()
         {
             var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
             if (userId != null) {
                 return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
             }
-
             return null;
         }
 

@@ -72,6 +72,12 @@ namespace R7.University.Employee
 
         #endregion
 
+        ISecurityContext securityContext;
+        protected ISecurityContext SecurityContext
+        {
+            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
         #region Properties
 
         protected int PhotoWidth
@@ -95,56 +101,71 @@ namespace R7.University.Employee
             get { return ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EmployeeDetails"; }
         }
 
-        private EmployeeInfo _employee;
+        #endregion
 
-        public EmployeeInfo Employee
+        #region Get data
+
+        EmployeeInfo _employee;
+
+        public EmployeeInfo GetEmployee ()
         {
-            get {
-                if (_employee == null) {
-                    if (InViewModule) {
-                        // use module settings
-                        _employee = GetEmployee ();
-                    }
-                    else {
-                        // try get employee id from querystring first
-                        var employeeId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
-
-                        if (employeeId != null) {
-                            // get employee by querystring param
-                            _employee = new EmployeeQuery (ModelContext).SingleOrDefault (employeeId.Value);
-                        }
-                        else if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee") {
-                            // if employee id is not in the querystring, 
-                            // use module settings (Employee module only)
-                            _employee = GetEmployee ();
-                        }
-                    }
-                }
-
-                return _employee;
-            }
+            return _employee ?? (_employee = GetEmployee_Internal ());
         }
 
-        ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext
+        protected EmployeeInfo GetEmployee_Internal ()
         {
-            get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+            if (InViewModule) {
+                if (Settings.ShowCurrentUser) {
+                    return GetEmployee_FromCurrentUser ();
+                }
+                return GetEmployee_FromSettings ();
+            }
+
+            var employee = GetEmployee_FromQueryString ();
+            if (employee != null) {
+                return employee;
+            }
+
+            if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7.University.Employee") {
+               return GetEmployee_FromSettings_Internal ();
+            }
+
+            return null;
+        }
+
+        protected EmployeeInfo GetEmployee_FromSettings ()
+        {
+            var cacheKey = $"//r7_University/Modules/Employee?ModuleId={ModuleId}";
+            return DataCache.GetCachedData<EmployeeInfo> (
+                new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime),
+                (c) => GetEmployee_FromSettings_Internal ()
+            );
+        }
+
+        protected EmployeeInfo GetEmployee_FromSettings_Internal ()
+        {
+            return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
+        }
+
+        protected EmployeeInfo GetEmployee_FromQueryString ()
+        {
+            var employeeId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
+            if (employeeId != null) {
+                return new EmployeeQuery (ModelContext).SingleOrDefault (employeeId.Value);
+            }
+            return null;
+        }
+
+        protected EmployeeInfo GetEmployee_FromCurrentUser ()
+        {
+            var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+            if (userId != null) {
+                return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
+            }
+            return null;
         }
 
         #endregion
-
-        protected EmployeeInfo GetEmployee ()
-        {
-            // TODO: Use cache!
-            if (Settings.ShowCurrentUser) {
-                var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
-                if (userId != null) {
-                    return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
-                }
-            }
-
-            return new EmployeeQuery (ModelContext).SingleOrDefault (Settings.EmployeeID);
-        }
 
         #region IActionable implementation
 
@@ -162,7 +183,7 @@ namespace R7.University.Employee
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    Employee == null && SecurityContext.CanAdd (typeof (EmployeeInfo)), 
+                    GetEmployee () == null && SecurityContext.CanAdd (typeof (EmployeeInfo)), 
                     false
                 );
 
@@ -172,10 +193,10 @@ namespace R7.University.Employee
                     ModuleActionType.EditContent, 
                     "", 
                     UniversityIcons.Edit,
-                    EditUrl ("employee_id", Employee?.EmployeeID.ToString (), "EditEmployee"),
+                    EditUrl ("employee_id", GetEmployee ()?.EmployeeID.ToString (), "EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    Employee != null, 
+                    GetEmployee () != null, 
                     false
                 );
 
@@ -219,12 +240,13 @@ namespace R7.University.Employee
 
             try {
                 var now = HttpContext.Current.Timestamp;
+                var employee = GetEmployee ();
 
                 // can we display module content?
-                var displayContent = Employee != null && (IsEditable || Employee.IsPublished (now));
+                var displayContent = employee != null && (IsEditable || employee.IsPublished (now));
 
                 // can we display something (content or messages)?
-                var displaySomething = IsEditable || (Employee != null && Employee.IsPublished (now));
+                var displaySomething = IsEditable || (employee != null && employee.IsPublished (now));
 
                 // something went wrong in popup mode - reload page
                 if (IsInPopup && !displaySomething) {
@@ -240,11 +262,11 @@ namespace R7.University.Employee
 
                 // display messages
                 if (IsEditable) {
-                    if (Employee == null) {
+                    if (employee == null) {
                         // employee isn't set or not found
                         this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                     }
-                    else if (!Employee.IsPublished (now)) {
+                    else if (!employee.IsPublished (now)) {
                         // employee don't published
                         this.Message ("EmployeeNotPublished.Text", MessageType.Warning, true);
                     }
@@ -253,7 +275,7 @@ namespace R7.University.Employee
                 panelEmployeeDetails.Visible = displayContent;
 
                 if (displayContent) {
-                    Display (Employee);
+                    Display (employee);
 					
                     // don't show action buttons in view module
                     if (!InViewModule) {
@@ -262,7 +284,7 @@ namespace R7.University.Employee
                             linkEdit.Visible = true;
                             linkEdit.NavigateUrl = EditUrl (
                                 "employee_id",
-                                Employee.EmployeeID.ToString (),
+                                employee.EmployeeID.ToString (),
                                 "EditEmployee");
                         }
                     }
