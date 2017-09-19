@@ -25,6 +25,7 @@ using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.University.DivisionDirectory.Models;
 using R7.University.Modules;
+using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.DivisionDirectory
 {
@@ -68,6 +69,8 @@ namespace R7.University.DivisionDirectory
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 
                 ModuleController.SynchronizeModule (ModuleId);
+
+                CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/DivisionDirectory/ModuleId={ModuleId}");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

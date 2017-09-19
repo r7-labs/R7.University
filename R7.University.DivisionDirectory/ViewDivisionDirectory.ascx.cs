@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -216,12 +217,9 @@ namespace R7.University.DivisionDirectory
                     }
                 }
                 else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
-                    // TODO: Use cache!
-                    var divisions = new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
+                    var divisions = GetDivisions ();
                     if (!divisions.IsNullOrEmpty ()) {
-                        // bind divisions to the grid
-                        var divisionViewModels = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
-                        gridObrnadzorDivisions.DataSource = divisionViewModels;
+                        gridObrnadzorDivisions.DataSource = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
                         gridObrnadzorDivisions.DataBind ();
                     }
                 }
@@ -229,6 +227,20 @@ namespace R7.University.DivisionDirectory
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
+        }
+
+        IEnumerable<DivisionInfo> GetDivisions ()
+        {
+            var cacheKey = $"//r7_University/Modules/DivisionDirectory?ModuleId={ModuleId}";
+            return DataCache.GetCachedData<IEnumerable<DivisionInfo>> (
+                new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime),
+                (c) => GetDivisions_Internal ()
+            );
+        }
+
+        IEnumerable<DivisionInfo> GetDivisions_Internal ()
+        {
+            return new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
         }
 
         #endregion
