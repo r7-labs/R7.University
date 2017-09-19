@@ -30,6 +30,7 @@ using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.ViewModels;
+using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.EduProgramDirectory
 {
@@ -117,6 +118,8 @@ namespace R7.University.EduProgramDirectory
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 
                 ModuleController.SynchronizeModule (ModuleId);
+
+                CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/EduProgramDirectory?ModuleId={ModuleId}");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

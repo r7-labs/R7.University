@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -99,18 +100,9 @@ namespace R7.University.EduProgramDirectory
 			
             try {
                 var now = HttpContext.Current.Timestamp;
-                IEnumerable<IEduProgram> baseEduPrograms;
-
-                // TODO: Use cache!
-                if (Settings.DivisionId == null) {
-                    baseEduPrograms = new EduProgramQuery (ModelContext).ListByEduLevels (Settings.EduLevels);
-                }
-                else {
-                    baseEduPrograms = new EduProgramQuery (ModelContext).ListByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
-                }
 
                 var viewModelIndexer = new ViewModelIndexer (1);
-                var eduPrograms = baseEduPrograms
+                var eduPrograms = GetEduPrograms ()
                     .OrderBy (ep => ep.EduLevel.SortIndex)
                     .ThenBy (ep => ep.Code)
                     .ThenBy (ep => ep.Title)
@@ -133,6 +125,24 @@ namespace R7.University.EduProgramDirectory
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
             }
+        }
+
+        IEnumerable<EduProgramInfo> GetEduPrograms ()
+        {
+            var cacheKey = $"//r7_University/Modules/EduProgramDirectory?ModuleId={ModuleId}";
+            return DataCache.GetCachedData<IEnumerable<EduProgramInfo>> (
+                new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime),
+                (c) => GetEduPrograms_Internal ()
+            );
+        }
+
+        IEnumerable<EduProgramInfo> GetEduPrograms_Internal ()
+        {
+            var query = new EduProgramQuery (ModelContext);
+            if (Settings.DivisionId != null) {
+                return query.ListByDivisionAndEduLevels (Settings.DivisionId.Value, Settings.EduLevels);
+            }
+            return query.ListByEduLevels (Settings.EduLevels);
         }
 
         #endregion
