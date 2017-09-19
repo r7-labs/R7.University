@@ -1,5 +1,38 @@
 ﻿<div style="white-space:normal">
 
+<h3>Version 1.15.0</h3>
+<p>Most notable changes:</p>
+<ul>
+    <li>UX: More compact display option for EduProgramProfileDirectory Documents mode using popups and pre-rendered tables (#176).</li>
+    <li>Integration, Productivity: Implemented autosync between divisions and taxonomy (#164).</li>
+    <li>Model: Divisions and edu. program (profile) association reimplemented as many-to-many (#163).</li>
+    <li>Model: Separated time to learn hours and years/months for edu. program profile forms (#182).</li>
+    <li>UI: Employee views and all jQuery popups converted to Bootstrap (#165, #194).</li>
+    <li>Integration: Fixed module name in search results/settings cannot be customized via SearchableModules.resx (#176).</li>
+    <li>UX, Prodictivity: Added rollback for delete command and colorful state markers for Grid&amp;Form (#178).</li>
+    <li>Performance, Reliability: More faster and reliable update algorithm for Grid&amp;Form (#178).</li>
+    <li>Performance: Disabled viewstate for most main views (#207).</li>
+    <li>Performance: Implemented data cache for EmployeeDetails, DivisionDirectory and EduProgramDirectory modules (#208).</li>
+	<li>Install location changed to ~/DesktopModules/MVC/R7.University.</li>
+	<li>Portal-level R7.University.yml file is no longer required. You can create one to override default settings.</li>
+</ul>
+<p>Other changes:</p>
+<ul>
+	<li>Division: Main view converted to Razor.</li>
+	<li>Performance: Default cache time increased to 3600.</li>
+	<li>Proposed fix for nasty DnnUrlControl behavior when it broke after async postback.</li>
+    <li>UI: Division: Address displayed as a separate field, corresponding module setting removed (#191).</li>
+    <li>UI: Added &quot;Audit&quot; tab for edit views for main entities (#198).</li>
+    <li>UI: EditEmployee: Added Contacts tab (#197).</li>
+    <li>UI: EmployeeList: Add label for occupied positions to help distinct similar achievenment and position names (#209).</li>
+    <li>UX: Added validation to ensure edu. program profile forms is unique (#195).</li>
+    <li>UX: Added validation to edu. form time to learn (#193).</li>
+	<li>UX: Make more fields required: division's title, edu. program profile languages.</li>	
+    <li>Editing of all related entities implemented via reusable Grid&amp;Form-based controls (#196).</li>
+    <li>Edit documents: Some work on determining folder more reliable (#173).</li>
+	<li>Many code refactorings considering CQRS, moving code to R7.Dnn.Extensions and more.</li>	
+</ul>
+
 <h3>Version 1.14.1</h3>
 <p>This release focused on resolving issues with editing and displaying employee achievements, introdiced in v1.14.0.</p>
 <ul>
