@@ -1,0 +1,59 @@
+﻿--
+--  01.15.00.PostInstall.SqlDataProvider
+--
+--  Author:
+--       Roman M. Yagodin <roman.yagodin@gmail.com>
+--
+--  Copyright (c) 2017 Roman M. Yagodin
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU Affero General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.
+--
+--  This program is distributed in the hope that it will be useful,
+--  but WITHOUT ANY WARRANTY; without even the implied warranty of
+--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU Affero General Public License for more details.
+--
+--  You should have received a copy of the GNU Affero General Public License
+--  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+IF EXISTS (select * from {databaseOwner}[{objectQualifier}ModuleDefinitions] where DefinitionName = N'R7.University.Division')
+BEGIN
+    -- Rename old definitions
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_Division' WHERE DefinitionName = N'R7.University.Division'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_DivisionDirectory' WHERE DefinitionName = N'R7.University.DivisionDirectory'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_EduProgram' WHERE DefinitionName = N'R7.University.EduProgram'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_EduProgramDirectory' WHERE DefinitionName = N'R7.University.EduProgramDirectory'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_EduProgramProfileDirectory' WHERE DefinitionName = N'R7.University.EduProgramProfileDirectory'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_Employee' WHERE DefinitionName = N'R7.University.Employee'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_EmployeeDirectory' WHERE DefinitionName = N'R7.University.EmployeeDirectory'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_EmployeeList' WHERE DefinitionName = N'R7.University.EmployeeList'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_EmployeeDetails' WHERE DefinitionName = N'R7.University.EmployeeDetails'
+
+    UPDATE {databaseOwner}[{objectQualifier}ModuleDefinitions]
+        SET DefinitionName = N'R7_University_Launchpad' WHERE DefinitionName = N'R7.University.Launchpad'
+END
+GO

@@ -431,6 +431,7 @@
       <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
     </None>
     <None Include="images\Rollback_16x16_Gray.png" />
+    <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
