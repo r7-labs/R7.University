@@ -127,7 +127,7 @@
         <value>Ссылка</value>
     </data>
     <data name="DocumentUrlLabel.Text">
-        <value>Открыть</value>
+        <value>[открыть]</value>
     </data>
     <data name="DocumentFileName.Column">
         <value>Имя файла</value>

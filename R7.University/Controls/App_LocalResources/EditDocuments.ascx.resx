@@ -127,7 +127,7 @@
         <value>Link</value>
     </data>
     <data name="DocumentUrlLabel.Text">
-        <value>Open</value>
+        <value>[open]</value>
     </data>
     <data name="DocumentFileName.Column">
         <value>File Name</value>

@@ -31,7 +31,7 @@
         <value>Редактировать обр. программу</value>
     </data>
     <data name="LinkOpen.Text" xml:space="preserve">
-        <value>нажмите, чтобы открыть</value>
+        <value>[открыть]</value>
     </data>
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>

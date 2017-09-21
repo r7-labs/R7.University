@@ -19,7 +19,7 @@
         <value>Add Educational Program</value>
     </data>
     <data name="LinkOpen.Text" xml:space="preserve">
-        <value>open</value>
+        <value>[open]</value>
     </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Nothing to display. Please add some educational programs or change module settings.</value>

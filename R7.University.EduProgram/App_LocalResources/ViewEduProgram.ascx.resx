@@ -31,7 +31,7 @@
         <value>Edit Edu. Program</value>
     </data>
     <data name="LinkOpen.Text" xml:space="preserve">
-        <value>click to open</value>
+        <value>[open]</value>
     </data>
     <data name="EduLevel.Text" xml:space="preserve">
         <value>Education level:</value>

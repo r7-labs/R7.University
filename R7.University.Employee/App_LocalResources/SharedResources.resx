@@ -85,7 +85,7 @@
         <value>Education Level</value>
     </data>
     <data name="DocumentUrl.Text">
-        <value>View</value>
+        <value>[open]</value>
     </data>
     <data name="AtTheMoment.Text">
         <value>ATM</value>

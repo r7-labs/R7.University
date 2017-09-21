@@ -19,7 +19,7 @@
         <value>Новая обр. программа</value>
     </data>
     <data name="LinkOpen.Text" xml:space="preserve">
-        <value>открыть</value>
+        <value>[открыть]</value>
     </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать. Добавьте образовательные программы или измените настройки модуля.</value>
