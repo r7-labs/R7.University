@@ -5,7 +5,7 @@
 			<description>This is a core library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Division*, Employee*, EduProgram*, etc.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -166,7 +166,7 @@
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -342,7 +342,7 @@
 			<description>This is a module to display information about single employee.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -430,7 +430,7 @@
 			<description>This is a module to display detailed information about single employee.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -498,7 +498,7 @@
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -586,7 +586,7 @@
 			<description>This is a module to display information about single division.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -663,7 +663,7 @@
 			<description>This is a module to display information about employees.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -751,7 +751,7 @@
 			<description>This is a module to display information about divisions.</description>
 			<owner>
 				<name>Roman M. Yagodin</name>
-				<organization>R7.Solutions</organization>
+				<organization>R7.Labs</organization>
 				<url>https://github.com/roman-yagodin/R7.University</url>
 				<email>roman.yagodin@gmail.com</email>
 			</owner>
@@ -850,7 +850,7 @@
             <description>This is a module to display information about single employee.</description>
             <owner>
                 <name>Roman M. Yagodin</name>
-                <organization>R7.Solutions</organization>
+                <organization>R7.Labs</organization>
                 <url>https://github.com/roman-yagodin/R7.University</url>
                 <email>roman.yagodin@gmail.com</email>
             </owner>
@@ -937,7 +937,7 @@
             <description>This is a module to display information about educational programs.</description>
             <owner>
                 <name>Roman M. Yagodin</name>
-                <organization>R7.Solutions</organization>
+                <organization>R7.Labs</organization>
                 <url>https://github.com/roman-yagodin/R7.University</url>
                 <email>roman.yagodin@gmail.com</email>
             </owner>
@@ -1025,7 +1025,7 @@
             <description>This is a module to display information about educational program profiles.</description>
             <owner>
                 <name>Roman M. Yagodin</name>
-                <organization>R7.Solutions</organization>
+                <organization>R7.Labs</organization>
                 <url>https://github.com/roman-yagodin/R7.University</url>
                 <email>roman.yagodin@gmail.com</email>
             </owner>

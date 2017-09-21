@@ -5,7 +5,7 @@ using System.Reflection;
 [assembly: AssemblyTitle("R7.University.EduProgram")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("R7.Solutions")]
+[assembly: AssemblyCompany("R7.Labs")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("Roman M. Yagodin")]
 [assembly: AssemblyTrademark("")]
