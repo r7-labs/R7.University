@@ -123,7 +123,10 @@
 		    </div>
 		</div>
 	    @if (Model.DivisionTermID != null) {
-            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-default btn-sm btn-related-content">@Dnn.LocalizeString("RelatedContent.Text")</a>
+            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-default btn-sm btn-related-content">
+		        <span class="glyphicon glyphicon-search"></span>
+	            @Dnn.LocalizeString("RelatedContent.Text")
+            </a>
         }
     </div>
 }
