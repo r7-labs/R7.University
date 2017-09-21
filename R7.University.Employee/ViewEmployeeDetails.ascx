@@ -109,7 +109,7 @@
 			</div>	
     	</div>
     </div>
-    <ul class="dnnActions dnnClear">
+    <ul class="dnnActions dnnClear" style="margin-bottom:.5em">
 		<li>
             <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default" Visible="false">
                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -123,7 +123,7 @@
 			</asp:HyperLink>
 		</li>
     </ul>
-	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="false" />
+	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="true" />
 </asp:Panel>
 <div id="employee-barcode-dialog-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="employee-barcode-dialog-title-<%: ModuleId %>">
     <div class="modal-dialog modal-sm" role="document">
