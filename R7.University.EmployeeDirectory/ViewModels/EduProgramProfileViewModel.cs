@@ -48,7 +48,7 @@ namespace R7.University.EmployeeDirectory.ViewModels
         public string Title_String
         {
             get {
-                return TextUtils.FormatList (" - ",
+                return TextUtils.FormatList (": ",
                     FormatHelper.FormatEduProgramProfileTitle (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle),
                     (EduLevel != null) ? EduLevel.Title : null
                 );
