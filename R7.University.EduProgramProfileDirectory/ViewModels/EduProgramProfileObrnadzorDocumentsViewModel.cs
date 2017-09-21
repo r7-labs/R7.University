@@ -153,18 +153,17 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText))? " [" + docCount + "]" : string.Empty;
                 var table = new StringBuilder (
                     $"<span{microdata}>"
-                  + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
+                    + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
                     + $" data-table=\"doct-{RowId}-{columnSlug}\">{(linkText + docCountText).TrimStart ()}</a>"
-                  + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
-                  + $"<thead><tr><th>{GroupColumnHeader}</th>"
-                  + $"<th>{TitleColumnHeader}</th></tr></thead><tbody>"
+                    + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
+                    + $"<thead><tr><th>{TitleColumnHeader}</th><th>{GroupColumnHeader}</th></tr></thead><tbody>"
                 );
 
                 foreach (var document in documents) {
                     var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
                     var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId); 
                     var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp)? " class=\"u8y-not-published\"" : string.Empty;
-                    table.Append ($"<tr{rowCssClassAttr}><td>{document.Group}</td><td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td></tr>");
+                    table.Append ($"<tr{rowCssClassAttr}><td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td><td>{document.Group}</td></tr>");
                 }
 
                 table.Append ("</tbody></table></span>");
