@@ -86,7 +86,8 @@
 <script type="text/javascript">
 (function($, document) {
     function getTh (td) {
-		return td.closest("table").find ("th:nth-child(" + td.index() + ")");
+	    // would require column index/header index mapping
+        return td.closest("table").children("thead").children("tr").children("th:nth-child(" + td.index() + ")");
     }
     $(document).ready(function() {
     	$("#eduprogram-profile-documents-dialog-<%: ModuleId %>").on("show.bs.modal", function (event) {
