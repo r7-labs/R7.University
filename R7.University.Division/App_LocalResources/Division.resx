@@ -37,7 +37,7 @@
         <value>Find Related Content</value>
     </data>
     <data name="DocumentUrl.Text" xml:space="preserve">
-        <value>Regulations</value>
+        <value>[Regulations]</value>
     </data>
     <data name="SubDivisions.Text" xml:space="preserve">
         <value>Subdivisions:</value>

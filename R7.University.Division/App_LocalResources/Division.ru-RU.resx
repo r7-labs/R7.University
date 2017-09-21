@@ -37,7 +37,7 @@
         <value>Найти связанное содержимое</value>
     </data>
     <data name="DocumentUrl.Text" xml:space="preserve">
-        <value>Положение</value>
+        <value>[Положение]</value>
     </data>
     <data name="SubDivisions.Text" xml:space="preserve">
         <value>Подчиненные подразделения:</value>
