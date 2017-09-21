@@ -154,7 +154,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                 var table = new StringBuilder (
                     $"<span{microdata}>"
                   + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
-                    + $" data-table=\"doct-{RowId}-{columnSlug}\">{linkText}{docCountText.TrimStart ()}</a>"
+                    + $" data-table=\"doct-{RowId}-{columnSlug}\">{(linkText + docCountText).TrimStart ()}</a>"
                   + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
                   + $"<thead><tr><th>{GroupColumnHeader}</th>"
                   + $"<th>{TitleColumnHeader}</th></tr></thead><tbody>"
