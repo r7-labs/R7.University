@@ -1,6 +1,14 @@
 ﻿<div style="white-space:normal">
 
-<h3>Version 1.15.0</h3>
+<h3>Version 1.15.1</h3>
+<h4>Installation!</h4>
+<p>Due to newfound DNN packaging system limitation, installation of v1.15 version 
+	(or upgrade from any lower version) must be done in three steps:</p>
+<ol>
+    <li>Install v1.15.0 package first.</li>
+    <li>Then run 01.15.00.PostInstall.SqlDataProvider script from Host/SQL.</li>
+    <li>After that, install v1.15.1 package.</li>
+</ol>
 <h4>Most notable changes:</h4>
 <ul>
     <li>UX: More compact display option for EduProgramProfileDirectory Documents mode using popups and pre-rendered tables (#176).</li>
@@ -8,7 +16,7 @@
     <li>Model: Divisions and edu. program (profile) association reimplemented as many-to-many (#163).</li>
     <li>Model: Separated time to learn hours and years/months for edu. program profile forms (#182).</li>
     <li>UI: Employee views and all jQuery popups converted to Bootstrap (#165, #194).</li>
-    <li>Integration: Fixed module name in search results/settings cannot be customized via SearchableModules.resx - see note below (#167).</li>
+    <li>Integration: Fixed module name in search results/settings cannot be customized via SearchableModules.resx (#167).</li>
     <li>UX, Prodictivity: Added rollback for delete command and colorful state markers for Grid&amp;Form (#178).</li>
     <li>Performance, Reliability: More faster and reliable update algorithm for Grid&amp;Form (#178).</li>
     <li>Performance: Disabled viewstate for most main views (#207).</li>
@@ -32,8 +40,6 @@
     <li>Edit documents: Some work on determining folder more reliable (#173).</li>
 	<li>Many code refactorings considering CQRS, moving code to R7.Dnn.Extensions and more.</li>	
 </ul>
-<h4>Important!</h4>
-<p>Run 01.15.00.PostInstall.SqlDataProvider script from Host/SQL after regular install/update (#167).</p>	
 
 <h3>Version 1.14.1</h3>
 <p>This release focused on resolving issues with editing and displaying employee achievements, introdiced in v1.14.0.</p>

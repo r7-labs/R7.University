@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="01.15.00">
+		<package name="R7.University" type="Library" version="01.15.01">
 			<friendlyName>R7.University</friendlyName>
 			<description>This is a core library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Division*, Employee*, EduProgram*, etc.</description>
 			<owner>
@@ -161,7 +161,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.15.00">
+		<package name="R7.University.Launchpad" type="Module" version="01.15.01">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -186,7 +186,7 @@
 						<moduleDefinitions>
 							<moduleDefinition>
 								<friendlyName>R7.University.Launchpad</friendlyName>
-								<definitionName>R7.University.Launchpad</definitionName>
+								<definitionName>R7_University_Launchpad</definitionName>
 								<defaultCacheTime>0</defaultCacheTime>
 								<moduleControls>
 									<moduleControl>
@@ -337,7 +337,7 @@
 				</component>
       		</components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="01.15.00">
+		<package name="R7.University.Employee" type="Module" version="01.15.01">
 			<friendlyName>R7.University.Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -362,7 +362,7 @@
 						<moduleDefinitions>
 							<moduleDefinition>
 								<friendlyName>R7.University.Employee</friendlyName>
-								<definitionName>R7.University.Employee</definitionName>
+								<definitionName>R7_University_Employee</definitionName>
 								<defaultCacheTime>0</defaultCacheTime>
 								<moduleControls>
 									<moduleControl>
@@ -425,7 +425,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDetails" type="Module" version="01.15.00">
+		<package name="R7.University.EmployeeDetails" type="Module" version="01.15.01">
 			<friendlyName>R7.University.EmployeeDetails</friendlyName>
 			<description>This is a module to display detailed information about single employee.</description>
 			<owner>
@@ -450,7 +450,7 @@
 						<moduleDefinitions>
 							<moduleDefinition>
 								<friendlyName>R7.University.EmployeeDetails</friendlyName>
-								<definitionName>R7.University.EmployeeDetails</definitionName>
+								<definitionName>R7_University_EmployeeDetails</definitionName>
 								<defaultCacheTime>0</defaultCacheTime>
 								<moduleControls>
 									<moduleControl>
@@ -493,7 +493,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="01.15.00">
+		<package name="R7.University.EmployeeList" type="Module" version="01.15.01">
 			<friendlyName>R7.University.EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
@@ -518,7 +518,7 @@
 						<moduleDefinitions>
 							<moduleDefinition>
 								<friendlyName>R7.University.EmployeeList</friendlyName>
-								<definitionName>R7.University.EmployeeList</definitionName>
+								<definitionName>R7_University_EmployeeList</definitionName>
 								<defaultCacheTime>0</defaultCacheTime>
 								<moduleControls>
 									<moduleControl>
@@ -581,7 +581,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Division" type="Module" version="01.15.00">
+		<package name="R7.University.Division" type="Module" version="01.15.01">
 			<friendlyName>R7.University.Division</friendlyName>
 			<description>This is a module to display information about single division.</description>
 			<owner>
@@ -606,7 +606,7 @@
 						<moduleDefinitions>
 							<moduleDefinition>
 								<friendlyName>R7.University.Division</friendlyName>
-								<definitionName>R7.University.Division</definitionName>
+								<definitionName>R7_University_Division</definitionName>
                                 <defaultCacheTime>0</defaultCacheTime>
 								<moduleControls>
 									<moduleControl>
@@ -658,7 +658,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDirectory" type="Module" version="01.15.00">
+		<package name="R7.University.EmployeeDirectory" type="Module" version="01.15.01">
 			<friendlyName>R7.University.EmployeeDirectory</friendlyName>
 			<description>This is a module to display information about employees.</description>
 			<owner>
@@ -683,7 +683,7 @@
 				   		<moduleDefinitions>
 				     		<moduleDefinition>
 				       			<friendlyName>R7.University.EmployeeDirectory</friendlyName>
-				       			<definitionName>R7.University.EmployeeDirectory</definitionName>
+				       			<definitionName>R7_University_EmployeeDirectory</definitionName>
 				       			<defaultCacheTime>0</defaultCacheTime>
 				       			<moduleControls>
 				         			<moduleControl>
@@ -746,7 +746,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.DivisionDirectory" type="Module" version="01.15.00">
+		<package name="R7.University.DivisionDirectory" type="Module" version="01.15.01">
 			<friendlyName>R7.University.DivisionDirectory</friendlyName>
 			<description>This is a module to display information about divisions.</description>
 			<owner>
@@ -771,7 +771,7 @@
 				   		<moduleDefinitions>
 				     		<moduleDefinition>
 				       			<friendlyName>R7.University.DivisionDirectory</friendlyName>
-				       			<definitionName>R7.University.DivisionDirectory</definitionName>
+				       			<definitionName>R7_University_DivisionDirectory</definitionName>
 				       			<defaultCacheTime>0</defaultCacheTime>
 				       			<moduleControls>
 				         			<moduleControl>
@@ -845,7 +845,7 @@
 				</component>
 			</components>
 		</package>
-        <package name="R7.University.EduProgram" type="Module" version="01.15.00">
+        <package name="R7.University.EduProgram" type="Module" version="01.15.01">
             <friendlyName>R7.University.EduProgram</friendlyName>
             <description>This is a module to display information about single employee.</description>
             <owner>
@@ -869,7 +869,7 @@
                         <moduleDefinitions>
                             <moduleDefinition>
                                 <friendlyName>R7.University.EduProgram</friendlyName>
-                                <definitionName>R7.University.EduProgram</definitionName>
+                                <definitionName>R7_University_EduProgram</definitionName>
                                 <defaultCacheTime>0</defaultCacheTime>
                                 <moduleControls>
                                     <moduleControl>
@@ -932,7 +932,7 @@
                 </component>
             </components>
         </package>
-        <package name="R7.University.EduProgramDirectory" type="Module" version="01.15.00">
+        <package name="R7.University.EduProgramDirectory" type="Module" version="01.15.01">
             <friendlyName>R7.University.EduProgramDirectory</friendlyName>
             <description>This is a module to display information about educational programs.</description>
             <owner>
@@ -957,7 +957,7 @@
                         <moduleDefinitions>
                             <moduleDefinition>
                                 <friendlyName>R7.University.EduProgramDirectory</friendlyName>
-                                <definitionName>R7.University.EduProgramDirectory</definitionName>
+                                <definitionName>R7_University_EduProgramDirectory</definitionName>
                                 <defaultCacheTime>0</defaultCacheTime>
                                 <moduleControls>
                                     <moduleControl>
@@ -1020,7 +1020,7 @@
                 </component>
             </components>
         </package>
-        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="01.15.00">
+        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="01.15.01">
             <friendlyName>R7.University.EduProgramProfileDirectory</friendlyName>
             <description>This is a module to display information about educational program profiles.</description>
             <owner>
@@ -1045,7 +1045,7 @@
                         <moduleDefinitions>
                             <moduleDefinition>
                                 <friendlyName>R7.University.EduProgramProfileDirectory</friendlyName>
-                                <definitionName>R7.University.EduProgramProfileDirectory</definitionName>
+                                <definitionName>R7_University_EduProgramProfileDirectory</definitionName>
                                 <defaultCacheTime>0</defaultCacheTime>
                                 <moduleControls>
                                     <moduleControl>
