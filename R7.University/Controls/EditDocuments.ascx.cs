@@ -138,6 +138,7 @@ namespace R7.University.Controls
                 items.OrderByDescending (d => d.Group, DocumentGroupComparer.Instance)
                 .ThenBy (d => d.DocumentType.DocumentTypeID)
                 .ThenBy (d => d.SortIndex)
+                .ThenBy (d => d.Title)
                 , targetItemId
             );
 

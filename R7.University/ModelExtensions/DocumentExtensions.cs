@@ -59,7 +59,7 @@ namespace R7.University.ModelExtensions
 
         public static IEnumerable<IDocument> OrderByGroupDescThenSortIndex (this IEnumerable<IDocument> documents)
         {
-            return documents.OrderByDescending (d => d.Group, DocumentGroupComparer.Instance).ThenBy (d => d.SortIndex);
+            return documents.OrderByDescending (d => d.Group, DocumentGroupComparer.Instance).ThenBy (d => d.SortIndex).ThenBy (d => d.Title);
         }
     }
 }
