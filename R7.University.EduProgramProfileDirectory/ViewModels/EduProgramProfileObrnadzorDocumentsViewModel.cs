@@ -148,10 +148,10 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
         // TODO: Calculate initial capacity for StringBuilder?
         string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string linkText, string columnSlug, string microdata = "")
         {
+            var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
             var docCount = documents.Count ();
             if (docCount > 0) {
                 var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText))? " [" + docCount + "]" : string.Empty;
-                var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
                 var table = new StringBuilder (
                     $"<span{microdataAttrs}>"
                     + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
@@ -169,6 +169,10 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
                 table.Append ("</tbody></table></span>");
                 return table.ToString ();
+            }
+
+            if (!string.IsNullOrEmpty (linkText)) {
+                return $"<span{microdataAttrs}>{linkText}</span>";
             }
 
             return string.Empty;
