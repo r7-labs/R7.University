@@ -156,6 +156,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
                     $"<span{microdataAttrs}>"
                     + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
                     + $" data-table=\"doct-{RowId}-{columnSlug}\">{(linkText + docCountText).TrimStart ()}</a>"
+                    // TODO: Use class="hidden" instead of inline style?
                     + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
                     + $"<thead><tr><th>{TitleColumnHeader}</th><th>{GroupColumnHeader}</th></tr></thead><tbody>"
                 );
