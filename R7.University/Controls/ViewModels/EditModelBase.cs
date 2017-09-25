@@ -35,15 +35,10 @@ namespace R7.University.Controls.ViewModels
         public ViewModelContext Context { get; set; }
 
         [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState PrevEditState { get; set; }
-
-        protected ModelEditState _editState;
+        public ModelEditState PrevEditState { get; set; } = ModelEditState.Unchanged;
 
         [JsonConverter (typeof (StringEnumConverter))]
-        public ModelEditState EditState {
-            get { return _editState; }
-            set { PrevEditState = _editState; _editState = value; }
-        }
+        public ModelEditState EditState { get; set; } = ModelEditState.Unchanged;
 
         public virtual bool IsPublished => true;
 
@@ -52,5 +47,17 @@ namespace R7.University.Controls.ViewModels
         public abstract IEditModel<TModel> Create (TModel model, ViewModelContext context);
 
         public abstract void SetTargetItemId (int targetItemId, string targetItemKey);
+
+        public virtual void SetEditState (ModelEditState value)
+        {
+            PrevEditState = EditState;
+            EditState = value;
+        }
+
+        public virtual void RestoreEditState ()
+        {
+            EditState = PrevEditState;
+            PrevEditState = ModelEditState.Unchanged;
+        }
     }
 }

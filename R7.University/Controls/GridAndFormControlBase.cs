@@ -218,7 +218,7 @@ namespace R7.University.Controls
                 var command = e.CommandArgument.ToString ();
                 if (command == "Add") {
                     item = new TViewModel ();
-                    item.EditState = ModelEditState.Added;
+                    item.SetEditState (ModelEditState.Added);
                 }
                 else {
                     // restore ItemID from hidden field
@@ -226,7 +226,7 @@ namespace R7.University.Controls
                     item = items.Find (i => i.ViewItemID == hiddenViewItemId);
 
                     if (item.EditState != ModelEditState.Added) {
-                        item.EditState = ModelEditState.Modified;
+                        item.SetEditState (ModelEditState.Modified);
                     }
                 }
 
@@ -357,7 +357,7 @@ namespace R7.University.Controls
                         // remove item
                         var item = items [itemIndex];
                         if (item.EditState != ModelEditState.Added) {
-                            item.EditState = ModelEditState.Deleted;    
+                            item.SetEditState (ModelEditState.Deleted);
                         }
                         else {
                             items.RemoveAt (itemIndex);
@@ -393,9 +393,7 @@ namespace R7.University.Controls
                     var itemId = e.CommandArgument.ToString ();
                     var item = items.Find (i => i.ViewItemID.ToString () == itemId);
                     if (item != null) {
-
-                        // restore previous edit state
-                        item.EditState = item.PrevEditState;
+                        item.RestoreEditState ();
                   
                         // refresh viewstate
                         ViewStateItems = items;

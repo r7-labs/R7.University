@@ -41,5 +41,9 @@ namespace R7.University.Controls.ViewModels
         IEditModel<TModel> Create (TModel model, ViewModelContext context);
 
         void SetTargetItemId (int targetItemId, string targetItemKey);
+
+        void SetEditState (ModelEditState value);
+
+        void RestoreEditState ();
     }
 }
