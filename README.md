@@ -19,10 +19,10 @@ or (at your option) any later version.
 
 ## Dependencies
 
-- DNN Platform v8.0.4
-- [R7.DotNetNuke.Extensions](https://github.com/roman-yagodin/DotNetNuke.Extensions) as base library. Must be installed separately.
+- [DNN Platform v8.0.4](https://github.com/dnnsoftware/Dnn.Platform)
+- [R7.Dnn.Extensions](https://github.com/roman-yagodin/R7.Dnn.Extensions) as base library. Must be installed separately.
 - [R7.ImageHandler](https://github.com/roman-yagodin/R7.ImageHandler) to generate thumbnails. Must be installed separately.
-- [YamlDotNet](https://github.com/aaubry/YamlDotNet) to read config files. Currently included in the install package.
+- [Entity Framework](https://github.com/aspnet/EntityFramework6) to work with database. Currently included in the install package.
 
 ## Example of use
 
