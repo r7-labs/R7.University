@@ -27,5 +27,6 @@
 		</div>
 	</ItemTemplate>
 	<ItemStyle CssClass="media employee-list-item" />
+	<AlternatingItemStyle CssClass="media employee-list-item" />
 </asp:DataList>
 <controls:AgplSignature runat="server" />
