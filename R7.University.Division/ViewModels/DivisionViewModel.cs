@@ -27,7 +27,6 @@ using DotNetNuke.Common;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Division.Models;
@@ -68,7 +67,7 @@ namespace R7.University.Division.ViewModels
 
         public int? DivisionTermID => Division.DivisionTermID;
 
-        public string DocumentUrl => Division.DocumentUrl;
+        public string DocumentUrl => Globals.LinkClick (Division.DocumentUrl, Context.Module.TabId, Context.Module.ModuleId);
 
         public string Email => Division.Email;
 
