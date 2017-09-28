@@ -172,7 +172,7 @@ namespace R7.University.Controls
 
         protected List<TViewModel> ViewStateItems
         {
-            get { return Json.Deserialize<List<TViewModel>> ((string) ViewState ["items"]); }
+            get { return Json.Deserialize<List<TViewModel>> ((string) ViewState ["items"] ?? string.Empty); }
             set { ViewState ["items"] = Json.Serialize (value); }
         }
 
