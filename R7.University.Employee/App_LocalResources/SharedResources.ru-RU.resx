@@ -73,7 +73,7 @@
         <value>Категория</value>
     </data>
     <data name="DocumentUrl.Column">
-        <value>[открыть]</value>
+        <value>Документ</value>
     </data>
     <data name="EduProgramProfile.Column">
         <value>Образовательная программа (профиль подготовки, специализация)</value>
@@ -85,7 +85,7 @@
         <value>Уровень образования</value>
     </data>
     <data name="DocumentUrl.Text">
-        <value>Просмотр</value>
+        <value>[открыть]</value>
     </data>
     <data name="AtTheMoment.Text">
         <value>н/в</value>
