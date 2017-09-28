@@ -109,7 +109,7 @@
 			</div>	
     	</div>
     </div>
-    <ul class="dnnActions dnnClear" style="margin-bottom:.5em">
+    <ul class="dnnActions dnnClear" style="margin-bottom:1em">
 		<li>
             <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default" Visible="false">
                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
