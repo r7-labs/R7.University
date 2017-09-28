@@ -67,7 +67,14 @@ namespace R7.University.Division.ViewModels
 
         public int? DivisionTermID => Division.DivisionTermID;
 
-        public string DocumentUrl => Globals.LinkClick (Division.DocumentUrl, Context.Module.TabId, Context.Module.ModuleId);
+        public string DocumentUrl {
+            get {
+                if (!string.IsNullOrEmpty (Division.DocumentUrl)) {
+                    return Globals.LinkClick (Division.DocumentUrl, Context.Module.TabId, Context.Module.ModuleId);
+                }
+                return string.Empty;
+            }
+        }
 
         public string Email => Division.Email;
 
