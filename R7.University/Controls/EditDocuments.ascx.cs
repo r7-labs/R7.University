@@ -131,6 +131,8 @@ namespace R7.University.Controls
 
         protected override void OnPartialResetForm ()
         {
+            base.OnPartialResetForm ();
+
             // reset only fields within collapsed panel
             textDocumentSortIndex.Text = "0";
             datetimeDocumentStartDate.SelectedDate = null;
