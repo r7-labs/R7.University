@@ -32,7 +32,6 @@ using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
-using R7.University.ControlExtensions;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
@@ -78,6 +77,15 @@ namespace R7.University.Controls
         /// Implementation must contain code to reset form to default values.
         /// </summary>
         protected abstract void OnResetForm ();
+
+        /// <summary>
+        /// Called when form switched back to the Add mode.
+        /// Override this to reset the controls which shouldn't maintain values after adding or updating item,
+        /// like ones within collapsed panels.
+        /// </summary>
+        protected virtual void OnPartialResetForm ()
+        {
+        }
 
         #endregion
 
@@ -419,6 +427,8 @@ namespace R7.University.Controls
             buttonAddItem.Visible = true;
             buttonCancelEditItem.Visible = false;
             buttonUpdateItem.Visible = false;
+
+            OnPartialResetForm ();
         }
 
         void SwitchToUpdateMode ()

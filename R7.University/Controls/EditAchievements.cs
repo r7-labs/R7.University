@@ -157,6 +157,8 @@ namespace R7.University.Controls
 
         protected override void OnResetForm ()
         {
+            OnPartialResetForm ();
+
             // restore default panels visibility
             panelAchievementTitle.Visible = true;
             panelAchievementShortTitle.Visible = true;
@@ -166,13 +168,21 @@ namespace R7.University.Controls
             comboAchievement.SelectedIndex = 0;
             comboAchievementTypes.SelectedIndex = 0;
             textAchievementTitle.Text = string.Empty;
-            textAchievementShortTitle.Text = string.Empty;
-            textAchievementTitleSuffix.Text = string.Empty;
-            textAchievementDescription.Text = string.Empty;
+  
             textYearBegin.Text = string.Empty;
             textYearEnd.Text = string.Empty;
             checkIsTitle.Checked = false;
             hiddenViewItemID.Value = string.Empty;
+        }
+
+        protected override void OnPartialResetForm ()
+        {
+            base.OnPartialResetForm ();
+
+            // reset only fields within collapsed panel
+            textAchievementShortTitle.Text = string.Empty;
+            textAchievementTitleSuffix.Text = string.Empty;
+            textAchievementDescription.Text = string.Empty;
         }
 
         #endregion

@@ -122,9 +122,16 @@ namespace R7.University.Controls
 
         protected override void OnResetForm ()
         {
+            OnPartialResetForm ();
+
             textDocumentTitle.Text = string.Empty;
             textDocumentGroup.Text = string.Empty;
             comboDocumentType.SelectedIndex = 0;
+        }
+
+        protected override void OnPartialResetForm ()
+        {
+            // reset only fields within collapsed panel
             textDocumentSortIndex.Text = "0";
             datetimeDocumentStartDate.SelectedDate = null;
             datetimeDocumentEndDate.SelectedDate = null;
