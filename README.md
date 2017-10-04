@@ -7,7 +7,13 @@
 
 Modules and base library for DNN Platfrom designed to present and manage various assets 
 (e.g. divisions, employees, educational programs, documents) for high school educational organization website,
-compatible with [obrnadzor.gov.ru](http://obrnadzor.gov.ru/microformats) microdata requirements.
+compatible with [obrnadzor.gov.ru](http://obrnadzor.gov.ru) microdata requirements.
+
+## In russian:
+
+Модули расширения и базовая библиотека для DNN Platform, предназначенные для отображения и управления информацией
+о различных ресурсах образовательной организации (подразделениях, сотрудниках, образовательных программах, документах и т.д.)
+на сайте образовательной организации высшего образования, совместимые с рекомендациями [Рособрнадзора](http://obrnadzor.gov.ru)
 
 ## License
 
