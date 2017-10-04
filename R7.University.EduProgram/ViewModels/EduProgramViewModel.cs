@@ -74,7 +74,7 @@ namespace R7.University.EduProgram.ViewModels
                     "<li>{0}</li>",
                     "<ul class=\"list-inline u8y-inline\">{0}</ul>",
                     "<ul class=\"list-inline u8y-inline\">{0}</ul>",
-                    "itemprop=\"EduStandartDoc\"",
+                    string.Empty,
                     DocumentGroupPlacement.InTitle
                 );
             }

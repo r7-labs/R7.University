@@ -8,8 +8,10 @@
     <asp:MultiView id="mviewEduProgramDirectory" runat="server" ActiveViewIndex="0">
         <asp:View id="viewEduStandards" runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridEduStandards" runat="server" AutoGenerateColumns="false"
-                    UseAccessibleHeader="true" CssClass="table table-bordered table-striped table-hover grid-edustandards"
+                <asp:GridView id="gridEduStandards" runat="server"
+					itemprop="eduStandartDoc"
+					AutoGenerateColumns="false" UseAccessibleHeader="true"
+					CssClass="table table-bordered table-striped table-hover grid-edustandards"
                     GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEduStandards_RowDataBound">
                     <Columns>
                         <asp:TemplateField>

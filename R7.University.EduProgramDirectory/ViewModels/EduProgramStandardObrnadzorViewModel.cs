@@ -80,7 +80,7 @@ namespace R7.University.EduProgramDirectory
                     "<li>{0}</li>",
                     "<ul class=\"list-inline\">{0}</ul>",
                     "<ul>{0}</ul>",
-                    "itemprop=\"EduStandartDoc\"",
+                    string.Empty,
                     DocumentGroupPlacement.InTitle
                 );
             }
