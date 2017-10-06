@@ -10,11 +10,11 @@ EduProgramProfile "0..*" -- "0..*" Division
 Division "1" --- "0..*" EduProgramDivision
 
 class EduProgramDivision {
-    EduProgramDivisionID: bigint
-    .. FK ..
-    DivisionID: int
-    EduProgramID: int
-    EduProgramProfileID: int
+    EduProgramDivisionId: long
+    .. DB FK ..
+    DivisionId: int
+    EduProgramId: int
+    EduProgramProfileId: int
     ..
     DivisionRole: string
 }
