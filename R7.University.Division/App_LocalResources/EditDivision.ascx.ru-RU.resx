@@ -138,6 +138,12 @@
     <data name="labelIsInformal.Help">
         <value>Отметьте, если данное подразделение не является формальным подразделением. Неформальные подразделения могут быть удалены из представления в модуле DivisionDirectory.</value>
     </data>
+	<data name="labelIsGoverning.Text">
+        <value>Орган управления?</value>
+    </data>
+    <data name="labelIsGoverning.Help">
+        <value>Отметьте, если данное подразделение является органом управления организацией.</value>
+    </data>
 	<data name="labelHeadPosition.Text">
 		<value>Должность руководителя:</value>
 	</data>

@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -375,7 +376,7 @@
     <None Include="SqlDataProvider\01.11.00.SqlDataProvider" />
     <None Include="Controls\AgplSignature.ascx" />
     <Compile Include="Controls\AgplSignature.ascx.cs">
-	    <DependentUpon>AgplSignature.ascx</DependentUpon>
+      <DependentUpon>AgplSignature.ascx</DependentUpon>
     </Compile>
     <None Include="css\module.css" />
     <None Include="Controls\App_LocalResources\AgplSignature.ascx.resx">
@@ -435,5 +436,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
+    <None Include="SqlDataProvider\01.16.00.SqlDataProvider" />
   </ItemGroup>
 </Project>

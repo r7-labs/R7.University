@@ -80,6 +80,8 @@ namespace R7.University.Models
 
         public bool IsInformal { get; set; }
 
+        public bool IsGoverning { get; set; }
+
         public int? HeadPositionID { get; set; }
 
         public DateTime? StartDate { get; set; }

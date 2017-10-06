@@ -62,6 +62,8 @@ namespace R7.University.Models
 
         bool IsInformal { get; }
 
+        bool IsGoverning { get; }
+
         int? HeadPositionID { get; }
 
         DateTime? StartDate { get; }
@@ -112,6 +114,8 @@ namespace R7.University.Models
         new bool IsVirtual { get; set; }
 
         new bool IsInformal { get; set; }
+
+        new bool IsGoverning { get; set; }
 
         new int? HeadPositionID { get; set; }
 

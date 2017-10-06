@@ -31,6 +31,7 @@ namespace R7.University.Division
         protected DnnDateTimePicker datetimeEndDate;
         protected CheckBox checkIsVirtual;
         protected CheckBox checkIsInformal;
+        protected CheckBox checkIsGoverning;
         protected DropDownList comboHeadPosition;
     }
 }

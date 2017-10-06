@@ -125,6 +125,7 @@ namespace R7.University.Division
             datetimeEndDate.SelectedDate = item.EndDate;
             checkIsVirtual.Checked = item.IsVirtual;
             checkIsInformal.Checked = item.IsInformal;
+            checkIsGoverning.Checked = item.IsGoverning;
             comboHeadPosition.SelectByValue (item.HeadPositionID);
 
             // load working hours
@@ -170,6 +171,7 @@ namespace R7.University.Division
             item.EndDate = datetimeEndDate.SelectedDate;
             item.IsVirtual = checkIsVirtual.Checked;
             item.IsInformal = checkIsInformal.Checked;
+            item.IsGoverning = checkIsGoverning.Checked;
             item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
         }
 

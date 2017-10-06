@@ -90,6 +90,8 @@ namespace R7.University.Division.ViewModels
 
         public bool IsVirtual => Division.IsVirtual;
 
+        public bool IsGoverning => Division.IsGoverning;
+
         public int LastModifiedByUserID => Division.LastModifiedByUserID;
 
         public DateTime LastModifiedOnDate => Division.LastModifiedOnDate;

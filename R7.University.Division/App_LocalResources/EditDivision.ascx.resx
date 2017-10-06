@@ -138,6 +138,12 @@
     <data name="labelIsInformal.Help">
         <value>Check if this division is not formal one. Informal divisions can be filtered out from the DivisionDirectory module view.</value>
     </data>
+	<data name="labelIsGoverning.Text">
+        <value>Is Governing?</value>
+    </data>
+    <data name="labelIsGoverning.Help">
+        <value>Check if this division is governing one for the organization.</value>
+    </data>
 	<data name="labelHeadPosition.Text">
 		<value>Head Employee Position:</value>
 	</data>
