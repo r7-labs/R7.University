@@ -460,6 +460,14 @@ namespace R7.University.DivisionDirectory
                     e.Row.AddCssClass ("u8y-not-published");
                 }
 
+                if (division.IsGoverning) {
+                    e.Row.AddCssClass ("u8y-governing-division");
+                }
+
+                if (division.IsVirtual) {
+                    e.Row.AddCssClass ("u8y-virtual-division");
+                }
+
                 if (division.IsInformal && IsEditable) {
                     e.Row.AddCssClass ("u8y-informal-division");
                 }

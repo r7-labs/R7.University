@@ -57,12 +57,6 @@ namespace R7.University.DivisionDirectory
                         divisionString, string.Empty);
                 }
 
-                if (IsVirtual)
-                {
-                    // distinct virtual divisions 
-                    divisionString = "<strong>" + divisionString + "</strong>";
-                }
-
                 return divisionString;
             }
         }
