@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -35,7 +35,7 @@ namespace R7.University.DivisionDirectory
 {
     internal class DivisionObrnadzorViewModel: DivisionInfo
     {
-        private const string linkFormat = "<a href=\"{0}\" target=\"_blank\" {2}>{1}</a>";
+        private const string linkFormat = "<span {2}><a href=\"{0}\" target=\"_blank\">{1}</a></span>";
 
         #region Properties
             
@@ -48,7 +48,7 @@ namespace R7.University.DivisionDirectory
             get
             {
                 var divisionTitle = Title + ((ModelHelper.HasUniqueShortTitle (Title, ShortTitle))? string.Format (" ({0})", ShortTitle) : string.Empty);
-                var divisionString = "<span itemprop=\"Name\">" + divisionTitle + "</span>";
+                var divisionString = "<span itemprop=\"name\">" + divisionTitle + "</span>";
 
                 if (!string.IsNullOrWhiteSpace (HomePage))
                 {
@@ -78,7 +78,7 @@ namespace R7.University.DivisionDirectory
                     var webSiteLabel = (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
                         WebSite.Contains ("://") ? WebSite.Remove (0, WebSite.IndexOf ("://") + 3) : WebSite;
                     
-                    return string.Format (linkFormat, webSiteUrl, webSiteLabel, "itemprop=\"Site\"");
+                    return string.Format (linkFormat, webSiteUrl, webSiteLabel, "itemprop=\"site\"");
                 }
 
                 return string.Empty;
@@ -91,7 +91,7 @@ namespace R7.University.DivisionDirectory
             { 
                 if (!string.IsNullOrWhiteSpace (Email))
                 {
-                    return string.Format (linkFormat, "mailto:" + Email, Email, "itemprop=\"E-mail\"");
+                    return string.Format (linkFormat, "mailto:" + Email, Email, "itemprop=\"email\"");
                 }
 
                 return string.Empty;
@@ -108,7 +108,7 @@ namespace R7.University.DivisionDirectory
                     return string.Format (linkFormat, 
                         Globals.LinkClick (DocumentUrl, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("Regulations.Text", Context.LocalResourceFile),
-                        "itemprop=\"DivisionClause_DocLink\""
+                        "itemprop=\"divisionClauseDocLink\""
                     );
                 }
 
@@ -121,7 +121,7 @@ namespace R7.University.DivisionDirectory
             get {
                 var location = TextUtils.FormatList (", ", Address, Location);
                 if (!string.IsNullOrWhiteSpace (location)) {
-                    return "<span itemprop=\"AddressStr\">" + location  + "</span>";
+                    return "<span itemprop=\"addressStr\">" + location  + "</span>";
                 }
 
                 return string.Empty;

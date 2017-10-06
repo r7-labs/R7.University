@@ -412,6 +412,8 @@ namespace R7.University.DivisionDirectory
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var division = (DivisionObrnadzorViewModel) e.Row.DataItem;
 
+                e.Row.Attributes.Add ("itemprop", "structOrgUprav");
+
                 if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
@@ -432,16 +434,16 @@ namespace R7.University.DivisionDirectory
                     .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
                     .FirstOrDefault (he => he.IsPublished (now));
                 
+                // TODO: Move to viewmodel and split data into 2 columns
                 if (headEmployee != null) {
                     var headPosition = headEmployee.Positions
                         .Single (op => op.DivisionID == division.DivisionID && op.PositionID == division.HeadPositionID);
                     
                     var positionTitle = FormatHelper.FormatShortTitle (headPosition.Position.ShortTitle, headPosition.Position.Title);
 
-                    literalHeadEmployee.Text = "<strong><a href=\""
-                    + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
-                    + "\" itemprop=\"Fio\">" + headEmployee.FullName + "</a></strong><br />"
-                    + TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
+                    literalHeadEmployee.Text = "<strong><span itemprop=\"fio\">"
+                    + $"<a href=\"{EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")}>{headEmployee.FullName}</a></span></strong><br />"
+                    + $"<span itemprop=\"post\">{TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix)}</span>";
                 }
                 else if (!division.IsVirtual) {
                     if (division.HeadPositionID != null) {
