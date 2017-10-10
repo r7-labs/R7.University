@@ -88,16 +88,16 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="Order" HeaderText="Order.Column" />
                         <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="LocationString" HeaderText="Location.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="Phone" HeaderText="Phone.Column" />
-                        <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="DocumentLink" HeaderText="Document.Column" HtmlEncode="false" />
                         <asp:TemplateField HeaderText="HeadEmployee.Column">
                             <ItemTemplate>
-                                <asp:Literal id="literalHeadEmployee" runat="server" /> 
+                                <asp:Literal id="literalHeadEmployee" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
+					    <asp:BoundField DataField="LocationString" HeaderText="Location.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor.Column" HtmlEncode="false" />
+					    <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor.Column" HtmlEncode="false" />
+						<asp:BoundField DataField="Phone" HeaderText="Phone.Column" />
+                        <asp:BoundField DataField="DocumentLink" HeaderText="Document.Column" HtmlEncode="false" />
                     </Columns>
                 </asp:GridView>
             </div>

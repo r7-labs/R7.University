@@ -434,7 +434,9 @@ namespace R7.University.DivisionDirectory
                     .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
                     .FirstOrDefault (he => he.IsPublished (now));
                 
-                // TODO: Move to viewmodel and split data into 2 columns
+                // TODO: Move to viewmodel
+                // TODO: Split data into 2 columns?
+
                 if (headEmployee != null) {
                     var headPosition = headEmployee.Positions
                         .Single (op => op.DivisionID == division.DivisionID && op.PositionID == division.HeadPositionID);

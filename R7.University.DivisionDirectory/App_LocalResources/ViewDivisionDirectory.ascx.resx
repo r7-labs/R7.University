@@ -22,13 +22,13 @@
         <value>Division</value>
     </data>
     <data xml:space="preserve" name="TitleObrnadzor.Column">
-        <value>Division's title</value>
+        <value>Division's Title</value>
     </data>
     <data xml:space="preserve" name="Email.Column">
         <value>Email</value>
     </data>
     <data xml:space="preserve" name="EmailObrnadzor.Column">
-        <value>Email address</value>
+        <value>Email Address</value>
     </data>
     <data xml:space="preserve" name="Phone.Column">
         <value>Phone</value>
@@ -37,16 +37,16 @@
         <value>Website</value>
     </data>
     <data xml:space="preserve" name="WebSiteObrnadzor.Column">
-        <value>Official website address in the Internet</value>
+        <value>Official Website Address</value>
     </data>
     <data xml:space="preserve" name="Location.Column">
-        <value>Location</value>
+        <value>Location Address</value>
     </data>
     <data xml:space="preserve" name="Document.Column">
         <value>Document</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Column">
-        <value>Head Employee</value>
+        <value>Head Employee Name and Position</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
         <value>#</value>
