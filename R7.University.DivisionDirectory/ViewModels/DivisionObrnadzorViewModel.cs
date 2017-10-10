@@ -26,10 +26,11 @@ using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Components;
 using R7.University.DivisionDirectory.Models;
+using R7.University.DivisionDirectory.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.DivisionDirectory
 {
@@ -122,6 +123,31 @@ namespace R7.University.DivisionDirectory
             }
         }
 
+        // TODO: Move to the model - Division.Employees!
+        public IEmployee HeadEmployee { get; set; }
+
+        // TODO: Split data into 2 columns?
+        public string HeadEmployeeHtml {
+            get {
+                if (HeadEmployee != null) {
+                    var headPosition = HeadEmployee.Positions.Single (op => op.DivisionID == DivisionID && op.PositionID == HeadPositionID);
+                    var positionTitle = FormatHelper.FormatShortTitle (headPosition.Position.ShortTitle, headPosition.Position.Title);
+                    return "<strong>"
+                        + $"<a href=\"{Context.Module.EditUrl ("employee_id", HeadEmployee.EmployeeID.ToString (), "EmployeeDetails")}\"><span itemprop=\"fio\">{FormatHelper.FullName (HeadEmployee.FirstName, HeadEmployee.LastName, HeadEmployee.OtherName)}</span></a></strong><br />"
+                        + $"<span itemprop=\"post\">{TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix)}</span>";
+                }
+
+                if (!IsVirtual) {
+                    if (HeadPositionID != null) {
+                        return Context.LocalizeString ("HeadPosition_IsVacant.Text");
+                    }
+                    return Context.LocalizeString ("HeadPosition_NotApplicable.Text");
+                }
+
+                return string.Empty;
+            }
+        }
+
         #endregion
 
         public DivisionObrnadzorViewModel (DivisionInfo division, ViewModelContext<DivisionDirectorySettings> context)
@@ -130,7 +156,7 @@ namespace R7.University.DivisionDirectory
             Context = context;
         }
 
-        public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext<DivisionDirectorySettings> viewModelContext)
+        public static IEnumerable<DivisionObrnadzorViewModel> Create (IEnumerable<DivisionInfo> divisions, ViewModelContext<DivisionDirectorySettings> viewModelContext, IModelContext modelContext)
         {
             var now = HttpContext.Current.Timestamp;
 
@@ -139,10 +165,23 @@ namespace R7.University.DivisionDirectory
                 .Where (d => d.IsPublished (now) || viewModelContext.Module.IsEditable)
                 .Where (d => !d.IsInformal || viewModelContext.Settings.ShowInformal || viewModelContext.Module.IsEditable)
                 .ToList ();
-
+            
+            WithHeadEmployees (divisionViewModels, modelContext);
             CalculateOrder (divisionViewModels);
 
             return divisionViewModels;
+        }
+
+        // FIXME: Don't call to database here!
+        protected static void WithHeadEmployees (IEnumerable<DivisionObrnadzorViewModel> divisions, IModelContext modelContext)
+        {
+            var now = HttpContext.Current.Timestamp;
+            var headEmployeeQuery = new HeadEmployeesQuery (modelContext);
+            foreach (var division in divisions) {
+                division.HeadEmployee = headEmployeeQuery
+                    .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
+                    .FirstOrDefault (he => he.IsPublished (now));
+            }
         }
 
         /// <summary>

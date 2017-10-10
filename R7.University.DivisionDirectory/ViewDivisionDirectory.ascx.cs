@@ -34,7 +34,6 @@ using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.DivisionDirectory.Models;
@@ -44,7 +43,6 @@ using R7.University.Models;
 using R7.University.Queries;
 using R7.University.Security;
 using R7.University.Utilities;
-using R7.University.ViewModels;
 
 namespace R7.University.DivisionDirectory
 {
@@ -219,7 +217,7 @@ namespace R7.University.DivisionDirectory
                 else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                     var divisions = GetDivisions ();
                     if (!divisions.IsNullOrEmpty ()) {
-                        gridObrnadzorDivisions.DataSource = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
+                        gridObrnadzorDivisions.DataSource = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext, ModelContext);
                         gridObrnadzorDivisions.DataBind ();
                     }
                 }
@@ -423,40 +421,6 @@ namespace R7.University.DivisionDirectory
                     linkEdit.NavigateUrl = EditUrl ("division_id", division.DivisionID.ToString (), "EditDivision");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
-
-                #region Head Employee
-
-                var literalHeadEmployee = (Literal) e.Row.FindControl ("literalHeadEmployee");
-
-                // TODO: Don't call to database here!
-                // get head employee
-                var headEmployee = new HeadEmployeesQuery (ModelContext)
-                    .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
-                    .FirstOrDefault (he => he.IsPublished (now));
-                
-                // TODO: Move to viewmodel
-                // TODO: Split data into 2 columns?
-
-                if (headEmployee != null) {
-                    var headPosition = headEmployee.Positions
-                        .Single (op => op.DivisionID == division.DivisionID && op.PositionID == division.HeadPositionID);
-                    
-                    var positionTitle = FormatHelper.FormatShortTitle (headPosition.Position.ShortTitle, headPosition.Position.Title);
-
-                    literalHeadEmployee.Text = "<strong><span itemprop=\"fio\">"
-                    + $"<a href=\"{EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")}>{headEmployee.FullName}</a></span></strong><br />"
-                    + $"<span itemprop=\"post\">{TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix)}</span>";
-                }
-                else if (!division.IsVirtual) {
-                    if (division.HeadPositionID != null) {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
-                    }
-                    else {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
-                    }
-                }
-
-                #endregion
 
                 if (!division.IsPublished (now)) {
                     e.Row.AddCssClass ("u8y-not-published");
