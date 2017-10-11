@@ -98,6 +98,8 @@ namespace R7.University.Models
 
         public virtual ICollection<DivisionInfo> SubDivisions { get; set; } = new HashSet<DivisionInfo> ();
 
+        public virtual ICollection<OccupiedPositionInfo> OccupiedPositions { get; set; } = new HashSet<OccupiedPositionInfo> ();
+
         public int Level { get; set; }
 
         public string Path { get; set; }

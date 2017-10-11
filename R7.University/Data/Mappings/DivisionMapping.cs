@@ -67,6 +67,7 @@ namespace R7.University.Data.Mappings
             Ignore (m => m.Path);
 
             HasMany (m => m.SubDivisions).WithRequired ().HasForeignKey (sd => sd.ParentDivisionID);
+            HasMany (m => m.OccupiedPositions).WithRequired ().HasForeignKey (op => op.DivisionID);
         }
     }
 }

@@ -114,6 +114,8 @@ namespace R7.University.Division.ViewModels
 
         public ICollection<DivisionInfo> SubDivisions => Division.SubDivisions;
 
+        public ICollection<OccupiedPositionInfo> OccupiedPositions => Division.OccupiedPositions;
+
         public string Title => Division.Title;
 
         public string WebSite => Division.WebSite;

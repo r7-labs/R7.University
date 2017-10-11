@@ -72,6 +72,8 @@ namespace R7.University.Models
 
         ICollection<DivisionInfo> SubDivisions { get; }
 
+        ICollection<OccupiedPositionInfo> OccupiedPositions { get; }
+
         int Level { get; }
 
         string Path { get; }
@@ -124,6 +126,8 @@ namespace R7.University.Models
         new DateTime? EndDate { get; set; }
 
         new ICollection<DivisionInfo> SubDivisions { get; set; }
+
+        new ICollection<OccupiedPositionInfo> OccupiedPositions { get; set; }
 
         new int Level { get; set; }
 
