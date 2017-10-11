@@ -346,14 +346,16 @@ namespace R7.University.DivisionDirectory
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
-                // TODO: Add support for IsGoverning flag
-
                 if (!division.IsPublished (now)) {
                     e.Row.AddCssClass ("u8y-not-published");
                 }
 
                 if (division.IsInformal && IsEditable) {
                     e.Row.AddCssClass ("u8y-informal-division");
+                }
+
+                if (division.IsGoverning) {
+                    e.Row.AddCssClass ("u8y-governing-division");
                 }
 
                 var labelTitle = (Label) e.Row.FindControl ("labelTitle");
