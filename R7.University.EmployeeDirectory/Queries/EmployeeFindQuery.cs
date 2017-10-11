@@ -1,5 +1,5 @@
 //
-//  DivisionQuery.cs
+//  EmployeeFindQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,27 +20,30 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 using R7.University.Models;
 using R7.University.Queries;
 
-namespace R7.University.DivisionDirectory.Queries
+namespace R7.University.EmployeeDirectory.Queries
 {
-    internal class DivisionQuery: QueryBase
+    internal class EmployeeFindQuery: QueryBase
     {
-        public DivisionQuery (IModelContext modelContext): base (modelContext)
+        public EmployeeFindQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
+        public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool teachersOnly, int divisionId)
         {
-            // TODO: Remove @includeSubdivisions parameter from University_FindDivisions sp
+            // TODO: Remove @includeSubdivisions parameter from University_FindEmployees sp
             KeyValuePair<string, object> [] parameters = {
                 new KeyValuePair<string, object> ("searchText", searchText),
+                new KeyValuePair<string, object> ("teachersOnly", teachersOnly),
                 new KeyValuePair<string, object> ("includeSubdivisions", true),
                 new KeyValuePair<string, object> ("divisionId", divisionId)
             };
                   
-            return ModelContext.Query<DivisionInfo> ("{objectQualifier}University_FindDivisions", parameters);
+            return ModelContext.Query<EmployeeInfo> ("{objectQualifier}University_FindEmployees", parameters)
+                .Distinct (new EmployeeEqualityComparer ());
         }
     }
 }

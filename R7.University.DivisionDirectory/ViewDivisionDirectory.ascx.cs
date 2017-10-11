@@ -269,7 +269,7 @@ namespace R7.University.DivisionDirectory
             var now = HttpContext.Current.Timestamp;
 
             // TODO: If parent division not published, ensure what child divisions also not
-            var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
+            var divisions = new DivisionFindQuery (ModelContext).FindDivisions (searchText, searchDivision)
                                                             .Where (d => d.IsPublished (now) || IsEditable)
                                                             .Where (d => !d.IsInformal || Settings.ShowInformal || IsEditable);
 

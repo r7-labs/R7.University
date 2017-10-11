@@ -1,10 +1,10 @@
 //
-//  EmployeeQuery.cs
+//  DivisionFindQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,30 +20,27 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using System.Linq;
 using R7.University.Models;
 using R7.University.Queries;
 
-namespace R7.University.EmployeeDirectory.Queries
+namespace R7.University.DivisionDirectory.Queries
 {
-    internal class EmployeeQuery: QueryBase
+    internal class DivisionFindQuery: QueryBase
     {
-        public EmployeeQuery (IModelContext modelContext): base (modelContext)
+        public DivisionFindQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool teachersOnly, int divisionId)
+        public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
         {
-            // TODO: Remove @includeSubdivisions parameter from University_FindEmployees sp
+            // TODO: Remove @includeSubdivisions parameter from University_FindDivisions sp
             KeyValuePair<string, object> [] parameters = {
                 new KeyValuePair<string, object> ("searchText", searchText),
-                new KeyValuePair<string, object> ("teachersOnly", teachersOnly),
                 new KeyValuePair<string, object> ("includeSubdivisions", true),
                 new KeyValuePair<string, object> ("divisionId", divisionId)
             };
                   
-            return ModelContext.Query<EmployeeInfo> ("{objectQualifier}University_FindEmployees", parameters)
-                .Distinct (new EmployeeEqualityComparer ());
+            return ModelContext.Query<DivisionInfo> ("{objectQualifier}University_FindDivisions", parameters);
         }
     }
 }

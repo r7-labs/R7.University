@@ -381,7 +381,7 @@ namespace R7.University.EmployeeDirectory
         {
             var now = HttpContext.Current.Timestamp;
 
-            var employees = new EmployeeQuery (ModelContext).FindEmployees (searchText, teachersOnly, searchDivision)
+            var employees = new EmployeeFindQuery (ModelContext).FindEmployees (searchText, teachersOnly, searchDivision)
                 .Where (e => IsEditable || e.IsPublished (now));
             
             if (employees.IsNullOrEmpty ()) {
