@@ -55,7 +55,7 @@
         <value>N п/п</value>
     </data>
     <data xml:space="preserve" name="Regulations.Text">
-        <value>Положение</value>
+        <value>[положение]</value>
     </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Поиск</value>

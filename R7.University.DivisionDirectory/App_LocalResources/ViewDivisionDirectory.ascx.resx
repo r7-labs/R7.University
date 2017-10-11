@@ -46,7 +46,7 @@
         <value>Location Address</value>
     </data>
     <data xml:space="preserve" name="Document.Column">
-        <value>Document</value>
+        <value>Regulations</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Column">
         <value>Head Employee Name and Position</value>
@@ -55,7 +55,7 @@
         <value>#</value>
     </data>
     <data xml:space="preserve" name="Regulations.Text">
-        <value>Regulations</value>
+        <value>[regulations]</value>
     </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Search</value>
