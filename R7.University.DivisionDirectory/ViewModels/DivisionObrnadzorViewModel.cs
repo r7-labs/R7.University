@@ -130,9 +130,8 @@ namespace R7.University.DivisionDirectory
                 if (HeadEmployeePosition != null) {
                     var positionTitle = FormatHelper.FormatShortTitle (HeadEmployeePosition.Position.ShortTitle, HeadEmployeePosition.Position.Title);
                     var headEmployee =  HeadEmployeePosition.Employee;
-                    return "<strong>"
-                        + $"<a href=\"{Context.Module.EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")}\"><span itemprop=\"fio\">{FormatHelper.FullName (headEmployee.FirstName, headEmployee.LastName, headEmployee.OtherName)}</span></a></strong><br />"
-                        + $"<span itemprop=\"post\">{TextUtils.FormatList (" ", positionTitle, HeadEmployeePosition.TitleSuffix)}</span>";
+                    return $"<a href=\"{Context.Module.EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")}\"><span itemprop=\"fio\">{FormatHelper.FullName (headEmployee.FirstName, headEmployee.LastName, headEmployee.OtherName)}</span></a><br />"
+                         + $"<span itemprop=\"post\">{TextUtils.FormatList (" ", positionTitle, HeadEmployeePosition.TitleSuffix)}</span>";
                 }
 
                 if (!IsVirtual) {
