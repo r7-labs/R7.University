@@ -217,7 +217,7 @@ namespace R7.University.DivisionDirectory
                 else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                     var divisions = GetDivisions ();
                     if (!divisions.IsNullOrEmpty ()) {
-                        gridObrnadzorDivisions.DataSource = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext, ModelContext);
+                        gridObrnadzorDivisions.DataSource = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
                         gridObrnadzorDivisions.DataBind ();
                     }
                 }
