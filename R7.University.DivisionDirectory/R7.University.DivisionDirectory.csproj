@@ -141,11 +141,11 @@
     <Compile Include="ViewModels\DivisionObrnadzorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\DivisionDirectoryController.cs" />
-    <Compile Include="Queries\DivisionHierarchyQuery.cs" />
     <Compile Include="Queries\DivisionFindQuery.cs" />
     <Compile Include="Queries\HeadEmployeesQuery.cs" />
     <Compile Include="Models\DivisionDirectoryMode.cs" />
     <Compile Include="Models\DivisionDirectorySettings.cs" />
+    <Compile Include="Queries\DivisionHierarchyQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

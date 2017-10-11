@@ -24,6 +24,9 @@
     <data xml:space="preserve" name="TitleObrnadzor.Column">
         <value>Division's Title</value>
     </data>
+	<data xml:space="preserve" name="TitleObrnadzorGoverningDivision.Column">
+        <value>Governing Body Title</value>
+    </data>
     <data xml:space="preserve" name="Email.Column">
         <value>Email</value>
     </data>

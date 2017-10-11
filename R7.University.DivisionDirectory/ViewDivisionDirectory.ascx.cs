@@ -179,6 +179,9 @@ namespace R7.University.DivisionDirectory
             else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                 gridObrnadzorDivisions.LocalizeColumnHeaders (LocalResourceFile);
             }
+            else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorGoverningDivisions) {
+                gridObrnadzorGoverningDivisions.LocalizeColumnHeaders (LocalResourceFile);
+            }
         }
 
         /// <summary>
@@ -221,6 +224,13 @@ namespace R7.University.DivisionDirectory
                         gridObrnadzorDivisions.DataBind ();
                     }
                 }
+                else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorGoverningDivisions) {
+                    var divisions = GetDivisions ();
+                    if (!divisions.IsNullOrEmpty ()) {
+                        gridObrnadzorGoverningDivisions.DataSource = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
+                        gridObrnadzorGoverningDivisions.DataBind ();
+                    }
+                }
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -238,7 +248,15 @@ namespace R7.University.DivisionDirectory
 
         IEnumerable<DivisionInfo> GetDivisions_Internal ()
         {
-            return new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
+            if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
+                return new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
+            }
+
+            if (Settings.Mode == DivisionDirectoryMode.ObrnadzorGoverningDivisions) {
+                return new DivisionHierarchyQuery (ModelContext).ListGoverningHierarchy ();
+            }
+
+            return Enumerable.Empty<DivisionInfo> ();
         }
 
         #endregion
@@ -327,6 +345,8 @@ namespace R7.University.DivisionDirectory
                     linkEdit.NavigateUrl = EditUrl ("division_id", division.DivisionID.ToString (), "EditDivision");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
+
+                // TODO: Add support for IsGoverning flag
 
                 if (!division.IsPublished (now)) {
                     e.Row.AddCssClass ("u8y-not-published");

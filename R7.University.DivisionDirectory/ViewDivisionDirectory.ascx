@@ -98,6 +98,27 @@
                 </asp:GridView>
             </div>
         </asp:View>
+		<asp:View id="viewObrnadzorGoverningDivisions" runat="server">
+            <div class="table-responsive">
+                <asp:GridView id="gridObrnadzorGoverningDivisions" runat="server" EnableViewState="false" AutoGenerateColumns="false" 
+                    UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
+                        CssClass="table table-bordered table-striped table-hover grid-obrnadzor-governing-divisions" GridLines="None">
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image id="iconEdit" runat="server" />
+                                </asp:HyperLink>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="Order" HeaderText="Order.Column" />
+                        <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzorGoverningDivision.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="HeadEmployeeHtml" HeaderText="HeadEmployee.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="DocumentLink" HeaderText="Document.Column" HtmlEncode="false" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </asp:View>
     </asp:MultiView>
 	<controls:AgplSignature runat="server" />
 </div>

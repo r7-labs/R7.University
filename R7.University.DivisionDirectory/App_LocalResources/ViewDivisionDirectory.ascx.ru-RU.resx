@@ -24,6 +24,9 @@
     <data xml:space="preserve" name="TitleObrnadzor.Column">
         <value>Наименование структурного подразделения</value>
     </data>
+	<data xml:space="preserve" name="TitleObrnadzorGoverningDivision.Column">
+        <value>Наименование органа управления</value>
+    </data>
     <data xml:space="preserve" name="Email.Column">
         <value>Эл. почта</value>
     </data>

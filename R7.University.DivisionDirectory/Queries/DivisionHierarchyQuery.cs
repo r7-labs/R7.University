@@ -36,13 +36,26 @@ namespace R7.University.DivisionDirectory.Queries
         public IEnumerable<DivisionInfo> ListHierarchy ()
         {
             return ModelContext.Query<DivisionInfo> ()
-                .Include (d => d.OccupiedPositions)
-                .Include (d => d.OccupiedPositions.Select (op => op.Position))
-                .Include (d => d.OccupiedPositions.Select (op => op.Employee))
-                .ToList ()
-                .CalculateLevelAndPath<DivisionInfo> ()
-                .OrderBy (d => d.Path)
-                .ThenBy (d => d.Title);
+                               .Include (d => d.OccupiedPositions)
+                               .Include (d => d.OccupiedPositions.Select (op => op.Position))
+                               .Include (d => d.OccupiedPositions.Select (op => op.Employee))
+                               .ToList ()
+                               .CalculateLevelAndPath<DivisionInfo> ()
+                               .OrderBy (d => d.Path)
+                               .ThenBy (d => d.Title);
+        }
+
+        public IEnumerable<DivisionInfo> ListGoverningHierarchy ()
+        {
+            return ModelContext.Query<DivisionInfo> ()
+                               .Where (d => d.IsGoverning)
+                               .Include (d => d.OccupiedPositions)
+                               .Include (d => d.OccupiedPositions.Select (op => op.Position))
+                               .Include (d => d.OccupiedPositions.Select (op => op.Employee))
+                               .ToList ()
+                               .CalculateLevelAndPath<DivisionInfo> ()
+                               .OrderBy (d => d.Path)
+                               .ThenBy (d => d.Title);
         }
     }
 }
