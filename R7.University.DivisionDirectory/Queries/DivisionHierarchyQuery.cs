@@ -27,7 +27,7 @@ using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    internal class DivisionHierarchyQuery: QueryBase
+    class DivisionHierarchyQuery: QueryBase
     {
         public DivisionHierarchyQuery (IModelContext modelContext): base (modelContext)
         {
@@ -36,11 +36,9 @@ namespace R7.University.DivisionDirectory.Queries
         public IEnumerable<DivisionInfo> ListHierarchy ()
         {
             return ModelContext.Query<DivisionInfo> ()
-                               .Include (d => d.OccupiedPositions)
-                               .Include (d => d.OccupiedPositions.Select (op => op.Position))
-                               .Include (d => d.OccupiedPositions.Select (op => op.Employee))
+                               .IncludeOccupiedPositions ()
                                .ToList ()
-                               .CalculateLevelAndPath<DivisionInfo> ()
+                               .CalculateLevelAndPath ()
                                .OrderBy (d => d.Path)
                                .ThenBy (d => d.Title);
         }
@@ -49,13 +47,21 @@ namespace R7.University.DivisionDirectory.Queries
         {
             return ModelContext.Query<DivisionInfo> ()
                                .Where (d => d.IsGoverning)
-                               .Include (d => d.OccupiedPositions)
-                               .Include (d => d.OccupiedPositions.Select (op => op.Position))
-                               .Include (d => d.OccupiedPositions.Select (op => op.Employee))
+                               .IncludeOccupiedPositions ()
                                .ToList ()
-                               .CalculateLevelAndPath<DivisionInfo> ()
+                               .CalculateLevelAndPath ()
                                .OrderBy (d => d.Path)
                                .ThenBy (d => d.Title);
+        }
+    }
+
+    static class DivisionQueryExtensions
+    {
+        internal static IQueryable<DivisionInfo> IncludeOccupiedPositions (this IQueryable<DivisionInfo> divisions)
+        {
+            return divisions.Include (d => d.OccupiedPositions)
+                            .Include (d => d.OccupiedPositions.Select (op => op.Position))
+                            .Include (d => d.OccupiedPositions.Select (op => op.Employee));
         }
     }
 }
