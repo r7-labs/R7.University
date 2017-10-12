@@ -58,7 +58,7 @@ namespace R7.University.Models
 
         string DocumentUrl { get; }
 
-        bool IsVirtual { get; }
+        bool IsSingleEntity { get; }
 
         bool IsInformal { get; }
 
@@ -113,7 +113,7 @@ namespace R7.University.Models
 
         new string DocumentUrl { get; set; }
 
-        new bool IsVirtual { get; set; }
+        new bool IsSingleEntity { get; set; }
 
         new bool IsInformal { get; set; }
 

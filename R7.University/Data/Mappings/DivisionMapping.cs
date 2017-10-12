@@ -51,7 +51,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.Location);
             Property (m => m.WorkingHours);
             Property (m => m.DocumentUrl);
-            Property (m => m.IsVirtual);
+            Property (m => m.IsSingleEntity);
             Property (m => m.IsInformal);
             Property (m => m.IsGoverning);
 

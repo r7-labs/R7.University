@@ -409,13 +409,11 @@ namespace R7.University.DivisionDirectory
                     + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
                     + "\" title=\"" + headEmployee.FullName + "\">" + headEmployee.AbbrName + "</a>";
                 }
-                else if (!division.IsVirtual) {
-                    if (division.HeadPositionID != null) {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
-                    }
-                    else {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
-                    }
+                else if (division.HeadPositionID != null) {
+                    literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
+                }
+                else {
+                    literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
                 }
             }
         }
@@ -452,8 +450,8 @@ namespace R7.University.DivisionDirectory
                     e.Row.AddCssClass ("u8y-governing-division");
                 }
 
-                if (division.IsVirtual) {
-                    e.Row.AddCssClass ("u8y-virtual-division");
+                if (division.IsSingleEntity) {
+                    e.Row.AddCssClass ("u8y-single-entity-division");
                 }
 
                 if (division.IsInformal && IsEditable) {

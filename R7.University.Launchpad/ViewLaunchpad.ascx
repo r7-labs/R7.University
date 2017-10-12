@@ -82,7 +82,7 @@
                         <asp:BoundField DataField="ParentDivisionID" SortExpression="ParentDivisionID" HeaderText="ParentDivisionID" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
-                        <asp:CheckBoxField DataField="IsVirtual" SortExpression="IsVirtual" HeaderText="IsVirtual" />
+                        <asp:CheckBoxField DataField="IsSingleEntity" SortExpression="IsSingleEntity" HeaderText="IsSingleEntity" />
 						<asp:CheckBoxField DataField="IsInformal" SortExpression="IsInformal" HeaderText="IsInformal" />
                         <asp:BoundField DataField="DocumentUrl" SortExpression="DocumentUrl" HeaderText="DocumentUrl" />
                         <asp:BoundField DataField="HomePage" SortExpression="HomePage" HeaderText="HomePage" />

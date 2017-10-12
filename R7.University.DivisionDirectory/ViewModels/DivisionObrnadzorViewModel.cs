@@ -1,4 +1,4 @@
-﻿//
+//
 //  DivisionObrnadzorViewModel.cs
 //
 //  Author:
@@ -121,14 +121,10 @@ namespace R7.University.DivisionDirectory
                          + $"<span itemprop=\"post\">{TextUtils.FormatList (" ", positionTitle, HeadEmployeePosition.TitleSuffix)}</span>";
                 }
 
-                if (!IsVirtual) {
-                    if (HeadPositionID != null) {
-                        return Context.LocalizeString ("HeadPosition_IsVacant.Text");
-                    }
-                    return Context.LocalizeString ("HeadPosition_NotApplicable.Text");
+                if (HeadPositionID != null) {
+                    return Context.LocalizeString ("HeadPosition_IsVacant.Text");
                 }
-
-                return string.Empty;
+                return Context.LocalizeString ("HeadPosition_NotApplicable.Text");
             }
         }
 

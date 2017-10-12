@@ -29,3 +29,9 @@ BEGIN
         ADD IsGoverning bit NOT NULL DEFAULT (0)
 END
 GO
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'IsVirtual')
+BEGIN
+    EXECUTE sp_rename N'{objectQualifier}University_Divisions.IsVirtual', N'IsSingleEntity', N'COLUMN';
+END
+GO

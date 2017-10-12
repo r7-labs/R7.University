@@ -126,11 +126,11 @@
 	<data name="labelEndDate.Help">
 		<value>Enter the date from current division will be removed from publication on the site.</value>
 	</data>
-	<data name="labelIsVirtual.Text">
-		<value>Is Virtual?</value>
+	<data name="labelIsSingleEntity.Text">
+		<value>Is Single Entity?</value>
 	</data>
-	<data name="labelIsVirtual.Help">
-		<value>Check if this division is not intended to have any employees in it and used only to organize other divisions.</value>
+	<data name="labelIsSingleEntity.Help">
+		<value>Check if this division consists of a single employee, and actually represents this employee (usually, the top manager) himself.</value>
 	</data>
 	<data name="labelIsInformal.Text">
         <value>Is Informal?</value>
@@ -149,9 +149,9 @@
 	</data>
 	<data name="labelHeadPosition.Help">
 		<value>Select the position which define the division's head employee.
-        The specific employee will be determined automatically. For non-virtual divisions -
-		if system cannot determine head employee, the corresponding position will be considered vacant; 
-		if no head position is set, then the division will be considered as one which cannot have head employee.</value>
+        The specific employee will be determined automatically.
+		If system cannot determine head employee, the corresponding position will be considered vacant; 
+		if no head position is set, then the division will be considered as one which cannot have head employee at all.</value>
 	</data>
 	<data name="Common.Tab">
 		<value>Common</value>

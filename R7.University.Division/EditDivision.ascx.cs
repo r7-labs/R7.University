@@ -123,7 +123,7 @@ namespace R7.University.Division
             txtFax.Text = item.Fax;
             datetimeStartDate.SelectedDate = item.StartDate;
             datetimeEndDate.SelectedDate = item.EndDate;
-            checkIsVirtual.Checked = item.IsVirtual;
+            checkIsSingleEntity.Checked = item.IsSingleEntity;
             checkIsInformal.Checked = item.IsInformal;
             checkIsGoverning.Checked = item.IsGoverning;
             comboHeadPosition.SelectByValue (item.HeadPositionID);
@@ -169,7 +169,7 @@ namespace R7.University.Division
             item.DocumentUrl = urlDocumentUrl.Url;
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
-            item.IsVirtual = checkIsVirtual.Checked;
+            item.IsSingleEntity = checkIsSingleEntity.Checked;
             item.IsInformal = checkIsInformal.Checked;
             item.IsGoverning = checkIsGoverning.Checked;
             item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);

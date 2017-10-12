@@ -76,7 +76,7 @@ namespace R7.University.Models
 
         public string DocumentUrl { get; set; }
 
-        public bool IsVirtual { get; set; }
+        public bool IsSingleEntity { get; set; }
 
         public bool IsInformal { get; set; }
 
