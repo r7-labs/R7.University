@@ -35,23 +35,22 @@ namespace R7.University.DivisionDirectory
 {
     internal class DivisionObrnadzorViewModel: DivisionInfo
     {
-        private const string linkFormat = "<span {2}><a href=\"{0}\" target=\"_blank\">{1}</a></span>";
-
-        #region Properties
+        const string linkFormat = "<span {2}><a href=\"{0}\" target=\"_blank\">{1}</a></span>";
             
         protected ViewModelContext<DivisionDirectorySettings> Context { get; set; }
 
+        public IOccupiedPosition HeadEmployeePosition { get; set; }
+
+        #region Bindable properties
+
         public string Order { get; protected set; }
 
-        public string TitleLink
-        {
-            get
-            {
+        public string TitleLink {
+            get {
                 var divisionTitle = Title + ((ModelHelper.HasUniqueShortTitle (Title, ShortTitle))? string.Format (" ({0})", ShortTitle) : string.Empty);
                 var divisionString = "<span itemprop=\"name\">" + divisionTitle + "</span>";
 
-                if (!string.IsNullOrWhiteSpace (HomePage))
-                {
+                if (!string.IsNullOrWhiteSpace (HomePage)) {
                     divisionString = string.Format (linkFormat, 
                         Globals.LinkClick (HomePage, Context.Module.TabId, Context.Module.ModuleId),
                         divisionString, string.Empty);
@@ -61,12 +60,9 @@ namespace R7.University.DivisionDirectory
             }
         }
 
-        public string WebSiteLink
-        {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace (WebSite))
-                {
+        public string WebSiteLink {
+            get {
+                if (!string.IsNullOrWhiteSpace (WebSite)) {
                     var webSiteUrl = WebSite.Contains ("://") ? WebSite.ToLowerInvariant () : 
                         "http://" + WebSite.ToLowerInvariant ();
                     var webSiteLabel = (!string.IsNullOrWhiteSpace (WebSiteLabel)) ? WebSiteLabel : 
@@ -79,12 +75,9 @@ namespace R7.University.DivisionDirectory
             }
         }
 
-        public string EmailLink 
-        { 
-            get
-            { 
-                if (!string.IsNullOrWhiteSpace (Email))
-                {
+        public string EmailLink {
+            get {
+                if (!string.IsNullOrWhiteSpace (Email)) {
                     return string.Format (linkFormat, "mailto:" + Email, Email, "itemprop=\"email\"");
                 }
 
@@ -92,13 +85,10 @@ namespace R7.University.DivisionDirectory
             }
         }
 
-        public string DocumentLink
-        {
-            get
-            {
+        public string DocumentLink {
+            get {
                 // (main) document
-                if (!string.IsNullOrWhiteSpace (DocumentUrl))
-                {
+                if (!string.IsNullOrWhiteSpace (DocumentUrl)) {
                     return string.Format (linkFormat, 
                         Globals.LinkClick (DocumentUrl, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("Regulations.Text", Context.LocalResourceFile),
@@ -110,8 +100,7 @@ namespace R7.University.DivisionDirectory
             }
         }
 
-        public string LocationString
-        {
+        public string LocationString {
             get {
                 var location = TextUtils.FormatList (", ", Address, Location);
                 if (!string.IsNullOrWhiteSpace (location)) {
@@ -121,8 +110,6 @@ namespace R7.University.DivisionDirectory
                 return string.Empty;
             }
         }
-
-        public IOccupiedPosition HeadEmployeePosition { get; set; }
 
         // TODO: Split data into 2 columns?
         public string HeadEmployeeHtml {
@@ -192,10 +179,8 @@ namespace R7.University.DivisionDirectory
            
             DivisionObrnadzorViewModel prevDivision = null;
            
-            foreach (var division in divisions)
-            {
-                if (prevDivision != null)
-                {
+            foreach (var division in divisions) {
+                if (prevDivision != null) {
                     if (division.ParentDivisionID == prevDivision.ParentDivisionID) {
                         // moving on same level
                         orderCounter++;
