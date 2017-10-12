@@ -63,14 +63,16 @@ namespace R7.University.ModelExtensions
 
             return gops;
         }
+
         public static string FormatDivisionLink (this OccupiedPositionInfo op, IModuleControl module)
         {
-            // do not display division title for high-level divisions
-            if (op.Division.ParentDivisionID != null) {
+            // don't display division title/link for single-entity divisions
+            if (!op.Division.IsSingleEntity) {
                 var strDivision = FormatHelper.FormatShortTitle (op.Division.ShortTitle, op.Division.Title);
-                if (!string.IsNullOrWhiteSpace (op.Division.HomePage))
+                if (!string.IsNullOrWhiteSpace (op.Division.HomePage)) {
                     strDivision = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
                         UniversityUrlHelper.FormatURL (module, op.Division.HomePage, false), strDivision);
+                }
 
                 return strDivision;
             }
