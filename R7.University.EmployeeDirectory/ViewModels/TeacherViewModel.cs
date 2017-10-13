@@ -62,7 +62,12 @@ namespace R7.University.EmployeeDirectory.ViewModels
 
         string _disciplinesString;
         public string Disciplines_String =>
-            _disciplinesString ?? (_disciplinesString = Span ("teachingDiscipline", GetDisciplinesString ()));
+            _disciplinesString ?? (_disciplinesString = Span ("teachingDiscipline", GetDisciplinesString ())
+                                   // duplicate edu. program profile data here
+                                   + ((EduProgramProfile != null && EduProgramProfile.EduLevel != null)
+                                        ? HiddenSpan ("teachingLevel", EduProgramProfile.EduLevel.Title) + HiddenSpan ("teachingQual", EduProgramProfile.FormatTitle ())
+                                        : string.Empty)
+        );
      
         string _academicDegreesString;
         public string AcademicDegrees_String =>
@@ -98,6 +103,11 @@ namespace R7.University.EmployeeDirectory.ViewModels
         string Span (string microdata, string content)
         {
             return $"<span itemprop=\"{microdata}\">{content}</span>";
+        }
+
+        string HiddenSpan (string microdata, string content)
+        {
+            return $"<span class=\"hidden\" itemprop=\"{microdata}\">{content}</span>";
         }
 
         string GetPositionsString ()
