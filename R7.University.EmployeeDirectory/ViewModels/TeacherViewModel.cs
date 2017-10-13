@@ -24,9 +24,9 @@ using System.Linq;
 using DotNetNuke.Common.Utilities;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
-using R7.University.ModelExtensions;
 
 namespace R7.University.EmployeeDirectory.ViewModels
 {
@@ -45,59 +45,44 @@ namespace R7.University.EmployeeDirectory.ViewModels
             EduProgramProfile = eduProgramProfile;
             Indexer = indexer;
         }
-        public ViewModelContext Context
-        {
-            get { return RootViewModel.Context; }
-        }
+
+        public ViewModelContext Context => RootViewModel.Context;
 
         #region Bindable properties
 
-        public int Order
-        {
-            get { return Indexer.GetNextIndex (); }
-        }
+        public int Order => Indexer.GetNextIndex ();
 
         string _fullName;
-        public string FullName
-        {
-            get { return _fullName ?? (_fullName = FormatHelper.FullName (Employee.FirstName, Employee.LastName, Employee.OtherName)); }
-        }
+        public string FullName =>
+            _fullName ?? (_fullName = Span ("fio", FormatHelper.FullName (Employee.FirstName, Employee.LastName, Employee.OtherName)));
 
         string _positionsString;
-        public string Positions_String
-        {
-            get { return _positionsString ?? (_positionsString = GetPositionsString ()); }
-        }
+        public string Positions_String =>
+            _positionsString ?? (_positionsString = Span ("post", GetPositionsString ()));
 
         string _disciplinesString;
-        public string Disciplines_String
-        {
-            get { return _disciplinesString ?? (_disciplinesString = GetDisciplinesString ()); }
-        }
-
+        public string Disciplines_String =>
+            _disciplinesString ?? (_disciplinesString = Span ("teachingDiscipline", GetDisciplinesString ()));
+     
         string _academicDegreesString;
-        public string AcademicDegrees_String
-        {
-            get { return _academicDegreesString ?? (_academicDegreesString = GetAcademicDegreesString ()); }
-        }
+        public string AcademicDegrees_String =>
+            _academicDegreesString ?? (_academicDegreesString = Span ("degree", GetAcademicDegreesString ()));
 
         string _academicTitlesString;
-        public string AcademicTitles_String
-        {
-            get { return _academicTitlesString ?? (_academicTitlesString = GetAcademicTitlesString ()); }
-        }
-
+        public string AcademicTitles_String =>
+            _academicTitlesString ?? (_academicTitlesString = Span ("academStat", GetAcademicTitlesString ()));
+        
         string _educationString;
-        public string Education_String
-        {
-            get { return _educationString ?? (_educationString = GetEducationString ()); }
-        }
-
+        public string Education_String =>
+            _educationString ?? (_educationString = Span ("employeeQualification", GetEducationString ()));
+        
         string _trainingString;
-        public string Training_String
-        {
-            get { return _trainingString ?? (_trainingString = GetTrainingString ()); }
-        }
+        public string Training_String =>
+            _trainingString ?? (_trainingString = Span ("profDevelopment", GetTrainingString ()));
+
+        public string ExperienceYears_String => Span ("genExperience", Employee.ExperienceYears.ToString ());
+
+        public string ExperienceYearsBySpec_String => Span ("specExperience", Employee.ExperienceYearsBySpec.ToString ());
 
         #endregion
 
@@ -108,6 +93,11 @@ namespace R7.University.EmployeeDirectory.ViewModels
                 return achievementViewModels
                     ?? (achievementViewModels = Employee.Achievements.Select (a => new EmployeeAchievementViewModel (a)));
             }
+        }
+
+        string Span (string microdata, string content)
+        {
+            return $"<span itemprop=\"{microdata}\">{content}</span>";
         }
 
         string GetPositionsString ()

@@ -347,15 +347,7 @@ namespace R7.University.EmployeeDirectory
                 }
 
                 // apply obrnadzor.gov.ru microdata
-                e.Row.Cells [2].Attributes.Add ("itemprop", "fio");
-                e.Row.Cells [3].Attributes.Add ("itemprop", "Post");
-                e.Row.Cells [4].Attributes.Add ("itemprop", "TeachingDiscipline");
-                e.Row.Cells [5].Attributes.Add ("itemprop", "Degree");
-                e.Row.Cells [6].Attributes.Add ("itemprop", "AcademStat");
-                e.Row.Cells [7].Attributes.Add ("itemprop", "EmployeeQualification");
-                e.Row.Cells [8].Attributes.Add ("itemprop", "ProfDevelopment");
-                e.Row.Cells [9].Attributes.Add ("itemprop", "GenExperience");
-                e.Row.Cells [10].Attributes.Add ("itemprop", "SpecExperience");
+                e.Row.Attributes.Add ("itemprop", "teachingStaff");
             }
         }
 

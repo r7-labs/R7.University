@@ -108,15 +108,15 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Order" HeaderText="Order.Column" DataFormatString="{0}." />
-                                    <asp:BoundField DataField="FullName" HeaderText="FullName.Column" />
-                                    <asp:BoundField DataField="Positions_String" HeaderText="Positions.Column" />
-                                    <asp:BoundField DataField="Disciplines_String" HeaderText="Disciplines.Column" />
-                                    <asp:BoundField DataField="AcademicDegrees_String" HeaderText="AcademicDegrees.Column" />
-                                    <asp:BoundField DataField="AcademicTitles_String" HeaderText="AcademicTitles.Column" />
+                                    <asp:BoundField DataField="FullName" HeaderText="FullName.Column" HtmlEncode="false" />
+                                    <asp:BoundField DataField="Positions_String" HeaderText="Positions.Column" HtmlEncode="false" />
+                                    <asp:BoundField DataField="Disciplines_String" HeaderText="Disciplines.Column" HtmlEncode="false" />
+                                    <asp:BoundField DataField="AcademicDegrees_String" HeaderText="AcademicDegrees.Column" HtmlEncode="false" />
+                                    <asp:BoundField DataField="AcademicTitles_String" HeaderText="AcademicTitles.Column" HtmlEncode="false" />
                                     <asp:BoundField DataField="Education_String" HeaderText="Education.Column" HtmlEncode="false" />
                                     <asp:BoundField DataField="Training_String" HeaderText="Training.Column" HtmlEncode="false" />
-                                    <asp:BoundField DataField="ExperienceYears" HeaderText="ExperienceYears.Column" />
-                                    <asp:BoundField DataField="ExperienceYearsBySpec" HeaderText="ExperienceYearsBySpec.Column" />
+                                    <asp:BoundField DataField="ExperienceYears_String" HeaderText="ExperienceYears.Column" HtmlEncode="false" />
+                                    <asp:BoundField DataField="ExperienceYearsBySpec_String" HeaderText="ExperienceYearsBySpec.Column" HtmlEncode="false" />
                                 </Columns>
                             </asp:GridView>
                         </div>
