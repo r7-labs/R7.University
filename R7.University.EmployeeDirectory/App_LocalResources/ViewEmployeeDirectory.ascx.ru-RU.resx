@@ -37,31 +37,31 @@
         <value>N п/п</value>
     </data>
     <data name="FullName.Column" xml:space="preserve">
-        <value>Ф.И.О.</value>
+        <value>Ф.И.О. преподавателя, реализующего программу</value>
     </data>
     <data name="Positions.Column" xml:space="preserve">
-        <value>Должность</value>
+        <value>Должности</value>
     </data>
     <data name="Disciplines.Column" xml:space="preserve">
-        <value>Преподаваемые дисциплины</value>
+        <value>Перечень преподаваемых дисциплин</value>
     </data>
     <data name="AcademicDegrees.Column" xml:space="preserve">
-        <value>Ученая степень</value>
+        <value>Учёные степени педагогического работника (при наличии)</value>
     </data>
     <data name="AcademicTitles.Column" xml:space="preserve">
-        <value>Ученое звание</value>
+        <value>Учёные звания педагогического работника (при наличии)</value>
     </data>
     <data name="Education.Column" xml:space="preserve">
-        <value>Направление подготовки или специальность (образование)</value>
+        <value>Наименование направления подготовки и (или) специальности педагогического работника (образование, профессиональная подготовка)</value>
     </data>
     <data name="Training.Column" xml:space="preserve">
-        <value>Повышение квалификации (или) профессиональная переподготовка</value>
+        <value>Сведения о повышении квалификации и (или) профессиональной переподготовке педагогического работника (при наличии)</value>
     </data>
     <data name="ExperienceYears.Column" xml:space="preserve">
         <value>Общий стаж работы (лет)</value>
     </data>
     <data name="ExperienceYearsBySpec.Column" xml:space="preserve">
-        <value>Стаж работы по специальности (лет)</value>
+        <value>Стаж работы педагогического работника по специальности (лет)</value>
     </data>
     <data name="NoDisciplines.Text" xml:space="preserve">
         <value>Дисциплины не указаны</value>
