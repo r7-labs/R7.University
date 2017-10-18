@@ -1,19 +1,20 @@
-@startuml
+@startuml Science Records for Edu. Program
 
 ScienceRecord "0..*" -- "1" EduProgram
 ScienceRecordType "1" -- "0..*" ScienceRecord
 
 class ScienceRecordType {
-    ScienceEntryTypeId: int
+    ScienceRecordTypeId: int
     ..
-    Type: int
-    Description: string
+    Type: string
     IsSystem: bool
+    NumOfValues: int
+    SortIndex: int
 }
 
 class ScienceRecord {
     ScienceRecordId: long
-    .. DB FK ..
+    .. DB FKs ..
     EduProgramId: int
     ScienceRecordTypeId: int
     ..
