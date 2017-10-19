@@ -6,12 +6,15 @@
         "**/.DS_Store": true,
         // NuGet packages
         "**/packages": true,
+        // Node modules
+        "**/node_modules": true,
         // build output
         "**/bin": true,
         "**/obj": true
     },
 
     "files.associations": {
-        "*.SqlDataProvider": "sql"
+        "*.SqlDataProvider": "sql",
+        "*.dnn": "xml"
     }
 }
