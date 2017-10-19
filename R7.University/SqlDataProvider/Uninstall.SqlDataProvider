@@ -109,6 +109,14 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramDivisions]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_EduProgramProfiles] 
 GO
 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
+    DROP CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_EduPrograms] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
+    DROP CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_ScienceRecordTypes] 
+GO
+
 -- Drop stored procedures & functions
 
 DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID]
@@ -188,4 +196,10 @@ DROP TABLE {databaseOwner}[{objectQualifier}University_Employees]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_AchievementTypes]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_ScienceRecordTypes]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
 GO

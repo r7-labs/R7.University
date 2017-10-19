@@ -437,5 +437,11 @@
   <ItemGroup>
     <Content Include="css\admin.css" />
     <None Include="SqlDataProvider\01.16.00.SqlDataProvider" />
+    <Compile Include="Models\IScienceRecordType.cs" />
+    <Compile Include="Models\IScienceRecord.cs" />
+    <Compile Include="Models\ScienceRecordTypeInfo.cs" />
+    <Compile Include="Models\ScienceRecordInfo.cs" />
+    <Compile Include="Data\Mappings\ScienceRecordTypeMapping.cs" />
+    <Compile Include="Data\Mappings\ScienceRecordMapping.cs" />
   </ItemGroup>
 </Project>

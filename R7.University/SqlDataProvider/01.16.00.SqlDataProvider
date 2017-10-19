@@ -35,3 +35,53 @@ BEGIN
     EXECUTE sp_rename N'{objectQualifier}University_Divisions.IsVirtual', N'IsSingleEntity', N'COLUMN';
 END
 GO
+
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_ScienceRecordTypes')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (
+        ScienceRecordTypeID int IDENTITY (1,1) NOT NULL,
+        Type nvarchar (64) NOT NULL,
+        IsSystem bit NOT NULL DEFAULT ((0)),
+        NumOfValues int NOT NULL DEFAULT ((0)),
+        SortIndex int NOT NULL DEFAULT ((0))
+        CONSTRAINT [PK_{objectQualifier}University_ScienceRecordTypes] PRIMARY KEY (ScienceRecordTypeID)
+    )
+
+    INSERT INTO {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (Type, IsSystem, NumOfValues, SortIndex) VALUES
+        (N'Directions',   1, 0, 10), -- perechenNir
+        (N'Base',         1, 0, 20), -- baseNir
+        (N'Scientists',   1, 1, 30), -- nprNir
+        (N'Students',     1, 1, 40), -- studNir
+        (N'Monographs',   1, 1, 50), -- monografNir
+        (N'Articles',     1, 2, 60), -- articleNir
+        (N'Patents',      1, 2, 70), -- patentRNir/patentZNir
+        (N'Certificates', 1, 2, 80), -- svidRNir/svidZNir
+        (N'Finances',     1, 0, 90)  -- financeNir
+END
+GO
+
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_ScienceRecords')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords] (
+        ScienceRecordID bigint IDENTITY (1,1) NOT NULL,
+        EduProgramID int NOT NULL,
+        ScienceRecordTypeID int NOT NULL,
+        Description nvarchar (max),
+        Value1 decimal NULL,
+        Value2 decimal NULL
+        CONSTRAINT [PK_{objectQualifier}University_ScienceRecords] PRIMARY KEY (ScienceRecordID)
+        CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_EduPrograms] FOREIGN KEY (EduProgramID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE,
+        CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_ScienceRecordTypes] FOREIGN KEY (ScienceRecordTypeID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (ScienceRecordTypeID) ON DELETE CASCADE,
+        CONSTRAINT [UN_{objectQualifier}University_ScienceRecords] UNIQUE (EduProgramID, ScienceRecordTypeID)    
+    )
+END
+GO
+
+IF NOT EXISTS (select * from sys.indexes where name = N'IX_{objectQualifier}University_ScienceRecords')
+BEGIN
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_ScienceRecords]
+        ON {databaseOwner}[{objectQualifier}University_ScienceRecords] (EduProgramID, ScienceRecordTypeID)
+END
+GO
