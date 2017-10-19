@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -249,5 +249,11 @@
       <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
       <Name>R7.University</Name>
     </ProjectReference>
+    <Content Include="EditScienceRecordType.ascx" />
+    <Compile Include="EditScienceRecordType.cs" />
+    <Compile Include="EditScienceRecordType.ascx.controls.cs" />
+    <Compile Include="Tables\ScienceRecordTypesTable.cs" />
+    <None Include="App_LocalResources\EditScienceRecordType.ascx.resx" />
+    <None Include="App_LocalResources\EditScienceRecordType.ascx.ru-RU.resx" />
   </ItemGroup>
 </Project>

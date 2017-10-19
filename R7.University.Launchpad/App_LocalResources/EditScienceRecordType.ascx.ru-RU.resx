@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ControlTitle_editachievement.Text" xml:space="preserve">
+        <value>Редактирование типа записи о науке</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;Модуль редактирования типа записи о науке&lt;/P&gt;</value>
+    </data>
+    <data name="labelType.Text" xml:space="preserve">
+    	<value>Название:</value>
+  	</data>
+	<data name="labelType.Help" xml:space="preserve">
+    	<value>Введите название типа записи о науке.</value>
+  	</data>
+    <data name="Type.Required" xml:space="preserve">
+        <value>Название типа для типа записи о науке обязательно.</value>
+    </data>
+    <data name="labelIsSystem.Text">
+        <value>Системный?</value>
+    </data>
+    <data name="labelIsSystem.Help">
+        <value>Системные типы записей о науке имеют особое значение для работы системы, поэтому их нельзя удалить, а также изменить значения ключевых полей.</value>
+    </data>
+    <data name="labelNumOfValues.Text">
+        <value>Числовых показателей:</value>
+    </data>
+    <data name="labelNumOfValues.Help">
+        <value>Введите количество числовых показателей (от 0 до 2), связанных с записью о науке этого типа.</value>
+    </data>
+    <data name="NumOfValues.Required">
+        <value>Количество числовых показателей обязательно.</value>
+    </data>
+    <data name="NumOfValues.Invalid">
+        <value>Количество числовых показателей должно быть целым числом от 0 до 2.</value>
+    </data>
+    <data name="labelSortIndex.Text">
+        <value>Индекс сортировки:</value>
+    </data>
+    <data name="labelSortIndex.Help">
+        <value>Введите целое число, которое будет использоваться при сортировке записей о науке этого типа.</value>
+    </data>
+    <data name="SortIndex.Required">
+        <value>Индекс сортировки обязателен.</value>
+    </data>
+    <data name="SortIndex.Invalid">
+        <value>Индекс сортировки должен быть целым числом.</value>
+    </data>
+</root>
