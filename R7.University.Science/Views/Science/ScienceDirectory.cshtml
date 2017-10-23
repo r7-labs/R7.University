@@ -1,0 +1,36 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ScienceDirectoryViewModel>
+@using System.Collections.Generic
+@using DotNetNuke.Collections
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using DotNetNuke.Framework
+@using DotNetNuke.Framework.JavaScriptLibraries
+@using DotNetNuke.Common
+@using DotNetNuke.Common.Utilities
+@using R7.University.ModelExtensions
+@using R7.University.Science.ViewModels
+@{
+    ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
+    var displayContent = true;
+    if (Dnn.ModuleContext.IsEditable) {
+        if (Model.IsEmpty) {
+            <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NothingToDisplay.Text")</p>
+            displayContent = false;
+        }
+    }
+    else {
+        if (Model.IsEmpty) {
+            var containerControl = Globals.FindControlRecursiveDown (Dnn.DnnPage, "ctr" + Dnn.ModuleContext.ModuleId);
+            containerControl.Visible = false;
+            displayContent = false;
+        }
+    }
+}
+
+@if (displayContent) {
+    <table class="u8y-science-directory">
+	    @foreach (var ep in Model.EduProgramScienceViewModels) {
+            <tr></tr>
+        }
+    </table>
+}

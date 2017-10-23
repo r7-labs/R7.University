@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>ScienceDirectory Settings</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>About ScienceDirectory Settings</value>
+    </data>
+	<data name="GeneralSettings.Section" xml:space="preserve">
+        <value>General Settings</value>
+    </data>
+	<data name="labelDivision.Text" xml:space="preserve">
+		<value>Division:</value>
+	</data>
+	<data name="labelDivision.Help" xml:space="preserve">
+		<value>Select a division to display science info by edu. program.</value>
+	</data>
+    <data name="labelEduLevels.Text" xml:space="preserve">
+        <value>Educational Levels:</value>
+    </data>
+    <data name="labelEduLevels.Help" xml:space="preserve">
+        <value>Check educational levels the module should display. Leave all checkboxes unchecked to display educational programs for all available education levels.</value>
+    </data>
+</root>
