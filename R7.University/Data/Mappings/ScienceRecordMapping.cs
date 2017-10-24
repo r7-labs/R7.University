@@ -32,10 +32,13 @@ namespace R7.University.Data.Mappings
             HasKey (m => m.ScienceRecordId);
             Property (m => m.ScienceRecordId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.ScienceRecordId).IsRequired ();
+            Property (m => m.ScienceRecordTypeId).IsRequired ();
             Property (m => m.EduProgramId).IsRequired ();
             Property (m => m.Description).IsOptional ();
             Property (m => m.Value1).IsOptional ();
             Property (m => m.Value2).IsOptional ();
+
+            HasOptional (m => m.ScienceRecordType).WithMany ().HasForeignKey (m => m.ScienceRecordTypeId);
         }
     }
 }
