@@ -27,11 +27,11 @@ namespace R7.University.Models
 
         public int EduProgramId { get; set; }
 
-        public EduProgramInfo EduProgram { get; set; }
+        public virtual EduProgramInfo EduProgram { get; set; }
 
         public int ScienceRecordTypeId { get; set; }
 
-        public ScienceRecordTypeInfo ScienceRecordType { get; set; }
+        public virtual ScienceRecordTypeInfo ScienceRecordType { get; set; }
         
         public string Description { get; set; }
 

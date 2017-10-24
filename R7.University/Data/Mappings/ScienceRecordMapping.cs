@@ -38,7 +38,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.Value1).IsOptional ();
             Property (m => m.Value2).IsOptional ();
 
-            HasOptional (m => m.ScienceRecordType).WithMany ().HasForeignKey (m => m.ScienceRecordTypeId);
+            HasRequired (m => m.ScienceRecordType).WithMany ().HasForeignKey (m => m.ScienceRecordTypeId);
         }
     }
 }
