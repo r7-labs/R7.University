@@ -26,7 +26,8 @@ namespace R7.University.ModelExtensions
 {
     public static class EnumerableExtensions
     {
-        public static bool IsNullOrEmpty (this IEnumerable<object> enumerable)
+        // TODO: Move to the base library
+        public static bool IsNullOrEmpty<T> (this IEnumerable<T> enumerable)
         {
             return enumerable == null || !enumerable.Any ();
         }
