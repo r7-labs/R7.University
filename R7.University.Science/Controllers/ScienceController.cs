@@ -19,11 +19,14 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
 using System.Web.Mvc;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.Models;
 using R7.University.Science.Models;
+using R7.University.Science.Queries;
 using R7.University.Science.ViewModels;
 using R7.University.Security;
 
@@ -46,7 +49,18 @@ namespace R7.University.Science.Controllers
 
         public ActionResult ScienceDirectory ()
         {
-            return View (new ScienceDirectoryViewModel ());
+            var viewModel = new ScienceDirectoryViewModel ();
+
+            viewModel.EduProgramScienceViewModels = GetEduPrograms ();
+
+            return View (viewModel);
+        }
+
+        IEnumerable<EduProgramInfo> GetEduPrograms ()
+        {
+            using (var modelContext = new UniversityModelContext ()) {
+                return new EduProgramScienceQuery (modelContext).ListByDivisionAndEduLevels (Settings.DivisionId, Settings.EduLevelIds);
+            }
         }
     }
 }

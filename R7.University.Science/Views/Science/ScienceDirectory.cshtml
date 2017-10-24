@@ -28,9 +28,32 @@
 }
 
 @if (displayContent) {
-    <table class="u8y-science-directory">
-	    @foreach (var ep in Model.EduProgramScienceViewModels) {
-            <tr></tr>
-        }
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover u8y-science-directory">
+            <thead>
+    		    <th>@Dnn.LocalizeString("ScienceCode.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceDirections.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceBase.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceScientists.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceStudents.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceMonographs.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceArticles.Column")</th>
+    		    <th>@Dnn.LocalizeString("SciencePatents.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceCertificates.Column")</th>
+    		    <th>@Dnn.LocalizeString("ScienceFinances.Column")</th>
+    	    </thead>
+    	    <tbody>
+    	    @foreach (var ep in Model.EduProgramScienceViewModels) {
+                <tr>
+    			    <td>@ep.Code</td>
+    			    <td>@ep.Title</td>
+                    @foreach (var sr in ep.ScienceRecords) {
+                        <td>@sr.Description @sr.Value1 @sr.Value2</td>
+                    }
+                </tr>
+            }
+    		</tbody>
+        </table>
+	</div>
 }

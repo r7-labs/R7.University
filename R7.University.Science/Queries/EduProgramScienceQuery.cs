@@ -1,5 +1,5 @@
 //
-//  ScienceRecordQuery.cs
+//  EduProgramScienceQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,21 +21,22 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
 
 namespace R7.University.Science.Queries
 {
-    class ScienceRecordQuery: EduProgramCommonQuery
+    class EduProgramScienceQuery: EduProgramCommonQuery
     {
-        public ScienceRecordQuery (IModelContext modelContext): base (modelContext)
+        public EduProgramScienceQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
         public IEnumerable<EduProgramInfo> ListByDivisionAndEduLevels (int? divisionId, IEnumerable<int> eduLevelIds)
         {
             if (divisionId != null) {
-                if (eduLevelIds.Any ()) {
+                if (!eduLevelIds.IsNullOrEmpty ()) {
                     return QueryEduProgramsIncludeScienceRecords ()
                         .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId) && eduLevelIds.Contains (ep.EduLevelID))
                         .ToList ();
@@ -45,7 +46,7 @@ namespace R7.University.Science.Queries
                     .ToList ();
             }
 
-            if (eduLevelIds.Any ()) {
+            if (!eduLevelIds.IsNullOrEmpty ()) {
                 return QueryEduProgramsIncludeScienceRecords ()
                     .Where (ep => eduLevelIds.Contains (ep.EduLevelID))
                     .ToList ();

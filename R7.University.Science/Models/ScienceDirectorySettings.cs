@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules.Settings;
 
 namespace R7.University.Science.Models
