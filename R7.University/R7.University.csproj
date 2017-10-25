@@ -298,6 +298,8 @@
     </Compile>
     <Compile Include="Components\UniversityIcons.cs" />
     <Compile Include="Models\DocumentGroupComparer.cs" />
+    <Compile Include="Models\SystemScienceRecordType.cs" />
+    <Compile Include="ModelExtensions\ScienceRecordTypeExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
