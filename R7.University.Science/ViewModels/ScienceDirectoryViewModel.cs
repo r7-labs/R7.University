@@ -20,16 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using System.Linq;
-using R7.University.Models;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Science.ViewModels
 {
     public class ScienceDirectoryViewModel
     {
-        public bool IsEmpty => EduProgramScienceViewModels == null || !EduProgramScienceViewModels.Any ();
+        public bool IsEmpty => EduProgramScienceViewModels.IsNullOrEmpty ();
 
-        // TODO: Add EduProgramScienceViewModel class
-        public IEnumerable<EduProgramInfo> EduProgramScienceViewModels { get; set; } = new List<EduProgramInfo> ();
+        public IEnumerable<EduProgramScienceViewModel> EduProgramScienceViewModels { get; set; }
     }
 }

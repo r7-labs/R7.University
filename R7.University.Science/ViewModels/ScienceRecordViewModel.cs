@@ -19,36 +19,50 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Web;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Science.Models;
 
 namespace R7.University.Science.ViewModels
 {
-    public class ScienceRecordViewModel: IScienceRecord
+    public class ScienceRecordViewModel : IScienceRecord
     {
-        protected IScienceRecord Science;
+        protected IScienceRecord ScienceRecord;
 
         protected ViewModelContext<ScienceDirectorySettings> Context;
 
+        public ScienceRecordViewModel (IScienceRecord scienceRecord, ViewModelContext<ScienceDirectorySettings> context)
+        {
+            ScienceRecord = scienceRecord;
+            Context = context;
+        }
+
         #region IScienceRecord implementation
 
-        public long ScienceRecordId => Science.ScienceRecordId;
+        public long ScienceRecordId => ScienceRecord.ScienceRecordId;
 
-        public int EduProgramId => Science.EduProgramId;
+        public int EduProgramId => ScienceRecord.EduProgramId;
 
-        public EduProgramInfo EduProgram => Science.EduProgram;
+        public EduProgramInfo EduProgram => ScienceRecord.EduProgram;
 
-        public int ScienceRecordTypeId => Science.ScienceRecordTypeId;
+        public int ScienceRecordTypeId => ScienceRecord.ScienceRecordTypeId;
 
-        public ScienceRecordTypeInfo ScienceRecordType => Science.ScienceRecordType;
+        public ScienceRecordTypeInfo ScienceRecordType => ScienceRecord.ScienceRecordType;
 
-        public string Description => Science.Description;
+        public string Description => ScienceRecord.Description;
 
-        public decimal? Value1 => Science.Value1;
+        public decimal? Value1 => ScienceRecord.Value1;
 
-        public decimal? Value2 => Science.Value2;
+        public decimal? Value2 => ScienceRecord.Value2;
 
         #endregion
+
+        public IHtmlString Html
+        {
+            get {
+                return new HtmlString ($"{ScienceRecord.Description} {ScienceRecord.Value1} {ScienceRecord.Value2}");
+            }
+        }
     }
 }

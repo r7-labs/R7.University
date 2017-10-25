@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
@@ -51,7 +52,8 @@ namespace R7.University.Science.Controllers
         {
             var viewModel = new ScienceDirectoryViewModel ();
 
-            viewModel.EduProgramScienceViewModels = GetEduPrograms ();
+            viewModel.EduProgramScienceViewModels = GetEduPrograms ()
+                .Select (ep => new EduProgramScienceViewModel (ep, ViewModelContext));
 
             return View (viewModel);
         }

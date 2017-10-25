@@ -44,14 +44,20 @@
     		    <th>@Dnn.LocalizeString("ScienceFinances.Column")</th>
     	    </thead>
     	    <tbody>
-    	    @foreach (var ep in Model.EduProgramScienceViewModels) {
+    	    @foreach (var eps in Model.EduProgramScienceViewModels) {
                 <tr>
-    			    <td>@ep.Code</td>
-    			    <td>@ep.Title</td>
-                    @foreach (var sr in ep.ScienceRecords) {
-                        <td>@sr.Description @sr.Value1 @sr.Value2</td>
-                    }
-                </tr>
+    			    <td>@eps.Code</td>
+    			    <td>@eps.Title</td>
+				    <td>@eps.DirectionsHtml</td>
+				    <td>@eps.BaseHtml</td>
+                    <td>@eps.ScientistsHtml</td>
+    				<td>@eps.StudentsHtml</td>
+    				<td>@eps.MonographsHtml</td>
+    				<td>@eps.ArticlesHtml</td>
+    				<td>@eps.PatentsHtml</td>
+    				<td>@eps.CertificatesHtml</td>
+    				<td>@eps.FinancesHtml</td>
+    			</tr>
             }
     		</tbody>
         </table>
