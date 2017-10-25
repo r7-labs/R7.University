@@ -29,7 +29,6 @@ using R7.University.Models;
 using R7.University.Science.Models;
 using R7.University.Science.Queries;
 using R7.University.Science.ViewModels;
-using R7.University.Security;
 
 namespace R7.University.Science.Controllers
 {
@@ -40,16 +39,14 @@ namespace R7.University.Science.Controllers
         protected ViewModelContext<ScienceDirectorySettings> ViewModelContext =>
             _viewModelContext ?? (_viewModelContext = new ViewModelContext<ScienceDirectorySettings> (ModuleContext, LocalResourceFile, Settings));
 
-        ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext =>
-            securityContext ?? (securityContext = new ModuleSecurityContext (User));
-
         ScienceDirectorySettings _settings;
         protected ScienceDirectorySettings Settings =>
             _settings ?? (_settings = new ScienceDirectorySettingsRepository ().GetSettings (ActiveModule));
 
         public ActionResult ScienceDirectory ()
         {
+            // TODO: Use data cache for view model
+
             var viewModel = new ScienceDirectoryViewModel ();
 
             viewModel.EduProgramScienceViewModels = GetEduPrograms ()
@@ -61,7 +58,8 @@ namespace R7.University.Science.Controllers
         IEnumerable<EduProgramInfo> GetEduPrograms ()
         {
             using (var modelContext = new UniversityModelContext ()) {
-                return new EduProgramScienceQuery (modelContext).ListByDivisionAndEduLevels (Settings.DivisionId, Settings.EduLevelIds);
+                var eduPrograms = new EduProgramScienceQuery (modelContext).ListByDivisionAndEduLevels (Settings.DivisionId, Settings.EduLevelIds);
+                return eduPrograms ?? Enumerable.Empty<EduProgramInfo> ();
             }
         }
     }
