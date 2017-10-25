@@ -4,30 +4,23 @@
 @using DotNetNuke.Web.Mvc.Helpers
 @using DotNetNuke.Web.Client.ClientResourceManagement
 @using DotNetNuke.Framework
-@using DotNetNuke.Framework.JavaScriptLibraries
 @using DotNetNuke.Common
 @using DotNetNuke.Common.Utilities
 @using R7.University.ModelExtensions
 @using R7.University.Science.ViewModels
 @{
     ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
-    var displayContent = true;
+}
+@if (Model.IsEmpty) {
     if (Dnn.ModuleContext.IsEditable) {
-        if (Model.IsEmpty) {
-            <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NothingToDisplay.Text")</p>
-            displayContent = false;
-        }
+        <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NothingToDisplay.Text")</p>
     }
     else {
-        if (Model.IsEmpty) {
-            var containerControl = Globals.FindControlRecursiveDown (Dnn.DnnPage, "ctr" + Dnn.ModuleContext.ModuleId);
-            containerControl.Visible = false;
-            displayContent = false;
-        }
+        var containerControl = Globals.FindControlRecursiveDown (Dnn.DnnPage, "ctr" + Dnn.ModuleContext.ModuleId);
+        containerControl.Visible = false;
     }
 }
-
-@if (displayContent) {
+else {
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover u8y-science-directory">
             <thead>
@@ -44,21 +37,21 @@
     		    <th>@Dnn.LocalizeString("ScienceFinances.Column")</th>
     	    </thead>
     	    <tbody>
-    	    @foreach (var eps in Model.EduProgramScienceViewModels) {
-                <tr>
-    			    <td>@eps.Code</td>
-    			    <td>@eps.Title</td>
-				    <td>@eps.DirectionsHtml</td>
-				    <td>@eps.BaseHtml</td>
-                    <td>@eps.ScientistsHtml</td>
-    				<td>@eps.StudentsHtml</td>
-    				<td>@eps.MonographsHtml</td>
-    				<td>@eps.ArticlesHtml</td>
-    				<td>@eps.PatentsHtml</td>
-    				<td>@eps.CertificatesHtml</td>
-    				<td>@eps.FinancesHtml</td>
-    			</tr>
-            }
+        	    @foreach (var eps in Model.EduProgramScienceViewModels) {
+                    <tr>
+        			    <td>@eps.Code</td>
+        			    <td>@eps.Title</td>
+    				    <td>@eps.DirectionsHtml</td>
+    				    <td>@eps.BaseHtml</td>
+                        <td>@eps.ScientistsHtml</td>
+        				<td>@eps.StudentsHtml</td>
+        				<td>@eps.MonographsHtml</td>
+        				<td>@eps.ArticlesHtml</td>
+        				<td>@eps.PatentsHtml</td>
+        				<td>@eps.CertificatesHtml</td>
+        				<td>@eps.FinancesHtml</td>
+        			</tr>
+                }
     		</tbody>
         </table>
 	</div>
