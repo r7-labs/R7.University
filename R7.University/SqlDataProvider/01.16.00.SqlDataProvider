@@ -56,7 +56,7 @@ BEGIN
         (N'Articles',     1, 2, 60), -- articleNir
         (N'Patents',      1, 2, 70), -- patentRNir/patentZNir
         (N'Certificates', 1, 2, 80), -- svidRNir/svidZNir
-        (N'Finances',     1, 0, 90)  -- financeNir
+        (N'Finances',     1, 1, 90)  -- financeNir
 END
 GO
 
