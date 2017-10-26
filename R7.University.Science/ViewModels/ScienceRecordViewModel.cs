@@ -81,11 +81,11 @@ namespace R7.University.Science.ViewModels
                 // TODO: Add parameter?
                 // special case for articles which have single microdata attribute for two values
                 if (scienceRecordType == SystemScienceRecordType.Articles) {
-                    return $"<span{microdataAttr1}>{value1}/{value2}</span>";
+                    return $"<span{microdataAttr1}>{value1}&nbsp;/&nbsp;{value2}</span>";
                 }
 
                 var microdataAttr2 = GetMicrodataAttrForValue (scienceRecordType, 2);
-                return $"<span{microdataAttr1}>{value1}</span>/<span{microdataAttr2}>{value2}</span>";
+                return $"<span{microdataAttr1}>{value1}</span>&nbsp;/&nbsp;<span{microdataAttr2}>{value2}</span>";
             }
 
             return string.Empty;
