@@ -58,11 +58,85 @@ namespace R7.University.Science.ViewModels
 
         #endregion
 
-        public IHtmlString Html
+        public IHtmlString GetHtml (SystemScienceRecordType scienceRecordType, string valueFormat)
         {
-            get {
-                return new HtmlString ($"{ScienceRecord.Description} {ScienceRecord.Value1} {ScienceRecord.Value2}");
+            if (string.IsNullOrEmpty (ScienceRecord.Description)
+                && ScienceRecord.Value1 == null
+                && ScienceRecord.Value2 == null) {
+                return new HtmlString (string.Empty);
             }
+
+            var valuesHtml = GetValuesHtml (scienceRecordType, valueFormat);
+            var descriptionHtml = GetDesciptionHtml (scienceRecordType);
+                
+            return new HtmlString ($"<span>{valuesHtml}{descriptionHtml}</span>");
         }
+
+        string GetValuesHtml (SystemScienceRecordType scienceRecordType, string valueFormat)
+        {
+            if (ScienceRecord.ScienceRecordType.NumOfValues == 1) {
+                var microdataAttr = GetMicrodataAttrForValue (scienceRecordType, 1);
+                return $"<span{microdataAttr}>{FormatValue (ScienceRecord.Value1, valueFormat)}</span>";
+            }
+
+            if (ScienceRecord.ScienceRecordType.NumOfValues == 2) {
+                var microdataAttr1 = GetMicrodataAttrForValue (scienceRecordType, 1);
+                var value1 = FormatValue (ScienceRecord.Value1, valueFormat);
+                var value2 = FormatValue (ScienceRecord.Value2, valueFormat);
+
+                // TODO: Add parameter?
+                // special case for articles which have single microdata attribute for two values
+                if (scienceRecordType == SystemScienceRecordType.Articles) {
+                    return $"<span{microdataAttr1}>{value1}/{value2}</span>";
+                }
+
+                var microdataAttr2 = GetMicrodataAttrForValue (scienceRecordType, 2);
+                return $"<span{microdataAttr1}>{value1}</span>/<span{microdataAttr2}>{value2}</span>";
+            }
+
+            return string.Empty;
+        }
+
+        string GetDesciptionHtml (SystemScienceRecordType scienceRecordType)
+        {
+            // TODO: Implement DescriptionRequired flag
+            if (!string.IsNullOrEmpty (ScienceRecord.Description)) {
+                var microdataAttr = GetMicrodataAttrForDescription (scienceRecordType);
+                return $" <span{microdataAttr} class=\"hidden\">{ScienceRecord.Description}</span><a href=\"#\">[&#8230;]</a>";
+            }
+
+            return string.Empty;
+        }
+
+        string GetMicrodataAttrForValue (SystemScienceRecordType scienceRecordType, int n = 0)
+        {
+            switch (scienceRecordType) {
+                case SystemScienceRecordType.Scientists: return ItemProp ("nprNir");
+                case SystemScienceRecordType.Students: return ItemProp ("studNir");
+                case SystemScienceRecordType.Monographs: return ItemProp ("monografNir");
+                case SystemScienceRecordType.Articles: return ItemProp ("articleNir");
+                case SystemScienceRecordType.Patents: return (n == 1)? ItemProp ("patentRNir") : ItemProp ("patentZNir");
+                case SystemScienceRecordType.Certificates: return (n == 1)? ItemProp ("svidRNir") : ItemProp ("svidZNir");
+            }
+
+            return string.Empty;
+        }
+
+        string GetMicrodataAttrForDescription (SystemScienceRecordType scienceRecordType)
+        {
+            if (scienceRecordType == SystemScienceRecordType.Directions) {
+                return ItemProp ("perechenNir");
+            }
+
+            if (scienceRecordType == SystemScienceRecordType.Base) {
+                return ItemProp ("baseNir");
+            }
+
+            return string.Empty;
+        }
+
+        string ItemProp (string microdata) => $" itemprop=\"{microdata}\"";
+
+        string FormatValue (decimal? value, string format) => value != null? value.Value.ToString (format) : "-";
     }
 }

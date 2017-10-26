@@ -51,32 +51,32 @@ namespace R7.University.Science.ViewModels
                 .FirstOrDefault (sr => sr.ScienceRecordType.GetSystemScienceRecordType () == systemScienceRecordType);
         }
 
-        IHtmlString GetScienceRecordHtmlByType (SystemScienceRecordType systemScienceRecordType)
+        public IHtmlString GetScienceRecordHtml (SystemScienceRecordType systemScienceRecordType, string valueFormat = "N0")
         {
             var scienceRecord = GetScienceRecordByType (systemScienceRecordType);
             if (scienceRecord != null) {
-                return scienceRecord.Html;
+                return scienceRecord.GetHtml (systemScienceRecordType, valueFormat);
             }
 
             return new HtmlString (string.Empty);
         }
 
-        public IHtmlString DirectionsHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Directions);
+        public IHtmlString DirectionsHtml => GetScienceRecordHtml (SystemScienceRecordType.Directions);
 
-        public IHtmlString BaseHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Base);
+        public IHtmlString BaseHtml => GetScienceRecordHtml (SystemScienceRecordType.Base);
 
-        public IHtmlString ScientistsHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Scientists);
+        public IHtmlString ScientistsHtml => GetScienceRecordHtml (SystemScienceRecordType.Scientists);
 
-        public IHtmlString StudentsHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Students);
+        public IHtmlString StudentsHtml => GetScienceRecordHtml (SystemScienceRecordType.Students);
 
-        public IHtmlString MonographsHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Monographs);
+        public IHtmlString MonographsHtml => GetScienceRecordHtml (SystemScienceRecordType.Monographs);
 
-        public IHtmlString ArticlesHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Articles);
+        public IHtmlString ArticlesHtml => GetScienceRecordHtml (SystemScienceRecordType.Articles);
 
-        public IHtmlString PatentsHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Patents);
+        public IHtmlString PatentsHtml => GetScienceRecordHtml (SystemScienceRecordType.Patents);
 
-        public IHtmlString CertificatesHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Certificates);
+        public IHtmlString CertificatesHtml => GetScienceRecordHtml (SystemScienceRecordType.Certificates);
 
-        public IHtmlString FinancesHtml => GetScienceRecordHtmlByType (SystemScienceRecordType.Finances);
+        public IHtmlString FinancesHtml => GetScienceRecordHtml (SystemScienceRecordType.Finances, "N2");
     }
 }

@@ -22,7 +22,7 @@
 }
 else {
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover u8y-science-directory">
+        <table class="table table-striped table-bordered table-hover u8y-science-directory" itemprop="eduNir">
             <thead>
     		    <th scope="col">@Dnn.LocalizeString("ScienceCode.Column")</th>
     		    <th scope="col">@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
@@ -39,8 +39,8 @@ else {
     	    <tbody>
         	    @foreach (var eps in Model.EduProgramScienceViewModels) {
                     <tr>
-        			    <td>@eps.Code</td>
-        			    <td>@eps.Title</td>
+        			    <td itemprop="eduCode">@eps.Code</td>
+        			    <td itemprop="eduName">@eps.Title</td>
     				    <td>@eps.DirectionsHtml</td>
     				    <td>@eps.BaseHtml</td>
                         <td>@eps.ScientistsHtml</td>
