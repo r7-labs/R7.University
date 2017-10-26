@@ -250,8 +250,12 @@
       <Name>R7.University</Name>
     </ProjectReference>
     <Content Include="EditScienceRecordType.ascx" />
-    <Compile Include="EditScienceRecordType.cs" />
-    <Compile Include="EditScienceRecordType.ascx.controls.cs" />
+    <Compile Include="EditScienceRecordType.cs">
+      <DependentUpon>EditScienceRecordType.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditScienceRecordType.ascx.controls.cs">
+      <DependentUpon>EditScienceRecordType.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Tables\ScienceRecordTypesTable.cs" />
     <None Include="App_LocalResources\EditScienceRecordType.ascx.resx" />
     <None Include="App_LocalResources\EditScienceRecordType.ascx.ru-RU.resx" />

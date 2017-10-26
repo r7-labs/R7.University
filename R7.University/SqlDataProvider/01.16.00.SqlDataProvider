@@ -42,22 +42,25 @@ BEGIN
         ScienceRecordTypeID int IDENTITY (1,1) NOT NULL,
         Type nvarchar (64) NOT NULL,
         IsSystem bit NOT NULL DEFAULT ((0)),
+        DescriptionIsRequired bit NOT NULL DEFAULT ((0)),
         NumOfValues int NOT NULL DEFAULT ((0)),
         SortIndex int NOT NULL DEFAULT ((0))
         CONSTRAINT [PK_{objectQualifier}University_ScienceRecordTypes] PRIMARY KEY (ScienceRecordTypeID)
     )
 
-    INSERT INTO {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (Type, IsSystem, NumOfValues, SortIndex) VALUES
-        (N'Directions',   1, 0, 10), -- perechenNir
-        (N'Base',         1, 0, 20), -- baseNir
-        (N'Scientists',   1, 1, 30), -- nprNir
-        (N'Students',     1, 1, 40), -- studNir
-        (N'Monographs',   1, 1, 50), -- monografNir
-        (N'Articles',     1, 2, 60), -- articleNir
-        (N'Patents',      1, 2, 70), -- patentRNir/patentZNir
-        (N'Certificates', 1, 2, 80), -- svidRNir/svidZNir
-        (N'Finances',     1, 1, 90)  -- financeNir
-END
+    INSERT INTO {databaseOwner}[{objectQualifier}University_ScienceRecordTypes]
+        (Type, IsSystem, DescriptionIsRequired, NumOfValues, SortIndex)
+        VALUES
+            (N'Directions',   1, 1, 0, 10), -- perechenNir
+            (N'Base',         1, 1, 0, 20), -- baseNir
+            (N'Scientists',   1, 0, 1, 30), -- nprNir
+            (N'Students',     1, 0, 1, 40), -- studNir
+            (N'Monographs',   1, 0, 1, 50), -- monografNir
+            (N'Articles',     1, 0, 2, 60), -- articleNir
+            (N'Patents',      1, 0, 2, 70), -- patentRNir/patentZNir
+            (N'Certificates', 1, 0, 2, 80), -- svidRNir/svidZNir
+            (N'Finances',     1, 0, 1, 90)  -- financeNir
+    END
 GO
 
 IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_ScienceRecords')

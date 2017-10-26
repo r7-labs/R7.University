@@ -15,6 +15,10 @@
                 CssClass="dnnFormMessage dnnFormError" resourcekey="Type.Required" />
 		</div>
 		<div class="dnnFormItem">
+            <dnn:Label id="labelDescriptionIsRequired" runat="server" ControlName="checkDescriptionIsRequired" />
+            <asp:CheckBox id="checkDescriptionIsRequired" runat="server" />
+        </div>
+		<div class="dnnFormItem">
             <dnn:Label id="labelNumOfValues" runat="server" ControlName="textNumOfValues" />
             <asp:TextBox id="textNumOfValues" runat="server" Value="0" />
 			<asp:RequiredFieldValidator runat="server" resourcekey="NumOfValues.Required"

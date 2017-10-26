@@ -9,6 +9,7 @@ namespace R7.University.Launchpad
         protected HyperLink linkCancel;
         protected TextBox textType;
         protected CheckBox checkIsSystem;
+        protected CheckBox checkDescriptionIsRequired;
         protected TextBox textNumOfValues;
         protected TextBox textSortIndex;
     }

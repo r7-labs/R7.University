@@ -33,6 +33,12 @@
     <data name="labelIsSystem.Help">
         <value>System science record types have special meaning for the system work, therefore they cannot be deleted and modification of the key field values is limited.</value>
     </data>
+	<data name="labelDescriptionIsRequired.Text">
+        <value>Description is Required?</value>
+    </data>
+    <data name="labelDescriptionIsRequired.Help">
+        <value>Check to make description of science record of this type required.</value>
+    </data>
     <data name="labelNumOfValues.Text">
         <value>Number of Values:</value>
     </data>

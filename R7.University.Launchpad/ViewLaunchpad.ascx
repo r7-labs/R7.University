@@ -493,6 +493,7 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="ScienceRecordTypeId" SortExpression="ScienceRecordTypeId" HeaderText="ScienceRecordTypeId" />
                         <asp:BoundField DataField="Type" SortExpression="Type" HeaderText="Type" />
+						<asp:CheckBoxField DataField="DescriptionIsRequired" SortExpression="DescriptionIsRequired" HeaderText="DescriptionIsRequired" />
                         <asp:BoundField DataField="NumOfValues" SortExpression="NumOfValues" HeaderText="NumOfValues" />
                         <asp:BoundField DataField="SortIndex" SortExpression="SortIndex" HeaderText="SortIndex" />
                         <asp:CheckBoxField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />

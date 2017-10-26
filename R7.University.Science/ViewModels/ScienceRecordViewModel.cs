@@ -60,16 +60,10 @@ namespace R7.University.Science.ViewModels
 
         public IHtmlString GetHtml (SystemScienceRecordType scienceRecordType, string valueFormat)
         {
-            if (string.IsNullOrEmpty (ScienceRecord.Description)
-                && ScienceRecord.Value1 == null
-                && ScienceRecord.Value2 == null) {
-                return new HtmlString (string.Empty);
-            }
-
             var valuesHtml = GetValuesHtml (scienceRecordType, valueFormat);
             var descriptionHtml = GetDesciptionHtml (scienceRecordType);
-                
-            return new HtmlString ($"<span>{valuesHtml}{descriptionHtml}</span>");
+
+            return new HtmlString ($"{valuesHtml}{descriptionHtml}");
         }
 
         string GetValuesHtml (SystemScienceRecordType scienceRecordType, string valueFormat)
@@ -99,10 +93,13 @@ namespace R7.University.Science.ViewModels
 
         string GetDesciptionHtml (SystemScienceRecordType scienceRecordType)
         {
-            // TODO: Implement DescriptionRequired flag
+            var microdataAttr = GetMicrodataAttrForDescription (scienceRecordType);
             if (!string.IsNullOrEmpty (ScienceRecord.Description)) {
-                var microdataAttr = GetMicrodataAttrForDescription (scienceRecordType);
-                return $" <span{microdataAttr} class=\"hidden\">{ScienceRecord.Description}</span><a href=\"#\">[&#8230;]</a>";
+                return $" <span{microdataAttr} class=\"hidden\">{HttpUtility.HtmlDecode (ScienceRecord.Description)}</span><a href=\"#\">[&#8230;]</a>";
+            }
+
+            if (ScienceRecord.ScienceRecordType.DescriptionIsRequired) {
+                return $" <span{microdataAttr}>-</span>";
             }
 
             return string.Empty;
@@ -124,12 +121,9 @@ namespace R7.University.Science.ViewModels
 
         string GetMicrodataAttrForDescription (SystemScienceRecordType scienceRecordType)
         {
-            if (scienceRecordType == SystemScienceRecordType.Directions) {
-                return ItemProp ("perechenNir");
-            }
-
-            if (scienceRecordType == SystemScienceRecordType.Base) {
-                return ItemProp ("baseNir");
+            switch (scienceRecordType) {
+                case SystemScienceRecordType.Directions: return ItemProp ("perechenNir");
+                case SystemScienceRecordType.Base: return ItemProp ("baseNir");
             }
 
             return string.Empty;

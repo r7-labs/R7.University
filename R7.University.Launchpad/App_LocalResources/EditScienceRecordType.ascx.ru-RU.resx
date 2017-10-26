@@ -33,6 +33,12 @@
     <data name="labelIsSystem.Help">
         <value>Системные типы записей о науке имеют особое значение для работы системы, поэтому их нельзя удалить, а также изменить значения ключевых полей.</value>
     </data>
+	<data name="labelDescriptionIsRequired.Text">
+        <value>Описание обязательно?</value>
+    </data>
+    <data name="labelDescriptionIsRequired.Help">
+        <value>Отметьте, чтобы сделать описание обязательным для записи о науке этого типа.</value>
+    </data>
     <data name="labelNumOfValues.Text">
         <value>Числовых показателей:</value>
     </data>

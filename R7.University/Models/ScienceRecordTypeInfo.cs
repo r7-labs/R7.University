@@ -29,6 +29,8 @@ namespace R7.University.Models
         
         public bool IsSystem { get; set; }
 
+        public bool DescriptionIsRequired { get; set; }
+
         public int NumOfValues { get; set; }
 
         public int SortIndex { get; set; }

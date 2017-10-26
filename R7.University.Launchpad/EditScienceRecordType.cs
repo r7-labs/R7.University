@@ -39,6 +39,7 @@ namespace R7.University.Launchpad
         {
             textType.Text = item.Type;
             checkIsSystem.Checked = item.IsSystem;
+            checkDescriptionIsRequired.Checked = item.DescriptionIsRequired;
             textNumOfValues.Text = item.NumOfValues.ToString ();
             textSortIndex.Text = item.SortIndex.ToString ();
 
@@ -46,19 +47,19 @@ namespace R7.University.Launchpad
             if (item.IsSystem) {
                 textType.Enabled = false;
                 textNumOfValues.Enabled = false;
+                checkDescriptionIsRequired.Enabled = false;
             }
         }
 
         protected override void BeforeUpdateItem (ScienceRecordTypeInfo item)
         {
-            // don't update Type and NumOfValues for system types,
-            // also don't update IsSystem value at all
-            
             item.SortIndex = int.Parse (textSortIndex.Text);
 
+            // don't update key fields for system types, also don't update IsSystem value at all
             if (!item.IsSystem) {
                 item.Type = textType.Text.Trim ();
                 item.NumOfValues = int.Parse (textNumOfValues.Text);
+                item.DescriptionIsRequired = checkDescriptionIsRequired.Checked;
             }
         }
 

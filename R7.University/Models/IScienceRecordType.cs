@@ -29,6 +29,8 @@ namespace R7.University.Models
         
         bool IsSystem { get; }
 
+        bool DescriptionIsRequired { get; }
+
         int NumOfValues { get; }
 
         int SortIndex { get; }
@@ -41,6 +43,8 @@ namespace R7.University.Models
         new string Type { get; set; }
         
         new bool IsSystem { get; set; }
+
+        new bool DescriptionIsRequired { get; set; }
 
         new int NumOfValues { get; set; }
 
