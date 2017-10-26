@@ -67,8 +67,8 @@ BEGIN
         EduProgramID int NOT NULL,
         ScienceRecordTypeID int NOT NULL,
         Description nvarchar (max),
-        Value1 decimal NULL,
-        Value2 decimal NULL
+        Value1 decimal (18,3) NULL,
+        Value2 decimal (18,3) NULL
         CONSTRAINT [PK_{objectQualifier}University_ScienceRecords] PRIMARY KEY (ScienceRecordID)
         CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_EduPrograms] FOREIGN KEY (EduProgramID)
             REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE,
