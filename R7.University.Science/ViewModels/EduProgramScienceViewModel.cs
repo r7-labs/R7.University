@@ -58,6 +58,7 @@ namespace R7.University.Science.ViewModels
                 return scienceRecord.GetHtml (systemScienceRecordType, valueFormat);
             }
 
+            // TODO: Return default markup if science record don't exists?
             return new HtmlString (string.Empty);
         }
 
