@@ -70,7 +70,7 @@ namespace R7.University.Science.ViewModels
         {
             if (ScienceRecord.ScienceRecordType.NumOfValues == 1) {
                 var microdataAttr = GetMicrodataAttrForValue (scienceRecordType, 1);
-                return $"<span{microdataAttr}>{FormatValue (ScienceRecord.Value1, valueFormat)}</span>";
+                return $"<span{microdataAttr} class=\"values\">{FormatValue (ScienceRecord.Value1, valueFormat)}</span>";
             }
 
             if (ScienceRecord.ScienceRecordType.NumOfValues == 2) {
@@ -81,11 +81,11 @@ namespace R7.University.Science.ViewModels
                 // TODO: Add parameter?
                 // special case for articles which have single microdata attribute for two values
                 if (scienceRecordType == SystemScienceRecordType.Articles) {
-                    return $"<span{microdataAttr1}>{value1}&nbsp;/&nbsp;{value2}</span>";
+                    return $"<span{microdataAttr1} class=\"values\">{value1}&nbsp;/&nbsp;{value2}</span>";
                 }
 
                 var microdataAttr2 = GetMicrodataAttrForValue (scienceRecordType, 2);
-                return $"<span{microdataAttr1}>{value1}</span>&nbsp;/&nbsp;<span{microdataAttr2}>{value2}</span>";
+                return $"<span class=\"values\"><span{microdataAttr1}>{value1}</span>&nbsp;/&nbsp;<span{microdataAttr2}>{value2}</span></span>";
             }
 
             return string.Empty;
@@ -95,7 +95,9 @@ namespace R7.University.Science.ViewModels
         {
             var microdataAttr = GetMicrodataAttrForDescription (scienceRecordType);
             if (!string.IsNullOrEmpty (ScienceRecord.Description)) {
-                return $" <span{microdataAttr} class=\"hidden\">{HttpUtility.HtmlDecode (ScienceRecord.Description)}</span><a href=\"#\">[&#8230;]</a>";
+                return $" <span{microdataAttr} class=\"hidden description\">{HttpUtility.HtmlDecode (ScienceRecord.Description)}</span>"
+                    + "<a type=\"button\" href=\"#\" data-toggle=\"modal\""
+                    + $" data-target=\"#u8y-sciencerecord-description-dialog-{Context.Module.ModuleId}\">[&#8230;]</a>";
             }
 
             if (ScienceRecord.ScienceRecordType.DescriptionIsRequired) {
