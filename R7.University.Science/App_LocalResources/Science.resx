@@ -31,10 +31,10 @@
 		<value>Information on the scientific and research base for the implementation of scientific (research) activities</value>
     </data>
     <data name="ScienceScientists.Column" xml:space="preserve">
-		<value>Number of scientists participating in scientific (research) activities, number of peoples.</value>
+		<value>Number of scientists participating in scientific (research) activities, number of peoples</value>
     </data>
     <data name="ScienceStudents.Column" xml:space="preserve">
-		<value>Number of students taking part in scientific (research) activities, number of peoples.</value>
+		<value>Number of students taking part in scientific (research) activities, number of peoples</value>
     </data>
     <data name="ScienceMonographs.Column" xml:space="preserve">
 		<value>Number of published monographs of scientific and pedagogical workers of the educational organization in all scientific fields for the last year</value>
@@ -49,6 +49,6 @@
 		<value>Number of certificates of registration of an intellectual property object issued for development in the last year: russian / foreign</value>
     </data>
     <data name="ScienceFinances.Column" xml:space="preserve">
-		<value>The average annual volume of research funding per scientific-pedagogical worker of the organization (in the reduced to integer values of rates), thousands of rub.</value>
+		<value>The average annual volume of research funding per scientific-pedagogical worker of the organization (in the reduced to integer values of rates), thousands of rub</value>
     </data>
 </root>
