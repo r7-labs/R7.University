@@ -22,6 +22,7 @@
 using System;
 using R7.University.Models;
 using R7.University.Modules;
+using R7.University.Queries;
 
 namespace R7.University.Science
 {
@@ -35,7 +36,8 @@ namespace R7.University.Science
         {
             base.OnInit (e);
 
-            buttonDelete.Visible = false;
+            var scienceRecordTypes = new FlatQuery<ScienceRecordTypeInfo> (ModelContext).List ();
+            formEditScienceRecords.OnInit (this, scienceRecordTypes);
         }
 
         protected override void InitControls ()
@@ -45,27 +47,30 @@ namespace R7.University.Science
 
         protected override void LoadItem (EduProgramInfo item)
         {
-            throw new NotImplementedException ();
+            formEditScienceRecords.SetData (item.ScienceRecords, item.EduProgramID);
+
+            buttonDelete.Visible = false;
         }
 
         protected override void BeforeUpdateItem (EduProgramInfo item)
         {
-            throw new NotImplementedException ();
         }
 
         #region Implemented abstract members of UniverisityEditPortalModuleBase
-
-        protected override void AddItem (EduProgramInfo item)
-        {
-        }
 
         protected override void UpdateItem (EduProgramInfo item)
         {
             throw new NotImplementedException ();
         }
 
+        protected override void AddItem (EduProgramInfo item)
+        {
+            throw new InvalidOperationException ();
+        }
+
         protected override void DeleteItem (EduProgramInfo item)
         {
+            throw new InvalidOperationException ();
         }
 
         #endregion

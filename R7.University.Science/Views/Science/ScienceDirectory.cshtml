@@ -6,6 +6,7 @@
 @using DotNetNuke.Framework
 @using DotNetNuke.Common
 @using DotNetNuke.Common.Utilities
+@using R7.University.Components
 @using R7.University.ModelExtensions
 @using R7.University.ViewModels
 @using R7.University.Science.ViewModels
@@ -25,6 +26,9 @@ else {
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover u8y-science-directory" itemprop="eduNir">
             <thead>
+			    @if (Dnn.ModuleContext.IsEditable) {
+                    <th scope="col"></th>
+                };
     		    <th scope="col">@Dnn.LocalizeString("ScienceCode.Column")</th>
     		    <th scope="col">@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
     		    <th scope="col">@Dnn.LocalizeString("ScienceDirections.Column")</th>
@@ -40,6 +44,9 @@ else {
     	    <tbody>
         	    @foreach (var eps in Model.EduProgramScienceViewModels) {
                     <tr data-title="@FormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)">
+				        @if (Dnn.ModuleContext.IsEditable) {
+                            <td><a href="@eps.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
+                        }
         			    <td itemprop="eduCode">@eps.Code</td>
         			    <td itemprop="eduName">@eps.Title</td>
     				    <td>@eps.DirectionsHtml</td>

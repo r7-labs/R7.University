@@ -79,5 +79,8 @@ namespace R7.University.Science.ViewModels
         public IHtmlString CertificatesHtml => GetScienceRecordHtml (SystemScienceRecordType.Certificates);
 
         public IHtmlString FinancesHtml => GetScienceRecordHtml (SystemScienceRecordType.Finances, "N2");
+
+        public string EditUrl =>
+            Context.Module.EditUrl ("eduprogram_id", EduProgram.EduProgramID.ToString (), "EditScience");
     }
 }

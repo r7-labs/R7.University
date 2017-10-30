@@ -300,6 +300,13 @@
     <Compile Include="Models\DocumentGroupComparer.cs" />
     <Compile Include="Models\SystemScienceRecordType.cs" />
     <Compile Include="ModelExtensions\ScienceRecordTypeExtensions.cs" />
+    <Compile Include="Controls\EditScienceRecords.controls.ascx.cs">
+      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditScienceRecords.ascx.cs">
+      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewModels\ScienceRecordEditModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -435,6 +442,9 @@
     </None>
     <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
+    <None Include="Controls\EditScienceRecords.ascx" />
+    <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
