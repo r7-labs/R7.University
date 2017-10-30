@@ -362,16 +362,10 @@
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
     <None Include="Controls\EditDocuments.ascx" />
-    <None Include="Controls\App_LocalResources\EditDocuments.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx" />
     <None Include="Controls\EditEduForms.ascx" />
-    <None Include="Controls\App_LocalResources\EditEduForms.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditEduForms.ascx.resx" />
     <None Include="Controls\App_LocalResources\EditEduForms.ascx.ru-RU.resx" />
     <None Include="packages.config" />
     <None Include="license.htm" />
@@ -388,58 +382,34 @@
       <DependentUpon>AgplSignature.ascx</DependentUpon>
     </Compile>
     <None Include="css\module.css" />
-    <None Include="Controls\App_LocalResources\AgplSignature.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\AgplSignature.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\AgplSignature.ascx.resx" />
+    <None Include="Controls\App_LocalResources\AgplSignature.ascx.ru-RU.resx" />
     <None Include="SqlDataProvider\01.12.00.SqlDataProvider" />
     <None Include="Controls\DivisionSelector.ascx" />
-    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.resx" />
+    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.ru-RU.resx" />
     <None Include="Controls\js\editDocuments.js" />
     <None Include="SqlDataProvider\01.14.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.15.00.SqlDataProvider" />
-    <None Include="Controls\App_LocalResources\SharedResources.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\SharedResources.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\SharedResources.resx" />
+    <None Include="Controls\App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="images\Rollback_16x16_Standard.png" />
     <None Include="Controls\EditAchievements.ascx" />
     <None Include="Controls\App_LocalResources\EditAchievements.ascx.resx" />
     <None Include="Controls\App_LocalResources\EditAchievements.ascx.ru-RU.resx" />
     <None Include="Controls\EditDivisions.ascx" />
-    <None Include="Controls\App_LocalResources\EditDivisions.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditDivisions.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditDivisions.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditDivisions.ascx.ru-RU.resx" />
     <None Include="Controls\js\editDivisions.js" />
     <None Include="Controls\js\editEduForms.js" />
     <None Include="Controls\EditDisciplines.ascx" />
-    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.ru-RU.resx" />
     <None Include="Controls\js\editDisciplines.js" />
     <None Include="Controls\js\gridAndForm.js" />
     <None Include="Controls\EditPositions.ascx" />
-    <None Include="Controls\App_LocalResources\EditPositions.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditPositions.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditPositions.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditPositions.ascx.ru-RU.resx" />
     <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
     <None Include="Controls\EditScienceRecords.ascx" />
