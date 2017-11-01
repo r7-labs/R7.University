@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditScienceRecords.ascx.cs" Inherits="R7.University.Controls.EditScienceRecords" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
+<%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
@@ -34,9 +35,34 @@
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
+					<asp:BoundField DataField="TypeString" HeaderText="Type.Column" />
+					<asp:BoundField DataField="DescriptionString" HeaderText="Description.Column" />
+					<asp:BoundField DataField="Value1" HeaderText="Value1.Column" />
+					<asp:BoundField DataField="Value2" HeaderText="Value2.Column" />
                 </Columns>
             </asp:GridView>
         </div>
+        <div class="dnnFormItem">
+		    <dnn:Label id="labelScienceRecordType" runat="server" ControlName="comboScienceRecordType" />
+			<asp:DropDownList id="comboScienceRecordType" runat="server"
+                DataTextField="Type"
+                DataValueField="ScienceRecordTypeId"
+				OnSelectedIndexChanged="comboScienceRecordType_SelectedIndexChanged"
+				AutoPostBack="true"
+			/>
+		</div>
+		<asp:Panel id="panelValue1" runat="server" CssClass="dnnFormItem">
+            <dnn:Label id="labelValue1" runat="server" ControlName="textValue1" />
+            <asp:TextBox id="textValue1" runat="server" />
+		</asp:Panel>
+        <asp:Panel id="panelValue2" runat="server" CssClass="dnnFormItem">
+            <dnn:Label id="labelValue2" runat="server" ControlName="textValue2" />
+            <asp:TextBox id="textValue2" runat="server" />
+        </asp:Panel>
+		<asp:Panel id="panelDescription" runat="server" CssClass="dnnFormItem">
+            <dnn:Label id="labelDescription" runat="server" ControlName="textDescription" />
+            <dnn:TextEditor id="textDescription" runat="server" Width="100%" />
+        </asp:Panel>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">

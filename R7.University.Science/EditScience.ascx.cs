@@ -40,6 +40,13 @@ namespace R7.University.Science
             formEditScienceRecords.OnInit (this, scienceRecordTypes);
         }
 
+        protected override bool CanDeleteItem (EduProgramInfo item)
+        {
+            return false;
+        }
+
+        #region Implemented abstract members of UniverisityEditPortalModuleBase
+
         protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
@@ -48,15 +55,11 @@ namespace R7.University.Science
         protected override void LoadItem (EduProgramInfo item)
         {
             formEditScienceRecords.SetData (item.ScienceRecords, item.EduProgramID);
-
-            buttonDelete.Visible = false;
         }
 
         protected override void BeforeUpdateItem (EduProgramInfo item)
         {
         }
-
-        #region Implemented abstract members of UniverisityEditPortalModuleBase
 
         protected override void UpdateItem (EduProgramInfo item)
         {

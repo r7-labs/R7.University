@@ -12,10 +12,28 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="buttonAddScienceRecord.Text">
+	<data name="buttonAddScienceRecord.Text" xml:space="preserve">
         <value>Добавить запись о науке</value>
     </data>
-    <data name="buttonUpdateScienceRecord.Text">
+    <data name="buttonUpdateScienceRecord.Text" xml:space="preserve">
         <value>Сохранить запись о науке</value>
+    </data>
+	<data name="Type.Column" xml:space="preserve">
+        <value>Тип записи</value>
+    </data>
+    <data name="Description.Column" xml:space="preserve">
+        <value>Описание</value>
+    </data>
+    <data name="Value1.Column" xml:space="preserve">
+        <value>Показатель 1</value>
+    </data>
+    <data name="Value2.Column" xml:space="preserve">
+        <value>Показатель 2</value>
+    </data>
+	<data name="labelScienceRecordType.Text" xml:space="preserve">
+        <value>Тип записи о науке:</value>
+    </data>
+    <data name="labelScienceRecordType.Help" xml:space="preserve">
+        <value>Выберите тип записи о науке.</value>
     </data>
 </root>

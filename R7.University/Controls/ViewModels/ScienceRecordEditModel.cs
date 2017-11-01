@@ -19,11 +19,12 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Web;
+using DotNetNuke.Common.Utilities;
 using Newtonsoft.Json;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.Controls.ViewModels
@@ -33,11 +34,16 @@ namespace R7.University.Controls.ViewModels
         #region EditModelBase implementation
 
         [JsonIgnore]
-        public override bool IsPublished => EduProgram.IsPublished (HttpContext.Current.Timestamp);
+        public override bool IsPublished => 
+            ModelHelper.IsPublished (HttpContext.Current.Timestamp, EduProgram_StartDate, EduProgram_EndDate);
 
         public override IEditModel<ScienceRecordInfo> Create (ScienceRecordInfo model, ViewModelContext context)
         {
-            return CopyCstor.New<ScienceRecordEditModel, IScienceRecordWritable> (model);
+            var editModel = CopyCstor.New<ScienceRecordEditModel, IScienceRecordWritable> (model);
+            editModel.EduProgram_StartDate = model.EduProgram.StartDate;
+            editModel.EduProgram_EndDate = model.EduProgram.EndDate;
+            editModel.ScienceRecordType_Type = model.ScienceRecordType.Type;
+            return editModel;
         }
 
         public override ScienceRecordInfo CreateModel ()
@@ -73,5 +79,21 @@ namespace R7.University.Controls.ViewModels
         public decimal? Value2 { get; set; }
 
         #endregion
+
+        #region External properties
+
+        public string ScienceRecordType_Type { get; set; }
+
+        public DateTime? EduProgram_StartDate { get; set; }
+
+        public DateTime? EduProgram_EndDate { get; set; }
+
+        #endregion
+
+        public string DescriptionString =>
+            HtmlUtils.Shorten (HtmlUtils.StripTags (HttpUtility.HtmlDecode (Description), false), 64, "\x2026");
+
+        // TODO: Localize this
+        public string TypeString => ScienceRecordType_Type;
     }
 }
