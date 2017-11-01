@@ -43,7 +43,6 @@ namespace R7.University.Controls
             // TODO: Use viewmodel to localize values
             comboScienceRecordType.DataSource = scienceRecordTypes;
             comboScienceRecordType.DataBind ();
-            comboScienceRecordType.SelectedIndex = 0;
 
             StoreScienceRecordTypes (scienceRecordTypes);
         }
@@ -61,15 +60,15 @@ namespace R7.University.Controls
 
         protected void comboScienceRecordType_SelectedIndexChanged (object sender, EventArgs e)
         {
-            SetupFormFor (int.Parse (((DropDownList) sender).SelectedValue));
+            SetupFormForType (int.Parse (((DropDownList) sender).SelectedValue));
         }
 
-        void SetupFormFor (int scienceRecordTypeId)
+        void SetupFormForType (int scienceRecordTypeId)
         {
-            SetupFormFor (GetScienceRecordType (scienceRecordTypeId));
+            SetupFormForType (GetScienceRecordType (scienceRecordTypeId));
         }
 
-        void SetupFormFor (IScienceRecordType scienceRecordType)
+        void SetupFormForType (IScienceRecordType scienceRecordType)
         {
             panelValue1.Visible = scienceRecordType.NumOfValues >= 1;
             panelValue2.Visible = scienceRecordType.NumOfValues >= 2;
@@ -121,6 +120,8 @@ namespace R7.University.Controls
         protected override void OnResetForm ()
         {
             comboScienceRecordType.SelectedIndex = 0;
+            SetupFormForType (int.Parse (comboScienceRecordType.SelectedValue));
+
             textDescription.Text = string.Empty;
             textValue1.Text = string.Empty;
             textValue2.Text = string.Empty;
