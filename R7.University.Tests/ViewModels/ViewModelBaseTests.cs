@@ -51,7 +51,7 @@ namespace R7.University.Tests.ViewModels
     public class ViewModelBaseTests
     {
         [Fact]
-        public void EmployeeViewModelBaseTest ()
+        public void ViewModelBaseTest ()
         {
             var fixture = new Fixture ();
 
@@ -65,7 +65,10 @@ namespace R7.University.Tests.ViewModels
             // var employeeAchievementViewModel = new EmployeeAchievementViewModel (employeeAchievement);
             // CheckProperties (typeof (IEmployeeAchievement), employeeAchievement, employeeAchievementViewModel);
 
-            fixture.Customize<EduProgramInfo> (c => c.Without (ep => ep.Divisions).Without (ep => ep.EduProgramProfiles).Without (ep => ep.EduLevel));
+            fixture.Customize<EduProgramInfo> (c => c.Without (ep => ep.Divisions)
+                                               .Without (ep => ep.EduProgramProfiles)
+                                               .Without (ep => ep.ScienceRecords)
+                                               .Without (ep => ep.EduLevel));
             var eduProgram = fixture.Create<EduProgramInfo> ();
             var eduProgramViewModel = new EduProgramViewModel (eduProgram);
             CheckPropertiesEqual (typeof (IEduProgram), eduProgram, eduProgramViewModel);
