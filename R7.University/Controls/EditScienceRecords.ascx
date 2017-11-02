@@ -5,6 +5,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/css/edit-sciencerecords.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/gridAndForm.js" ForceProvider="DnnFormBottomProvider" />
 <div class="dnnForm dnnClear u8y-edit-sciencerecords">
     <fieldset>
@@ -36,32 +37,38 @@
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
 					<asp:BoundField DataField="TypeString" HeaderText="Type.Column" />
-					<asp:BoundField DataField="DescriptionString" HeaderText="Description.Column" />
 					<asp:BoundField DataField="Value1" HeaderText="Value1.Column" />
-					<asp:BoundField DataField="Value2" HeaderText="Value2.Column" />
+                    <asp:BoundField DataField="Value2" HeaderText="Value2.Column" />
+					<asp:BoundField DataField="DescriptionString" HeaderText="Description.Column" />
                 </Columns>
             </asp:GridView>
         </div>
         <div class="dnnFormItem">
 		    <dnn:Label id="labelScienceRecordType" runat="server" ControlName="comboScienceRecordType" />
 			<asp:DropDownList id="comboScienceRecordType" runat="server"
-                DataTextField="Type"
-                DataValueField="ScienceRecordTypeId"
+                DataTextField="Text"
+                DataValueField="Value"
 				OnSelectedIndexChanged="comboScienceRecordType_SelectedIndexChanged"
 				AutoPostBack="true"
 			/>
-		</div>
-		<asp:Panel id="panelValue1" runat="server" CssClass="dnnFormItem">
+        </div>
+		<div class="dnnFormItem">
+			<div class="dnnLabel"></div>
+			<div class="dnn-form-control-group">
+			    <p><em><asp:Label id="labelScienceRecordTypeHelp" runat="server" /></em></p>
+		    </div>
+        </div>
+		<asp:Panel id="panelValue1" runat="server" CssClass="dnnFormItem dnnFormRequired">
             <dnn:Label id="labelValue1" runat="server" ControlName="textValue1" />
             <asp:TextBox id="textValue1" runat="server" />
 		</asp:Panel>
-        <asp:Panel id="panelValue2" runat="server" CssClass="dnnFormItem">
+        <asp:Panel id="panelValue2" runat="server" CssClass="dnnFormItem dnnFormRequired">
             <dnn:Label id="labelValue2" runat="server" ControlName="textValue2" />
             <asp:TextBox id="textValue2" runat="server" />
         </asp:Panel>
-		<asp:Panel id="panelDescription" runat="server" CssClass="dnnFormItem">
+		<asp:Panel id="panelDescription" runat="server" CssClass="dnnFormItem u8y-sciencerecord-description-panel">
             <dnn:Label id="labelDescription" runat="server" ControlName="textDescription" />
-            <dnn:TextEditor id="textDescription" runat="server" Width="100%" />
+            <dnn:TextEditor id="textDescription" runat="server" ChooseMode="false" />
         </asp:Panel>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>

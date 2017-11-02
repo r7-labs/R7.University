@@ -25,23 +25,25 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
+using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.ViewModels;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
-using R7.Dnn.Extensions.ControlExtensions;
 
 namespace R7.University.Controls
 {
     public partial class EditScienceRecords : GridAndFormControlBase<ScienceRecordInfo, ScienceRecordEditModel>
     {
-        public string ForModel { get; set; }
-
         public void OnInit (PortalModuleBase module, IEnumerable<ScienceRecordTypeInfo> scienceRecordTypes)
         {
             Module = module;
 
-            // TODO: Use viewmodel to localize values
-            comboScienceRecordType.DataSource = scienceRecordTypes;
+            comboScienceRecordType.DataSource = scienceRecordTypes
+                .Select (srt => new ListItemViewModel (
+                    srt.ScienceRecordTypeId,
+                    LocalizeString ("SystemScienceRecordType_" + srt.Type + ".Text"))
+                );
             comboScienceRecordType.DataBind ();
 
             StoreScienceRecordTypes (scienceRecordTypes);
@@ -70,8 +72,27 @@ namespace R7.University.Controls
 
         void SetupFormForType (IScienceRecordType scienceRecordType)
         {
-            panelValue1.Visible = scienceRecordType.NumOfValues >= 1;
-            panelValue2.Visible = scienceRecordType.NumOfValues >= 2;
+            // TODO: Mark description as required
+            
+            var baseKey = "SystemScienceRecordType_" + scienceRecordType.Type;
+            labelScienceRecordTypeHelp.Text = 
+                LocalizeString (baseKey + ".Help");
+            
+            if (scienceRecordType.NumOfValues >= 1) {
+                panelValue1.Visible = true;
+                labelValue1.Text = LocalizeString (baseKey + ".Value1");
+            }
+            else {
+                panelValue1.Visible = false;
+            }
+
+            if (scienceRecordType.NumOfValues >= 2) {
+                panelValue2.Visible = true;
+                labelValue2.Text = LocalizeString (baseKey + ".Value2");
+            }
+            else {
+                panelValue2.Visible = false;
+            }
         }
 
         #region implemented abstract members of GridAndFormEditControlBase

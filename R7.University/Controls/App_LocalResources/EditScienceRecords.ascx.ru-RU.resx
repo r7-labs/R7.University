@@ -36,4 +36,94 @@
     <data name="labelScienceRecordType.Help" xml:space="preserve">
         <value>Выберите тип записи о науке.</value>
     </data>
+	<data name="labelDescription.Text" xml:space="preserve">
+        <value>Описание:</value>
+    </data>
+    <data name="labelDescription.Help" xml:space="preserve">
+        <value>Введите текстовое описание для записи о науке.</value>
+    </data>
+	<data name="SystemScienceRecordType_Directions.Text" xml:space="preserve">
+        <value>Направления научных исследований</value>
+    </data>
+	<data name="SystemScienceRecordType_Directions.Help" xml:space="preserve">
+        <value>Перечень научных направлений, в рамках которых ведется научная (научно-исследовательская) деятельность</value>
+    </data>
+    <data name="SystemScienceRecordType_Base.Text" xml:space="preserve">
+        <value>Научно-исследовательская база</value>
+    </data>
+	<data name="SystemScienceRecordType_Base.Help" xml:space="preserve">
+        <value>Информация о научно-исследовательской базе для осуществления научной (научно-исследовательской) деятельности</value>
+    </data>
+    <data name="SystemScienceRecordType_Scientists.Text" xml:space="preserve">
+        <value>Научно-педагогические работники</value>
+    </data>
+	<data name="SystemScienceRecordType_Scientists.Help" xml:space="preserve">
+        <value>Количество НПР, принимающих участие в научной (научно-исследовательской) деятельности, чел.</value>
+    </data>
+	<data name="SystemScienceRecordType_Scientists.Value1" xml:space="preserve">
+        <value>НПР, принимающих участие в ННИД:</value>
+    </data>
+    <data name="SystemScienceRecordType_Students.Text" xml:space="preserve">
+        <value>Студенты</value>
+    </data>
+	<data name="SystemScienceRecordType_Students.Help" xml:space="preserve">
+        <value>Количество студентов, принимающих участие в научной (научно-исследовательской) деятельности, чел.</value>
+    </data>
+	<data name="SystemScienceRecordType_Students.Value1" xml:space="preserve">
+        <value>Студентов:</value>
+    </data>
+    <data name="SystemScienceRecordType_Monographs.Text" xml:space="preserve">
+        <value>Монографии</value>
+    </data>
+	<data name="SystemScienceRecordType_Monographs.Help" xml:space="preserve">
+        <value>Количество изданных монографий научно-педагогических работников образовательной организации по всем научным направлениям за последний год</value>
+    </data>
+	<data name="SystemScienceRecordType_Monographs.Value1" xml:space="preserve">
+        <value>Монографий:</value>
+    </data>
+    <data name="SystemScienceRecordType_Articles.Text" xml:space="preserve">
+        <value>Статьи</value>
+    </data>
+	<data name="SystemScienceRecordType_Articles.Help" xml:space="preserve">
+        <value>Количество изданных и принятых к публикации статей в изданиях, рекомендованных ВАК / зарубежных для публикации научных работ за последний год</value>
+    </data>
+	<data name="SystemScienceRecordType_Articles.Value1" xml:space="preserve">
+        <value>Статей в изданиях, рекоменндованных ВАК:</value>
+    </data>
+	<data name="SystemScienceRecordType_Articles.Value2" xml:space="preserve">
+        <value>Статей в зарубежных изданиях:</value>
+    </data>
+	<data name="SystemScienceRecordType_Patents.Text" xml:space="preserve">
+        <value>Патенты</value>
+    </data>
+	<data name="SystemScienceRecordType_Patents.Help" xml:space="preserve">
+        <value>Количество патентов, полученных на разработки за последний год: российских / зарубежных</value>
+    </data>
+	<data name="SystemScienceRecordType_Patents.Value1" xml:space="preserve">
+        <value>Патентов на разработки (российских):</value>
+    </data>
+    <data name="SystemScienceRecordType_Patents.Value2" xml:space="preserve">
+        <value>Патентов на разработки (зарубежных):</value>
+    </data>
+    <data name="SystemScienceRecordType_Certificates.Text" xml:space="preserve">
+        <value>Свидетельства</value>
+    </data>
+	<data name="SystemScienceRecordType_Certificates.Help" xml:space="preserve">
+        <value>Количество свидетельств о регистрации объекта интеллектуальной собственности, выданных на разработки за последний год: российских / зарубежных</value>
+    </data>
+	<data name="SystemScienceRecordType_Certificates.Value1" xml:space="preserve">
+        <value>Свидетельств о регистрации объекта ИС (российских):</value>
+    </data>
+    <data name="SystemScienceRecordType_Certificates.Value2" xml:space="preserve">
+        <value>Свидетельств о регистрации объекта ИС (зарубежных):</value>
+    </data>
+    <data name="SystemScienceRecordType_Finances.Text" xml:space="preserve">
+        <value>Объем финансирования</value>
+    </data>
+	<data name="SystemScienceRecordType_Finances.Help" xml:space="preserve">
+        <value>Среднегодовой объем финансирования научных исследований на одного научно-педагогического работника организации (в приведенных к целочисленным значениям ставок), тыс. руб.</value>
+    </data>
+	<data name="SystemScienceRecordType_Finances.Value1" xml:space="preserve">
+        <value>Объем финансирования на одного НПР:</value>
+    </data>
 </root>

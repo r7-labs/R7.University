@@ -333,6 +333,7 @@
     <Folder Include="Controls\js\" />
     <Folder Include="SerializationModels\" />
     <Folder Include="Controls\Queries\" />
+    <Folder Include="Controls\css\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -415,6 +416,7 @@
     <None Include="Controls\EditScienceRecords.ascx" />
     <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.resx" />
     <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.ru-RU.resx" />
+    <None Include="Controls\css\edit-sciencerecords.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
