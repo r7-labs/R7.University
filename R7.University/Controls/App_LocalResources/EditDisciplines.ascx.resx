@@ -12,49 +12,49 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="labelEduLevel.Text">
+	<data name="labelEduLevel.Text" xml:space="preserve">
         <value>Education Level:</value>
     </data>
-    <data name="labelEduLevel.Help">
+    <data name="labelEduLevel.Help" xml:space="preserve">
         <value>Select education level from the dropdown.</value>
     </data>
-    <data name="labelEduProgramProfile.Text">
+    <data name="labelEduProgramProfile.Text" xml:space="preserve">
         <value>Edu. Program (Profile):</value>
     </data>
-    <data name="labelEduProgramProfile.Help">
+    <data name="labelEduProgramProfile.Help" xml:space="preserve">
         <value>Select educational program profile from the dropdown.</value>
     </data>
-    <data name="labelDisciplines.Text">
+    <data name="labelDisciplines.Text" xml:space="preserve">
         <value>Disciplines:</value>
     </data>
-    <data name="labelDisciplines.Help">
+    <data name="labelDisciplines.Help" xml:space="preserve">
         <value>Enter disciplines for selected educational program.</value>
     </data>
-    <data name="buttonAddDiscipline.Text">
+    <data name="buttonAddDiscipline.Text" xml:space="preserve">
         <value>Add Disciplines</value>
     </data>
-    <data name="buttonUpdateDiscipline.Text">
+    <data name="buttonUpdateDiscipline.Text" xml:space="preserve">
         <value>Update Disciplines</value>
     </data>
-    <data name="buttonCancelEditDiscipline.Text">
+    <data name="buttonCancelEditDiscipline.Text" xml:space="preserve">
         <value>Cancel</value>
     </data>
-    <data name="EduProgramProfile.Warning">
+    <data name="EduProgramProfile.Warning" xml:space="preserve">
         <value>Educational program profile should be unique!</value>
     </data>
-	<data name="EduProgramProfile.Required">
+	<data name="EduProgramProfile.Required" xml:space="preserve">
         <value>Educational program profile is required.</value>
     </data>
-    <data name="Disciplines.Required">
+    <data name="Disciplines.Required" xml:space="preserve">
         <value>Disciplines field is required.</value>
     </data>
-	<data name="EduProgramProfile.Column">
+	<data name="EduProgramProfile.Column" xml:space="preserve">
         <value>Educational Program (Profile)</value>
     </data>
-    <data name="Disciplines.Column">
+    <data name="Disciplines.Column" xml:space="preserve">
         <value>Disciplines</value>
     </data>
-    <data name="EduLevel.Column">
+    <data name="EduLevel.Column" xml:space="preserve">
         <value>Education Level</value>
     </data>
 </root>

@@ -12,136 +12,136 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="SystemDocumentType_OrderEnrollment.Text">
+    <data name="SystemDocumentType_OrderEnrollment.Text" xml:space="preserve">
         <value>Приказ о приеме (зачислении)</value>
     </data>
-    <data name="SystemDocumentType_OrderExpulsion.Text">
+    <data name="SystemDocumentType_OrderExpulsion.Text" xml:space="preserve">
         <value>Приказ об отчислении</value>
     </data>
-    <data name="SystemDocumentType_OrderRestoration.Text">
+    <data name="SystemDocumentType_OrderRestoration.Text" xml:space="preserve">
         <value>Приказ о восстановлениии</value>
     </data>
-    <data name="SystemDocumentType_OrderTransfer.Text">
+    <data name="SystemDocumentType_OrderTransfer.Text" xml:space="preserve">
         <value>Приказ о переводе</value>
     </data>
-    <data name="SystemDocumentType_OrderAcademicLeave.Text">
+    <data name="SystemDocumentType_OrderAcademicLeave.Text" xml:space="preserve">
         <value>Приказ об академическом отпуске</value>
     </data>
-    <data name="SystemDocumentType_EduStandard.Text">
+    <data name="SystemDocumentType_EduStandard.Text" xml:space="preserve">
         <value>Образовательный стандарт</value>
     </data>
-    <data name="SystemDocumentType_ProfStandard.Text">
+    <data name="SystemDocumentType_ProfStandard.Text" xml:space="preserve">
         <value>Профессиональный стандарт</value>
     </data>
-    <data name="SystemDocumentType_EduProgram.Text">
+    <data name="SystemDocumentType_EduProgram.Text" xml:space="preserve">
         <value>Образовательная программа</value>
     </data>
-    <data name="SystemDocumentType_EduSchedule.Text">
+    <data name="SystemDocumentType_EduSchedule.Text" xml:space="preserve">
         <value>Календарный график</value>
     </data>
-    <data name="SystemDocumentType_EduPlan.Text">
+    <data name="SystemDocumentType_EduPlan.Text" xml:space="preserve">
         <value>Учебный план</value>
     </data>
-    <data name="SystemDocumentType_EduMaterial.Text">
+    <data name="SystemDocumentType_EduMaterial.Text" xml:space="preserve">
         <value>Методический материал</value>
     </data>
-    <data name="SystemDocumentType_WorkProgramAnnotation.Text">
+    <data name="SystemDocumentType_WorkProgramAnnotation.Text" xml:space="preserve">
         <value>Аннотация (аннотации) рабочей программы</value>
     </data>
-    <data name="SystemDocumentType_WorkProgramOfPractice.Text">
+    <data name="SystemDocumentType_WorkProgramOfPractice.Text" xml:space="preserve">
         <value>Рабочая программа практики</value>
     </data>
-    <data name="SystemDocumentType_Contingent.Text">
+    <data name="SystemDocumentType_Contingent.Text" xml:space="preserve">
         <value>Сведения о численности обучающихся</value>
     </data>
-    <data name="SystemDocumentType_ContingentMovement.Text">
+    <data name="SystemDocumentType_ContingentMovement.Text" xml:space="preserve">
         <value>Сведения о результатах перевода, восстановления и отчисления</value>
     </data>
-    <data name="SystemDocumentType_ScienceInfo.Text">
+    <data name="SystemDocumentType_ScienceInfo.Text" xml:space="preserve">
         <value>Сведения о направлениях и результатах НИР</value>
     </data>
-    <data name="labelDocumentTitle.Text">
+    <data name="labelDocumentTitle.Text" xml:space="preserve">
         <value>Название:</value>
     </data>
-    <data name="labelDocumentTitle.Help">
+    <data name="labelDocumentTitle.Help" xml:space="preserve">
         <value>Введите название документа.</value>
     </data>
-    <data name="labelDocumentGroup.Text">
+    <data name="labelDocumentGroup.Text" xml:space="preserve">
         <value>Группа:</value>
     </data>
-    <data name="labelDocumentGroup.Help">
+    <data name="labelDocumentGroup.Help" xml:space="preserve">
         <value>Укажите имя группы для документа.</value>
     </data>
-    <data name="labelDocumentType.Text">
+    <data name="labelDocumentType.Text" xml:space="preserve">
         <value>Тип документа:</value>
     </data>
-    <data name="labelDocumentType.Help">
+    <data name="labelDocumentType.Help" xml:space="preserve">
         <value>Выберите тип документа из выпадающего списка.</value>
     </data>
-    <data name="labelDocumentSortIndex.Text">
+    <data name="labelDocumentSortIndex.Text" xml:space="preserve">
         <value>Индекс сортировки:</value>
     </data>
-    <data name="labelDocumentSortIndex.Help">
+    <data name="labelDocumentSortIndex.Help" xml:space="preserve">
         <value>Введите значение индекса сортировки для документа. Оно может быть использовано для задания порядка следования документов в различных представлениях.</value>
     </data>
-    <data name="DocumentSortIndex.Invalid">
+    <data name="DocumentSortIndex.Invalid" xml:space="preserve">
         <value>Индекс сортировки документа должен быть целым числом.</value>
     </data>
-    <data name="labelDocumentUrl.Text">
+    <data name="labelDocumentUrl.Text" xml:space="preserve">
         <value>Ссылка:</value>
     </data>
-    <data name="labelDocumentUrl.Help">
+    <data name="labelDocumentUrl.Help" xml:space="preserve">
         <value>Дайте ссылку на документ.</value>
     </data>
-    <data name="labelDocumentStartDate.Text">
+    <data name="labelDocumentStartDate.Text" xml:space="preserve">
         <value>Начало публикации:</value>
     </data>
-    <data name="labelDocumentStartDate.Help">
+    <data name="labelDocumentStartDate.Help" xml:space="preserve">
         <value>Введите дату, с которой документ должен быть опубликован на сайте.</value>
     </data>
-    <data name="labelDocumentEndDate.Text">
+    <data name="labelDocumentEndDate.Text" xml:space="preserve">
         <value>Окончание публикации:</value>
     </data>
-    <data name="labelDocumentEndDate.Help">
+    <data name="labelDocumentEndDate.Help" xml:space="preserve">
         <value>Введите дату, начиная с которой документ должен быть снят с публикации на сайте.</value>
     </data>
-    <data name="sectionAdvancedProperties.Text">
+    <data name="sectionAdvancedProperties.Text" xml:space="preserve">
         <value>Расширенные свойства документа</value>
     </data>
-    <data name="buttonAddDocument.Text">
+    <data name="buttonAddDocument.Text" xml:space="preserve">
         <value>Добавить документ</value>
     </data>
-    <data name="buttonUpdateDocument.Text">
+    <data name="buttonUpdateDocument.Text" xml:space="preserve">
         <value>Сохранить документ</value>
     </data>
-    <data name="DocumentTitle.Column">
+    <data name="DocumentTitle.Column" xml:space="preserve">
         <value>Название</value>
     </data>
-    <data name="DocumentGroup.Column">
+    <data name="DocumentGroup.Column" xml:space="preserve">
         <value>Группа</value>
     </data>
-    <data name="DocumentType.Column">
+    <data name="DocumentType.Column" xml:space="preserve">
         <value>Тип</value>
     </data>
-    <data name="DocumentUrl.Column">
+    <data name="DocumentUrl.Column" xml:space="preserve">
         <value>Ссылка</value>
     </data>
-    <data name="DocumentUrlLabel.Text">
+    <data name="DocumentUrlLabel.Text" xml:space="preserve">
         <value>[открыть]</value>
     </data>
-    <data name="DocumentFileName.Column">
+    <data name="DocumentFileName.Column" xml:space="preserve">
         <value>Имя файла</value>
     </data>
-    <data name="DocumentSortIndex.Column">
+    <data name="DocumentSortIndex.Column" xml:space="preserve">
         <value>Индекс</value>
     </data>
-    <data name="DocumentStartDate.Column">
+    <data name="DocumentStartDate.Column" xml:space="preserve">
         <value>Начало</value>
     </data>
-    <data name="DocumentEndDate.Column">
+    <data name="DocumentEndDate.Column" xml:space="preserve">
         <value>Окончание</value>
     </data>
-	<data name="FileName.Invalid">
+	<data name="FileName.Invalid" xml:space="preserve">
         <value>Имя выбранного файла не соответствует проверочному выражению &quot;{regex}&quot; для выбранного типа документа.</value>
     </data>
 </root>

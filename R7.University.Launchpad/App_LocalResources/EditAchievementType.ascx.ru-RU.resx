@@ -36,10 +36,10 @@
     <data name="Description.MaxLength" xml:space="preserve">
         <value>Длина описания не должна превышать 255 символов.</value>
     </data>
-    <data name="labelIsSystem.Text">
+    <data name="labelIsSystem.Text" xml:space="preserve">
         <value>Системный?</value>
     </data>
-    <data name="labelIsSystem.Help">
+    <data name="labelIsSystem.Help" xml:space="preserve">
         <value>Системные типы достижений имеют особое значение для работы системы, поэтому их нельзя удалить, а изменить можно только их описание.</value>
     </data>
 </root>

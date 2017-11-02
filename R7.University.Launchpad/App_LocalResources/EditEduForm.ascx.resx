@@ -30,10 +30,10 @@
     <data name="labelShortTitle.Help" xml:space="preserve">
         <value>Enter the short title for an educational form.</value>
     </data>
-    <data name="labelIsSystem.Text">
+    <data name="labelIsSystem.Text" xml:space="preserve">
         <value>Is System?</value>
     </data>
-    <data name="labelIsSystem.Help">
+    <data name="labelIsSystem.Help" xml:space="preserve">
         <value>System educational forms have special meaning for the system work, therefore they cannot be changed or deleted.</value>
     </data>
 </root>

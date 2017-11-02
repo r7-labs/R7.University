@@ -27,40 +27,40 @@
     <data name="Type.Required" xml:space="preserve">
         <value>Название типа для типа записи о науке обязательно.</value>
     </data>
-    <data name="labelIsSystem.Text">
+    <data name="labelIsSystem.Text" xml:space="preserve">
         <value>Системный?</value>
     </data>
-    <data name="labelIsSystem.Help">
+    <data name="labelIsSystem.Help" xml:space="preserve">
         <value>Системные типы записей о науке имеют особое значение для работы системы, поэтому их нельзя удалить, а также изменить значения ключевых полей.</value>
     </data>
-	<data name="labelDescriptionIsRequired.Text">
+	<data name="labelDescriptionIsRequired.Text" xml:space="preserve">
         <value>Описание обязательно?</value>
     </data>
-    <data name="labelDescriptionIsRequired.Help">
+    <data name="labelDescriptionIsRequired.Help" xml:space="preserve">
         <value>Отметьте, чтобы сделать описание обязательным для записи о науке этого типа.</value>
     </data>
-    <data name="labelNumOfValues.Text">
+    <data name="labelNumOfValues.Text" xml:space="preserve">
         <value>Числовых показателей:</value>
     </data>
-    <data name="labelNumOfValues.Help">
+    <data name="labelNumOfValues.Help" xml:space="preserve">
         <value>Введите количество числовых показателей (от 0 до 2), связанных с записью о науке этого типа.</value>
     </data>
-    <data name="NumOfValues.Required">
+    <data name="NumOfValues.Required" xml:space="preserve">
         <value>Количество числовых показателей обязательно.</value>
     </data>
-    <data name="NumOfValues.Invalid">
+    <data name="NumOfValues.Invalid" xml:space="preserve">
         <value>Количество числовых показателей должно быть целым числом от 0 до 2.</value>
     </data>
-    <data name="labelSortIndex.Text">
+    <data name="labelSortIndex.Text" xml:space="preserve">
         <value>Индекс сортировки:</value>
     </data>
-    <data name="labelSortIndex.Help">
+    <data name="labelSortIndex.Help" xml:space="preserve">
         <value>Введите целое число, которое будет использоваться при сортировке записей о науке этого типа.</value>
     </data>
-    <data name="SortIndex.Required">
+    <data name="SortIndex.Required" xml:space="preserve">
         <value>Индекс сортировки обязателен.</value>
     </data>
-    <data name="SortIndex.Invalid">
+    <data name="SortIndex.Invalid" xml:space="preserve">
         <value>Индекс сортировки должен быть целым числом.</value>
     </data>
 </root>

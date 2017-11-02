@@ -30,10 +30,10 @@
     <data name="labelShortTitle.Help" xml:space="preserve">
         <value>Введите кратное наименование формы обучения.</value>
     </data>
-    <data name="labelIsSystem.Text">
+    <data name="labelIsSystem.Text" xml:space="preserve">
         <value>Системная?</value>
     </data>
-    <data name="labelIsSystem.Help">
+    <data name="labelIsSystem.Help" xml:space="preserve">
         <value>Системные формы обучения имеют особое значение для работы системы, поэтому не могут быть удалены или изменены или удалены.</value>
     </data>
 </root>

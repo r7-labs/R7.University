@@ -54,55 +54,55 @@
 	<data name="Languages.Required" xml:space="preserve">
         <value>Languages is required.</value>
     </data>
-    <data name="labelEduLevel.Text">
+    <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Education Level:</value>
     </data>
-    <data name="labelEduLevel.Help">
+    <data name="labelEduLevel.Help" xml:space="preserve">
         <value>Select the education level from the dropdown.</value>
     </data>
-    <data name="labelEduProgramLevel.Text">
+    <data name="labelEduProgramLevel.Text" xml:space="preserve">
         <value>Educational Program Level:</value>
     </data>
-    <data name="labelEduProgramLevel.Help">
+    <data name="labelEduProgramLevel.Help" xml:space="preserve">
         <value>Select educational program level from the dropdown.</value>
     </data>
-    <data name="labelEduProgram.Text">
+    <data name="labelEduProgram.Text" xml:space="preserve">
         <value>Educational Program:</value>
     </data>
-    <data name="labelEduProgram.Help">
+    <data name="labelEduProgram.Help" xml:space="preserve">
         <value>Select the educational program to which the profile belongs.</value>
     </data>
-    <data name="linkEditEduProgram.Text">
+    <data name="linkEditEduProgram.Text" xml:space="preserve">
         <value>Edit Educational Program</value>
     </data>
-    <data name="labelAccreditedToDate.Text">
+    <data name="labelAccreditedToDate.Text" xml:space="preserve">
         <value>Accredited to:</value>
     </data>
-    <data name="labelAccreditedToDate.Help">
+    <data name="labelAccreditedToDate.Help" xml:space="preserve">
         <value>Enter the date until current educational program profile was accredited to.</value>
     </data>
-    <data name="labelCommunityAccreditedToDate.Text">
+    <data name="labelCommunityAccreditedToDate.Text" xml:space="preserve">
         <value>Accredited by Community to:</value>
     </data>
-    <data name="labelCommunityAccreditedToDate.Help">
+    <data name="labelCommunityAccreditedToDate.Help" xml:space="preserve">
         <value>Enter the date until current educational program profile was accredited to by community.</value>
     </data>
-    <data name="labelStartDate.Text">
+    <data name="labelStartDate.Text" xml:space="preserve">
         <value>Start Publication:</value>
     </data>
-    <data name="labelStartDate.Help">
+    <data name="labelStartDate.Help" xml:space="preserve">
         <value>Enter the date from current educational program profile should be published on the site.</value>
     </data>
-    <data name="labelEndDate.Text">
+    <data name="labelEndDate.Text" xml:space="preserve">
         <value>End Publication:</value>
     </data>
-    <data name="labelEndDate.Help">
+    <data name="labelEndDate.Help" xml:space="preserve">
         <value>Enter the date from current educational program profile should be removed from publication on the site.</value>
     </data>
-    <data name="labelDivision.Text">
+    <data name="labelDivision.Text" xml:space="preserve">
         <value>Division:</value>
     </data>
-    <data name="labelDivision.Help">
+    <data name="labelDivision.Help" xml:space="preserve">
         <value>Select division, which relates to the educational program profile. Generally it's a producting department of a faculty.</value>
     </data>
     <data name="labelAudit.Text" xml:space="preserve">

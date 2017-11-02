@@ -54,55 +54,55 @@
 	<data name="Languages.Required" xml:space="preserve">
         <value>Укажите языки.</value>
     </data>
-    <data name="labelEduLevel.Text">
+    <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>
     </data>
-    <data name="labelEduLevel.Help">
+    <data name="labelEduLevel.Help" xml:space="preserve">
         <value>Выберите уровень образования из выпадающего списка.</value>
     </data>
-    <data name="labelEduProgramLevel.Text">
+    <data name="labelEduProgramLevel.Text" xml:space="preserve">
         <value>Уровень образовательной программы:</value>
     </data>
-    <data name="labelEduProgramLevel.Help">
+    <data name="labelEduProgramLevel.Help" xml:space="preserve">
         <value>Выберите уровень образовательной программы из выпадающего списка.</value>
     </data>
-    <data name="labelEduProgram.Text">
+    <data name="labelEduProgram.Text" xml:space="preserve">
         <value>Образовательная программа:</value>
     </data>
-    <data name="labelEduProgram.Help">
+    <data name="labelEduProgram.Help" xml:space="preserve">
         <value>Выберите образовательную программу, к которой относится данный профиль.</value>
     </data>
-    <data name="linkEditEduProgram.Text">
+    <data name="linkEditEduProgram.Text" xml:space="preserve">
         <value>Редактировать обр. программу</value>
     </data>
-     <data name="labelAccreditedToDate.Text">
+     <data name="labelAccreditedToDate.Text" xml:space="preserve">
         <value>Государственная аккредитация:</value>
     </data>
-    <data name="labelAccreditedToDate.Help">
+    <data name="labelAccreditedToDate.Help" xml:space="preserve">
         <value>Введите срок действия государственной аккредитации профиля образовательной программы.</value>
     </data>
-    <data name="labelCommunityAccreditedToDate.Text">
+    <data name="labelCommunityAccreditedToDate.Text" xml:space="preserve">
         <value>Профессионально-общественная аккредитация:</value>
     </data>
-    <data name="labelCommunityAccreditedToDate.Help">
+    <data name="labelCommunityAccreditedToDate.Help" xml:space="preserve">
         <value>Введите срок действия профессионально-общественной аккредитации профиля образовательной программы.</value>
     </data>
-    <data name="labelStartDate.Text">
+    <data name="labelStartDate.Text" xml:space="preserve">
         <value>Начало публикации:</value>
     </data>
-    <data name="labelStartDate.Help">
+    <data name="labelStartDate.Help" xml:space="preserve">
         <value>Введите дату, начиная с которой профиль образовательной программы должен быть опубликован на сайте.</value>
     </data>
-    <data name="labelEndDate.Text">
+    <data name="labelEndDate.Text" xml:space="preserve">
         <value>Окончание публикации:</value>
     </data>
-    <data name="labelEndDate.Help">
+    <data name="labelEndDate.Help" xml:space="preserve">
         <value>Введите дату, при наступлении которой профиль образовательной программы должен быть снят с публикации на сайте.</value>
     </data>
-    <data name="labelDivision.Text">
+    <data name="labelDivision.Text" xml:space="preserve">
         <value>Подразделение:</value>
     </data>
-    <data name="labelDivision.Help">
+    <data name="labelDivision.Help" xml:space="preserve">
         <value>Выберите подразделение, связанное с данным профилем (специализацией) образовательной программы. Обычно это выпускающая кафедра.</value>
     </data>
     <data name="labelAudit.Text" xml:space="preserve">

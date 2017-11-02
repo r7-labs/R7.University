@@ -12,46 +12,46 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="labelPositions.Text">
+	<data name="labelPositions.Text" xml:space="preserve">
         <value>Должность:</value>
     </data>
-    <data name="labelPositions.Help">
+    <data name="labelPositions.Help" xml:space="preserve">
         <value>Укажите должность сотрудника.</value>
     </data>
-    <data name="labelPositionTitleSuffix.Text">
+    <data name="labelPositionTitleSuffix.Text" xml:space="preserve">
         <value>Дополнение должности:</value>
     </data>
-    <data name="labelPositionTitleSuffix.Help">
+    <data name="labelPositionTitleSuffix.Help" xml:space="preserve">
         <value>Введите строку, которая будет использоваться в качестве дополнения к наименованию выбранной должности.</value>
     </data>
-    <data name="labelDivisions.Text">
+    <data name="labelDivisions.Text" xml:space="preserve">
         <value>Подразделение:</value>
     </data>
-    <data name="labelDivisions.Help">
+    <data name="labelDivisions.Help" xml:space="preserve">
         <value>Укажите подразделение, в котором работает сотрудник.</value>
     </data>
-	<data name="buttonAddPosition.Text">
+	<data name="buttonAddPosition.Text" xml:space="preserve">
         <value>Добавить должность</value>
     </data>
-    <data name="buttonUpdatePosition.Text">
+    <data name="buttonUpdatePosition.Text" xml:space="preserve">
         <value>Сохранить должность</value>
     </data>
-    <data name="buttonCancelEditPosition.Text">
+    <data name="buttonCancelEditPosition.Text" xml:space="preserve">
         <value>Отмена</value>
     </data>
-    <data name="labelIsPrime.Text">
+    <data name="labelIsPrime.Text" xml:space="preserve">
         <value>Основная?</value>
     </data>
-    <data name="labelIsPrime.Help">
+    <data name="labelIsPrime.Help" xml:space="preserve">
         <value>Если флажок отмечен, занимаемая должность будет рассматриваться как основная для этого сотрудника.</value>
     </data>
-	<data name="Division.Column">
+	<data name="Division.Column" xml:space="preserve">
         <value>Подразделение</value>
     </data>
-    <data name="Position.Column">
+    <data name="Position.Column" xml:space="preserve">
         <value>Должность</value>
     </data>
-    <data name="IsPrime.Column">
+    <data name="IsPrime.Column" xml:space="preserve">
         <value>Основная?</value>
     </data>
 </root>

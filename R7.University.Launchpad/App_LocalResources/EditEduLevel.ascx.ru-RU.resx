@@ -36,7 +36,7 @@
     <data name="labelSortIndex.Help" xml:space="preserve">
         <value>Введите целочисленный индекс для уровня образования. Это значение будет использоваться при сортировке.</value>
     </data>
-    <data name="SortIndex.Required">
+    <data name="SortIndex.Required" xml:space="preserve">
         <value>Индекс сортировки обязателен.</value>
     </data>
     <data name="SortIndex.Invalid" xml:space="preserve">

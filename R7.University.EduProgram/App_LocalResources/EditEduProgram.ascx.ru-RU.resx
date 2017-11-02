@@ -69,49 +69,49 @@
     <data name="Title.Required" xml:space="preserve">
         <value>Укажите наименование образовательной программы.</value>
     </data>
-    <data name="labelEduLevel.Text">
+    <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>
     </data>
-    <data name="labelEduLevel.Help">
+    <data name="labelEduLevel.Help" xml:space="preserve">
         <value>Выберите уровень образовательной программы.</value>
     </data>
-    <data name="labelGeneration.Text">
+    <data name="labelGeneration.Text" xml:space="preserve">
         <value>Поколение:</value>
     </data>
-    <data name="labelGeneration.Help">
+    <data name="labelGeneration.Help" xml:space="preserve">
         <value>Введите код поколения образовательной программы (стандарта), например '3+'.</value>
     </data>
-    <data name="labelStartDate.Text">
+    <data name="labelStartDate.Text" xml:space="preserve">
         <value>Начало публикации:</value>
     </data>
-    <data name="labelStartDate.Help">
+    <data name="labelStartDate.Help" xml:space="preserve">
         <value>Введите дату, начиная с которой образовательная программа должна быть опубликована на сайте.</value>
     </data>
-    <data name="labelEndDate.Text">
+    <data name="labelEndDate.Text" xml:space="preserve">
         <value>Окончание публикации:</value>
     </data>
-    <data name="labelEndDate.Help">
+    <data name="labelEndDate.Help" xml:space="preserve">
         <value>Введите дату, при наступлении которой образовательная программа должна быть снята с публикации на сайте.</value>
     </data>
-    <data name="labelHomePage.Text">
+    <data name="labelHomePage.Text" xml:space="preserve">
         <value>Домашняя страница:</value>
     </data>
-    <data name="labelHomePage.Help">
+    <data name="labelHomePage.Help" xml:space="preserve">
         <value>Укажите домашнюю страницу для образовательной программы. Как правило, эта страница содержит развернутое описание образовательной программы.</value>
     </data>
-    <data name="labelDivision.Text">
+    <data name="labelDivision.Text" xml:space="preserve">
         <value>Подразделение:</value>
     </data>
-    <data name="labelDivision.Help">
+    <data name="labelDivision.Help" xml:space="preserve">
         <value>Выберите подразделение, реализующее данную образовательную программу. Обычно это факультет или институт.</value>
     </data>
-	<data name="AddEduProgramProfile.Text">
+	<data name="AddEduProgramProfile.Text" xml:space="preserve">
         <value>Добавить профиль обр. программы</value>
     </data>
-	<data name="labelAddDefaultProfile.Text">
+	<data name="labelAddDefaultProfile.Text" xml:space="preserve">
         <value>Добавить профиль по-умолчанию?</value>
     </data>
-    <data name="labelAddDefaultProfile.Help">
+    <data name="labelAddDefaultProfile.Help" xml:space="preserve">
         <value>Отметьте, чтобы добавить профиль обр. программы по-умолчанию. Этот профиль будет создан, но не будет опубликован.</value>
     </data>
     <data name="labelAudit.Text" xml:space="preserve">

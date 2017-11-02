@@ -99,70 +99,70 @@
 	<data name="lblLocation.Help" xml:space="preserve">
         <value>Enter location of the division, e.g. office and cabinet number.</value>
     </data>
-	<data name="labelWorkingHours.Text">
+	<data name="labelWorkingHours.Text" xml:space="preserve">
 		<value>Working Hours:</value>
 	</data>
-	<data name="labelWorkingHours.Help">
+	<data name="labelWorkingHours.Help" xml:space="preserve">
 		<value>Select working hours (schedule) for the division from a list.</value>
 	</data>
-	<data name="labelCustomWorkingHours.Text">
+	<data name="labelCustomWorkingHours.Text" xml:space="preserve">
 		<value>Custom Working Hours:</value>
 	</data>
-	<data name="labelCustomWorkingHours.Help">
+	<data name="labelCustomWorkingHours.Help" xml:space="preserve">
 		<value>Enter description for custom working hours (schedule) for the division.</value>
 	</data>
-	<data name="checkAddToVocabulary.Text">
+	<data name="checkAddToVocabulary.Text" xml:space="preserve">
 		<value>Add to Vocabulary?</value>
 	</data>
-	<data name="labelStartDate.Text">
+	<data name="labelStartDate.Text" xml:space="preserve">
 		<value>Start Publication:</value>
 	</data>
-	<data name="labelStartDate.Help">
+	<data name="labelStartDate.Help" xml:space="preserve">
 		<value>Enter the date from current division will be published on the site.</value>
 	</data>
-	<data name="labelEndDate.Text">
+	<data name="labelEndDate.Text" xml:space="preserve">
 		<value>End Publication:</value>
 	</data>
-	<data name="labelEndDate.Help">
+	<data name="labelEndDate.Help" xml:space="preserve">
 		<value>Enter the date from current division will be removed from publication on the site.</value>
 	</data>
-	<data name="labelIsSingleEntity.Text">
+	<data name="labelIsSingleEntity.Text" xml:space="preserve">
 		<value>Is Single Entity?</value>
 	</data>
-	<data name="labelIsSingleEntity.Help">
+	<data name="labelIsSingleEntity.Help" xml:space="preserve">
 		<value>Check if this division consists of a single employee, and actually represents this employee (usually, the top manager) himself.</value>
 	</data>
-	<data name="labelIsInformal.Text">
+	<data name="labelIsInformal.Text" xml:space="preserve">
         <value>Is Informal?</value>
     </data>
-    <data name="labelIsInformal.Help">
+    <data name="labelIsInformal.Help" xml:space="preserve">
         <value>Check if this division is not formal one. Informal divisions can be filtered out from the DivisionDirectory module view.</value>
     </data>
-	<data name="labelIsGoverning.Text">
+	<data name="labelIsGoverning.Text" xml:space="preserve">
         <value>Is Governing?</value>
     </data>
-    <data name="labelIsGoverning.Help">
+    <data name="labelIsGoverning.Help" xml:space="preserve">
         <value>Check if this division is governing one for the organization.</value>
     </data>
-	<data name="labelHeadPosition.Text">
+	<data name="labelHeadPosition.Text" xml:space="preserve">
 		<value>Head Employee Position:</value>
 	</data>
-	<data name="labelHeadPosition.Help">
+	<data name="labelHeadPosition.Help" xml:space="preserve">
 		<value>Select the position which define the division's head employee.
         The specific employee will be determined automatically.
 		If system cannot determine head employee, the corresponding position will be considered vacant; 
 		if no head position is set, then the division will be considered as one which cannot have head employee at all.</value>
 	</data>
-	<data name="Common.Tab">
+	<data name="Common.Tab" xml:space="preserve">
 		<value>Common</value>
 	</data>
-	<data name="Contacts.Tab">
+	<data name="Contacts.Tab" xml:space="preserve">
 		<value>Contacts</value>
 	</data>
-	<data name="Documents.Tab">
+	<data name="Documents.Tab" xml:space="preserve">
 		<value>Documents</value>
 	</data>
-	<data name="Bindings.Tab">
+	<data name="Bindings.Tab" xml:space="preserve">
 		<value>Website Bindings</value>
 	</data>
     <data name="Audit.Tab" xml:space="preserve">

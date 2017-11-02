@@ -24,22 +24,22 @@
     <data name="DisplaySettings.Section" xml:space="preserve">
         <value>Display Settings</value>
     </data>
-    <data name="labelEduLevel.Text">
+    <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Educational Level:</value>
     </data>
-    <data name="labelEduLevel.Help">
+    <data name="labelEduLevel.Help" xml:space="preserve">
         <value>Select educational program level from the dropdown.</value>
     </data>
-    <data name="labelEduProgram.Text">
+    <data name="labelEduProgram.Text" xml:space="preserve">
         <value>Educational Program:</value>
     </data>
-    <data name="labelEduProgram.Help">
+    <data name="labelEduProgram.Help" xml:space="preserve">
         <value>Select the educational program from the dropdown.</value>
     </data>
-    <data name="labelAutoTitle.Text">
+    <data name="labelAutoTitle.Text" xml:space="preserve">
         <value>Automatic Title:</value>
     </data>
-    <data name="labelAutoTitle.Help">
+    <data name="labelAutoTitle.Help" xml:space="preserve">
         <value>Check to use displayed educational program title as module title.</value>
     </data>
 </root>
