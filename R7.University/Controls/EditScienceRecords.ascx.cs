@@ -1,5 +1,5 @@
 ﻿//
-//  EditDivisions.ascx.cs
+//  EditScienceRecords.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,6 +25,7 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
@@ -70,13 +71,19 @@ namespace R7.University.Controls
             SetupFormForType (GetScienceRecordType (scienceRecordTypeId));
         }
 
+        protected bool DescriptionIsRequired { get; set; }
+            
         void SetupFormForType (IScienceRecordType scienceRecordType)
         {
-            // TODO: Mark description as required
-            
+            if (scienceRecordType.DescriptionIsRequired) {
+                panelDescription.AddCssClass ("dnnFormRequired");
+            }
+            else {
+                panelDescription.RemoveCssClass ("dnnFormRequired");
+            }
+
             var baseKey = "SystemScienceRecordType_" + scienceRecordType.Type;
-            labelScienceRecordTypeHelp.Text = 
-                LocalizeString (baseKey + ".Help");
+            labelScienceRecordTypeHelp.Text = LocalizeString (baseKey + ".Help");
             
             if (scienceRecordType.NumOfValues >= 1) {
                 panelValue1.Visible = true;
