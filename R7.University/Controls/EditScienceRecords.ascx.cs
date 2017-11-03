@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
@@ -30,6 +31,7 @@ using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Controls.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.Controls
@@ -70,36 +72,76 @@ namespace R7.University.Controls
         {
             SetupFormForType (GetScienceRecordType (scienceRecordTypeId));
         }
-
-        protected bool DescriptionIsRequired { get; set; }
             
         void SetupFormForType (IScienceRecordType scienceRecordType)
         {
             if (scienceRecordType.DescriptionIsRequired) {
                 panelDescription.AddCssClass ("dnnFormRequired");
+                valDescriptionRequired.Enabled = true;
             }
             else {
                 panelDescription.RemoveCssClass ("dnnFormRequired");
+                valDescriptionRequired.Enabled = false;
             }
 
-            var baseKey = "SystemScienceRecordType_" + scienceRecordType.Type;
-            labelScienceRecordTypeHelp.Text = LocalizeString (baseKey + ".Help");
-            
-            if (scienceRecordType.NumOfValues >= 1) {
-                panelValue1.Visible = true;
-                labelValue1.Text = LocalizeString (baseKey + ".Value1");
+            panelValue1.Visible = scienceRecordType.NumOfValues >= 1;
+            panelValue2.Visible = scienceRecordType.NumOfValues >= 2;
+
+            // TODO: Introduce ScienceRecordType.ValueType or ScienceRecordType.NumOfDecimalPoints?
+            if (scienceRecordType.GetSystemScienceRecordType () == SystemScienceRecordType.Finances) {
+                if (scienceRecordType.NumOfValues >= 1) {
+                    SetupRangeValidator (valValue1Range, ValidationDataType.Currency);
+                }
+                if (scienceRecordType.NumOfValues >= 2) {
+                    SetupRangeValidator (valValue2Range, ValidationDataType.Currency);
+                }
             }
             else {
-                panelValue1.Visible = false;
+                if (scienceRecordType.NumOfValues >= 1) {
+                    SetupRangeValidator (valValue1Range, ValidationDataType.Integer);
+                }
+                if (scienceRecordType.NumOfValues >= 2) {
+                    SetupRangeValidator (valValue2Range, ValidationDataType.Integer);
+                }
+            }
+
+            LocalizeLabels (scienceRecordType);
+        }
+
+        void SetupRangeValidator (RangeValidator validator, ValidationDataType valDataType)
+        {
+            if (valDataType == ValidationDataType.Integer) {
+                validator.Type = valDataType;
+                validator.MaximumValue = int.MaxValue.ToString (); 
+            }
+            else if (valDataType == ValidationDataType.Currency) {
+                validator.Type = valDataType;
+                validator.MaximumValue = decimal.MaxValue.ToString ("G", CultureInfo.InvariantCulture);
+            }
+            else {
+                throw new ArgumentException ("valDataType argument should be either Integer or Currency.");
+            }
+        }
+
+        void LocalizeLabels (IScienceRecordType scienceRecordType)
+        {
+            var baseKey = "SystemScienceRecordType_" + scienceRecordType.Type;
+            labelScienceRecordTypeHelp.Text = LocalizeString (baseKey + ".Help");
+
+            if (scienceRecordType.NumOfValues >= 1) {
+                labelValue1.Text = LocalizeString (baseKey + ".Value1");
             }
 
             if (scienceRecordType.NumOfValues >= 2) {
-                panelValue2.Visible = true;
                 labelValue2.Text = LocalizeString (baseKey + ".Value2");
             }
-            else {
-                panelValue2.Visible = false;
-            }
+        }
+
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
+
+            LocalizeLabels (GetScienceRecordType (int.Parse (comboScienceRecordType.SelectedValue)));
         }
 
         #region implemented abstract members of GridAndFormEditControlBase

@@ -61,14 +61,31 @@
 		<asp:Panel id="panelValue1" runat="server" CssClass="dnnFormItem dnnFormRequired">
             <dnn:Label id="labelValue1" runat="server" ControlName="textValue1" />
             <asp:TextBox id="textValue1" runat="server" />
+			<asp:RequiredFieldValidator id="valValue1Required" runat="server"
+				ControlToValidate="textValue1" ValidationGroup="ScienceRecords"
+			    Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Required" />
+			<asp:RangeValidator id="valValue1Range" runat="server"
+			    ControlToValidate="textValue1" ValidationGroup="ScienceRecords"
+				Type="Currency" MinimumValue="0"
+			    Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
 		</asp:Panel>
         <asp:Panel id="panelValue2" runat="server" CssClass="dnnFormItem dnnFormRequired">
             <dnn:Label id="labelValue2" runat="server" ControlName="textValue2" />
             <asp:TextBox id="textValue2" runat="server" />
+			<asp:RequiredFieldValidator id="valValue2Required" runat="server"
+				ControlToValidate="textValue2" ValidationGroup="ScienceRecords"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Required" />
+			<asp:RangeValidator id="valValue2Range" runat="server"
+                ControlToValidate="textValue2" ValidationGroup="ScienceRecords"
+                Type="Currency" MinimumValue="0"
+			    Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
         </asp:Panel>
 		<asp:Panel id="panelDescription" runat="server" CssClass="dnnFormItem u8y-sciencerecord-description-panel">
             <dnn:Label id="labelDescription" runat="server" ControlName="textDescription" />
             <dnn:TextEditor id="textDescription" runat="server" ChooseMode="false" />
+			<asp:RequiredFieldValidator id="valDescriptionRequired" runat="server"
+				ControlToValidate="textDescription" ValidationGroup="ScienceRecords" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Description.Required" />
         </asp:Panel>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>

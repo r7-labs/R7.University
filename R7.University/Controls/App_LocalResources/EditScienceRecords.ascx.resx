@@ -126,4 +126,13 @@
 	<data name="SystemScienceRecordType_Finances.Value1" xml:space="preserve">
         <value>Volume of Research Funding per Scientist:</value>
     </data>
+	<data name="Value.Required" xml:space="preserve">
+        <value>Value is required.</value>
+	</data>
+	<data name="Value.Invalid" xml:space="preserve">
+        <value>Value must be non-negative integer or (in some cases) fixed-point number with maximum 2 digits after the point.</value>
+    </data>
+	<data name="Description.Required" xml:space="preserve">
+        <value>Description is required.</value>
+    </data>
 </root>
