@@ -189,6 +189,11 @@ namespace R7.University.Controls
             comboScienceRecordType.SelectedIndex = 0;
             SetupFormForType (int.Parse (comboScienceRecordType.SelectedValue));
 
+            OnPartialResetForm ();
+        }
+
+        protected override void OnPartialResetForm ()
+        {
             textDescription.Text = string.Empty;
             textValue1.Text = string.Empty;
             textValue2.Text = string.Empty;
