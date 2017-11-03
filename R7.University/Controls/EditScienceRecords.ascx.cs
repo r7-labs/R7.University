@@ -90,10 +90,10 @@ namespace R7.University.Controls
             // TODO: Introduce ScienceRecordType.ValueType or ScienceRecordType.NumOfDecimalPoints?
             if (scienceRecordType.GetSystemScienceRecordType () == SystemScienceRecordType.Finances) {
                 if (scienceRecordType.NumOfValues >= 1) {
-                    SetupRangeValidator (valValue1Range, ValidationDataType.Currency);
+                    SetupRangeValidator (valValue1Range, ValidationDataType.Double);
                 }
                 if (scienceRecordType.NumOfValues >= 2) {
-                    SetupRangeValidator (valValue2Range, ValidationDataType.Currency);
+                    SetupRangeValidator (valValue2Range, ValidationDataType.Double);
                 }
             }
             else {
@@ -110,16 +110,13 @@ namespace R7.University.Controls
 
         void SetupRangeValidator (RangeValidator validator, ValidationDataType valDataType)
         {
-            if (valDataType == ValidationDataType.Integer) {
+            if (valDataType == ValidationDataType.Integer || valDataType == ValidationDataType.Double) {
                 validator.Type = valDataType;
+                // the range for Integer also sufficent for finances values
                 validator.MaximumValue = int.MaxValue.ToString (); 
             }
-            else if (valDataType == ValidationDataType.Currency) {
-                validator.Type = valDataType;
-                validator.MaximumValue = decimal.MaxValue.ToString ("G", CultureInfo.InvariantCulture);
-            }
             else {
-                throw new ArgumentException ("valDataType argument should be either Integer or Currency.");
+                throw new ArgumentException ("valDataType argument should be either Integer or Double.");
             }
         }
 
