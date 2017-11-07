@@ -164,7 +164,7 @@ namespace R7.University.Controls
 
         #endregion
 
-        TViewModel DebugEnsureCreatedProperly (TViewModel viewModel)
+        protected TViewModel DebugEnsureCreatedProperly (TViewModel viewModel)
         {
             Debug.Assert (viewModel != null);
             Debug.Assert (viewModel.Context != null);
