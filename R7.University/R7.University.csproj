@@ -417,6 +417,7 @@
     <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.resx" />
     <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.ru-RU.resx" />
     <None Include="Controls\css\edit-sciencerecords.css" />
+    <None Include="Controls\js\editScienceRecords.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

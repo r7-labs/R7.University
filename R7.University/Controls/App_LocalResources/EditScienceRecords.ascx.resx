@@ -135,4 +135,7 @@
 	<data name="Description.Required" xml:space="preserve">
         <value>Description is required.</value>
     </data>
+	<data name="ScienceRecordType.Invalid" xml:space="preserve">
+        <value>Science records must have unique type.</value>
+    </data>
 </root>

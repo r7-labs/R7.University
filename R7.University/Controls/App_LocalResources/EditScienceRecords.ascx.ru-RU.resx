@@ -135,4 +135,7 @@
     <data name="Description.Required" xml:space="preserve">
         <value>Введите текстовое описание.</value>
     </data>
+	<data name="ScienceRecordType.Invalid" xml:space="preserve">
+        <value>Записи о науке должны иметь уникальный тип.</value>
+    </data>
 </root>

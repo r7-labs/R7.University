@@ -7,6 +7,8 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/css/edit-sciencerecords.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/gridAndForm.js" ForceProvider="DnnFormBottomProvider" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editScienceRecords.js" ForceProvider="DnnFormBottomProvider" />
+
 <div class="dnnForm dnnClear u8y-edit-sciencerecords">
     <fieldset>
         <div class="dnnFormItem">
@@ -51,6 +53,10 @@
 				OnSelectedIndexChanged="comboScienceRecordType_SelectedIndexChanged"
 				AutoPostBack="true"
 			/>
+			<asp:CustomValidator runat="server" resourcekey="ScienceRecordType.Invalid"
+                ControlToValidate="comboScienceRecordType" ValidationGroup="ScienceRecords" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
+                EnableClientScript="true" ClientValidationFunction="scienceRecordTypeUniqueValidator.validate" />
         </div>
 		<div class="dnnFormItem">
 			<div class="dnnLabel"></div>
@@ -112,6 +118,6 @@
 			</ul>	
         </div>
 		<asp:HiddenField id="hiddenViewItemID" runat="server" />
-		<asp:HiddenField id="hiddenScienceRecordID" runat="server" />
+		<asp:HiddenField id="hiddenScienceRecordTypeID" runat="server" />
     </fieldset>
 </div>

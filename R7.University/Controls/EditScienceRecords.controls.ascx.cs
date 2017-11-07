@@ -15,7 +15,7 @@ namespace R7.University.Controls
         protected Panel panelDescription;
         protected Panel panelValue1;
         protected Panel panelValue2;
-        protected HiddenField hiddenScienceRecordID;
+        protected HiddenField hiddenScienceRecordTypeID;
         protected RequiredFieldValidator valValue1Required;
         protected RequiredFieldValidator valValue2Required;
         protected RangeValidator valValue1Range;

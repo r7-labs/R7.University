@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
@@ -158,7 +157,7 @@ namespace R7.University.Controls
                 textValue2.Text = item.Value2.ToString ();
             }
           
-            hiddenScienceRecordID.Value = item.ScienceRecordId.ToString ();
+            hiddenScienceRecordTypeID.Value = scienceRecordType.ScienceRecordTypeId.ToString ();
         }
 
         protected override void OnUpdateItem (ScienceRecordEditModel item)
