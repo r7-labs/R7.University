@@ -136,6 +136,6 @@
         <value>Введите текстовое описание.</value>
     </data>
 	<data name="ScienceRecordType.Invalid" xml:space="preserve">
-        <value>Записи о науке должны иметь уникальный тип.</value>
+        <value>Запись выбранного типа уже существует.</value>
     </data>
 </root>
