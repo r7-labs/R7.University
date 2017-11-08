@@ -23,6 +23,7 @@ using System.Web;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Science.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Science.ViewModels
 {
@@ -58,25 +59,25 @@ namespace R7.University.Science.ViewModels
 
         #endregion
 
-        public IHtmlString GetHtml (SystemScienceRecordType scienceRecordType, string valueFormat)
+        public IHtmlString GetHtml (SystemScienceRecordType scienceRecordType)
         {
-            var valuesHtml = GetValuesHtml (scienceRecordType, valueFormat);
+            var valuesHtml = GetValuesHtml (scienceRecordType);
             var descriptionHtml = GetDesciptionHtml (scienceRecordType);
 
             return new HtmlString ($"{valuesHtml}{descriptionHtml}");
         }
 
-        string GetValuesHtml (SystemScienceRecordType scienceRecordType, string valueFormat)
+        string GetValuesHtml (SystemScienceRecordType scienceRecordType)
         {
             if (ScienceRecord.ScienceRecordType.NumOfValues == 1) {
                 var microdataAttr = GetMicrodataAttrForValue (scienceRecordType, 1);
-                return $"<span{microdataAttr} class=\"values\">{FormatValue (ScienceRecord.Value1, valueFormat)}</span>";
+                return $"<span{microdataAttr} class=\"values\">{ScienceRecord.Value1.ToIntegerString ()}</span>";
             }
 
             if (ScienceRecord.ScienceRecordType.NumOfValues == 2) {
                 var microdataAttr1 = GetMicrodataAttrForValue (scienceRecordType, 1);
-                var value1 = FormatValue (ScienceRecord.Value1, valueFormat);
-                var value2 = FormatValue (ScienceRecord.Value2, valueFormat);
+                var value1 = ScienceRecord.Value1.ToIntegerString ();
+                var value2 = ScienceRecord.Value2.ToIntegerString ();
 
                 // TODO: Add parameter?
                 // special case for articles which have single microdata attribute for two values
@@ -132,7 +133,5 @@ namespace R7.University.Science.ViewModels
         }
 
         string ItemProp (string microdata) => $" itemprop=\"{microdata}\"";
-
-        string FormatValue (decimal? value, string format) => value != null? value.Value.ToString (format) : "-";
     }
 }

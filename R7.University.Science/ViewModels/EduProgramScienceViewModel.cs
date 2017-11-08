@@ -51,11 +51,11 @@ namespace R7.University.Science.ViewModels
                 .FirstOrDefault (sr => sr.ScienceRecordType.GetSystemScienceRecordType () == systemScienceRecordType);
         }
 
-        public IHtmlString GetScienceRecordHtml (SystemScienceRecordType systemScienceRecordType, string valueFormat = "N0")
+        public IHtmlString GetScienceRecordHtml (SystemScienceRecordType systemScienceRecordType)
         {
             var scienceRecord = GetScienceRecordByType (systemScienceRecordType);
             if (scienceRecord != null) {
-                return scienceRecord.GetHtml (systemScienceRecordType, valueFormat);
+                return scienceRecord.GetHtml (systemScienceRecordType);
             }
 
             // TODO: Return default markup if science record don't exists?
@@ -78,7 +78,7 @@ namespace R7.University.Science.ViewModels
 
         public IHtmlString CertificatesHtml => GetScienceRecordHtml (SystemScienceRecordType.Certificates);
 
-        public IHtmlString FinancesHtml => GetScienceRecordHtml (SystemScienceRecordType.Finances, "N2");
+        public IHtmlString FinancesHtml => GetScienceRecordHtml (SystemScienceRecordType.Finances);
 
         public string EditUrl =>
             Context.Module.EditUrl ("eduprogram_id", EduProgram.EduProgramID.ToString (), "EditScience");
