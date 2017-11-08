@@ -30,7 +30,6 @@ using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Controls.ViewModels;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -91,22 +90,16 @@ namespace R7.University.Controls
             panelValue1.Visible = scienceRecordType.NumOfValues >= 1;
             panelValue2.Visible = scienceRecordType.NumOfValues >= 2;
 
-            // TODO: Introduce ScienceRecordType.ValueType or ScienceRecordType.NumOfDecimalPoints?
-            if (scienceRecordType.GetSystemScienceRecordType () == SystemScienceRecordType.Finances) {
-                if (scienceRecordType.NumOfValues >= 1) {
-                    SetupRangeValidator (valValue1Range, ValidationDataType.Double);
-                }
-                if (scienceRecordType.NumOfValues >= 2) {
-                    SetupRangeValidator (valValue2Range, ValidationDataType.Double);
-                }
+            var valDataType = (scienceRecordType.TypeOfValues == ScienceRecordTypeOfValues.Decimal.ToString ())
+                ? ValidationDataType.Double
+                : ValidationDataType.Integer;
+            
+            if (scienceRecordType.NumOfValues >= 1) {
+                SetupRangeValidator (valValue1Range, valDataType);
             }
-            else {
-                if (scienceRecordType.NumOfValues >= 1) {
-                    SetupRangeValidator (valValue1Range, ValidationDataType.Integer);
-                }
-                if (scienceRecordType.NumOfValues >= 2) {
-                    SetupRangeValidator (valValue2Range, ValidationDataType.Integer);
-                }
+
+            if (scienceRecordType.NumOfValues >= 2) {
+                SetupRangeValidator (valValue2Range, valDataType);
             }
 
             LocalizeLabels (scienceRecordType);

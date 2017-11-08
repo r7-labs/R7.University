@@ -33,6 +33,8 @@ namespace R7.University.Models
 
         int NumOfValues { get; }
 
+        string TypeOfValues { get; }
+
         int SortIndex { get; }
     }
 
@@ -47,6 +49,8 @@ namespace R7.University.Models
         new bool DescriptionIsRequired { get; set; }
 
         new int NumOfValues { get; set; }
+
+        new string TypeOfValues { get; set; }
 
         new int SortIndex { get; set; }
     }

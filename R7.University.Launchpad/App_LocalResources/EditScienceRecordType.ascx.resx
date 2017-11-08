@@ -45,6 +45,12 @@
     <data name="labelNumOfValues.Help" xml:space="preserve">
         <value>Enter the number of numeric values (from 0 to 2) accociated with a science record of this type.</value>
     </data>
+	<data name="labelTypeOfValues.Text" xml:space="preserve">
+        <value>Type of Values:</value>
+    </data>
+    <data name="labelTypeOfValues.Help" xml:space="preserve">
+        <value>Select type of values.</value>
+    </data>
     <data name="NumOfValues.Required" xml:space="preserve">
         <value>The number of values is required.</value>
     </data>
@@ -62,5 +68,11 @@
     </data>
     <data name="SortIndex.Invalid" xml:space="preserve">
         <value>Sort index must be an integer.</value>
+    </data>
+	<data name="ScienceRecordTypeOfValues_Integer.Text" xml:space="preserve">
+        <value>Integer</value>
+    </data>
+	<data name="ScienceRecordTypeOfValues_Decimal.Text" xml:space="preserve">
+        <value>Decimal</value>
     </data>
 </root>

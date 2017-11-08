@@ -1,5 +1,5 @@
-//
-//  ScienceRecordTypeInfo.cs
+﻿//
+//  ScienceRecordTypeOfValues.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,20 +21,8 @@
 
 namespace R7.University.Models
 {
-    public class ScienceRecordTypeInfo: IScienceRecordTypeWritable
+    public enum ScienceRecordTypeOfValues
     {
-        public int ScienceRecordTypeId { get; set; }
-        
-        public string Type { get; set; }
-        
-        public bool IsSystem { get; set; }
-
-        public bool DescriptionIsRequired { get; set; }
-
-        public int NumOfValues { get; set; }
-
-        public string TypeOfValues { get; set; }
-
-        public int SortIndex { get; set; }
+        Integer, Decimal
     }
 }

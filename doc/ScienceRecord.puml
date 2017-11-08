@@ -8,7 +8,9 @@ class ScienceRecordType {
     ..
     Type: string
     IsSystem: bool
+    DescriptionIsRequired: bool
     NumOfValues: int
+    TypeOfValues: string
     SortIndex: int
 }
 

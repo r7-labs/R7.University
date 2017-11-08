@@ -19,8 +19,11 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Modules;
+using DotNetNuke.Web.UI.WebControls.Extensions;
 
 namespace R7.University.Launchpad
 {
@@ -28,6 +31,15 @@ namespace R7.University.Launchpad
     {
         protected EditScienceRecordType () : base ("sciencerecordtype_id")
         {
+        }
+
+        protected override void OnInit (System.EventArgs e)
+        {
+            base.OnInit (e);
+
+            comboTypeOfValues.DataSource = EnumViewModel<ScienceRecordTypeOfValues>
+                .GetValues (new ViewModelContext (this), false);
+            comboTypeOfValues.DataBind ();
         }
 
         protected override void InitControls ()
@@ -41,12 +53,14 @@ namespace R7.University.Launchpad
             checkIsSystem.Checked = item.IsSystem;
             checkDescriptionIsRequired.Checked = item.DescriptionIsRequired;
             textNumOfValues.Text = item.NumOfValues.ToString ();
+            comboTypeOfValues.SelectByValue (item.TypeOfValues);
             textSortIndex.Text = item.SortIndex.ToString ();
 
             // disable key fields for system types
             if (item.IsSystem) {
                 textType.Enabled = false;
                 textNumOfValues.Enabled = false;
+                comboTypeOfValues.Enabled = false;
                 checkDescriptionIsRequired.Enabled = false;
             }
         }
@@ -59,6 +73,7 @@ namespace R7.University.Launchpad
             if (!item.IsSystem) {
                 item.Type = textType.Text.Trim ();
                 item.NumOfValues = int.Parse (textNumOfValues.Text);
+                item.TypeOfValues = comboTypeOfValues.SelectedValue;
                 item.DescriptionIsRequired = checkDescriptionIsRequired.Checked;
             }
         }
@@ -67,19 +82,19 @@ namespace R7.University.Launchpad
 
         protected override void AddItem (ScienceRecordTypeInfo item)
         {
-            ModelContext.Add<ScienceRecordTypeInfo> (item);
+            ModelContext.Add (item);
             ModelContext.SaveChanges ();
         }
 
         protected override void UpdateItem (ScienceRecordTypeInfo item)
         {
-            ModelContext.Update<ScienceRecordTypeInfo> (item);
+            ModelContext.Update (item);
             ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (ScienceRecordTypeInfo item)
         {
-            ModelContext.Remove<ScienceRecordTypeInfo> (item);
+            ModelContext.Remove (item);
             ModelContext.SaveChanges ();
         }
 

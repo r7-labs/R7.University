@@ -45,6 +45,12 @@
     <data name="labelNumOfValues.Help" xml:space="preserve">
         <value>Введите количество числовых показателей (от 0 до 2), связанных с записью о науке этого типа.</value>
     </data>
+	<data name="labelTypeOfValues.Text" xml:space="preserve">
+        <value>Тип показателей:</value>
+    </data>
+    <data name="labelTypeOfValues.Help" xml:space="preserve">
+        <value>Выберите тип числовых показателей.</value>
+    </data>
     <data name="NumOfValues.Required" xml:space="preserve">
         <value>Количество числовых показателей обязательно.</value>
     </data>
@@ -62,5 +68,11 @@
     </data>
     <data name="SortIndex.Invalid" xml:space="preserve">
         <value>Индекс сортировки должен быть целым числом.</value>
+    </data>
+    <data name="ScienceRecordTypeOfValues_Integer.Text" xml:space="preserve">
+        <value>Целый</value>
+    </data>
+    <data name="ScienceRecordTypeOfValues_Decimal.Text" xml:space="preserve">
+        <value>С фиксированной запятой</value>
     </data>
 </root>

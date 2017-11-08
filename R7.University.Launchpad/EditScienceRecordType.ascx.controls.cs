@@ -12,5 +12,6 @@ namespace R7.University.Launchpad
         protected CheckBox checkDescriptionIsRequired;
         protected TextBox textNumOfValues;
         protected TextBox textSortIndex;
+        protected DropDownList comboTypeOfValues;
     }
 }
