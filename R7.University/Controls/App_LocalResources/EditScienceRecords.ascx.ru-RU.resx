@@ -42,6 +42,12 @@
     <data name="labelDescription.Help" xml:space="preserve">
         <value>Введите текстовое описание для записи о науке.</value>
     </data>
+    <data name="SystemScienceRecordType_Default.Value1" xml:space="preserve">
+        <value>Показатель 1:</value>
+    </data>
+    <data name="SystemScienceRecordType_Default.Value2" xml:space="preserve">
+        <value>Показатель 2:</value>
+    </data>
 	<data name="SystemScienceRecordType_Directions.Text" xml:space="preserve">
         <value>Направления научных исследований</value>
     </data>

@@ -123,11 +123,19 @@ namespace R7.University.Controls
             labelScienceRecordTypeHelp.Text = LocalizeString (baseKey + ".Help");
 
             if (scienceRecordType.NumOfValues >= 1) {
-                labelValue1.Text = LocalizeString (baseKey + ".Value1");
+                var value1Text = LocalizeString (baseKey + ".Value1");
+                if (string.IsNullOrEmpty (value1Text)) {
+                    value1Text = LocalizeString ("SystemScienceRecordType_Default.Value1");
+                }
+                labelValue1.Text = value1Text;
             }
 
             if (scienceRecordType.NumOfValues >= 2) {
-                labelValue2.Text = LocalizeString (baseKey + ".Value2");
+                var value2Text = LocalizeString (baseKey + ".Value2");
+                if (string.IsNullOrEmpty (value2Text)) {
+                    value2Text = LocalizeString ("SystemScienceRecordType_Default.Value2");
+                }
+                labelValue2.Text = value2Text;
             }
         }
 
