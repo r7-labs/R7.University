@@ -33,6 +33,17 @@ namespace R7.University.Science.Queries
         {
         }
 
+        public EduProgramInfo SingleOrDefault (int eduProgramId)
+        {
+            return ModelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
+                               .Include (ep => ep.EduLevel)
+                               .Include (ep => ep.Divisions)
+                               .Include (ep => ep.Divisions.Select (epd => epd.Division))
+                               .Include (ep => ep.ScienceRecords)
+                               .Include (ep => ep.ScienceRecords.Select (sr => sr.ScienceRecordType))
+                               .SingleOrDefault ();
+        }
+
         public IEnumerable<EduProgramInfo> ListByDivisionAndEduLevels (int? divisionId, IEnumerable<int> eduLevelIds)
         {
             if (divisionId != null) {

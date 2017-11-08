@@ -32,6 +32,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.Controls.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Controls
 {
@@ -43,8 +44,12 @@ namespace R7.University.Controls
 
             comboScienceRecordType.DataSource = scienceRecordTypes
                 .Select (srt => new ListItemViewModel (
-                    srt.ScienceRecordTypeId,
-                    LocalizeString ("SystemScienceRecordType_" + srt.Type + ".Text"))
+                        srt.ScienceRecordTypeId,
+                        LocalizationHelper.GetStringWithFallback (
+                            "SystemScienceRecordType_" + srt.Type + ".Text",
+                            LocalResourceFile, srt.Type
+                        )
+                    )
                 );
             comboScienceRecordType.DataBind ();
 
@@ -56,7 +61,7 @@ namespace R7.University.Controls
             ViewState ["scienceRecordTypes"] = Json.Serialize (scienceRecordTypes.ToList ());
         }
 
-        ScienceRecordTypeInfo GetScienceRecordType (int scienceRecordTypeId)
+        IScienceRecordType GetScienceRecordType (int scienceRecordTypeId)
         {
             var scienceRecordTypes = Json.Deserialize<List<ScienceRecordTypeInfo>> ((string) ViewState ["scienceRecordTypes"]);
             return scienceRecordTypes.Single (srt => srt.ScienceRecordTypeId == scienceRecordTypeId);
@@ -146,15 +151,16 @@ namespace R7.University.Controls
         {
             var scienceRecordType = GetScienceRecordType (item.ScienceRecordTypeId);
             comboScienceRecordType.SelectByValue (item.ScienceRecordTypeId);
+            SetupFormForType (scienceRecordType);
 
             textDescription.Text = item.Description;
 
             if (scienceRecordType.NumOfValues >= 1) {
-                textValue1.Text = item.Value1.ToString ();
+                textValue1.Text = item.Value1.ToIntegerString ();
             }
           
             if (scienceRecordType.NumOfValues >= 2) {
-                textValue2.Text = item.Value2.ToString ();
+                textValue2.Text = item.Value2.ToIntegerString ();
             }
           
             hiddenScienceRecordTypeID.Value = scienceRecordType.ScienceRecordTypeId.ToString ();

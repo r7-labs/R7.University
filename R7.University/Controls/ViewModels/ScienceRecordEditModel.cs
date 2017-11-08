@@ -19,13 +19,13 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Web;
 using DotNetNuke.Common.Utilities;
 using Newtonsoft.Json;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Controls.ViewModels
 {
@@ -34,14 +34,12 @@ namespace R7.University.Controls.ViewModels
         #region EditModelBase implementation
 
         [JsonIgnore]
-        public override bool IsPublished => 
-            ModelHelper.IsPublished (HttpContext.Current.Timestamp, EduProgram_StartDate, EduProgram_EndDate);
+        public override bool IsPublished => true;
 
         public override IEditModel<ScienceRecordInfo> Create (ScienceRecordInfo model, ViewModelContext context)
         {
             var editModel = CopyCstor.New<ScienceRecordEditModel, IScienceRecordWritable> (model);
-            editModel.EduProgram_StartDate = model.EduProgram.StartDate;
-            editModel.EduProgram_EndDate = model.EduProgram.EndDate;
+            editModel.Context = context;
             editModel.ScienceRecordType_Type = model.ScienceRecordType.Type;
             return editModel;
         }
@@ -84,16 +82,19 @@ namespace R7.University.Controls.ViewModels
 
         public string ScienceRecordType_Type { get; set; }
 
-        public DateTime? EduProgram_StartDate { get; set; }
-
-        public DateTime? EduProgram_EndDate { get; set; }
-
         #endregion
 
         public string DescriptionString =>
-            HtmlUtils.Shorten (HtmlUtils.StripTags (HttpUtility.HtmlDecode (Description), false), 64, "\x2026");
+            HtmlUtils.Shorten (HttpUtility.HtmlDecode (HtmlUtils.StripTags (HttpUtility.HtmlDecode (Description), true)), 64, "\x2026");
 
-        // TODO: Localize this
-        public string TypeString => ScienceRecordType_Type;
+        [JsonIgnore]
+        public string TypeString => LocalizationHelper.GetStringWithFallback (
+            "SystemScienceRecordType_" + ScienceRecordType_Type + ".Text",
+            Context.LocalResourceFile, ScienceRecordType_Type
+        );
+
+        public string Value1String => Value1.ToIntegerString ();
+
+        public string Value2String => Value2.ToIntegerString ();
     }
 }

@@ -23,6 +23,8 @@ using System;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
+using R7.University.Science.Queries;
+using R7.University.Commands;
 
 namespace R7.University.Science
 {
@@ -45,7 +47,7 @@ namespace R7.University.Science
             return false;
         }
 
-        #region Implemented abstract members of UniverisityEditPortalModuleBase
+        #region UniversityEditPortalModuleBase implementation
 
         protected override void InitControls ()
         {
@@ -61,9 +63,16 @@ namespace R7.University.Science
         {
         }
 
+        protected override EduProgramInfo GetItemWithDependencies (int itemId)
+        {
+            return new EduProgramScienceQuery (ModelContext).SingleOrDefault (itemId);
+        }
+
         protected override void UpdateItem (EduProgramInfo item)
         {
-            throw new NotImplementedException ();
+            var scienceRecords = formEditScienceRecords.GetModifiedData ();
+            new UpdateScienceRecordsCommand (ModelContext).Update (scienceRecords, item.EduProgramID);
+            ModelContext.SaveChanges (true);
         }
 
         protected override void AddItem (EduProgramInfo item)

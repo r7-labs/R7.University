@@ -307,6 +307,8 @@
       <DependentUpon>EditScienceRecords.ascx</DependentUpon>
     </Compile>
     <Compile Include="Controls\ViewModels\ScienceRecordEditModel.cs" />
+    <Compile Include="ViewModels\FormatExtensions.cs" />
+    <Compile Include="Commands\UpdateScienceRecordsCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

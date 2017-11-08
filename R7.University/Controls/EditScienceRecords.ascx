@@ -39,8 +39,8 @@
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
 					<asp:BoundField DataField="TypeString" HeaderText="Type.Column" />
-					<asp:BoundField DataField="Value1" HeaderText="Value1.Column" />
-                    <asp:BoundField DataField="Value2" HeaderText="Value2.Column" />
+					<asp:BoundField DataField="Value1String" HeaderText="Value1.Column" />
+                    <asp:BoundField DataField="Value2String" HeaderText="Value2.Column" />
 					<asp:BoundField DataField="DescriptionString" HeaderText="Description.Column" />
                 </Columns>
             </asp:GridView>
