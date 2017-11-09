@@ -20,11 +20,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
+using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Utilities;
+using R7.University.ControlExtensions;
 using R7.University.Models;
 using R7.University.Modules;
+using R7.University.Queries;
 using R7.University.Science.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Science
 {
@@ -46,14 +52,33 @@ namespace R7.University.Science
 
         #endregion
 
-        /// <summary>
-        /// Handles the loading of the module setting for this control
-        /// </summary>
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            // fill edulevels list
+            foreach (var eduLevel in new EduLevelQuery (ModelContext).ListForEduProgram ()) {
+                listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
+            }
+
+            // bind divisions
+            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
+            divisionSelector.DataBind ();
+        }
+
         public override void LoadSettings ()
         {
             try {
                 if (!IsPostBack) {
-                    throw new NotImplementedException ();
+                    // check edulevels list items
+                    foreach (var eduLevelId in Settings.EduLevelIds) {
+                        var item = listEduLevels.Items.FindByValue (eduLevelId.ToString ());
+                        if (item != null) {
+                            item.Selected = true;
+                        }
+                    }
+
+                    divisionSelector.DivisionId = Settings.DivisionId;
                 }
             }
             catch (Exception ex) {
@@ -61,17 +86,17 @@ namespace R7.University.Science
             }
         }
 
-        /// <summary>
-        /// handles updating the module settings for this control
-        /// </summary>
         public override void UpdateSettings ()
         {
             try {
-                throw new NotImplementedException ();
+                Settings.EduLevelIds = listEduLevels.Items.AsEnumerable ().Where (i => i.Selected).Select (i => int.Parse (i.Value));
+                Settings.DivisionId = divisionSelector.DivisionId;
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 
                 ModuleController.SynchronizeModule (ModuleId);
+
+                CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/ScienceDirectory?ModuleId={ModuleId}");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

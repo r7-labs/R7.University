@@ -21,18 +21,26 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
 
 namespace R7.University.Science.Models
 {
-    /// <summary>
-    /// Provides strong typed access to settings used by module
-    /// </summary>
     [Serializable]
     public class ScienceDirectorySettings
     {
         [ModuleSetting (Prefix = "r7_University_ScienceDirectory_")]
-        public IList<int> EduLevelIds { get; set; }
+        public string EduLevels { get; set; } = string.Empty;
+
+        public IEnumerable<int> EduLevelIds {
+            get {
+                return EduLevels.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
+                                        .Select (el => int.Parse (el));
+            }
+            set {
+                EduLevels = string.Join (";", value);
+            }
+        }
 
         [ModuleSetting (Prefix = "r7_University_ScienceDirectory_")]
         public int? DivisionId { get; set; }
