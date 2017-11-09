@@ -31,15 +31,15 @@ else {
                 }
     		    <th scope="col">@Dnn.LocalizeString("ScienceCode.Column")</th>
     		    <th scope="col">@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceDirections.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceBase.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceScientists.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceStudents.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceMonographs.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceArticles.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("SciencePatents.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceCertificates.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceFinances.Column")</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceDirections.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceBase.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceScientists.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceStudents.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceMonographs.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceArticles.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("SciencePatents.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceCertificates.Column"))</th>
+    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceFinances.Column"))</th>
     	    </thead>
     	    <tbody>
         	    @foreach (var eps in Model.EduProgramScienceViewModels) {
