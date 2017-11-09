@@ -25,6 +25,7 @@ using System.Web.Mvc;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Science.Models;
 using R7.University.Science.Queries;
@@ -48,10 +49,10 @@ namespace R7.University.Science.Controllers
             // TODO: Use data cache for view model
 
             var viewModel = new ScienceDirectoryViewModel ();
-
             viewModel.EduProgramScienceViewModels = GetEduPrograms ()
+                .Where (ep => ModuleContext.IsEditable || ep.IsPublished (HttpContext.Timestamp))
                 .Select (ep => new EduProgramScienceViewModel (ep, ViewModelContext));
-
+            
             return View (viewModel);
         }
 

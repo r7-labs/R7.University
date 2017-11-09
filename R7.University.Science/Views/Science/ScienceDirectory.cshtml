@@ -43,7 +43,7 @@ else {
     	    </thead>
     	    <tbody>
         	    @foreach (var eps in Model.EduProgramScienceViewModels) {
-                    <tr data-title="@FormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)">
+                    <tr data-title="@FormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)" class="@eps.CssClass">
 				        @if (Dnn.ModuleContext.IsEditable) {
                             <td><a href="@eps.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
                         }

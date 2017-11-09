@@ -82,5 +82,8 @@ namespace R7.University.Science.ViewModels
 
         public string EditUrl =>
             Context.Module.EditUrl ("eduprogram_id", EduProgram.EduProgramID.ToString (), "EditScience");
+
+        public string CssClass =>
+            EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
     }
 }
