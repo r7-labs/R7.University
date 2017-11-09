@@ -71,13 +71,13 @@ namespace R7.University.Science.ViewModels
         {
             if (ScienceRecord.ScienceRecordType.NumOfValues == 1) {
                 var microdataAttr = GetMicrodataAttrForValue (scienceRecordType, 1);
-                return $"<span{microdataAttr} class=\"values\">{ScienceRecord.Value1.ToIntegerString ()}</span>";
+                return $"<span{microdataAttr} class=\"values\">{FormatValue (ScienceRecord.Value1)}</span>";
             }
 
             if (ScienceRecord.ScienceRecordType.NumOfValues == 2) {
                 var microdataAttr1 = GetMicrodataAttrForValue (scienceRecordType, 1);
-                var value1 = ScienceRecord.Value1.ToIntegerString ();
-                var value2 = ScienceRecord.Value2.ToIntegerString ();
+                var value1 = FormatValue (ScienceRecord.Value1);
+                var value2 = FormatValue (ScienceRecord.Value2);
 
                 // TODO: Add parameter?
                 // special case for articles which have single microdata attribute for two values
@@ -133,5 +133,7 @@ namespace R7.University.Science.ViewModels
         }
 
         string ItemProp (string microdata) => $" itemprop=\"{microdata}\"";
+
+        string FormatValue (decimal? value) => (value != null) ? value.ToIntegerString () : "-";
     }
 }
