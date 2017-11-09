@@ -19,15 +19,32 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using R7.University.ModelExtensions;
 
 namespace R7.University.Science.ViewModels
 {
     public class ScienceDirectoryViewModel
     {
+        public bool IsEditable;
+
+        public DateTime Now;
+
+        public ScienceDirectoryViewModel WithFilter (bool isEditable, DateTime now)
+        {
+            IsEditable = isEditable;
+            Now = now;
+            return this;
+        }
+
         public bool IsEmpty => EduProgramScienceViewModels.IsNullOrEmpty ();
 
-        public IEnumerable<EduProgramScienceViewModel> EduProgramScienceViewModels { get; set; }
+        IEnumerable<EduProgramScienceViewModel> _eduProgramScienceViewModels;
+        public IEnumerable<EduProgramScienceViewModel> EduProgramScienceViewModels {
+            get { return _eduProgramScienceViewModels.Where (eps => IsEditable || eps.IsPublished (Now)); }
+            set { _eduProgramScienceViewModels = value; }
+        }
     }
 }

@@ -22,10 +22,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Web.Mvc.Framework.ActionFilters;
 using DotNetNuke.Web.Mvc.Framework.Controllers;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.ModelExtensions;
+using R7.University.Components;
 using R7.University.Models;
 using R7.University.Science.Models;
 using R7.University.Science.Queries;
@@ -36,30 +37,36 @@ namespace R7.University.Science.Controllers
     [DnnHandleError]
     public class ScienceController : DnnController
     {
-        ViewModelContext<ScienceDirectorySettings> _viewModelContext;
-        protected ViewModelContext<ScienceDirectorySettings> ViewModelContext =>
-            _viewModelContext ?? (_viewModelContext = new ViewModelContext<ScienceDirectorySettings> (ModuleContext, LocalResourceFile, Settings));
-
-        ScienceDirectorySettings _settings;
-        protected ScienceDirectorySettings Settings =>
-            _settings ?? (_settings = new ScienceDirectorySettingsRepository ().GetSettings (ActiveModule));
-
         public ActionResult ScienceDirectory ()
         {
-            // TODO: Use data cache for view model
-
-            var viewModel = new ScienceDirectoryViewModel ();
-            viewModel.EduProgramScienceViewModels = GetEduPrograms ()
-                .Where (ep => ModuleContext.IsEditable || ep.IsPublished (HttpContext.Timestamp))
-                .Select (ep => new EduProgramScienceViewModel (ep, ViewModelContext));
-            
-            return View (viewModel);
+            return View (GetCachedScienceDirectoryViewModel ().WithFilter (ModuleContext.IsEditable, HttpContext.Timestamp));
         }
 
-        IEnumerable<EduProgramInfo> GetEduPrograms ()
+        ScienceDirectoryViewModel GetCachedScienceDirectoryViewModel ()
+        {
+            var cacheKey = $"//r7_University/Modules/ScienceDirectory?ModuleId={ActiveModule.ModuleID}";
+            return DataCache.GetCachedData<ScienceDirectoryViewModel> (
+                new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime),
+                (c) => GetScienceDirectoryViewModel ()
+            );
+        }
+
+        ScienceDirectoryViewModel GetScienceDirectoryViewModel ()
+        {
+            var settings = new ScienceDirectorySettingsRepository ().GetSettings (ActiveModule);
+            var viewModelContext = new ViewModelContext<ScienceDirectorySettings> (ModuleContext, LocalResourceFile, settings);
+
+            var viewModel = new ScienceDirectoryViewModel ();
+            viewModel.EduProgramScienceViewModels = GetEduProgramsForScienceDirectory (settings.DivisionId, settings.EduLevelIds)
+                .Select (ep => new EduProgramScienceViewModel (ep, viewModelContext));
+
+            return viewModel;
+        }
+
+        IEnumerable<EduProgramInfo> GetEduProgramsForScienceDirectory (int? divisionId, IEnumerable<int> eduLevelIds)
         {
             using (var modelContext = new UniversityModelContext ()) {
-                var eduPrograms = new EduProgramScienceQuery (modelContext).ListByDivisionAndEduLevels (Settings.DivisionId, Settings.EduLevelIds);
+                var eduPrograms = new EduProgramScienceQuery (modelContext).ListByDivisionAndEduLevels (divisionId, eduLevelIds);
                 return eduPrograms ?? Enumerable.Empty<EduProgramInfo> ();
             }
         }
