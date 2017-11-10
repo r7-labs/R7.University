@@ -22,6 +22,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
@@ -173,7 +175,9 @@ namespace R7.University.Controls
             var scienceRecordType = GetScienceRecordType (item.ScienceRecordTypeId);
             item.ScienceRecordType_Type = scienceRecordType.Type;
 
-            item.Description = textDescription.Text;
+            item.Description = HttpUtility.HtmlEncode (
+                StripScripts (HttpUtility.HtmlDecode (textDescription.Text))
+            );
 
             if (scienceRecordType.NumOfValues >= 1) {
                 item.Value1 = TypeUtils.ParseToNullable<decimal> (textValue1.Text, false);
@@ -188,6 +192,14 @@ namespace R7.University.Controls
             else {
                 item.Value2 = null;
             }
+        }
+
+        string StripScripts (string html)
+        {
+            html = Regex.Replace (html, @"<script.*>.*</script>", string.Empty, RegexOptions.Singleline);
+            html = Regex.Replace (html, @"<script.*/>", string.Empty, RegexOptions.Singleline);
+
+            return html;
         }
 
         protected override void OnResetForm ()
