@@ -18,4 +18,7 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;P&gt;О редакторе сведений о науке&lt;/P&gt;</value>
     </data>
+	<data name="EditEduProgram.Action" xml:space="preserve">
+        <value>Редактировать обр. программу</value>
+    </data>
 </root>

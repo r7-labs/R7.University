@@ -23,9 +23,14 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Security;
 using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EduProgram.Models;
 using R7.University.EduProgram.Queries;
@@ -48,7 +53,7 @@ namespace R7.University.EduProgram
         Audit
     }
 
-    public partial class EditEduProgram : UniversityEditPortalModuleBase<EduProgramInfo>
+    public partial class EditEduProgram : UniversityEditPortalModuleBase<EduProgramInfo>, IActionable
     {
         protected EditEduProgramTab SelectedTab
         {
@@ -258,6 +263,28 @@ namespace R7.University.EduProgram
                 if (!eduProfile.IsPublished (HttpContext.Current.Timestamp)) {
                     e.Row.CssClass = gridEduProgramProfiles.GetRowStyle (e.Row).CssClass + " u8y-not-published";
                 }
+            }
+        }
+
+        #endregion
+
+        #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions {
+            get {
+                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+
+                var actions = new ModuleActionCollection ();
+                actions.Add (new ModuleAction (GetNextActionID ()) {
+                    Title = LocalizeString ("EditScience.Action"),
+                    CommandName = ModuleActionType.EditContent,
+                    Icon = UniversityIcons.Edit,
+                    Secure = SecurityAccessLevel.Edit,
+                    Url = EditUrl ("eduprogram_id", itemId.ToString (), "EditScience"),
+                    Visible = itemId != null
+                });
+
+                return actions;
             }
         }
 

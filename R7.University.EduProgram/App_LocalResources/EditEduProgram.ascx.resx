@@ -120,4 +120,7 @@
     <data name="labelAudit.Help" xml:space="preserve">
         <value>Audit data for the educational program.</value>
     </data>
+    <data name="EditScience.Action" xml:space="preserve">
+        <value>Edit Science Records</value>
+    </data>
 </root>

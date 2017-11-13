@@ -120,4 +120,7 @@
     <data name="labelAudit.Help" xml:space="preserve">
         <value>Данные аудита образовательной программы.</value>
     </data>
+    <data name="EditScience.Action" xml:space="preserve">
+        <value>Редактировать записи о науке</value>
+    </data>
 </root>

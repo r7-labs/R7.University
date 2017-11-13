@@ -909,6 +909,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditScience</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Science/EditScience.ascx</controlSrc>
+                                        <controlTitle>Edit Science</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
@@ -990,6 +1001,17 @@
                                         <controlKey>EditEduProgram</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditScience</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Science/EditScience.ascx</controlSrc>
+                                        <controlTitle>Edit Science</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
                                         <helpUrl />
@@ -1163,6 +1185,17 @@
                                         <controlKey>EditScience</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.Science/EditScience.ascx</controlSrc>
                                         <controlTitle>Edit Science</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgram</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
                                         <helpUrl />

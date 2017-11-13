@@ -20,15 +20,20 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Security;
+using R7.Dnn.Extensions.Utilities;
+using R7.University.Commands;
+using R7.University.Components;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.Science.Queries;
-using R7.University.Commands;
 
 namespace R7.University.Science
 {
-    public partial class EditScience: UniversityEditPortalModuleBase<EduProgramInfo>
+    public partial class EditScience: UniversityEditPortalModuleBase<EduProgramInfo>, IActionable
     {
         protected EditScience () : base ("eduprogram_id")
         {
@@ -83,6 +88,28 @@ namespace R7.University.Science
         protected override void DeleteItem (EduProgramInfo item)
         {
             throw new InvalidOperationException ();
+        }
+
+        #endregion
+
+        #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions {
+            get {
+                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+
+                var actions = new ModuleActionCollection ();
+                actions.Add (new ModuleAction (GetNextActionID ()) {
+                    Title = LocalizeString ("EditEduProgram.Action"),
+                    CommandName = ModuleActionType.EditContent,
+                    Icon = UniversityIcons.Edit,
+                    Secure = SecurityAccessLevel.Edit,
+                    Url = EditUrl ("eduprogram_id", itemId.ToString (), "EditEduProgram"),
+                    Visible = itemId != null
+                });
+
+                return actions;
+            }
         }
 
         #endregion
