@@ -1,4 +1,4 @@
-﻿//
+//
 //  DivisionViewModel.cs
 //
 //  Author:
@@ -88,7 +88,9 @@ namespace R7.University.Division.ViewModels
 
         public bool IsInformal => Division.IsInformal;
 
-        public bool IsVirtual => Division.IsVirtual;
+        public bool IsSingleEntity => Division.IsSingleEntity;
+
+        public bool IsGoverning => Division.IsGoverning;
 
         public int LastModifiedByUserID => Division.LastModifiedByUserID;
 
@@ -111,6 +113,8 @@ namespace R7.University.Division.ViewModels
         public DateTime? StartDate => Division.StartDate;
 
         public ICollection<DivisionInfo> SubDivisions => Division.SubDivisions;
+
+        public ICollection<OccupiedPositionInfo> OccupiedPositions => Division.OccupiedPositions;
 
         public string Title => Division.Title;
 

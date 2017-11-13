@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt; Модуль ScienceDirectory&lt;/P&gt;</value>
+    </data>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Нечего отображать. Добавьте образовательные программы или измените настройки модуля.</value>
+    </data>
+	<data name="ScienceCode.Column" xml:space="preserve">
+        <value>Код</value>
+    </data>
+	<data name="ScienceEduProgram.Column" xml:space="preserve">
+        <value>Наименование специальности, направления подготовки</value>
+    </data>
+	<data name="ScienceDirections.Column" xml:space="preserve">
+	    <value>Перечень научных направлений, в рамках которых ведется &lt;abbr title=&quot;Научная (научно-исследовательская) деятельность&quot;&gt;НИД&lt;/abbr&gt;</value>
+    </data>
+    <data name="ScienceBase.Column" xml:space="preserve">
+		<value>Информация о научно-исследовательской базе для осуществления &lt;abbr title=&quot;Научная (научно-исследовательская) деятельность&quot;&gt;НИД&lt;/abbr&gt;</value>
+    </data>
+    <data name="ScienceScientists.Column" xml:space="preserve">
+		<value>Количество &lt;abbr title=&quot;Научно-педагогический работник&quot;&gt;НПР&lt;/abbr&gt;, принимающих участие в &lt;abbr title=&quot;Научная (научно-исследовательская) деятельность&quot;&gt;НИД&lt;/abbr&gt;, чел.</value>
+    </data>
+    <data name="ScienceStudents.Column" xml:space="preserve">
+		<value>Количество студентов, принимающих участие в &lt;abbr title=&quot;Научная (научно-исследовательская) деятельность&quot;&gt;НИД&lt;/abbr&gt;, чел.</value>
+    </data>
+    <data name="ScienceMonographs.Column" xml:space="preserve">
+		<value>Количество изданных монографий &lt;abbr title=&quot;Научно-педагогический работник&quot;&gt;НПР&lt;/abbr&gt; образовательной организации по всем научным направлениям за последний год</value>
+    </data>
+    <data name="ScienceArticles.Column" xml:space="preserve">
+		<value>Количество изданных и принятых к публикации статей в изданиях, рекомендованных ВАК / зарубежных для публикации научных работ за последний год</value>
+    </data>
+    <data name="SciencePatents.Column" xml:space="preserve">
+		<value>Количество патентов, полученных на разработки за последний год: российских / зарубежных</value>
+    </data>
+    <data name="ScienceCertificates.Column" xml:space="preserve">
+		<value>Количество свидетельств о регистрации объекта интеллектуальной собственности, выданных на разработки за последний год: российских / зарубежных</value>
+    </data>
+    <data name="ScienceFinances.Column" xml:space="preserve">
+		<value>Среднегодовой объем финансирования научных исследований на одного &lt;abbr title=&quot;Научно-педагогический работник&quot;&gt;НПР&lt;/abbr&gt; организации (в приведенных к целочисленным значениям ставок), тыс. руб.</value>
+    </data>
+</root>

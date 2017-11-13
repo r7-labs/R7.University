@@ -70,7 +70,7 @@ namespace R7.University.DivisionDirectory
 
                 ModuleController.SynchronizeModule (ModuleId);
 
-                CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/DivisionDirectory/ModuleId={ModuleId}");
+                CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/DivisionDirectory?ModuleId={ModuleId}");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

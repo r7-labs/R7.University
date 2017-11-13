@@ -54,8 +54,12 @@
                     <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
                 </div>
                 <div class="dnnFormItem">
-                    <dnn:Label id="labelIsVirtual" runat="server" ControlName="checkIsVirtual" />
-                    <asp:CheckBox id="checkIsVirtual" runat="server" />
+                    <dnn:Label id="labelIsGoverning" runat="server" ControlName="checkIsGoverning" />
+                    <asp:CheckBox id="checkIsGoverning" runat="server" />
+                </div>
+                <div class="dnnFormItem">
+                    <dnn:Label id="labelIsSingleEntity" runat="server" ControlName="checkIsSingleEntity" />
+                    <asp:CheckBox id="checkIsSingleEntity" runat="server" />
                 </div>
 				<div class="dnnFormItem">
                     <dnn:Label id="labelIsInformal" runat="server" ControlName="checkIsInformal" />

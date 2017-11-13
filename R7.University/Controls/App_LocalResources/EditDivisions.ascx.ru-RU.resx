@@ -12,31 +12,31 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="labelDivision.Text">
+    <data name="labelDivision.Text" xml:space="preserve">
         <value>Подразделение:</value>
     </data>
-    <data name="labelDivision.Help">
+    <data name="labelDivision.Help" xml:space="preserve">
         <value>Выберите подразделение.</value>
     </data>
-    <data name="labelDivisionRole.Text">
+    <data name="labelDivisionRole.Text" xml:space="preserve">
         <value>Роль подразделения:</value>
     </data>
-    <data name="labelDivisionRole.Help">
+    <data name="labelDivisionRole.Help" xml:space="preserve">
         <value>Введите роль подразделения, например, &quot;Выпускающая кафедра&quot;.</value>
     </data>
-	<data name="DivisionTitle.Column">
+	<data name="DivisionTitle.Column" xml:space="preserve">
         <value>Подразделение</value>
     </data>
-	<data name="DivisionRole.Column">
+	<data name="DivisionRole.Column" xml:space="preserve">
         <value>Роль подразделения</value>
     </data>
-	<data name="buttonAddDivision.Text">
+	<data name="buttonAddDivision.Text" xml:space="preserve">
         <value>Добавить подразделение</value>
     </data>
-	<data name="buttonUpdateDivision.Text">
+	<data name="buttonUpdateDivision.Text" xml:space="preserve">
         <value>Сохранить подразделение</value>
     </data>
-    <data name="Division.Invalid">
+    <data name="Division.Invalid" xml:space="preserve">
         <value>Подразделения не должны повторяться!</value>
     </data>
 </root>

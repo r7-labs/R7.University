@@ -12,169 +12,169 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="ControlTitle_editemployee.Text">
+    <data name="ControlTitle_editemployee.Text" xml:space="preserve">
         <value>Редактирование сотрудника</value>
     </data>
-    <data name="ModuleHelp.Text">
+    <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;О модуле Edit Employee&lt;/p&gt;</value>
     </data>
-    <data name="labelPhotoLookup.Text">
+    <data name="labelPhotoLookup.Text" xml:space="preserve">
         <value>Найти фото:</value>
     </data>
-    <data name="labelPhotoLookup.Help">
+    <data name="labelPhotoLookup.Help" xml:space="preserve">
         <value>Нажмите, чтобы попытаться найти фото сотрудника по его имени в папке по-умолчанию.</value>
     </data>
-    <data name="labelPhoto.Text">
+    <data name="labelPhoto.Text" xml:space="preserve">
         <value>Фото:</value>
     </data>
-    <data name="labelPhoto.Help">
+    <data name="labelPhoto.Help" xml:space="preserve">
         <value>Добавьте или выберите фото сотрудника.</value>
     </data>
-    <data name="labelUser.Text">
+    <data name="labelUser.Text" xml:space="preserve">
         <value>Пользователь:</value>
     </data>
-    <data name="labelUser.Help">
+    <data name="labelUser.Help" xml:space="preserve">
         <value>Необязательная ссылка на существующего пользователя сайта.</value>
     </data>
-    <data name="labelLastName.Text">
+    <data name="labelLastName.Text" xml:space="preserve">
         <value>Фамилия:</value>
     </data>
-    <data name="labelLastName.Help">
+    <data name="labelLastName.Help" xml:space="preserve">
         <value>Введите фамилию сотрудника.</value>
     </data>
-    <data name="LastName.Required">
+    <data name="LastName.Required" xml:space="preserve">
         <value>Укажите фамилию сотрудника.</value>
     </data>
-    <data name="labelFirstName.Text">
+    <data name="labelFirstName.Text" xml:space="preserve">
         <value>Имя:</value>
     </data>
-    <data name="labelFirstName.Help">
+    <data name="labelFirstName.Help" xml:space="preserve">
         <value>Введите имя сотрудника.</value>
     </data>
-    <data name="FirstName.Required">
+    <data name="FirstName.Required" xml:space="preserve">
         <value>Укажите имя сотрудника.</value>
     </data>
-    <data name="labelOtherName.Text">
+    <data name="labelOtherName.Text" xml:space="preserve">
         <value>Отчество:</value>
     </data>
-    <data name="labelOtherName.Help">
+    <data name="labelOtherName.Help" xml:space="preserve">
         <value>Введите отчество сотрудника.</value>
     </data>
-    <data name="labelPhone.Text">
+    <data name="labelPhone.Text" xml:space="preserve">
         <value>Телефон:</value>
     </data>
-    <data name="labelPhone.Help">
+    <data name="labelPhone.Help" xml:space="preserve">
         <value>Введите номер телефона.</value>
     </data>
-    <data name="labelCellPhone.Text">
+    <data name="labelCellPhone.Text" xml:space="preserve">
         <value>Сотовый:</value>
     </data>
-    <data name="labelCellPhone.Help">
+    <data name="labelCellPhone.Help" xml:space="preserve">
         <value>Введите дополнительный номер (сотового) телефона.</value>
     </data>
-    <data name="labelFax.Text">
+    <data name="labelFax.Text" xml:space="preserve">
         <value>Факс:</value>
     </data>
-    <data name="labelFax.Help">
+    <data name="labelFax.Help" xml:space="preserve">
         <value>Введите номер факса.</value>
     </data>
-    <data name="labelEmail.Text">
+    <data name="labelEmail.Text" xml:space="preserve">
         <value>Эл. почта:</value>
     </data>
-    <data name="labelEmail.Help">
+    <data name="labelEmail.Help" xml:space="preserve">
         <value>Введите адрес электронной почты.</value>
     </data>
-    <data name="labelSecondaryEmail.Text">
+    <data name="labelSecondaryEmail.Text" xml:space="preserve">
         <value>Доп. эл. почта:</value>
     </data>
-    <data name="labelSecondaryEmail.Help">
+    <data name="labelSecondaryEmail.Help" xml:space="preserve">
         <value>Введите дополнительный адрес электронной почты.</value>
     </data>
-    <data name="labelWebSite.Text">
+    <data name="labelWebSite.Text" xml:space="preserve">
         <value>Личный веб-сайт:</value>
     </data>
-    <data name="labelWebSite.Help">
+    <data name="labelWebSite.Help" xml:space="preserve">
         <value>Введите адрес личного веб-сайта сотрудника.</value>
     </data>
-    <data name="labelWebSiteLabel.Text">
+    <data name="labelWebSiteLabel.Text" xml:space="preserve">
         <value>Метка веб-сайта:</value>
     </data>
-    <data name="labelWebSiteLabel.Help">
+    <data name="labelWebSiteLabel.Help" xml:space="preserve">
         <value>Необязательная метка для личного веб-сайта. Если не указано, вместо этого будет использован адрес веб-сайта.</value>
     </data>
-    <data name="labelMessenger.Text">
+    <data name="labelMessenger.Text" xml:space="preserve">
         <value>Клиент мновенных сообщений:</value>
     </data>
-    <data name="labelMessenger.Help">
+    <data name="labelMessenger.Help" xml:space="preserve">
         <value>Введите адрес клиента мгновенных сообщений и его тип.</value>
     </data>
-    <data name="labelWorkingHours.Text">
+    <data name="labelWorkingHours.Text" xml:space="preserve">
         <value>Рабочий график:</value>
     </data>
-    <data name="labelWorkingHours.Help">
+    <data name="labelWorkingHours.Help" xml:space="preserve">
         <value>Выберите рабочий график сотрудника из списка.</value>
     </data>
-    <data name="labelCustomWorkingHours.Text">
+    <data name="labelCustomWorkingHours.Text" xml:space="preserve">
         <value>Другой рабочий график:</value>
     </data>
-    <data name="labelCustomWorkingHours.Help">
+    <data name="labelCustomWorkingHours.Help" xml:space="preserve">
         <value>Укажите другой рабочий график для сотрудника.</value>
     </data>
-    <data name="labelWorkingPlace.Text">
+    <data name="labelWorkingPlace.Text" xml:space="preserve">
         <value>Рабочее место:</value>
     </data>
-    <data name="labelWorkingPlace.Help">
+    <data name="labelWorkingPlace.Help" xml:space="preserve">
         <value>Введите рабочее место сотрудника, например номер офиса (корпуса) и кабинета.</value>
     </data>
-    <data name="labelExperienceYears.Text">
+    <data name="labelExperienceYears.Text" xml:space="preserve">
         <value>Общий стаж (лет):</value>
     </data>
-    <data name="labelExperienceYears.Help">
+    <data name="labelExperienceYears.Help" xml:space="preserve">
         <value>Введите общий стаж работы сотрудника (количество полных лет).</value>
     </data>
-    <data name="labelExperienceYearsBySpec.Text">
+    <data name="labelExperienceYearsBySpec.Text" xml:space="preserve">
         <value>Стаж по специальности (лет):</value>
     </data>
-    <data name="labelExperienceYearsBySpec.Help">
+    <data name="labelExperienceYearsBySpec.Help" xml:space="preserve">
         <value>Введите стаж работы сотрудника по специальности (количество полных лет).</value>
     </data>
-    <data name="labelBiography.Text">
+    <data name="labelBiography.Text" xml:space="preserve">
         <value>О себе:</value>
     </data>
-    <data name="labelBiography.Help">
+    <data name="labelBiography.Help" xml:space="preserve">
         <value>Введите биографию сотрудника / предоставленные им сведения о себе.</value>
     </data>
-    <data name="labelStartDate.Text">
+    <data name="labelStartDate.Text" xml:space="preserve">
         <value>Начало публикации:</value>
     </data>
-    <data name="labelStartDate.Help">
+    <data name="labelStartDate.Help" xml:space="preserve">
         <value>Введите дату, начиная с которой сотрудник должен быть опубликован на сайте.</value>
     </data>
-    <data name="labelEndDate.Text">
+    <data name="labelEndDate.Text" xml:space="preserve">
         <value>Окончание публикации:</value>
     </data>
-    <data name="labelEndDate.Help">
+    <data name="labelEndDate.Help" xml:space="preserve">
         <value>Введите дату, начиная с которой сотрудник должен быть снят с публикации на сайте.</value>
     </data>
-    <data name="labelShowBarcode.Text">
+    <data name="labelShowBarcode.Text" xml:space="preserve">
         <value>Показывать штрих-код:</value>
     </data>
-    <data name="labelShowBarcode.Help">
+    <data name="labelShowBarcode.Help" xml:space="preserve">
         <value>Снимите флажок, чтобы запретить показ штрих-кода для данного сотрудника.</value>
     </data>
-    <data name="labelUserLookup.Text">
+    <data name="labelUserLookup.Text" xml:space="preserve">
         <value>Найти пользователя:</value>
     </data>
-    <data name="labelUserLookup.Help">
+    <data name="labelUserLookup.Help" xml:space="preserve">
         <value>Введите адрес эл. почты или имя пользователя и нажмите Найти пользователя.</value>
     </data>
-    <data name="buttonUserLookup.Text">
+    <data name="buttonUserLookup.Text" xml:space="preserve">
         <value>Найти пользователя</value>
     </data>
-    <data name="buttonPhotoLookup.Text">
+    <data name="buttonPhotoLookup.Text" xml:space="preserve">
         <value>Найти фото</value>
     </data>
-    <data name="checkIncludeDeletedUsers.Text">
+    <data name="checkIncludeDeletedUsers.Text" xml:space="preserve">
         <value>Включая удаленных пользователей?</value>
     </data>
 	<data name="labelAudit.Text" xml:space="preserve">

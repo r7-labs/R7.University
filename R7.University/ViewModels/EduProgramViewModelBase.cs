@@ -68,6 +68,8 @@ namespace R7.University.ViewModels
 
         public ICollection<EduProgramDivisionInfo> Divisions => EduProgram.Divisions;
 
+        public ICollection<ScienceRecordInfo> ScienceRecords => EduProgram.ScienceRecords;
+
         #endregion
     }
 }

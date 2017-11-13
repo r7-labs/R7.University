@@ -51,8 +51,9 @@ namespace R7.University.Data.Mappings
             Property (m => m.Location);
             Property (m => m.WorkingHours);
             Property (m => m.DocumentUrl);
-            Property (m => m.IsVirtual);
+            Property (m => m.IsSingleEntity);
             Property (m => m.IsInformal);
+            Property (m => m.IsGoverning);
 
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
@@ -66,6 +67,7 @@ namespace R7.University.Data.Mappings
             Ignore (m => m.Path);
 
             HasMany (m => m.SubDivisions).WithRequired ().HasForeignKey (sd => sd.ParentDivisionID);
+            HasMany (m => m.OccupiedPositions).WithRequired ().HasForeignKey (op => op.DivisionID);
         }
     }
 }

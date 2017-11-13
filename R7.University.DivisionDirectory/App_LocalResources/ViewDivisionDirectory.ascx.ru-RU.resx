@@ -22,7 +22,10 @@
         <value>Подразделение</value>
     </data>
     <data xml:space="preserve" name="TitleObrnadzor.Column">
-        <value>Наименование подразделения</value>
+        <value>Наименование структурного подразделения</value>
+    </data>
+	<data xml:space="preserve" name="TitleObrnadzorGoverningDivision.Column">
+        <value>Наименование органа управления</value>
     </data>
     <data xml:space="preserve" name="Email.Column">
         <value>Эл. почта</value>
@@ -37,22 +40,22 @@
         <value>Сайт</value>
     </data>
     <data xml:space="preserve" name="WebSiteObrnadzor.Column">
-        <value>Адрес официального сайта в сети &quot;Интернет&quot;</value>
+        <value>Адрес официального сайта</value>
     </data>
     <data xml:space="preserve" name="Location.Column">
-        <value>Место нахождения</value>
+        <value>Адрес местонахождения</value>
     </data>
     <data xml:space="preserve" name="Document.Column">
         <value>Положение</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Column">
-        <value>Руководитель</value>
+        <value>ФИО, должность руководителя</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
         <value>N п/п</value>
     </data>
     <data xml:space="preserve" name="Regulations.Text">
-        <value>Положение</value>
+        <value>[положение]</value>
     </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Поиск</value>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.Launchpad</RootNamespace>
     <AssemblyName>R7.University.Launchpad</AssemblyName>
-    <ReleaseVersion>1.15.1</ReleaseVersion>
+    <ReleaseVersion>1.16.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -249,5 +249,15 @@
       <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
       <Name>R7.University</Name>
     </ProjectReference>
+    <Content Include="EditScienceRecordType.ascx" />
+    <Compile Include="EditScienceRecordType.cs">
+      <DependentUpon>EditScienceRecordType.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditScienceRecordType.ascx.controls.cs">
+      <DependentUpon>EditScienceRecordType.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\ScienceRecordTypesTable.cs" />
+    <None Include="App_LocalResources\EditScienceRecordType.ascx.resx" />
+    <None Include="App_LocalResources\EditScienceRecordType.ascx.ru-RU.resx" />
   </ItemGroup>
 </Project>

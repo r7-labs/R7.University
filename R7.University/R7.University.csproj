@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
-    <ReleaseVersion>1.15.1</ReleaseVersion>
+    <ReleaseVersion>1.16.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -297,6 +298,18 @@
     </Compile>
     <Compile Include="Components\UniversityIcons.cs" />
     <Compile Include="Models\DocumentGroupComparer.cs" />
+    <Compile Include="Models\SystemScienceRecordType.cs" />
+    <Compile Include="ModelExtensions\ScienceRecordTypeExtensions.cs" />
+    <Compile Include="Controls\EditScienceRecords.controls.ascx.cs">
+      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditScienceRecords.ascx.cs">
+      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ViewModels\ScienceRecordEditModel.cs" />
+    <Compile Include="ViewModels\FormatExtensions.cs" />
+    <Compile Include="Commands\UpdateScienceRecordsCommand.cs" />
+    <Compile Include="Models\ScienceRecordTypeOfValues.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -323,6 +336,7 @@
     <Folder Include="Controls\js\" />
     <Folder Include="SerializationModels\" />
     <Folder Include="Controls\Queries\" />
+    <Folder Include="Controls\css\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -352,16 +366,10 @@
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
     <None Include="Controls\EditDocuments.ascx" />
-    <None Include="Controls\App_LocalResources\EditDocuments.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx" />
     <None Include="Controls\EditEduForms.ascx" />
-    <None Include="Controls\App_LocalResources\EditEduForms.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditEduForms.ascx.resx" />
     <None Include="Controls\App_LocalResources\EditEduForms.ascx.ru-RU.resx" />
     <None Include="packages.config" />
     <None Include="license.htm" />
@@ -375,65 +383,53 @@
     <None Include="SqlDataProvider\01.11.00.SqlDataProvider" />
     <None Include="Controls\AgplSignature.ascx" />
     <Compile Include="Controls\AgplSignature.ascx.cs">
-	    <DependentUpon>AgplSignature.ascx</DependentUpon>
+      <DependentUpon>AgplSignature.ascx</DependentUpon>
     </Compile>
     <None Include="css\module.css" />
-    <None Include="Controls\App_LocalResources\AgplSignature.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\AgplSignature.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\AgplSignature.ascx.resx" />
+    <None Include="Controls\App_LocalResources\AgplSignature.ascx.ru-RU.resx" />
     <None Include="SqlDataProvider\01.12.00.SqlDataProvider" />
     <None Include="Controls\DivisionSelector.ascx" />
-    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.resx" />
+    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.ru-RU.resx" />
     <None Include="Controls\js\editDocuments.js" />
     <None Include="SqlDataProvider\01.14.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.15.00.SqlDataProvider" />
-    <None Include="Controls\App_LocalResources\SharedResources.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\SharedResources.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\SharedResources.resx" />
+    <None Include="Controls\App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="images\Rollback_16x16_Standard.png" />
     <None Include="Controls\EditAchievements.ascx" />
     <None Include="Controls\App_LocalResources\EditAchievements.ascx.resx" />
     <None Include="Controls\App_LocalResources\EditAchievements.ascx.ru-RU.resx" />
     <None Include="Controls\EditDivisions.ascx" />
-    <None Include="Controls\App_LocalResources\EditDivisions.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditDivisions.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditDivisions.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditDivisions.ascx.ru-RU.resx" />
     <None Include="Controls\js\editDivisions.js" />
     <None Include="Controls\js\editEduForms.js" />
     <None Include="Controls\EditDisciplines.ascx" />
-    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.ru-RU.resx" />
     <None Include="Controls\js\editDisciplines.js" />
     <None Include="Controls\js\gridAndForm.js" />
     <None Include="Controls\EditPositions.ascx" />
-    <None Include="Controls\App_LocalResources\EditPositions.ascx.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Controls\App_LocalResources\EditPositions.ascx.ru-RU.resx">
-      <LastGenOutput>EditEduProgram.ascx.Designer.cs</LastGenOutput>
-    </None>
+    <None Include="Controls\App_LocalResources\EditPositions.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditPositions.ascx.ru-RU.resx" />
     <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
+    <None Include="Controls\EditScienceRecords.ascx" />
+    <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.resx" />
+    <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.ru-RU.resx" />
+    <None Include="Controls\css\edit-sciencerecords.css" />
+    <None Include="Controls\js\editScienceRecords.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
+    <None Include="SqlDataProvider\01.16.00.SqlDataProvider" />
+    <Compile Include="Models\IScienceRecordType.cs" />
+    <Compile Include="Models\IScienceRecord.cs" />
+    <Compile Include="Models\ScienceRecordTypeInfo.cs" />
+    <Compile Include="Models\ScienceRecordInfo.cs" />
+    <Compile Include="Data\Mappings\ScienceRecordTypeMapping.cs" />
+    <Compile Include="Data\Mappings\ScienceRecordMapping.cs" />
   </ItemGroup>
 </Project>

@@ -27,19 +27,41 @@ using R7.University.Queries;
 
 namespace R7.University.DivisionDirectory.Queries
 {
-    internal class DivisionHierarchyQuery: QueryBase
+    class DivisionHierarchyQuery: QueryBase
     {
         public DivisionHierarchyQuery (IModelContext modelContext): base (modelContext)
         {
         }
 
-        public IList<DivisionInfo> ListHierarchy ()
+        public IEnumerable<DivisionInfo> ListHierarchy ()
         {
-            return ModelContext.Query<DivisionInfo> ().ToList ()
-                .CalculateLevelAndPath<DivisionInfo> ()
-                .OrderBy (d => d.Path)
-                .ThenBy (d => d.Title)
-                .ToList ();
+            return ModelContext.Query<DivisionInfo> ()
+                               .IncludeOccupiedPositions ()
+                               .ToList ()
+                               .CalculateLevelAndPath ()
+                               .OrderBy (d => d.Path)
+                               .ThenBy (d => d.Title);
+        }
+
+        public IEnumerable<DivisionInfo> ListGoverningHierarchy ()
+        {
+            return ModelContext.Query<DivisionInfo> ()
+                               .Where (d => d.IsGoverning)
+                               .IncludeOccupiedPositions ()
+                               .ToList ()
+                               .CalculateLevelAndPath ()
+                               .OrderBy (d => d.Path)
+                               .ThenBy (d => d.Title);
+        }
+    }
+
+    static class DivisionQueryExtensions
+    {
+        internal static IQueryable<DivisionInfo> IncludeOccupiedPositions (this IQueryable<DivisionInfo> divisions)
+        {
+            return divisions.Include (d => d.OccupiedPositions)
+                            .Include (d => d.OccupiedPositions.Select (op => op.Position))
+                            .Include (d => d.OccupiedPositions.Select (op => op.Employee));
         }
     }
 }

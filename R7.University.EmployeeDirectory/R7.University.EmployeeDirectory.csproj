@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.EmployeeDirectory</RootNamespace>
     <AssemblyName>R7.University.EmployeeDirectory</AssemblyName>
-    <ReleaseVersion>1.15.1</ReleaseVersion>
+    <ReleaseVersion>1.16.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -144,7 +144,7 @@
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeDirectoryTeachersViewModel.cs" />
     <Compile Include="Queries\TeachersQuery.cs" />
-    <Compile Include="Queries\EmployeeQuery.cs" />
+    <Compile Include="Queries\EmployeeFindQuery.cs" />
     <Compile Include="Queries\OccupiedPositionQuery.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="ViewModels\EmployeeAchievementViewModel.cs" />

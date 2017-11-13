@@ -12,61 +12,61 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="labelEduLevel.Text">
+	<data name="labelEduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>
     </data>
-    <data name="labelEduLevel.Help">
+    <data name="labelEduLevel.Help" xml:space="preserve">
         <value>Выберите уровень образования из выпадающего списка.</value>
     </data>
-    <data name="labelEduProgramProfile.Text">
+    <data name="labelEduProgramProfile.Text" xml:space="preserve">
         <value>Обр. программа (профиль):</value>
     </data>
-    <data name="labelEduProgramProfile.Help">
+    <data name="labelEduProgramProfile.Help" xml:space="preserve">
         <value>Выберите профиль образовательной программы из выпадающего списка.</value>
     </data>
-    <data name="labelDisciplines.Text">
+    <data name="labelDisciplines.Text" xml:space="preserve">
         <value>Дисципины:</value>
     </data>
-    <data name="labelDisciplines.Help">
+    <data name="labelDisciplines.Help" xml:space="preserve">
         <value>Перечислите преподаваемые дисциплины.</value>
     </data>
-    <data name="checkAddToVocabulary.Text">
+    <data name="checkAddToVocabulary.Text" xml:space="preserve">
         <value>Добавить в словарь</value>
     </data>
-    <data name="Division.Column">
+    <data name="Division.Column" xml:space="preserve">
         <value>Подразделение</value>
     </data>
-    <data name="Position.Column">
+    <data name="Position.Column" xml:space="preserve">
         <value>Должность</value>
     </data>
-    <data name="IsPrime.Column">
+    <data name="IsPrime.Column" xml:space="preserve">
         <value>Основная</value>
     </data>
-    <data name="buttonAddDiscipline.Text">
+    <data name="buttonAddDiscipline.Text" xml:space="preserve">
         <value>Добавить дисциплины</value>
     </data>
-    <data name="buttonUpdateDiscipline.Text">
+    <data name="buttonUpdateDiscipline.Text" xml:space="preserve">
         <value>Сохранить дисциплины</value>
     </data>
-    <data name="buttonCancelEditDiscipline.Text">
+    <data name="buttonCancelEditDiscipline.Text" xml:space="preserve">
         <value>Отмена</value>
     </data>
-    <data name="EduProgramProfile.Warning">
+    <data name="EduProgramProfile.Warning" xml:space="preserve">
         <value>Профили образовательных программ не должны повторяться!</value>
     </data>
-	<data name="EduProgramProfile.Required">
+	<data name="EduProgramProfile.Required" xml:space="preserve">
         <value>Выберите профиль образовательной программы.</value>
     </data>
-    <data name="Disciplines.Required">
+    <data name="Disciplines.Required" xml:space="preserve">
         <value>Введите дисциплины.</value>
     </data>
-	<data name="EduProgramProfile.Column">
+	<data name="EduProgramProfile.Column" xml:space="preserve">
         <value>Образовательная программа (профиль подготовки, специализация)</value>
     </data>
-    <data name="Disciplines.Column">
+    <data name="Disciplines.Column" xml:space="preserve">
         <value>Дисциплины</value>
     </data>
-	<data name="EduLevel.Column">
+	<data name="EduLevel.Column" xml:space="preserve">
         <value>Уровень образования</value>
     </data>
 </root>

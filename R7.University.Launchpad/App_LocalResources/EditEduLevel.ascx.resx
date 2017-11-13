@@ -36,6 +36,9 @@
     <data name="labelSortIndex.Help" xml:space="preserve">
         <value>Enter the numeric index for the education level. It will be used in sorting.</value>
     </data>
+    <data name="SortIndex.Required" xml:space="preserve">
+        <value>The sort index is required.</value>
+    </data>
     <data name="SortIndex.Invalid" xml:space="preserve">
         <value>Sort Index must be an integer.</value>
     </data>

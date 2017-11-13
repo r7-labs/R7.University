@@ -37,34 +37,34 @@
         <value>#</value>
     </data>
     <data name="FullName.Column" xml:space="preserve">
-        <value>Name</value>
+        <value>Full Name of a Teacher which Implements Educational Program</value>
     </data>
     <data name="Positions.Column" xml:space="preserve">
         <value>Positions</value>
     </data>
     <data name="Disciplines.Column" xml:space="preserve">
-        <value>Disciplines</value>
+        <value>List of the Disciplines Taught</value>
     </data>
     <data name="AcademicDegrees.Column" xml:space="preserve">
-        <value>Academic Degrees</value>
+        <value>Academic Degrees of a Teacher (if any)</value>
     </data>
     <data name="AcademicTitles.Column" xml:space="preserve">
-        <value>Academic Titles</value>
+        <value>Academic Titles of a Teacher (if any)</value>
     </data>
     <data name="Education.Column" xml:space="preserve">
-        <value>Education</value>
+		<value>Education Info of a Teacher</value>
     </data>
     <data name="Training.Column" xml:space="preserve">
-        <value>Training</value>
+        <value>Training Info of a Teacher</value>
     </data>
     <data name="ExperienceYears.Column" xml:space="preserve">
-        <value>Total Experience (years)</value>
+        <value>Total Work Experience (years)</value>
     </data>
     <data name="ExperienceYearsBySpec.Column" xml:space="preserve">
-        <value>Experience by Speciality (years)</value>
+        <value>Work Experience of a Teacher in the Specialty (years)</value>
     </data>
     <data name="NoDisciplines.Text" xml:space="preserve">
-        <value>Disciplines not specified</value>
+        <value>Disciplines not Specified</value>
     </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Search</value>

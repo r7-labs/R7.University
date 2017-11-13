@@ -36,10 +36,10 @@
     <data name="Description.MaxLength" xml:space="preserve">
         <value>Description length must be less or equal to 255 characters.</value>
     </data>
-    <data name="labelIsSystem.Text">
+    <data name="labelIsSystem.Text" xml:space="preserve">
         <value>Is System?</value>
     </data>
-    <data name="labelIsSystem.Help">
+    <data name="labelIsSystem.Help" xml:space="preserve">
         <value>System achievement types have special meaning for the system work, therefore cannot be deleted, and only description can be changed for them.</value>
     </data>
 </root>

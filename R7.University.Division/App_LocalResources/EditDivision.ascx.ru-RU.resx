@@ -99,65 +99,70 @@
 	<data name="lblLocation.Help" xml:space="preserve">
         <value>Введите место нахождения подразделения, например номер офиса и кабинета.</value>
     </data>
-	<data name="labelWorkingHours.Text">
+	<data name="labelWorkingHours.Text" xml:space="preserve">
 		<value>Время работы:</value>
 	</data>
-	<data name="labelWorkingHours.Help">
+	<data name="labelWorkingHours.Help" xml:space="preserve">
 		<value>Выберите время работы (расписание) подразделения из списка.</value>
 	</data>
-	<data name="labelCustomWorkingHours.Text">
+	<data name="labelCustomWorkingHours.Text" xml:space="preserve">
 		<value>Другое время работы:</value>
 	</data>
-	<data name="labelCustomWorkingHours.Help">
+	<data name="labelCustomWorkingHours.Help" xml:space="preserve">
 		<value>Введите описание времени (расписания) работы подразделения.</value>
 	</data>
-	<data name="checkAddToVocabulary.Text">
+	<data name="checkAddToVocabulary.Text" xml:space="preserve">
 		<value>Сохранить в словаре?</value>
 	</data>
-	<data name="labelStartDate.Text">
+	<data name="labelStartDate.Text" xml:space="preserve">
 		<value>Начало публикации:</value>
 	</data>
-	<data name="labelStartDate.Help">
+	<data name="labelStartDate.Help" xml:space="preserve">
 		<value>Введите дату, начиная с которой текущее подразделение будет опубликовано на сайте.</value>
 	</data>
-	<data name="labelEndDate.Text">
+	<data name="labelEndDate.Text" xml:space="preserve">
 		<value>Окончание публикации:</value>
 	</data>
-	<data name="labelEndDate.Help">
+	<data name="labelEndDate.Help" xml:space="preserve">
 		<value>Введите дату, начиная с которой текущее подразделение будет снято с публикации на сайте.</value>
 	</data>
-	<data name="labelIsVirtual.Text">
-		<value>Виртуальное?</value>
+	<data name="labelIsSingleEntity.Text" xml:space="preserve">
+		<value>Из одного сотрудника?</value>
 	</data>
-	<data name="labelIsVirtual.Help">
-		<value>Отметьте этот флажок, если данное подразделение не должно иметь сотрудников и используется только для организации подразделений в иерархию.</value>
+	<data name="labelIsSingleEntity.Help" xml:space="preserve">
+		<value>Отметьте, если данное подразделение состоит из одного сотрудника, и фактически представляет собой этого самого сотрудника (обычно, руководителя верхего звена).</value>
 	</data>
-	<data name="labelIsInformal.Text">
+	<data name="labelIsInformal.Text" xml:space="preserve">
         <value>Неформальное?</value>
     </data>
-    <data name="labelIsInformal.Help">
+    <data name="labelIsInformal.Help" xml:space="preserve">
         <value>Отметьте, если данное подразделение не является формальным подразделением. Неформальные подразделения могут быть удалены из представления в модуле DivisionDirectory.</value>
     </data>
-	<data name="labelHeadPosition.Text">
+	<data name="labelIsGoverning.Text" xml:space="preserve">
+        <value>Орган управления?</value>
+    </data>
+    <data name="labelIsGoverning.Help" xml:space="preserve">
+        <value>Отметьте, если данное подразделение является органом управления организацией.</value>
+    </data>
+	<data name="labelHeadPosition.Text" xml:space="preserve">
 		<value>Должность руководителя:</value>
 	</data>
-	<data name="labelHeadPosition.Help">
+	<data name="labelHeadPosition.Help" xml:space="preserve">
 		<value>Выберите должность, определяющую руководителя подразделения.
         Конкретный сотрудник, являющийся руководителем, будет определен системой автоматически.
-		Для невиртуальных подразделений - если система не может определить руководителя,
-		то соответствующая должность будет считаться вакантной; если должность руководителя не задана,
-        то будет считаться, что у подразделения не может быть руководителя.</value>
+		Если система не может определить руководителя, то соответствующая должность будет считаться вакантной;
+	    если должность руководителя не задана, то будет считаться, что у подразделения нет и не может быть руководителя.</value>
 	</data>
-	<data name="Common.Tab">
+	<data name="Common.Tab" xml:space="preserve">
 		<value>Подразделение</value>
 	</data>
-	<data name="Contacts.Tab">
+	<data name="Contacts.Tab" xml:space="preserve">
 		<value>Контакты</value>
 	</data>
-	<data name="Documents.Tab">
+	<data name="Documents.Tab" xml:space="preserve">
 		<value>Документы</value>
 	</data>
-	<data name="Bindings.Tab">
+	<data name="Bindings.Tab" xml:space="preserve">
 		<value>Привязки</value>
 	</data>
 	<data name="Audit.Tab" xml:space="preserve">

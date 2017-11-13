@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions
 {
@@ -37,6 +38,16 @@ namespace R7.University.ModelExtensions
         public static bool IsPublished (this IEduProgramProfile eduProgramProfile, DateTime now)
         {
             return ModelHelper.IsPublished (now, eduProgramProfile.StartDate, eduProgramProfile.EndDate);
+        }
+
+        public static string FormatTitle (this IEduProgramProfile epp)
+        {
+            return FormatHelper.FormatEduProgramProfileTitle (
+                epp.EduProgram.Code,
+                epp.EduProgram.Title,
+                epp.ProfileCode,
+                epp.ProfileTitle
+            );
         }
     }
 }

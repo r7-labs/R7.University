@@ -40,6 +40,6 @@ namespace R7.University.Models
 
         public virtual DivisionInfo Division { get; set; }
 
-        public EmployeeInfo Employee { get; set; }
+        public virtual EmployeeInfo Employee { get; set; }
     }
 }

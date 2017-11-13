@@ -30,10 +30,10 @@
 	<data name="labelShortTitle.Help" xml:space="preserve">
     	<value>Введите краткое название достижения сотрудника.</value>
   	</data>
-	<data name="labelAchievementTypes.Text">
+	<data name="labelAchievementTypes.Text" xml:space="preserve">
 		<value>Тип достижения:</value>
 	</data>
-	<data name="labelAchievementTypes.Help">
+	<data name="labelAchievementTypes.Help" xml:space="preserve">
 		<value>Выберите тип достижения сотрудника из выпадающего списка.</value>
 	</data>
 </root>

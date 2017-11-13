@@ -164,7 +164,7 @@ namespace R7.University.Controls
 
         #endregion
 
-        TViewModel DebugEnsureCreatedProperly (TViewModel viewModel)
+        protected TViewModel DebugEnsureCreatedProperly (TViewModel viewModel)
         {
             Debug.Assert (viewModel != null);
             Debug.Assert (viewModel.Context != null);
@@ -199,9 +199,16 @@ namespace R7.University.Controls
 
             // localize gridview columns
             gridItems.LocalizeColumnHeaders (LocalResourceFile);
+        }
 
-            OnResetForm ();
-            SwitchToAddMode ();
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
+
+            if (!IsPostBack) {
+                OnResetForm ();
+                SwitchToAddMode ();
+            }
         }
 
         #endregion

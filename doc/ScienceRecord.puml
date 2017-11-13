@@ -1,0 +1,28 @@
+@startuml Science Records for Edu. Program
+
+ScienceRecord "0..*" -- "1" EduProgram
+ScienceRecordType "1" -- "0..*" ScienceRecord
+
+class ScienceRecordType {
+    ScienceRecordTypeId: int
+    ..
+    Type: string
+    IsSystem: bool
+    DescriptionIsRequired: bool
+    NumOfValues: int
+    TypeOfValues: string
+    SortIndex: int
+}
+
+class ScienceRecord {
+    ScienceRecordId: long
+    .. DB FKs ..
+    EduProgramId: int
+    ScienceRecordTypeId: int
+    ..
+    Description: string
+    Value1: decimal?
+    Value2: decimal?
+}
+
+@enduml

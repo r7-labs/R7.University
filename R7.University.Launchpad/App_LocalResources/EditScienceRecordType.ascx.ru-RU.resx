@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ControlTitle_editachievement.Text" xml:space="preserve">
+        <value>Редактирование типа записи о науке</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;Модуль редактирования типа записи о науке&lt;/P&gt;</value>
+    </data>
+    <data name="labelType.Text" xml:space="preserve">
+    	<value>Название:</value>
+  	</data>
+	<data name="labelType.Help" xml:space="preserve">
+    	<value>Введите название типа записи о науке.</value>
+  	</data>
+    <data name="Type.Required" xml:space="preserve">
+        <value>Название типа для типа записи о науке обязательно.</value>
+    </data>
+    <data name="labelIsSystem.Text" xml:space="preserve">
+        <value>Системный?</value>
+    </data>
+    <data name="labelIsSystem.Help" xml:space="preserve">
+        <value>Системные типы записей о науке имеют особое значение для работы системы, поэтому их нельзя удалить, а также изменить значения ключевых полей.</value>
+    </data>
+	<data name="labelDescriptionIsRequired.Text" xml:space="preserve">
+        <value>Описание обязательно?</value>
+    </data>
+    <data name="labelDescriptionIsRequired.Help" xml:space="preserve">
+        <value>Отметьте, чтобы сделать описание обязательным для записи о науке этого типа.</value>
+    </data>
+    <data name="labelNumOfValues.Text" xml:space="preserve">
+        <value>Числовых показателей:</value>
+    </data>
+    <data name="labelNumOfValues.Help" xml:space="preserve">
+        <value>Введите количество числовых показателей (от 0 до 2), связанных с записью о науке этого типа.</value>
+    </data>
+	<data name="labelTypeOfValues.Text" xml:space="preserve">
+        <value>Тип показателей:</value>
+    </data>
+    <data name="labelTypeOfValues.Help" xml:space="preserve">
+        <value>Выберите тип числовых показателей.</value>
+    </data>
+    <data name="NumOfValues.Required" xml:space="preserve">
+        <value>Количество числовых показателей обязательно.</value>
+    </data>
+    <data name="NumOfValues.Invalid" xml:space="preserve">
+        <value>Количество числовых показателей должно быть целым числом от 0 до 2.</value>
+    </data>
+    <data name="labelSortIndex.Text" xml:space="preserve">
+        <value>Индекс сортировки:</value>
+    </data>
+    <data name="labelSortIndex.Help" xml:space="preserve">
+        <value>Введите целое число, которое будет использоваться при сортировке записей о науке этого типа.</value>
+    </data>
+    <data name="SortIndex.Required" xml:space="preserve">
+        <value>Индекс сортировки обязателен.</value>
+    </data>
+    <data name="SortIndex.Invalid" xml:space="preserve">
+        <value>Индекс сортировки должен быть целым числом.</value>
+    </data>
+    <data name="ScienceRecordTypeOfValues_Integer.Text" xml:space="preserve">
+        <value>Целый</value>
+    </data>
+    <data name="ScienceRecordTypeOfValues_Decimal.Text" xml:space="preserve">
+        <value>С фиксированной запятой</value>
+    </data>
+</root>

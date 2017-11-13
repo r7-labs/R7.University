@@ -124,5 +124,10 @@ namespace R7.University.ModelExtensions
                 throw new ArgumentException ($"Wrong modelType={modelType} argument.");
             }
         }
+
+        public static IEnumerable<IOccupiedPosition> GetHeadEmployeePositions (this IDivision division)
+        {
+            return division.OccupiedPositions.Where (op => op.PositionID == division.HeadPositionID);
+        }
     }
 }

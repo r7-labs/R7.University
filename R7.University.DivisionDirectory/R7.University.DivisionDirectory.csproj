@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.DivisionDirectory</RootNamespace>
     <AssemblyName>R7.University.DivisionDirectory</AssemblyName>
-    <ReleaseVersion>1.15.1</ReleaseVersion>
+    <ReleaseVersion>1.16.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -141,11 +141,11 @@
     <Compile Include="ViewModels\DivisionObrnadzorViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\DivisionDirectoryController.cs" />
-    <Compile Include="Queries\DivisionHierarchyQuery.cs" />
-    <Compile Include="Queries\DivisionQuery.cs" />
+    <Compile Include="Queries\DivisionFindQuery.cs" />
     <Compile Include="Queries\HeadEmployeesQuery.cs" />
     <Compile Include="Models\DivisionDirectoryMode.cs" />
     <Compile Include="Models\DivisionDirectorySettings.cs" />
+    <Compile Include="Queries\DivisionHierarchyQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

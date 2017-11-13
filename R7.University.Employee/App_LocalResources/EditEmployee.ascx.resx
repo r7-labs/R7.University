@@ -12,172 +12,172 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="ControlTitle_editemployee.Text">
+    <data name="ControlTitle_editemployee.Text" xml:space="preserve">
         <value>Edit Employee</value>
     </data>
-    <data name="ModuleHelp.Text">
+    <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;About Edit Employee module&lt;/p&gt;</value>
     </data>
-    <data name="labelPhotoLookup.Text">
+    <data name="labelPhotoLookup.Text" xml:space="preserve">
         <value>Photo Lookup:</value>
     </data>
-    <data name="labelPhotoLookup.Help">
+    <data name="labelPhotoLookup.Help" xml:space="preserve">
         <value>Press to try lookup the photo by employee name in default folder.</value>
     </data>
-    <data name="labelPhoto.Text">
+    <data name="labelPhoto.Text" xml:space="preserve">
         <value>Photo:</value>
     </data>
-    <data name="labelPhoto.Help">
+    <data name="labelPhoto.Help" xml:space="preserve">
         <value>Add or select photo image for an employee.</value>
     </data>
-    <data name="labelUser.Text">
+    <data name="labelUser.Text" xml:space="preserve">
         <value>User:</value>
     </data>
-    <data name="labelUser.Help">
+    <data name="labelUser.Help" xml:space="preserve">
         <value>Optional link to existing website user.</value>
     </data>
-    <data name="labelLastName.Text">
+    <data name="labelLastName.Text" xml:space="preserve">
         <value>Last Name:</value>
     </data>
-    <data name="labelLastName.Help">
+    <data name="labelLastName.Help" xml:space="preserve">
         <value>Specify employee last name.</value>
     </data>
-    <data name="LastName.Required">
+    <data name="LastName.Required" xml:space="preserve">
         <value>Last name is required</value>
     </data>
-    <data name="labelFirstName.Text">
+    <data name="labelFirstName.Text" xml:space="preserve">
         <value>First Name:</value>
     </data>
-    <data name="labelFirstName.Help">
+    <data name="labelFirstName.Help" xml:space="preserve">
         <value>Specify employee first name.</value>
     </data>
-    <data name="FirstName.Required">
+    <data name="FirstName.Required" xml:space="preserve">
         <value>First name is required</value>
     </data>
-    <data name="labelOtherName.Text">
+    <data name="labelOtherName.Text" xml:space="preserve">
         <value>Other Name:</value>
     </data>
-    <data name="labelOtherName.Help">
+    <data name="labelOtherName.Help" xml:space="preserve">
         <value>Specify employee other name.</value>
     </data>
-    <data name="labelPhone.Text">
+    <data name="labelPhone.Text" xml:space="preserve">
         <value>Phone:</value>
     </data>
-    <data name="labelPhone.Help">
+    <data name="labelPhone.Help" xml:space="preserve">
         <value>Enter phone number.</value>
     </data>
-    <data name="labelCellPhone.Text">
+    <data name="labelCellPhone.Text" xml:space="preserve">
         <value>Cell Phone:</value>
     </data>
-    <data name="labelCellPhone.Help">
+    <data name="labelCellPhone.Help" xml:space="preserve">
         <value>Enter second (cellular) phone number.</value>
     </data>
-    <data name="labelFax.Text">
+    <data name="labelFax.Text" xml:space="preserve">
         <value>Fax:</value>
     </data>
-    <data name="labelFax.Help">
+    <data name="labelFax.Help" xml:space="preserve">
         <value>Enter fax number.</value>
     </data>
-    <data name="labelEmail.Text">
+    <data name="labelEmail.Text" xml:space="preserve">
         <value>Email:</value>
     </data>
-    <data name="labelEmail.Help">
+    <data name="labelEmail.Help" xml:space="preserve">
         <value>Enter email address.</value>
     </data>
-    <data name="labelSecondaryEmail.Text">
+    <data name="labelSecondaryEmail.Text" xml:space="preserve">
         <value>Secondary Email:</value>
     </data>
-    <data name="labelSecondaryEmail.Help">
+    <data name="labelSecondaryEmail.Help" xml:space="preserve">
         <value>Enter secondary email address.</value>
     </data>
-    <data name="labelWebSite.Text">
+    <data name="labelWebSite.Text" xml:space="preserve">
         <value>Personal Website:</value>
     </data>
-    <data name="labelWebSite.Help">
+    <data name="labelWebSite.Help" xml:space="preserve">
         <value>Enter personal website address.</value>
     </data>
-    <data name="labelWebSiteLabel.Text">
+    <data name="labelWebSiteLabel.Text" xml:space="preserve">
         <value>Website Label:</value>
     </data>
-    <data name="labelWebSiteLabel.Help">
+    <data name="labelWebSiteLabel.Help" xml:space="preserve">
         <value>Optional label for personal website. If not specified, website URL will be used instead.</value>
     </data>
-    <data name="labelMessenger.Text">
+    <data name="labelMessenger.Text" xml:space="preserve">
         <value>Instant Messenger:</value>
     </data>
-    <data name="labelMessenger.Help">
+    <data name="labelMessenger.Help" xml:space="preserve">
         <value>Enter instant messager kind and number.</value>
     </data>
-    <data name="labelWorkingHours.Text">
+    <data name="labelWorkingHours.Text" xml:space="preserve">
         <value>Working Hours:</value>
     </data>
-    <data name="labelWorkingHours.Help">
+    <data name="labelWorkingHours.Help" xml:space="preserve">
         <value>Select employee's working hours (schedule) from a list</value>
     </data>
-    <data name="labelCustomWorkingHours.Text">
+    <data name="labelCustomWorkingHours.Text" xml:space="preserve">
         <value>Custom Working Hours:</value>
     </data>
-    <data name="labelCustomWorkingHours.Help">
+    <data name="labelCustomWorkingHours.Help" xml:space="preserve">
         <value>Enter the employee's custom working hours (schedule) description.</value>
     </data>
-    <data name="labelWorkingPlace.Text">
+    <data name="labelWorkingPlace.Text" xml:space="preserve">
         <value>Working Place:</value>
     </data>
-    <data name="labelWorkingPlace.Help">
+    <data name="labelWorkingPlace.Help" xml:space="preserve">
         <value>Enter emloyee's working place, e.g. office and cabinet number.</value>
     </data>
-    <data name="labelExperienceYears.Text">
+    <data name="labelExperienceYears.Text" xml:space="preserve">
         <value>Experience (years):</value>
     </data>
-    <data name="labelExperienceYears.Help">
+    <data name="labelExperienceYears.Help" xml:space="preserve">
         <value>Enter employee's working experience (years).</value>
     </data>
-    <data name="labelExperienceYearsBySpec.Text">
+    <data name="labelExperienceYearsBySpec.Text" xml:space="preserve">
         <value>Experience by Speciality (years):</value>
     </data>
-    <data name="labelExperienceYearsBySpec.Help">
+    <data name="labelExperienceYearsBySpec.Help" xml:space="preserve">
         <value>Enter employee's working experience by speciality (years).</value>
     </data>
-    <data name="labelBiography.Text">
+    <data name="labelBiography.Text" xml:space="preserve">
         <value>About:</value>
     </data>
-    <data name="labelBiography.Help">
+    <data name="labelBiography.Help" xml:space="preserve">
         <value>Enter employee's biography / about.</value>
     </data>
-    <data name="labelStartDate.Text">
+    <data name="labelStartDate.Text" xml:space="preserve">
         <value>Start Publication:</value>
     </data>
-    <data name="labelStartDate.Help">
+    <data name="labelStartDate.Help" xml:space="preserve">
         <value>Enter the date from current employee should be published on the site.</value>
     </data>
-    <data name="labelEndDate.Text">
+    <data name="labelEndDate.Text" xml:space="preserve">
         <value>End Publication:</value>
     </data>
-    <data name="labelEndDate.Help">
+    <data name="labelEndDate.Help" xml:space="preserve">
         <value>Enter the date from current employee should be removed from publication on the site.</value>
     </data>
-    <data name="labelShowBarcode.Text">
+    <data name="labelShowBarcode.Text" xml:space="preserve">
         <value>Show Barcode:</value>
     </data>
-    <data name="labelShowBarcode.Help">
+    <data name="labelShowBarcode.Help" xml:space="preserve">
         <value>Uncheck to disable barcode display for the employee.</value>
     </data>
-    <data name="labelUserLookup.Text">
+    <data name="labelUserLookup.Text" xml:space="preserve">
         <value>User Lookup:</value>
     </data>
-    <data name="labelUserLookup.Help">
+    <data name="labelUserLookup.Help" xml:space="preserve">
         <value>Enter user email address or username and press User Lookup to find users.</value>
     </data>
-    <data name="buttonUserLookup.Text">
+    <data name="buttonUserLookup.Text" xml:space="preserve">
         <value>User Lookup</value>
     </data>
-    <data name="buttonPhotoLookup.Text">
+    <data name="buttonPhotoLookup.Text" xml:space="preserve">
         <value>Photo Lookup</value>
     </data>
-    <data name="checkIncludeDeletedUsers.Text">
+    <data name="checkIncludeDeletedUsers.Text" xml:space="preserve">
         <value>Include deleted users?</value>
     </data>
-    <data name="checkAddToVocabulary.Text">
+    <data name="checkAddToVocabulary.Text" xml:space="preserve">
         <value>Add to Vocabulary</value>
     </data>
 	<data name="labelAudit.Text" xml:space="preserve">

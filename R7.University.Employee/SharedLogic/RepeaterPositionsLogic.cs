@@ -22,7 +22,6 @@
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
@@ -45,12 +44,8 @@ namespace R7.University.Employee.SharedLogic
 
                 labelPosition.Text = gop.Title;
 
-                // don't display division title for highest level divisions
-                if (TypeUtils.IsNull (op.Division.ParentDivisionID)) {
-                    labelDivision.Visible = false;
-                    linkDivision.Visible = false;
-                }
-                else {
+                // don't display division title/link for single-entity divisions
+                if (!op.Division.IsSingleEntity) {
                     var divisionShortTitle = FormatHelper.FormatShortTitle (
                         op.Division.ShortTitle,
                         op.Division.Title);
@@ -71,6 +66,10 @@ namespace R7.University.Employee.SharedLogic
                     }
 
                     labelPosition.Text += ": "; // to prev label!
+                }
+                else {
+                    labelDivision.Visible = false;
+                    linkDivision.Visible = false;
                 }
 
                 if (!op.Division.IsPublished (HttpContext.Current.Timestamp)) {

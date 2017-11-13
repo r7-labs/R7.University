@@ -36,16 +36,16 @@
     <data name="Description.MaxLength" xml:space="preserve">
         <value>Длина описания не должна превышать 255 символов.</value>
     </data>
-    <data name="labelIsSystem.Text">
+    <data name="labelIsSystem.Text" xml:space="preserve">
         <value>Системный?</value>
     </data>
-    <data name="labelIsSystem.Help">
+    <data name="labelIsSystem.Help" xml:space="preserve">
         <value>Системные типы документов имеют особое значение для работы системы, поэтому их нельзя удалить, а изменить можно только их описание и формат имени файла.</value>
     </data>
 	   <data name="labelFilenameFormat.Text" xml:space="preserve">
         <value>Формат имени файла:</value>
     </data>
-    <data name="labelFilenameFormat.Help">
+    <data name="labelFilenameFormat.Help" xml:space="preserve">
         <value>Введите регулярное выражение JavaScript, которое будет использоваться для проверки имен файлов новых документов этого типа. 
             Например выражение &quot;order_(.+)\.(pdf|od[tsp])&quot; разрешает файлы формата PDF и пакетов LibreOffice/OpenOffice (ODT, ODS и ODP),
 			имеющие префикс &quot;order_&quot;. Метки начала &quot;^&quot; и конца &quot;$&quot; будут добавлены автоматически, 

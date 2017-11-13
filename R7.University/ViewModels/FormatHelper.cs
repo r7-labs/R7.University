@@ -238,7 +238,7 @@ namespace R7.University.ViewModels
             return string.Empty;
         }
 
-        public static string FormatDivisionLink (IDivision division, string role = null, bool isPublished = true) {
+        public static string FormatEduProgramDivisionLink (IDivision division, string role = null, bool isPublished = true) {
             if (division != null) {
                 var classAttr = isPublished ? string.Empty : " class=\"u8y-not-published-element\"";
                 var roleLabel = !string.IsNullOrEmpty (role) ? role + ": " : string.Empty;

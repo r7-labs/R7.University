@@ -34,7 +34,6 @@ using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.DivisionDirectory.Models;
@@ -44,7 +43,6 @@ using R7.University.Models;
 using R7.University.Queries;
 using R7.University.Security;
 using R7.University.Utilities;
-using R7.University.ViewModels;
 
 namespace R7.University.DivisionDirectory
 {
@@ -181,6 +179,9 @@ namespace R7.University.DivisionDirectory
             else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                 gridObrnadzorDivisions.LocalizeColumnHeaders (LocalResourceFile);
             }
+            else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorGoverningDivisions) {
+                gridObrnadzorGoverningDivisions.LocalizeColumnHeaders (LocalResourceFile);
+            }
         }
 
         /// <summary>
@@ -223,6 +224,13 @@ namespace R7.University.DivisionDirectory
                         gridObrnadzorDivisions.DataBind ();
                     }
                 }
+                else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorGoverningDivisions) {
+                    var divisions = GetDivisions ();
+                    if (!divisions.IsNullOrEmpty ()) {
+                        gridObrnadzorGoverningDivisions.DataSource = DivisionObrnadzorViewModel.Create (divisions, ViewModelContext);
+                        gridObrnadzorGoverningDivisions.DataBind ();
+                    }
+                }
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -240,7 +248,15 @@ namespace R7.University.DivisionDirectory
 
         IEnumerable<DivisionInfo> GetDivisions_Internal ()
         {
-            return new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
+            if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
+                return new DivisionHierarchyQuery (ModelContext).ListHierarchy ();
+            }
+
+            if (Settings.Mode == DivisionDirectoryMode.ObrnadzorGoverningDivisions) {
+                return new DivisionHierarchyQuery (ModelContext).ListGoverningHierarchy ();
+            }
+
+            return Enumerable.Empty<DivisionInfo> ();
         }
 
         #endregion
@@ -271,7 +287,7 @@ namespace R7.University.DivisionDirectory
             var now = HttpContext.Current.Timestamp;
 
             // TODO: If parent division not published, ensure what child divisions also not
-            var divisions = new DivisionQuery (ModelContext).FindDivisions (searchText, searchDivision)
+            var divisions = new DivisionFindQuery (ModelContext).FindDivisions (searchText, searchDivision)
                                                             .Where (d => d.IsPublished (now) || IsEditable)
                                                             .Where (d => !d.IsInformal || Settings.ShowInformal || IsEditable);
 
@@ -338,6 +354,10 @@ namespace R7.University.DivisionDirectory
                     e.Row.AddCssClass ("u8y-informal-division");
                 }
 
+                if (division.IsGoverning) {
+                    e.Row.AddCssClass ("u8y-governing-division");
+                }
+
                 var labelTitle = (Label) e.Row.FindControl ("labelTitle");
                 var linkTitle = (HyperLink) e.Row.FindControl ("linkTitle");
                 var literalPhone = (Literal) e.Row.FindControl ("literalPhone");
@@ -389,13 +409,11 @@ namespace R7.University.DivisionDirectory
                     + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
                     + "\" title=\"" + headEmployee.FullName + "\">" + headEmployee.AbbrName + "</a>";
                 }
-                else if (!division.IsVirtual) {
-                    if (division.HeadPositionID != null) {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
-                    }
-                    else {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
-                    }
+                else if (division.HeadPositionID != null) {
+                    literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
+                }
+                else {
+                    literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
                 }
             }
         }
@@ -412,6 +430,8 @@ namespace R7.University.DivisionDirectory
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var division = (DivisionObrnadzorViewModel) e.Row.DataItem;
 
+                e.Row.Attributes.Add ("itemprop", "structOrgUprav");
+
                 if (IsEditable) {
                     // get edit link controls
                     var linkEdit = (HyperLink) e.Row.FindControl ("linkEdit");
@@ -422,40 +442,16 @@ namespace R7.University.DivisionDirectory
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 
-                #region Head Employee
-
-                var literalHeadEmployee = (Literal) e.Row.FindControl ("literalHeadEmployee");
-
-                // TODO: Don't call to database here!
-                // get head employee
-                var headEmployee = new HeadEmployeesQuery (ModelContext)
-                    .ListHeadEmployees (division.DivisionID, division.HeadPositionID)
-                    .FirstOrDefault (he => he.IsPublished (now));
-                
-                if (headEmployee != null) {
-                    var headPosition = headEmployee.Positions
-                        .Single (op => op.DivisionID == division.DivisionID && op.PositionID == division.HeadPositionID);
-                    
-                    var positionTitle = FormatHelper.FormatShortTitle (headPosition.Position.ShortTitle, headPosition.Position.Title);
-
-                    literalHeadEmployee.Text = "<strong><a href=\""
-                    + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
-                    + "\" itemprop=\"Fio\">" + headEmployee.FullName + "</a></strong><br />"
-                    + TextUtils.FormatList (" ", positionTitle, headPosition.TitleSuffix);
-                }
-                else if (!division.IsVirtual) {
-                    if (division.HeadPositionID != null) {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
-                    }
-                    else {
-                        literalHeadEmployee.Text = LocalizeString ("HeadPosition_NotApplicable.Text");
-                    }
-                }
-
-                #endregion
-
                 if (!division.IsPublished (now)) {
                     e.Row.AddCssClass ("u8y-not-published");
+                }
+
+                if (division.IsGoverning) {
+                    e.Row.AddCssClass ("u8y-governing-division");
+                }
+
+                if (division.IsSingleEntity) {
+                    e.Row.AddCssClass ("u8y-single-entity-division");
                 }
 
                 if (division.IsInformal && IsEditable) {

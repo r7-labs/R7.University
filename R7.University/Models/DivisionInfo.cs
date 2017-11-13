@@ -76,9 +76,11 @@ namespace R7.University.Models
 
         public string DocumentUrl { get; set; }
 
-        public bool IsVirtual { get; set; }
+        public bool IsSingleEntity { get; set; }
 
         public bool IsInformal { get; set; }
+
+        public bool IsGoverning { get; set; }
 
         public int? HeadPositionID { get; set; }
 
@@ -95,6 +97,8 @@ namespace R7.University.Models
         public DateTime CreatedOnDate { get; set; }
 
         public virtual ICollection<DivisionInfo> SubDivisions { get; set; } = new HashSet<DivisionInfo> ();
+
+        public virtual ICollection<OccupiedPositionInfo> OccupiedPositions { get; set; } = new HashSet<OccupiedPositionInfo> ();
 
         public int Level { get; set; }
 

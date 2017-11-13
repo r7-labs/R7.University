@@ -69,46 +69,46 @@
     <data name="Title.Required" xml:space="preserve">
         <value>The title of educational program is required.</value>
     </data>
-    <data name="labelEduLevel.Text">
+    <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Education Level:</value>
     </data>
-    <data name="labelEduLevel.Help">
+    <data name="labelEduLevel.Help" xml:space="preserve">
         <value>Select the level of educational program.</value>
     </data>
-    <data name="labelGeneration.Text">
+    <data name="labelGeneration.Text" xml:space="preserve">
         <value>Generation:</value>
     </data>
-    <data name="labelGeneration.Help">
+    <data name="labelGeneration.Help" xml:space="preserve">
         <value>Enter the generation code for educational program (educational standard).</value>
     </data>
-    <data name="labelStartDate.Text">
+    <data name="labelStartDate.Text" xml:space="preserve">
         <value>Start Publication:</value>
     </data>
-    <data name="labelStartDate.Help">
+    <data name="labelStartDate.Help" xml:space="preserve">
         <value>Enter the date from current educational program should be published on the site.</value>
     </data>
-    <data name="labelEndDate.Text">
+    <data name="labelEndDate.Text" xml:space="preserve">
         <value>End Publication:</value>
     </data>
-    <data name="labelEndDate.Help">
+    <data name="labelEndDate.Help" xml:space="preserve">
         <value>Enter the date from current educational program should be removed from publication on the site.</value>
     </data>
-    <data name="labelHomePage.Text">
+    <data name="labelHomePage.Text" xml:space="preserve">
         <value>Home Page:</value>
     </data>
-    <data name="labelHomePage.Help">
+    <data name="labelHomePage.Help" xml:space="preserve">
         <value>Specify home page for the educational program. This page generally contains details about educational program.</value>
     </data>
-    <data name="labelDivision.Text">
+    <data name="labelDivision.Text" xml:space="preserve">
         <value>Division:</value>
     </data>
-    <data name="labelDivision.Help">
+    <data name="labelDivision.Help" xml:space="preserve">
         <value>Select division, which implements the educational program. Generally it's a faculty or an institute.</value>
     </data>
-	<data name="AddEduProgramProfile.Text">
+	<data name="AddEduProgramProfile.Text" xml:space="preserve">
         <value>Add Edu. Program Profile</value>
     </data>
-	<data name="labelAddDefaultProfile.Text">
+	<data name="labelAddDefaultProfile.Text" xml:space="preserve">
         <value>Add Default Profile?</value>
     </data>
     <data name="labelAddDefaultProfile.Help">
@@ -119,5 +119,8 @@
     </data>
     <data name="labelAudit.Help" xml:space="preserve">
         <value>Audit data for the educational program.</value>
+    </data>
+    <data name="EditScience.Action" xml:space="preserve">
+        <value>Edit Science Records</value>
     </data>
 </root>

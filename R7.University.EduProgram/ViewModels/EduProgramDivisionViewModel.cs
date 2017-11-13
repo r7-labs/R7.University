@@ -1,4 +1,4 @@
-﻿//
+//
 //  EduProgramDivisionViewModel.cs
 //
 //  Author:
@@ -47,6 +47,6 @@ namespace R7.University.EduProgram.ViewModels
 
         public int? EduProgramProfileId => Model.EduProgramProfileId;
 
-        public string DivisionLink => FormatHelper.FormatDivisionLink (Model.Division, Model.DivisionRole, Model.Division.IsPublished (HttpContext.Current.Timestamp));
+        public string DivisionLink => FormatHelper.FormatEduProgramDivisionLink (Model.Division, Model.DivisionRole, Model.Division.IsPublished (HttpContext.Current.Timestamp));
     }
 }

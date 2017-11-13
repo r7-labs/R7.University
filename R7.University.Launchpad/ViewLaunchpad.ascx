@@ -82,7 +82,8 @@
                         <asp:BoundField DataField="ParentDivisionID" SortExpression="ParentDivisionID" HeaderText="ParentDivisionID" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
-                        <asp:CheckBoxField DataField="IsVirtual" SortExpression="IsVirtual" HeaderText="IsVirtual" />
+						<asp:CheckBoxField DataField="IsGoverning" SortExpression="IsGoverning" HeaderText="IsGoverning" />
+                        <asp:CheckBoxField DataField="IsSingleEntity" SortExpression="IsSingleEntity" HeaderText="IsSingleEntity" />
 						<asp:CheckBoxField DataField="IsInformal" SortExpression="IsInformal" HeaderText="IsInformal" />
                         <asp:BoundField DataField="DocumentUrl" SortExpression="DocumentUrl" HeaderText="DocumentUrl" />
                         <asp:BoundField DataField="HomePage" SortExpression="HomePage" HeaderText="HomePage" />
@@ -461,6 +462,41 @@
                         <asp:BoundField DataField="EduFormID" SortExpression="EduFormID" HeaderText="EduFormID" />
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
+                        <asp:CheckBoxField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" Visible="true" />
+                </asp:GridView>
+                <br />
+            </div>
+        </asp:View>
+        <asp:View id="viewScienceRecordTypes" runat="server">
+            <div id="sciencerecordtypes" style="overflow:auto">
+                <asp:GridView id="gridScienceRecordTypes" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None" 
+                    OnSorting="gridView_Sorting" 
+                    OnPageIndexChanging="gridView_PageIndexChanging"
+                    OnRowDataBound="gridView_RowDataBound">
+                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                    <SelectedRowStyle CssClass="dnnFormError" />
+                    <EditRowStyle CssClass="dnnFormInput" />
+                    <FooterStyle CssClass="dnnGridFooter" />
+                    <PagerStyle CssClass="dnnGridPager" />
+                    <Columns>
+                        <asp:TemplateField>
+                           <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                </asp:HyperLink>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="ScienceRecordTypeId" SortExpression="ScienceRecordTypeId" HeaderText="ScienceRecordTypeId" />
+                        <asp:BoundField DataField="Type" SortExpression="Type" HeaderText="Type" />
+						<asp:CheckBoxField DataField="DescriptionIsRequired" SortExpression="DescriptionIsRequired" HeaderText="DescriptionIsRequired" />
+                        <asp:BoundField DataField="NumOfValues" SortExpression="NumOfValues" HeaderText="NumOfValues" />
+						<asp:BoundField DataField="TypeOfValues" SortExpression="TypeOfValues" HeaderText="TypeOfValues" />
+                        <asp:BoundField DataField="SortIndex" SortExpression="SortIndex" HeaderText="SortIndex" />
                         <asp:CheckBoxField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />

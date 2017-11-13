@@ -15,127 +15,127 @@
 	<data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Not Selected &gt;</value>
     </data>
-	<data name="Years.Column">
+	<data name="Years.Column" xml:space="preserve">
         <value>Year(s)</value>
     </data>
-    <data name="Title.Column">
+    <data name="Title.Column" xml:space="preserve">
         <value>Title</value>
     </data>
-    <data name="IsTitle.Column">
+    <data name="IsTitle.Column" xml:space="preserve">
         <value>Is Title</value>
     </data>
-    <data name="AchievementType.Column">
+    <data name="AchievementType.Column" xml:space="preserve">
         <value>Category</value>
     </data>
-    <data name="DocumentUrl.Column">
+    <data name="DocumentUrl.Column" xml:space="preserve">
         <value>Document</value>
     </data>
-    <data name="SystemAchievementType_Custom.Text">
+    <data name="SystemAchievementType_Custom.Text" xml:space="preserve">
         <value></value>
     </data>
-    <data name="SystemAchievementType_Training.Text">
+    <data name="SystemAchievementType_Training.Text" xml:space="preserve">
         <value>Training</value>
     </data>
-    <data name="SystemAchievementType_ProfTraining.Text">
+    <data name="SystemAchievementType_ProfTraining.Text" xml:space="preserve">
         <value>Professional Training</value>
     </data>
-    <data name="SystemAchievementType_ProfRetraining.Text">
+    <data name="SystemAchievementType_ProfRetraining.Text" xml:space="preserve">
         <value>Professional Retraining</value>
     </data>
-    <data name="SystemAchievementType_Education.Text">
+    <data name="SystemAchievementType_Education.Text" xml:space="preserve">
         <value>Education</value>
     </data>
-    <data name="SystemAchievementType_Work.Text">
+    <data name="SystemAchievementType_Work.Text" xml:space="preserve">
         <value>Work</value>
     </data>
-    <data name="SystemAchievementType_Title.Text">
+    <data name="SystemAchievementType_Title.Text" xml:space="preserve">
         <value>Title</value>
     </data>
-    <data name="SystemAchievementType_AcademicTitle.Text">
+    <data name="SystemAchievementType_AcademicTitle.Text" xml:space="preserve">
         <value>Academic Title</value>
     </data>
-    <data name="SystemAchievementType_AcademicDegree.Text">
+    <data name="SystemAchievementType_AcademicDegree.Text" xml:space="preserve">
         <value>Academic Degree</value>
     </data>
-    <data name="SystemAchievementType_Authorship.Text">
+    <data name="SystemAchievementType_Authorship.Text" xml:space="preserve">
         <value>Author</value>
     </data>
-    <data name="DocumentUrl.Text">
+    <data name="DocumentUrl.Text" xml:space="preserve">
         <value>View</value>
     </data>
-    <data name="AtTheMoment.Text">
+    <data name="AtTheMoment.Text" xml:space="preserve">
         <value>ATM</value>
     </data>
-    <data name="labelAchievementTypes.Text">
+    <data name="labelAchievementTypes.Text" xml:space="preserve">
         <value>Achievement Type:</value>
     </data>
-    <data name="labelAchievementTypes.Help">
+    <data name="labelAchievementTypes.Help" xml:space="preserve">
         <value>Select employee achievement type from the list.</value>
     </data>
-    <data name="buttonAddAchievement.Text">
+    <data name="buttonAddAchievement.Text" xml:space="preserve">
         <value>Add Achievement</value>
     </data>
-    <data name="buttonUpdateAchievement.Text">
+    <data name="buttonUpdateAchievement.Text" xml:space="preserve">
         <value>Update Achievement</value>
     </data>
-    <data name="buttonCancelEditAchievement.Text">
+    <data name="buttonCancelEditAchievement.Text" xml:space="preserve">
         <value>Cancel</value>
     </data>
-    <data name="labelYears.Text">
+    <data name="labelYears.Text" xml:space="preserve">
         <value>Years:</value>
     </data>
-    <data name="labelYears.Help">
+    <data name="labelYears.Help" xml:space="preserve">
         <value>Enter starting and ending years of the achievement. If they are not available, leave fields empty or set to -1. Set end year to 0 to specify ATM value.</value>
     </data>
-    <data name="labelAchievementTitle.Text">
+    <data name="labelAchievementTitle.Text" xml:space="preserve">
         <value>Title:</value>
     </data>
-    <data name="labelAchievementTitle.Help">
+    <data name="labelAchievementTitle.Help" xml:space="preserve">
         <value>Enter the title for the described achievement.</value>
     </data>
-    <data name="AchievementTitle.Required">
+    <data name="AchievementTitle.Required" xml:space="preserve">
         <value>Achievement title is required.</value>
     </data>
-    <data name="AchievementTitle.MaxLength">
+    <data name="AchievementTitle.MaxLength" xml:space="preserve">
         <value>Achievement title is too long.</value>
     </data>  
-    <data name="labelAchievementShortTitle.Text">
+    <data name="labelAchievementShortTitle.Text" xml:space="preserve">
         <value>Short Title:</value>
     </data>
-    <data name="labelAchievementShortTitle.Help">
+    <data name="labelAchievementShortTitle.Help" xml:space="preserve">
         <value>Enter the optional short title for the described achievement.</value>
     </data>
-    <data name="labelAchievementDescription.Text">
+    <data name="labelAchievementDescription.Text" xml:space="preserve">
         <value>Description:</value>
     </data>
-    <data name="labelAchievementDescription.Help">
+    <data name="labelAchievementDescription.Help" xml:space="preserve">
         <value>Enter optional description to describe achievement.</value>
     </data>
-    <data name="labelAchievementTitleSuffix.Text">
+    <data name="labelAchievementTitleSuffix.Text" xml:space="preserve">
         <value>Title Suffix:</value>
     </data>
-    <data name="labelAchievementTitleSuffix.Help">
+    <data name="labelAchievementTitleSuffix.Help" xml:space="preserve">
         <value>Enter the extension suffix for the achievement title.</value>
     </data>
-    <data name="labelIsTitle.Text">
+    <data name="labelIsTitle.Text" xml:space="preserve">
         <value>Is Title?</value>
     </data>
-    <data name="labelIsTitle.Help">
+    <data name="labelIsTitle.Help" xml:space="preserve">
         <value>If checked, this achivement will be displayed as one of employee's titles along with his/her name.</value>
     </data>
-    <data name="labelDocumentURL.Text">
+    <data name="labelDocumentURL.Text" xml:space="preserve">
         <value>Document URL:</value>
     </data>
-    <data name="labelDocumentURL.Help">
+    <data name="labelDocumentURL.Help" xml:space="preserve">
         <value>Specify URL for a document, associated with the achievement.</value>
     </data>
-    <data name="labelAchievements.Text">
+    <data name="labelAchievements.Text" xml:space="preserve">
         <value>Achievement:</value>
     </data>
-    <data name="labelAchievements.Help">
+    <data name="labelAchievements.Help" xml:space="preserve">
         <value>Select the achievement from dropdown by title or select achivement type and set full and short titles manually.</value>
     </data>
-    <data name="sectionAdvancedAchievementProperties.Text">
+    <data name="sectionAdvancedAchievementProperties.Text" xml:space="preserve">
         <value>Advanced Achievement Properties</value>
     </data>
 </root>

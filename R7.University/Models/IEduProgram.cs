@@ -49,6 +49,8 @@ namespace R7.University.Models
         ICollection<EduProgramProfileInfo> EduProgramProfiles { get; }
 
         ICollection<EduProgramDivisionInfo> Divisions { get; }
+
+        ICollection<ScienceRecordInfo> ScienceRecords { get; }
     }
 
     public interface IEduProgramWritable: IEduProgram, ITrackableEntityWritable
@@ -76,5 +78,7 @@ namespace R7.University.Models
         new ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
 
         new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
+
+        new ICollection<ScienceRecordInfo> ScienceRecords { get; set; }
     }
 }

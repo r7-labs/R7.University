@@ -29,8 +29,9 @@ namespace R7.University.Division
         protected CheckBox checkAddToVocabulary;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
-        protected CheckBox checkIsVirtual;
+        protected CheckBox checkIsSingleEntity;
         protected CheckBox checkIsInformal;
+        protected CheckBox checkIsGoverning;
         protected DropDownList comboHeadPosition;
     }
 }

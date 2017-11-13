@@ -88,16 +88,33 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="Order" HeaderText="Order.Column" />
                         <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzor.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="LocationString" HeaderText="Location.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="Phone" HeaderText="Phone.Column" />
+                        <asp:BoundField DataField="HeadEmployeeHtml" HeaderText="HeadEmployee.Column" HtmlEncode="false" />
+					    <asp:BoundField DataField="LocationString" HeaderText="Location.Column" HtmlEncode="false" />
                         <asp:BoundField DataField="WebSiteLink" HeaderText="WebSiteObrnadzor.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor.Column" HtmlEncode="false" />
+					    <asp:BoundField DataField="EmailLink" HeaderText="EmailObrnadzor.Column" HtmlEncode="false" />
+						<asp:BoundField DataField="Phone" HeaderText="Phone.Column" />
                         <asp:BoundField DataField="DocumentLink" HeaderText="Document.Column" HtmlEncode="false" />
-                        <asp:TemplateField HeaderText="HeadEmployee.Column">
+                    </Columns>
+                </asp:GridView>
+            </div>
+        </asp:View>
+		<asp:View id="viewObrnadzorGoverningDivisions" runat="server">
+            <div class="table-responsive">
+                <asp:GridView id="gridObrnadzorGoverningDivisions" runat="server" EnableViewState="false" AutoGenerateColumns="false" 
+                    UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
+                        CssClass="table table-bordered table-striped table-hover grid-obrnadzor-governing-divisions" GridLines="None">
+                    <Columns>
+                        <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Literal id="literalHeadEmployee" runat="server" /> 
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image id="iconEdit" runat="server" />
+                                </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="Order" HeaderText="Order.Column" />
+                        <asp:BoundField DataField="TitleLink" HeaderText="TitleObrnadzorGoverningDivision.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="HeadEmployeeHtml" HeaderText="HeadEmployee.Column" HtmlEncode="false" />
+                        <asp:BoundField DataField="DocumentLink" HeaderText="Document.Column" HtmlEncode="false" />
                     </Columns>
                 </asp:GridView>
             </div>

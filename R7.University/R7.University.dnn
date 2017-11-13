@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="01.15.01">
+		<package name="R7.University" type="Library" version="01.16.00">
 			<friendlyName>R7.University</friendlyName>
 			<description>This is a core library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Division*, Employee*, EduProgram*, etc.</description>
 			<owner>
@@ -124,6 +124,10 @@
                             <name>SqlDataProvider\01.15.00.SqlDataProvider</name>
                             <version>01.15.00</version>
                         </script>
+						<script type="Install">
+                            <name>SqlDataProvider\01.16.00.SqlDataProvider</name>
+                            <version>01.16.00</version>
+                        </script>
                         <script type="UnInstall">
                             <name>SqlDataProvider\Uninstall.SqlDataProvider</name>
                         </script>
@@ -161,7 +165,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="01.15.01">
+		<package name="R7.University.Launchpad" type="Module" version="01.16.00">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -321,6 +325,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditScienceRecordType</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditScienceRecordType.ascx</controlSrc>
+                                        <controlTitle>Edit Science Record Type</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
 								</moduleControls>
 							</moduleDefinition>
 						</moduleDefinitions>
@@ -337,7 +352,7 @@
 				</component>
       		</components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="01.15.01">
+		<package name="R7.University.Employee" type="Module" version="01.16.00">
 			<friendlyName>R7.University.Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -425,7 +440,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDetails" type="Module" version="01.15.01">
+		<package name="R7.University.EmployeeDetails" type="Module" version="01.16.00">
 			<friendlyName>R7.University.EmployeeDetails</friendlyName>
 			<description>This is a module to display detailed information about single employee.</description>
 			<owner>
@@ -493,7 +508,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="01.15.01">
+		<package name="R7.University.EmployeeList" type="Module" version="01.16.00">
 			<friendlyName>R7.University.EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
@@ -581,7 +596,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Division" type="Module" version="01.15.01">
+		<package name="R7.University.Division" type="Module" version="01.16.00">
 			<friendlyName>R7.University.Division</friendlyName>
 			<description>This is a module to display information about single division.</description>
 			<owner>
@@ -658,7 +673,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDirectory" type="Module" version="01.15.01">
+		<package name="R7.University.EmployeeDirectory" type="Module" version="01.16.00">
 			<friendlyName>R7.University.EmployeeDirectory</friendlyName>
 			<description>This is a module to display information about employees.</description>
 			<owner>
@@ -746,7 +761,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.DivisionDirectory" type="Module" version="01.15.01">
+		<package name="R7.University.DivisionDirectory" type="Module" version="01.16.00">
 			<friendlyName>R7.University.DivisionDirectory</friendlyName>
 			<description>This is a module to display information about divisions.</description>
 			<owner>
@@ -845,7 +860,7 @@
 				</component>
 			</components>
 		</package>
-        <package name="R7.University.EduProgram" type="Module" version="01.15.01">
+        <package name="R7.University.EduProgram" type="Module" version="01.16.00">
             <friendlyName>R7.University.EduProgram</friendlyName>
             <description>This is a module to display information about single employee.</description>
             <owner>
@@ -894,6 +909,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditScience</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Science/EditScience.ascx</controlSrc>
+                                        <controlTitle>Edit Science</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
@@ -932,7 +958,7 @@
                 </component>
             </components>
         </package>
-        <package name="R7.University.EduProgramDirectory" type="Module" version="01.15.01">
+        <package name="R7.University.EduProgramDirectory" type="Module" version="01.16.00">
             <friendlyName>R7.University.EduProgramDirectory</friendlyName>
             <description>This is a module to display information about educational programs.</description>
             <owner>
@@ -983,6 +1009,17 @@
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
 									<moduleControl>
+                                        <controlKey>EditScience</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Science/EditScience.ascx</controlSrc>
+                                        <controlTitle>Edit Science</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+									<moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
@@ -1020,7 +1057,7 @@
                 </component>
             </components>
         </package>
-        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="01.15.01">
+        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="01.16.00">
             <friendlyName>R7.University.EduProgramProfileDirectory</friendlyName>
             <description>This is a module to display information about educational program profiles.</description>
             <owner>
@@ -1107,6 +1144,91 @@
                     </assemblies>
                 </component>
             </components>
-        </package>  
+        </package>
+		<package name="R7.University.ScienceDirectory" type="Module" version="01.16.00">
+            <friendlyName>R7.University.ScienceDirectory</friendlyName>
+            <description>This is a module to display science information for educational programs.</description>
+            <owner>
+                <name>Roman M. Yagodin</name>
+                <organization>R7.Labs</organization>
+                <url>https://github.com/roman-yagodin/R7.University</url>
+                <email>roman.yagodin@gmail.com</email>
+            </owner>
+            <license />
+            <releaseNotes />
+            <dependencies />
+            <components>
+                <component type="Module">
+                    <desktopModule>
+                        <moduleName>R7.University.ScienceDirectory</moduleName>
+                        <foldername>R7.University/R7.University.Science</foldername>
+                        <businessControllerClass>R7.University.Science.Components.ScienceDirectoryController</businessControllerClass>
+                        <supportedFeatures />
+                        <moduleDefinitions>
+                            <moduleDefinition>
+                                <friendlyName>R7.University.ScienceDirectory</friendlyName>
+                                <definitionName>R7_University_ScienceDirectory</definitionName>
+                                <defaultCacheTime>0</defaultCacheTime>
+                                <moduleControls>
+                                    <moduleControl>
+                                        <controlKey />
+                                        <controlSrc>R7.University.ScienceDirectory.Controllers/Science/ScienceDirectory.mvc</controlSrc>
+                                        <controlTitle />
+                                        <controlType>View</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditScience</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Science/EditScience.ascx</controlSrc>
+                                        <controlTitle>Edit Science</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgram</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>Settings</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Science/EditScienceDirectorySettings.ascx</controlSrc>
+                                        <controlTitle>Science Directory Settings</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                </moduleControls>
+                            </moduleDefinition>
+                        </moduleDefinitions>
+                    </desktopModule>
+                </component>
+                <component type="Assembly">
+                    <assemblies>
+                        <basePath>bin</basePath>
+                        <assembly>
+                            <path>bin</path>
+                            <name>R7.University.Science.dll</name>
+                        </assembly>
+                    </assemblies>
+                </component>
+            </components>
+        </package>
 	</packages>
 </dotnetnuke>

@@ -12,136 +12,136 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="SystemDocumentType_OrderEnrollment.Text">
+    <data name="SystemDocumentType_OrderEnrollment.Text" xml:space="preserve">
         <value>Enrollment Order</value>
     </data>
-    <data name="SystemDocumentType_OrderExpulsion.Text">
+    <data name="SystemDocumentType_OrderExpulsion.Text" xml:space="preserve">
         <value>Expulsion Order</value>
     </data>
-    <data name="SystemDocumentType_OrderRestoration.Text">
+    <data name="SystemDocumentType_OrderRestoration.Text" xml:space="preserve">
         <value>Restoration Order</value>
     </data>
-    <data name="SystemDocumentType_OrderTransfer.Text">
+    <data name="SystemDocumentType_OrderTransfer.Text" xml:space="preserve">
         <value>Transfer Order</value>
     </data>
-    <data name="SystemDocumentType_OrderAcademicLeave.Text">
+    <data name="SystemDocumentType_OrderAcademicLeave.Text" xml:space="preserve">
         <value>Academic Leave Order</value>
     </data>
-    <data name="SystemDocumentType_EduStandard.Text">
+    <data name="SystemDocumentType_EduStandard.Text" xml:space="preserve">
         <value>Educational Standard</value>
     </data>
-    <data name="SystemDocumentType_ProfStandard.Text">
+    <data name="SystemDocumentType_ProfStandard.Text" xml:space="preserve">
         <value>Professional Standard</value>
     </data>
-    <data name="SystemDocumentType_EduProgram.Text">
+    <data name="SystemDocumentType_EduProgram.Text" xml:space="preserve">
         <value>Educational Program</value>
     </data>
-    <data name="SystemDocumentType_EduSchedule.Text">
+    <data name="SystemDocumentType_EduSchedule.Text" xml:space="preserve">
         <value>Education Schedule</value>
     </data>
-    <data name="SystemDocumentType_EduPlan.Text">
+    <data name="SystemDocumentType_EduPlan.Text" xml:space="preserve">
         <value>Education Plan</value>
     </data>
-    <data name="SystemDocumentType_EduMaterial.Text">
+    <data name="SystemDocumentType_EduMaterial.Text" xml:space="preserve">
         <value>Educational Material</value>
     </data>
-    <data name="SystemDocumentType_WorkProgramAnnotation.Text">
+    <data name="SystemDocumentType_WorkProgramAnnotation.Text" xml:space="preserve">
         <value>Work Program Annotation</value>
     </data>
-    <data name="SystemDocumentType_WorkProgramOfPractice.Text">
+    <data name="SystemDocumentType_WorkProgramOfPractice.Text" xml:space="preserve">
         <value>Work Program Of Practice</value>
     </data>
-    <data name="SystemDocumentType_Contingent.Text">
+    <data name="SystemDocumentType_Contingent.Text" xml:space="preserve">
         <value>Contingent Info</value>
     </data>
-    <data name="SystemDocumentType_ContingentMovement.Text">
+    <data name="SystemDocumentType_ContingentMovement.Text" xml:space="preserve">
         <value>Contingent Movement Info</value>
     </data>
-    <data name="SystemDocumentType_ScienceInfo.Text">
+    <data name="SystemDocumentType_ScienceInfo.Text" xml:space="preserve">
         <value>Science Info</value>
     </data>
-    <data name="labelDocumentTitle.Text">
+    <data name="labelDocumentTitle.Text" xml:space="preserve">
         <value>Title:</value>
     </data>
-    <data name="labelDocumentTitle.Help">
+    <data name="labelDocumentTitle.Help" xml:space="preserve">
         <value>Enter title for the document.</value>
     </data>
-    <data name="labelDocumentGroup.Text">
+    <data name="labelDocumentGroup.Text" xml:space="preserve">
         <value>Group:</value>
     </data>
-    <data name="labelDocumentGroup.Help">
+    <data name="labelDocumentGroup.Help" xml:space="preserve">
         <value>Specify group name for the document.</value>
     </data>
-    <data name="labelDocumentType.Text">
+    <data name="labelDocumentType.Text" xml:space="preserve">
         <value>Type:</value>
     </data>
-    <data name="labelDocumentType.Help">
+    <data name="labelDocumentType.Help" xml:space="preserve">
         <value>Select document type from the dropdown.</value>
     </data>
-    <data name="labelDocumentSortIndex.Text">
+    <data name="labelDocumentSortIndex.Text" xml:space="preserve">
         <value>Sort Index:</value>
     </data>
-    <data name="labelDocumentSortIndex.Help">
+    <data name="labelDocumentSortIndex.Help" xml:space="preserve">
         <value>Enter sort index for the document. It can be used to give specific order to the documents in some views.</value>
     </data>
-    <data name="DocumentSortIndex.Invalid">
+    <data name="DocumentSortIndex.Invalid" xml:space="preserve">
         <value>Document sort index must be an integer.</value>
     </data>
-    <data name="labelDocumentUrl.Text">
+    <data name="labelDocumentUrl.Text" xml:space="preserve">
         <value>Link:</value>
     </data>
-    <data name="labelDocumentUrl.Help">
+    <data name="labelDocumentUrl.Help" xml:space="preserve">
         <value>Provide link to the document.</value>
     </data>
-    <data name="labelDocumentStartDate.Text">
+    <data name="labelDocumentStartDate.Text" xml:space="preserve">
         <value>Start Publication:</value>
     </data>
-    <data name="labelDocumentStartDate.Help">
+    <data name="labelDocumentStartDate.Help" xml:space="preserve">
         <value>Enter the date from current document should be published on the site.</value>
     </data>
-    <data name="labelDocumentEndDate.Text">
+    <data name="labelDocumentEndDate.Text" xml:space="preserve">
         <value>End Publication:</value>
     </data>
-    <data name="labelDocumentEndDate.Help">
+    <data name="labelDocumentEndDate.Help" xml:space="preserve">
         <value>Enter the date from current document should be removed from publication on the site.</value>
     </data>
-    <data name="sectionAdvancedProperties.Text">
+    <data name="sectionAdvancedProperties.Text" xml:space="preserve">
         <value>Advanced Document Properties</value>
     </data>
-    <data name="buttonAddDocument.Text">
+    <data name="buttonAddDocument.Text" xml:space="preserve">
         <value>Add Document</value>
     </data>
-    <data name="buttonUpdateDocument.Text">
+    <data name="buttonUpdateDocument.Text" xml:space="preserve">
         <value>Update Document</value>
     </data>
-    <data name="DocumentTitle.Column">
+    <data name="DocumentTitle.Column" xml:space="preserve">
         <value>Title</value>
     </data>
-    <data name="DocumentGroup.Column">
+    <data name="DocumentGroup.Column" xml:space="preserve">
         <value>Group</value>
     </data>
-    <data name="DocumentType.Column">
+    <data name="DocumentType.Column" xml:space="preserve">
         <value>Type</value>
     </data>
-    <data name="DocumentUrl.Column">
+    <data name="DocumentUrl.Column" xml:space="preserve">
         <value>Link</value>
     </data>
-    <data name="DocumentUrlLabel.Text">
+    <data name="DocumentUrlLabel.Text" xml:space="preserve">
         <value>[open]</value>
     </data>
-    <data name="DocumentFileName.Column">
+    <data name="DocumentFileName.Column" xml:space="preserve">
         <value>File Name</value>
     </data>
-    <data name="DocumentSortIndex.Column">
+    <data name="DocumentSortIndex.Column" xml:space="preserve">
         <value>Sort Index</value>
     </data>
-    <data name="DocumentStartDate.Column">
+    <data name="DocumentStartDate.Column" xml:space="preserve">
         <value>Start Date</value>
     </data>
-    <data name="DocumentEndDate.Column">
+    <data name="DocumentEndDate.Column" xml:space="preserve">
         <value>End Date</value>
     </data>
-	<data name="FileName.Invalid">
+	<data name="FileName.Invalid" xml:space="preserve">
         <value>Name of the selected file doesn't match validation expression &quot;{regex}&quot; for the selected document type.</value>
     </data>
 </root>

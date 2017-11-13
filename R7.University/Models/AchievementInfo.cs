@@ -33,6 +33,6 @@ namespace R7.University.Models
 
         public string ShortTitle  { get; set; }
 
-        public AchievementTypeInfo AchievementType { get; set; }
+        public virtual AchievementTypeInfo AchievementType { get; set; }
     }
 }

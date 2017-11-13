@@ -24,6 +24,7 @@ namespace R7.University.DivisionDirectory.Models
     public enum DivisionDirectoryMode
     {
         Search,
-        ObrnadzorDivisions
+        ObrnadzorDivisions,
+        ObrnadzorGoverningDivisions
     }
 }

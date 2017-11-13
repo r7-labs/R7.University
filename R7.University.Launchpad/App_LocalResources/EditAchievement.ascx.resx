@@ -30,10 +30,10 @@
 	<data name="labelShortTitle.Help" xml:space="preserve">
     	<value>Enter the short title for employee achievement.</value>
   	</data>
-	<data name="labelAchievementTypes.Text">
+	<data name="labelAchievementTypes.Text" xml:space="preserve">
 		<value>Achievement Type:</value>
 	</data>
-	<data name="labelAchievementTypes.Help">
+	<data name="labelAchievementTypes.Help" xml:space="preserve">
         <value>Select employee achievement type from the dropdown.</value>
 	</data>
 </root>

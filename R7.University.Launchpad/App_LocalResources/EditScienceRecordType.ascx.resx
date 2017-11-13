@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ControlTitle_editachievementtype.Text" xml:space="preserve">
+        <value>Edit Science Record Type</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;About Edit Science Record Type Module&lt;/P&gt;</value>
+    </data>
+    <data name="labelType.Text" xml:space="preserve">
+        <value>Type:</value>
+    </data>
+    <data name="labelType.Help" xml:space="preserve">
+        <value>Enter science record type name.</value>
+    </data>
+    <data name="Type.Required" xml:space="preserve">
+        <value>The type name for the science record is required.</value>
+    </data>
+    <data name="labelIsSystem.Text" xml:space="preserve">
+        <value>Is System?</value>
+    </data>
+    <data name="labelIsSystem.Help" xml:space="preserve">
+        <value>System science record types have special meaning for the system work, therefore they cannot be deleted and modification of the key field values is limited.</value>
+    </data>
+	<data name="labelDescriptionIsRequired.Text" xml:space="preserve">
+        <value>Description is Required?</value>
+    </data>
+    <data name="labelDescriptionIsRequired.Help" xml:space="preserve">
+        <value>Check to make description of science record of this type required.</value>
+    </data>
+    <data name="labelNumOfValues.Text" xml:space="preserve">
+        <value>Number of Values:</value>
+    </data>
+    <data name="labelNumOfValues.Help" xml:space="preserve">
+        <value>Enter the number of numeric values (from 0 to 2) accociated with a science record of this type.</value>
+    </data>
+	<data name="labelTypeOfValues.Text" xml:space="preserve">
+        <value>Type of Values:</value>
+    </data>
+    <data name="labelTypeOfValues.Help" xml:space="preserve">
+        <value>Select type of values.</value>
+    </data>
+    <data name="NumOfValues.Required" xml:space="preserve">
+        <value>The number of values is required.</value>
+    </data>
+    <data name="NumOfValues.Invalid" xml:space="preserve">
+        <value>The number of values must be an integer number from 0 to 2.</value>
+    </data>
+    <data name="labelSortIndex.Text" xml:space="preserve">
+        <value>Sort Index:</value>
+    </data>
+    <data name="labelSortIndex.Help" xml:space="preserve">
+        <value>Enter an integer number which will be used in the sorting of science records of this type.</value>
+    </data>
+    <data name="SortIndex.Required" xml:space="preserve">
+        <value>The sort index is required.</value>
+    </data>
+    <data name="SortIndex.Invalid" xml:space="preserve">
+        <value>Sort index must be an integer.</value>
+    </data>
+	<data name="ScienceRecordTypeOfValues_Integer.Text" xml:space="preserve">
+        <value>Integer</value>
+    </data>
+	<data name="ScienceRecordTypeOfValues_Decimal.Text" xml:space="preserve">
+        <value>Decimal</value>
+    </data>
+</root>

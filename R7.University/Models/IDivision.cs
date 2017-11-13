@@ -58,9 +58,11 @@ namespace R7.University.Models
 
         string DocumentUrl { get; }
 
-        bool IsVirtual { get; }
+        bool IsSingleEntity { get; }
 
         bool IsInformal { get; }
+
+        bool IsGoverning { get; }
 
         int? HeadPositionID { get; }
 
@@ -69,6 +71,8 @@ namespace R7.University.Models
         DateTime? EndDate { get; }
 
         ICollection<DivisionInfo> SubDivisions { get; }
+
+        ICollection<OccupiedPositionInfo> OccupiedPositions { get; }
 
         int Level { get; }
 
@@ -109,9 +113,11 @@ namespace R7.University.Models
 
         new string DocumentUrl { get; set; }
 
-        new bool IsVirtual { get; set; }
+        new bool IsSingleEntity { get; set; }
 
         new bool IsInformal { get; set; }
+
+        new bool IsGoverning { get; set; }
 
         new int? HeadPositionID { get; set; }
 
@@ -120,6 +126,8 @@ namespace R7.University.Models
         new DateTime? EndDate { get; set; }
 
         new ICollection<DivisionInfo> SubDivisions { get; set; }
+
+        new ICollection<OccupiedPositionInfo> OccupiedPositions { get; set; }
 
         new int Level { get; set; }
 

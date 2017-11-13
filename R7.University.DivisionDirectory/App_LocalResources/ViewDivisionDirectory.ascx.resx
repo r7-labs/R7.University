@@ -22,13 +22,16 @@
         <value>Division</value>
     </data>
     <data xml:space="preserve" name="TitleObrnadzor.Column">
-        <value>Division's title</value>
+        <value>Division's Title</value>
+    </data>
+	<data xml:space="preserve" name="TitleObrnadzorGoverningDivision.Column">
+        <value>Governing Body Title</value>
     </data>
     <data xml:space="preserve" name="Email.Column">
         <value>Email</value>
     </data>
     <data xml:space="preserve" name="EmailObrnadzor.Column">
-        <value>Email address</value>
+        <value>Email Address</value>
     </data>
     <data xml:space="preserve" name="Phone.Column">
         <value>Phone</value>
@@ -37,22 +40,22 @@
         <value>Website</value>
     </data>
     <data xml:space="preserve" name="WebSiteObrnadzor.Column">
-        <value>Official website address in the Internet</value>
+        <value>Official Website Address</value>
     </data>
     <data xml:space="preserve" name="Location.Column">
-        <value>Location</value>
+        <value>Location Address</value>
     </data>
     <data xml:space="preserve" name="Document.Column">
-        <value>Document</value>
+        <value>Regulations</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Column">
-        <value>Head Employee</value>
+        <value>Head Employee Name and Position</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
         <value>#</value>
     </data>
     <data xml:space="preserve" name="Regulations.Text">
-        <value>Regulations</value>
+        <value>[regulations]</value>
     </data>
     <data xml:space="preserve" name="linkSearch.Text">
         <value>Search</value>
@@ -73,7 +76,7 @@
         are available on division's homepage by the link with its title.</value>
     </data>
 	<data name="HeadPosition_IsVacant.Text" xml:space="preserve">
-        <value>the position is vacant</value>
+        <value>vacant position</value>
     </data>
 	<data name="HeadPosition_NotApplicable.Text" xml:space="preserve">
         <value>not applicable</value>

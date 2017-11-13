@@ -10,7 +10,7 @@
 		<RootNamespace>Deploy</RootNamespace>
 		<AssemblyName>Deploy</AssemblyName>
 		<TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-		<ReleaseVersion>1.15.1</ReleaseVersion>
+		<ReleaseVersion>1.16.0</ReleaseVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugSymbols>true</DebugSymbols>
@@ -32,11 +32,11 @@
 		      <name>Build &amp; Deploy</name>
 		      <command>msbuild /t:Build /p:Configuration=${ProjectConfigName} /p:EnableTests=false /p:EnableInstallPackage=false /p:EnableLocalDeploy=true ../R7.University.sln</command>
 		    </Command>
-            <Command>
-              <type>Custom</type>
-              <name>Re-deploy</name>
-              <command>msbuild /p:Configuration=${ProjectConfigName} /p:EnableTests=false LocalDeploy.targets</command>
-            </Command>
+		    <Command>
+		      <type>Custom</type>
+		      <name>Re-deploy</name>
+		      <command>msbuild /p:Configuration=${ProjectConfigName} /p:EnableTests=false LocalDeploy.targets</command>
+		    </Command>
 		    <Command>
 		      <type>Custom</type>
 		      <name>Make Install Package</name>
@@ -112,6 +112,10 @@
 		<ProjectReference Include="..\R7.University.Launchpad\R7.University.Launchpad.csproj">
 			<Project>{438F599E-41B4-4057-BFAA-FAA698E052DD}</Project>
 			<Name>R7.University.Launchpad</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\R7.University.Science\R7.University.Science.csproj">
+			<Project>{C564168C-AC2A-448D-9E0B-566E049701EB}</Project>
+			<Name>R7.University.Science</Name>
 		</ProjectReference>
 		<ProjectReference Include="..\R7.University.Tests\R7.University.Tests.csproj">
 			<Project>{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}</Project>

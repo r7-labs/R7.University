@@ -30,64 +30,64 @@
     <data name="VisitProfile.Text" xml:space="preserve">
     	<value>Visit profile</value>
     </data>
-    <data name="SystemAchievementType_Custom.Text">
+    <data name="SystemAchievementType_Custom.Text" xml:space="preserve">
     	<value></value>
     </data>
-    <data name="SystemAchievementType_Training.Text">
+    <data name="SystemAchievementType_Training.Text" xml:space="preserve">
     	<value>Training</value>
     </data>
-	<data name="SystemAchievementType_ProfTraining.Text">
+	<data name="SystemAchievementType_ProfTraining.Text" xml:space="preserve">
         <value>Professional Training</value>
     </data>
-	<data name="SystemAchievementType_ProfRetraining.Text">
+	<data name="SystemAchievementType_ProfRetraining.Text" xml:space="preserve">
         <value>Professional Retraining</value>
     </data>
-    <data name="SystemAchievementType_Education.Text">
+    <data name="SystemAchievementType_Education.Text" xml:space="preserve">
     	<value>Education</value>
     </data>
-    <data name="SystemAchievementType_Work.Text">
+    <data name="SystemAchievementType_Work.Text" xml:space="preserve">
     	<value>Work</value>
     </data>
-	<data name="SystemAchievementType_Title.Text">
+	<data name="SystemAchievementType_Title.Text" xml:space="preserve">
         <value>Title</value>
     </data>
-    <data name="SystemAchievementType_AcademicTitle.Text">
+    <data name="SystemAchievementType_AcademicTitle.Text" xml:space="preserve">
         <value>Academic Title</value>
     </data>
-    <data name="SystemAchievementType_AcademicDegree.Text">
+    <data name="SystemAchievementType_AcademicDegree.Text" xml:space="preserve">
         <value>Academic Degree</value>
     </data>
-	<data name="SystemAchievementType_Authorship.Text">
+	<data name="SystemAchievementType_Authorship.Text" xml:space="preserve">
         <value>Author</value>
     </data>
-    <data name="Years.Column">
+    <data name="Years.Column" xml:space="preserve">
         <value>Year(s)</value>
     </data>
-    <data name="Title.Column">
+    <data name="Title.Column" xml:space="preserve">
         <value>Title</value>
     </data>
-    <data name="IsTitle.Column">
+    <data name="IsTitle.Column" xml:space="preserve">
         <value>Is Title</value>
     </data>
-    <data name="AchievementType.Column">
+    <data name="AchievementType.Column" xml:space="preserve">
         <value>Category</value>
     </data>
-    <data name="DocumentUrl.Column">
+    <data name="DocumentUrl.Column" xml:space="preserve">
         <value>Document</value>
     </data>
-    <data name="EduProgramProfile.Column">
+    <data name="EduProgramProfile.Column" xml:space="preserve">
         <value>Educational Program (Profile)</value>
     </data>
-    <data name="Disciplines.Column">
+    <data name="Disciplines.Column" xml:space="preserve">
         <value>Disciplines</value>
     </data>
-    <data name="EduLevel.Column">
+    <data name="EduLevel.Column" xml:space="preserve">
         <value>Education Level</value>
     </data>
-    <data name="DocumentUrl.Text">
+    <data name="DocumentUrl.Text" xml:space="preserve">
         <value>[open]</value>
     </data>
-    <data name="AtTheMoment.Text">
+    <data name="AtTheMoment.Text" xml:space="preserve">
         <value>ATM</value>
     </data>
     <data name="Fax.Format" xml:space="preserve">

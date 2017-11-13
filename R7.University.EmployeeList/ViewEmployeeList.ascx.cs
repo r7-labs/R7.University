@@ -327,7 +327,8 @@ namespace R7.University.EmployeeList
                 foreach (var gop in gops) {
                     // gop.Title is a comma-separated list of grouped positions
                     strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", gop.Title, 
-                        // do not display division title also for current division
+                        // TODO: Move to the module display settings?
+                        // don't display division title also for current division
                         (gop.OccupiedPosition.DivisionID != Settings.DivisionID) ? gop.OccupiedPosition.FormatDivisionLink (this) : string.Empty));
                 }
 

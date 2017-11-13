@@ -1,0 +1,91 @@
+﻿--
+--  01.16.00.SqlDataProvider
+--
+--  Author:
+--       Roman M. Yagodin <roman.yagodin@gmail.com>
+--
+--  Copyright (c) 2017 Roman M. Yagodin
+--
+--  This program is free software: you can redistribute it and/or modify
+--  it under the terms of the GNU Affero General Public License as published by
+--  the Free Software Foundation, either version 3 of the License, or
+--  (at your option) any later version.
+--
+--  This program is distributed in the hope that it will be useful,
+--  but WITHOUT ANY WARRANTY; without even the implied warranty of
+--  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU Affero General Public License for more details.
+--
+--  You should have received a copy of the GNU Affero General Public License
+--  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-- NOTE: To manually execute this script you must 
+-- replace {databaseOwner} and {objectQualifier} with real values. 
+-- Defaults is "dbo." for database owner and "" for object qualifier 
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'IsGoverning')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions]
+        ADD IsGoverning bit NOT NULL DEFAULT (0)
+END
+GO
+
+IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'IsVirtual')
+BEGIN
+    EXECUTE sp_rename N'{objectQualifier}University_Divisions.IsVirtual', N'IsSingleEntity', N'COLUMN';
+END
+GO
+
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_ScienceRecordTypes')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (
+        ScienceRecordTypeID int IDENTITY (1,1) NOT NULL,
+        Type nvarchar (64) NOT NULL,
+        IsSystem bit NOT NULL,
+        DescriptionIsRequired bit NOT NULL,
+        NumOfValues int NOT NULL,
+        TypeOfValues nvarchar(16) NOT NULL,
+        SortIndex int NOT NULL
+        CONSTRAINT [PK_{objectQualifier}University_ScienceRecordTypes] PRIMARY KEY (ScienceRecordTypeID)
+    )
+
+    INSERT INTO {databaseOwner}[{objectQualifier}University_ScienceRecordTypes]
+        (Type, IsSystem, DescriptionIsRequired, NumOfValues, TypeOfValues, SortIndex)
+        VALUES
+            (N'Directions',   1, 1, 0, N'Integer', 10), -- perechenNir
+            (N'Base',         1, 1, 0, N'Integer', 20), -- baseNir
+            (N'Scientists',   1, 0, 1, N'Integer', 30), -- nprNir
+            (N'Students',     1, 0, 1, N'Integer', 40), -- studNir
+            (N'Monographs',   1, 0, 1, N'Integer', 50), -- monografNir
+            (N'Articles',     1, 0, 2, N'Integer', 60), -- articleNir
+            (N'Patents',      1, 0, 2, N'Integer', 70), -- patentRNir/patentZNir
+            (N'Certificates', 1, 0, 2, N'Integer', 80), -- svidRNir/svidZNir
+            (N'Finances',     1, 0, 1, N'Decimal', 90)  -- financeNir
+    END
+GO
+
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_ScienceRecords')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords] (
+        ScienceRecordID bigint IDENTITY (1,1) NOT NULL,
+        EduProgramID int NOT NULL,
+        ScienceRecordTypeID int NOT NULL,
+        Description nvarchar (max),
+        Value1 decimal (18,3) NULL,
+        Value2 decimal (18,3) NULL
+        CONSTRAINT [PK_{objectQualifier}University_ScienceRecords] PRIMARY KEY (ScienceRecordID)
+        CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_EduPrograms] FOREIGN KEY (EduProgramID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID) ON DELETE CASCADE,
+        CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_ScienceRecordTypes] FOREIGN KEY (ScienceRecordTypeID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (ScienceRecordTypeID) ON DELETE CASCADE,
+        CONSTRAINT [UN_{objectQualifier}University_ScienceRecords] UNIQUE (EduProgramID, ScienceRecordTypeID)    
+    )
+END
+GO
+
+IF NOT EXISTS (select * from sys.indexes where name = N'IX_{objectQualifier}University_ScienceRecords')
+BEGIN
+    CREATE NONCLUSTERED INDEX [IX_{objectQualifier}University_ScienceRecords]
+        ON {databaseOwner}[{objectQualifier}University_ScienceRecords] (EduProgramID, ScienceRecordTypeID)
+END
+GO
