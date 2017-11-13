@@ -21,13 +21,11 @@
 
 namespace R7.University.Models
 {
-    public interface IScienceRecordType
+    public interface IScienceRecordType: ISystemEntity
     {
         int ScienceRecordTypeId { get; }
         
         string Type { get; }
-        
-        bool IsSystem { get; }
 
         bool DescriptionIsRequired { get; }
 
@@ -38,14 +36,12 @@ namespace R7.University.Models
         int SortIndex { get; }
     }
 
-    public interface IScienceRecordTypeWritable: IScienceRecordType
+    public interface IScienceRecordTypeWritable: IScienceRecordType, ISystemEntityWritable
     {
         new int ScienceRecordTypeId { get; set; }
         
         new string Type { get; set; }
         
-        new bool IsSystem { get; set; }
-
         new bool DescriptionIsRequired { get; set; }
 
         new int NumOfValues { get; set; }
