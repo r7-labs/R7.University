@@ -159,6 +159,7 @@
       <DependentUpon>EditScienceRecords.ascx</DependentUpon>
     </Compile>
     <Compile Include="GridAndFormControlBase.cs" />
+    <Compile Include="ViewModels\EditModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">

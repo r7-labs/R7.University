@@ -248,7 +248,6 @@
     <Compile Include="ViewModels\FormatExtensions.cs" />
     <Compile Include="Commands\UpdateScienceRecordsCommand.cs" />
     <Compile Include="Models\ScienceRecordTypeOfValues.cs" />
-    <Compile Include="ViewModels\EditModelBase.cs" />
     <Compile Include="ViewModels\IEditModel.cs" />
     <Compile Include="Components\UniversityAssembly.cs" />
   </ItemGroup>
