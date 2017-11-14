@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Reflection;
 using System.Web.UI;
 using DotNetNuke.Services.Localization;
+using R7.University.Components;
 using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
 
 namespace R7.University.Controls
@@ -57,12 +57,12 @@ namespace R7.University.Controls
 
         protected string AppName
         {
-            get { return Assembly.GetExecutingAssembly ().GetName ().Name; }
+            get { return UniversityAssembly.GetCoreAssembly ().GetName ().Name; }
         }
 
         protected Version AppVersion
         {
-            get { return Assembly.GetExecutingAssembly ().GetName ().Version; }
+            get { return UniversityAssembly.GetCoreAssembly ().GetName ().Version; }
         }
     }
 }

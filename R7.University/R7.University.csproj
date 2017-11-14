@@ -250,6 +250,7 @@
     <Compile Include="Models\ScienceRecordTypeOfValues.cs" />
     <Compile Include="ViewModels\EditModelBase.cs" />
     <Compile Include="ViewModels\IEditModel.cs" />
+    <Compile Include="Components\UniversityAssembly.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
