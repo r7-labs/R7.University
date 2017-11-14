@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>R7.University.Controls</RootNamespace>
+    <AssemblyName>R7.University.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="DotNetNuke">
+      <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\packages\DotNetNuke.Web.8.0.4.226\lib\net40\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Deprecated">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\DotNetNuke.Web.Deprecated.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Mvc">
+      <HintPath>..\packages\DotNetNuke.Web.Mvc.8.0.4.226\lib\net45\DotNetNuke.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.1\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="NGettext">
+      <HintPath>..\packages\NGettext.0.6.3\lib\net45\NGettext.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.4.2.1\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="R7.Dnn.Extensions">
+      <HintPath>..\packages\R7.Dnn.Extensions.0.12.0\lib\net45\R7.Dnn.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\EduProgramProfileQuery.cs" />
+    <Compile Include="ViewModels\DocumentEditModel.cs" />
+    <Compile Include="ViewModels\DocumentTypeViewModel.cs" />
+    <Compile Include="ViewModels\EduFormViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramDivisionEditModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileFormEditModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeAchievementEditModel.cs" />
+    <Compile Include="ViewModels\EmployeeDisciplineEditModel.cs" />
+    <Compile Include="ViewModels\OccupiedPositionEditModel.cs" />
+    <Compile Include="ViewModels\ScienceRecordEditModel.cs" />
+    <Compile Include="AgplSignature.ascx.cs">
+      <DependentUpon>AgplSignature.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DivisionSelector.ascx.cs">
+      <DependentUpon>DivisionSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DivisionSelector.ascx.controls.cs">
+      <DependentUpon>DivisionSelector.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditAchievements.ascx.controls.cs">
+      <DependentUpon>EditAchievements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditAchievements.cs">
+      <DependentUpon>EditAchievements.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDisciplines.controls.ascx.cs">
+      <DependentUpon>EditDisciplines.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDisciplines.ascx.cs">
+      <DependentUpon>EditDisciplines.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDivisions.controls.ascx.cs">
+      <DependentUpon>EditDivisions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDivisions.ascx.cs">
+      <DependentUpon>EditDivisions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDocuments.ascx.cs">
+      <DependentUpon>..\R7.University\Controls\Controls\EditDocuments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditDocuments.ascx.controls.cs">
+      <DependentUpon>..\R7.University\Controls\Controls\EditDocuments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduForms.ascx.controls.cs">
+      <DependentUpon>..\R7.University\Controls\Controls\EditEduForms.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduForms.ascx.cs">
+      <DependentUpon>..\R7.University\Controls\Controls\EditEduForms.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditPositions.ascx.cs">
+      <DependentUpon>EditPositions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditPositions.controls.ascx.cs">
+      <DependentUpon>EditPositions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditScienceRecords.controls.ascx.cs">
+      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditScienceRecords.ascx.cs">
+      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GridAndFormControlBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\R7.University\R7.University.csproj">
+      <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
+      <Name>R7.University</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_LocalResources\AgplSignature.ascx.resx" />
+    <None Include="App_LocalResources\AgplSignature.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\DivisionSelector.ascx.resx" />
+    <None Include="App_LocalResources\DivisionSelector.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditAchievements.ascx.resx" />
+    <None Include="App_LocalResources\EditAchievements.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditDisciplines.ascx.resx" />
+    <None Include="App_LocalResources\EditDisciplines.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditDivisions.ascx.resx" />
+    <None Include="App_LocalResources\EditDivisions.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditDocuments.ascx.resx" />
+    <None Include="App_LocalResources\EditDocuments.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEduForms.ascx.resx" />
+    <None Include="App_LocalResources\EditEduForms.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditPositions.ascx.resx" />
+    <None Include="App_LocalResources\EditPositions.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditScienceRecords.ascx.resx" />
+    <None Include="App_LocalResources\EditScienceRecords.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\SharedResources.resx" />
+    <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
+    <None Include="css\edit-sciencerecords.css" />
+    <None Include="js\editDisciplines.js" />
+    <None Include="js\editDivisions.js" />
+    <None Include="js\editDocuments.js" />
+    <None Include="js\editEduForms.js" />
+    <None Include="js\editScienceRecords.js" />
+    <None Include="js\gridAndForm.js" />
+    <None Include="AgplSignature.ascx" />
+    <None Include="DivisionSelector.ascx" />
+    <None Include="EditAchievements.ascx" />
+    <None Include="EditDisciplines.ascx" />
+    <None Include="EditDivisions.ascx" />
+    <None Include="EditDocuments.ascx" />
+    <None Include="EditEduForms.ascx" />
+    <None Include="EditPositions.ascx" />
+    <None Include="EditScienceRecords.ascx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_LocalResources\" />
+    <Folder Include="css\" />
+    <Folder Include="js\" />
+    <Folder Include="Queries\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

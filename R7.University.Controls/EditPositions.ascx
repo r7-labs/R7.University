@@ -1,13 +1,11 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditDivisions.ascx.cs" Inherits="R7.University.Controls.EditDivisions" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditPositions.ascx.cs" Inherits="R7.University.Controls.EditPositions" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/DivisionSelector.ascx" %>
+<%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/gridAndForm.js" ForceProvider="DnnFormBottomProvider" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/Controls/js/editDivisions.js" ForceProvider="DnnFormBottomProvider" />
-<div class="dnnForm dnnClear u8y-edit-divisions">
+<div class="dnnForm dnnClear u8y-edit-positions">
     <fieldset>
         <div class="dnnFormItem">
             <asp:GridView id="gridItems" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid u8y-gaf-grid" GridLines="None">
@@ -36,33 +34,42 @@
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="DivisionTitle" HeaderText="DivisionTitle.Column" />
-                    <asp:BoundField DataField="DivisionRole" HeaderText="DivisionRole.Column" />
+                    <asp:BoundField DataField="DivisionTitle" HeaderText="Division.Column" />
+                    <asp:BoundField DataField="PositionTitleWithSuffix" HeaderText="Position.Column" />
+                    <asp:CheckBoxField DataField="IsPrime" HeaderText="IsPrime.Column" />
                 </Columns>
             </asp:GridView>
         </div>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelDivision" runat="server" ControlName="divisionSelector" />
+		<div class="dnnFormItem">
+            <dnn:Label id="labelDivisions" runat="server" ControlName="divisionSelector" />
             <controls:DivisionSelector id="divisionSelector" runat="server" IsRequired="true" />
-            <asp:CustomValidator runat="server" resourcekey="Division.Invalid" CssClass="dnnFormMessage dnnFormError"
-                Display="Dynamic" EnableClientScript="true" ClientValidationFunction="divisionUniqueValidator.validate" ValidationGroup="EduProgramDivisions"/>
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelDivisionRole" runat="server" ControlName="textDivisionRole" />
-            <asp:TextBox id="textDivisionRole" runat="server" />
+            <dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
+            <asp:DropDownList id="comboPositions" runat="server" CssClass="dnn-ac-combobox"
+                DataValueField="PositionID"
+                DataTextField="Title" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelPositionTitleSuffix" runat="server" ControlName="textPositionTitleSuffix" />
+            <asp:TextBox id="textPositionTitleSuffix" runat="server" MaxLength="100" />
+        </div>
+        <div class="dnnFormItem" style="margin-bottom:10px">
+            <dnn:Label id="labelIsPrime" runat="server" ControlName="checkIsPrime" />
+            <asp:CheckBox id="checkIsPrime" runat="server" />
         </div>
 	    <div class="dnnFormItem">
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDivision" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddPosition" 
                         CssClass="dnnPrimaryAction" CommandArgument="Add" 
-                        CausesValidation="true" ValidationGroup="EduProgramDivisions" />
+                        CausesValidation="true" ValidationGroup="OccupiedPositions" />
 				</li>	
                 <li>
-				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDivision" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdatePosition" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update" 
-                        CausesValidation="true" ValidationGroup="EduProgramDivisions" />
+                        CausesValidation="true" ValidationGroup="OccupiedPositions" />
 				</li>
                 <li>
 				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
@@ -76,6 +83,5 @@
 			</ul>	
         </div>
 		<asp:HiddenField id="hiddenViewItemID" runat="server" />
-		<asp:HiddenField id="hiddenDivisionID" runat="server" />
     </fieldset>
 </div>

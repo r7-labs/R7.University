@@ -259,5 +259,9 @@
     <Compile Include="Tables\ScienceRecordTypesTable.cs" />
     <None Include="App_LocalResources\EditScienceRecordType.ascx.resx" />
     <None Include="App_LocalResources\EditScienceRecordType.ascx.ru-RU.resx" />
+    <ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
+      <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
+      <Name>R7.University.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

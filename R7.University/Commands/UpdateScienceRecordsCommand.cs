@@ -20,8 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
-using R7.University.Controls.ViewModels;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Commands
 {

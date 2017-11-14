@@ -22,7 +22,7 @@
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
 
-namespace R7.University.Controls.ViewModels
+namespace R7.University.ViewModels
 {
     public interface IEditModel<TModel>
     {

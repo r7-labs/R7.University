@@ -115,24 +115,7 @@
     <Compile Include="Models\SystemDocumentType.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileExtensions.cs" />
-    <Compile Include="Controls\EditDocuments.ascx.cs">
-      <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ViewModels\DocumentEditModel.cs" />
-    <Compile Include="Controls\ViewModels\DocumentTypeViewModel.cs" />
-    <Compile Include="Controls\EditDocuments.ascx.controls.cs">
-      <DependentUpon>Controls\EditDocuments.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Models\SystemEduForm.cs" />
-    <Compile Include="Controls\EditEduForms.ascx.controls.cs">
-      <DependentUpon>Controls\EditEduForms.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditEduForms.ascx.cs">
-      <DependentUpon>Controls\EditEduForms.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ViewModels\EduFormViewModel.cs" />
-    <Compile Include="Controls\ViewModels\EduProgramProfileFormEditModel.cs" />
-    <Compile Include="Controls\GridAndFormControlBase.cs" />
     <Compile Include="Models\ModelHelper.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -227,12 +210,6 @@
     <Compile Include="Utilities\UniversityCultureHelper.cs" />
     <Compile Include="Utilities\ModuleHelper.cs" />
     <Compile Include="Utilities\XmlSerializationHelper.cs" />
-    <Compile Include="Controls\DivisionSelector.ascx.cs">
-      <DependentUpon>DivisionSelector.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DivisionSelector.ascx.controls.cs">
-      <DependentUpon>DivisionSelector.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Commands\ISecureCommand.cs" />
     <Compile Include="Security\ISecurityContext.cs" />
     <Compile Include="Security\ModuleSecurityContext.cs" />
@@ -251,16 +228,8 @@
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
     <Compile Include="ViewModels\LocalizationHelper.cs" />
     <Compile Include="Models\ITrackableEntity.cs" />
-    <Compile Include="Controls\ViewModels\IEditModel.cs" />
     <Compile Include="Models\ModelEditState.cs" />
     <Compile Include="Models\TimeToLearnDisplayMode.cs" />
-    <Compile Include="Controls\EditAchievements.ascx.controls.cs">
-      <DependentUpon>EditAchievements.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditAchievements.cs">
-      <DependentUpon>EditAchievements.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ViewModels\EmployeeAchievementEditModel.cs" />
     <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
     <Compile Include="SerializationModels\AchievementTypeSerializationModel.cs" />
     <Compile Include="Commands\AddDivisionCommand.cs" />
@@ -271,45 +240,16 @@
     <Compile Include="Models\IEduProgramDivision.cs" />
     <Compile Include="Models\EduProgramDivisionInfo.cs" />
     <Compile Include="Data\Mappings\EduProgramDivisionMapping.cs" />
-    <Compile Include="Controls\EditDivisions.controls.ascx.cs">
-      <DependentUpon>EditDivisions.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditDivisions.ascx.cs">
-      <DependentUpon>EditDivisions.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ViewModels\EduProgramDivisionEditModel.cs" />
     <Compile Include="Commands\UpdateEduProgramDivisionCommand.cs" />
-    <Compile Include="Controls\EditDisciplines.controls.ascx.cs">
-      <DependentUpon>EditDisciplines.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditDisciplines.ascx.cs">
-      <DependentUpon>EditDisciplines.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ViewModels\EmployeeDisciplineEditModel.cs" />
-    <Compile Include="Controls\ViewModels\EduProgramProfileViewModel.cs" />
-    <Compile Include="Controls\Queries\EduProgramProfileQuery.cs" />
-    <Compile Include="Controls\ViewModels\EditModelBase.cs" />
-    <Compile Include="Controls\ViewModels\OccupiedPositionEditModel.cs" />
-    <Compile Include="Controls\EditPositions.ascx.cs">
-      <DependentUpon>EditPositions.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditPositions.controls.ascx.cs">
-      <DependentUpon>EditPositions.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Components\UniversityIcons.cs" />
     <Compile Include="Models\DocumentGroupComparer.cs" />
     <Compile Include="Models\SystemScienceRecordType.cs" />
     <Compile Include="ModelExtensions\ScienceRecordTypeExtensions.cs" />
-    <Compile Include="Controls\EditScienceRecords.controls.ascx.cs">
-      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\EditScienceRecords.ascx.cs">
-      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ViewModels\ScienceRecordEditModel.cs" />
     <Compile Include="ViewModels\FormatExtensions.cs" />
     <Compile Include="Commands\UpdateScienceRecordsCommand.cs" />
     <Compile Include="Models\ScienceRecordTypeOfValues.cs" />
+    <Compile Include="ViewModels\EditModelBase.cs" />
+    <Compile Include="ViewModels\IEditModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -318,8 +258,6 @@
     <Folder Include="Models\" />
     <Folder Include="ControlExtensions\" />
     <Folder Include="Controls\" />
-    <Folder Include="Controls\App_LocalResources\" />
-    <Folder Include="Controls\ViewModels\" />
     <Folder Include="Data\" />
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
@@ -333,10 +271,7 @@
     <Folder Include="Commands\" />
     <Folder Include="Security\" />
     <Folder Include="Modules\" />
-    <Folder Include="Controls\js\" />
     <Folder Include="SerializationModels\" />
-    <Folder Include="Controls\Queries\" />
-    <Folder Include="Controls\css\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -365,12 +300,6 @@
     <None Include="SqlDataProvider\01.07.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
-    <None Include="Controls\EditDocuments.ascx" />
-    <None Include="Controls\App_LocalResources\EditDocuments.ascx.resx" />
-    <None Include="Controls\App_LocalResources\EditDocuments.ascx.ru-RU.resx" />
-    <None Include="Controls\EditEduForms.ascx" />
-    <None Include="Controls\App_LocalResources\EditEduForms.ascx.resx" />
-    <None Include="Controls\App_LocalResources\EditEduForms.ascx.ru-RU.resx" />
     <None Include="packages.config" />
     <None Include="license.htm" />
     <None Include="releaseNotes.htm" />
@@ -381,46 +310,13 @@
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.10.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.11.00.SqlDataProvider" />
-    <None Include="Controls\AgplSignature.ascx" />
-    <Compile Include="Controls\AgplSignature.ascx.cs">
-      <DependentUpon>AgplSignature.ascx</DependentUpon>
-    </Compile>
     <None Include="css\module.css" />
-    <None Include="Controls\App_LocalResources\AgplSignature.ascx.resx" />
-    <None Include="Controls\App_LocalResources\AgplSignature.ascx.ru-RU.resx" />
     <None Include="SqlDataProvider\01.12.00.SqlDataProvider" />
-    <None Include="Controls\DivisionSelector.ascx" />
-    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.resx" />
-    <None Include="Controls\App_LocalResources\DivisionSelector.ascx.ru-RU.resx" />
-    <None Include="Controls\js\editDocuments.js" />
     <None Include="SqlDataProvider\01.14.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.15.00.SqlDataProvider" />
-    <None Include="Controls\App_LocalResources\SharedResources.resx" />
-    <None Include="Controls\App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="images\Rollback_16x16_Standard.png" />
-    <None Include="Controls\EditAchievements.ascx" />
-    <None Include="Controls\App_LocalResources\EditAchievements.ascx.resx" />
-    <None Include="Controls\App_LocalResources\EditAchievements.ascx.ru-RU.resx" />
-    <None Include="Controls\EditDivisions.ascx" />
-    <None Include="Controls\App_LocalResources\EditDivisions.ascx.resx" />
-    <None Include="Controls\App_LocalResources\EditDivisions.ascx.ru-RU.resx" />
-    <None Include="Controls\js\editDivisions.js" />
-    <None Include="Controls\js\editEduForms.js" />
-    <None Include="Controls\EditDisciplines.ascx" />
-    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.resx" />
-    <None Include="Controls\App_LocalResources\EditDisciplines.ascx.ru-RU.resx" />
-    <None Include="Controls\js\editDisciplines.js" />
-    <None Include="Controls\js\gridAndForm.js" />
-    <None Include="Controls\EditPositions.ascx" />
-    <None Include="Controls\App_LocalResources\EditPositions.ascx.resx" />
-    <None Include="Controls\App_LocalResources\EditPositions.ascx.ru-RU.resx" />
     <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
-    <None Include="Controls\EditScienceRecords.ascx" />
-    <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.resx" />
-    <None Include="Controls\App_LocalResources\EditScienceRecords.ascx.ru-RU.resx" />
-    <None Include="Controls\css\edit-sciencerecords.css" />
-    <None Include="Controls\js\editScienceRecords.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

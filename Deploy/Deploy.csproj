@@ -121,6 +121,10 @@
 			<Project>{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}</Project>
 			<Name>R7.University.Tests</Name>
 		</ProjectReference>
+		<ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
+		  <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
+		  <Name>R7.University.Controls</Name>
+		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 	<Import Project="__Settings.targets" />

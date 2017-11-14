@@ -140,6 +140,10 @@
 							<path>bin</path>
 							<name>R7.University.dll</name>
 						</assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>R7.University.Controls.dll</name>
+                        </assembly>
 					</assemblies>
 				</component>
                 <component type="Assembly">
