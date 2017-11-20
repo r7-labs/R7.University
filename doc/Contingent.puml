@@ -1,0 +1,42 @@
+@startuml Contingent
+
+EduProgramProfileForm "0..*" - "0..*" Year
+(EduProgramProfileForm, Year) .. EduProgramProfileFormYear 
+
+ContingentRecord "0..*" -- "1" FinancingSourceType
+EduProgramProfileFormYear "1" -- "0..*" ContingentRecord
+
+class EduProgramProfileFormYear {
+    .. Admission ..
+    AvgAdmissionRate: decimal
+    .. Contingent Movement ..
+    StudentsMovedIn: int
+    StudentsMovedOut: int
+    StudentsRestored: int
+    StudentsDeducted: int
+}
+
+class ContingentRecord {
+    .. Current contingent ..
+    StudentsCurrent: int
+    .. Admission ..
+    StudentsAdmissed: int
+    .. Vacant places ..
+    VacantPlaces: int?
+}
+
+class Year {
+    Year: string/int
+    IsForward: bool
+    StartDate: DateTime?
+    EndDate: DateTime?
+}
+
+class FinancingSourceType<<enum>> {
+    FederalBudget
+    RegionalBudget
+    MunicipalBudget
+    ByContract
+}
+
+@enduml

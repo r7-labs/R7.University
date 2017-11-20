@@ -1,0 +1,33 @@
+@startuml Volume of educational program
+
+EduProgram <|-- EduProgramProfile
+
+EduProgramProfile "0..*" -- "0..*" EduForm
+(EduProgramProfile, EduForm) .. EduProgramProfileForm
+
+EduProgramProfileForm "0..*" -- "0..*" Year
+(EduProgramProfileForm, Year) .. EduProgramProfileFormYear
+
+class EduProgramProfile {
+    IsAdopted: bool
+    Elearning: string
+}
+ 
+class Year {
+    Year: string/int
+    IsForward: bool
+    StartDate: DateTime?
+    EndDate: DateTime?
+}
+
+class EduProgramProfileForm {
+    TimeToLearnMonths: int
+    TimeToLearnHours: int
+}
+
+' CU - credit unit
+class EduProgramProfileFormYear {
+    TimeToLearnCU: int
+}
+
+@enduml
