@@ -250,6 +250,10 @@
     <Compile Include="Models\ScienceRecordTypeOfValues.cs" />
     <Compile Include="ViewModels\IEditModel.cs" />
     <Compile Include="Components\UniversityAssembly.cs" />
+    <Compile Include="Models\Year.cs" />
+    <Compile Include="Models\EduProgramProfileFormYear.cs" />
+    <Compile Include="Data\Mappings\EduProgramProfileFormYearMapping.cs" />
+    <Compile Include="Data\Mappings\YearMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -19,6 +19,8 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
+using System.Linq;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Data;
 
@@ -54,5 +56,13 @@ namespace R7.University.Models
         }
 
         #endregion
+
+        public IEnumerable<YearInfo> Years => Query<YearInfo> ().ToList ();
+
+        public YearInfo LastYear => Query<YearInfo> ().Where (y => !y.IsForward)
+                                                      .OrderByDescending (y => y.Year)
+                                                      .FirstOrDefault ();
+
+        public YearInfo ForwardYear => Query<YearInfo> ().Where (y => y.IsForward).FirstOrDefault ();
     }
 }
