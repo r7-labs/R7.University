@@ -43,6 +43,24 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.indexes where name = N'UN_{objectQualifier}University_EduProgramProfileForms')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        ALTER COLUMN EduProgramProfileFormID int NOT NULL
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        DROP CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileForms]
+
+    DROP INDEX [IX_{objectQualifier}University_EduProgramProfileForms] ON {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        ADD CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileForms] PRIMARY KEY (EduProgramProfileFormID)
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        ADD CONSTRAINT [UN_{objectQualifier}University_EduProgramProfileForms] UNIQUE (EduProgramProfileID, EduFormID)
+END
+GO
+
 IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_Years')
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_Years] (

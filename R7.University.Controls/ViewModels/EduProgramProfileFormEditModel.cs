@@ -61,7 +61,7 @@ namespace R7.University.Controls.ViewModels
 
         #region IEduProgramProfileFormWritable implementation
 
-        public long EduProgramProfileFormID { get; set; }
+        public int EduProgramProfileFormID { get; set; }
 
         public int EduProgramProfileID { get; set; }
 

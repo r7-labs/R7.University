@@ -23,7 +23,7 @@ namespace R7.University.Models
 {
     public class EduProgramProfileFormInfo: IEduProgramProfileFormWritable
     {
-        public long EduProgramProfileFormID { get; set; }
+        public int EduProgramProfileFormID { get; set; }
 
         public int EduProgramProfileID { get; set; }
 
@@ -33,7 +33,6 @@ namespace R7.University.Models
 
         public int TimeToLearnHours { get; set; }
 
-        // TODO: Rename?
         public bool IsAdmissive { get; set; }
 
         public virtual EduFormInfo EduForm { get; set; }

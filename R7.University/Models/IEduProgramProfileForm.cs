@@ -23,7 +23,7 @@ namespace R7.University.Models
 {
     public interface IEduProgramProfileForm
     {
-        long EduProgramProfileFormID { get; }
+        int EduProgramProfileFormID { get; }
 
         int EduProgramProfileID { get; }
 
@@ -33,16 +33,15 @@ namespace R7.University.Models
 
         int TimeToLearnHours { get; }
 
+        // TODO: Remove
         bool IsAdmissive { get; }
 
         EduFormInfo EduForm { get; }
-
-        // EduProgramProfileInfo EduProgramProfile { get; }
     }
 
     public interface IEduProgramProfileFormWritable: IEduProgramProfileForm
     {
-        new long EduProgramProfileFormID { get; set; }
+        new int EduProgramProfileFormID { get; set; }
 
         new int EduProgramProfileID { get; set; }
 
@@ -55,8 +54,6 @@ namespace R7.University.Models
         new bool IsAdmissive { get; set; }
 
         new EduFormInfo EduForm { get; set; }
-
-
     }
 }
 
