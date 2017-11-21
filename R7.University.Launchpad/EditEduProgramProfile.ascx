@@ -62,6 +62,10 @@
 					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLanguages" ValidationGroup="EduProgramProfile"
 						Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Languages.Required" />
 				</div>
+				<div class="dnnFormItem">
+                    <dnn:Label id="labelIsAdopted" runat="server" ControlName="checkIsAdopted" />
+                    <asp:CheckBox id="checkIsAdopted" runat="server" CssClass="dnn-form-control" />  
+                </div>
                 <div class="dnnFormItem">
                     <dnn:Label ID="labelAccreditedToDate" runat="server" ControlName="dateAccreditedToDate" />
                     <dnn:DnnDatePicker id="dateAccreditedToDate" runat="server" />

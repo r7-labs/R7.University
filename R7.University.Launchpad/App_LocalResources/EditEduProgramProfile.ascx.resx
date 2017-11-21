@@ -51,8 +51,14 @@
     <data name="labelLanguages.Help" xml:space="preserve">
         <value>Enter the list of IETF language tags in "xx" or "xx-YY" format (e.g. "en"), separated by semicolon (;).</value>
     </data>
-	<data name="Languages.Required" xml:space="preserve">
+    <data name="Languages.Required" xml:space="preserve">
         <value>Languages is required.</value>
+    </data>
+    <data name="labelIsAdopted.Text" xml:space="preserve">
+        <value>Is Adopted?</value>
+    </data>
+    <data name="labelIsAdopted.Help" xml:space="preserve">
+        <value>Check if the edu. program (profile) is adopted for peoples with disabilities.</value>
     </data>
     <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Education Level:</value>

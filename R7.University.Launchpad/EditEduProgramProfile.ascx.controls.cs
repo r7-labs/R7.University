@@ -13,6 +13,7 @@ namespace R7.University.Launchpad
         protected TextBox textProfileCode;
         protected TextBox textProfileTitle;
         protected TextBox textLanguages;
+        protected CheckBox checkIsAdopted;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected DnnDatePicker dateAccreditedToDate;

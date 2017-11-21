@@ -36,6 +36,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.ProfileCode).IsOptional ();
             Property (m => m.ProfileTitle).IsOptional ();
             Property (m => m.Languages).IsOptional ();
+            Property (m => m.IsAdopted).IsRequired ();
             Property (m => m.AccreditedToDate).IsOptional ();
             Property (m => m.CommunityAccreditedToDate).IsOptional ();
 

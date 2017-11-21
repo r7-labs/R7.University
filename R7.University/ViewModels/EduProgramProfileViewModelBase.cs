@@ -48,6 +48,8 @@ namespace R7.University.ViewModels
 
         public string Languages => EduProgramProfile.Languages;
 
+        public bool IsAdopted => EduProgramProfile.IsAdopted;
+
         public DateTime? AccreditedToDate => EduProgramProfile.AccreditedToDate;
 
         public DateTime? CommunityAccreditedToDate => EduProgramProfile.CommunityAccreditedToDate;

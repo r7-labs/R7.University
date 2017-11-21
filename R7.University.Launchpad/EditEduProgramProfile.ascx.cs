@@ -164,6 +164,7 @@ namespace R7.University.Launchpad
             textProfileCode.Text = epp.ProfileCode;
             textProfileTitle.Text = epp.ProfileTitle;
             textLanguages.Text = epp.Languages;
+            checkIsAdopted.Checked = epp.IsAdopted;
             dateAccreditedToDate.SelectedDate = epp.AccreditedToDate;
             dateCommunityAccreditedToDate.SelectedDate = epp.CommunityAccreditedToDate;
             datetimeStartDate.SelectedDate = epp.StartDate;
@@ -193,6 +194,7 @@ namespace R7.University.Launchpad
             item.ProfileCode = textProfileCode.Text.Trim ();
             item.ProfileTitle = textProfileTitle.Text.Trim ();
             item.Languages = textLanguages.Text.Replace (" ", string.Empty).Trim ();
+            item.IsAdopted = checkIsAdopted.Checked;
             item.AccreditedToDate = dateAccreditedToDate.SelectedDate;
             item.CommunityAccreditedToDate = dateCommunityAccreditedToDate.SelectedDate;
             item.StartDate = datetimeStartDate.SelectedDate;

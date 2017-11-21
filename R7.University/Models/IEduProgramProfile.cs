@@ -38,6 +38,8 @@ namespace R7.University.Models
 
         string Languages { get; }
 
+        bool IsAdopted { get; }
+
         DateTime? AccreditedToDate { get; }
 
         DateTime? CommunityAccreditedToDate { get; }
@@ -70,6 +72,8 @@ namespace R7.University.Models
         new string ProfileTitle { get; set; }
 
         new string Languages { get; set; }
+
+        new bool IsAdopted { get; set; }
 
         new DateTime? AccreditedToDate { get; set; }
 

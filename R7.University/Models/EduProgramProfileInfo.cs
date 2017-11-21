@@ -38,6 +38,8 @@ namespace R7.University.Models
 
         public string Languages { get; set; }
 
+        public bool IsAdopted { get; set; }
+
         public DateTime? AccreditedToDate { get; set; }
 
         public DateTime? CommunityAccreditedToDate { get; set; }
