@@ -1,5 +1,5 @@
 //
-//  EmployeeDisciplineInfo.cs
+//  DocumentType.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,19 +21,39 @@
 
 namespace R7.University.Models
 {
-    public class EmployeeDisciplineInfo: IEmployeeDisciplineWritable
+    public interface IDocumentType: ISystemEntity
     {
-        public long EmployeeDisciplineID { get; set; }
+        int DocumentTypeID { get; }
 
-        public int EmployeeID { get; set; }
+        string Type { get; }
 
-        public int EduProgramProfileID { get; set; }
+        string Description { get; }
 
-        public string Disciplines { get; set; }
+        string FilenameFormat { get; }
+    }
 
-        public virtual EmployeeInfo Employee { get; set; }
+    public interface IDocumentTypeWritable: IDocumentType, ISystemEntityWritable
+    {
+        new int DocumentTypeID { get; set; }
 
-        public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
+        new string Type { get; set; }
+
+        new string Description { get; set; }
+
+        new string FilenameFormat { get; set; }
+    }
+
+    public class DocumentTypeInfo: IDocumentTypeWritable
+    {
+        public int DocumentTypeID { get; set; }
+
+        public string Type { get; set; }
+
+        public string Description { get; set; }
+
+        public bool IsSystem { get; set; }
+
+        public string FilenameFormat { get; set; }
     }
 }
 

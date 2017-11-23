@@ -1,5 +1,5 @@
 //
-//  DocumentInfo.cs
+//  Document.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -23,6 +23,56 @@ using System;
 
 namespace R7.University.Models
 {
+    public interface IDocument
+    {
+        int DocumentID { get; }
+
+        int DocumentTypeID { get; }
+
+        int? EduProgramId { get; }
+
+        int? EduProgramProfileId { get; }
+
+        string Title { get; }
+
+        string Group { get; }
+
+        string Url { get; }
+
+        int SortIndex { get; }
+
+        DateTime? StartDate { get; }
+
+        DateTime? EndDate { get; }
+
+        DocumentTypeInfo DocumentType { get; }
+    }
+
+    public interface IDocumentWritable: IDocument
+    {
+        new int DocumentID { get; set; }
+
+        new int DocumentTypeID { get; set; }
+
+        new int? EduProgramId { get; set; }
+
+        new int? EduProgramProfileId { get; set; }
+
+        new string Title { get; set; }
+
+        new string Group { get; set; }
+
+        new string Url { get; set; }
+
+        new int SortIndex { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new DocumentTypeInfo DocumentType { get; set; }
+    }
+
     public class DocumentInfo: IDocumentWritable
     {
         public int DocumentID { get; set; }

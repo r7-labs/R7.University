@@ -1,10 +1,10 @@
 //
-//  AchievementTypeInfo.cs
+//  Position.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,15 +21,42 @@
 
 namespace R7.University.Models
 {
-    public class AchievementTypeInfo : IAchievementTypeWritable
+    public interface IPosition
     {
-        public int AchievementTypeId { get; set; }
+        int PositionID { get; }
 
-        public string Type { get; set; }
+        string Title { get; }
 
-        public string Description { get; set; }
+        string ShortTitle  { get; }
 
-        public bool IsSystem { get; set; }
+        int Weight { get; }
+
+        bool IsTeacher { get; }
     }
-}
 
+    public interface IPositionWritable: IPosition
+    {
+        new int PositionID { get; set; }
+
+        new string Title { get; set; }
+
+        new string ShortTitle  { get; set; }
+
+        new int Weight { get; set; }
+
+        new bool IsTeacher { get; set; }
+    }
+
+	public class PositionInfo: IPositionWritable
+	{
+        public int PositionID { get; set; }
+
+        public string Title { get; set; }
+
+        public string ShortTitle  { get; set; }
+
+		public int Weight { get; set; }
+
+		public bool IsTeacher { get; set; }
+	}
+}

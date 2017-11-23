@@ -1,5 +1,5 @@
 //
-//  EmployeeAchievementInfo.cs
+//  EmployeeAchievement.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,10 +19,70 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
 namespace R7.University.Models
 {
+    public interface IEmployeeAchievement
+    {
+        int EmployeeAchievementID { get; }
+
+        int EmployeeID { get; }
+
+        int? AchievementID { get; }
+
+        int? AchievementTypeId { get; }
+
+        string Title { get; }
+
+        string ShortTitle { get; }
+
+        string Description { get; }
+
+        int? YearBegin { get; }
+
+        int? YearEnd { get; }
+
+        bool IsTitle { get; }
+
+        string DocumentURL { get; }
+
+        string TitleSuffix { get; }
+
+        AchievementInfo Achievement { get; }
+
+        AchievementTypeInfo AchievementType { get; }
+    }
+
+    public interface IEmployeeAchievementWritable: IEmployeeAchievement
+    {
+        new int EmployeeAchievementID { get; set; }
+
+        new int EmployeeID { get; set; }
+
+        new int? AchievementID { get; set; }
+
+        new int? AchievementTypeId { get; set; }
+
+        new string Title { get; set; }
+
+        new string ShortTitle { get; set; }
+
+        new string Description { get; set; }
+
+        new int? YearBegin { get; set; }
+
+        new int? YearEnd { get; set; }
+
+        new bool IsTitle { get; set; }
+
+        new string DocumentURL { get; set; }
+
+        new string TitleSuffix { get; set; }
+
+        new AchievementInfo Achievement { get; set; }
+
+        new AchievementTypeInfo AchievementType { get; set; }
+    }
+
     public class EmployeeAchievementInfo: IEmployeeAchievementWritable
     {
         public int EmployeeAchievementID { get; set; }

@@ -1,5 +1,5 @@
 ﻿//
-//  EduProgramDivisionInfo.cs
+//  EduProgramDivision.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,6 +21,36 @@
 
 namespace R7.University.Models
 {
+    public interface IEduProgramDivision
+    {
+        long EduProgramDivisionId { get; }
+
+        int DivisionId { get; }
+
+        int? EduProgramId { get; }
+
+        int? EduProgramProfileId { get; }
+
+        string DivisionRole { get; }
+
+        DivisionInfo Division { get; }
+    }
+
+    public interface IEduProgramDivisionWritable: IEduProgramDivision
+    {
+        new long EduProgramDivisionId { get; set; }
+
+        new int DivisionId { get; set; }
+
+        new int? EduProgramId { get; set; }
+
+        new int? EduProgramProfileId { get; set; }
+
+        new string DivisionRole { get; set; }
+
+        new DivisionInfo Division { get; set; }
+    }
+
     public class EduProgramDivisionInfo: IEduProgramDivisionWritable
     {
         public long EduProgramDivisionId { get; set; }

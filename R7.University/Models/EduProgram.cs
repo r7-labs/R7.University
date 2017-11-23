@@ -1,5 +1,5 @@
 //
-//  EduProgramInfo.cs
+//  EduProgram.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -24,6 +24,64 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
+    public interface IEduProgram: ITrackableEntity
+    {
+        int EduProgramID { get; }
+
+        int EduLevelID { get; }
+
+        string Code { get; }
+
+        string Title { get; }
+
+        string Generation { get; }
+
+        string HomePage { get; }
+
+        DateTime? StartDate { get; }
+
+        DateTime? EndDate { get; }
+
+        EduLevelInfo EduLevel { get; }
+
+        ICollection<DocumentInfo> Documents { get; }
+
+        ICollection<EduProgramProfileInfo> EduProgramProfiles { get; }
+
+        ICollection<EduProgramDivisionInfo> Divisions { get; }
+
+        ICollection<ScienceRecordInfo> ScienceRecords { get; }
+    }
+
+    public interface IEduProgramWritable: IEduProgram, ITrackableEntityWritable
+    {
+        new int EduProgramID { get; set; }
+
+        new int EduLevelID { get; set; }
+
+        new string Code { get; set; }
+
+        new string Title { get; set; }
+
+        new string Generation { get; set; }
+
+        new string HomePage { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new EduLevelInfo EduLevel { get; set; }
+
+        new ICollection<DocumentInfo> Documents { get; set; }
+
+        new ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
+
+        new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
+
+        new ICollection<ScienceRecordInfo> ScienceRecords { get; set; }
+    }
+
     public class EduProgramInfo: IEduProgramWritable
     {
         public int EduProgramID { get; set; }

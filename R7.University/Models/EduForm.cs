@@ -1,5 +1,5 @@
 //
-//  EduProgramProfileFormInfo.cs
+//  EduForm.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,23 +19,45 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+
 namespace R7.University.Models
 {
-    public class EduProgramProfileFormInfo: IEduProgramProfileFormWritable
+    public interface IEduForm: ISystemEntity
     {
-        public int EduProgramProfileFormID { get; set; }
+        int EduFormID { get; }
 
-        public int EduProgramProfileID { get; set; }
+        string Title { get; }
 
+        string ShortTitle { get; }
+    }
+
+    public interface IEduFormWritable: IEduForm, ISystemEntityWritable
+    {
+        new int EduFormID { get; set; }
+
+        new string Title { get; set; }
+
+        new string ShortTitle { get; set; }
+    }
+
+    public class EduFormInfo: IEduFormWritable
+    {
         public int EduFormID { get; set; }
 
-        public int TimeToLearn { get; set; }
+        public bool IsSystem { get; set; }
 
-        public int TimeToLearnHours { get; set; }
+        public string Title { get; set; }
 
-        public bool IsAdmissive { get; set; }
+        public string ShortTitle { get; set; }
 
-        public virtual EduFormInfo EduForm { get; set; }
+        public SystemEduForm SystemEduForm
+        {
+            get {
+                SystemEduForm result;
+                return Enum.TryParse<SystemEduForm> (Title, out result) ? result : SystemEduForm.Custom;
+            }
+        }
     }
 }
 

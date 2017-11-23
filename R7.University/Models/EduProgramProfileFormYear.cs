@@ -44,30 +44,28 @@ namespace R7.University.Models
         DateTime? EndDate { get; }
     }
 
-    public interface IEduProgramProfileFormYearWritable
+    public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear
     {
-        int EduProgramProfileFormYearId { set; }
+        new int EduProgramProfileFormYearId { get; set; }
 
-        int EduProgramProfileFormId { set; }
+        new int EduProgramProfileFormId { get; set; }
 
-        int YearId { set; }
+        new int YearId { get; set; }
 
-        int? VolumeCu { set; }
+        new int? VolumeCu { get; set; }
 
-        int? TrainingPracticeCu { set; }
+        new int? TrainingPracticeCu { get; set; }
 
-        int? IndustrialPracticeCu { set; }
+        new int? IndustrialPracticeCu { get; set; }
 
-        int? UndergraduatePracticeCu { set; }
+        new int? UndergraduatePracticeCu { get; set; }
 
-        DateTime? StartDate { set; }
+        new DateTime? StartDate { get; set; }
 
-        DateTime? EndDate { set; }
+        new DateTime? EndDate { get; set; }
     }
 
-    public interface IEduProgramProfileFormYearMutable: IEduProgramProfileFormYear, IEduProgramProfileFormYearWritable {}
-
-    public class EduProgramProfileFormYearInfo: IEduProgramProfileFormYearMutable
+    public class EduProgramProfileFormYearInfo: IEduProgramProfileFormYearWritable
     {
         public int EduProgramProfileFormYearId { get; set; }
 

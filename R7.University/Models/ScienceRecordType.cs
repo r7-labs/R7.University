@@ -1,5 +1,5 @@
 //
-//  IScienceRecordType.cs
+//  ScienceRecordType.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -24,7 +24,7 @@ namespace R7.University.Models
     public interface IScienceRecordType: ISystemEntity
     {
         int ScienceRecordTypeId { get; }
-        
+
         string Type { get; }
 
         bool DescriptionIsRequired { get; }
@@ -39,9 +39,9 @@ namespace R7.University.Models
     public interface IScienceRecordTypeWritable: IScienceRecordType, ISystemEntityWritable
     {
         new int ScienceRecordTypeId { get; set; }
-        
+
         new string Type { get; set; }
-        
+
         new bool DescriptionIsRequired { get; set; }
 
         new int NumOfValues { get; set; }
@@ -49,5 +49,22 @@ namespace R7.University.Models
         new string TypeOfValues { get; set; }
 
         new int SortIndex { get; set; }
+    }
+
+    public class ScienceRecordTypeInfo: IScienceRecordTypeWritable
+    {
+        public int ScienceRecordTypeId { get; set; }
+        
+        public string Type { get; set; }
+        
+        public bool IsSystem { get; set; }
+
+        public bool DescriptionIsRequired { get; set; }
+
+        public int NumOfValues { get; set; }
+
+        public string TypeOfValues { get; set; }
+
+        public int SortIndex { get; set; }
     }
 }

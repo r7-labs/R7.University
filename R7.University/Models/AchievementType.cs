@@ -1,5 +1,5 @@
 //
-//  AchievementInfo.cs
+//  AchievementType.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -19,20 +19,35 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
 namespace R7.University.Models
 {
-    public class AchievementInfo: IAchievementWritable
+    public interface IAchievementType: ISystemEntity
     {
-        public int AchievementID { get; set; }
+        int AchievementTypeId { get; }
 
-        public int? AchievementTypeId { get; set; }
+        string Type { get; }
 
-        public string Title { get; set; }
+        string Description { get; }
+    }
 
-        public string ShortTitle  { get; set; }
+    public interface IAchievementTypeWritable: IAchievementType, ISystemEntityWritable
+    {
+        new int AchievementTypeId { get; set; }
 
-        public virtual AchievementTypeInfo AchievementType { get; set; }
+        new string Type { get; set; }
+
+        new string Description { get; set; }
+    }
+
+    public class AchievementTypeInfo : IAchievementTypeWritable
+    {
+        public int AchievementTypeId { get; set; }
+
+        public string Type { get; set; }
+
+        public string Description { get; set; }
+
+        public bool IsSystem { get; set; }
     }
 }
+

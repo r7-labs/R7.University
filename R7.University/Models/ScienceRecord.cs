@@ -1,5 +1,5 @@
 //
-//  ScienceRecordInfo.cs
+//  ScienceRecord.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,6 +21,44 @@
 
 namespace R7.University.Models
 {
+    public interface IScienceRecord
+    {
+        long ScienceRecordId { get; }
+
+        int EduProgramId { get; }
+
+        EduProgramInfo EduProgram { get; }
+
+        int ScienceRecordTypeId { get; }
+
+        ScienceRecordTypeInfo ScienceRecordType { get; }
+
+        string Description { get; }
+
+        decimal? Value1 { get; }
+
+        decimal? Value2 { get; }
+    }
+
+    public interface IScienceRecordWritable: IScienceRecord
+    {
+        new long ScienceRecordId { get; set; }
+
+        new int EduProgramId { get; set; }
+
+        new EduProgramInfo EduProgram { get; set; }
+
+        new int ScienceRecordTypeId { get; set; }
+
+        new ScienceRecordTypeInfo ScienceRecordType { get; set; }
+
+        new string Description { get; set; }
+
+        new decimal? Value1 { get; set; }
+
+        new decimal? Value2 { get; set; }
+    }
+
     public class ScienceRecordInfo : IScienceRecordWritable
     {
         public long ScienceRecordId { get; set; }

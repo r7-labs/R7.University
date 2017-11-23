@@ -1,10 +1,10 @@
 //
-//  IEduProgramProfileForm.cs
+//  EduProgramProfileForm.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -51,9 +51,28 @@ namespace R7.University.Models
 
         new int TimeToLearnHours { get; set; }
 
+        // TODO: Remove
         new bool IsAdmissive { get; set; }
 
         new EduFormInfo EduForm { get; set; }
+    }
+
+    public class EduProgramProfileFormInfo: IEduProgramProfileFormWritable
+    {
+        public int EduProgramProfileFormID { get; set; }
+
+        public int EduProgramProfileID { get; set; }
+
+        public int EduFormID { get; set; }
+
+        public int TimeToLearn { get; set; }
+
+        public int TimeToLearnHours { get; set; }
+
+        // TODO: Remove
+        public bool IsAdmissive { get; set; }
+
+        public virtual EduFormInfo EduForm { get; set; }
     }
 }
 

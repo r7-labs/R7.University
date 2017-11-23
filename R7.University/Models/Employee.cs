@@ -1,5 +1,5 @@
 //
-//  EmployeeInfo.cs
+//  Employee.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,6 +26,116 @@ using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {
+    public interface IEmployee: ITrackableEntity
+    {
+        int EmployeeID { get; }
+
+        int? UserID { get; }
+
+        int? PhotoFileID { get; }
+
+        string Phone { get; }
+
+        string CellPhone { get; }
+
+        string Fax { get; }
+
+        string LastName { get; }
+
+        string FirstName { get; }
+
+        string OtherName { get; }
+
+        string Email { get; }
+
+        string SecondaryEmail { get; }
+
+        string WebSite { get; }
+
+        string WebSiteLabel { get; }
+
+        string Messenger { get; }
+
+        string WorkingPlace { get; }
+
+        string WorkingHours { get; }
+
+        string Biography { get; }
+
+        // employee stage may be not continuous, so using starting date is not possible
+        int? ExperienceYears { get; }
+
+        // employee ExpYearsBySpec even more unbinded to dates
+        int? ExperienceYearsBySpec { get; }
+
+        DateTime? StartDate { get; }
+
+        DateTime? EndDate { get; }
+
+        bool ShowBarcode { get; }
+
+        ICollection<EmployeeAchievementInfo> Achievements { get; }
+
+        ICollection<EmployeeDisciplineInfo> Disciplines { get; }
+
+        ICollection<OccupiedPositionInfo> Positions { get; }
+    }
+
+    public interface IEmployeeWritable: IEmployee, ITrackableEntityWritable
+    {
+        new int EmployeeID { get; set; }
+
+        new int? UserID { get; set; }
+
+        new int? PhotoFileID { get; set; }
+
+        new string Phone { get; set; }
+
+        new string CellPhone { get; set; }
+
+        new string Fax { get; set; }
+
+        new string LastName { get; set; }
+
+        new string FirstName { get; set; }
+
+        new string OtherName { get; set; }
+
+        new string Email { get; set; }
+
+        new string SecondaryEmail { get; set; }
+
+        new string WebSite { get; set; }
+
+        new string WebSiteLabel { get; set; }
+
+        new string Messenger { get; set; }
+
+        new string WorkingPlace { get; set; }
+
+        new string WorkingHours { get; set; }
+
+        new string Biography { get; set; }
+
+        // employee stage may be not continuous, so using starting date is not possible
+        new int? ExperienceYears { get; set; }
+
+        // employee ExpYearsBySpec even more unbinded to dates
+        new int? ExperienceYearsBySpec { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new bool ShowBarcode { get; set; }
+
+        new ICollection<EmployeeAchievementInfo> Achievements { get; set; }
+
+        new ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
+
+        new ICollection<OccupiedPositionInfo> Positions { get; set; }
+    }
+
     public class EmployeeInfo: IEmployeeWritable
     {
         #region IEmployeeWritable implementation

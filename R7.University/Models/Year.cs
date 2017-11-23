@@ -30,18 +30,16 @@ namespace R7.University.Models
         bool IsForward { get; }
     }
 
-    public interface IYearWritable
+    public interface IYearWritable: IYear
     {
-        int YearId { set; }
+        new int YearId { get; set; }
 
-        int Year { set; }
+        new int Year { get; set; }
 
-        bool IsForward { set; }
+        new bool IsForward { get; set; }
     }
 
-    public interface IYearMutable: IYear, IYearWritable {}
-
-    public class YearInfo : IYearMutable
+    public class YearInfo : IYearWritable
     {
         public int YearId { get; set; }
 

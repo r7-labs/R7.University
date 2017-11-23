@@ -1,5 +1,5 @@
 //
-//  OccupiedPositionInfo.cs
+//  OccupiedPosition.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -21,6 +21,48 @@
 
 namespace R7.University.Models
 {
+    public interface IOccupiedPosition
+    {
+        int OccupiedPositionID { get; }
+
+        int PositionID { get; }
+
+        int DivisionID { get; }
+
+        int EmployeeID { get; }
+
+        bool IsPrime { get; }
+
+        string TitleSuffix { get; }
+
+        PositionInfo Position { get; }
+
+        DivisionInfo Division { get; }
+
+        EmployeeInfo Employee { get; }
+    }
+
+    public interface IOccupiedPositionWritable: IOccupiedPosition
+    {
+        new int OccupiedPositionID { get; set; }
+
+        new int PositionID { get; set; }
+
+        new int DivisionID { get; set; }
+
+        new int EmployeeID { get; set; }
+
+        new bool IsPrime { get; set; }
+
+        new string TitleSuffix { get; set; }
+
+        new PositionInfo Position { get; set; }
+
+        new DivisionInfo Division { get; set; }
+
+        new EmployeeInfo Employee { get; set; }
+    }
+
     // TODO: Add Unique constraint to OccupiedPositions table FK's?
     public class OccupiedPositionInfo: IOccupiedPositionWritable
     {

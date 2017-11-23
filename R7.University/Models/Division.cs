@@ -1,5 +1,5 @@
 //
-//  DivisionInfo.cs
+//  Division.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,6 +26,116 @@ using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {
+    public interface IDivision: ITrackableEntity
+    {
+        string Title { get; }
+
+        string ShortTitle { get; }
+
+        int DivisionID { get; }
+
+        int? ParentDivisionID  { get; }
+
+        int? DivisionTermID  { get; }
+
+        string HomePage { get; }
+
+        string WebSite { get; }
+
+        string WebSiteLabel { get; }
+
+        string Phone { get; }
+
+        string Fax { get; }
+
+        string Email { get; }
+
+        string SecondaryEmail { get; }
+
+        string Address { get; }
+
+        string Location { get; }
+
+        string WorkingHours { get; }
+
+        string DocumentUrl { get; }
+
+        bool IsSingleEntity { get; }
+
+        bool IsInformal { get; }
+
+        bool IsGoverning { get; }
+
+        int? HeadPositionID { get; }
+
+        DateTime? StartDate { get; }
+
+        DateTime? EndDate { get; }
+
+        ICollection<DivisionInfo> SubDivisions { get; }
+
+        ICollection<OccupiedPositionInfo> OccupiedPositions { get; }
+
+        int Level { get; }
+
+        string Path { get; }
+    }
+
+    public interface IDivisionWritable: IDivision, ITrackableEntityWritable
+    {
+        new string Title { get; set; }
+
+        new string ShortTitle { get; set; }
+
+        new int DivisionID { get; set; }
+
+        new int? ParentDivisionID  { get; set; }
+
+        new int? DivisionTermID  { get; set; }
+
+        new string HomePage { get; set; }
+
+        new string WebSite { get; set; }
+
+        new string WebSiteLabel { get; set; }
+
+        new string Phone { get; set; }
+
+        new string Fax { get; set; }
+
+        new string Email { get; set; }
+
+        new string SecondaryEmail { get; set; }
+
+        new string Address { get; set; }
+
+        new string Location { get; set; }
+
+        new string WorkingHours { get; set; }
+
+        new string DocumentUrl { get; set; }
+
+        new bool IsSingleEntity { get; set; }
+
+        new bool IsInformal { get; set; }
+
+        new bool IsGoverning { get; set; }
+
+        new int? HeadPositionID { get; set; }
+
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
+
+        new ICollection<DivisionInfo> SubDivisions { get; set; }
+
+        new ICollection<OccupiedPositionInfo> OccupiedPositions { get; set; }
+
+        new int Level { get; set; }
+
+        new string Path { get; set; }
+    }
+
     public class DivisionInfo: IDivisionWritable
     {
         /// <summary>
