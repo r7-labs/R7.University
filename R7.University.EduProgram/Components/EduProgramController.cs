@@ -34,9 +34,7 @@ namespace R7.University.EduProgram.Components
         {
             var searchDocs = new List<SearchDocument> ();
 
-            // TODO: Implement GetModifiedSearchDocuments () here
-            // var sd = new SearchDocument ();
-            // searchDocs.Add (searchDoc);
+            // TODO: Implement GetModifiedSearchDocuments here
                      
             return searchDocs;
         }

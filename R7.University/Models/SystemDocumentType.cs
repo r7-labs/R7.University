@@ -26,7 +26,7 @@ namespace R7.University
     /// </summary>
     public enum SystemDocumentType
     {
-        // ru-RU: приказ о приеме (зачислении)
+        // ru-RU: приказ о приеме
         OrderEnrollment,
         // ru-RU: приказ об отчислении
         OrderExpulsion,
@@ -48,7 +48,7 @@ namespace R7.University
         EduPlan,
         // ru-RU: методический материал
         EduMaterial,
-        // ru-RU: аннотация (аннотации) рабочей программы
+        // ru-RU: аннотации рабочей программы
         WorkProgramAnnotation,
         // ru-RU: рабочая программа практики
         WorkProgramOfPractice,

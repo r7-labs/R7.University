@@ -343,7 +343,7 @@ namespace R7.University.Employee
                     ref usersFound, includeDeleted, false);
                 usersFoundTotal += usersFound;
 
-                // find cross-portal users (host & others) by email
+                // find cross-portal users including host user by email
                 users.AddRange (UserController.GetUsersByEmail (Null.NullInteger, term, -1, -1, 
                         ref usersFound, includeDeleted, false));
                 usersFoundTotal += usersFound;

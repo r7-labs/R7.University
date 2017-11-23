@@ -48,7 +48,6 @@ namespace R7.University.Division.Components
                         PortalId = modInfo.PortalID,
                         AuthorUserId = division.LastModifiedByUserID,
                         Title = division.Title,
-                        // Description = HtmlUtils.Shorten (aboutDivision, 255, "..."),
                         Body = aboutDivision,
                         ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),
                         UniqueKey = string.Format ("University_Division_{0}", division.DivisionID),

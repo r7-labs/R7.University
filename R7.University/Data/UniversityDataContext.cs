@@ -61,22 +61,6 @@ namespace R7.University.Data
             // add mappings
             modelBuilder.Configurations.AddFromAssembly (GetType ().Assembly);
 
-            /*
-            modelBuilder.Configurations.Add<EmployeeInfo> (new EmployeeMapping ());
-            modelBuilder.Configurations.Add<DivisionInfo> (new DivisionMapping ());
-            modelBuilder.Configurations.Add<PositionInfo> (new PositionMapping ());
-            modelBuilder.Configurations.Add<OccupiedPositionInfo> (new OccupiedPositionMapping ());
-            modelBuilder.Configurations.Add<EmployeeDisciplineInfo> (new EmployeeDisciplineMapping ());
-            modelBuilder.Configurations.Add<EduLevelInfo> (new EduLevelMapping ());
-            modelBuilder.Configurations.Add<EduProgramInfo> (new EduProgramMapping ());
-            modelBuilder.Configurations.Add<EduFormInfo> (new EduFormMapping ());
-            modelBuilder.Configurations.Add<EduProgramProfileInfo> (new EduProgramProfileMapping ());
-            modelBuilder.Configurations.Add<EduProgramProfileFormInfo> (new EduProgramProfileFormMapping ());
-            modelBuilder.Configurations.Add<DocumentInfo> (new DocumentMapping ());
-            modelBuilder.Configurations.Add<DocumentTypeInfo> (new DocumentTypeMapping ());
-            modelBuilder.Configurations.Add<AchievementInfo> (new AchievementMapping ());
-            modelBuilder.Configurations.Add<EmployeeAchievementInfo> (new EmployeeAchievementMapping ());
-*/
             // add objectQualifier
             var plurService = new EnglishPluralizationService ();
             modelBuilder.Types ().Configure (entity => 
