@@ -247,7 +247,6 @@
     <Folder Include="ModelExtensions\" />
     <Folder Include="Models\" />
     <Folder Include="ControlExtensions\" />
-    <Folder Include="Controls\" />
     <Folder Include="Data\" />
     <Folder Include="Properties\" />
     <Folder Include="Components\" />
