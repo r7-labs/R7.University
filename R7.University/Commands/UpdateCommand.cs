@@ -25,8 +25,7 @@ using R7.University.Security;
 
 namespace R7.University.Commands
 {
-    public class UpdateCommand<TEntity> : ISecureCommand
-        where TEntity : class, ITrackableEntityWritable
+    public class UpdateCommand<TEntity> : ISecureCommand where TEntity : class
     {
         public IModelContext ModelContext { get; set; }
 
@@ -41,8 +40,11 @@ namespace R7.University.Commands
         public virtual void Update (TEntity entity, DateTime dateTime)
         {
             if (SecurityContext.CanUpdate (entity)) {
-                entity.LastModifiedByUserID = SecurityContext.UserId;
-                entity.LastModifiedOnDate = dateTime;
+                if (entity is ITrackableEntityWritable) {
+                    var trackable = (ITrackableEntityWritable) entity;
+                    trackable.LastModifiedByUserID = SecurityContext.UserId;
+                    trackable.LastModifiedOnDate = dateTime;
+                }
                 ModelContext.Update (entity);        
             }
         }
