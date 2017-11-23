@@ -22,7 +22,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Models;
+using R7.University.EditModels;
 using R7.University.ViewModels;
 
 namespace R7.University.Controls.ViewModels

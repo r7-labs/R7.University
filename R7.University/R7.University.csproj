@@ -205,7 +205,6 @@
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
     <Compile Include="ViewModels\LocalizationHelper.cs" />
     <Compile Include="Models\ITrackableEntity.cs" />
-    <Compile Include="Models\ModelEditState.cs" />
     <Compile Include="Models\TimeToLearnDisplayMode.cs" />
     <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
     <Compile Include="SerializationModels\AchievementTypeSerializationModel.cs" />
@@ -223,7 +222,6 @@
     <Compile Include="ViewModels\FormatExtensions.cs" />
     <Compile Include="Commands\UpdateScienceRecordsCommand.cs" />
     <Compile Include="Models\ScienceRecordTypeOfValues.cs" />
-    <Compile Include="ViewModels\IEditModel.cs" />
     <Compile Include="Components\UniversityAssembly.cs" />
     <Compile Include="Models\Year.cs" />
     <Compile Include="Models\EduProgramProfileFormYear.cs" />
@@ -240,6 +238,8 @@
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\ScienceRecord.cs" />
     <Compile Include="Models\ScienceRecordType.cs" />
+    <Compile Include="EditModels\ModelEditState.cs" />
+    <Compile Include="EditModels\IEditModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -261,6 +261,7 @@
     <Folder Include="Security\" />
     <Folder Include="Modules\" />
     <Folder Include="SerializationModels\" />
+    <Folder Include="EditModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

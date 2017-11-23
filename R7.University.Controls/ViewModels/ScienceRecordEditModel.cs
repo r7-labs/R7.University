@@ -24,6 +24,7 @@ using DotNetNuke.Common.Utilities;
 using Newtonsoft.Json;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.EditModels;
 using R7.University.Models;
 using R7.University.ViewModels;
 
