@@ -203,7 +203,6 @@
     <Compile Include="ModelExtensions\AchievementTypeExtensions.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
-    <Compile Include="ViewModels\LocalizationHelper.cs" />
     <Compile Include="Models\ITrackableEntity.cs" />
     <Compile Include="Models\TimeToLearnDisplayMode.cs" />
     <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
@@ -240,6 +239,7 @@
     <Compile Include="Models\ScienceRecordType.cs" />
     <Compile Include="EditModels\ModelEditState.cs" />
     <Compile Include="EditModels\IEditModel.cs" />
+    <Compile Include="Utilities\LocalizationHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

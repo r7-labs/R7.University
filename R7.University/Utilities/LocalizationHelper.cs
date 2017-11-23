@@ -21,7 +21,7 @@
 
 using DotNetNuke.Services.Localization;
 
-namespace R7.University.ViewModels
+namespace R7.University.Utilities
 {
     public static class LocalizationHelper
     {
