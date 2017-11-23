@@ -143,11 +143,10 @@ namespace R7.University.Controls
         {
             var items = ViewStateItems;
             if (items != null) {
-                // TODO: Remove ToList()?
-                return items.Where (i => i.EditState != ModelEditState.Unchanged).ToList ();
+                return items.Where (i => i.EditState != ModelEditState.Unchanged);
             }
 
-            return new List<TViewModel> ();
+            return Enumerable.Empty<TViewModel> ();
         }
 
         public virtual void SetData (IEnumerable<TModel> items, int targetItemId)
