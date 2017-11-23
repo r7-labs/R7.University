@@ -30,7 +30,7 @@ using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
-namespace R7.University.Controls.ViewModels
+namespace R7.University.Controls.EditModels
 {
     [Serializable]
     public class EmployeeAchievementEditModel : EditModelBase<EmployeeAchievementInfo>, IEmployeeAchievementWritable

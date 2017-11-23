@@ -25,7 +25,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
 using R7.University.ViewModels;
 
-namespace R7.University.Controls.ViewModels
+namespace R7.University.Controls.EditModels
 {
     public abstract class EditModelBase<TModel>: IEditModel<TModel>
     {

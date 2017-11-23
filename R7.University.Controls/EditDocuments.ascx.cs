@@ -30,6 +30,7 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
+using R7.University.Controls.EditModels;
 using R7.University.Models;
 
 namespace R7.University.Controls

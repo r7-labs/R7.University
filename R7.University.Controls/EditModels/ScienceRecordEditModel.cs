@@ -29,7 +29,7 @@ using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
-namespace R7.University.Controls.ViewModels
+namespace R7.University.Controls.EditModels
 {
     public class ScienceRecordEditModel : EditModelBase<ScienceRecordInfo>, IScienceRecordWritable
     {

@@ -35,7 +35,7 @@ using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
-namespace R7.University.Controls
+namespace R7.University.Controls.EditModels
 {
     [Serializable]
     public class DocumentEditModel: EditModelBase<DocumentInfo>, IDocumentWritable

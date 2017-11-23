@@ -31,7 +31,7 @@ using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Controls.ViewModels;
+using R7.University.Controls.EditModels;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;

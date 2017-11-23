@@ -28,7 +28,7 @@ using R7.University.EditModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 
-namespace R7.University.Controls.ViewModels
+namespace R7.University.Controls.EditModels
 {
     [Serializable]
     public class EduProgramDivisionEditModel: EditModelBase<EduProgramDivisionInfo>, IEduProgramDivisionWritable

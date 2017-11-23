@@ -10,6 +10,7 @@
     <RootNamespace>R7.University.Controls</RootNamespace>
     <AssemblyName>R7.University.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>1.16.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,16 +98,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
-    <Compile Include="ViewModels\DocumentEditModel.cs" />
     <Compile Include="ViewModels\DocumentTypeViewModel.cs" />
     <Compile Include="ViewModels\EduFormViewModel.cs" />
-    <Compile Include="ViewModels\EduProgramDivisionEditModel.cs" />
-    <Compile Include="ViewModels\EduProgramProfileFormEditModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
-    <Compile Include="ViewModels\EmployeeAchievementEditModel.cs" />
-    <Compile Include="ViewModels\EmployeeDisciplineEditModel.cs" />
-    <Compile Include="ViewModels\OccupiedPositionEditModel.cs" />
-    <Compile Include="ViewModels\ScienceRecordEditModel.cs" />
     <Compile Include="AgplSignature.ascx.cs">
       <DependentUpon>AgplSignature.ascx</DependentUpon>
     </Compile>
@@ -159,7 +153,14 @@
       <DependentUpon>EditScienceRecords.ascx</DependentUpon>
     </Compile>
     <Compile Include="GridAndFormControlBase.cs" />
-    <Compile Include="ViewModels\EditModelBase.cs" />
+    <Compile Include="EditModels\DocumentEditModel.cs" />
+    <Compile Include="EditModels\EduProgramDivisionEditModel.cs" />
+    <Compile Include="EditModels\EduProgramProfileFormEditModel.cs" />
+    <Compile Include="EditModels\EmployeeAchievementEditModel.cs" />
+    <Compile Include="EditModels\EmployeeDisciplineEditModel.cs" />
+    <Compile Include="EditModels\OccupiedPositionEditModel.cs" />
+    <Compile Include="EditModels\ScienceRecordEditModel.cs" />
+    <Compile Include="EditModels\EditModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">
@@ -212,6 +213,7 @@
     <Folder Include="js\" />
     <Folder Include="Queries\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="EditModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

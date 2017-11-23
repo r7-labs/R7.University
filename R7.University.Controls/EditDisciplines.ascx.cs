@@ -26,6 +26,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.University.ControlExtensions;
+using R7.University.Controls.EditModels;
 using R7.University.Controls.Queries;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
