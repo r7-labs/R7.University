@@ -2,6 +2,6 @@
 <div class="u8y-agpl-footer">
     <% if (ShowRule) { %><hr /><% } %>
     <a href="https://github.com/roman-yagodin/R7.University" rel="nofollow" target="_blank" title="<%= LocalizeString ("SourceLink.Title") %>">
-	    <%= string.Format ("{0} v{1}", AppName, AppVersion.ToString (3)) %>
+		<%: Name %> v<%: InformationalVersion ?? Version.ToString (3) %>
 	</a>
 </div>

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Reflection;
 using System.Web.UI;
 using DotNetNuke.Services.Localization;
 using R7.University.Components;
@@ -29,16 +30,14 @@ namespace R7.University.Controls
 {
     public class AgplSignature: UserControl
     {
-        private bool showRule = true;
-
+        bool showRule = true;
         public bool ShowRule
         {
             get { return showRule; }
             set { showRule = value; }
         }
 
-        private string localResourceFile;
-
+        string localResourceFile;
         protected string LocalResourceFile
         {
             get {
@@ -55,14 +54,13 @@ namespace R7.University.Controls
             return Localization.GetString (key, LocalResourceFile);
         }
 
-        protected string AppName
-        {
-            get { return UniversityAssembly.GetCoreAssembly ().GetName ().Name; }
-        }
+        protected virtual Assembly CoreAssembly => UniversityAssembly.GetCoreAssembly ();
 
-        protected Version AppVersion
-        {
-            get { return UniversityAssembly.GetCoreAssembly ().GetName ().Version; }
-        }
+        protected virtual string Name => CoreAssembly.GetName ().Name;
+
+        protected virtual Version Version => CoreAssembly.GetName ().Version;
+
+        protected virtual string InformationalVersion =>
+            CoreAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute> ()?.InformationalVersion;
     }
 }
