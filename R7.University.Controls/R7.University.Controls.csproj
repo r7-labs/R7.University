@@ -206,6 +206,7 @@
     <None Include="EditPositions.ascx" />
     <None Include="EditScienceRecords.ascx" />
     <None Include="packages.config" />
+    <None Include="css\grid-and-form.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_LocalResources\" />

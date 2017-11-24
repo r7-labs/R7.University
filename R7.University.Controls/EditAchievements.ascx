@@ -5,6 +5,7 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Controls/css/grid-and-form.css" />
 <asp:Panel id="panelEditAchievements" runat="server" CssClass="dnnForm dnnClear u8y-edit-achievements">
     <fieldset>
         <div class="dnnFormItem">
