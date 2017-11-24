@@ -103,7 +103,7 @@
                     </div>
         			<asp:Literal id="litDisciplines" runat="server" />
         		</div>
-        		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade">
+        		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade u8y-employee-about">
         			<asp:Literal id="litAbout" runat="server" />
         		</div>
 			</div>	
