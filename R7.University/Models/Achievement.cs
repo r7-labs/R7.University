@@ -31,7 +31,7 @@ namespace R7.University.Models
 
         string ShortTitle  { get; }
 
-        AchievementTypeInfo AchievementType { get; }
+        IAchievementType AchievementType { get; }
     }
 
     public interface IAchievementWritable: IAchievement
@@ -44,9 +44,10 @@ namespace R7.University.Models
 
         new string ShortTitle  { get; set; }
 
-        new AchievementTypeInfo AchievementType { get; set; }
+        new IAchievementType AchievementType { get; set; }
     }
 
+    // TODO: Move to the DataModels namespace
     public class AchievementInfo: IAchievementWritable
     {
         public int AchievementID { get; set; }
@@ -58,5 +59,12 @@ namespace R7.University.Models
         public string ShortTitle  { get; set; }
 
         public virtual AchievementTypeInfo AchievementType { get; set; }
+
+        IAchievementType IAchievement.AchievementType => AchievementType;
+
+        IAchievementType IAchievementWritable.AchievementType {
+            get { return AchievementType; }
+            set { AchievementType = (AchievementTypeInfo) value; }
+        }
     }
 }
