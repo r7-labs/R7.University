@@ -76,17 +76,23 @@ IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}Universi
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (
         EduProgramProfileFormYearID int IDENTITY (1,1) NOT NULL,
-        EduProgramProfileFormID int NOT NULL,
+        EduProgramProfileID int NOT NULL,
+        EduFormID int NOT NULL,
         YearID int NOT NULL,
-        VolumeCU int NULL,
+        TimeToLearnCU int NULL,
+        TimeToLearnHours int NULL,
+        TimeToLearnMonths int NULL,
         TrainingPracticeCU int NULL,
         IndustrialPracticeCU int NULL,
         UndergraduatePracticeCU int NULL,
         StartDate datetime NULL,
         EndDate datetime NULL
         CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileFormYears] PRIMARY KEY (EduProgramProfileFormYearID)
-        CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_EduProgramProfileForms]
-            FOREIGN KEY (EduProgramProfileFormID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfileForms] (EduProgramProfileFormID)
+        CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_EduProgramProfiles]
+            FOREIGN KEY (EduProgramProfileID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramProfileID)
+                ON DELETE CASCADE,
+        CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_EduForms]
+            FOREIGN KEY (EduFormID) REFERENCES {databaseOwner}[{objectQualifier}University_EduForms] (EduFormID)
                 ON DELETE NO ACTION,
         CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_Years]
             FOREIGN KEY (YearID) REFERENCES {databaseOwner}[{objectQualifier}University_Years] (YearID)

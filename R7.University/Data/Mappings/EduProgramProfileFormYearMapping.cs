@@ -32,10 +32,14 @@ namespace R7.University.Data.Mappings
             HasKey (m => m.EduProgramProfileFormYearId);
             Property (m => m.EduProgramProfileFormYearId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
 
-            Property (m => m.EduProgramProfileFormId).IsRequired ();
+            Property (m => m.EduProgramProfileId).IsRequired ();
+            Property (m => m.EduFormId).IsRequired ();
             Property (m => m.YearId).IsRequired ();
 
-            Property (m => m.VolumeCu).IsOptional ();
+            Property (m => m.TimeToLearnCu).IsOptional ();
+            Property (m => m.TimeToLearnHours).IsOptional ();
+            Property (m => m.TimeToLearnMonths).IsOptional ();
+
             Property (m => m.TrainingPracticeCu).IsOptional ();
             Property (m => m.IndustrialPracticeCu).IsOptional ();
             Property (m => m.UndergraduatePracticeCu).IsOptional ();

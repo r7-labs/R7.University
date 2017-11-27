@@ -27,11 +27,17 @@ namespace R7.University.Models
     {
         int EduProgramProfileFormYearId { get; }
 
-        int EduProgramProfileFormId { get; }
+        int EduProgramProfileId { get; }
+
+        int EduFormId { get; }
 
         int YearId { get; }
 
-        int? VolumeCu { get; }
+        int? TimeToLearnCu { get; }
+
+        int? TimeToLearnHours { get; }
+
+        int? TimeToLearnMonths { get; }
 
         int? TrainingPracticeCu { get; }
 
@@ -48,11 +54,17 @@ namespace R7.University.Models
     {
         new int EduProgramProfileFormYearId { get; set; }
 
-        new int EduProgramProfileFormId { get; set; }
+        new int EduProgramProfileId { get; set; }
+
+        new int EduFormId { get; set; }
 
         new int YearId { get; set; }
 
-        new int? VolumeCu { get; set; }
+        new int? TimeToLearnCu { get; set; }
+
+        new int? TimeToLearnHours { get; set; }
+
+        new int? TimeToLearnMonths { get; set; }
 
         new int? TrainingPracticeCu { get; set; }
 
@@ -69,11 +81,17 @@ namespace R7.University.Models
     {
         public int EduProgramProfileFormYearId { get; set; }
 
-        public int EduProgramProfileFormId { get; set; }
+        public int EduProgramProfileId { get; set; }
+
+        public int EduFormId { get; set; }
 
         public int YearId { get; set; }
 
-        public int? VolumeCu { get; set; }
+        public int? TimeToLearnCu { get; set; }
+
+        public int? TimeToLearnHours { get; set; }
+
+        public int? TimeToLearnMonths { get; set; }
 
         public int? TrainingPracticeCu { get; set; }
 
