@@ -505,6 +505,37 @@
                 <br />
             </div>
         </asp:View>
+		<asp:View id="viewYears" runat="server">
+            <div id="years" style="overflow:auto">
+                <asp:GridView id="gridYears" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None" 
+                    OnSorting="gridView_Sorting" 
+                    OnPageIndexChanging="gridView_PageIndexChanging"
+                    OnRowDataBound="gridView_RowDataBound">
+                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                    <SelectedRowStyle CssClass="dnnFormError" />
+                    <EditRowStyle CssClass="dnnFormInput" />
+                    <FooterStyle CssClass="dnnGridFooter" />
+                    <PagerStyle CssClass="dnnGridPager" />
+                    <Columns>
+                        <asp:TemplateField>
+                           <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                </asp:HyperLink>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="YearId" SortExpression="YearId" HeaderText="YearId" />
+						<asp:BoundField DataField="Year" SortExpression="Year" HeaderText="Year" />
+						<asp:CheckBoxField DataField="AdmissionIsOpen" SortExpression="AdmissionIsOpen" HeaderText="AdmissionIsOpen" />
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" Visible="true" />
+                </asp:GridView>
+                <br />
+            </div>
+        </asp:View>
 	</asp:MultiView>
 	<controls:AgplSignature runat="server" />
 </div>

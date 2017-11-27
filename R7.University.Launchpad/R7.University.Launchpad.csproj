@@ -133,6 +133,7 @@
     <Content Include="packages.config" />
     <Content Include="js\editDocumentType.js" />
     <Content Include="EditAchievementType.ascx" />
+    <Content Include="EditYear.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
@@ -155,6 +156,8 @@
     <None Include="App_LocalResources\EditEduForm.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievementType.ascx.resx" />
     <None Include="App_LocalResources\EditAchievementType.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditYear.ascx.resx" />
+    <None Include="App_LocalResources\EditYear.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewLaunchpad.ascx.cs">
@@ -234,6 +237,13 @@
     <Compile Include="Models\LaunchpadSettings.cs" />
     <Compile Include="Components\DataTableConstructor.cs" />
     <Compile Include="Tables\EduProgramDivisionsTable.cs" />
+    <Compile Include="EditYear.ascx.cs">
+      <DependentUpon>EditYear.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditYear.ascx.controls.cs">
+      <DependentUpon>EditYear.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\YearsTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

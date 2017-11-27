@@ -1,4 +1,4 @@
-﻿//
+//
 //  YearMapping.cs
 //
 //  Author:
@@ -33,7 +33,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.YearId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
 
             Property (m => m.Year).IsRequired ();
-            Property (m => m.IsForward).IsRequired ();
+            Property (m => m.AdmissionIsOpen).IsRequired ();
         }
     }
 }

@@ -15,8 +15,7 @@ class EduProgramProfile {
  
 class Year {
     Year: string/int
-    IsLast: bool
-    IsForward: bool
+    AdmissionIsOpen: bool
 }
 
 class EduProgramProfileForm {

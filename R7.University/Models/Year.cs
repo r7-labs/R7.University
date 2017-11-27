@@ -27,7 +27,7 @@ namespace R7.University.Models
 
         int Year { get; }
 
-        bool IsForward { get; }
+        bool AdmissionIsOpen { get; }
     }
 
     public interface IYearWritable: IYear
@@ -36,7 +36,7 @@ namespace R7.University.Models
 
         new int Year { get; set; }
 
-        new bool IsForward { get; set; }
+        new bool AdmissionIsOpen { get; set; }
     }
 
     public class YearInfo : IYearWritable
@@ -45,6 +45,6 @@ namespace R7.University.Models
 
         public int Year { get; set; }
 
-        public bool IsForward { get; set; }
+        public bool AdmissionIsOpen { get; set; }
     }
 }

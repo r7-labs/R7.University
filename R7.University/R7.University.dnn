@@ -340,6 +340,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditYear</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditYear.ascx</controlSrc>
+                                        <controlTitle>Edit Year</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
 								</moduleControls>
 							</moduleDefinition>
 						</moduleDefinitions>

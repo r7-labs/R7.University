@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ControlTitle_edityear.Text" xml:space="preserve">
+        <value>Редактирование года</value>
+    </data>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="labelYear.Text" xml:space="preserve">
+        <value>Год начала освоения:</value>
+    </data>
+    <data name="labelYear.Help" xml:space="preserve">
+        <value>Введите год начала освоения образовательных программ.</value>
+    </data>
+    <data name="Year.Required" xml:space="preserve">
+        <value>Пожалуйста, введите год начала освоения образовательных программ.</value>
+    </data>
+	<data name="labelAdmissionIsOpen.Text" xml:space="preserve">
+        <value>Открыт приём на обучение?</value>
+    </data>
+    <data name="labelAdmissionIsOpen.Help" xml:space="preserve">
+        <value>Отметьте, если для этого года открыт приём на обучение.</value>
+    </data>
+</root>

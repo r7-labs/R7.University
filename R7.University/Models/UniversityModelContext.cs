@@ -58,11 +58,5 @@ namespace R7.University.Models
         #endregion
 
         public IEnumerable<YearInfo> Years => Query<YearInfo> ().ToList ();
-
-        public YearInfo LastYear => Query<YearInfo> ().Where (y => !y.IsForward)
-                                                      .OrderByDescending (y => y.Year)
-                                                      .FirstOrDefault ();
-
-        public YearInfo ForwardYear => Query<YearInfo> ().Where (y => y.IsForward).FirstOrDefault ();
     }
 }
