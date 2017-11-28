@@ -79,12 +79,8 @@ BEGIN
         EduProgramProfileID int NOT NULL,
         EduFormID int NOT NULL,
         YearID int NOT NULL,
-        TimeToLearnCU int NULL,
         TimeToLearnHours int NULL,
         TimeToLearnMonths int NULL,
-        TrainingPracticeCU int NULL,
-        IndustrialPracticeCU int NULL,
-        UndergraduatePracticeCU int NULL,
         StartDate datetime NULL,
         EndDate datetime NULL
         CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileFormYears] PRIMARY KEY (EduProgramProfileFormYearID)

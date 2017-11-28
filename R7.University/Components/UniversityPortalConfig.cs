@@ -28,6 +28,8 @@ namespace R7.University.Components
         public BarcodeConfig Barcode { get; set; } = new BarcodeConfig ();
 
         public int DataCacheTime { get; set; } = 3600;
+
+        public int CuHours { get; set; } = 36;
     }
 
     public class EmployeePhotoConfig

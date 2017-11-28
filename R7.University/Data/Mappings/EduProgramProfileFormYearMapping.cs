@@ -36,13 +36,8 @@ namespace R7.University.Data.Mappings
             Property (m => m.EduFormId).IsRequired ();
             Property (m => m.YearId).IsRequired ();
 
-            Property (m => m.TimeToLearnCu).IsOptional ();
             Property (m => m.TimeToLearnHours).IsOptional ();
             Property (m => m.TimeToLearnMonths).IsOptional ();
-
-            Property (m => m.TrainingPracticeCu).IsOptional ();
-            Property (m => m.IndustrialPracticeCu).IsOptional ();
-            Property (m => m.UndergraduatePracticeCu).IsOptional ();
 
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();

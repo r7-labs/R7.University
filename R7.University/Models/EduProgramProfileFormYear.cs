@@ -33,17 +33,9 @@ namespace R7.University.Models
 
         int YearId { get; }
 
-        int? TimeToLearnCu { get; }
-
         int? TimeToLearnHours { get; }
 
         int? TimeToLearnMonths { get; }
-
-        int? TrainingPracticeCu { get; }
-
-        int? IndustrialPracticeCu { get; }
-
-        int? UndergraduatePracticeCu { get; }
 
         DateTime? StartDate { get; }
 
@@ -60,17 +52,9 @@ namespace R7.University.Models
 
         new int YearId { get; set; }
 
-        new int? TimeToLearnCu { get; set; }
-
         new int? TimeToLearnHours { get; set; }
 
         new int? TimeToLearnMonths { get; set; }
-
-        new int? TrainingPracticeCu { get; set; }
-
-        new int? IndustrialPracticeCu { get; set; }
-
-        new int? UndergraduatePracticeCu { get; set; }
 
         new DateTime? StartDate { get; set; }
 
@@ -87,17 +71,9 @@ namespace R7.University.Models
 
         public int YearId { get; set; }
 
-        public int? TimeToLearnCu { get; set; }
-
         public int? TimeToLearnHours { get; set; }
 
         public int? TimeToLearnMonths { get; set; }
-
-        public int? TrainingPracticeCu { get; set; }
-
-        public int? IndustrialPracticeCu { get; set; }
-
-        public int? UndergraduatePracticeCu { get; set; }
 
         public DateTime? StartDate { get; set; }
 
