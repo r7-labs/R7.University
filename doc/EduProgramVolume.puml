@@ -1,38 +1,42 @@
 @startuml Volume of educational program
 
-EduProgram <|-- EduProgramProfile
+EduProgramProfileFormYear "1..*" -- "1" EduProgramProfile
+EduProgramProfileFormYear "0..*" -- "1" EduForm
+EduProgramProfileFormYear "0..*" -- "1" Year
+EduProgramProfileFormYear "1" -- "0..*" Discipline
+Discipline "0..*" -- "0..1" DisciplineType
 
-EduProgramProfile "0..*" -- "0..*" EduForm
-(EduProgramProfile, EduForm) .. EduProgramProfileForm
-
-EduProgramProfileForm "0..*" -- "0..*" Year
-(EduProgramProfileForm, Year) .. EduProgramProfileFormYear
+EduProgramProfileFormYear "1" -- "0..*" ContingentRecord
 
 class EduProgramProfile {
     IsAdopted: bool
     Elearning: string
 }
- 
+
 class Year {
-    Year: string/int
+    Year: int
     AdmissionIsOpen: bool
 }
 
-class EduProgramProfileForm {
+class EduProgramProfileFormYear {
     TimeToLearnMonths: int
     TimeToLearnHours: int
-}
-
-class EduProgramProfileFormYear {
-    VolumeCU: int
-    TrainingPracticeCU: int
-    IndustrialPracticeCU: int
-    UndergraduatePracticeCU: int
     ..
     StartDate: DateTime?
     EndDate: DateTime?
 }
 
-note right: CU - credit unit
+class Discipline {
+    Code: string
+    Title: string
+    Hours: int
+    DocumentUrl: string
+}
+
+enum DisciplineType {
+    TrainingPractice
+    IndustrialPractice
+    UndergraduatePractice
+}
 
 @enduml
