@@ -3,14 +3,28 @@
 EduProgramProfileFormYear "1..*" -- "1" EduProgramProfile
 EduProgramProfileFormYear "0..*" -- "1" EduForm
 EduProgramProfileFormYear "0..*" -- "1" Year
-EduProgramProfileFormYear "1" -- "0..*" Discipline
-Discipline "0..*" -- "0..1" DisciplineType
+EduProgramProfileFormYear "1" .. "0..*" Discipline
+Discipline "0..*" .. "0..1" DisciplineType
 
-EduProgramProfileFormYear "1" -- "0..*" ContingentRecord
+EduProgramProfileFormYear "1" -- "0..1" Contingent
+EduProgramProfileFormYear "1" -- "0..1" EduVolume
 
 class EduProgramProfile {
     IsAdopted: bool
     Elearning: string
+}
+
+class EduVolume {
+    TimeToLearnMonths: int
+    TimeToLearnHours: int
+    Volume1Cu: int?
+    Volume2Cu: int?
+    Volume3Cu: int?
+    Volume4Cu: int?
+    Volume5Cu: int?
+    VolumePractice1Cu: int?
+    VolumePractice2Cu: int?
+    VolumePractice3Cu: int?
 }
 
 class Year {
@@ -19,9 +33,6 @@ class Year {
 }
 
 class EduProgramProfileFormYear {
-    TimeToLearnMonths: int
-    TimeToLearnHours: int
-    ..
     StartDate: DateTime?
     EndDate: DateTime?
 }
