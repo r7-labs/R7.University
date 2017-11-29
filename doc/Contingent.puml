@@ -1,4 +1,4 @@
-@startuml Contingent
+@startuml Contingent (variant 1)
 
 EduProgramProfileFormYear "1" -- "0..*" ContingentRecord
 ContingentRecord "0..*" -- "1" ContingentRecordType
@@ -32,6 +32,35 @@ enum ContingentRecordType {
     Actual
     Vacant
     AvgAdmScore
+}
+
+@enduml
+
+@startuml Contingent (variant 2)
+
+EduProgramProfileFormYear "1" o-- "0..1" Contingent
+
+class Contingent {
+    AvgAdmScore: decimal?
+    AdmittedFB: int?
+    AdmittedRB: int?
+    AdmittedMB: int?
+    AdmittedBC: int?
+    ..
+    ActualFB: int?
+    ActualRB: int?
+    ActualMB: int?
+    ActualBC: int?
+    ..
+    VacantFB: int?
+    VacantRB: int?
+    VacantMB: int?
+    VacantBC: int?
+    ..
+    MovedIn: int?
+    MovedOut: int?
+    Restored: int?
+    Expelled: int?
 }
 
 @enduml
