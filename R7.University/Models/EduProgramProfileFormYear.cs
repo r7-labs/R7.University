@@ -33,10 +33,6 @@ namespace R7.University.Models
 
         int YearId { get; }
 
-        int TimeToLearnHours { get; }
-
-        int TimeToLearnMonths { get; }
-
         DateTime? StartDate { get; }
 
         DateTime? EndDate { get; }
@@ -56,10 +52,6 @@ namespace R7.University.Models
 
         new int YearId { get; set; }
 
-        new int TimeToLearnHours { get; set; }
-
-        new int TimeToLearnMonths { get; set; }
-
         new DateTime? StartDate { get; set; }
 
         new DateTime? EndDate { get; set; }
@@ -78,10 +70,6 @@ namespace R7.University.Models
         public int EduFormId { get; set; }
 
         public int YearId { get; set; }
-
-        public int TimeToLearnHours { get; set; }
-
-        public int TimeToLearnMonths { get; set; }
 
         public DateTime? StartDate { get; set; }
 

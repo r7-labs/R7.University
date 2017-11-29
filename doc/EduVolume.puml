@@ -17,14 +17,15 @@ class EduProgramProfile {
 class EduVolume {
     TimeToLearnMonths: int
     TimeToLearnHours: int
-    Volume1Cu: int?
-    Volume2Cu: int?
-    Volume3Cu: int?
-    Volume4Cu: int?
-    Volume5Cu: int?
-    VolumePractice1Cu: int?
-    VolumePractice2Cu: int?
-    VolumePractice3Cu: int?
+    Year1Cu: int?
+    Year2Cu: int?
+    Year3Cu: int?
+    Year4Cu: int?
+    Year5Cu: int?
+    Year6Cu: int?
+    PracticeType1Cu: int?
+    PracticeType2Cu: int?
+    PracticeType3Cu: int?
 }
 
 class Year {

@@ -36,9 +36,6 @@ namespace R7.University.Data.Mappings
             Property (m => m.EduFormId).IsRequired ();
             Property (m => m.YearId).IsRequired ();
 
-            Property (m => m.TimeToLearnHours).IsRequired ();
-            Property (m => m.TimeToLearnMonths).IsRequired ();
-
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
 

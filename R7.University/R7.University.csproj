@@ -241,6 +241,8 @@
     <Compile Include="EditModels\IEditModel.cs" />
     <Compile Include="Utilities\LocalizationHelper.cs" />
     <Compile Include="Commands\UpdateEduProgramProfileFormYearsCommand.cs" />
+    <Compile Include="Models\EduVolume.cs" />
+    <Compile Include="Data\Mappings\EduVolumeMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
