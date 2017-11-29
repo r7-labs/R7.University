@@ -38,6 +38,7 @@ namespace R7.University.EduProgramProfiles.Queries
             return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
                 .Include (epp => epp.EduProgramProfileFormYears)
                 .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
+                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
              )).ToList ();
         }
 

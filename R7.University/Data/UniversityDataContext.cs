@@ -61,13 +61,23 @@ namespace R7.University.Data
             // add mappings
             modelBuilder.Configurations.AddFromAssembly (GetType ().Assembly);
 
+            // TODO: Move table name configuration to the mapping classes
             // add objectQualifier
             var plurService = new EnglishPluralizationService ();
             modelBuilder.Types ().Configure (entity => 
                 entity.ToTable (Config.GetObjectQualifer () 
-                    + "University_" + plurService.Pluralize (entity.ClrType.Name.Replace ("Info", string.Empty))));
+                                + "University_" + Pluralize (entity.ClrType.Name.Replace ("Info", string.Empty), plurService)));
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+
+        string Pluralize (string word, IPluralizationService plurService)
+        {
+            if (word == "EduVolume") {
+                return word;
+            }
+
+            return plurService.Pluralize (word);
         }
 
         #region IUniversityDataContext implementation

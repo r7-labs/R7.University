@@ -48,27 +48,27 @@ namespace R7.University.EduProgramProfiles.ViewModels
             Indexer = indexer;
         }
 
-        protected IEduProgramProfileFormYear FullTimeForm
+        protected IEduVolume FullTimeFormVolume
         {
             get { 
-                return EduProgramProfileFormYears.FirstOrDefault (eppfy => 
-                                                                  eppfy.EduForm.GetSystemEduForm () == SystemEduForm.FullTime); 
+                return EduProgramProfileFormYears.FirstOrDefault (
+                    eppfy =>  eppfy.EduForm.GetSystemEduForm () == SystemEduForm.FullTime)?.EduVolume; 
             }
         }
 
-        protected IEduProgramProfileFormYear PartTimeForm
+        protected IEduVolume PartTimeFormVolume
         {
             get { 
-                return EduProgramProfileFormYears.FirstOrDefault (eppfy => 
-                                                                  eppfy.EduForm.GetSystemEduForm () == SystemEduForm.PartTime); 
+                return EduProgramProfileFormYears.FirstOrDefault (
+                    eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.PartTime)?.EduVolume;
             }
         }
 
-        protected IEduProgramProfileFormYear ExtramuralForm
+        protected IEduVolume ExtramuralFormVolume
         {
             get { 
-                return EduProgramProfileFormYears.FirstOrDefault (eppfy => 
-                                                                  eppfy.EduForm.GetSystemEduForm () == SystemEduForm.Extramural); 
+                return EduProgramProfileFormYears.FirstOrDefault (
+                    eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.Extramural)?.EduVolume; 
             }
         }
 
@@ -82,13 +82,13 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string TimeToLearnFullTimeString
         {
             get { 
-                if (FullTimeForm == null) {
+                if (FullTimeFormVolume == null) {
                     return string.Empty; 
                 }
 
                 return TimeToLearnApplyMarkup (
                     "TimeToLearnFullTime.Column",
-                    FormatHelper.FormatTimeToLearn (FullTimeForm.EduVolume.TimeToLearnMonths, FullTimeForm.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (FullTimeFormVolume.TimeToLearnMonths, FullTimeFormVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
                 );
             }
         }
@@ -96,13 +96,13 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string TimeToLearnPartTimeString
         {
             get {
-                if (PartTimeForm == null) {
+                if (PartTimeFormVolume == null) {
                     return string.Empty; 
                 }
 
                 return TimeToLearnApplyMarkup (
                     "TimeToLearnPartTime.Column",
-                    FormatHelper.FormatTimeToLearn (PartTimeForm.EduVolume.TimeToLearnMonths, PartTimeForm.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (PartTimeFormVolume.TimeToLearnMonths, PartTimeFormVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
                 );
             }
         }
@@ -110,13 +110,13 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string TimeToLearnExtramuralString
         {
             get {
-                if (ExtramuralForm == null) {
+                if (ExtramuralFormVolume == null) {
                     return string.Empty; 
                 }
 
                 return TimeToLearnApplyMarkup (
                     "TimeToLearnExtramural.Column",
-                    FormatHelper.FormatTimeToLearn (ExtramuralForm.EduVolume.TimeToLearnMonths, ExtramuralForm.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (ExtramuralFormVolume.TimeToLearnMonths, ExtramuralFormVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
                 );
             }
         }

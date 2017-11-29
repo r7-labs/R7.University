@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using R7.University.Models;
-using System.Web.UI.WebControls;
 
 namespace R7.University.Data.Mappings
 {
