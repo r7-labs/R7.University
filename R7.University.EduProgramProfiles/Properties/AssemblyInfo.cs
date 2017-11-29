@@ -2,7 +2,7 @@ using System.Reflection;
 
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
-[assembly: AssemblyTitle("R7.University.EduProgramProfileDirectory")]
+[assembly: AssemblyTitle("R7.University.EduProgramProfiles")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("R7.Labs")]

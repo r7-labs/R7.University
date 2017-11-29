@@ -1,6 +1,6 @@
 ﻿using DotNetNuke.Entities.Modules;
 
-namespace R7.University.EduProgramProfileDirectory.Components
+namespace R7.University.EduProgramProfiles.Components
 {
     public class EduProgramProfileDirectoryController: ModuleController
     {

@@ -20,10 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.EduProgramProfileDirectory.Models;
+using R7.University.EduProgramProfiles.Models;
 using R7.University.ViewModels;
 
-namespace R7.University.EduProgramProfileDirectory.ViewModels
+namespace R7.University.EduProgramProfiles.ViewModels
 {
     internal class EduProgramProfileDirectoryEduFormsViewModel
     {

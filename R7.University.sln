@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.DivisionDirec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramDirectory", "R7.University.EduProgramDirectory\R7.University.EduProgramDirectory.csproj", "{C6B64609-D737-435C-8C58-5BF0CE1C9F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfileDirectory", "R7.University.EduProgramProfileDirectory\R7.University.EduProgramProfileDirectory.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfiles", "R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Science", "R7.University.Science\R7.University.Science.csproj", "{C564168C-AC2A-448D-9E0B-566E049701EB}"
 EndProject

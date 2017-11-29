@@ -22,11 +22,11 @@
 using System.Linq;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.EduProgramProfileDirectory.Models;
+using R7.University.EduProgramProfiles.Models;
 using R7.University.Models;
 using R7.University.ViewModels;
 
-namespace R7.University.EduProgramProfileDirectory.ViewModels
+namespace R7.University.EduProgramProfiles.ViewModels
 {
     internal class EduProgramProfileObrnadzorEduFormsViewModel: EduProgramProfileViewModelBase
     {
@@ -88,7 +88,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
                 return TimeToLearnApplyMarkup (
                     "TimeToLearnFullTime.Column",
-                    FormatHelper.FormatTimeToLearn (FullTimeForm.TimeToLearnMonths, FullTimeForm.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (FullTimeForm.EduVolume.TimeToLearnMonths, FullTimeForm.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
                 );
             }
         }
@@ -102,7 +102,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
                 return TimeToLearnApplyMarkup (
                     "TimeToLearnPartTime.Column",
-                    FormatHelper.FormatTimeToLearn (PartTimeForm.TimeToLearnMonths, PartTimeForm.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (PartTimeForm.EduVolume.TimeToLearnMonths, PartTimeForm.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
                 );
             }
         }
@@ -116,7 +116,7 @@ namespace R7.University.EduProgramProfileDirectory.ViewModels
 
                 return TimeToLearnApplyMarkup (
                     "TimeToLearnExtramural.Column",
-                    FormatHelper.FormatTimeToLearn (ExtramuralForm.TimeToLearnMonths, ExtramuralForm.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
+                    FormatHelper.FormatTimeToLearn (ExtramuralForm.EduVolume.TimeToLearnMonths, ExtramuralForm.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
                 );
             }
         }

@@ -93,9 +93,9 @@
 			<Project>{C6B64609-D737-435C-8C58-5BF0CE1C9F51}</Project>
 			<Name>R7.University.EduProgramDirectory</Name>
 		</ProjectReference>
-		<ProjectReference Include="..\R7.University.EduProgramProfileDirectory\R7.University.EduProgramProfileDirectory.csproj">
+		<ProjectReference Include="..\R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj">
 			<Project>{6734EECF-00F2-4870-99E1-7C893069B0D7}</Project>
-			<Name>R7.University.EduProgramProfileDirectory</Name>
+			<Name>R7.University.EduProgramProfiles</Name>
 		</ProjectReference>
 		<ProjectReference Include="..\R7.University.Employee\R7.University.Employee.csproj">
 			<Project>{755C907B-A0E7-486E-83E5-AF4E01A75513}</Project>

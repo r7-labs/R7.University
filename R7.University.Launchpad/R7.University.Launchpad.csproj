@@ -126,7 +126,6 @@
     <Content Include="EditPosition.ascx" />
     <Content Include="EditAchievement.ascx" />
     <Content Include="EditEduLevel.ascx" />
-    <Content Include="EditEduProgramProfile.ascx" />
     <Content Include="EditDocumentType.ascx" />
     <Content Include="EditEduForm.ascx" />
     <Content Include="admin.css" />
@@ -144,13 +143,11 @@
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.resx" />
-    <None Include="App_LocalResources\EditEduProgramProfile.ascx.resx" />
     <None Include="App_LocalResources\EditDocumentType.ascx.resx" />
     <None Include="App_LocalResources\EditEduLevel.ascx.resx" />
     <None Include="App_LocalResources\EditEduForm.ascx.resx" />
     <None Include="App_LocalResources\EditEduLevel.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditPosition.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\EditEduProgramProfile.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditDocumentType.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduForm.ascx.ru-RU.resx" />
@@ -190,12 +187,6 @@
     <Compile Include="EditEduLevel.ascx.controls.cs">
       <DependentUpon>EditEduLevel.ascx</DependentUpon>
     </Compile>
-    <Compile Include="EditEduProgramProfile.ascx.controls.cs">
-      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditEduProgramProfile.ascx.cs">
-      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
-    </Compile>
     <Compile Include="EditDocumentType.cs">
       <DependentUpon>EditDocumentType.ascx</DependentUpon>
     </Compile>
@@ -225,7 +216,6 @@
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Queries\FindEduProgramProfileQuery.cs" />
-    <Compile Include="Queries\EduProgramProfileEditQuery.cs" />
     <Compile Include="Queries\FindDivisionQuery.cs" />
     <Compile Include="Tables\AchievementTypesTable.cs" />
     <Compile Include="EditAchievementType.cs">

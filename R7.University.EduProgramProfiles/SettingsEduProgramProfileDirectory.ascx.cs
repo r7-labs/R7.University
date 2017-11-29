@@ -27,13 +27,13 @@ using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ControlExtensions;
-using R7.University.EduProgramProfileDirectory.Models;
+using R7.University.EduProgramProfiles.Models;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.ViewModels;
 
-namespace R7.University.EduProgramProfileDirectory
+namespace R7.University.EduProgramProfiles
 {
     public partial class SettingsEduProgramProfileDirectory: UniversityModuleSettingsBase<EduProgramProfileDirectorySettings>
     {

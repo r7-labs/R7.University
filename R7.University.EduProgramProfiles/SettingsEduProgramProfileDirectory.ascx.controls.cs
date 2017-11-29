@@ -1,7 +1,7 @@
 ﻿using System.Web.UI.WebControls;
 using R7.University.Controls;
 
-namespace R7.University.EduProgramProfileDirectory
+namespace R7.University.EduProgramProfiles
 {
     public partial class SettingsEduProgramProfileDirectory
     {

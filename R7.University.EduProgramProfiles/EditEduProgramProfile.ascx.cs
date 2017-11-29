@@ -26,13 +26,13 @@ using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
-using R7.University.Launchpad.Queries;
+using R7.University.EduProgramProfiles.Queries;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.ViewModels;
 
-namespace R7.University.Launchpad
+namespace R7.University.EduProgramProfiles
 {
     public partial class EditEduProgramProfile : UniversityEditPortalModuleBase<EduProgramProfileInfo>
     {

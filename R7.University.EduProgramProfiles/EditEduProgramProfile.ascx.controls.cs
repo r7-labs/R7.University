@@ -3,7 +3,7 @@ using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University.Controls;
 
-namespace R7.University.Launchpad
+namespace R7.University.EduProgramProfiles
 {
     public partial class EditEduProgramProfile
     {

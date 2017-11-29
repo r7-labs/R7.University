@@ -21,11 +21,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.EduProgramProfileDirectory.Models;
+using R7.University.EduProgramProfiles.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
-namespace R7.University.EduProgramProfileDirectory.Queries
+namespace R7.University.EduProgramProfiles.Queries
 {
     internal class EduProgramProfileQuery: EduProgramProfileQueryBase
     {

@@ -107,7 +107,7 @@ namespace R7.University.EduProgram.ViewModels
                             eduFormTitle = eppfy.EduForm.Title;
                         }
                         sb.AppendFormat ("<li>{0} &ndash; {1}</li>", eduFormTitle,
-                            FormatHelper.FormatTimeToLearn (eppfy.TimeToLearnMonths, eppfy.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
+                            FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
                         );
                     }
 

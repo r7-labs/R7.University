@@ -28,13 +28,13 @@ using System.Web;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.EduProgramProfileDirectory.Models;
+using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
-namespace R7.University.EduProgramProfileDirectory.ViewModels
+namespace R7.University.EduProgramProfiles.ViewModels
 {
     internal class EduProgramProfileObrnadzorDocumentsViewModel: EduProgramProfileViewModelBase
     {

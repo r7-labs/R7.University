@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using R7.University.Models;
 
 namespace R7.University.Models
 {
@@ -40,6 +41,8 @@ namespace R7.University.Models
         IEduForm EduForm { get; }
 
         IYear Year { get; }
+
+        IEduVolume EduVolume { get; }
     }
 
     public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear
@@ -59,6 +62,8 @@ namespace R7.University.Models
         new IEduForm EduForm { get; set; }
 
         new IYear Year { get; set; }
+
+        new IEduVolume EduVolume { get; set; }
     }
 
     public class EduProgramProfileFormYearInfo: IEduProgramProfileFormYearWritable
@@ -93,5 +98,13 @@ namespace R7.University.Models
             set { EduForm = (EduFormInfo) value; }
         }
 
+        public virtual EduVolumeInfo EduVolume { get; set; }
+
+        IEduVolume IEduProgramProfileFormYear.EduVolume => EduVolume;
+
+        IEduVolume IEduProgramProfileFormYearWritable.EduVolume {
+            get { return EduVolume; }
+            set { EduVolume = (EduVolumeInfo) value; }
+        }
     }
 }

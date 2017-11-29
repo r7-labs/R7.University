@@ -298,7 +298,7 @@
 									</moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -937,7 +937,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1036,7 +1036,7 @@
                                     </moduleControl>
 									<moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1088,8 +1088,8 @@
                 <component type="Module">
                     <desktopModule>
                         <moduleName>R7.University.EduProgramProfileDirectory</moduleName>
-                        <foldername>R7.University/R7.University.EduProgramProfileDirectory</foldername>
-                        <businessControllerClass>R7.University.EduProgramProfileDirectory.Components.EduProgramProfileDirectoryController</businessControllerClass>
+                        <foldername>R7.University/R7.University.EduProgramProfiles</foldername>
+                        <businessControllerClass>R7.University.EduProgramProfiles.Components.EduProgramProfileDirectoryController</businessControllerClass>
                         <supportedFeatures>
                             <!-- <supportedFeature type="Portable" /> -->
                             <!-- <supportedFeature type="Searchable" /> -->
@@ -1102,7 +1102,7 @@
                                 <moduleControls>
                                     <moduleControl>
                                         <controlKey />
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfileDirectory/ViewEduProgramProfileDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/ViewEduProgramProfileDirectory.ascx</controlSrc>
                                         <controlTitle />
                                         <controlType>View</controlType>
                                         <iconFile />
@@ -1113,7 +1113,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1135,7 +1135,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfileDirectory/SettingsEduProgramProfileDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/SettingsEduProgramProfileDirectory.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1154,7 +1154,7 @@
                         <basePath>bin</basePath>
                         <assembly>
                             <path>bin</path>
-                            <name>R7.University.EduProgramProfileDirectory.dll</name>
+                            <name>R7.University.EduProgramProfiles.dll</name>
                         </assembly>
                     </assemblies>
                 </component>

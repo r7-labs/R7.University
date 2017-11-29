@@ -52,3 +52,13 @@ enum DisciplineType {
 }
 
 @enduml
+
+@startuml EduVolume Modules
+
+package R7.University.EduProgramProfiles {
+    [EduVolumeDirectory]<<module>>
+    [PracticesDirectory]<<module>>
+    [EduProgramProfileDirectory]<<module>>
+}
+
+@enduml
