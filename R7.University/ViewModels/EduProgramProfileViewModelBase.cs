@@ -70,7 +70,7 @@ namespace R7.University.ViewModels
 
         public EduLevelInfo EduLevel => EduProgramProfile.EduLevel;
 
-        public ICollection<EduProgramProfileFormInfo> EduProgramProfileForms => EduProgramProfile.EduProgramProfileForms;
+        public ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears => EduProgramProfile.EduProgramProfileFormYears;
 
         public ICollection<DocumentInfo> Documents => EduProgramProfile.Documents;
 

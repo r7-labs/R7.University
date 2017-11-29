@@ -240,6 +240,7 @@
     <Compile Include="EditModels\ModelEditState.cs" />
     <Compile Include="EditModels\IEditModel.cs" />
     <Compile Include="Utilities\LocalizationHelper.cs" />
+    <Compile Include="Commands\UpdateEduProgramProfileFormYearsCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

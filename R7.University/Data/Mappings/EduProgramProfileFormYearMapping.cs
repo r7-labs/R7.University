@@ -36,11 +36,14 @@ namespace R7.University.Data.Mappings
             Property (m => m.EduFormId).IsRequired ();
             Property (m => m.YearId).IsRequired ();
 
-            Property (m => m.TimeToLearnHours).IsOptional ();
-            Property (m => m.TimeToLearnMonths).IsOptional ();
+            Property (m => m.TimeToLearnHours).IsRequired ();
+            Property (m => m.TimeToLearnMonths).IsRequired ();
 
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
+
+            HasRequired (m => m.EduForm).WithMany ().HasForeignKey (m => m.EduFormId);
+            HasRequired (m => m.Year).WithMany ().HasForeignKey (m => m.YearId);
         }
     }
 }

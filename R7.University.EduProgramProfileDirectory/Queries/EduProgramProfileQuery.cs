@@ -36,8 +36,8 @@ namespace R7.University.EduProgramProfileDirectory.Queries
         public IList<EduProgramProfileInfo> ListWithEduForms (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
             return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
-                .Include (epp => epp.EduProgramProfileForms)
-                .Include (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm))
+                .Include (epp => epp.EduProgramProfileFormYears)
+                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
              )).ToList ();
         }
 

@@ -33,13 +33,17 @@ namespace R7.University.Models
 
         int YearId { get; }
 
-        int? TimeToLearnHours { get; }
+        int TimeToLearnHours { get; }
 
-        int? TimeToLearnMonths { get; }
+        int TimeToLearnMonths { get; }
 
         DateTime? StartDate { get; }
 
         DateTime? EndDate { get; }
+
+        IEduForm EduForm { get; }
+
+        IYear Year { get; }
     }
 
     public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear
@@ -52,13 +56,17 @@ namespace R7.University.Models
 
         new int YearId { get; set; }
 
-        new int? TimeToLearnHours { get; set; }
+        new int TimeToLearnHours { get; set; }
 
-        new int? TimeToLearnMonths { get; set; }
+        new int TimeToLearnMonths { get; set; }
 
         new DateTime? StartDate { get; set; }
 
         new DateTime? EndDate { get; set; }
+
+        new IEduForm EduForm { get; set; }
+
+        new IYear Year { get; set; }
     }
 
     public class EduProgramProfileFormYearInfo: IEduProgramProfileFormYearWritable
@@ -71,12 +79,31 @@ namespace R7.University.Models
 
         public int YearId { get; set; }
 
-        public int? TimeToLearnHours { get; set; }
+        public int TimeToLearnHours { get; set; }
 
-        public int? TimeToLearnMonths { get; set; }
+        public int TimeToLearnMonths { get; set; }
 
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public virtual YearInfo Year { get; set; }
+
+        IYear IEduProgramProfileFormYear.Year => Year;
+
+        IYear IEduProgramProfileFormYearWritable.Year {
+            get { return Year; }
+            set { Year = (YearInfo) value; }
+        }
+
+        public virtual EduFormInfo EduForm { get; set; }
+
+        IEduForm IEduProgramProfileFormYear.EduForm => EduForm;
+
+        IEduForm IEduProgramProfileFormYearWritable.EduForm {
+            get { return EduForm; }
+            set { EduForm = (EduFormInfo) value; }
+        }
+
     }
 }

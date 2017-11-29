@@ -24,8 +24,8 @@
     <data name="Divisions.Tab" xml:space="preserve">
         <value>Divisions</value>
     </data>
-    <data name="EduForms.Tab" xml:space="preserve">
-        <value>Education Forms</value>
+    <data name="EduFormYears.Tab" xml:space="preserve">
+        <value>Edu. Forms/Years</value>
     </data>
     <data name="Documents.Tab" xml:space="preserve">
         <value>Documents</value>

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="labelYear.Text" xml:space="preserve">
+        <value>Год начала освоения:</value>
+    </data>
+    <data name="labelYear.Help" xml:space="preserve">
+        <value>Выберите год начала освоения образовательной программы.</value>
+    </data>
+    <data name="labelEduForm.Text" xml:space="preserve">
+        <value>Форма обучения:</value>
+    </data>
+    <data name="labelEduForm.Help" xml:space="preserve">
+        <value>Выберите форму обучения.</value>
+    </data>
+    <data name="labelTimeToLearnYears.Text" xml:space="preserve">
+        <value>Лет:</value>
+    </data>
+    <data name="labelTimeToLearnYears.Help" xml:space="preserve">
+        <value>Введите количество лет нормативного срока обучения.</value>
+    </data>
+	 <data name="labelTimeToLearnMonths.Text" xml:space="preserve">
+        <value>Месяцев:</value>
+    </data>
+    <data name="labelTimeToLearnMonths.Help" xml:space="preserve">
+        <value>Введите количество месяцев нормативного срока обучения.</value>
+    </data>
+	<data name="labelTimeToLearnHours.Text" xml:space="preserve">
+        <value>Часов:</value>
+    </data>
+    <data name="labelTimeToLearnHours.Help" xml:space="preserve">
+        <value>Введите количество часов на освоение программы по учебному плану.</value>
+    </data>
+    <data name="buttonAddEduFormYear.Text" xml:space="preserve">
+        <value>Добавить форму/год</value>
+    </data>
+    <data name="buttonUpdateEduFormYear.Text" xml:space="preserve">
+        <value>Сохранить форму/год</value>
+    </data>
+    <data name="TimeToLearn.Format" xml:space="preserve">
+        <value>{0} г. {1} мес.</value>
+    </data>
+    <data name="Years.Text" xml:space="preserve">
+        <value>Лет</value>
+    </data>
+    <data name="Months.Text" xml:space="preserve">
+        <value>Месяцев</value>
+    </data>
+	<data name="Hours.Text" xml:space="preserve">
+        <value>Часов</value>
+    </data>
+	<data name="TimeToLearn.Required" xml:space="preserve">
+        <value>Укажите целое значение больше нуля как минимум в одном из полей: Лет, Месяцев, Часов.</value>
+    </data>
+    <data name="TimeToLearnYears.Invalid" xml:space="preserve">
+        <value>Число лет дожно быть целым числом от 0 до 11.</value>
+    </data>
+    <data name="TimeToLearnYears.Required" xml:space="preserve">
+        <value>Введите число лет.</value>
+    </data>
+    <data name="TimeToLearnMonths.Invalid" xml:space="preserve">
+        <value>Число месяцев должно быть целым числом от 0 до 11.</value>
+    </data>
+    <data name="TimeToLearnMonths.Required" xml:space="preserve">
+        <value>Введите число месяцев.</value>
+    </data>
+	<data name="TimeToLearnHours.Invalid" xml:space="preserve">
+        <value>Число часов должно быть целым числом больше 0.</value>
+    </data>
+    <data name="TimeToLearnHours.Required" xml:space="preserve">
+        <value>Введите число часов.</value>
+    </data>
+	<data name="EduForm.Invalid" xml:space="preserve">
+        <value>Формы обучения не должны повторяться!</value>
+    </data>
+    <data name="SystemEduForm_Default.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="SystemEduForm_FullTime.Text" xml:space="preserve">
+        <value>Очная</value>
+    </data>
+    <data name="SystemEduForm_PartTime.Text" xml:space="preserve">
+        <value>Очно-заочная</value>
+    </data>
+    <data name="SystemEduForm_Extramural.Text" xml:space="preserve">
+        <value>Заочная</value>
+    </data>
+    <data name="EduFormTitle.Column" xml:space="preserve">
+        <value>Форма обучения</value>
+    </data>
+	<data name="Year.Column" xml:space="preserve">
+        <value>Год начала подготовки</value>
+    </data>
+    <data name="TimeToLearnYears.Column" xml:space="preserve">
+        <value>Лет</value>
+    </data>
+    <data name="TimeToLearnMonths.Column" xml:space="preserve">
+        <value>Месяцев</value>
+    </data>
+    <data name="TimeToLearnHours.Column" xml:space="preserve">
+        <value>Часов</value>
+    </data>
+	<data name="StartDate.Column" xml:space="preserve">
+        <value>Начало публикации</value>
+    </data>
+    <data name="EndDate.Column" xml:space="preserve">
+        <value>Окончание публикации</value>
+    </data>
+	<data name="labelStartDate.Text" xml:space="preserve">
+        <value>Начало публикации:</value>
+    </data>
+    <data name="labelStartDate.Help" xml:space="preserve">
+        <value>Введите дату, начиная с которой эта комбинация форма/год должна быть опубликована на сайте.</value>
+    </data>
+    <data name="labelEndDate.Text" xml:space="preserve">
+        <value>Окончание публикации:</value>
+    </data>
+    <data name="labelEndDate.Help" xml:space="preserve">
+        <value>Введите дату, при наступлении которой эта комбинация форма/год должна быть снята с публикации на сайте.</value>
+    </data>
+</root>

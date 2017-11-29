@@ -52,7 +52,7 @@ namespace R7.University.Models
 
         EduLevelInfo EduLevel { get; }
 
-        ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; }
+        ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears { get; }
 
         ICollection<DocumentInfo> Documents { get; }
 
@@ -87,7 +87,7 @@ namespace R7.University.Models
 
         new EduLevelInfo EduLevel { get; set; }
 
-        new ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; }
+        new ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears { get; set; }
 
         new ICollection<DocumentInfo> Documents { get; set; }
 
@@ -130,7 +130,7 @@ namespace R7.University.Models
 
         public virtual EduLevelInfo EduLevel { get; set; }
 
-        public virtual ICollection<EduProgramProfileFormInfo> EduProgramProfileForms { get; set; } = new HashSet<EduProgramProfileFormInfo> ();
+        public virtual ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears { get; set; } = new HashSet<EduProgramProfileFormYearInfo> ();
 
         public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
 

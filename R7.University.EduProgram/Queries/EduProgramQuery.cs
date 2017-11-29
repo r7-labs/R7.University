@@ -43,8 +43,8 @@ namespace R7.University.EduProgram.Queries
                 .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduLevel))
                 .Include (ep => ep.EduProgramProfiles.Select (epp => epp.Divisions))
                 .Include (ep => ep.EduProgramProfiles.Select (epp => epp.Divisions.Select (epd => epd.Division)))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileForms))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileForms.Select (eppf => eppf.EduForm)))
+                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears))
+                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm)))
                 .SingleOrDefault ();
         }
     }

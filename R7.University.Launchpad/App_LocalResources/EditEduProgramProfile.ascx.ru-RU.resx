@@ -24,8 +24,8 @@
     <data name="Divisions.Tab" xml:space="preserve">
         <value>Подразделения</value>
     </data>
-    <data name="EduForms.Tab" xml:space="preserve">
-        <value>Формы обучения</value>
+    <data name="EduFormYears.Tab" xml:space="preserve">
+        <value>Формы обучения/годы</value>
     </data>
     <data name="Documents.Tab" xml:space="preserve">
         <value>Документы</value>

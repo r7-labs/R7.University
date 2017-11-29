@@ -3,7 +3,7 @@
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="controls" TagName="EditEduForms" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditEduForms.ascx" %>
+<%@ Register TagPrefix="controls" TagName="EditEduFormYears" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditEduFormYears.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDivisions" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDivisions.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
@@ -17,7 +17,7 @@
     <div id="eduprogramprofile-tabs">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduprogramprofile-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
-            <li><a href="#eduprogramprofile-eduforms-tab"><%= LocalizeString ("EduForms.Tab") %></a></li>
+            <li><a href="#eduprogramprofile-eduformyears-tab"><%= LocalizeString ("EduFormYears.Tab") %></a></li>
 			<li><a href="#eduprogramprofile-divisions-tab"><%= LocalizeString ("Divisions.Tab") %></a></li>
             <li><a href="#eduprogramprofile-documents-tab"><%= LocalizeString ("Documents.Tab") %></a></li>
 			<li><a href="#eduprogramprofile-audit-tab"><%= LocalizeString ("Audit.Tab") %></a></li>
@@ -84,8 +84,8 @@
                 </div>
         	</fieldset>
         </div>
-		<div id="eduprogramprofile-eduforms-tab">
-            <controls:EditEduForms id="formEditEduForms" runat="server" />
+		<div id="eduprogramprofile-eduformyears-tab">
+            <controls:EditEduFormYears id="formEditEduFormYears" runat="server" />
         </div>
 		<div id="eduprogramprofile-divisions-tab">
 			<controls:EditDivisions id="formEditDivisions" runat="server" ForModel="EduProgramProfile" />

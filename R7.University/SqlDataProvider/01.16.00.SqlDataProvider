@@ -79,8 +79,11 @@ BEGIN
         EduProgramProfileID int NOT NULL,
         EduFormID int NOT NULL,
         YearID int NOT NULL,
-        TimeToLearnHours int NULL,
-        TimeToLearnMonths int NULL,
+
+        -- TODO: Extract EduVolume
+        TimeToLearnHours int NOT NULL,
+        TimeToLearnMonths int NOT NULL,
+
         StartDate datetime NULL,
         EndDate datetime NULL
         CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileFormYears] PRIMARY KEY (EduProgramProfileFormYearID)

@@ -161,6 +161,13 @@
     <Compile Include="EditModels\OccupiedPositionEditModel.cs" />
     <Compile Include="EditModels\ScienceRecordEditModel.cs" />
     <Compile Include="EditModels\EditModelBase.cs" />
+    <Compile Include="EditEduFormYears.ascx.controls.cs">
+      <DependentUpon>EditEduFormYears.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduFormYears.ascx.cs">
+      <DependentUpon>EditEduFormYears.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditModels\EduProgramProfileFormYearEditModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">
@@ -207,6 +214,9 @@
     <None Include="EditScienceRecords.ascx" />
     <None Include="packages.config" />
     <None Include="css\grid-and-form.css" />
+    <None Include="EditEduFormYears.ascx" />
+    <None Include="App_LocalResources\EditEduFormYears.ascx.resx" />
+    <None Include="App_LocalResources\EditEduFormYears.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_LocalResources\" />

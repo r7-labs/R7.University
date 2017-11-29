@@ -39,7 +39,7 @@ namespace R7.University.Launchpad
         public enum EditEduProgramProfileTab
         {
             Common,
-            EduForms,
+            EduFormYears,
             Divisions,
             Documents,
             Audit
@@ -58,9 +58,9 @@ namespace R7.University.Launchpad
                         ViewState ["SelectedTab"] = EditEduProgramProfileTab.Divisions;
                         return EditEduProgramProfileTab.Divisions;
                     }
-                    if (eventTarget.Contains ("$" + formEditEduForms.ID)) {
-                        ViewState ["SelectedTab"] = EditEduProgramProfileTab.EduForms;
-                        return EditEduProgramProfileTab.EduForms;
+                    if (eventTarget.Contains ("$" + formEditEduFormYears.ID)) {
+                        ViewState ["SelectedTab"] = EditEduProgramProfileTab.EduFormYears;
+                        return EditEduProgramProfileTab.EduFormYears;
                     }
                     if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
                         ViewState ["SelectedTab"] = EditEduProgramProfileTab.Documents;
@@ -118,8 +118,7 @@ namespace R7.University.Launchpad
 
             // TODO: Disable edu. program selection then adding or editing from EditEduProgram
 
-            // init edit forms
-            formEditEduForms.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).List ());
+            formEditEduFormYears.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).List (), ((UniversityModelContext) ModelContext).Years);
             formEditDocuments.OnInit (this, new FlatQuery<DocumentTypeInfo> (ModelContext).List ());
             formEditDivisions.OnInit (this, new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title));
         }
@@ -185,7 +184,7 @@ namespace R7.University.Launchpad
             auditControl.Bind (epp);
 
             formEditDocuments.SetData (epp.Documents, epp.EduProgramProfileID);
-            formEditEduForms.SetData (epp.EduProgramProfileForms, epp.EduProgramProfileID);
+            formEditEduFormYears.SetData (epp.EduProgramProfileFormYears, epp.EduProgramProfileID);
         }
 
         protected override void BeforeUpdateItem (EduProgramProfileInfo item)
@@ -232,8 +231,8 @@ namespace R7.University.Launchpad
                 new UpdateDocumentsCommand (ModelContext)
                     .UpdateDocuments (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
 
-                new UpdateEduProgramProfileFormsCommand (ModelContext)
-                    .UpdateEduProgramProfileForms (formEditEduForms.GetModifiedData (), item.EduProgramProfileID);
+                new UpdateEduProgramProfileFormYearsCommand (ModelContext)
+                    .Update (formEditEduFormYears.GetModifiedData (), item.EduProgramProfileID);
 
                 new UpdateEduProgramDivisionsCommand (ModelContext)
                     .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
@@ -251,8 +250,8 @@ namespace R7.University.Launchpad
             new UpdateDocumentsCommand (ModelContext)
                 .UpdateDocuments (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
 
-            new UpdateEduProgramProfileFormsCommand (ModelContext)
-                .UpdateEduProgramProfileForms (formEditEduForms.GetModifiedData (), item.EduProgramProfileID);
+            new UpdateEduProgramProfileFormYearsCommand (ModelContext)
+                .Update (formEditEduFormYears.GetModifiedData (), item.EduProgramProfileID);
 
             new UpdateEduProgramDivisionsCommand (ModelContext)
                 .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
