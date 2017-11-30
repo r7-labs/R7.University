@@ -114,7 +114,8 @@ BEGIN
         CONSTRAINT [PK_{objectQualifier}University_EduVolume] PRIMARY KEY (EduVolumeID)
         CONSTRAINT [FK_{objectQualifier}University_EduVolume_EduProgramProfileFormYears]
             FOREIGN KEY (EduProgramProfileFormYearID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (EduProgramProfileFormYearID)
-                ON DELETE CASCADE
+                ON DELETE CASCADE,
+        CONSTRAINT [UN_{objectQualifier}University_EduVolume] UNIQUE (EduProgramProfileFormYearID)
     )
 END
 GO
