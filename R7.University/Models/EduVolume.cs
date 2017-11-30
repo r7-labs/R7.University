@@ -31,23 +31,23 @@ namespace R7.University.Models
 
         int TimeToLearnMonths { get; }
 
-        int Year1Cu { get; }
+        int? Year1Cu { get; }
 
-        int Year2Cu { get; }
+        int? Year2Cu { get; }
 
-        int Year3Cu { get; }
+        int? Year3Cu { get; }
 
-        int Year4Cu { get; }
+        int? Year4Cu { get; }
 
-        int Year5Cu { get; }
+        int? Year5Cu { get; }
 
-        int Year6Cu { get; }
+        int? Year6Cu { get; }
 
-        int PracticeType1Cu { get; }
+        int? PracticeType1Cu { get; }
 
-        int PracticeType2Cu { get; }
+        int? PracticeType2Cu { get; }
 
-        int PracticeType3Cu { get; }
+        int? PracticeType3Cu { get; }
 
         IEduProgramProfileFormYear EduProgramProfileFormYear { get; }
     }
@@ -62,23 +62,23 @@ namespace R7.University.Models
 
         new int TimeToLearnMonths { get; set; }
 
-        new int Year1Cu { get; set; }
+        new int? Year1Cu { get; set; }
 
-        new int Year2Cu { get; set; }
+        new int? Year2Cu { get; set; }
 
-        new int Year3Cu { get; set; }
+        new int? Year3Cu { get; set; }
 
-        new int Year4Cu { get; set; }
+        new int? Year4Cu { get; set; }
 
-        new int Year5Cu { get; set; }
+        new int? Year5Cu { get; set; }
 
-        new int Year6Cu { get; set; }
+        new int? Year6Cu { get; set; }
 
-        new int PracticeType1Cu { get; set; }
+        new int? PracticeType1Cu { get; set; }
 
-        new int PracticeType2Cu { get; set; }
+        new int? PracticeType2Cu { get; set; }
 
-        new int PracticeType3Cu { get; set; }
+        new int? PracticeType3Cu { get; set; }
 
         new IEduProgramProfileFormYear EduProgramProfileFormYear { get; set; }
     }
@@ -93,23 +93,23 @@ namespace R7.University.Models
 
         public int TimeToLearnMonths { get; set; }
 
-        public int Year1Cu { get; set; }
+        public int? Year1Cu { get; set; }
 
-        public int Year2Cu { get; set; }
+        public int? Year2Cu { get; set; }
 
-        public int Year3Cu { get; set; }
+        public int? Year3Cu { get; set; }
 
-        public int Year4Cu { get; set; }
+        public int? Year4Cu { get; set; }
 
-        public int Year5Cu { get; set; }
+        public int? Year5Cu { get; set; }
 
-        public int Year6Cu { get; set; }
+        public int? Year6Cu { get; set; }
 
-        public int PracticeType1Cu { get; set; }
+        public int? PracticeType1Cu { get; set; }
 
-        public int PracticeType2Cu { get; set; }
+        public int? PracticeType2Cu { get; set; }
 
-        public int PracticeType3Cu { get; set; }
+        public int? PracticeType3Cu { get; set; }
 
         public virtual EduProgramProfileFormYearInfo EduProgramProfileFormYear { get; set; }
 
