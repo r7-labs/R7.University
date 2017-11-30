@@ -51,24 +51,36 @@ namespace R7.University.EduProgramProfiles.ViewModels
         protected IEduVolume FullTimeFormVolume
         {
             get { 
-                return EduProgramProfileFormYears.FirstOrDefault (
-                    eppfy =>  eppfy.EduForm.GetSystemEduForm () == SystemEduForm.FullTime)?.EduVolume; 
+                // TODO: Check edu.form/year is published
+                return EduProgramProfileFormYears
+                    .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
+                    .OrderByDescending (eppfy => eppfy.Year.Year)
+                    .FirstOrDefault (
+                        eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.FullTime)?.EduVolume; 
             }
         }
 
         protected IEduVolume PartTimeFormVolume
         {
-            get { 
-                return EduProgramProfileFormYears.FirstOrDefault (
-                    eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.PartTime)?.EduVolume;
+            get {
+                // TODO: Check edu.form/year is published
+                return EduProgramProfileFormYears
+                    .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
+                    .OrderByDescending (eppfy => eppfy.Year.Year)
+                    .FirstOrDefault (
+                        eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.PartTime)?.EduVolume; 
             }
         }
 
         protected IEduVolume ExtramuralFormVolume
         {
-            get { 
-                return EduProgramProfileFormYears.FirstOrDefault (
-                    eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.Extramural)?.EduVolume; 
+            get {
+                // TODO: Check edu.form/year is published
+                return EduProgramProfileFormYears
+                    .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
+                    .OrderByDescending (eppfy => eppfy.Year.Year)
+                    .FirstOrDefault (
+                        eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.Extramural)?.EduVolume; 
             }
         }
 
