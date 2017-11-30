@@ -1,5 +1,5 @@
 //
-//  ModelHelper.cs
+//  UniversityModelHelper.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -23,13 +23,8 @@ using System;
 
 namespace R7.University.Models
 {
-    public static class ModelHelper
+    public static class UniversityModelHelper
     {
-        public static bool IsPublished (DateTime now, DateTime? startDate, DateTime? endDate)
-        {
-            return (startDate == null || now >= startDate) && (endDate == null || now < endDate);
-        }
-
         public static bool HasUniqueShortTitle (string shortTitle, string title)
         {
             return !string.IsNullOrEmpty (shortTitle)

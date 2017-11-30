@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEduProgram: ITrackableEntity
+    public interface IEduProgram: ITrackableEntity, IPublishableEntity
     {
         int EduProgramID { get; }
 
@@ -38,10 +38,6 @@ namespace R7.University.Models
 
         string HomePage { get; }
 
-        DateTime? StartDate { get; }
-
-        DateTime? EndDate { get; }
-
         EduLevelInfo EduLevel { get; }
 
         ICollection<DocumentInfo> Documents { get; }
@@ -53,7 +49,7 @@ namespace R7.University.Models
         ICollection<ScienceRecordInfo> ScienceRecords { get; }
     }
 
-    public interface IEduProgramWritable: IEduProgram, ITrackableEntityWritable
+    public interface IEduProgramWritable: IEduProgram, ITrackableEntityWritable, IPublishableEntityWritable
     {
         new int EduProgramID { get; set; }
 
@@ -66,10 +62,6 @@ namespace R7.University.Models
         new string Generation { get; set; }
 
         new string HomePage { get; set; }
-
-        new DateTime? StartDate { get; set; }
-
-        new DateTime? EndDate { get; set; }
 
         new EduLevelInfo EduLevel { get; set; }
 

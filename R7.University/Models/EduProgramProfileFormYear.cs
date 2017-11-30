@@ -24,7 +24,7 @@ using R7.University.Models;
 
 namespace R7.University.Models
 {
-    public interface IEduProgramProfileFormYear
+    public interface IEduProgramProfileFormYear: IPublishableEntity
     {
         int EduProgramProfileFormYearId { get; }
 
@@ -33,10 +33,6 @@ namespace R7.University.Models
         int EduFormId { get; }
 
         int YearId { get; }
-
-        DateTime? StartDate { get; }
-
-        DateTime? EndDate { get; }
 
         IEduForm EduForm { get; }
 
@@ -47,7 +43,7 @@ namespace R7.University.Models
         IEduProgramProfile EduProgramProfile { get; }
     }
 
-    public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear
+    public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear, IPublishableEntityWritable
     {
         new int EduProgramProfileFormYearId { get; set; }
 
@@ -56,10 +52,6 @@ namespace R7.University.Models
         new int EduFormId { get; set; }
 
         new int YearId { get; set; }
-
-        new DateTime? StartDate { get; set; }
-
-        new DateTime? EndDate { get; set; }
 
         new IEduForm EduForm { get; set; }
 

@@ -22,6 +22,7 @@
 using System;
 using System.Web;
 using Newtonsoft.Json;
+using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
@@ -36,8 +37,7 @@ namespace R7.University.Controls.EditModels
         #region EditModelBase implementation
 
         [JsonIgnore]
-        public override bool IsPublished => 
-            ModelHelper.IsPublished (HttpContext.Current.Timestamp, ProfileStartDate, ProfileEndDate);
+        public override bool IsPublished => ModelHelper.IsPublished (HttpContext.Current.Timestamp, ProfileStartDate, ProfileEndDate);
       
         public override IEditModel<EmployeeDisciplineInfo> Create (EmployeeDisciplineInfo model, ViewModelContext context)
         {

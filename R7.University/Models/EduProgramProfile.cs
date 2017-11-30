@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEduProgramProfile: ITrackableEntity
+    public interface IEduProgramProfile: ITrackableEntity, IPublishableEntity
     {
         int EduProgramProfileID { get; }
 
@@ -44,10 +44,6 @@ namespace R7.University.Models
 
         DateTime? CommunityAccreditedToDate { get; }
 
-        DateTime? StartDate { get; }
-
-        DateTime? EndDate { get; }
-
         EduProgramInfo EduProgram { get; }
 
         EduLevelInfo EduLevel { get; }
@@ -59,7 +55,7 @@ namespace R7.University.Models
         ICollection<EduProgramDivisionInfo> Divisions { get; }
     }
 
-    public interface IEduProgramProfileWritable: IEduProgramProfile, ITrackableEntityWritable
+    public interface IEduProgramProfileWritable: IEduProgramProfile, ITrackableEntityWritable, IPublishableEntityWritable
     {
         new int EduProgramProfileID { get; set; }
 
@@ -78,10 +74,6 @@ namespace R7.University.Models
         new DateTime? AccreditedToDate { get; set; }
 
         new DateTime? CommunityAccreditedToDate { get; set; }
-
-        new DateTime? StartDate { get; set; }
-
-        new DateTime? EndDate { get; set; }
 
         new EduProgramInfo EduProgram { get; set; }
 

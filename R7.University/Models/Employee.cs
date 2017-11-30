@@ -26,7 +26,7 @@ using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {
-    public interface IEmployee: ITrackableEntity
+    public interface IEmployee: ITrackableEntity, IPublishableEntity
     {
         int EmployeeID { get; }
 
@@ -68,10 +68,6 @@ namespace R7.University.Models
         // employee ExpYearsBySpec even more unbinded to dates
         int? ExperienceYearsBySpec { get; }
 
-        DateTime? StartDate { get; }
-
-        DateTime? EndDate { get; }
-
         bool ShowBarcode { get; }
 
         ICollection<EmployeeAchievementInfo> Achievements { get; }
@@ -81,7 +77,7 @@ namespace R7.University.Models
         ICollection<OccupiedPositionInfo> Positions { get; }
     }
 
-    public interface IEmployeeWritable: IEmployee, ITrackableEntityWritable
+    public interface IEmployeeWritable: IEmployee, ITrackableEntityWritable, IPublishableEntityWritable
     {
         new int EmployeeID { get; set; }
 
@@ -122,10 +118,6 @@ namespace R7.University.Models
 
         // employee ExpYearsBySpec even more unbinded to dates
         new int? ExperienceYearsBySpec { get; set; }
-
-        new DateTime? StartDate { get; set; }
-
-        new DateTime? EndDate { get; set; }
 
         new bool ShowBarcode { get; set; }
 

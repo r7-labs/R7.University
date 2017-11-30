@@ -1,4 +1,4 @@
-﻿//
+//
 //  OccupiedPositionEditModel.cs
 //
 //  Author:
@@ -22,6 +22,7 @@
 using System;
 using System.Web;
 using Newtonsoft.Json;
+using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
@@ -57,8 +58,7 @@ namespace R7.University.Controls.EditModels
             EmployeeID = targetItemId;
         }
 
-        public override bool IsPublished =>
-            ModelHelper.IsPublished (HttpContext.Current.Timestamp, DivisionStartDate, DivisionEndDate);
+        public override bool IsPublished => ModelHelper.IsPublished (HttpContext.Current.Timestamp, DivisionStartDate, DivisionEndDate);
 
         #endregion
 

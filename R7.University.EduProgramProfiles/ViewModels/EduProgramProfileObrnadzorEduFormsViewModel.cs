@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,10 +19,13 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -48,40 +51,20 @@ namespace R7.University.EduProgramProfiles.ViewModels
             Indexer = indexer;
         }
 
-        protected IEduVolume FullTimeFormVolume
-        {
-            get { 
-                // TODO: Check edu.form/year is published
-                return EduProgramProfileFormYears
-                    .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
-                    .OrderByDescending (eppfy => eppfy.Year.Year)
-                    .FirstOrDefault (
-                        eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.FullTime)?.EduVolume; 
-            }
-        }
+        protected IEduVolume FullTimeFormVolume => GetEduProgramProfileFormYears ()
+            .FirstOrDefault (eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.FullTime)?.EduVolume; 
 
-        protected IEduVolume PartTimeFormVolume
-        {
-            get {
-                // TODO: Check edu.form/year is published
-                return EduProgramProfileFormYears
-                    .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
-                    .OrderByDescending (eppfy => eppfy.Year.Year)
-                    .FirstOrDefault (
-                        eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.PartTime)?.EduVolume; 
-            }
-        }
+        protected IEduVolume PartTimeFormVolume => GetEduProgramProfileFormYears ()
+            .FirstOrDefault (eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.PartTime)?.EduVolume; 
 
-        protected IEduVolume ExtramuralFormVolume
+        protected IEduVolume ExtramuralFormVolume => GetEduProgramProfileFormYears ()
+            .FirstOrDefault (eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.Extramural)?.EduVolume; 
+        
+        IEnumerable<EduProgramProfileFormYearInfo> GetEduProgramProfileFormYears ()
         {
-            get {
-                // TODO: Check edu.form/year is published
-                return EduProgramProfileFormYears
-                    .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
-                    .OrderByDescending (eppfy => eppfy.Year.Year)
-                    .FirstOrDefault (
-                        eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.Extramural)?.EduVolume; 
-            }
+            return EduProgramProfileFormYears
+                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                .OrderByDescending (eppfy => eppfy.Year.Year);
         }
 
         protected string TimeToLearnApplyMarkup (string eduFormResourceKey, string timeToLearn)

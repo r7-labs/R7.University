@@ -1,4 +1,4 @@
-﻿//
+//
 //  TaxonomyExtensions.cs
 //
 //  Author:
@@ -32,7 +32,7 @@ namespace R7.University.ModelExtensions
     {
         public static string GetSafeTermName  (string shortTitle, string title)
         {
-            var termName = ModelHelper.HasUniqueShortTitle (shortTitle, title) ? shortTitle : title;
+            var termName = UniversityModelHelper.HasUniqueShortTitle (shortTitle, title) ? shortTitle : title;
             return Regex.Replace (Regex.Replace (termName, @"[^(\w\-)]", " ").Trim (), @"\s+", " ");
         }
 

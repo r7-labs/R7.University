@@ -22,6 +22,7 @@
 using System;
 using System.Web;
 using Newtonsoft.Json;
+using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
@@ -62,8 +63,7 @@ namespace R7.University.Controls.EditModels
         }
 
         [JsonIgnore]
-        public override bool IsPublished =>
-            ModelHelper.IsPublished (HttpContext.Current.Timestamp, StartDate, EndDate);
+        public override bool IsPublished => ModelHelper.IsPublished (HttpContext.Current.Timestamp, StartDate, EndDate);
 
         #endregion
 

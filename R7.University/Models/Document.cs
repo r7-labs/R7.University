@@ -23,7 +23,7 @@ using System;
 
 namespace R7.University.Models
 {
-    public interface IDocument
+    public interface IDocument: IPublishableEntity
     {
         int DocumentID { get; }
 
@@ -41,14 +41,10 @@ namespace R7.University.Models
 
         int SortIndex { get; }
 
-        DateTime? StartDate { get; }
-
-        DateTime? EndDate { get; }
-
         DocumentTypeInfo DocumentType { get; }
     }
 
-    public interface IDocumentWritable: IDocument
+    public interface IDocumentWritable: IDocument, IPublishableEntityWritable
     {
         new int DocumentID { get; set; }
 
@@ -65,10 +61,6 @@ namespace R7.University.Models
         new string Url { get; set; }
 
         new int SortIndex { get; set; }
-
-        new DateTime? StartDate { get; set; }
-
-        new DateTime? EndDate { get; set; }
 
         new DocumentTypeInfo DocumentType { get; set; }
     }

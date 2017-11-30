@@ -1,10 +1,10 @@
-//
-//  EduProgramProfileExtensions.cs
+﻿//
+//  PublishableExtensions.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,29 +19,17 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
-using System.Linq;
+using System;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
-using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions
 {
-    public static class EduProgramProfileExtensions
+    public static class PublishableExtensions
     {
-        // TODO: Extend IDocument instead, rename to WhereDocumentType
-        public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
+        public static bool IsPublished (this IPublishableEntity entity, DateTime now)
         {
-            return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
-        }
-
-        public static string FormatTitle (this IEduProgramProfile epp)
-        {
-            return FormatHelper.FormatEduProgramProfileTitle (
-                epp.EduProgram.Code,
-                epp.EduProgram.Title,
-                epp.ProfileCode,
-                epp.ProfileTitle
-            );
+            return ModelHelper.IsPublished (now, entity.StartDate, entity.EndDate);
         }
     }
 }

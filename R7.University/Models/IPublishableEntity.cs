@@ -1,10 +1,10 @@
-//
-//  EmployeeExtensions.cs
+﻿//
+//  IPublishableEntity.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,15 +20,20 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Models;
 
-namespace R7.University.ModelExtensions
+namespace R7.University.Models
 {
-    public static class EmployeeExtensions
+    public interface IPublishableEntity
     {
-        public static bool IsPublished (this IEmployee employee, DateTime now)
-        {
-            return ModelHelper.IsPublished (now, employee.StartDate, employee.EndDate);
-        }
+        DateTime? StartDate { get; }
+
+        DateTime? EndDate { get; }
+    }
+
+    public interface IPublishableEntityWritable: IPublishableEntity
+    {
+        new DateTime? StartDate { get; set; }
+
+        new DateTime? EndDate { get; set; }
     }
 }

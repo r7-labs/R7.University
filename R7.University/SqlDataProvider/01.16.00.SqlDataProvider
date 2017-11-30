@@ -91,6 +91,7 @@ BEGIN
         CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_Years]
             FOREIGN KEY (YearID) REFERENCES {databaseOwner}[{objectQualifier}University_Years] (YearID)
                 ON DELETE NO ACTION
+        -- TODO: Add unique constraint
     )
 END
 GO

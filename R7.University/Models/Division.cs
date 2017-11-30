@@ -26,7 +26,7 @@ using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {
-    public interface IDivision: ITrackableEntity
+    public interface IDivision: ITrackableEntity, IPublishableEntity
     {
         string Title { get; }
 
@@ -68,10 +68,6 @@ namespace R7.University.Models
 
         int? HeadPositionID { get; }
 
-        DateTime? StartDate { get; }
-
-        DateTime? EndDate { get; }
-
         ICollection<DivisionInfo> SubDivisions { get; }
 
         ICollection<OccupiedPositionInfo> OccupiedPositions { get; }
@@ -81,7 +77,7 @@ namespace R7.University.Models
         string Path { get; }
     }
 
-    public interface IDivisionWritable: IDivision, ITrackableEntityWritable
+    public interface IDivisionWritable: IDivision, ITrackableEntityWritable, IPublishableEntityWritable
     {
         new string Title { get; set; }
 
@@ -122,10 +118,6 @@ namespace R7.University.Models
         new bool IsGoverning { get; set; }
 
         new int? HeadPositionID { get; set; }
-
-        new DateTime? StartDate { get; set; }
-
-        new DateTime? EndDate { get; set; }
 
         new ICollection<DivisionInfo> SubDivisions { get; set; }
 
@@ -221,7 +213,7 @@ namespace R7.University.Models
             get {
                 var text = TextUtils.FormatList (", ",
                     Title,
-                    ModelHelper.HasUniqueShortTitle (ShortTitle, Title) ? ShortTitle : null,
+                    UniversityModelHelper.HasUniqueShortTitle (ShortTitle, Title) ? ShortTitle : null,
                     Phone,
                     Fax,
                     Email,

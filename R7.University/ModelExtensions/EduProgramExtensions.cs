@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Models;
@@ -32,11 +31,6 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgram eduProgram, SystemDocumentType documentType)
         {
             return eduProgram.Documents.Where (d => d.GetSystemDocumentType () == documentType);
-        }
-
-        public static bool IsPublished (this IEduProgram eduProgram, DateTime now)
-        {
-            return ModelHelper.IsPublished (now, eduProgram.StartDate, eduProgram.EndDate);
         }
     }
 }
