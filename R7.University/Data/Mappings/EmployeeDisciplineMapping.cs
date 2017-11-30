@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EmployeeDisciplineMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EmployeeDisciplineInfo> ());
             HasKey (m => m.EmployeeDisciplineID);
             Property (m => m.EmployeeDisciplineID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.EmployeeID).IsRequired ();

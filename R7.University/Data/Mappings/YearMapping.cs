@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public YearMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<YearInfo> ());
             HasKey (m => m.YearId);
             Property (m => m.YearId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
 

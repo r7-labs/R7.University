@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EduLevelMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EduLevelInfo> ());
             HasKey (m => m.EduLevelID);
             Property (m => m.EduLevelID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.Title).IsRequired ();

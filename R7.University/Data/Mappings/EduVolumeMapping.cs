@@ -8,6 +8,7 @@ namespace R7.University.Data.Mappings
     {
         public EduVolumeMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EduVolumeInfo> (pluralize: false));
             HasKey (m => m.EduVolumeId);
             Property (m => m.EduVolumeId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
 

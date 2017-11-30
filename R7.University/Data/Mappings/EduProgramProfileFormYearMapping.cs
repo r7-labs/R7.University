@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EduProgramProfileFormYearMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EduProgramProfileFormYearInfo> ());
             HasKey (m => m.EduProgramProfileFormYearId);
             Property (m => m.EduProgramProfileFormYearId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
 

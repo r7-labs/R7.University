@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public ScienceRecordTypeMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<ScienceRecordTypeInfo> ());
             HasKey (m => m.ScienceRecordTypeId);
             Property (m => m.ScienceRecordTypeId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.Type).IsRequired ();

@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EmployeeMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EmployeeInfo> ());
             HasKey (m => m.EmployeeID);
             Property (m => m.EmployeeID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.UserID).IsOptional ();

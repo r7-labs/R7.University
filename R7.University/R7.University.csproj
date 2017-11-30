@@ -243,6 +243,7 @@
     <Compile Include="Commands\UpdateEduProgramProfileFormYearsCommand.cs" />
     <Compile Include="Models\EduVolume.cs" />
     <Compile Include="Data\Mappings\EduVolumeMapping.cs" />
+    <Compile Include="Data\UniversityMappingHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

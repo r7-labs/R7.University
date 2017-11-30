@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public DocumentTypeMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<DocumentTypeInfo> ());
             HasKey (m => m.DocumentTypeID);
             Property (m => m.DocumentTypeID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.Type).IsRequired ();
