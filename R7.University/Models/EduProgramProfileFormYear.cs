@@ -43,6 +43,8 @@ namespace R7.University.Models
         IYear Year { get; }
 
         IEduVolume EduVolume { get; }
+
+        IEduProgramProfile EduProgramProfile { get; }
     }
 
     public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear
@@ -64,6 +66,8 @@ namespace R7.University.Models
         new IYear Year { get; set; }
 
         new IEduVolume EduVolume { get; set; }
+
+        new IEduProgramProfile EduProgramProfile { get; set; }
     }
 
     public class EduProgramProfileFormYearInfo: IEduProgramProfileFormYearWritable
@@ -105,6 +109,15 @@ namespace R7.University.Models
         IEduVolume IEduProgramProfileFormYearWritable.EduVolume {
             get { return EduVolume; }
             set { EduVolume = (EduVolumeInfo) value; }
+        }
+
+        public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
+
+        IEduProgramProfile IEduProgramProfileFormYear.EduProgramProfile => EduProgramProfile;
+
+        IEduProgramProfile IEduProgramProfileFormYearWritable.EduProgramProfile {
+            get { return EduProgramProfile; }
+            set { EduProgramProfile = (EduProgramProfileInfo) value; }
         }
     }
 }

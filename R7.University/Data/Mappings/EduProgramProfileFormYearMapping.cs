@@ -40,6 +40,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
 
+            HasRequired (m => m.EduProgramProfile).WithMany (x => x.EduProgramProfileFormYears).HasForeignKey (m => m.EduProgramProfileId);
             HasRequired (m => m.EduForm).WithMany ().HasForeignKey (m => m.EduFormId);
             HasRequired (m => m.Year).WithMany ().HasForeignKey (m => m.YearId);
 

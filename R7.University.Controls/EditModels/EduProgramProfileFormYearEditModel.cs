@@ -95,6 +95,9 @@ namespace R7.University.Controls.EditModels
         [JsonIgnore]
         public IEduVolume EduVolume { get; set; }
 
+        [JsonIgnore]
+        public IEduProgramProfile EduProgramProfile { get; set; }
+
         #endregion
 
         #region Bindable properties
