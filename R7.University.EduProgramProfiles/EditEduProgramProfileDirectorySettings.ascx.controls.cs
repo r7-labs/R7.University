@@ -3,7 +3,7 @@ using R7.University.Controls;
 
 namespace R7.University.EduProgramProfiles
 {
-    public partial class SettingsEduProgramProfileDirectory
+    public partial class EditEduProgramProfileDirectorySettings
     {
         protected DivisionSelector divisionSelector;
         protected RadioButtonList radioDivisionLevel;

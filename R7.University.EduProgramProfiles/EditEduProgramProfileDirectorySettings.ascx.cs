@@ -1,5 +1,5 @@
 //
-//  SettingsEduProgramProfileDirectory.ascx.cs
+//  EditEduProgramProfileDirectorySettings.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -35,7 +35,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles
 {
-    public partial class SettingsEduProgramProfileDirectory: UniversityModuleSettingsBase<EduProgramProfileDirectorySettings>
+    public partial class EditEduProgramProfileDirectorySettings: UniversityModuleSettingsBase<EduProgramProfileDirectorySettings>
     {
         #region Model context
 

@@ -1136,7 +1136,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/SettingsEduProgramProfileDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDirectorySettings.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
