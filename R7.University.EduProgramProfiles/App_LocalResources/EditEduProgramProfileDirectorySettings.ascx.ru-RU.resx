@@ -18,61 +18,19 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;О настройках модуля EduProgramProfileDirectory&lt;/p&gt;</value>
     </data>
-	<data name="GeneralSettings.Section" xml:space="preserve">
-        <value>Основные настройки</value>
-    </data>
-    <data name="DisplaySettings.Section" xml:space="preserve">
-        <value>Настройки отображения</value>
-    </data>
-    <data name="NotSelected.Text" xml:space="preserve">
-        <value>&lt; Не выбрано &gt;</value>
-    </data>
-    <data name="EduProgramProfileDirectoryMode_Default.Text" xml:space="preserve">
-        <value>&lt; Не выбран &gt;</value>
-    </data>
     <data name="EduProgramProfileDirectoryMode_ObrnadzorEduForms.Text" xml:space="preserve">
         <value>Формы и сроки обучения</value>
     </data>
     <data name="EduProgramProfileDirectoryMode_ObrnadzorDocuments.Text" xml:space="preserve">
         <value>Документы</value>
     </data>
-    <data name="labelMode.Text" xml:space="preserve">
-        <value>Режим отображения:</value>
-    </data>
-    <data name="labelMode.Help" xml:space="preserve">
-        <value>Выберите режим отображения данных модуля.</value>
-    </data>
-    <data name="labelEduLevels.Text" xml:space="preserve">
-        <value>Уровни образования:</value>
-    </data>
-    <data name="labelEduLevels.Help" xml:space="preserve">
-        <value>Отметьте уровни образования, которые должен отображать данный модуль.</value>
-    </data>
-	<data name="labelDivision.Text" xml:space="preserve">
-        <value>Подразделение:</value>
-    </data>
-    <data name="labelDivision.Help" xml:space="preserve">
-        <value>Выберите подразделение для отображения только тех профилей образовательных программ, что связаны с ним (непосредственно, или через образовательную программу).</value>
-    </data>
-	<data name="labelDivisionLevel.Text" xml:space="preserve">
-        <value>Подразделение относится к:</value>
-    </data>
-    <data name="labelDivisionLevel.Help" xml:space="preserve">
-        <value>Выберите, к какому уровню объектов относится выбранное подразделение. Данная настройка имеет смысл только в том случае, если выше выбрано какое-либо подразделение.</value>
-	</data>
-	<data name="labelTimeToLearnDisplayMode.Text" xml:space="preserve">
+    <data name="labelTimeToLearnDisplayMode.Text" xml:space="preserve">
         <value>Режим отображения срока обучения:</value>
     </data>
     <data name="labelTimeToLearnDisplayMode.Help" xml:space="preserve">
         <value>Выберите режим отображения срока обучения.</value>
     </data>
-    <data name="DivisionLevel_EduProgram.Text" xml:space="preserve">
-        <value>Обр. программе</value>
-    </data>
-	<data name="DivisionLevel_EduProgramProfile.Text" xml:space="preserve">
-        <value>Профилю образовательной программы</value>
-    </data>
-	<data name="TimeToLearnDisplayMode_YearsMonths.Text" xml:space="preserve">
+    <data name="TimeToLearnDisplayMode_YearsMonths.Text" xml:space="preserve">
         <value>Год и месяц</value>
     </data>
     <data name="TimeToLearnDisplayMode_Hours.Text" xml:space="preserve">
@@ -80,5 +38,11 @@
     </data>
     <data name="TimeToLearnDisplayMode_Both.Text" xml:space="preserve">
         <value>Все</value>
+    </data>
+	<data name="labelMode.Text" xml:space="preserve">
+        <value>Режим модуля:</value>
+    </data>
+    <data name="labelMode.Help" xml:space="preserve">
+        <value>Выберите режим работы модуля.</value>
     </data>
 </root>

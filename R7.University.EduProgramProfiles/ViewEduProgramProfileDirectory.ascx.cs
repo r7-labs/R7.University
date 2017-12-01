@@ -112,7 +112,7 @@ namespace R7.University.EduProgramProfiles
             var indexer = new ViewModelIndexer (1);
 
             var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
-                .ListWithEduForms (Settings.EduLevels, Settings.DivisionId, Settings.DivisionLevel);
+                .ListWithEduForms (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
                
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
                 eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
@@ -127,7 +127,7 @@ namespace R7.University.EduProgramProfiles
             var indexer = new ViewModelIndexer (1);
 
             var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
-                .ListWithDocuments (Settings.EduLevels, Settings.DivisionId, Settings.DivisionLevel);
+                .ListWithDocuments (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
                 eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))

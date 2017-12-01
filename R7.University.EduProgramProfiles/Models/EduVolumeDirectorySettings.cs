@@ -20,40 +20,24 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
-using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.Models
 {
     [Serializable]
-    public class EduVolumeDirectorySettings
+    public class EduVolumeDirectorySettings: DirectorySettingsBase
     {
         [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
-        public string EduLevels { get; set; } = string.Empty;
-
-        public IEnumerable<int> EduLevelIds {
-            get {
-                return EduLevels.Split (new [] { ';' }, StringSplitOptions.RemoveEmptyEntries)
-                                .Select (el => int.Parse (el));
-            }
-            set {
-                EduLevels = string.Join (";", value);
-            }
-        }
+        public override string EduLevels { get; set; } = string.Empty;
 
         [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
-        public EduProgramProfileDirectoryMode? Mode { get; set; }
-   
-        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
-        public int? DivisionId { get; set; }
+        public override int? DivisionId { get; set; }
 
         [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
-        public DivisionLevel DivisionLevel { get; set; } = DivisionLevel.EduProgram;
+        public override DivisionLevel DivisionLevel { get; set; } = DivisionLevel.EduProgram;
 
-        [TabModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
-        public TimeToLearnDisplayMode TimeToLearnDisplayMode { get; set; } = TimeToLearnDisplayMode.YearsMonths;
+        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        public EduVolumeDirectoryMode? Mode { get; set; }
     }
 
     public class EduVolumeDirectorySettingsRepository: SettingsRepository<EduVolumeDirectorySettings>

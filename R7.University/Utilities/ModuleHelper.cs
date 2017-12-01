@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Text.RegularExpressions;
 using DotNetNuke.Entities.Modules;
 
 namespace R7.University.Utilities
@@ -32,6 +33,11 @@ namespace R7.University.Utilities
                 module.ModuleTitle = title;
                 ModuleController.Instance.UpdateModule (module);
             }
+        }
+
+        public static string GetModuleName (ModuleInfo module)
+        {
+            return Regex.Replace (module.ModuleDefinition.DefinitionName, @"^R7_University_", string.Empty);
         }
     }
 }
