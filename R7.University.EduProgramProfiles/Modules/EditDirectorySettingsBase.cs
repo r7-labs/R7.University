@@ -136,7 +136,7 @@ namespace R7.University.EduProgramProfiles.Modules
         public virtual void OnSynchronizeModule ()
         {
             ModuleController.SynchronizeModule (ModuleId);
-            CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/{ModuleHelper.GetModuleName (ModuleConfiguration)}?ModuleId={ModuleId}");
+            CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/{UniversityModuleHelper.GetModuleName (ModuleConfiguration)}?ModuleId={ModuleId}");
         }
     }
 }

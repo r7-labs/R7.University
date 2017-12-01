@@ -157,7 +157,7 @@ namespace R7.University.Employee
 				
                 if (displayContent) {
                     if (Settings.AutoTitle) {
-                        ModuleHelper.UpdateModuleTitle (TabModuleId, 
+                        UniversityModuleHelper.UpdateModuleTitle (TabModuleId, 
                             FormatHelper.AbbrName (employee.FirstName, employee.LastName, employee.OtherName)
                         );
                     }

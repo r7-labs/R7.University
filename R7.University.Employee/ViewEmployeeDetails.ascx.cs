@@ -316,7 +316,7 @@ namespace R7.University.Employee
             }
             else if (InViewModule) {
                 if (Settings.AutoTitle)
-                    ModuleHelper.UpdateModuleTitle (TabModuleId, employee.FullName);
+                    UniversityModuleHelper.UpdateModuleTitle (TabModuleId, employee.FullName);
             }
             else {
                 // display employee name in label
