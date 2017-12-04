@@ -10,6 +10,7 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/js/editEduVolume.js" ForceProvider="DnnFormBottomProvider" />
 
 <div class="dnnForm dnnClear u8y-edit-eduvolume">
+	<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduVolume" CssClass="dnnFormMessage dnnFormWarning" />
     <div id="eduvolume-tabs">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduvolume-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
@@ -18,7 +19,6 @@
         </ul>
         <div id="eduvolume-common-tab">
 	        <fieldset>
-				<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduVolume" CssClass="dnnFormMessage dnnFormWarning" />
 		        <div class="dnnFormItem">
                     <dnn:Label id="labelTimeToLearnYears" runat="server" ControlName="textTimeToLearnYears" />
                     <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />

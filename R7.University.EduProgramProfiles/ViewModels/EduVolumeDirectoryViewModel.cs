@@ -43,9 +43,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         IEnumerable<EduVolumeViewModel> _eduVolumeViewModels;
         public IEnumerable<EduVolumeViewModel> EduVolumeViewModels {
-            // TODO: Must be ev.EduProgramProfileFormYear.IsPublished()
             // TODO: Implement sorting
-            get { return _eduVolumeViewModels.Where (ev => IsEditable || ev.EduProgramProfileFormYear.EduProgramProfile.IsPublished (Now)); }
+            get { return _eduVolumeViewModels.Where (ev => IsEditable || ev.IsPublished (Now)); }
             set { _eduVolumeViewModels = value; }
         }
     }

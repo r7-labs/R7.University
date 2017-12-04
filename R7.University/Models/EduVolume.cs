@@ -25,8 +25,6 @@ namespace R7.University.Models
     {
         int EduVolumeId { get; }
 
-        int EduProgramProfileFormYearId { get; }
-
         int TimeToLearnHours { get; }
 
         int TimeToLearnMonths { get; }
@@ -56,8 +54,6 @@ namespace R7.University.Models
     {
         new int EduVolumeId { get; set; }
 
-        new int EduProgramProfileFormYearId { get; set; }
-
         new int TimeToLearnHours { get; set; }
 
         new int TimeToLearnMonths { get; set; }
@@ -86,8 +82,6 @@ namespace R7.University.Models
     public class EduVolumeInfo : IEduVolumeWritable
     {
         public int EduVolumeId { get; set; }
-
-        public int EduProgramProfileFormYearId { get; set; }
 
         public int TimeToLearnHours { get; set; }
 

@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Web;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
@@ -27,58 +28,70 @@ using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
-    public class EduVolumeViewModel : IEduVolume
+    public class EduVolumeViewModel: IEduProgramProfileFormYear
     {
-        protected readonly IEduVolume EduVolume;
+        protected readonly IEduProgramProfileFormYear FormYear;
 
         protected readonly ViewModelContext<EduVolumeDirectorySettings> Context;
 
-        public EduVolumeViewModel (IEduVolume eduVolume, ViewModelContext<EduVolumeDirectorySettings> context)
+        public EduVolumeViewModel (IEduProgramProfileFormYear formYear, ViewModelContext<EduVolumeDirectorySettings> context)
         {
-            EduVolume = eduVolume;
+            FormYear = formYear;
             Context = context;
         }
 
-        #region IEduVolume implementation
+        #region IEduProgramProfileFormYear implementation
 
-        public int EduVolumeId => EduVolume.EduVolumeId;
+        public int EduProgramProfileFormYearId => FormYear.EduProgramProfileFormYearId;
 
-        public int EduProgramProfileFormYearId => EduVolume.EduProgramProfileFormYearId;
+        public int EduProgramProfileId => FormYear.EduProgramProfileId;
 
-        public int TimeToLearnHours => EduVolume.TimeToLearnHours;
+        public int EduFormId => FormYear.EduFormId;
 
-        public int TimeToLearnMonths => EduVolume.TimeToLearnMonths;
+        public int YearId => FormYear.YearId;
 
-        public int? PracticeType1Cu => EduVolume.PracticeType1Cu;
+        public IEduForm EduForm => FormYear.EduForm;
 
-        public int? PracticeType2Cu => EduVolume.PracticeType2Cu;
+        public IYear Year => FormYear.Year;
 
-        public int? PracticeType3Cu => EduVolume.PracticeType3Cu;
+        public IEduVolume EduVolume => FormYear.EduVolume;
 
-        public int? Year1Cu => EduVolume.Year1Cu;
+        public IEduProgramProfile EduProgramProfile => FormYear.EduProgramProfile;
 
-        public int? Year2Cu => EduVolume.Year2Cu;
+        public DateTime? StartDate => FormYear.StartDate;
 
-        public int? Year3Cu => EduVolume.Year3Cu;
-
-        public int? Year4Cu => EduVolume.Year4Cu;
-
-        public int? Year5Cu => EduVolume.Year5Cu;
-
-        public int? Year6Cu => EduVolume.Year6Cu;
-
-        public IEduProgramProfileFormYear EduProgramProfileFormYear => EduVolume.EduProgramProfileFormYear;
+        public DateTime? EndDate => FormYear.EndDate;
 
         #endregion
 
         #region Bindable properties
 
         public string EditUrl =>
-            Context.Module.EditUrl ("eduvolume_id", EduVolume.EduVolumeId.ToString (), "EditEduVolume");
+            (FormYear.EduVolume != null)
+                ? Context.Module.EditUrl ("eduvolume_id", FormYear.EduVolume.EduVolumeId.ToString (), "EditEduVolume")
+                : Context.Module.EditUrl ("eduprogramprofileformyear_id", FormYear.EduProgramProfileFormYearId.ToString (), "EditEduVolume");
 
         public string CssClass =>
-            EduVolume.EduProgramProfileFormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
+            FormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
+
+        public string Year1Cu => FormatYearCu (() => FormYear.EduVolume?.Year1Cu);
+
+        public string Year2Cu => FormatYearCu (() => FormYear.EduVolume?.Year2Cu);
+
+        public string Year3Cu => FormatYearCu (() => FormYear.EduVolume?.Year3Cu);
+
+        public string Year4Cu => FormatYearCu (() => FormYear.EduVolume?.Year4Cu);
+
+        public string Year5Cu => FormatYearCu (() => FormYear.EduVolume?.Year5Cu);
+
+        public string Year6Cu => FormatYearCu (() => FormYear.EduVolume?.Year6Cu);
 
         #endregion
+
+        string FormatYearCu (Func<int?> getYearCu)
+        {
+            var yearCu = getYearCu ();
+            return yearCu != null ? yearCu.ToString () : "-";
+        }
     }
 }

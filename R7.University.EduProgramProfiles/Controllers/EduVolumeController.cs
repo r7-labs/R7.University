@@ -68,11 +68,11 @@ namespace R7.University.Science.Controllers
             };
         }
 
-        IEnumerable<EduVolumeInfo> GetEduVolumesForEduVolumeDirectory (int? divisionId, IEnumerable<int> eduLevelIds, DivisionLevel divisionLevel)
+        IEnumerable<EduProgramProfileFormYearInfo> GetEduVolumesForEduVolumeDirectory (int? divisionId, IEnumerable<int> eduLevelIds, DivisionLevel divisionLevel)
         {
             using (var modelContext = new UniversityModelContext ()) {
                 var eduVolumes = new EduVolumeQuery (modelContext).ListByDivisionAndEduLevels (eduLevelIds, divisionId, divisionLevel);
-                return eduVolumes ?? Enumerable.Empty<EduVolumeInfo> ();
+                return eduVolumes ?? Enumerable.Empty<EduProgramProfileFormYearInfo> ();
             }
         }
     }

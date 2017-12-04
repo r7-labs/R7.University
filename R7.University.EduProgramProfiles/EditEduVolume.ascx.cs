@@ -76,19 +76,6 @@ namespace R7.University.EduProgramProfiles
             base.OnInit (e);
         }
 
-        private int? GetQueryId (string key)
-        {
-            var idParam = Request.QueryString [key];
-            if (idParam != null) {
-                int Id;
-                if (int.TryParse (idParam, out Id)) {
-                    return Id;
-                }
-            }
-
-            return null;
-        }
-
         protected override void LoadItem (EduVolumeInfo item)
         {
             var ev = GetItemWithDependencies (ItemId.Value);
@@ -135,10 +122,13 @@ namespace R7.University.EduProgramProfiles
 
         protected override void AddItem (EduVolumeInfo item)
         {
-            if (SecurityContext.CanAdd (typeof (EduVolumeInfo))) {
-                new AddCommand<EduVolumeInfo> (ModelContext, SecurityContext).Add (item);
-                ModelContext.SaveChanges ();
+            var eduVolumeId = TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
+            if (eduVolumeId != null) {
+                item.EduVolumeId = eduVolumeId.Value;
             }
+
+            new AddCommand<EduVolumeInfo> (ModelContext, SecurityContext).Add (item);
+            ModelContext.SaveChanges ();
         }
 
         protected override void UpdateItem (EduVolumeInfo item)

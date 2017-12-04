@@ -99,8 +99,7 @@ GO
 IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_EduVolume')
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EduVolume] (
-        EduVolumeID int IDENTITY (1,1) NOT NULL,
-        EduProgramProfileFormYearID int NOT NULL,
+        EduVolumeID int NOT NULL,
         TimeToLearnHours int NOT NULL,
         TimeToLearnMonths int NOT NULL,
         Year1Cu int NULL,
@@ -114,9 +113,8 @@ BEGIN
         PracticeType3Cu int NULL
         CONSTRAINT [PK_{objectQualifier}University_EduVolume] PRIMARY KEY (EduVolumeID)
         CONSTRAINT [FK_{objectQualifier}University_EduVolume_EduProgramProfileFormYears]
-            FOREIGN KEY (EduProgramProfileFormYearID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (EduProgramProfileFormYearID)
-                ON DELETE CASCADE,
-        CONSTRAINT [UN_{objectQualifier}University_EduVolume] UNIQUE (EduProgramProfileFormYearID)
+            FOREIGN KEY (EduVolumeID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (EduProgramProfileFormYearID)
+                ON DELETE CASCADE
     )
 END
 GO

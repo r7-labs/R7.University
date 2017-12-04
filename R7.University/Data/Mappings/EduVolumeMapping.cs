@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 using R7.University.Models;
 
 namespace R7.University.Data.Mappings
@@ -10,9 +9,6 @@ namespace R7.University.Data.Mappings
         {
             ToTable (UniversityMappingHelper.GetTableName<EduVolumeInfo> (pluralize: false));
             HasKey (m => m.EduVolumeId);
-            Property (m => m.EduVolumeId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
-
-            Property (m => m.EduProgramProfileFormYearId).IsRequired ();
 
             Property (m => m.TimeToLearnHours).IsRequired ();
             Property (m => m.TimeToLearnMonths).IsRequired ();

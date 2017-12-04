@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.Models;
-using System.Linq;
 
 namespace R7.University.EduProgramProfiles.Queries
 {
@@ -35,19 +35,19 @@ namespace R7.University.EduProgramProfiles.Queries
             ModelContext = modelContext;
         }
 
-        public IEnumerable<EduVolumeInfo> ListByDivisionAndEduLevels (IEnumerable<int> eduLevelIds,
-                                                                      int? divisionId,
-                                                                      DivisionLevel divisionLevel)
+        public IEnumerable<EduProgramProfileFormYearInfo> ListByDivisionAndEduLevels (IEnumerable<int> eduLevelIds,
+                                                                                      int? divisionId,
+                                                                                      DivisionLevel divisionLevel)
         {
             // TODO: Implement filtering
             // TODO: Filter out year of admission
-            return ModelContext.Query<EduVolumeInfo> ()
-                               .Include (ev => ev.EduProgramProfileFormYear)
-                               .Include (ev => ev.EduProgramProfileFormYear.EduProgramProfile)
-                               .Include (ev => ev.EduProgramProfileFormYear.EduProgramProfile.EduLevel)
-                               .Include (ev => ev.EduProgramProfileFormYear.EduProgramProfile.EduProgram)
-                               .Include (ev => ev.EduProgramProfileFormYear.EduForm)
-                               .Include (ev => ev.EduProgramProfileFormYear.Year).ToList ();
+            return ModelContext.Query<EduProgramProfileFormYearInfo> ()
+                               .Include (eppfy => eppfy.EduProgramProfile)
+                               .Include (eppfy => eppfy.EduProgramProfile.EduLevel)
+                               .Include (eppfy => eppfy.EduProgramProfile.EduProgram)
+                               .Include (eppfy => eppfy.EduForm)
+                               .Include (eppfy => eppfy.Year)
+                               .Include (eppfy => eppfy.EduVolume).ToList ();
         }
     }
 }
