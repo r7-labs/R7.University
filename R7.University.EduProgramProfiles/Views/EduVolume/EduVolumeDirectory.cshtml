@@ -50,9 +50,9 @@ else {
     	    <tbody>
         	    @foreach (var ev in Model.EduVolumeViewModels) {
                     var eppfy = ev.EduProgramProfileFormYear;
-                    <tr>
+                    <tr class="@ev.CssClass">
 				        @if (Dnn.ModuleContext.IsEditable) {
-                            <td></td>
+                            <td><a href="@ev.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
                         }
         			    <td>@eppfy.EduProgramProfile.EduProgram.Code</td>
 				        <td>@eppfy.EduProgramProfile.EduProgram.Title</td>

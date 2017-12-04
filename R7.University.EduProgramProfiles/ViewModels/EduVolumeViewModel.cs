@@ -19,9 +19,11 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using R7.University.Models;
+using System.Web;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
+using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
@@ -66,6 +68,16 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public int? Year6Cu => EduVolume.Year6Cu;
 
         public IEduProgramProfileFormYear EduProgramProfileFormYear => EduVolume.EduProgramProfileFormYear;
+
+        #endregion
+
+        #region Bindable properties
+
+        public string EditUrl =>
+            Context.Module.EditUrl ("eduvolume_id", EduVolume.EduVolumeId.ToString (), "EditEduVolume");
+
+        public string CssClass =>
+            EduVolume.EduProgramProfileFormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
         #endregion
     }

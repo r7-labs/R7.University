@@ -1188,6 +1188,17 @@
                                         <supportsPopUps>False</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduVolume</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduVolume.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program Volume Record</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
