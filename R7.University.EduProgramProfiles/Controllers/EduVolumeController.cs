@@ -62,6 +62,7 @@ namespace R7.University.Science.Controllers
             var viewModelContext = new ViewModelContext<EduVolumeDirectorySettings> (ModuleContext, LocalResourceFile, settings);
 
             return new EduVolumeDirectoryViewModel {
+                Settings = settings,
                 EduVolumeViewModels = 
                     GetEduVolumesForEduVolumeDirectory (settings.DivisionId, settings.EduLevelIds, settings.DivisionLevel)
                         .Select (ev => new EduVolumeViewModel (ev, viewModelContext))

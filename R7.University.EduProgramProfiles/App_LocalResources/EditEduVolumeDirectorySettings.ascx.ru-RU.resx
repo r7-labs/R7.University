@@ -30,4 +30,16 @@
     <data name="labelMode.Help" xml:space="preserve">
         <value>Выберите режим работы модуля.</value>
     </data>
+	<data name="labelShowTimeToLearnMonths.Text" xml:space="preserve">
+        <value>Показать нормативный срок обучения?</value>
+    </data>
+    <data name="labelShowTimeToLearnMonths.Help" xml:space="preserve">
+        <value>Отметьте, чтобы отобразить столбец для нормативного срока обучения.</value>
+    </data>
+    <data name="labelShowTimeToLearnHours.Text" xml:space="preserve">
+        <value>Показать общий объём обр. программы?</value>
+    </data>
+    <data name="labelShowTimeToLearnHours.Help" xml:space="preserve">
+        <value>Отметьте, чтобы отобразить столбец для общего объёма образовательной программы.</value>
+    </data>
 </root>

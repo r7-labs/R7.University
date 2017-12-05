@@ -36,8 +36,12 @@ else {
 				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduLevel.Column")</th>
 				    <th scope="col" rowspan="2">@Dnn.LocalizeString("StartingYear.Column")</th>
 				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
-                    <th scope="col" rowspan="2">@Dnn.LocalizeString("TimeToLearnMonths.Column")</th>
-				    <th scope="col" rowspan="2">@Dnn.LocalizeString("TimeToLearnHours.Column")</th>
+				    @if (Model.Settings.ShowTimeToLearnMonths) {
+                        <th scope="col" rowspan="2">@Dnn.LocalizeString("TimeToLearnMonths.Column")</th>
+                    }
+				    @if (Model.Settings.ShowTimeToLearnHours) {
+				        <th scope="col" rowspan="2">@Dnn.LocalizeString("TimeToLearnHours.Column")</th>
+                    }
     			    <th scope="col" colspan="6">@Dnn.LocalizeString("EduVolume.Column")</th>
 				</tr>
 			    <tr>
@@ -61,8 +65,12 @@ else {
                         <td itemprop="eduLevel">@ev.EduProgramProfile.EduLevel.Title</td>
 				        <td>@ev.Year.Year</td>
 				        <td itemprop="eduForm">@ev.EduFormTitle</td>
-				        <td>@ev.TimeToLearnMonths</td>
-				        <td>@ev.TimeToLearnHours</td>
+				        @if (Model.Settings.ShowTimeToLearnMonths) {
+                            <td>@ev.TimeToLearnMonths</td>
+                        }
+				        @if (Model.Settings.ShowTimeToLearnHours) {
+				            <td>@ev.TimeToLearnHours</td>
+                        }
                         <td>@ev.Year1Cu</td>
 				        <td>@ev.Year2Cu</td>
 				        <td>@ev.Year3Cu</td>

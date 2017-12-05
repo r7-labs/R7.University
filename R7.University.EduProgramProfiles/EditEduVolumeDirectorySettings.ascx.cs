@@ -20,10 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.EduProgramProfiles.Modules;
@@ -43,11 +40,15 @@ namespace R7.University.EduProgramProfiles
         public override void OnLoadSettings ()
         {
             comboMode.SelectByValue (Settings.Mode);
+            checkShowTimeToLearnMonths.Checked = Settings.ShowTimeToLearnMonths;
+            checkShowTimeToLearnHours.Checked = Settings.ShowTimeToLearnHours;
         }
 
         public override void OnUpdateSettings ()
         {
             Settings.Mode = (EduVolumeDirectoryMode) Enum.Parse (typeof (EduVolumeDirectoryMode), comboMode.SelectedValue);
+            Settings.ShowTimeToLearnMonths = checkShowTimeToLearnMonths.Checked;
+            Settings.ShowTimeToLearnHours = checkShowTimeToLearnHours.Checked;
         }
     }
 }

@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.ModelExtensions;
+using R7.University.EduProgramProfiles.Models;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
@@ -40,6 +41,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         }
 
         public bool IsEmpty => EduVolumeViewModels.IsNullOrEmpty ();
+
+        public EduVolumeDirectorySettings Settings;
 
         IEnumerable<EduVolumeViewModel> _eduVolumeViewModels;
         public IEnumerable<EduVolumeViewModel> EduVolumeViewModels {

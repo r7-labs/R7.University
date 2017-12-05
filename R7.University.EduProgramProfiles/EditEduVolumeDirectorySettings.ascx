@@ -36,6 +36,17 @@
             </div>
 		</fieldset>
 	</asp:Panel>
+    <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
+    <fieldset>
+        <div class="dnnFormItem">
+            <dnn:Label id="labelShowTimeToLearnMonths" runat="server" ControlName="checkShowTimeToLearnMonths" />
+            <asp:CheckBox id="checkShowTimeToLearnMonths" runat="server" />
+        </div>
+		<div class="dnnFormItem">
+            <dnn:Label id="labelShowTimeToLearnHours" runat="server" ControlName="checkShowTimeToLearnHours" />
+            <asp:CheckBox id="checkShowTimeToLearnHours" runat="server" />
+        </div>
+    </fieldset>
 </div>
 
 <script type="text/javascript">

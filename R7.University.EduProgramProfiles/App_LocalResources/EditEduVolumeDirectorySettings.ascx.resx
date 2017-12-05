@@ -30,4 +30,16 @@
     <data name="labelMode.Help" xml:space="preserve">
         <value>Select the mode for the module.</value>
     </data>
+	<data name="labelShowTimeToLearnMonths.Text" xml:space="preserve">
+        <value>Show Time to Learn?</value>
+    </data>
+	<data name="labelShowTimeToLearnMonths.Help" xml:space="preserve">
+        <value>Check to show time to learn column.</value>
+    </data>
+	<data name="labelShowTimeToLearnHours.Text" xml:space="preserve">
+        <value>Show Overall Edu. Program Volume?</value>
+    </data>
+    <data name="labelShowTimeToLearnHours.Help" xml:space="preserve">
+        <value>Check to show overall edu. program volume column.</value>
+    </data>
 </root>

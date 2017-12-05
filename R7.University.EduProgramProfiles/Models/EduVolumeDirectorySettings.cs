@@ -38,6 +38,12 @@ namespace R7.University.EduProgramProfiles.Models
 
         [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
         public EduVolumeDirectoryMode? Mode { get; set; }
+
+        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        public bool ShowTimeToLearnMonths { get; set; }
+
+        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        public bool ShowTimeToLearnHours { get; set; }
     }
 
     public class EduVolumeDirectorySettingsRepository: SettingsRepository<EduVolumeDirectorySettings>
