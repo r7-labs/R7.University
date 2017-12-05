@@ -93,7 +93,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
             ? FormatHelper.FormatTimeToLearnMonths (FormYear.EduVolume.TimeToLearnMonths, "TimeToLearn", Context.LocalResourceFile)
             : string.Empty;
 
-        public string TimeToLearnHours => FormYear.EduVolume != null ? FormYear.EduVolume.TimeToLearnHours.ToString () : string.Empty;
+        public string TimeToLearnHours => FormYear.EduVolume != null
+            ? ((FormYear.EduVolume.TimeToLearnHours > 0)? FormYear.EduVolume.TimeToLearnHours.ToString () : string.Empty)
+            : string.Empty;
       
         public string EduFormTitle {
             get {
