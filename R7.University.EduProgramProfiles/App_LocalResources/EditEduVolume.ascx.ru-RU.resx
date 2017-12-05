@@ -43,7 +43,7 @@
         <value>Часов:</value>
     </data>
     <data name="labelTimeToLearnHours.Help" xml:space="preserve">
-        <value>Введите количество часов на освоение программы по учебному плану.</value>
+        <value>Введите общее количество часов на освоение программы по учебному плану.</value>
     </data>
 	<data name="labelYear1Cu.Text" xml:space="preserve">
         <value>Курс 1:</value>

@@ -43,7 +43,7 @@
         <value>Hours:</value>
     </data>
     <data name="labelTimeToLearnHours.Help" xml:space="preserve">
-        <value>Enter amount of hours to master the program by educational plan.</value>
+        <value>Enter an overall amount of hours to master the program according to educational plan.</value>
     </data>
 	<data name="labelYear1Cu.Text" xml:space="preserve">
         <value>Year 1:</value>
