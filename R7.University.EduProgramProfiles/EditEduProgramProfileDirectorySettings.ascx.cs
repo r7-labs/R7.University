@@ -41,13 +41,13 @@ namespace R7.University.EduProgramProfiles
             radioTimeToLearnDisplayMode.DataBind ();
         }
 
-        public override void OnLoadSettings ()
+        protected override void OnLoadSettings ()
         {
             comboMode.SelectByValue (Settings.Mode);
             radioTimeToLearnDisplayMode.SelectByValue (Settings.TimeToLearnDisplayMode.ToString ());
         }
 
-        public override void OnUpdateSettings ()
+        protected override void OnUpdateSettings ()
         {
             Settings.Mode = (EduProgramProfileDirectoryMode) Enum.Parse (typeof (EduProgramProfileDirectoryMode), comboMode.SelectedValue, true);
             Settings.TimeToLearnDisplayMode = (TimeToLearnDisplayMode) Enum.Parse (typeof (TimeToLearnDisplayMode), radioTimeToLearnDisplayMode.SelectedValue, true);

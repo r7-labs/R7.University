@@ -88,7 +88,7 @@ namespace R7.University.EduProgramProfiles.Modules
             }
         }
 
-        public virtual void OnLoadSettings () {}
+        protected virtual void OnLoadSettings () {}
 
         public override void LoadSettings ()
         {
@@ -113,7 +113,7 @@ namespace R7.University.EduProgramProfiles.Modules
             }
         }
 
-        public virtual void OnUpdateSettings () {}
+        protected virtual void OnUpdateSettings () {}
 
         public override void UpdateSettings ()
         {
@@ -133,7 +133,7 @@ namespace R7.University.EduProgramProfiles.Modules
             }
         }
 
-        public virtual void OnSynchronizeModule ()
+        protected virtual void OnSynchronizeModule ()
         {
             ModuleController.SynchronizeModule (ModuleId);
             CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/{UniversityModuleHelper.GetModuleName (ModuleConfiguration)}?ModuleId={ModuleId}");

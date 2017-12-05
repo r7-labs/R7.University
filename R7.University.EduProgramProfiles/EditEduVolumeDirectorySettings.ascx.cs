@@ -37,14 +37,14 @@ namespace R7.University.EduProgramProfiles
             comboMode.DataBind ();
         }
 
-        public override void OnLoadSettings ()
+        protected override void OnLoadSettings ()
         {
             comboMode.SelectByValue (Settings.Mode);
             checkShowTimeToLearnMonths.Checked = Settings.ShowTimeToLearnMonths;
             checkShowTimeToLearnHours.Checked = Settings.ShowTimeToLearnHours;
         }
 
-        public override void OnUpdateSettings ()
+        protected override void OnUpdateSettings ()
         {
             Settings.Mode = (EduVolumeDirectoryMode) Enum.Parse (typeof (EduVolumeDirectoryMode), comboMode.SelectedValue);
             Settings.ShowTimeToLearnMonths = checkShowTimeToLearnMonths.Checked;
