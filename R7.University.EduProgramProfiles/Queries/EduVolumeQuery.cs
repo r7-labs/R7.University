@@ -22,6 +22,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.EduProgramProfiles.Models;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.Queries
@@ -46,9 +47,9 @@ namespace R7.University.EduProgramProfiles.Queries
                                .Include (eppfy => eppfy.EduForm)
                                .Include (eppfy => eppfy.EduVolume)
                                .Include (eppfy => eppfy.Year)
-                               .Where (eppfy => eduLevelIds.Contains (eppfy.EduProgramProfile.EduLevelId))
                                .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
-                               .WhereDivision (divisionId, divisionLevel)
+                               .WhereEduLevelsOrAll (eduLevelIds)
+                               .WhereDivisionOrAll (divisionId, divisionLevel)
                                .Order ()
                                .ToList ();
         }
@@ -56,7 +57,16 @@ namespace R7.University.EduProgramProfiles.Queries
 
     public static class EduProgramProfileFormYearQueryableExtensions
     {
-        public static IQueryable<EduProgramProfileFormYearInfo> WhereDivision (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, int? divisionId, DivisionLevel divisionLevel)
+        public static IQueryable<EduProgramProfileFormYearInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, IEnumerable<int> eduLevelIds)
+        {
+            if (!eduLevelIds.IsNullOrEmpty ()) {
+                return eduProgramProfileFormYears.Where (eppfy => eduLevelIds.Contains (eppfy.EduProgramProfile.EduLevelId));
+            }
+
+            return eduProgramProfileFormYears;
+        }
+
+        public static IQueryable<EduProgramProfileFormYearInfo> WhereDivisionOrAll (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, int? divisionId, DivisionLevel divisionLevel)
         { 
             if (divisionId != null) {
                 if (divisionLevel == DivisionLevel.EduProgram) {
