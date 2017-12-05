@@ -34,10 +34,18 @@ namespace R7.University.ModelExtensions
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
         }
 
-        public static string FormatTitle (this IEduProgramProfile epp)
+        public static string FormatTitle (this IEduProgramProfile epp, bool withEduProgramCode = true)
         {
+            if (withEduProgramCode) {
+                return FormatHelper.FormatEduProgramProfileTitle (
+                    epp.EduProgram.Code,
+                    epp.EduProgram.Title,
+                    epp.ProfileCode,
+                    epp.ProfileTitle
+                );
+            }
+
             return FormatHelper.FormatEduProgramProfileTitle (
-                epp.EduProgram.Code,
                 epp.EduProgram.Title,
                 epp.ProfileCode,
                 epp.ProfileTitle

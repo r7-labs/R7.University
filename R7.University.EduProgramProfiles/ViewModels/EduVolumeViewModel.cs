@@ -25,6 +25,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
@@ -74,6 +75,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string CssClass =>
             FormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
+        public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false);
+
         public string Year1Cu => FormatYearCu (() => FormYear.EduVolume?.Year1Cu);
 
         public string Year2Cu => FormatYearCu (() => FormYear.EduVolume?.Year2Cu);
@@ -85,6 +88,22 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string Year5Cu => FormatYearCu (() => FormYear.EduVolume?.Year5Cu);
 
         public string Year6Cu => FormatYearCu (() => FormYear.EduVolume?.Year6Cu);
+
+        public string TimeToLearnMonths => FormYear.EduVolume != null
+            ? FormatHelper.FormatTimeToLearnMonths (FormYear.EduVolume.TimeToLearnMonths, "TimeToLearn", Context.LocalResourceFile)
+            : string.Empty;
+
+        public string TimeToLearnHours => FormYear.EduVolume != null ? FormYear.EduVolume.TimeToLearnHours.ToString () : string.Empty;
+      
+        public string EduFormTitle {
+            get {
+                var sysEduForm = FormYear.EduForm.GetSystemEduForm ();
+                if (sysEduForm != SystemEduForm.Custom) {
+                    return Context.LocalizeString ($"EduForm_{sysEduForm}.Text");
+                }
+                return FormYear.EduForm.Title;
+            }
+        }
 
         #endregion
 

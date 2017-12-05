@@ -18,4 +18,58 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать. Добавьте записи или измените настройки модуля.</value>
     </data>
+    <data name="EduCode.Column" xml:space="preserve">
+        <value>Код</value>
+    </data>
+    <data name="EduProgram.Column" xml:space="preserve">
+        <value>Образовательная программа</value>
+    </data>
+	<data name="IsAdopted.Column" xml:space="preserve">
+        <value>Адаптированная ОП?</value>
+    </data>
+    <data name="EduLevel.Column" xml:space="preserve">
+        <value>Уровень образования</value>
+    </data>
+    <data name="StartingYear.Column" xml:space="preserve">
+        <value>Год начала подготовки</value>
+    </data>
+    <data name="EduForm.Column" xml:space="preserve">
+        <value>Форма обучения</value>
+    </data>
+    <data name="TimeToLearnMonths.Column" xml:space="preserve">
+        <value>Нормативный срок обучения</value>
+    </data>
+	<data name="TimeToLearnHours.Column" xml:space="preserve">
+        <value>Объём образовательной программы, акад. часов</value>
+    </data>
+    <data name="EduVolume.Column" xml:space="preserve">
+        <value>Объём образовательной программы по годам обучения (курсам), ЗЭТ</value>
+    </data>
+	<data name="TimeToLearnYears1.Format" xml:space="preserve">
+        <value>{0} год</value>
+    </data>
+    <data name="TimeToLearnYears2.Format" xml:space="preserve">
+        <value>{0} года</value>
+    </data>
+    <data name="TimeToLearnYears3.Format" xml:space="preserve">
+        <value>{0} лет</value>
+    </data>
+    <data name="TimeToLearnMonths1.Format" xml:space="preserve">
+        <value>{0} месяц</value>
+    </data>
+    <data name="TimeToLearnMonths2.Format" xml:space="preserve">
+        <value>{0} месяца</value>
+    </data>
+    <data name="TimeToLearnMonths3.Format" xml:space="preserve">
+        <value>{0} месяцев</value>
+    </data>
+	<data name="EduForm_FullTime.Text" xml:space="preserve">
+        <value>Очная</value>
+    </data>
+    <data name="EduForm_PartTime.Text" xml:space="preserve">
+        <value>Очно-заочная</value>
+    </data>
+    <data name="EduForm_Extramural.Text" xml:space="preserve">
+        <value>Заочная</value>
+    </data>
 </root>

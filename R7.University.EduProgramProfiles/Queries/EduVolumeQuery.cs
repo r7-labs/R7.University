@@ -39,15 +39,47 @@ namespace R7.University.EduProgramProfiles.Queries
                                                                                       int? divisionId,
                                                                                       DivisionLevel divisionLevel)
         {
-            // TODO: Implement filtering
-            // TODO: Filter out year of admission
             return ModelContext.Query<EduProgramProfileFormYearInfo> ()
                                .Include (eppfy => eppfy.EduProgramProfile)
                                .Include (eppfy => eppfy.EduProgramProfile.EduLevel)
                                .Include (eppfy => eppfy.EduProgramProfile.EduProgram)
                                .Include (eppfy => eppfy.EduForm)
+                               .Include (eppfy => eppfy.EduVolume)
                                .Include (eppfy => eppfy.Year)
-                               .Include (eppfy => eppfy.EduVolume).ToList ();
+                               .Where (eppfy => eduLevelIds.Contains (eppfy.EduProgramProfile.EduLevelId))
+                               .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
+                               .WhereDivision (divisionId, divisionLevel)
+                               .Order ()
+                               .ToList ();
+        }
+    }
+
+    public static class EduProgramProfileFormYearQueryableExtensions
+    {
+        public static IQueryable<EduProgramProfileFormYearInfo> WhereDivision (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, int? divisionId, DivisionLevel divisionLevel)
+        { 
+            if (divisionId != null) {
+                if (divisionLevel == DivisionLevel.EduProgram) {
+                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProgramProfile.EduProgram.Divisions.Any (epd => epd.DivisionId == divisionId));
+                } 
+                if (divisionLevel == DivisionLevel.EduProgramProfile) {
+                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProgramProfile.Divisions.Any (epd => epd.DivisionId == divisionId));
+                }
+            }
+
+            return eduProgramProfileFormYears;
+        }
+
+        public static IQueryable<EduProgramProfileFormYearInfo> Order (this IQueryable<EduProgramProfileFormYearInfo> source)
+        {
+            return source.OrderBy (ev => ev.EduProgramProfile.EduProgram.EduLevel.SortIndex)
+                         .ThenBy (ev => ev.EduProgramProfile.EduProgram.Code)
+                         .ThenBy (ev => ev.EduProgramProfile.EduProgram.Title)
+                         .ThenBy (ev => ev.EduProgramProfile.EduLevel.SortIndex)
+                         .ThenBy (ev => ev.EduProgramProfile.ProfileCode)
+                         .ThenBy (ev => ev.EduProgramProfile.ProfileTitle)
+                         .ThenByDescending (ev => ev.Year.Year)
+                         .ThenBy (ev => ev.EduForm.Title);
         }
     }
 }

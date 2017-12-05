@@ -24,19 +24,21 @@
 }
 else {
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover u8y-eduvolume-directory">
+        <table class="table table-striped table-bordered table-hover u8y-eduvolume-directory" itemprop="eduOp">
             <thead>
 			    <tr>
     			    @if (Dnn.ModuleContext.IsEditable) {
                         <th scope="col" rowspan="2"></th>
                     }
-    			    <th scope="col" rowspan="2"></th>
-    			    <th scope="col" rowspan="2"></th>
-    			    <th scope="col" rowspan="2"></th>
-    			    <th scope="col" rowspan="2"></th>
-				    <th scope="col" rowspan="2"></th>
-				    <th scope="col" rowspan="2"></th>
-    			    <th scope="col" colspan="6"></th>
+				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduCode.Column")</th>
+    			    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduProgram.Column")</th>
+				    <th scope="col" rowspan="2">@Dnn.LocalizeString("IsAdopted.Column")</th>
+				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduLevel.Column")</th>
+				    <th scope="col" rowspan="2">@Dnn.LocalizeString("StartingYear.Column")</th>
+				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
+                    <th scope="col" rowspan="2">@Dnn.LocalizeString("TimeToLearnMonths.Column")</th>
+				    <th scope="col" rowspan="2">@Dnn.LocalizeString("TimeToLearnHours.Column")</th>
+    			    <th scope="col" colspan="6">@Dnn.LocalizeString("EduVolume.Column")</th>
 				</tr>
 			    <tr>
 				    <th scope="col">1</th>
@@ -53,12 +55,14 @@ else {
 				        @if (Dnn.ModuleContext.IsEditable) {
                             <td><a href="@ev.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
                         }
-        			    <td>@ev.EduProgramProfile.EduProgram.Code</td>
-				        <td>@ev.EduProgramProfile.EduProgram.Title</td>
-				        <td>@ev.EduProgramProfile.ProfileCode</td>
-                        <td>@ev.EduProgramProfile.ProfileTitle</td>
+        			    <td itemprop="eduCode">@ev.EduProgramProfile.EduProgram.Code</td>
+				        <td itemprop="eduName">@ev.EduProgramProfileTitle</td>
+                        <td>@if (ev.EduProgramProfile.IsAdopted) {<span class="glyphicon glyphicon-ok"></span>}</td>
+                        <td itemprop="eduLevel">@ev.EduProgramProfile.EduLevel.Title</td>
 				        <td>@ev.Year.Year</td>
-				        <td>@ev.EduForm.Title</td>
+				        <td itemprop="eduForm">@ev.EduFormTitle</td>
+				        <td>@ev.TimeToLearnMonths</td>
+				        <td>@ev.TimeToLearnHours</td>
                         <td>@ev.Year1Cu</td>
 				        <td>@ev.Year2Cu</td>
 				        <td>@ev.Year3Cu</td>
