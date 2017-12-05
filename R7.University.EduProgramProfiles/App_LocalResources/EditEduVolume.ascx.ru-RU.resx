@@ -88,19 +88,19 @@
         <value>Объём учебных практик:</value>
     </data>
     <data name="labelPracticeType1Cu.Help" xml:space="preserve">
-        <value>Введите общий объём учебных практик в ЗЭТ.</value>
+        <value>Введите общий объём учебных практик в ЗЕТ.</value>
     </data>
     <data name="labelPracticeType2Cu.Text" xml:space="preserve">
         <value>Объём производственных практик:</value>
     </data>
     <data name="labelPracticeType2Cu.Help" xml:space="preserve">
-        <value>Введите общий объём производственных практик в ЗЭТ.</value>
+        <value>Введите общий объём производственных практик в ЗЕТ.</value>
     </data>
     <data name="labelPracticeType3Cu.Text" xml:space="preserve">
         <value>Объём преддипломных практик:</value>
     </data>
     <data name="labelPracticeType3Cu.Help" xml:space="preserve">
-        <value>Введите общий объём преддипломных практик в ЗЭТ.</value>
+        <value>Введите общий объём преддипломных практик в ЗЕТ.</value>
     </data>
     <data name="PracticeCu.Invalid" xml:space="preserve">
         <value>Значение должно быть целым числом от 0 до 1000.</value>

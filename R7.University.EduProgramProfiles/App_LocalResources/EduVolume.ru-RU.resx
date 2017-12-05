@@ -43,7 +43,7 @@
         <value>Объём образовательной программы, акад. часов</value>
     </data>
     <data name="EduVolume.Column" xml:space="preserve">
-        <value>Объём образовательной программы по годам обучения (курсам), ЗЭТ</value>
+        <value>Объём образовательной программы по годам обучения (курсам), ЗЕТ</value>
     </data>
 	<data name="TimeToLearnYears1.Format" xml:space="preserve">
         <value>{0} год</value>
