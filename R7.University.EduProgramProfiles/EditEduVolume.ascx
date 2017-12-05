@@ -19,7 +19,7 @@
         </ul>
         <div id="eduvolume-common-tab">
 	        <fieldset>
-		        <div class="dnnFormItem">
+		        <div class="dnnFormItem dnnFormRequired">
                     <dnn:Label id="labelTimeToLearnYears" runat="server" ControlName="textTimeToLearnYears" />
                     <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
                     <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnYears.Required"
@@ -34,7 +34,7 @@
                         ValidationGroup="EduVolume" EnableClientScript="true" ClientValidationFunction="validateTimeToLearn"
                         Display="None" CssClass="dnnFormMessage dnnFormError"  />
                 </div>
-                <div class="dnnFormItem">
+                <div class="dnnFormItem dnnFormRequired">
                     <dnn:Label id="labelTimeToLearnMonths" runat="server" ControlName="textTimeToLearnMonths" />
                     <asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" />
                     <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnMonths.Required"
@@ -45,7 +45,7 @@
                         Type="Integer" MinimumValue="0" MaximumValue="11"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
-                <div class="dnnFormItem">
+                <div class="dnnFormItem dnnFormRequired">
                     <dnn:Label id="labelTimeToLearnHours" runat="server" ControlName="textTimeToLearnHours" />
                     <asp:TextBox id="textTimeToLearnHours" runat="server" Value="0" />
                     <asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnHours.Required"
