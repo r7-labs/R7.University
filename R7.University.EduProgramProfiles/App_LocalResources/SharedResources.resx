@@ -45,4 +45,31 @@
 	<data name="DivisionLevel_EduProgramProfile.Text" xml:space="preserve">
         <value>Edu. Program Profile</value>
     </data>
+	<data name="TimeToLearnYears1.Format" xml:space="preserve">
+        <value>{0} year</value>
+    </data>
+    <data name="TimeToLearnYears2.Format" xml:space="preserve">
+        <value>{0} years</value>
+    </data>
+    <data name="TimeToLearnYears3.Format" xml:space="preserve">
+        <value>{0} years</value>
+    </data>
+    <data name="TimeToLearnMonths1.Format" xml:space="preserve">
+        <value>{0} month</value>
+    </data>
+    <data name="TimeToLearnMonths2.Format" xml:space="preserve">
+        <value>{0} months</value>
+    </data>
+    <data name="TimeToLearnMonths3.Format" xml:space="preserve">
+        <value>{0} months</value>
+    </data>
+	<data name="TimeToLearnHours1.Format" xml:space="preserve">
+        <value>{0} hour</value>
+    </data>
+    <data name="TimeToLearnHours2.Format" xml:space="preserve">
+        <value>{0} hours</value>
+    </data>
+    <data name="TimeToLearnHours3.Format" xml:space="preserve">
+        <value>{0} hours</value>
+    </data>
 </root>

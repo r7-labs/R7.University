@@ -45,24 +45,6 @@
 	<data name="EduVolume.Column" xml:space="preserve">
         <value>Educational Program Volume by Years (Courses), CU</value>
     </data>
-	<data name="TimeToLearnYears1.Format" xml:space="preserve">
-        <value>{0} year</value>
-    </data>
-    <data name="TimeToLearnYears2.Format" xml:space="preserve">
-        <value>{0} years</value>
-    </data>
-    <data name="TimeToLearnYears3.Format" xml:space="preserve">
-        <value>{0} years</value>
-    </data>
-    <data name="TimeToLearnMonths1.Format" xml:space="preserve">
-        <value>{0} month</value>
-    </data>
-    <data name="TimeToLearnMonths2.Format" xml:space="preserve">
-        <value>{0} months</value>
-    </data>
-    <data name="TimeToLearnMonths3.Format" xml:space="preserve">
-        <value>{0} months</value>
-    </data>
 	<data name="EduForm_FullTime.Text" xml:space="preserve">
         <value>Full Time</value>
     </data>
