@@ -46,6 +46,7 @@ namespace R7.University.Controls.EditModels
         {
             var viewModel = new DocumentEditModel ();
             CopyCstor.Copy<IDocumentWritable> (model, viewModel);
+            CopyCstor.Copy<IPublishableEntityWritable> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
             viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
@@ -58,6 +59,7 @@ namespace R7.University.Controls.EditModels
         {
             var model = new DocumentInfo ();
             CopyCstor.Copy<IDocumentWritable> (this, model);
+            CopyCstor.Copy<IPublishableEntityWritable> (this, model);
 
             return model;
         }
