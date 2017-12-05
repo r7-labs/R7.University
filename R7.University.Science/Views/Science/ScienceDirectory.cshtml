@@ -9,6 +9,7 @@
 @using R7.University.Components
 @using R7.University.ModelExtensions
 @using R7.University.ViewModels
+@using R7.University.Controls.ViewModels
 @using R7.University.Science.ViewModels
 @{
     ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
@@ -65,6 +66,7 @@ else {
     		</tbody>
         </table>
 	</div>
+    @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_AgplSignature.cshtml", new AgplSignatureViewModel ())
     <div id="u8y-sciencerecord-description-dialog-@Dnn.ModuleContext.ModuleId" class="modal fade" role="dialog" aria-labelledby="u8y-sciencerecord-description-dialog-title-@Dnn.ModuleContext.ModuleId">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -76,7 +78,7 @@ else {
                 </div>
             </div> 
         </div>
-    </div>  
+    </div>
     <script type="text/javascript">
         (function($, document) {
             function getTh (td) {

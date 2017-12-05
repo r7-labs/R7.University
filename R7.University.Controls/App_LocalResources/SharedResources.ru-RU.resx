@@ -27,4 +27,7 @@
     <data name="UndeleteItem.Title" xml:space="preserve">
         <value>Отменить удаление</value>
     </data>
+	<data name="SourceLink.Title" xml:space="preserve">
+        <value>Исходный код</value>
+    </data>
 </root>

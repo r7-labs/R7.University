@@ -1,10 +1,10 @@
-//
-//  AgplSignature.ascx.cs
+﻿//
+//  AgplSignatureViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,28 +19,23 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Web.UI;
-using DotNetNuke.Services.Localization;
-using R7.University.Controls.ViewModels;
-using DnnWebUiUtilities = DotNetNuke.Web.UI.Utilities;
+using System;
+using System.Reflection;
+using R7.University.Components;
 
-namespace R7.University.Controls
+namespace R7.University.Controls.ViewModels
 {
-    public class AgplSignature: UserControl
+    public class AgplSignatureViewModel
     {
         public bool ShowRule { get; set; } = true;
 
-        string _localResourceFile;
-        protected string LocalResourceFile =>
-            _localResourceFile ?? (_localResourceFile = DnnWebUiUtilities.GetLocalResourceFile (this));
+        public virtual Assembly CoreAssembly => UniversityAssembly.GetCoreAssembly ();
 
-        protected string LocalizeString (string key)
-        {
-            return Localization.GetString (key, LocalResourceFile);
-        }
+        public virtual string Name => CoreAssembly.GetName ().Name;
 
-        AgplSignatureViewModel _model;
-        protected AgplSignatureViewModel Model =>
-            _model ?? (_model = new AgplSignatureViewModel { ShowRule = ShowRule });
+        public virtual Version Version => CoreAssembly.GetName ().Version;
+
+        public virtual string InformationalVersion =>
+            CoreAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute> ()?.InformationalVersion;
     }
 }

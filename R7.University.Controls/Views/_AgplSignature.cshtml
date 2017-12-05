@@ -1,0 +1,14 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<AgplSignatureViewModel>
+@using System.Web.Mvc
+@using DotNetNuke.Services.Localization
+@using DotNetNuke.Web.Mvc.Helpers
+@using R7.University.Controls.ViewModels
+@{
+    var localResourceFile = "~/DesktopModules/MVC/R7.University/R7.University.Controls/App_LocalResources/AgplSignature.resx";
+}
+<div class="u8y-agpl-footer">
+    @if (Model.ShowRule) {<hr />}
+	<a href="https://github.com/roman-yagodin/R7.University" rel="nofollow" target="_blank" title='@Localization.GetString("SourceLink.Title", localResourceFile)'>
+        @Model.Name @("v" + (Model.InformationalVersion ?? Model.Version.ToString (3)))
+    </a>
+</div>

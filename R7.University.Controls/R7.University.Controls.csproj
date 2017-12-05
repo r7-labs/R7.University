@@ -168,6 +168,7 @@
       <DependentUpon>EditEduFormYears.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditModels\EduProgramProfileFormYearEditModel.cs" />
+    <Compile Include="ViewModels\AgplSignatureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">
@@ -176,8 +177,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_LocalResources\AgplSignature.ascx.resx" />
-    <None Include="App_LocalResources\AgplSignature.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\DivisionSelector.ascx.resx" />
     <None Include="App_LocalResources\DivisionSelector.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievements.ascx.resx" />
@@ -217,6 +216,7 @@
     <None Include="EditEduFormYears.ascx" />
     <None Include="App_LocalResources\EditEduFormYears.ascx.resx" />
     <None Include="App_LocalResources\EditEduFormYears.ascx.ru-RU.resx" />
+    <None Include="Views\_AgplSignature.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_LocalResources\" />
@@ -225,6 +225,7 @@
     <Folder Include="Queries\" />
     <Folder Include="ViewModels\" />
     <Folder Include="EditModels\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
