@@ -67,10 +67,6 @@ namespace R7.University.Controls
         {
             comboYear.SelectByValue (item.YearId);
             radioEduForm.SelectByValue (item.EduFormId);
-            
-            textTimeToLearnYears.Text = (item.TimeToLearnMonths / 12).ToString ();
-            textTimeToLearnMonths.Text = (item.TimeToLearnMonths % 12).ToString ();
-            textTimeToLearnHours.Text = item.TimeToLearnHours.ToString ();
 
             datetimeStartDate.SelectedDate = item.StartDate;
             datetimeEndDate.SelectedDate = item.EndDate;
@@ -85,9 +81,6 @@ namespace R7.University.Controls
 
             item.EduFormId = int.Parse (radioEduForm.SelectedValue);
             item.EduFormViewModel = GetEduForm (item.EduFormId);
-            
-            item.TimeToLearnHours = int.Parse (textTimeToLearnHours.Text);
-            item.TimeToLearnMonths = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
 
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
@@ -97,9 +90,6 @@ namespace R7.University.Controls
         {
             comboYear.SelectedIndex = 0;
             radioEduForm.SelectedIndex = 0;
-            textTimeToLearnYears.Text = "0";
-            textTimeToLearnMonths.Text = "0";
-            textTimeToLearnHours.Text = "0";
             datetimeStartDate.SelectedDate = null;
             datetimeEndDate.SelectedDate = null;
         }

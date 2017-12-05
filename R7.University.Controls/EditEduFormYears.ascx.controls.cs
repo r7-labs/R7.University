@@ -7,9 +7,6 @@ namespace R7.University.Controls
     {
         protected DropDownList comboYear;
         protected RadioButtonList radioEduForm;
-        protected TextBox textTimeToLearnYears;
-        protected TextBox textTimeToLearnMonths;
-        protected TextBox textTimeToLearnHours;
         protected HiddenField hiddenEduFormID;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;

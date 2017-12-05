@@ -40,6 +40,7 @@ namespace R7.University.Controls.EditModels
         {
             var viewModel = new EduProgramProfileFormYearEditModel ();
             CopyCstor.Copy<IEduProgramProfileFormYearWritable> (model, viewModel);
+            CopyCstor.Copy<IPublishableEntityWritable> (model, viewModel);
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
             viewModel.YearString = model.Year.Year.ToString ();
             viewModel.Context = context;
@@ -51,6 +52,7 @@ namespace R7.University.Controls.EditModels
         {
             var model = new EduProgramProfileFormYearInfo ();
             CopyCstor.Copy<IEduProgramProfileFormYearWritable> (this, model);
+            CopyCstor.Copy<IPublishableEntityWritable> (this, model);
 
             return model;
         }
@@ -74,10 +76,6 @@ namespace R7.University.Controls.EditModels
         public int EduFormId { get; set; }
 
         public int YearId { get; set; }
-
-        public int TimeToLearnMonths { get; set; }
-
-        public int TimeToLearnHours { get; set; }
 
         public DateTime? StartDate { get; set; }
 
@@ -112,15 +110,6 @@ namespace R7.University.Controls.EditModels
                 return EduFormViewModel.TitleLocalized;
             }
         }
-
-        [JsonIgnore]
-        public string TimeToLearnYears_String => (TimeToLearnMonths / 12 > 0) ? (TimeToLearnMonths / 12).ToString () : string.Empty;
-
-        [JsonIgnore]
-        public string TimeToLearnMonths_String => (TimeToLearnMonths % 12 > 0) ? (TimeToLearnMonths % 12).ToString () : string.Empty;
-
-        [JsonIgnore]
-        public string TimeToLearnHours_String => (TimeToLearnHours > 0) ? TimeToLearnHours.ToString () : string.Empty;
 
         #endregion
     }
