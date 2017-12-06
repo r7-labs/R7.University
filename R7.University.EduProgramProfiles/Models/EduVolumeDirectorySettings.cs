@@ -27,22 +27,22 @@ namespace R7.University.EduProgramProfiles.Models
     [Serializable]
     public class EduVolumeDirectorySettings: DirectorySettingsBase
     {
-        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
         public override string EduLevels { get; set; } = string.Empty;
 
-        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
         public override int? DivisionId { get; set; }
 
-        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
         public override DivisionLevel DivisionLevel { get; set; } = DivisionLevel.EduProgram;
 
-        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
         public EduVolumeDirectoryMode? Mode { get; set; }
 
-        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        [TabModuleSetting (Prefix = "EduVolumeDirectory_")]
         public bool ShowTimeToLearnMonths { get; set; }
 
-        [ModuleSetting (Prefix = "r7_University_EduVolumeDirectory_")]
+        [TabModuleSetting (Prefix = "EduVolumeDirectory_")]
         public bool ShowTimeToLearnHours { get; set; }
     }
 
