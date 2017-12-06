@@ -10,6 +10,7 @@
 @using R7.University.ModelExtensions
 @using R7.University.ViewModels
 @using R7.University.Controls.ViewModels
+@using R7.University.EduProgramProfiles.Models
 @using R7.University.EduProgramProfiles.ViewModels
 @{
     ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
@@ -26,7 +27,8 @@
 else {
     <div class="u8y-eduvolume-directory">
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover u8y-eduvolume-directory-table" itemprop="eduOp">
+            <table class="table table-striped table-bordered table-hover u8y-eduvolume-directory-table"
+			    itemprop="@Model.ItemProp">
                 <thead>
     			    <tr>
         			    @if (Dnn.ModuleContext.IsEditable) {
@@ -44,20 +46,32 @@ else {
     				    @if (Model.Settings.ShowTimeToLearnHours) {
     				        <th scope="col" rowspan="2">@Dnn.LocalizeString("TimeToLearnHours.Column")</th>
                         }
-        			    <th scope="col" colspan="6">@Dnn.LocalizeString("EduVolume.Column")</th>
+					    @if (Model.Settings.Mode == EduVolumeDirectoryMode.Practices) {
+        			        <th scope="col" colspan="3">@Dnn.LocalizeString("Practices.Column")</th>
+                        }
+					    else {
+                            <th scope="col" colspan="6">@Dnn.LocalizeString("EduVolume.Column")</th>
+                        }
     				</tr>
     			    <tr>
-    				    <th scope="col">1</th>
-                        <th scope="col">2</th>
-                        <th scope="col">3</th>
-                        <th scope="col">4</th>
-    				    <th scope="col">5</th>
-                        <th scope="col">6</th>
-    			    </tr>
+					    @if (Model.Settings.Mode == EduVolumeDirectoryMode.Practices) {
+    				        <th scope="col">@Dnn.LocalizeString("PracticeType1.Column")</th>
+                            <th scope="col">@Dnn.LocalizeString("PracticeType2.Column")</th>
+                            <th scope="col">@Dnn.LocalizeString("PracticeType3.Column")</th>
+                        }
+					    else {
+                            <th scope="col">1</th>
+                            <th scope="col">2</th>
+                            <th scope="col">3</th>
+                            <th scope="col">4</th>
+                            <th scope="col">5</th>
+                            <th scope="col">6</th>
+                        }
+					</tr>
     			</thead>
         	    <tbody>
             	    @foreach (var ev in Model.EduVolumeViewModels) {
-                        <tr class="@ev.CssClass">
+                        <tr class="@ev.CssClass" itemprop="@ev.ItemProp">
     				        @if (Dnn.ModuleContext.IsEditable) {
                                 <td><a href="@ev.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
                             }
@@ -73,12 +87,19 @@ else {
     				        @if (Model.Settings.ShowTimeToLearnHours) {
     				            <td>@ev.TimeToLearnHours</td>
                             }
-                            <td>@ev.Year1Cu</td>
-    				        <td>@ev.Year2Cu</td>
-    				        <td>@ev.Year3Cu</td>
-    				        <td>@ev.Year4Cu</td>
-    				        <td>@ev.Year5Cu</td>
-    				        <td>@ev.Year6Cu</td>
+					        @if (Model.Settings.Mode == EduVolumeDirectoryMode.Practices) {
+                                <td>@ev.PracticeType1Cu</td>
+                                <td>@ev.PracticeType2Cu</td>
+                                <td>@ev.PracticeType3Cu</td>
+                            }
+					        else {
+                                <td>@ev.Year1Cu</td>
+                                <td>@ev.Year2Cu</td>
+                                <td>@ev.Year3Cu</td>
+                                <td>@ev.Year4Cu</td>
+                                <td>@ev.Year5Cu</td>
+                                <td>@ev.Year6Cu</td>
+                            }
     					</tr>
                     }
         		</tbody>

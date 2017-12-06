@@ -45,6 +45,18 @@
 	<data name="EduVolume.Column" xml:space="preserve">
         <value>Educational Program Volume by Years (Courses), CU</value>
     </data>
+	<data name="Practices.Column" xml:space="preserve">
+        <value>Practices availability (volume, CU)</value>
+    </data>
+	<data name="PracticeType1.Column" xml:space="preserve">
+        <value>Learning</value>
+    </data>
+	<data name="PracticeType2.Column" xml:space="preserve">
+        <value>Training</value>
+    </data>
+	<data name="PracticeType3.Column" xml:space="preserve">
+        <value>Undergraduate</value>
+    </data>
 	<data name="EduForm_FullTime.Text" xml:space="preserve">
         <value>Full Time</value>
     </data>

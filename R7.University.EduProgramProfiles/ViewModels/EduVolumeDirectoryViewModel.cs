@@ -49,5 +49,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
             get { return _eduVolumeViewModels.Where (ev => IsEditable || ev.IsPublished (Now)); }
             set { _eduVolumeViewModels = value; }
         }
+
+        public string ItemProp => Settings.Mode == EduVolumeDirectoryMode.Practices ? "eduPr" : "eduOp";
     }
 }
