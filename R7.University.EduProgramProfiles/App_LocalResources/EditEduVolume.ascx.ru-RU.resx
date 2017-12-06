@@ -126,4 +126,7 @@
     <data name="TimeToLearnHours.Required" xml:space="preserve">
         <value>Введите число часов.</value>
     </data>
+	<data name="EditEduProgramProfile.Action" xml:space="preserve">
+        <value>Редактировать профиль обр. программы</value>
+    </data>
 </root>

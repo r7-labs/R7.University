@@ -126,4 +126,7 @@
     <data name="TimeToLearnHours.Required" xml:space="preserve">
         <value>The hours value is required.</value>
     </data>
+	<data name="EditEduProgramProfile.Action" xml:space="preserve">
+        <value>Edit Edu. Program Profile</value>
+    </data>
 </root>
