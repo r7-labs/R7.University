@@ -29,7 +29,7 @@ namespace R7.University.Science.Models
     [Serializable]
     public class ScienceDirectorySettings
     {
-        [ModuleSetting (Prefix = "r7_University_ScienceDirectory_")]
+        [ModuleSetting (Prefix = "ScienceDirectory_")]
         public string EduLevels { get; set; } = string.Empty;
 
         public IEnumerable<int> EduLevelIds {
@@ -42,7 +42,7 @@ namespace R7.University.Science.Models
             }
         }
 
-        [ModuleSetting (Prefix = "r7_University_ScienceDirectory_")]
+        [ModuleSetting (Prefix = "ScienceDirectory_")]
         public int? DivisionId { get; set; }
     }
 }

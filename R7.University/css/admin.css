@@ -73,45 +73,6 @@
     max-width:445px   
 }
 
-.u8y-edit-documents .urlControl .dnnClear br,
-.u8y-edit-achievements .urlControl .dnnClear br {
-    display:none
-}
-
-.u8y-edit-marker {
-    display:inline-block;
-    width:8px;
-    height:8px;
-    border-radius:4px;
-    color:transparent;
-    margin-left:.5em
-}
-
-.u8y-deleted {
-    background-color:#C00
-}
-
-.u8y-added {
-    background-color:#0C0
-}
-
-.u8y-updated {
-    background-color:#00C
-}
-
-.u8y-gaf-grid {
-    width:100%;
-    margin-bottom:30px
-}
-
-.u8y-gaf-grid tr.dnnGridHeader th:first-child {
-    width:1px
-}
-
-.u8y-gaf-grid .u8y-gaf-actions {
-    white-space:nowrap
-}
-
 /* jQuery UI excerpt */
 .ui-menu {
     list-style: none;

@@ -93,9 +93,9 @@
 			<Project>{C6B64609-D737-435C-8C58-5BF0CE1C9F51}</Project>
 			<Name>R7.University.EduProgramDirectory</Name>
 		</ProjectReference>
-		<ProjectReference Include="..\R7.University.EduProgramProfileDirectory\R7.University.EduProgramProfileDirectory.csproj">
+		<ProjectReference Include="..\R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj">
 			<Project>{6734EECF-00F2-4870-99E1-7C893069B0D7}</Project>
-			<Name>R7.University.EduProgramProfileDirectory</Name>
+			<Name>R7.University.EduProgramProfiles</Name>
 		</ProjectReference>
 		<ProjectReference Include="..\R7.University.Employee\R7.University.Employee.csproj">
 			<Project>{755C907B-A0E7-486E-83E5-AF4E01A75513}</Project>
@@ -120,6 +120,10 @@
 		<ProjectReference Include="..\R7.University.Tests\R7.University.Tests.csproj">
 			<Project>{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}</Project>
 			<Name>R7.University.Tests</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
+		  <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
+		  <Name>R7.University.Controls</Name>
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

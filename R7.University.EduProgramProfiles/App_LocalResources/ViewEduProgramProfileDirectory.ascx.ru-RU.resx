@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+       <value>&lt;p&gt;О модуле EduProgramProfileDirectory&lt;/p&gt;</value>
+    </data>
+    <data name="AddEduProgramProfile.Action" xml:space="preserve">
+        <value>Новый профиль обр. программы</value>
+    </data>
+    <data name="NotConfigured.Text" xml:space="preserve">
+        <value>Модуль не сконфигурирован. Воспользуйтесь настройками модуля для установки режима отображения.</value>
+    </data>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Нечего отображать. Добавьте профили образовательных программ и воспользуйтесь настройками модуля для установки параметров отображения.</value>
+    </data>
+    <data name="Order.Column" xml:space="preserve">
+        <value>№ п/п</value>
+    </data>
+    <data name="Title.Column" xml:space="preserve">
+        <value>Образовательная программа</value>
+    </data>
+    <data name="EduLevel.Column" xml:space="preserve">
+        <value>Уровень образования</value>
+    </data>
+    <data name="TimeToLearn.Column" xml:space="preserve">
+        <value>Нормативный срок обучения</value>
+    </data>
+    <data name="TimeToLearnFullTime.Column" xml:space="preserve">
+        <value>Очная форма обучения</value>
+    </data>
+    <data name="TimeToLearnPartTime.Column" xml:space="preserve">
+        <value>Очно-заочная форма обучения</value>
+    </data>
+    <data name="TimeToLearnExtramural.Column" xml:space="preserve">
+        <value>Заочная форма обучения</value>
+    </data>
+    <data name="AccreditedToDate.Column" xml:space="preserve">
+        <value>Срок действия государственной аккредитации образовательной программы</value>
+    </data>
+    <data name="CommunityAccreditedToDate.Column" xml:space="preserve">
+        <value>Срок действия общественно-профессиональной аккредитации образовательной программы</value>
+    </data>
+    <data name="EduPlan.Column" xml:space="preserve">
+        <value>Учебные планы</value>
+    </data>
+    <data name="EduSchedule.Column" xml:space="preserve">
+        <value>Календарные учебные графики</value>
+    </data>
+    <data name="WorkProgramAnnotation.Column" xml:space="preserve">
+        <value>Аннотации к рабочим программам дисциплин</value>
+    </data>
+    <data name="Languages.Column" xml:space="preserve">
+        <value>Информация о языках, на которых осуществляется образование (обучение)</value>
+    </data>
+    <data name="WorkProgramOfPractice.Column" xml:space="preserve">
+        <value>Практики (рабочие программы)</value>
+    </data>
+    <data name="EduMaterial.Column" xml:space="preserve">
+        <value>Методические и иные документы</value>
+    </data>
+    <data name="Contingent.Column" xml:space="preserve">
+        <value>Информация о результатах приема (численности обучающихся)</value>
+    </data>
+    <data name="ContingentMovement.Column" xml:space="preserve">
+        <value>Информация о результатах перевода, восстановления и отчисления</value>
+    </data>
+	<data name="DocumentGroup.Column" xml:space="preserve">
+        <value>Группа документов</value>
+    </data>
+    <data name="DocumentTitle.Column" xml:space="preserve">
+        <value>Документ</value>
+    </data>
+    <data name="LinkOpen.Text" xml:space="preserve">
+        <value>[открыть]</value>
+    </data>
+	<data name="UnknownLanguage.Text" xml:space="preserve">
+        <value>&lt;неизвестный язык&gt;</value>
+    </data>
+</root>

@@ -47,7 +47,7 @@ namespace R7.University.DivisionDirectory
 
         public string TitleLink {
             get {
-                var divisionTitle = Title + ((ModelHelper.HasUniqueShortTitle (Title, ShortTitle))? string.Format (" ({0})", ShortTitle) : string.Empty);
+                var divisionTitle = Title + ((UniversityModelHelper.HasUniqueShortTitle (Title, ShortTitle))? string.Format (" ({0})", ShortTitle) : string.Empty);
                 var divisionString = "<span itemprop=\"name\">" + divisionTitle + "</span>";
 
                 if (!string.IsNullOrWhiteSpace (HomePage)) {

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ControlTitle_editeduvolume.Text" xml:space="preserve">
+        <value>Edit Edu. Program Volume</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="Common.Tab" xml:space="preserve">
+        <value>Edu. Program Volume</value>
+    </data>
+	<data name="Years.Tab" xml:space="preserve">
+        <value>Volume by Years</value>
+    </data>
+	<data name="Practices.Tab" xml:space="preserve">
+        <value>Practices Volume</value>
+    </data>
+	<data name="labelTimeToLearnYears.Text" xml:space="preserve">
+        <value>Years:</value>
+    </data>
+    <data name="labelTimeToLearnYears.Help" xml:space="preserve">
+        <value>Enter amount of years in the normative time to learn.</value>
+    </data>
+    <data name="labelTimeToLearnMonths.Text" xml:space="preserve">
+        <value>Months:</value>s
+    </data>
+    <data name="labelTimeToLearnMonths.Help" xml:space="preserve">
+        <value>Enter amount of months in the normative time to learn.</value>
+    </data>
+    <data name="labelTimeToLearnHours.Text" xml:space="preserve">
+        <value>Hours:</value>
+    </data>
+    <data name="labelTimeToLearnHours.Help" xml:space="preserve">
+        <value>Enter an overall amount of hours to master the program according to educational plan.</value>
+    </data>
+	<data name="labelYear1Cu.Text" xml:space="preserve">
+        <value>Year 1:</value>
+    </data>
+    <data name="labelYear1Cu.Help" xml:space="preserve">
+        <value>Enter amount of CU for 1 year of education according to education plan.</value>
+    </data>
+	<data name="labelYear2Cu.Text" xml:space="preserve">
+        <value>Year 2:</value>
+    </data>
+    <data name="labelYear2Cu.Help" xml:space="preserve">
+        <value>Enter amount of CU for 2 year of education according to education plan.</value>
+    </data>
+	<data name="labelYear3Cu.Text" xml:space="preserve">
+        <value>Year 3:</value>
+    </data>
+    <data name="labelYear3Cu.Help" xml:space="preserve">
+        <value>Enter amount of CU for 3 year of education according to education plan.</value>
+    </data>
+	<data name="labelYear4Cu.Text" xml:space="preserve">
+        <value>Year 4:</value>
+    </data>
+    <data name="labelYear4Cu.Help" xml:space="preserve">
+        <value>Enter amount of CU for 4 year of education according to education plan.</value>
+    </data>
+	<data name="labelYear5Cu.Text" xml:space="preserve">
+        <value>Year 5:</value>
+    </data>
+    <data name="labelYear5Cu.Help" xml:space="preserve">
+        <value>Enter amount of CU for 5 year of education according to education plan.</value>
+    </data>
+	<data name="labelYear6Cu.Text" xml:space="preserve">
+        <value>Year 6:</value>
+    </data>
+    <data name="labelYear6Cu.Help" xml:space="preserve">
+        <value>Enter amount of CU for 6 year of education according to education plan.</value>
+    </data>
+	<data name="YearCu.Invalid" xml:space="preserve">
+        <value>Value should be integer from 0 to 1000.</value>
+    </data>
+    <data name="labelPracticeType1Cu.Text" xml:space="preserve">
+        <value>Learning Practices Volume:</value>
+    </data>
+    <data name="labelPracticeType1Cu.Help" xml:space="preserve">
+        <value>Enter an overall volume of learning practices in CU.</value>
+    </data>
+	<data name="labelPracticeType2Cu.Text" xml:space="preserve">
+        <value>Training Practices Volume:</value>
+    </data>
+    <data name="labelPracticeType2Cu.Help" xml:space="preserve">
+        <value>Enter an overall volume of training practices in CU.</value>
+    </data>
+	<data name="labelPracticeType3Cu.Text" xml:space="preserve">
+        <value>Undergraduate Practices Volume:</value>
+    </data>
+    <data name="labelPracticeType3Cu.Help" xml:space="preserve">
+        <value>Enter an overall volume of undergraduate practices in CU.</value>
+    </data>
+	<data name="PracticeCu.Invalid" xml:space="preserve">
+        <value>Value should be integer from 0 to 1000.</value>
+    </data>
+	<data name="TimeToLearn.Required" xml:space="preserve">
+        <value>Specify integer value greater than zero at least in one of the fields: Years, Months or Hours.</value>
+    </data>
+    <data name="TimeToLearnYears.Invalid" xml:space="preserve">
+        <value>Years should be integer value from 0 to 11.</value>
+    </data>
+    <data name="TimeToLearnYears.Required" xml:space="preserve">
+        <value>The years value is required.</value>
+    </data>
+    <data name="TimeToLearnMonths.Invalid" xml:space="preserve">
+        <value>Months should be integer value from 0 to 11.</value>
+    </data>
+    <data name="TimeToLearnMonths.Required" xml:space="preserve">
+        <value>The months value is required.</value>
+    </data>
+    <data name="TimeToLearnHours.Invalid" xml:space="preserve">
+        <value>Hours should be integer value greater than 0.</value>
+    </data>
+    <data name="TimeToLearnHours.Required" xml:space="preserve">
+        <value>The hours value is required.</value>
+    </data>
+	<data name="EditEduProgramProfile.Action" xml:space="preserve">
+        <value>Edit Edu. Program Profile</value>
+    </data>
+</root>

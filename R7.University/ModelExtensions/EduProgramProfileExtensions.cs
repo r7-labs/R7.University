@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Models;
@@ -35,15 +34,18 @@ namespace R7.University.ModelExtensions
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
         }
 
-        public static bool IsPublished (this IEduProgramProfile eduProgramProfile, DateTime now)
+        public static string FormatTitle (this IEduProgramProfile epp, bool withEduProgramCode = true)
         {
-            return ModelHelper.IsPublished (now, eduProgramProfile.StartDate, eduProgramProfile.EndDate);
-        }
+            if (withEduProgramCode) {
+                return FormatHelper.FormatEduProgramProfileTitle (
+                    epp.EduProgram.Code,
+                    epp.EduProgram.Title,
+                    epp.ProfileCode,
+                    epp.ProfileTitle
+                );
+            }
 
-        public static string FormatTitle (this IEduProgramProfile epp)
-        {
             return FormatHelper.FormatEduProgramProfileTitle (
-                epp.EduProgram.Code,
                 epp.EduProgram.Title,
                 epp.ProfileCode,
                 epp.ProfileTitle

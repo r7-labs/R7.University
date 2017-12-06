@@ -93,21 +93,21 @@ namespace R7.University.EduProgram.ViewModels
 
         public bool EduForms_Visible
         {
-            get { return !EduProgramProfile.EduProgramProfileForms.IsNullOrEmpty (); }
+            get { return !EduProgramProfile.EduProgramProfileFormYears.IsNullOrEmpty (); }
         }
 
         public string EduForms_String
         {
             get {
-                if (EduProgramProfile.EduProgramProfileForms != null) {
+                if (EduProgramProfile.EduProgramProfileFormYears != null) {
                     var sb = new StringBuilder ();
-                    foreach (var eppf in EduProgramProfile.EduProgramProfileForms) {
-                        var eduFormTitle = Localization.GetString ("TimeToLearn" + eppf.EduForm.Title + ".Text", Context.LocalResourceFile);
+                    foreach (var eppfy in EduProgramProfile.EduProgramProfileFormYears) {
+                        var eduFormTitle = Localization.GetString ("TimeToLearn" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile);
                         if (string.IsNullOrEmpty (eduFormTitle)) {
-                            eduFormTitle = eppf.EduForm.Title;
+                            eduFormTitle = eppfy.EduForm.Title;
                         }
                         sb.AppendFormat ("<li>{0} &ndash; {1}</li>", eduFormTitle,
-                            FormatHelper.FormatTimeToLearn (eppf.TimeToLearn, eppf.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
+                            FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
                         );
                     }
 

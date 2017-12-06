@@ -1,6 +1,6 @@
 <%@ Control Language="C#" AutoEventWireup="false" CodeBehind="ViewLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.ViewLaunchpad" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University/Controls/AgplSignature.ascx" %>
+<%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 
@@ -324,6 +324,7 @@
                         <asp:BoundField DataField="ProfileCode" SortExpression="ProfileCode" HeaderText="ProfileCode" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="ProfileTitle" SortExpression="ProfileTitle" HeaderText="ProfileTitle" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="Languages" SortExpression="Languages" HeaderText="Languages" />
+						<asp:CheckBoxField DataField="IsAdopted" SortExpression="IsAdopted" HeaderText="IsAdopted" />
                         <asp:BoundField DataField="StartDate" SortExpression="StartDate" HeaderText="StartDate" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="EndDate" SortExpression="EndDate" HeaderText="EndDate" ConvertEmptyStringToNull="false" />
                         <asp:BoundField DataField="AccreditedToDate" SortExpression="AccreditedToDate" HeaderText="AccreditedToDate" />
@@ -498,6 +499,37 @@
 						<asp:BoundField DataField="TypeOfValues" SortExpression="TypeOfValues" HeaderText="TypeOfValues" />
                         <asp:BoundField DataField="SortIndex" SortExpression="SortIndex" HeaderText="SortIndex" />
                         <asp:CheckBoxField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
+                    </Columns>
+                    <PagerSettings Mode="NumericFirstLast" Visible="true" />
+                </asp:GridView>
+                <br />
+            </div>
+        </asp:View>
+		<asp:View id="viewYears" runat="server">
+            <div id="years" style="overflow:auto">
+                <asp:GridView id="gridYears" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None" 
+                    OnSorting="gridView_Sorting" 
+                    OnPageIndexChanging="gridView_PageIndexChanging"
+                    OnRowDataBound="gridView_RowDataBound">
+                    <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
+                    <RowStyle CssClass="dnnGridItem" horizontalalign="Left" />
+                    <AlternatingRowStyle CssClass="dnnGridAltItem" />
+                    <SelectedRowStyle CssClass="dnnFormError" />
+                    <EditRowStyle CssClass="dnnFormInput" />
+                    <FooterStyle CssClass="dnnGridFooter" />
+                    <PagerStyle CssClass="dnnGridPager" />
+                    <Columns>
+                        <asp:TemplateField>
+                           <ItemTemplate>
+                                <asp:HyperLink id="linkEdit" runat="server">
+                                    <asp:Image runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
+                                </asp:HyperLink>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="YearId" SortExpression="YearId" HeaderText="YearId" />
+						<asp:BoundField DataField="Year" SortExpression="Year" HeaderText="Year" />
+						<asp:CheckBoxField DataField="AdmissionIsOpen" SortExpression="AdmissionIsOpen" HeaderText="AdmissionIsOpen" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>

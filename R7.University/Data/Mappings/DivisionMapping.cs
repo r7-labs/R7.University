@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public DivisionMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<DivisionInfo> ());
             HasKey (m => m.DivisionID);
             Property (m => m.DivisionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
 

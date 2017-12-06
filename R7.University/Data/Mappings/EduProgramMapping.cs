@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EduProgramMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EduProgramInfo> ());
             HasKey (m => m.EduProgramID);
             Property (m => m.EduProgramID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.EduLevelID).IsRequired ();

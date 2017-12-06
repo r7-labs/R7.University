@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ControlTitle_editeduprogramprofile.Text" xml:space="preserve">
+        <value>Edit Educational Program Profile</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value>&lt;P&gt;A module to edit education program profile&lt;/P&gt;</value>
+    </data>
+    <data name="Common.Tab" xml:space="preserve">
+        <value>Educational Program Profile</value>
+    </data>
+    <data name="Divisions.Tab" xml:space="preserve">
+        <value>Divisions</value>
+    </data>
+    <data name="EduFormYears.Tab" xml:space="preserve">
+        <value>Edu. Forms/Years</value>
+    </data>
+    <data name="Documents.Tab" xml:space="preserve">
+        <value>Documents</value>
+    </data>
+    <data name="Audit.Tab" xml:space="preserve">
+        <value>Audit</value>
+    </data>	
+    <data name="labelProfileCode.Text" xml:space="preserve">
+        <value>Profile Code:</value>
+    </data>
+    <data name="labelProfileCode.Help" xml:space="preserve">
+        <value>Enter the code of an educational program profile according to standard.</value>
+    </data>
+    <data name="labelProfileTitle.Text" xml:space="preserve">
+        <value>Profile Title:</value>
+    </data>
+    <data name="labelProfileTitle.Help" xml:space="preserve">
+        <value>Enter the title for an educational program profile, defined in standard.</value>
+    </data>
+    <data name="labelLanguages.Text" xml:space="preserve">
+        <value>Languages:</value>
+    </data>
+    <data name="labelLanguages.Help" xml:space="preserve">
+        <value>Enter the list of IETF language tags in "xx" or "xx-YY" format (e.g. "en"), separated by semicolon (;).</value>
+    </data>
+    <data name="Languages.Required" xml:space="preserve">
+        <value>Languages is required.</value>
+    </data>
+    <data name="labelIsAdopted.Text" xml:space="preserve">
+        <value>Is Adopted?</value>
+    </data>
+    <data name="labelIsAdopted.Help" xml:space="preserve">
+        <value>Check if the edu. program (profile) is adopted for peoples with disabilities.</value>
+    </data>
+    <data name="labelEduLevel.Text" xml:space="preserve">
+        <value>Education Level:</value>
+    </data>
+    <data name="labelEduLevel.Help" xml:space="preserve">
+        <value>Select the education level from the dropdown.</value>
+    </data>
+    <data name="labelEduProgramLevel.Text" xml:space="preserve">
+        <value>Educational Program Level:</value>
+    </data>
+    <data name="labelEduProgramLevel.Help" xml:space="preserve">
+        <value>Select educational program level from the dropdown.</value>
+    </data>
+    <data name="labelEduProgram.Text" xml:space="preserve">
+        <value>Educational Program:</value>
+    </data>
+    <data name="labelEduProgram.Help" xml:space="preserve">
+        <value>Select the educational program to which the profile belongs.</value>
+    </data>
+    <data name="linkEditEduProgram.Text" xml:space="preserve">
+        <value>Edit Educational Program</value>
+    </data>
+    <data name="labelAccreditedToDate.Text" xml:space="preserve">
+        <value>Accredited to:</value>
+    </data>
+    <data name="labelAccreditedToDate.Help" xml:space="preserve">
+        <value>Enter the date until current educational program profile was accredited to.</value>
+    </data>
+    <data name="labelCommunityAccreditedToDate.Text" xml:space="preserve">
+        <value>Accredited by Community to:</value>
+    </data>
+    <data name="labelCommunityAccreditedToDate.Help" xml:space="preserve">
+        <value>Enter the date until current educational program profile was accredited to by community.</value>
+    </data>
+    <data name="labelStartDate.Text" xml:space="preserve">
+        <value>Start Publication:</value>
+    </data>
+    <data name="labelStartDate.Help" xml:space="preserve">
+        <value>Enter the date from current educational program profile should be published on the site.</value>
+    </data>
+    <data name="labelEndDate.Text" xml:space="preserve">
+        <value>End Publication:</value>
+    </data>
+    <data name="labelEndDate.Help" xml:space="preserve">
+        <value>Enter the date from current educational program profile should be removed from publication on the site.</value>
+    </data>
+    <data name="labelDivision.Text" xml:space="preserve">
+        <value>Division:</value>
+    </data>
+    <data name="labelDivision.Help" xml:space="preserve">
+        <value>Select division, which relates to the educational program profile. Generally it's a producting department of a faculty.</value>
+    </data>
+    <data name="labelAudit.Text" xml:space="preserve">
+        <value>Audit Data:</value>
+    </data>
+    <data name="labelAudit.Help" xml:space="preserve">
+        <value>Audit data for the educational program profile.</value>
+    </data>
+</root>

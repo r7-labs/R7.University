@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ControlTitle_editeduvolume.Text" xml:space="preserve">
+        <value>Редактирование объема обр. программы</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="Common.Tab" xml:space="preserve">
+        <value>Объём обр. программы</value>
+    </data>
+	<data name="Years.Tab" xml:space="preserve">
+        <value>Объём по годам</value>
+    </data>
+	<data name="Practices.Tab" xml:space="preserve">
+        <value>Объём практик</value>
+    </data>
+	<data name="labelTimeToLearnYears.Text" xml:space="preserve">
+        <value>Лет:</value>
+    </data>
+    <data name="labelTimeToLearnYears.Help" xml:space="preserve">
+        <value>Введите количество лет нормативного срока обучения.</value>
+    </data>
+     <data name="labelTimeToLearnMonths.Text" xml:space="preserve">
+        <value>Месяцев:</value>
+    </data>
+    <data name="labelTimeToLearnMonths.Help" xml:space="preserve">
+        <value>Введите количество месяцев нормативного срока обучения.</value>
+    </data>
+    <data name="labelTimeToLearnHours.Text" xml:space="preserve">
+        <value>Часов:</value>
+    </data>
+    <data name="labelTimeToLearnHours.Help" xml:space="preserve">
+        <value>Введите общее количество часов на освоение программы по учебному плану.</value>
+    </data>
+	<data name="labelYear1Cu.Text" xml:space="preserve">
+        <value>Курс 1:</value>
+    </data>
+    <data name="labelYear1Cu.Help" xml:space="preserve">
+        <value>Введите количество ЭЭТ по учебному плану на 1 курс (год обучения).</value>
+    </data>
+    <data name="labelYear2Cu.Text" xml:space="preserve">
+        <value>Курс 2:</value>
+    </data>
+    <data name="labelYear2Cu.Help" xml:space="preserve">
+        <value>Введите количество ЭЭТ по учебному плану на 2 курс (год обучения).</value>
+    </data>
+    <data name="labelYear3Cu.Text" xml:space="preserve">
+        <value>Курс 3:</value>
+    </data>
+    <data name="labelYear3Cu.Help" xml:space="preserve">
+        <value>Введите количество ЭЭТ по учебному плану на 3 курс (год обучения).</value>
+    </data>
+    <data name="labelYear4Cu.Text" xml:space="preserve">
+        <value>Курс 4:</value>
+    </data>
+    <data name="labelYear4Cu.Help" xml:space="preserve">
+        <value>Введите количество ЭЭТ по учебному плану на 4 курс (год обучения).</value>
+    </data>
+    <data name="labelYear5Cu.Text" xml:space="preserve">
+        <value>Курс 5:</value>
+    </data>
+    <data name="labelYear5Cu.Help" xml:space="preserve">
+        <value>Введите количество ЭЭТ по учебному плану на 5 курс (год обучения).</value>
+    </data>
+    <data name="labelYear6Cu.Text" xml:space="preserve">
+        <value>Курс 6:</value>
+    </data>
+    <data name="labelYear6Cu.Help" xml:space="preserve">
+        <value>Введите количество ЭЭТ по учебному плану на 6 курс (год обучения).</value>
+    </data>
+	<data name="YearCu.Invalid" xml:space="preserve">
+        <value>Значение должно быть целым числом от 0 до 1000.</value>
+    </data>
+	<data name="labelPracticeType1Cu.Text" xml:space="preserve">
+        <value>Объём учебных практик:</value>
+    </data>
+    <data name="labelPracticeType1Cu.Help" xml:space="preserve">
+        <value>Введите общий объём учебных практик в ЗЕТ.</value>
+    </data>
+    <data name="labelPracticeType2Cu.Text" xml:space="preserve">
+        <value>Объём производственных практик:</value>
+    </data>
+    <data name="labelPracticeType2Cu.Help" xml:space="preserve">
+        <value>Введите общий объём производственных практик в ЗЕТ.</value>
+    </data>
+    <data name="labelPracticeType3Cu.Text" xml:space="preserve">
+        <value>Объём преддипломных практик:</value>
+    </data>
+    <data name="labelPracticeType3Cu.Help" xml:space="preserve">
+        <value>Введите общий объём преддипломных практик в ЗЕТ.</value>
+    </data>
+    <data name="PracticeCu.Invalid" xml:space="preserve">
+        <value>Значение должно быть целым числом от 0 до 1000.</value>
+    </data>
+	<data name="TimeToLearn.Required" xml:space="preserve">
+        <value>Укажите целое значение больше нуля как минимум в одном из полей: Лет, Месяцев, Часов.</value>
+    </data>
+    <data name="TimeToLearnYears.Invalid" xml:space="preserve">
+        <value>Число лет дожно быть целым числом от 0 до 11.</value>
+    </data>
+    <data name="TimeToLearnYears.Required" xml:space="preserve">
+        <value>Введите число лет.</value>
+    </data>
+    <data name="TimeToLearnMonths.Invalid" xml:space="preserve">
+        <value>Число месяцев должно быть целым числом от 0 до 11.</value>
+    </data>
+    <data name="TimeToLearnMonths.Required" xml:space="preserve">
+        <value>Введите число месяцев.</value>
+    </data>
+    <data name="TimeToLearnHours.Invalid" xml:space="preserve">
+        <value>Число часов должно быть целым числом больше 0.</value>
+    </data>
+    <data name="TimeToLearnHours.Required" xml:space="preserve">
+        <value>Введите число часов.</value>
+    </data>
+	<data name="EditEduProgramProfile.Action" xml:space="preserve">
+        <value>Редактировать профиль обр. программы</value>
+    </data>
+</root>

@@ -142,7 +142,7 @@ namespace R7.University.Division.ViewModels
             
         public string DisplayTitle {
             get {
-                if (ModelHelper.HasUniqueShortTitle (Division.ShortTitle, Division.Title)) {
+                if (UniversityModelHelper.HasUniqueShortTitle (Division.ShortTitle, Division.Title)) {
                     return Division.Title + $" ({Division.ShortTitle})";
                 }
                 return Division.Title;

@@ -55,7 +55,6 @@ namespace R7.University.EmployeeList.Components
                         PortalId = modInfo.PortalID,
                         AuthorUserId = employee.LastModifiedByUserID,
                         Title = employee.FullName,
-                        // Description = HtmlUtils.Shorten (aboutEmployee, 255, "..."),
                         Body = aboutEmployee,
                         ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
                         UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),

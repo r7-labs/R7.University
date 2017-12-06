@@ -126,13 +126,13 @@
     <Content Include="EditPosition.ascx" />
     <Content Include="EditAchievement.ascx" />
     <Content Include="EditEduLevel.ascx" />
-    <Content Include="EditEduProgramProfile.ascx" />
     <Content Include="EditDocumentType.ascx" />
     <Content Include="EditEduForm.ascx" />
     <Content Include="admin.css" />
     <Content Include="packages.config" />
     <Content Include="js\editDocumentType.js" />
     <Content Include="EditAchievementType.ascx" />
+    <Content Include="EditYear.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
@@ -143,18 +143,18 @@
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.resx" />
-    <None Include="App_LocalResources\EditEduProgramProfile.ascx.resx" />
     <None Include="App_LocalResources\EditDocumentType.ascx.resx" />
     <None Include="App_LocalResources\EditEduLevel.ascx.resx" />
     <None Include="App_LocalResources\EditEduForm.ascx.resx" />
     <None Include="App_LocalResources\EditEduLevel.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditPosition.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\EditEduProgramProfile.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievement.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditDocumentType.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduForm.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditAchievementType.ascx.resx" />
     <None Include="App_LocalResources\EditAchievementType.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditYear.ascx.resx" />
+    <None Include="App_LocalResources\EditYear.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewLaunchpad.ascx.cs">
@@ -187,12 +187,6 @@
     <Compile Include="EditEduLevel.ascx.controls.cs">
       <DependentUpon>EditEduLevel.ascx</DependentUpon>
     </Compile>
-    <Compile Include="EditEduProgramProfile.ascx.controls.cs">
-      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditEduProgramProfile.ascx.cs">
-      <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
-    </Compile>
     <Compile Include="EditDocumentType.cs">
       <DependentUpon>EditDocumentType.ascx</DependentUpon>
     </Compile>
@@ -222,7 +216,6 @@
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Queries\FindEduProgramProfileQuery.cs" />
-    <Compile Include="Queries\EduProgramProfileEditQuery.cs" />
     <Compile Include="Queries\FindDivisionQuery.cs" />
     <Compile Include="Tables\AchievementTypesTable.cs" />
     <Compile Include="EditAchievementType.cs">
@@ -234,6 +227,13 @@
     <Compile Include="Models\LaunchpadSettings.cs" />
     <Compile Include="Components\DataTableConstructor.cs" />
     <Compile Include="Tables\EduProgramDivisionsTable.cs" />
+    <Compile Include="EditYear.ascx.cs">
+      <DependentUpon>EditYear.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditYear.ascx.controls.cs">
+      <DependentUpon>EditYear.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Tables\YearsTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -259,5 +259,9 @@
     <Compile Include="Tables\ScienceRecordTypesTable.cs" />
     <None Include="App_LocalResources\EditScienceRecordType.ascx.resx" />
     <None Include="App_LocalResources\EditScienceRecordType.ascx.ru-RU.resx" />
+    <ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
+      <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
+      <Name>R7.University.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

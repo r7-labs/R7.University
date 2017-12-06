@@ -28,11 +28,6 @@ namespace R7.University.ModelExtensions
 {
     public static class DocumentExtensions
     {
-        public static bool IsPublished (this IDocument document, DateTime now)
-        {
-            return ModelHelper.IsPublished (now, document.StartDate, document.EndDate);
-        }
-
         public static SystemDocumentType GetSystemDocumentType (this IDocument document)
         {
             SystemDocumentType result;

@@ -39,7 +39,7 @@ namespace R7.University.SerializationModels
 
         public int AchievementID { get; set; }
 
-        public AchievementTypeInfo AchievementType {get; set; }
+        public IAchievementType AchievementType { get; set; }
 
         public int? AchievementTypeId { get; set; }
 

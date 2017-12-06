@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EduProgramDivisionMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EduProgramDivisionInfo> ());
             HasKey (m => m.EduProgramDivisionId);
             Property (m => m.EduProgramDivisionId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
 

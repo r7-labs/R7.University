@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public PositionMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<PositionInfo> ());
             HasKey (m => m.PositionID);
             Property (m => m.PositionID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.Title).IsRequired ();

@@ -22,7 +22,7 @@
 using System;
 using DotNetNuke.Services.Localization;
 using R7.University.Models;
-using R7.University.ViewModels;
+using R7.University.Utilities;
 
 namespace R7.University.ModelExtensions
 {

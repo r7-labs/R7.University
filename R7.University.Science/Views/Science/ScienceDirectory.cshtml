@@ -9,6 +9,7 @@
 @using R7.University.Components
 @using R7.University.ModelExtensions
 @using R7.University.ViewModels
+@using R7.University.Controls.ViewModels
 @using R7.University.Science.ViewModels
 @{
     ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
@@ -26,20 +27,22 @@ else {
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover u8y-science-directory" itemprop="eduNir">
             <thead>
-			    @if (Dnn.ModuleContext.IsEditable) {
-                    <th scope="col"></th>
-                }
-    		    <th scope="col">@Dnn.LocalizeString("ScienceCode.Column")</th>
-    		    <th scope="col">@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceDirections.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceBase.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceScientists.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceStudents.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceMonographs.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceArticles.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("SciencePatents.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceCertificates.Column"))</th>
-    		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceFinances.Column"))</th>
+			    <tr>
+    			    @if (Dnn.ModuleContext.IsEditable) {
+                        <th scope="col"></th>
+                    }
+        		    <th scope="col">@Dnn.LocalizeString("ScienceCode.Column")</th>
+        		    <th scope="col">@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceDirections.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceBase.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceScientists.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceStudents.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceMonographs.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceArticles.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("SciencePatents.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceCertificates.Column"))</th>
+        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceFinances.Column"))</th>
+				</tr>
     	    </thead>
     	    <tbody>
         	    @foreach (var eps in Model.EduProgramScienceViewModels) {
@@ -63,6 +66,7 @@ else {
     		</tbody>
         </table>
 	</div>
+    @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_AgplSignature.cshtml", new AgplSignatureViewModel ())
     <div id="u8y-sciencerecord-description-dialog-@Dnn.ModuleContext.ModuleId" class="modal fade" role="dialog" aria-labelledby="u8y-sciencerecord-description-dialog-title-@Dnn.ModuleContext.ModuleId">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -74,7 +78,7 @@ else {
                 </div>
             </div> 
         </div>
-    </div>  
+    </div>
     <script type="text/javascript">
         (function($, document) {
             function getTh (td) {

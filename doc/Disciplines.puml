@@ -1,0 +1,18 @@
+@startuml Disciplines (TO-BE, DRAFT)
+
+EduProgramProfileFormYear "1" -- "0..*" Discipline
+Discipline "0..*" --- "0..*" Employee : teaches <
+
+Discipline "0..*" o-- "1" PracticeType
+
+class Discipline {
+    VolumeCU: int
+}
+
+enum PracticeType {
+    Training
+    Industrial
+    Undergraduate
+}
+
+@enduml

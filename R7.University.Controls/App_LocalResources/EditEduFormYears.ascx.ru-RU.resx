@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="labelYear.Text" xml:space="preserve">
+        <value>Год начала освоения:</value>
+    </data>
+    <data name="labelYear.Help" xml:space="preserve">
+        <value>Выберите год начала освоения образовательной программы.</value>
+    </data>
+    <data name="labelEduForm.Text" xml:space="preserve">
+        <value>Форма обучения:</value>
+    </data>
+    <data name="labelEduForm.Help" xml:space="preserve">
+        <value>Выберите форму обучения.</value>
+    </data>
+    <data name="buttonAddEduFormYear.Text" xml:space="preserve">
+        <value>Добавить форму/год</value>
+    </data>
+    <data name="buttonUpdateEduFormYear.Text" xml:space="preserve">
+        <value>Сохранить форму/год</value>
+    </data>
+	<data name="EduForm.Invalid" xml:space="preserve">
+        <value>Формы обучения не должны повторяться!</value>
+    </data>
+    <data name="SystemEduForm_Default.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="SystemEduForm_FullTime.Text" xml:space="preserve">
+        <value>Очная</value>
+    </data>
+    <data name="SystemEduForm_PartTime.Text" xml:space="preserve">
+        <value>Очно-заочная</value>
+    </data>
+    <data name="SystemEduForm_Extramural.Text" xml:space="preserve">
+        <value>Заочная</value>
+    </data>
+    <data name="EduFormTitle.Column" xml:space="preserve">
+        <value>Форма обучения</value>
+    </data>
+	<data name="Year.Column" xml:space="preserve">
+        <value>Год начала подготовки</value>
+    </data>
+    <data name="StartDate.Column" xml:space="preserve">
+        <value>Начало публикации</value>
+    </data>
+    <data name="EndDate.Column" xml:space="preserve">
+        <value>Окончание публикации</value>
+    </data>
+	<data name="labelStartDate.Text" xml:space="preserve">
+        <value>Начало публикации:</value>
+    </data>
+    <data name="labelStartDate.Help" xml:space="preserve">
+        <value>Введите дату, начиная с которой эта комбинация форма/год должна быть опубликована на сайте.</value>
+    </data>
+    <data name="labelEndDate.Text" xml:space="preserve">
+        <value>Окончание публикации:</value>
+    </data>
+    <data name="labelEndDate.Help" xml:space="preserve">
+        <value>Введите дату, при наступлении которой эта комбинация форма/год должна быть снята с публикации на сайте.</value>
+    </data>
+</root>

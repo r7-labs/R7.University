@@ -1,0 +1,41 @@
+@startuml Documents (AS-IS)
+
+Document "0..*" -- "1" DocumentType
+
+EduProgram <|-- EduProgramProfile
+
+EduProgram "1" -- "0..*" Document
+EduProgramProfile "1" -- "0..*" Document
+
+class Document {
+    .. database FKs ..
+    EduProgramId: int
+    EduProgramProfileId: int
+}
+
+@enduml
+
+@startuml Documents (TO-BE)
+
+EduProgram --|> UniversityEntity
+EduProgramProfile --|> UniversityEntity
+EduProgramProfileFormYear --|> UniversityEntity
+Division --|> UniversityEntity
+
+Document "0..*" -- "1" DocumentType
+
+UniversityEntity "1..*" -- "0..*" Document
+(UniversityEntity, Document) .. EntityDocument
+
+class EntityDocument {
+    .. database FKs ..
+    DocumentId: int
+    EntityId: int
+}
+
+class DocumentType {
+    EntityType: string
+}
+
+@enduml
+

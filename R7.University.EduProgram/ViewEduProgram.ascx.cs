@@ -123,7 +123,7 @@ namespace R7.University.EduProgram
                 {
                     // update module title
                     if (Settings.AutoTitle) {
-                        ModuleHelper.UpdateModuleTitle (TabModuleId,
+                        UniversityModuleHelper.UpdateModuleTitle (TabModuleId,
                             FormatHelper.FormatEduProgramTitle (viewModel.EduProgram.Code, viewModel.EduProgram.Title)
                         );
                     }

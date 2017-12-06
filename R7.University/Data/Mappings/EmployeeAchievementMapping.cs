@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EmployeeAchievementMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EmployeeAchievementInfo> ());
             HasKey (m => m.EmployeeAchievementID);
             Property (m => m.EmployeeAchievementID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.AchievementID).IsOptional ();

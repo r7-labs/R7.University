@@ -30,9 +30,92 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'IsAdopted')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        ADD IsAdopted bit NOT NULL DEFAULT (0)
+END
+GO
+
 IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'IsVirtual')
 BEGIN
     EXECUTE sp_rename N'{objectQualifier}University_Divisions.IsVirtual', N'IsSingleEntity', N'COLUMN';
+END
+GO
+
+IF NOT EXISTS (select * from sys.indexes where name = N'UN_{objectQualifier}University_EduProgramProfileForms')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        ALTER COLUMN EduProgramProfileFormID int NOT NULL
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        DROP CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileForms]
+
+    DROP INDEX [IX_{objectQualifier}University_EduProgramProfileForms] ON {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        ADD CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileForms] PRIMARY KEY (EduProgramProfileFormID)
+
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
+        ADD CONSTRAINT [UN_{objectQualifier}University_EduProgramProfileForms] UNIQUE (EduProgramProfileID, EduFormID)
+END
+GO
+
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_Years')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_Years] (
+        YearID int IDENTITY (1,1) NOT NULL,
+        [Year] int NOT NULL,
+        AdmissionIsOpen bit NOT NULL
+        CONSTRAINT [PK_{objectQualifier}University_Years] PRIMARY KEY (YearID)
+    )
+END
+GO
+
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_EduProgramProfileFormYears')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (
+        EduProgramProfileFormYearID int IDENTITY (1,1) NOT NULL,
+        EduProgramProfileID int NOT NULL,
+        EduFormID int NOT NULL,
+        YearID int NOT NULL,
+        StartDate datetime NULL,
+        EndDate datetime NULL
+        CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileFormYears] PRIMARY KEY (EduProgramProfileFormYearID)
+        CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_EduProgramProfiles]
+            FOREIGN KEY (EduProgramProfileID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfiles] (EduProgramProfileID)
+                ON DELETE CASCADE,
+        CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_EduForms]
+            FOREIGN KEY (EduFormID) REFERENCES {databaseOwner}[{objectQualifier}University_EduForms] (EduFormID)
+                ON DELETE NO ACTION,
+        CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_Years]
+            FOREIGN KEY (YearID) REFERENCES {databaseOwner}[{objectQualifier}University_Years] (YearID)
+                ON DELETE NO ACTION
+        -- TODO: Add unique constraint
+    )
+END
+GO
+
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_EduVolume')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_EduVolume] (
+        EduVolumeID int NOT NULL,
+        TimeToLearnHours int NOT NULL,
+        TimeToLearnMonths int NOT NULL,
+        Year1Cu int NULL,
+        Year2Cu int NULL,
+        Year3Cu int NULL,
+        Year4Cu int NULL,
+        Year5Cu int NULL,
+        Year6Cu int NULL,
+        PracticeType1Cu int NULL,
+        PracticeType2Cu int NULL,
+        PracticeType3Cu int NULL
+        CONSTRAINT [PK_{objectQualifier}University_EduVolume] PRIMARY KEY (EduVolumeID)
+        CONSTRAINT [FK_{objectQualifier}University_EduVolume_EduProgramProfileFormYears]
+            FOREIGN KEY (EduVolumeID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (EduProgramProfileFormYearID)
+                ON DELETE CASCADE
+    )
 END
 GO
 

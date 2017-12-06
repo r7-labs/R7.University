@@ -1,0 +1,87 @@
+//
+//  EditPositions.ascx.cs
+//
+//  Author:
+//       Roman M. Yagodin <roman.yagodin@gmail.com>
+//
+//  Copyright (c) 2017 Roman M. Yagodin
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Affero General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU Affero General Public License for more details.
+//
+//  You should have received a copy of the GNU Affero General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+using System.Collections.Generic;
+using DotNetNuke.Entities.Modules;
+using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Utilities;
+using R7.University.Controls.EditModels;
+using R7.University.Models;
+
+namespace R7.University.Controls
+{
+    public partial class EditPositions : GridAndFormControlBase<OccupiedPositionInfo, OccupiedPositionEditModel>
+    {
+        public void OnInit (PortalModuleBase module, IEnumerable<PositionInfo> positions, IEnumerable<DivisionInfo> divisions)
+        {
+            Module = module;
+
+            comboPositions.DataSource = positions;
+            comboPositions.DataBind ();
+
+            divisionSelector.DataSource = divisions;
+            divisionSelector.DataBind ();
+        }
+
+        public void SetDivision (int? divisionId)
+        {
+            divisionSelector.DivisionId = divisionId;
+        }
+
+        #region implemented abstract members of GridAndFormEditControlBase
+
+        protected override void OnLoadItem (OccupiedPositionEditModel item)
+        {
+            divisionSelector.DivisionId = item.DivisionID;
+            comboPositions.SelectByValue (item.PositionID);
+            checkIsPrime.Checked = item.IsPrime;
+            textPositionTitleSuffix.Text = item.TitleSuffix;
+        }
+
+        protected override void OnUpdateItem (OccupiedPositionEditModel item)
+        {
+            item.PositionID = int.Parse (comboPositions.SelectedValue);
+            item.DivisionID = (int) divisionSelector.DivisionId;
+            item.PositionTitle = comboPositions.SelectedItem.Text;
+            item.IsPrime = checkIsPrime.Checked;
+            item.TitleSuffix = textPositionTitleSuffix.Text.Trim ();
+
+            using (var modelContext = new UniversityModelContext ()) {
+                var division = modelContext.Get<DivisionInfo> (item.DivisionID);
+                item.DivisionTitle = division.Title;
+                item.DivisionStartDate = division.StartDate;
+                item.DivisionEndDate = division.EndDate;
+            }
+        }
+
+        protected override void OnResetForm ()
+        {
+            var divisionId = Request.QueryString ["division_id"];
+            divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
+
+            comboPositions.SelectedIndex = 0;
+            textPositionTitleSuffix.Text = string.Empty;
+            checkIsPrime.Checked = false;
+        }
+
+        #endregion
+    }
+}

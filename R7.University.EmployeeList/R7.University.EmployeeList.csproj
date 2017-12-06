@@ -160,6 +160,10 @@
       <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
       <Name>R7.University</Name>
     </ProjectReference>
+    <ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
+      <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
+      <Name>R7.University.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

@@ -52,11 +52,6 @@ namespace R7.University.ModelExtensions
             }
         }
 
-        public static bool IsPublished (this IDivision division, DateTime now)
-        {
-            return ModelHelper.IsPublished (now, division.StartDate, division.EndDate);
-        }
-
         public static VCard GetVCard (this IDivision division)
         {
             var vcard = new VCard ();

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Nothing to display. Please add some records or change module settings.</value>
+    </data>
+	<data name="EduCode.Column" xml:space="preserve">
+		<value>Code</value>
+	</data>
+	<data name="EduProgram.Column" xml:space="preserve">
+        <value>Educational Program</value>
+    </data>
+	<data name="IsAdopted.Column" xml:space="preserve">
+        <value>Adopted Program?</value>
+    </data>
+	<data name="EduLevel.Column" xml:space="preserve">
+        <value>Education Level</value>
+    </data>
+	<data name="StartingYear.Column" xml:space="preserve">
+        <value>Starting Year</value>
+    </data>
+	<data name="EduForm.Column" xml:space="preserve">
+        <value>Education Form</value>
+    </data>
+	<data name="TimeToLearnMonths.Column" xml:space="preserve">
+        <value>Time to Learn</value>
+    </data>
+	<data name="TimeToLearnHours.Column" xml:space="preserve">
+        <value>Educational Program Volume, hours</value>
+    </data>
+	<data name="EduVolume.Column" xml:space="preserve">
+        <value>Educational Program Volume by Years (Courses), CU</value>
+    </data>
+	<data name="Practices.Column" xml:space="preserve">
+        <value>Practices availability (volume, CU)</value>
+    </data>
+	<data name="PracticeType1.Column" xml:space="preserve">
+        <value>Learning</value>
+    </data>
+	<data name="PracticeType2.Column" xml:space="preserve">
+        <value>Training</value>
+    </data>
+	<data name="PracticeType3.Column" xml:space="preserve">
+        <value>Undergraduate</value>
+    </data>
+	<data name="EduForm_FullTime.Text" xml:space="preserve">
+        <value>Full Time</value>
+    </data>
+    <data name="EduForm_PartTime.Text" xml:space="preserve">
+        <value>Part Time</value>
+    </data>
+    <data name="EduForm_Extramural.Text" xml:space="preserve">
+        <value>Extramural</value>
+    </data>
+</root>

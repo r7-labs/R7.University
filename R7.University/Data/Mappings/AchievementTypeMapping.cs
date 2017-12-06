@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public AchievementTypeMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<AchievementTypeInfo> ());
             HasKey (m => m.AchievementTypeId);
             Property (m => m.AchievementTypeId).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.Type).IsRequired ();

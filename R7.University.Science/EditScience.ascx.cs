@@ -96,18 +96,18 @@ namespace R7.University.Science
 
         public ModuleActionCollection ModuleActions {
             get {
-                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
-
                 var actions = new ModuleActionCollection ();
-                actions.Add (new ModuleAction (GetNextActionID ()) {
-                    Title = LocalizeString ("EditEduProgram.Action"),
-                    CommandName = ModuleActionType.EditContent,
-                    Icon = UniversityIcons.Edit,
-                    Secure = SecurityAccessLevel.Edit,
-                    Url = EditUrl ("eduprogram_id", itemId.ToString (), "EditEduProgram"),
-                    Visible = itemId != null
-                });
-
+                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+                if (itemId != null) {
+                    actions.Add (new ModuleAction (GetNextActionID ()) {
+                        Title = LocalizeString ("EditEduProgram.Action"),
+                        CommandName = ModuleActionType.EditContent,
+                        Icon = UniversityIcons.Edit,
+                        Secure = SecurityAccessLevel.Edit,
+                        Url = EditUrl ("eduprogram_id", itemId.ToString (), "EditEduProgram"),
+                        Visible = SecurityContext.IsAdmin
+                    });
+                }
                 return actions;
             }
         }

@@ -1,0 +1,63 @@
+@startuml Volume of educational program
+
+EduProgramProfileFormYear "1..*" -- "1" EduProgramProfile
+EduProgramProfileFormYear "0..*" -- "1" EduForm
+EduProgramProfileFormYear "0..*" -- "1" Year
+EduProgramProfileFormYear "1" .. "0..*" Discipline
+Discipline "0..*" .. "0..1" DisciplineType
+
+EduProgramProfileFormYear "1" -- "0..1" Contingent
+EduProgramProfileFormYear "1" -- "0..1" EduVolume
+
+class EduProgramProfile {
+    IsAdopted: bool
+    Elearning: string
+}
+
+class EduVolume {
+    TimeToLearnMonths: int
+    TimeToLearnHours: int
+    Year1Cu: int?
+    Year2Cu: int?
+    Year3Cu: int?
+    Year4Cu: int?
+    Year5Cu: int?
+    Year6Cu: int?
+    PracticeType1Cu: int?
+    PracticeType2Cu: int?
+    PracticeType3Cu: int?
+}
+
+class Year {
+    Year: int
+    AdmissionIsOpen: bool
+}
+
+class EduProgramProfileFormYear {
+    StartDate: DateTime?
+    EndDate: DateTime?
+}
+
+class Discipline {
+    Code: string
+    Title: string
+    Hours: int
+    DocumentUrl: string
+}
+
+enum DisciplineType {
+    TrainingPractice
+    IndustrialPractice
+    UndergraduatePractice
+}
+
+@enduml
+
+@startuml EduVolume Modules
+
+package R7.University.EduProgramProfiles {
+    [EduVolumeDirectory]<<module>>
+    [EduProgramProfileDirectory]<<module>>
+}
+
+@enduml

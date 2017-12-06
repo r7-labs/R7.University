@@ -367,7 +367,7 @@ namespace R7.University.DivisionDirectory
                 var literalHeadEmployee = (Literal) e.Row.FindControl ("literalHeadEmployee");
 
                 // division label / link
-                var divisionTitle = division.Title + ((ModelHelper.HasUniqueShortTitle (division.ShortTitle, division.Title)) ? string.Format (
+                var divisionTitle = division.Title + ((UniversityModelHelper.HasUniqueShortTitle (division.ShortTitle, division.Title)) ? string.Format (
                                         " ({0})",
                                         division.ShortTitle) : string.Empty);
                 if (!string.IsNullOrWhiteSpace (division.HomePage)) {

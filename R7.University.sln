@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.DivisionDirec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramDirectory", "R7.University.EduProgramDirectory\R7.University.EduProgramDirectory.csproj", "{C6B64609-D737-435C-8C58-5BF0CE1C9F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfileDirectory", "R7.University.EduProgramProfileDirectory\R7.University.EduProgramProfileDirectory.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfiles", "R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Science", "R7.University.Science\R7.University.Science.csproj", "{C564168C-AC2A-448D-9E0B-566E049701EB}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgram", "R7.University.EduProgram\R7.University.EduProgram.csproj", "{71EEFF26-83B2-462A-A809-AB887A905003}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deploy", "Deploy\Deploy.csproj", "{48DE273D-19D7-46E3-A3C6-59F301E7CD03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Controls", "R7.University.Controls\R7.University.Controls.csproj", "{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{C564168C-AC2A-448D-9E0B-566E049701EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C564168C-AC2A-448D-9E0B-566E049701EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C564168C-AC2A-448D-9E0B-566E049701EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

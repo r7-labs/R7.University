@@ -4,6 +4,8 @@
   default-width: 192
   square-default-width: 120
 
+cu-hours: 36
+
 barcode:
   default-width: 192
 

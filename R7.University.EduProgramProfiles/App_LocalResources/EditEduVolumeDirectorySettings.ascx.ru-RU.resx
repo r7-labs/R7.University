@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>Настройки EduVolumeDirectory</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="EduVolumeDirectoryMode_EduVolume.Text" xml:space="preserve">
+        <value>Объём образовательных программ</value>
+    </data>
+    <data name="EduVolumeDirectoryMode_Practices.Text" xml:space="preserve">
+        <value>Практики</value>
+    </data>
+	<data name="labelMode.Text" xml:space="preserve">
+        <value>Режим модуля:</value>
+    </data>
+    <data name="labelMode.Help" xml:space="preserve">
+        <value>Выберите режим работы модуля.</value>
+    </data>
+	<data name="labelShowTimeToLearnMonths.Text" xml:space="preserve">
+        <value>Показать нормативный срок обучения?</value>
+    </data>
+    <data name="labelShowTimeToLearnMonths.Help" xml:space="preserve">
+        <value>Отметьте, чтобы отобразить столбец для нормативного срока обучения.</value>
+    </data>
+    <data name="labelShowTimeToLearnHours.Text" xml:space="preserve">
+        <value>Показать общий объём обр. программы?</value>
+    </data>
+    <data name="labelShowTimeToLearnHours.Help" xml:space="preserve">
+        <value>Отметьте, чтобы отобразить столбец для общего объёма образовательной программы.</value>
+    </data>
+</root>

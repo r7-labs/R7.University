@@ -29,6 +29,7 @@ namespace R7.University.Data.Mappings
     {
         public EduProgramProfileMapping ()
         {
+            ToTable (UniversityMappingHelper.GetTableName<EduProgramProfileInfo> ());
             HasKey (m => m.EduProgramProfileID);
             Property (m => m.EduProgramProfileID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
             Property (m => m.EduProgramID).IsRequired ();
@@ -36,6 +37,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.ProfileCode).IsOptional ();
             Property (m => m.ProfileTitle).IsOptional ();
             Property (m => m.Languages).IsOptional ();
+            Property (m => m.IsAdopted).IsRequired ();
             Property (m => m.AccreditedToDate).IsOptional ();
             Property (m => m.CommunityAccreditedToDate).IsOptional ();
 
@@ -50,7 +52,7 @@ namespace R7.University.Data.Mappings
             HasRequired (m => m.EduProgram).WithMany ().HasForeignKey (m => m.EduProgramID);
             HasRequired (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelId);
             HasMany (m => m.Documents).WithOptional ().HasForeignKey (d => d.EduProgramProfileId);
-            HasMany (m => m.EduProgramProfileForms).WithRequired ().HasForeignKey (eppf => eppf.EduProgramProfileID);
+            HasMany (m => m.EduProgramProfileFormYears).WithRequired ().HasForeignKey (eppfy => eppfy.EduProgramProfileId);
         }
     }
 }

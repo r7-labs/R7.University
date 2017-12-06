@@ -316,7 +316,7 @@ namespace R7.University.Employee
             }
             else if (InViewModule) {
                 if (Settings.AutoTitle)
-                    ModuleHelper.UpdateModuleTitle (TabModuleId, employee.FullName);
+                    UniversityModuleHelper.UpdateModuleTitle (TabModuleId, employee.FullName);
             }
             else {
                 // display employee name in label
@@ -477,11 +477,7 @@ namespace R7.University.Employee
             var exp1 = false;
             var exp2 = false;
             var noExpYears = false;
-			
-            // Общий стаж работы (лет): {0}
-            // Общий стаж работы по специальности (лет): {0}
-            // Общий стаж работы (лет): {0}, из них по специальности: {1}
-			
+		
             if (employee.ExperienceYears != null && employee.ExperienceYears.Value > 0)
                 exp1 = true;
 			

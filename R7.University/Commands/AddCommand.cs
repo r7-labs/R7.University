@@ -25,8 +25,7 @@ using R7.University.Security;
 
 namespace R7.University.Commands
 {
-    public class AddCommand<TEntity> : ISecureCommand
-        where TEntity : class, ITrackableEntityWritable
+    public class AddCommand<TEntity> : ISecureCommand where TEntity : class
     {
         public IModelContext ModelContext { get; set; }
 
@@ -46,8 +45,13 @@ namespace R7.University.Commands
         public virtual void Add (TEntity entity, DateTime dateTime)
         {
             if (SecurityContext.CanAdd (typeof (TEntity))) {
-                entity.CreatedByUserID = entity.LastModifiedByUserID = SecurityContext.UserId;
-                entity.CreatedOnDate = entity.LastModifiedOnDate = dateTime;
+                if (entity is ITrackableEntityWritable) {
+                    var trackable = (ITrackableEntityWritable) entity;
+                    trackable.CreatedByUserID = SecurityContext.UserId;
+                    trackable.LastModifiedByUserID = SecurityContext.UserId;
+                    trackable.CreatedOnDate = dateTime;
+                    trackable.LastModifiedOnDate = dateTime;
+                }
                 ModelContext.Add (entity);
             }
         }

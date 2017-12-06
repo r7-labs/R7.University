@@ -42,7 +42,8 @@ namespace R7.University.Launchpad
             new DocumentsTable (),
             new EduFormsTable (),
             new EduProgramDivisionsTable (),
-            new ScienceRecordTypesTable ()
+            new ScienceRecordTypesTable (),
+            new YearsTable ()
         };
 
         public List<string> TableNames
