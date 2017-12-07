@@ -1,5 +1,5 @@
 //
-//  EduVolumeDirectorySettings.cs
+//  ContingentDirectorySettings.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -25,28 +25,23 @@ using DotNetNuke.Entities.Modules.Settings;
 namespace R7.University.EduProgramProfiles.Models
 {
     [Serializable]
-    public class EduVolumeDirectorySettings: DirectorySettingsBase
+    public class ContingentDirectorySettings: DirectorySettingsBase
     {
-        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
+        [ModuleSetting (Prefix = "ContingentDirectory_")]
         public override string EduLevels { get; set; } = string.Empty;
 
-        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
+        [ModuleSetting (Prefix = "ContingentDirectory_")]
         public override int? DivisionId { get; set; }
 
-        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
+        [ModuleSetting (Prefix = "ContingentDirectory_")]
         public override DivisionLevel DivisionLevel { get; set; } = DivisionLevel.EduProgram;
 
-        [ModuleSetting (Prefix = "EduVolumeDirectory_")]
-        public EduVolumeDirectoryMode? Mode { get; set; }
-
-        [TabModuleSetting (Prefix = "EduVolumeDirectory_")]
-        public bool ShowTimeToLearnMonths { get; set; }
-
-        [TabModuleSetting (Prefix = "EduVolumeDirectory_")]
-        public bool ShowTimeToLearnHours { get; set; }
+        [ModuleSetting (Prefix = "ContingentDirectory_")]
+        // TODO: Default value should be null
+        public ContingentDirectoryMode? Mode { get; set; } = ContingentDirectoryMode.Vacant;
     }
 
-    public class EduVolumeDirectorySettingsRepository: SettingsRepository<EduVolumeDirectorySettings>
+    public class ContingentDirectorySettingsRepository: SettingsRepository<ContingentDirectorySettings>
     {
     }
 }

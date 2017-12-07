@@ -120,6 +120,7 @@
     <Content Include="EditEduVolumeDirectorySettings.ascx" />
     <Content Include="EditEduVolume.ascx" />
     <Content Include="js\editEduVolume.js" />
+    <Content Include="Views\Contingent\ContingentDirectory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEduProgramProfileDirectory.ascx.cs">
@@ -172,6 +173,13 @@
     </Compile>
     <Compile Include="Queries\EduVolumeQuery.cs" />
     <Compile Include="ViewModels\EduVolumeViewModel.cs" />
+    <Compile Include="Controllers\ContingentController.cs" />
+    <Compile Include="ViewModels\ContingentDirectoryViewModel.cs" />
+    <Compile Include="ViewModels\ContingentViewModel.cs" />
+    <Compile Include="Models\ContingentDirectoryMode.cs" />
+    <Compile Include="Queries\ContingentQuery.cs" />
+    <Compile Include="Models\ContingentDirectorySettings.cs" />
+    <Compile Include="Components\ContingentDirectoryController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
@@ -184,6 +192,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Modules\" />
     <Folder Include="js\" />
+    <Folder Include="Views\Contingent\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\EditEduProgramProfileDirectorySettings.ascx.resx" />
@@ -200,6 +209,8 @@
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduVolume.ascx.resx" />
     <None Include="App_LocalResources\EditEduVolume.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\Contingent.resx" />
+    <None Include="App_LocalResources\Contingent.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">
