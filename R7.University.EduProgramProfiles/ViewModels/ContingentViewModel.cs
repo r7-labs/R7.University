@@ -34,11 +34,15 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         protected readonly ViewModelContext<ContingentDirectorySettings> Context;
 
+        public readonly ContingentDirectoryViewModel RootViewModel;
+
         public ContingentViewModel (IEduProgramProfileFormYear formYear,
-                                    ViewModelContext<ContingentDirectorySettings> context)
+                                    ViewModelContext<ContingentDirectorySettings> context,
+                                    ContingentDirectoryViewModel rootViewModel)
         {
             FormYear = formYear;
             Context = context;
+            RootViewModel = rootViewModel;
         }
 
         #region IEduProgramProfileFormYear implementation

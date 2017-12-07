@@ -63,15 +63,15 @@ namespace R7.University.Science.Controllers
             var viewModelContext = new ViewModelContext<ContingentDirectorySettings> (ModuleContext, LocalResourceFile, settings);
 
             using (var modelContext = new UniversityModelContext ()) {
-                return new ContingentDirectoryViewModel {
-                    Settings = settings,
-                    LastYear = new FlatQuery<YearInfo> (modelContext)
-                        .ListWhereOrderBy (y => !y.AdmissionIsOpen, y => y.Year)
-                        .LastOrDefault (),
-                    ContingentViewModels = 
-                        GetContingentsForContingentDirectory (modelContext, settings.DivisionId, settings.EduLevelIds, settings.DivisionLevel)
-                            .Select (ev => new ContingentViewModel (ev, viewModelContext))
-                };
+                var viewModel = new ContingentDirectoryViewModel ();
+                viewModel.Settings = settings;
+                viewModel.LastYear = new FlatQuery<YearInfo> (modelContext)
+                    .ListWhereOrderBy (y => !y.AdmissionIsOpen, y => y.Year)
+                    .LastOrDefault ();
+                viewModel.ContingentViewModels =
+                             GetContingentsForContingentDirectory (modelContext, settings.DivisionId, settings.EduLevelIds, settings.DivisionLevel)
+                                .Select (ev => new ContingentViewModel (ev, viewModelContext, viewModel));
+                return viewModel;
             }
         }
 

@@ -121,6 +121,7 @@
     <Content Include="EditEduVolume.ascx" />
     <Content Include="js\editEduVolume.js" />
     <Content Include="Views\Contingent\ContingentDirectory.cshtml" />
+    <Content Include="Views\Contingent\_VacantRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEduProgramProfileDirectory.ascx.cs">

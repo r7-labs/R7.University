@@ -56,23 +56,13 @@ else {
         	    <tbody>
             	    @foreach (var cv in Model.ContingentViewModels) {
                         <tr class="@cv.CssClass">
-    				        @if (Dnn.ModuleContext.IsEditable) {
+                            @if (Dnn.ModuleContext.IsEditable) {
                                 <td><a href="@cv.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
                             }
-            			    <td itemprop="eduCode">@cv.EduProgramProfile.EduProgram.Code</td>
-    				        <td itemprop="eduName">@cv.EduProgramProfileTitle</td>
-                            <td itemprop="eduLevel">@cv.EduProgramProfile.EduLevel.Title</td>
-					        @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
-    				            <td>@(Model.LastYear.Year - @cv.Year.Year + 1)</td>
+                            @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
+                                @Html.Partial("_VacantRow", cv)
                             }
-    				        <td itemprop="eduForm">@cv.EduFormTitle</td>
-					        @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
-                                <td>@cv.VacantFB</td>
-                                <td>@cv.VacantRB</td>
-                                <td>@cv.VacantMB</td>
-                                <td>@cv.VacantBC</td>
-                            }
-    					</tr>
+					    </tr>
                     }
         		</tbody>
             </table>
