@@ -40,6 +40,8 @@ namespace R7.University.Models
 
         IEduVolume EduVolume { get; }
 
+        IContingent Contingent { get; }
+
         IEduProgramProfile EduProgramProfile { get; }
     }
 
@@ -58,6 +60,8 @@ namespace R7.University.Models
         new IYear Year { get; set; }
 
         new IEduVolume EduVolume { get; set; }
+
+        new IContingent Contingent { get; set; }
 
         new IEduProgramProfile EduProgramProfile { get; set; }
     }
@@ -101,6 +105,15 @@ namespace R7.University.Models
         IEduVolume IEduProgramProfileFormYearWritable.EduVolume {
             get { return EduVolume; }
             set { EduVolume = (EduVolumeInfo) value; }
+        }
+
+        public virtual ContingentInfo Contingent { get; set; }
+
+        IContingent IEduProgramProfileFormYear.Contingent => Contingent;
+
+        IContingent IEduProgramProfileFormYearWritable.Contingent {
+            get { return Contingent; }
+            set { Contingent = (ContingentInfo) value; }
         }
 
         public virtual EduProgramProfileInfo EduProgramProfile { get; set; }

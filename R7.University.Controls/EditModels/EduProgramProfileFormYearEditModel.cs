@@ -94,6 +94,9 @@ namespace R7.University.Controls.EditModels
         public IEduVolume EduVolume { get; set; }
 
         [JsonIgnore]
+        public IContingent Contingent { get; set; }
+
+        [JsonIgnore]
         public IEduProgramProfile EduProgramProfile { get; set; }
 
         #endregion

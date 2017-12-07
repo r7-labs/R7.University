@@ -45,6 +45,7 @@ namespace R7.University.Data.Mappings
             HasRequired (m => m.Year).WithMany ().HasForeignKey (m => m.YearId);
 
             HasOptional (m => m.EduVolume).WithRequired (x => x.EduProgramProfileFormYear);
+            HasOptional (m => m.Contingent).WithRequired (x => x.EduProgramProfileFormYear);
         }
     }
 }

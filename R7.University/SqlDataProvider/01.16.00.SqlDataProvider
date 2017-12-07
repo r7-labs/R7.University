@@ -119,6 +119,40 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_Contingent')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_Contingent] (
+        ContingentID int NOT NULL,
+
+        AvgAdmScore decimal (18,3) NULL,
+        AdmittedFB int NULL,
+        AdmittedRB int NULL,
+        AdmittedMB int NULL,
+        AdmittedBC int NULL,
+
+        ActualFB int NULL,
+        ActualRB int NULL,
+        ActualMB int NULL,
+        ActualBC int NULL,
+
+        VacantFB int NULL,
+        VacantRB int NULL,
+        VacantMB int NULL,
+        VacantBC int NULL,
+
+        MovedIn int NULL,
+        MovedOut int NULL,
+        Restored int NULL,
+        Expelled int NULL
+
+        CONSTRAINT [PK_{objectQualifier}University_Contingent] PRIMARY KEY (ContingentID)
+        CONSTRAINT [FK_{objectQualifier}University_Contingent_EduProgramProfileFormYears]
+            FOREIGN KEY (ContingentID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (EduProgramProfileFormYearID)
+                ON DELETE CASCADE
+    )
+END
+GO
+
 IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_ScienceRecordTypes')
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (
