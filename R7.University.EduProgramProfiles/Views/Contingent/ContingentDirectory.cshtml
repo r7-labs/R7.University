@@ -40,15 +40,18 @@ else {
     				        <th scope="col" rowspan="2">@Dnn.LocalizeString("Course.Column")</th>
                         }
 					    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
-					    @if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
-                            <th scope="col" rowspan="2">@Dnn.LocalizeString("LastStartingYear.Column")</th>
+					    @if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
+                            <th scope="col" rowspan="2">@Dnn.LocalizeString("LastAdmissionYear.Column")</th>
                         }
 					    @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
                             <th scope="col" colspan="4">@Dnn.LocalizeString("VacantPlaces.Column")</th>
                         } else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
 					        <th scope="col" colspan="4">@Dnn.LocalizeString("Actual.Column")</th>
-					    }
-    				</tr>
+					    } else if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
+                            <th scope="col" colspan="4">@Dnn.LocalizeString("Admission.Column")</th>
+                            <th scope="col" rowspan="2">@Dnn.LocalizeString("AvgAdmScore.Column")</th>
+                        }
+					</tr>
                     <tr>
 					    @if (Model.Settings.Mode != ContingentDirectoryMode.Movement) {
                             <th scope="col">@Dnn.LocalizeString("NumberFB.Column")</th>
@@ -66,8 +69,12 @@ else {
                             }
                             @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
                                 @Html.Partial("_VacantRow", cv)
-                            } else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
+                            }
+					        else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
                                 @Html.Partial("_ActualRow", cv)
+                            }
+					        else if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
+                                @Html.Partial("_AdmissionRow", cv)
                             }
 					    </tr>
                     }
