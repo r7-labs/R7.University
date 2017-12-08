@@ -39,17 +39,22 @@ else {
 					    @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
     				        <th scope="col" rowspan="2">@Dnn.LocalizeString("Course.Column")</th>
                         }
-    				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
+					    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
+					    @if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
+                            <th scope="col" rowspan="2">@Dnn.LocalizeString("LastStartingYear.Column")</th>
+                        }
 					    @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
                             <th scope="col" colspan="4">@Dnn.LocalizeString("VacantPlaces.Column")</th>
-                        }
+                        } else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
+					        <th scope="col" colspan="4">@Dnn.LocalizeString("Actual.Column")</th>
+					    }
     				</tr>
                     <tr>
-					    @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
-                            <th scope="col">@Dnn.LocalizeString("VacantFB.Column")</th>
-                            <th scope="col">@Dnn.LocalizeString("VacantRB.Column")</th>
-                            <th scope="col">@Dnn.LocalizeString("VacantMB.Column")</th>
-                            <th scope="col">@Dnn.LocalizeString("VacantBC.Column")</th>
+					    @if (Model.Settings.Mode != ContingentDirectoryMode.Movement) {
+                            <th scope="col">@Dnn.LocalizeString("NumberFB.Column")</th>
+                            <th scope="col">@Dnn.LocalizeString("NumberRB.Column")</th>
+                            <th scope="col">@Dnn.LocalizeString("NumberMB.Column")</th>
+                            <th scope="col">@Dnn.LocalizeString("NumberBC.Column")</th>
                         }
 					</tr>
 				</thead>
@@ -61,6 +66,8 @@ else {
                             }
                             @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
                                 @Html.Partial("_VacantRow", cv)
+                            } else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
+                                @Html.Partial("_ActualRow", cv)
                             }
 					    </tr>
                     }

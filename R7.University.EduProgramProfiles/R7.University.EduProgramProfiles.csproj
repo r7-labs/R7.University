@@ -122,6 +122,7 @@
     <Content Include="js\editEduVolume.js" />
     <Content Include="Views\Contingent\ContingentDirectory.cshtml" />
     <Content Include="Views\Contingent\_VacantRow.cshtml" />
+    <Content Include="Views\Contingent\_ActualRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEduProgramProfileDirectory.ascx.cs">
@@ -181,6 +182,7 @@
     <Compile Include="Queries\ContingentQuery.cs" />
     <Compile Include="Models\ContingentDirectorySettings.cs" />
     <Compile Include="Components\ContingentDirectoryController.cs" />
+    <Compile Include="Queries\EduProgramProfileFormYearQueryableExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />

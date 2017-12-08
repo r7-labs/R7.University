@@ -33,19 +33,25 @@
     <data name="Course.Column" xml:space="preserve">
         <value>Курс</value>
     </data>
+	<data name="LastStartingYear.Column" xml:space="preserve">
+        <value>Последний год набора</value>
+    </data>
 	<data name="VacantPlaces.Column" xml:space="preserve">
         <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет:</value>
     </data>
-    <data name="VacantFB.Column" xml:space="preserve">
+	<data name="Actual.Column" xml:space="preserve">
+        <value>Численность обучающихся за счет (количество человек):</value>
+    </data>
+    <data name="NumberFB.Column" xml:space="preserve">
         <value>бюджетных ассигнований федерального бюджета</value>
     </data>
-    <data name="VacantRB.Column" xml:space="preserve">
+    <data name="NumberRB.Column" xml:space="preserve">
         <value>бюджетов субъектов Российской Федерации</value>
     </data>
-    <data name="VacantMB.Column" xml:space="preserve">
+    <data name="NumberMB.Column" xml:space="preserve">
         <value>местных бюджетов</value>
     </data>
-    <data name="VacantBC.Column" xml:space="preserve">
+    <data name="NumberBC.Column" xml:space="preserve">
         <value>по договорам об образовании за счет средств физических и (или) юридических лиц</value>
     </data>
     <data name="EduForm.Column" xml:space="preserve">

@@ -33,20 +33,26 @@
 	<data name="Course.Column" xml:space="preserve">
         <value>Course</value>
     </data>
-	<data name="VacantPlaces.Column" xml:space="preserve">
-        <value>Number of Vacant Places for Admission (Movement)</value>
+	<data name="LastStartingYear.Column" xml:space="preserve">
+        <value>Last Starting Year</value>
     </data>
-	<data name="VacantFB.Column" xml:space="preserve">
+	<data name="VacantPlaces.Column" xml:space="preserve">
+        <value>Number of Vacant Places for Admission (Movement) Financed by:</value>
+    </data>
+	<data name="Actual.Column" xml:space="preserve">
+        <value>Number of Students Financed by:</value>
+    </data>
+	<data name="NumberFB.Column" xml:space="preserve">
         <value>Federal Budget</value>
     </data>
-	<data name="VacantRB.Column" xml:space="preserve">
+	<data name="NumberRB.Column" xml:space="preserve">
         <value>Regional Budget</value>
     </data>
-	<data name="VacantMB.Column" xml:space="preserve">
+	<data name="NumberMB.Column" xml:space="preserve">
         <value>Municipal Budget</value>
     </data>
-	<data name="VacantBC.Column" xml:space="preserve">
-        <value>by Contract</value>
+	<data name="NumberBC.Column" xml:space="preserve">
+        <value>Contracts</value>
     </data>
     <data name="EduForm.Column" xml:space="preserve">
         <value>Education Form</value>

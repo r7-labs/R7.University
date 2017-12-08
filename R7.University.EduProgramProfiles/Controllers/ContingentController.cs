@@ -32,6 +32,7 @@ using R7.University.EduProgramProfiles.Queries;
 using R7.University.EduProgramProfiles.ViewModels;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.University.ModelExtensions;
 
 namespace R7.University.Science.Controllers
 {
@@ -69,16 +70,25 @@ namespace R7.University.Science.Controllers
                     .ListWhereOrderBy (y => !y.AdmissionIsOpen, y => y.Year)
                     .LastOrDefault ();
                 viewModel.ContingentViewModels =
-                             GetContingentsForContingentDirectory (modelContext, settings.DivisionId, settings.EduLevelIds, settings.DivisionLevel)
+                             GetContingentsForContingentDirectory (modelContext, settings)
                                 .Select (ev => new ContingentViewModel (ev, viewModelContext, viewModel));
                 return viewModel;
             }
         }
 
-        IEnumerable<EduProgramProfileFormYearInfo> GetContingentsForContingentDirectory (IModelContext modelContext, int? divisionId, IEnumerable<int> eduLevelIds, DivisionLevel divisionLevel)
+        IEnumerable<EduProgramProfileFormYearInfo> GetContingentsForContingentDirectory (IModelContext modelContext, ContingentDirectorySettings settings)
         {
-            var eduVolumes = new ContingentQuery (modelContext).ListByDivisionAndEduLevels (eduLevelIds, divisionId, divisionLevel);
-            return eduVolumes ?? Enumerable.Empty<EduProgramProfileFormYearInfo> ();
+            var contingents = new ContingentQuery (modelContext).ListByDivisionAndEduLevels (
+                settings.EduLevelIds,
+                settings.DivisionId,
+                settings.DivisionLevel
+            );
+
+            if (settings.Mode != ContingentDirectoryMode.Vacant) {
+                contingents = contingents.LastYearOnly ();
+            }
+
+            return contingents ?? Enumerable.Empty<EduProgramProfileFormYearInfo> ();
         }
     }
 }

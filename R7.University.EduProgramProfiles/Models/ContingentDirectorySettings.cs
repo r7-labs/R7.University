@@ -38,7 +38,7 @@ namespace R7.University.EduProgramProfiles.Models
 
         [ModuleSetting (Prefix = "ContingentDirectory_")]
         // TODO: Default value should be null
-        public ContingentDirectoryMode? Mode { get; set; } = ContingentDirectoryMode.Vacant;
+        public ContingentDirectoryMode? Mode { get; set; } = ContingentDirectoryMode.Actual;
     }
 
     public class ContingentDirectorySettingsRepository: SettingsRepository<ContingentDirectorySettings>

@@ -22,7 +22,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.EduProgramProfiles.Models;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.Queries
@@ -52,44 +51,6 @@ namespace R7.University.EduProgramProfiles.Queries
                                .WhereDivisionOrAll (divisionId, divisionLevel)
                                .Order ()
                                .ToList ();
-        }
-    }
-
-    public static class EduProgramProfileFormYearQueryableExtensions
-    {
-        public static IQueryable<EduProgramProfileFormYearInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, IEnumerable<int> eduLevelIds)
-        {
-            if (!eduLevelIds.IsNullOrEmpty ()) {
-                return eduProgramProfileFormYears.Where (eppfy => eduLevelIds.Contains (eppfy.EduProgramProfile.EduLevelId));
-            }
-
-            return eduProgramProfileFormYears;
-        }
-
-        public static IQueryable<EduProgramProfileFormYearInfo> WhereDivisionOrAll (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, int? divisionId, DivisionLevel divisionLevel)
-        { 
-            if (divisionId != null) {
-                if (divisionLevel == DivisionLevel.EduProgram) {
-                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProgramProfile.EduProgram.Divisions.Any (epd => epd.DivisionId == divisionId));
-                } 
-                if (divisionLevel == DivisionLevel.EduProgramProfile) {
-                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProgramProfile.Divisions.Any (epd => epd.DivisionId == divisionId));
-                }
-            }
-
-            return eduProgramProfileFormYears;
-        }
-
-        public static IQueryable<EduProgramProfileFormYearInfo> Order (this IQueryable<EduProgramProfileFormYearInfo> source)
-        {
-            return source.OrderBy (ev => ev.EduProgramProfile.EduProgram.EduLevel.SortIndex)
-                         .ThenBy (ev => ev.EduProgramProfile.EduProgram.Code)
-                         .ThenBy (ev => ev.EduProgramProfile.EduProgram.Title)
-                         .ThenBy (ev => ev.EduProgramProfile.EduLevel.SortIndex)
-                         .ThenBy (ev => ev.EduProgramProfile.ProfileCode)
-                         .ThenBy (ev => ev.EduProgramProfile.ProfileTitle)
-                         .ThenByDescending (ev => ev.Year.Year)
-                         .ThenBy (ev => ev.EduForm.Title);
         }
     }
 }

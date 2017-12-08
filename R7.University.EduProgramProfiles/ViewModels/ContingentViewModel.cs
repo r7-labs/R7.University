@@ -28,7 +28,7 @@ using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
-    public class ContingentViewModel: IEduProgramProfileFormYear
+    public class ContingentViewModel : IEduProgramProfileFormYear
     {
         protected readonly IEduProgramProfileFormYear FormYear;
 
@@ -82,8 +82,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
             FormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
         public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false);
-         
-        public string EduFormTitle {
+
+        public string EduFormTitle
+        {
             get {
                 var sysEduForm = FormYear.EduForm.GetSystemEduForm ();
                 if (sysEduForm != SystemEduForm.Custom) {
@@ -101,9 +102,35 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string VacantBC => FormatValue (() => FormYear.Contingent?.VacantBC);
 
+        public string ActualFB => FormatValue (() => FormYear.Contingent?.ActualFB);
+
+        public string ActualRB => FormatValue (() => FormYear.Contingent?.ActualRB);
+
+        public string ActualMB => FormatValue (() => FormYear.Contingent?.ActualMB);
+
+        public string ActualBC => FormatValue (() => FormYear.Contingent?.ActualBC);
+
+        public string AvgAdmScore => FormatValue (() => FormYear.Contingent?.AvgAdmScore);
+
+        public string AdmittedFB => FormatValue (() => FormYear.Contingent?.AdmittedFB);
+
+        public string AdmittedRB => FormatValue (() => FormYear.Contingent?.AdmittedRB);
+
+        public string AdmittedMB => FormatValue (() => FormYear.Contingent?.AdmittedMB);
+
+        public string AdmittedBC => FormatValue (() => FormYear.Contingent?.AdmittedBC);
+
+        public string MovedIn => FormatValue (() => FormYear.Contingent?.MovedIn);
+
+        public string MovedOut => FormatValue (() => FormYear.Contingent?.MovedOut);
+
+        public string Restored => FormatValue (() => FormYear.Contingent?.Restored);
+
+        public string Expelled => FormatValue (() => FormYear.Contingent?.Expelled);
+
         #endregion
 
-        string FormatValue (Func<int?> getValue)
+        string FormatValue<T> (Func<T?> getValue) where T : struct
         {
             var value = getValue ();
             return value != null ? value.ToString () : "-";
