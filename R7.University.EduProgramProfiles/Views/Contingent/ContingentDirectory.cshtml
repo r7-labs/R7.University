@@ -45,11 +45,19 @@ else {
                         }
 					    @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
                             <th scope="col" colspan="4">@Dnn.LocalizeString("VacantPlaces.Column")</th>
-                        } else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
+                        }
+					    else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
 					        <th scope="col" colspan="4">@Dnn.LocalizeString("Actual.Column")</th>
-					    } else if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
+					    }
+					    else if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
                             <th scope="col" colspan="4">@Dnn.LocalizeString("Admission.Column")</th>
                             <th scope="col" rowspan="2">@Dnn.LocalizeString("AvgAdmScore.Column")</th>
+					    }
+					    else if (Model.Settings.Mode == ContingentDirectoryMode.Movement) {
+                            <th scope="col" rowspan="2">@Dnn.LocalizeString("MovedOut.Column")</th>
+                            <th scope="col" rowspan="2">@Dnn.LocalizeString("MovedIn.Column")</th>
+                            <th scope="col" rowspan="2">@Dnn.LocalizeString("Restored.Column")</th>
+                            <th scope="col" rowspan="2">@Dnn.LocalizeString("Expelled.Column")</th>
                         }
 					</tr>
                     <tr>
@@ -75,6 +83,9 @@ else {
                             }
 					        else if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
                                 @Html.Partial("_AdmissionRow", cv)
+                            }
+					        else if (Model.Settings.Mode == ContingentDirectoryMode.Movement) {
+                                @Html.Partial("_MovementRow", cv)
                             }
 					    </tr>
                     }

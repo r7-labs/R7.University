@@ -124,6 +124,7 @@
     <Content Include="Views\Contingent\_VacantRow.cshtml" />
     <Content Include="Views\Contingent\_ActualRow.cshtml" />
     <Content Include="Views\Contingent\_AdmissionRow.cshtml" />
+    <Content Include="Views\Contingent\_MovementRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEduProgramProfileDirectory.ascx.cs">

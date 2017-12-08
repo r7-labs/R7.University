@@ -60,6 +60,18 @@
     <data name="NumberBC.Column" xml:space="preserve">
         <value>по договорам об образовании за счет средств физических и (или) юридических лиц</value>
     </data>
+	<data name="MovedOut.Column" xml:space="preserve">
+        <value>Численность обучающихся, переведенных в другие образовательные организации</value>
+    </data>
+    <data name="MovedIn.Column" xml:space="preserve">
+        <value>Численность обучающихся, переведенных из других образовательных организаций</value>
+    </data>
+    <data name="Restored.Column" xml:space="preserve">
+        <value>Численность восстановленных обучающихся</value>
+    </data>
+    <data name="Expelled.Column" xml:space="preserve">
+        <value>Численность отчисленных обучающихся</value>
+    </data>
     <data name="EduForm.Column" xml:space="preserve">
         <value>Форма обучения</value>
     </data>

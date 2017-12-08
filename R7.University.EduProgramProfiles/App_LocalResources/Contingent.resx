@@ -60,6 +60,18 @@
 	<data name="NumberBC.Column" xml:space="preserve">
         <value>Contracts</value>
     </data>
+    <data name="MovedOut.Column" xml:space="preserve">
+        <value>Number of Students Moved to other Educational Organizations</value>
+    </data>
+    <data name="MovedIn.Column" xml:space="preserve">
+        <value>Number of Students Moved from other Educational Organizations</value>
+    </data>
+    <data name="Restored.Column" xml:space="preserve">
+        <value>Number of Restored Students</value>
+    </data>
+    <data name="Expelled.Column" xml:space="preserve">
+        <value>Number of Expelled Students</value>
+    </data>
     <data name="EduForm.Column" xml:space="preserve">
         <value>Education Form</value>
     </data>
