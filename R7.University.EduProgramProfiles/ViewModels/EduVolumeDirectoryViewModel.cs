@@ -42,6 +42,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public bool IsEmpty => EduVolumeViewModels.IsNullOrEmpty ();
 
+        public bool IsConfigured => Settings.Mode != null;
+
         public EduVolumeDirectorySettings Settings;
 
         IEnumerable<EduVolumeViewModel> _eduVolumeViewModels;

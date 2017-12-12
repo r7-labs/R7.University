@@ -15,9 +15,14 @@
 @{
     ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
 }
-@if (Model.IsEmpty) {
+@if (!Model.IsConfigured || Model.IsEmpty) {
     if (Dnn.ModuleContext.IsEditable) {
-        <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NothingToDisplay.Text")</p>
+        if (!Model.IsConfigured) {
+            <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NotConfigured.Text")</p>
+        }
+        if (Model.IsEmpty) {
+            <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NothingToDisplay.Text")</p>
+        }
     }
     else {
         var containerControl = Globals.FindControlRecursiveDown (Dnn.DnnPage, "ctr" + Dnn.ModuleContext.ModuleId);

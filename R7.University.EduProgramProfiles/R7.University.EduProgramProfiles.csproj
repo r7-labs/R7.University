@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -208,7 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\EditEduProgramProfileDirectorySettings.ascx.resx" />
-    <None Include="App_LocalResources\ViewEduProgramProfileDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEduProgramProfileDirectory.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgramProfileDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.resx" />
@@ -218,6 +216,7 @@
     <None Include="App_LocalResources\EditEduVolumeDirectorySettings.ascx.resx" />
     <None Include="App_LocalResources\EditEduVolumeDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
+    <None Include="App_LocalResources\ViewEduProgramProfileDirectory.ascx.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduVolume.ascx.resx" />
     <None Include="App_LocalResources\EditEduVolume.ascx.ru-RU.resx" />

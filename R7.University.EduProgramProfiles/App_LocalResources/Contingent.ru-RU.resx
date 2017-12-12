@@ -15,9 +15,6 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value></value>
     </data>
-    <data name="NothingToDisplay.Text" xml:space="preserve">
-        <value>Нечего отображать. Добавьте записи или измените настройки модуля.</value>
-    </data>
     <data name="EduCode.Column" xml:space="preserve">
         <value>Код</value>
     </data>

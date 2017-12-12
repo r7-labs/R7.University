@@ -43,6 +43,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public bool IsEmpty => ContingentViewModels.IsNullOrEmpty ();
 
+        public bool IsConfigured => Settings.Mode != null;
+
         public ContingentDirectorySettings Settings;
 
         public IYear LastYear;

@@ -15,9 +15,6 @@
 	<data name="ModuleHelp.Text" xml:space="preserve">
         <value></value>
     </data>
-    <data name="NothingToDisplay.Text" xml:space="preserve">
-        <value>Nothing to display. Please add some records or change module settings.</value>
-    </data>
 	<data name="EduCode.Column" xml:space="preserve">
 		<value>Code</value>
 	</data>
