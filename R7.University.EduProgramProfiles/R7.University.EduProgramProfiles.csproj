@@ -125,6 +125,7 @@
     <Content Include="Views\Contingent\_ActualRow.cshtml" />
     <Content Include="Views\Contingent\_AdmissionRow.cshtml" />
     <Content Include="Views\Contingent\_MovementRow.cshtml" />
+    <Content Include="EditContingentDirectorySettings.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEduProgramProfileDirectory.ascx.cs">
@@ -185,6 +186,12 @@
     <Compile Include="Models\ContingentDirectorySettings.cs" />
     <Compile Include="Components\ContingentDirectoryController.cs" />
     <Compile Include="Queries\EduProgramProfileFormYearQueryableExtensions.cs" />
+    <Compile Include="EditContingentDirectorySettings.ascx.cs">
+      <DependentUpon>EditContingentDirectorySettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditContingentDirectorySettings.ascx.controls.cs">
+      <DependentUpon>EditContingentDirectorySettings.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
@@ -216,6 +223,8 @@
     <None Include="App_LocalResources\EditEduVolume.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\Contingent.resx" />
     <None Include="App_LocalResources\Contingent.ru-RU.resx" />
+    <None Include="App_LocalResources\EditContingentDirectorySettings.ascx.resx" />
+    <None Include="App_LocalResources\EditContingentDirectorySettings.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">

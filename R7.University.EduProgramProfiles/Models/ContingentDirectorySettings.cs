@@ -37,8 +37,7 @@ namespace R7.University.EduProgramProfiles.Models
         public override DivisionLevel DivisionLevel { get; set; } = DivisionLevel.EduProgram;
 
         [ModuleSetting (Prefix = "ContingentDirectory_")]
-        // TODO: Default value should be null
-        public ContingentDirectoryMode? Mode { get; set; } = ContingentDirectoryMode.Movement;
+        public ContingentDirectoryMode? Mode { get; set; }
     }
 
     public class ContingentDirectorySettingsRepository: SettingsRepository<ContingentDirectorySettings>

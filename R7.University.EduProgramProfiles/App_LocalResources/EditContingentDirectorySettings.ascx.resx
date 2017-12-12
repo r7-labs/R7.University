@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ControlTitle_settings.Text" xml:space="preserve">
+        <value>ContingentDirectory Settings</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+    <data name="ContingentDirectoryMode_Vacant.Text" xml:space="preserve">
+        <value>Vacant Places</value>
+    </data>
+    <data name="ContingentDirectoryMode_Actual.Text" xml:space="preserve">
+        <value>Actual Contingent</value>
+    </data>
+	<data name="ContingentDirectoryMode_Admission.Text" xml:space="preserve">
+        <value>Admission Info</value>
+    </data>
+	<data name="ContingentDirectoryMode_Movement.Text" xml:space="preserve">
+        <value>Contingent Movement Info</value>
+    </data>
+	<data name="labelMode.Text" xml:space="preserve">
+        <value>Module Mode:</value>
+    </data>
+    <data name="labelMode.Help" xml:space="preserve">
+        <value>Select the mode for the module.</value>
+    </data>
+</root>
