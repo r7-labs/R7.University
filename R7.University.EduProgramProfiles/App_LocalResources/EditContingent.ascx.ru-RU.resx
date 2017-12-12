@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ControlTitle_editcontingent.Text" xml:space="preserve">
+        <value>Редактирование записи о контингенте</value>
+    </data>
+    <data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+	<data name="ContingentValue.Invalid" xml:space="preserve">
+        <value>Значение должно быть неотрицательным целым числом.</value>
+    </data>
+	<data name="Actual.Tab" xml:space="preserve">
+        <value>Текущая численность</value>
+    </data>
+    <data name="Admission.Tab" xml:space="preserve">
+        <value>Результаты приема</value>
+    </data>
+    <data name="Movement.Tab" xml:space="preserve">
+        <value>Перевод, восстановление, отчисление</value>
+    </data>
+    <data name="Vacant.Tab" xml:space="preserve">
+        <value>Вакантные места</value>
+    </data>
+	<data name="labelActualFB.Text" xml:space="preserve">
+        <value>Федеральный бюджет:</value>
+    </data>
+    <data name="labelActualFB.Help" xml:space="preserve">
+        <value>Численность обучающихся за счет бюджетных ассигнований федерального бюджета, человек.</value>
+    </data>
+    <data name="labelActualRB.Text" xml:space="preserve">
+        <value>Бюджеты субъектов РФ:</value>
+    </data>
+    <data name="labelActualRB.Help" xml:space="preserve">
+        <value>Численность обучающихся за счет бюджетов субъектов Российской Федерации, человек.</value>
+    </data>
+    <data name="labelActualMB.Text" xml:space="preserve">
+        <value>Местные бюджеты:</value>
+    </data>
+    <data name="labelActualMB.Help" xml:space="preserve">
+        <value>Численность обучающихся за счет местных бюджетов, человек.</value>
+    </data>
+    <data name="labelActualBC.Text" xml:space="preserve">
+        <value>По договорам:</value>
+    </data>
+    <data name="labelActualBC.Help" xml:space="preserve">
+        <value>Численность обучающихся за счет средств физических и (или) юридических лиц, человек.</value>
+    </data>
+	<data name="labelAdmittedFB.Text" xml:space="preserve">
+        <value>Федеральный бюджет:</value>
+    </data>
+    <data name="labelAdmittedFB.Help" xml:space="preserve">
+        <value>Результаты приема обучающихся за счет бюджетных ассигнований федерального бюджета, человек.</value>
+    </data>
+    <data name="labelAdmittedRB.Text" xml:space="preserve">
+        <value>Бюджеты субъектов РФ:</value>
+    </data>
+    <data name="labelAdmittedRB.Help" xml:space="preserve">
+        <value>Результаты приема обучающихся за счет бюджетов субъектов Российской Федерации, человек.</value>
+    </data>
+    <data name="labelAdmittedMB.Text" xml:space="preserve">
+        <value>Местные бюджеты:</value>
+    </data>
+    <data name="labelAdmittedMB.Help" xml:space="preserve">
+        <value>Результаты приема обучающихся за счет местных бюджетов, человек.</value>
+    </data>
+    <data name="labelAdmittedBC.Text" xml:space="preserve">
+        <value>По договорам:</value>
+    </data>
+    <data name="labelAdmittedBC.Help" xml:space="preserve">
+        <value>Результаты приема обучающихся за счет средств физических и (или) юридических лиц, человек.</value>
+    </data>
+	<data name="labelAvgAdmScore.Text" xml:space="preserve">
+        <value>Средний балл:</value>
+    </data>
+    <data name="labelAvgAdmScore.Help" xml:space="preserve">
+        <value>Средняя сумма набранных баллов по всем вступительным испытаниям.</value>
+    </data>
+	<data name="labelVacantFB.Text" xml:space="preserve">
+        <value>Федеральный бюджет:</value>
+    </data>
+    <data name="labelVacantFB.Help" xml:space="preserve">
+        <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет бюджетных ассигнований федерального бюджета, человек.</value>
+    </data>
+    <data name="labelVacantRB.Text" xml:space="preserve">
+        <value>Бюджеты субъектов РФ:</value>
+    </data>
+    <data name="labelVacantRB.Help" xml:space="preserve">
+        <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет бюджетов субъектов Российской Федерации, человек.</value>
+    </data>
+    <data name="labelVacantMB.Text" xml:space="preserve">
+        <value>Местные бюджеты:</value>
+    </data>
+    <data name="labelVacantMB.Help" xml:space="preserve">
+        <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет местных бюджетов, человек.</value>
+    </data>
+    <data name="labelVacantBC.Text" xml:space="preserve">
+        <value>По договорам:</value>
+    </data>
+    <data name="labelVacantBC.Help" xml:space="preserve">
+        <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет средств физических и (или) юридических лиц, человек.</value>
+    </data>
+	<data name="labelMovedOut.Text" xml:space="preserve">
+        <value>Переведено из:</value>
+    </data>
+    <data name="labelMovedOut.Help" xml:space="preserve">
+        <value>Численность обучающихся, переведенных в другие образовательные организации, человек.</value>
+    </data>
+	<data name="labelMovedIn.Text" xml:space="preserve">
+        <value>Переведено в:</value>
+    </data>
+    <data name="labelMovedIn.Help" xml:space="preserve">
+        <value>Численность обучающихся, переведенных из других образовательных организаций, человек.</value>
+    </data>
+	<data name="labelRestored.Text" xml:space="preserve">
+        <value>Восстановлено:</value>
+    </data>
+    <data name="labelRestored.Help" xml:space="preserve">
+        <value>Численность восстановленных обучающихся, человек.</value>
+    </data>
+    <data name="labelExpelled.Text" xml:space="preserve">
+        <value>Отчислено:</value>
+    </data>
+    <data name="labelExpelled.Help" xml:space="preserve">
+        <value>Численность отчисленных обучающихся, человек.</value>
+    </data>
+	<data name="EditEduProgramProfile.Action" xml:space="preserve">
+        <value>Редактировать профиль обр. программы</value>
+    </data>
+</root>

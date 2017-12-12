@@ -28,7 +28,7 @@
         <value>Admission Info</value>
     </data>
 	<data name="ContingentDirectoryMode_Movement.Text" xml:space="preserve">
-        <value>Contingent Movement Info</value>
+        <value>Contingent Movement</value>
     </data>
 	<data name="labelMode.Text" xml:space="preserve">
         <value>Module Mode:</value>

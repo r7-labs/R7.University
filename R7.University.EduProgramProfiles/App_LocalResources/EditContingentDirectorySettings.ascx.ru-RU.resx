@@ -25,10 +25,10 @@
         <value>Текущая численность</value>
     </data>
     <data name="ContingentDirectoryMode_Admission.Text" xml:space="preserve">
-        <value>Информация о приеме</value>
+        <value>Результаты приема</value>
     </data>
     <data name="ContingentDirectoryMode_Movement.Text" xml:space="preserve">
-        <value>Информация о переводе, восстановлении и отчислении</value>
+        <value>Перевод, восстановление и отчисление</value>
     </data>
 	<data name="labelMode.Text" xml:space="preserve">
         <value>Режим модуля:</value>

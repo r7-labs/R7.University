@@ -49,13 +49,13 @@
         <value>Federal Budget</value>
     </data>
 	<data name="NumberRB.Column" xml:space="preserve">
-        <value>Regional Budget</value>
+        <value>Regional Budgets</value>
     </data>
 	<data name="NumberMB.Column" xml:space="preserve">
-        <value>Municipal Budget</value>
+        <value>Municipal Budgets</value>
     </data>
 	<data name="NumberBC.Column" xml:space="preserve">
-        <value>Contracts</value>
+        <value>by Contracts</value>
     </data>
     <data name="MovedOut.Column" xml:space="preserve">
         <value>Number of Students Moved to other Educational Organizations</value>
