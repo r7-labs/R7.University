@@ -128,6 +128,26 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string Expelled => FormatValue (() => FormYear.Contingent?.Expelled);
 
+        public string EduLevelVacantItemProp {
+            get {
+                // HACK: Hardcoded edu. levels 
+                var eduLevel = EduProgramProfile.EduLevel.Title.ToLower ();
+                if (eduLevel.Contains ("бакалавриат")) {
+                    return "bachelorVacant";
+                }
+                if (eduLevel.Contains ("магистратура")) {
+                    return "magistracyVacant";
+                }
+                if (eduLevel.Contains ("специалитет")) {
+                    return "specialityVacant";
+                }
+                if (eduLevel.Contains ("высшей квалификации") || eduLevel.Contains ("аспирантура")) {
+                    return "postgraduateVacant";
+                }
+                return string.Empty;
+            }
+        }
+
         #endregion
 
         string FormatValue<T> (Func<T?> getValue) where T : struct

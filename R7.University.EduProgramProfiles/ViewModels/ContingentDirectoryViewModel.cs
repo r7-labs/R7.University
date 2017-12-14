@@ -54,5 +54,18 @@ namespace R7.University.EduProgramProfiles.ViewModels
             get { return _contingentViewModels.Where (ev => IsEditable || ev.IsPublished (Now)); }
             set { _contingentViewModels = value; }
         }
+
+        public string ItemProp {
+            get {
+                switch (Settings.Mode) {
+                    case ContingentDirectoryMode.Actual: return "eduChislen";
+                    case ContingentDirectoryMode.Admission: return "eduPriem";
+                    case ContingentDirectoryMode.Movement: return "eduPerevod";
+                    case ContingentDirectoryMode.Vacant: return "vacant";
+                }
+
+                return string.Empty;
+            }
+        }
     }
 }

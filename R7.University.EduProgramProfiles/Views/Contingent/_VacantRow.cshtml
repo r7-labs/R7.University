@@ -3,11 +3,11 @@
 @using R7.University.EduProgramProfiles.ViewModels
 
 <td itemprop="eduCode">@Model.EduProgramProfile.EduProgram.Code</td>
-<td itemprop="eduName">@Model.EduProgramProfileTitle</td>
-<td itemprop="eduLevel">@Model.EduProgramProfile.EduLevel.Title</td>
+<td itemprop="nameProgVacant"><span itemprop="specialVacant">@Model.EduProgramProfileTitle</span></td>
+<td itemprop="@Model.EduLevelVacantItemProp">@Model.EduProgramProfile.EduLevel.Title</td>
 <td>@(Model.RootViewModel.LastYear.Year - @Model.Year.Year + 1)</td>
 <td itemprop="eduForm">@Model.EduFormTitle</td>
-<td>@Model.VacantFB</td>
-<td>@Model.VacantRB</td>
-<td>@Model.VacantMB</td>
-<td>@Model.VacantBC</td>
+<td itemprop="numberBFVacant">@Model.VacantFB</td>
+<td itemprop="numberBRVacant">@Model.VacantRB</td>
+<td itemprop="numberBMVacant">@Model.VacantMB</td>
+<td itemprop="numberPVacant">@Model.VacantBC</td>
