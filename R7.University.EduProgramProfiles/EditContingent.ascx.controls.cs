@@ -1,4 +1,5 @@
 ﻿using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace R7.University.EduProgramProfiles
 {
@@ -24,5 +25,13 @@ namespace R7.University.EduProgramProfiles
         protected TextBox textMovedIn;
         protected TextBox textRestored;
         protected TextBox textExpelled;
+        protected HtmlControl tabActual;
+        protected HtmlControl tabAdmission;
+        protected HtmlControl tabMovement;
+        protected HtmlControl tabVacant;
+        protected Panel panelActual;
+        protected Panel panelAdmission;
+        protected Panel panelMovement;
+        protected Panel panelVacant;
     }
 }

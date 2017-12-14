@@ -26,6 +26,7 @@ using DotNetNuke.Security;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
+using R7.University.EduProgramProfiles.Models;
 using R7.University.Models;
 using R7.University.Modules;
 
@@ -49,15 +50,6 @@ namespace R7.University.EduProgramProfiles
                 // get postback initiator control
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
-                /*
-                if (!string.IsNullOrEmpty (eventTarget)) {
-                    if (eventTarget.Contains ("$" + <practicesControl>.ID)) {
-                        ViewState ["SelectedTab"] = EditEduVolumeTab.Practices;
-                        return EditEduVolumeTab.Practices;
-                    }
-                }
-                */
-
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
                 return (obj != null) ? (EditContingentTab) obj : EditContingentTab.Actual;
@@ -65,10 +57,31 @@ namespace R7.University.EduProgramProfiles
             set { ViewState ["SelectedTab"] = value; }
         }
 
+        ContingentDirectorySettings _settings;
+        protected new ContingentDirectorySettings Settings =>
+            _settings ?? (_settings = new ContingentDirectorySettingsRepository ().GetSettings (ModuleConfiguration));
+
         #endregion
 
         protected EditContingent () : base ("contingent_id")
         {
+        }
+
+        protected void BindTabs ()
+        {
+            var showAllTabs = SecurityContext.IsAdmin;
+        
+            tabActual.Visible = showAllTabs || Settings.Mode == ContingentDirectoryMode.Actual;
+            panelActual.Visible = tabActual.Visible;
+
+            tabAdmission.Visible = showAllTabs || Settings.Mode == ContingentDirectoryMode.Admission;
+            panelAdmission.Visible = tabAdmission.Visible;
+
+            tabMovement.Visible = showAllTabs || Settings.Mode == ContingentDirectoryMode.Movement;
+            panelMovement.Visible = tabMovement.Visible;
+
+            tabVacant.Visible = showAllTabs || Settings.Mode == ContingentDirectoryMode.Vacant;
+            panelVacant.Visible = tabVacant.Visible;
         }
 
         protected override void InitControls ()
@@ -79,6 +92,8 @@ namespace R7.University.EduProgramProfiles
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
+
+            BindTabs ();
         }
 
         protected override void LoadItem (ContingentInfo item)
@@ -109,26 +124,36 @@ namespace R7.University.EduProgramProfiles
 
         protected override void BeforeUpdateItem (ContingentInfo item)
         {
-            item.ActualFB = TypeUtils.ParseToNullable<int> (textActualFB.Text);
-            item.ActualRB = TypeUtils.ParseToNullable<int> (textActualRB.Text);
-            item.ActualMB = TypeUtils.ParseToNullable<int> (textActualMB.Text);
-            item.ActualBC = TypeUtils.ParseToNullable<int> (textActualBC.Text);
+            var updateAllTabs = SecurityContext.IsAdmin;
 
-            item.VacantFB = TypeUtils.ParseToNullable<int> (textVacantFB.Text);
-            item.VacantRB = TypeUtils.ParseToNullable<int> (textVacantRB.Text);
-            item.VacantMB = TypeUtils.ParseToNullable<int> (textVacantMB.Text);
-            item.VacantBC = TypeUtils.ParseToNullable<int> (textVacantBC.Text);
+            if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Actual) {
+                item.ActualFB = TypeUtils.ParseToNullable<int> (textActualFB.Text);
+                item.ActualRB = TypeUtils.ParseToNullable<int> (textActualRB.Text);
+                item.ActualMB = TypeUtils.ParseToNullable<int> (textActualMB.Text);
+                item.ActualBC = TypeUtils.ParseToNullable<int> (textActualBC.Text);
+            }
 
-            item.AdmittedFB = TypeUtils.ParseToNullable<int> (textAdmittedFB.Text);
-            item.AdmittedRB = TypeUtils.ParseToNullable<int> (textAdmittedRB.Text);
-            item.AdmittedMB = TypeUtils.ParseToNullable<int> (textAdmittedMB.Text);
-            item.AdmittedBC = TypeUtils.ParseToNullable<int> (textAdmittedBC.Text);
-            item.AvgAdmScore = TypeUtils.ParseToNullable<decimal> (textAvgAdmScore.Text);
+            if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Vacant) {
+                item.VacantFB = TypeUtils.ParseToNullable<int> (textVacantFB.Text);
+                item.VacantRB = TypeUtils.ParseToNullable<int> (textVacantRB.Text);
+                item.VacantMB = TypeUtils.ParseToNullable<int> (textVacantMB.Text);
+                item.VacantBC = TypeUtils.ParseToNullable<int> (textVacantBC.Text);
+            }
 
-            item.MovedOut = TypeUtils.ParseToNullable<int> (textMovedOut.Text);
-            item.MovedIn = TypeUtils.ParseToNullable<int> (textMovedIn.Text);
-            item.Restored = TypeUtils.ParseToNullable<int> (textRestored.Text);
-            item.Expelled = TypeUtils.ParseToNullable<int> (textExpelled.Text);
+            if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Admission) {
+                item.AdmittedFB = TypeUtils.ParseToNullable<int> (textAdmittedFB.Text);
+                item.AdmittedRB = TypeUtils.ParseToNullable<int> (textAdmittedRB.Text);
+                item.AdmittedMB = TypeUtils.ParseToNullable<int> (textAdmittedMB.Text);
+                item.AdmittedBC = TypeUtils.ParseToNullable<int> (textAdmittedBC.Text);
+                item.AvgAdmScore = TypeUtils.ParseToNullable<decimal> (textAvgAdmScore.Text);
+            }
+
+            if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Movement) {
+                item.MovedOut = TypeUtils.ParseToNullable<int> (textMovedOut.Text);
+                item.MovedIn = TypeUtils.ParseToNullable<int> (textMovedIn.Text);
+                item.Restored = TypeUtils.ParseToNullable<int> (textRestored.Text);
+                item.Expelled = TypeUtils.ParseToNullable<int> (textExpelled.Text);
+            }
         }
 
         protected override ContingentInfo GetItemWithDependencies (int itemId)
