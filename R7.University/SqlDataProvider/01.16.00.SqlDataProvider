@@ -153,6 +153,30 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_Science')
+BEGIN
+    CREATE TABLE {databaseOwner}[{objectQualifier}University_Science] (
+        ScienceID int NOT NULL,
+        Directions nvarchar (max),
+        Base nvarchar (max),
+        Scientists int,
+        Students int,
+        Monographs int,
+        Articles int,
+        ArticlesForeign int,
+        Patents int,
+        PatentsForeign int,
+        Certificates int,
+        CertificatesForeign int,
+        FinancingByScientist decimal (18,3) 
+        CONSTRAINT [PK_{objectQualifier}University_Science] PRIMARY KEY (ScienceID)
+        CONSTRAINT [FK_{objectQualifier}University_Science_EduPrograms]
+            FOREIGN KEY (ScienceID) REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms] (EduProgramID)
+                ON DELETE CASCADE
+    )
+END
+GO
+
 IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_ScienceRecordTypes')
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_ScienceRecordTypes] (

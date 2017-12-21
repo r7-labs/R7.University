@@ -26,3 +26,24 @@ class ScienceRecord {
 }
 
 @enduml
+
+@startuml Science Records for Edu. Program (variant 2)
+
+EduProgram "1" o-- "0..1" Science
+
+class Science {
+    Directions: string
+    Base: string
+    Scientists: int?
+    Students: int?
+    Monographs: int?
+    Articles: int?
+    ArticlesForeign: int?
+    Patents: int?
+    PatentsForeign: int?
+    Certificates: int?
+    CertificatesForeign: int?
+    Financing: decimal?
+}
+
+@enduml
