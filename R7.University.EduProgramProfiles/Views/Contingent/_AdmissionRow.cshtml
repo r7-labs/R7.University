@@ -1,0 +1,14 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ContingentViewModel>
+@using DotNetNuke.Web.Mvc.Helpers
+@using R7.University.EduProgramProfiles.ViewModels
+
+<td itemprop="eduCode">@Model.EduProgramProfile.EduProgram.Code</td>
+<td itemprop="eduName">@Model.EduProgramProfileTitle</td>
+<td itemprop="eduLevel">@Model.EduProgramProfile.EduLevel.Title</td>
+<td itemprop="eduForm">@Model.EduFormTitle</td>
+<td>@Model.Year.Year</td>
+<td itemprop="numberBFpriem">@Model.AdmittedFB</td>
+<td itemprop="numberBRpriem">@Model.AdmittedRB</td>
+<td itemprop="numberBMpriem">@Model.AdmittedMB</td>
+<td itemprop="numberPpriem">@Model.AdmittedBC</td>
+<td itemprop="scorePriem">@Model.AvgAdmScore</td>

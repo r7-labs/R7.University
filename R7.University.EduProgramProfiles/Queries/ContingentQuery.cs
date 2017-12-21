@@ -1,5 +1,5 @@
 ﻿//
-//  EduVolumeQuery.cs
+//  ContingentQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -26,11 +26,11 @@ using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.Queries
 {
-    public class EduVolumeQuery
+    public class ContingentQuery
     {
         protected readonly IModelContext ModelContext;
 
-        public EduVolumeQuery (IModelContext modelContext)
+        public ContingentQuery (IModelContext modelContext)
         {
             ModelContext = modelContext;
         }
@@ -44,7 +44,7 @@ namespace R7.University.EduProgramProfiles.Queries
                                .Include (eppfy => eppfy.EduProgramProfile.EduLevel)
                                .Include (eppfy => eppfy.EduProgramProfile.EduProgram)
                                .Include (eppfy => eppfy.EduForm)
-                               .Include (eppfy => eppfy.EduVolume)
+                               .Include (eppfy => eppfy.Contingent)
                                .Include (eppfy => eppfy.Year)
                                .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
                                .WhereEduLevelsOrAll (eduLevelIds)

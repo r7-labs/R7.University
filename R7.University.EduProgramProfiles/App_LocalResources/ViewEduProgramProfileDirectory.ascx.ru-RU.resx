@@ -18,9 +18,6 @@
     <data name="AddEduProgramProfile.Action" xml:space="preserve">
         <value>Новый профиль обр. программы</value>
     </data>
-    <data name="NotConfigured.Text" xml:space="preserve">
-        <value>Модуль не сконфигурирован. Воспользуйтесь настройками модуля для установки режима отображения.</value>
-    </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать. Добавьте профили образовательных программ и воспользуйтесь настройками модуля для установки параметров отображения.</value>
     </data>

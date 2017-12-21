@@ -1228,6 +1228,82 @@
                 </component>
             </components>
         </package>
+		<package name="R7.University.ContingentDirectory" type="Module" version="01.16.00">
+            <friendlyName>R7.University.ContingentDirectory</friendlyName>
+            <description>A module to display information about contingent.</description>
+            <owner>
+                <name>Roman M. Yagodin</name>
+                <organization>R7.Labs</organization>
+                <url>https://github.com/roman-yagodin/R7.University</url>
+                <email>roman.yagodin@gmail.com</email>
+            </owner>
+            <license />
+            <releaseNotes />
+            <dependencies />
+            <components>
+                <component type="Module">
+                    <desktopModule>
+                        <moduleName>R7.University.ContingentDirectory</moduleName>
+                        <foldername>R7.University/R7.University.EduProgramProfiles</foldername>
+                        <businessControllerClass>R7.University.EduProgramProfiles.Components.ContingentDirectoryController</businessControllerClass>
+                        <supportedFeatures />
+                        <moduleDefinitions>
+                            <moduleDefinition>
+                                <friendlyName>R7.University.ContingentDirectory</friendlyName>
+                                <definitionName>R7_University_ContingentDirectory</definitionName>
+                                <defaultCacheTime>0</defaultCacheTime>
+                                <moduleControls>
+                                    <moduleControl>
+                                        <controlKey />
+                                        <controlSrc>R7.University.EduProgramProfiles.Controllers/Contingent/ContingentDirectory.mvc</controlSrc>
+                                        <controlTitle />
+                                        <controlType>View</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditContingent</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditContingent.ascx</controlSrc>
+                                        <controlTitle>Edit Contingent Record</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditEduProgramProfile</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program Profile</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>Settings</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditContingentDirectorySettings.ascx</controlSrc>
+                                        <controlTitle>Settings</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>False</supportsPartialRendering>
+                                        <supportsPopUps>False</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    </moduleControls>
+                            </moduleDefinition>
+                        </moduleDefinitions>
+                    </desktopModule>
+                </component>
+            </components>
+        </package>
 		<package name="R7.University.ScienceDirectory" type="Module" version="01.16.00">
             <friendlyName>R7.University.ScienceDirectory</friendlyName>
             <description>This is a module to display science information for educational programs.</description>

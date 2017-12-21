@@ -12,6 +12,12 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="NothingToDisplay.Text" xml:space="preserve">
+        <value>Nothing to display. Please add some records.</value>
+    </data>
+	<data name="NotConfigured.Text" xml:space="preserve">
+        <value>Module not configured. Please select mode in the module settings.</value>
+    </data>
 	<data name="GeneralSettings.Section" xml:space="preserve">
         <value>General Settings</value>
     </data>

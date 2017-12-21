@@ -57,6 +57,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public IEduVolume EduVolume => FormYear.EduVolume;
 
+        public IContingent Contingent => FormYear.Contingent;
+
         public IEduProgramProfile EduProgramProfile => FormYear.EduProgramProfile;
 
         public DateTime? StartDate => FormYear.StartDate;

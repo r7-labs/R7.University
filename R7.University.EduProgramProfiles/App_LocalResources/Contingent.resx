@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+	<data name="ModuleHelp.Text" xml:space="preserve">
+        <value></value>
+    </data>
+	<data name="EduCode.Column" xml:space="preserve">
+		<value>Code</value>
+	</data>
+	<data name="EduProgram.Column" xml:space="preserve">
+        <value>Educational Program</value>
+    </data>
+	<data name="IsAdopted.Column" xml:space="preserve">
+        <value>Adopted Program?</value>
+    </data>
+	<data name="EduLevel.Column" xml:space="preserve">
+        <value>Education Level</value>
+    </data>
+	<data name="Course.Column" xml:space="preserve">
+        <value>Course</value>
+    </data>
+	<data name="LastAdmissionYear.Column" xml:space="preserve">
+        <value>Last Admission Year</value>
+    </data>
+	<data name="VacantPlaces.Column" xml:space="preserve">
+        <value>Number of Vacant Places for Admission (Movement) Financed by:</value>
+    </data>
+	<data name="Actual.Column" xml:space="preserve">
+        <value>Number of Students Financed by:</value>
+    </data>
+	<data name="Admission.Column" xml:space="preserve">
+        <value>Admission Results of Students Financed by:</value>
+    </data>
+	<data name="AvgAdmScore.Column" xml:space="preserve">
+        <value>Average Score Earned for all Introductory Tests</value>
+    </data>
+	<data name="NumberFB.Column" xml:space="preserve">
+        <value>Federal Budget</value>
+    </data>
+	<data name="NumberRB.Column" xml:space="preserve">
+        <value>Regional Budgets</value>
+    </data>
+	<data name="NumberMB.Column" xml:space="preserve">
+        <value>Municipal Budgets</value>
+    </data>
+	<data name="NumberBC.Column" xml:space="preserve">
+        <value>by Contracts</value>
+    </data>
+    <data name="MovedOut.Column" xml:space="preserve">
+        <value>Number of Students Moved to other Educational Organizations</value>
+    </data>
+    <data name="MovedIn.Column" xml:space="preserve">
+        <value>Number of Students Moved from other Educational Organizations</value>
+    </data>
+    <data name="Restored.Column" xml:space="preserve">
+        <value>Number of Restored Students</value>
+    </data>
+    <data name="Expelled.Column" xml:space="preserve">
+        <value>Number of Expelled Students</value>
+    </data>
+    <data name="EduForm.Column" xml:space="preserve">
+        <value>Education Form</value>
+    </data>
+	<data name="EduForm_FullTime.Text" xml:space="preserve">
+        <value>Full Time</value>
+    </data>
+    <data name="EduForm_PartTime.Text" xml:space="preserve">
+        <value>Part Time</value>
+    </data>
+    <data name="EduForm_Extramural.Text" xml:space="preserve">
+        <value>Extramural</value>
+    </data>
+</root>

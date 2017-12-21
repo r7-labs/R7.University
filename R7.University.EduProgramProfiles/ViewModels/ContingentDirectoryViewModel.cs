@@ -1,5 +1,5 @@
 ﻿//
-//  EduVolumeDirectoryViewModel.cs
+//  ContingentDirectoryViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -22,36 +22,50 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.ModelExtensions;
 using R7.University.EduProgramProfiles.Models;
+using R7.University.ModelExtensions;
+using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
-    public class EduVolumeDirectoryViewModel
+    public class ContingentDirectoryViewModel
     {
         public bool IsEditable;
 
         public DateTime Now;
 
-        public EduVolumeDirectoryViewModel WithFilter (bool isEditable, DateTime now)
+        public ContingentDirectoryViewModel WithFilter (bool isEditable, DateTime now)
         {
             IsEditable = isEditable;
             Now = now;
             return this;
         }
 
-        public bool IsEmpty => EduVolumeViewModels.IsNullOrEmpty ();
+        public bool IsEmpty => ContingentViewModels.IsNullOrEmpty ();
 
         public bool IsConfigured => Settings.Mode != null;
 
-        public EduVolumeDirectorySettings Settings;
+        public ContingentDirectorySettings Settings;
 
-        IEnumerable<EduVolumeViewModel> _eduVolumeViewModels;
-        public IEnumerable<EduVolumeViewModel> EduVolumeViewModels {
-            get { return _eduVolumeViewModels.Where (ev => IsEditable || ev.IsPublished (Now)); }
-            set { _eduVolumeViewModels = value; }
+        public IYear LastYear;
+
+        IEnumerable<ContingentViewModel> _contingentViewModels;
+        public IEnumerable<ContingentViewModel> ContingentViewModels {
+            get { return _contingentViewModels.Where (ev => IsEditable || ev.IsPublished (Now)); }
+            set { _contingentViewModels = value; }
         }
 
-        public string ItemProp => Settings.Mode == EduVolumeDirectoryMode.Practices ? "eduPr" : "eduOp";
+        public string ItemProp {
+            get {
+                switch (Settings.Mode) {
+                    case ContingentDirectoryMode.Actual: return "eduChislen";
+                    case ContingentDirectoryMode.Admission: return "eduPriem";
+                    case ContingentDirectoryMode.Movement: return "eduPerevod";
+                    case ContingentDirectoryMode.Vacant: return "vacant";
+                }
+
+                return string.Empty;
+            }
+        }
     }
 }
