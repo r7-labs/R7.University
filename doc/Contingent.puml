@@ -1,42 +1,4 @@
-@startuml Contingent (variant 1)
-
-EduProgramProfileFormYear "1" -- "0..*" ContingentRecord
-ContingentRecord "0..*" -- "1" ContingentRecordType
-ContingentRecord "0..*" -- "0..1" FinanceSourceType
-
-class EduProgramProfileFormYear {
-}
-
-class ContingentRecord {
-    Value: decimal
-}
-
-enum FinanceSourceType {
-    FederalBudget
-    RegionalBudget
-    MunicipalBudget
-    ByContract
-}
-
-enum ContingentRecordType {
-    VaryByFinanceSource: bool
-    OneYear: bool
-    IsSystem: bool
-    IsDecimal: bool
-    --
-    MovedIn
-    MovedOut
-    Restored
-    Expelled
-    Admitted
-    Actual
-    Vacant
-    AvgAdmScore
-}
-
-@enduml
-
-@startuml Contingent (variant 2)
+@startuml Contingent
 
 EduProgramProfileFormYear "1" o-- "0..1" Contingent
 

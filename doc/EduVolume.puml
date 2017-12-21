@@ -3,11 +3,9 @@
 EduProgramProfileFormYear "1..*" -- "1" EduProgramProfile
 EduProgramProfileFormYear "0..*" -- "1" EduForm
 EduProgramProfileFormYear "0..*" -- "1" Year
-EduProgramProfileFormYear "1" .. "0..*" Discipline
-Discipline "0..*" .. "0..1" DisciplineType
 
-EduProgramProfileFormYear "1" -- "0..1" Contingent
-EduProgramProfileFormYear "1" -- "0..1" EduVolume
+EduProgramProfileFormYear "1" o-- "0..1" Contingent
+EduProgramProfileFormYear "1" o-- "0..1" EduVolume
 
 class EduProgramProfile {
     IsAdopted: bool
@@ -38,25 +36,13 @@ class EduProgramProfileFormYear {
     EndDate: DateTime?
 }
 
-class Discipline {
-    Code: string
-    Title: string
-    Hours: int
-    DocumentUrl: string
-}
-
-enum DisciplineType {
-    TrainingPractice
-    IndustrialPractice
-    UndergraduatePractice
-}
-
 @enduml
 
 @startuml EduVolume Modules
 
 package R7.University.EduProgramProfiles {
     [EduVolumeDirectory]<<module>>
+    [ContingentDirectory]<<module>>
     [EduProgramProfileDirectory]<<module>>
 }
 
