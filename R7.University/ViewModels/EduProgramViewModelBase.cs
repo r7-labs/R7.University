@@ -70,6 +70,8 @@ namespace R7.University.ViewModels
 
         public ICollection<ScienceRecordInfo> ScienceRecords => EduProgram.ScienceRecords;
 
+        public IScience Science => EduProgram.Science;
+
         #endregion
     }
 }

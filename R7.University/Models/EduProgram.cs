@@ -47,6 +47,8 @@ namespace R7.University.Models
         ICollection<EduProgramDivisionInfo> Divisions { get; }
 
         ICollection<ScienceRecordInfo> ScienceRecords { get; }
+
+        IScience Science { get; }
     }
 
     public interface IEduProgramWritable: IEduProgram, ITrackableEntityWritable, IPublishableEntityWritable
@@ -72,9 +74,11 @@ namespace R7.University.Models
         new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
 
         new ICollection<ScienceRecordInfo> ScienceRecords { get; set; }
+
+        new IScience Science { get; set; }
     }
 
-    public class EduProgramInfo: IEduProgramWritable
+    public class EduProgramInfo : IEduProgramWritable
     {
         public int EduProgramID { get; set; }
 
@@ -109,5 +113,14 @@ namespace R7.University.Models
         public virtual ICollection<EduProgramDivisionInfo> Divisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
 
         public virtual ICollection<ScienceRecordInfo> ScienceRecords { get; set; } = new HashSet<ScienceRecordInfo> ();
+
+        public virtual ScienceInfo Science { get; set; }
+
+        IScience IEduProgram.Science => Science;
+
+        IScience IEduProgramWritable.Science {
+            get { return Science; }
+            set { Science = (ScienceInfo) value; }
+        }
     }
 }

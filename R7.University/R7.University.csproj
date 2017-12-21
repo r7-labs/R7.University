@@ -248,6 +248,8 @@
     <Compile Include="Models\Contingent.cs" />
     <Compile Include="Data\Mappings\ContingentMapping.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileFormYearExtensions.cs" />
+    <Compile Include="Data\Mappings\ScienceMapping.cs" />
+    <Compile Include="Models\Science.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

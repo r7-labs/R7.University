@@ -43,7 +43,7 @@ class Science {
     PatentsForeign: int?
     Certificates: int?
     CertificatesForeign: int?
-    Financing: decimal?
+    FinancingByScientist: decimal?
 }
 
 @enduml
