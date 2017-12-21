@@ -142,6 +142,10 @@
 						</assembly>
 						<assembly>
                             <path>bin</path>
+                            <name>R7.University.EduPrograms.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
                             <name>R7.University.EduProgramProfiles.dll</name>
                         </assembly>
 						<assembly>
@@ -291,7 +295,7 @@
                                     </moduleControl>
 									<moduleControl>
 										<controlKey>EditEduProgram</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -895,8 +899,8 @@
                 <component type="Module">
                     <desktopModule>
                         <moduleName>R7.University.EduProgram</moduleName>
-                        <foldername>R7.University/R7.University.EduProgram</foldername>
-                        <businessControllerClass>R7.University.EduProgram.Components.EduProgramController</businessControllerClass>
+                        <foldername>R7.University/R7.University.EduPrograms</foldername>
+                        <businessControllerClass>R7.University.EduPrograms.Components.EduProgramController</businessControllerClass>
                         <supportedFeatures>
                             <supportedFeature type="Searchable" />
                         </supportedFeatures>
@@ -908,7 +912,7 @@
                                 <moduleControls>
                                     <moduleControl>
                                         <controlKey />
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/ViewEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/ViewEduProgram.ascx</controlSrc>
                                         <controlTitle />
                                         <controlType>View</controlType>
                                         <iconFile />
@@ -919,7 +923,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -952,7 +956,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/SettingsEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgramSettings.ascx</controlSrc>
                                         <controlTitle>EduProgram Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -965,15 +969,6 @@
                             </moduleDefinition>
                         </moduleDefinitions>
                     </desktopModule>
-                </component>
-                <component type="Assembly">
-                    <assemblies>
-                        <basePath>bin</basePath>
-                        <assembly>
-                            <path>bin</path>
-                            <name>R7.University.EduProgram.dll</name>
-                        </assembly>
-                    </assemblies>
                 </component>
             </components>
         </package>
@@ -993,8 +988,8 @@
                 <component type="Module">
                     <desktopModule>
                         <moduleName>R7.University.EduProgramDirectory</moduleName>
-                        <foldername>R7.University/R7.University.EduProgramDirectory</foldername>
-                        <businessControllerClass>R7.University.EduProgramDirectory.Components.EduProgramDirectoryController</businessControllerClass>
+                        <foldername>R7.University/R7.University.EduPrograms</foldername>
+                        <businessControllerClass>R7.University.EduPrograms.Components.EduProgramDirectoryController</businessControllerClass>
                         <supportedFeatures>
                             <!-- <supportedFeature type="Portable" /> -->
                             <!-- <supportedFeature type="Searchable" /> -->
@@ -1007,7 +1002,7 @@
                                 <moduleControls>
                                     <moduleControl>
                                         <controlKey />
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramDirectory/ViewEduProgramDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/ViewEduProgramDirectory.ascx</controlSrc>
                                         <controlTitle />
                                         <controlType>View</controlType>
                                         <iconFile />
@@ -1018,7 +1013,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1051,7 +1046,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramDirectory/SettingsEduProgramDirectory.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgramDirectorySettings.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1064,15 +1059,6 @@
                             </moduleDefinition>
                         </moduleDefinitions>
                     </desktopModule>
-                </component>
-                <component type="Assembly">
-                    <assemblies>
-                        <basePath>bin</basePath>
-                        <assembly>
-                            <path>bin</path>
-                            <name>R7.University.EduProgramDirectory.dll</name>
-                        </assembly>
-                    </assemblies>
                 </component>
             </components>
         </package>
@@ -1125,7 +1111,7 @@
                                     </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
@@ -1353,7 +1339,7 @@
                                     </moduleControl>
 									<moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgram/EditEduProgram.ascx</controlSrc>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgram.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />

@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EmployeeDirec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.DivisionDirectory", "R7.University.DivisionDirectory\R7.University.DivisionDirectory.csproj", "{D76E76D0-18E9-487E-825A-4C18123A48F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramDirectory", "R7.University.EduProgramDirectory\R7.University.EduProgramDirectory.csproj", "{C6B64609-D737-435C-8C58-5BF0CE1C9F51}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfiles", "R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Science", "R7.University.Science\R7.University.Science.csproj", "{C564168C-AC2A-448D-9E0B-566E049701EB}"
@@ -29,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Tests", "R7.University.Tests\R7.University.Tests.csproj", "{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgram", "R7.University.EduProgram\R7.University.EduProgram.csproj", "{71EEFF26-83B2-462A-A809-AB887A905003}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduPrograms", "R7.University.EduPrograms\R7.University.EduPrograms.csproj", "{71EEFF26-83B2-462A-A809-AB887A905003}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deploy", "Deploy\Deploy.csproj", "{48DE273D-19D7-46E3-A3C6-59F301E7CD03}"
 EndProject
@@ -73,10 +71,6 @@ Global
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6B64609-D737-435C-8C58-5BF0CE1C9F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6B64609-D737-435C-8C58-5BF0CE1C9F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6B64609-D737-435C-8C58-5BF0CE1C9F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6B64609-D737-435C-8C58-5BF0CE1C9F51}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
