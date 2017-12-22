@@ -25,7 +25,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
 
-namespace R7.University.Science.Queries
+namespace R7.University.EduPrograms.Queries
 {
     class EduProgramScienceQuery: EduProgramCommonQuery
     {

@@ -29,10 +29,10 @@ using R7.University.ControlExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.Science.Models;
+using R7.University.EduPrograms.Models;
 using R7.University.ViewModels;
 
-namespace R7.University.Science
+namespace R7.University.EduPrograms
 {
     public partial class EditScienceDirectorySettings : UniversityModuleSettingsBase<ScienceDirectorySettings>
     {

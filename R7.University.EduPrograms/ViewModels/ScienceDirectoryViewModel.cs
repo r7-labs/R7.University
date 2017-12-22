@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using R7.University.ModelExtensions;
 
-namespace R7.University.Science.ViewModels
+namespace R7.University.EduPrograms.ViewModels
 {
     public class ScienceDirectoryViewModel
     {

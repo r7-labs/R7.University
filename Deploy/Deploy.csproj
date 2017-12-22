@@ -109,10 +109,6 @@
 			<Project>{438F599E-41B4-4057-BFAA-FAA698E052DD}</Project>
 			<Name>R7.University.Launchpad</Name>
 		</ProjectReference>
-		<ProjectReference Include="..\R7.University.Science\R7.University.Science.csproj">
-			<Project>{C564168C-AC2A-448D-9E0B-566E049701EB}</Project>
-			<Name>R7.University.Science</Name>
-		</ProjectReference>
 		<ProjectReference Include="..\R7.University.Tests\R7.University.Tests.csproj">
 			<Project>{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}</Project>
 			<Name>R7.University.Tests</Name>

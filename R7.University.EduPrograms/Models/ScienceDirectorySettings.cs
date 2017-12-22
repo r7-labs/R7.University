@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
 
-namespace R7.University.Science.Models
+namespace R7.University.EduPrograms.Models
 {
     [Serializable]
     public class ScienceDirectorySettings
@@ -44,6 +44,10 @@ namespace R7.University.Science.Models
 
         [ModuleSetting (Prefix = "ScienceDirectory_")]
         public int? DivisionId { get; set; }
+    }
+
+    public class ScienceDirectorySettingsRepository : SettingsRepository<ScienceDirectorySettings>
+    {
     }
 }
 

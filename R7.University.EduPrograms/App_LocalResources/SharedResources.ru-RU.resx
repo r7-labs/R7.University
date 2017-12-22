@@ -36,4 +36,7 @@
     <data name="EduProgramProfStandard.Column" xml:space="preserve">
         <value>Профессиональный стандарт</value>
     </data>
+	<data name="EditScience.Action" xml:space="preserve">
+        <value>Редактировать сведения о науке</value>
+    </data>
 </root>

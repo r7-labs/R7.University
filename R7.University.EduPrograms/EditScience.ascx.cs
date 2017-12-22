@@ -29,9 +29,9 @@ using R7.University.Components;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.Science.Queries;
+using R7.University.EduPrograms.Queries;
 
-namespace R7.University.Science
+namespace R7.University.EduPrograms
 {
     public partial class EditScience: UniversityEditPortalModuleBase<EduProgramInfo>, IActionable
     {

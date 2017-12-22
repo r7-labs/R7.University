@@ -34,7 +34,7 @@ using R7.University.Models;
 using R7.University.Queries;
 using R7.University.ModelExtensions;
 
-namespace R7.University.Science.Controllers
+namespace R7.University.EduPrograms.Controllers
 {
     [DnnHandleError]
     public class ContingentController : DnnController

@@ -32,7 +32,7 @@ using R7.University.EduProgramProfiles.Queries;
 using R7.University.EduProgramProfiles.ViewModels;
 using R7.University.Models;
 
-namespace R7.University.Science.Controllers
+namespace R7.University.EduPrograms.Controllers
 {
     [DnnHandleError]
     public class EduVolumeController : DnnController

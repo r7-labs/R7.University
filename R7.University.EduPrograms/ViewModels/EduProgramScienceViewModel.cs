@@ -25,10 +25,10 @@ using System.Web;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Science.Models;
+using R7.University.EduPrograms.Models;
 using R7.University.ViewModels;
 
-namespace R7.University.Science.ViewModels
+namespace R7.University.EduPrograms.ViewModels
 {
     public class EduProgramScienceViewModel: EduProgramViewModelBase
     {

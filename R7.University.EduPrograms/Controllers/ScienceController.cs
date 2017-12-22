@@ -28,11 +28,11 @@ using DotNetNuke.Web.Mvc.Framework.Controllers;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Models;
-using R7.University.Science.Models;
-using R7.University.Science.Queries;
-using R7.University.Science.ViewModels;
+using R7.University.EduPrograms.Models;
+using R7.University.EduPrograms.Queries;
+using R7.University.EduPrograms.ViewModels;
 
-namespace R7.University.Science.Controllers
+namespace R7.University.EduPrograms.Controllers
 {
     [DnnHandleError]
     public class ScienceController : DnnController
