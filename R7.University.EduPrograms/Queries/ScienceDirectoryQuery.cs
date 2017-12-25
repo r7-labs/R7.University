@@ -1,5 +1,5 @@
 //
-//  EduProgramScienceQuery.cs
+//  ScienceDirectoryQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -27,9 +27,9 @@ using R7.University.Queries;
 
 namespace R7.University.EduPrograms.Queries
 {
-    class EduProgramScienceQuery: EduProgramCommonQuery
+    class ScienceDirectoryQuery: EduProgramCommonQuery
     {
-        public EduProgramScienceQuery (IModelContext modelContext): base (modelContext)
+        public ScienceDirectoryQuery (IModelContext modelContext): base (modelContext)
         {
         }
 

@@ -66,7 +66,7 @@ namespace R7.University.EduPrograms.Controllers
         IEnumerable<EduProgramInfo> GetEduProgramsForScienceDirectory (int? divisionId, IEnumerable<int> eduLevelIds)
         {
             using (var modelContext = new UniversityModelContext ()) {
-                var eduPrograms = new EduProgramScienceQuery (modelContext).ListByDivisionAndEduLevels (divisionId, eduLevelIds);
+                var eduPrograms = new ScienceDirectoryQuery (modelContext).ListByDivisionAndEduLevels (divisionId, eduLevelIds);
                 return eduPrograms ?? Enumerable.Empty<EduProgramInfo> ();
             }
         }
