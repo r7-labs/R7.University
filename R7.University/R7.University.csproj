@@ -186,7 +186,6 @@
     <Compile Include="Utilities\UniversityUrlHelper.cs" />
     <Compile Include="Utilities\UniversityCultureHelper.cs" />
     <Compile Include="Utilities\UniversityModuleHelper.cs" />
-    <Compile Include="Utilities\XmlSerializationHelper.cs" />
     <Compile Include="Commands\ISecureCommand.cs" />
     <Compile Include="Security\ISecurityContext.cs" />
     <Compile Include="Security\ModuleSecurityContext.cs" />
