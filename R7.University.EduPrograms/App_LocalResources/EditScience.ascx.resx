@@ -96,4 +96,10 @@
 	<data name="Foreign.Text" xml:space="preserve">
         <value>foreign:</value>
     </data>
+	<data name="Value.Invalid" xml:space="preserve">
+        <value>Value must be an integer number equal to or greater than zero.</value>
+    </data>
+	<data name="FinancingByScientistValue.Invalid" xml:space="preserve">
+        <value>Value must be decimal number equal to or greater than zero.</value>
+    </data>
 </root>

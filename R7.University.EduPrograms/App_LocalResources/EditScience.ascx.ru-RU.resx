@@ -96,4 +96,10 @@
     <data name="Foreign.Text" xml:space="preserve">
         <value>зарубежных:</value>
     </data>
+	<data name="Value.Invalid" xml:space="preserve">
+        <value>Значение должно быть неотрицательным целым числом.</value>
+    </data>
+    <data name="FinancingByScientistValue.Invalid" xml:space="preserve">
+        <value>Значение должно быть неотрицательным вещественным числом.</value>
+    </data>
 </root>
