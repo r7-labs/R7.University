@@ -33,16 +33,6 @@ namespace R7.University.EduPrograms.Queries
         {
         }
 
-        public EduProgramInfo SingleOrDefault (int eduProgramId)
-        {
-            return ModelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
-                               .Include (ep => ep.EduLevel)
-                               .Include (ep => ep.Divisions)
-                               .Include (ep => ep.Divisions.Select (epd => epd.Division))
-                               .Include (ep => ep.Science)
-                               .SingleOrDefault ();
-        }
-
         public IEnumerable<EduProgramInfo> ListByDivisionAndEduLevels (int? divisionId, IEnumerable<int> eduLevelIds)
         {
             if (divisionId != null) {
@@ -71,7 +61,8 @@ namespace R7.University.EduPrograms.Queries
                                .Include (ep => ep.EduLevel)
                                .Include (ep => ep.Divisions)
                                .Include (ep => ep.Divisions.Select (d => d.Division))
-                               .Include (ep => ep.Science);
+                               .Include (ep => ep.Science)
+                               .Order ();
         }
     }
 }
