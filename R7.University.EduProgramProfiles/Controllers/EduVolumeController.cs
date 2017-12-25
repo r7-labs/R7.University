@@ -41,8 +41,7 @@ namespace R7.University.EduPrograms.Controllers
 
         public ActionResult EduVolumeDirectory ()
         {
-            // TODO: Restore caching
-            return View (GetEduVolumeDirectoryViewModel ().WithFilter (ModuleContext.IsEditable, HttpContext.Timestamp));
+            return View (GetCachedEduVolumeDirectoryViewModel ().WithFilter (ModuleContext.IsEditable, HttpContext.Timestamp));
         }
 
         #endregion

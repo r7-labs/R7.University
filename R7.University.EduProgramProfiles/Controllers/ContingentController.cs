@@ -43,8 +43,7 @@ namespace R7.University.EduPrograms.Controllers
 
         public ActionResult ContingentDirectory ()
         {
-            // TODO: Restore caching
-            return View (GetContingentViewModel ().WithFilter (ModuleContext.IsEditable, HttpContext.Timestamp));
+            return View (GetCachedContingentViewModel ().WithFilter (ModuleContext.IsEditable, HttpContext.Timestamp));
         }
 
         #endregion
