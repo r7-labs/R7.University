@@ -84,7 +84,7 @@ namespace R7.University.EduPrograms.ViewModels
             if (!string.IsNullOrEmpty (html)) {
                 return $"<span itemprop=\"{itemprop}\" class=\"hidden description\">{HttpUtility.HtmlDecode (html)}</span>"
         			+ "<a type=\"button\" href=\"#\" data-toggle=\"modal\""
-        			+ $" data-target=\"#u8y-sciencerecord-description-dialog-{Context.Module.ModuleId}\">[&#8230;]</a>";
+        			+ $" data-target=\"#u8y-science-description-dialog-{Context.Module.ModuleId}\">[&#8230;]</a>";
         	}
             	
         	return $"<span itemprop=\"{itemprop}\">-</span>";

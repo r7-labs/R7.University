@@ -46,8 +46,6 @@ namespace R7.University.Models
 
         ICollection<EduProgramDivisionInfo> Divisions { get; }
 
-        ICollection<ScienceRecordInfo> ScienceRecords { get; }
-
         IScience Science { get; }
     }
 
@@ -72,8 +70,6 @@ namespace R7.University.Models
         new ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
 
         new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
-
-        new ICollection<ScienceRecordInfo> ScienceRecords { get; set; }
 
         new IScience Science { get; set; }
     }
@@ -111,8 +107,6 @@ namespace R7.University.Models
         public virtual ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; } = new HashSet<EduProgramProfileInfo> ();
 
         public virtual ICollection<EduProgramDivisionInfo> Divisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
-
-        public virtual ICollection<ScienceRecordInfo> ScienceRecords { get; set; } = new HashSet<ScienceRecordInfo> ();
 
         public virtual ScienceInfo Science { get; set; }
 

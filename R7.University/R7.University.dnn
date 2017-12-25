@@ -338,17 +338,6 @@
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
 									<moduleControl>
-                                        <controlKey>EditScienceRecordType</controlKey>
-                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditScienceRecordType.ascx</controlSrc>
-                                        <controlTitle>Edit Science Record Type</controlTitle>
-                                        <controlType>Edit</controlType>
-                                        <iconFile />
-                                        <helpUrl />
-                                        <supportsPartialRendering>False</supportsPartialRendering>
-                                        <supportsPopUps>True</supportsPopUps>
-                                        <viewOrder>0</viewOrder>
-                                    </moduleControl>
-									<moduleControl>
                                         <controlKey>EditYear</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditYear.ascx</controlSrc>
                                         <controlTitle>Edit Year</controlTitle>

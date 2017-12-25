@@ -40,8 +40,6 @@ namespace R7.University.EduPrograms.Queries
                                .Include (ep => ep.Divisions)
                                .Include (ep => ep.Divisions.Select (epd => epd.Division))
                                .Include (ep => ep.Science)
-                               .Include (ep => ep.ScienceRecords)
-                               .Include (ep => ep.ScienceRecords.Select (sr => sr.ScienceRecordType))
                                .SingleOrDefault ();
         }
 
@@ -49,33 +47,31 @@ namespace R7.University.EduPrograms.Queries
         {
             if (divisionId != null) {
                 if (!eduLevelIds.IsNullOrEmpty ()) {
-                    return QueryEduProgramsIncludeScienceRecords ()
+                    return QueryEduProgramsIncludeScience ()
                         .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId) && eduLevelIds.Contains (ep.EduLevelID))
                         .ToList ();
                 }
-                return QueryEduProgramsIncludeScienceRecords ()
+                return QueryEduProgramsIncludeScience ()
                     .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId))
                     .ToList ();
             }
 
             if (!eduLevelIds.IsNullOrEmpty ()) {
-                return QueryEduProgramsIncludeScienceRecords ()
+                return QueryEduProgramsIncludeScience ()
                     .Where (ep => eduLevelIds.Contains (ep.EduLevelID))
                     .ToList ();
             }
 
-            return QueryEduProgramsIncludeScienceRecords ().ToList ();
+            return QueryEduProgramsIncludeScience ().ToList ();
         }
 
-        protected IQueryable<EduProgramInfo> QueryEduProgramsIncludeScienceRecords ()
+        protected IQueryable<EduProgramInfo> QueryEduProgramsIncludeScience ()
         {
             return ModelContext.Query<EduProgramInfo> ()
                                .Include (ep => ep.EduLevel)
                                .Include (ep => ep.Divisions)
                                .Include (ep => ep.Divisions.Select (d => d.Division))
-                               .Include (ep => ep.Science)
-                               .Include (ep => ep.ScienceRecords)
-                               .Include (ep => ep.ScienceRecords.Select (sr => sr.ScienceRecordType));
+                               .Include (ep => ep.Science);
         }
     }
 }

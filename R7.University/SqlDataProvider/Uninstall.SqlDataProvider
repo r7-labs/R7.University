@@ -109,14 +109,6 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramDivisions]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_EduProgramProfiles] 
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
-    DROP CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_EduPrograms] 
-GO
-
-ALTER TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
-    DROP CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_ScienceRecordTypes] 
-GO
-
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_EduProgramProfileForms] 
 GO
@@ -210,12 +202,6 @@ DROP TABLE {databaseOwner}[{objectQualifier}University_Employees]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_AchievementTypes]
-GO
-
-DROP TABLE {databaseOwner}[{objectQualifier}University_ScienceRecordTypes]
-GO
-
-DROP TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_EduVolume]

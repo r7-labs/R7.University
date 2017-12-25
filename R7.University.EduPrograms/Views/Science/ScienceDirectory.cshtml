@@ -67,12 +67,12 @@ else {
         </table>
 	</div>
     @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_AgplSignature.cshtml", new AgplSignatureViewModel ())
-    <div id="u8y-sciencerecord-description-dialog-@Dnn.ModuleContext.ModuleId" class="modal fade" role="dialog" aria-labelledby="u8y-sciencerecord-description-dialog-title-@Dnn.ModuleContext.ModuleId">
+    <div id="u8y-science-description-dialog-@Dnn.ModuleContext.ModuleId" class="modal fade" role="dialog" aria-labelledby="u8y-science-description-dialog-title-@Dnn.ModuleContext.ModuleId">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label='@Dnn.LocalizeString("Close")'><span aria-hidden="true">&times;</span></button>
-                    <h4 id="u8y-sciencerecord-description-dialog-title-@Dnn.ModuleContext.ModuleId" class="modal-title"></h4>
+                    <h4 id="u8y-science-description-dialog-title-@Dnn.ModuleContext.ModuleId" class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                 </div>
@@ -107,7 +107,7 @@ else {
                 return "";
             }
 	        $(document).ready(function() {
-                $("#u8y-sciencerecord-description-dialog-@Dnn.ModuleContext.ModuleId").on("show.bs.modal", function (event) {
+                $("#u8y-science-description-dialog-@Dnn.ModuleContext.ModuleId").on("show.bs.modal", function (event) {
                     var target = $(event.relatedTarget);
 	                $(this).find(".modal-title").text(getModalTitleText(target));
                     $(this).find(".modal-body").html(getModalBodyHtml(target));

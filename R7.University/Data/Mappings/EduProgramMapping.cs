@@ -49,7 +49,6 @@ namespace R7.University.Data.Mappings
             HasRequired (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelID);
             HasMany (m => m.Documents).WithOptional ().HasForeignKey (x => x.EduProgramId);
             HasMany (m => m.EduProgramProfiles).WithRequired (epp => epp.EduProgram).HasForeignKey (epp => epp.EduProgramID);
-            HasMany (m => m.ScienceRecords).WithRequired (sr => sr.EduProgram).HasForeignKey (x => x.EduProgramId);
         }
     }
 }

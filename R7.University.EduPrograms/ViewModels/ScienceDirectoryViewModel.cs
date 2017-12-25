@@ -39,8 +39,6 @@ namespace R7.University.EduPrograms.ViewModels
             return this;
         }
 
-        // TODO: Add IsConfigured
-
         public bool IsEmpty => EduProgramScienceViewModels.IsNullOrEmpty ();
 
         IEnumerable<EduProgramScienceViewModel> _eduProgramScienceViewModels;
