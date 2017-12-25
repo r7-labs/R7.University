@@ -72,13 +72,4 @@
     <data name="TimeToLearnMonths3.Format" xml:space="preserve">
         <value>{0} месяцев</value>
     </data>
-	<data name="EduForm_FullTime.Text" xml:space="preserve">
-        <value>Очная</value>
-    </data>
-    <data name="EduForm_PartTime.Text" xml:space="preserve">
-        <value>Очно-заочная</value>
-    </data>
-    <data name="EduForm_Extramural.Text" xml:space="preserve">
-        <value>Заочная</value>
-    </data>
 </root>

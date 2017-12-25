@@ -243,6 +243,8 @@
     <Compile Include="ModelExtensions\EduProgramProfileFormYearExtensions.cs" />
     <Compile Include="Data\Mappings\ScienceMapping.cs" />
     <Compile Include="Models\Science.cs" />
+    <Compile Include="ModelExtensions\EduLevelExtensions.cs" />
+    <Compile Include="ModelExtensions\EduFormExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

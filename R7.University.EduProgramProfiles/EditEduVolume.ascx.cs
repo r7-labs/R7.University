@@ -1,10 +1,10 @@
 //
-//  EditEduProgramProfile.ascx.cs
+//  EditEduVolume.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,19 +19,18 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
+using R7.University.EduProgramProfiles.Modules;
 using R7.University.Models;
-using R7.University.Modules;
 
 namespace R7.University.EduProgramProfiles
 {
-    public partial class EditEduVolume : UniversityEditPortalModuleBase<EduVolumeInfo>, IActionable
+    public partial class EditEduVolume : EduProgramProfileFormYearEditModuleBase<EduVolumeInfo>, IActionable
     {
         public enum EditEduVolumeTab
         {
@@ -73,11 +72,6 @@ namespace R7.University.EduProgramProfiles
         protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
-        }
-
-        protected override void OnInit (EventArgs e)
-        {
-            base.OnInit (e);
         }
 
         protected override void LoadItem (EduVolumeInfo item)
@@ -151,23 +145,20 @@ namespace R7.University.EduProgramProfiles
 
         #region IActionable implementation
 
-        public ModuleActionCollection ModuleActions {
+        public ModuleActionCollection ModuleActions
+        {
             get {
                 var actions = new ModuleActionCollection ();
-                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key])
-                             ?? TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
-                if (itemId != null) {
-                    var formYear = ModelContext.Get<EduProgramProfileFormYearInfo> (itemId.Value);
-                    if (formYear != null) {
-                        actions.Add (new ModuleAction (GetNextActionID ()) {
-                            Title = LocalizeString ("EditEduProgramProfile.Action"),
-                            CommandName = ModuleActionType.EditContent,
-                            Icon = UniversityIcons.Edit,
-                            Secure = SecurityAccessLevel.Edit,
-                            Url = EditUrl ("eduprogramprofile_id", formYear.EduProgramProfileId.ToString (), "EditEduProgramProfile"),
-                            Visible = SecurityContext.IsAdmin
-                        });
-                    }
+                var eppfy = GetEduProgramProfileFormYear ();
+                if (eppfy != null) {
+                    actions.Add (new ModuleAction (GetNextActionID ()) {
+                        Title = LocalizeString ("EditEduProgramProfile.Action"),
+                        CommandName = ModuleActionType.EditContent,
+                        Icon = UniversityIcons.Edit,
+                        Secure = SecurityAccessLevel.Edit,
+                        Url = EditUrl ("eduprogramprofile_id", eppfy.EduProgramProfileId.ToString (), "EditEduProgramProfile"),
+                        Visible = SecurityContext.IsAdmin
+                    });
                 }
                 return actions;
             }

@@ -27,7 +27,7 @@ namespace R7.University.ModelExtensions
 {
     public static class EduProgramProfileFormYearExtensions
     {
-        struct IntPair: IEquatable<IntPair>
+        struct IntPair : IEquatable<IntPair>
         {
             public readonly int x;
             public readonly int y;
@@ -56,7 +56,7 @@ namespace R7.University.ModelExtensions
 
         public static IEnumerable<EduProgramProfileFormYearInfo> LastYearOnly (this IEnumerable<EduProgramProfileFormYearInfo> eppfys)
         {
-            var profileForms = new Dictionary<IntPair,int> ();
+            var profileForms = new Dictionary<IntPair, int> ();
             int yearId;
             foreach (var eppfy in eppfys) {
                 var key = new IntPair (eppfy.EduProgramProfileId, eppfy.EduFormId);
@@ -65,6 +65,12 @@ namespace R7.University.ModelExtensions
                     yield return eppfy;
                 }
             }
+        }
+
+        public static string FormatTitle (this IEduProgramProfileFormYear eppfy, string resourceFile)
+        {
+            return $"{eppfy.EduProgramProfile.FormatTitle ()}: {eppfy.EduProgramProfile.EduLevel.FormatTitle ()}"
+                + $" - {eppfy.EduForm.FormatTitle (resourceFile)} / {eppfy.Year.Year}";
         }
     }
 }

@@ -22,6 +22,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions
 {
@@ -31,6 +32,11 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgram eduProgram, SystemDocumentType documentType)
         {
             return eduProgram.Documents.Where (d => d.GetSystemDocumentType () == documentType);
+        }
+
+        public static string FormatTitle (this IEduProgram ep)
+        {
+            return FormatHelper.FormatEduProgramTitle (ep.Code, ep.Title);
         }
     }
 }

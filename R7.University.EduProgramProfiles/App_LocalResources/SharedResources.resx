@@ -78,4 +78,13 @@
     <data name="TimeToLearnHours3.Format" xml:space="preserve">
         <value>{0} hours</value>
     </data>
+	<data name="EduForm_FullTime.Text" xml:space="preserve">
+        <value>Full Time</value>
+    </data>
+    <data name="EduForm_PartTime.Text" xml:space="preserve">
+        <value>Part Time</value>
+    </data>
+    <data name="EduForm_Extramural.Text" xml:space="preserve">
+        <value>Extramural</value>
+    </data>
 </root>

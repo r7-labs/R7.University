@@ -22,27 +22,45 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Web;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms
 {
-    public partial class EditScience: UniversityEditPortalModuleBase<ScienceInfo>, IActionable
+    public partial class EditScience : UniversityEditPortalModuleBase<ScienceInfo>, IActionable
     {
         protected EditScience () : base ("science_id")
         {
         }
 
-        protected override void OnInit (EventArgs e)
+        protected int? GetEduProgramId () =>
+        	TypeUtils.ParseToNullable<int> (Request.QueryString [Key])
+        			 ?? TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
+
+        protected IEduProgram GetEduProgram ()
         {
-            base.OnInit (e);
+        	var eduProgramId = GetEduProgramId ();
+        	return eduProgramId != null ? ModelContext.Get<EduProgramInfo> (eduProgramId.Value) : null;
+        }
+
+        protected override void OnLoad (EventArgs e)
+        {
+        	base.OnLoad (e);
+
+            var eduProgram = GetEduProgram ();
+            if (eduProgram != null) {
+                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (eduProgram.FormatTitle (), " &gt; ");
+            }
         }
 
         #region UniversityEditPortalModuleBase implementation
@@ -127,15 +145,14 @@ namespace R7.University.EduPrograms
         public ModuleActionCollection ModuleActions {
             get {
                 var actions = new ModuleActionCollection ();
-                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]) 
-                             ?? TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
-                if (itemId != null) {
+                var eduProgramId = GetEduProgramId ();
+                if (eduProgramId != null) {
                     actions.Add (new ModuleAction (GetNextActionID ()) {
                         Title = LocalizeString ("EditEduProgram.Action"),
                         CommandName = ModuleActionType.EditContent,
                         Icon = UniversityIcons.Edit,
                         Secure = SecurityAccessLevel.Edit,
-                        Url = EditUrl ("eduprogram_id", itemId.ToString (), "EditEduProgram"),
+                        Url = EditUrl ("eduprogram_id", eduProgramId.ToString (), "EditEduProgram"),
                         Visible = SecurityContext.IsAdmin
                     });
                 }
