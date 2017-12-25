@@ -30,6 +30,7 @@ using R7.University.Commands;
 using R7.University.Components;
 using R7.University.Models;
 using R7.University.Modules;
+using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms
 {
@@ -64,7 +65,7 @@ namespace R7.University.EduPrograms
             textPatentsForeign.Text = item.PatentsForeign.ToString ();
             textCertificates.Text = item.Certificates.ToString ();
             textCertificatesForeign.Text = item.CertificatesForeign.ToString ();
-            textFinancingByScientist.Text = item.FinancingByScientist.ToString ();
+            textFinancingByScientist.Text = item.FinancingByScientist.ToIntegerString ();
         }
 
         protected override void BeforeUpdateItem (ScienceInfo item)

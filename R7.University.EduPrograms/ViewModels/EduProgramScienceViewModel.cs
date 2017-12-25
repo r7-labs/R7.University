@@ -79,6 +79,11 @@ namespace R7.University.EduPrograms.ViewModels
             return value != null ? value.ToString () : "-";
         }
 
+        string FormatValue (decimal? value)
+        {
+            return value != null ? value.ToIntegerString () : "-";
+        }
+
         string GetPopupHtml (string html, string itemprop)
         {
             if (!string.IsNullOrEmpty (html)) {
