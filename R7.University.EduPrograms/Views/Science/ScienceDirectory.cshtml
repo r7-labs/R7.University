@@ -45,25 +45,25 @@ else {
 				</tr>
     	    </thead>
     	    <tbody>
-        	    @foreach (var eps in Model.EduProgramScienceViewModels) {
+			    @foreach (var eps in Model.EduProgramScienceViewModels) {
                     <tr data-title="@FormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)" class="@eps.CssClass">
-				        @if (Dnn.ModuleContext.IsEditable) {
+                        @if (Dnn.ModuleContext.IsEditable) {
                             <td><a href="@eps.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
                         }
-        			    <td itemprop="eduCode">@eps.Code</td>
-        			    <td itemprop="eduName">@eps.Title</td>
+    			        <td itemprop="eduCode">@eps.Code</td>
+                        <td itemprop="eduName">@eps.Title</td>
     				    <td>@eps.DirectionsHtml</td>
     				    <td>@eps.BaseHtml</td>
-                        <td>@eps.ScientistsHtml</td>
-        				<td>@eps.StudentsHtml</td>
-        				<td>@eps.MonographsHtml</td>
-        				<td>@eps.ArticlesHtml</td>
-        				<td>@eps.PatentsHtml</td>
-        				<td>@eps.CertificatesHtml</td>
-        				<td>@eps.FinancesHtml</td>
-        			</tr>
+    				    <td itemprop="nprNir">@eps.Scientists</td>
+    				    <td itemprop="studNir">@eps.Students</td>
+    				    <td itemprop="monografNir">@eps.Monographs</td>
+                        <td itemprop="articleNir">@eps.Articles / @eps.ArticlesForeign</td>
+    				    <td><span itemprop="patentRNir">@eps.Patents</span> / <span itemprop="patentZNir">@eps.PatentsForeign</span></td>
+    				    <td><span itemprop="svidRNir">@eps.Certificates</span> / <span itemprop="svidZNir">@eps.CertificatesForeign</span></td>
+    				    <td itemprop="financeNir">@eps.FinancingByScientist</td>
+    			    </tr>
                 }
-    		</tbody>
+			</tbody>
         </table>
 	</div>
     @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_AgplSignature.cshtml", new AgplSignatureViewModel ())

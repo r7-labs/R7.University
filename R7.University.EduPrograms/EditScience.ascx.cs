@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Text.RegularExpressions;
+using System.Web;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -28,28 +30,18 @@ using R7.University.Commands;
 using R7.University.Components;
 using R7.University.Models;
 using R7.University.Modules;
-using R7.University.Queries;
-using R7.University.EduPrograms.Queries;
 
 namespace R7.University.EduPrograms
 {
-    public partial class EditScience: UniversityEditPortalModuleBase<EduProgramInfo>, IActionable
+    public partial class EditScience: UniversityEditPortalModuleBase<ScienceInfo>, IActionable
     {
-        protected EditScience () : base ("eduprogram_id")
+        protected EditScience () : base ("science_id")
         {
         }
 
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
-
-            var scienceRecordTypes = new FlatQuery<ScienceRecordTypeInfo> (ModelContext).List ();
-            formEditScienceRecords.OnInit (this, scienceRecordTypes);
-        }
-
-        protected override bool CanDeleteItem (EduProgramInfo item)
-        {
-            return false;
         }
 
         #region UniversityEditPortalModuleBase implementation
@@ -59,35 +51,72 @@ namespace R7.University.EduPrograms
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
-        protected override void LoadItem (EduProgramInfo item)
+        protected override void LoadItem (ScienceInfo item)
         {
-            formEditScienceRecords.SetData (item.ScienceRecords, item.EduProgramID);
+            textDirections.Text = item.Directions;
+            textBase.Text = item.Base;
+            textScientists.Text = item.Scientists.ToString ();
+            textStudents.Text = item.Students.ToString ();
+            textMonographs.Text = item.Monographs.ToString ();
+            textArticles.Text = item.Articles.ToString ();
+            textArticlesForeign.Text = item.ArticlesForeign.ToString ();
+            textPatents.Text = item.Patents.ToString ();
+            textPatentsForeign.Text = item.PatentsForeign.ToString ();
+            textCertificates.Text = item.Certificates.ToString ();
+            textCertificatesForeign.Text = item.CertificatesForeign.ToString ();
+            textFinancingByScientist.Text = item.FinancingByScientist.ToString ();
         }
 
-        protected override void BeforeUpdateItem (EduProgramInfo item)
+        protected override void BeforeUpdateItem (ScienceInfo item)
         {
+            item.Directions = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textDirections.Text)));
+            item.Base = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textBase.Text)));
+            item.Scientists = TypeUtils.ParseToNullable<int> (textScientists.Text);
+            item.Students = TypeUtils.ParseToNullable<int> (textStudents.Text);
+            item.Monographs = TypeUtils.ParseToNullable<int> (textMonographs.Text);
+            item.Articles = TypeUtils.ParseToNullable<int> (textArticles.Text);
+            item.ArticlesForeign = TypeUtils.ParseToNullable<int> (textArticlesForeign.Text);
+            item.Patents = TypeUtils.ParseToNullable<int> (textPatents.Text);
+            item.PatentsForeign = TypeUtils.ParseToNullable<int> (textPatentsForeign.Text);
+            item.Certificates = TypeUtils.ParseToNullable<int> (textCertificates.Text);
+            item.CertificatesForeign = TypeUtils.ParseToNullable<int> (textCertificatesForeign.Text);
+            item.FinancingByScientist = TypeUtils.ParseToNullable<decimal> (textFinancingByScientist.Text);
         }
 
-        protected override EduProgramInfo GetItemWithDependencies (int itemId)
+        string StripScripts (string html)
         {
-            return new EduProgramScienceQuery (ModelContext).SingleOrDefault (itemId);
+        	html = Regex.Replace (html, @"<script.*>.*</script>", string.Empty, RegexOptions.Singleline);
+        	html = Regex.Replace (html, @"<script.*/>", string.Empty, RegexOptions.Singleline);
+
+        	return html;
         }
 
-        protected override void UpdateItem (EduProgramInfo item)
+        protected override ScienceInfo GetItemWithDependencies (int itemId)
         {
-            var scienceRecords = formEditScienceRecords.GetModifiedData ();
-            new UpdateScienceRecordsCommand (ModelContext).Update (scienceRecords, item.EduProgramID);
+            return ModelContext.Get<ScienceInfo> (itemId);
+        }
+
+        protected override void UpdateItem (ScienceInfo item)
+        {
+            ModelContext.Update (item);
             ModelContext.SaveChanges (true);
         }
 
-        protected override void AddItem (EduProgramInfo item)
+        protected override void AddItem (ScienceInfo item)
         {
-            throw new InvalidOperationException ();
+            var scienceId = TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
+            if (scienceId != null) {
+                item.ScienceId = scienceId.Value;
+            }
+
+            new AddCommand<ScienceInfo> (ModelContext, SecurityContext).Add (item);
+            ModelContext.SaveChanges ();
         }
 
-        protected override void DeleteItem (EduProgramInfo item)
+        protected override void DeleteItem (ScienceInfo item)
         {
-            throw new InvalidOperationException ();
+            new DeleteCommand<ScienceInfo> (ModelContext, SecurityContext).Delete (item);
+            ModelContext.SaveChanges ();
         }
 
         #endregion
@@ -97,7 +126,8 @@ namespace R7.University.EduPrograms
         public ModuleActionCollection ModuleActions {
             get {
                 var actions = new ModuleActionCollection ();
-                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]) 
+                             ?? TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
                 if (itemId != null) {
                     actions.Add (new ModuleAction (GetNextActionID ()) {
                         Title = LocalizeString ("EditEduProgram.Action"),

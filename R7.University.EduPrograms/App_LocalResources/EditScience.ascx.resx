@@ -21,4 +21,79 @@
 	<data name="EditEduProgram.Action" xml:space="preserve">
         <value>Edit Edu. Program</value>
     </data>
+	<data name="Directions.Tab" xml:space="preserve">
+        <value>Scientific Directions</value>
+    </data>
+	<data name="Base.Tab" xml:space="preserve">
+        <value>Scientific and Research Base</value>
+    </data>
+	<data name="Values.Tab" xml:space="preserve">
+        <value>Values</value>
+    </data>
+	<data name="labelDirections.Text" xml:space="preserve">
+        <value>Scientific Directions:</value>
+    </data>
+    <data name="labelDirections.Help" xml:space="preserve">
+        <value>The list of scientific directions within which scientific (research) activity is conducted.</value>
+    </data>
+	<data name="labelBase.Text" xml:space="preserve">
+        <value>Scientific and Research Base:</value>
+    </data>
+    <data name="labelBase.Help" xml:space="preserve">
+        <value>Information on the scientific and research base for the implementation of scientific (research) activities.</value>
+    </data>
+	<data name="labelScientists.Text" xml:space="preserve">
+        <value>Number of Scientists:</value>
+    </data>
+    <data name="labelScientists.Help" xml:space="preserve">
+        <value>Number of scientists participating in scientific (research) activities, number of peoples.</value>
+    </data>
+	<data name="labelStudents.Text" xml:space="preserve">
+        <value>Number of Students:</value>
+    </data>
+    <data name="labelStudents.Help" xml:space="preserve">
+        <value>Number of students taking part in scientific (research) activities, number of peoples.</value>
+    </data>
+	<data name="labelMonographs.Text" xml:space="preserve">
+        <value>Number of Monographs:</value>
+    </data>
+    <data name="labelMonographs.Help" xml:space="preserve">
+        <value>Number of published monographs of scientific and pedagogical workers of the educational organization in all scientific fields for the last year.</value>
+    </data>
+    <data name="labelArticles.Text" xml:space="preserve">
+        <value>Number of Articles:</value>
+    </data>
+    <data name="labelArticles.Help" xml:space="preserve">
+        <value>The number of articles published and accepted for publication in publications recommended by the HAC / foreign for the publication of scientific works in the last year.</value>
+    </data>
+	<data name="labelPatents.Text" xml:space="preserve">
+        <value>Number of Patents:</value>
+    </data>
+    <data name="labelPatents.Help" xml:space="preserve">
+        <value>Number of patents received for development in the last year: russian / foreign.</value>
+    </data>
+    <data name="labelCertificates.Text" xml:space="preserve">
+        <value>Number of Certificates:</value>
+    </data>
+    <data name="labelCertificates.Help" xml:space="preserve">
+        <value>Number of certificates of registration of an intellectual property object issued for development in the last year: russian / foreign.</value>
+    </data>
+    <data name="labelFinancingByScientist.Text" xml:space="preserve">
+        <value>Volume of Research Funding per Scientist:</value>
+    </data>
+    <data name="labelFinancingByScientist.Help" xml:space="preserve">
+        <value>The average annual volume of research funding per scientific-pedagogical worker of the organization (in the reduced to integer values of rates), thousands of rub.</value>
+    </data>
+	<data name="ArticlesHAC.Text" xml:space="preserve">
+        <value>in publications recommended by HAC:</value>
+    </data>
+	<data name="ArticlesForeign.Text" xml:space="preserve">
+        <value>in foreign publications:</value>
+    </data>
+	<data name="Local.Text" xml:space="preserve">
+        <value>russian:</value>
+    </data>
+	<data name="Foreign.Text" xml:space="preserve">
+        <value>foreign:</value>
+    </data>
 </root>

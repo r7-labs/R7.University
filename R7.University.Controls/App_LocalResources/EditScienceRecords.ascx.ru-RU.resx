@@ -94,7 +94,7 @@
         <value>Количество изданных и принятых к публикации статей в изданиях, рекомендованных ВАК / зарубежных для публикации научных работ за последний год</value>
     </data>
 	<data name="SystemScienceRecordType_Articles.Value1" xml:space="preserve">
-        <value>Статей в изданиях, рекоменндованных ВАК:</value>
+        <value>Статей в изданиях, рекомендованных ВАК:</value>
     </data>
 	<data name="SystemScienceRecordType_Articles.Value2" xml:space="preserve">
         <value>Статей в зарубежных изданиях:</value>

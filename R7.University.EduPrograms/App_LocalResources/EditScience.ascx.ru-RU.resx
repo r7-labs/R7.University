@@ -21,4 +21,79 @@
 	<data name="EditEduProgram.Action" xml:space="preserve">
         <value>Редактировать обр. программу</value>
     </data>
+	<data name="Directions.Tab" xml:space="preserve">
+        <value>Направления ННИД</value>
+    </data>
+    <data name="Base.Tab" xml:space="preserve">
+        <value>База ННИД</value>
+    </data>
+    <data name="Values.Tab" xml:space="preserve">
+        <value>Показатели</value>
+    </data>
+	<data name="labelDirections.Text" xml:space="preserve">
+        <value>Направления научных исследований:</value>
+    </data>
+    <data name="labelDirections.Help" xml:space="preserve">
+        <value>Перечень научных направлений, в рамках которых ведется научная (научно-исследовательская) деятельность.</value>
+    </data>
+    <data name="labelBase.Text" xml:space="preserve">
+        <value>Научно-исследовательская база:</value>
+    </data>
+    <data name="labelBase.Help" xml:space="preserve">
+        <value>Информация о научно-исследовательской базе для осуществления научной (научно-исследовательской) деятельности.</value>
+    </data>
+    <data name="labelScientists.Text" xml:space="preserve">
+        <value>НПР, принимающих участие в ННИД:</value>
+    </data>
+    <data name="labelScientists.Help" xml:space="preserve">
+        <value>Количество НПР, принимающих участие в научной (научно-исследовательской) деятельности, чел.</value>
+    </data>
+    <data name="labelStudents.Text" xml:space="preserve">
+        <value>Студентов:</value>
+    </data>
+    <data name="labelStudents.Help" xml:space="preserve">
+        <value>Количество студентов, принимающих участие в научной (научно-исследовательской) деятельности, чел.</value>
+    </data>
+    <data name="labelMonographs.Text" xml:space="preserve">
+        <value>Монографий:</value>
+    </data>
+    <data name="labelMonographs.Help" xml:space="preserve">
+        <value>Количество изданных монографий научно-педагогических работников образовательной организации по всем научным направлениям за последний год.</value>
+    </data>
+    <data name="labelArticles.Text" xml:space="preserve">
+        <value>Статей:</value>
+    </data>
+    <data name="labelArticles.Help" xml:space="preserve">
+        <value>Количество изданных и принятых к публикации статей в изданиях, рекомендованных ВАК / зарубежных для публикации научных работ за последний год.</value>
+    </data>
+    <data name="labelPatents.Text" xml:space="preserve">
+        <value>Патентов на разработки:</value>
+    </data>
+    <data name="labelPatents.Help" xml:space="preserve">
+        <value>Количество патентов, полученных на разработки за последний год: российских / зарубежных.</value>
+    </data>
+    <data name="labelCertificates.Text" xml:space="preserve">
+        <value>Свидетельств о регистрации объекта ИС:</value>
+    </data>
+    <data name="labelCertificates.Help" xml:space="preserve">
+        <value>Количество свидетельств о регистрации объекта интеллектуальной собственности, выданных на разработки за последний год: российских / зарубежных.</value>
+    </data>
+    <data name="labelFinancingByScientist.Text" xml:space="preserve">
+        <value>Объём финансирования на одного НПР:</value>
+    </data>
+    <data name="labelFinancingByScientist.Help" xml:space="preserve">
+        <value>Среднегодовой объём финансирования научных исследований на одного научно-педагогического работника организации (в приведенных к целочисленным значениям ставок), тыс. руб.</value>
+    </data>
+    <data name="ArticlesHAC.Text" xml:space="preserve">
+        <value>в изданиях, рекомендованных ВАК:</value>
+    </data>
+    <data name="ArticlesForeign.Text" xml:space="preserve">
+        <value>в зарубежных изданиях:</value>
+    </data>
+    <data name="Local.Text" xml:space="preserve">
+        <value>российских:</value>
+    </data>
+    <data name="Foreign.Text" xml:space="preserve">
+        <value>зарубежных:</value>
+    </data>
 </root>

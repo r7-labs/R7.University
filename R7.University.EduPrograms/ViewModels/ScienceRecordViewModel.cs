@@ -19,14 +19,16 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Web;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Models;
 using R7.University.EduPrograms.Models;
+using R7.University.Models;
 using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms.ViewModels
 {
+    [Obsolete]
     public class ScienceRecordViewModel : IScienceRecord
     {
         protected IScienceRecord ScienceRecord;

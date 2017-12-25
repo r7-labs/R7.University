@@ -39,6 +39,7 @@ namespace R7.University.EduPrograms.Queries
                                .Include (ep => ep.EduLevel)
                                .Include (ep => ep.Divisions)
                                .Include (ep => ep.Divisions.Select (epd => epd.Division))
+                               .Include (ep => ep.Science)
                                .Include (ep => ep.ScienceRecords)
                                .Include (ep => ep.ScienceRecords.Select (sr => sr.ScienceRecordType))
                                .SingleOrDefault ();
@@ -71,7 +72,8 @@ namespace R7.University.EduPrograms.Queries
             return ModelContext.Query<EduProgramInfo> ()
                                .Include (ep => ep.EduLevel)
                                .Include (ep => ep.Divisions)
-                               .Include (ep => ep.Divisions.Select (d => d.Division))    
+                               .Include (ep => ep.Divisions.Select (d => d.Division))
+                               .Include (ep => ep.Science)
                                .Include (ep => ep.ScienceRecords)
                                .Include (ep => ep.ScienceRecords.Select (sr => sr.ScienceRecordType));
         }
