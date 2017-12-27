@@ -85,13 +85,9 @@
 			<Project>{D76E76D0-18E9-487E-825A-4C18123A48F4}</Project>
 			<Name>R7.University.DivisionDirectory</Name>
 		</ProjectReference>
-		<ProjectReference Include="..\R7.University.EduProgram\R7.University.EduProgram.csproj">
+		<ProjectReference Include="..\R7.University.EduPrograms\R7.University.EduPrograms.csproj">
 			<Project>{71EEFF26-83B2-462A-A809-AB887A905003}</Project>
-			<Name>R7.University.EduProgram</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\R7.University.EduProgramDirectory\R7.University.EduProgramDirectory.csproj">
-			<Project>{C6B64609-D737-435C-8C58-5BF0CE1C9F51}</Project>
-			<Name>R7.University.EduProgramDirectory</Name>
+			<Name>R7.University.EduPrograms</Name>
 		</ProjectReference>
 		<ProjectReference Include="..\R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj">
 			<Project>{6734EECF-00F2-4870-99E1-7C893069B0D7}</Project>
@@ -112,10 +108,6 @@
 		<ProjectReference Include="..\R7.University.Launchpad\R7.University.Launchpad.csproj">
 			<Project>{438F599E-41B4-4057-BFAA-FAA698E052DD}</Project>
 			<Name>R7.University.Launchpad</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\R7.University.Science\R7.University.Science.csproj">
-			<Project>{C564168C-AC2A-448D-9E0B-566E049701EB}</Project>
-			<Name>R7.University.Science</Name>
 		</ProjectReference>
 		<ProjectReference Include="..\R7.University.Tests\R7.University.Tests.csproj">
 			<Project>{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}</Project>

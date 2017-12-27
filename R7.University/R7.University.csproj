@@ -186,7 +186,6 @@
     <Compile Include="Utilities\UniversityUrlHelper.cs" />
     <Compile Include="Utilities\UniversityCultureHelper.cs" />
     <Compile Include="Utilities\UniversityModuleHelper.cs" />
-    <Compile Include="Utilities\XmlSerializationHelper.cs" />
     <Compile Include="Commands\ISecureCommand.cs" />
     <Compile Include="Security\ISecurityContext.cs" />
     <Compile Include="Security\ModuleSecurityContext.cs" />
@@ -215,11 +214,7 @@
     <Compile Include="Commands\UpdateEduProgramDivisionCommand.cs" />
     <Compile Include="Components\UniversityIcons.cs" />
     <Compile Include="Models\DocumentGroupComparer.cs" />
-    <Compile Include="Models\SystemScienceRecordType.cs" />
-    <Compile Include="ModelExtensions\ScienceRecordTypeExtensions.cs" />
     <Compile Include="ViewModels\FormatExtensions.cs" />
-    <Compile Include="Commands\UpdateScienceRecordsCommand.cs" />
-    <Compile Include="Models\ScienceRecordTypeOfValues.cs" />
     <Compile Include="Components\UniversityAssembly.cs" />
     <Compile Include="Models\Year.cs" />
     <Compile Include="Models\EduProgramProfileFormYear.cs" />
@@ -234,8 +229,6 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\OccupiedPosition.cs" />
     <Compile Include="Models\Position.cs" />
-    <Compile Include="Models\ScienceRecord.cs" />
-    <Compile Include="Models\ScienceRecordType.cs" />
     <Compile Include="EditModels\ModelEditState.cs" />
     <Compile Include="EditModels\IEditModel.cs" />
     <Compile Include="Utilities\LocalizationHelper.cs" />
@@ -248,6 +241,10 @@
     <Compile Include="Models\Contingent.cs" />
     <Compile Include="Data\Mappings\ContingentMapping.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileFormYearExtensions.cs" />
+    <Compile Include="Data\Mappings\ScienceMapping.cs" />
+    <Compile Include="Models\Science.cs" />
+    <Compile Include="ModelExtensions\EduLevelExtensions.cs" />
+    <Compile Include="ModelExtensions\EduFormExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -319,7 +316,5 @@
   <ItemGroup>
     <Content Include="css\admin.css" />
     <None Include="SqlDataProvider\01.16.00.SqlDataProvider" />
-    <Compile Include="Data\Mappings\ScienceRecordTypeMapping.cs" />
-    <Compile Include="Data\Mappings\ScienceRecordMapping.cs" />
   </ItemGroup>
 </Project>

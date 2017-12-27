@@ -146,12 +146,6 @@
     <Compile Include="EditPositions.controls.ascx.cs">
       <DependentUpon>EditPositions.ascx</DependentUpon>
     </Compile>
-    <Compile Include="EditScienceRecords.controls.ascx.cs">
-      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="EditScienceRecords.ascx.cs">
-      <DependentUpon>EditScienceRecords.ascx</DependentUpon>
-    </Compile>
     <Compile Include="GridAndFormControlBase.cs" />
     <Compile Include="EditModels\DocumentEditModel.cs" />
     <Compile Include="EditModels\EduProgramDivisionEditModel.cs" />
@@ -159,7 +153,6 @@
     <Compile Include="EditModels\EmployeeAchievementEditModel.cs" />
     <Compile Include="EditModels\EmployeeDisciplineEditModel.cs" />
     <Compile Include="EditModels\OccupiedPositionEditModel.cs" />
-    <Compile Include="EditModels\ScienceRecordEditModel.cs" />
     <Compile Include="EditModels\EditModelBase.cs" />
     <Compile Include="EditEduFormYears.ascx.controls.cs">
       <DependentUpon>EditEduFormYears.ascx</DependentUpon>
@@ -191,16 +184,12 @@
     <None Include="App_LocalResources\EditEduForms.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditPositions.ascx.resx" />
     <None Include="App_LocalResources\EditPositions.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\EditScienceRecords.ascx.resx" />
-    <None Include="App_LocalResources\EditScienceRecords.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
-    <None Include="css\edit-sciencerecords.css" />
     <None Include="js\editDisciplines.js" />
     <None Include="js\editDivisions.js" />
     <None Include="js\editDocuments.js" />
     <None Include="js\editEduForms.js" />
-    <None Include="js\editScienceRecords.js" />
     <None Include="js\gridAndForm.js" />
     <None Include="AgplSignature.ascx" />
     <None Include="DivisionSelector.ascx" />
@@ -210,7 +199,6 @@
     <None Include="EditDocuments.ascx" />
     <None Include="EditEduForms.ascx" />
     <None Include="EditPositions.ascx" />
-    <None Include="EditScienceRecords.ascx" />
     <None Include="packages.config" />
     <None Include="css\grid-and-form.css" />
     <None Include="EditEduFormYears.ascx" />

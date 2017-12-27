@@ -67,7 +67,6 @@ namespace R7.University.Tests.ViewModels
 
             fixture.Customize<EduProgramInfo> (c => c.Without (ep => ep.Divisions)
                                                .Without (ep => ep.EduProgramProfiles)
-                                               .Without (ep => ep.ScienceRecords)
                                                .Without (ep => ep.EduLevel));
             var eduProgram = fixture.Create<EduProgramInfo> ();
             var eduProgramViewModel = new EduProgramViewModel (eduProgram);

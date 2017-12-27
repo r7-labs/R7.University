@@ -32,7 +32,7 @@ using R7.University.EduProgramProfiles.Queries;
 using R7.University.EduProgramProfiles.ViewModels;
 using R7.University.Models;
 
-namespace R7.University.Science.Controllers
+namespace R7.University.EduPrograms.Controllers
 {
     [DnnHandleError]
     public class EduVolumeController : DnnController
@@ -41,8 +41,7 @@ namespace R7.University.Science.Controllers
 
         public ActionResult EduVolumeDirectory ()
         {
-            // TODO: Restore caching
-            return View (GetEduVolumeDirectoryViewModel ().WithFilter (ModuleContext.IsEditable, HttpContext.Timestamp));
+            return View (GetCachedEduVolumeDirectoryViewModel ().WithFilter (ModuleContext.IsEditable, HttpContext.Timestamp));
         }
 
         #endregion

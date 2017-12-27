@@ -198,6 +198,8 @@
     <Compile Include="EditContingent.ascx.cs">
       <DependentUpon>EditContingent.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Queries\EduProgramProfileFormYearEditQuery.cs" />
+    <Compile Include="Modules\EduProgramProfileFormYearEditModuleBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
@@ -218,9 +220,9 @@
     <None Include="App_LocalResources\EditEduProgramProfileDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.resx" />
     <None Include="App_LocalResources\EditEduProgramProfile.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEduVolumeDirectorySettings.ascx.resx" />
     <None Include="App_LocalResources\EduVolume.resx" />
     <None Include="App_LocalResources\EduVolume.ru-RU.resx" />
-    <None Include="App_LocalResources\EditEduVolumeDirectorySettings.ascx.resx" />
     <None Include="App_LocalResources\EditEduVolumeDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\ViewEduProgramProfileDirectory.ascx.resx" />

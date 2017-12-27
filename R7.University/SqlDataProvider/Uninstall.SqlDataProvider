@@ -109,20 +109,24 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramDivisions]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramDivisions_EduProgramProfiles] 
 GO
 
-ALTER TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
-    DROP CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_EduPrograms] 
-GO
-
-ALTER TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
-    DROP CONSTRAINT [FK_{objectQualifier}University_ScienceRecords_ScienceRecordTypes] 
-GO
-
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_EduProgramProfileForms] 
 GO
 
 ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears]
     DROP CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_Years] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EduVolume]
+    DROP CONSTRAINT [FK_{objectQualifier}University_EduVolume_EduProgramProfileFormYears] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Contingent]
+    DROP CONSTRAINT [FK_{objectQualifier}University_Contingent_EduProgramProfileFormYears] 
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}University_Science]
+    DROP CONSTRAINT [FK_{objectQualifier}University_Science_EduPrograms] 
 GO
 
 -- Drop stored procedures & functions
@@ -191,12 +195,6 @@ GO
 DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
-GO
-
-DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
-GO
-
 DROP TABLE {databaseOwner}[{objectQualifier}University_Divisions]
 GO
 
@@ -206,14 +204,23 @@ GO
 DROP TABLE {databaseOwner}[{objectQualifier}University_AchievementTypes]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_ScienceRecordTypes]
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduVolume]
 GO
 
-DROP TABLE {databaseOwner}[{objectQualifier}University_ScienceRecords]
+DROP TABLE {databaseOwner}[{objectQualifier}University_Contingent]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears]
 GO
 
 DROP TABLE {databaseOwner}[{objectQualifier}University_Years]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_Science]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
 GO

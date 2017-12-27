@@ -54,10 +54,7 @@
 	<data name="EduProgramDivisions.Text" xml:space="preserve">
         <value>Подразделения обр. программы</value>
     </data>
-     <data name="ScienceRecordTypes.Text" xml:space="preserve">
-        <value>Типы записей о науке</value>
-    </data>
-	<data name="Years.Text" xml:space="preserve">
+    <data name="Years.Text" xml:space="preserve">
         <value>Годы</value>
     </data>
 </root>

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,12 +27,12 @@ using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
+using R7.University.EduProgramProfiles.Modules;
 using R7.University.Models;
-using R7.University.Modules;
 
 namespace R7.University.EduProgramProfiles
 {
-    public partial class EditContingent : UniversityEditPortalModuleBase<ContingentInfo>, IActionable
+    public partial class EditContingent : EduProgramProfileFormYearEditModuleBase<ContingentInfo>, IActionable
     {
         public enum EditContingentTab
         {
@@ -193,20 +193,16 @@ namespace R7.University.EduProgramProfiles
         public ModuleActionCollection ModuleActions {
             get {
                 var actions = new ModuleActionCollection ();
-                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key])
-                             ?? TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
-                if (itemId != null) {
-                    var formYear = ModelContext.Get<EduProgramProfileFormYearInfo> (itemId.Value);
-                    if (formYear != null) {
-                        actions.Add (new ModuleAction (GetNextActionID ()) {
-                            Title = LocalizeString ("EditEduProgramProfile.Action"),
-                            CommandName = ModuleActionType.EditContent,
-                            Icon = UniversityIcons.Edit,
-                            Secure = SecurityAccessLevel.Edit,
-                            Url = EditUrl ("eduprogramprofile_id", formYear.EduProgramProfileId.ToString (), "EditEduProgramProfile"),
-                            Visible = SecurityContext.IsAdmin
-                        });
-                    }
+                var eppfy = GetEduProgramProfileFormYear ();
+                if (eppfy != null) {
+                    actions.Add (new ModuleAction (GetNextActionID ()) {
+                        Title = LocalizeString ("EditEduProgramProfile.Action"),
+                        CommandName = ModuleActionType.EditContent,
+                        Icon = UniversityIcons.Edit,
+                        Secure = SecurityAccessLevel.Edit,
+                        Url = EditUrl ("eduprogramprofile_id", eppfy.EduProgramProfileId.ToString (), "EditEduProgramProfile"),
+                        Visible = SecurityContext.IsAdmin
+                    });
                 }
                 return actions;
             }
