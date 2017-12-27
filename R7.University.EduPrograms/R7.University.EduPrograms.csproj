@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71EEFF26-83B2-462A-A809-AB887A905003}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>R7.University.EduPrograms</RootNamespace>
+    <AssemblyName>R7.University.EduPrograms</AssemblyName>
+    <ReleaseVersion>1.16.0</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\R7.University\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\R7.University\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="DotNetNuke">
+      <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web">
+      <HintPath>..\packages\DotNetNuke.Web.8.0.4.226\lib\net40\DotNetNuke.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Deprecated">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\DotNetNuke.Web.Deprecated.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.4.2.1\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Web.Mvc">
+      <HintPath>..\packages\DotNetNuke.Web.Mvc.8.0.4.226\lib\net45\DotNetNuke.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.1\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.1\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="NGettext">
+      <HintPath>..\packages\NGettext.0.6.3\lib\net45\NGettext.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="R7.Dnn.Extensions">
+      <HintPath>..\packages\R7.Dnn.Extensions.0.12.0\lib\net45\R7.Dnn.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EditEduProgramSettings.ascx.cs">
+      <DependentUpon>EditEduProgramSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgramSettings.ascx.controls.cs">
+      <DependentUpon>EditEduProgramSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEduProgram.ascx.cs">
+      <DependentUpon>ViewEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEduProgram.ascx.controls.cs">
+      <DependentUpon>ViewEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\EduProgramController.cs" />
+    <Compile Include="EditEduProgram.ascx.cs">
+      <DependentUpon>EditEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgram.ascx.controls.cs">
+      <DependentUpon>EditEduProgram.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EduProgramViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramModuleViewModel.cs" />
+    <Compile Include="Queries\EduProgramQuery.cs" />
+    <Compile Include="ViewModels\EduProgramProfileEditModel.cs" />
+    <Compile Include="Models\EduProgramSettings.cs" />
+    <Compile Include="ViewModels\EduProgramDivisionViewModel.cs" />
+    <Compile Include="ViewEduProgramDirectory.ascx.cs">
+      <DependentUpon>ViewEduProgramDirectory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEduProgramDirectory.ascx.controls.cs">
+      <DependentUpon>ViewEduProgramDirectory.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgramDirectorySettings.ascx.cs">
+      <DependentUpon>EditEduProgramDirectorySettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgramDirectorySettings.ascx.controls.cs">
+      <DependentUpon>EditEduProgramDirectorySettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EduProgramStandardObrnadzorViewModel.cs" />
+    <Compile Include="Models\EduProgramDirectoryColumn.cs" />
+    <Compile Include="Models\EduProgramDirectorySettings.cs" />
+    <Compile Include="Components\EduProgramDirectoryController.cs" />
+    <Compile Include="Queries\EduProgramDirectoryQuery.cs" />
+    <Compile Include="Components\ScienceDirectoryController.cs" />
+    <Compile Include="Controllers\ScienceController.cs" />
+    <Compile Include="Models\ScienceDirectorySettings.cs" />
+    <Compile Include="Queries\ScienceDirectoryQuery.cs" />
+    <Compile Include="ViewModels\EduProgramScienceViewModel.cs" />
+    <Compile Include="ViewModels\ScienceDirectoryViewModel.cs" />
+    <Compile Include="EditScience.ascx.cs">
+      <DependentUpon>EditScience.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditScience.ascx.controls.cs">
+      <DependentUpon>EditScience.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditScienceDirectorySetting.ascx.cs">
+      <DependentUpon>EditScienceDirectorySettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditScienceDirectorySettings.ascx.controls.cs">
+      <DependentUpon>EditScienceDirectorySettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Queries\EduProgramQueryableExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="module.css" />
+    <Content Include="EditEduProgramSettings.ascx" />
+    <Content Include="ViewEduProgram.ascx" />
+    <Content Include="EditEduProgram.ascx" />
+    <Content Include="packages.config" />
+    <Content Include="ViewEduProgramDirectory.ascx" />
+    <Content Include="EditEduProgramDirectorySettings.ascx" />
+    <Content Include="admin.css" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Science\ScienceDirectory.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="EditScience.ascx" />
+    <Content Include="EditScienceDirectorySettings.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_LocalResources\SettingsEduProgram.ascx.resx" />
+    <None Include="App_LocalResources\SettingsEduProgram.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\ViewEduProgram.ascx.resx" />
+    <None Include="App_LocalResources\ViewEduProgram.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEduProgram.ascx.resx" />
+    <None Include="App_LocalResources\EditEduProgram.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\SharedResources.resx" />
+    <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
+    <None Include="App_LocalResources\SettingsEduProgramDirectory.ascx.resx" />
+    <None Include="App_LocalResources\SettingsEduProgramDirectory.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\ViewEduProgramDirectory.ascx.resx" />
+    <None Include="App_LocalResources\ViewEduProgramDirectory.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditScience.ascx.resx" />
+    <None Include="App_LocalResources\EditScience.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditScienceDirectorySettings.ascx.resx" />
+    <None Include="App_LocalResources\EditScienceDirectorySettings.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\Science.resx" />
+    <None Include="App_LocalResources\Science.ru-RU.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\R7.University\R7.University.csproj">
+      <Project>{8E8B70C4-FFD8-47E2-B8D0-A89E08FB4124}</Project>
+      <Name>R7.University</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
+      <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
+      <Name>R7.University.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Queries\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+</Project>
