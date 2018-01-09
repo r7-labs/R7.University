@@ -67,10 +67,10 @@
         <value>Educational Materials</value>
     </data>
     <data name="Contingent.Column" xml:space="preserve">
-        <value>Contingent</value>
+        <value>Contingent &lt;abbr title=&quot;Visible for editors only - this column will be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
     <data name="ContingentMovement.Column" xml:space="preserve">
-        <value>Contingent Movement</value>
+        <value>Contingent Movement &lt;abbr title=&quot;Visible for editors only - this column will be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
 	<data name="DocumentGroup.Column" xml:space="preserve">
         <value>Group</value>

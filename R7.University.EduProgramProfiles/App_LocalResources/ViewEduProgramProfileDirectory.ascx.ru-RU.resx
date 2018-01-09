@@ -67,10 +67,10 @@
         <value>Методические и иные документы</value>
     </data>
     <data name="Contingent.Column" xml:space="preserve">
-        <value>Информация о результатах приема (численности обучающихся)</value>
+        <value>Информация о результатах приема (численности обучающихся) &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
     <data name="ContingentMovement.Column" xml:space="preserve">
-        <value>Информация о результатах перевода, восстановления и отчисления</value>
+        <value>Информация о результатах перевода, восстановления и отчисления &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
 	<data name="DocumentGroup.Column" xml:space="preserve">
         <value>Группа документов</value>

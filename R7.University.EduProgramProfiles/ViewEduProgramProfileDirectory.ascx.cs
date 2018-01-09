@@ -351,6 +351,10 @@ namespace R7.University.EduProgramProfiles
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
+            // TODO: Remove contingent columns completely
+            e.Row.Cells [10].Visible = IsEditable;
+            e.Row.Cells [11].Visible = IsEditable;
+
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
                 e.Row.TableSection = TableRowSection.TableHeader;
