@@ -27,7 +27,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 {
     internal class EduProgramProfileDirectoryDocumentsViewModel
     {
-        public IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> EduProgramProfiles { get; set; }
+        public IndexedEnumerable<EduProgramProfileDocumentsViewModel> EduProgramProfiles { get; set; }
 
         public ViewModelContext<EduProgramProfileDirectorySettings> Context { get; protected set; }
 

@@ -114,8 +114,8 @@ namespace R7.University.EduProgramProfiles
             var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
                 .ListWithEduForms (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
                
-            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
-                eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
+            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileEduFormsViewModel> (indexer,
+                eduProgramProfiles.Select (epp => new EduProgramProfileEduFormsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -129,8 +129,8 @@ namespace R7.University.EduProgramProfiles
             var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
                 .ListWithDocuments (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
-            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
-                eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))
+            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileDocumentsViewModel> (indexer,
+                eduProgramProfiles.Select (epp => new EduProgramProfileDocumentsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -264,7 +264,7 @@ namespace R7.University.EduProgramProfiles
                 // show / hide edit column
                 e.Row.Cells [0].Visible = IsEditable;
 
-                var eduProgramProfile = (EduProgramProfileObrnadzorEduFormsViewModel) e.Row.DataItem;
+                var eduProgramProfile = (EduProgramProfileEduFormsViewModel) e.Row.DataItem;
 
                 if (IsEditable) {
                     // get edit link controls
@@ -360,7 +360,7 @@ namespace R7.University.EduProgramProfiles
                 e.Row.Cells [3].ColumnSpan = 2;
             }
             else if (e.Row.RowType == DataControlRowType.DataRow) {
-                var eduProgramProfile = (EduProgramProfileObrnadzorDocumentsViewModel) e.Row.DataItem;
+                var eduProgramProfile = (EduProgramProfileDocumentsViewModel) e.Row.DataItem;
 
                 e.Row.Attributes.Add ("data-title", FormatHelper.FormatEduProgramProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,

@@ -1,5 +1,5 @@
 //
-//  EduProgramProfileObrnadzorEduFormsViewModel.cs
+//  EduProgramProfileEduFormsViewModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -34,7 +34,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
-    internal class EduProgramProfileObrnadzorEduFormsViewModel: EduProgramProfileViewModelBase
+    internal class EduProgramProfileEduFormsViewModel: EduProgramProfileViewModelBase
     {
         public EduProgramProfileDirectoryEduFormsViewModel RootViewModel { get; protected set; }
 
@@ -45,7 +45,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public ViewModelIndexer Indexer { get; protected set; }
 
-        public EduProgramProfileObrnadzorEduFormsViewModel (
+        public EduProgramProfileEduFormsViewModel (
             IEduProgramProfile model,
             EduProgramProfileDirectoryEduFormsViewModel rootViewModel,
             ViewModelIndexer indexer): base (model)
