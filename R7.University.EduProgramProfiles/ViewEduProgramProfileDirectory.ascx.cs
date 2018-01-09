@@ -257,6 +257,7 @@ namespace R7.University.EduProgramProfiles
                 e.Row.Cells [4].Visible = false;
                 e.Row.Cells [8].Visible = false;
                 e.Row.Cells [9].Visible = false;
+                e.Row.Cells [10].Visible = false;
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
@@ -323,6 +324,11 @@ namespace R7.University.EduProgramProfiles
                     {
                         RowSpan = 2,
                         Text = Localization.GetString ("CommunityAccreditedToDate.Column", LocalResourceFile)
+                    },
+                    new TableHeaderCell
+                    {
+                        RowSpan = 2,
+                        Text = Localization.GetString ("Languages.Column", LocalResourceFile)
                     }
                 };
 

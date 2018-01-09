@@ -34,6 +34,7 @@
                         <asp:BoundField DataField="TimeToLearnExtramuralString" HtmlEncode="false" HeaderText="TimeToLearnExtramural.Column" />
                         <asp:BoundField DataField="AccreditedToDateString" HtmlEncode="false" HeaderText="AccreditedToDate.Column" />
                         <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate.Column" />
+						<asp:BoundField DataField="Languages_String" HtmlEncode="false" HeaderText="Languages.Column" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -61,7 +62,6 @@
                         <asp:BoundField DataField="EduSchedule_Links" HtmlEncode="false" HeaderText="EduSchedule.Column" />
                         <asp:BoundField DataField="WorkProgramOfPractice_Links" HtmlEncode="false" HeaderText="WorkProgramOfPractice.Column" />
                         <asp:BoundField DataField="EduMaterial_Links" HtmlEncode="false" HeaderText="EduMaterial.Column" />
-                        <asp:BoundField DataField="Languages_String" HtmlEncode="false" HeaderText="Languages.Column" />
                         <asp:BoundField DataField="Contingent_Links" HtmlEncode="false" HeaderText="Contingent.Column" />
                         <asp:BoundField DataField="ContingentMovement_Links" HtmlEncode="false" HeaderText="ContingentMovement.Column" />
                     </Columns>
