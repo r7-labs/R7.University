@@ -356,7 +356,8 @@ namespace R7.University.EduProgramProfiles
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            // TODO: Remove contingent columns completely
+            // TODO: Remove columns completely
+            e.Row.Cells [9].Visible = IsEditable;
             e.Row.Cells [11].Visible = IsEditable;
             e.Row.Cells [12].Visible = IsEditable;
 
