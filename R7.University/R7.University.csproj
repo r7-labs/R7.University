@@ -148,7 +148,7 @@
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\EduForm.cs" />
     <Compile Include="Models\EduLevel.cs" />
-    <Compile Include="Models\EmployeeEqualityComparer.cs" />
+    <Compile Include="Models\EntityEqualityComparer.cs" />
     <Compile Include="Models\VCard.cs" />
     <Compile Include="Models\VCardPhone.cs" />
     <Compile Include="Data\Mappings\PositionMapping.cs" />

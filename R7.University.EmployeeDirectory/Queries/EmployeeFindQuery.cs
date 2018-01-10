@@ -43,7 +43,7 @@ namespace R7.University.EmployeeDirectory.Queries
             };
                   
             return ModelContext.Query<EmployeeInfo> ("{objectQualifier}University_FindEmployees", parameters)
-                .Distinct (new EmployeeEqualityComparer ());
+                               .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
         }
     }
 }

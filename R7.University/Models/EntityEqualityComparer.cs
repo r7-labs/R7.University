@@ -1,10 +1,10 @@
 //
-//  EmployeeEqualityComparer.cs
+//  EntityEqualityComparer.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,22 +19,30 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public class EmployeeEqualityComparer : IEqualityComparer <EmployeeInfo>
+    public class EntityEqualityComparer<T> : IEqualityComparer<T> where T: class
     {
-        #region IEqualityComparer implementation
+        readonly Func<T,int> keySelector;
 
-        public bool Equals (EmployeeInfo x, EmployeeInfo y)
+        public EntityEqualityComparer (Func<T,int> keySelector)
         {
-            return x.EmployeeID == y.EmployeeID;
+            this.keySelector = keySelector;
         }
 
-        public int GetHashCode (EmployeeInfo obj)
+        #region IEqualityComparer implementation
+
+        public bool Equals (T x, T y)
         {
-            return obj.EmployeeID;
+            return keySelector (x) == keySelector (y);
+        }
+
+        public int GetHashCode (T obj)
+        {
+            return keySelector (obj);
         }
 
         #endregion
