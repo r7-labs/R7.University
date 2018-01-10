@@ -38,10 +38,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
     {
         public EduProgramProfileDirectoryEduFormsViewModel RootViewModel { get; protected set; }
 
-        protected ViewModelContext<EduProgramProfileDirectorySettings> Context
-        {
-            get { return RootViewModel.Context; }
-        }
+        protected ViewModelContext<EduProgramProfileDirectorySettings> Context => RootViewModel.Context;
 
         public ViewModelIndexer Indexer { get; protected set; }
 
@@ -119,28 +116,15 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
         }
 
-        public int Order
-        {
-            get { return Indexer.GetNextIndex (); }
-        }
+        public int Order => Indexer.GetNextIndex ();
 
-        public string Code
-        {
-            get { return "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>"; }
-        }
+        public string Code => "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>";
 
-        public string Title
-        {
-            get { return FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle); }
-        }
+        public string Title => FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle);
 
-        public string EduLevelString
-        {
-            get { return "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>"; }
-        }
+        public string EduLevelString => "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>";
 
-        public string AccreditedToDateString
-        {
+        public string AccreditedToDateString {
             get { 
                 if (AccreditedToDate != null) {
                     return "<span itemprop=\"DateEnd\">" + AccreditedToDate.Value.ToShortDateString () + "</span>";

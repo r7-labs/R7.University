@@ -33,21 +33,18 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
-    internal class EduProgramProfileDocumentsViewModel: EduProgramProfileViewModelBase
+    internal class EduProgramProfileDocumentsViewModel : EduProgramProfileViewModelBase
     {
         public EduProgramProfileDirectoryDocumentsViewModel RootViewModel { get; protected set; }
 
-        protected ViewModelContext<EduProgramProfileDirectorySettings> Context
-        {
-            get { return RootViewModel.Context; }
-        }
+        protected ViewModelContext<EduProgramProfileDirectorySettings> Context => RootViewModel.Context;
 
         public ViewModelIndexer Indexer { get; protected set; }
 
         public EduProgramProfileDocumentsViewModel (
             IEduProgramProfile model,
             EduProgramProfileDirectoryDocumentsViewModel rootViewModel,
-            ViewModelIndexer indexer): base (model)
+            ViewModelIndexer indexer) : base (model)
         {
             RootViewModel = rootViewModel;
             Indexer = indexer;
@@ -55,77 +52,35 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         #region Bindable properties
 
-        public int Order
-        {
-            get { return Indexer.GetNextIndex (); }
-        }
+        public int Order => Indexer.GetNextIndex ();
 
-        public string Code
-        {
-            get { return "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>"; }
-        }
+        public string Code => "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>";
 
         string _eduProgramLinks;
-        public string EduProgram_Links
-        {
-            get { return _eduProgramLinks ?? (_eduProgramLinks = GetEduProgramLinks ()); }
-        }
+        public string EduProgram_Links => _eduProgramLinks ?? (_eduProgramLinks = GetEduProgramLinks ());
 
-        public string EduLevel_String
-        {
-            get { return "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>"; }
-        }
+        public string EduLevel_String => "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>";
 
         string _eduPlanLinks;
-        public string EduPlan_Links
-        {
-            get { return _eduPlanLinks ?? (_eduPlanLinks = GetEduPlanLinks ()); }
-        }
+        public string EduPlan_Links => _eduPlanLinks ?? (_eduPlanLinks = GetEduPlanLinks ());
 
         string _eduScheduleLinks;
-        public string EduSchedule_Links
-        {
-            get { return _eduScheduleLinks ?? (_eduScheduleLinks = GetEduScheduleLinks ()); }
-        }
+        public string EduSchedule_Links => _eduScheduleLinks ?? (_eduScheduleLinks = GetEduScheduleLinks ());
 
         string _workProgramAnnotationLinks;
-        public string WorkProgramAnnotation_Links
-        {
-            get { return _workProgramAnnotationLinks ?? (_workProgramAnnotationLinks = GetWorkProgramAnnotationLinks ()); }
-        }
+        public string WorkProgramAnnotation_Links => _workProgramAnnotationLinks ?? (_workProgramAnnotationLinks = GetWorkProgramAnnotationLinks ());
 
         string _eduMaterialLinks;
-        public string EduMaterial_Links
-        {
-            get { return _eduMaterialLinks ?? (_eduMaterialLinks = GetEduMaterialLinks ()); }
-        }
+        public string EduMaterial_Links => _eduMaterialLinks ?? (_eduMaterialLinks = GetEduMaterialLinks ());
 
         string _contingentLinks;
-        public string Contingent_Links
-        {
-            get { return _contingentLinks ?? (_contingentLinks = GetContingentLinks ()); }
-        }
+        public string Contingent_Links => _contingentLinks ?? (_contingentLinks = GetContingentLinks ());
 
         string _contingentMovementLinks;
-        public string ContingentMovement_Links
-        {
-            get { return _contingentMovementLinks ?? (_contingentMovementLinks = GetContingentMovementLinks ()); }
-        }
+        public string ContingentMovement_Links => _contingentMovementLinks ?? (_contingentMovementLinks = GetContingentMovementLinks ());
 
         string _workProgramOfPracticeLinks;
-        public string WorkProgramOfPractice_Links
-        {
-            get { return _workProgramOfPracticeLinks ?? (_workProgramOfPracticeLinks = GetWorkProgramOfPracticeLinks ()); }
-        }
-
-        // TODO: Sort edu. forms
-        IEnumerable<IEduForm> GetImplementedEduForms ()
-        {
-            return EduProgramProfileFormYears
-                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
-                .Select (eppfy => eppfy.EduForm)
-                .Distinct (new EntityEqualityComparer<IEduForm> (ef => ef.EduFormID));
-        }
+        public string WorkProgramOfPractice_Links => _workProgramOfPracticeLinks ?? (_workProgramOfPracticeLinks = GetWorkProgramOfPracticeLinks ());
 
         public string EduForms_String
         {
@@ -148,7 +103,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         }
 
         string _rowId;
-        protected string RowId => _rowId?? (_rowId = $"m{Context.Module.ModuleId}-epp{EduProgramProfileID}");
+        protected string RowId => _rowId ?? (_rowId = $"m{Context.Module.ModuleId}-epp{EduProgramProfileID}");
 
         string _groupColumnHeader;
         protected string GroupColumnHeader =>
@@ -164,7 +119,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
             var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
             var docCount = documents.Count ();
             if (docCount > 0) {
-                var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText))? " [" + docCount + "]" : string.Empty;
+                var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText)) ? " [" + docCount + "]" : string.Empty;
                 var table = new StringBuilder (
                     $"<span{microdataAttrs}>"
                     + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
@@ -176,8 +131,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
                 foreach (var document in documents) {
                     var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
-                    var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId); 
-                    var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp)? " class=\"u8y-not-published\"" : string.Empty;
+                    var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId);
+                    var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp) ? " class=\"u8y-not-published\"" : string.Empty;
                     table.Append ($"<tr{rowCssClassAttr}><td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td><td>{document.Group}</td></tr>");
                 }
 
@@ -241,7 +196,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
             );
         }
 
-        // TODO: Add more itemprops!
         string GetContingentLinks ()
         {
             return FormatDocumentsLinkWithData (
@@ -250,7 +204,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
             );
         }
 
-        // TODO: Add more itemprops!
         string GetContingentMovementLinks ()
         {
             return FormatDocumentsLinkWithData (
@@ -258,6 +211,15 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 string.Empty, "cnm",
                 "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\""
             );
+        }
+
+        // TODO: Sort edu. forms
+        IEnumerable<IEduForm> GetImplementedEduForms ()
+        {
+            return EduProgramProfileFormYears
+                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                .Select (eppfy => eppfy.EduForm)
+                .Distinct (new EntityEqualityComparer<IEduForm> (ef => ef.EduFormID));
         }
     }
 }
