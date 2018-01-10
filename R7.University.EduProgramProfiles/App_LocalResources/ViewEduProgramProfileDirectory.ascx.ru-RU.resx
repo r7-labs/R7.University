@@ -30,6 +30,9 @@
     <data name="EduLevel.Column" xml:space="preserve">
         <value>Уровень образования</value>
     </data>
+	<data name="EduForms.Column" xml:space="preserve">
+        <value>Реализуемые формы обучения</value>
+    </data>
     <data name="TimeToLearn.Column" xml:space="preserve">
         <value>Нормативный срок обучения</value>
     </data>

@@ -30,6 +30,9 @@
     <data name="EduLevel.Column" xml:space="preserve">
         <value>Education Level</value>
     </data>
+	<data name="EduForms.Column" xml:space="preserve">
+        <value>Implemented Education Forms</value>
+    </data>
     <data name="TimeToLearn.Column" xml:space="preserve">
         <value>Time to Learn</value>
     </data>

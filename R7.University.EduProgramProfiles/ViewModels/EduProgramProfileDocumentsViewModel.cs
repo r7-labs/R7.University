@@ -118,6 +118,28 @@ namespace R7.University.EduProgramProfiles.ViewModels
             get { return _workProgramOfPracticeLinks ?? (_workProgramOfPracticeLinks = GetWorkProgramOfPracticeLinks ()); }
         }
 
+        // TODO: Sort edu. forms
+        IEnumerable<IEduForm> GetImplementedEduForms ()
+        {
+            return EduProgramProfileFormYears
+                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                .Select (eppfy => eppfy.EduForm)
+                .Distinct (new EntityEqualityComparer<IEduForm> (ef => ef.EduFormID));
+        }
+
+        public string EduForms_String
+        {
+            get {
+                var eduForms = GetImplementedEduForms ();
+                if (!eduForms.IsNullOrEmpty ()) {
+                    return "<ul itemprop=\"eduForm\">" + eduForms.Select (ep => "<li>" + LocalizationHelper.GetStringWithFallback ("EduForm_" + ep.Title + ".Text", Context.LocalResourceFile, ep.Title).ToLower () + "</li>")
+                        .Aggregate ((eps1, eps2) => eps1 + eps2) + "</ul>";
+                }
+
+                return string.Empty;
+            }
+        }
+
         #endregion
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)

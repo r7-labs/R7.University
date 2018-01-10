@@ -286,6 +286,7 @@ namespace R7.University.EduProgramProfiles
         protected void gridEduProgramProfileObrnadzorEduForms_RowCreated (object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header) {
+
                 // create cells for first row
                 var cellsRow1 = new []
                 {
@@ -352,8 +353,8 @@ namespace R7.University.EduProgramProfiles
             e.Row.Cells [0].Visible = IsEditable;
 
             // TODO: Remove contingent columns completely
-            e.Row.Cells [10].Visible = IsEditable;
             e.Row.Cells [11].Visible = IsEditable;
+            e.Row.Cells [12].Visible = IsEditable;
 
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
