@@ -298,12 +298,16 @@ namespace R7.University.EduProgramProfiles
                     new TableHeaderCell
                     {
                         RowSpan = 2,
-                        Text = Localization.GetString ("Index.Column", LocalResourceFile)
+                        Text = Localization.GetString ("Order.Column", LocalResourceFile)
                     },
                     new TableHeaderCell
                     {
                         RowSpan = 2,
-                        ColumnSpan = 2,
+                        Text = Localization.GetString ("Code.Column", LocalResourceFile)
+                    },
+                    new TableHeaderCell
+                    {
+                        RowSpan = 2,
                         Text = Localization.GetString ("Title.Column", LocalResourceFile)
                     },
                     new TableHeaderCell
@@ -359,10 +363,6 @@ namespace R7.University.EduProgramProfiles
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
                 e.Row.TableSection = TableRowSection.TableHeader;
-
-                // merge Code header cell into Title
-                e.Row.Cells [2].Visible = false;
-                e.Row.Cells [3].ColumnSpan = 2;
             }
             else if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgramProfile = (EduProgramProfileDocumentsViewModel) e.Row.DataItem;

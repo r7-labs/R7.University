@@ -24,7 +24,10 @@
     <data name="Order.Column" xml:space="preserve">
         <value>#</value>
     </data>
-    <data name="Title.Column" xml:space="preserve">
+	<data name="Code.Column" xml:space="preserve">
+        <value>Code</value>
+    </data>
+	<data name="Title.Column" xml:space="preserve">
         <value>Educational Program</value>
     </data>
     <data name="EduLevel.Column" xml:space="preserve">

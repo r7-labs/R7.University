@@ -24,6 +24,9 @@
     <data name="Order.Column" xml:space="preserve">
         <value>№ п/п</value>
     </data>
+	<data name="Code.Column" xml:space="preserve">
+        <value>Код</value>
+    </data>
     <data name="Title.Column" xml:space="preserve">
         <value>Образовательная программа</value>
     </data>

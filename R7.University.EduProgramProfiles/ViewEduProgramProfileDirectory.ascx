@@ -26,7 +26,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Order" HeaderText="Order.Column" DataFormatString="{0}." />
-                        <asp:BoundField DataField="Code" HtmlEncode="false" />
+                        <asp:BoundField DataField="Code" HtmlEncode="false" HeaderText="Code.Column" />
                         <asp:BoundField DataField="Title" />
                         <asp:BoundField DataField="EduLevelString" HtmlEncode="false" />
                         <asp:BoundField DataField="TimeToLearnFullTimeString" HtmlEncode="false" HeaderText="TimeToLearnFullTime.Column" />
@@ -54,7 +54,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Order" HeaderText="Order.Column" DataFormatString="{0}." />
-                        <asp:BoundField DataField="Code" HtmlEncode="false" />
+                        <asp:BoundField DataField="Code" HtmlEncode="false" HeaderText="Code.Column" />
                         <asp:BoundField DataField="EduProgram_Links" HtmlEncode="false" HeaderText="Title.Column" />
                         <asp:BoundField DataField="EduLevel_String" HtmlEncode="false" HeaderText="EduLevel.Column" />
 						<asp:BoundField DataField="EduForms_String" HtmlEncode="false" HeaderText="EduForms.Column" />
