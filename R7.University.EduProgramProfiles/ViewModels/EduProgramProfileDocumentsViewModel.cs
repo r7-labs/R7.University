@@ -213,13 +213,13 @@ namespace R7.University.EduProgramProfiles.ViewModels
             );
         }
 
-        // TODO: Sort edu. forms
         IEnumerable<IEduForm> GetImplementedEduForms ()
         {
             return EduProgramProfileFormYears
                 .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
                 .Select (eppfy => eppfy.EduForm)
-                .Distinct (new EntityEqualityComparer<IEduForm> (ef => ef.EduFormID));
+                .Distinct (new EntityEqualityComparer<IEduForm> (ef => ef.EduFormID))
+                .OrderBy (ep => ep.SortIndex);
         }
     }
 }
