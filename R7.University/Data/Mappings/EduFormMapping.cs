@@ -35,6 +35,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.IsSystem).IsRequired ();
             Property (m => m.Title).IsRequired ();
             Property (m => m.ShortTitle).IsOptional ();
+            Property (m => m.SortIndex).IsRequired ();
         }
     }
 }

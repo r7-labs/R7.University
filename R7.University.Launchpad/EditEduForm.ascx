@@ -19,6 +19,16 @@
 			<dnn:Label id="labelIsSystem" runat="server" ControlName="checkIsSystem" />
             <asp:CheckBox id="checkIsSystem" runat="server" Enabled="false" />
 		</div>
+		<div class="dnnFormItem">
+            <dnn:Label id="labelSortIndex" runat="server" ControlName="textSortIndex" />
+            <asp:TextBox id="textSortIndex" runat="server" />
+            <asp:RequiredFieldValidator runat="server" resourcekey="SortIndex.Required"
+                ControlToValidate="textSortIndex" 
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+            <asp:RegularExpressionValidator runat="server" resourcekey="SortIndex.Invalid"
+                ControlToValidate="textSortIndex" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" 
+                ValidationExpression="^-?\d+$" />
+        </div>
     </fieldset>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>

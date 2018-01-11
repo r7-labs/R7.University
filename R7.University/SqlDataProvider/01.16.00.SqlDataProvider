@@ -43,6 +43,17 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduForms]') and name = N'SortIndex')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduForms]
+        ADD SortIndex int NOT NULL DEFAULT (0)
+
+    EXECUTE sp_executesql N'UPDATE {databaseOwner}[{objectQualifier}University_EduForms] SET SortIndex = 10 WHERE Title = N''FullTime'''
+    EXECUTE sp_executesql N'UPDATE {databaseOwner}[{objectQualifier}University_EduForms] SET SortIndex = 20 WHERE Title = N''Extramural'''
+    EXECUTE sp_executesql N'UPDATE {databaseOwner}[{objectQualifier}University_EduForms] SET SortIndex = 30 WHERE Title = N''PartTime'''
+END
+GO
+
 IF NOT EXISTS (select * from sys.indexes where name = N'UN_{objectQualifier}University_EduProgramProfileForms')
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]

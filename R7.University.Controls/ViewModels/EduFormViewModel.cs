@@ -47,6 +47,8 @@ namespace R7.University.Controls
 
         public string ShortTitle { get; set; }
 
+        public int SortIndex { get; set; }
+
         #endregion
 
         [JsonIgnore]

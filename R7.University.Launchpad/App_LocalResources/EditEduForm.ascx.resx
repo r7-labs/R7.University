@@ -36,4 +36,16 @@
     <data name="labelIsSystem.Help" xml:space="preserve">
         <value>System educational forms have special meaning for the system work, therefore they cannot be changed or deleted.</value>
     </data>
+	<data name="labelSortIndex.Text" xml:space="preserve">
+        <value>Sort Index:</value>
+    </data>
+    <data name="labelSortIndex.Help" xml:space="preserve">
+        <value>Enter the numeric index for the education form. It will be used in sorting.</value>
+    </data>
+    <data name="SortIndex.Required" xml:space="preserve">
+        <value>The sort index is required.</value>
+    </data>
+    <data name="SortIndex.Invalid" xml:space="preserve">
+        <value>Sort Index must be an integer.</value>
+    </data>
 </root>

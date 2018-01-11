@@ -30,6 +30,8 @@ namespace R7.University.Models
         string Title { get; }
 
         string ShortTitle { get; }
+
+        int SortIndex { get; }
     }
 
     public interface IEduFormWritable: IEduForm, ISystemEntityWritable
@@ -39,6 +41,8 @@ namespace R7.University.Models
         new string Title { get; set; }
 
         new string ShortTitle { get; set; }
+
+        new int SortIndex { get; set; }
     }
 
     public class EduFormInfo: IEduFormWritable
@@ -51,6 +55,8 @@ namespace R7.University.Models
 
         public string ShortTitle { get; set; }
 
+        public int SortIndex { get; set; }
+
         public SystemEduForm SystemEduForm
         {
             get {
@@ -60,4 +66,3 @@ namespace R7.University.Models
         }
     }
 }
-

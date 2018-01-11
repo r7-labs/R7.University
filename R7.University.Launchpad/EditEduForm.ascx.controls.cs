@@ -10,5 +10,6 @@ namespace R7.University.Launchpad
         protected TextBox textTitle;
         protected TextBox textShortTitle;
         protected CheckBox checkIsSystem;
+        protected TextBox textSortIndex;
     }
 }
