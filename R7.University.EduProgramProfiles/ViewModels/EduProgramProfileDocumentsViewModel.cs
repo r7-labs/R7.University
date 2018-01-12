@@ -88,7 +88,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 var eduForms = GetImplementedEduForms ();
                 if (!eduForms.IsNullOrEmpty ()) {
                     return "<ul itemprop=\"eduForm\">" + eduForms.Select (ep => "<li>" + LocalizationHelper.GetStringWithFallback ("EduForm_" + ep.Title + ".Text", Context.LocalResourceFile, ep.Title).ToLower () + "</li>")
-                        .Aggregate ((eps1, eps2) => eps1 + eps2) + "</ul>";
+                        .Aggregate ((s1, s2) => s1 + s2) + "</ul>";
                 }
 
                 return string.Empty;

@@ -34,19 +34,7 @@
         <value>Уровень образования</value>
     </data>
 	<data name="EduForms.Column" xml:space="preserve">
-        <value>Реализуемые формы обучения</value>
-    </data>
-    <data name="TimeToLearn.Column" xml:space="preserve">
-        <value>Нормативный срок обучения</value>
-    </data>
-    <data name="TimeToLearnFullTime.Column" xml:space="preserve">
-        <value>Очная форма обучения</value>
-    </data>
-    <data name="TimeToLearnPartTime.Column" xml:space="preserve">
-        <value>Очно-заочная форма обучения</value>
-    </data>
-    <data name="TimeToLearnExtramural.Column" xml:space="preserve">
-        <value>Заочная форма обучения</value>
+        <value>Реализуемые формы и нормативные сроки обучения</value>
     </data>
     <data name="AccreditedToDate.Column" xml:space="preserve">
         <value>Срок действия государственной аккредитации образовательной программы</value>

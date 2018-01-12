@@ -30,7 +30,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ModuleExtensions;
@@ -244,26 +243,16 @@ namespace R7.University.EduProgramProfiles
         {
             var now = HttpContext.Current.Timestamp;
 
+            // show / hide edit column
+            e.Row.Cells [0].Visible = IsEditable;
+
             // hiding the columns of second row header (created on binding)
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
                 e.Row.TableSection = TableRowSection.TableHeader;
-
-                // TODO: Don't hardcode cell indexes
-                e.Row.Cells [0].Visible = false;
-                e.Row.Cells [1].Visible = false;
-                e.Row.Cells [2].Visible = false;
-                e.Row.Cells [3].Visible = false;
-                e.Row.Cells [4].Visible = false;
-                e.Row.Cells [8].Visible = false;
-                e.Row.Cells [9].Visible = false;
-                e.Row.Cells [10].Visible = false;
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                // show / hide edit column
-                e.Row.Cells [0].Visible = IsEditable;
-
                 var eduProgramProfile = (EduProgramProfileEduFormsViewModel) e.Row.DataItem;
 
                 if (IsEditable) {
@@ -280,72 +269,6 @@ namespace R7.University.EduProgramProfiles
                 if (!eduProgramProfile.IsPublished (now)) {
                     e.Row.AddCssClass ("u8y-not-published");
                 }
-            }
-        }
-
-        protected void gridEduProgramProfileObrnadzorEduForms_RowCreated (object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.Header) {
-
-                // create cells for first row
-                var cellsRow1 = new []
-                {
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Visible = IsEditable
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("Order.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("Code.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("Title.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("EduLevel.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        ColumnSpan = 3,
-                        Text = Localization.GetString ("TimeToLearn.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("AccreditedToDate.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("CommunityAccreditedToDate.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("Languages.Column", LocalResourceFile)
-                    }
-                };
-
-                var grid = (GridView) sender;
-
-                // create header row
-                var headerRow = new GridViewRow (0, -1, DataControlRowType.Header, DataControlRowState.Normal);
-                headerRow.Cells.AddRange (cellsRow1);
-                headerRow.TableSection = TableRowSection.TableHeader;
-
-                // add new header row to the grid table
-                ((Table) grid.Controls [0]).Rows.AddAt (0, headerRow);
             }
         }
 

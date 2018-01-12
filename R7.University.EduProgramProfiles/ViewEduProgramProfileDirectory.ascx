@@ -14,9 +14,7 @@
                 <asp:GridView id="gridEduProgramProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false" 
                         UseAccessibleHeader="true"
                         CssClass="table table-bordered table-striped table-hover grid-eduprogramprofile-obrnadzor-eduforms"
-                        GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorEduForms_RowDataBound"
-                        OnRowCreated="gridEduProgramProfileObrnadzorEduForms_RowCreated"
-                        >
+                        GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorEduForms_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
@@ -27,11 +25,9 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="Order" HeaderText="Order.Column" DataFormatString="{0}." />
                         <asp:BoundField DataField="Code" HtmlEncode="false" HeaderText="Code.Column" />
-                        <asp:BoundField DataField="Title" />
-                        <asp:BoundField DataField="EduLevelString" HtmlEncode="false" />
-                        <asp:BoundField DataField="TimeToLearnFullTimeString" HtmlEncode="false" HeaderText="TimeToLearnFullTime.Column" />
-                        <asp:BoundField DataField="TimeToLearnPartTimeString" HtmlEncode="false" HeaderText="TimeToLearnPartTime.Column" />
-                        <asp:BoundField DataField="TimeToLearnExtramuralString" HtmlEncode="false" HeaderText="TimeToLearnExtramural.Column" />
+                        <asp:BoundField DataField="Title" HtmlEncode="false" HeaderText="Title.Column" />
+                        <asp:BoundField DataField="EduLevelString" HtmlEncode="false" HeaderText="EduLevel.Column" />
+						<asp:BoundField DataField="EduForms_String" HtmlEncode="false" HeaderText="EduForms.Column" />
                         <asp:BoundField DataField="AccreditedToDateString" HtmlEncode="false" HeaderText="AccreditedToDate.Column" />
                         <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate.Column" />
 						<asp:BoundField DataField="Languages_String" HtmlEncode="false" HeaderText="Languages.Column" />

@@ -30,6 +30,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles.ViewModels
@@ -51,71 +52,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
             Indexer = indexer;
         }
 
-        protected IEduVolume FullTimeFormVolume => GetEduProgramProfileFormYears ()
-            .FirstOrDefault (eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.FullTime)?.EduVolume; 
-
-        protected IEduVolume PartTimeFormVolume => GetEduProgramProfileFormYears ()
-            .FirstOrDefault (eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.PartTime)?.EduVolume; 
-
-        protected IEduVolume ExtramuralFormVolume => GetEduProgramProfileFormYears ()
-            .FirstOrDefault (eppfy => eppfy.EduForm.GetSystemEduForm () == SystemEduForm.Extramural)?.EduVolume; 
-        
-        IEnumerable<EduProgramProfileFormYearInfo> GetEduProgramProfileFormYears ()
-        {
-            return EduProgramProfileFormYears
-                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
-                .OrderByDescending (eppfy => eppfy.Year.Year);
-        }
-
-        protected string TimeToLearnApplyMarkup (string eduFormResourceKey, string timeToLearn)
-        {
-            return "<span class=\"hidden\" itemprop=\"EduForm\">"
-            + Localization.GetString (eduFormResourceKey, Context.LocalResourceFile)
-            + "</span>" + "<span itemprop=\"LearningTerm\">" + timeToLearn + "</span>";
-        }
-
-        public string TimeToLearnFullTimeString
-        {
-            get { 
-                if (FullTimeFormVolume == null) {
-                    return string.Empty; 
-                }
-
-                return TimeToLearnApplyMarkup (
-                    "TimeToLearnFullTime.Column",
-                    FormatHelper.FormatTimeToLearn (FullTimeFormVolume.TimeToLearnMonths, FullTimeFormVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
-                );
-            }
-        }
-
-        public string TimeToLearnPartTimeString
-        {
-            get {
-                if (PartTimeFormVolume == null) {
-                    return string.Empty; 
-                }
-
-                return TimeToLearnApplyMarkup (
-                    "TimeToLearnPartTime.Column",
-                    FormatHelper.FormatTimeToLearn (PartTimeFormVolume.TimeToLearnMonths, PartTimeFormVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
-                );
-            }
-        }
-
-        public string TimeToLearnExtramuralString
-        {
-            get {
-                if (ExtramuralFormVolume == null) {
-                    return string.Empty; 
-                }
-
-                return TimeToLearnApplyMarkup (
-                    "TimeToLearnExtramural.Column",
-                    FormatHelper.FormatTimeToLearn (ExtramuralFormVolume.TimeToLearnMonths, ExtramuralFormVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)
-                );
-            }
-        }
-
         public int Order => Indexer.GetNextIndex ();
 
         public string Code => "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>";
@@ -132,6 +68,25 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
                 return string.Empty;
             }
+        }
+
+        public string EduForms_String
+        {
+        	get {
+                var formYears = GetImplementedEduFormYears ();
+        		if (!formYears.IsNullOrEmpty ()) {
+        			return "<ul itemprop=\"learningTerm\">" + formYears
+                        .Select (eppfy => "<li>"
+                                 + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile, eppfy.EduForm.Title).ToLower ()
+                                 + ((eppfy.EduVolume == null) 
+                                    ? string.Empty
+                                    : ("&nbsp;- " + FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)))
+                                 + "</li>")
+        				.Aggregate ((s1, s2) => s1 + s2) + "</ul>";
+        		}
+
+        		return string.Empty;
+        	}
         }
 
         string _languagesString;
@@ -164,6 +119,14 @@ namespace R7.University.EduProgramProfiles.ViewModels
         	catch (CultureNotFoundException) {
                 return Localization.GetString ("UnknownLanguage.Text", Context.LocalResourceFile);
             }
+        }
+
+        IEnumerable<IEduProgramProfileFormYear> GetImplementedEduFormYears ()
+        {
+        	return EduProgramProfileFormYears
+        		.Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                .Distinct (new EntityEqualityComparer<IEduProgramProfileFormYear> (eppfy => eppfy.EduForm.EduFormID))
+                .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
     }
 }
