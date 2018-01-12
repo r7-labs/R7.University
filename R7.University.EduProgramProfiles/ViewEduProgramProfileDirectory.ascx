@@ -61,8 +61,8 @@
                         <asp:BoundField DataField="EduPlan_Links" HtmlEncode="false" HeaderText="EduPlan.Column" />
                         <asp:BoundField DataField="WorkProgramAnnotation_Links" HtmlEncode="false" HeaderText="WorkProgramAnnotation.Column" />
                         <asp:BoundField DataField="EduSchedule_Links" HtmlEncode="false" HeaderText="EduSchedule.Column" />
-                        <asp:BoundField DataField="WorkProgramOfPractice_Links" HtmlEncode="false" HeaderText="WorkProgramOfPractice.Column" />
                         <asp:BoundField DataField="EduMaterial_Links" HtmlEncode="false" HeaderText="EduMaterial.Column" />
+                        <asp:BoundField DataField="WorkProgramOfPractice_Links" HtmlEncode="false" HeaderText="WorkProgramOfPractice.Column" />
                         <asp:BoundField DataField="Contingent_Links" HtmlEncode="false" HeaderText="Contingent.Column" />
                         <asp:BoundField DataField="ContingentMovement_Links" HtmlEncode="false" HeaderText="ContingentMovement.Column" />
                     </Columns>

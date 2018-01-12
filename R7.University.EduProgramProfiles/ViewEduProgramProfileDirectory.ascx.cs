@@ -357,7 +357,7 @@ namespace R7.University.EduProgramProfiles
             e.Row.Cells [0].Visible = IsEditable;
 
             // TODO: Remove columns completely
-            e.Row.Cells [9].Visible = IsEditable;
+            e.Row.Cells [10].Visible = IsEditable;
             e.Row.Cells [11].Visible = IsEditable;
             e.Row.Cells [12].Visible = IsEditable;
 
