@@ -67,12 +67,12 @@
         </asp:View>
     </asp:MultiView>
 	<controls:AgplSignature runat="server" />
-	<div id="eduprogram-profile-documents-dialog-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="eduprogram-profile-documents-dialog-title-<%: ModuleId %>">
+	<div id="u8y-epp-docs-dlg-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="u8y-epp-docs-dlg-title-<%: ModuleId %>">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
-                    <h4 id="eduprogram-profile-documents-dialog-title-<%: ModuleId %>" class="modal-title"></h4>
+                    <h4 id="u8y-epp-docs-dlg-title-<%: ModuleId %>" class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                 </div>
@@ -87,7 +87,7 @@
         return td.closest("table").children("thead").children("tr").children("th:nth-child(" + (td.index() + 1) + ")");
     }
     $(document).ready(function() {
-    	$("#eduprogram-profile-documents-dialog-<%: ModuleId %>").on("show.bs.modal", function (event) {
+    	$("#u8y-epp-docs-dlg-<%: ModuleId %>").on("show.bs.modal", function (event) {
     		var link = $(event.relatedTarget);
             var table = $("#" + link.data("table"));
     		$(this).find(".modal-title").text(link.closest("tr").data("title"));

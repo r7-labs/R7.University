@@ -122,7 +122,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText)) ? " [" + docCount + "]" : string.Empty;
                 var table = new StringBuilder (
                     $"<span{microdataAttrs}>"
-                    + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#eduprogram-profile-documents-dialog-{Context.Module.ModuleId}\""
+                    + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#u8y-epp-docs-dlg-{Context.Module.ModuleId}\""
                     + $" data-table=\"doct-{RowId}-{columnSlug}\">{(linkText + docCountText).TrimStart ()}</a>"
                     // TODO: Use class="hidden" instead of inline style?
                     + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
