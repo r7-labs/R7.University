@@ -57,8 +57,20 @@
 	<data name="labelIsAdopted.Text" xml:space="preserve">
         <value>Адаптированная программа?</value>
     </data>
+	<data name="labelELearning.Text" xml:space="preserve">
+        <value>Электронное обучение?</value>
+    </data>
+    <data name="labelELearning.Help" xml:space="preserve">
+        <value>Отметьте, есть образовательная программа (профиль) реализуется посредством электронного обучения.</value>
+    </data>
+    <data name="labelDistanceEducation.Text" xml:space="preserve">
+        <value>Дистанционные образовательные технологии?</value>
+    </data>
+    <data name="labelDistanceEducation.Help" xml:space="preserve">
+        <value>Отметьте, есть при реализации образовательной программы (профиля) используются дистанционные образовательные технологии (ДОТ).</value>
+    </data>
     <data name="labelIsAdopted.Help" xml:space="preserve">
-        <value>Отметьте, если эта образовательная программа (профиль) адаптирована для инвалидов и лиц с ограниченными возможностями здоровья.</value>
+        <value>Отметьте, если образовательная программа (профиль) адаптирована для инвалидов и лиц с ограниченными возможностями здоровья.</value>
     </data>
     <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Уровень образования:</value>

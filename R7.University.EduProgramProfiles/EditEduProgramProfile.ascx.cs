@@ -164,6 +164,8 @@ namespace R7.University.EduProgramProfiles
             textProfileTitle.Text = epp.ProfileTitle;
             textLanguages.Text = epp.Languages;
             checkIsAdopted.Checked = epp.IsAdopted;
+            checkELearning.Checked = epp.ELearning;
+            checkDistanceEducation.Checked = epp.DistanceEducation;
             dateAccreditedToDate.SelectedDate = epp.AccreditedToDate;
             dateCommunityAccreditedToDate.SelectedDate = epp.CommunityAccreditedToDate;
             datetimeStartDate.SelectedDate = epp.StartDate;
@@ -194,6 +196,8 @@ namespace R7.University.EduProgramProfiles
             item.ProfileTitle = textProfileTitle.Text.Trim ();
             item.Languages = textLanguages.Text.Replace (" ", string.Empty).Trim ();
             item.IsAdopted = checkIsAdopted.Checked;
+            item.ELearning = checkELearning.Checked;
+            item.DistanceEducation = checkDistanceEducation.Checked;
             item.AccreditedToDate = dateAccreditedToDate.SelectedDate;
             item.CommunityAccreditedToDate = dateCommunityAccreditedToDate.SelectedDate;
             item.StartDate = datetimeStartDate.SelectedDate;

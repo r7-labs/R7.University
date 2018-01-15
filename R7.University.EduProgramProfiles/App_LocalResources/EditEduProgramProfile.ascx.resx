@@ -60,6 +60,18 @@
     <data name="labelIsAdopted.Help" xml:space="preserve">
         <value>Check if the edu. program (profile) is adopted for peoples with disabilities.</value>
     </data>
+	<data name="labelELearning.Text" xml:space="preserve">
+        <value>E-Learning?</value>
+    </data>
+    <data name="labelELearning.Help" xml:space="preserve">
+        <value>Check if edu. program (profile) is implemented through e-learning.</value>
+    </data>
+	<data name="labelDistanceEducation.Text" xml:space="preserve">
+        <value>Distance Education Technologies?</value>
+    </data>
+    <data name="labelDistanceEducation.Help" xml:space="preserve">
+        <value>Check if distance education technologies (DET) used during implementation of the edu. program (profile).</value>
+    </data>
     <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Education Level:</value>
     </data>

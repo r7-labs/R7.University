@@ -10,10 +10,11 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/admin.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/dnn-ac-combobox.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
-<div class="dnnForm dnnClear university-edit-eduprogramprofile">
+<div class="dnnForm dnnClear u8y-edit-eduprogramprofile">
     <div id="eduprogramprofile-tabs">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduprogramprofile-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
@@ -62,11 +63,21 @@
 					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLanguages" ValidationGroup="EduProgramProfile"
 						Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Languages.Required" />
 				</div>
+				<div class="checkbox-group">
+    				<div class="dnnFormItem">
+                        <dnn:Label id="labelIsAdopted" runat="server" ControlName="checkIsAdopted" />
+                        <asp:CheckBox id="checkIsAdopted" runat="server" />  
+                    </div>
+    				<div class="dnnFormItem">
+                        <dnn:Label id="labelELearning" runat="server" ControlName="checkELearning" />
+                        <asp:CheckBox id="checkELearning" runat="server" />  
+                    </div>
+    				<div class="dnnFormItem">
+                        <dnn:Label id="labelDistanceEducation" runat="server" ControlName="checkDistanceEducation" />
+                        <asp:CheckBox id="checkDistanceEducation" runat="server" />  
+                    </div>
+				</div>	
 				<div class="dnnFormItem">
-                    <dnn:Label id="labelIsAdopted" runat="server" ControlName="checkIsAdopted" />
-                    <asp:CheckBox id="checkIsAdopted" runat="server" CssClass="dnn-form-control" />  
-                </div>
-                <div class="dnnFormItem">
                     <dnn:Label ID="labelAccreditedToDate" runat="server" ControlName="dateAccreditedToDate" />
                     <dnn:DnnDatePicker id="dateAccreditedToDate" runat="server" />
                 </div>

@@ -14,6 +14,8 @@ namespace R7.University.EduProgramProfiles
         protected TextBox textProfileTitle;
         protected TextBox textLanguages;
         protected CheckBox checkIsAdopted;
+        protected CheckBox checkELearning;
+        protected CheckBox checkDistanceEducation;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected DnnDatePicker dateAccreditedToDate;
