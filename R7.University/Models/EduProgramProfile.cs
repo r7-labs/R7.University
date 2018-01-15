@@ -40,6 +40,10 @@ namespace R7.University.Models
 
         bool IsAdopted { get; }
 
+        bool ELearning { get; }
+
+        bool DistanceEducation { get; }
+
         DateTime? AccreditedToDate { get; }
 
         DateTime? CommunityAccreditedToDate { get; }
@@ -71,6 +75,10 @@ namespace R7.University.Models
 
         new bool IsAdopted { get; set; }
 
+        new bool ELearning { get; set; }
+
+        new bool DistanceEducation { get; set; }
+
         new DateTime? AccreditedToDate { get; set; }
 
         new DateTime? CommunityAccreditedToDate { get; set; }
@@ -101,6 +109,10 @@ namespace R7.University.Models
         public string Languages { get; set; }
 
         public bool IsAdopted { get; set; }
+
+        public bool ELearning { get; set; }
+
+        public bool DistanceEducation { get; set; }
 
         public DateTime? AccreditedToDate { get; set; }
 

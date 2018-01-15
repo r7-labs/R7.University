@@ -50,6 +50,10 @@ namespace R7.University.ViewModels
 
         public bool IsAdopted => EduProgramProfile.IsAdopted;
 
+        public bool ELearning => EduProgramProfile.ELearning;
+
+        public bool DistanceEducation => EduProgramProfile.DistanceEducation;
+
         public DateTime? AccreditedToDate => EduProgramProfile.AccreditedToDate;
 
         public DateTime? CommunityAccreditedToDate => EduProgramProfile.CommunityAccreditedToDate;

@@ -37,6 +37,20 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'ELearning')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        ADD ELearning bit NOT NULL DEFAULT (0)
+END
+GO
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EduProgramProfiles]') and name = N'DistanceEducation')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfiles]
+        ADD DistanceEducation bit NOT NULL DEFAULT (0)
+END
+GO
+
 IF EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'IsVirtual')
 BEGIN
     EXECUTE sp_rename N'{objectQualifier}University_Divisions.IsVirtual', N'IsSingleEntity', N'COLUMN';
