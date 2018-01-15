@@ -54,22 +54,16 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public int Order => Indexer.GetNextIndex ();
 
-        public string Code => "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>";
+        public string Code => Wrap (EduProgram.Code, "eduCode");
 
-        public string Title => FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle);
+        public string Title => Wrap (FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle), "eduName");
 
-        public string EduLevelString => "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>";
+        public string EduLevelString => Wrap (EduLevel.Title, "eduLevel");
 
-        public string AccreditedToDateString {
-            get { 
-                if (AccreditedToDate != null) {
-                    return "<span itemprop=\"DateEnd\">" + AccreditedToDate.Value.ToShortDateString () + "</span>";
-                }
-
-                return string.Empty;
-            }
-        }
-
+        public string AccreditedToDateString => (AccreditedToDate != null)
+            ? Wrap (AccreditedToDate.Value.ToShortDateString (), "dateEnd")
+            : string.Empty;
+        
         public string EduForms_String
         {
         	get {
@@ -125,8 +119,14 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
         	return EduProgramProfileFormYears
         		.Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                .OrderByDescending (eppfy => eppfy.Year.Year)
                 .Distinct (new EntityEqualityComparer<IEduProgramProfileFormYear> (eppfy => eppfy.EduForm.EduFormID))
                 .OrderBy (eppfy => eppfy.EduForm.SortIndex);
+        }
+
+        string Wrap (string text, string itemprop)
+        {
+	        return $"<span itemprop=\"{itemprop}\">{text}</span>";
         }
     }
 }

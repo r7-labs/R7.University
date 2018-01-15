@@ -168,6 +168,9 @@ namespace R7.University.EduProgramProfiles
         {
             base.OnInit (e);
 
+            gridEduProgramProfileObrnadzorEduForms.Attributes.Add ("itemprop", "eduAccred");
+            gridEduProgramProfileObrnadzorDocuments.Attributes.Add ("itemprop", "eduOP");
+
             switch (Settings.Mode) {
                 case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
                     mviewEduProgramProfileDirectory.ActiveViewIndex = 1;

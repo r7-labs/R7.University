@@ -54,12 +54,12 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public int Order => Indexer.GetNextIndex ();
 
-        public string Code => "<span itemprop=\"EduCode\">" + EduProgram.Code + "</span>";
+        public string Code => Wrap (EduProgram.Code, "eduCode");
 
         string _eduProgramLinks;
         public string EduProgram_Links => _eduProgramLinks ?? (_eduProgramLinks = GetEduProgramLinks ());
 
-        public string EduLevel_String => "<span itemprop=\"EduLevel\">" + EduLevel.Title + "</span>";
+        public string EduLevel_String => Wrap (EduLevel.Title, "eduLevel");
 
         string _eduPlanLinks;
         public string EduPlan_Links => _eduPlanLinks ?? (_eduPlanLinks = GetEduPlanLinks ());
@@ -149,18 +149,21 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string GetEduProgramLinks ()
         {
-            return FormatDocumentsLinkWithData (
+            return Wrap (FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
                 FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle),
-                "oop", "itemprop=\"OOP_main\""
-            );
+                "oop",
+                IsAdopted ? "itemprop=\"adOpMain\"" : "itemprop=\"opMain\""
+            ), "eduName");
         }
 
         string GetEduPlanLinks ()
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
-                string.Empty, "epl", "itemprop=\"education_plan\""
+                string.Empty,
+                "epl",
+                IsAdopted ? "itemprop=\"adEducationPlan\"" : "itemprop=\"educationPlan\""
             );
         }
 
@@ -168,7 +171,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
-                string.Empty, "esh", "itemprop=\"education_shedule\""
+                string.Empty,
+                "esh",
+                IsAdopted ? "itemprop=\"adEducationShedule\"" : "itemprop=\"educationShedule\""
             );
         }
 
@@ -176,7 +181,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
-                string.Empty, "wpa", "itemprop=\"education_annotation\""
+                string.Empty,
+                "wpa",
+                IsAdopted ? "itemprop=\"adEducationAnnotation\"" : "itemprop=\"educationAnnotation\""
             );
         }
 
@@ -184,7 +191,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
-                string.Empty, "met", "itemprop=\"methodology\""
+                string.Empty,
+                "met",
+                IsAdopted ? "itemprop=\"adMethodology\"" : "itemprop=\"methodology\""
             );
         }
 
@@ -192,7 +201,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramOfPractice)),
-                string.Empty, "wpp", "itemprop=\"EduPr\""
+                string.Empty,
+                "wpp",
+                IsAdopted ? "itemprop=\"adEduPr\"" : "itemprop=\"eduPr\""
             );
         }
 
@@ -220,6 +231,11 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 .Select (eppfy => eppfy.EduForm)
                 .Distinct (new EntityEqualityComparer<IEduForm> (ef => ef.EduFormID))
                 .OrderBy (ep => ep.SortIndex);
+        }
+
+        string Wrap (string text, string itemprop)
+        {
+	        return $"<span itemprop=\"{itemprop}\">{text}</span>";
         }
     }
 }
