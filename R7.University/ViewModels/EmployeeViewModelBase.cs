@@ -78,11 +78,11 @@ namespace R7.University.ViewModels
 
         public DateTime? EndDate => Employee.EndDate;
 
-        public int LastModifiedByUserID => Employee.LastModifiedByUserID;
+        public int LastModifiedByUserId => Employee.LastModifiedByUserId;
 
         public DateTime LastModifiedOnDate => Employee.LastModifiedOnDate;
 
-        public int CreatedByUserID => Employee.CreatedByUserID;
+        public int CreatedByUserId => Employee.CreatedByUserId;
 
         public DateTime CreatedOnDate => Employee.CreatedOnDate;
 

@@ -1,4 +1,4 @@
-﻿//
+//
 //  AddDivisionCommand.cs
 //
 //  Author:
@@ -36,7 +36,7 @@ namespace R7.University.Commands
         public override void Add (DivisionInfo entity, DateTime dateTime)
         {
             if (SecurityContext.CanAdd (typeof (DivisionInfo))) {
-                entity.CreatedByUserID = entity.LastModifiedByUserID = SecurityContext.UserId;
+                entity.CreatedByUserId = entity.LastModifiedByUserId = SecurityContext.UserId;
                 entity.CreatedOnDate = entity.LastModifiedOnDate = dateTime;
                 entity.DivisionTermID = entity.AddTerm (ModelContext);
                 ModelContext.Add (entity);

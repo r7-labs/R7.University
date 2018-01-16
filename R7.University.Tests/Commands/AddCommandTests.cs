@@ -1,4 +1,4 @@
-﻿//
+//
 //  AddCommandTests.cs
 //
 //  Author:
@@ -54,8 +54,8 @@ namespace R7.University.Tests.Commands
                 if (entityLoaded != null) {
                     Assert.Equal (now, entityLoaded.CreatedOnDate);
                     Assert.Equal (now, entityLoaded.LastModifiedOnDate);
-                    Assert.Equal (userId, entityLoaded.CreatedByUserID);
-                    Assert.Equal (userId, entityLoaded.LastModifiedByUserID);
+                    Assert.Equal (userId, entityLoaded.CreatedByUserId);
+                    Assert.Equal (userId, entityLoaded.LastModifiedByUserId);
                 }
             }
         }

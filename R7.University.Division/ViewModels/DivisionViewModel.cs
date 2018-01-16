@@ -59,7 +59,7 @@ namespace R7.University.Division.ViewModels
 
         public string Address => Division.Address;
 
-        public int CreatedByUserID => Division.CreatedByUserID;
+        public int CreatedByUserId => Division.CreatedByUserId;
 
         public DateTime CreatedOnDate => Division.CreatedOnDate;
 
@@ -92,7 +92,7 @@ namespace R7.University.Division.ViewModels
 
         public bool IsGoverning => Division.IsGoverning;
 
-        public int LastModifiedByUserID => Division.LastModifiedByUserID;
+        public int LastModifiedByUserId => Division.LastModifiedByUserId;
 
         public DateTime LastModifiedOnDate => Division.LastModifiedOnDate;
 

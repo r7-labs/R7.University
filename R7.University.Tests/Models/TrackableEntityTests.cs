@@ -1,4 +1,4 @@
-﻿//
+//
 //  TrackableEntityTests.cs
 //
 //  Author:
@@ -27,11 +27,11 @@ namespace R7.University.Tests.Models
 {
     public class TestTrackableEntity: ITrackableEntityWritable 
     {
-        public int LastModifiedByUserID { get; set; }
+        public int LastModifiedByUserId { get; set; }
 
         public DateTime LastModifiedOnDate { get; set; }
 
-        public int CreatedByUserID { get; set; }
+        public int CreatedByUserId { get; set; }
 
         public DateTime CreatedOnDate { get; set; }
     }
@@ -44,17 +44,17 @@ namespace R7.University.Tests.Models
             const int value1 = 1;
             const int value2 = 2;
 
-            var entity = new TestTrackableEntity { LastModifiedByUserID = value1 };
+            var entity = new TestTrackableEntity { LastModifiedByUserId = value1 };
 
-            Assert.Equal (value1, entity.LastModifiedByUserID);
-            Assert.Equal (value1, ((ITrackableEntityWritable) entity).LastModifiedByUserID);
-            Assert.Equal (value1, ((ITrackableEntity) entity).LastModifiedByUserID);
+            Assert.Equal (value1, entity.LastModifiedByUserId);
+            Assert.Equal (value1, ((ITrackableEntityWritable) entity).LastModifiedByUserId);
+            Assert.Equal (value1, ((ITrackableEntity) entity).LastModifiedByUserId);
 
-            entity.LastModifiedByUserID = value2;
+            entity.LastModifiedByUserId = value2;
 
-            Assert.Equal (value2, ((ITrackableEntity) entity).LastModifiedByUserID);
-            Assert.Equal (value2, ((ITrackableEntityWritable) entity).LastModifiedByUserID);
-            Assert.Equal (value2, entity.LastModifiedByUserID);
+            Assert.Equal (value2, ((ITrackableEntity) entity).LastModifiedByUserId);
+            Assert.Equal (value2, ((ITrackableEntityWritable) entity).LastModifiedByUserId);
+            Assert.Equal (value2, entity.LastModifiedByUserId);
         }
     }
 }

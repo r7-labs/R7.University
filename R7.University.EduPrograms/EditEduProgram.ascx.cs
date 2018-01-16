@@ -178,7 +178,7 @@ namespace R7.University.EduPrograms
             }
             else {
                 item.LastModifiedOnDate = DateTime.Now;
-                item.LastModifiedByUserID = UserInfo.UserID;
+                item.LastModifiedByUserId = UserInfo.UserID;
             }
         }
 

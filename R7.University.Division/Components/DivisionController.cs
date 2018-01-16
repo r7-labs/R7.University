@@ -46,7 +46,7 @@ namespace R7.University.Division.Components
                     var sd = new SearchDocument ()
                     {
                         PortalId = modInfo.PortalID,
-                        AuthorUserId = division.LastModifiedByUserID,
+                        AuthorUserId = division.LastModifiedByUserId,
                         Title = division.Title,
                         Body = aboutDivision,
                         ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),

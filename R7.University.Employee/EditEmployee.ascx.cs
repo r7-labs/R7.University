@@ -299,7 +299,7 @@ namespace R7.University.Employee
             );
 
             // update audit info
-            item.LastModifiedByUserID = UserId;
+            item.LastModifiedByUserId = UserId;
             item.LastModifiedOnDate = DateTime.Now;
 
             // update employee

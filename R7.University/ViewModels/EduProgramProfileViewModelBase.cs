@@ -62,11 +62,11 @@ namespace R7.University.ViewModels
 
         public DateTime? EndDate => EduProgramProfile.EndDate;
 
-        public int LastModifiedByUserID => EduProgramProfile.LastModifiedByUserID;
+        public int LastModifiedByUserId => EduProgramProfile.LastModifiedByUserId;
 
         public DateTime LastModifiedOnDate => EduProgramProfile.LastModifiedOnDate;
 
-        public int CreatedByUserID => EduProgramProfile.CreatedByUserID;
+        public int CreatedByUserId => EduProgramProfile.CreatedByUserId;
 
         public DateTime CreatedOnDate => EduProgramProfile.CreatedOnDate;
 

@@ -53,7 +53,7 @@ namespace R7.University.EmployeeList.Components
                     var sd = new SearchDocument ()
                     {
                         PortalId = modInfo.PortalID,
-                        AuthorUserId = employee.LastModifiedByUserID,
+                        AuthorUserId = employee.LastModifiedByUserId,
                         Title = employee.FullName,
                         Body = aboutEmployee,
                         ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
