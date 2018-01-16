@@ -28,16 +28,16 @@
         <value>Режим отображения срока обучения:</value>
     </data>
     <data name="labelTimeToLearnDisplayMode.Help" xml:space="preserve">
-        <value>Выберите режим отображения срока обучения.</value>
+        <value>Выберите режим отображения срока обучения (только для режима Формы и сроки обучения).</value>
     </data>
     <data name="TimeToLearnDisplayMode_YearsMonths.Text" xml:space="preserve">
-        <value>Год и месяц</value>
+        <value>Только в годах и месяцах</value>
     </data>
     <data name="TimeToLearnDisplayMode_Hours.Text" xml:space="preserve">
-        <value>Часы</value>
+        <value>Только в часах</value>
     </data>
     <data name="TimeToLearnDisplayMode_Both.Text" xml:space="preserve">
-        <value>Все</value>
+        <value>В годах, месяцах и часах</value>
     </data>
 	<data name="labelMode.Text" xml:space="preserve">
         <value>Режим модуля:</value>

@@ -23,8 +23,8 @@ namespace R7.University.Models
 {
     public enum TimeToLearnDisplayMode
     {
+        Both,
         YearsMonths,
-        Hours,
-        Both
+        Hours
     }
 }
