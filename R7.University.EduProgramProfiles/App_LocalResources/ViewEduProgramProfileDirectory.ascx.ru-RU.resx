@@ -52,7 +52,7 @@
         <value>Аннотации к рабочим программам дисциплин</value>
     </data>
     <data name="Languages.Column" xml:space="preserve">
-        <value>Информация о языках, на которых осуществляется образование (обучение)</value>
+        <value>Языки, на которых осуществляется образование (обучение)</value>
     </data>
     <data name="WorkProgramOfPractice.Column" xml:space="preserve">
         <value>Практики (рабочие программы) &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
