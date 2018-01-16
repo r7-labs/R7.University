@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
+using R7.University.Components;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -38,8 +39,7 @@ namespace R7.University.ModelExtensions
 
         public static int? AddTerm (this IDivision division, IModelContext modelContext)
         {
-            // TODO: Get vocabulary name from config
-            var vocabularyName = "University_Structure";
+            var vocabularyName = UniversityConfig.Instance.Vocabularies.OrgStructure;
             var vocabulary = new VocabularyController ().GetVocabularies ().FirstOrDefault (v => v.Name == vocabularyName);
             if (vocabulary != null) {
                 var termName = GetSafeTermName (division.ShortTitle, division.Title);

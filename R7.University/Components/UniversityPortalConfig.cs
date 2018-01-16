@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,8 @@ namespace R7.University.Components
 
         public BarcodeConfig Barcode { get; set; } = new BarcodeConfig ();
 
+        public VocabulariesConfig Vocabularies { get; set; } = new VocabulariesConfig ();
+
         public int DataCacheTime { get; set; } = 3600;
 
         public int CuHours { get; set; } = 36;
@@ -46,6 +48,13 @@ namespace R7.University.Components
     public class BarcodeConfig
     {
         public int DefaultWidth { get; set; } = 192;
+    }
+
+    public class VocabulariesConfig
+    {
+        public string OrgStructure { get; set; } = "University_Structure";
+
+        public string WorkingHours { get; set; } = "University_WorkingHours";
     }
 }
 
