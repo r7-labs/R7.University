@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using DotNetNuke.Services.Localization;
+using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
@@ -94,6 +95,21 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 return string.Empty;
             }
         }
+
+        string GetELearningString ()
+        {
+            if (ELearning || DistanceEducation) {
+                return TextUtils.FormatList (
+                    ", ",
+                    ELearning? Localization.GetString ("ELearning_ELearning.Text", Context.LocalResourceFile) : null,
+                    DistanceEducation? Localization.GetString ("ELearning_DistanceEducation.Text", Context.LocalResourceFile) : null
+                );
+            }
+
+            return Localization.GetString ("ELearning_No.Text", Context.LocalResourceFile);
+        }
+
+        public string ELearning_String => Wrap (GetELearningString (), IsAdopted ? "adEduEl" : "eduEl");
 
         #endregion
 

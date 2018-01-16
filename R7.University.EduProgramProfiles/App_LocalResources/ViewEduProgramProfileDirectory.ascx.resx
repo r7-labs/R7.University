@@ -66,6 +66,18 @@
     <data name="ContingentMovement.Column" xml:space="preserve">
         <value>Contingent Movement &lt;abbr title=&quot;Visible for editors only - this column will be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
+	<data name="ELearning.Column" xml:space="preserve">
+        <value>E-Learning (EL) and &lt;abbr title="Distance Education Technologies"&gt;DET&lt;/abbr&gt;</value>
+    </data>
+	<data name="ELearning_ELearning.Text" xml:space="preserve">
+        <value>EL</value>
+    </data>
+	<data name="ELearning_DistanceEducation.Text" xml:space="preserve">
+        <value>DET</value>
+    </data>
+	<data name="ELearning_No.Text" xml:space="preserve">
+        <value>no</value>
+    </data>
 	<data name="DocumentGroup.Column" xml:space="preserve">
         <value>Group</value>
     </data>

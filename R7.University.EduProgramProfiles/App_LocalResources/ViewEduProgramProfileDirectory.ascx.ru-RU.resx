@@ -66,6 +66,18 @@
     <data name="ContingentMovement.Column" xml:space="preserve">
         <value>Информация о результатах перевода, восстановления и отчисления &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
+	<data name="ELearning.Column" xml:space="preserve">
+        <value>Использование при реализации образовательных программ электронного обучения (ЭО) и &lt;abbr title="Дистанционные образовательные технологии"&gt;ДОТ&lt;/abbr&gt;</value>
+	</data>
+	<data name="ELearning_ELearning.Text" xml:space="preserve">
+        <value>ЭО</value>
+    </data>
+	<data name="ELearning_DistanceEducation.Text" xml:space="preserve">
+        <value>ДОТ</value>
+    </data>
+	<data name="ELearning_No.Text" xml:space="preserve">
+        <value>нет</value>
+    </data>
 	<data name="DocumentGroup.Column" xml:space="preserve">
         <value>Группа документов</value>
     </data>
