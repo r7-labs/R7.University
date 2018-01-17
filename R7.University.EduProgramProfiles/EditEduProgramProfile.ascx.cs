@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -233,7 +233,7 @@ namespace R7.University.EduProgramProfiles
                 ModelContext.SaveChanges (false);
 
                 new UpdateDocumentsCommand (ModelContext)
-                    .UpdateDocuments (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
+                    .Update (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID, UserId);
 
                 new UpdateEduProgramProfileFormYearsCommand (ModelContext)
                     .Update (formEditEduFormYears.GetModifiedData (), item.EduProgramProfileID);
@@ -252,7 +252,7 @@ namespace R7.University.EduProgramProfiles
             ModelContext.Update (item);
 
             new UpdateDocumentsCommand (ModelContext)
-                .UpdateDocuments (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
+                .Update (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID, UserId);
 
             new UpdateEduProgramProfileFormYearsCommand (ModelContext)
                 .Update (formEditEduFormYears.GetModifiedData (), item.EduProgramProfileID);

@@ -23,6 +23,16 @@
 -- replace {databaseOwner} and {objectQualifier} with real values. 
 -- Defaults is "dbo." for database owner and "" for object qualifier 
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Documents]') and name = N'CreatedOnDate')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Documents]
+        ADD CreatedOnDate datetime NOT NULL DEFAULT (GETDATE ()),
+        LastModifiedOnDate datetime NOT NULL DEFAULT (GETDATE ()),
+        CreatedByUserID int NOT NULL DEFAULT (-1),
+        LastModifiedByUserID int NOT NULL DEFAULT (-1)
+END
+GO
+
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Divisions]') and name = N'IsGoverning')
 BEGIN
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions]

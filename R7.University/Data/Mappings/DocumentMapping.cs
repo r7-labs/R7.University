@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -41,6 +41,10 @@ namespace R7.University.Data.Mappings
             Property (m => m.SortIndex).IsRequired ();
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
+            Property (m => m.CreatedOnDate).IsRequired ();
+            Property (m => m.LastModifiedOnDate).IsRequired ();
+            Property (m => m.CreatedByUserId).IsRequired ();
+            Property (m => m.LastModifiedByUserId).IsRequired ();
 
             HasRequired (m => m.DocumentType).WithMany ().HasForeignKey (m => m.DocumentTypeID);
         }
