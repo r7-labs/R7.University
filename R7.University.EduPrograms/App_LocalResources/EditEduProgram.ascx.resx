@@ -123,4 +123,10 @@
     <data name="EditScience.Action" xml:space="preserve">
         <value>Edit Science Records</value>
     </data>
+	<data name="EditEduProgramProfile.Action" xml:space="preserve">
+        <value>Edit Edu. Program Profile</value>
+    </data>
+	<data name="EditEduProgramProfileDocuments.Action" xml:space="preserve">
+        <value>Edit Edu. Program Profile Documents</value>
+    </data>
 </root>

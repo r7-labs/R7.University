@@ -284,7 +284,7 @@ namespace R7.University.EduProgramProfiles
                     actions.Add (new ModuleAction (GetNextActionID ()) {
                         Title = LocalizeString ("EditEduProgramProfileDocuments.Action"),
                         CommandName = ModuleActionType.EditContent,
-                        Icon = UniversityIcons.Edit,
+                        Icon = UniversityIcons.EditDocuments,
                         Secure = SecurityAccessLevel.Edit,
                         Url = EditUrl ("eduprogramprofile_id", epp.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments"),
                         Visible = SecurityContext.IsAdmin
