@@ -30,6 +30,9 @@
     <data name="Audit.Tab" xml:space="preserve">
         <value>Audit</value>
     </data>
+	<data name="EditEduProgram.Action" xml:space="preserve">
+        <value>Edit Edu. Program</value>
+    </data>
 	<data name="EditEduProgramProfileDocuments.Action" xml:space="preserve">
         <value>Edit Documents</value>
     </data>
@@ -89,9 +92,6 @@
     </data>
     <data name="labelEduProgram.Help" xml:space="preserve">
         <value>Select the educational program to which the profile belongs.</value>
-    </data>
-    <data name="linkEditEduProgram.Text" xml:space="preserve">
-        <value>Edit Educational Program</value>
     </data>
     <data name="labelAccreditedToDate.Text" xml:space="preserve">
         <value>Accredited to:</value>

@@ -53,8 +53,7 @@ namespace R7.University.EduProgramProfiles
         {
 	        base.OnLoad (e);
 
-            var eppId = GetEduProgramProfileId ();
-            var epp = eppId != null ? GetItemWithDependencies (eppId.Value) : null;
+            var epp = GetEduProgramProfile ();
             if (epp != null) {
                 ((CDefault) Page).Title = ((CDefault) Page).Title.Append ($"{epp.FormatTitle ()}: {epp.EduLevel.Title}", " &gt; ");
             }
@@ -108,21 +107,25 @@ namespace R7.University.EduProgramProfiles
 
         #endregion
 
-        int? GetEduProgramProfileId () => TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+        IEduProgramProfile GetEduProgramProfile ()
+        {
+        	var eppId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+        	return eppId != null ? GetItemWithDependencies (eppId.Value) : null;
+        }
 
         #region IActionable implementation
 
         public ModuleActionCollection ModuleActions {
             get {
                 var actions = new ModuleActionCollection ();
-                var eppId = GetEduProgramProfileId ();
-                if (eppId != null) {
+                var epp = GetEduProgramProfile ();
+                if (epp != null) {
                     actions.Add (new ModuleAction (GetNextActionID ()) {
                         Title = LocalizeString ("EditEduProgramProfile.Action"),
                         CommandName = ModuleActionType.EditContent,
                         Icon = UniversityIcons.Edit,
                         Secure = SecurityAccessLevel.Edit,
-                        Url = EditUrl ("eduprogramprofile_id", eppId.ToString (), "EditEduProgramProfile"),
+                        Url = EditUrl ("eduprogramprofile_id", epp.EduProgramProfileID.ToString (), "EditEduProgramProfile"),
                         Visible = SecurityContext.IsAdmin
                     });
                 }

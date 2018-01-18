@@ -36,10 +36,6 @@
                     <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
                         DataValueField="Value"
                         DataTextField="Text" />
-                    <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
-                        OnClick="linkEditEduProgram_Click" CssClass="edit-button-right">
-                        <img src="<%= R7.University.Components.UniversityIcons.Edit %>" />
-                    </asp:LinkButton>
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />

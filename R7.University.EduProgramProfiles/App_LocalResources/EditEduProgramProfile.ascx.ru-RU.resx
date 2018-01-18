@@ -30,6 +30,9 @@
     <data name="Audit.Tab" xml:space="preserve">
         <value>Аудит</value>
     </data>
+	<data name="EditEduProgram.Action" xml:space="preserve">
+        <value>Редактировать обр. программу</value>
+    </data>
 	<data name="EditEduProgramProfileDocuments.Action" xml:space="preserve">
         <value>Редактировать документы</value>
     </data>
@@ -90,10 +93,7 @@
     <data name="labelEduProgram.Help" xml:space="preserve">
         <value>Выберите образовательную программу, к которой относится данный профиль.</value>
     </data>
-    <data name="linkEditEduProgram.Text" xml:space="preserve">
-        <value>Редактировать обр. программу</value>
-    </data>
-     <data name="labelAccreditedToDate.Text" xml:space="preserve">
+    <data name="labelAccreditedToDate.Text" xml:space="preserve">
         <value>Государственная аккредитация:</value>
     </data>
     <data name="labelAccreditedToDate.Help" xml:space="preserve">

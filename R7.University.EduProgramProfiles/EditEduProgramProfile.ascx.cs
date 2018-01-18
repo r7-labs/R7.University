@@ -258,35 +258,39 @@ namespace R7.University.EduProgramProfiles
         }
 
         #endregion
-
-        protected void linkEditEduProgram_Click (object sender, EventArgs e)
+               
+        IEduProgramProfile GetEduProgramProfile ()
         {
-            var modalEditUrl = EditUrl (
-                                   "eduprogram_id",
-                                   int.Parse (comboEduProgram.SelectedValue).ToString (),
-                                   "EditEduProgram");
-            var rawEditUrl = Regex.Match (modalEditUrl, @"'(.*?)'").Groups [1].ToString ();
-            Response.Redirect (rawEditUrl, true);
+            var eppId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+            return eppId != null ? GetItemWithDependencies (eppId.Value) : null;
         }
-
-        int? GetEduProgramProfileId () => TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
 
         #region IActionable implementation
 
         public ModuleActionCollection ModuleActions {
             get {
                 var actions = new ModuleActionCollection ();
-                var eppId = GetEduProgramProfileId ();
-                if (eppId != null) {
+
+                var epp = GetEduProgramProfile ();
+                if (epp != null) {
+                    actions.Add (new ModuleAction (GetNextActionID ()) {
+                        Title = LocalizeString ("EditEduProgram.Action"),
+                        CommandName = ModuleActionType.EditContent,
+                        Icon = UniversityIcons.Edit,
+                        Secure = SecurityAccessLevel.Edit,
+                        Url = EditUrl ("eduprogram_id", epp.EduProgram.ToString (), "EditEduProgram"),
+                        Visible = SecurityContext.IsAdmin
+                    });
                     actions.Add (new ModuleAction (GetNextActionID ()) {
                         Title = LocalizeString ("EditEduProgramProfileDocuments.Action"),
                         CommandName = ModuleActionType.EditContent,
                         Icon = UniversityIcons.Edit,
                         Secure = SecurityAccessLevel.Edit,
-                        Url = EditUrl ("eduprogramprofile_id", eppId.ToString (), "EditEduProgramProfileDocuments"),
+                        Url = EditUrl ("eduprogramprofile_id", epp.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments"),
                         Visible = SecurityContext.IsAdmin
                     });
                 }
+
                 return actions;
             }
         }
