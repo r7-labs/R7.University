@@ -315,6 +315,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgramProfileDocuments</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDocuments.ascx</controlSrc>
+                                        <controlTitle>Edit Edu. Program Profile Documents</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditDocumentType</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditDocumentType.ascx</controlSrc>
@@ -943,6 +954,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgramProfileDocuments</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDocuments.ascx</controlSrc>
+                                        <controlTitle>Edit Edu. Program Profile Documents</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgramSettings.ascx</controlSrc>
@@ -1026,6 +1048,17 @@
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgramProfileDocuments</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDocuments.ascx</controlSrc>
+                                        <controlTitle>Edit Edu. Program Profile Documents</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
                                         <helpUrl />
@@ -1174,6 +1207,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgramProfileDocuments</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDocuments.ascx</controlSrc>
+                                        <controlTitle>Edit Edu. Program Profile Documents</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>EditEduProgram</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgram.ascx</controlSrc>
@@ -1261,6 +1305,17 @@
                                         <supportsPopUps>True</supportsPopUps>
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgramProfileDocuments</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDocuments.ascx</controlSrc>
+                                        <controlTitle>Edit Edu. Program Profile Documents</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
                                     <moduleControl>
                                         <controlKey>Settings</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduVolumeDirectorySettings.ascx</controlSrc>
@@ -1330,6 +1385,17 @@
                                         <controlKey>EditEduProgramProfile</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfile.ascx</controlSrc>
                                         <controlTitle>Edit Educational Program Profile</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+									<moduleControl>
+                                        <controlKey>EditEduProgramProfileDocuments</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDocuments.ascx</controlSrc>
+                                        <controlTitle>Edit Edu. Program Profile Documents</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
                                         <helpUrl />

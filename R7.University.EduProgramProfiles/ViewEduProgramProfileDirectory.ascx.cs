@@ -306,7 +306,7 @@ namespace R7.University.EduProgramProfiles
 
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id", 
-                        eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
+                        eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 

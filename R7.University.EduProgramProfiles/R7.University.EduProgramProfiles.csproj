@@ -126,6 +126,7 @@
     <Content Include="Views\Contingent\_MovementRow.cshtml" />
     <Content Include="EditContingentDirectorySettings.ascx" />
     <Content Include="EditContingent.ascx" />
+    <Content Include="EditEduProgramProfileDocuments.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEduProgramProfileDirectory.ascx.cs">
@@ -200,6 +201,12 @@
     </Compile>
     <Compile Include="Queries\EduProgramProfileFormYearEditQuery.cs" />
     <Compile Include="Modules\EduProgramProfileFormYearEditModuleBase.cs" />
+    <Compile Include="EditEduProgramProfileDocuments.controls.cs">
+      <DependentUpon>EditEduProgramProfileDocuments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEduProgramProfileDocuments.ascx.cs">
+      <DependentUpon>EditEduProgramProfileDocuments.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />
@@ -235,6 +242,8 @@
     <None Include="App_LocalResources\EditContingentDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditContingent.ascx.resx" />
     <None Include="App_LocalResources\EditContingent.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEduProgramProfileDocuments.ascx.resx" />
+    <None Include="App_LocalResources\EditEduProgramProfileDocuments.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">

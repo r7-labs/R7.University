@@ -23,7 +23,6 @@ namespace R7.University.EduProgramProfiles
         protected DropDownList comboEduProgram;
         protected DropDownList comboEduProgramLevel;
         protected DropDownList comboEduLevel;
-        protected EditDocuments formEditDocuments;
         protected EditEduFormYears formEditEduFormYears;
         protected EditDivisions formEditDivisions;
         protected ModuleAuditControl auditControl;

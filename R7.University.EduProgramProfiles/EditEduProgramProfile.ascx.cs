@@ -22,9 +22,14 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Security;
 using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EduProgramProfiles.Queries;
 using R7.University.Models;
@@ -34,21 +39,19 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles
 {
-    public partial class EditEduProgramProfile : UniversityEditPortalModuleBase<EduProgramProfileInfo>
+    public partial class EditEduProgramProfile: UniversityEditPortalModuleBase<EduProgramProfileInfo>, IActionable
     {
         public enum EditEduProgramProfileTab
         {
             Common,
             EduFormYears,
             Divisions,
-            Documents,
             Audit
         }
 
         #region Properties
 
-        protected EditEduProgramProfileTab SelectedTab
-        {
+        protected EditEduProgramProfileTab SelectedTab {
             get {
                 // get postback initiator control
                 var eventTarget = Request.Form ["__EVENTTARGET"];
@@ -61,10 +64,6 @@ namespace R7.University.EduProgramProfiles
                     if (eventTarget.Contains ("$" + formEditEduFormYears.ID)) {
                         ViewState ["SelectedTab"] = EditEduProgramProfileTab.EduFormYears;
                         return EditEduProgramProfileTab.EduFormYears;
-                    }
-                    if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
-                        ViewState ["SelectedTab"] = EditEduProgramProfileTab.Documents;
-                        return EditEduProgramProfileTab.Documents;
                     }
                 }
 
@@ -86,10 +85,6 @@ namespace R7.University.EduProgramProfiles
             InitControls (buttonUpdate, buttonDelete, linkCancel, auditControl);
         }
 
-        /// <summary>
-        /// Handles Init event for a control.
-        /// </summary>
-        /// <param name="e">Event args.</param>
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
@@ -119,11 +114,10 @@ namespace R7.University.EduProgramProfiles
             // TODO: Disable edu. program selection then adding or editing from EditEduProgram
 
             formEditEduFormYears.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).ListOrderBy (ef => ef.SortIndex), ((UniversityModelContext) ModelContext).Years);
-            formEditDocuments.OnInit (this, new FlatQuery<DocumentTypeInfo> (ModelContext).List ());
             formEditDivisions.OnInit (this, new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title));
         }
 
-        private int? GetQueryId (string key)
+        int? GetQueryId (string key)
         {
             var idParam = Request.QueryString [key];
             if (idParam != null) {
@@ -136,18 +130,18 @@ namespace R7.University.EduProgramProfiles
             return null;
         }
 
-        private void BindEduPrograms (int eduLevelId)
+        void BindEduPrograms (int eduLevelId)
         {
             comboEduProgram.DataSource = new EduProgramCommonQuery (ModelContext).ListByEduLevel (eduLevelId)
                 .Select (ep => new ListItemViewModel (ep.EduProgramID, FormatHelper.FormatEduProgramTitle (ep.Code, ep.Title)));
-            
+
             comboEduProgram.DataBind ();
 
             comboEduLevel.DataSource = ModelContext.Query<EduLevelInfo> ()
                     .Where (el => el.ParentEduLevelId == eduLevelId || el.EduLevelID == eduLevelId)
                     .OrderBy (el => el.ParentEduLevelId != null)
                     .ToList ();
-            
+
             comboEduLevel.DataBind ();
         }
 
@@ -185,7 +179,6 @@ namespace R7.University.EduProgramProfiles
 
             auditControl.Bind (epp);
 
-            formEditDocuments.SetData (epp.Documents, epp.EduProgramProfileID);
             formEditEduFormYears.SetData (epp.EduProgramProfileFormYears, epp.EduProgramProfileID);
         }
 
@@ -232,15 +225,12 @@ namespace R7.University.EduProgramProfiles
                 new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (item);
                 ModelContext.SaveChanges (false);
 
-                new UpdateDocumentsCommand (ModelContext)
-                    .Update (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID, UserId);
-
                 new UpdateEduProgramProfileFormYearsCommand (ModelContext)
                     .Update (formEditEduFormYears.GetModifiedData (), item.EduProgramProfileID);
 
                 new UpdateEduProgramDivisionsCommand (ModelContext)
                     .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
-                
+
                 ModelContext.SaveChanges ();
             }
         }
@@ -251,21 +241,18 @@ namespace R7.University.EduProgramProfiles
 
             ModelContext.Update (item);
 
-            new UpdateDocumentsCommand (ModelContext)
-                .Update (formEditDocuments.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID, UserId);
-
             new UpdateEduProgramProfileFormYearsCommand (ModelContext)
                 .Update (formEditEduFormYears.GetModifiedData (), item.EduProgramProfileID);
 
             new UpdateEduProgramDivisionsCommand (ModelContext)
                 .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgramProfile, item.EduProgramProfileID);
-            
+
             ModelContext.SaveChanges ();
         }
 
         protected override void DeleteItem (EduProgramProfileInfo item)
         {
-            // TODO: Also remove documents, divisions and edu. forms
+            // TODO: Also remove documents?
             new DeleteCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }
@@ -281,5 +268,29 @@ namespace R7.University.EduProgramProfiles
             var rawEditUrl = Regex.Match (modalEditUrl, @"'(.*?)'").Groups [1].ToString ();
             Response.Redirect (rawEditUrl, true);
         }
+
+        int? GetEduProgramProfileId () => TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+
+        #region IActionable implementation
+
+        public ModuleActionCollection ModuleActions {
+            get {
+                var actions = new ModuleActionCollection ();
+                var eppId = GetEduProgramProfileId ();
+                if (eppId != null) {
+                    actions.Add (new ModuleAction (GetNextActionID ()) {
+                        Title = LocalizeString ("EditEduProgramProfileDocuments.Action"),
+                        CommandName = ModuleActionType.EditContent,
+                        Icon = UniversityIcons.Edit,
+                        Secure = SecurityAccessLevel.Edit,
+                        Url = EditUrl ("eduprogramprofile_id", eppId.ToString (), "EditEduProgramProfileDocuments"),
+                        Visible = SecurityContext.IsAdmin
+                    });
+                }
+                return actions;
+            }
+        }
+
+        #endregion
     }
 }

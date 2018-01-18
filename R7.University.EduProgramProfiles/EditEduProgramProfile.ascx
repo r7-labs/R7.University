@@ -4,7 +4,6 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="EditEduFormYears" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditEduFormYears.ascx" %>
-<%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDivisions" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDivisions.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
@@ -20,8 +19,7 @@
             <li><a href="#eduprogramprofile-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
             <li><a href="#eduprogramprofile-eduformyears-tab"><%= LocalizeString ("EduFormYears.Tab") %></a></li>
 			<li><a href="#eduprogramprofile-divisions-tab"><%= LocalizeString ("Divisions.Tab") %></a></li>
-            <li><a href="#eduprogramprofile-documents-tab"><%= LocalizeString ("Documents.Tab") %></a></li>
-			<li><a href="#eduprogramprofile-audit-tab"><%= LocalizeString ("Audit.Tab") %></a></li>
+            <li><a href="#eduprogramprofile-audit-tab"><%= LocalizeString ("Audit.Tab") %></a></li>
         </ul>
         <div id="eduprogramprofile-common-tab">
         	<fieldset>
@@ -101,10 +99,7 @@
 		<div id="eduprogramprofile-divisions-tab">
 			<controls:EditDivisions id="formEditDivisions" runat="server" ForModel="EduProgramProfile" />
 		</div>
-        <div id="eduprogramprofile-documents-tab">
-            <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgramProfile" />
-        </div>
-		<div id="eduprogramprofile-audit-tab">
+        <div id="eduprogramprofile-audit-tab">
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelAudit" runat="server" ControlName="auditControl" />

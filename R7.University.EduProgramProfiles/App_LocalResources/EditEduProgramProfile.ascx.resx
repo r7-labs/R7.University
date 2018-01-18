@@ -27,12 +27,12 @@
     <data name="EduFormYears.Tab" xml:space="preserve">
         <value>Edu. Forms/Years</value>
     </data>
-    <data name="Documents.Tab" xml:space="preserve">
-        <value>Documents</value>
-    </data>
     <data name="Audit.Tab" xml:space="preserve">
         <value>Audit</value>
-    </data>	
+    </data>
+	<data name="EditEduProgramProfileDocuments.Action" xml:space="preserve">
+        <value>Edit Documents</value>
+    </data>
     <data name="labelProfileCode.Text" xml:space="preserve">
         <value>Profile Code:</value>
     </data>
