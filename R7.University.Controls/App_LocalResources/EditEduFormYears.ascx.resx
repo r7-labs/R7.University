@@ -57,6 +57,12 @@
 	<data name="EndDate.Column" xml:space="preserve">
         <value>End Publication</value>
     </data>
+	<data name="EduVolume.Column" xml:space="preserve">
+        <value>Edu. Volume</value>
+    </data>
+	<data name="Contingent.Column" xml:space="preserve">
+        <value>Contingent</value>
+    </data>
 	<data name="labelStartDate.Text" xml:space="preserve">
         <value>Start Publication:</value>
     </data>

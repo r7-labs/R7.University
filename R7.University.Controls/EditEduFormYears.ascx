@@ -40,6 +40,24 @@
                     <asp:BoundField DataField="EduFormTitleLocalized" HeaderText="EduFormTitle.Column" />
                     <asp:BoundField DataField="StartDate" HeaderText="StartDate.Column" DataFormatString="{0:d}" />
 					<asp:BoundField DataField="EndDate" HeaderText="EndDate.Column" DataFormatString="{0:d}" />
+					<asp:TemplateField>
+						<HeaderTemplate><%# LocalizeString ("EduVolume.Column") %></HeaderTemplate>
+						<ItemTemplate>
+                            <asp:HyperLink id="linkEditEduVolume" runat="server" ToolTip='<%# LocalizeString ("EditEduVolume.Action") %>'
+									NavigateUrl='<%# Eval ("EditEduVolumeUrl") %>' Visible='<%# Eval ("EditReferencedEntitiesActionsVisible") %>'>
+                                <asp:Image runat="server" ImageUrl='<%# Eval ("EditEduVolumeIconUrl") %>' />
+                            </asp:HyperLink>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+					<asp:TemplateField>
+						<HeaderTemplate><%# LocalizeString ("Contingent.Column") %></HeaderTemplate>
+						<ItemTemplate>
+                            <asp:HyperLink id="linkEditContingent" runat="server" ToolTip='<%# LocalizeString ("EditContingent.Action") %>'
+									NavigateUrl='<%# Eval ("EditContingentUrl") %>' Visible='<%# Eval ("EditReferencedEntitiesActionsVisible") %>'>
+								<asp:Image runat="server" ImageUrl='<%# Eval ("EditContingentIconUrl") %>' />
+                            </asp:HyperLink>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
