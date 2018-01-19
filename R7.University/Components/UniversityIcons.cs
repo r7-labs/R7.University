@@ -29,6 +29,8 @@ namespace R7.University.Components
 
         public static readonly string Add = IconController.IconURL ("Add");
 
+        public static readonly string AddAlternate = IconController.IconURL ("Add", IconController.DefaultIconSize, "Gray");
+
         public static readonly string Delete = IconController.IconURL ("ActionDelete");
 
         public static readonly string Details = IconController.IconURL ("View");
