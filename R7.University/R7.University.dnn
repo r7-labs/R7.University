@@ -140,6 +140,10 @@
 							<path>bin</path>
 							<name>R7.University.dll</name>
 						</assembly>
+                        <assembly>
+                            <path>bin</path>
+                            <name>R7.University.Divisions.dll</name>
+                        </assembly>
 						<assembly>
                             <path>bin</path>
                             <name>R7.University.EduPrograms.dll</name>
@@ -244,7 +248,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/EditDivision.ascx</controlSrc>
                                         <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -622,8 +626,8 @@
 				<component type="Module">
 					<desktopModule>
 						<moduleName>R7.University.Division</moduleName>
-						<foldername>R7.University/R7.University.Division</foldername>
-						<businessControllerClass>R7.University.Division.Components.DivisionController</businessControllerClass>
+						<foldername>R7.University/R7.University.Divisions</foldername>
+						<businessControllerClass>R7.University.Divisions.Components.DivisionController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -636,7 +640,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>R7.University.Division.Controllers/Division/Index.mvc</controlSrc>
+										<controlSrc>R7.University.Divisions.Controllers/Division/Index.mvc</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -647,7 +651,7 @@
 									</moduleControl>
                                     <moduleControl>
 										<controlKey>EditDivision</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/EditDivision.ascx</controlSrc>
                                         <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -658,7 +662,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Division/SettingsDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/SettingsDivision.ascx</controlSrc>
                                         <controlTitle>Division Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -671,15 +675,6 @@
 							</moduleDefinition>
 						</moduleDefinitions>
 					</desktopModule>
-				</component>
-				<component type="Assembly">
-					<assemblies>
-						<basePath>bin</basePath>
-						<assembly>
-							<path>bin</path>
-							<name>R7.University.Division.dll</name>
-						</assembly>
-					</assemblies>
 				</component>
 			</components>
 		</package>
@@ -778,8 +773,8 @@
 				<component type="Module">
 					<desktopModule>
 				   		<moduleName>R7.University.DivisionDirectory</moduleName>
-				   		<foldername>R7.University/R7.University.DivisionDirectory</foldername>
-				   		<businessControllerClass>R7.University.DivisionDirectory.Components.DivisionDirectoryController</businessControllerClass>
+				   		<foldername>R7.University/R7.University.Divisions</foldername>
+				   		<businessControllerClass>R7.University.Divisions.Components.DivisionDirectoryController</businessControllerClass>
 				   		<supportedFeatures>
 				     		<!-- <supportedFeature type="Portable" /> -->
 				    		<!-- <supportedFeature type="Searchable" /> -->
@@ -792,7 +787,7 @@
 				       			<moduleControls>
 				         			<moduleControl>
 					           			<controlKey />
-				           				<controlSrc>DesktopModules/MVC/R7.University/R7.University.DivisionDirectory/ViewDivisionDirectory.ascx</controlSrc>
+				           				<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/ViewDivisionDirectory.ascx</controlSrc>
 				           				<controlTitle />
 				           				<controlType>View</controlType>
 				          				<iconFile />
@@ -836,7 +831,7 @@
 									</moduleControl>
 									<moduleControl>
 						           		<controlKey>Settings</controlKey>
-						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.DivisionDirectory/SettingsDivisionDirectory.ascx</controlSrc>
+						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/SettingsDivisionDirectory.ascx</controlSrc>
 						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />
@@ -849,15 +844,6 @@
 				     		</moduleDefinition>
 				   		</moduleDefinitions>
 				 	</desktopModule>
-				</component>
-				<component type="Assembly">
-					<assemblies>
-						<basePath>bin</basePath>
-						<assembly>
-							<path>bin</path>
-							<name>R7.University.DivisionDirectory.dll</name>
-						</assembly>
-					</assemblies>
 				</component>
 			</components>
 		</package>

@@ -7,9 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Launchpad", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Employees", "R7.University.Employees\R7.University.Employees.csproj", "{755C907B-A0E7-486E-83E5-AF4E01A75513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Division", "R7.University.Division\R7.University.Division.csproj", "{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.DivisionDirectory", "R7.University.DivisionDirectory\R7.University.DivisionDirectory.csproj", "{D76E76D0-18E9-487E-825A-4C18123A48F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Divisions", "R7.University.Divisions\R7.University.Divisions.csproj", "{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfiles", "R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
 EndProject
@@ -57,10 +55,6 @@ Global
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
