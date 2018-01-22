@@ -93,17 +93,9 @@
 			<Project>{6734EECF-00F2-4870-99E1-7C893069B0D7}</Project>
 			<Name>R7.University.EduProgramProfiles</Name>
 		</ProjectReference>
-		<ProjectReference Include="..\R7.University.Employee\R7.University.Employee.csproj">
+		<ProjectReference Include="..\R7.University.Employees\R7.University.Employees.csproj">
 			<Project>{755C907B-A0E7-486E-83E5-AF4E01A75513}</Project>
-			<Name>R7.University.Employee</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\R7.University.EmployeeDirectory\R7.University.EmployeeDirectory.csproj">
-			<Project>{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}</Project>
-			<Name>R7.University.EmployeeDirectory</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\R7.University.EmployeeList\R7.University.EmployeeList.csproj">
-			<Project>{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}</Project>
-			<Name>R7.University.EmployeeList</Name>
+			<Name>R7.University.Employees</Name>
 		</ProjectReference>
 		<ProjectReference Include="..\R7.University.Launchpad\R7.University.Launchpad.csproj">
 			<Project>{438F599E-41B4-4057-BFAA-FAA698E052DD}</Project>

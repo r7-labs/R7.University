@@ -146,6 +146,10 @@
                         </assembly>
 						<assembly>
                             <path>bin</path>
+                            <name>R7.University.Employees.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
                             <name>R7.University.EduProgramProfiles.dll</name>
                         </assembly>
 						<assembly>
@@ -229,7 +233,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -391,8 +395,8 @@
 				<component type="Module">
 					<desktopModule>
 						<moduleName>R7.University.Employee</moduleName>
-						<foldername>R7.University/R7.University.Employee</foldername>
-						<businessControllerClass>R7.University.Employee.Components.EmployeeController</businessControllerClass>
+						<foldername>R7.University/R7.University.Employees</foldername>
+						<businessControllerClass>R7.University.Employees.Components.EmployeeController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -405,7 +409,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/ViewEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployee.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -416,7 +420,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -427,7 +431,7 @@
 									</moduleControl>
                                     <moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -438,7 +442,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployee.ascx</controlSrc>
 										<controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -452,15 +456,7 @@
 						</moduleDefinitions>
 					</desktopModule>
 				</component>
-				<component type="Assembly">
-					<assemblies>
-						<basePath>bin</basePath>
-						<assembly>
-							<path>bin</path>
-							<name>R7.University.Employee.dll</name>
-						</assembly>
-					</assemblies>
-				</component>
+				
 			</components>
 		</package>
 		<package name="R7.University.EmployeeDetails" type="Module" version="02.00.00">
@@ -479,8 +475,8 @@
 				<component type="Module">
 					<desktopModule>
 						<moduleName>R7.University.EmployeeDetails</moduleName>
-						<foldername>R7.University/R7.University.EmployeeDetails</foldername>
-						<businessControllerClass>R7.University.Employee.Components.EmployeeController</businessControllerClass>
+						<foldername>R7.University/R7.University.Employees</foldername>
+						<businessControllerClass>R7.University.Employees.Components.EmployeeController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -493,7 +489,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -504,7 +500,7 @@
 									</moduleControl>
                                     <moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -515,7 +511,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/SettingsEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployee.ascx</controlSrc>
                                         <controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -547,8 +543,8 @@
 				<component type="Module">
 					<desktopModule>
 						<moduleName>R7.University.EmployeeList</moduleName>
-						<foldername>R7.University/R7.University.EmployeeList</foldername>
-						<businessControllerClass>R7.University.EmployeeList.Components.EmployeeListController</businessControllerClass>
+						<foldername>R7.University/R7.University.Employees</foldername>
+						<businessControllerClass>R7.University.Employees.Components.EmployeeListController</businessControllerClass>
 						<supportedFeatures>
 							<!-- <supportedFeature type="Portable" /> -->
 							<supportedFeature type="Searchable" />
@@ -561,7 +557,7 @@
 								<moduleControls>
 									<moduleControl>
 										<controlKey />
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.EmployeeList/ViewEmployeeList.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployeeList.ascx</controlSrc>
 										<controlTitle />
 										<controlType>View</controlType>
 										<iconFile />
@@ -572,7 +568,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -583,7 +579,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -594,7 +590,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.EmployeeList/SettingsEmployeeList.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployeeList.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -607,15 +603,6 @@
 							</moduleDefinition>
 						</moduleDefinitions>
 					</desktopModule>
-				</component>
-				<component type="Assembly">
-					<assemblies>
-						<basePath>bin</basePath>
-						<assembly>
-							<path>bin</path>
-							<name>R7.University.EmployeeList.dll</name>
-						</assembly>
-					</assemblies>
 				</component>
 			</components>
 		</package>
@@ -712,8 +699,8 @@
 				<component type="Module">
 					<desktopModule>
 				   		<moduleName>R7.University.EmployeeDirectory</moduleName>
-				   		<foldername>R7.University/R7.University.EmployeeDirectory</foldername>
-				   		<businessControllerClass>R7.University.EmployeeDirectory.Components.EmployeeDirectoryController</businessControllerClass>
+				   		<foldername>R7.University/R7.University.Employees</foldername>
+				   		<businessControllerClass>R7.University.Employees.Components.EmployeeDirectoryController</businessControllerClass>
 				   		<supportedFeatures>
 				     		<!-- <supportedFeature type="Portable" /> -->
 				    		<!-- <supportedFeature type="Searchable" /> -->
@@ -726,7 +713,7 @@
 				       			<moduleControls>
 				         			<moduleControl>
 					           			<controlKey />
-				           				<controlSrc>DesktopModules/MVC/R7.University/R7.University.EmployeeDirectory/ViewEmployeeDirectory.ascx</controlSrc>
+				           				<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployeeDirectory.ascx</controlSrc>
 				           				<controlTitle />
 				           				<controlType>View</controlType>
 				          				<iconFile />
@@ -737,7 +724,7 @@
 					         		</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -748,7 +735,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -759,7 +746,7 @@
 									</moduleControl>
 				         			<moduleControl>
 						           		<controlKey>Settings</controlKey>
-						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.EmployeeDirectory/SettingsEmployeeDirectory.ascx</controlSrc>
+						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployeeDirectory.ascx</controlSrc>
 						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />
@@ -772,15 +759,6 @@
 				     		</moduleDefinition>
 				   		</moduleDefinitions>
 				 	</desktopModule>
-				</component>
-				<component type="Assembly">
-					<assemblies>
-						<basePath>bin</basePath>
-						<assembly>
-							<path>bin</path>
-							<name>R7.University.EmployeeDirectory.dll</name>
-						</assembly>
-					</assemblies>
 				</component>
 			</components>
 		</package>
@@ -825,7 +803,7 @@
 					         		</moduleControl>
 									<moduleControl>
 										<controlKey>EmployeeDetails</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/ViewEmployeeDetails.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/ViewEmployeeDetails.ascx</controlSrc>
 										<controlTitle>Employee Details</controlTitle>
 										<controlType>View</controlType>
 										<iconFile />
@@ -836,7 +814,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditEmployee</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employee/EditEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployee.ascx</controlSrc>
                                         <controlTitle>Edit Employee</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
