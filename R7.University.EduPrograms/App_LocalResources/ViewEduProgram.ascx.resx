@@ -39,8 +39,14 @@
     <data name="EduProgramProfile.Text" xml:space="preserve">
         <value>Profile (specialization)</value>
     </data>
-    <data name="EduForms.Text" xml:space="preserve">
-        <value>Education forms and learn time:</value>
+    <data name="ImplementedEduForms.Text" xml:space="preserve">
+        <value>Implemented education forms:</value>
+    </data>
+	<data name="EduFormsForAdmission.Text" xml:space="preserve">
+        <value>Education forms open for admission in</value>
+    </data>
+	<data name="Year.Text" xml:space="preserve">
+        <value>:</value>
     </data>
     <data name="Divisions.Text" xml:space="preserve">
         <value>Divisions:</value>

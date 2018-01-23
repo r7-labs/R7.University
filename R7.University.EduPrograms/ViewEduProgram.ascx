@@ -69,11 +69,18 @@
                                     <%# Item.CommunityAccreditedToDate_String %>
                                 </div>
                             </div>
-                            <div runat="server" Visible='<%# Item.EduForms_Visible %>' class="u8y-para-end">
-                                <label runat="server"><%# LocalizeString ("EduForms.Text") %></label>
-                                <%# HttpUtility.HtmlDecode (Item.EduForms_String) %>
+                            <div runat="server" Visible='<%# Item.EduFormsForAdmission_Visible %>'>
+                                <label runat="server">
+									<%# LocalizeString ("EduFormsForAdmission.Text") %>
+									<%# Item.YearOfAdmission %><%# LocalizeString ("Year.Text") %>
+								</label>
+                                <%# HttpUtility.HtmlDecode (Item.EduFormsForAdmission_String) %>
                             </div>
-                        </div>
+							<div runat="server" Visible='<%# Item.ImplementedEduForms_Visible %>' class="u8y-para-end">
+                                <label runat="server"><%# LocalizeString ("ImplementedEduForms.Text") %></label>
+                                <%# HttpUtility.HtmlDecode (Item.ImplementedEduForms_String) %>
+                            </div>
+						</div>
                     </ItemTemplate>
                 </asp:ListView>
             </div>

@@ -39,8 +39,14 @@
     <data name="EduProgramProfile.Text" xml:space="preserve">
         <value>Профиль (специализация)</value>
     </data>
-    <data name="EduForms.Text" xml:space="preserve">
-        <value>Формы и сроки обучения:</value>
+    <data name="ImplementedEduForms.Text" xml:space="preserve">
+        <value>Реализуемые формы обучения:</value>
+    </data>
+	<data name="EduFormsForAdmission.Text" xml:space="preserve">
+        <value>Формы обучения, открытые для приема на обучение в</value>
+    </data>
+	<data name="Year.Text" xml:space="preserve">
+        <value> году:</value>
     </data>
     <data name="Divisions.Text" xml:space="preserve">
         <value>Подразделения:</value>
