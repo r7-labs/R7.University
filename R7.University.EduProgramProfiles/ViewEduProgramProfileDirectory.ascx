@@ -68,7 +68,7 @@
         </asp:View>
     </asp:MultiView>
 	<controls:AgplSignature runat="server" />
-	<div id="u8y-epp-docs-dlg-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="u8y-epp-docs-dlg-title-<%: ModuleId %>">
+	<div id="u8y-epp-docs-dlg-<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="u8y-epp-docs-dlg-title-<%: ModuleId %>">
         <div class="modal-dialog u8y-epp-docs-dlg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
