@@ -37,7 +37,7 @@
                         </div>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <div>
+                        <div class="well">
                             <h3 runat="server" class='<%# Item.CssClass %>'>
                                 <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Item.Edit_Url %>' ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
                                 <%# Item.Title_String %>
