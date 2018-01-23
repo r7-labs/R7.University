@@ -4,7 +4,7 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 
-<div class="dnnForm dnnClear eduprogramprofile-directory">
+<div class="dnnForm dnnClear u8y-eduprogramprofile-directory">
     <asp:MultiView id="mviewEduProgramProfileDirectory" runat="server">
         <asp:View runat="server">
             <asp:Label runat="server" resourcekey="NotConfigured.Text" CssClass="dnnFormMessage dnnFormInfo" />
@@ -69,7 +69,7 @@
     </asp:MultiView>
 	<controls:AgplSignature runat="server" />
 	<div id="u8y-epp-docs-dlg-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="u8y-epp-docs-dlg-title-<%: ModuleId %>">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog u8y-epp-docs-dlg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
@@ -93,9 +93,10 @@
             var table = $("#" + link.data("table"));
     		$(this).find(".modal-title").text(link.closest("tr").data("title"));
     		$(this).find(".modal-body").html(table.clone()).find("table")
-		        .addClass("table table-striped table-bordered table-hover table-condensed small")
-		        .prepend("<caption>" + getTh(link.closest ("td")).text() + "</caption>")
-                .show();
+		        .addClass("table table-striped table-bordered table-hover table-condensed")
+				.removeClass ("hidden")
+				.before("<p class='u8y-epp-docs-dlg-caption'>" + getTh(link.closest ("td")).text() + "</p>")
+                .wrap ("<div class='u8y-epp-docs-dlg-body'></div>");
         });
     });
 } (jQuery, document));

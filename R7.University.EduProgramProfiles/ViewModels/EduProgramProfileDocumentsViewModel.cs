@@ -140,8 +140,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                     $"<span{microdataAttrs}>"
                     + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#u8y-epp-docs-dlg-{Context.Module.ModuleId}\""
                     + $" data-table=\"doct-{RowId}-{columnSlug}\">{(linkText + docCountText).TrimStart ()}</a>"
-                    // TODO: Use class="hidden" instead of inline style?
-                    + $"<table id=\"doct-{RowId}-{columnSlug}\" style=\"display:none\">"
+                    + $"<table id=\"doct-{RowId}-{columnSlug}\" class=\"hidden\">"
                     + $"<thead><tr><th>{TitleColumnHeader}</th><th>{GroupColumnHeader}</th></tr></thead><tbody>"
                 );
 

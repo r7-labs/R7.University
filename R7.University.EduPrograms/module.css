@@ -4,5 +4,12 @@
 
 .eduprogram-directory .u8y-column.u8y-expand { width:100% }
 
-.u8y-science-directory { font-size:85% }
-.u8y-science-directory thead { font-size:85% }
+.u8y-science-directory table { font-size:85% }
+.u8y-science-directory table thead { font-size:85% }
+
+.u8y-science-directory .u8y-science-descr-dlg .u8y-science-descr-dlg-caption { font-weight:bold }
+.u8y-science-directory .u8y-science-descr-dlg .u8y-science-descr-dlg-body { 
+	font-size:85%;
+	max-height:550px;
+	overflow:auto
+}
