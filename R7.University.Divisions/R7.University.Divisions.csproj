@@ -112,37 +112,37 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
-    <Content Include="SettingsDivision.ascx" />
+    <Content Include="EditDivisionSettings.ascx" />
     <Content Include="EditDivision.ascx" />
     <Content Include="admin.css" />
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Division\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="SettingsDivisionDirectory.ascx" />
+    <Content Include="EditDivisionDirectorySettings.ascx" />
     <Content Include="ViewDivisionDirectory.ascx" />
     <Content Include="js\tree.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\Division.resx" />
     <None Include="App_LocalResources\Division.ru-RU.resx" />
-    <None Include="App_LocalResources\SettingsDivision.ascx.resx" />
-    <None Include="App_LocalResources\SettingsDivision.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditDivisionSettings.ascx.resx" />
+    <None Include="App_LocalResources\EditDivisionSettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditDivision.ascx.resx" />
     <None Include="App_LocalResources\EditDivision.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\SettingsDivisionDirectory.ascx.resx" />
-    <None Include="App_LocalResources\SettingsDivisionDirectory.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditDivisionDirectorySettings.ascx.resx" />
+    <None Include="App_LocalResources\EditDivisionDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewDivisionDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewDivisionDirectory.ascx.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SettingsDivision.ascx.cs">
-      <DependentUpon>SettingsDivision.ascx</DependentUpon>
+    <Compile Include="EditDivisionSettings.ascx.cs">
+      <DependentUpon>EditDivisionSettings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsDivision.ascx.controls.cs">
-      <DependentUpon>SettingsDivision.ascx</DependentUpon>
+    <Compile Include="EditDivisionSettings.ascx.controls.cs">
+      <DependentUpon>EditDivisionSettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditDivision.ascx.cs">
       <DependentUpon>EditDivision.ascx</DependentUpon>
@@ -157,11 +157,11 @@
     <Compile Include="ViewModels\DivisionViewModel.cs" />
     <Compile Include="Models\DivisionSettings.cs" />
     <Compile Include="Models\DivisionSettingsRepository.cs" />
-    <Compile Include="SettingsDivisionDirectory.ascx.cs">
-      <DependentUpon>SettingsDivisionDirectory.ascx</DependentUpon>
+    <Compile Include="EditDivisionDirectorySettings.ascx.cs">
+      <DependentUpon>EditDivisionDirectorySettings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsDivisionDirectory.ascx.controls.cs">
-      <DependentUpon>SettingsDivisionDirectory.ascx</DependentUpon>
+    <Compile Include="EditDivisionDirectorySettings.ascx.controls.cs">
+      <DependentUpon>EditDivisionDirectorySettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewDivisionDirectory.ascx.cs">
       <DependentUpon>ViewDivisionDirectory.ascx</DependentUpon>

@@ -226,7 +226,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/SettingsLaunchpad.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Launchpad/EditLaunchpadSettings.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -446,7 +446,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployeeSettings.ascx</controlSrc>
 										<controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -515,7 +515,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployee.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployeeSettings.ascx</controlSrc>
                                         <controlTitle>Employee Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -594,7 +594,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployeeList.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployeeListSettings.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -662,7 +662,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>Settings</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/SettingsDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/EditDivisionSettings.ascx</controlSrc>
                                         <controlTitle>Division Settings</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
@@ -741,7 +741,7 @@
 									</moduleControl>
 				         			<moduleControl>
 						           		<controlKey>Settings</controlKey>
-						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/SettingsEmployeeDirectory.ascx</controlSrc>
+						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployeeDirectorySettings.ascx</controlSrc>
 						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />
@@ -831,7 +831,7 @@
 									</moduleControl>
 									<moduleControl>
 						           		<controlKey>Settings</controlKey>
-						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/SettingsDivisionDirectory.ascx</controlSrc>
+						           		<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/EditDivisionDirectorySettings.ascx</controlSrc>
 						          		<controlTitle>Settings</controlTitle>
 						           		<controlType>Edit</controlType>
 						           		<iconFile />

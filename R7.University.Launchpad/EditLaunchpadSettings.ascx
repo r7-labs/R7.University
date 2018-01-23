@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsLaunchpad.ascx.cs" Inherits="R7.University.Launchpad.SettingsLaunchpad" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditLaunchpadSettings.ascx.cs" Inherits="R7.University.Launchpad.EditLaunchpadSettings" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 

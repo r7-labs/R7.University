@@ -121,34 +121,34 @@
   <ItemGroup>
     <Content Include="module.css" />
     <Content Include="ViewEmployee.ascx" />
-    <Content Include="SettingsEmployee.ascx" />
+    <Content Include="EditEmployeeSettings.ascx" />
     <Content Include="ViewEmployeeDetails.ascx" />
     <Content Include="EditEmployee.ascx" />
     <Content Include="admin.css" />
     <Content Include="packages.config" />
-    <Content Include="SettingsEmployeeList.ascx" />
+    <Content Include="EditEmployeeListSettings.ascx" />
     <Content Include="ViewEmployeeList.ascx" />
-    <Content Include="SettingsEmployeeDirectory.ascx" />
+    <Content Include="EditEmployeeDirectorySettings.ascx" />
     <Content Include="ViewEmployeeDirectory.ascx" />
     <Content Include="js\tree.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewEmployee.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployee.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\SettingsEmployee.ascx.resx" />
-    <None Include="App_LocalResources\SettingsEmployee.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEmployeeSettings.ascx.resx" />
+    <None Include="App_LocalResources\EditEmployeeSettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
     <None Include="App_LocalResources\EditEmployee.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployeeDetails.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployeeDetails.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEmployee.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\SettingsEmployeeList.ascx.resx" />
-    <None Include="App_LocalResources\SettingsEmployeeList.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEmployeeListSettings.ascx.resx" />
+    <None Include="App_LocalResources\EditEmployeeListSettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewEmployeeList.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployeeList.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\SettingsEmployeeDirectory.ascx.resx" />
-    <None Include="App_LocalResources\SettingsEmployeeDirectory.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEmployeeDirectorySettings.ascx.resx" />
+    <None Include="App_LocalResources\EditEmployeeDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.ru-RU.resx" />
   </ItemGroup>
@@ -159,11 +159,11 @@
     <Compile Include="ViewEmployee.ascx.controls.cs">
       <DependentUpon>ViewEmployee.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEmployee.ascx.cs">
-      <DependentUpon>SettingsEmployee.ascx</DependentUpon>
+    <Compile Include="EditEmployeeSettings.ascx.cs">
+      <DependentUpon>EditEmployeeSettings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEmployee.ascx.controls.cs">
-      <DependentUpon>SettingsEmployee.ascx</DependentUpon>
+    <Compile Include="EditEmployeeSettings.ascx.controls.cs">
+      <DependentUpon>EditEmployeeSettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewEmployeeDetails.ascx.cs">
       <DependentUpon>ViewEmployeeDetails.ascx</DependentUpon>
@@ -192,11 +192,11 @@
     <Compile Include="ViewModels\EmployeeDisciplineViewModel.cs" />
     <Compile Include="Components\EmployeeListController.cs" />
     <Compile Include="ViewModels\EmployeeListViewModel.cs" />
-    <Compile Include="SettingsEmployeeList.ascx.cs">
-      <DependentUpon>SettingsEmployeeList.ascx</DependentUpon>
+    <Compile Include="EditEmployeeListSettings.ascx.cs">
+      <DependentUpon>EditEmployeeListSettings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEmployeeList.ascx.controls.cs">
-      <DependentUpon>SettingsEmployeeList.ascx</DependentUpon>
+    <Compile Include="EditEmployeeListSettings.ascx.controls.cs">
+      <DependentUpon>EditEmployeeListSettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewEmployeeList.ascx.cs">
       <DependentUpon>ViewEmployeeList.ascx</DependentUpon>
@@ -204,11 +204,11 @@
     <Compile Include="ViewEmployeeList.ascx.controls.cs">
       <DependentUpon>ViewEmployeeList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEmployeeDirectory.ascx.cs">
-      <DependentUpon>SettingsEmployeeDirectory.ascx</DependentUpon>
+    <Compile Include="EditEmployeeDirectorySettings.ascx.cs">
+      <DependentUpon>EditEmployeeDirectorySettings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsEmployeeDirectory.ascx.controls.cs">
-      <DependentUpon>SettingsEmployeeDirectory.ascx</DependentUpon>
+    <Compile Include="EditEmployeeDirectorySettings.ascx.controls.cs">
+      <DependentUpon>EditEmployeeDirectorySettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewEmployeeDirectory.ascx.cs">
       <DependentUpon>ViewEmployeeDirectory.ascx</DependentUpon>

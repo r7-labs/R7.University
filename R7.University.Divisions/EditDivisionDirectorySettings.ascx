@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SettingsDivisionDirectory.ascx.cs" Inherits="R7.University.Divisions.SettingsDivisionDirectory" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditDivisionDirectorySettings.ascx.cs" Inherits="R7.University.Divisions.EditDivisionDirectorySettings" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 

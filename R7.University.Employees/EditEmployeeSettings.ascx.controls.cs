@@ -2,7 +2,7 @@
 
 namespace R7.University.Employees
 {
-    public partial class SettingsEmployee
+    public partial class EditEmployeeSettings
     {
         protected DropDownList comboEmployees;
         protected CheckBox checkShowCurrentUser;

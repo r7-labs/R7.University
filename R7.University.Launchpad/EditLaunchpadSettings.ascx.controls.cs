@@ -2,7 +2,7 @@
 
 namespace R7.University.Launchpad
 {
-    public partial class SettingsLaunchpad
+    public partial class EditLaunchpadSettings
     {
         protected CheckBoxList listTables;
         protected DropDownList comboPageSize;

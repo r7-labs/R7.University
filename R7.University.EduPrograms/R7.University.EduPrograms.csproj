@@ -184,16 +184,16 @@
     <Content Include="EditScienceDirectorySettings.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_LocalResources\SettingsEduProgram.ascx.resx" />
-    <None Include="App_LocalResources\SettingsEduProgram.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEduProgramSettings.ascx.resx" />
+    <None Include="App_LocalResources\EditEduProgramSettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewEduProgram.ascx.resx" />
     <None Include="App_LocalResources\ViewEduProgram.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgram.ascx.resx" />
     <None Include="App_LocalResources\EditEduProgram.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
-    <None Include="App_LocalResources\SettingsEduProgramDirectory.ascx.resx" />
-    <None Include="App_LocalResources\SettingsEduProgramDirectory.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditEduProgramDirectorySettings.ascx.resx" />
+    <None Include="App_LocalResources\EditEduProgramDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewEduProgramDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEduProgramDirectory.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditScience.ascx.resx" />

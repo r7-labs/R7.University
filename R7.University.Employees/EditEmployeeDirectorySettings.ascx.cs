@@ -1,10 +1,10 @@
 //
-//  SettingsEmployeeList.ascx.cs
+//  EditEmployeeDirectorySettings.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,19 +20,21 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.Common.Utilities;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
+using R7.University.ControlExtensions;
 using R7.University.Employees.Models;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
+using R7.University.ViewModels;
 
 namespace R7.University.Employees
 {
-    public partial class SettingsEmployeeList: UniversityModuleSettingsBase<EmployeeListSettings>
+    public partial class EditEmployeeDirectorySettings: UniversityModuleSettingsBase<EmployeeDirectorySettings>
     {
         #region Model context
 
@@ -57,13 +59,13 @@ namespace R7.University.Employees
         {
             base.OnInit (e);
 
-            divisionSelector.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
-            divisionSelector.DataBind ();
+            comboMode.DataSource = Enum.GetNames (typeof (EmployeeDirectoryMode));
+            comboMode.DataBind ();
 
-            // sort type
-            comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeight.Text"), "0");
-            comboSortType.AddItem (LocalizeString ("SortTypeByTotalWeight.Text"), "1");
-            comboSortType.AddItem (LocalizeString ("SortTypeByName.Text"), "2");
+            // fill edulevels list
+            foreach (var eduLevel in new EduLevelQuery (ModelContext).List ()) {
+                listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
+            }
         }
 
         /// <summary>
@@ -73,11 +75,17 @@ namespace R7.University.Employees
         {
             try {
                 if (!IsPostBack) {
-                    divisionSelector.DivisionId = Settings.DivisionID;
-                    checkIncludeSubdivisions.Checked = Settings.IncludeSubdivisions;
-                    checkHideHeadEmployee.Checked = Settings.HideHeadEmployee;
-                    comboSortType.SelectByValue (Settings.SortType);
-                    textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
+                    comboMode.SelectByValue (Settings.Mode);
+
+                    // check edulevels list items
+                    foreach (var eduLevelId in Settings.EduLevels) {
+                        var item = listEduLevels.Items.FindByValue (eduLevelId.ToString ());
+                        if (item != null) {
+                            item.Selected = true;
+                        }
+                    }
+
+                    checkShowAllTeachers.Checked = Settings.ShowAllTeachers;
                 }
             }
             catch (Exception ex) {
@@ -91,17 +99,17 @@ namespace R7.University.Employees
         public override void UpdateSettings ()
         {
             try {
-                Settings.DivisionID = divisionSelector.DivisionId ?? Null.NullInteger;
-                Settings.IncludeSubdivisions = checkIncludeSubdivisions.Checked;
-                Settings.HideHeadEmployee = checkHideHeadEmployee.Checked;
-                Settings.SortType = int.Parse (comboSortType.SelectedValue);
-                Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
+                Settings.Mode = (EmployeeDirectoryMode) Enum.Parse (
+                    typeof (EmployeeDirectoryMode),
+                    comboMode.SelectedValue);
+                Settings.EduLevels = listEduLevels.Items.AsEnumerable ().Where (i => i.Selected).Select (i => int.Parse (i.Value)).ToList ();
+                Settings.ShowAllTeachers = checkShowAllTeachers.Checked;
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 
                 ModuleController.SynchronizeModule (ModuleId);
 
-                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId);
+                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EmployeeDirectory");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
