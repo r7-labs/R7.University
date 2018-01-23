@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -71,6 +72,13 @@ namespace R7.University.ModelExtensions
         {
             return $"{eppfy.EduProgramProfile.FormatTitle ()}: {eppfy.EduProgramProfile.EduLevel.FormatTitle ()}"
                 + $" - {eppfy.EduForm.FormatTitle (resourceFile)} / {eppfy.Year.Year}";
+        }
+
+        public static IEnumerable<IEduProgramProfileFormYear> DistinctByEduForms (this IEnumerable<EduProgramProfileFormYearInfo> eppfys)
+        {
+            return eppfys.OrderByDescending (eppfy => eppfy.Year.Year)
+                         .Distinct (new EntityEqualityComparer<IEduProgramProfileFormYear> (eppfy => eppfy.EduForm.EduFormID))
+                         .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
     }
 }

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -244,9 +244,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return EduProgramProfileFormYears
                 .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
-                .Select (eppfy => eppfy.EduForm)
-                .Distinct (new EntityEqualityComparer<IEduForm> (ef => ef.EduFormID))
-                .OrderBy (ep => ep.SortIndex);
+                .DistinctByEduForms ()
+                .Select (eppfy => eppfy.EduForm);
         }
 
         string Wrap (string text, string itemprop)

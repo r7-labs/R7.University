@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -117,11 +117,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         IEnumerable<IEduProgramProfileFormYear> GetImplementedEduFormYears ()
         {
-        	return EduProgramProfileFormYears
-        		.Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
-                .OrderByDescending (eppfy => eppfy.Year.Year)
-                .Distinct (new EntityEqualityComparer<IEduProgramProfileFormYear> (eppfy => eppfy.EduForm.EduFormID))
-                .OrderBy (eppfy => eppfy.EduForm.SortIndex);
+            return EduProgramProfileFormYears
+                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                .DistinctByEduForms ();
         }
 
         string Wrap (string text, string itemprop)
