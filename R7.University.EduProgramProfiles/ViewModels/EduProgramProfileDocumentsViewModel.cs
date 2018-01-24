@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
@@ -166,7 +167,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return Wrap (FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
-                FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle),
+                FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
+                    .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
                 "oop",
                 IsAdopted ? "itemprop=\"adOpMain\"" : "itemprop=\"opMain\""
             ), "eduName");

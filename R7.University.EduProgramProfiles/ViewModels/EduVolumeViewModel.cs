@@ -21,6 +21,7 @@
 
 using System;
 using System.Web;
+using DotNetNuke.Common.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
@@ -80,7 +81,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string CssClass =>
             FormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
-        public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false);
+        public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false)
+                                                        .Append (FormYear.EduProgramProfile.IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ");
 
         public string Year1Cu => FormatCu (() => FormYear.EduVolume?.Year1Cu);
 

@@ -41,7 +41,6 @@ else {
                         }
     				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduCode.Column")</th>
         			    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduProgram.Column")</th>
-    				    <th scope="col" rowspan="2">@Dnn.LocalizeString("IsAdopted.Column")</th>
     				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduLevel.Column")</th>
     				    <th scope="col" rowspan="2">@Dnn.LocalizeString("StartingYear.Column")</th>
     				    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
@@ -82,7 +81,6 @@ else {
                             }
             			    <td itemprop="eduCode">@ev.EduProgramProfile.EduProgram.Code</td>
     				        <td itemprop="eduName">@ev.EduProgramProfileTitle</td>
-                            <td>@if (ev.EduProgramProfile.IsAdopted) {<span class="glyphicon glyphicon-ok"></span>}</td>
                             <td itemprop="eduLevel">@ev.EduProgramProfile.EduLevel.Title</td>
     				        <td>@ev.Year.Year</td>
     				        <td itemprop="eduForm">@ev.EduFormTitle</td>

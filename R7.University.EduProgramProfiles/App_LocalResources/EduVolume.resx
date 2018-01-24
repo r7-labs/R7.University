@@ -21,9 +21,6 @@
 	<data name="EduProgram.Column" xml:space="preserve">
         <value>Educational Program</value>
     </data>
-	<data name="IsAdopted.Column" xml:space="preserve">
-        <value>Adopted Program?</value>
-    </data>
 	<data name="EduLevel.Column" xml:space="preserve">
         <value>Education Level</value>
     </data>
