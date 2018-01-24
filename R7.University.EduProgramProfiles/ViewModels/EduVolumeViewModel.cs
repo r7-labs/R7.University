@@ -109,14 +109,14 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string TimeToLearnHours => FormYear.EduVolume != null
             ? ((FormYear.EduVolume.TimeToLearnHours > 0)? FormYear.EduVolume.TimeToLearnHours.ToString () : string.Empty)
             : string.Empty;
-      
+
         public string EduFormTitle {
             get {
                 var sysEduForm = FormYear.EduForm.GetSystemEduForm ();
                 if (sysEduForm != SystemEduForm.Custom) {
-                    return Context.LocalizeString ($"EduForm_{sysEduForm}.Text");
+                    return Context.LocalizeString ($"EduForm_{sysEduForm}.Text").ToLower ();
                 }
-                return FormYear.EduForm.Title;
+                return FormYear.EduForm.Title.ToLower ();
             }
         }
 

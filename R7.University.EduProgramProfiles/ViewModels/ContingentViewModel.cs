@@ -91,9 +91,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
             get {
                 var sysEduForm = FormYear.EduForm.GetSystemEduForm ();
                 if (sysEduForm != SystemEduForm.Custom) {
-                    return Context.LocalizeString ($"EduForm_{sysEduForm}.Text");
+                    return Context.LocalizeString ($"EduForm_{sysEduForm}.Text").ToLower ();
                 }
-                return FormYear.EduForm.Title;
+                return FormYear.EduForm.Title.ToLower ();
             }
         }
 

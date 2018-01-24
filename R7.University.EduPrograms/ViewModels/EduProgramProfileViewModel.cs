@@ -116,7 +116,7 @@ namespace R7.University.EduPrograms.ViewModels
                         "TimeToLearn" + eppfy.EduForm.Title + ".Text",
                         Context.LocalResourceFile,
                         eppfy.EduForm.Title
-                    );
+                    ).ToLower ();
                     sb.AppendFormat (
                        "<li>{0}</li>",
                        TextUtils.FormatList (
