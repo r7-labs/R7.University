@@ -1,4 +1,4 @@
-@startuml Volume of educational program
+@startuml Volume Information
 
 EduProgramProfileFormYear "1..*" -- "1" EduProgramProfile
 EduProgramProfileFormYear "0..*" -- "1" EduForm
@@ -34,16 +34,6 @@ class Year {
 class EduProgramProfileFormYear {
     StartDate: DateTime?
     EndDate: DateTime?
-}
-
-@enduml
-
-@startuml EduVolume Modules
-
-package R7.University.EduProgramProfiles {
-    [EduVolumeDirectory]<<module>>
-    [ContingentDirectory]<<module>>
-    [EduProgramProfileDirectory]<<module>>
 }
 
 @enduml

@@ -1,39 +1,11 @@
-@startuml Science Records for Edu. Program
-
-ScienceRecord "0..*" -- "1" EduProgram
-ScienceRecordType "1" -- "0..*" ScienceRecord
-
-class ScienceRecordType {
-    ScienceRecordTypeId: int
-    ..
-    Type: string
-    IsSystem: bool
-    DescriptionIsRequired: bool
-    NumOfValues: int
-    TypeOfValues: string
-    SortIndex: int
-}
-
-class ScienceRecord {
-    ScienceRecordId: long
-    .. DB FKs ..
-    EduProgramId: int
-    ScienceRecordTypeId: int
-    ..
-    Description: string
-    Value1: decimal?
-    Value2: decimal?
-}
-
-@enduml
-
-@startuml Science Records for Edu. Program (variant 2)
+@startuml Science Information for Edu. Program
 
 EduProgram "1" o-- "0..1" Science
 
 class Science {
     Directions: string
     Base: string
+    ..
     Scientists: int?
     Students: int?
     Monographs: int?
@@ -43,6 +15,7 @@ class Science {
     PatentsForeign: int?
     Certificates: int?
     CertificatesForeign: int?
+    ..
     FinancingByScientist: decimal?
 }
 
