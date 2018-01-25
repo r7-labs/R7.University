@@ -67,6 +67,10 @@
     margin:0
 }
 
+.dnnFormItem select {
+    max-width:463px
+}
+
 .dnnModuleAuditControl {
     display:inline-block;
     width:45%;
