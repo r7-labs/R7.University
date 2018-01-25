@@ -15,6 +15,9 @@
 	<data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Не выбрано &gt;</value>
     </data>
+	<data name="CustomAchievement.Text" xml:space="preserve">
+        <value>&lt; Другое достижение &gt;</value>
+    </data>
 	<data name="Years.Column" xml:space="preserve">
         <value>Год(ы)</value>
     </data>
@@ -118,7 +121,7 @@
         <value>Введите дополнение к названию достижения.</value>
     </data>
     <data name="labelIsTitle.Text" xml:space="preserve">
-        <value>Титульное?</value>
+        <value>Титульное достижение?</value>
     </data>
     <data name="labelIsTitle.Help" xml:space="preserve">
         <value>Если флажок отмечен, достижение будет отображаться совместно с именем сотрудника.</value>
@@ -130,7 +133,7 @@
         <value>Укажите ссылку на документы, связанный с достижением.</value>
     </data>
     <data name="labelAchievements.Text" xml:space="preserve">
-        <value>Достижение:</value>
+        <value>Предопределённые достижения:</value>
     </data>
     <data name="labelAchievements.Help" xml:space="preserve">
         <value>Выберите достижение из списка по названию, или выберите тип достижения и введите полное и сокращенное названия достижения вручную.</value>

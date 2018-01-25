@@ -59,17 +59,6 @@
                 DataTextField="Text"
                 DataValueField="Value" />
         </asp:Panel>
-        <asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem dnnFormRequired">
-            <dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
-            <asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
-            <asp:RequiredFieldValidator runat="server" resourcekey="AchievementTitle.Required" 
-                ControlToValidate="textAchievementTitle" ValidationGroup="Achievements"
-                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-            <asp:RegularExpressionValidator runat="server"
-                CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
-                ControlToValidate="textAchievementTitle" Display="Dynamic"
-                ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements" />
-        </asp:Panel>
         <div class="dnnFormItem">
             <dnn:Label id="labelYears" runat="server" ControlName="textYearBegin" />
             <div class="dnn-form-control-group">
@@ -77,6 +66,29 @@
                 &ndash;
                 <asp:TextBox id="textYearEnd" runat="server" CssClass="dnn-form-control-half-width" />
             </div>
+        </div>
+		<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem dnnFormRequired">
+			<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
+			<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
+            <asp:RequiredFieldValidator runat="server" resourcekey="AchievementTitle.Required" 
+                ControlToValidate="textAchievementTitle" ValidationGroup="Achievements"
+                Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+            <asp:RegularExpressionValidator runat="server"
+                CssClass="dnnFormMessage dnnFormError" resourcekey="AchievementTitle.MaxLength"
+                ControlToValidate="textAchievementTitle" Display="Dynamic"
+                ValidationExpression="[\s\S]{0,250}" ValidationGroup="Achievements" />
+		</asp:Panel>
+		<div class="dnnFormItem">
+            <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" />
+            <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
+        </div>
+		<asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
+            <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" />
+            <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
+        </asp:Panel>
+		<div class="dnnFormItem">
+            <dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
+            <asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />
@@ -91,21 +103,6 @@
                 ShowLog="false" ShowTrack="false"
                 ShowNone="true" ShowNewWindow="false" />      
         </div>
-        <h2 class="dnnFormSectionHead dnnClear"><a href="#"><%: LocalizeString ("sectionAdvancedAchievementProperties.Text") %></a></h2>
-        <fieldset>
-            <asp:Panel id="panelAchievementShortTitle" runat="server" class="dnnFormItem">
-                <dnn:Label id="labelAchievementShortTitle" runat="server" ControlName="textAchievementShortTitle" />
-                <asp:TextBox id="textAchievementShortTitle" runat="server" MaxLength="64" />
-            </asp:Panel>
-            <div class="dnnFormItem">
-                <dnn:Label id="labelAchievementTitleSuffix" runat="server" ControlName="textAchievementTitleSuffix" />
-                <asp:TextBox id="textAchievementTitleSuffix" runat="server" MaxLength="100" />
-            </div>
-			<div class="dnnFormItem">
-                <dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
-                <asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
-            </div>
-        </fieldset>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <ul class="dnnActions">
@@ -133,16 +130,3 @@
         <asp:HiddenField id="hiddenViewItemID" runat="server" />
 	</fieldset>
 </asp:Panel>
-<script type="text/javascript">
-(function($, Sys) {
-    function setupEditAchievements() {
-        $("[id $= 'panelEditAchievements']").dnnPanels({defaultState: "closed"});
-    };
-    $(document).ready(function() {
-        setupEditAchievements();
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
-            setupEditAchievements();
-        });
-    });
-} (jQuery, window.Sys));
-</script>
