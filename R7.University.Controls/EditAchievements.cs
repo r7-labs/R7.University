@@ -116,6 +116,7 @@ namespace R7.University.Controls
             }
             else {
                 urlDocumentURL.UrlType = "N";
+                urlDocumentURL.Url = string.Empty;
             }
         }
 
