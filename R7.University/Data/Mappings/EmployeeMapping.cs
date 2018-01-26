@@ -56,9 +56,9 @@ namespace R7.University.Data.Mappings
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
 
-            Property (m => m.LastModifiedByUserID);
+            Property (m => m.LastModifiedByUserId);
             Property (m => m.LastModifiedOnDate);
-            Property (m => m.CreatedByUserID);
+            Property (m => m.CreatedByUserId);
             Property (m => m.CreatedOnDate);
 
             Property (m => m.ShowBarcode);

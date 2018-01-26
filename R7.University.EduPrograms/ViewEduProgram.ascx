@@ -37,7 +37,7 @@
                         </div>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <div>
+                        <div class="well">
                             <h3 runat="server" class='<%# Item.CssClass %>'>
                                 <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Item.Edit_Url %>' ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
                                 <%# Item.Title_String %>
@@ -69,11 +69,18 @@
                                     <%# Item.CommunityAccreditedToDate_String %>
                                 </div>
                             </div>
-                            <div runat="server" Visible='<%# Item.EduForms_Visible %>' class="u8y-para-end">
-                                <label runat="server"><%# LocalizeString ("EduForms.Text") %></label>
-                                <%# HttpUtility.HtmlDecode (Item.EduForms_String) %>
+                            <div runat="server" Visible='<%# Item.EduFormsForAdmission_Visible %>'>
+                                <label runat="server">
+									<%# LocalizeString ("EduFormsForAdmission.Text") %>
+									<%# Item.YearOfAdmission %><%# LocalizeString ("Year.Text") %>
+								</label>
+                                <%# HttpUtility.HtmlDecode (Item.EduFormsForAdmission_String) %>
                             </div>
-                        </div>
+							<div runat="server" Visible='<%# Item.ImplementedEduForms_Visible %>' class="u8y-para-end">
+                                <label runat="server"><%# LocalizeString ("ImplementedEduForms.Text") %></label>
+                                <%# HttpUtility.HtmlDecode (Item.ImplementedEduForms_String) %>
+                            </div>
+						</div>
                     </ItemTemplate>
                 </asp:ListView>
             </div>

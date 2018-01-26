@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,9 @@
 
 using System;
 using System.Web;
+using DotNetNuke.Common.Utilities;
 using R7.Dnn.Extensions.ViewModels;
+using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -69,6 +71,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         #region Bindable properties
 
+        public string EditIconUrl => FormYear.EduVolume != null ? UniversityIcons.Edit : UniversityIcons.AddAlternate;
+
         public string EditUrl =>
             FormYear.EduVolume != null
                 ? Context.Module.EditUrl ("eduvolume_id", FormYear.EduVolume.EduVolumeId.ToString (), "EditEduVolume")
@@ -77,7 +81,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string CssClass =>
             FormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
-        public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false);
+        public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false)
+                                                        .Append (FormYear.EduProgramProfile.IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ");
 
         public string Year1Cu => FormatCu (() => FormYear.EduVolume?.Year1Cu);
 
@@ -104,14 +109,14 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string TimeToLearnHours => FormYear.EduVolume != null
             ? ((FormYear.EduVolume.TimeToLearnHours > 0)? FormYear.EduVolume.TimeToLearnHours.ToString () : string.Empty)
             : string.Empty;
-      
+
         public string EduFormTitle {
             get {
                 var sysEduForm = FormYear.EduForm.GetSystemEduForm ();
                 if (sysEduForm != SystemEduForm.Custom) {
-                    return Context.LocalizeString ($"EduForm_{sysEduForm}.Text");
+                    return Context.LocalizeString ($"EduForm_{sysEduForm}.Text").ToLower ();
                 }
-                return FormYear.EduForm.Title;
+                return FormYear.EduForm.Title.ToLower ();
             }
         }
 

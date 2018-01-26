@@ -4,23 +4,22 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="EditEduFormYears" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditEduFormYears.ascx" %>
-<%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDivisions" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDivisions.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/admin.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/dnn-ac-combobox.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
-<div class="dnnForm dnnClear university-edit-eduprogramprofile">
+<div class="dnnForm dnnClear u8y-edit-eduprogramprofile">
     <div id="eduprogramprofile-tabs">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#eduprogramprofile-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
             <li><a href="#eduprogramprofile-eduformyears-tab"><%= LocalizeString ("EduFormYears.Tab") %></a></li>
 			<li><a href="#eduprogramprofile-divisions-tab"><%= LocalizeString ("Divisions.Tab") %></a></li>
-            <li><a href="#eduprogramprofile-documents-tab"><%= LocalizeString ("Documents.Tab") %></a></li>
-			<li><a href="#eduprogramprofile-audit-tab"><%= LocalizeString ("Audit.Tab") %></a></li>
+            <li><a href="#eduprogramprofile-audit-tab"><%= LocalizeString ("Audit.Tab") %></a></li>
         </ul>
         <div id="eduprogramprofile-common-tab">
         	<fieldset>
@@ -37,10 +36,6 @@
                     <asp:DropDownList id="comboEduProgram" runat="server" CssClass="dnn-ac-combobox"
                         DataValueField="Value"
                         DataTextField="Text" />
-                    <asp:LinkButton id="linkEditEduProgram" runat="server" resourcekey="linkEditEduProgram.Text"
-                        OnClick="linkEditEduProgram_Click" CssClass="edit-button-right">
-                        <img src="<%= R7.University.Components.UniversityIcons.Edit %>" />
-                    </asp:LinkButton>
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
@@ -62,11 +57,21 @@
 					<asp:RequiredFieldValidator runat="server" ControlToValidate="textLanguages" ValidationGroup="EduProgramProfile"
 						Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Languages.Required" />
 				</div>
+				<div class="checkbox-group">
+    				<div class="dnnFormItem">
+                        <dnn:Label id="labelIsAdopted" runat="server" ControlName="checkIsAdopted" />
+                        <asp:CheckBox id="checkIsAdopted" runat="server" />  
+                    </div>
+    				<div class="dnnFormItem">
+                        <dnn:Label id="labelELearning" runat="server" ControlName="checkELearning" />
+                        <asp:CheckBox id="checkELearning" runat="server" />  
+                    </div>
+    				<div class="dnnFormItem">
+                        <dnn:Label id="labelDistanceEducation" runat="server" ControlName="checkDistanceEducation" />
+                        <asp:CheckBox id="checkDistanceEducation" runat="server" />  
+                    </div>
+				</div>	
 				<div class="dnnFormItem">
-                    <dnn:Label id="labelIsAdopted" runat="server" ControlName="checkIsAdopted" />
-                    <asp:CheckBox id="checkIsAdopted" runat="server" CssClass="dnn-form-control" />  
-                </div>
-                <div class="dnnFormItem">
                     <dnn:Label ID="labelAccreditedToDate" runat="server" ControlName="dateAccreditedToDate" />
                     <dnn:DnnDatePicker id="dateAccreditedToDate" runat="server" />
                 </div>
@@ -90,10 +95,7 @@
 		<div id="eduprogramprofile-divisions-tab">
 			<controls:EditDivisions id="formEditDivisions" runat="server" ForModel="EduProgramProfile" />
 		</div>
-        <div id="eduprogramprofile-documents-tab">
-            <controls:EditDocuments id="formEditDocuments" runat="server" ForModel="EduProgramProfile" />
-        </div>
-		<div id="eduprogramprofile-audit-tab">
+        <div id="eduprogramprofile-audit-tab">
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelAudit" runat="server" ControlName="auditControl" />

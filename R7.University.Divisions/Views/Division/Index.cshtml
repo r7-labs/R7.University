@@ -1,0 +1,132 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DivisionViewModel>
+@using System.Collections.Generic
+@using DotNetNuke.Collections
+@using DotNetNuke.Web.Mvc.Helpers
+@using DotNetNuke.Web.Client.ClientResourceManagement
+@using DotNetNuke.Framework
+@using DotNetNuke.Framework.JavaScriptLibraries
+@using DotNetNuke.Common
+@using DotNetNuke.Common.Utilities
+@using R7.University.ModelExtensions
+@using R7.University.Divisions.ViewModels
+@{
+    ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/R7.University/css/module.css");
+    var now = Request.RequestContext.HttpContext.Timestamp;
+    var displayContent = true;
+    if (Dnn.ModuleContext.IsEditable) {
+        if (Model.IsEmpty) {
+            // division wasn't set or not found
+            <p class="dnnFormMessage dnnFormInfo">@Dnn.LocalizeString("NothingToDisplay.Text")</p>
+            displayContent = false;
+        }
+        else if (!Model.IsPublished (now)) {
+            // division isn't published
+            <p class="dnnFormMessage dnnFormWarning">@Dnn.LocalizeString("DivisionNotPublished.Text")</p>
+        }
+    }
+    else {
+        if (Model.IsEmpty || !Model.IsPublished (now)) {
+            var containerControl = Globals.FindControlRecursiveDown (Dnn.DnnPage, "ctr" + Dnn.ModuleContext.ModuleId);
+            containerControl.Visible = false;
+            displayContent = false;
+        }
+    }
+}
+
+@if (displayContent) {
+    <div class="u8y-division">
+    	@if (Model.HasHomePage) {
+    	    <a href="@Model.HomePageUrl" target="_blank" class="_section">@Model.DisplayTitle</a>
+        } else {
+            <span class="_section">@Model.DisplayTitle</span>
+        }
+        @if (!string.IsNullOrWhiteSpace (Model.DocumentUrl)) {
+        	<div class="_section">
+        	    <a href="@Model.DocumentUrl" target="_blank">@Dnn.LocalizeString("DocumentUrl.Text")</a>
+            </div>
+        }
+    	@if (!string.IsNullOrWhiteSpace (Model.Phone) || !string.IsNullOrWhiteSpace (Model.Fax)) {
+        	<div class="_section">
+        		@if (!string.IsNullOrWhiteSpace (Model.Phone)) {
+                    <span class="_label">@Model.Phone</span>
+                }
+        		@if (!string.IsNullOrWhiteSpace (Model.Fax)) {
+        		    <span class="_label">@Model.DisplayFax</span>
+                }
+            </div>
+        }
+	    @if (!string.IsNullOrWhiteSpace (Model.Email)
+            || !string.IsNullOrWhiteSpace (Model.SecondaryEmail)
+            || !string.IsNullOrWhiteSpace (Model.WebSite)) {
+            <div class="_section">
+        		@if (!string.IsNullOrWhiteSpace (Model.Email)) {
+                    <a href="mailto:@Model.Email" class="_label">@Model.Email</a>
+                }
+                @if (!string.IsNullOrWhiteSpace (Model.SecondaryEmail)) {
+                    <a href="mailto:@Model.SecondaryEmail" class="_label">@Model.SecondaryEmail</a>
+                }
+        		@if (!string.IsNullOrWhiteSpace (Model.WebSite)) {
+        		    <a href="@Model.WebSiteUrl" target="_blank" class="_label">@Model.DisplayWebSiteLabel</a>
+                }
+        	</div>
+        }
+        @if (!string.IsNullOrWhiteSpace (Model.Address) || !string.IsNullOrWhiteSpace (Model.Location)) {
+            <div class="_section">
+		        @if (!string.IsNullOrWhiteSpace (Model.Address)) {
+                    <span class="_label">@Model.Address</span>
+                }
+		        @if (!string.IsNullOrWhiteSpace (Model.Location)) {
+		            <span class="_label">@Model.Location</span>
+                }
+            </div>
+        }
+    	@if (!string.IsNullOrWhiteSpace (Model.WorkingHours)) {
+        	<div class="_section">
+                <span class="_label">@Model.WorkingHours</span>
+            </div>
+        }
+    	@if (Model.SubDivisionViewModels.Count > 0) {
+        	<div class="panel-subdivisions">
+                <label>@Dnn.LocalizeString("SubDivisions.Text")</label>
+        		<ul>
+        		@foreach (var subDivision in Model.SubDivisionViewModels) {
+                    <li class="@subDivision.CssClass">
+    				    @if (subDivision.HasHomePage) {
+        				    <a href="@subDivision.HomePageUrl" target="_blank">@subDivision.Title</a>
+                        } else {
+                            @subDivision.Title
+    				    }
+        			</li>    
+                }
+        		</ul>
+        	</div>
+        }
+    	<button type="button" class="btn btn-default btn-sm btn-barcode" data-toggle="modal"
+		        data-target="#division-barcode-dialog-@Dnn.ModuleContext.ModuleId">
+	        @Html.Raw(Dnn.LocalizeString("linkBarcode.Text"))
+        </button>
+        <div class="modal fade" id="division-barcode-dialog-@Dnn.ModuleContext.ModuleId" role="dialog"
+		        aria-labelledby="division-barcode-dialog-title-@Dnn.ModuleContext.ModuleId">
+		    <div class="modal-dialog modal-sm" role="document">
+			    <div class="modal-content">
+				    <div class="modal-header">
+					    <button type="button" class="close" data-dismiss="modal" aria-label='@Dnn.LocalizeString("Close")'><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="division-barcode-dialog-title-@Dnn.ModuleContext.ModuleId">@Model.Title</h4>
+                    </div>
+                    <div class="modal-body">
+					    <p>@Dnn.LocalizeString("BarcodeScan.Text")</p>
+                        <img class="center-block" src="@Model.BarcodeImageUrl"
+        			        alt='@Dnn.LocalizeString("imageBarcode.AlternateText")'
+        		            title='@Dnn.LocalizeString("imageBarcode.ToolTip")' />
+                    </div>	
+                </div>
+		    </div>
+		</div>
+	    @if (Model.DivisionTermID != null) {
+            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-default btn-sm btn-related-content">
+		        <span class="glyphicon glyphicon-search"></span>
+	            @Dnn.LocalizeString("RelatedContent.Text")
+            </a>
+        }
+    </div>
+}

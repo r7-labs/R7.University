@@ -21,10 +21,7 @@
     <data name="EduProgram.Column" xml:space="preserve">
         <value>Образовательная программа</value>
     </data>
-	<data name="IsAdopted.Column" xml:space="preserve">
-        <value>Адаптированная ОП?</value>
-    </data>
-    <data name="EduLevel.Column" xml:space="preserve">
+	<data name="EduLevel.Column" xml:space="preserve">
         <value>Уровень образования</value>
     </data>
     <data name="StartingYear.Column" xml:space="preserve">

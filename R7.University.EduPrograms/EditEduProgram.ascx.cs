@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -178,7 +178,7 @@ namespace R7.University.EduPrograms
             }
             else {
                 item.LastModifiedOnDate = DateTime.Now;
-                item.LastModifiedByUserID = UserInfo.UserID;
+                item.LastModifiedByUserId = UserInfo.UserID;
             }
         }
 
@@ -220,8 +220,7 @@ namespace R7.University.EduPrograms
                 }
 
                 new UpdateDocumentsCommand (ModelContext)
-                    .UpdateDocuments (formEditDocuments.GetModifiedData(),
-                                      ModelType.EduProgram, item.EduProgramID);
+                    .Update (formEditDocuments.GetModifiedData(), ModelType.EduProgram, item.EduProgramID, UserId);
 
                 new UpdateEduProgramDivisionsCommand (ModelContext)
                     .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgram, item.EduProgramID);
@@ -237,7 +236,7 @@ namespace R7.University.EduPrograms
             ModelContext.Update (item);
 
             new UpdateDocumentsCommand (ModelContext)
-                .UpdateDocuments (formEditDocuments.GetModifiedData(), ModelType.EduProgram, item.EduProgramID);
+                .Update (formEditDocuments.GetModifiedData(), ModelType.EduProgram, item.EduProgramID, UserId);
  
             new UpdateEduProgramDivisionsCommand (ModelContext)
                 .Update (formEditDivisions.GetModifiedData (), ModelType.EduProgram, item.EduProgramID);

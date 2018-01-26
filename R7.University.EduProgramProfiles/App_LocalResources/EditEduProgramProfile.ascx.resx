@@ -27,12 +27,15 @@
     <data name="EduFormYears.Tab" xml:space="preserve">
         <value>Edu. Forms/Years</value>
     </data>
-    <data name="Documents.Tab" xml:space="preserve">
-        <value>Documents</value>
-    </data>
     <data name="Audit.Tab" xml:space="preserve">
         <value>Audit</value>
-    </data>	
+    </data>
+	<data name="EditEduProgram.Action" xml:space="preserve">
+        <value>Edit Edu. Program</value>
+    </data>
+	<data name="EditEduProgramProfileDocuments.Action" xml:space="preserve">
+        <value>Edit Documents</value>
+    </data>
     <data name="labelProfileCode.Text" xml:space="preserve">
         <value>Profile Code:</value>
     </data>
@@ -60,6 +63,18 @@
     <data name="labelIsAdopted.Help" xml:space="preserve">
         <value>Check if the edu. program (profile) is adopted for peoples with disabilities.</value>
     </data>
+	<data name="labelELearning.Text" xml:space="preserve">
+        <value>E-Learning?</value>
+    </data>
+    <data name="labelELearning.Help" xml:space="preserve">
+        <value>Check if edu. program (profile) is implemented through e-learning.</value>
+    </data>
+	<data name="labelDistanceEducation.Text" xml:space="preserve">
+        <value>Distance Education Technologies?</value>
+    </data>
+    <data name="labelDistanceEducation.Help" xml:space="preserve">
+        <value>Check if distance education technologies (DET) used during implementation of the edu. program (profile).</value>
+    </data>
     <data name="labelEduLevel.Text" xml:space="preserve">
         <value>Education Level:</value>
     </data>
@@ -77,9 +92,6 @@
     </data>
     <data name="labelEduProgram.Help" xml:space="preserve">
         <value>Select the educational program to which the profile belongs.</value>
-    </data>
-    <data name="linkEditEduProgram.Text" xml:space="preserve">
-        <value>Edit Educational Program</value>
     </data>
     <data name="labelAccreditedToDate.Text" xml:space="preserve">
         <value>Accredited to:</value>

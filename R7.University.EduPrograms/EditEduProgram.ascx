@@ -72,8 +72,19 @@
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:HyperLink runat="server" ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" NavigateUrl='<%# Eval ("Edit_Url") %>' />
-                                </ItemTemplate>
+                                    <asp:HyperLink runat="server"
+										ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>"
+										NavigateUrl='<%# Eval ("Edit_Url") %>'
+										Visible="<%# SecurityContext.IsAdmin %>"
+										ToolTip='<%# LocalizeString ("EditEduProgramProfile.Action") %>'
+										Style="margin-right:.5em"
+									/>
+									<asp:HyperLink runat="server"
+										ImageUrl="<%# R7.University.Components.UniversityIcons.EditDocuments %>"
+										NavigateUrl='<%# Eval ("EditDocuments_Url") %>'
+										ToolTip='<%# LocalizeString ("EditEduProgramProfileDocuments.Action") %>'
+									/>
+								</ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile.Column" />
                             <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel.Column" />

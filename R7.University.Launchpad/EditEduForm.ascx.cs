@@ -39,6 +39,7 @@ namespace R7.University.Launchpad
         {
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
+            textSortIndex.Text = item.SortIndex.ToString ();
             checkIsSystem.Checked = item.IsSystem;
 
             // disable fields for system items
@@ -54,6 +55,7 @@ namespace R7.University.Launchpad
             }
 
             item.ShortTitle = textShortTitle.Text.Trim ();
+            item.SortIndex = int.Parse (textSortIndex.Text);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -47,6 +47,7 @@ namespace R7.University.Controls.EditModels
             var viewModel = new DocumentEditModel ();
             CopyCstor.Copy<IDocumentWritable> (model, viewModel);
             CopyCstor.Copy<IPublishableEntityWritable> (model, viewModel);
+            CopyCstor.Copy<ITrackableEntityWritable> (model, viewModel);
 
             // FIXME: Context not updated for referenced viewmodels
             viewModel.DocumentTypeViewModel = new DocumentTypeViewModel (model.DocumentType, viewContext);
@@ -60,6 +61,7 @@ namespace R7.University.Controls.EditModels
             var model = new DocumentInfo ();
             CopyCstor.Copy<IDocumentWritable> (this, model);
             CopyCstor.Copy<IPublishableEntityWritable> (this, model);
+            CopyCstor.Copy<ITrackableEntityWritable> (this, model);
 
             return model;
         }
@@ -101,6 +103,14 @@ namespace R7.University.Controls.EditModels
         public DateTime? StartDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public int LastModifiedByUserId { get; set; }
+
+        public DateTime LastModifiedOnDate { get; set; }
+
+        public int CreatedByUserId { get; set; }
+
+        public DateTime CreatedOnDate { get; set; }
 
         #endregion
 

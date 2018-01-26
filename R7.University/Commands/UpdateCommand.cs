@@ -1,4 +1,4 @@
-﻿//
+//
 //  UpdateCommand.cs
 //
 //  Author:
@@ -42,7 +42,7 @@ namespace R7.University.Commands
             if (SecurityContext.CanUpdate (entity)) {
                 if (entity is ITrackableEntityWritable) {
                     var trackable = (ITrackableEntityWritable) entity;
-                    trackable.LastModifiedByUserID = SecurityContext.UserId;
+                    trackable.LastModifiedByUserId = SecurityContext.UserId;
                     trackable.LastModifiedOnDate = dateTime;
                 }
                 ModelContext.Update (entity);        

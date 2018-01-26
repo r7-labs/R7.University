@@ -1,4 +1,4 @@
-@startuml Disciplines (TO-BE, DRAFT)
+@startuml Disciplines (DRAFT)
 
 EduProgramProfileFormYear "1" -- "0..*" Discipline
 Discipline "0..*" --- "0..*" Employee : teaches <

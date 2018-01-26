@@ -87,4 +87,7 @@
     <data name="EduForm_Extramural.Text" xml:space="preserve">
         <value>Заочная</value>
     </data>
+	<data name="IsAdopted.Text" xml:space="preserve">
+        <value>Адаптированная ОП</value>
+    </data>
 </root>

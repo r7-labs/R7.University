@@ -5,15 +5,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University", "R7.Univers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Launchpad", "R7.University.Launchpad\R7.University.Launchpad.csproj", "{438F599E-41B4-4057-BFAA-FAA698E052DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Employee", "R7.University.Employee\R7.University.Employee.csproj", "{755C907B-A0E7-486E-83E5-AF4E01A75513}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Employees", "R7.University.Employees\R7.University.Employees.csproj", "{755C907B-A0E7-486E-83E5-AF4E01A75513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EmployeeList", "R7.University.EmployeeList\R7.University.EmployeeList.csproj", "{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Division", "R7.University.Division\R7.University.Division.csproj", "{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EmployeeDirectory", "R7.University.EmployeeDirectory\R7.University.EmployeeDirectory.csproj", "{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.DivisionDirectory", "R7.University.DivisionDirectory\R7.University.DivisionDirectory.csproj", "{D76E76D0-18E9-487E-825A-4C18123A48F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Divisions", "R7.University.Divisions\R7.University.Divisions.csproj", "{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduProgramProfiles", "R7.University.EduProgramProfiles\R7.University.EduProgramProfiles.csproj", "{6734EECF-00F2-4870-99E1-7C893069B0D7}"
 EndProject
@@ -21,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		LICENSE.md = LICENSE.md
+		CHANGES.md = CHANGES.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Tests", "R7.University.Tests\R7.University.Tests.csproj", "{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}"
@@ -41,18 +36,10 @@ Global
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438F599E-41B4-4057-BFAA-FAA698E052DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62B46E9B-FD2E-4A8A-8D63-7EE8826A380B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6734EECF-00F2-4870-99E1-7C893069B0D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{673580C4-8B46-4B23-8D8F-A279C2D1CBAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71EEFF26-83B2-462A-A809-AB887A905003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{71EEFF26-83B2-462A-A809-AB887A905003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71EEFF26-83B2-462A-A809-AB887A905003}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,10 +56,6 @@ Global
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D76E76D0-18E9-487E-825A-4C18123A48F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -121,36 +104,51 @@ Global
 		$2.inheritsSet = Mono
 		$2.inheritsScope = text/x-csharp
 		$2.scope = text/x-csharp
-		$2.NewLinesForBracesInProperties = True
 		$2.NewLineForElse = True
 		$2.NewLineForCatch = True
 		$2.NewLineForFinally = True
 		$2.SpaceAfterCast = True
+		$2.IndentSwitchSection = True
+		$2.SpaceBeforeColonInBaseTypeDeclaration = False
 		$0.TextStylePolicy = $3
 		$3.FileWidth = 120
 		$3.NoTabsAfterNonTabs = True
 		$3.inheritsSet = VisualStudio
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
+		$3.TabsToSpaces = False
 		$0.TextStylePolicy = $4
 		$4.inheritsSet = null
 		$4.scope = text/css
 		$0.TextStylePolicy = $5
 		$5.inheritsSet = null
 		$5.scope = application/x-ascx
+		$5.FileWidth = 120
+		$5.TabsToSpaces = False
+		$5.NoTabsAfterNonTabs = True
+		$5.inheritsScope = text/plain
 		$0.TextStylePolicy = $6
 		$6.inheritsSet = null
 		$6.scope = application/javascript
 		$0.TextStylePolicy = $7
-		$7.inheritsSet = null
+		$7.inheritsSet = VisualStudio
 		$7.scope = text/microsoft-resx
+		$7.FileWidth = 120
+		$7.TabsToSpaces = False
+		$7.NoTabsAfterNonTabs = True
+		$7.inheritsScope = text/plain
+		$7.EolMarker = Windows
 		$0.XmlFormattingPolicy = $8
 		$8.inheritsSet = null
 		$8.scope = application/config+xml
 		$8.inheritsScope = application/xml
 		$0.TextStylePolicy = $9
-		$9.inheritsSet = null
+		$9.inheritsSet = VisualStudio
 		$9.scope = application/xml
+		$9.FileWidth = 120
+		$9.TabsToSpaces = False
+		$9.NoTabsAfterNonTabs = True
+		$9.inheritsScope = text/plain
 		$0.XmlFormattingPolicy = $10
 		$10.inheritsSet = Mono
 		$10.inheritsScope = application/xml
@@ -308,11 +306,15 @@ Global
 		$41.inheritsSet = null
 		$41.scope = image/svg+xml
 		$0.TextStylePolicy = $42
-		$42.inheritsSet = null
-		$42.scope = application/config+xml
+		$42.inheritsSet = VisualStudio
+		$42.scope = text/x-csharp
+		$42.FileWidth = 120
+		$42.NoTabsAfterNonTabs = True
+		$42.inheritsScope = text/plain
 		$0.XmlFormattingPolicy = $43
-		$43.inheritsSet = null
-		$43.scope = application/config+xml
+		$43.inheritsSet = Mono
+		$43.scope = text/microsoft-resx
+		$43.inheritsScope = application/xml
 		$0.VersionControlPolicy = $44
 		$44.CommitMessageStyle = $45
 		$45.FileSeparator = ", "
@@ -320,6 +322,33 @@ Global
 		$45.LineAlign = 0
 		$45.IncludeDirectoryPaths = True
 		$44.inheritsSet = Mono
-		version = 1.16.0
+		$0.TextStylePolicy = $48
+		$48.FileWidth = 120
+		$48.TabsToSpaces = False
+		$48.NoTabsAfterNonTabs = True
+		$48.inheritsSet = null
+		$48.inheritsScope = text/plain
+		$48.scope = text/x-dnn-manifest
+		$0.XmlFormattingPolicy = $49
+		$49.inheritsSet = null
+		$49.scope = text/x-dnn-manifest
+		$0.TextStylePolicy = $50
+		$50.inheritsSet = null
+		$50.scope = text/x-dnn-sqldataprovider
+		$0.TextStylePolicy = $51
+		$51.FileWidth = 120
+		$51.TabsToSpaces = False
+		$51.NoTabsAfterNonTabs = True
+		$51.inheritsSet = null
+		$51.inheritsScope = text/plain
+		$51.scope = text/html
+		$0.TextStylePolicy = $52
+		$52.FileWidth = 120
+		$52.TabsToSpaces = False
+		$52.NoTabsAfterNonTabs = True
+		$52.inheritsSet = null
+		$52.inheritsScope = text/plain
+		$52.scope = text/x-cshtml
+		version = 2.0.0
 	EndGlobalSection
 EndGlobal

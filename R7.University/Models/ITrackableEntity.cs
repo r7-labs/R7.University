@@ -25,22 +25,22 @@ namespace R7.University.Models
 {   
     public interface ITrackableEntity
     {
-        int LastModifiedByUserID { get; }
+        int LastModifiedByUserId { get; }
 
         DateTime LastModifiedOnDate { get; }
 
-        int CreatedByUserID { get; }
+        int CreatedByUserId { get; }
 
         DateTime CreatedOnDate { get; }
     }
 
     public interface ITrackableEntityWritable: ITrackableEntity
     {
-        new int LastModifiedByUserID { get; set; }
+        new int LastModifiedByUserId { get; set; }
 
         new DateTime LastModifiedOnDate { get; set; }
 
-        new int CreatedByUserID { get; set; }
+        new int CreatedByUserId { get; set; }
 
         new DateTime CreatedOnDate { get; set; }
     }

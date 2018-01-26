@@ -15,6 +15,9 @@
 	<data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Not Selected &gt;</value>
     </data>
+	<data name="CustomAchievement.Text" xml:space="preserve">
+        <value>&lt; Custom Achievement &gt;</value>
+    </data>
 	<data name="Years.Column" xml:space="preserve">
         <value>Year(s)</value>
     </data>
@@ -118,10 +121,10 @@
         <value>Enter the extension suffix for the achievement title.</value>
     </data>
     <data name="labelIsTitle.Text" xml:space="preserve">
-        <value>Is Title?</value>
+        <value>Is Title Achievement?</value>
     </data>
     <data name="labelIsTitle.Help" xml:space="preserve">
-        <value>If checked, this achivement will be displayed as one of employee's titles along with his/her name.</value>
+        <value>If checked, this achievement will be displayed as one of employee's titles along with his/her name.</value>
     </data>
     <data name="labelDocumentURL.Text" xml:space="preserve">
         <value>Document URL:</value>
@@ -130,7 +133,7 @@
         <value>Specify URL for a document, associated with the achievement.</value>
     </data>
     <data name="labelAchievements.Text" xml:space="preserve">
-        <value>Achievement:</value>
+        <value>Predefined Achievements:</value>
     </data>
     <data name="labelAchievements.Help" xml:space="preserve">
         <value>Select the achievement from dropdown by title or select achivement type and set full and short titles manually.</value>

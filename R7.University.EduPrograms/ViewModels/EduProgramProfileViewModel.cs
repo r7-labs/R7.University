@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -28,6 +28,7 @@ using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms.ViewModels
@@ -36,122 +37,102 @@ namespace R7.University.EduPrograms.ViewModels
     {
         public EduProgramModuleViewModel RootViewModel { get; protected set; }
 
-        protected ViewModelContext Context
-        {
-            get { return RootViewModel.Context; }
-        }
-        
-        public EduProgramProfileViewModel (IEduProgramProfile model, EduProgramModuleViewModel rootViewModel): base (model)
+        protected ViewModelContext Context => RootViewModel.Context;
+
+        public EduProgramProfileViewModel (IEduProgramProfile model, EduProgramModuleViewModel rootViewModel) : base (model)
         {
             RootViewModel = rootViewModel;
         }
 
         #region Bindable properties
 
-        public string Title_String
-        {
-            get {
-                return TextUtils.FormatList (": ", 
-                    Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
-                    FormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle)
-                );
-            }
-        }
+        public string Title_String => TextUtils.FormatList (
+            ": ",
+            Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
+            FormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle)
+        );
+        
+        public bool AccreditedToDate_Visible => EduProgramProfile.AccreditedToDate != null;
 
-        public bool AccreditedToDate_Visible
-        {
-            get { return EduProgramProfile.AccreditedToDate != null; }
-        }
+        public string AccreditedToDate_String =>
+            EduProgramProfile.AccreditedToDate != null ? EduProgramProfile.AccreditedToDate.Value.ToShortDateString () : string.Empty;
 
-        public string AccreditedToDate_String
-        {
-            get { 
-                return EduProgramProfile.AccreditedToDate != null ?
-                    EduProgramProfile.AccreditedToDate.Value.ToShortDateString () :
-                    string.Empty;
-            }
-        }
+        public bool CommunityAccreditedToDate_Visible => EduProgramProfile.CommunityAccreditedToDate != null;
 
-        public bool CommunityAccreditedToDate_Visible
-        {
-            get { return EduProgramProfile.CommunityAccreditedToDate != null; }
-        }
+        public string CommunityAccreditedToDate_String =>
+            EduProgramProfile.CommunityAccreditedToDate != null ? EduProgramProfile.CommunityAccreditedToDate.Value.ToShortDateString () : string.Empty;
 
-        public string CommunityAccreditedToDate_String
-        {
-            get { 
-                return EduProgramProfile.CommunityAccreditedToDate != null ?
-                    EduProgramProfile.CommunityAccreditedToDate.Value.ToShortDateString () :
-                    string.Empty;
-            }
-        }
+        public string EduLevel_Title => EduProgramProfile.EduLevel.Title;
 
-        public string EduLevel_Title
-        {
-            get { return EduProgramProfile.EduLevel.Title; }
-        }
+        public bool ImplementedEduForms_Visible => !ImplementedEduForms.IsNullOrEmpty ();
 
-        public bool EduForms_Visible
-        {
-            get { return !EduProgramProfile.EduProgramProfileFormYears.IsNullOrEmpty (); }
-        }
+        public bool EduFormsForAdmission_Visible => !EduFormsForAdmission.IsNullOrEmpty ();
 
-        public string EduForms_String
-        {
-            get {
-                if (EduProgramProfile.EduProgramProfileFormYears != null) {
-                    var sb = new StringBuilder ();
-                    foreach (var eppfy in EduProgramProfile.EduProgramProfileFormYears) {
-                        var eduFormTitle = Localization.GetString ("TimeToLearn" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile);
-                        if (string.IsNullOrEmpty (eduFormTitle)) {
-                            eduFormTitle = eppfy.EduForm.Title;
-                        }
-                        sb.AppendFormat ("<li>{0} &ndash; {1}</li>", eduFormTitle,
-                            FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
-                        );
-                    }
+        public int? YearOfAdmission => EduFormsForAdmission.FirstOrDefault ()?.Year.Year;
 
-                    return string.Format ("<ul>{0}</ul>", sb);
-                }
+        public string ImplementedEduForms_String => FormatEduFormYears (ImplementedEduForms);
 
-                return null;
-            }
-        }
+        public string EduFormsForAdmission_String => FormatEduFormYears (EduFormsForAdmission);
 
-        public string Edit_Url
-        {
-            get {
-                return Context.Module.EditUrl (
-                    "eduprogramprofile_id",
-                    EduProgramProfile.EduProgramProfileID.ToString (),
-                    "EditEduProgramProfile"
-                );
-            }
-        }
+        public string Edit_Url => Context.Module.EditUrl (
+            "eduprogramprofile_id",
+            EduProgramProfile.EduProgramProfileID.ToString (),
+            "EditEduProgramProfile"
+        );
 
-        public string CssClass
-        {
-            get { return EduProgramProfile.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published"; }
-        }
+        public string CssClass => EduProgramProfile.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
-        public bool DivisionsVisible
-        {
-            get {
-                var now = HttpContext.Current.Timestamp;
-                return EduProgramProfile.Divisions.Any (epd => epd.Division.IsPublished (now) || Context.Module.IsEditable);
-            }
-        }
+        public bool DivisionsVisible =>
+            EduProgramProfile.Divisions.Any (epd => epd.Division.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable);
 
-        public IEnumerable<EduProgramDivisionViewModel> DivisionViewModels {
-            get {
-                var now = HttpContext.Current.Timestamp;
-                return EduProgramProfile.Divisions
-                                        .Where (epd => epd.Division.IsPublished (now) || Context.Module.IsEditable)
-                                        .Select (epd => new EduProgramDivisionViewModel (epd));
-            }
-        }
+        public IEnumerable<EduProgramDivisionViewModel> DivisionViewModels =>
+            EduProgramProfile.Divisions
+                             .Where (epd => epd.Division.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable)
+                             .Select (epd => new EduProgramDivisionViewModel (epd));
 
         #endregion
+
+        IEnumerable<IEduProgramProfileFormYear> _implementedEduForms;
+        protected IEnumerable<IEduProgramProfileFormYear> ImplementedEduForms =>
+            _implementedEduForms ?? (_implementedEduForms = GetEduFormYears (forAdmission: false));
+
+        IEnumerable<IEduProgramProfileFormYear> _eduFormsForAdmission;
+        protected IEnumerable<IEduProgramProfileFormYear> EduFormsForAdmission =>
+            _eduFormsForAdmission ?? (_eduFormsForAdmission = GetEduFormYears (forAdmission: true));
+
+        IEnumerable<IEduProgramProfileFormYear> GetEduFormYears (bool forAdmission)
+        {
+            return EduProgramProfile.EduProgramProfileFormYears
+                .Where (eppfy => eppfy.Year.AdmissionIsOpen == forAdmission && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                .DistinctByEduForms ();
+        }
+
+        string FormatEduFormYears (IEnumerable<IEduProgramProfileFormYear> eppfys)
+        {
+            if (eppfys != null) {
+                var sb = new StringBuilder ();
+                foreach (var eppfy in eppfys) {
+                    var eduFormTitle = LocalizationHelper.GetStringWithFallback (
+                        "TimeToLearn" + eppfy.EduForm.Title + ".Text",
+                        Context.LocalResourceFile,
+                        eppfy.EduForm.Title
+                    ).ToLower ();
+                    sb.AppendFormat (
+                       "<li>{0}</li>",
+                       TextUtils.FormatList (
+                          " &ndash; ",
+                          eduFormTitle,
+                          (eppfy.EduVolume != null)
+                             ? FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
+                             : null
+                       )
+                    );
+                }
+
+                return string.Format ("<ul>{0}</ul>", sb);
+            }
+
+            return string.Empty;
+        }
     }
 }
-

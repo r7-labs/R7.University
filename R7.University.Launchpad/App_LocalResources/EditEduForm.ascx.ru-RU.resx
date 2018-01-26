@@ -36,4 +36,16 @@
     <data name="labelIsSystem.Help" xml:space="preserve">
         <value>Системные формы обучения имеют особое значение для работы системы, поэтому не могут быть удалены или изменены или удалены.</value>
     </data>
+	<data name="labelSortIndex.Text" xml:space="preserve">
+        <value>Индекс сортировки:</value>
+    </data>
+    <data name="labelSortIndex.Help" xml:space="preserve">
+        <value>Введите целочисленный индекс для формы обучения. Это значение будет использоваться при сортировке.</value>
+    </data>
+    <data name="SortIndex.Required" xml:space="preserve">
+        <value>Индекс сортировки обязателен.</value>
+    </data>
+    <data name="SortIndex.Invalid" xml:space="preserve">
+        <value>Индекс сортировки должен быть целым числом.</value>
+    </data>
 </root>

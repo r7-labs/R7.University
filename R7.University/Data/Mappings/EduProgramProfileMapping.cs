@@ -38,15 +38,17 @@ namespace R7.University.Data.Mappings
             Property (m => m.ProfileTitle).IsOptional ();
             Property (m => m.Languages).IsOptional ();
             Property (m => m.IsAdopted).IsRequired ();
+            Property (m => m.ELearning).IsRequired ();
+            Property (m => m.DistanceEducation).IsRequired ();
             Property (m => m.AccreditedToDate).IsOptional ();
             Property (m => m.CommunityAccreditedToDate).IsOptional ();
 
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
 
-            Property (m => m.LastModifiedByUserID);
+            Property (m => m.LastModifiedByUserId);
             Property (m => m.LastModifiedOnDate);
-            Property (m => m.CreatedByUserID);
+            Property (m => m.CreatedByUserId);
             Property (m => m.CreatedOnDate);
 
             HasRequired (m => m.EduProgram).WithMany ().HasForeignKey (m => m.EduProgramID);

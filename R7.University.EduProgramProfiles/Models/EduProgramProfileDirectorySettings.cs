@@ -41,7 +41,7 @@ namespace R7.University.EduProgramProfiles.Models
         public EduProgramProfileDirectoryMode? Mode { get; set; }
    
         [TabModuleSetting (Prefix = "EduProgramProfileDirectory_")]
-        public TimeToLearnDisplayMode TimeToLearnDisplayMode { get; set; } = TimeToLearnDisplayMode.YearsMonths;
+        public TimeToLearnDisplayMode TimeToLearnDisplayMode { get; set; } = TimeToLearnDisplayMode.Both;
     }
 }
 

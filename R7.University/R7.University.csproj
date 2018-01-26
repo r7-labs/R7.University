@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
-    <ReleaseVersion>1.16.0</ReleaseVersion>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -148,7 +148,7 @@
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\EduForm.cs" />
     <Compile Include="Models\EduLevel.cs" />
-    <Compile Include="Models\EmployeeEqualityComparer.cs" />
+    <Compile Include="Models\EntityEqualityComparer.cs" />
     <Compile Include="Models\VCard.cs" />
     <Compile Include="Models\VCardPhone.cs" />
     <Compile Include="Data\Mappings\PositionMapping.cs" />
@@ -315,6 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
-    <None Include="SqlDataProvider\01.16.00.SqlDataProvider" />
+    <None Include="SqlDataProvider\02.00.00.SqlDataProvider" />
   </ItemGroup>
 </Project>

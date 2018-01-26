@@ -9,4 +9,8 @@ cu-hours: 36
 barcode:
   default-width: 192
 
+vocabularies:
+  org-structure: University_Structure
+  working-hours: University_WorkingHours
+
 data-cache-time: 3600

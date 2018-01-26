@@ -1,4 +1,12 @@
-﻿.eduprogramprofile-directory .grid-eduprogramprofile-obrnadzor-eduforms,
-.eduprogramprofile-directory .grid-eduprogramprofile-obrnadzor-documents { font-size:85% }
+﻿.u8y-eduprogramprofile-directory .grid-eduprogramprofile-obrnadzor-eduforms,
+.u8y-eduprogramprofile-directory .grid-eduprogramprofile-obrnadzor-documents { font-size:85% }
+
+.u8y-eduprogramprofile-directory .u8y-epp-docs-dlg .u8y-epp-docs-dlg-caption { font-weight:bold }
+.u8y-eduprogramprofile-directory .u8y-epp-docs-dlg .u8y-epp-docs-dlg-body {
+	font-size:85%;
+	max-height:550px;
+	overflow:auto
+}
+
 .u8y-eduvolume-directory .u8y-eduvolume-directory-table,
 .u8y-contingent-directory .u8y-contingent-directory-table { font-size:85% }

@@ -57,6 +57,12 @@
     <data name="EndDate.Column" xml:space="preserve">
         <value>Окончание публикации</value>
     </data>
+	<data name="EduVolume.Column" xml:space="preserve">
+        <value>Объём обр. программы</value>
+    </data>
+	<data name="Contingent.Column" xml:space="preserve">
+        <value>Контингент</value>
+    </data>
 	<data name="labelStartDate.Text" xml:space="preserve">
         <value>Начало публикации:</value>
     </data>

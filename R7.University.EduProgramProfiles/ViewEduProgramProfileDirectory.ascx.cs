@@ -30,7 +30,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
-using DotNetNuke.Services.Localization;
 using DotNetNuke.Web.UI.WebControls.Extensions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.ModuleExtensions;
@@ -114,8 +113,8 @@ namespace R7.University.EduProgramProfiles
             var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
                 .ListWithEduForms (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
                
-            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorEduFormsViewModel> (indexer,
-                eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorEduFormsViewModel (epp, viewModel, indexer))
+            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileEduFormsViewModel> (indexer,
+                eduProgramProfiles.Select (epp => new EduProgramProfileEduFormsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -129,8 +128,8 @@ namespace R7.University.EduProgramProfiles
             var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
                 .ListWithDocuments (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
-            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileObrnadzorDocumentsViewModel> (indexer,
-                eduProgramProfiles.Select (epp => new EduProgramProfileObrnadzorDocumentsViewModel (epp, viewModel, indexer))
+            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileDocumentsViewModel> (indexer,
+                eduProgramProfiles.Select (epp => new EduProgramProfileDocumentsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -168,6 +167,9 @@ namespace R7.University.EduProgramProfiles
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
+
+            gridEduProgramProfileObrnadzorEduForms.Attributes.Add ("itemprop", "eduAccred");
+            gridEduProgramProfileObrnadzorDocuments.Attributes.Add ("itemprop", "eduOP");
 
             switch (Settings.Mode) {
                 case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
@@ -244,26 +246,17 @@ namespace R7.University.EduProgramProfiles
         {
             var now = HttpContext.Current.Timestamp;
 
+            // show / hide edit column
+            e.Row.Cells [0].Visible = IsEditable;
+
             // hiding the columns of second row header (created on binding)
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
                 e.Row.TableSection = TableRowSection.TableHeader;
-
-                // TODO: Don't hardcode cell indexes
-                e.Row.Cells [0].Visible = false;
-                e.Row.Cells [1].Visible = false;
-                e.Row.Cells [2].Visible = false;
-                e.Row.Cells [3].Visible = false;
-                e.Row.Cells [4].Visible = false;
-                e.Row.Cells [8].Visible = false;
-                e.Row.Cells [9].Visible = false;
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                // show / hide edit column
-                e.Row.Cells [0].Visible = IsEditable;
-
-                var eduProgramProfile = (EduProgramProfileObrnadzorEduFormsViewModel) e.Row.DataItem;
+                var eduProgramProfile = (EduProgramProfileEduFormsViewModel) e.Row.DataItem;
 
                 if (IsEditable) {
                     // get edit link controls
@@ -282,62 +275,6 @@ namespace R7.University.EduProgramProfiles
             }
         }
 
-        protected void gridEduProgramProfileObrnadzorEduForms_RowCreated (object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.Header) {
-                // create cells for first row
-                var cellsRow1 = new []
-                {
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Visible = IsEditable
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("Index.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        ColumnSpan = 2,
-                        Text = Localization.GetString ("Title.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("EduLevel.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        ColumnSpan = 3,
-                        Text = Localization.GetString ("TimeToLearn.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("AccreditedToDate.Column", LocalResourceFile)
-                    },
-                    new TableHeaderCell
-                    {
-                        RowSpan = 2,
-                        Text = Localization.GetString ("CommunityAccreditedToDate.Column", LocalResourceFile)
-                    }
-                };
-
-                var grid = (GridView) sender;
-
-                // create header row
-                var headerRow = new GridViewRow (0, -1, DataControlRowType.Header, DataControlRowState.Normal);
-                headerRow.Cells.AddRange (cellsRow1);
-                headerRow.TableSection = TableRowSection.TableHeader;
-
-                // add new header row to the grid table
-                ((Table) grid.Controls [0]).Rows.AddAt (0, headerRow);
-            }
-        }
-
         protected void gridEduProgramProfileObrnadzorDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             var now = HttpContext.Current.Timestamp;
@@ -345,16 +282,17 @@ namespace R7.University.EduProgramProfiles
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
+            // TODO: Remove columns completely
+            e.Row.Cells [11].Visible = IsEditable;
+            e.Row.Cells [12].Visible = IsEditable;
+            e.Row.Cells [13].Visible = IsEditable;
+
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
                 e.Row.TableSection = TableRowSection.TableHeader;
-
-                // merge Code header cell into Title
-                e.Row.Cells [2].Visible = false;
-                e.Row.Cells [3].ColumnSpan = 2;
             }
             else if (e.Row.RowType == DataControlRowType.DataRow) {
-                var eduProgramProfile = (EduProgramProfileObrnadzorDocumentsViewModel) e.Row.DataItem;
+                var eduProgramProfile = (EduProgramProfileDocumentsViewModel) e.Row.DataItem;
 
                 e.Row.Attributes.Add ("data-title", FormatHelper.FormatEduProgramProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
@@ -368,7 +306,7 @@ namespace R7.University.EduProgramProfiles
 
                     // fill edit link controls
                     linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id", 
-                        eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
+                        eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
 

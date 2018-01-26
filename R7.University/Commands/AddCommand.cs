@@ -47,8 +47,8 @@ namespace R7.University.Commands
             if (SecurityContext.CanAdd (typeof (TEntity))) {
                 if (entity is ITrackableEntityWritable) {
                     var trackable = (ITrackableEntityWritable) entity;
-                    trackable.CreatedByUserID = SecurityContext.UserId;
-                    trackable.LastModifiedByUserID = SecurityContext.UserId;
+                    trackable.CreatedByUserId = SecurityContext.UserId;
+                    trackable.LastModifiedByUserId = SecurityContext.UserId;
                     trackable.CreatedOnDate = dateTime;
                     trackable.LastModifiedOnDate = dateTime;
                 }

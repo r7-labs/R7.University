@@ -14,6 +14,8 @@ namespace R7.University.EduProgramProfiles
         protected TextBox textProfileTitle;
         protected TextBox textLanguages;
         protected CheckBox checkIsAdopted;
+        protected CheckBox checkELearning;
+        protected CheckBox checkDistanceEducation;
         protected DnnDateTimePicker datetimeStartDate;
         protected DnnDateTimePicker datetimeEndDate;
         protected DnnDatePicker dateAccreditedToDate;
@@ -21,7 +23,6 @@ namespace R7.University.EduProgramProfiles
         protected DropDownList comboEduProgram;
         protected DropDownList comboEduProgramLevel;
         protected DropDownList comboEduLevel;
-        protected EditDocuments formEditDocuments;
         protected EditEduFormYears formEditEduFormYears;
         protected EditDivisions formEditDivisions;
         protected ModuleAuditControl auditControl;

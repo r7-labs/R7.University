@@ -1,4 +1,4 @@
-﻿//
+//
 //  UpdateDivisionCommand.cs
 //
 //  Author:
@@ -36,7 +36,7 @@ namespace R7.University.Commands
         public override void Update (DivisionInfo entity, DateTime dateTime)
         {
             if (SecurityContext.CanUpdate (entity)) {
-                entity.LastModifiedByUserID = SecurityContext.UserId;
+                entity.LastModifiedByUserId = SecurityContext.UserId;
                 entity.LastModifiedOnDate = dateTime;
 
                 if (entity.DivisionTermID != null) {

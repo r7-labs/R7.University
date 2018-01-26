@@ -32,10 +32,10 @@ namespace R7.University.ControlExtensions
         public static void Bind (this ModuleAuditControl auditControl, ITrackableEntity item)
         {
             auditControl.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-            auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserID, Null.NullInteger.ToString ());
+            auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserId, Null.NullInteger.ToString ());
             auditControl.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
             auditControl.LastModifiedByUser = Utils.GetUserDisplayName (
-                item.LastModifiedByUserID,
+                item.LastModifiedByUserId,
                 Null.NullInteger.ToString ());
         }
     }

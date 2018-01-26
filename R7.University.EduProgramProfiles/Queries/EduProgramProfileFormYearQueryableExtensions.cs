@@ -61,7 +61,7 @@ namespace R7.University.EduProgramProfiles.Queries
                          .ThenBy (ev => ev.EduProgramProfile.ProfileCode)
                          .ThenBy (ev => ev.EduProgramProfile.ProfileTitle)
                          .ThenByDescending (ev => ev.Year.Year)
-                         .ThenBy (ev => ev.EduForm.Title);
+                         .ThenBy (ev => ev.EduForm.SortIndex);
         }
     }
 }

@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.Launchpad</RootNamespace>
     <AssemblyName>R7.University.Launchpad</AssemblyName>
-    <ReleaseVersion>1.16.0</ReleaseVersion>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -122,7 +122,7 @@
   <ItemGroup>
     <Content Include="module.css" />
     <Content Include="ViewLaunchpad.ascx" />
-    <Content Include="SettingsLaunchpad.ascx" />
+    <Content Include="EditLaunchpadSettings.ascx" />
     <Content Include="EditPosition.ascx" />
     <Content Include="EditAchievement.ascx" />
     <Content Include="EditEduLevel.ascx" />
@@ -137,8 +137,8 @@
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
     <None Include="App_LocalResources\ViewLaunchpad.ascx.ru-RU.resx" />
-    <None Include="App_LocalResources\SettingsLaunchpad.ascx.resx" />
-    <None Include="App_LocalResources\SettingsLaunchpad.ascx.ru-RU.resx" />
+    <None Include="App_LocalResources\EditLaunchpadSettings.ascx.resx" />
+    <None Include="App_LocalResources\EditLaunchpadSettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditPosition.ascx.resx" />
     <None Include="App_LocalResources\SharedResources.resx" />
     <None Include="App_LocalResources\SharedResources.ru-RU.resx" />
@@ -163,11 +163,11 @@
     <Compile Include="ViewLaunchpad.ascx.controls.cs">
       <DependentUpon>ViewLaunchpad.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsLaunchpad.ascx.cs">
-      <DependentUpon>SettingsLaunchpad.ascx</DependentUpon>
+    <Compile Include="EditLaunchpadSettings.ascx.cs">
+      <DependentUpon>EditLaunchpadSettings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsLaunchpad.ascx.controls.cs">
-      <DependentUpon>SettingsLaunchpad.ascx</DependentUpon>
+    <Compile Include="EditLaunchpadSettings.ascx.controls.cs">
+      <DependentUpon>EditLaunchpadSettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditPosition.ascx.cs">
       <DependentUpon>EditPosition.ascx</DependentUpon>

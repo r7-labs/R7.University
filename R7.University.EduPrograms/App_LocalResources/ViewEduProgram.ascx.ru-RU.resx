@@ -39,8 +39,14 @@
     <data name="EduProgramProfile.Text" xml:space="preserve">
         <value>Профиль (специализация)</value>
     </data>
-    <data name="EduForms.Text" xml:space="preserve">
-        <value>Формы и сроки обучения:</value>
+    <data name="ImplementedEduForms.Text" xml:space="preserve">
+        <value>Реализуемые формы обучения:</value>
+    </data>
+	<data name="EduFormsForAdmission.Text" xml:space="preserve">
+        <value>Формы обучения, открытые для приема на обучение в</value>
+    </data>
+	<data name="Year.Text" xml:space="preserve">
+        <value> году:</value>
     </data>
     <data name="Divisions.Text" xml:space="preserve">
         <value>Подразделения:</value>
@@ -49,7 +55,7 @@
         <value>Образовательный стандарт:</value>
     </data>
     <data name="AccreditedToDate.Text" xml:space="preserve">
-        <value>Государственной аккредитация (до):</value>
+        <value>Государственная аккредитация (до):</value>
     </data>
     <data name="CommunityAccreditedToDate.Text" xml:space="preserve">
         <value>Профессионально-общественная аккредитация (до):</value>

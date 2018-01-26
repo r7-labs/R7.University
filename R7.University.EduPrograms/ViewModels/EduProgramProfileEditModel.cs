@@ -46,16 +46,11 @@ namespace R7.University.EduPrograms.ViewModels
             get { return EduProgramProfile.EduLevel.Title; }
         }
 
-        public string Edit_Url
-        {
-            get {
-                return Context.Module.EditUrl (
-                    "eduprogramprofile_id",
-                    EduProgramProfile.EduProgramProfileID.ToString (),
-                    "EditEduProgramProfile"
-                );
-            }
-        }
+        public string Edit_Url => Context.Module.EditUrl (
+            "eduprogramprofile_id", EduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
+
+        public string EditDocuments_Url => Context.Module.EditUrl (
+	        "eduprogramprofile_id", EduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
 
         #endregion
     }

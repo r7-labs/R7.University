@@ -62,7 +62,7 @@ namespace R7.University.Controls
             comboAchievement.DataSource = achievements
                 .Select (ach => new ListItemViewModel (ach.AchievementID, ach.Title));
             comboAchievement.DataBind ();
-            comboAchievement.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
+            comboAchievement.InsertDefaultItem (LocalizeString ("CustomAchievement.Text"));
             comboAchievement.SelectedIndex = 0;
 
             comboAchievementTypes.DataSource = achievementTypes
@@ -116,6 +116,7 @@ namespace R7.University.Controls
             }
             else {
                 urlDocumentURL.UrlType = "N";
+                urlDocumentURL.Url = string.Empty;
             }
         }
 
@@ -179,7 +180,7 @@ namespace R7.University.Controls
         {
             base.OnPartialResetForm ();
 
-            // reset only fields within collapsed panel
+            // reset only secondary fields
             textAchievementShortTitle.Text = string.Empty;
             textAchievementTitleSuffix.Text = string.Empty;
             textAchievementDescription.Text = string.Empty;

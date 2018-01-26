@@ -24,23 +24,17 @@
     <data name="Order.Column" xml:space="preserve">
         <value>№ п/п</value>
     </data>
+	<data name="Code.Column" xml:space="preserve">
+        <value>Код</value>
+    </data>
     <data name="Title.Column" xml:space="preserve">
         <value>Образовательная программа</value>
     </data>
     <data name="EduLevel.Column" xml:space="preserve">
         <value>Уровень образования</value>
     </data>
-    <data name="TimeToLearn.Column" xml:space="preserve">
-        <value>Нормативный срок обучения</value>
-    </data>
-    <data name="TimeToLearnFullTime.Column" xml:space="preserve">
-        <value>Очная форма обучения</value>
-    </data>
-    <data name="TimeToLearnPartTime.Column" xml:space="preserve">
-        <value>Очно-заочная форма обучения</value>
-    </data>
-    <data name="TimeToLearnExtramural.Column" xml:space="preserve">
-        <value>Заочная форма обучения</value>
+	<data name="EduForms.Column" xml:space="preserve">
+        <value>Реализуемые формы и нормативные сроки обучения</value>
     </data>
     <data name="AccreditedToDate.Column" xml:space="preserve">
         <value>Срок действия государственной аккредитации образовательной программы</value>
@@ -58,19 +52,31 @@
         <value>Аннотации к рабочим программам дисциплин</value>
     </data>
     <data name="Languages.Column" xml:space="preserve">
-        <value>Информация о языках, на которых осуществляется образование (обучение)</value>
+        <value>Языки, на которых осуществляется образование (обучение)</value>
     </data>
     <data name="WorkProgramOfPractice.Column" xml:space="preserve">
-        <value>Практики (рабочие программы)</value>
+        <value>Практики (рабочие программы) &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
     <data name="EduMaterial.Column" xml:space="preserve">
         <value>Методические и иные документы</value>
     </data>
     <data name="Contingent.Column" xml:space="preserve">
-        <value>Информация о результатах приема (численности обучающихся)</value>
+        <value>Информация о результатах приема (численности обучающихся) &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
     <data name="ContingentMovement.Column" xml:space="preserve">
-        <value>Информация о результатах перевода, восстановления и отчисления</value>
+        <value>Информация о результатах перевода, восстановления и отчисления &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
+    </data>
+	<data name="ELearning.Column" xml:space="preserve">
+        <value>Использование при реализации образовательных программ электронного обучения (ЭО) и &lt;abbr title="Дистанционные образовательные технологии"&gt;ДОТ&lt;/abbr&gt;</value>
+	</data>
+	<data name="ELearning_ELearning.Text" xml:space="preserve">
+        <value>ЭО</value>
+    </data>
+	<data name="ELearning_DistanceEducation.Text" xml:space="preserve">
+        <value>ДОТ</value>
+    </data>
+	<data name="ELearning_No.Text" xml:space="preserve">
+        <value>нет</value>
     </data>
 	<data name="DocumentGroup.Column" xml:space="preserve">
         <value>Группа документов</value>

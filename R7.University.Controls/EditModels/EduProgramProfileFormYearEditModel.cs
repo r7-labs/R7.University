@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
 using R7.University.Models;
 using R7.University.ModelExtensions;
+using R7.University.Components;
 
 namespace R7.University.Controls.EditModels
 {
@@ -43,6 +44,8 @@ namespace R7.University.Controls.EditModels
             CopyCstor.Copy<IPublishableEntityWritable> (model, viewModel);
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
             viewModel.YearString = model.Year.Year.ToString ();
+            viewModel.HasEduVolume = model.EduVolume != null;
+            viewModel.HasContingent = model.Contingent != null;
             viewModel.Context = context;
 
             return viewModel;
@@ -91,20 +94,23 @@ namespace R7.University.Controls.EditModels
         public IYear Year { get; set; }
 
         [JsonIgnore]
+        public IEduProgramProfile EduProgramProfile { get; set; }
+
+        [JsonIgnore]
         public IEduVolume EduVolume { get; set; }
 
         [JsonIgnore]
         public IContingent Contingent { get; set; }
 
-        [JsonIgnore]
-        public IEduProgramProfile EduProgramProfile { get; set; }
-
         #endregion
+
+        public bool HasContingent { get; set; }
+
+        public bool HasEduVolume { get; set; }
 
         #region Bindable properties
 
         public string YearString { get; set; }
-
 
         [JsonIgnore]
         public string EduFormTitleLocalized {
@@ -113,6 +119,23 @@ namespace R7.University.Controls.EditModels
                 return EduFormViewModel.TitleLocalized;
             }
         }
+
+        [JsonIgnore]
+        public string EditEduVolumeIconUrl => HasEduVolume ? UniversityIcons.Edit : UniversityIcons.AddAlternate;
+
+        [JsonIgnore]
+        public string EditContingentIconUrl => HasContingent ? UniversityIcons.Edit : UniversityIcons.AddAlternate;
+
+        [JsonIgnore]
+        public string EditEduVolumeUrl => 
+            Context.Module.EditUrl (HasEduVolume ? "eduvolume_id" : "eduprogramprofileformyear_id", EduProgramProfileFormYearId.ToString (), "EditEduVolume");
+
+        [JsonIgnore]
+        public string EditContingentUrl =>
+            Context.Module.EditUrl (HasContingent ? "contingent_id" : "eduprogramprofileformyear_id", EduProgramProfileFormYearId.ToString (), "EditContingent");
+
+        [JsonIgnore]
+        public bool EditReferencedEntitiesActionsVisible => EditState != ModelEditState.Added;
 
         #endregion
     }

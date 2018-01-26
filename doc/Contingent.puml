@@ -1,4 +1,4 @@
-@startuml Contingent
+@startuml Contingent Information
 
 EduProgramProfileFormYear "1" o-- "0..1" Contingent
 

@@ -399,6 +399,10 @@
                         <asp:BoundField DataField="SortIndex" SortExpression="SortIndex" HeaderText="SortIndex" />
                         <asp:BoundField DataField="StartDate" SortExpression="StartDate" HeaderText="StartDate" />
                         <asp:BoundField DataField="EndDate" SortExpression="EndDate" HeaderText="EndDate" />
+						<asp:BoundField DataField="CreatedOnDate" SortExpression="CreatedOnDate" HeaderText="CreatedOnDate" />
+						<asp:BoundField DataField="CreatedByUserId" SortExpression="CreatedByUserId" HeaderText="CreatedByUserId" />
+						<asp:BoundField DataField="LastModifiedOnDate" SortExpression="LastModifiedOnDate" HeaderText="LastModifiedOnDate" />
+						<asp:BoundField DataField="LastModifiedByUserId" SortExpression="LastModifiedByUserId" HeaderText="LastModifiedByUserId" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>
@@ -464,6 +468,7 @@
                         <asp:BoundField DataField="Title" SortExpression="Title" HeaderText="Title" />
                         <asp:BoundField DataField="ShortTitle" SortExpression="ShortTitle" HeaderText="ShortTitle" />
                         <asp:CheckBoxField DataField="IsSystem" SortExpression="IsSystem" HeaderText="IsSystem" />
+						<asp:BoundField DataField="SortIndex" SortExpression="SortIndex" HeaderText="SortIndex" />
                     </Columns>
                     <PagerSettings Mode="NumericFirstLast" Visible="true" />
                 </asp:GridView>

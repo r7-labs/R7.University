@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -25,6 +25,7 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Localization;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 
 namespace R7.University.SharedLogic
@@ -35,7 +36,7 @@ namespace R7.University.SharedLogic
         {
             // fill working hours terms
             var termCtrl = new TermController ();
-            var workingHours = termCtrl.GetTermsByVocabulary ("University_WorkingHours").ToList ();
+            var workingHours = termCtrl.GetTermsByVocabulary (UniversityConfig.Instance.Vocabularies.WorkingHours).ToList ();
             workingHours.Insert (0, new Term (Localization.GetString ("NotSelected.Text", module.LocalResourceFile)));
             comboWorkingHours.DataSource = workingHours;
             comboWorkingHours.DataBind ();
@@ -58,9 +59,9 @@ namespace R7.University.SharedLogic
             if (comboWorkingHours.SelectedIndex <= 0 || workingHoursNonEmpty) {
                 // TODO: Shouldn't we try to add term after updating main item?
                 if (addToVocabulary && workingHoursNonEmpty) {
-                    // try add new term to University_WorkingHours vocabulary
+                    // try add new term to working hours vocabulary
                     var vocCtrl = new VocabularyController ();
-                    var voc = vocCtrl.GetVocabularies ().SingleOrDefault (v => v.Name == "University_WorkingHours");
+                    var voc = vocCtrl.GetVocabularies ().SingleOrDefault (v => v.Name == UniversityConfig.Instance.Vocabularies.WorkingHours);
                     if (voc != null) {
                         var termCtrl = new TermController ();
                         termCtrl.AddTerm (new Term (workingHours, "", voc.VocabularyId)); 

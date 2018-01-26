@@ -50,6 +50,10 @@ namespace R7.University.ViewModels
 
         public bool IsAdopted => EduProgramProfile.IsAdopted;
 
+        public bool ELearning => EduProgramProfile.ELearning;
+
+        public bool DistanceEducation => EduProgramProfile.DistanceEducation;
+
         public DateTime? AccreditedToDate => EduProgramProfile.AccreditedToDate;
 
         public DateTime? CommunityAccreditedToDate => EduProgramProfile.CommunityAccreditedToDate;
@@ -58,11 +62,11 @@ namespace R7.University.ViewModels
 
         public DateTime? EndDate => EduProgramProfile.EndDate;
 
-        public int LastModifiedByUserID => EduProgramProfile.LastModifiedByUserID;
+        public int LastModifiedByUserId => EduProgramProfile.LastModifiedByUserId;
 
         public DateTime LastModifiedOnDate => EduProgramProfile.LastModifiedOnDate;
 
-        public int CreatedByUserID => EduProgramProfile.CreatedByUserID;
+        public int CreatedByUserId => EduProgramProfile.CreatedByUserId;
 
         public DateTime CreatedOnDate => EduProgramProfile.CreatedOnDate;
 
