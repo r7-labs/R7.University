@@ -856,7 +856,7 @@
 									</moduleControl>
 									<moduleControl>
 										<controlKey>EditDivision</controlKey>
-										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Division/EditDivision.ascx</controlSrc>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/EditDivision.ascx</controlSrc>
                                         <controlTitle>Edit Division</controlTitle>
 										<controlType>Edit</controlType>
 										<iconFile />
