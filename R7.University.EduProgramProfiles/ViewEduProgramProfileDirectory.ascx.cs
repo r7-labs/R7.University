@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -296,7 +296,9 @@ namespace R7.University.EduProgramProfiles
 
                 e.Row.Attributes.Add ("data-title", FormatHelper.FormatEduProgramProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
-                    eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle) + ": " + eduProgramProfile.EduLevel.Title
+                    eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle)
+                                      .Append (eduProgramProfile.IsAdopted ? LocalizeString ("IsAdopted.Text") : null, " - ")
+                                      .Append (eduProgramProfile.EduLevel.Title, ": ")
                 );
 
                 if (IsEditable) {

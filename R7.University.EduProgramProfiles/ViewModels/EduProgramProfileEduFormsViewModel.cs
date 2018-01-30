@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
@@ -56,7 +57,11 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string Code => Wrap (EduProgram.Code, "eduCode");
 
-        public string Title => Wrap (FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle), "eduName");
+        public string Title => Wrap (
+            FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
+                .Append (IsAdopted? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
+            "eduName"
+        );
 
         public string EduLevelString => Wrap (EduLevel.Title, "eduLevel");
 
