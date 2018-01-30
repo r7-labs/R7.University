@@ -1,10 +1,10 @@
 ﻿//
-//  AchievementSerializationModel.cs
+//  AchievementTypeSerializationModel.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017-2018 Roman M. Yagodin
+//  Copyright (c) 2017 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,34 +20,29 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using Newtonsoft.Json;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
+using R7.Dnn.Extensions.Utilities;
 
-namespace R7.University.SerializationModels
+namespace R7.University.Controls.SerializationModels
 {
     [Serializable]
-    public class AchievementSerializationModel: IAchievementWritable
+    public class AchievementTypeSerializationModel : IAchievementTypeWritable
     {
-        public AchievementSerializationModel ()
+        public AchievementTypeSerializationModel ()
         {
         }
 
-        public AchievementSerializationModel (IAchievementWritable achievement)
+        public AchievementTypeSerializationModel (IAchievementTypeWritable achievementType)
         {
-            CopyCstor.Copy (achievement, this);
+            CopyCstor.Copy (achievementType, this);
         }
 
-        public int AchievementID { get; set; }
+        public int AchievementTypeId { get; set; }
 
-        [JsonIgnore]
-        [Obsolete ("Property not serialized", true)]
-        public IAchievementType AchievementType { get; set; }
+        public string Description { get; set; }
 
-        public int? AchievementTypeId { get; set; }
+        public bool IsSystem { get; set; }
 
-        public string ShortTitle  { get; set; }
-
-        public string Title  { get; set; }
+        public string Type { get; set; }
     }
 }

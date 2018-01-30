@@ -162,6 +162,8 @@
     </Compile>
     <Compile Include="EditModels\EduProgramProfileFormYearEditModel.cs" />
     <Compile Include="ViewModels\AgplSignatureViewModel.cs" />
+    <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
+    <Compile Include="SerializationModels\AchievementTypeSerializationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">
@@ -214,6 +216,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="EditModels\" />
     <Folder Include="Views\" />
+    <Folder Include="SerializationModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
