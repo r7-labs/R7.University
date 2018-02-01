@@ -2,18 +2,37 @@
 
 ## Version 2.0.0
 
-- DivisionDirectory: Greatly improve performance by reducing database calls to just one per request.
+This is a major release dedicated to the transition to new obrnadzor.gov.ru recommendations.
+
+- Updated information structure and obrnadzor.gov.ru microdata markup across all affected modules to match new recommendations.
+- New models: Year, EduVolume, Contingent.
+- Convert EduProgramProfileForm model to the EduProgramProfileFormYear model.
+- New modules: ScienceDirectory, EduVolumeDirectory (2 modes), ContingentDirectory (4 modes).
+- DivisionDirectory module: New mode to display governing divisions.
+- Add Created/LastModified fields to documents (#220).
+- Mark edu. programs adopted for peoples with disabilities and implemented using E-learning and distance education technologies (#190).
+- Add IsGoverning flag to the Divison model, convert IsVirtual flag to IsSingleEntity.
+- Do not display division title/link for occupied positions in single-entity divisions.  
+- EduProgramProfileDirectory module: Practices, admission and contingent movement column are visible for editors only, will be removed later.
+- EduProgram module: Support for displaying edu. forms available for admission.
+- UI, Security: Extract EditEduProgramProfileDocuments control (#250).
+- UX: Close Bootstrap modal popup by ESC key, add vertical scrollbars when content is too large. 
+- Bugfixes: EditAchievements: UrlControl state persists even after loading new item (#231).
+- Performance: DivisionDirectory: Greatly improve performance by reducing database calls to just one per request. 
+- Configuration: Allow to configure vocabulary names for organization structure and stored working hours (#212).
+
+### Installation notes
+
+Due to project structure changes, following module folders inside the `DesktopModules/MVC/R7.University/` folder are no longer needed
+and you should remove them after install: `Employee`, `EmployeeList`, `EmployeeDirectory`, `Division`, `DivisionDirectory`,
+`EduProgram`, `EduProgramDirectory`, `EduProgramProfileDirectory`.
+
+To help migrate data from previous versions, execute `02.00.00.Migration.SqlDataProvider` script (available in the install package)
+via **Host &gt; SQL**. This script will add fake "0" starting year and create related EduProgramProfileFormYears and EduVolume records.
+This will ensure that important information about edu. forms and learning time will be available via EduProgram and EduProgramProfileDirectory modules.
+Further migration steps will require additional data which isn't available in the previous versions.
 
 ## Version 1.15.1
-
-### Important: Installation:
-
-Due to newfound DNN packaging system limitation, installation of v1.15 version 
-(or upgrade from any lower version) must be done in three steps:
-
-1. Install v1.15.0 package first.
-2. Then run 01.15.00.PostInstall.SqlDataProvider script from Host/SQL.
-3. After that, install v1.15.1 package.
 
 ### Most notable changes:
 
@@ -45,6 +64,15 @@ Due to newfound DNN packaging system limitation, installation of v1.15 version
 - Editing of all related entities implemented via reusable Grid&Form-based controls (#196).
 - Edit documents: Some work on determining folder more reliable (#173).
 - Many code refactorings considering CQRS, moving code to R7.Dnn.Extensions and more.
+
+### Installation notes:
+
+Due to newfound DNN packaging system limitation, installation of v1.15 version 
+(or upgrade from any lower version) must be done in three steps:
+
+1. Install v1.15.0 package first.
+2. Then run 01.15.00.PostInstall.SqlDataProvider script from Host/SQL.
+3. After that, install v1.15.1 package.
 
 ## Version 1.14.1
 
