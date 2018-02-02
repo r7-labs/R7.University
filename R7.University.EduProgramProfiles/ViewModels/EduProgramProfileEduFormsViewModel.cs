@@ -122,9 +122,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         IEnumerable<IEduProgramProfileFormYear> GetImplementedEduFormYears ()
         {
-            return EduProgramProfileFormYears
-                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
-                .DistinctByEduForms ();
+            return EduProgramProfileFormYears.Where (eppfy => eppfy.Year == null)
+                                             .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
 
         string Wrap (string text, string itemprop)

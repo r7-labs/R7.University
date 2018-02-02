@@ -107,13 +107,15 @@ BEGIN
 END
 GO
 
+
+
 IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_EduProgramProfileFormYears')
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (
         EduProgramProfileFormYearID int IDENTITY (1,1) NOT NULL,
         EduProgramProfileID int NOT NULL,
         EduFormID int NOT NULL,
-        YearID int NOT NULL,
+        YearID int NULL,
         StartDate datetime NULL,
         EndDate datetime NULL
         CONSTRAINT [PK_{objectQualifier}University_EduProgramProfileFormYears] PRIMARY KEY (EduProgramProfileFormYearID)
@@ -128,6 +130,10 @@ BEGIN
                 ON DELETE NO ACTION
         -- TODO: Add unique constraint?
     )
+
+    EXECUTE sp_executesql N'INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (YearID, EduFormID, EduProgramProfileID)
+		SELECT NULL AS YearID, EduFormID, EduProgramProfileID
+		FROM {databaseOwner}[{objectQualifier}University_EduProgramProfileForms]'
 END
 GO
 
@@ -151,6 +157,12 @@ BEGIN
             FOREIGN KEY (EduVolumeID) REFERENCES {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (EduProgramProfileFormYearID)
                 ON DELETE CASCADE
     )
+
+    EXECUTE sp_executesql N'INSERT INTO {databaseOwner}[{objectQualifier}University_EduVolume] (EduVolumeID, TimeToLearnMonths, TimeToLearnHours)
+		SELECT EduProgramProfileFormYearID AS EduVolumeID, EPPF.TimeToLearn AS TimeToLearnMonths, EPPF.TimeToLearnHours
+		FROM {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] AS EPPFY
+		INNER JOIN {databaseOwner}[{objectQualifier}University_EduProgramProfileForms] AS EPPF
+			ON EPPFY.EduProgramProfileID = EPPF.EduProgramProfileID AND EPPFY.EduFormID = EPPF.EduFormID'
 END
 GO
 
@@ -211,3 +223,4 @@ BEGIN
     )
 END
 GO
+

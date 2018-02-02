@@ -309,7 +309,6 @@
     <None Include="images\Rollback_16x16_Standard.png" />
     <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
-    <None Include="SqlDataProvider\02.00.00.Migration.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

@@ -55,6 +55,7 @@ namespace R7.University.ModelExtensions
             }
         }
 
+        [Obsolete]
         public static IEnumerable<EduProgramProfileFormYearInfo> LastYearOnly (this IEnumerable<EduProgramProfileFormYearInfo> eppfys)
         {
             var profileForms = new Dictionary<IntPair, int> ();
@@ -62,23 +63,25 @@ namespace R7.University.ModelExtensions
             foreach (var eppfy in eppfys) {
                 var key = new IntPair (eppfy.EduProgramProfileId, eppfy.EduFormId);
                 if (!profileForms.TryGetValue (key, out yearId)) {
-                    profileForms.Add (key, eppfy.YearId);
+                    profileForms.Add (key, eppfy.YearId.Value);
                     yield return eppfy;
                 }
             }
         }
 
+        [Obsolete]
+        public static IEnumerable<IEduProgramProfileFormYear> DistinctByEduForms (this IEnumerable<EduProgramProfileFormYearInfo> eppfys)
+        {
+	        return eppfys.OrderByDescending (eppfy => eppfy.Year.Year)
+				 .Distinct (new EntityEqualityComparer<IEduProgramProfileFormYear> (eppfy => eppfy.EduForm.EduFormID))
+				 .OrderBy (eppfy => eppfy.EduForm.SortIndex);
+        }
+
         public static string FormatTitle (this IEduProgramProfileFormYear eppfy, string resourceFile)
         {
             return $"{eppfy.EduProgramProfile.FormatTitle ()}: {eppfy.EduProgramProfile.EduLevel.FormatTitle ()}"
-                + $" - {eppfy.EduForm.FormatTitle (resourceFile)} / {eppfy.Year.Year}";
+                + $" - {eppfy.EduForm.FormatTitle (resourceFile)} / {(eppfy.Year != null ? eppfy.Year.Year.ToString () : "")}";
         }
 
-        public static IEnumerable<IEduProgramProfileFormYear> DistinctByEduForms (this IEnumerable<EduProgramProfileFormYearInfo> eppfys)
-        {
-            return eppfys.OrderByDescending (eppfy => eppfy.Year.Year)
-                         .Distinct (new EntityEqualityComparer<IEduProgramProfileFormYear> (eppfy => eppfy.EduForm.EduFormID))
-                         .OrderBy (eppfy => eppfy.EduForm.SortIndex);
-        }
     }
 }

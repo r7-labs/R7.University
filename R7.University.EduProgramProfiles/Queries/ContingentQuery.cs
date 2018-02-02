@@ -46,7 +46,6 @@ namespace R7.University.EduProgramProfiles.Queries
                                .Include (eppfy => eppfy.EduForm)
                                .Include (eppfy => eppfy.Contingent)
                                .Include (eppfy => eppfy.Year)
-                               .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
                                .Order ()

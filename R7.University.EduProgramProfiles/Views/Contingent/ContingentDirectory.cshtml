@@ -46,9 +46,6 @@ else {
     				        <th scope="col" rowspan="2">@Dnn.LocalizeString("Course.Column")</th>
                         }
 					    <th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
-					    @if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
-                            <th scope="col" rowspan="2">@Dnn.LocalizeString("LastAdmissionYear.Column")</th>
-                        }
 					    @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
                             <th scope="col" colspan="4">@Dnn.LocalizeString("VacantPlaces.Column")</th>
                         }

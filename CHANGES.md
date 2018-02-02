@@ -27,11 +27,6 @@ Due to project structure changes, following module folders inside the `DesktopMo
 and you should remove them after install: `Employee`, `EmployeeList`, `EmployeeDirectory`, `Division`, `DivisionDirectory`,
 `EduProgram`, `EduProgramDirectory`, `EduProgramProfileDirectory`.
 
-To help migrate data from previous versions, execute `02.00.00.Migration.SqlDataProvider` script (available in the install package)
-via **Host &gt; SQL**. This script will add fake "0" starting year and create related EduProgramProfileFormYears and EduVolume records.
-This will ensure that important information about edu. forms and learning time will be available via EduProgram and EduProgramProfileDirectory modules.
-Further migration steps will require additional data which isn't available in the previous versions.
-
 ## Version 1.15.1
 
 ### Most notable changes:
