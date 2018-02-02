@@ -203,8 +203,6 @@
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
     <Compile Include="Models\ITrackableEntity.cs" />
     <Compile Include="Models\TimeToLearnDisplayMode.cs" />
-    <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
-    <Compile Include="SerializationModels\AchievementTypeSerializationModel.cs" />
     <Compile Include="Commands\AddDivisionCommand.cs" />
     <Compile Include="Commands\UpdateCommand.cs" />
     <Compile Include="Commands\UpdateDivisionCommand.cs" />
@@ -265,7 +263,6 @@
     <Folder Include="Commands\" />
     <Folder Include="Security\" />
     <Folder Include="Modules\" />
-    <Folder Include="SerializationModels\" />
     <Folder Include="EditModels\" />
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +309,7 @@
     <None Include="images\Rollback_16x16_Standard.png" />
     <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
+    <None Include="SqlDataProvider\02.00.00.Migration.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

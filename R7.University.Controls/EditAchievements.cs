@@ -1,10 +1,10 @@
 //
-//  EditEduForms.ascx.cs
+//  EditAchievements.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -30,9 +30,9 @@ using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Controls.EditModels;
+using R7.University.Controls.SerializationModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.SerializationModels;
 
 namespace R7.University.Controls
 {
