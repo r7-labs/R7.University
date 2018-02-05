@@ -107,8 +107,6 @@ BEGIN
 END
 GO
 
-
-
 IF NOT EXISTS (select * from sys.tables where name = N'{objectQualifier}University_EduProgramProfileFormYears')
 BEGIN
     CREATE TABLE {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (
@@ -127,8 +125,8 @@ BEGIN
                 ON DELETE NO ACTION,
         CONSTRAINT [FK_{objectQualifier}University_EduProgramProfileFormYears_Years]
             FOREIGN KEY (YearID) REFERENCES {databaseOwner}[{objectQualifier}University_Years] (YearID)
-                ON DELETE NO ACTION
-        -- TODO: Add unique constraint?
+                ON DELETE NO ACTION,
+        CONSTRAINT [UN_{objectQualifier}EduProgramProfileFormYears_Years] UNIQUE (EduProgramProfileID, EduFormID, YearID)
     )
 
     EXECUTE sp_executesql N'INSERT INTO {databaseOwner}[{objectQualifier}University_EduProgramProfileFormYears] (YearID, EduFormID, EduProgramProfileID)
