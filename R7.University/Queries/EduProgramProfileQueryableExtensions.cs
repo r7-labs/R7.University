@@ -60,7 +60,7 @@ namespace R7.University.Queries
             return eduProgramProfiles;
         }
 
-        public static IQueryable<EduProgramProfileInfo> Order (this IQueryable<EduProgramProfileInfo> source)
+        public static IQueryable<EduProgramProfileInfo> DefaultOrder (this IQueryable<EduProgramProfileInfo> source)
         {
             return source.OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                          .ThenBy (epp => epp.EduProgram.Code)

@@ -1,4 +1,4 @@
-﻿//
+//
 //  EduVolumeQuery.cs
 //
 //  Author:
@@ -21,7 +21,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.EduProgramProfiles.Models;
 using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles.Queries
@@ -50,7 +49,7 @@ namespace R7.University.EduProgramProfiles.Queries
                                .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
-                               .Order ()
+                               .DefaultOrder ()
                                .ToList ();
         }
     }

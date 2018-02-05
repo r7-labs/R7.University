@@ -38,7 +38,7 @@ namespace R7.University.Employees.Queries
                                .Include (epp => epp.EduLevel)
                                .Include (epp => epp.EduProgram)
                                .WhereEduLevelsOrAll (eduLevelIds)
-                               .Order ()
+                               .DefaultOrder ()
                                .ToList ();
         }
     }

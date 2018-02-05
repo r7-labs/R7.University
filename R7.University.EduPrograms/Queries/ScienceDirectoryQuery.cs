@@ -62,7 +62,7 @@ namespace R7.University.EduPrograms.Queries
                                .Include (ep => ep.Divisions)
                                .Include (ep => ep.Divisions.Select (d => d.Division))
                                .Include (ep => ep.Science)
-                               .Order ();
+                               .DefaultOrder ();
         }
     }
 }

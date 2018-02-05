@@ -26,7 +26,7 @@ namespace R7.University.EduPrograms.Queries
 {
     public static class EduProgramQueryableExtensions
     {
-        public static IQueryable<EduProgramInfo> Order (this IQueryable<EduProgramInfo> source)
+        public static IQueryable<EduProgramInfo> DefaultOrder (this IQueryable<EduProgramInfo> source)
         {
             return source.OrderBy (ep => ep.EduLevel.SortIndex)
                          .ThenBy (ep => ep.Code)

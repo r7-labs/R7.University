@@ -42,7 +42,7 @@ namespace R7.University.EduProgramProfiles.Queries
                                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
-                               .Order ()
+                               .DefaultOrder ()
                                .ToList ();
         }
 
@@ -56,7 +56,7 @@ namespace R7.University.EduProgramProfiles.Queries
                                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
-                               .Order ()
+                               .DefaultOrder ()
                                .ToList ();
         }
     }
