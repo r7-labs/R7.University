@@ -51,7 +51,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public int EduFormId => FormYear.EduFormId;
 
-        public int YearId => FormYear.YearId;
+        public int? YearId => FormYear.YearId;
 
         public IEduForm EduForm => FormYear.EduForm;
 

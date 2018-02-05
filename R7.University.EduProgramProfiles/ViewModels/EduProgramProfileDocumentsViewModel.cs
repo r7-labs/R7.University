@@ -243,10 +243,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         IEnumerable<IEduForm> GetImplementedEduForms ()
         {
-            return EduProgramProfileFormYears
-                .Where (eppfy => !eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
-                .DistinctByEduForms ()
-                .Select (eppfy => eppfy.EduForm);
+            return EduProgramProfileFormYears.Where (eppfy => eppfy.Year == null)
+                                             .Select (eppfy => eppfy.EduForm)
+                                             .OrderBy (ef => ef.SortIndex);
         }
 
         string Wrap (string text, string itemprop)

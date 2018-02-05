@@ -21,7 +21,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 
@@ -52,7 +51,7 @@ namespace R7.University.EduProgramProfiles.Queries
             return eduProgramProfileFormYears;
         }
 
-        public static IQueryable<EduProgramProfileFormYearInfo> Order (this IQueryable<EduProgramProfileFormYearInfo> source)
+        public static IQueryable<EduProgramProfileFormYearInfo> DefaultOrder (this IQueryable<EduProgramProfileFormYearInfo> source)
         {
             return source.OrderBy (ev => ev.EduProgramProfile.EduProgram.EduLevel.SortIndex)
                          .ThenBy (ev => ev.EduProgramProfile.EduProgram.Code)

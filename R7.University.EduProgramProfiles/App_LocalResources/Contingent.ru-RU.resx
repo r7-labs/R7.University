@@ -30,9 +30,6 @@
     <data name="Course.Column" xml:space="preserve">
         <value>Курс</value>
     </data>
-	<data name="LastAdmissionYear.Column" xml:space="preserve">
-        <value>Последний год набора</value>
-    </data>
 	<data name="VacantPlaces.Column" xml:space="preserve">
         <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет:</value>
     </data>

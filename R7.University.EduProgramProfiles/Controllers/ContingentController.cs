@@ -83,8 +83,11 @@ namespace R7.University.EduPrograms.Controllers
                 settings.DivisionLevel
             );
 
-            if (settings.Mode != ContingentDirectoryMode.Vacant) {
-                contingents = contingents.LastYearOnly ();
+            if (settings.Mode == ContingentDirectoryMode.Vacant) {
+                contingents = contingents.Where (c => c.Year != null);
+            }
+            else {
+                contingents = contingents.Where (c => c.Year == null);
             }
 
             return contingents ?? Enumerable.Empty<EduProgramProfileFormYearInfo> ();

@@ -24,6 +24,7 @@ using System.Linq;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
 using R7.University.Models;
 
@@ -47,6 +48,7 @@ namespace R7.University.Controls
 
             comboYear.DataSource = years;
             comboYear.DataBind ();
+            comboYear.InsertDefaultItem ("-");
         }
 
         protected EduFormViewModel GetEduForm (int eduFormId)
@@ -76,8 +78,13 @@ namespace R7.University.Controls
 
         protected override void OnUpdateItem (EduProgramProfileFormYearEditModel item)
         {
-            item.YearId = int.Parse (comboYear.SelectedValue);
-            item.YearString = GetYear (item.YearId).Year.ToString ();
+            item.YearId = TypeUtils.ParseToNullable<int> (comboYear.SelectedValue);
+            if (item.YearId != null) {
+                item.YearString = GetYear (item.YearId.Value).Year.ToString ();
+            }
+            else {
+                item.YearString = "-";
+            }
 
             item.EduFormId = int.Parse (radioEduForm.SelectedValue);
             item.EduFormViewModel = GetEduForm (item.EduFormId);

@@ -43,7 +43,7 @@ namespace R7.University.Controls.EditModels
             CopyCstor.Copy<IEduProgramProfileFormYearWritable> (model, viewModel);
             CopyCstor.Copy<IPublishableEntityWritable> (model, viewModel);
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
-            viewModel.YearString = model.Year.Year.ToString ();
+            viewModel.YearString = model.Year != null ? model.Year.Year.ToString () : "-";
             viewModel.HasEduVolume = model.EduVolume != null;
             viewModel.HasContingent = model.Contingent != null;
             viewModel.Context = context;
@@ -78,7 +78,7 @@ namespace R7.University.Controls.EditModels
 
         public int EduFormId { get; set; }
 
-        public int YearId { get; set; }
+        public int? YearId { get; set; }
 
         public DateTime? StartDate { get; set; }
 

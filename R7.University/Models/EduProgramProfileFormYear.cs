@@ -32,7 +32,7 @@ namespace R7.University.Models
 
         int EduFormId { get; }
 
-        int YearId { get; }
+        int? YearId { get; }
 
         IEduForm EduForm { get; }
 
@@ -53,7 +53,7 @@ namespace R7.University.Models
 
         new int EduFormId { get; set; }
 
-        new int YearId { get; set; }
+        new int? YearId { get; set; }
 
         new IEduForm EduForm { get; set; }
 
@@ -74,7 +74,7 @@ namespace R7.University.Models
 
         public int EduFormId { get; set; }
 
-        public int YearId { get; set; }
+        public int? YearId { get; set; }
 
         public DateTime? StartDate { get; set; }
 

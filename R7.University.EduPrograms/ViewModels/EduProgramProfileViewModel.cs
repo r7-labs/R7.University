@@ -94,17 +94,23 @@ namespace R7.University.EduPrograms.ViewModels
 
         IEnumerable<IEduProgramProfileFormYear> _implementedEduForms;
         protected IEnumerable<IEduProgramProfileFormYear> ImplementedEduForms =>
-            _implementedEduForms ?? (_implementedEduForms = GetEduFormYears (forAdmission: false));
+            _implementedEduForms ?? (_implementedEduForms = GetImplementedEduFormYears ());
 
         IEnumerable<IEduProgramProfileFormYear> _eduFormsForAdmission;
         protected IEnumerable<IEduProgramProfileFormYear> EduFormsForAdmission =>
-            _eduFormsForAdmission ?? (_eduFormsForAdmission = GetEduFormYears (forAdmission: true));
+            _eduFormsForAdmission ?? (_eduFormsForAdmission = GetEduFormYearsForAdmission ());
 
-        IEnumerable<IEduProgramProfileFormYear> GetEduFormYears (bool forAdmission)
+        IEnumerable<IEduProgramProfileFormYear> GetImplementedEduFormYears ()
+        {
+	        return EduProgramProfileFormYears.Where (eppfy => eppfy.YearId == null)
+                                             .OrderBy (eppfy => eppfy.EduForm.SortIndex);
+        }
+
+        IEnumerable<IEduProgramProfileFormYear> GetEduFormYearsForAdmission ()
         {
             return EduProgramProfile.EduProgramProfileFormYears
-                .Where (eppfy => eppfy.Year.AdmissionIsOpen == forAdmission && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
-                .DistinctByEduForms ();
+                                    .Where (eppfy => eppfy.Year != null && eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
+                                    .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
 
         string FormatEduFormYears (IEnumerable<IEduProgramProfileFormYear> eppfys)

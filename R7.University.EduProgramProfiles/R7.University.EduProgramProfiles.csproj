@@ -149,7 +149,6 @@
     <Compile Include="ViewModels\EduProgramProfileDirectoryEduFormsViewModel.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
     <Compile Include="Models\EduProgramProfileDirectorySettings.cs" />
-    <Compile Include="Models\DivisionLevel.cs" />
     <Compile Include="Models\EduProgramProfileDirectoryMode.cs" />
     <Compile Include="EditEduProgramProfile.ascx.controls.cs">
       <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>

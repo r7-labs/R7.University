@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,7 @@ using R7.University.Queries;
 
 namespace R7.University.Employees.Queries
 {
-    internal class EduProgramProfileQuery: EduProgramProfileQueryBase
+    internal class EduProgramProfileQuery: QueryBase
     {
         public EduProgramProfileQuery (IModelContext modelContext): base (modelContext)
         {
@@ -34,7 +34,12 @@ namespace R7.University.Employees.Queries
 
         public IList<EduProgramProfileInfo> ListByEduLevels (IEnumerable<int> eduLevelIds)
         {
-            return OrderBy (QueryEduProgramProfiles (eduLevelIds)).ToList ();
+            return ModelContext.Query<EduProgramProfileInfo> ()
+                               .Include (epp => epp.EduLevel)
+                               .Include (epp => epp.EduProgram)
+                               .WhereEduLevelsOrAll (eduLevelIds)
+                               .DefaultOrder ()
+                               .ToList ();
         }
     }
 }

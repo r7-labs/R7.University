@@ -34,6 +34,9 @@
         <value>Уровень образования</value>
     </data>
 	<data name="EduForms.Column" xml:space="preserve">
+        <value>Реализуемые формы обучения</value>
+    </data>
+	<data name="EduFormsAndLearningTime.Column" xml:space="preserve">
         <value>Реализуемые формы и нормативные сроки обучения</value>
     </data>
     <data name="AccreditedToDate.Column" xml:space="preserve">

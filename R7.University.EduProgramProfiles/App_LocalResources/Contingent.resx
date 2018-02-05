@@ -30,9 +30,6 @@
 	<data name="Course.Column" xml:space="preserve">
         <value>Course</value>
     </data>
-	<data name="LastAdmissionYear.Column" xml:space="preserve">
-        <value>Last Admission Year</value>
-    </data>
 	<data name="VacantPlaces.Column" xml:space="preserve">
         <value>Number of Vacant Places for Admission (Movement) Financed by:</value>
     </data>

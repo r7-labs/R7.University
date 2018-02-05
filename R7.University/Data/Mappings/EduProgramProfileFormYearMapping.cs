@@ -35,14 +35,14 @@ namespace R7.University.Data.Mappings
 
             Property (m => m.EduProgramProfileId).IsRequired ();
             Property (m => m.EduFormId).IsRequired ();
-            Property (m => m.YearId).IsRequired ();
+            Property (m => m.YearId).IsOptional ();
 
             Property (m => m.StartDate).IsOptional ();
             Property (m => m.EndDate).IsOptional ();
 
             HasRequired (m => m.EduProgramProfile).WithMany (x => x.EduProgramProfileFormYears).HasForeignKey (m => m.EduProgramProfileId);
             HasRequired (m => m.EduForm).WithMany ().HasForeignKey (m => m.EduFormId);
-            HasRequired (m => m.Year).WithMany ().HasForeignKey (m => m.YearId);
+            HasOptional (m => m.Year).WithMany ().HasForeignKey (m => m.YearId);
 
             HasOptional (m => m.EduVolume).WithRequired (x => x.EduProgramProfileFormYear);
             HasOptional (m => m.Contingent).WithRequired (x => x.EduProgramProfileFormYear);
