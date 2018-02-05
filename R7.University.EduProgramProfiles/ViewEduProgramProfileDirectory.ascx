@@ -27,7 +27,7 @@
                         <asp:BoundField DataField="Code" HtmlEncode="false" HeaderText="Code.Column" />
                         <asp:BoundField DataField="Title" HtmlEncode="false" HeaderText="Title.Column" />
                         <asp:BoundField DataField="EduLevelString" HtmlEncode="false" HeaderText="EduLevel.Column" />
-						<asp:BoundField DataField="EduForms_String" HtmlEncode="false" HeaderText="EduForms.Column" />
+						<asp:BoundField DataField="EduForms_String" HtmlEncode="false" HeaderText="EduFormsAndLearningTime.Column" />
                         <asp:BoundField DataField="AccreditedToDateString" HtmlEncode="false" HeaderText="AccreditedToDate.Column" />
                         <asp:BoundField DataField="CommunityAccreditedToDate" DataFormatString="{0:d}" HeaderText="CommunityAccreditedToDate.Column" />
 						<asp:BoundField DataField="Languages_String" HtmlEncode="false" HeaderText="Languages.Column" />
