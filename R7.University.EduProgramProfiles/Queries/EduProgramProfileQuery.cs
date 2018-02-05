@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,13 +21,12 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.EduProgramProfiles.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
 namespace R7.University.EduProgramProfiles.Queries
 {
-    internal class EduProgramProfileQuery: EduProgramProfileQueryBase
+    internal class EduProgramProfileQuery: QueryBase 
     {
         public EduProgramProfileQuery (IModelContext modelContext): base (modelContext)
         {
@@ -35,37 +34,38 @@ namespace R7.University.EduProgramProfiles.Queries
 
         public IList<EduProgramProfileInfo> ListWithEduForms (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
-            return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
-                .Include (epp => epp.EduProgramProfileFormYears)
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year))
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
-             )).ToList ();
+            return ModelContext.Query<EduProgramProfileInfo> ()
+                               .Include (epp => epp.EduLevel)
+                               .Include (epp => epp.EduProgram)
+                               .Include (epp => epp.EduProgram.EduLevel)
+                               .Include (epp => epp.Divisions)
+                               .Include (epp => epp.EduProgram.Divisions)
+                               .Include (epp => epp.EduProgramProfileFormYears)
+                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year))
+                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
+                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
+                               .WhereEduLevelsOrAll (eduLevelIds)
+                               .WhereDivisionOrAll (divisionId, divisionLevel)
+                               .Order ()
+                               .ToList ();
         }
 
         public IList<EduProgramProfileInfo> ListWithDocuments (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
-            return OrderBy (WhereDivision (divisionId, divisionLevel, QueryEduProgramProfiles (eduLevelIds)
-                .Include (epp => epp.Documents)
-                .Include (epp => epp.Documents.Select (d => d.DocumentType))
-                .Include (epp => epp.EduProgramProfileFormYears)
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year))
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
-            )).ToList ();
-        }
-
-        protected IQueryable<EduProgramProfileInfo> WhereDivision (int? divisionId, DivisionLevel divisionLevel, IQueryable<EduProgramProfileInfo> eduProgramProfiles)
-        { 
-            if (divisionId != null) {
-                if (divisionLevel == DivisionLevel.EduProgram) {
-                    return eduProgramProfiles.Where (epp => epp.EduProgram.Divisions.Any (epd => epd.DivisionId == divisionId));
-                } 
-                if (divisionLevel == DivisionLevel.EduProgramProfile) {
-                    return eduProgramProfiles.Where (epp => epp.Divisions.Any (epd => epd.DivisionId == divisionId));
-                }
-            }
-
-            return eduProgramProfiles;
+            return ModelContext.Query<EduProgramProfileInfo> ()
+                               .Include (epp => epp.EduLevel)
+                               .Include (epp => epp.EduProgram)
+                               .Include (epp => epp.EduProgram.EduLevel)
+                               .Include (epp => epp.Divisions)
+                               .Include (epp => epp.EduProgram.Divisions)
+                               .Include (epp => epp.Documents)
+                               .Include (epp => epp.Documents.Select (d => d.DocumentType))
+                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year))
+                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
+                               .WhereEduLevelsOrAll (eduLevelIds)
+                               .WhereDivisionOrAll (divisionId, divisionLevel)
+                               .Order ()
+                               .ToList ();
         }
     }
 }
