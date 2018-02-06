@@ -58,8 +58,8 @@
         <value>Языки, на которых осуществляется образование (обучение)</value>
     </data>
     <data name="WorkProgramOfPractice.Column" xml:space="preserve">
-        <value>Практики (рабочие программы) &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
-    </data>
+        <value>Практики (рабочие программы) &lt;abbr title=&quot;Этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
+	</data>
     <data name="EduMaterial.Column" xml:space="preserve">
         <value>Методические и иные документы</value>
     </data>

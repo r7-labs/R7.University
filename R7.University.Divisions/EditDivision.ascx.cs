@@ -138,8 +138,6 @@ namespace R7.University.Divisions
             if (!string.IsNullOrWhiteSpace (item.HomePage))
                 urlHomePage.Url = item.HomePage;
             else {
-                // or set to "None", if Url is empty
-                urlHomePage.UrlType = "N";
                 urlHomePage.Url = string.Empty;
             }
 
@@ -147,8 +145,6 @@ namespace R7.University.Divisions
             if (!string.IsNullOrWhiteSpace (item.DocumentUrl))
                 urlDocumentUrl.Url = item.DocumentUrl;
             else {
-                // or set to "None", if url is empty
-                urlDocumentUrl.UrlType = "N";
                 urlDocumentUrl.Url = string.Empty;
             }
 

@@ -58,7 +58,7 @@
         <value>Education Languages</value>
     </data>
     <data name="WorkProgramOfPractice.Column" xml:space="preserve">
-        <value>Work Programs of Practice &lt;abbr title=&quot;Visible for editors only - this column will be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
+        <value>Work Programs of Practice &lt;abbr title=&quot;This column will be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
     </data>
     <data name="EduMaterial.Column" xml:space="preserve">
         <value>Educational Materials</value>

@@ -119,7 +119,7 @@
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
-                    <dnn:Url id="urlDocumentUrl" runat="server" UrlType="N" 
+                    <dnn:Url id="urlDocumentUrl" runat="server" UrlType="F" 
                             IncludeActiveTab="true"
                             ShowFiles="true" ShowTabs="true"
                             ShowUrls="true" ShowUsers="false"
