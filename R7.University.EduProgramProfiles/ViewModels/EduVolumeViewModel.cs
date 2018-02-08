@@ -63,9 +63,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public IEduProgramProfile EduProgramProfile => FormYear.EduProgramProfile;
 
-        public DateTime? StartDate => FormYear.StartDate;
+        public DateTime? StartDate => FormYear.EduProgramProfile.StartDate ?? FormYear.StartDate;
 
-        public DateTime? EndDate => FormYear.EndDate;
+        public DateTime? EndDate => FormYear.EduProgramProfile.EndDate ?? FormYear.EndDate;
 
         #endregion
 
@@ -79,7 +79,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 : Context.Module.EditUrl ("eduprogramprofileformyear_id", FormYear.EduProgramProfileFormYearId.ToString (), "EditEduVolume");
 
         public string CssClass =>
-            FormYear.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
+            this.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
         public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false)
                                                         .Append (FormYear.EduProgramProfile.IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ");
