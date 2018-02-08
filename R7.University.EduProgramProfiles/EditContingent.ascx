@@ -124,6 +124,7 @@
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
+				<hr />
 				<div class="dnnFormItem">
                     <dnn:Label id="labelAvgAdmScore" runat="server" ControlName="textAvgAdmScore" />
                     <asp:TextBox id="textAvgAdmScore" runat="server" />
