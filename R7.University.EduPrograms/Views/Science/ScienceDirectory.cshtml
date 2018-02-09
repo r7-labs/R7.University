@@ -90,7 +90,7 @@ else {
                 return target.closest("tr").data("title");
 	        }
 	        function getModalBodyHtml (target) {
-                return "<p class='u8y-science-descr-dlg-caption'>" + getTh(target.closest ("td")).text() + "</p>"
+                return "<p class='u8y-science-descr-dlg-caption'>" + getTh(target.closest ("td")).html() + "</p>"
 					+ "<div class='u8y-science-descr-dlg-body'>" + getDescriptionHtml(target) + "</div>";
             }
             function getDescriptionHtml (target) {
