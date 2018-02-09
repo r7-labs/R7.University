@@ -37,9 +37,9 @@ namespace R7.University.EduProgramProfiles
         public enum EditContingentTab
         {
             Actual,
+            Vacant,
             Admission,
             Movement,
-            Vacant
         }
 
         #region Properties
@@ -52,9 +52,26 @@ namespace R7.University.EduProgramProfiles
 
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
-                return (obj != null) ? (EditContingentTab) obj : EditContingentTab.Actual;
+                return (obj != null) ? (EditContingentTab) obj : GetDefaultTab ();
             }
             set { ViewState ["SelectedTab"] = value; }
+        }
+
+        EditContingentTab GetDefaultTab ()
+        {
+            if (Settings.Mode == ContingentDirectoryMode.Admission) {
+                return EditContingentTab.Admission;
+            }
+
+            if (Settings.Mode == ContingentDirectoryMode.Movement) {
+                return EditContingentTab.Movement;
+            }
+
+            if (Settings.Mode == ContingentDirectoryMode.Vacant) {
+                return EditContingentTab.Vacant;
+            }
+
+            return EditContingentTab.Actual;
         }
 
         ContingentDirectorySettings _settings;
