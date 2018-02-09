@@ -56,9 +56,9 @@ namespace R7.University.EduProgramProfiles.Queries
             return source.OrderBy (ev => ev.EduProgramProfile.EduProgram.EduLevel.SortIndex)
                          .ThenBy (ev => ev.EduProgramProfile.EduProgram.Code)
                          .ThenBy (ev => ev.EduProgramProfile.EduProgram.Title)
-                         .ThenBy (ev => ev.EduProgramProfile.EduLevel.SortIndex)
                          .ThenBy (ev => ev.EduProgramProfile.ProfileCode)
                          .ThenBy (ev => ev.EduProgramProfile.ProfileTitle)
+                         .ThenBy (ev => ev.EduProgramProfile.EduLevel.SortIndex)
                          .ThenByDescending (ev => ev.Year.Year)
                          .ThenBy (ev => ev.EduForm.SortIndex);
         }

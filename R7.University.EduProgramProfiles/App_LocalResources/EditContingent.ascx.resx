@@ -21,6 +21,9 @@
 	<data name="ContingentValue.Invalid" xml:space="preserve">
         <value>Value should be integer greater than or equal to zero.</value>
     </data>
+	<data name="AvgAdmScore.Invalid" xml:space="preserve">
+        <value>Value must be decimal number equal to or greater than zero.</value>
+    </data>
     <data name="Actual.Tab" xml:space="preserve">
         <value>Actual Contingent</value>
     </data>

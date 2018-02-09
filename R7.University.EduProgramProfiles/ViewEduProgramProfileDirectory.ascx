@@ -95,7 +95,7 @@
     		$(this).find(".modal-body").html(table.clone()).find("table")
 		        .addClass("table table-striped table-bordered table-hover table-condensed")
 				.removeClass ("hidden")
-				.before("<p class='u8y-epp-docs-dlg-caption'>" + getTh(link.closest ("td")).text() + "</p>")
+				.before("<p class='u8y-epp-docs-dlg-caption'>" + getTh(link.closest ("td")).html() + "</p>")
                 .wrap ("<div class='u8y-epp-docs-dlg-body'></div>");
         });
     });

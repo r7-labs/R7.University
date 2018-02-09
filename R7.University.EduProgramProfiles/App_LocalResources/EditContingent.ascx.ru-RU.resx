@@ -21,6 +21,9 @@
 	<data name="ContingentValue.Invalid" xml:space="preserve">
         <value>Значение должно быть неотрицательным целым числом.</value>
     </data>
+	<data name="AvgAdmScore.Invalid" xml:space="preserve">
+        <value>Значение должно быть неотрицательным вещественным числом.</value>
+    </data>
 	<data name="Actual.Tab" xml:space="preserve">
         <value>Текущая численность</value>
     </data>
