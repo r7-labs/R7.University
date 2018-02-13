@@ -7,13 +7,14 @@
 
 Modules and base library for DNN Platfrom designed to present and manage various assets 
 (e.g. divisions, employees, educational programs, documents) for high school educational organization website,
-compatible with [obrnadzor.gov.ru](http://obrnadzor.gov.ru) microdata requirements.
+compatible with [obrnadzor.gov.ru](http://obrnadzor.gov.ru) requirements on information structure and microdata.
 
-## In russian:
+## На русском
 
 Модули расширения и базовая библиотека для DNN Platform, предназначенные для отображения и управления информацией
 о различных ресурсах образовательной организации (подразделениях, сотрудниках, образовательных программах, документах и т.д.)
 на сайте образовательной организации высшего образования, совместимые с рекомендациями [Рособрнадзора](http://obrnadzor.gov.ru)
+относительно структуры информации и микроразметки.
 
 ## License
 
@@ -35,16 +36,10 @@ or (at your option) any later version.
 See *R7.University* modules in action on the official website of *Volgograd State Agricultural University*:
 
 - [Employee, EmployeeList and Division modules](http://www.volgau.com/LinkClick.aspx?link=284)
-- [DivisionDirectory module](http://www.volgau.com/sveden/struct)
+- [EduProgram module](http://www.volgau.com/LinkClick.aspx?link=7276)
+- [DivisionDirectory modules](http://www.volgau.com/sveden/struct)
 - [EmployeeDirectory module](http://www.volgau.com/sveden/employees)
 - [EduProgramProfileDirectory modules](http://www.volgau.com/sveden/education)
 - [EduProgramDirectory modules](http://www.volgau.com/sveden/edustandarts)
-- [EduProgram module](http://www.volgau.com/LinkClick.aspx?link=7276)
-
-## Short TODO
-
-- [ ] DNN ContentItems API integration
-- [ ] Support http://schema.org formats
-- [ ] Allow manage multiple organizations
-- [x] Add portal-level configuration options
-
+- [ContingentDirectory module](http://www.volgau.com/sveden/education/chislen)
+- [ScienceDirectory module](http://www.volgau.com/sveden/education/nir)
