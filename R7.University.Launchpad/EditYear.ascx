@@ -16,7 +16,7 @@
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelAdmissionIsOpen" runat="server" ControlName="checkAdmissionIsOpen" />
-			<asp:CheckBox id="checkAdmissionIsOpen" runat="server" />
+			<asp:CheckBox id="checkAdmissionIsOpen" runat="server" Enabled="false" />
 		</div>
 	</fieldset>
 	<ul class="dnnActions dnnClear">
