@@ -25,6 +25,7 @@ using DotNetNuke.Security;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
+using R7.University.EduProgramProfiles.Models;
 using R7.University.EduProgramProfiles.Modules;
 using R7.University.Models;
 
@@ -58,10 +59,27 @@ namespace R7.University.EduProgramProfiles
 
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
-                return (obj != null) ? (EditEduVolumeTab) obj : EditEduVolumeTab.Common;
+                return (obj != null) ? (EditEduVolumeTab) obj : GetDefaultTab ();
             }
             set { ViewState ["SelectedTab"] = value; }
         }
+
+        EditEduVolumeTab GetDefaultTab ()
+        {
+            if (Settings.Mode == EduVolumeDirectoryMode.EduVolume) {
+		        return EditEduVolumeTab.Years;
+	        }
+
+            if (Settings.Mode == EduVolumeDirectoryMode.Practices) {
+                return EditEduVolumeTab.Practices;
+	        }
+
+            return EditEduVolumeTab.Common;
+        }
+
+        EduVolumeDirectorySettings _settings;
+        protected new EduVolumeDirectorySettings Settings =>
+	        _settings ?? (_settings = new EduVolumeDirectorySettingsRepository ().GetSettings (ModuleConfiguration));
 
         #endregion
 
