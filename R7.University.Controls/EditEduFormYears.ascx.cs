@@ -1,10 +1,10 @@
 //
-//  EditEduForms.ascx.cs
+//  EditEduFormYears.ascx.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -103,8 +103,8 @@ namespace R7.University.Controls
 
         IEnumerable<EduProgramProfileFormYearEditModel> SortItems (IEnumerable<EduProgramProfileFormYearEditModel> items)
         {
-            return items.OrderByDescending (eppfy => eppfy.YearString)
-                        .ThenBy (eppfy => eppfy.EduFormId);
+            return items.OrderBy (eppfy => eppfy.EduFormViewModel.SortIndex)
+                        .ThenByDescending (eppfy => eppfy.YearString);
         }
 
         protected override void BindItems (IEnumerable<EduProgramProfileFormYearEditModel> items)
