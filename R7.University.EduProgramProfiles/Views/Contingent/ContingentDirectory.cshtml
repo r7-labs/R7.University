@@ -78,7 +78,7 @@ else {
                             @if (Dnn.ModuleContext.IsEditable) {
                                 <td class="u8y-actions">
 									<a href="@cv.EditUrl"><img src="@cv.EditIconUrl" /></a>
-									<span class="u8y-item-marker">&#9654;</span>
+									<span class="u8y-last-item-marker">&#9654;</span>
 								</td>
                             }
                             @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
@@ -116,7 +116,7 @@ else {
 						var controlBar = document.getElementById ("ControlBar");
 						var controlBarHeight = controlBar ? $(controlBar).height () : 0;
 						window.scrollTo (offset.left, offset.top - controlBarHeight);
-						$(elem).addClass ("u8y-last-edited-item");
+						$(elem).addClass ("u8y-last-item");
 					}
 				}
 			});
