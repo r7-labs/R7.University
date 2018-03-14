@@ -72,6 +72,8 @@ namespace R7.University.EduPrograms.ViewModels
         public string CssClass =>
             EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
+        public string HtmlElementId => $"scienceinfo_{Context.Module.ModuleId}_{EduProgramID}";
+
         #endregion
 
         string FormatValue<T> (T? value) where T : struct

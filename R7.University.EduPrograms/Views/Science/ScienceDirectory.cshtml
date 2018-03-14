@@ -47,9 +47,12 @@ else {
     	    </thead>
     	    <tbody>
 			    @foreach (var eps in Model.EduProgramScienceViewModels) {
-                    <tr data-title="@FormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)" class="@eps.CssClass">
+                    <tr id="@eps.HtmlElementId" data-title="@FormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)" class="@eps.CssClass">
                         @if (Dnn.ModuleContext.IsEditable) {
-                            <td><a href="@eps.EditUrl"><img src="@UniversityIcons.Edit" /></a></td>
+                            <td class="u8y-actions">
+								<a href="@eps.EditUrl"><img src="@UniversityIcons.Edit" /></a>
+								<span class="u8y-last-item-marker">&#9654;</span>
+							</td>
                         }
     			        <td itemprop="eduCode">@eps.Code</td>
                         <td itemprop="eduName">@eps.Title</td>
@@ -109,5 +112,6 @@ else {
             });
         } (jQuery, document));
     </script>
+	@Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_LastItemScript.cshtml", null)
 }
-</div>	
+</div>
