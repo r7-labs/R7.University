@@ -218,6 +218,8 @@ namespace R7.University.EduProgramProfiles
 
         #region Implemented abstract members of UniversityEditPortalModuleBase
 
+        protected override int GetItemId (EduProgramProfileInfo item) => item.EduProgramProfileID;
+
         protected override void AddItem (EduProgramProfileInfo item)
         {
             if (SecurityContext.CanAdd (typeof (EduProgramProfileInfo))) {

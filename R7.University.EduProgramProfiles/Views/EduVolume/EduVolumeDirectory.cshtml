@@ -75,9 +75,12 @@ else {
     			</thead>
         	    <tbody>
             	    @foreach (var ev in Model.EduVolumeViewModels) {
-                        <tr class="@ev.CssClass" itemprop="@ev.ItemProp">
+                        <tr id="@ev.HtmlElementId" class="@ev.CssClass" itemprop="@ev.ItemProp">
     				        @if (Dnn.ModuleContext.IsEditable) {
-                                <td><a href="@ev.EditUrl"><img src="@ev.EditIconUrl" /></a></td>
+								<td class="u8y-actions">
+									<a href="@ev.EditUrl"><img src="@ev.EditIconUrl" /></a>
+									<span class="u8y-item-marker">&#9654;</span>
+								</td>
                             }
             			    <td itemprop="eduCode">@ev.EduProgramProfile.EduProgram.Code</td>
     				        <td itemprop="eduName">@ev.EduProgramProfileTitle</td>
@@ -110,4 +113,30 @@ else {
     	</div>
         @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_AgplSignature.cshtml", new AgplSignatureViewModel ())
     </div>
+    if (Dnn.ModuleContext.IsEditable) {
+        var lastItem = Session["r7_University_LastItem"];
+        <script type="text/javascript">
+		(function ($, window, document) {
+			function isNullOrEmpty(str) {
+                return (!str || 0 === str.length);
+			}
+			$(document).ready(function() {
+				var lastItem = "@lastItem";
+				if (!isNullOrEmpty (lastItem)) {
+					var elem = $(".DnnModule-@Dnn.ModuleContext.ModuleId #" + lastItem);
+					if (elem.length > 0) {
+						var offset = elem.offset ();
+						var controlBar = document.getElementById ("ControlBar");
+						var controlBarHeight = controlBar ? $(controlBar).height () : 0;
+						window.scrollTo (offset.left, offset.top - controlBarHeight);
+						$(elem).addClass ("u8y-last-edited-item");
+					}
+				}
+			});
+		})(jQuery, window, document);
+		</script>
+	}
+	else {
+		Session["r7_University_LastItem"] = null;
+	}
 }

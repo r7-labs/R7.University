@@ -7,3 +7,11 @@ tr.u8y-not-published:hover { background-color:#fefe97!important }
 .u8y-not-published-element { color:#ccc }
 .u8y-not-published-element a,
 a.u8y-not-published-element { color:#ccc }
+
+.u8y-actions { white-space:nowrap }
+.u8y-item-marker {
+	display:none;
+	color:#00c;
+	margin-left:.5rem
+}
+.u8y-last-edited-item .u8y-item-marker { display:inline }

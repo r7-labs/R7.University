@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,13 +27,12 @@ using R7.University.Security;
 namespace R7.University.Modules
 {
     public abstract class UniversityEditPortalModuleBase<TEntity>: EditPortalModuleBase<TEntity, int>
-        where TEntity : class, new ()
+        where TEntity : class, new()
     {
         #region Contexts
 
         ModelContextBase modelContext;
-        protected ModelContextBase ModelContext
-        {
+        protected ModelContextBase ModelContext {
             get { return modelContext ?? (modelContext = new UniversityModelContext ()); }
         }
 
@@ -47,9 +46,22 @@ namespace R7.University.Modules
         }
 
         ISecurityContext securityContext;
-        protected ISecurityContext SecurityContext
-        {
+        protected ISecurityContext SecurityContext {
             get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
+        }
+
+        #endregion
+
+        #region Session-state properties
+
+        protected string SessionLastItem {
+            get { return (string) Session [$"r7_University_LastItem"]; }
+            set { Session [$"r7_University_LastItem"] = value; }
+        }
+
+        protected void RememberLastItem (int itemId)
+        {
+            SessionLastItem = $"{typeof (TEntity).Name.ToLowerInvariant ()}_{ModuleId}_{itemId}";
         }
 
         #endregion
@@ -57,6 +69,8 @@ namespace R7.University.Modules
         protected UniversityEditPortalModuleBase (string key) : base (key)
         {
         }
+
+        protected abstract int GetItemId (TEntity item);
 
         protected override TEntity GetItem (int itemId)
         {
@@ -77,6 +91,13 @@ namespace R7.University.Modules
             }
 
             base.OnButtonUpdateClick (sender, e);
+        }
+
+        protected override void AfterUpdateItem (TEntity item)
+        {
+            base.AfterUpdateItem (item);
+
+            RememberLastItem (GetItemId (item));
         }
     }
 }

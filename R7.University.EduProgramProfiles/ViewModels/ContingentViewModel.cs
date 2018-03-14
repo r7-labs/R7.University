@@ -151,6 +151,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
         }
 
+        public string HtmlElementId => $"contingentinfo_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
+
         #endregion
 
         string FormatValue<T> (Func<T?> getValue) where T : struct
