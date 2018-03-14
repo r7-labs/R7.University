@@ -207,6 +207,7 @@
     <None Include="App_LocalResources\EditEduFormYears.ascx.resx" />
     <None Include="App_LocalResources\EditEduFormYears.ascx.ru-RU.resx" />
     <None Include="Views\_AgplSignature.cshtml" />
+    <None Include="Views\_LastItemScript.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_LocalResources\" />

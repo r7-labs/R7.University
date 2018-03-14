@@ -1,0 +1,30 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+@using System.Web.Mvc
+@using DotNetNuke.Services.Localization
+@using DotNetNuke.Web.Mvc.Helpers
+@if (Dnn.ModuleContext.IsEditable) {
+	var lastItem = Session["r7_University_LastItem"];
+	<script type="text/javascript">
+	(function ($, window, document) {
+		function isNullOrEmpty(str) {
+			return (!str || 0 === str.length);
+		}
+		$(document).ready(function() {
+			var lastItem = "@lastItem";
+			if (!isNullOrEmpty (lastItem)) {
+				var elem = $(".DnnModule-@Dnn.ModuleContext.ModuleId #" + lastItem);
+				if (elem.length > 0) {
+					var offset = elem.offset ();
+					var controlBar = document.getElementById ("ControlBar");
+					var controlBarHeight = controlBar ? $(controlBar).height () : 0;
+					window.scrollTo (offset.left, offset.top - controlBarHeight);
+					$(elem).addClass ("u8y-last-item");
+				}
+			}
+		});
+	})(jQuery, window, document);
+	</script>
+}
+else {
+	Session["r7_University_LastItem"] = null;
+}
