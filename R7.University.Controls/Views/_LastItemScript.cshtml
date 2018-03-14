@@ -9,9 +9,7 @@
 				var elem = $(".DnnModule-@Dnn.ModuleContext.ModuleId #@lastItem");
 				if (elem.length > 0) {
 					var offset = elem.offset ();
-					var controlBar = document.getElementById ("ControlBar");
-					var controlBarHeight = controlBar ? $(controlBar).height () : 0;
-					window.scrollTo (offset.left, offset.top - controlBarHeight);
+					window.scrollTo (offset.left, offset.top - window.innerHeight/4);
 					$(elem).addClass ("u8y-last-item");
 				}
 			});
