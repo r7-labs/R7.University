@@ -77,7 +77,7 @@ else {
                         <tr id="@cv.HtmlElementId" class="@cv.CssClass">
                             @if (Dnn.ModuleContext.IsEditable) {
                                 <td class="u8y-actions">
-									<a href="@cv.EditUrl"><img src="@cv.EditIconUrl" /></a>
+									<a href="@cv.EditUrl" onclick="r7_selectItem(this)"><img src="@cv.EditIconUrl" /></a>
 									<span class="u8y-last-item-marker">&#9654;</span>
 								</td>
                             }

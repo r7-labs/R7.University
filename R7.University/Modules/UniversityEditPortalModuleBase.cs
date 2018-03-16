@@ -70,6 +70,13 @@ namespace R7.University.Modules
         {
         }
 
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
+
+            RememberLastItem (ItemId ?? 0);
+        }
+
         protected abstract int GetItemId (TEntity item);
 
         protected override TEntity GetItem (int itemId)

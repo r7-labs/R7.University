@@ -4,6 +4,10 @@
 	var lastItem = (string) Session["r7_University_LastItem"];
 	if (!string.IsNullOrEmpty (lastItem)) {
 		<script type="text/javascript">
+		function r7_selectItem (target) {
+			$(".u8y-last-item").removeClass ("u8y-last-item");
+			$(target).closest ("tr").addClass ("u8y-last-item");	
+		}
 		(function ($, window, document) {
 			$(document).ready(function() {
 				var elem = $(".DnnModule-@Dnn.ModuleContext.ModuleId #@lastItem");
