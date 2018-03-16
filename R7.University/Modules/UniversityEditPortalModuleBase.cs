@@ -61,7 +61,7 @@ namespace R7.University.Modules
 
         protected void UpdateSelectedItem (int itemId)
         {
-            SessionSelectedItem = $"{typeof (TEntity).Name.ToLowerInvariant ()}_{ModuleId}_{itemId}";
+            SessionSelectedItem = $"{typeof (TEntity).Name.Replace ("Info", string.Empty).ToLowerInvariant ()}_{ModuleId}_{itemId}";
         }
 
         #endregion

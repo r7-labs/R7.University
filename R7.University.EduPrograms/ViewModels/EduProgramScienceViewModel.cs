@@ -72,7 +72,7 @@ namespace R7.University.EduPrograms.ViewModels
         public string CssClass =>
             EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
-        public string HtmlElementId => $"scienceinfo_{Context.Module.ModuleId}_{EduProgramID}";
+        public string HtmlElementId => $"science_{Context.Module.ModuleId}_{EduProgramID}";
 
         #endregion
 

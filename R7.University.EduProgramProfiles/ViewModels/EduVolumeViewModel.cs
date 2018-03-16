@@ -125,7 +125,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                    ? (FormYear.EduProgramProfile.IsAdopted ? "adEduPr" : "eduPr")
                    : "eduOp";
 
-        public string HtmlElementId => $"eduvolumeinfo_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
+        public string HtmlElementId => $"eduvolume_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
 
         #endregion
 

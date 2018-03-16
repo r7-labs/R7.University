@@ -151,7 +151,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
         }
 
-        public string HtmlElementId => $"contingentinfo_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
+        public string HtmlElementId => $"contingent_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
 
         #endregion
 
