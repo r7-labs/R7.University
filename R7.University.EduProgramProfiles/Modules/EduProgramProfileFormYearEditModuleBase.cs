@@ -51,8 +51,9 @@ namespace R7.University.EduProgramProfiles.Modules
             base.OnLoad (e);
 
             var eppfy = GetEduProgramProfileFormYear ();
+            var lastYear = ((UniversityModelContext) ModelContext).LastYear;
             if (eppfy != null) {
-                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (eppfy.FormatTitle (LocalResourceFile), " &gt; ");
+                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (eppfy.FormatTitle (lastYear, LocalResourceFile), " &gt; ");
             }
         }
     }
