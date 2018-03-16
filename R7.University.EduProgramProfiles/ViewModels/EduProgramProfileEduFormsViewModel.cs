@@ -77,9 +77,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
         			return "<ul itemprop=\"learningTerm\">" + formYears
                         .Select (eppfy => (eppfy.IsPublished (_now) ? "<li>" : "<li class=\"u8y-not-published-element\">")
                                  + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile, eppfy.EduForm.Title).ToLower ()
-                                 + ((eppfy.EduVolume == null) 
-                                    ? string.Empty
-                                    : ("&nbsp;- " + FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile)))
+                                 + ((eppfy.EduVolume != null && eppfy.EduVolume.TimeToLearnMonths != 0 && eppfy.EduVolume.TimeToLearnHours != 0) 
+                                    ? ("&nbsp;- " + FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile))
+                                    : string.Empty)
                                  + "</li>")
         				.Aggregate ((s1, s2) => s1 + s2) + "</ul>";
         		}
