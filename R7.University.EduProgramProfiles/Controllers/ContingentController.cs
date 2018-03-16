@@ -65,9 +65,7 @@ namespace R7.University.EduPrograms.Controllers
             using (var modelContext = new UniversityModelContext ()) {
                 var viewModel = new ContingentDirectoryViewModel ();
                 viewModel.Settings = settings;
-                viewModel.LastYear = new FlatQuery<YearInfo> (modelContext)
-                    .ListWhereOrderBy (y => !y.AdmissionIsOpen, y => y.Year)
-                    .LastOrDefault ();
+                viewModel.LastYear = modelContext.LastYear;
                 viewModel.ContingentViewModels =
                              GetContingentsForContingentDirectory (modelContext, settings)
                                 .Select (ev => new ContingentViewModel (ev, viewModelContext, viewModel));

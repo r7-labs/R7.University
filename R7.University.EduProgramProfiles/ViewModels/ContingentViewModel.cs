@@ -151,6 +151,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
         }
 
+        public int? Course => UniversityModelHelper.GetCourse (Year, RootViewModel.LastYear);
+
         public string HtmlElementId => $"contingent_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
 
         #endregion

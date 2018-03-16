@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -32,7 +32,17 @@ namespace R7.University.Models
                           && shortTitle.Length < title.Length
                           && !title.StartsWith (shortTitle, StringComparison.CurrentCulture);
         }
-   
+
+        public static int? GetCourse (IYear year, IYear lastYear)
+        {
+            var course = 0;
+            if (year != null && lastYear != null) {
+                course = lastYear.Year - year.Year + 1;
+            }
+
+            return (course > 0) ? (int?) course : null; 
+        }
+
         #region Extension methods
 
         public static SystemEduForm GetSystemEduForm (this IEduForm eduForm)

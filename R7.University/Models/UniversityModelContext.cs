@@ -58,5 +58,7 @@ namespace R7.University.Models
         #endregion
 
         public IEnumerable<YearInfo> Years => Query<YearInfo> ().ToList ();
+
+        public YearInfo LastYear => Query<YearInfo> ().OrderByDescending (y => y.Year).FirstOrDefault (y => !y.AdmissionIsOpen);
     }
 }
