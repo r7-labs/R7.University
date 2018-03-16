@@ -9,9 +9,9 @@ tr.u8y-not-published:hover { background-color:#fefe97!important }
 a.u8y-not-published-element { color:#ccc }
 
 .u8y-actions { white-space:nowrap }
-.u8y-last-item-marker {
+.u8y-selected-item-marker {
 	display:none;
 	color:#00c;
 	margin-left:.5rem
 }
-.u8y-last-item .u8y-last-item-marker { display:inline }
+.u8y-selected-item .u8y-selected-item-marker { display:inline }

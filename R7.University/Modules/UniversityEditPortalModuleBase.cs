@@ -54,14 +54,14 @@ namespace R7.University.Modules
 
         #region Session-state properties
 
-        protected string SessionLastItem {
-            get { return (string) Session [$"r7_University_LastItem"]; }
-            set { Session [$"r7_University_LastItem"] = value; }
+        protected string SessionSelectedItem {
+            get { return (string) Session [$"r7_University_SelectedItem"]; }
+            set { Session [$"r7_University_SelectedItem"] = value; }
         }
 
-        protected void RememberLastItem (int itemId)
+        protected void UpdateSelectedItem (int itemId)
         {
-            SessionLastItem = $"{typeof (TEntity).Name.ToLowerInvariant ()}_{ModuleId}_{itemId}";
+            SessionSelectedItem = $"{typeof (TEntity).Name.ToLowerInvariant ()}_{ModuleId}_{itemId}";
         }
 
         #endregion
@@ -74,7 +74,7 @@ namespace R7.University.Modules
         {
             base.OnLoad (e);
 
-            RememberLastItem (ItemId ?? 0);
+            UpdateSelectedItem (ItemId ?? 0);
         }
 
         protected abstract int GetItemId (TEntity item);
@@ -104,7 +104,7 @@ namespace R7.University.Modules
         {
             base.AfterUpdateItem (item);
 
-            RememberLastItem (GetItemId (item));
+            UpdateSelectedItem (GetItemId (item));
         }
     }
 }

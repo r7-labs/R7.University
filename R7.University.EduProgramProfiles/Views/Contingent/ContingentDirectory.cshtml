@@ -78,7 +78,7 @@ else {
                             @if (Dnn.ModuleContext.IsEditable) {
                                 <td class="u8y-actions">
 									<a href="@cv.EditUrl" onclick="r7_selectItem(this)"><img src="@cv.EditIconUrl" /></a>
-									<span class="u8y-last-item-marker">&#9654;</span>
+									<span class="u8y-selected-item-marker">&#9654;</span>
 								</td>
                             }
                             @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
@@ -100,5 +100,5 @@ else {
     	</div>
         @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_AgplSignature.cshtml", new AgplSignatureViewModel ())
     </div>
-    @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_LastItemScript.cshtml", null)
+    @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_SelectedItemScript.cshtml", null)
 }

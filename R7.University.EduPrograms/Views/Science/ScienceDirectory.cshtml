@@ -51,7 +51,7 @@ else {
                         @if (Dnn.ModuleContext.IsEditable) {
                             <td class="u8y-actions">
 								<a href="@eps.EditUrl" onclick="r7_selectItem(this)"><img src="@UniversityIcons.Edit" /></a>
-								<span class="u8y-last-item-marker">&#9654;</span>
+								<span class="u8y-selected-item-marker">&#9654;</span>
 							</td>
                         }
     			        <td itemprop="eduCode">@eps.Code</td>
@@ -112,6 +112,6 @@ else {
             });
         } (jQuery, document));
     </script>
-	@Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_LastItemScript.cshtml", null)
+	@Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_SelectedItemScript.cshtml", null)
 }
 </div>

@@ -1,20 +1,20 @@
 ﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
 @using DotNetNuke.Web.Mvc.Helpers
 @if (Dnn.ModuleContext.IsEditable) {
-	var lastItem = (string) Session["r7_University_LastItem"];
-	if (!string.IsNullOrEmpty (lastItem)) {
+	var selectedItem = (string) Session["r7_University_SelectedItem"];
+	if (!string.IsNullOrEmpty (selectedItem)) {
 		<script type="text/javascript">
 		function r7_selectItem (target) {
-			$(".u8y-last-item").removeClass ("u8y-last-item");
-			$(target).closest ("tr").addClass ("u8y-last-item");	
+			$(".u8y-selected-item").removeClass ("u8y-selected-item");
+			$(target).closest ("tr").addClass ("u8y-selected-item");	
 		}
 		(function ($, window, document) {
 			$(document).ready(function() {
-				var elem = $(".DnnModule-@Dnn.ModuleContext.ModuleId #@lastItem");
+				var elem = $(".DnnModule-@Dnn.ModuleContext.ModuleId #@selectedItem");
 				if (elem.length > 0) {
 					var offset = elem.offset ();
 					window.scrollTo (offset.left, offset.top - window.innerHeight/4);
-					$(elem).addClass ("u8y-last-item");
+					$(elem).addClass ("u8y-selected-item");
 				}
 			});
 		})(jQuery, window, document);
@@ -22,5 +22,5 @@
 	}
 }
 else {
-	Session["r7_University_LastItem"] = null;
+	Session["r7_University_SelectedItem"] = null;
 }
