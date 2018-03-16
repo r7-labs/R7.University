@@ -73,9 +73,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
         	get {
                 var formYears = GetImplementedEduFormYears ();
-        		if (!formYears.IsNullOrEmpty ()) {
+                if (!formYears.IsNullOrEmpty ()) {
         			return "<ul itemprop=\"learningTerm\">" + formYears
-                        .Select (eppfy => "<li>"
+                        .Select (eppfy => (eppfy.IsPublished (_now) ? "<li>" : "<li class=\"u8y-not-published-element\">")
                                  + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile, eppfy.EduForm.Title).ToLower ()
                                  + ((eppfy.EduVolume == null) 
                                     ? string.Empty
@@ -120,9 +120,12 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
         }
 
+        DateTime _now => HttpContext.Current.Timestamp;
+
         IEnumerable<IEduProgramProfileFormYear> GetImplementedEduFormYears ()
         {
-            return EduProgramProfileFormYears.Where (eppfy => eppfy.Year == null)
+            return EduProgramProfileFormYears.Where (eppfy => eppfy.Year == null &&
+                                                     (eppfy.IsPublished (_now) || Context.Module.IsEditable))
                                              .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
 
