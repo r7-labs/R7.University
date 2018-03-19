@@ -1,4 +1,5 @@
 # User-specific
+/.vs/
 *.userprefs
 *.usertasks
 *.csproj.user
@@ -11,4 +12,3 @@ obj/
 /packages/
 /Packages/
 /node_modules/
-
