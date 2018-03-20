@@ -26,6 +26,7 @@ using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.Controls
@@ -46,7 +47,12 @@ namespace R7.University.Controls
             radioEduForm.DataBind ();
             radioEduForm.SelectedIndex = 0;
 
-            comboYear.DataSource = years;
+            var lastYear = GetLastYear ();
+            comboYear.DataSource = years.Select (y => new {
+                y.YearId,
+                Year = y.FormatWithCourse (lastYear)
+            });
+
             comboYear.DataBind ();
             comboYear.InsertDefaultItem ("-");
         }
@@ -57,10 +63,26 @@ namespace R7.University.Controls
             return eduForms.Single (ef => ef.EduFormID == eduFormId);
         }
 
-        protected YearInfo GetYear (int yearId)
+        protected IYear GetYear (int? yearId)
+        {
+            if (yearId != null) {
+                var years = Json.Deserialize<List<YearInfo>> ((string) ViewState ["years"]);
+                return years.Single (y => y.YearId == yearId);
+            }
+
+            return null;
+        }
+
+        protected IYear GetLastYear ()
         {
             var years = Json.Deserialize<List<YearInfo>> ((string) ViewState ["years"]);
-            return years.Single (y => y.YearId == yearId);
+            return years.LastYear ();
+        }
+
+        protected override EduProgramProfileFormYearEditModel CreateViewModel (
+            EduProgramProfileFormYearInfo model, EduProgramProfileFormYearEditModel convertor)
+        {
+            return (EduProgramProfileFormYearEditModel) convertor.Create (model, ViewModelContext, GetLastYear ());
         }
 
         #region implemented abstract members of GridAndFormEditControlBase
@@ -79,12 +101,7 @@ namespace R7.University.Controls
         protected override void OnUpdateItem (EduProgramProfileFormYearEditModel item)
         {
             item.YearId = TypeUtils.ParseToNullable<int> (comboYear.SelectedValue);
-            if (item.YearId != null) {
-                item.YearString = GetYear (item.YearId.Value).Year.ToString ();
-            }
-            else {
-                item.YearString = "-";
-            }
+            item.YearString = GetYear (item.YearId).FormatWithCourse (GetLastYear ());
 
             item.EduFormId = int.Parse (radioEduForm.SelectedValue);
             item.EduFormViewModel = GetEduForm (item.EduFormId);

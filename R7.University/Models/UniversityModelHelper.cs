@@ -33,7 +33,7 @@ namespace R7.University.Models
                           && !title.StartsWith (shortTitle, StringComparison.CurrentCulture);
         }
 
-        public static int? GetCourse (IYear year, IYear lastYear)
+        public static int? SafeGetCourse (IYear year, IYear lastYear)
         {
             var course = 0;
             if (year != null && lastYear != null) {

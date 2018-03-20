@@ -154,10 +154,15 @@ namespace R7.University.Controls
             TargetItemId = targetItemId;
 
             var convertor = new TViewModel ();
-            var viewModels = items.Select (i => DebugEnsureCreatedProperly ((TViewModel) convertor.Create (i, ViewModelContext))).ToList ();
+            var viewModels = items.Select (i => DebugEnsureCreatedProperly (CreateViewModel (i, convertor))).ToList ();
             ViewStateItems = viewModels;
 
             BindItems (viewModels);
+        }
+
+        protected virtual TViewModel CreateViewModel (TModel model, TViewModel convertor)
+        {
+            return (TViewModel) convertor.Create (model, ViewModelContext);
         }
 
         #endregion

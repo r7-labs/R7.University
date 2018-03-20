@@ -36,6 +36,14 @@ namespace R7.University.Controls.EditModels
     {
         #region EditModelBase implementation
 
+        public IEditModel<EduProgramProfileFormYearInfo> Create (
+            EduProgramProfileFormYearInfo model, ViewModelContext context, IYear lastYear)
+        {
+            var viewModel = (EduProgramProfileFormYearEditModel) Create (model, context);
+            viewModel.YearString = model.Year.FormatWithCourse (lastYear);
+            return viewModel;
+        }
+
         public override IEditModel<EduProgramProfileFormYearInfo> Create (
             EduProgramProfileFormYearInfo model, ViewModelContext context)
         {
@@ -43,7 +51,6 @@ namespace R7.University.Controls.EditModels
             CopyCstor.Copy<IEduProgramProfileFormYearWritable> (model, viewModel);
             CopyCstor.Copy<IPublishableEntityWritable> (model, viewModel);
             viewModel.EduFormViewModel = new EduFormViewModel (model.EduForm, context);
-            viewModel.YearString = model.Year != null ? model.Year.Year.ToString () : "-";
             viewModel.HasEduVolume = model.EduVolume != null;
             viewModel.HasContingent = model.Contingent != null;
             viewModel.Context = context;

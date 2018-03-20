@@ -13,7 +13,7 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
 	<data name="labelYear.Text" xml:space="preserve">
-        <value>Starting Year:</value>
+        <value>Starting Year (Course):</value>
     </data>
     <data name="labelYear.Help" xml:space="preserve">
         <value>Select starting year for mastering educational program.</value>
@@ -49,7 +49,7 @@
         <value>Edu. Form</value>
     </data>
 	<data name="Year.Column" xml:space="preserve">
-        <value>Starting Year</value>
+        <value>Starting Year (Course)</value>
     </data>
     <data name="StartDate.Column" xml:space="preserve">
         <value>Start Publication</value>

@@ -81,7 +81,7 @@ namespace R7.University.ModelExtensions
         {
             return $"{eppfy.EduProgramProfile.FormatTitle ()}: {eppfy.EduProgramProfile.EduLevel.FormatTitle ()}"
                 + $" - {eppfy.EduForm.FormatTitle (resourceFile)}" 
-                + $"{(eppfy.Year != null ? " / " + eppfy.Year.Year.ToString () + " (" + UniversityModelHelper.GetCourse (eppfy.Year, lastYear).ToString () + ")" : string.Empty)}";
+                + $"{(eppfy.Year != null ? " / " + eppfy.Year.FormatWithCourse (lastYear) : string.Empty)}";
         }
     }
 }
