@@ -27,6 +27,7 @@ using R7.University.EduProgramProfiles.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
+using R7.University.Queries;
 
 namespace R7.University.EduProgramProfiles.Modules
 {
@@ -51,7 +52,7 @@ namespace R7.University.EduProgramProfiles.Modules
             base.OnLoad (e);
 
             var eppfy = GetEduProgramProfileFormYear ();
-            var lastYear = ((UniversityModelContext) ModelContext).LastYear;
+            var lastYear = new FlatQuery<YearInfo> (ModelContext).List ().LastYear ();
             if (eppfy != null) {
                 ((CDefault) Page).Title = ((CDefault) Page).Title.Append (eppfy.FormatTitle (lastYear, LocalResourceFile), " &gt; ");
             }

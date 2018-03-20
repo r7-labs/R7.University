@@ -56,12 +56,5 @@ namespace R7.University.Models
         }
 
         #endregion
-
-        // TODO: Extract IUniversityModelContext?
-        // TODO: Cache values?
-
-        public IEnumerable<YearInfo> Years => Query<YearInfo> ().ToList ();
-
-        public YearInfo LastYear => Query<YearInfo> ().OrderByDescending (y => y.Year).FirstOrDefault (y => !y.AdmissionIsOpen);
     }
 }
