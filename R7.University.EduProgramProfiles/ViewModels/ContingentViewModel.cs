@@ -26,6 +26,7 @@ using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
@@ -97,39 +98,39 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
         }
 
-        public string VacantFB => FormatValue (() => FormYear.Contingent?.VacantFB);
+        public string VacantFB => FormatValue (FormYear.Contingent?.VacantFB);
 
-        public string VacantRB => FormatValue (() => FormYear.Contingent?.VacantRB);
+        public string VacantRB => FormatValue (FormYear.Contingent?.VacantRB);
 
-        public string VacantMB => FormatValue (() => FormYear.Contingent?.VacantMB);
+        public string VacantMB => FormatValue (FormYear.Contingent?.VacantMB);
 
-        public string VacantBC => FormatValue (() => FormYear.Contingent?.VacantBC);
+        public string VacantBC => FormatValue (FormYear.Contingent?.VacantBC);
 
-        public string ActualFB => FormatValue (() => FormYear.Contingent?.ActualFB);
+        public string ActualFB => FormatValue (FormYear.Contingent?.ActualFB);
 
-        public string ActualRB => FormatValue (() => FormYear.Contingent?.ActualRB);
+        public string ActualRB => FormatValue (FormYear.Contingent?.ActualRB);
 
-        public string ActualMB => FormatValue (() => FormYear.Contingent?.ActualMB);
+        public string ActualMB => FormatValue (FormYear.Contingent?.ActualMB);
 
-        public string ActualBC => FormatValue (() => FormYear.Contingent?.ActualBC);
+        public string ActualBC => FormatValue (FormYear.Contingent?.ActualBC);
 
-        public string AvgAdmScore => FormatValue (() => FormYear.Contingent?.AvgAdmScore);
+        public string AvgAdmScore => FormatValue (FormYear.Contingent?.AvgAdmScore);
 
-        public string AdmittedFB => FormatValue (() => FormYear.Contingent?.AdmittedFB);
+        public string AdmittedFB => FormatValue (FormYear.Contingent?.AdmittedFB);
 
-        public string AdmittedRB => FormatValue (() => FormYear.Contingent?.AdmittedRB);
+        public string AdmittedRB => FormatValue (FormYear.Contingent?.AdmittedRB);
 
-        public string AdmittedMB => FormatValue (() => FormYear.Contingent?.AdmittedMB);
+        public string AdmittedMB => FormatValue (FormYear.Contingent?.AdmittedMB);
 
-        public string AdmittedBC => FormatValue (() => FormYear.Contingent?.AdmittedBC);
+        public string AdmittedBC => FormatValue (FormYear.Contingent?.AdmittedBC);
 
-        public string MovedIn => FormatValue (() => FormYear.Contingent?.MovedIn);
+        public string MovedIn => FormatValue (FormYear.Contingent?.MovedIn);
 
-        public string MovedOut => FormatValue (() => FormYear.Contingent?.MovedOut);
+        public string MovedOut => FormatValue (FormYear.Contingent?.MovedOut);
 
-        public string Restored => FormatValue (() => FormYear.Contingent?.Restored);
+        public string Restored => FormatValue (FormYear.Contingent?.Restored);
 
-        public string Expelled => FormatValue (() => FormYear.Contingent?.Expelled);
+        public string Expelled => FormatValue (FormYear.Contingent?.Expelled);
 
         public string EduLevelVacantItemProp {
             get {
@@ -157,10 +158,14 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         #endregion
 
-        string FormatValue<T> (Func<T?> getValue) where T : struct
+        string FormatValue<T> (T? value) where T : struct
         {
-            var value = getValue ();
             return value != null ? value.ToString () : "-";
+        }
+
+        string FormatValue (decimal? value)
+        {
+            return value != null ? value.ToIntegerString () : "-";
         }
     }
 }

@@ -84,23 +84,23 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false)
                                                         .Append (FormYear.EduProgramProfile.IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ");
 
-        public string Year1Cu => FormatCu (() => FormYear.EduVolume?.Year1Cu);
+        public string Year1Cu => FormatValue (FormYear.EduVolume?.Year1Cu);
 
-        public string Year2Cu => FormatCu (() => FormYear.EduVolume?.Year2Cu);
+        public string Year2Cu => FormatValue (FormYear.EduVolume?.Year2Cu);
 
-        public string Year3Cu => FormatCu (() => FormYear.EduVolume?.Year3Cu);
+        public string Year3Cu => FormatValue (FormYear.EduVolume?.Year3Cu);
 
-        public string Year4Cu => FormatCu (() => FormYear.EduVolume?.Year4Cu);
+        public string Year4Cu => FormatValue (FormYear.EduVolume?.Year4Cu);
 
-        public string Year5Cu => FormatCu (() => FormYear.EduVolume?.Year5Cu);
+        public string Year5Cu => FormatValue (FormYear.EduVolume?.Year5Cu);
 
-        public string Year6Cu => FormatCu (() => FormYear.EduVolume?.Year6Cu);
+        public string Year6Cu => FormatValue (FormYear.EduVolume?.Year6Cu);
 
-        public string PracticeType1Cu => FormatCu (() => FormYear.EduVolume?.PracticeType1Cu);
+        public string PracticeType1Cu => FormatValue (FormYear.EduVolume?.PracticeType1Cu);
 
-        public string PracticeType2Cu => FormatCu (() => FormYear.EduVolume?.PracticeType2Cu);
+        public string PracticeType2Cu => FormatValue (FormYear.EduVolume?.PracticeType2Cu);
 
-        public string PracticeType3Cu => FormatCu (() => FormYear.EduVolume?.PracticeType3Cu);
+        public string PracticeType3Cu => FormatValue (FormYear.EduVolume?.PracticeType3Cu);
 
         public string TimeToLearnMonths => FormYear.EduVolume != null
             ? FormatHelper.FormatTimeToLearnMonths (FormYear.EduVolume.TimeToLearnMonths, "TimeToLearn", Context.LocalResourceFile)
@@ -129,10 +129,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         #endregion
 
-        string FormatCu (Func<int?> getCu)
+        string FormatValue<T> (T? value) where T : struct
         {
-            var cu = getCu ();
-            return cu != null ? cu.ToString () : "-";
+            return value != null ? value.ToString () : "-";
         }
     }
 }

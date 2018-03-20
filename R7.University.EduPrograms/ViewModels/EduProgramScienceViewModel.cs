@@ -76,7 +76,7 @@ namespace R7.University.EduPrograms.ViewModels
 
         #endregion
 
-        string FormatValue<T> (T? value) where T : struct
+        string FormatValue (int? value)
         {
             return value != null ? value.ToString () : "-";
         }
