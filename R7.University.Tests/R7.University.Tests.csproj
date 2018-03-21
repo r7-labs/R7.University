@@ -139,6 +139,7 @@
     <Compile Include="Models\TrackableEntityTests.cs" />
     <Compile Include="ViewModels\ViewModelBaseTests.cs" />
     <Compile Include="Resources\ResourcesTests.cs" />
+    <Compile Include="ModelExtensions\TaxonomyExtensionsTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />
