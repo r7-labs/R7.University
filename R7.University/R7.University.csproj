@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
-    <ReleaseVersion>2.0.1</ReleaseVersion>
+    <ReleaseVersion>2.1.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -244,6 +244,7 @@
     <Compile Include="ModelExtensions\EduFormExtensions.cs" />
     <Compile Include="Queries\EduProgramProfileQueryableExtensions.cs" />
     <Compile Include="Models\DivisionLevel.cs" />
+    <Compile Include="ModelExtensions\YearExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -310,6 +311,8 @@
     <None Include="images\Rollback_16x16_Standard.png" />
     <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
+    <None Include="js\module.js" />
+    <None Include="SqlDataProvider\02.01.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

@@ -113,7 +113,7 @@ namespace R7.University.EduProgramProfiles
 
             // TODO: Disable edu. program selection then adding or editing from EditEduProgram
 
-            formEditEduFormYears.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).ListOrderBy (ef => ef.SortIndex), ((UniversityModelContext) ModelContext).Years);
+            formEditEduFormYears.OnInit (this, new FlatQuery<EduFormInfo> (ModelContext).ListOrderBy (ef => ef.SortIndex), new FlatQuery<YearInfo> (ModelContext).List ());
             formEditDivisions.OnInit (this, new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title));
         }
 
@@ -217,6 +217,8 @@ namespace R7.University.EduProgramProfiles
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase
+
+        protected override int GetItemId (EduProgramProfileInfo item) => item.EduProgramProfileID;
 
         protected override void AddItem (EduProgramProfileInfo item)
         {

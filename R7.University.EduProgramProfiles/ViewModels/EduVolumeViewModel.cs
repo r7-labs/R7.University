@@ -84,23 +84,23 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false)
                                                         .Append (FormYear.EduProgramProfile.IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ");
 
-        public string Year1Cu => FormatCu (() => FormYear.EduVolume?.Year1Cu);
+        public string Year1Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.Year1Cu);
 
-        public string Year2Cu => FormatCu (() => FormYear.EduVolume?.Year2Cu);
+        public string Year2Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.Year2Cu);
 
-        public string Year3Cu => FormatCu (() => FormYear.EduVolume?.Year3Cu);
+        public string Year3Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.Year3Cu);
 
-        public string Year4Cu => FormatCu (() => FormYear.EduVolume?.Year4Cu);
+        public string Year4Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.Year4Cu);
 
-        public string Year5Cu => FormatCu (() => FormYear.EduVolume?.Year5Cu);
+        public string Year5Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.Year5Cu);
 
-        public string Year6Cu => FormatCu (() => FormYear.EduVolume?.Year6Cu);
+        public string Year6Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.Year6Cu);
 
-        public string PracticeType1Cu => FormatCu (() => FormYear.EduVolume?.PracticeType1Cu);
+        public string PracticeType1Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.PracticeType1Cu);
 
-        public string PracticeType2Cu => FormatCu (() => FormYear.EduVolume?.PracticeType2Cu);
+        public string PracticeType2Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.PracticeType2Cu);
 
-        public string PracticeType3Cu => FormatCu (() => FormYear.EduVolume?.PracticeType3Cu);
+        public string PracticeType3Cu => FormatHelper.ValueOrDash (FormYear.EduVolume?.PracticeType3Cu);
 
         public string TimeToLearnMonths => FormYear.EduVolume != null
             ? FormatHelper.FormatTimeToLearnMonths (FormYear.EduVolume.TimeToLearnMonths, "TimeToLearn", Context.LocalResourceFile)
@@ -125,12 +125,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
                    ? (FormYear.EduProgramProfile.IsAdopted ? "adEduPr" : "eduPr")
                    : "eduOp";
 
-        #endregion
+        public string HtmlElementId => $"eduvolume_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
 
-        string FormatCu (Func<int?> getCu)
-        {
-            var cu = getCu ();
-            return cu != null ? cu.ToString () : "-";
-        }
+        #endregion
     }
 }

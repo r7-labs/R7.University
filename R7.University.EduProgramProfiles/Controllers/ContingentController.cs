@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -65,9 +65,7 @@ namespace R7.University.EduPrograms.Controllers
             using (var modelContext = new UniversityModelContext ()) {
                 var viewModel = new ContingentDirectoryViewModel ();
                 viewModel.Settings = settings;
-                viewModel.LastYear = new FlatQuery<YearInfo> (modelContext)
-                    .ListWhereOrderBy (y => !y.AdmissionIsOpen, y => y.Year)
-                    .LastOrDefault ();
+                viewModel.LastYear = new FlatQuery<YearInfo> (modelContext).List ().LastYear ();
                 viewModel.ContingentViewModels =
                              GetContingentsForContingentDirectory (modelContext, settings)
                                 .Select (ev => new ContingentViewModel (ev, viewModelContext, viewModel));

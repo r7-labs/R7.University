@@ -14,6 +14,7 @@
 @using R7.University.EduProgramProfiles.ViewModels
 @{
     ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
+    ClientResourceManager.RegisterScript (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/js/module.js", 100, "DnnFormBottomProvider");
 }
 @if (!Model.IsConfigured || Model.IsEmpty) {
     if (Dnn.ModuleContext.IsEditable) {
@@ -74,9 +75,12 @@ else {
 				</thead>
         	    <tbody>
             	    @foreach (var cv in Model.ContingentViewModels) {
-                        <tr class="@cv.CssClass">
+                        <tr id="@cv.HtmlElementId" class="@cv.CssClass">
                             @if (Dnn.ModuleContext.IsEditable) {
-                                <td><a href="@cv.EditUrl"><img src="@cv.EditIconUrl" /></a></td>
+                                <td class="u8y-actions">
+									<a href="@cv.EditUrl" onclick="r7_University_selectItem(jQuery,this)"><img src="@cv.EditIconUrl" /></a>
+									<span class="u8y-selected-item-marker">&#9654;</span>
+								</td>
                             }
                             @if (Model.Settings.Mode == ContingentDirectoryMode.Vacant) {
                                 @Html.Partial("_VacantRow", cv)
@@ -97,4 +101,5 @@ else {
     	</div>
         @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_AgplSignature.cshtml", new AgplSignatureViewModel ())
     </div>
+    @Html.Partial("~/DesktopModules/MVC/R7.University/R7.University.Controls/Views/_SelectedItemScript.cshtml", null)
 }

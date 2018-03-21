@@ -1,0 +1,17 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+@using DotNetNuke.Web.Mvc.Helpers
+@if (Dnn.ModuleContext.IsEditable) {
+	var selectedItemId = (string) Session["r7_SelectedItem"];
+	if (!string.IsNullOrEmpty (selectedItemId)) {
+		<script type="text/javascript">
+		(function ($, window, document) {
+			$(document).ready(function() {
+				r7_University_restoreSelectedItem ($, window, @Dnn.ModuleContext.ModuleId, "@selectedItemId");
+			});
+		})(jQuery, window, document);
+		</script>
+	}
+}
+else {
+	Session["r7_SelectedItem"] = null;
+}

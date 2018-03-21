@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,12 +27,13 @@ using R7.University.EduProgramProfiles.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
+using R7.University.Queries;
 
 namespace R7.University.EduProgramProfiles.Modules
 {
     public abstract class EduProgramProfileFormYearEditModuleBase<T> : UniversityEditPortalModuleBase<T> where T : class, new()
     {
-        public EduProgramProfileFormYearEditModuleBase (string key) : base (key)
+        protected EduProgramProfileFormYearEditModuleBase (string key) : base (key)
         {
         }
 
@@ -51,8 +52,9 @@ namespace R7.University.EduProgramProfiles.Modules
             base.OnLoad (e);
 
             var eppfy = GetEduProgramProfileFormYear ();
+            var lastYear = new FlatQuery<YearInfo> (ModelContext).List ().LastYear ();
             if (eppfy != null) {
-                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (eppfy.FormatTitle (LocalResourceFile), " &gt; ");
+                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (eppfy.FormatTitle (lastYear, LocalResourceFile), " &gt; ");
             }
         }
     }

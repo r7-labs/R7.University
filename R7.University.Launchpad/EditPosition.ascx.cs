@@ -54,6 +54,8 @@ namespace R7.University.Launchpad
 
         #region implemented abstract members of EditPortalModuleBase
 
+        protected override int GetItemId (PositionInfo item) => item.PositionID;
+
         protected override void AddItem (PositionInfo item)
         {
             ModelContext.Add (item);

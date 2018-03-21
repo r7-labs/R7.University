@@ -44,25 +44,25 @@ namespace R7.University.EduPrograms.ViewModels
 
         public IHtmlString BaseHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Base, "baseNir"));
 
-        public string Scientists => FormatValue (EduProgram.Science?.Scientists);
+        public string Scientists => FormatHelper.ValueOrDash (EduProgram.Science?.Scientists);
 
-        public string Students => FormatValue (EduProgram.Science?.Students);
+        public string Students => FormatHelper.ValueOrDash (EduProgram.Science?.Students);
 
-        public string Monographs => FormatValue (EduProgram.Science?.Monographs);
+        public string Monographs => FormatHelper.ValueOrDash (EduProgram.Science?.Monographs);
 
-        public string Articles => FormatValue (EduProgram.Science?.Articles);
+        public string Articles => FormatHelper.ValueOrDash (EduProgram.Science?.Articles);
 
-        public string ArticlesForeign => FormatValue (EduProgram.Science?.ArticlesForeign);
+        public string ArticlesForeign => FormatHelper.ValueOrDash (EduProgram.Science?.ArticlesForeign);
 
-        public string Patents => FormatValue (EduProgram.Science?.Patents);
+        public string Patents => FormatHelper.ValueOrDash (EduProgram.Science?.Patents);
 
-        public string PatentsForeign => FormatValue (EduProgram.Science?.PatentsForeign);
+        public string PatentsForeign => FormatHelper.ValueOrDash (EduProgram.Science?.PatentsForeign);
 
-        public string Certificates => FormatValue (EduProgram.Science?.Certificates);
+        public string Certificates => FormatHelper.ValueOrDash (EduProgram.Science?.Certificates);
 
-        public string CertificatesForeign => FormatValue (EduProgram.Science?.CertificatesForeign);
+        public string CertificatesForeign => FormatHelper.ValueOrDash (EduProgram.Science?.CertificatesForeign);
 
-        public string FinancingByScientist => FormatValue (EduProgram.Science?.FinancingByScientist);
+        public string FinancingByScientist => FormatHelper.DecimalAsIntOrDash (EduProgram.Science?.FinancingByScientist);
 
         public string EditUrl =>
             EduProgram.Science != null
@@ -72,17 +72,9 @@ namespace R7.University.EduPrograms.ViewModels
         public string CssClass =>
             EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
+        public string HtmlElementId => $"science_{Context.Module.ModuleId}_{EduProgramID}";
+
         #endregion
-
-        string FormatValue<T> (T? value) where T : struct
-        {
-            return value != null ? value.ToString () : "-";
-        }
-
-        string FormatValue (decimal? value)
-        {
-            return value != null ? value.ToIntegerString () : "-";
-        }
 
         string GetPopupHtml (string html, string itemprop)
         {

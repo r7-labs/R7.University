@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -87,9 +88,11 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string EduForms_String
         {
             get {
-                var eduForms = GetImplementedEduForms ();
-                if (!eduForms.IsNullOrEmpty ()) {
-                    return "<ul itemprop=\"eduForm\">" + eduForms.Select (ep => "<li>" + LocalizationHelper.GetStringWithFallback ("EduForm_" + ep.Title + ".Text", Context.LocalResourceFile, ep.Title).ToLower () + "</li>")
+                var formYears = GetImplementedEduFormYears ();
+                if (!formYears.IsNullOrEmpty ()) {
+                    return "<ul itemprop=\"eduForm\">" + formYears
+                        .Select (eppfy => (eppfy.IsPublished (_now) ? "<li>" : "<li class=\"u8y-not-published-element\">")
+                                 + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile, eppfy.EduForm.Title).ToLower () + "</li>")
                         .Aggregate ((s1, s2) => s1 + s2) + "</ul>";
                 }
 
@@ -241,11 +244,13 @@ namespace R7.University.EduProgramProfiles.ViewModels
             );
         }
 
-        IEnumerable<IEduForm> GetImplementedEduForms ()
+        DateTime _now => HttpContext.Current.Timestamp;
+
+        IEnumerable<IEduProgramProfileFormYear> GetImplementedEduFormYears ()
         {
-            return EduProgramProfileFormYears.Where (eppfy => eppfy.Year == null)
-                                             .Select (eppfy => eppfy.EduForm)
-                                             .OrderBy (ef => ef.SortIndex);
+            return EduProgramProfileFormYears.Where (eppfy => eppfy.Year == null &&
+                                                     (eppfy.IsPublished (_now) || Context.Module.IsEditable))
+                                             .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
 
         string Wrap (string text, string itemprop)

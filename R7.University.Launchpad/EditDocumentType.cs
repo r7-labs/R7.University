@@ -61,6 +61,8 @@ namespace R7.University.Launchpad
 
         #region Implemented abstract members of UniversityEditPortalModuleBase
 
+        protected override int GetItemId (DocumentTypeInfo item) => item.DocumentTypeID;
+
         protected override void AddItem (DocumentTypeInfo item)
         {
             ModelContext.Add<DocumentTypeInfo> (item);

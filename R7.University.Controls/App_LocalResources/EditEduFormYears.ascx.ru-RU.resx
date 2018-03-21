@@ -13,7 +13,7 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
 	<data name="labelYear.Text" xml:space="preserve">
-        <value>Год начала освоения:</value>
+        <value>Год начала освоения (курс):</value>
     </data>
     <data name="labelYear.Help" xml:space="preserve">
         <value>Выберите год начала освоения образовательной программы.</value>
@@ -49,7 +49,7 @@
         <value>Форма обучения</value>
     </data>
 	<data name="Year.Column" xml:space="preserve">
-        <value>Год начала подготовки</value>
+        <value>Год начала подготовки (курс)</value>
     </data>
     <data name="StartDate.Column" xml:space="preserve">
         <value>Начало публикации</value>

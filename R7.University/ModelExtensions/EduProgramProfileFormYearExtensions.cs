@@ -77,11 +77,11 @@ namespace R7.University.ModelExtensions
 				 .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
 
-        public static string FormatTitle (this IEduProgramProfileFormYear eppfy, string resourceFile)
+        public static string FormatTitle (this IEduProgramProfileFormYear eppfy, IYear lastYear, string resourceFile)
         {
             return $"{eppfy.EduProgramProfile.FormatTitle ()}: {eppfy.EduProgramProfile.EduLevel.FormatTitle ()}"
-                + $" - {eppfy.EduForm.FormatTitle (resourceFile)} / {(eppfy.Year != null ? eppfy.Year.Year.ToString () : "")}";
+                + $" - {eppfy.EduForm.FormatTitle (resourceFile)}" 
+                + $"{(eppfy.Year != null ? " / " + eppfy.Year.FormatWithCourse (lastYear) : string.Empty)}";
         }
-
     }
 }

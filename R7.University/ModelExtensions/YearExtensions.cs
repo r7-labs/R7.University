@@ -1,10 +1,10 @@
-//
-//  UniversityModelContext.cs
+﻿//
+//  YearExtensions.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,40 +21,28 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.Dnn.Extensions.Utilities;
-using R7.University.Data;
+using R7.University.Models;
 
-namespace R7.University.Models
+namespace R7.University.ModelExtensions
 {
-    public class UniversityModelContext: ModelContextBase
+    public static class YearExtensions
     {
-        public UniversityModelContext (IDataContext dataContext): base (dataContext)
+        public static IYear LastYear (this IEnumerable<IYear> years)
         {
+            return years.OrderByDescending (y => y.Year).FirstOrDefault (y => !y.AdmissionIsOpen);
         }
 
-        public UniversityModelContext ()
+        public static string FormatWithCourse (this IYear year, IYear lastYear)
         {
-        }
-
-        #region ModelContextBase implementation
-
-        public override IDataContext CreateDataContext ()
-        {
-            return UniversityDataContextFactory.Instance.Create ();
-        }
-
-        public override bool SaveChanges (bool dispose = true)
-        {
-            var result = base.SaveChanges (dispose);
-
-            // drop cache on final call
-            if (dispose) {
-                CacheHelper.RemoveCacheByPrefix ("//r7_University");
+            if (year != null) {
+                var course = UniversityModelHelper.SafeGetCourse (year, lastYear);
+                if (course != null) {
+                    return $"{year.Year} ({course})";
+                }
+                return year.Year.ToString ();
             }
 
-            return result;
+            return "-";
         }
-
-        #endregion
     }
 }

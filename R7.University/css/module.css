@@ -7,3 +7,12 @@ tr.u8y-not-published:hover { background-color:#fefe97!important }
 .u8y-not-published-element { color:#ccc }
 .u8y-not-published-element a,
 a.u8y-not-published-element { color:#ccc }
+
+.u8y-actions { white-space:nowrap }
+.u8y-selected-item-marker {
+	display:none;
+	color:#000;
+	position:absolute;
+	left:-.3rem;
+}
+.u8y-selected-item .u8y-selected-item-marker { display:inline }

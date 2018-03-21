@@ -66,6 +66,8 @@ namespace R7.University.Launchpad
 
         #region Implemented abstract members of UniversityEditPortalModuleBase
 
+        protected override int GetItemId (EduLevelInfo item) => item.EduLevelID;
+
         protected override void AddItem (EduLevelInfo item)
         {
             ModelContext.Add (item);
