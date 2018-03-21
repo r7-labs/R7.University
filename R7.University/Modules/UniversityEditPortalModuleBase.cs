@@ -54,9 +54,10 @@ namespace R7.University.Modules
 
         #region Session-state properties
 
+        // TODO: Move to the base library
         protected string SessionSelectedItem {
-            get { return (string) Session [$"r7_University_SelectedItem"]; }
-            set { Session [$"r7_University_SelectedItem"] = value; }
+            get { return (string) Session [$"r7_SelectedItem"]; }
+            set { Session [$"r7_SelectedItem"] = value; }
         }
 
         protected void UpdateSelectedItem (int itemId)
