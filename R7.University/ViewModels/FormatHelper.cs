@@ -257,9 +257,23 @@ namespace R7.University.ViewModels
             return value != null ? value.ToString () : "-";
         }
 
-        public static string DecimalAsIntOrDash (decimal? value)
+        public static string ValueOrDash<T> (T? value, Func<T, string> toString) where T : struct
         {
-            return value != null ? value.ToIntegerString () : "-";
+            return value != null ? toString (value.Value) : "-";
+        }
+
+        // TODO: Move to the base library
+        public static string RemoveTrailingZeroes (string decimalStr)
+        {
+            var decimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            if (decimalStr.Contains (decimalSeparator)) {
+                decimalStr = decimalStr.TrimEnd ('0');
+                if (decimalStr.EndsWith (decimalSeparator, StringComparison.CurrentCulture)) {
+                    decimalStr = decimalStr.Substring (0, decimalStr.Length - decimalSeparator.Length);
+                }
+            }
+
+            return decimalStr;
         }
     }
 }

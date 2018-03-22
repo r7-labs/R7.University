@@ -29,6 +29,7 @@ using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.EduProgramProfiles.Modules;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles
 {
@@ -126,7 +127,7 @@ namespace R7.University.EduProgramProfiles
             textAdmittedRB.Text = c.AdmittedRB.ToString ();
             textAdmittedMB.Text = c.AdmittedMB.ToString ();
             textAdmittedBC.Text = c.AdmittedBC.ToString ();
-            textAvgAdmScore.Text = c.AvgAdmScore.ToString ();
+            textAvgAdmScore.Text = c.AvgAdmScore.ToDecimalString ();
 
             textVacantFB.Text = c.VacantFB.ToString ();
             textVacantRB.Text = c.VacantRB.ToString ();

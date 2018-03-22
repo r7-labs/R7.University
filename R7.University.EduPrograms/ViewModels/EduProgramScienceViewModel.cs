@@ -62,7 +62,8 @@ namespace R7.University.EduPrograms.ViewModels
 
         public string CertificatesForeign => FormatHelper.ValueOrDash (EduProgram.Science?.CertificatesForeign);
 
-        public string FinancingByScientist => FormatHelper.DecimalAsIntOrDash (EduProgram.Science?.FinancingByScientist);
+        public string FinancingByScientist =>
+            FormatHelper.ValueOrDash (EduProgram.Science?.FinancingByScientist, FormatExtensions.ToDecimalString);
 
         public string EditUrl =>
             EduProgram.Science != null
