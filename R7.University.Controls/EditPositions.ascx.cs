@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
@@ -34,7 +35,11 @@ namespace R7.University.Controls
         {
             Module = module;
 
-            comboPositions.DataSource = positions;
+            comboPositions.DataSource = positions.Select (p => new {
+                p.PositionID,
+                Title = !string.IsNullOrEmpty (p.ShortTitle) ? $"{p.Title} ({p.ShortTitle})" : p.Title
+            });
+
             comboPositions.DataBind ();
 
             divisionSelector.DataSource = divisions;
@@ -59,16 +64,19 @@ namespace R7.University.Controls
         protected override void OnUpdateItem (OccupiedPositionEditModel item)
         {
             item.PositionID = int.Parse (comboPositions.SelectedValue);
-            item.DivisionID = (int) divisionSelector.DivisionId;
-            item.PositionTitle = comboPositions.SelectedItem.Text;
+            item.DivisionID = divisionSelector.DivisionId.Value;
             item.IsPrime = checkIsPrime.Checked;
             item.TitleSuffix = textPositionTitleSuffix.Text.Trim ();
 
+            // TODO: Don't call database here
             using (var modelContext = new UniversityModelContext ()) {
                 var division = modelContext.Get<DivisionInfo> (item.DivisionID);
                 item.DivisionTitle = division.Title;
                 item.DivisionStartDate = division.StartDate;
                 item.DivisionEndDate = division.EndDate;
+
+                var position = modelContext.Get<PositionInfo> (item.PositionID);
+                item.PositionTitle = position.Title;
             }
         }
 
