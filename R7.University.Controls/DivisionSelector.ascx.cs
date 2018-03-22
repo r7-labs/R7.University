@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
@@ -64,16 +65,6 @@ namespace R7.University.Controls
             }
         }
 
-        public string DivisionTitle
-        {
-            get {
-                if (IsCurrentMode (DivisionSelectionMode.List)) {
-                    return comboDivision.SelectedItem.Text;
-                }
-                return treeDivision.SelectedNode != null ? treeDivision.SelectedNode.Text : string.Empty;
-            }
-        }
-
         #endregion
 
         ViewModelContext viewModelContext;
@@ -91,7 +82,11 @@ namespace R7.University.Controls
         {
             var notSelectedText = Localization.GetString ("NotSelected.Text", ViewModelContext.LocalResourceFile);
 
-            comboDivision.DataSource = DataSource;
+            comboDivision.DataSource = DataSource.Select (d => new {
+                d.DivisionID,
+                Title = !string.IsNullOrEmpty (d.ShortTitle) ? $"{d.Title} ({d.ShortTitle})" : d.Title
+            });
+
             comboDivision.DataBind ();
 
             treeDivision.DataSource = DataSource;
