@@ -57,9 +57,6 @@
     <data name="SystemDocumentType_ContingentMovement.Text" xml:space="preserve">
         <value>Contingent Movement Info</value>
     </data>
-    <data name="SystemDocumentType_ScienceInfo.Text" xml:space="preserve">
-        <value>Science Info</value>
-    </data>
     <data name="labelDocumentTitle.Text" xml:space="preserve">
         <value>Title:</value>
     </data>
