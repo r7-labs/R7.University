@@ -43,7 +43,7 @@ namespace R7.University.Data.Mappings
             Property (m => m.PatentsForeign).IsOptional ();
             Property (m => m.Certificates).IsOptional ();
             Property (m => m.CertificatesForeign).IsOptional ();
-            Property (m => m.FinancingByScientist).IsOptional ();
+            Property (m => m.FinancingByScientist).HasPrecision (18, 3).IsOptional ();
 
             HasRequired (m => m.EduProgram).WithOptional (x => x.Science);
         }

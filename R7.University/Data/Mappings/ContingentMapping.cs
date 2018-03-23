@@ -31,7 +31,7 @@ namespace R7.University.Data.Mappings
             ToTable (UniversityMappingHelper.GetTableName<ContingentInfo> (pluralize: false));
             HasKey (m => m.ContingentId);
 
-            Property (m => m.AvgAdmScore).IsOptional ();
+            Property (m => m.AvgAdmScore).HasPrecision (18, 3).IsOptional ();
 
             Property (m => m.AdmittedFB).IsOptional ();
             Property (m => m.AdmittedRB).IsOptional ();
