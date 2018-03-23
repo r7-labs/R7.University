@@ -110,7 +110,7 @@
                     <dnn:Label id="labelFinancingByScientist" runat="server" ControlName="textFinancingByScientist" />
                     <asp:TextBox id="textFinancingByScientist" runat="server" />
                     <asp:RangeValidator runat="server" ControlToValidate="textFinancingByScientist"
-                        Type="Currency" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Double" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="FinancingByScientistValue.Invalid" />
                 </div>
             </fieldset>
