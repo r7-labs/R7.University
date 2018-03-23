@@ -130,7 +130,7 @@
                     <asp:TextBox id="textAvgAdmScore" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="AvgAdmScore.Invalid"
                         ControlToValidate="textAvgAdmScore" ValidationGroup="Contingent" 
-                        Type="Double" MinimumValue="0" MaximumValue="100"
+                        Type="Double" MinimumValue="0" MaximumValue="300"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
             </fieldset>

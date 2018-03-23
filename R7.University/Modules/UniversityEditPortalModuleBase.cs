@@ -55,6 +55,7 @@ namespace R7.University.Modules
         #region Session-state properties
 
         // TODO: Move to the base library
+        // TODO: Vary by page, use DataCache instead?
         protected string SessionSelectedItem {
             get { return (string) Session [$"r7_SelectedItem"]; }
             set { Session [$"r7_SelectedItem"] = value; }

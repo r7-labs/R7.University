@@ -83,7 +83,7 @@ namespace R7.University.EduPrograms
             textPatentsForeign.Text = item.PatentsForeign.ToString ();
             textCertificates.Text = item.Certificates.ToString ();
             textCertificatesForeign.Text = item.CertificatesForeign.ToString ();
-            textFinancingByScientist.Text = item.FinancingByScientist.ToIntegerString ();
+            textFinancingByScientist.Text = item.FinancingByScientist.ToDecimalString ();
         }
 
         protected override void BeforeUpdateItem (ScienceInfo item)

@@ -114,7 +114,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string ActualBC => FormatHelper.ValueOrDash (FormYear.Contingent?.ActualBC);
 
-        public string AvgAdmScore => FormatHelper.DecimalAsIntOrDash (FormYear.Contingent?.AvgAdmScore);
+        public string AvgAdmScore => FormatHelper.ValueOrDash (FormYear.Contingent?.AvgAdmScore, FormatExtensions.ToDecimalString);
 
         public string AdmittedFB => FormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedFB);
 

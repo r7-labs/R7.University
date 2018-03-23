@@ -56,8 +56,6 @@ namespace R7.University
         Contingent,
         // ru-RU: сведения о результатах перевода, восстановления и отчисления
         ContingentMovement,
-        // ru-RU: сведения о направлениях и результатах НИР
-        ScienceInfo,
         Custom
     }
 }

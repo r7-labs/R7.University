@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,7 +27,6 @@ using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
 using R7.University.Models;
-using R7.University.ViewModels;
 
 namespace R7.University.Controls.EditModels
 {
@@ -40,8 +39,8 @@ namespace R7.University.Controls.EditModels
         {
             var editModel = CopyCstor.New<OccupiedPositionEditModel, IOccupiedPositionWritable> (model);
             editModel.Context = context;
-            editModel.PositionTitle = FormatHelper.FormatShortTitle (model.Position.ShortTitle, model.Position.Title);
-            editModel.DivisionTitle = FormatHelper.FormatShortTitle (model.Division.ShortTitle, model.Division.Title);
+            editModel.PositionTitle = model.Position.Title;
+            editModel.DivisionTitle = model.Division.Title;
             editModel.DivisionStartDate = model.Division.StartDate;
             editModel.DivisionEndDate = model.Division.EndDate;
 

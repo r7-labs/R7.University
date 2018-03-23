@@ -28,7 +28,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.ControlExtensions;
 using R7.Dnn.Extensions.Utilities;
-using R7.Dnn.Extensions.ViewModels;
 using R7.University.Controls.EditModels;
 using R7.University.Controls.SerializationModels;
 using R7.University.ModelExtensions;
@@ -59,14 +58,20 @@ namespace R7.University.Controls
             ViewState ["achievementTypes"] = Json.Serialize (
                 achievementTypes.Select (acht => new AchievementTypeSerializationModel (acht)).ToList ());
 
-            comboAchievement.DataSource = achievements
-                .Select (ach => new ListItemViewModel (ach.AchievementID, ach.Title));
+            comboAchievement.DataSource = achievements.Select (a => new {
+                Value = a.AchievementID,
+                Text = !string.IsNullOrEmpty (a.ShortTitle) ? $"{a.Title} ({a.ShortTitle})" : a.Title
+            });
+                
             comboAchievement.DataBind ();
             comboAchievement.InsertDefaultItem (LocalizeString ("CustomAchievement.Text"));
             comboAchievement.SelectedIndex = 0;
 
-            comboAchievementTypes.DataSource = achievementTypes
-                .Select (acht => new ListItemViewModel (acht.AchievementTypeId, acht.Localize (LocalResourceFile)));
+            comboAchievementTypes.DataSource = achievementTypes.Select (at => new {
+                Value = at.AchievementTypeId,
+                Text = at.Localize (LocalResourceFile)
+            });
+
             comboAchievementTypes.DataBind ();
             comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
             comboAchievementTypes.SelectedIndex = 0;

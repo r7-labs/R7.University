@@ -57,8 +57,10 @@ namespace R7.University.EduProgramProfiles.Queries
                          .ThenBy (ev => ev.EduProgramProfile.EduProgram.Code)
                          .ThenBy (ev => ev.EduProgramProfile.EduProgram.Title)
                          .ThenBy (ev => ev.EduProgramProfile.ProfileCode)
-                         .ThenBy (ev => ev.EduProgramProfile.ProfileTitle)
-                         .ThenBy (ev => ev.EduProgramProfile.EduLevel.SortIndex)
+                         .ThenBy (ev => ev.EduProgramProfile.ProfileTitle
+                                  // SQL-compatible PadLeft (10, '0') equivalent
+                                  + ("0000000000" + ev.EduProgramProfile.EduLevel.SortIndex.ToString ())
+                                    .Substring (ev.EduProgramProfile.EduLevel.SortIndex.ToString ().Length))
                          .ThenBy (ev => ev.EduForm.SortIndex)
                          .ThenByDescending (ev => ev.Year.Year);
         }
