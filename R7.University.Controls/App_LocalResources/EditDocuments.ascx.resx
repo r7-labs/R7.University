@@ -52,10 +52,10 @@
         <value>Work Program Of Practice</value>
     </data>
     <data name="SystemDocumentType_Contingent.Text" xml:space="preserve">
-        <value>Contingent Info</value>
+        <value>Contingent Info **obsolete**</value>
     </data>
     <data name="SystemDocumentType_ContingentMovement.Text" xml:space="preserve">
-        <value>Contingent Movement Info</value>
+        <value>Contingent Movement Info **obsolete**</value>
     </data>
     <data name="labelDocumentTitle.Text" xml:space="preserve">
         <value>Title:</value>

@@ -52,10 +52,10 @@
         <value>Рабочая программа практики</value>
     </data>
     <data name="SystemDocumentType_Contingent.Text" xml:space="preserve">
-        <value>Сведения о численности обучающихся</value>
+        <value>Сведения о численности обучающихся **устарело**</value>
     </data>
     <data name="SystemDocumentType_ContingentMovement.Text" xml:space="preserve">
-        <value>Сведения о результатах перевода, восстановления и отчисления</value>
+        <value>Сведения о результатах перевода, восстановления и отчисления **устарело**</value>
     </data>
     <data name="labelDocumentTitle.Text" xml:space="preserve">
         <value>Название:</value>
