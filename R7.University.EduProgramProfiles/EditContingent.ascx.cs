@@ -60,16 +60,18 @@ namespace R7.University.EduProgramProfiles
 
         EditContingentTab GetDefaultTab ()
         {
-            if (Settings.Mode == ContingentDirectoryMode.Admission) {
-                return EditContingentTab.Admission;
-            }
+            if (Settings != null) {
+                if (Settings.Mode == ContingentDirectoryMode.Admission) {
+                    return EditContingentTab.Admission;
+                }
 
-            if (Settings.Mode == ContingentDirectoryMode.Movement) {
-                return EditContingentTab.Movement;
-            }
+                if (Settings.Mode == ContingentDirectoryMode.Movement) {
+                    return EditContingentTab.Movement;
+                }
 
-            if (Settings.Mode == ContingentDirectoryMode.Vacant) {
-                return EditContingentTab.Vacant;
+                if (Settings.Mode == ContingentDirectoryMode.Vacant) {
+                    return EditContingentTab.Vacant;
+                }
             }
 
             return EditContingentTab.Actual;
@@ -77,7 +79,9 @@ namespace R7.University.EduProgramProfiles
 
         ContingentDirectorySettings _settings;
         protected new ContingentDirectorySettings Settings =>
-            _settings ?? (_settings = new ContingentDirectorySettingsRepository ().GetSettings (ModuleConfiguration));
+            _settings ?? (_settings = ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_ContingentDirectory"
+                          ? new ContingentDirectorySettingsRepository ().GetSettings (ModuleConfiguration)
+                          : null);
 
         #endregion
 

@@ -66,20 +66,24 @@ namespace R7.University.EduProgramProfiles
 
         EditEduVolumeTab GetDefaultTab ()
         {
-            if (Settings.Mode == EduVolumeDirectoryMode.EduVolume) {
-		        return EditEduVolumeTab.Years;
-	        }
+            if (Settings != null) {
+                if (Settings.Mode == EduVolumeDirectoryMode.EduVolume) {
+                    return EditEduVolumeTab.Years;
+                }
 
-            if (Settings.Mode == EduVolumeDirectoryMode.Practices) {
-                return EditEduVolumeTab.Practices;
-	        }
+                if (Settings.Mode == EduVolumeDirectoryMode.Practices) {
+                    return EditEduVolumeTab.Practices;
+                }
+            }
 
             return EditEduVolumeTab.Common;
         }
 
         EduVolumeDirectorySettings _settings;
         protected new EduVolumeDirectorySettings Settings =>
-	        _settings ?? (_settings = new EduVolumeDirectorySettingsRepository ().GetSettings (ModuleConfiguration));
+            _settings ?? (_settings = ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduVolumeDirectory"
+                          ? new EduVolumeDirectorySettingsRepository ().GetSettings (ModuleConfiguration)
+                          : null);
 
         #endregion
 
