@@ -115,13 +115,13 @@
         <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет средств физических и (или) юридических лиц, человек.</value>
     </data>
 	<data name="labelMovedOut.Text" xml:space="preserve">
-        <value>Переведено из:</value>
+        <value>Переведено в:</value>
     </data>
     <data name="labelMovedOut.Help" xml:space="preserve">
         <value>Численность обучающихся, переведенных в другие образовательные организации, человек.</value>
     </data>
 	<data name="labelMovedIn.Text" xml:space="preserve">
-        <value>Переведено в:</value>
+        <value>Переведено из:</value>
     </data>
     <data name="labelMovedIn.Help" xml:space="preserve">
         <value>Численность обучающихся, переведенных из других образовательных организаций, человек.</value>
