@@ -29,10 +29,12 @@
                         ControlToValidate="textTimeToLearnYears" ValidationGroup="EduVolume" 
                         Type="Integer" MinimumValue="0" MaximumValue="11"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-                    <asp:CustomValidator runat="server" resourcekey="TimeToLearn.Required"
+                    <%--
+					<asp:CustomValidator runat="server" resourcekey="TimeToLearn.Required"
                         ControlToValidate="textTimeToLearnYears"
                         ValidationGroup="EduVolume" EnableClientScript="true" ClientValidationFunction="validateTimeToLearn"
                         Display="None" CssClass="dnnFormMessage dnnFormError"  />
+					--%>
                 </div>
                 <div class="dnnFormItem dnnFormRequired">
                     <dnn:Label id="labelTimeToLearnMonths" runat="server" ControlName="textTimeToLearnMonths" />
