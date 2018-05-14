@@ -26,7 +26,8 @@ using System.Text;
 using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Localization;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -35,7 +36,7 @@ using R7.University.Utilities;
 namespace R7.University.ViewModels
 {
     // TODO: Implement model-specific formatting method as extensions
-    public static class FormatHelper
+    public static class UniversityFormatHelper
     {
         public static string FormatShortTitle (string shortTitle, string title)
         {
@@ -80,7 +81,7 @@ namespace R7.University.ViewModels
 
         static int GetPlural (int value)
         {
-            return R7.Dnn.Extensions.Utilities.CultureHelper.GetPluralIndex (value, CultureInfo.CurrentCulture) + 1;
+            return CultureHelper.GetPluralIndex (value, CultureInfo.CurrentCulture) + 1;
         }
 
         public static string FormatTimeToLearn (int totalMonths, int hours, TimeToLearnDisplayMode displayMode, string keyBase, string resourceFile)
@@ -108,29 +109,29 @@ namespace R7.University.ViewModels
 
         public static string FormatEduProgramTitle (string code, string title)
         {
-            return TextUtils.FormatList (" ", code, title);
+            return FormatHelper.FormatList (" ", code, title);
         }
 
         public static string FormatEduProgramProfileTitle (string title, 
             string profileCode, string profileTitle)
         {
-            var profileString = TextUtils.FormatList (" ", profileCode, profileTitle);
+            var profileString = FormatHelper.FormatList (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
-            return TextUtils.FormatList (" ", title, profileStringInBrackets);
+            return FormatHelper.FormatList (" ", title, profileStringInBrackets);
         }
 
         public static string FormatEduProgramProfileTitle (string code, string title, 
             string profileCode, string profileTitle)
         {
-            var profileString = TextUtils.FormatList (" ", profileCode, profileTitle);
+            var profileString = FormatHelper.FormatList (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
-            return TextUtils.FormatList (" ", code, title, profileStringInBrackets);
+            return FormatHelper.FormatList (" ", code, title, profileStringInBrackets);
         }
 
         public static string FormatDocumentLink_WithMicrodata (this IDocument document, string documentTitle,
@@ -138,7 +139,7 @@ namespace R7.University.ViewModels
         {
             var title = (preferDocumentTitle && !string.IsNullOrWhiteSpace (documentTitle)) 
                 ? ((groupPlacement == DocumentGroupPlacement.InTitle)
-                    ? TextUtils.FormatList (": ", document.Group, documentTitle)
+                   ? FormatHelper.FormatList (": ", document.Group, documentTitle)
                     : documentTitle)
                 : ((groupPlacement == DocumentGroupPlacement.InTitle && !string.IsNullOrWhiteSpace (document.Group))
                     ? document.Group
@@ -146,15 +147,15 @@ namespace R7.University.ViewModels
               
             if (!string.IsNullOrWhiteSpace (document.Url)) {
                 var linkMarkup = "<a href=\"" + UniversityUrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
-                + TextUtils.FormatList (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
+                                                                   + FormatHelper.FormatList (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
                 + " target=\"_blank\">" + title + "</a>";
                 
                 if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {
-                    return TextUtils.FormatList (": ", document.Group, linkMarkup);
+                    return FormatHelper.FormatList (": ", document.Group, linkMarkup);
                 }
 
                 if (groupPlacement == DocumentGroupPlacement.AfterTitle) {
-                    return TextUtils.FormatList (": ", linkMarkup, document.Group);
+                    return FormatHelper.FormatList (": ", linkMarkup, document.Group);
                 }
 
                 return linkMarkup;
@@ -195,7 +196,7 @@ namespace R7.University.ViewModels
 
         public static string FullName (string firstName, string lastName, string otherName)
         {
-            return TextUtils.FormatList (" ", lastName, firstName, otherName);
+            return FormatHelper.FormatList (" ", lastName, firstName, otherName);
         }
 
         public static string AbbrName (string firstName, string lastName, string otherName)

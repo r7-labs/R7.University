@@ -23,7 +23,8 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Cache;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.ControlExtensions;
 using R7.University.Employees.Models;
@@ -64,7 +65,7 @@ namespace R7.University.Employees
 
             // fill edulevels list
             foreach (var eduLevel in new EduLevelQuery (ModelContext).List ()) {
-                listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
+                listEduLevels.AddItem (UniversityFormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
         }
 

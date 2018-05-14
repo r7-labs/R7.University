@@ -120,7 +120,7 @@ namespace R7.University.EduProgramProfiles
 
         protected override void LoadItem (ContingentInfo item)
         {
-            var c = GetItemWithDependencies (ItemId.Value);
+            var c = GetItemWithDependencies (ItemKey.Value);
 
             textActualFB.Text = c.ActualFB.ToString ();
             textActualRB.Text = c.ActualRB.ToString ();
@@ -144,7 +144,7 @@ namespace R7.University.EduProgramProfiles
             textExpelled.Text = c.Expelled.ToString ();
         }
 
-        protected override void BeforeUpdateItem (ContingentInfo item)
+        protected override void BeforeUpdateItem (ContingentInfo item, bool isNew)
         {
             var updateAllTabs = SecurityContext.IsAdmin;
 
@@ -178,9 +178,9 @@ namespace R7.University.EduProgramProfiles
             }
         }
 
-        protected override ContingentInfo GetItemWithDependencies (int itemId)
+        protected ContingentInfo GetItemWithDependencies (int itemId)
         {
-            return ModelContext.Get<ContingentInfo> (itemId);
+            return ModelContext.Get<ContingentInfo,int> (itemId);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase

@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using R7.Dnn.Extensions.Data;
+using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Modules;
 using R7.University.Models;
 using R7.University.Security;
@@ -72,18 +74,22 @@ namespace R7.University.Modules
         {
         }
 
+        protected UniversityEditPortalModuleBase (string key, ICrudProvider<TEntity> crudProvider) : base (key, crudProvider)
+        {
+        }
+
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
 
-            UpdateSelectedItem (ItemId ?? 0);
+            UpdateSelectedItem (ItemKey ?? 0);
         }
 
         protected abstract int GetItemId (TEntity item);
 
-        protected override TEntity GetItem (int itemId)
+        protected override TEntity GetItem (int itemKey)
         {
-            return ModelContext.Get<TEntity> (itemId);
+            return ModelContext.Get<TEntity, int> (itemKey);
         }
 
         protected override bool CanDeleteItem (TEntity item)
@@ -102,9 +108,9 @@ namespace R7.University.Modules
             base.OnButtonUpdateClick (sender, e);
         }
 
-        protected override void AfterUpdateItem (TEntity item)
+        protected override void AfterUpdateItem (TEntity item, bool isNew)
         {
-            base.AfterUpdateItem (item);
+            base.AfterUpdateItem (item, isNew);
 
             UpdateSelectedItem (GetItemId (item));
         }

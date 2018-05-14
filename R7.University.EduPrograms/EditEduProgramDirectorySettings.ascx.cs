@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,7 +23,7 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.University.ControlExtensions;
 using R7.University.EduPrograms.Models;
 using R7.University.Models;
@@ -31,6 +31,7 @@ using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.ViewModels;
 using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Cache;
 
 namespace R7.University.EduPrograms
 {
@@ -61,7 +62,7 @@ namespace R7.University.EduPrograms
 
             // fill edulevels list
             foreach (var eduLevel in new EduLevelQuery (ModelContext).ListForEduProgram ()) {
-                listEduLevels.AddItem (FormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
+                listEduLevels.AddItem (UniversityFormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title), eduLevel.EduLevelID.ToString ());
             }
 
             // fill columns list

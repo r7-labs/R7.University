@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -100,8 +102,9 @@ namespace R7.University.ModelExtensions
 
         public static IDivision GetParentDivision (this IDivision division, IModelContext modelContext)
         {
+            Contract.Ensures (Contract.Result<IDivision> () != null);
             if (division.ParentDivisionID != null) {
-                return modelContext.Get<DivisionInfo> (division.ParentDivisionID.Value); 
+                return modelContext.Get<DivisionInfo, int> (division.ParentDivisionID.Value); 
             }
 
             return  null;

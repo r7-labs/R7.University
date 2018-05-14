@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,10 +31,10 @@ using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
-using R7.Dnn.Extensions.TextExtensions;
+using R7.Dnn.Extensions.Text;
+using R7.Dnn.Extensions.Urls;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
@@ -403,8 +403,8 @@ namespace R7.University.Employees
                 linkSecondaryEmail.Visible = false;
 
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
-                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
+                linkWebSite.NavigateUrl = UniversityFormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = UniversityFormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
                 displayContacts = true;
             }
             else {
@@ -418,7 +418,7 @@ namespace R7.University.Employees
             else
                 linkUserProfile.Visible = false;
 
-            var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            var workingPlaceAndHours = FormatHelper.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours)) {
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
                 displayContacts = true;
@@ -512,9 +512,9 @@ namespace R7.University.Employees
             
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
-                                     .Select (ach => TextUtils.FormatList (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
+                                     .Select (ach => FormatHelper.FormatList (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
             
-            var strTitles = TextUtils.FormatList (", ", titles);
+            var strTitles = FormatHelper.FormatList (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = strTitles.FirstCharToUpper ();
             else

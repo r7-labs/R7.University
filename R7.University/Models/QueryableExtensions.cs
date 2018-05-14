@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,16 +21,16 @@
 
 using System;
 using System.Linq;
-using System.Linq.Expressions; 
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace R7.University.Models
 {
     public static class QueryableExtensions
     {
-        public static IQueryable<T> Include<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path)
+        public static IQueryable<T> Include<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path) where T: class
         {
-            return System.Data.Entity.QueryableExtensions.Include (source, path);
+            return EntityFrameworkQueryableExtensions.Include (source, path);
         }
     }
 }
-

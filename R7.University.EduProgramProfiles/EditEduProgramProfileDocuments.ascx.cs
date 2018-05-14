@@ -70,13 +70,13 @@ namespace R7.University.EduProgramProfiles
             formEditDocuments.SetData (epp.Documents, epp.EduProgramProfileID);
         }
 
-        protected override void BeforeUpdateItem (EduProgramProfileInfo item)
+        protected override void BeforeUpdateItem (EduProgramProfileInfo item, bool isNew)
         {
             item.LastModifiedOnDate = DateTime.Now;
             item.LastModifiedByUserId = UserInfo.UserID;
         }
 
-        protected override EduProgramProfileInfo GetItemWithDependencies (int itemId)
+        protected EduProgramProfileInfo GetItemWithDependencies (int itemId)
         {
             return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }

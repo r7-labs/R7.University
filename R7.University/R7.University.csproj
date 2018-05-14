@@ -10,7 +10,7 @@
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
     <ReleaseVersion>2.1.1</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +40,7 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="DotNetNuke">
       <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\DotNetNuke.dll</HintPath>
     </Reference>
@@ -57,9 +58,6 @@
     </Reference>
     <Reference Include="Telerik.Web.UI">
       <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\Telerik.Web.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet">
-      <HintPath>..\packages\YamlDotNet.4.2.1\lib\net35\YamlDotNet.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web.Mvc">
       <HintPath>..\packages\DotNetNuke.Web.Mvc.8.0.4.226\lib\net45\DotNetNuke.Web.Mvc.dll</HintPath>
@@ -97,15 +95,69 @@
     <Reference Include="NGettext">
       <HintPath>..\packages\NGettext.0.6.3\lib\net45\NGettext.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\packages\System.Collections.Immutable.1.3.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\portable-net45+win8+wpa81\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async">
+      <HintPath>..\packages\System.Interactive.Async.3.0.0\lib\net45\System.Interactive.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq">
+      <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.1.0\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.1.1.1\lib\net451\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.1.1.1\lib\net451\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Relational">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.1.1.1\lib\net451\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.SqlServer.1.1.1\lib\net451\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.4.3.1\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="R7.Dnn.Extensions.EFCore">
+      <HintPath>..\packages\R7.Dnn.Extensions.EFCore.0.1.0-alpha2\lib\net451\R7.Dnn.Extensions.EFCore.dll</HintPath>
+    </Reference>
     <Reference Include="R7.Dnn.Extensions">
-      <HintPath>..\packages\R7.Dnn.Extensions.0.12.0\lib\net45\R7.Dnn.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\R7.Dnn.Extensions.0.13.0-alpha2\lib\net45\R7.Dnn.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -125,7 +177,7 @@
     <Compile Include="ViewModels\ViewNumerator.cs" />
     <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
-    <Compile Include="ViewModels\FormatHelper.cs" />
+    <Compile Include="ViewModels\UniversityFormatHelper.cs" />
     <Compile Include="Components\UniversityConfig.cs" />
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="ModelExtensions\EnumerableExtensions.cs" />
@@ -137,7 +189,6 @@
     <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
-    <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Data\UniversityDataContext.cs" />
     <Compile Include="Data\UniversityDataContextFactory.cs" />
     <Compile Include="Patterns\FactoryBase.cs" />
@@ -151,24 +202,22 @@
     <Compile Include="Models\EntityEqualityComparer.cs" />
     <Compile Include="Models\VCard.cs" />
     <Compile Include="Models\VCardPhone.cs" />
-    <Compile Include="Data\Mappings\PositionMapping.cs" />
-    <Compile Include="Data\Mappings\EmployeeMapping.cs" />
-    <Compile Include="Data\Mappings\DivisionMapping.cs" />
-    <Compile Include="Data\Mappings\OccupiedPositionMapping.cs" />
-    <Compile Include="Data\Mappings\EduLevelMapping.cs" />
-    <Compile Include="Data\Mappings\DocumentTypeMapping.cs" />
-    <Compile Include="Data\Mappings\DocumentMapping.cs" />
-    <Compile Include="Data\Mappings\EduProgramMapping.cs" />
-    <Compile Include="Data\Mappings\EduFormMapping.cs" />
-    <Compile Include="Data\Mappings\EduProgramProfileFormMapping.cs" />
-    <Compile Include="Data\Mappings\EduProgramProfileMapping.cs" />
-    <Compile Include="Models\IModelContext.cs" />
-    <Compile Include="Models\ModelContextBase.cs" />
+    <Compile Include="Data\Mappings\PositionConfiguration.cs" />
+    <Compile Include="Data\Mappings\EmployeeConfiguration.cs" />
+    <Compile Include="Data\Mappings\DivisionConfiguration.cs" />
+    <Compile Include="Data\Mappings\OccupiedPositionConfiguration.cs" />
+    <Compile Include="Data\Mappings\EduLevelConfiguration.cs" />
+    <Compile Include="Data\Mappings\DocumentTypeConfiguration.cs" />
+    <Compile Include="Data\Mappings\DocumentConfiguration.cs" />
+    <Compile Include="Data\Mappings\EduProgramConfiguration.cs" />
+    <Compile Include="Data\Mappings\EduFormConfiguration.cs" />
+    <Compile Include="Data\Mappings\EduProgramProfileFormConfiguration.cs" />
+    <Compile Include="Data\Mappings\EduProgramProfileConfiguration.cs" />
     <Compile Include="Models\UniversityModelContext.cs" />
     <Compile Include="Models\QueryableExtensions.cs" />
-    <Compile Include="Data\Mappings\EmployeeDisciplineMapping.cs" />
-    <Compile Include="Data\Mappings\EmployeeAchievementMapping.cs" />
-    <Compile Include="Data\Mappings\AchievementMapping.cs" />
+    <Compile Include="Data\Mappings\EmployeeDisciplineConfiguration.cs" />
+    <Compile Include="Data\Mappings\EmployeeAchievementConfiguration.cs" />
+    <Compile Include="Data\Mappings\AchievementConfiguration.cs" />
     <Compile Include="Queries\QueryBase.cs" />
     <Compile Include="ModelExtensions\DivisionExtensions.cs" />
     <Compile Include="Queries\FlatQuery.cs" />
@@ -195,7 +244,7 @@
     <Compile Include="Modules\UniversityModuleSettingsBase.cs" />
     <Compile Include="Modules\UniversityEditPortalModuleBase.cs" />
     <Compile Include="Models\ISystemEntity.cs" />
-    <Compile Include="Data\Mappings\AchievementTypeMapping.cs" />
+    <Compile Include="Data\Mappings\AchievementTypeConfiguration.cs" />
     <Compile Include="Models\SystemAchievementType.cs" />
     <Compile Include="ModelExtensions\AchievementTypeExtensions.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
@@ -207,7 +256,7 @@
     <Compile Include="Commands\UpdateDivisionCommand.cs" />
     <Compile Include="Commands\DeleteDivisionCommand.cs" />
     <Compile Include="ModelExtensions\TaxonomyExtensions.cs" />
-    <Compile Include="Data\Mappings\EduProgramDivisionMapping.cs" />
+    <Compile Include="Data\Mappings\EduProgramDivisionConfiguration.cs" />
     <Compile Include="Commands\UpdateEduProgramDivisionCommand.cs" />
     <Compile Include="Components\UniversityIcons.cs" />
     <Compile Include="Models\DocumentGroupComparer.cs" />
@@ -215,8 +264,8 @@
     <Compile Include="Components\UniversityAssembly.cs" />
     <Compile Include="Models\Year.cs" />
     <Compile Include="Models\EduProgramProfileFormYear.cs" />
-    <Compile Include="Data\Mappings\EduProgramProfileFormYearMapping.cs" />
-    <Compile Include="Data\Mappings\YearMapping.cs" />
+    <Compile Include="Data\Mappings\EduProgramProfileFormYearConfiguration.cs" />
+    <Compile Include="Data\Mappings\YearConfiguration.cs" />
     <Compile Include="Models\EduProgram.cs" />
     <Compile Include="Models\EduProgramDivision.cs" />
     <Compile Include="Models\EduProgramProfileForm.cs" />
@@ -231,20 +280,21 @@
     <Compile Include="Utilities\LocalizationHelper.cs" />
     <Compile Include="Commands\UpdateEduProgramProfileFormYearsCommand.cs" />
     <Compile Include="Models\EduVolume.cs" />
-    <Compile Include="Data\Mappings\EduVolumeMapping.cs" />
-    <Compile Include="Data\UniversityMappingHelper.cs" />
+    <Compile Include="Data\Mappings\EduVolumeConfiguration.cs" />
     <Compile Include="Models\IPublishableEntity.cs" />
     <Compile Include="ModelExtensions\PublishableExtensions.cs" />
     <Compile Include="Models\Contingent.cs" />
-    <Compile Include="Data\Mappings\ContingentMapping.cs" />
+    <Compile Include="Data\Mappings\ContingentConfiguration.cs" />
     <Compile Include="ModelExtensions\EduProgramProfileFormYearExtensions.cs" />
-    <Compile Include="Data\Mappings\ScienceMapping.cs" />
+    <Compile Include="Data\Mappings\ScienceConfiguration.cs" />
     <Compile Include="Models\Science.cs" />
     <Compile Include="ModelExtensions\EduLevelExtensions.cs" />
     <Compile Include="ModelExtensions\EduFormExtensions.cs" />
     <Compile Include="Queries\EduProgramProfileQueryableExtensions.cs" />
     <Compile Include="Models\DivisionLevel.cs" />
     <Compile Include="ModelExtensions\YearExtensions.cs" />
+    <Compile Include="Data\Mappings\IEntityTypeConfiguration.cs" />
+    <Compile Include="Models\UniversityCrudProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -294,7 +344,6 @@
     <None Include="SqlDataProvider\01.07.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.05.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
-    <None Include="packages.config" />
     <None Include="license.htm" />
     <None Include="releaseNotes.htm" />
     <None Include="js\dnn-ac-combobox.js" />
@@ -313,6 +362,7 @@
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
     <None Include="js\module.js" />
     <None Include="SqlDataProvider\02.01.00.SqlDataProvider" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

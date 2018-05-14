@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Text;
 using System.Collections.Generic;
-using R7.Dnn.Extensions.Utilities;
+using System.Text;
+using R7.Dnn.Extensions.Text;
 
 namespace R7.University.Models
 {
@@ -122,7 +122,7 @@ namespace R7.University.Models
             // names
             // last element must contain additional names, comma separated
             if (Names.Count > 0)
-                vcard.AppendFormat ("N{0}:{1}\n", charset, TextUtils.FormatList (";", Names.ToArray ()));
+                vcard.AppendFormat ("N{0}:{1}\n", charset, FormatHelper.FormatList (";", Names.ToArray ()));
 
             // organization
             if (!string.IsNullOrWhiteSpace (OrganizationName))
@@ -217,7 +217,7 @@ namespace R7.University.Models
             if ((type & VCardPhoneType.Pcs) > 0)
                 types.Add (VCardPhoneType.Pcs.ToString ());
 
-            return TextUtils.FormatList (",", types.ToArray ());
+            return FormatHelper.FormatList (",", types.ToArray ());
         }
     }
 }

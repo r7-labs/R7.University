@@ -31,8 +31,7 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls.Extensions;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
@@ -293,7 +292,7 @@ namespace R7.University.EduProgramProfiles
             else if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgramProfile = (EduProgramProfileDocumentsViewModel) e.Row.DataItem;
 
-                e.Row.Attributes.Add ("data-title", FormatHelper.FormatEduProgramProfileTitle (
+                e.Row.Attributes.Add ("data-title", UniversityFormatHelper.FormatEduProgramProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
                     eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle)
                                       .Append (eduProgramProfile.IsAdopted ? LocalizeString ("IsAdopted.Text") : null, " - ")

@@ -1,10 +1,10 @@
-//
-//  DocumentTypeMapping.cs
+﻿//
+//  IEntityTypeConfiguration.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,23 +19,13 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
-using R7.University.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace R7.University.Data.Mappings
 {
-    public class DocumentTypeMapping: EntityTypeConfiguration<DocumentTypeInfo>
+    // TODO: Move to the base library
+    public interface IEntityTypeConfiguration<TEnity> where TEnity: class
     {
-        public DocumentTypeMapping ()
-        {
-            ToTable (UniversityMappingHelper.GetTableName<DocumentTypeInfo> ());
-            HasKey (m => m.DocumentTypeID);
-            Property (m => m.DocumentTypeID).HasDatabaseGeneratedOption (DatabaseGeneratedOption.Identity);
-            Property (m => m.Type).IsRequired ();
-            Property (m => m.Description).IsOptional ();
-            Property (m => m.IsSystem).IsRequired ();
-            Property (m => m.FilenameFormat).IsOptional ();
-        }
+        void Configure (EntityTypeBuilder<TEnity> builder);
     }
 }

@@ -98,7 +98,7 @@ namespace R7.University.EduProgramProfiles
 
         protected override void LoadItem (EduVolumeInfo item)
         {
-            var ev = GetItemWithDependencies (ItemId.Value);
+            var ev = GetItemWithDependencies (ItemKey.Value);
 
             textTimeToLearnHours.Text = ev.TimeToLearnHours.ToString ();
             textTimeToLearnYears.Text = (ev.TimeToLearnMonths / 12).ToString ();
@@ -116,7 +116,7 @@ namespace R7.University.EduProgramProfiles
             textPracticeType3Cu.Text = ev.PracticeType3Cu.ToString ();
         }
 
-        protected override void BeforeUpdateItem (EduVolumeInfo item)
+        protected override void BeforeUpdateItem (EduVolumeInfo item, bool isNew)
         {
             item.TimeToLearnHours = int.Parse (textTimeToLearnHours.Text);
             item.TimeToLearnMonths = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
@@ -133,9 +133,9 @@ namespace R7.University.EduProgramProfiles
             item.PracticeType3Cu = TypeUtils.ParseToNullable<int> (textPracticeType3Cu.Text);
         }
 
-        protected override EduVolumeInfo GetItemWithDependencies (int itemId)
+        protected EduVolumeInfo GetItemWithDependencies (int itemId)
         {
-            return ModelContext.Get<EduVolumeInfo> (itemId);
+            return ModelContext.Get<EduVolumeInfo,int> (itemId);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase

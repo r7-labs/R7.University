@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -22,6 +22,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -54,7 +55,7 @@ namespace R7.University.Employees.ViewModels
 
         string _fullName;
         public string FullName =>
-            _fullName ?? (_fullName = Span ("fio", FormatHelper.FullName (Employee.FirstName, Employee.LastName, Employee.OtherName)));
+            _fullName ?? (_fullName = Span ("fio", UniversityFormatHelper.FullName (Employee.FirstName, Employee.LastName, Employee.OtherName)));
 
         string _positionsString;
         public string Positions_String =>
@@ -116,8 +117,9 @@ namespace R7.University.Employees.ViewModels
                         .OrderByDescending (op => op.IsPrime)
                         .ThenByDescending (op => op.Position.Weight);
 
-            return TextUtils.FormatList ("; ",
-                positions.Select (op => TextUtils.FormatList (": ", op.Position.Title, op.Division.Title))
+            return FormatHelper.FormatList (
+                "; ",
+                positions.Select (op => FormatHelper.FormatList (": ", op.Position.Title, op.Division.Title))
             );
         }
 
@@ -137,39 +139,39 @@ namespace R7.University.Employees.ViewModels
 
         string GetAcademicDegreesString ()
         {
-            return TextUtils.FormatList ("; ", 
+            return FormatHelper.FormatList ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicDegree)
-                                         .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+                                         .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
             );
         }
 
         string GetAcademicTitlesString ()
         {
-            return TextUtils.FormatList ("; ", 
+            return FormatHelper.FormatList ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicTitle)
-                                         .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
+                                         .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
             );
         }
 
         string GetEducationString ()
         {
-            return TextUtils.FormatList ("; ", 
+            return FormatHelper.FormatList ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education, SystemAchievementType.ProfTraining))
-                                         .Select (ach => TextUtils.FormatList ("&nbsp;- ",
-                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
+                                            .Select (ach => FormatHelper.FormatList ("&nbsp;- ",
+                        UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
             );
         }
 
         string GetTrainingString ()
         {
-            return TextUtils.FormatList ("; ", 
+            return FormatHelper.FormatList ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Training, SystemAchievementType.ProfRetraining))
-                                         .Select (ach => TextUtils.FormatList ("&nbsp;- ",
-                        FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
+                                         .Select (ach => FormatHelper.FormatList ("&nbsp;- ",
+                        UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
             );
         }
     }

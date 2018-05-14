@@ -25,7 +25,7 @@ namespace R7.University.ViewModels
     {
         // TODO: Move to the base library
         public static string ToDecimalString (this decimal value) =>
-            FormatHelper.RemoveTrailingZeroes (value.ToString ());
+            UniversityFormatHelper.RemoveTrailingZeroes (value.ToString ());
 
         public static string ToDecimalString (this decimal? value) =>
             value != null ? value.Value.ToDecimalString () : string.Empty;

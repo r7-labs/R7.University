@@ -22,10 +22,10 @@
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Cache;
+using R7.Dnn.Extensions.Controls;
 using R7.University.Divisions.Models;
 using R7.University.Modules;
-using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Divisions
 {

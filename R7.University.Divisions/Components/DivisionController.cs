@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2016 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -40,7 +40,7 @@ namespace R7.University.Divisions.Components
 
             using (var modelContext = new UniversityModelContext ()) {
 
-                var division = modelContext.Get<DivisionInfo> (settings.DivisionID);
+                var division = modelContext.Get<DivisionInfo,int> (settings.DivisionID);
                 if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
                     var aboutDivision = division.SearchDocumentText;
                     var sd = new SearchDocument ()

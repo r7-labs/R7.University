@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ using R7.University.Models;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 using R7.University.ModelExtensions;
+using R7.Dnn.Extensions.Text;
 
 namespace R7.University.Employees.ViewModels
 {
@@ -43,7 +44,7 @@ namespace R7.University.Employees.ViewModels
 
         public string Title_String
         {
-            get { return TextUtils.FormatList (" ", Title, TitleSuffix); }
+            get { return FormatHelper.FormatList (" ", Title, TitleSuffix); }
         }
 
         public string Title_Link
@@ -75,7 +76,7 @@ namespace R7.University.Employees.ViewModels
         public string Years_String
         {
             get {  
-                return FormatHelper.FormatYears (EmployeeAchievement.YearBegin, EmployeeAchievement.YearEnd,
+                return UniversityFormatHelper.FormatYears (EmployeeAchievement.YearBegin, EmployeeAchievement.YearEnd,
                                                  Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
             }
         }

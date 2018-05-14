@@ -143,7 +143,7 @@ namespace R7.University.Employees
 
         protected override void LoadItem (EmployeeInfo item)
         {
-            var employee = GetItemWithDependencies (ItemId.Value);
+            var employee = GetItemWithDependencies (ItemKey.Value);
 
             textLastName.Text = employee.LastName;
             textFirstName.Text = employee.FirstName;
@@ -215,7 +215,7 @@ namespace R7.University.Employees
             formEditPositions.SetDivision (TypeUtils.ParseToNullable<int> (divisionId));
         }
 
-        protected override void BeforeUpdateItem (EmployeeInfo item)
+        protected override void BeforeUpdateItem (EmployeeInfo item, bool isNew)
         {
             // fill the object
             item.LastName = textLastName.Text.Trim ();
@@ -242,7 +242,7 @@ namespace R7.University.Employees
             item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
         }
 
-        protected override EmployeeInfo GetItemWithDependencies (int itemId)
+        protected EmployeeInfo GetItemWithDependencies (int itemId)
         {
             return new EmployeeQuery (ModelContext).SingleOrDefault (itemId);
         }

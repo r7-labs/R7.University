@@ -21,7 +21,7 @@
 
 using System;
 using System.Linq;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
@@ -151,7 +151,7 @@ namespace R7.University.Divisions
             ctlAudit.Bind (item);
         }
 
-        protected override void BeforeUpdateItem (DivisionInfo item)
+        protected override void BeforeUpdateItem (DivisionInfo item, bool isNew)
         {
             // fill the object
             item.Title = txtTitle.Text.Trim ();

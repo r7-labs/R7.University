@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules.Settings;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Launchpad.Models
@@ -47,7 +48,7 @@ namespace R7.University.Launchpad.Models
             }
             set {
                 tables = value;
-                TablesInternal = TextUtils.FormatList (";", value.ToArray ());
+                TablesInternal = FormatHelper.FormatList (";", value.ToArray ());
             }
         }
     }

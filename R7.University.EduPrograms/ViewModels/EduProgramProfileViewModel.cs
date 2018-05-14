@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -46,10 +46,10 @@ namespace R7.University.EduPrograms.ViewModels
 
         #region Bindable properties
 
-        public string Title_String => TextUtils.FormatList (
+        public string Title_String => FormatHelper.FormatList (
             ": ",
             Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
-            FormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle)
+            UniversityFormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle)
         );
         
         public bool AccreditedToDate_Visible => EduProgramProfile.AccreditedToDate != null;
@@ -125,11 +125,11 @@ namespace R7.University.EduPrograms.ViewModels
                     ).ToLower ();
                     sb.AppendFormat (
                        "<li>{0}</li>",
-                       TextUtils.FormatList (
+                       FormatHelper.FormatList (
                           " &ndash; ",
                           eduFormTitle,
                           (eppfy.EduVolume != null)
-                             ? FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
+                             ? UniversityFormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, TimeToLearnDisplayMode.Both, "TimeToLearn", Context.LocalResourceFile)
                              : null
                        )
                     );

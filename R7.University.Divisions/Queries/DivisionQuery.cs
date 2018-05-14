@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,6 +23,7 @@ using System.Linq;
 using System.Collections.Generic;
 using R7.University.Models;
 using R7.University.Queries;
+using R7.Dnn.Extensions.Models;
 
 namespace R7.University.Divisions.Queries
 {

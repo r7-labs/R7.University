@@ -22,7 +22,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
 using R7.University.Models;
@@ -70,12 +70,12 @@ namespace R7.University.Controls
 
             // TODO: Don't call database here
             using (var modelContext = new UniversityModelContext ()) {
-                var division = modelContext.Get<DivisionInfo> (item.DivisionID);
+                var division = modelContext.Get<DivisionInfo, int> (item.DivisionID);
                 item.DivisionTitle = division.Title;
                 item.DivisionStartDate = division.StartDate;
                 item.DivisionEndDate = division.EndDate;
 
-                var position = modelContext.Get<PositionInfo> (item.PositionID);
+                var position = modelContext.Get<PositionInfo, int> (item.PositionID);
                 item.PositionTitle = position.Title;
             }
         }

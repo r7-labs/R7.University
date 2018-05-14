@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -91,7 +91,7 @@ namespace R7.University.SharedLogic
             }
 
             // set alt & title for photo
-            var fullName = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
+            var fullName = UniversityFormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
             imagePhoto.AlternateText = fullName;
             imagePhoto.ToolTip = fullName;
         }

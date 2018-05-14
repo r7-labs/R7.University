@@ -50,7 +50,7 @@ namespace R7.University.EduPrograms
         protected IEduProgram GetEduProgram ()
         {
         	var eduProgramId = GetEduProgramId ();
-        	return eduProgramId != null ? ModelContext.Get<EduProgramInfo> (eduProgramId.Value) : null;
+        	return eduProgramId != null ? ModelContext.Get<EduProgramInfo,int> (eduProgramId.Value) : null;
         }
 
         protected override void OnLoad (EventArgs e)
@@ -86,7 +86,7 @@ namespace R7.University.EduPrograms
             textFinancingByScientist.Text = item.FinancingByScientist.ToDecimalString ();
         }
 
-        protected override void BeforeUpdateItem (ScienceInfo item)
+        protected override void BeforeUpdateItem (ScienceInfo item, bool isNew)
         {
             item.Directions = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textDirections.Text)));
             item.Base = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textBase.Text)));
@@ -112,9 +112,9 @@ namespace R7.University.EduPrograms
 
         protected override int GetItemId (ScienceInfo item) => item.ScienceId;
 
-        protected override ScienceInfo GetItemWithDependencies (int itemId)
+        protected ScienceInfo GetItemWithDependencies (int itemId)
         {
-            return ModelContext.Get<ScienceInfo> (itemId);
+            return ModelContext.Get<ScienceInfo, int> (itemId);
         }
 
         protected override void UpdateItem (ScienceInfo item)

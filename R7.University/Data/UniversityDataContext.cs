@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,94 +19,28 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using DotNetNuke.Common.Utilities;
+using Microsoft.EntityFrameworkCore;
+using R7.Dnn.Extensions.Data;
+using R7.Dnn.Extensions.EFCore;
+using R7.University.Data.Mappings;
 
 namespace R7.University.Data
 {
-    public class UniversityDataContext : DbContext, IDataContext
+    public class UniversityDataContext: EFCoreDnnDataContextBase, IDataContext
     {
-        static UniversityDataContext ()
+        protected override void OnModelCreating (ModelBuilder modelBuilder)
         {
-            // do not use migrations
-            Database.SetInitializer<UniversityDataContext> (null);
+            base.OnModelCreating (modelBuilder);
+
+            ApplyConfiguration (new AchievementConfiguration (), modelBuilder);
+            ApplyConfiguration (new AchievementTypeConfiguration (), modelBuilder);
+            ApplyConfiguration (new ContingentConfiguration (), modelBuilder);
         }
 
-        public UniversityDataContext (): base ("name=SiteSqlServer")
+        protected void ApplyConfiguration<TEntity> (IEntityTypeConfiguration<TEntity> configuration, ModelBuilder modelBuilder) where TEntity: class
         {
-            // don't autodetect entity changes
-            Configuration.AutoDetectChangesEnabled = false; 
-
-            // don't use lazy loading
-            Configuration.LazyLoadingEnabled = false;
-
-            // we don't autotodetect changes nor use lazy loading, so disable proxies
-            Configuration.ProxyCreationEnabled = false;
-
-            // don't validate entities
-            Configuration.ValidateOnSaveEnabled = false;
+            configuration.Configure (modelBuilder.Entity<TEntity> ());
         }
-
-        protected override void OnModelCreating (DbModelBuilder modelBuilder)
-        {
-            // remove trailing '.' from schema name, by ex. "dbo." => "dbo"
-            modelBuilder.HasDefaultSchema (Config.GetDataBaseOwner ().TrimEnd ('.'));
-
-            // add mappings
-            modelBuilder.Configurations.AddFromAssembly (GetType ().Assembly);
-
-            // table names should be configured in mappings
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
-
-        #region IUniversityDataContext implementation
-
-        public new IDbSet<TEntity> Set<TEntity> () where TEntity: class
-        {
-            return base.Set<TEntity> ();
-        }
-
-        public IEnumerable<TEntity> ExecuteQuery<TEntity> (string queryName, params KeyValuePair<string,object> [] parameters) 
-            where TEntity: class
-        {
-            var sqlParameters = new SqlParameter [parameters.Length];
-            var strParameters = new StringBuilder ();
-            var first = true;
-
-            for (var i = 0; i < parameters.Length; i++) {
-                sqlParameters [i] = new SqlParameter (parameters [i].Key, parameters [i].Value);
-
-                if (first) {
-                    strParameters.AppendFormat (" @{0}", parameters [i].Key);
-                    first = false;
-                }
-                else {
-                    strParameters.AppendFormat (", @{0}", parameters [i].Key);    
-                }
-            }
-
-            // databaseOwner is set by modelBuilder.HasDefaultSchema
-            queryName = queryName.Replace ("{objectQualifier}", Config.GetObjectQualifer ());
-
-            return Database.SqlQuery<TEntity> (queryName + strParameters, sqlParameters).ToList ();
-        }
-
-        public void WasModified<TEntity> (TEntity entity) where TEntity: class
-        {
-            Entry (entity).State = EntityState.Modified;
-        }
-
-        public void WasRemoved<TEntity> (TEntity entity) where TEntity: class
-        {
-            Entry (entity).State = EntityState.Deleted;
-        }
-
-        #endregion
     }
 }
 

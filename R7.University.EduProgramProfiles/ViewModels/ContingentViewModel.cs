@@ -98,39 +98,39 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
         }
 
-        public string VacantFB => FormatHelper.ValueOrDash (FormYear.Contingent?.VacantFB);
+        public string VacantFB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.VacantFB);
 
-        public string VacantRB => FormatHelper.ValueOrDash (FormYear.Contingent?.VacantRB);
+        public string VacantRB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.VacantRB);
 
-        public string VacantMB => FormatHelper.ValueOrDash (FormYear.Contingent?.VacantMB);
+        public string VacantMB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.VacantMB);
 
-        public string VacantBC => FormatHelper.ValueOrDash (FormYear.Contingent?.VacantBC);
+        public string VacantBC => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.VacantBC);
 
-        public string ActualFB => FormatHelper.ValueOrDash (FormYear.Contingent?.ActualFB);
+        public string ActualFB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualFB);
 
-        public string ActualRB => FormatHelper.ValueOrDash (FormYear.Contingent?.ActualRB);
+        public string ActualRB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualRB);
 
-        public string ActualMB => FormatHelper.ValueOrDash (FormYear.Contingent?.ActualMB);
+        public string ActualMB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualMB);
 
-        public string ActualBC => FormatHelper.ValueOrDash (FormYear.Contingent?.ActualBC);
+        public string ActualBC => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualBC);
 
-        public string AvgAdmScore => FormatHelper.ValueOrDash (FormYear.Contingent?.AvgAdmScore, FormatExtensions.ToDecimalString);
+        public string AvgAdmScore => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AvgAdmScore, FormatExtensions.ToDecimalString);
 
-        public string AdmittedFB => FormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedFB);
+        public string AdmittedFB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedFB);
 
-        public string AdmittedRB => FormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedRB);
+        public string AdmittedRB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedRB);
 
-        public string AdmittedMB => FormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedMB);
+        public string AdmittedMB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedMB);
 
-        public string AdmittedBC => FormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedBC);
+        public string AdmittedBC => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedBC);
 
-        public string MovedIn => FormatHelper.ValueOrDash (FormYear.Contingent?.MovedIn);
+        public string MovedIn => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.MovedIn);
 
-        public string MovedOut => FormatHelper.ValueOrDash (FormYear.Contingent?.MovedOut);
+        public string MovedOut => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.MovedOut);
 
-        public string Restored => FormatHelper.ValueOrDash (FormYear.Contingent?.Restored);
+        public string Restored => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.Restored);
 
-        public string Expelled => FormatHelper.ValueOrDash (FormYear.Contingent?.Expelled);
+        public string Expelled => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.Expelled);
 
         public string EduLevelVacantItemProp {
             get {

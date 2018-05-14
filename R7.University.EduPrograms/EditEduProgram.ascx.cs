@@ -26,7 +26,7 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
@@ -124,7 +124,7 @@ namespace R7.University.EduPrograms
 
         protected override void LoadItem (EduProgramInfo item)
         {
-            var ep = GetItemWithDependencies (ItemId.Value);
+            var ep = GetItemWithDependencies (ItemKey.Value);
 
             textCode.Text = ep.Code;
             textTitle.Text = ep.Title;
@@ -160,7 +160,7 @@ namespace R7.University.EduPrograms
             panelAddDefaultProfile.Visible = SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
         }
 
-        protected override void BeforeUpdateItem (EduProgramInfo item)
+        protected override void BeforeUpdateItem (EduProgramInfo item, bool isNew)
         {
             // fill the object
             item.Code = textCode.Text.Trim ();
@@ -172,17 +172,15 @@ namespace R7.University.EduPrograms
 
             // update references
             item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);
-            item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelID);
+            item.EduLevel = ModelContext.Get<EduLevelInfo,int> (item.EduLevelID);
 
-            if (ItemId == null) {
-            }
-            else {
+            if (!isNew) {
                 item.LastModifiedOnDate = DateTime.Now;
                 item.LastModifiedByUserId = UserInfo.UserID;
             }
         }
 
-        protected override EduProgramInfo GetItemWithDependencies (int itemId)
+        protected EduProgramInfo GetItemWithDependencies (int itemId)
         {
             return new EduProgramQuery (ModelContext).SingleOrDefault (itemId);
         }

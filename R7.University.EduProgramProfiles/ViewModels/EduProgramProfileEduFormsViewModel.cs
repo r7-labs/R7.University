@@ -26,7 +26,7 @@ using System.Linq;
 using System.Web;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
@@ -58,7 +58,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string Code => Wrap (EduProgram.Code, "eduCode");
 
         public string Title => Wrap (
-            FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
+            UniversityFormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                 .Append (IsAdopted? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
             "eduName"
         );
@@ -78,7 +78,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                         .Select (eppfy => (eppfy.IsPublished (_now) ? "<li>" : "<li class=\"u8y-not-published-element\">")
                                  + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile, eppfy.EduForm.Title).ToLower ()
                                  + ((eppfy.EduVolume != null && (eppfy.EduVolume.TimeToLearnMonths != 0 || eppfy.EduVolume.TimeToLearnHours != 0)) 
-                                    ? ("&nbsp;- " + FormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile))
+                                    ? ("&nbsp;- " + UniversityFormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile))
                                     : string.Empty)
                                  + "</li>")
         				.Aggregate ((s1, s2) => s1 + s2) + "</ul>";
@@ -103,7 +103,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 	.ToList ();
 
                 if (languages.Count > 0) {
-                    return $"<span itemprop=\"language\">{HttpUtility.HtmlEncode (TextUtils.FormatList (", ", languages))}</span>";
+                    return $"<span itemprop=\"language\">{HttpUtility.HtmlEncode (FormatHelper.FormatList (", ", languages))}</span>";
                 }
             }
 

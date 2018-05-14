@@ -26,14 +26,12 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.ViewModels;
-using R7.University.Controls.ViewModels;
 using R7.University.EditModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
-using R7.University.ViewModels;
 
 namespace R7.University.Controls.EditModels
 {
