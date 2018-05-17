@@ -44,7 +44,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.Certificates).IsRequired (false);
             entityBuilder.Property (m => m.CertificatesForeign).IsRequired (false);
             entityBuilder.Property (m => m.FinancingByScientist).HasColumnType ("decimal(18,3)").IsRequired (false);
-            entityBuilder.HasOne (m => m.EduProgram);
+            //entityBuilder.HasOne (m => m.EduProgram).WithOne (ep => ep.Science).HasForeignKey<ScienceInfo> (m => m.ScienceId);
         }
     }
 }

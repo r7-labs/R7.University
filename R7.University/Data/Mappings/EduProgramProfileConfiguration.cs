@@ -49,7 +49,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.LastModifiedOnDate);
             entityBuilder.Property (m => m.CreatedByUserId);
             entityBuilder.Property (m => m.CreatedOnDate);
-            entityBuilder.HasOne (m => m.EduProgram).WithMany ().HasForeignKey (m => m.EduProgramID);
+            entityBuilder.HasOne (m => m.EduProgram).WithMany (ep => ep.EduProgramProfiles).HasForeignKey (m => m.EduProgramID);
             entityBuilder.HasOne (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelId);
             entityBuilder.HasMany (m => m.Documents).WithOne ().HasForeignKey (d => d.EduProgramProfileId);
             entityBuilder.HasMany (m => m.EduProgramProfileFormYears).WithOne ().HasForeignKey (eppfy => eppfy.EduProgramProfileId);

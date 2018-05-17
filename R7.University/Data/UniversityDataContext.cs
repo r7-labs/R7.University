@@ -32,8 +32,26 @@ namespace R7.University.Data
         {
             base.OnModelCreating (modelBuilder);
 
+            ApplyConfiguration (new YearConfiguration (), modelBuilder);
+            ApplyConfiguration (new DocumentConfiguration (), modelBuilder);
+            ApplyConfiguration (new DocumentTypeConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduProgramDivisionConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduLevelConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduFormConfiguration (), modelBuilder);
+            ApplyConfiguration (new PositionConfiguration (), modelBuilder);
             ApplyConfiguration (new AchievementConfiguration (), modelBuilder);
             ApplyConfiguration (new AchievementTypeConfiguration (), modelBuilder);
+            ApplyConfiguration (new DivisionConfiguration (), modelBuilder);
+            ApplyConfiguration (new EmployeeConfiguration (), modelBuilder);
+            ApplyConfiguration (new EmployeeAchievementConfiguration (), modelBuilder);
+            ApplyConfiguration (new EmployeeDisciplineConfiguration (), modelBuilder);
+            ApplyConfiguration (new OccupiedPositionConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduProgramConfiguration (), modelBuilder);
+            ApplyConfiguration (new ScienceConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduProgramProfileConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduProgramProfileFormConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduProgramProfileFormYearConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduVolumeConfiguration (), modelBuilder);
             ApplyConfiguration (new ContingentConfiguration (), modelBuilder);
         }
 

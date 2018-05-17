@@ -43,7 +43,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.PracticeType1Cu).IsRequired (false);
             entityBuilder.Property (m => m.PracticeType2Cu).IsRequired (false);
             entityBuilder.Property (m => m.PracticeType3Cu).IsRequired (false);
-            entityBuilder.HasOne (m => m.EduProgramProfileFormYear).WithOne (x => x.EduVolume);
+            entityBuilder.HasOne (m => m.EduProgramProfileFormYear).WithOne (eppfy => eppfy.EduVolume).HasForeignKey<EduVolumeInfo> (ev => ev.EduVolumeId);
         }
     }
 }
