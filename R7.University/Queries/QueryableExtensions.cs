@@ -28,6 +28,7 @@ namespace R7.University.Queries
 {
     public static class QueryableExtensions
     {
+        // TODO: Should be removed after encapsulating all Include/ThenInclude inside extensions
         public static IQueryable<T> Include2<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path) where T: class
         {
             return EntityFrameworkQueryableExtensions.Include (source, path);

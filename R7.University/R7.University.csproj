@@ -153,11 +153,11 @@
     <Reference Include="YamlDotNet">
       <HintPath>..\packages\YamlDotNet.4.3.1\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
-    <Reference Include="R7.Dnn.Extensions.EFCore">
-      <HintPath>..\packages\R7.Dnn.Extensions.EFCore.0.1.0-alpha2\lib\net451\R7.Dnn.Extensions.EFCore.dll</HintPath>
-    </Reference>
     <Reference Include="R7.Dnn.Extensions">
       <HintPath>..\packages\R7.Dnn.Extensions.0.13.0-alpha2\lib\net45\R7.Dnn.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="R7.Dnn.Extensions.EFCore">
+      <HintPath>..\packages\R7.Dnn.Extensions.EFCore.0.1.0-alpha3\lib\net451\R7.Dnn.Extensions.EFCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -292,10 +292,10 @@
     <Compile Include="Queries\EduProgramProfileQueryableExtensions.cs" />
     <Compile Include="Models\DivisionLevel.cs" />
     <Compile Include="ModelExtensions\YearExtensions.cs" />
-    <Compile Include="Data\Mappings\IEntityTypeConfiguration.cs" />
     <Compile Include="Models\UniversityCrudProvider.cs" />
     <Compile Include="Queries\DivisionQueryExtensions.cs" />
     <Compile Include="Queries\QueryableExtensions.cs" />
+    <Compile Include="Queries\EmployeeQueryExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -22,6 +22,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using R7.Dnn.Extensions.Data;
+using R7.Dnn.Extensions.EFCore;
 using R7.University.Models;
 
 namespace R7.University.Data.Mappings

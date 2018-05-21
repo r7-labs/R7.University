@@ -88,11 +88,13 @@ namespace R7.University.Employees
 
         internal EmployeeListViewModel GetViewModel ()
         {
-            var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
+            /*var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
             return DataCache.GetCachedData<EmployeeListViewModel> (
                 new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetViewModel_Internal ()
             ).SetContext (ViewModelContext);
+*/
+            return GetViewModel_Internal ().SetContext (ViewModelContext);
         }
 
         internal EmployeeListViewModel GetViewModel_Internal ()

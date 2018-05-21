@@ -36,64 +36,35 @@ namespace R7.University.Employees.Queries
         public EmployeeInfo SingleOrDefault (int employeeId)
         {
             return ModelContext.QueryOne<EmployeeInfo> (e => e.EmployeeID == employeeId)
-                .Include2 (e => e.Positions)
-                .Include2 (e => e.Positions.Select (p => p.Position))
-                .Include2 (e => e.Positions.Select (p => p.Division))
-                .Include2 (e => e.Achievements)
-                .Include2 (e => e.Achievements.Select (ea => ea.Achievement))
-                .Include2 (e => e.Achievements.Select (ea => ea.Achievement.AchievementType))
-                .Include2 (e => e.Achievements.Select (ea => ea.AchievementType))
-                .Include2 (e => e.Disciplines)
-                .Include2 (e => e.Disciplines.Select (ed => ed.EduProgramProfile))
-                .Include2 (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduProgram))
-                .Include2 (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduLevel))
-                .SingleOrDefault ();
+                               .IncludePositions ()
+                               .IncludeAchievements ()
+                               .IncludeDisciplines ()
+                               .SingleOrDefault ();
         }
 
         public EmployeeInfo SingleOrDefaultByUserId (int userId)
         {
             return ModelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
-                .Include2 (e => e.Positions)
-                .Include2 (e => e.Positions.Select (p => p.Position))
-                .Include2 (e => e.Positions.Select (p => p.Division))
-                .Include2 (e => e.Achievements)
-                .Include2 (e => e.Achievements.Select (ea => ea.Achievement))
-                .Include2 (e => e.Achievements.Select (ea => ea.Achievement.AchievementType))
-                .Include2 (e => e.Achievements.Select (ea => ea.AchievementType))
-                .Include2 (e => e.Disciplines)
-                .Include2 (e => e.Disciplines.Select (ed => ed.EduProgramProfile))
-                .Include2 (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduProgram))
-                .Include2 (e => e.Disciplines.Select (ed => ed.EduProgramProfile.EduLevel))
-                .SingleOrDefault ();
+                               .IncludePositions ()
+                               .IncludeAchievements ()
+                               .IncludeDisciplines ()
+                               .SingleOrDefault ();
         }
 
         public IEnumerable<EmployeeInfo> ListByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
         {
-            KeyValuePair<string, object> [] parameters = {
-            				new KeyValuePair<string, object> ("divisionId", divisionId),
-            				new KeyValuePair<string, object> ("sortType", sortType)
-            			};
-
-            var queryName = includeSubDivisions
-            	? "{objectQualifier}University_GetEmployees_ByDivisionID_Recursive"
-            	: "{objectQualifier}University_GetEmployees_ByDivisionID";
-
-            return ModelContext.Query<EmployeeInfo> (queryName, parameters);
+            var spName = includeSubDivisions ? "GetEmployees_ByDivisionID_Recursive" : "GetEmployees_ByDivisionID";
+            return ModelContext.Query<EmployeeInfo> ("EXECUTE {objectQualifier}University_" + spName + " {0}, {1}", divisionId, sortType);
         }
 
         public IList<EmployeeInfo> ListByIds (IEnumerable<int> employeeIds)
         {
         	if (employeeIds.Any ()) {
         		return ModelContext.Query<EmployeeInfo> ()
-        			.Include2 (e => e.Achievements)
-        			.Include2 (e => e.Achievements.Select (ea => ea.Achievement))
-        			.Include2 (e => e.Achievements.Select (ea => ea.Achievement.AchievementType))
-        			.Include2 (e => e.Achievements.Select (ea => ea.AchievementType))
-        			.Include2 (e => e.Positions)
-        			.Include2 (e => e.Positions.Select (op => op.Position))
-        			.Include2 (e => e.Positions.Select (op => op.Division))
-        			.Where (e => employeeIds.Contains (e.EmployeeID))
-        			.ToList ();
+                                   .IncludeAchievements ()
+                                   .IncludePositions ()
+                                   .Where (e => employeeIds.Contains (e.EmployeeID))
+                                   .ToList ();
         	}
 
         	return new List<EmployeeInfo> ();
