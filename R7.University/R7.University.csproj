@@ -214,7 +214,6 @@
     <Compile Include="Data\Mappings\EduProgramProfileFormConfiguration.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileConfiguration.cs" />
     <Compile Include="Models\UniversityModelContext.cs" />
-    <Compile Include="Models\QueryableExtensions.cs" />
     <Compile Include="Data\Mappings\EmployeeDisciplineConfiguration.cs" />
     <Compile Include="Data\Mappings\EmployeeAchievementConfiguration.cs" />
     <Compile Include="Data\Mappings\AchievementConfiguration.cs" />
@@ -295,6 +294,8 @@
     <Compile Include="ModelExtensions\YearExtensions.cs" />
     <Compile Include="Data\Mappings\IEntityTypeConfiguration.cs" />
     <Compile Include="Models\UniversityCrudProvider.cs" />
+    <Compile Include="Queries\DivisionQueryExtensions.cs" />
+    <Compile Include="Queries\QueryableExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

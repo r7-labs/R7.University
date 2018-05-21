@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using R7.Dnn.Extensions.Models;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EduProgramProfiles.Queries
 {
@@ -40,12 +41,12 @@ namespace R7.University.EduProgramProfiles.Queries
                                                                                       DivisionLevel divisionLevel)
         {
             return ModelContext.Query<EduProgramProfileFormYearInfo> ()
-                               .Include (eppfy => eppfy.EduProgramProfile)
-                               .Include (eppfy => eppfy.EduProgramProfile.EduLevel)
-                               .Include (eppfy => eppfy.EduProgramProfile.EduProgram)
-                               .Include (eppfy => eppfy.EduForm)
-                               .Include (eppfy => eppfy.EduVolume)
-                               .Include (eppfy => eppfy.Year)
+                               .Include2 (eppfy => eppfy.EduProgramProfile)
+                               .Include2 (eppfy => eppfy.EduProgramProfile.EduLevel)
+                               .Include2 (eppfy => eppfy.EduProgramProfile.EduProgram)
+                               .Include2 (eppfy => eppfy.EduForm)
+                               .Include2 (eppfy => eppfy.EduVolume)
+                               .Include2 (eppfy => eppfy.Year)
                                .Where (eppfy => eppfy.Year != null)
                                .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
                                .WhereEduLevelsOrAll (eduLevelIds)

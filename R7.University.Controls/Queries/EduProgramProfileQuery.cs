@@ -36,16 +36,16 @@ namespace R7.University.Controls.Queries
         public IList<EduProgramProfileInfo> ListByEduLevel (int eduLevelId)
         {
             return ModelContext.Query<EduProgramProfileInfo> ()
-                               .Include (epp => epp.EduProgram)
+                               .Include2 (epp => epp.EduProgram)
                                .Where (epp => epp.EduLevelId == eduLevelId).ToList ();
         }
 
         public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
         {
             return ModelContext.QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
-                .Include (epp => epp.EduProgram)
-                .Include (epp => epp.EduProgram.EduLevel)
-                .Include (epp => epp.EduLevel)
+                .Include2 (epp => epp.EduProgram)
+                .Include2 (epp => epp.EduProgram.EduLevel)
+                .Include2 (epp => epp.EduLevel)
                 .SingleOrDefault ();
         }
     }

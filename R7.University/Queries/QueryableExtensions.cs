@@ -24,11 +24,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
-namespace R7.University.Models
+namespace R7.University.Queries
 {
     public static class QueryableExtensions
     {
-        public static IQueryable<T> Include<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path) where T: class
+        public static IQueryable<T> Include2<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path) where T: class
         {
             return EntityFrameworkQueryableExtensions.Include (source, path);
         }

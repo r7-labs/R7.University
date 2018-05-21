@@ -43,7 +43,7 @@ namespace R7.University.Divisions.Queries
         public DivisionInfo SingleOrDefault (int divisionId)
         {
             return ModelContext.QueryOne<DivisionInfo> (d => d.DivisionID == divisionId)
-                .Include (d => d.SubDivisions)
+                .Include2 (d => d.SubDivisions)
                 .SingleOrDefault ();
         }
     }

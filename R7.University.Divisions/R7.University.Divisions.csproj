@@ -171,11 +171,11 @@
     </Compile>
     <Compile Include="ViewModels\DivisionObrnadzorViewModel.cs" />
     <Compile Include="Queries\DivisionFindQuery.cs" />
-    <Compile Include="Queries\DivisionHierarchyQuery.cs" />
     <Compile Include="Queries\HeadEmployeesQuery.cs" />
     <Compile Include="Models\DivisionDirectoryMode.cs" />
     <Compile Include="Models\DivisionDirectorySettings.cs" />
     <Compile Include="Components\DivisionDirectoryController.cs" />
+    <Compile Include="Queries\DivisionHierarchyQuery.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

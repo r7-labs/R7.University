@@ -1,5 +1,5 @@
 //
-//  OccupiedPositionsByEmployeeQuery.cs
+//  DivisionQueryExtensions.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -20,27 +20,19 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Linq;
-using R7.Dnn.Extensions.Models;
+using Microsoft.EntityFrameworkCore;
 using R7.University.Models;
-using R7.University.Queries;
 
-namespace R7.University.Employees.Queries
+namespace R7.University.Queries
 {
-    internal class OccupiedPositionQuery: QueryBase
+    public static class DivisionQueryExtensions
     {
-        public OccupiedPositionQuery (IModelContext modelContext): base (modelContext)
+        public static IQueryable<DivisionInfo> IncludeOccupiedPositions (this IQueryable<DivisionInfo> divisions)
         {
-        }
-
-        public OccupiedPositionInfo FirstOrDefaultPrimePosition (int employeeId)
-        {
-            return ModelContext.Query<OccupiedPositionInfo> ()
-                .Include2 (op => op.Position)
-                .Include2 (op => op.Division)
-                .Where (op => op.EmployeeID == employeeId)
-                .OrderByDescending (op => op.IsPrime)
-                .ThenByDescending (op => op.Position.Weight)
-                .FirstOrDefault ();
+            return divisions.Include (d => d.OccupiedPositions)
+                                .ThenInclude (op => op.Position)
+                            .Include (d => d.OccupiedPositions)
+                                .ThenInclude (op => op.Employee);
         }
     }
 }

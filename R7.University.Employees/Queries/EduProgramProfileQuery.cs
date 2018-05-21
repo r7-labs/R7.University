@@ -36,8 +36,8 @@ namespace R7.University.Employees.Queries
         public IList<EduProgramProfileInfo> ListByEduLevels (IEnumerable<int> eduLevelIds)
         {
             return ModelContext.Query<EduProgramProfileInfo> ()
-                               .Include (epp => epp.EduLevel)
-                               .Include (epp => epp.EduProgram)
+                               .Include2 (epp => epp.EduLevel)
+                               .Include2 (epp => epp.EduProgram)
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .DefaultOrder ()
                                .ToList ();

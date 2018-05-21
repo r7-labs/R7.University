@@ -59,10 +59,10 @@ namespace R7.University.EduPrograms.Queries
         protected IQueryable<EduProgramInfo> QueryEduProgramsIncludeScience ()
         {
             return ModelContext.Query<EduProgramInfo> ()
-                               .Include (ep => ep.EduLevel)
-                               .Include (ep => ep.Divisions)
-                               .Include (ep => ep.Divisions.Select (d => d.Division))
-                               .Include (ep => ep.Science)
+                               .Include2 (ep => ep.EduLevel)
+                               .Include2 (ep => ep.Divisions)
+                               .Include2 (ep => ep.Divisions.Select (d => d.Division))
+                               .Include2 (ep => ep.Science)
                                .DefaultOrder ();
         }
     }

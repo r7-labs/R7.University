@@ -30,11 +30,11 @@ namespace R7.University.Queries
     {
         public static IQueryable<EduProgramProfileInfo> IncludeEduProgramAndDivisions (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
         {
-            return eduProgramProfiles.Include (epp => epp.EduLevel)
-                                     .Include (epp => epp.EduProgram)
-                                     .Include (epp => epp.EduProgram.EduLevel)
-                                     .Include (epp => epp.Divisions)
-                                     .Include (epp => epp.EduProgram.Divisions);
+            return eduProgramProfiles.Include2 (epp => epp.EduLevel)
+                                     .Include2 (epp => epp.EduProgram)
+                                     .Include2 (epp => epp.EduProgram.EduLevel)
+                                     .Include2 (epp => epp.Divisions)
+                                     .Include2 (epp => epp.EduProgram.Divisions);
         }
 
         public static IQueryable<EduProgramProfileInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileInfo> eduProgramProfiles, IEnumerable<int> eduLevelIds)

@@ -39,8 +39,8 @@ namespace R7.University.Divisions.Queries
         {
             if (headPositionId != null) {
                 return ModelContext.Query<EmployeeInfo> ()
-                    .Include (e => e.Positions)
-                    .Include (e => e.Positions.Select (op => op.Position))
+                    .Include2 (e => e.Positions)
+                    .Include2 (e => e.Positions.Select (op => op.Position))
                     .Where (e => e.Positions.Any (op => op.DivisionID == divisionId && op.PositionID == headPositionId))
                     .ToList ();
             }

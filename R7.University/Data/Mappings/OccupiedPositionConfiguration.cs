@@ -37,8 +37,8 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.DivisionID).IsRequired ();
             entityBuilder.Property (m => m.EmployeeID).IsRequired ();
             entityBuilder.HasOne (m => m.Position).WithMany ().HasForeignKey (m => m.PositionID);
-            entityBuilder.HasOne (m => m.Division).WithMany ().HasForeignKey (m => m.DivisionID);
-            entityBuilder.HasOne (m => m.Employee).WithMany ().HasForeignKey (m => m.EmployeeID);
+            entityBuilder.HasOne (m => m.Division).WithMany (d => d.OccupiedPositions).HasForeignKey (m => m.DivisionID);
+            entityBuilder.HasOne (m => m.Employee).WithMany (e => e.Positions).HasForeignKey (m => m.EmployeeID);
             entityBuilder.Property (m => m.IsPrime);
             entityBuilder.Property (m => m.TitleSuffix);
         }

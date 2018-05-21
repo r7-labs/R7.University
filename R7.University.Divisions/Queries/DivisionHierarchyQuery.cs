@@ -55,15 +55,5 @@ namespace R7.University.Divisions.Queries
                                .ThenBy (d => d.Title);
         }
     }
-
-    static class DivisionQueryExtensions
-    {
-        internal static IQueryable<DivisionInfo> IncludeOccupiedPositions (this IQueryable<DivisionInfo> divisions)
-        {
-            return divisions.Include (d => d.OccupiedPositions)
-                            .Include (d => d.OccupiedPositions.Select (op => op.Position))
-                            .Include (d => d.OccupiedPositions.Select (op => op.Employee));
-        }
-    }
 }
 

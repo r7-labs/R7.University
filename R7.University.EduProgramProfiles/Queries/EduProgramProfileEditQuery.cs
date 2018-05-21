@@ -35,17 +35,17 @@ namespace R7.University.EduProgramProfiles.Queries
         public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
         {
             return ModelContext.QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
-                .Include (epp => epp.EduProgram)
-                .Include (epp => epp.EduProgram.EduLevel)
-                .Include (epp => epp.EduLevel)
-                .Include (epp => epp.EduProgramProfileFormYears)
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Contingent))
-                .Include (epp => epp.Divisions)
-                .Include (epp => epp.Divisions.Select (ed => ed.Division))
-                .Include (epp => epp.Documents)
-                .Include (epp => epp.Documents.Select (d => d.DocumentType))
+                .Include2 (epp => epp.EduProgram)
+                .Include2 (epp => epp.EduProgram.EduLevel)
+                .Include2 (epp => epp.EduLevel)
+                .Include2 (epp => epp.EduProgramProfileFormYears)
+                .Include2 (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
+                .Include2 (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
+                .Include2 (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Contingent))
+                .Include2 (epp => epp.Divisions)
+                .Include2 (epp => epp.Divisions.Select (ed => ed.Division))
+                .Include2 (epp => epp.Documents)
+                .Include2 (epp => epp.Documents.Select (d => d.DocumentType))
                 .SingleOrDefault ();
         }
     }
