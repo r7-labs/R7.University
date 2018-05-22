@@ -295,6 +295,7 @@
     <Compile Include="Queries\DivisionQueryExtensions.cs" />
     <Compile Include="Queries\QueryableExtensions.cs" />
     <Compile Include="Queries\EmployeeQueryExtensions.cs" />
+    <Compile Include="Queries\EduProgramQueryableExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

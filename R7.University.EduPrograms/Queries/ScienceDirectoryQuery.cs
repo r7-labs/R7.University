@@ -60,8 +60,7 @@ namespace R7.University.EduPrograms.Queries
         {
             return ModelContext.Query<EduProgramInfo> ()
                                .Include2 (ep => ep.EduLevel)
-                               .Include2 (ep => ep.Divisions)
-                               .Include2 (ep => ep.Divisions.Select (d => d.Division))
+                               .IncludeDivisions ()
                                .Include2 (ep => ep.Science)
                                .DefaultOrder ();
         }
