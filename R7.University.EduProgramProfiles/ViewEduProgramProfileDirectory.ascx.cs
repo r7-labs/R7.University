@@ -31,6 +31,7 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls.Extensions;
+using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.ViewModels;

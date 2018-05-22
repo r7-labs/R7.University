@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using DotNetNuke.Services.Localization;
+using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;

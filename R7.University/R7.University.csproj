@@ -180,7 +180,6 @@
     <Compile Include="ViewModels\UniversityFormatHelper.cs" />
     <Compile Include="Components\UniversityConfig.cs" />
     <Compile Include="Components\UniversityPortalConfig.cs" />
-    <Compile Include="ModelExtensions\EnumerableExtensions.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />
     <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />

@@ -21,8 +21,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Models;
-using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Queries;
 
