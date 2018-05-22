@@ -30,6 +30,12 @@ namespace R7.University.Queries
         public static IQueryable<EmployeeInfo> IncludePositions (this IQueryable<EmployeeInfo> employees)
         {
             return employees.Include (e => e.Positions)
+                            .ThenInclude (p => p.Position);
+        }
+
+        public static IQueryable<EmployeeInfo> IncludePositionsWithDivision (this IQueryable<EmployeeInfo> employees)
+        {
+            return employees.Include (e => e.Positions)
                             .ThenInclude (p => p.Position)
                             .Include (e => e.Positions)
                             .ThenInclude (p => p.Division);

@@ -36,7 +36,7 @@ namespace R7.University.Employees.Queries
         public IList<EmployeeInfo> List ()
         {
             return ModelContext.Query<EmployeeInfo> ()
-                .IncludePositions ()
+                .IncludePositionsWithDivision ()
                 .IncludeAchievements ()
                 .Include2 (e => e.Disciplines)
                 .Where (e => e.Positions.Any (op => op.Position.IsTeacher))

@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
@@ -35,13 +36,10 @@ namespace R7.University.Divisions.Queries
         public IEnumerable<DivisionInfo> FindDivisions (string searchText, int divisionId)
         {
             // TODO: Remove @includeSubdivisions parameter from University_FindDivisions sp
-            KeyValuePair<string, object> [] parameters = {
-                new KeyValuePair<string, object> ("searchText", searchText),
-                new KeyValuePair<string, object> ("includeSubdivisions", true),
-                new KeyValuePair<string, object> ("divisionId", divisionId)
-            };
-                  
-            return ModelContext.Query<DivisionInfo> ("{objectQualifier}University_FindDivisions", parameters);
+            return ModelContext.Query<DivisionInfo> (
+                "EXECUTE {objectQualifier}University_FindDivisions {0}, 1, {1}",
+                searchText, divisionId
+            ).ToList ();
         }
     }
 }

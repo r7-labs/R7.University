@@ -36,7 +36,7 @@ namespace R7.University.Employees.Queries
         public EmployeeInfo SingleOrDefault (int employeeId)
         {
             return ModelContext.QueryOne<EmployeeInfo> (e => e.EmployeeID == employeeId)
-                               .IncludePositions ()
+                               .IncludePositionsWithDivision ()
                                .IncludeAchievements ()
                                .IncludeDisciplines ()
                                .SingleOrDefault ();
@@ -45,7 +45,7 @@ namespace R7.University.Employees.Queries
         public EmployeeInfo SingleOrDefaultByUserId (int userId)
         {
             return ModelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
-                               .IncludePositions ()
+                               .IncludePositionsWithDivision ()
                                .IncludeAchievements ()
                                .IncludeDisciplines ()
                                .SingleOrDefault ();
@@ -62,7 +62,7 @@ namespace R7.University.Employees.Queries
         	if (employeeIds.Any ()) {
         		return ModelContext.Query<EmployeeInfo> ()
                                    .IncludeAchievements ()
-                                   .IncludePositions ()
+                                   .IncludePositionsWithDivision ()
                                    .Where (e => employeeIds.Contains (e.EmployeeID))
                                    .ToList ();
         	}
