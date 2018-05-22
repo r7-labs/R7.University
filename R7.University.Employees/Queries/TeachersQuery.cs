@@ -36,14 +36,9 @@ namespace R7.University.Employees.Queries
         public IList<EmployeeInfo> List ()
         {
             return ModelContext.Query<EmployeeInfo> ()
-                .Include2 (e => e.Positions)
-                .Include2 (e => e.Positions.Select (op => op.Position))
-                .Include2 (e => e.Positions.Select (op => op.Division))
+                .IncludePositions ()
+                .IncludeAchievements ()
                 .Include2 (e => e.Disciplines)
-                .Include2 (e => e.Achievements)
-                .Include2 (e => e.Achievements.Select (ea => ea.Achievement))
-                .Include2 (e => e.Achievements.Select (ea => ea.Achievement.AchievementType))
-                .Include2 (e => e.Achievements.Select (ea => ea.AchievementType))
                 .Where (e => e.Positions.Any (op => op.Position.IsTeacher))
                 .ToList ();
         }
