@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -36,15 +36,12 @@ namespace R7.University.Employees.Queries
         public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool teachersOnly, int divisionId)
         {
             // TODO: Remove @includeSubdivisions parameter from University_FindEmployees sp
-            KeyValuePair<string, object> [] parameters = {
-                new KeyValuePair<string, object> ("searchText", searchText),
-                new KeyValuePair<string, object> ("teachersOnly", teachersOnly),
-                new KeyValuePair<string, object> ("includeSubdivisions", true),
-                new KeyValuePair<string, object> ("divisionId", divisionId)
-            };
-                  
-            return ModelContext.Query<EmployeeInfo> ("{objectQualifier}University_FindEmployees", parameters)
-                               .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
+            return ModelContext.Query<EmployeeInfo> (
+                "EXECUTE {objectQualifier}University_FindEmployees {0}, {1}, 1, {2}",
+                searchText,
+                teachersOnly,
+                divisionId
+            ).ToList ().Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
         }
     }
 }
