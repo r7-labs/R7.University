@@ -42,8 +42,8 @@ namespace R7.University.Data.Mappings
             entityBuilder.HasOne (m => m.EduProgramProfile).WithMany (x => x.EduProgramProfileFormYears).HasForeignKey (m => m.EduProgramProfileId);
             entityBuilder.HasOne (m => m.EduForm).WithMany ().HasForeignKey (m => m.EduFormId);
             entityBuilder.HasOne (m => m.Year).WithMany ().HasForeignKey (m => m.YearId);
-            entityBuilder.HasOne (m => m.EduVolume).WithOne (x => x.EduProgramProfileFormYear);
-            entityBuilder.HasOne (m => m.Contingent).WithOne (x => x.EduProgramProfileFormYear);
+            entityBuilder.HasOne (m => m.EduVolume).WithOne (x => x.EduProgramProfileFormYear).HasForeignKey<EduVolumeInfo> (ev => ev.EduVolumeId);
+            entityBuilder.HasOne (m => m.Contingent).WithOne (x => x.EduProgramProfileFormYear).HasForeignKey<ContingentInfo> (c => c.ContingentId);
         }
     }
 }

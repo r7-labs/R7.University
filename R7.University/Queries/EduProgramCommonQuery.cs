@@ -32,16 +32,6 @@ namespace R7.University.Queries
         {
         }
 
-        protected IQueryable<EduProgramInfo> QueryEduPrograms ()
-        {
-            return ModelContext.Query<EduProgramInfo> ()
-                .Include2 (ep => ep.EduLevel)
-                .Include2 (ep => ep.Divisions)
-                .Include2 (ep => ep.Divisions.Select (d => d.Division))    
-                .Include2 (ep => ep.Documents)
-                .Include2 (ep => ep.Documents.Select (d => d.DocumentType));
-        }
-
         public IList<EduProgramInfo> ListByEduLevel (int eduLevelId)
         {
             return ModelContext.Query<EduProgramInfo> ()

@@ -41,10 +41,10 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.HomePage).IsRequired (false);
             entityBuilder.Property (m => m.StartDate).IsRequired (false);
             entityBuilder.Property (m => m.EndDate).IsRequired (false);
-            entityBuilder.Property (m => m.LastModifiedByUserId);
-            entityBuilder.Property (m => m.LastModifiedOnDate);
-            entityBuilder.Property (m => m.CreatedByUserId);
-            entityBuilder.Property (m => m.CreatedOnDate);
+            entityBuilder.Property (m => m.LastModifiedByUserId).IsRequired ();
+            entityBuilder.Property (m => m.LastModifiedOnDate).IsRequired ();
+            entityBuilder.Property (m => m.CreatedByUserId).IsRequired ();
+            entityBuilder.Property (m => m.CreatedOnDate).IsRequired ();
             entityBuilder.HasOne (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelID);
             entityBuilder.HasOne (m => m.Science).WithOne (ep => ep.EduProgram).HasForeignKey<ScienceInfo> (s => s.ScienceId);
             entityBuilder.HasMany (m => m.Documents).WithOne ().HasForeignKey (d => d.EduProgramId);

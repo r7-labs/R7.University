@@ -35,20 +35,11 @@ namespace R7.University.EduPrograms.Queries
         public EduProgramInfo SingleOrDefault (int eduProgramId)
         {
             return ModelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
-                .Include2 (ep => ep.EduLevel)
-                .Include2 (ep => ep.Documents)
-                .Include2 (ep => ep.Documents.Select (d => d.DocumentType))
-                .Include2 (ep => ep.Divisions)
-                .Include2 (ep => ep.Divisions.Select (epd => epd.Division))
-                .Include2 (ep => ep.EduProgramProfiles)
-                .Include2 (ep => ep.EduProgramProfiles.Select (epp => epp.EduLevel))
-                .Include2 (ep => ep.EduProgramProfiles.Select (epp => epp.Divisions))
-                .Include2 (ep => ep.EduProgramProfiles.Select (epp => epp.Divisions.Select (epd => epd.Division)))
-                .Include2 (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears))
-                .Include2 (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm)))
-                .Include2 (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume)))
-                .Include2 (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year)))
-                .SingleOrDefault ();
+                               .IncludeEduLevelDivisionsAndDocuments ()
+                               .IncludeEduProgramProfiles ()
+                               // FIXME: Should be just SingleOrDefault: https://github.com/aspnet/EntityFrameworkCore/issues/11516
+                               .ToList ()
+                               .SingleOrDefault ();
         }
     }
 }

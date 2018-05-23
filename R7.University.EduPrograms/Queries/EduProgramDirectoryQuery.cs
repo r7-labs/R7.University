@@ -36,25 +36,30 @@ namespace R7.University.EduPrograms.Queries
         public IList<EduProgramInfo> ListByEduLevels (IList<int> eduLevelIds)
         {
             if (eduLevelIds.Count > 0) {
-                return QueryEduPrograms ()
-                    .Where (ep => eduLevelIds.Contains (ep.EduLevelID))
-                    .ToList ();
+                return ModelContext.Query<EduProgramInfo> ()
+                                   .IncludeEduLevelDivisionsAndDocuments ()
+                                   .Where (ep => eduLevelIds.Contains (ep.EduLevelID))
+                                   .ToList ();
             }
 
-            return QueryEduPrograms ().ToList ();
+            return ModelContext.Query<EduProgramInfo> ()
+                               .IncludeEduLevelDivisionsAndDocuments ()
+                               .ToList ();
         }
 
         public IList<EduProgramInfo> ListByDivisionAndEduLevels (int divisionId, IList<int> eduLevelIds)
         {
             if (eduLevelIds.Count > 0) {
-                return QueryEduPrograms ()
-                    .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId) && eduLevelIds.Contains (ep.EduLevelID))
-                    .ToList ();
+                return ModelContext.Query<EduProgramInfo> ()
+                                   .IncludeEduLevelDivisionsAndDocuments ()
+                                   .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId) && eduLevelIds.Contains (ep.EduLevelID))
+                                   .ToList ();
             }
 
-            return QueryEduPrograms ()
-                .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId))
-                .ToList ();
+            return ModelContext.Query<EduProgramInfo> ()
+                               .IncludeEduLevelDivisionsAndDocuments ()
+                               .Where (ep => ep.Divisions.Any (epd => epd.DivisionId == divisionId))
+                               .ToList ();
         }
     }
 }
