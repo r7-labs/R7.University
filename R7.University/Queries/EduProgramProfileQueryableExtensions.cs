@@ -21,6 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using R7.Dnn.Extensions.Collections;
 using R7.University.Models;
 
@@ -30,11 +31,12 @@ namespace R7.University.Queries
     {
         public static IQueryable<EduProgramProfileInfo> IncludeEduProgramAndDivisions (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
         {
-            return eduProgramProfiles.Include2 (epp => epp.EduLevel)
-                                     .Include2 (epp => epp.EduProgram)
-                                     .Include2 (epp => epp.EduProgram.EduLevel)
-                                     .Include2 (epp => epp.Divisions)
-                                     .Include2 (epp => epp.EduProgram.Divisions);
+            return eduProgramProfiles.Include (epp => epp.EduLevel)
+                                     .Include (epp => epp.EduProgram)
+                                        .ThenInclude (ep => ep.EduLevel)
+                                     .Include (epp => epp.Divisions)
+                                     .Include (epp => epp.EduProgram)
+                                        .ThenInclude (epd => epd.Divisions);
         }
 
         public static IQueryable<EduProgramProfileInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileInfo> eduProgramProfiles, IEnumerable<int> eduLevelIds)

@@ -56,7 +56,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.Restored).IsRequired (false);
             entityBuilder.Property (m => m.Expelled).IsRequired (false);
 
-            entityBuilder.HasOne (m => m.EduProgramProfileFormYear).WithOne (x => x.Contingent).HasForeignKey<ContingentInfo> (m => m.ContingentId);
+            entityBuilder.HasOne (m => m.EduProgramProfileFormYear).WithOne (eppfy => eppfy.Contingent).HasForeignKey<ContingentInfo> (m => m.ContingentId);
         }
     }
 }

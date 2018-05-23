@@ -62,7 +62,7 @@ namespace R7.University.EduProgramProfiles.Queries
                                   + ("0000000000" + ev.EduProgramProfile.EduLevel.SortIndex.ToString ())
                                     .Substring (ev.EduProgramProfile.EduLevel.SortIndex.ToString ().Length))
                          .ThenBy (ev => ev.EduForm.SortIndex)
-                         .ThenByDescending (ev => ev.Year.Year);
+                         .ThenByDescending (ev => ev.Year != null ? ev.Year.Year : 0);
         }
     }
 }
