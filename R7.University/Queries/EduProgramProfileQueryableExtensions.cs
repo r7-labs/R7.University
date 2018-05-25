@@ -39,6 +39,30 @@ namespace R7.University.Queries
                                         .ThenInclude (epd => epd.Divisions);
         }
 
+        public static IQueryable<EduProgramProfileInfo> IncludeEduProgramProfileFormYears (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.Year)
+                                     .Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.EduForm)
+                                     .Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.EduVolume);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeEduProgramProfileFormYearsAndForms (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.Year)
+                                     .Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.EduForm);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeDocuments (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.Documents)
+                                        .ThenInclude (d => d.DocumentType);
+        }
+
         public static IQueryable<EduProgramProfileInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileInfo> eduProgramProfiles, IEnumerable<int> eduLevelIds)
         {
             if (!eduLevelIds.IsNullOrEmpty ()) {
