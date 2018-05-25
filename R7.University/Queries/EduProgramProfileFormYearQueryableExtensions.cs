@@ -27,7 +27,7 @@ namespace R7.University.Queries
 {
     public static class EduProgramProfileFormYearQueryableExtensions
     {
-        public static IQueryable<EduProgramProfileFormYearInfo> IncludeEduProgramProfile (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears)
+        public static IQueryable<EduProgramProfileFormYearInfo> IncludeEduProgramProfileWithEduProgramAndDivisions (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears)
         {
             return eduProgramProfileFormYears.Include (eppfy => eppfy.EduProgramProfile)
                                                 .ThenInclude (epp => epp.EduLevel)
@@ -39,6 +39,14 @@ namespace R7.University.Queries
                                              .Include (eppfy => eppfy.EduProgramProfile)
                                                 .ThenInclude (epp => epp.EduProgram)
                                                     .ThenInclude (ep => ep.Divisions);
+        }
+
+        public static IQueryable<EduProgramProfileFormYearInfo> IncludeEduProgramProfileWithEduProgram (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears)
+        {
+            return eduProgramProfileFormYears.Include (eppfy => eppfy.EduProgramProfile)
+                                                .ThenInclude (epp => epp.EduLevel)
+                                             .Include (eppfy => eppfy.EduProgramProfile)
+                                                .ThenInclude (epp => epp.EduProgram);
         }
     }
 }

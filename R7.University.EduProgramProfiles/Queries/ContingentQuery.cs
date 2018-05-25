@@ -41,10 +41,11 @@ namespace R7.University.EduProgramProfiles.Queries
                                                                                       DivisionLevel divisionLevel)
         {
             return ModelContext.Query<EduProgramProfileFormYearInfo> ()
-                               .IncludeEduProgramProfile ()
+                               .IncludeEduProgramProfileWithEduProgramAndDivisions ()
                                .Include2 (eppfy => eppfy.EduForm)
                                .Include2 (eppfy => eppfy.Contingent)
                                .Include2 (eppfy => eppfy.Year)
+                               .Where (eppfy => eppfy.Year != null)
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
                                .DefaultOrder ()
