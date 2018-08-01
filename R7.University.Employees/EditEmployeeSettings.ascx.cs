@@ -24,7 +24,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.Cache;
+using R7.Dnn.Extensions.Caching;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Employees.Models;

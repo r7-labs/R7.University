@@ -24,7 +24,7 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.Cache;
+using R7.Dnn.Extensions.Caching;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;

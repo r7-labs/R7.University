@@ -31,7 +31,7 @@ using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.ViewModels;
 using R7.Dnn.Extensions.Utilities;
-using R7.Dnn.Extensions.Cache;
+using R7.Dnn.Extensions.Caching;
 
 namespace R7.University.EduPrograms
 {
