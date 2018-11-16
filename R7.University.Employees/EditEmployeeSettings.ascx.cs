@@ -24,9 +24,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.Caching;
 using R7.Dnn.Extensions.Controls;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Employees.Models;
 using R7.University.Models;
 using R7.University.Modules;
@@ -89,7 +87,7 @@ namespace R7.University.Employees
 
                 ModuleController.SynchronizeModule (ModuleId);
 
-                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/Employee?ModuleId=" + ModuleId);
+                DataCache.ClearCache ("//r7_University/Modules/Employee?ModuleId=" + ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -97,4 +95,3 @@ namespace R7.University.Employees
         }
     }
 }
-

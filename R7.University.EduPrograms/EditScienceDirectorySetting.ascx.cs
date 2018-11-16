@@ -21,6 +21,7 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Caching;
@@ -96,7 +97,7 @@ namespace R7.University.EduPrograms
 
                 ModuleController.SynchronizeModule (ModuleId);
 
-                CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/ScienceDirectory?ModuleId={ModuleId}");
+                DataCache.ClearCache ($"//r7_University/Modules/ScienceDirectory?ModuleId={ModuleId}");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

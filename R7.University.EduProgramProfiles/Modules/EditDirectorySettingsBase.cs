@@ -22,11 +22,10 @@
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.Caching;
 using R7.Dnn.Extensions.Controls;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ControlExtensions;
 using R7.University.Controls;
@@ -137,7 +136,7 @@ namespace R7.University.EduProgramProfiles.Modules
         protected virtual void OnSynchronizeModule ()
         {
             ModuleController.SynchronizeModule (ModuleId);
-            CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/{UniversityModuleHelper.GetModuleName (ModuleConfiguration)}?ModuleId={ModuleId}");
+            DataCache.ClearCache ($"//r7_University/Modules/{UniversityModuleHelper.GetModuleName (ModuleConfiguration)}?ModuleId={ModuleId}");
         }
     }
 }

@@ -21,11 +21,10 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.Caching;
 using R7.Dnn.Extensions.Controls;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.ControlExtensions;
 using R7.University.Employees.Models;
 using R7.University.Models;
@@ -110,7 +109,7 @@ namespace R7.University.Employees
 
                 ModuleController.SynchronizeModule (ModuleId);
 
-                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EmployeeDirectory");
+                DataCache.ClearCache ("//r7_University/Modules/EmployeeDirectory");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

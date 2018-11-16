@@ -19,7 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using R7.Dnn.Extensions.Caching;
+using DotNetNuke.Common.Utilities;
 using R7.Dnn.Extensions.Data;
 using R7.Dnn.Extensions.Models;
 using R7.University.Data;
@@ -49,7 +49,7 @@ namespace R7.University.Models
 
             // drop cache on final call
             if (dispose) {
-                CacheHelper.RemoveCacheByPrefix ("//r7_University");
+                DataCache.ClearCache ("//r7_University");
             }
 
             return result;
