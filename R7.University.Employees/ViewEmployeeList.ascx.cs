@@ -269,14 +269,14 @@ namespace R7.University.Employees
             var titles = achievements.Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
 			
             // employee title achievements
-            var strTitles = FormatHelper.FormatList (", ", titles);
+            var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
                 labelAcademicDegreeAndTitle.Visible = false;
 			
             // phones
-            var phones = FormatHelper.FormatList (", ", employee.Phone, employee.CellPhone);
+            var phones = FormatHelper.JoinNotNullOrEmpty (", ", employee.Phone, employee.CellPhone);
             if (!string.IsNullOrWhiteSpace (phones))
                 labelPhones.Text = phones;
             else
@@ -328,7 +328,7 @@ namespace R7.University.Employees
                 var strOps = string.Empty;
                 foreach (var gop in gops) {
                     // gop.Title is a comma-separated list of grouped positions
-                    strOps = FormatHelper.FormatList ("; ", strOps, FormatHelper.FormatList (": ", gop.Title, 
+                    strOps = FormatHelper.JoinNotNullOrEmpty ("; ", strOps, FormatHelper.JoinNotNullOrEmpty (": ", gop.Title, 
                         // TODO: Move to the module display settings?
                         // don't display division title also for current division
                         (gop.OccupiedPosition.DivisionID != Settings.DivisionID) ? gop.OccupiedPosition.FormatDivisionLink (this) : string.Empty));

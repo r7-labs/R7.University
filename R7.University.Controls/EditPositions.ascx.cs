@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
 using R7.University.Models;
@@ -83,7 +84,7 @@ namespace R7.University.Controls
         protected override void OnResetForm ()
         {
             var divisionId = Request.QueryString ["division_id"];
-            divisionSelector.DivisionId = TypeUtils.ParseToNullable<int> (divisionId);
+            divisionSelector.DivisionId = ParseHelper.ParseToNullable<int> (divisionId);
 
             comboPositions.SelectedIndex = 0;
             textPositionTitleSuffix.Text = string.Empty;

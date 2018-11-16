@@ -219,13 +219,13 @@ namespace R7.University.Models
 
         public string FullName
         {
-            get { return FormatHelper.FormatList (" ", LastName, FirstName, OtherName); }
+            get { return FormatHelper.JoinNotNullOrEmpty (" ", LastName, FirstName, OtherName); }
         }
 
         public string SearchDocumentText
         {
             get {
-                var text = FormatHelper.FormatList (", ",
+                var text = FormatHelper.JoinNotNullOrEmpty (", ",
                     FullName,
                     Phone,
                     CellPhone,

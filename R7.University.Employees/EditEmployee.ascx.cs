@@ -27,6 +27,7 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
@@ -212,7 +213,7 @@ namespace R7.University.Employees
         void SetupDivisionSelector ()
         {
             var divisionId = Request.QueryString ["division_id"];
-            formEditPositions.SetDivision (TypeUtils.ParseToNullable<int> (divisionId));
+            formEditPositions.SetDivision (ParseHelper.ParseToNullable<int> (divisionId));
         }
 
         protected override void BeforeUpdateItem (EmployeeInfo item, bool isNew)
@@ -232,14 +233,14 @@ namespace R7.University.Employees
             item.WorkingPlace = textWorkingPlace.Text.Trim ();
             item.Biography = textBiography.Text.Trim ();
             item.ShowBarcode = checkShowBarcode.Checked;
-            item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
-            item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
+            item.ExperienceYears = ParseHelper.ParseToNullable<int> (textExperienceYears.Text);
+            item.ExperienceYearsBySpec = ParseHelper.ParseToNullable<int> (textExperienceYearsBySpec.Text);
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
 
             // pickerPhoto.FileID may be 0 by default
             item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
-            item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
+            item.UserID = ParseHelper.ParseToNullable<int> (comboUsers.SelectedValue, true);
         }
 
         protected EmployeeInfo GetItemWithDependencies (int itemId)

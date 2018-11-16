@@ -23,6 +23,7 @@ using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
@@ -149,32 +150,32 @@ namespace R7.University.EduProgramProfiles
             var updateAllTabs = SecurityContext.IsAdmin;
 
             if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Actual) {
-                item.ActualFB = TypeUtils.ParseToNullable<int> (textActualFB.Text);
-                item.ActualRB = TypeUtils.ParseToNullable<int> (textActualRB.Text);
-                item.ActualMB = TypeUtils.ParseToNullable<int> (textActualMB.Text);
-                item.ActualBC = TypeUtils.ParseToNullable<int> (textActualBC.Text);
+                item.ActualFB = ParseHelper.ParseToNullable<int> (textActualFB.Text);
+                item.ActualRB = ParseHelper.ParseToNullable<int> (textActualRB.Text);
+                item.ActualMB = ParseHelper.ParseToNullable<int> (textActualMB.Text);
+                item.ActualBC = ParseHelper.ParseToNullable<int> (textActualBC.Text);
             }
 
             if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Vacant) {
-                item.VacantFB = TypeUtils.ParseToNullable<int> (textVacantFB.Text);
-                item.VacantRB = TypeUtils.ParseToNullable<int> (textVacantRB.Text);
-                item.VacantMB = TypeUtils.ParseToNullable<int> (textVacantMB.Text);
-                item.VacantBC = TypeUtils.ParseToNullable<int> (textVacantBC.Text);
+                item.VacantFB = ParseHelper.ParseToNullable<int> (textVacantFB.Text);
+                item.VacantRB = ParseHelper.ParseToNullable<int> (textVacantRB.Text);
+                item.VacantMB = ParseHelper.ParseToNullable<int> (textVacantMB.Text);
+                item.VacantBC = ParseHelper.ParseToNullable<int> (textVacantBC.Text);
             }
 
             if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Admission) {
-                item.AdmittedFB = TypeUtils.ParseToNullable<int> (textAdmittedFB.Text);
-                item.AdmittedRB = TypeUtils.ParseToNullable<int> (textAdmittedRB.Text);
-                item.AdmittedMB = TypeUtils.ParseToNullable<int> (textAdmittedMB.Text);
-                item.AdmittedBC = TypeUtils.ParseToNullable<int> (textAdmittedBC.Text);
-                item.AvgAdmScore = TypeUtils.ParseToNullable<decimal> (textAvgAdmScore.Text);
+                item.AdmittedFB = ParseHelper.ParseToNullable<int> (textAdmittedFB.Text);
+                item.AdmittedRB = ParseHelper.ParseToNullable<int> (textAdmittedRB.Text);
+                item.AdmittedMB = ParseHelper.ParseToNullable<int> (textAdmittedMB.Text);
+                item.AdmittedBC = ParseHelper.ParseToNullable<int> (textAdmittedBC.Text);
+                item.AvgAdmScore = ParseHelper.ParseToNullable<decimal> (textAvgAdmScore.Text);
             }
 
             if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Movement) {
-                item.MovedOut = TypeUtils.ParseToNullable<int> (textMovedOut.Text);
-                item.MovedIn = TypeUtils.ParseToNullable<int> (textMovedIn.Text);
-                item.Restored = TypeUtils.ParseToNullable<int> (textRestored.Text);
-                item.Expelled = TypeUtils.ParseToNullable<int> (textExpelled.Text);
+                item.MovedOut = ParseHelper.ParseToNullable<int> (textMovedOut.Text);
+                item.MovedIn = ParseHelper.ParseToNullable<int> (textMovedIn.Text);
+                item.Restored = ParseHelper.ParseToNullable<int> (textRestored.Text);
+                item.Expelled = ParseHelper.ParseToNullable<int> (textExpelled.Text);
             }
         }
 
@@ -189,7 +190,7 @@ namespace R7.University.EduProgramProfiles
 
         protected override void AddItem (ContingentInfo item)
         {
-            var contingentId = TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
+            var contingentId = ParseHelper.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
             if (contingentId != null) {
                 item.ContingentId = contingentId.Value;
             }

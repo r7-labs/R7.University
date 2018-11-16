@@ -44,7 +44,7 @@ namespace R7.University.Employees.ViewModels
 
         public string Title_String
         {
-            get { return FormatHelper.FormatList (" ", Title, TitleSuffix); }
+            get { return FormatHelper.JoinNotNullOrEmpty (" ", Title, TitleSuffix); }
         }
 
         public string Title_Link

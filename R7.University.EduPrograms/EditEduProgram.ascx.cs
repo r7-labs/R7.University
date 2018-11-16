@@ -27,6 +27,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
@@ -271,7 +272,7 @@ namespace R7.University.EduPrograms
 
         public ModuleActionCollection ModuleActions {
             get {
-                var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+                var itemId = ParseHelper.ParseToNullable<int> (Request.QueryString [Key]);
 
                 var actions = new ModuleActionCollection ();
                 actions.Add (new ModuleAction (GetNextActionID ()) {

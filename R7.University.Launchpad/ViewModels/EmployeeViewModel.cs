@@ -36,7 +36,7 @@ namespace R7.University.Launchpad.ViewModels
 
         public string WebSite_String
         {
-            get { return FormatHelper.FormatList (": ", Employee.WebSiteLabel, Employee.WebSite); }
+            get { return FormatHelper.JoinNotNullOrEmpty (": ", Employee.WebSiteLabel, Employee.WebSite); }
         }
 
         public string Biography_String

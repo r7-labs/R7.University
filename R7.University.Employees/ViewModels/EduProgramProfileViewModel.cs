@@ -49,7 +49,7 @@ namespace R7.University.Employees.ViewModels
         public string Title_String
         {
             get {
-                return FormatHelper.FormatList (": ",
+                return FormatHelper.JoinNotNullOrEmpty (": ",
                     UniversityFormatHelper.FormatEduProgramProfileTitle (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle),
                     (EduLevel != null) ? EduLevel.Title : null
                 );

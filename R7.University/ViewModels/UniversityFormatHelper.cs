@@ -109,29 +109,29 @@ namespace R7.University.ViewModels
 
         public static string FormatEduProgramTitle (string code, string title)
         {
-            return FormatHelper.FormatList (" ", code, title);
+            return FormatHelper.JoinNotNullOrEmpty (" ", code, title);
         }
 
         public static string FormatEduProgramProfileTitle (string title, 
             string profileCode, string profileTitle)
         {
-            var profileString = FormatHelper.FormatList (" ", profileCode, profileTitle);
+            var profileString = FormatHelper.JoinNotNullOrEmpty (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
-            return FormatHelper.FormatList (" ", title, profileStringInBrackets);
+            return FormatHelper.JoinNotNullOrEmpty (" ", title, profileStringInBrackets);
         }
 
         public static string FormatEduProgramProfileTitle (string code, string title, 
             string profileCode, string profileTitle)
         {
-            var profileString = FormatHelper.FormatList (" ", profileCode, profileTitle);
+            var profileString = FormatHelper.JoinNotNullOrEmpty (" ", profileCode, profileTitle);
 
             var profileStringInBrackets = 
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
-            return FormatHelper.FormatList (" ", code, title, profileStringInBrackets);
+            return FormatHelper.JoinNotNullOrEmpty (" ", code, title, profileStringInBrackets);
         }
 
         public static string FormatDocumentLink_WithMicrodata (this IDocument document, string documentTitle,
@@ -139,7 +139,7 @@ namespace R7.University.ViewModels
         {
             var title = (preferDocumentTitle && !string.IsNullOrWhiteSpace (documentTitle)) 
                 ? ((groupPlacement == DocumentGroupPlacement.InTitle)
-                   ? FormatHelper.FormatList (": ", document.Group, documentTitle)
+                   ? FormatHelper.JoinNotNullOrEmpty (": ", document.Group, documentTitle)
                     : documentTitle)
                 : ((groupPlacement == DocumentGroupPlacement.InTitle && !string.IsNullOrWhiteSpace (document.Group))
                     ? document.Group
@@ -147,15 +147,15 @@ namespace R7.University.ViewModels
               
             if (!string.IsNullOrWhiteSpace (document.Url)) {
                 var linkMarkup = "<a href=\"" + UniversityUrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
-                                                                   + FormatHelper.FormatList (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
+                                                                   + FormatHelper.JoinNotNullOrEmpty (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
                 + " target=\"_blank\">" + title + "</a>";
                 
                 if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {
-                    return FormatHelper.FormatList (": ", document.Group, linkMarkup);
+                    return FormatHelper.JoinNotNullOrEmpty (": ", document.Group, linkMarkup);
                 }
 
                 if (groupPlacement == DocumentGroupPlacement.AfterTitle) {
-                    return FormatHelper.FormatList (": ", linkMarkup, document.Group);
+                    return FormatHelper.JoinNotNullOrEmpty (": ", linkMarkup, document.Group);
                 }
 
                 return linkMarkup;
@@ -196,7 +196,7 @@ namespace R7.University.ViewModels
 
         public static string FullName (string firstName, string lastName, string otherName)
         {
-            return FormatHelper.FormatList (" ", lastName, firstName, otherName);
+            return FormatHelper.JoinNotNullOrEmpty (" ", lastName, firstName, otherName);
         }
 
         public static string AbbrName (string firstName, string lastName, string otherName)

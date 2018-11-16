@@ -29,6 +29,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
 using R7.University.Models;
@@ -115,7 +116,7 @@ namespace R7.University.Controls
             item.Group = textDocumentGroup.Text.Trim ();
             item.DocumentTypeID = int.Parse (comboDocumentType.SelectedValue);
             item.DocumentTypeViewModel = GetDocumentType (item.DocumentTypeID);
-            item.SortIndex = TypeUtils.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
+            item.SortIndex = ParseHelper.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
             item.StartDate = datetimeDocumentStartDate.SelectedDate;
             item.EndDate = datetimeDocumentEndDate.SelectedDate;
             item.Url = urlDocumentUrl.Url;

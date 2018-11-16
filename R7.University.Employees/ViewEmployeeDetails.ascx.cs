@@ -149,7 +149,7 @@ namespace R7.University.Employees
 
         protected EmployeeInfo GetEmployee_FromQueryString ()
         {
-            var employeeId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
+            var employeeId = ParseHelper.ParseToNullable<int> (Request.QueryString ["employee_id"]);
             if (employeeId != null) {
                 return new EmployeeQuery (ModelContext).SingleOrDefault (employeeId.Value);
             }
@@ -158,7 +158,7 @@ namespace R7.University.Employees
 
         protected EmployeeInfo GetEmployee_FromCurrentUser ()
         {
-            var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+            var userId = ParseHelper.ParseToNullable<int> (Request.QueryString ["userid"]);
             if (userId != null) {
                 return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
             }
@@ -418,7 +418,7 @@ namespace R7.University.Employees
             else
                 linkUserProfile.Visible = false;
 
-            var workingPlaceAndHours = FormatHelper.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            var workingPlaceAndHours = FormatHelper.JoinNotNullOrEmpty (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours)) {
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
                 displayContacts = true;
@@ -512,9 +512,9 @@ namespace R7.University.Employees
             
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
-                                     .Select (ach => FormatHelper.FormatList (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
+                                     .Select (ach => FormatHelper.JoinNotNullOrEmpty (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
             
-            var strTitles = FormatHelper.FormatList (", ", titles);
+            var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = strTitles.FirstCharToUpper ();
             else

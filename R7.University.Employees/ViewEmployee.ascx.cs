@@ -110,7 +110,7 @@ namespace R7.University.Employees
 
         protected EmployeeInfo GetEmployee_FromCurrentUser ()
         {
-            var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+            var userId = ParseHelper.ParseToNullable<int> (Request.QueryString ["userid"]);
             if (userId != null) {
                 return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
             }
@@ -213,7 +213,7 @@ namespace R7.University.Employees
                 .Where (ach => ach.IsTitle)
                 .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
 			
-            var strTitles = FormatHelper.FormatList (", ", titles);
+            var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
@@ -244,7 +244,7 @@ namespace R7.University.Employees
             else
                 labelMessenger.Visible = false;
 
-            var workingPlaceAndHours = FormatHelper.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            var workingPlaceAndHours = FormatHelper.JoinNotNullOrEmpty (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours))
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
             else

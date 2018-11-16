@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.Modules;
@@ -48,7 +49,7 @@ namespace R7.University.Launchpad
         {
             item.Title = txtTitle.Text.Trim ();
             item.ShortTitle = txtShortTitle.Text.Trim ();
-            item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
+            item.Weight = ParseHelper.ParseToNullable<int> (txtWeight.Text) ?? 0;
             item.IsTeacher = checkIsTeacher.Checked;
         }
 

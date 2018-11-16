@@ -47,7 +47,7 @@ namespace R7.University.EduPrograms.ViewModels
 
         #region Bindable properties
 
-        public string Title_String => FormatHelper.FormatList (
+        public string Title_String => FormatHelper.JoinNotNullOrEmpty (
             ": ",
             Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
             UniversityFormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle)
@@ -126,7 +126,7 @@ namespace R7.University.EduPrograms.ViewModels
                     ).ToLower ();
                     sb.AppendFormat (
                        "<li>{0}</li>",
-                       FormatHelper.FormatList (
+                       FormatHelper.JoinNotNullOrEmpty (
                           " &ndash; ",
                           eduFormTitle,
                           (eppfy.EduVolume != null)

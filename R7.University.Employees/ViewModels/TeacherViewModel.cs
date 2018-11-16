@@ -117,9 +117,9 @@ namespace R7.University.Employees.ViewModels
                         .OrderByDescending (op => op.IsPrime)
                         .ThenByDescending (op => op.Position.Weight);
 
-            return FormatHelper.FormatList (
+            return FormatHelper.JoinNotNullOrEmpty (
                 "; ",
-                positions.Select (op => FormatHelper.FormatList (": ", op.Position.Title, op.Division.Title))
+                positions.Select (op => FormatHelper.JoinNotNullOrEmpty (": ", op.Position.Title, op.Division.Title))
             );
         }
 
@@ -139,7 +139,7 @@ namespace R7.University.Employees.ViewModels
 
         string GetAcademicDegreesString ()
         {
-            return FormatHelper.FormatList ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicDegree)
                                          .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
@@ -148,7 +148,7 @@ namespace R7.University.Employees.ViewModels
 
         string GetAcademicTitlesString ()
         {
-            return FormatHelper.FormatList ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicTitle)
                                          .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
@@ -157,20 +157,20 @@ namespace R7.University.Employees.ViewModels
 
         string GetEducationString ()
         {
-            return FormatHelper.FormatList ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education, SystemAchievementType.ProfTraining))
-                                            .Select (ach => FormatHelper.FormatList ("&nbsp;- ",
+                                            .Select (ach => FormatHelper.JoinNotNullOrEmpty ("&nbsp;- ",
                         UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
             );
         }
 
         string GetTrainingString ()
         {
-            return FormatHelper.FormatList ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ", 
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Training, SystemAchievementType.ProfRetraining))
-                                         .Select (ach => FormatHelper.FormatList ("&nbsp;- ",
+                                         .Select (ach => FormatHelper.JoinNotNullOrEmpty ("&nbsp;- ",
                         UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
             );
         }

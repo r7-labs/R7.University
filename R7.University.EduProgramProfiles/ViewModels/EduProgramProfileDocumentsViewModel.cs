@@ -104,7 +104,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetELearningString ()
         {
             if (ELearning || DistanceEducation) {
-                return FormatHelper.FormatList (
+                return FormatHelper.JoinNotNullOrEmpty (
                     ", ",
                     ELearning? Localization.GetString ("ELearning_ELearning.Text", Context.LocalResourceFile) : null,
                     DistanceEducation? Localization.GetString ("ELearning_DistanceEducation.Text", Context.LocalResourceFile) : null

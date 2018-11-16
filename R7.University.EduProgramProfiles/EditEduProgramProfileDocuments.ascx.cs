@@ -25,6 +25,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Framework;
 using DotNetNuke.Security;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
@@ -111,7 +112,7 @@ namespace R7.University.EduProgramProfiles
 
         IEduProgramProfile GetEduProgramProfile ()
         {
-        	var eppId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+        	var eppId = ParseHelper.ParseToNullable<int> (Request.QueryString [Key]);
         	return eppId != null ? GetItemWithDependencies (eppId.Value) : null;
         }
 

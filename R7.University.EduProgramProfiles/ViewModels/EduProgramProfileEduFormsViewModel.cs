@@ -104,7 +104,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 	.ToList ();
 
                 if (languages.Count > 0) {
-                    return $"<span itemprop=\"language\">{HttpUtility.HtmlEncode (FormatHelper.FormatList (", ", languages))}</span>";
+                    return $"<span itemprop=\"language\">{HttpUtility.HtmlEncode (FormatHelper.JoinNotNullOrEmpty (", ", languages))}</span>";
                 }
             }
 

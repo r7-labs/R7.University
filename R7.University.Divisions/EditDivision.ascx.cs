@@ -22,6 +22,7 @@
 using System;
 using System.Linq;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
@@ -89,7 +90,7 @@ namespace R7.University.Divisions
             base.OnInit (e);
 
             // parse QueryString
-            var itemId = TypeUtils.ParseToNullable<int> (Request.QueryString ["division_id"]);
+            var itemId = ParseHelper.ParseToNullable<int> (Request.QueryString ["division_id"]);
 
             // FIXME: Possible circular dependency as list can still contain childrens of current division
             parentDivisionSelector.DataSource = new DivisionQuery (ModelContext).ListExcept (itemId).OrderBy (d => d.Title);
@@ -172,7 +173,7 @@ namespace R7.University.Divisions
             item.IsSingleEntity = checkIsSingleEntity.Checked;
             item.IsInformal = checkIsInformal.Checked;
             item.IsGoverning = checkIsGoverning.Checked;
-            item.HeadPositionID = TypeUtils.ParseToNullable<int> (comboHeadPosition.SelectedValue);
+            item.HeadPositionID = ParseHelper.ParseToNullable<int> (comboHeadPosition.SelectedValue, true);
         }
 
         #region Implemented abstract members of UniverisityEditPortalModuleBase

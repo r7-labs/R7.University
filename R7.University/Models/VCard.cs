@@ -122,7 +122,7 @@ namespace R7.University.Models
             // names
             // last element must contain additional names, comma separated
             if (Names.Count > 0)
-                vcard.AppendFormat ("N{0}:{1}\n", charset, FormatHelper.FormatList (";", Names.ToArray ()));
+                vcard.AppendFormat ("N{0}:{1}\n", charset, FormatHelper.JoinNotNullOrEmpty (";", Names.ToArray ()));
 
             // organization
             if (!string.IsNullOrWhiteSpace (OrganizationName))
@@ -217,7 +217,7 @@ namespace R7.University.Models
             if ((type & VCardPhoneType.Pcs) > 0)
                 types.Add (VCardPhoneType.Pcs.ToString ());
 
-            return FormatHelper.FormatList (",", types.ToArray ());
+            return FormatHelper.JoinNotNullOrEmpty (",", types.ToArray ());
         }
     }
 }

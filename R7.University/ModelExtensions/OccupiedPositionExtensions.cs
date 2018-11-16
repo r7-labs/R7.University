@@ -45,12 +45,12 @@ namespace R7.University.ModelExtensions
                 var gopp = gop.OccupiedPosition;
 
                 // first combine position short title with it's suffix
-                gop.Title = FormatHelper.FormatList (" ",
+                gop.Title = FormatHelper.JoinNotNullOrEmpty (" ",
                     UniversityFormatHelper.FormatShortTitle (gopp.Position.ShortTitle, gopp.Position.Title), gopp.TitleSuffix);
 
                 for (var j = i + 1; j < gops.Count;) {
                     if (gopp.DivisionID == gops [j].OccupiedPosition.DivisionID) {
-                        gop.Title += ", " + FormatHelper.FormatList (
+                        gop.Title += ", " + FormatHelper.JoinNotNullOrEmpty (
                             " ", 
                             UniversityFormatHelper.FormatShortTitle (
                                 gops [j].OccupiedPosition.Position.ShortTitle,

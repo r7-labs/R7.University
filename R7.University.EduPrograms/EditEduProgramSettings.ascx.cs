@@ -26,6 +26,7 @@ using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Caching;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Models;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.EduPrograms.Models;
 using R7.University.EduPrograms.Queries;
@@ -115,7 +116,7 @@ namespace R7.University.EduPrograms
         {
             try
             {
-                Settings.EduProgramId = TypeUtils.ParseToNullable<int> (comboEduProgram.SelectedValue);
+                Settings.EduProgramId = ParseHelper.ParseToNullable<int> (comboEduProgram.SelectedValue, true);
                 Settings.AutoTitle = checkAutoTitle.Checked;
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);

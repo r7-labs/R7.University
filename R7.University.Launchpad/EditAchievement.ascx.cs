@@ -22,6 +22,7 @@
 using System;
 using System.Linq;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -64,7 +65,7 @@ namespace R7.University.Launchpad
         {
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
-            item.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementType.SelectedValue);
+            item.AchievementTypeId = ParseHelper.ParseToNullable<int> (comboAchievementType.SelectedValue, true);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase

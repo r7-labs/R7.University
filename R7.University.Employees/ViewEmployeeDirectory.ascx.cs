@@ -458,7 +458,7 @@ namespace R7.University.Employees
                 var primePosition = new OccupiedPositionQuery (ModelContext).FirstOrDefaultPrimePosition (employee.EmployeeID);
 
                 if (primePosition != null) {
-                    position.Text = FormatHelper.FormatList (": ",
+                    position.Text = FormatHelper.JoinNotNullOrEmpty (": ",
                         UniversityFormatHelper.FormatShortTitle (primePosition.Position.ShortTitle, primePosition.Position.Title, 
                             primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }

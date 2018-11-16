@@ -21,6 +21,7 @@
 
 using System;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.Modules;
@@ -60,8 +61,8 @@ namespace R7.University.Launchpad
         {
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
-            item.SortIndex = TypeUtils.ParseToNullable<int> (textSortIndex.Text) ?? 0;
-            item.ParentEduLevelId = TypeUtils.ParseToNullable<int> (comboParentEduLevel.SelectedValue);
+            item.SortIndex = ParseHelper.ParseToNullable<int> (textSortIndex.Text) ?? 0;
+            item.ParentEduLevelId = ParseHelper.ParseToNullable<int> (comboParentEduLevel.SelectedValue, true);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase

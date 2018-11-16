@@ -48,7 +48,7 @@ namespace R7.University.Launchpad.Models
             }
             set {
                 tables = value;
-                TablesInternal = FormatHelper.FormatList (";", value.ToArray ());
+                TablesInternal = FormatHelper.JoinNotNullOrEmpty (";", value.ToArray ());
             }
         }
     }

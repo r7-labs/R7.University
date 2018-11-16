@@ -211,7 +211,7 @@ namespace R7.University.Models
         public string SearchDocumentText
         {
             get {
-                var text = FormatHelper.FormatList (", ",
+                var text = FormatHelper.JoinNotNullOrEmpty (", ",
                     Title,
                     UniversityModelHelper.HasUniqueShortTitle (ShortTitle, Title) ? ShortTitle : null,
                     Phone,

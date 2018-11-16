@@ -103,7 +103,7 @@ namespace R7.University.Divisions
 
         public string LocationString {
             get {
-                var location = FormatHelper.FormatList (", ", Address, Location);
+                var location = FormatHelper.JoinNotNullOrEmpty (", ", Address, Location);
                 if (!string.IsNullOrWhiteSpace (location)) {
                     return "<span itemprop=\"addressStr\">" + location  + "</span>";
                 }
@@ -119,7 +119,7 @@ namespace R7.University.Divisions
                     var positionTitle = UniversityFormatHelper.FormatShortTitle (HeadEmployeePosition.Position.ShortTitle, HeadEmployeePosition.Position.Title);
                     var headEmployee =  HeadEmployeePosition.Employee;
                     return $"<a href=\"{Context.Module.EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")}\"><span itemprop=\"fio\">{UniversityFormatHelper.FullName (headEmployee.FirstName, headEmployee.LastName, headEmployee.OtherName)}</span></a><br />"
-                        + $"<span itemprop=\"post\">{FormatHelper.FormatList (" ", positionTitle, HeadEmployeePosition.TitleSuffix)}</span>";
+                        + $"<span itemprop=\"post\">{FormatHelper.JoinNotNullOrEmpty (" ", positionTitle, HeadEmployeePosition.TitleSuffix)}</span>";
                 }
 
                 if (HeadPositionID != null) {
@@ -209,7 +209,7 @@ namespace R7.University.Divisions
                     division.Level = 0;
                 }
                 else {
-                    division.Order = FormatHelper.FormatList (separator, orderStack) + separator + orderCounter + separator;
+                    division.Order = FormatHelper.JoinNotNullOrEmpty (separator, orderStack) + separator + orderCounter + separator;
                 }
 
                 prevDivision = division;
