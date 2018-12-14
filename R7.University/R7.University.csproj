@@ -297,6 +297,8 @@
     <Compile Include="Queries\EmployeeQueryExtensions.cs" />
     <Compile Include="Queries\EduProgramQueryableExtensions.cs" />
     <Compile Include="Queries\EduProgramProfileFormYearQueryableExtensions.cs" />
+    <Compile Include="ModelExtensions\EmployeeExtensions.cs" />
+    <Compile Include="Utilities\HttpOffContextHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

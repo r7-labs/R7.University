@@ -26,6 +26,7 @@ using DotNetNuke.Services.Search.Entities;
 using R7.University.Divisions.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.Divisions.Components
 {
@@ -33,28 +34,26 @@ namespace R7.University.Divisions.Components
     {
         #region ModuleSearchBase implementaion
 
-        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
+        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo moduleInfo, DateTime beginDateUtc)
         {
             var searchDocs = new List<SearchDocument> ();
-            var settings = new DivisionSettingsRepository ().GetSettings (modInfo);
+            var settings = new DivisionSettingsRepository ().GetSettings (moduleInfo);
+            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID);
 
             using (var modelContext = new UniversityModelContext ()) {
-
                 var division = modelContext.Get<DivisionInfo,int> (settings.DivisionID);
-                if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
-                    var aboutDivision = division.SearchDocumentText;
-                    var sd = new SearchDocument ()
-                    {
-                        PortalId = modInfo.PortalID,
+                if (division != null && division.LastModifiedOnDate.ToUniversalTime () > beginDateUtc.ToUniversalTime ()) {
+                    var sd = new SearchDocument {
+                        PortalId = moduleInfo.PortalID,
                         AuthorUserId = division.LastModifiedByUserId,
                         Title = division.Title,
-                        Body = aboutDivision,
+                        Body = division.SearchText (),
                         ModifiedTimeUtc = division.LastModifiedOnDate.ToUniversalTime (),
                         UniqueKey = string.Format ("University_Division_{0}", division.DivisionID),
-                        Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
+                        Url = division.GetSearchUrl (moduleInfo, portalSettings),
                         IsActive = division.IsPublished (DateTime.Now)
                     };
-	
+
                     searchDocs.Add (sd);
                 }
 			
@@ -65,4 +64,3 @@ namespace R7.University.Divisions.Components
         #endregion
     }
 }
-

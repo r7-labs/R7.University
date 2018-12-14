@@ -23,7 +23,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using DotNetNuke.Common;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Portals;
 using R7.Dnn.Extensions.Models;
+using R7.Dnn.Extensions.Text;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -31,7 +35,7 @@ namespace R7.University.ModelExtensions
     public static class DivisionExtensions
     {
         public static IEnumerable<TDivision> CalculateLevelAndPath<TDivision> (this IEnumerable<TDivision> divisions)
-            where TDivision: IDivisionWritable
+            where TDivision : IDivisionWritable
         {
             var rootDivisions = divisions.Where (d => d.ParentDivisionID == null);
             foreach (var root in rootDivisions) {
@@ -41,8 +45,8 @@ namespace R7.University.ModelExtensions
             return divisions;
         }
 
-        private static void CalculateLevelAndPath<TDivision> (TDivision division, int level, string path) 
-            where TDivision: IDivisionWritable
+        private static void CalculateLevelAndPath<TDivision> (TDivision division, int level, string path)
+            where TDivision : IDivisionWritable
         {
             division.Level = level + 1;
             division.Path = path + "/" + division.DivisionID.ToString ().PadLeft (10, '0');
@@ -104,17 +108,17 @@ namespace R7.University.ModelExtensions
         {
             Contract.Ensures (Contract.Result<IDivision> () != null);
             if (division.ParentDivisionID != null) {
-                return modelContext.Get<DivisionInfo, int> (division.ParentDivisionID.Value); 
+                return modelContext.Get<DivisionInfo, int> (division.ParentDivisionID.Value);
             }
 
-            return  null;
+            return null;
         }
 
         public static void SetModelId (this IEduProgramDivisionWritable division, ModelType modelType, int modelId)
         {
             if (modelType == ModelType.EduProgram) {
                 division.EduProgramId = modelId;
-            } 
+            }
             else if (modelType == ModelType.EduProgramProfile) {
                 division.EduProgramProfileId = modelId;
             }
@@ -126,6 +130,31 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<IOccupiedPosition> GetHeadEmployeePositions (this IDivision division)
         {
             return division.OccupiedPositions.Where (op => op.PositionID == division.HeadPositionID);
+        }
+
+        public static string SearchText (this IDivision division)
+        {
+            return FormatHelper.JoinNotNullOrEmpty (
+                ", ",
+                division.Title,
+                UniversityModelHelper.HasUniqueShortTitle (division.ShortTitle, division.Title) ? division.ShortTitle : null,
+                division.Phone,
+                division.Fax,
+                division.Email,
+                division.SecondaryEmail,
+                division.WebSite,
+                division.Location,
+                division.WorkingHours
+            );
+        }
+
+        public static string GetSearchUrl (this IDivision division, ModuleInfo module, PortalSettings portalSettings)
+        {
+            if (!string.IsNullOrEmpty (division.HomePage)) {
+                return Globals.NavigateURL (int.Parse (division.HomePage), portalSettings, "");
+            }
+
+            return Globals.NavigateURL (module.TabID, portalSettings, "", "mid", module.ModuleID.ToString ());
         }
     }
 }

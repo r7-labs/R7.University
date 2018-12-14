@@ -217,32 +217,10 @@ namespace R7.University.Models
             get { return GetFileName (FirstName, LastName, OtherName); }
         }
 
+        [Obsolete ("Replaced with extension method")]
         public string FullName
         {
             get { return FormatHelper.JoinNotNullOrEmpty (" ", LastName, FirstName, OtherName); }
-        }
-
-        public string SearchDocumentText
-        {
-            get {
-                var text = FormatHelper.JoinNotNullOrEmpty (", ",
-                    FullName,
-                    Phone,
-                    CellPhone,
-                    Fax,
-                    Email,
-                    SecondaryEmail,
-                    WebSite,
-                    Messenger,
-                    WorkingPlace,
-                    WorkingHours,
-                    HtmlUtils.ConvertToText (Biography)
-                );
-
-                // TODO: Add positions and achievements to the search index
-
-                return text;
-            }
         }
 
         #endregion

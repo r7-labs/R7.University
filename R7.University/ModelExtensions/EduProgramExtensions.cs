@@ -21,6 +21,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using DotNetNuke.Common;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Portals;
+using R7.Dnn.Extensions.Text;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -37,6 +42,20 @@ namespace R7.University.ModelExtensions
         public static string FormatTitle (this IEduProgram ep)
         {
             return UniversityFormatHelper.FormatEduProgramTitle (ep.Code, ep.Title);
+        }
+
+        public static string GetSearchUrl (this IEduProgram eduProgram, ModuleInfo module, PortalSettings portalSettings)
+        {
+            if (!string.IsNullOrEmpty (eduProgram.HomePage)) {
+                return Globals.NavigateURL (int.Parse (eduProgram.HomePage), portalSettings, "");
+            }
+
+            return Globals.NavigateURL (module.TabID, portalSettings, "", "mid", module.ModuleID.ToString ());
+        }
+
+        public static string SearchText (this IEduProgram eduProgram)
+        {
+            return eduProgram.EduProgramProfiles.Select (epp => epp.FormatTitle ()).JoinNotNullOrEmpty ("; ");
         }
     }
 }

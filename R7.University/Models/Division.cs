@@ -207,24 +207,5 @@ namespace R7.University.Models
         public string Path { get; set; }
 
         #endregion
-
-        public string SearchDocumentText
-        {
-            get {
-                var text = FormatHelper.JoinNotNullOrEmpty (", ",
-                    Title,
-                    UniversityModelHelper.HasUniqueShortTitle (ShortTitle, Title) ? ShortTitle : null,
-                    Phone,
-                    Fax,
-                    Email,
-                    SecondaryEmail,
-                    WebSite,
-                    Location,
-                    WorkingHours
-                );
-
-                return text;
-            }
-        }
     }
 }
