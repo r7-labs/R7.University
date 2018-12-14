@@ -39,7 +39,7 @@ namespace R7.University.EduPrograms.Components
         {
             var searchDocs = new List<SearchDocument> ();
             var settings = new EduProgramSettingsRepository ().GetSettings (moduleInfo);
-            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID);
+            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID, moduleInfo.CultureCode);
 
             var eduProgram = default (EduProgramInfo);
             if (settings.EduProgramId != null) {

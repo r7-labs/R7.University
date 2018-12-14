@@ -38,7 +38,7 @@ namespace R7.University.Divisions.Components
         {
             var searchDocs = new List<SearchDocument> ();
             var settings = new DivisionSettingsRepository ().GetSettings (moduleInfo);
-            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID);
+            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID, moduleInfo.CultureCode);
 
             using (var modelContext = new UniversityModelContext ()) {
                 var division = modelContext.Get<DivisionInfo,int> (settings.DivisionID);

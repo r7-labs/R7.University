@@ -38,7 +38,7 @@ namespace R7.University.Employees.Components
         {
             var searchDocs = new List<SearchDocument> ();
             var settings = new EmployeeSettingsRepository ().GetSettings (moduleInfo);
-            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID);
+            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID, moduleInfo.CultureCode);
 
             var employee = default (EmployeeInfo);
             using (var modelContext = new UniversityModelContext ()) {

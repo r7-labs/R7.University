@@ -34,11 +34,22 @@ namespace R7.University.Utilities
         /// <returns>The portal settings.</returns>
         /// <param name="portalId">Portal identifier.</param>
         /// <param name="tabId">Tab identifier.</param>
-        public static PortalSettings GetPortalSettings (int portalId, int tabId)
+        public static PortalSettings GetPortalSettings (int portalId, int tabId, string cultureCode)
         {
-            return new PortalSettings (tabId,
-                PortalAliasController.Instance.GetPortalAliasesByPortalId (portalId).First (pa => pa.IsPrimary)
-            );
+            var portalAliases = PortalAliasController.Instance.GetPortalAliasesByPortalId (portalId);
+
+            var portalAlias = portalAliases.FirstOrDefault (pa => pa.IsPrimary && pa.CultureCode == cultureCode);
+            if (portalAlias == null) {
+                portalAliases.FirstOrDefault (pa => pa.CultureCode == cultureCode);
+                if (portalAlias == null) {
+                    portalAliases.FirstOrDefault (pa => pa.IsPrimary);
+                    if (portalAlias == null) {
+                        portalAliases.FirstOrDefault ();
+                    }
+                }
+            }
+
+            return new PortalSettings (tabId, portalAlias);
         }
     }
 }

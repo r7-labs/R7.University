@@ -39,7 +39,7 @@ namespace R7.University.Employees.Components
         {
             var searchDocs = new List<SearchDocument> ();
             var settings = new EmployeeListSettingsRepository ().GetSettings (moduleInfo);
-            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID);
+            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID, moduleInfo.CultureCode);
 
             IEnumerable<EmployeeInfo> employees = null;
             using (var modelContext = new UniversityModelContext ()) {
