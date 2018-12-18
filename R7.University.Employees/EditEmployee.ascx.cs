@@ -21,6 +21,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -194,8 +195,7 @@ namespace R7.University.Employees
                 }
             }
 
-            // TODO: Sort achievements?
-            formEditAchievements.SetData (employee.Achievements, employee.EmployeeID);
+            formEditAchievements.SetData (employee.Achievements.OrderByDescending (ach => ach.YearBegin), employee.EmployeeID);
             formEditPositions.SetData (employee.Positions, employee.EmployeeID);
             formEditDisciplines.SetData (employee.Disciplines, employee.EmployeeID);
       
