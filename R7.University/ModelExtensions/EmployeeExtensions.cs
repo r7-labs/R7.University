@@ -32,7 +32,8 @@ namespace R7.University.ModelExtensions
     {
         public static string GetSearchUrl (this IEmployee employee, ModuleInfo module, PortalSettings portalSettings)
         {
-            return Globals.NavigateURL (module.TabID, portalSettings, "", "mid", module.ModuleID.ToString ());
+            return Globals.NavigateURL (module.TabID, false, portalSettings, "",
+                portalSettings.PortalAlias.CultureCode, "", "mid", module.ModuleID.ToString ());
         }
 
         public static string FullName (this IEmployee employee)

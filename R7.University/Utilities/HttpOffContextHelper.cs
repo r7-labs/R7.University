@@ -34,22 +34,35 @@ namespace R7.University.Utilities
         /// <returns>The portal settings.</returns>
         /// <param name="portalId">Portal identifier.</param>
         /// <param name="tabId">Tab identifier.</param>
+        /// <param name="cultureCode">Culture code.</param>
         public static PortalSettings GetPortalSettings (int portalId, int tabId, string cultureCode)
         {
-            var portalAliases = PortalAliasController.Instance.GetPortalAliasesByPortalId (portalId);
+            var portalAliases = PortalAliasController.Instance.GetPortalAliasesByPortalId (portalId).ToList ();
+            var portalSettings = new PortalSettings (portalId);
+            var portalAlias = default (PortalAliasInfo);
 
-            var portalAlias = portalAliases.FirstOrDefault (pa => pa.IsPrimary && pa.CultureCode == cultureCode);
-            if (portalAlias == null) {
-                portalAliases.FirstOrDefault (pa => pa.CultureCode == cultureCode);
+            if (!string.IsNullOrEmpty (cultureCode)) {
+                portalAlias = portalAliases.FirstOrDefault (pa => pa.IsPrimary && pa.CultureCode == cultureCode);
                 if (portalAlias == null) {
-                    portalAliases.FirstOrDefault (pa => pa.IsPrimary);
-                    if (portalAlias == null) {
-                        portalAliases.FirstOrDefault ();
-                    }
+                    portalAlias = portalAliases.FirstOrDefault (pa => pa.CultureCode == cultureCode);
+                }
+            }
+            else {
+                portalAlias = portalAliases.FirstOrDefault (pa => pa.IsPrimary && pa.CultureCode == portalSettings.DefaultLanguage);
+                if (portalAlias == null) {
+                    portalAlias = portalAliases.FirstOrDefault (pa => pa.IsPrimary && pa.CultureCode == "");
+                }
+            }
+
+            if (portalAlias == null) {
+                portalAlias = portalAliases.FirstOrDefault (pa => pa.IsPrimary);
+                if (portalAlias == null) {
+                    portalAlias = portalAliases.FirstOrDefault ();
                 }
             }
 
             return new PortalSettings (tabId, portalAlias);
         }
+
     }
 }

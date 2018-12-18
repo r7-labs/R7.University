@@ -21,7 +21,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Portals;
@@ -47,10 +46,12 @@ namespace R7.University.ModelExtensions
         public static string GetSearchUrl (this IEduProgram eduProgram, ModuleInfo module, PortalSettings portalSettings)
         {
             if (!string.IsNullOrEmpty (eduProgram.HomePage)) {
-                return Globals.NavigateURL (int.Parse (eduProgram.HomePage), portalSettings, "");
+                return Globals.NavigateURL (int.Parse (eduProgram.HomePage), false, portalSettings, "",
+                    portalSettings.PortalAlias.CultureCode);
             }
 
-            return Globals.NavigateURL (module.TabID, portalSettings, "", "mid", module.ModuleID.ToString ());
+            return Globals.NavigateURL (module.TabID, false, portalSettings, "",
+                portalSettings.PortalAlias.CultureCode, "", "mid", module.ModuleID.ToString ());
         }
 
         public static string SearchText (this IEduProgram eduProgram)

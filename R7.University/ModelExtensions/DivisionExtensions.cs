@@ -151,10 +151,12 @@ namespace R7.University.ModelExtensions
         public static string GetSearchUrl (this IDivision division, ModuleInfo module, PortalSettings portalSettings)
         {
             if (!string.IsNullOrEmpty (division.HomePage)) {
-                return Globals.NavigateURL (int.Parse (division.HomePage), portalSettings, "");
+                return Globals.NavigateURL (int.Parse (division.HomePage), false, portalSettings, "",
+                    portalSettings.PortalAlias.CultureCode);
             }
 
-            return Globals.NavigateURL (module.TabID, portalSettings, "", "mid", module.ModuleID.ToString ());
+            return Globals.NavigateURL (module.TabID, false, portalSettings, "",
+                portalSettings.PortalAlias.CultureCode, "", "mid", module.ModuleID.ToString ());
         }
     }
 }
