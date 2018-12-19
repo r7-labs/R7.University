@@ -25,6 +25,8 @@ namespace R7.University.Employees.Models
     {
         ByMaxWeight = 0,
         ByTotalWeight = 1,
-        ByName = 2
+        ByName = 2,
+        // TODO: Use by default
+        ByMaxWeightInDivision = 3
     }
 }

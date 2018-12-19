@@ -63,6 +63,7 @@ namespace R7.University.Employees
             comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeight.Text"), "0");
             comboSortType.AddItem (LocalizeString ("SortTypeByTotalWeight.Text"), "1");
             comboSortType.AddItem (LocalizeString ("SortTypeByName.Text"), "2");
+            comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeightInDivision.Text"), "3");
         }
 
         /// <summary>

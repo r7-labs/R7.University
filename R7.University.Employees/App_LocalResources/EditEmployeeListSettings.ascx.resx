@@ -57,6 +57,9 @@
 	<data name="SortTypeByName.Text" xml:space="preserve">
         <value>Employee Name</value>
     </data>
+	<data name="SortTypeByMaxWeightInDivision.Text" xml:space="preserve">
+        <value>Max. Position Weight in Division</value>
+    </data>
 	<data name="labelPhotoWidth.Text" xml:space="preserve">
 	    <value>Photo Width:</value>
     </data>

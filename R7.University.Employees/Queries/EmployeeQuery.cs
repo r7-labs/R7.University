@@ -22,6 +22,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using R7.Dnn.Extensions.Models;
+using R7.University.Employees.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -53,6 +54,36 @@ namespace R7.University.Employees.Queries
 
         public IEnumerable<EmployeeInfo> ListByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
         {
+            var divisionIds = default (IEnumerable<int>);
+            if (includeSubDivisions) {
+                divisionIds = ModelContext.Query<DivisionInfo> (
+                    "SELECT * FROM {objectQualifier}University_DivisionsHierarchy ({0})", divisionId)
+                        .Select (d => d.DivisionID).ToList ();
+            }
+
+            if (sortType == (int) EmployeeListSortType.ByName) {
+                return ModelContext.Query<OccupiedPositionInfo> ()
+                    .Include2 (op => op.Position)
+                    .Where (op => includeSubDivisions ? divisionIds.Contains (op.DivisionID) : op.DivisionID == divisionId)
+                    .Include2 (op => op.Employee)
+                    .OrderBy (op => op.Employee.LastName)
+                    .Select (op => op.Employee)
+                    .ToList ()
+                    .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
+            }
+
+            if (sortType == (int) EmployeeListSortType.ByMaxWeightInDivision) {
+                return ModelContext.Query<OccupiedPositionInfo> ()
+                    .Include2 (op => op.Position)
+                    .Where (op => includeSubDivisions ? divisionIds.Contains (op.DivisionID) : op.DivisionID == divisionId)
+                    .Include2 (op => op.Employee)
+                    .OrderByDescending (op => op.Position.Weight)
+                    .ThenBy (op => op.Employee.LastName)
+                    .Select (op => op.Employee)
+                    .ToList ()
+                    .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
+            }
+
             var spName = includeSubDivisions ? "GetEmployees_ByDivisionID_Recursive" : "GetEmployees_ByDivisionID";
             return ModelContext.Query<EmployeeInfo> ("EXECUTE {objectQualifier}University_" + spName + " {0}, {1}", divisionId, sortType);
         }

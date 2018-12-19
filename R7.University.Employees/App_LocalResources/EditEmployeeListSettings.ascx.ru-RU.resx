@@ -57,6 +57,9 @@
     <data name="SortTypeByName.Text" xml:space="preserve">
         <value>Имени сотрудника</value>
     </data>
+	<data name="SortTypeByMaxWeightInDivision.Text" xml:space="preserve">
+        <value>Макс. весу должности в подразделении</value>
+    </data>
     <data name="labelHideHeadEmployee.Text" xml:space="preserve">
         <value>Скрыть руководителя?</value>
     </data>
