@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,10 +23,7 @@ namespace R7.University.Employees.Models
 {
     public enum EmployeeListSortType
     {
-        ByMaxWeight = 0,
-        ByTotalWeight = 1,
-        ByName = 2,
-        // TODO: Use by default
-        ByMaxWeightInDivision = 3
+        ByMaxWeightInDivision = 0,
+        ByName = 2
     }
 }

@@ -367,6 +367,7 @@
     <None Include="js\module.js" />
     <None Include="SqlDataProvider\02.01.00.SqlDataProvider" />
     <None Include="packages.config" />
+    <None Include="SqlDataProvider\02.02.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

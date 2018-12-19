@@ -88,6 +88,7 @@ namespace R7.University.Employees
 
         internal EmployeeListViewModel GetViewModel ()
         {
+            // TODO: Restore caching
             /*var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
             return DataCache.GetCachedData<EmployeeListViewModel> (
                 new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
@@ -102,7 +103,8 @@ namespace R7.University.Employees
             var employeeQuery = new EmployeeQuery (ModelContext);
 
             // get employees (w/o references, sorted)
-            var sortedEmployees = employeeQuery.ListByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType).ToList ();
+            var sortedEmployees = employeeQuery.ListByDivisionId (
+                Settings.DivisionID, Settings.IncludeSubdivisions, (EmployeeListSortType) Settings.SortType).ToList ();
 
             // get employees (with references, unsorted)
             var filledEmployees = employeeQuery.ListByIds (sortedEmployees.Select (se => se.EmployeeID));

@@ -48,17 +48,11 @@
     <data name="labelSortType.Help" xml:space="preserve">
         <value>Выберите способ сортировки записей о сотрудниках.</value>
     </data>
-	<data name="SortTypeByMaxWeight.Text" xml:space="preserve">
-        <value>Макс. весу должности</value>
-    </data>
-    <data name="SortTypeByTotalWeight.Text" xml:space="preserve">
-        <value>Суммарному весу всех должностей</value>
+	<data name="SortTypeByMaxWeightInDivision.Text" xml:space="preserve">
+        <value>Макс. весу должности в подразделении</value>
     </data>
     <data name="SortTypeByName.Text" xml:space="preserve">
         <value>Имени сотрудника</value>
-    </data>
-	<data name="SortTypeByMaxWeightInDivision.Text" xml:space="preserve">
-        <value>Макс. весу должности в подразделении</value>
     </data>
     <data name="labelHideHeadEmployee.Text" xml:space="preserve">
         <value>Скрыть руководителя?</value>

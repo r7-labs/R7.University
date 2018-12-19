@@ -52,7 +52,7 @@ namespace R7.University.Employees.Queries
                                .SingleOrDefault ();
         }
 
-        public IEnumerable<EmployeeInfo> ListByDivisionId (int divisionId, bool includeSubDivisions, int sortType)
+        public IEnumerable<EmployeeInfo> ListByDivisionId (int divisionId, bool includeSubDivisions, EmployeeListSortType sortType)
         {
             var divisionIds = default (IEnumerable<int>);
             if (includeSubDivisions) {
@@ -61,31 +61,29 @@ namespace R7.University.Employees.Queries
                         .Select (d => d.DivisionID).ToList ();
             }
 
-            if (sortType == (int) EmployeeListSortType.ByName) {
-                return ModelContext.Query<OccupiedPositionInfo> ()
-                    .Include2 (op => op.Position)
-                    .Where (op => includeSubDivisions ? divisionIds.Contains (op.DivisionID) : op.DivisionID == divisionId)
-                    .Include2 (op => op.Employee)
-                    .OrderBy (op => op.Employee.LastName)
-                    .Select (op => op.Employee)
-                    .ToList ()
-                    .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
-            }
-
-            if (sortType == (int) EmployeeListSortType.ByMaxWeightInDivision) {
+            if (sortType == EmployeeListSortType.ByMaxWeightInDivision) {
                 return ModelContext.Query<OccupiedPositionInfo> ()
                     .Include2 (op => op.Position)
                     .Where (op => includeSubDivisions ? divisionIds.Contains (op.DivisionID) : op.DivisionID == divisionId)
                     .Include2 (op => op.Employee)
                     .OrderByDescending (op => op.Position.Weight)
                     .ThenBy (op => op.Employee.LastName)
+                    .ThenBy (op => op.Employee.FirstName)
                     .Select (op => op.Employee)
                     .ToList ()
                     .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
             }
 
-            var spName = includeSubDivisions ? "GetEmployees_ByDivisionID_Recursive" : "GetEmployees_ByDivisionID";
-            return ModelContext.Query<EmployeeInfo> ("EXECUTE {objectQualifier}University_" + spName + " {0}, {1}", divisionId, sortType);
+            // by name
+            return ModelContext.Query<OccupiedPositionInfo> ()
+                .Include2 (op => op.Position)
+                .Where (op => includeSubDivisions ? divisionIds.Contains (op.DivisionID) : op.DivisionID == divisionId)
+                .Include2 (op => op.Employee)
+                .OrderBy (op => op.Employee.LastName)
+                .ThenBy (op => op.Employee.FirstName)
+                .Select (op => op.Employee)
+                .ToList ()
+                .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
         }
 
         public IList<EmployeeInfo> ListByIds (IEnumerable<int> employeeIds)

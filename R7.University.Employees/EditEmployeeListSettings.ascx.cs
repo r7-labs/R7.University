@@ -60,10 +60,8 @@ namespace R7.University.Employees
             divisionSelector.DataBind ();
 
             // sort type
-            comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeight.Text"), "0");
-            comboSortType.AddItem (LocalizeString ("SortTypeByTotalWeight.Text"), "1");
-            comboSortType.AddItem (LocalizeString ("SortTypeByName.Text"), "2");
-            comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeightInDivision.Text"), "3");
+            comboSortType.AddItem (LocalizeString ("SortTypeByMaxWeightInDivision.Text"), ((int) EmployeeListSortType.ByMaxWeightInDivision).ToString ());
+            comboSortType.AddItem (LocalizeString ("SortTypeByName.Text"), ((int) EmployeeListSortType.ByName).ToString ());
         }
 
         /// <summary>
