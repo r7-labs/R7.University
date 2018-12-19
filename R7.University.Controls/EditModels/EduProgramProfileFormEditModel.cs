@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,11 +21,10 @@
 
 using System;
 using Newtonsoft.Json;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
 using R7.University.Models;
-using R7.University.ViewModels;
 
 namespace R7.University.Controls.EditModels
 {

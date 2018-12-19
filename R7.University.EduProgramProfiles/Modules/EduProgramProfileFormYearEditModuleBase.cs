@@ -22,6 +22,7 @@
 using System;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Framework;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.EduProgramProfiles.Queries;
 using R7.University.ModelExtensions;
@@ -38,8 +39,8 @@ namespace R7.University.EduProgramProfiles.Modules
         }
 
         protected int? GetEduProgramProfileFormYearId () =>
-            TypeUtils.ParseToNullable<int> (Request.QueryString [Key])
-                     ?? TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
+            ParseHelper.ParseToNullable<int> (Request.QueryString [Key])
+                     ?? ParseHelper.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
 
         protected IEduProgramProfileFormYear GetEduProgramProfileFormYear ()
         {

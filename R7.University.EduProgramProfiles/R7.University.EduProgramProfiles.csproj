@@ -9,8 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.EduProgramProfiles</RootNamespace>
     <AssemblyName>R7.University.EduProgramProfiles</AssemblyName>
-    <ReleaseVersion>2.1.1</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>2.2.0</ReleaseVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,9 +54,6 @@
     <Reference Include="Telerik.Web.UI">
       <HintPath>..\packages\DotNetNuke.Web.Deprecated.8.0.4.226\lib\net40\Telerik.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="YamlDotNet">
-      <HintPath>..\packages\YamlDotNet.4.2.1\lib\net35\YamlDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="DotNetNuke.Web.Mvc">
       <HintPath>..\packages\DotNetNuke.Web.Mvc.8.0.4.226\lib\net45\DotNetNuke.Web.Mvc.dll</HintPath>
     </Reference>
@@ -94,8 +91,11 @@
       <HintPath>..\packages\NGettext.0.6.3\lib\net45\NGettext.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.5.2.1\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="R7.Dnn.Extensions">
-      <HintPath>..\packages\R7.Dnn.Extensions.0.12.0\lib\net45\R7.Dnn.Extensions.dll</HintPath>
+      <HintPath>..\packages\R7.Dnn.Extensions.0.13.0-beta3\lib\net45\R7.Dnn.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

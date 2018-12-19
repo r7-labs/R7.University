@@ -1,10 +1,10 @@
 //
-//  EnumerableExtensions.cs
+//  QueryableExtensions.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,18 +19,19 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
-namespace R7.University.ModelExtensions
+namespace R7.University.Queries
 {
-    public static class EnumerableExtensions
+    public static class QueryableExtensions
     {
-        // TODO: Move to the base library
-        public static bool IsNullOrEmpty<T> (this IEnumerable<T> enumerable)
+        // TODO: Should be removed after encapsulating all Include/ThenInclude inside extensions
+        public static IQueryable<T> Include2<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path) where T: class
         {
-            return enumerable == null || !enumerable.Any ();
+            return EntityFrameworkQueryableExtensions.Include (source, path);
         }
     }
 }
-

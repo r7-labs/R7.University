@@ -21,12 +21,14 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
@@ -143,7 +145,7 @@ namespace R7.University.Employees
 
         protected override void LoadItem (EmployeeInfo item)
         {
-            var employee = GetItemWithDependencies (ItemId.Value);
+            var employee = GetItemWithDependencies (ItemKey.Value);
 
             textLastName.Text = employee.LastName;
             textFirstName.Text = employee.FirstName;
@@ -193,8 +195,7 @@ namespace R7.University.Employees
                 }
             }
 
-            // TODO: Sort achievements?
-            formEditAchievements.SetData (employee.Achievements, employee.EmployeeID);
+            formEditAchievements.SetData (employee.Achievements.OrderByDescending (ach => ach.YearBegin), employee.EmployeeID);
             formEditPositions.SetData (employee.Positions, employee.EmployeeID);
             formEditDisciplines.SetData (employee.Disciplines, employee.EmployeeID);
       
@@ -212,10 +213,10 @@ namespace R7.University.Employees
         void SetupDivisionSelector ()
         {
             var divisionId = Request.QueryString ["division_id"];
-            formEditPositions.SetDivision (TypeUtils.ParseToNullable<int> (divisionId));
+            formEditPositions.SetDivision (ParseHelper.ParseToNullable<int> (divisionId));
         }
 
-        protected override void BeforeUpdateItem (EmployeeInfo item)
+        protected override void BeforeUpdateItem (EmployeeInfo item, bool isNew)
         {
             // fill the object
             item.LastName = textLastName.Text.Trim ();
@@ -232,17 +233,17 @@ namespace R7.University.Employees
             item.WorkingPlace = textWorkingPlace.Text.Trim ();
             item.Biography = textBiography.Text.Trim ();
             item.ShowBarcode = checkShowBarcode.Checked;
-            item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
-            item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
+            item.ExperienceYears = ParseHelper.ParseToNullable<int> (textExperienceYears.Text);
+            item.ExperienceYearsBySpec = ParseHelper.ParseToNullable<int> (textExperienceYearsBySpec.Text);
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
 
             // pickerPhoto.FileID may be 0 by default
             item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
-            item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
+            item.UserID = ParseHelper.ParseToNullable<int> (comboUsers.SelectedValue, true);
         }
 
-        protected override EmployeeInfo GetItemWithDependencies (int itemId)
+        protected EmployeeInfo GetItemWithDependencies (int itemId)
         {
             return new EmployeeQuery (ModelContext).SingleOrDefault (itemId);
         }

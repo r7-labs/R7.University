@@ -45,7 +45,7 @@ namespace R7.University.Launchpad
             textType.Enabled = !item.IsSystem;
         }
 
-        protected override void BeforeUpdateItem (AchievementTypeInfo item)
+        protected override void BeforeUpdateItem (AchievementTypeInfo item, bool isNew)
         {
             // don't update Type for system types,
             // also don't update IsSystem value at all

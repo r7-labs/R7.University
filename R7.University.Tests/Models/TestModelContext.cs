@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,8 +19,8 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using R7.University.Data;
-using R7.University.Models;
+using R7.Dnn.Extensions.Data;
+using R7.Dnn.Extensions.Models;
 using R7.University.Tests.Data;
 
 namespace R7.University.Tests.Models
@@ -37,7 +37,7 @@ namespace R7.University.Tests.Models
 
         public override IDataContext CreateDataContext ()
         {
-            return new TestDataContextFactory ().Create ();
+            return new TestDataContext ();
         }
     }
 }

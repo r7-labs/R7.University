@@ -27,6 +27,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Framework;
 using DotNetNuke.Security;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
@@ -44,13 +45,13 @@ namespace R7.University.EduPrograms
         }
 
         protected int? GetEduProgramId () =>
-        	TypeUtils.ParseToNullable<int> (Request.QueryString [Key])
-        			 ?? TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
+            ParseHelper.ParseToNullable<int> (Request.QueryString [Key])
+        			 ?? ParseHelper.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
 
         protected IEduProgram GetEduProgram ()
         {
         	var eduProgramId = GetEduProgramId ();
-        	return eduProgramId != null ? ModelContext.Get<EduProgramInfo> (eduProgramId.Value) : null;
+        	return eduProgramId != null ? ModelContext.Get<EduProgramInfo,int> (eduProgramId.Value) : null;
         }
 
         protected override void OnLoad (EventArgs e)
@@ -86,20 +87,20 @@ namespace R7.University.EduPrograms
             textFinancingByScientist.Text = item.FinancingByScientist.ToDecimalString ();
         }
 
-        protected override void BeforeUpdateItem (ScienceInfo item)
+        protected override void BeforeUpdateItem (ScienceInfo item, bool isNew)
         {
             item.Directions = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textDirections.Text)));
             item.Base = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textBase.Text)));
-            item.Scientists = TypeUtils.ParseToNullable<int> (textScientists.Text);
-            item.Students = TypeUtils.ParseToNullable<int> (textStudents.Text);
-            item.Monographs = TypeUtils.ParseToNullable<int> (textMonographs.Text);
-            item.Articles = TypeUtils.ParseToNullable<int> (textArticles.Text);
-            item.ArticlesForeign = TypeUtils.ParseToNullable<int> (textArticlesForeign.Text);
-            item.Patents = TypeUtils.ParseToNullable<int> (textPatents.Text);
-            item.PatentsForeign = TypeUtils.ParseToNullable<int> (textPatentsForeign.Text);
-            item.Certificates = TypeUtils.ParseToNullable<int> (textCertificates.Text);
-            item.CertificatesForeign = TypeUtils.ParseToNullable<int> (textCertificatesForeign.Text);
-            item.FinancingByScientist = TypeUtils.ParseToNullable<decimal> (textFinancingByScientist.Text);
+            item.Scientists = ParseHelper.ParseToNullable<int> (textScientists.Text);
+            item.Students = ParseHelper.ParseToNullable<int> (textStudents.Text);
+            item.Monographs = ParseHelper.ParseToNullable<int> (textMonographs.Text);
+            item.Articles = ParseHelper.ParseToNullable<int> (textArticles.Text);
+            item.ArticlesForeign = ParseHelper.ParseToNullable<int> (textArticlesForeign.Text);
+            item.Patents = ParseHelper.ParseToNullable<int> (textPatents.Text);
+            item.PatentsForeign = ParseHelper.ParseToNullable<int> (textPatentsForeign.Text);
+            item.Certificates = ParseHelper.ParseToNullable<int> (textCertificates.Text);
+            item.CertificatesForeign = ParseHelper.ParseToNullable<int> (textCertificatesForeign.Text);
+            item.FinancingByScientist = ParseHelper.ParseToNullable<decimal> (textFinancingByScientist.Text);
         }
 
         string StripScripts (string html)
@@ -112,9 +113,9 @@ namespace R7.University.EduPrograms
 
         protected override int GetItemId (ScienceInfo item) => item.ScienceId;
 
-        protected override ScienceInfo GetItemWithDependencies (int itemId)
+        protected ScienceInfo GetItemWithDependencies (int itemId)
         {
-            return ModelContext.Get<ScienceInfo> (itemId);
+            return ModelContext.Get<ScienceInfo, int> (itemId);
         }
 
         protected override void UpdateItem (ScienceInfo item)
@@ -125,7 +126,7 @@ namespace R7.University.EduPrograms
 
         protected override void AddItem (ScienceInfo item)
         {
-            var scienceId = TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
+            var scienceId = ParseHelper.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
             if (scienceId != null) {
                 item.ScienceId = scienceId.Value;
             }

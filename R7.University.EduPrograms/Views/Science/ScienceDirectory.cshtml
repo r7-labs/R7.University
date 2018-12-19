@@ -48,7 +48,7 @@ else {
     	    </thead>
     	    <tbody>
 			    @foreach (var eps in Model.EduProgramScienceViewModels) {
-                    <tr id="@eps.HtmlElementId" data-title="@FormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)" class="@eps.CssClass">
+                    <tr id="@eps.HtmlElementId" data-title="@UniversityFormatHelper.FormatEduProgramTitle(eps.Code, eps.Title)" class="@eps.CssClass">
                         @if (Dnn.ModuleContext.IsEditable) {
                             <td class="u8y-actions">
 								<a href="@eps.EditUrl" onclick="r7_University_selectItem(jQuery,this)"><img src="@UniversityIcons.Edit" /></a>

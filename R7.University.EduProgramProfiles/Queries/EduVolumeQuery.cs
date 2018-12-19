@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.EduProgramProfiles.Queries
 {
@@ -39,12 +41,10 @@ namespace R7.University.EduProgramProfiles.Queries
                                                                                       DivisionLevel divisionLevel)
         {
             return ModelContext.Query<EduProgramProfileFormYearInfo> ()
-                               .Include (eppfy => eppfy.EduProgramProfile)
-                               .Include (eppfy => eppfy.EduProgramProfile.EduLevel)
-                               .Include (eppfy => eppfy.EduProgramProfile.EduProgram)
-                               .Include (eppfy => eppfy.EduForm)
-                               .Include (eppfy => eppfy.EduVolume)
-                               .Include (eppfy => eppfy.Year)
+                               .IncludeEduProgramProfileWithEduProgram ()
+                               .Include2 (eppfy => eppfy.EduForm)
+                               .Include2 (eppfy => eppfy.EduVolume)
+                               .Include2 (eppfy => eppfy.Year)
                                .Where (eppfy => eppfy.Year != null)
                                .Where (eppfy => !eppfy.Year.AdmissionIsOpen)
                                .WhereEduLevelsOrAll (eduLevelIds)

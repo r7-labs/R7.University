@@ -23,7 +23,7 @@ using System;
 using System.Linq;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.University.ControlExtensions;
 using R7.University.Launchpad.Models;
 using R7.University.Modules;

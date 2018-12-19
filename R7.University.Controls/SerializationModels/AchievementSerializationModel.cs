@@ -21,7 +21,7 @@
 
 using System;
 using Newtonsoft.Json;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 
 namespace R7.University.Controls.SerializationModels

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -30,10 +30,10 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls.Extensions;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Collections;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employees.Models;
@@ -458,8 +458,8 @@ namespace R7.University.Employees
                 var primePosition = new OccupiedPositionQuery (ModelContext).FirstOrDefaultPrimePosition (employee.EmployeeID);
 
                 if (primePosition != null) {
-                    position.Text = TextUtils.FormatList (": ",
-                        FormatHelper.FormatShortTitle (primePosition.Position.ShortTitle, primePosition.Position.Title, 
+                    position.Text = FormatHelper.JoinNotNullOrEmpty (": ",
+                        UniversityFormatHelper.FormatShortTitle (primePosition.Position.ShortTitle, primePosition.Position.Title, 
                             primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
                 }
 

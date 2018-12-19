@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -22,7 +22,6 @@
 using System;
 using System.Linq;
 using System.Web;
-using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -31,9 +30,10 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Modules;
-using R7.Dnn.Extensions.TextExtensions;
+using R7.Dnn.Extensions.Text;
+using R7.Dnn.Extensions.Urls;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
@@ -88,11 +88,14 @@ namespace R7.University.Employees
 
         internal EmployeeListViewModel GetViewModel ()
         {
-            var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
+            // TODO: Restore caching
+            /*var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
             return DataCache.GetCachedData<EmployeeListViewModel> (
                 new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetViewModel_Internal ()
             ).SetContext (ViewModelContext);
+*/
+            return GetViewModel_Internal ().SetContext (ViewModelContext);
         }
 
         internal EmployeeListViewModel GetViewModel_Internal ()
@@ -100,7 +103,8 @@ namespace R7.University.Employees
             var employeeQuery = new EmployeeQuery (ModelContext);
 
             // get employees (w/o references, sorted)
-            var sortedEmployees = employeeQuery.ListByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType).ToList ();
+            var sortedEmployees = employeeQuery.ListByDivisionId (
+                Settings.DivisionID, Settings.IncludeSubdivisions, (EmployeeListSortType) Settings.SortType).ToList ();
 
             // get employees (with references, unsorted)
             var filledEmployees = employeeQuery.ListByIds (sortedEmployees.Select (se => se.EmployeeID));
@@ -112,7 +116,7 @@ namespace R7.University.Employees
 
             return new EmployeeListViewModel (
                 sortedEmployees,
-                ModelContext.Get<DivisionInfo> (Settings.DivisionID)
+                ModelContext.Get<DivisionInfo,int> (Settings.DivisionID)
             );
         }
 
@@ -256,7 +260,7 @@ namespace R7.University.Employees
             }
 
             // employee fullname
-            linkFullName.Text = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
+            linkFullName.Text = UniversityFormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
             linkFullName.NavigateUrl = employeeDetailsUrl;
 
             // get current employee title achievements
@@ -264,17 +268,17 @@ namespace R7.University.Employees
                 .Select (ea => new EmployeeAchievementViewModel (ea, ViewModelContext))
                 .Where (ach => ach.IsTitle);
             
-            var titles = achievements.Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
+            var titles = achievements.Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
 			
             // employee title achievements
-            var strTitles = TextUtils.FormatList (", ", titles);
+            var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
                 labelAcademicDegreeAndTitle.Visible = false;
 			
             // phones
-            var phones = TextUtils.FormatList (", ", employee.Phone, employee.CellPhone);
+            var phones = FormatHelper.JoinNotNullOrEmpty (", ", employee.Phone, employee.CellPhone);
             if (!string.IsNullOrWhiteSpace (phones))
                 labelPhones.Text = phones;
             else
@@ -298,8 +302,8 @@ namespace R7.University.Employees
 
             // webSite
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
-                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
+                linkWebSite.NavigateUrl = UniversityFormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = UniversityFormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
             }
             else {
                 linkWebSite.Visible = false;
@@ -326,7 +330,7 @@ namespace R7.University.Employees
                 var strOps = string.Empty;
                 foreach (var gop in gops) {
                     // gop.Title is a comma-separated list of grouped positions
-                    strOps = TextUtils.FormatList ("; ", strOps, TextUtils.FormatList (": ", gop.Title, 
+                    strOps = FormatHelper.JoinNotNullOrEmpty ("; ", strOps, FormatHelper.JoinNotNullOrEmpty (": ", gop.Title, 
                         // TODO: Move to the module display settings?
                         // don't display division title also for current division
                         (gop.OccupiedPosition.DivisionID != Settings.DivisionID) ? gop.OccupiedPosition.FormatDivisionLink (this) : string.Empty));

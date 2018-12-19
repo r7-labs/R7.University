@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -34,11 +35,11 @@ namespace R7.University.EduProgramProfiles.Queries
         public IEduProgramProfileFormYear SingleOrDefault (int eppfyId)
         {
             return ModelContext.QueryOne<EduProgramProfileFormYearInfo> (eppfy => eppfy.EduProgramProfileFormYearId == eppfyId)
-                               .Include (eppfy => eppfy.EduProgramProfile)
-                               .Include (eppfy => eppfy.EduProgramProfile.EduLevel)
-                               .Include (eppfy => eppfy.EduProgramProfile.EduProgram)
-                               .Include (eppfy => eppfy.EduForm)
-                               .Include (eppfy => eppfy.Year)
+                               .Include2 (eppfy => eppfy.EduProgramProfile)
+                               .Include2 (eppfy => eppfy.EduProgramProfile.EduLevel)
+                               .Include2 (eppfy => eppfy.EduProgramProfile.EduProgram)
+                               .Include2 (eppfy => eppfy.EduForm)
+                               .Include2 (eppfy => eppfy.Year)
                                .SingleOrDefault ();
         }
     }

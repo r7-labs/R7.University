@@ -22,6 +22,7 @@
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
@@ -98,7 +99,7 @@ namespace R7.University.EduProgramProfiles
 
         protected override void LoadItem (EduVolumeInfo item)
         {
-            var ev = GetItemWithDependencies (ItemId.Value);
+            var ev = GetItemWithDependencies (ItemKey.Value);
 
             textTimeToLearnHours.Text = ev.TimeToLearnHours.ToString ();
             textTimeToLearnYears.Text = (ev.TimeToLearnMonths / 12).ToString ();
@@ -116,26 +117,26 @@ namespace R7.University.EduProgramProfiles
             textPracticeType3Cu.Text = ev.PracticeType3Cu.ToString ();
         }
 
-        protected override void BeforeUpdateItem (EduVolumeInfo item)
+        protected override void BeforeUpdateItem (EduVolumeInfo item, bool isNew)
         {
             item.TimeToLearnHours = int.Parse (textTimeToLearnHours.Text);
             item.TimeToLearnMonths = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
 
-            item.Year1Cu = TypeUtils.ParseToNullable<int> (textYear1Cu.Text);
-            item.Year2Cu = TypeUtils.ParseToNullable<int> (textYear2Cu.Text);
-            item.Year3Cu = TypeUtils.ParseToNullable<int> (textYear3Cu.Text);
-            item.Year4Cu = TypeUtils.ParseToNullable<int> (textYear4Cu.Text);
-            item.Year5Cu = TypeUtils.ParseToNullable<int> (textYear5Cu.Text);
-            item.Year6Cu = TypeUtils.ParseToNullable<int> (textYear6Cu.Text);
+            item.Year1Cu = ParseHelper.ParseToNullable<int> (textYear1Cu.Text);
+            item.Year2Cu = ParseHelper.ParseToNullable<int> (textYear2Cu.Text);
+            item.Year3Cu = ParseHelper.ParseToNullable<int> (textYear3Cu.Text);
+            item.Year4Cu = ParseHelper.ParseToNullable<int> (textYear4Cu.Text);
+            item.Year5Cu = ParseHelper.ParseToNullable<int> (textYear5Cu.Text);
+            item.Year6Cu = ParseHelper.ParseToNullable<int> (textYear6Cu.Text);
 
-            item.PracticeType1Cu = TypeUtils.ParseToNullable<int> (textPracticeType1Cu.Text);
-            item.PracticeType2Cu = TypeUtils.ParseToNullable<int> (textPracticeType2Cu.Text);
-            item.PracticeType3Cu = TypeUtils.ParseToNullable<int> (textPracticeType3Cu.Text);
+            item.PracticeType1Cu = ParseHelper.ParseToNullable<int> (textPracticeType1Cu.Text);
+            item.PracticeType2Cu = ParseHelper.ParseToNullable<int> (textPracticeType2Cu.Text);
+            item.PracticeType3Cu = ParseHelper.ParseToNullable<int> (textPracticeType3Cu.Text);
         }
 
-        protected override EduVolumeInfo GetItemWithDependencies (int itemId)
+        protected EduVolumeInfo GetItemWithDependencies (int itemId)
         {
-            return ModelContext.Get<EduVolumeInfo> (itemId);
+            return ModelContext.Get<EduVolumeInfo,int> (itemId);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase
@@ -144,7 +145,7 @@ namespace R7.University.EduProgramProfiles
 
         protected override void AddItem (EduVolumeInfo item)
         {
-            var eduVolumeId = TypeUtils.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
+            var eduVolumeId = ParseHelper.ParseToNullable<int> (Request.QueryString ["eduprogramprofileformyear_id"]);
             if (eduVolumeId != null) {
                 item.EduVolumeId = eduVolumeId.Value;
             }

@@ -20,12 +20,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.University.Divisions.Models;
 using R7.University.Modules;
-using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Divisions
 {
@@ -70,7 +70,7 @@ namespace R7.University.Divisions
 
                 ModuleController.SynchronizeModule (ModuleId);
 
-                CacheHelper.RemoveCacheByPrefix ($"//r7_University/Modules/DivisionDirectory?ModuleId={ModuleId}");
+                DataCache.ClearCache ($"//r7_University/Modules/DivisionDirectory?ModuleId={ModuleId}");
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,9 +31,9 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.ModuleExtensions;
 using R7.Dnn.Extensions.Modules;
-using R7.Dnn.Extensions.TextExtensions;
+using R7.Dnn.Extensions.Text;
+using R7.Dnn.Extensions.Urls;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
@@ -110,7 +110,7 @@ namespace R7.University.Employees
 
         protected EmployeeInfo GetEmployee_FromCurrentUser ()
         {
-            var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+            var userId = ParseHelper.ParseToNullable<int> (Request.QueryString ["userid"]);
             if (userId != null) {
                 return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
             }
@@ -158,7 +158,7 @@ namespace R7.University.Employees
                 if (displayContent) {
                     if (Settings.AutoTitle) {
                         UniversityModuleHelper.UpdateModuleTitle (TabModuleId, 
-                            FormatHelper.AbbrName (employee.FirstName, employee.LastName, employee.OtherName)
+                            UniversityFormatHelper.AbbrName (employee.FirstName, employee.LastName, employee.OtherName)
                         );
                     }
 
@@ -195,7 +195,7 @@ namespace R7.University.Employees
             }
 
             // Full name
-            var fullName = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
+            var fullName = UniversityFormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
             labelFullName.Text = fullName;
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, Settings.PhotoWidth);
@@ -211,9 +211,9 @@ namespace R7.University.Employees
             var titles = employee.Achievements
                 .Select (ach => new EmployeeAchievementViewModel (ach, new ViewModelContext (this)))
                 .Where (ach => ach.IsTitle)
-                .Select (ach => FormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
+                .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
 			
-            var strTitles = TextUtils.FormatList (", ", titles);
+            var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
@@ -244,15 +244,15 @@ namespace R7.University.Employees
             else
                 labelMessenger.Visible = false;
 
-            var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            var workingPlaceAndHours = FormatHelper.JoinNotNullOrEmpty (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours))
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
             else
                 labelWorkingPlaceAndHours.Visible = false;
 
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
-                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
+                linkWebSite.NavigateUrl = UniversityFormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = UniversityFormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
             }
             else {
                 linkWebSite.Visible = false;

@@ -1,10 +1,10 @@
 //
-//  QueryableExtensions.cs
+//  DivisionQueryExtensions.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,17 +19,20 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Linq;
-using System.Linq.Expressions; 
+using Microsoft.EntityFrameworkCore;
+using R7.University.Models;
 
-namespace R7.University.Models
+namespace R7.University.Queries
 {
-    public static class QueryableExtensions
+    public static class DivisionQueryExtensions
     {
-        public static IQueryable<T> Include<T,TProperty> (this IQueryable<T> source, Expression<Func<T,TProperty>> path)
+        public static IQueryable<DivisionInfo> IncludeOccupiedPositions (this IQueryable<DivisionInfo> divisions)
         {
-            return System.Data.Entity.QueryableExtensions.Include (source, path);
+            return divisions.Include (d => d.OccupiedPositions)
+                                .ThenInclude (op => op.Position)
+                            .Include (d => d.OccupiedPositions)
+                                .ThenInclude (op => op.Employee);
         }
     }
 }

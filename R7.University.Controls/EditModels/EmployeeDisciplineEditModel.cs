@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -23,7 +23,6 @@ using System;
 using System.Web;
 using Newtonsoft.Json;
 using R7.Dnn.Extensions.Models;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
 using R7.University.Models;
@@ -50,7 +49,7 @@ namespace R7.University.Controls.EditModels
             viewModel.ProfileTitle = model.EduProgramProfile.ProfileTitle;
             viewModel.ProfileStartDate = model.EduProgramProfile.StartDate;
             viewModel.ProfileEndDate = model.EduProgramProfile.EndDate;
-            viewModel.EduLevelString = FormatHelper.FormatShortTitle (model.EduProgramProfile.EduLevel.ShortTitle, model.EduProgramProfile.EduLevel.Title);
+            viewModel.EduLevelString = UniversityFormatHelper.FormatShortTitle (model.EduProgramProfile.EduLevel.ShortTitle, model.EduProgramProfile.EduLevel.Title);
 
             return viewModel;
         }
@@ -112,7 +111,7 @@ namespace R7.University.Controls.EditModels
         [JsonIgnore]
         public string EduProgramProfileString
         {
-            get { return FormatHelper.FormatEduProgramProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
+            get { return UniversityFormatHelper.FormatEduProgramProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
         }
 
         #endregion

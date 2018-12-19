@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -28,7 +28,8 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
 using R7.University.Models;
@@ -115,7 +116,7 @@ namespace R7.University.Controls
             item.Group = textDocumentGroup.Text.Trim ();
             item.DocumentTypeID = int.Parse (comboDocumentType.SelectedValue);
             item.DocumentTypeViewModel = GetDocumentType (item.DocumentTypeID);
-            item.SortIndex = TypeUtils.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
+            item.SortIndex = ParseHelper.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
             item.StartDate = datetimeDocumentStartDate.SelectedDate;
             item.EndDate = datetimeDocumentEndDate.SelectedDate;
             item.Url = urlDocumentUrl.Url;

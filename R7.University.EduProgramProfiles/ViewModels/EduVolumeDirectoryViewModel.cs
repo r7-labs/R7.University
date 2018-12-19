@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using R7.University.ModelExtensions;
 using R7.University.EduProgramProfiles.Models;
+using R7.Dnn.Extensions.Collections;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {

@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using R7.Dnn.Extensions.Models;
 using R7.University.EditModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +24,8 @@ using System.Linq;
 using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Models;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Divisions.Models;
 using R7.University.ModelExtensions;
@@ -102,7 +103,7 @@ namespace R7.University.Divisions
 
         public string LocationString {
             get {
-                var location = TextUtils.FormatList (", ", Address, Location);
+                var location = FormatHelper.JoinNotNullOrEmpty (", ", Address, Location);
                 if (!string.IsNullOrWhiteSpace (location)) {
                     return "<span itemprop=\"addressStr\">" + location  + "</span>";
                 }
@@ -115,10 +116,10 @@ namespace R7.University.Divisions
         public string HeadEmployeeHtml {
             get {
                 if (HeadEmployeePosition != null) {
-                    var positionTitle = FormatHelper.FormatShortTitle (HeadEmployeePosition.Position.ShortTitle, HeadEmployeePosition.Position.Title);
+                    var positionTitle = UniversityFormatHelper.FormatShortTitle (HeadEmployeePosition.Position.ShortTitle, HeadEmployeePosition.Position.Title);
                     var headEmployee =  HeadEmployeePosition.Employee;
-                    return $"<a href=\"{Context.Module.EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")}\"><span itemprop=\"fio\">{FormatHelper.FullName (headEmployee.FirstName, headEmployee.LastName, headEmployee.OtherName)}</span></a><br />"
-                         + $"<span itemprop=\"post\">{TextUtils.FormatList (" ", positionTitle, HeadEmployeePosition.TitleSuffix)}</span>";
+                    return $"<a href=\"{Context.Module.EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")}\"><span itemprop=\"fio\">{UniversityFormatHelper.FullName (headEmployee.FirstName, headEmployee.LastName, headEmployee.OtherName)}</span></a><br />"
+                        + $"<span itemprop=\"post\">{FormatHelper.JoinNotNullOrEmpty (" ", positionTitle, HeadEmployeePosition.TitleSuffix)}</span>";
                 }
 
                 if (HeadPositionID != null) {
@@ -208,7 +209,7 @@ namespace R7.University.Divisions
                     division.Level = 0;
                 }
                 else {
-                    division.Order = TextUtils.FormatList (separator, orderStack) + separator + orderCounter + separator;
+                    division.Order = FormatHelper.JoinNotNullOrEmpty (separator, orderStack) + separator + orderCounter + separator;
                 }
 
                 prevDivision = division;

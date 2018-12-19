@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -22,7 +22,7 @@
 using System;
 using System.Collections.Generic;
 using DotNetNuke.Common.Utilities;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Text;
 
 namespace R7.University.Models
 {
@@ -217,32 +217,10 @@ namespace R7.University.Models
             get { return GetFileName (FirstName, LastName, OtherName); }
         }
 
+        [Obsolete ("Replaced with extension method")]
         public string FullName
         {
-            get { return TextUtils.FormatList (" ", LastName, FirstName, OtherName); }
-        }
-
-        public string SearchDocumentText
-        {
-            get {
-                var text = TextUtils.FormatList (", ",
-                    FullName,
-                    Phone,
-                    CellPhone,
-                    Fax,
-                    Email,
-                    SecondaryEmail,
-                    WebSite,
-                    Messenger,
-                    WorkingPlace,
-                    WorkingHours,
-                    HtmlUtils.ConvertToText (Biography)
-                );
-
-                // TODO: Add positions and achievements to the search index
-
-                return text;
-            }
+            get { return FormatHelper.JoinNotNullOrEmpty (" ", LastName, FirstName, OtherName); }
         }
 
         #endregion

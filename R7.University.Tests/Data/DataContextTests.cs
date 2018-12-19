@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -29,9 +29,8 @@ namespace R7.University.Tests.Data
         [Fact]
         public void CreateDbContextTest ()
         {
-            var dbContextFactory = new TestDataContextFactory ();
-            using (var db = dbContextFactory.Create ()) {
-                db.Set<EmployeeInfo> ().Add (new EmployeeInfo ());
+            using (var db = new TestDataContext ()) {
+                db.GetDataSet<EmployeeInfo> ().Add (new EmployeeInfo ());
                 db.SaveChanges ();
             }
         }

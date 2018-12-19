@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
+using R7.Dnn.Extensions.Models;
 using R7.University.Components;
 using R7.University.Models;
 

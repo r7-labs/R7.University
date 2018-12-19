@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -67,13 +67,13 @@ namespace R7.University.EduPrograms.ViewModels
 
         public string EduLevel_String
         {
-            get { return FormatHelper.FormatShortTitle (EduLevel.ShortTitle, EduLevel.Title); }
+            get { return UniversityFormatHelper.FormatShortTitle (EduLevel.ShortTitle, EduLevel.Title); }
         }
 
         public string EduStandard_Links
         {
             get { 
-                return FormatHelper.FormatDocumentLinks (
+                return UniversityFormatHelper.FormatDocumentLinks (
                     GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)),
                     Context,
                     "<li>{0}</li>",
@@ -88,7 +88,7 @@ namespace R7.University.EduPrograms.ViewModels
         public string ProfStandard_Links
         {
             get { 
-                return FormatHelper.FormatDocumentLinks (
+                return UniversityFormatHelper.FormatDocumentLinks (
                     GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard)),
                     Context,
                     "<li>{0}</li>",

@@ -1,10 +1,10 @@
 //
-//  TestDbSet.cs
+//  TestDataSet.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,30 +20,28 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using R7.Dnn.Extensions.Data;
 
 namespace R7.University.Tests.Data
 {
-    public class TestDbSet<TEntity>: IDbSet<TEntity> where TEntity: class
+    public class TestDataSet<TEntity>: IDataSet<TEntity> where TEntity: class
     {
         private HashSet<TEntity> entities;
 
         private IQueryable query;
 
-        public TestDbSet ()
+        public TestDataSet ()
         {
             entities = new HashSet<TEntity> ();
             query = entities.AsQueryable ();
         }
 
-        public TEntity Add (TEntity entity)
+        public void Add (TEntity entity)
         {
             entities.Add (entity);
-            return entity;
         }
 
         public TEntity Find (params object[] keyValues)
@@ -51,15 +49,9 @@ namespace R7.University.Tests.Data
             throw new NotImplementedException ();
         }
 
-        public TEntity Remove (TEntity entity)
+        public void Remove (TEntity entity)
         {
             entities.Remove (entity);
-            return entity;
-        }
-
-        public TEntity Attach (TEntity entity)
-        {
-            throw new NotImplementedException ();
         }
 
         public TEntity Create ()
@@ -81,10 +73,30 @@ namespace R7.University.Tests.Data
         {
             return entities.GetEnumerator ();
         }
-
-        IEnumerator IEnumerable.GetEnumerator ()
+       
+        public IQueryable<TEntity> Query ()
         {
-            return entities.GetEnumerator ();
+            return entities.AsQueryable<TEntity> ();
+        }
+
+        public IQueryable<TEntity> FromSql (string queryName, params object [] parameters)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public TEntity Find<TKey> (TKey key)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public bool Exists (TEntity entity)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public void Attach (TEntity entity)
+        {
+            throw new NotImplementedException ();
         }
 
         public Expression Expression

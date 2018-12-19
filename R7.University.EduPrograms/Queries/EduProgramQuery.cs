@@ -1,10 +1,10 @@
 //
-//  ModuleRepository.cs
+//  EduProgramQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -34,20 +35,11 @@ namespace R7.University.EduPrograms.Queries
         public EduProgramInfo SingleOrDefault (int eduProgramId)
         {
             return ModelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
-                .Include (ep => ep.EduLevel)
-                .Include (ep => ep.Documents)
-                .Include (ep => ep.Documents.Select (d => d.DocumentType))
-                .Include (ep => ep.Divisions)
-                .Include (ep => ep.Divisions.Select (epd => epd.Division))
-                .Include (ep => ep.EduProgramProfiles)
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduLevel))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.Divisions))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.Divisions.Select (epd => epd.Division)))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm)))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume)))
-                .Include (ep => ep.EduProgramProfiles.Select (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year)))
-                .SingleOrDefault ();
+                               .IncludeEduLevelDivisionsAndDocuments ()
+                               .IncludeEduProgramProfiles ()
+                               // FIXME: Should be just SingleOrDefault: https://github.com/aspnet/EntityFrameworkCore/issues/11516
+                               .ToList ()
+                               .SingleOrDefault ();
         }
     }
 }

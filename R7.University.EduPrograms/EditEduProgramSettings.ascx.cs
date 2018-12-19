@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,11 +21,12 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.Utilities;
-using R7.Dnn.Extensions.ViewModels;
+using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Models;
+using R7.Dnn.Extensions.Text;
 using R7.University.EduPrograms.Models;
 using R7.University.EduPrograms.Queries;
 using R7.University.Models;
@@ -34,7 +35,7 @@ using R7.University.Queries;
 using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms
-{    
+{
     public partial class EditEduProgramSettings : UniversityModuleSettingsBase<EduProgramSettings>
     {
         #region Repository handling
@@ -76,7 +77,7 @@ namespace R7.University.EduPrograms
         protected void BindEduPrograms (int eduLevelId)
         {
             comboEduProgram.DataSource = new EduProgramQuery (ModelContext).ListByEduLevel (eduLevelId)
-                .Select (ep => new ListItemViewModel (ep.EduProgramID, FormatHelper.FormatEduProgramTitle (ep.Code, ep.Title)));
+                .Select (ep => new { Value = ep.EduProgramID, Text = UniversityFormatHelper.FormatEduProgramTitle (ep.Code, ep.Title) });
             
             comboEduProgram.DataBind ();
             comboEduProgram.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
@@ -92,7 +93,7 @@ namespace R7.University.EduPrograms
                 if (!IsPostBack)
                 {
                     if (Settings.EduProgramId != null) {
-                        var eduProgram = ModelContext.Get<EduProgramInfo> (Settings.EduProgramId.Value);
+                        var eduProgram = ModelContext.Get<EduProgramInfo, int> (Settings.EduProgramId.Value);
                         comboEduLevel.SelectByValue (eduProgram.EduLevelID);
                         BindEduPrograms (eduProgram.EduLevelID);
                         comboEduProgram.SelectByValue (eduProgram.EduProgramID);
@@ -114,12 +115,12 @@ namespace R7.University.EduPrograms
         {
             try
             {
-                Settings.EduProgramId = TypeUtils.ParseToNullable<int> (comboEduProgram.SelectedValue);
+                Settings.EduProgramId = ParseHelper.ParseToNullable<int> (comboEduProgram.SelectedValue, true);
                 Settings.AutoTitle = checkAutoTitle.Checked;
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 
-                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId);
+                DataCache.ClearCache ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId);
 
                 ModuleController.SynchronizeModule (ModuleId);
             }

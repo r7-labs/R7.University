@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,6 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 
 namespace R7.University.Queries
@@ -29,16 +30,6 @@ namespace R7.University.Queries
     {
         public EduProgramCommonQuery (IModelContext modelContext): base (modelContext)
         {
-        }
-
-        protected IQueryable<EduProgramInfo> QueryEduPrograms ()
-        {
-            return ModelContext.Query<EduProgramInfo> ()
-                .Include (ep => ep.EduLevel)
-                .Include (ep => ep.Divisions)
-                .Include (ep => ep.Divisions.Select (d => d.Division))    
-                .Include (ep => ep.Documents)
-                .Include (ep => ep.Documents.Select (d => d.DocumentType));
         }
 
         public IList<EduProgramInfo> ListByEduLevel (int eduLevelId)
