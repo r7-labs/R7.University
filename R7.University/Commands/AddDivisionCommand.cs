@@ -39,7 +39,7 @@ namespace R7.University.Commands
             if (SecurityContext.CanAdd (typeof (DivisionInfo))) {
                 entity.CreatedByUserId = entity.LastModifiedByUserId = SecurityContext.UserId;
                 entity.CreatedOnDate = entity.LastModifiedOnDate = dateTime;
-                entity.DivisionTermID = entity.AddTerm (ModelContext);
+                entity.DivisionTermID = entity.AddOrUpdateTerm (ModelContext);
                 ModelContext.Add (entity);
             }
         }

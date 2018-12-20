@@ -39,12 +39,7 @@ namespace R7.University.Commands
             if (SecurityContext.CanUpdate (entity)) {
                 entity.LastModifiedByUserId = SecurityContext.UserId;
                 entity.LastModifiedOnDate = dateTime;
-
-                if (entity.DivisionTermID != null) {
-                    entity.UpdateTerm (ModelContext);
-                } else {
-                    entity.DivisionTermID = entity.AddTerm (ModelContext);
-                }
+                entity.DivisionTermID = entity.AddOrUpdateTerm (ModelContext);
 
                 ModelContext.Update (entity);
             }
