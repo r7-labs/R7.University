@@ -43,23 +43,25 @@ namespace R7.University.ModelExtensions
             var vocabularyName = UniversityConfig.Instance.Vocabularies.OrgStructure;
             var vocabulary = new VocabularyController ().GetVocabularies ().FirstOrDefault (v => v.Name == vocabularyName);
             if (vocabulary == null) {
-                Exceptions.LogException (new Exception ($"Could not find vocabulary with name {vocabularyName}."));
+                Exceptions.LogException (new Exception ($"Could not find the {vocabularyName} vocabulary."));
                 return null;
             }
 
             var termName = GetSafeTermName (division.ShortTitle, division.Title);
             var termCtrl = new TermController ();
+            var term = default (Term);
 
-            var term = division.DivisionTermID == null
-                ? termCtrl.GetTermsByVocabulary (vocabulary.VocabularyId).FirstOrDefault (t => t.Name == termName)
-                : termCtrl.GetTerm (division.DivisionTermID.Value);
+            if (division.DivisionTermID == null) {
+                term = termCtrl.GetTermsByVocabulary (vocabulary.VocabularyId).FirstOrDefault (t => t.Name == termName);
+                if (term != null) {
+                    Exceptions.LogException (new Exception ($"Could not create term {termName} in the {vocabularyName} vocabulary as it already exists."));
+                    return null;
+                }
 
-            var isNewTerm = term == null;
-
-            if (isNewTerm) {
                 term = new Term (termName, string.Empty, vocabulary.VocabularyId);
             }
             else {
+                term = termCtrl.GetTerm (division.DivisionTermID.Value);
                 term.Name = termName;
             }
 
@@ -72,7 +74,7 @@ namespace R7.University.ModelExtensions
             }
 
             try {
-                if (isNewTerm) {
+                if (division.DivisionTermID == null) {
                     return termCtrl.AddTerm (term);
                 }
 
@@ -80,7 +82,7 @@ namespace R7.University.ModelExtensions
                 return term.TermId;
             }
             catch (Exception ex) {
-                Exceptions.LogException (new Exception ($"Error adding/updating {termName} vocabulary {vocabularyName} term.", ex));
+                Exceptions.LogException (new Exception ($"Error creating/updating {termName} term in the vocabulary {vocabularyName}.", ex));
             }
         
             return null;
