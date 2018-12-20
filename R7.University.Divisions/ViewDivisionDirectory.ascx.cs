@@ -430,7 +430,7 @@ namespace R7.University.Divisions
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var division = (DivisionObrnadzorViewModel) e.Row.DataItem;
 
-                e.Row.Attributes.Add ("itemprop", "structOrgUprav");
+                e.Row.Attributes.Add ("itemprop", "name");
 
                 if (IsEditable) {
                     // get edit link controls
