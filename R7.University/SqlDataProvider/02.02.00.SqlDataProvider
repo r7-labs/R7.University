@@ -31,5 +31,9 @@ IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{
     DROP PROCEDURE {databaseOwner}[{objectQualifier}University_GetEmployees_ByDivisionID_Recursive]
 GO
 
+IF NOT EXISTS (select * from sys.indexes where name = N'UN_{objectQualifier}University_Divisions_DivisionTermID')
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_Divisions] ADD CONSTRAINT
+		[UN_{objectQualifier}University_Divisions_DivisionTermID] UNIQUE ([DivisionTermID])
+		
 UPDATE {databaseOwner}[{objectQualifier}TabModuleSettings]
 	SET SettingValue = N'0' WHERE SettingName = N'EmployeeList_SortType' AND SettingValue = N'1'
