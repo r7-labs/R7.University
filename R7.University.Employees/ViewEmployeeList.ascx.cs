@@ -99,6 +99,8 @@ namespace R7.University.Employees
         {
             var employeeQuery = new EmployeeQuery (ModelContext);
 
+            // TODO: Can get all employee data in EmployeeQuery.ListByDivisionId()
+
             // get employees (w/o references, sorted)
             var sortedEmployees = employeeQuery.ListByDivisionId (Settings.DivisionID, Settings.IncludeSubdivisions, Settings.SortType).ToList ();
 
