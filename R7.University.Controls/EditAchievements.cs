@@ -27,8 +27,8 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.FileSystem;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
 using R7.University.Controls.SerializationModels;
 using R7.University.ModelExtensions;
@@ -76,6 +76,11 @@ namespace R7.University.Controls
             comboAchievementTypes.DataBind ();
             comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
             comboAchievementTypes.SelectedIndex = 0;
+
+            var lastFolderId = FolderHistory.GetLastFolderId (Request, Module.PortalId);
+            if (lastFolderId != null) {
+                urlDocumentURL.SelectFolder (lastFolderId.Value);
+            }
         }
 
         protected override void OnLoad (EventArgs e)
@@ -151,12 +156,14 @@ namespace R7.University.Controls
             item.YearBegin = ParseHelper.ParseToNullable<int> (textYearBegin.Text);
             item.YearEnd = ParseHelper.ParseToNullable<int> (textYearEnd.Text);
             item.DocumentURL = urlDocumentURL.Url;
+
+            FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentURL.Url, Module.PortalId);
         }
 
         protected override void OnCancelEdit (EmployeeAchievementEditModel item)
         {
             // fix for DnnUrlControl looses its state on postback
-            urlDocumentURL.Url = item.DocumentURL;
+            // urlDocumentURL.Url = item.DocumentURL;
 
             base.OnCancelEdit (item);
         }

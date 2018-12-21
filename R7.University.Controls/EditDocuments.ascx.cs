@@ -29,8 +29,8 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.FileSystem;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Controls.EditModels;
 using R7.University.Models;
 
@@ -66,6 +66,11 @@ namespace R7.University.Controls
 
             comboDocumentType.Attributes.Add ("data-validation", $"[{filenameFormats}]");
             valDocumentUrl.Attributes.Add ("data-message-template", Localization.GetString ("FileName.Invalid", LocalResourceFile));
+
+            var lastFolderId = FolderHistory.GetLastFolderId (Request, Module.PortalId);
+            if (lastFolderId != null) {
+                urlDocumentUrl.SelectFolder (lastFolderId.Value);
+            }
         }
 
         protected override void OnLoad (EventArgs e)
@@ -120,6 +125,8 @@ namespace R7.University.Controls
             item.StartDate = datetimeDocumentStartDate.SelectedDate;
             item.EndDate = datetimeDocumentEndDate.SelectedDate;
             item.Url = urlDocumentUrl.Url;
+
+            FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentUrl.Url, Module.PortalId);
         }
 
         protected override void OnResetForm ()
