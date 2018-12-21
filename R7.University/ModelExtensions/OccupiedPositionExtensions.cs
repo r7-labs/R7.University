@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.UI.Modules;
@@ -36,9 +37,12 @@ namespace R7.University.ModelExtensions
         /// </summary>
         /// <returns>The occupied positions grouped by division.</returns>
         /// <param name="occupiedPositions">The occupied positions to group by division.</param>
-        public static IEnumerable<GroupedOccupiedPosition> GroupByDivision (this IEnumerable<OccupiedPositionInfo> occupiedPositions)
+        public static IEnumerable<GroupedOccupiedPosition> GroupByDivision (this IEnumerable<OccupiedPositionInfo> occupiedPositions,
+            DateTime now, bool isEditable)
         {
-            var gops = occupiedPositions.Select (op => new GroupedOccupiedPosition (op)).ToList ();
+            var gops = occupiedPositions
+                .Where (op => op.Division.IsPublished (now) || isEditable)
+                .Select (op => new GroupedOccupiedPosition (op)).ToList ();
 
             for (var i = 0; i < gops.Count; i++) {
                 var gop = gops [i];

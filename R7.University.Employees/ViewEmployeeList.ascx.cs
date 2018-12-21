@@ -21,6 +21,7 @@
 
 using System;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
@@ -136,7 +137,7 @@ namespace R7.University.Employees
                 var now = HttpContext.Current.Timestamp;
                 // get employees
                 var employees = GetViewModel ().Employees
-                    .Where (empl => IsEditable || empl.IsPublished (now));
+                    .Where (empl => IsEditable || (empl.IsPublished (now) && empl.Positions.Any (p => p.Division.IsPublished (now))));
         
                 // check if we have some content to display, 
                 // otherwise display a message for module editors or hide module from regular users
@@ -324,24 +325,27 @@ namespace R7.University.Employees
             var gops = employee.Positions
                 .OrderByDescending (op => op.DivisionID == Settings.DivisionID)
                 .ThenByDescending (op => op.Position.Weight)
-                .GroupByDivision ();
+                .GroupByDivision (HttpContext.Current.Timestamp, IsEditable);
                 
             // build positions value
             var positionsVisible = false;
             if (!gops.IsNullOrEmpty ()) {
                 var strOps = string.Empty;
                 foreach (var gop in gops) {
-                    // gop.Title is a comma-separated list of grouped positions
-                    strOps = FormatHelper.JoinNotNullOrEmpty ("; ", strOps, FormatHelper.JoinNotNullOrEmpty (": ", gop.Title, 
-                        // TODO: Move to the module display settings?
-                        // don't display division title also for current division
-                        (gop.OccupiedPosition.DivisionID != Settings.DivisionID) ? gop.OccupiedPosition.FormatDivisionLink (this) : string.Empty));
+                    var cssClass = !gop.OccupiedPosition.Division.IsPublished (HttpContext.Current.Timestamp)
+                        ? " class=\"u8y-not-published-element\"" : string.Empty;
+                        strOps = FormatHelper.JoinNotNullOrEmpty ("; ", strOps,
+                            $"<span{cssClass}>"
+                            // gop.Title is a comma-separated list of grouped positions
+                            + FormatHelper.JoinNotNullOrEmpty (": ", gop.Title,
+                                // TODO: Move to the module display settings?
+                                // don't display division title also for current division
+                                (gop.OccupiedPosition.DivisionID != Settings.DivisionID) ? gop.OccupiedPosition.FormatDivisionLink (this) : string.Empty)
+                            + "</span>");
                 }
 
-                if (!string.IsNullOrWhiteSpace (strOps)) {
-                    labelPositions.Text = $"<label>{LocalizeString ("OccupiedPositions.Text")}</label> {strOps}";
-                    positionsVisible = true;
-                }
+                labelPositions.Text = $"<label>{LocalizeString ("OccupiedPositions.Text")}</label> {strOps}";
+                positionsVisible = true;
             }
             labelPositions.Visible = positionsVisible;
         }

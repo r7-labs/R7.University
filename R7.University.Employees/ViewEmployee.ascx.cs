@@ -183,9 +183,9 @@ namespace R7.University.Employees
             // occupied positions
             var positions = employee.Positions
                                     .OrderByDescending (op => op.Position.Weight)
-                                    .GroupByDivision ()
-                                    .Where (p => IsEditable || p.OccupiedPosition.Division.IsPublished (HttpContext.Current.Timestamp));
+                                    .GroupByDivision (HttpContext.Current.Timestamp, IsEditable);
 
+            // TODO: Grey out not published divisions
             if (positions.Any ()) {
                 repeaterPositions.DataSource = positions;
                 repeaterPositions.DataBind ();

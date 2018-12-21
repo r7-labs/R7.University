@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.University.ModelExtensions;
@@ -32,7 +33,7 @@ namespace R7.University.Tests.ModelExtensions
         [Fact]
         public void GroupByDivisionTest ()
         {
-            var gops = GetOccupiedPositions ().GroupByDivision ().ToList ();
+            var gops = GetOccupiedPositions ().GroupByDivision (DateTime.Today.AddHours (1), false).ToList ();
 
             Assert.Equal (2, gops.Count);
 
@@ -44,6 +45,7 @@ namespace R7.University.Tests.ModelExtensions
         {
             var division1 = new DivisionInfo { DivisionID = 1 };
             var division2 = new DivisionInfo { DivisionID = 2 };
+            var division3 = new DivisionInfo { DivisionID = 3, EndDate = DateTime.Today };
 
             var position11 = new PositionInfo { PositionID = 11, Title = "Director", ShortTitle = "Chief" };
             var position12 = new PositionInfo { PositionID = 12, Title = "Manager" };
@@ -70,6 +72,13 @@ namespace R7.University.Tests.ModelExtensions
                     Division = division1,
                     PositionID = 13,
                     Position = position13
+                },
+
+                new OccupiedPositionInfo {
+                    DivisionID = 3,
+                    Division = division3,
+                    PositionID = 11,
+                    Position = position11
                 }
             };
         }
