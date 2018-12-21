@@ -61,6 +61,7 @@
                         <div class="_section">
             				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
             			</div>
+						
 					</asp:Panel>
         		</div>
         		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">	
@@ -78,7 +79,17 @@
         			</div>
         		</div>
         		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade">
-        			<div class="_section" style="margin-bottom:10px">
+        			<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="_section" Style="margin-bottom:10px;text-align:right">
+						<!--Science Index counter-->
+						<script type="text/javascript"><!--
+						document.write('<a href="https://elibrary.ru/author_counter_click.asp?id=<%: Employee.ScienceIndexAuthorId %>"'+
+						' target=_blank><img src="https://elibrary.ru/author_counter.aspx?id=<%: Employee.ScienceIndexAuthorId %>&rand='+
+						Math.random()+'" title="<%: LocalizeString ("ScienceIndexAuthorProfile.Text") %>" border="0" '+
+						'height="31" width="88" border="0"><\/a>')
+						//--></script>
+						<!--/Science Index counter-->
+					</asp:Panel>
+					<div class="_section" style="margin-bottom:10px">	
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>

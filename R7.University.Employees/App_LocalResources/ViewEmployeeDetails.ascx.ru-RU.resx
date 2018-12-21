@@ -48,4 +48,7 @@
 	<data name="Close.Text" xml:space="preserve">
         <value>Закрыть</value>
     </data>
+	<data name="ScienceIndexAuthorProfile.Text" xml:space="preserve">
+        <value>Профиль автора в Science Index</value>
+    </data>
 </root>

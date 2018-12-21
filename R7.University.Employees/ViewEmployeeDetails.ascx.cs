@@ -107,10 +107,7 @@ namespace R7.University.Employees
 
         EmployeeInfo _employee;
 
-        public EmployeeInfo GetEmployee ()
-        {
-            return _employee ?? (_employee = GetEmployee_Internal ());
-        }
+        public EmployeeInfo Employee => _employee ?? (_employee = GetEmployee_Internal ());
 
         protected EmployeeInfo GetEmployee_Internal ()
         {
@@ -183,7 +180,7 @@ namespace R7.University.Employees
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    GetEmployee () == null && SecurityContext.CanAdd (typeof (EmployeeInfo)), 
+                    Employee == null && SecurityContext.CanAdd (typeof (EmployeeInfo)), 
                     false
                 );
 
@@ -193,10 +190,10 @@ namespace R7.University.Employees
                     ModuleActionType.EditContent, 
                     "", 
                     UniversityIcons.Edit,
-                    EditUrl ("employee_id", GetEmployee ()?.EmployeeID.ToString (), "EditEmployee"),
+                    EditUrl ("employee_id", Employee?.EmployeeID.ToString (), "EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    GetEmployee () != null, 
+                    Employee != null, 
                     false
                 );
 
@@ -240,7 +237,7 @@ namespace R7.University.Employees
 
             try {
                 var now = HttpContext.Current.Timestamp;
-                var employee = GetEmployee ();
+                var employee = Employee;
 
                 // can we display module content?
                 var displayContent = employee != null && (IsEditable || employee.IsPublished (now));
@@ -549,14 +546,18 @@ namespace R7.University.Employees
                                                              SystemAchievementType.Work))
                 .OrderByDescending (ach => ach.YearBegin)
                 .ToList ();
-			
+
+            pnlScienceIndexCounter.Visible = employee.ScienceIndexAuthorId != null;
+
             if (otherAchievements.Any ()) {
                 gridAchievements.DataSource = otherAchievements;
                 gridAchievements.DataBind ();
             }
-            else {	
-                // hide achievements tab
-                tabAchievements.Visible = false;
+            else {
+                if (employee.ScienceIndexAuthorId == null) {
+                    // hide achievements tab
+                    tabAchievements.Visible = false;
+                }
             }
         }
 
