@@ -162,6 +162,12 @@
     <data name="labelShowBarcode.Help" xml:space="preserve">
         <value>Снимите флажок, чтобы запретить показ штрих-кода для данного сотрудника.</value>
     </data>
+	<data name="lblScienceIndexAuthorId.Text" xml:space="preserve">
+        <value>Author ID:</value>
+    </data>
+    <data name="lblScienceIndexAuthorId.Help" xml:space="preserve">
+        <value>Числовой идентификатор автора в Science Index (РИНЦ).</value>
+    </data>
     <data name="labelUserLookup.Text" xml:space="preserve">
         <value>Найти пользователя:</value>
     </data>

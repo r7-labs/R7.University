@@ -161,6 +161,7 @@ namespace R7.University.Employees
             textWorkingPlace.Text = employee.WorkingPlace;
             textBiography.Text = employee.Biography;
             checkShowBarcode.Checked = employee.ShowBarcode;
+            txtScienceIndexAuthorId.Text = employee.ScienceIndexAuthorId.ToString ();
 
             // load working hours
             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, employee.WorkingHours);
@@ -237,6 +238,7 @@ namespace R7.University.Employees
             item.ExperienceYearsBySpec = ParseHelper.ParseToNullable<int> (textExperienceYearsBySpec.Text);
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
+            item.ScienceIndexAuthorId = ParseHelper.ParseToNullable<int> (txtScienceIndexAuthorId.Text);
 
             // pickerPhoto.FileID may be 0 by default
             item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;

@@ -120,6 +120,10 @@
 					<asp:TextBox id="textMessenger" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
+					<dnn:Label id="lblScienceIndexAuthorId" runat="server" ControlName="txtScienceIndexAuthorId" />
+					<asp:TextBox id="txtScienceIndexAuthorId" runat="server" />
+				</div>
+				<div class="dnnFormItem">
 					<dnn:Label id="labelWorkingPlace" runat="server" ControlName="textWorkingPlace" />
 					<asp:TextBox id="textWorkingPlace" runat="server" MaxLength="50" />
 				</div>

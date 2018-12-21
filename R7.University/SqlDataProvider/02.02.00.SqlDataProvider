@@ -37,3 +37,10 @@ IF NOT EXISTS (select * from sys.indexes where name = N'UN_{objectQualifier}Univ
 		
 UPDATE {databaseOwner}[{objectQualifier}TabModuleSettings]
 	SET SettingValue = N'0' WHERE SettingName = N'EmployeeList_SortType' AND SettingValue = N'1'
+	
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'ScienceIndexAuthorID')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+        ADD [ScienceIndexAuthorID] int NULL
+END
+GO

@@ -88,6 +88,8 @@ namespace R7.University.ViewModels
 
         public bool ShowBarcode => Employee.ShowBarcode;
 
+        public int? ScienceIndexAuthorId => Employee.ScienceIndexAuthorId;
+
         public ICollection<EmployeeAchievementInfo> Achievements => Employee.Achievements;
 
         public ICollection<EmployeeDisciplineInfo> Disciplines => Employee.Disciplines;

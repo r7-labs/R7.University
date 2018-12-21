@@ -59,6 +59,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.CreatedByUserId);
             entityBuilder.Property (m => m.CreatedOnDate);
             entityBuilder.Property (m => m.ShowBarcode);
+            entityBuilder.Property (m => m.ScienceIndexAuthorId);
             entityBuilder.HasMany (m => m.Positions).WithOne ().HasForeignKey (x => x.EmployeeID);
             entityBuilder.HasMany (m => m.Disciplines).WithOne (ed => ed.Employee).HasForeignKey (x => x.EmployeeID);
             entityBuilder.HasMany (m => m.Achievements).WithOne ().HasForeignKey (x => x.EmployeeID);

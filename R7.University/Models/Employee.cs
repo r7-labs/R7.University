@@ -70,6 +70,8 @@ namespace R7.University.Models
 
         bool ShowBarcode { get; }
 
+        int? ScienceIndexAuthorId { get; }
+
         ICollection<EmployeeAchievementInfo> Achievements { get; }
 
         ICollection<EmployeeDisciplineInfo> Disciplines { get; }
@@ -120,6 +122,8 @@ namespace R7.University.Models
         new int? ExperienceYearsBySpec { get; set; }
 
         new bool ShowBarcode { get; set; }
+
+        new int? ScienceIndexAuthorId { get; set; }
 
         new ICollection<EmployeeAchievementInfo> Achievements { get; set; }
 
@@ -184,6 +188,8 @@ namespace R7.University.Models
 
         public bool ShowBarcode { get; set; }
 
+        public int? ScienceIndexAuthorId { get; set; }
+
         public virtual ICollection<EmployeeAchievementInfo> Achievements { get; set; } = new HashSet<EmployeeAchievementInfo> ();
 
         public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; } = new HashSet<EmployeeDisciplineInfo> ();
@@ -225,6 +231,7 @@ namespace R7.University.Models
 
         #endregion
 
+        // TODO: Move to extensions
         public VCard VCard
         {
             get {

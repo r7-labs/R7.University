@@ -40,6 +40,7 @@ namespace R7.University.Employees
 		protected Label labelUserNames;
 		protected DropDownList comboUsers;
         protected CheckBox checkShowBarcode;
+        protected TextBox txtScienceIndexAuthorId;
         protected EditAchievements formEditAchievements;
         protected EditDisciplines formEditDisciplines;
         protected EditPositions formEditPositions;

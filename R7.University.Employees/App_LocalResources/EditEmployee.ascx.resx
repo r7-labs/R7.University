@@ -162,7 +162,13 @@
     <data name="labelShowBarcode.Help" xml:space="preserve">
         <value>Uncheck to disable barcode display for the employee.</value>
     </data>
-    <data name="labelUserLookup.Text" xml:space="preserve">
+	<data name="lblScienceIndexAuthorId.Text" xml:space="preserve">
+        <value>Author ID:</value>
+    </data>
+    <data name="lblScienceIndexAuthorId.Help" xml:space="preserve">
+        <value>Numeric value of author ID in the Science Index.</value>
+    </data>
+	<data name="labelUserLookup.Text" xml:space="preserve">
         <value>User Lookup:</value>
     </data>
     <data name="labelUserLookup.Help" xml:space="preserve">
