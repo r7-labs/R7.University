@@ -49,12 +49,24 @@ namespace R7.University.Queries
                                         .ThenInclude (eppfy => eppfy.EduVolume);
         }
 
+        public static IQueryable<EduProgramProfileInfo> IncludeContingent (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.Contingent);
+        }
+
         public static IQueryable<EduProgramProfileInfo> IncludeEduProgramProfileFormYearsAndForms (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
         {
             return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
                                         .ThenInclude (eppfy => eppfy.Year)
                                      .Include (epp => epp.EduProgramProfileFormYears)
                                         .ThenInclude (eppfy => eppfy.EduForm);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeDivisions (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.Divisions)
+                                        .ThenInclude (d => d.Division);
         }
 
         public static IQueryable<EduProgramProfileInfo> IncludeDocuments (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)

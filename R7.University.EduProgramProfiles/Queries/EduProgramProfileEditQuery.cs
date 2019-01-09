@@ -38,14 +38,10 @@ namespace R7.University.EduProgramProfiles.Queries
                 .Include2 (epp => epp.EduProgram)
                 .Include2 (epp => epp.EduProgram.EduLevel)
                 .Include2 (epp => epp.EduLevel)
-                .Include2 (epp => epp.EduProgramProfileFormYears)
-                .Include2 (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
-                .Include2 (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
-                .Include2 (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Contingent))
-                .Include2 (epp => epp.Divisions)
-                .Include2 (epp => epp.Divisions.Select (ed => ed.Division))
-                .Include2 (epp => epp.Documents)
-                .Include2 (epp => epp.Documents.Select (d => d.DocumentType))
+                .IncludeEduProgramProfileFormYears ()
+                .IncludeContingent ()
+                .IncludeDivisions ()
+                .IncludeDocuments ()
                 .SingleOrDefault ();
         }
     }
