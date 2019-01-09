@@ -34,7 +34,8 @@ namespace R7.University.EduProgramProfiles.Queries
 
         public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
         {
-            return ModelContext.QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
+            return ModelContext.Query<EduProgramProfileInfo> ()
+                .Where (epp => epp.EduProgramProfileID == eduProgramProfileId)
                 .Include2 (epp => epp.EduProgram)
                 .Include2 (epp => epp.EduProgram.EduLevel)
                 .Include2 (epp => epp.EduLevel)

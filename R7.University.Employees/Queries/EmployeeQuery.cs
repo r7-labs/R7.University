@@ -1,4 +1,4 @@
-//
+﻿//
 //  EmployeeQuery.cs
 //
 //  Author:
@@ -36,7 +36,7 @@ namespace R7.University.Employees.Queries
 
         public EmployeeInfo SingleOrDefault (int employeeId)
         {
-            return ModelContext.QueryOne<EmployeeInfo> (e => e.EmployeeID == employeeId)
+            return ModelContext.QueryWhere<EmployeeInfo> (e => e.EmployeeID == employeeId)
                                .IncludePositionsWithDivision ()
                                .IncludeAchievements ()
                                .IncludeDisciplines ()
@@ -45,7 +45,7 @@ namespace R7.University.Employees.Queries
 
         public EmployeeInfo SingleOrDefaultByUserId (int userId)
         {
-            return ModelContext.QueryOne<EmployeeInfo> (e => e.UserID == userId)
+            return ModelContext.QueryWhere<EmployeeInfo> (e => e.UserID == userId)
                                .IncludePositionsWithDivision ()
                                .IncludeAchievements ()
                                .IncludeDisciplines ()

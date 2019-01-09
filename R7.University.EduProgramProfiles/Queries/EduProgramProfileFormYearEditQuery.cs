@@ -1,4 +1,4 @@
-//
+﻿//
 //  EduProgramProfileFormYearEditQuery.cs
 //
 //  Author:
@@ -34,7 +34,7 @@ namespace R7.University.EduProgramProfiles.Queries
 
         public IEduProgramProfileFormYear SingleOrDefault (int eppfyId)
         {
-            return ModelContext.QueryOne<EduProgramProfileFormYearInfo> (eppfy => eppfy.EduProgramProfileFormYearId == eppfyId)
+            return ModelContext.QueryWhere<EduProgramProfileFormYearInfo> (eppfy => eppfy.EduProgramProfileFormYearId == eppfyId)
                                .Include2 (eppfy => eppfy.EduProgramProfile)
                                .Include2 (eppfy => eppfy.EduProgramProfile.EduLevel)
                                .Include2 (eppfy => eppfy.EduProgramProfile.EduProgram)

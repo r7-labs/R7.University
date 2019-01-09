@@ -45,7 +45,7 @@ namespace R7.University.Tests.Commands
                 command.Delete (entity);
 
                 Assert.Equal (isAdmin, null == modelContext
-                              .QueryOne<DivisionInfo> (d => d.DivisionID == entity.DivisionID)
+                              .QueryWhere<DivisionInfo> (d => d.DivisionID == entity.DivisionID)
                               .SingleOrDefault ());
             }
         }

@@ -1,4 +1,4 @@
-//
+﻿//
 //  AddCommandTests.cs
 //
 //  Author:
@@ -46,7 +46,7 @@ namespace R7.University.Tests.Commands
                 command.Add (entity, now);
 
                 var entityLoaded = modelContext
-                    .QueryOne<DivisionInfo> (d => d.DivisionID == entity.DivisionID)
+                    .QueryWhere<DivisionInfo> (d => d.DivisionID == entity.DivisionID)
                     .SingleOrDefault ();
                 
                 Assert.Equal (isAdmin, null != entityLoaded);

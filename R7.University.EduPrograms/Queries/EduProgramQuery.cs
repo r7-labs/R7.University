@@ -1,4 +1,4 @@
-//
+﻿//
 //  EduProgramQuery.cs
 //
 //  Author:
@@ -34,7 +34,7 @@ namespace R7.University.EduPrograms.Queries
 
         public EduProgramInfo SingleOrDefault (int eduProgramId)
         {
-            return ModelContext.QueryOne<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
+            return ModelContext.QueryWhere<EduProgramInfo> (ep => ep.EduProgramID == eduProgramId)
                                .IncludeEduLevelDivisionsAndDocuments ()
                                .IncludeEduProgramProfiles ()
                                // FIXME: Should be just SingleOrDefault: https://github.com/aspnet/EntityFrameworkCore/issues/11516

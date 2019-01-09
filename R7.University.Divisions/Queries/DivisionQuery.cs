@@ -1,4 +1,4 @@
-//
+﻿//
 //  DivisionQuery.cs
 //
 //  Author:
@@ -42,7 +42,7 @@ namespace R7.University.Divisions.Queries
 
         public DivisionInfo SingleOrDefault (int divisionId)
         {
-            return ModelContext.QueryOne<DivisionInfo> (d => d.DivisionID == divisionId)
+            return ModelContext.QueryWhere<DivisionInfo> (d => d.DivisionID == divisionId)
                 .Include2 (d => d.SubDivisions)
                 .SingleOrDefault ();
         }
