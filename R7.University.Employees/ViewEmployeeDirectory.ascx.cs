@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -439,8 +439,8 @@ namespace R7.University.Employees
                 var email = (HyperLink) e.Row.FindControl ("linkEmail");
                 var workingPlace = (Literal) e.Row.FindControl ("literalWorkingPlace");
 
-                name.Text = employee.AbbrName;
-                name.ToolTip = employee.FullName;
+                name.Text = employee.AbbrName ();
+                name.ToolTip = employee.FullName ();
                 name.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
 
                 phone.Text = employee.Phone;

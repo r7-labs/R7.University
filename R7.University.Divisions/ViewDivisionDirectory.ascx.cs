@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -407,7 +407,7 @@ namespace R7.University.Divisions
                 if (headEmployee != null) {
                     literalHeadEmployee.Text = "<a href=\""
                     + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
-                    + "\" title=\"" + headEmployee.FullName + "\">" + headEmployee.AbbrName + "</a>";
+                    + "\" title=\"" + headEmployee.FullName () + "\">" + headEmployee.AbbrName () + "</a>";
                 }
                 else if (division.HeadPositionID != null) {
                     literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");

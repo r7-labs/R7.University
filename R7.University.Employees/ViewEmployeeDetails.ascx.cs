@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -305,7 +305,7 @@ namespace R7.University.Employees
 
         protected void Display (EmployeeInfo employee)
         {
-            var fullname = employee.FullName;
+            var fullname = employee.FullName ();
 
             if (IsInPopup) {
                 // set popup title to employee name
@@ -313,7 +313,7 @@ namespace R7.University.Employees
             }
             else if (InViewModule) {
                 if (Settings.AutoTitle)
-                    UniversityModuleHelper.UpdateModuleTitle (TabModuleId, employee.FullName);
+                    UniversityModuleHelper.UpdateModuleTitle (TabModuleId, fullname);
             }
             else {
                 // display employee name in label
@@ -448,7 +448,7 @@ namespace R7.University.Employees
         void BindBarcode (EmployeeInfo employee)
         {
             if (employee.ShowBarcode) {
-                labelBarcodeEmployeeName.Text = employee.FullName;
+                labelBarcodeEmployeeName.Text = employee.FullName ();
                 linkBarcode.Attributes.Add ("data-target", "#employee-barcode-dialog-" + ModuleId);
 
                 // barcode image
@@ -456,7 +456,7 @@ namespace R7.University.Employees
                 imageBarcode.ImageUrl = UniversityUrlHelper.FullUrl (string.Format (
                         "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                         barcodeWidth, barcodeWidth, 
-                        Server.UrlEncode (employee.VCard.ToString ()
+                        Server.UrlEncode (employee.VCard ().ToString ()
 						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
                     ));
 

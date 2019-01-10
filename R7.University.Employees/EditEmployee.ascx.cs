@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -36,6 +36,7 @@ using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
@@ -392,8 +393,8 @@ namespace R7.University.Employees
                 var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
 
                 if (folder != null) {
-                    var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, 
-                                           textLastName.Text, textOtherName.Text);
+                    var employeeName = EmployeeExtensions.GetFileName (
+                        textFirstName.Text, textLastName.Text, textOtherName.Text);
 
                     // TODO: EmployeeInfo should contain culture data?
                     var employeeNameTL = UniversityCultureHelper.Transliterate (employeeName, UniversityCultureHelper.RuTranslitTable)
