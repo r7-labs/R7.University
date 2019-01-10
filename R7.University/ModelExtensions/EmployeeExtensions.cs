@@ -112,19 +112,5 @@ namespace R7.University.ModelExtensions
 
             return vcard;
         }
-
-        public static string GetFileName (string firstName, string lastName, string otherName)
-        {
-            if (!string.IsNullOrWhiteSpace (otherName))
-                return string.Format ("{0}_{1}{2}", lastName, firstName.Substring (0, 1), otherName.Substring (0, 1));
-
-            return string.Format ("{0}_{1}", lastName, firstName.Substring (0, 1));
-        }
-
-        public static string FileName (this IEmployee e)
-        {
-            return GetFileName (e.FirstName, e.LastName, e.OtherName);
-        }
     }
 }
-
