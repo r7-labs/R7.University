@@ -18,12 +18,6 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;About Edit Employee module&lt;/p&gt;</value>
     </data>
-    <data name="labelPhotoLookup.Text" xml:space="preserve">
-        <value>Photo Lookup:</value>
-    </data>
-    <data name="labelPhotoLookup.Help" xml:space="preserve">
-        <value>Press to try lookup the photo by employee name in default folder.</value>
-    </data>
     <data name="labelPhoto.Text" xml:space="preserve">
         <value>Photo:</value>
     </data>

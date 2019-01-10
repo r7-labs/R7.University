@@ -50,11 +50,6 @@
                     <asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
                 </div>
                 <div class="dnnFormItem">
-                    <dnn:Label id="labelPhotoLookup" runat="server" ControlName="buttonPhotoLookup" />
-                    <asp:LinkButton id="buttonPhotoLookup" runat="server" resourcekey="buttonPhotoLookup"
-                        CssClass="dnnSecondaryAction" OnClick="buttonPhotoLookup_Click" />
-                </div>
-            	<div class="dnnFormItem">
 					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" />
                     <dnn:Picker id="pickerPhoto" runat="server" Required="false" />
 				</div>

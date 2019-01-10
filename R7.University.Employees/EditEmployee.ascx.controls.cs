@@ -13,8 +13,7 @@ namespace R7.University.Employees
 		protected HyperLink linkCancel;
 		protected DnnFilePickerUploader pickerPhoto;
         protected DnnFilePickerUploader pickerAltPhoto;
-        protected LinkButton buttonPhotoLookup;
-		protected DnnUrlControl urlUser;
+        protected DnnUrlControl urlUser;
 		protected TextBox textLastName;
 		protected TextBox textFirstName;
 		protected TextBox textOtherName;

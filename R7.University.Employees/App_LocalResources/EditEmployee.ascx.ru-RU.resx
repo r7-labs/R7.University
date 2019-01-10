@@ -18,13 +18,7 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;О модуле Edit Employee&lt;/p&gt;</value>
     </data>
-    <data name="labelPhotoLookup.Text" xml:space="preserve">
-        <value>Найти фото:</value>
-    </data>
-    <data name="labelPhotoLookup.Help" xml:space="preserve">
-        <value>Нажмите, чтобы попытаться найти фото сотрудника по его имени в папке по-умолчанию.</value>
-    </data>
-    <data name="labelPhoto.Text" xml:space="preserve">
+	<data name="labelPhoto.Text" xml:space="preserve">
         <value>Фото:</value>
     </data>
     <data name="labelPhoto.Help" xml:space="preserve">

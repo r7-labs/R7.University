@@ -230,7 +230,6 @@
     <Compile Include="ViewModels\EmployeeAchievementViewModelBase.cs" />
     <Compile Include="Models\GroupedOccupiedPosition.cs" />
     <Compile Include="Utilities\UniversityUrlHelper.cs" />
-    <Compile Include="Utilities\UniversityCultureHelper.cs" />
     <Compile Include="Utilities\UniversityModuleHelper.cs" />
     <Compile Include="Commands\ISecureCommand.cs" />
     <Compile Include="Security\ISecurityContext.cs" />

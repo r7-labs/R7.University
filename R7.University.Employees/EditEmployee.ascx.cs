@@ -72,8 +72,7 @@ namespace R7.University.Employees
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
                     
-                    if (eventTarget.Contains ("$" + buttonUserLookup.ID) ||
-                        eventTarget.Contains ("$" + buttonPhotoLookup.ID)) {
+                    if (eventTarget.Contains ("$" + buttonUserLookup.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Common;
                         return EditEmployeeTab.Common;
                     }
@@ -389,35 +388,6 @@ namespace R7.University.Employees
                     // at least one user exists, so select first one:
                     // listUsers.SelectedIndex = 1;
                     comboUsers.SelectedIndex = 1;
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void buttonPhotoLookup_Click (object sender, EventArgs e)
-        {
-            try {
-                var folderPath =  UniversityConfig.Instance.EmployeePhoto.DefaultPath;
-                var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
-
-                if (folder != null) {
-                    var employeeName = EmployeeExtensions.GetFileName (
-                        textFirstName.Text, textLastName.Text, textOtherName.Text);
-
-                    // TODO: EmployeeInfo should contain culture data?
-                    var employeeNameTL = UniversityCultureHelper.Transliterate (employeeName, UniversityCultureHelper.RuTranslitTable)
-                                                      .ToLowerInvariant ();
-
-                    // get files from default folder recursively
-                    foreach (var file in FolderManager.Instance.GetFiles (folder, true)) {
-                        var fileName = Path.GetFileNameWithoutExtension (file.FileName).ToLowerInvariant ();
-                        if (fileName == employeeName || fileName == employeeNameTL) {
-                            pickerPhoto.FileID = file.FileId;
-                            break;
-                        }
-                    }
                 }
             }
             catch (Exception ex) {
