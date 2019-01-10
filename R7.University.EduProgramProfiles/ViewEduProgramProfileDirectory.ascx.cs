@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -281,10 +281,6 @@ namespace R7.University.EduProgramProfiles
 
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
-
-            // TODO: Remove columns completely
-            e.Row.Cells [12].Visible = IsEditable;
-            e.Row.Cells [13].Visible = IsEditable;
 
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row

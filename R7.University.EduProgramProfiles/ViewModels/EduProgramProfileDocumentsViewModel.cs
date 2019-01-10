@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -76,12 +76,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string _eduMaterialLinks;
         public string EduMaterial_Links => _eduMaterialLinks ?? (_eduMaterialLinks = GetEduMaterialLinks ());
-
-        string _contingentLinks;
-        public string Contingent_Links => _contingentLinks ?? (_contingentLinks = GetContingentLinks ());
-
-        string _contingentMovementLinks;
-        public string ContingentMovement_Links => _contingentMovementLinks ?? (_contingentMovementLinks = GetContingentMovementLinks ());
 
         string _workProgramOfPracticeLinks;
         public string WorkProgramOfPractice_Links => _workProgramOfPracticeLinks ?? (_workProgramOfPracticeLinks = GetWorkProgramOfPracticeLinks ());
@@ -225,23 +219,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 string.Empty,
                 "wpp",
                 IsAdopted ? "itemprop=\"adEduPr\"" : "itemprop=\"eduPr\""
-            );
-        }
-
-        string GetContingentLinks ()
-        {
-            return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.Contingent)),
-                string.Empty, "cnt", "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\""
-            );
-        }
-
-        string GetContingentMovementLinks ()
-        {
-            return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
-                string.Empty, "cnm",
-                "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\""
             );
         }
 
