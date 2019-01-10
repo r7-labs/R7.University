@@ -35,7 +35,6 @@ using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Urls;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employees.Models;
@@ -408,7 +407,7 @@ namespace R7.University.Employees
                 linkWebSite.Visible = false;
             }
 
-            if (!TypeUtils.IsNull<int> (employee.UserID)) {
+            if (employee.UserID != null && !Null.IsNull (employee.UserID.Value)) {
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
                 displayContacts = true;
             }

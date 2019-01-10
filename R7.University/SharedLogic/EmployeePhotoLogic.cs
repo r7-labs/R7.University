@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +24,6 @@ using System.IO;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Components;
 using R7.University.Models;
 using R7.University.Utilities;
@@ -40,7 +39,7 @@ namespace R7.University.SharedLogic
             var imageHeight = 0;
             var imageWidth = 0;
 
-            if (!TypeUtils.IsNull (employee.PhotoFileID)) {
+            if (employee.PhotoFileID != null && !Null.IsNull (employee.PhotoFileID.Value)) {
                 image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
                 if (image != null && square) {
                     // trying to get square image

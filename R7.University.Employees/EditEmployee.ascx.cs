@@ -29,7 +29,6 @@ using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.Components;
@@ -179,15 +178,15 @@ namespace R7.University.Employees
             datetimeEndDate.SelectedDate = employee.EndDate;
 
             // set photo
-            if (!TypeUtils.IsNull (employee.PhotoFileID)) {
+            if (employee.PhotoFileID != null && !Null.IsNull (employee.PhotoFileID.Value)) {
                 var photo = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
                 if (photo != null) {
                     pickerPhoto.FileID = photo.FileId;
                 }
             }
 
-            if (!Null.IsNull (employee.UserID)) {
-                var user = UserController.GetUserById (this.PortalId, employee.UserID.Value);
+            if (employee.UserID != null && !Null.IsNull (employee.UserID.Value)) {
+                var user = UserController.GetUserById (PortalId, employee.UserID.Value);
                 if (user != null) {
                     // add previously selected user to user list...
                     comboUsers.Items.Add (new ListItem (

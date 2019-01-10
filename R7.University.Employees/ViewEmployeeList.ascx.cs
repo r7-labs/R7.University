@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,6 @@
 
 using System;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
@@ -35,7 +34,6 @@ using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Urls;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employees.Models;
@@ -313,7 +311,7 @@ namespace R7.University.Employees
             }
 
             // profile link
-            if (!TypeUtils.IsNull<int> (employee.UserID)) {
+            if (employee.UserID != null && !Null.IsNull (employee.UserID.Value)) {
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
                 // TODO: Replace profile text with something more sane
                 linkUserProfile.Text = Localization.GetString ("VisitProfile.Text", LocalResourceFile);

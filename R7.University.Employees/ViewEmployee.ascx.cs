@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -34,7 +34,6 @@ using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Urls;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employees.Models;
@@ -272,7 +271,7 @@ namespace R7.University.Employees
             else
                 linkSecondaryEmail.Visible = false;
 
-            if (!TypeUtils.IsNull<int> (employee.UserID))
+            if (employee.UserID != null && !Null.IsNull (employee.UserID.Value))
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
             else
                 linkUserProfile.Visible = false;
