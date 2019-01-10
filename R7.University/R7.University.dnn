@@ -228,6 +228,18 @@
 						</file>
 					</files>
 				</component>
+				<component type="Cleanup" version="02.02.00">
+					<files>
+						<file>
+							<path>bin</path>
+							<name>EntityFramework.dll</name>
+						</file>
+						<file>
+							<path>bin</path>
+							<name>EntityFramework.SqlServer.dll</name>
+						</file>
+					</files>
+				</component>
 			</components>
 		</package>
 		<package name="R7.University.Launchpad" type="Module" version="02.02.00">
