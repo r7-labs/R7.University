@@ -42,9 +42,6 @@
 	<data name="OccupiedPositions.Text" xml:space="preserve">
         <value>Занимаемые должности:</value>
     </data>
-	<data name="Contacts.Text" xml:space="preserve">
-        <value>Контакты:</value>
-    </data>
 	<data name="Close.Text" xml:space="preserve">
         <value>Закрыть</value>
     </data>

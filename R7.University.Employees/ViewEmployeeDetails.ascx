@@ -12,9 +12,28 @@
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="media">
 		<div class="media-left media-top">
-    	    <asp:Image id="imagePhoto" runat="server" CssClass="img-rounded" />
-			<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
-			    CssClass="btn btn-default btn-sm btn-block btn-barcode" data-toggle="modal" />
+    	    <div class="well">
+				<asp:Image id="imagePhoto" runat="server" CssClass="img-rounded" />
+				<asp:Panel id="panelContacts" runat="server" CssClass="u8y-employee-contacts">
+					<div class="_section">
+    					<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
+        				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
+        				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
+                        <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" Target="_blank" CssClass="_userprofile more" />
+        			</div>
+                    <div class="_section">
+        				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
+        			</div>
+        			<div class="_section">
+        				<asp:Label id="labelPhone" runat="server" CssClass="_label" />
+        				<asp:Label id="labelFax" runat="server" CssClass="_label" />
+        				<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
+        			</div>
+                    <div class="_section">
+        				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
+        			</div>
+				</asp:Panel>
+			</div>
 		</div>	
     	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
             <asp:Literal id="literalFullName" runat="server" />
@@ -42,28 +61,7 @@
             				<FooterTemplate></ul></FooterTemplate>
             			</asp:Repeater>
 				    </asp:Panel>
-					<asp:Panel id="panelContacts" runat="server" CssClass="_section">
-						<label class="u8y-label-contacts"><%: LocalizeString ("Contacts.Text") %></label>
-            			<div class="_section">
-        					<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
-            				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
-            				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
-                            <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" Target="_blank" CssClass="_userprofile more" />
-            			</div>
-                        <div class="_section">
-            				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
-            			</div>
-            			<div class="_section">
-            				<asp:Label id="labelPhone" runat="server" CssClass="_label" />
-            				<asp:Label id="labelFax" runat="server" CssClass="_label" />
-            				<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
-            			</div>
-                        <div class="_section">
-            				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
-            			</div>
-						
-					</asp:Panel>
-        		</div>
+				</div>
         		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">	
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
         			<div class="_section" style="margin-bottom:10px">
@@ -122,13 +120,17 @@
     </div>
     <ul class="dnnActions dnnClear" style="margin-bottom:1em">
 		<li>
-            <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default" Visible="false">
+            <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default btn-sm" Visible="false">
                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 <%: LocalizeString ("cmdEdit") %>
             </asp:HyperLink>
         </li>
+		<li>
+			<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
+			    CssClass="btn btn-default btn-sm btn-barcode" data-toggle="modal" />
+		</li>
         <li>
-			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-link">
+			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-link btn-sm">
 			    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
 				<%: LocalizeString ("Close.Text") %>
 			</asp:HyperLink>

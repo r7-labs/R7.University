@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ViewEmployee.ascx.cs" Inherits="R7.University.Employees.ViewEmployee" %>
 
-<asp:Panel id="panelEmployee" runat="server" CssClass="Employee">
+<asp:Panel id="panelEmployee" runat="server" CssClass="u8y-employee well">
 	<div class="_photo">
         <asp:HyperLink id="linkPhoto" runat="server" >
 			<asp:Image id="imagePhoto" runat="server" CssClass="img-rounded center-block" />

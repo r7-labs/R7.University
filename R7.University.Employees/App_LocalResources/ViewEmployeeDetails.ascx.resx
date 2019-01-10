@@ -42,9 +42,6 @@
 	<data name="OccupiedPositions.Text" xml:space="preserve">
         <value>Occupied Positions:</value>
     </data>
-	<data name="Contacts.Text" xml:space="preserve">
-        <value>Contacts:</value>
-    </data>
 	<data name="Close.Text" xml:space="preserve">
         <value>Close</value>
     </data>
