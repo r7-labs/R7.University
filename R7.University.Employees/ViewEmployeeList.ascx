@@ -9,7 +9,7 @@
 	<ItemTemplate>
 		<div class="media-left media-top">
 			<asp:HyperLink id="linkDetails" runat="server">	
-				<asp:Image id="imagePhoto" runat="server" CssClass="img-circle" />
+				<asp:Image id="imagePhoto" runat="server" />
 			</asp:HyperLink>
 		</div>	
 		<div class="media-body">

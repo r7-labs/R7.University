@@ -32,6 +32,8 @@ namespace R7.University.Models
 
         int? PhotoFileID { get; }
 
+        int? AltPhotoFileId { get; }
+
         string Phone { get; }
 
         string CellPhone { get; }
@@ -85,6 +87,8 @@ namespace R7.University.Models
 
         new int? PhotoFileID { get; set; }
 
+        new int? AltPhotoFileId { get; set; }
+
         new string Phone { get; set; }
 
         new string CellPhone { get; set; }
@@ -132,13 +136,13 @@ namespace R7.University.Models
 
     public class EmployeeInfo: IEmployeeWritable
     {
-        #region IEmployeeWritable implementation
-
         public int EmployeeID { get; set; }
 
         public int? UserID { get; set; }
 
         public int? PhotoFileID { get; set; }
+
+        public int? AltPhotoFileId { get; set; }
 
         public string Phone { get; set; }
 
@@ -193,8 +197,6 @@ namespace R7.University.Models
         public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; } = new HashSet<EmployeeDisciplineInfo> ();
 
         public virtual ICollection<OccupiedPositionInfo> Positions { get; set; } = new HashSet<OccupiedPositionInfo> ();
-
-        #endregion
     }
 }
 	

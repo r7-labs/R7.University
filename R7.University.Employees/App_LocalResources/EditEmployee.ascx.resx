@@ -28,7 +28,13 @@
         <value>Photo:</value>
     </data>
     <data name="labelPhoto.Help" xml:space="preserve">
-        <value>Add or select photo image for an employee.</value>
+        <value>Add or select a photo image for the employee, preferrably square.</value>
+    </data>
+	<data name="labelAltPhoto.Text" xml:space="preserve">
+        <value>Alternate Photo:</value>
+    </data>
+    <data name="labelAltPhoto.Help" xml:space="preserve">
+        <value>Add or select an alternate photo image for the employee, preferrably in a portrait orientation - it will be used in the card views.</value>
     </data>
     <data name="labelUser.Text" xml:space="preserve">
         <value>User:</value>

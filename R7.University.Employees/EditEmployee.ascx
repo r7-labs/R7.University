@@ -56,7 +56,11 @@
                 </div>
             	<div class="dnnFormItem">
 					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" />
-                    <dnn:Picker id="pickerPhoto" runat="server" Required="true" />
+                    <dnn:Picker id="pickerPhoto" runat="server" Required="false" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAltPhoto" runat="server" ControlName="pickerAltPhoto" />
+                    <dnn:Picker id="pickerAltPhoto" runat="server" Required="false" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" />

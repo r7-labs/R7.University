@@ -13,7 +13,7 @@
     <div class="media">
 		<div class="media-left media-top">
     	    <div class="well">
-				<asp:Image id="imagePhoto" runat="server" CssClass="img-rounded" />
+				<asp:Image id="imagePhoto" runat="server" />
 				<asp:Panel id="panelContacts" runat="server" CssClass="u8y-employee-contacts">
 					<div class="_section">
     					<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />

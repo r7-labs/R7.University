@@ -30,6 +30,18 @@
     <data name="labelPhoto.Help" xml:space="preserve">
         <value>Добавьте или выберите фото сотрудника.</value>
     </data>
+	 <data name="labelPhoto.Text" xml:space="preserve">
+        <value>Фото:</value>
+    </data>
+    <data name="labelPhoto.Help" xml:space="preserve">
+        <value>Добавьте или выберите фото сотрудника, предпочтительно квадратное.</value>
+    </data>
+	<data name="labelAltPhoto.Text" xml:space="preserve">
+        <value>Альтернативное фото:</value>
+    </data>
+    <data name="labelAltPhoto.Help" xml:space="preserve">
+        <value>Добавьте или выберите альтернативное фото сотрудника, предпочтительно в портретной ориентации - оно будет использовано в представлениях-карточках.</value>
+    </data>
     <data name="labelUser.Text" xml:space="preserve">
         <value>Пользователь:</value>
     </data>

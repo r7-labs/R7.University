@@ -121,9 +121,11 @@ namespace R7.University.Employees
         {
             base.OnInit (e);
 
-            // setup filepicker
             pickerPhoto.FolderPath = UniversityConfig.Instance.EmployeePhoto.DefaultPath;
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
+
+            pickerAltPhoto.FolderPath = UniversityConfig.Instance.EmployeePhoto.DefaultPath;
+            pickerAltPhoto.FileFilter = Globals.glbImageFileTypes;
 
             checkShowBarcode.Checked = true;
 
@@ -185,6 +187,13 @@ namespace R7.University.Employees
                 }
             }
 
+            if (employee.AltPhotoFileId != null && !Null.IsNull (employee.AltPhotoFileId.Value)) {
+                var photo = FileManager.Instance.GetFile (employee.AltPhotoFileId.Value);
+                if (photo != null) {
+                    pickerAltPhoto.FileID = photo.FileId;
+                }
+            }
+
             if (employee.UserID != null && !Null.IsNull (employee.UserID.Value)) {
                 var user = UserController.GetUserById (PortalId, employee.UserID.Value);
                 if (user != null) {
@@ -240,8 +249,10 @@ namespace R7.University.Employees
             item.EndDate = datetimeEndDate.SelectedDate;
             item.ScienceIndexAuthorId = ParseHelper.ParseToNullable<int> (txtScienceIndexAuthorId.Text);
 
-            // pickerPhoto.FileID may be 0 by default
+            // FileID may be 0 by default
             item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
+            item.AltPhotoFileId = (pickerAltPhoto.FileID > 0) ? (int?) pickerAltPhoto.FileID : null;
+
             item.UserID = ParseHelper.ParseToNullable<int> (comboUsers.SelectedValue, true);
         }
 

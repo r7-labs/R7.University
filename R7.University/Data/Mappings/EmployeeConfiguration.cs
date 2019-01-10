@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2018 Roman M. Yagodin
+//  Copyright (c) 2016-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -36,6 +36,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.EmployeeID).ValueGeneratedOnAdd ();
             entityBuilder.Property (m => m.UserID).IsRequired (false);
             entityBuilder.Property (m => m.PhotoFileID).IsRequired (false);
+            entityBuilder.Property (m => m.AltPhotoFileId).IsRequired (false);
             entityBuilder.Property (m => m.LastName).IsRequired ();
             entityBuilder.Property (m => m.FirstName).IsRequired ();
             entityBuilder.Property (m => m.OtherName);

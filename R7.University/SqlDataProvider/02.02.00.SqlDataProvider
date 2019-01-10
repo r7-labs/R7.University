@@ -45,6 +45,13 @@ BEGIN
 END
 GO
 
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_Employees]') and name = N'AltPhotoFileID')
+BEGIN
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_Employees]
+        ADD [AltPhotoFileID] int NULL
+END
+GO
+
 IF EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where Type = N'Contingent')
 BEGIN
 	DELETE FROM {databaseOwner}[{objectQualifier}University_Documents]

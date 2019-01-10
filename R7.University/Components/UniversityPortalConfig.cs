@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2018 Roman M. Yagodin
+//  Copyright (c) 2016-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -38,11 +38,9 @@ namespace R7.University.Components
     {
         public string DefaultPath { get; set; } = "Images/faces/";
 
-        public string SquareSuffix { get; set; } = "_square";
-
         public int DefaultWidth { get; set; } = 192;
 
-        public int SquareDefaultWidth { get; set; } = 120;
+        public int ListDefaultWidth { get; set; } = 120;
     }
 
     public class BarcodeConfig
