@@ -58,7 +58,7 @@ namespace R7.University.ModelExtensions
             }
         }
 
-        public static VCard GetVCard (this IDivision division)
+        public static VCard VCard (this IDivision division)
         {
             var vcard = new VCard ();
 

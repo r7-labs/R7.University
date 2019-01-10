@@ -161,7 +161,7 @@ namespace R7.University.Divisions.ViewModels
                 return UniversityUrlHelper.FullUrl (string.Format (
                     "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                     barcodeWidth, barcodeWidth,
-                    HttpUtility.UrlEncode (Division.GetVCard ().ToString ()
+                    HttpUtility.UrlEncode (Division.VCard ().ToString ()
                                            // fix for "+" signs in phone numbers
                                           .Replace ("+", "%2b"))
                 ));
