@@ -136,7 +136,7 @@ namespace R7.University.EduPrograms
             urlHomePage.Url = ep.HomePage;
             formEditDivisions.SetData (ep.Divisions, ep.EduProgramID);
 
-            auditControl.Bind (ep);
+            auditControl.Bind (ep, PortalId, LocalizeString ("Unknown")); ;
 
             formEditDocuments.SetData (ep.Documents, ep.EduProgramID);
 

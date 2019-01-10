@@ -21,6 +21,7 @@
 
 using System;
 using System.Linq;
+using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
@@ -149,7 +150,7 @@ namespace R7.University.Divisions
                 urlDocumentUrl.Url = string.Empty;
             }
 
-            ctlAudit.Bind (item);
+            ctlAudit.Bind (item, PortalId, LocalizeString ("Unknown"));
         }
 
         protected override void BeforeUpdateItem (DivisionInfo item, bool isNew)

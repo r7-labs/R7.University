@@ -209,7 +209,7 @@ namespace R7.University.Employees
             formEditDisciplines.SetData (employee.Disciplines, employee.EmployeeID);
       
             // setup audit control
-            ctlAudit.Bind (employee);
+            ctlAudit.Bind (employee, PortalId, LocalizeString ("Unknown")); ;
 
             SetupDivisionSelector ();
         }

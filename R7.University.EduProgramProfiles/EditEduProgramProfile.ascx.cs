@@ -178,7 +178,7 @@ namespace R7.University.EduProgramProfiles
             comboEduProgram.SelectByValue (epp.EduProgramID);
             comboEduLevel.SelectByValue (epp.EduLevelId);
 
-            auditControl.Bind (epp);
+            auditControl.Bind (epp, PortalId, LocalizeString ("Unknown")); ;
 
             formEditEduFormYears.SetData (epp.EduProgramProfileFormYears, epp.EduProgramProfileID);
         }
