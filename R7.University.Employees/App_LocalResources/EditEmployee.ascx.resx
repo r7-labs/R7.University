@@ -19,13 +19,13 @@
         <value>&lt;p&gt;About Edit Employee module&lt;/p&gt;</value>
     </data>
     <data name="labelPhoto.Text" xml:space="preserve">
-        <value>Photo:</value>
+        <value>Main Photo (square):</value>
     </data>
     <data name="labelPhoto.Help" xml:space="preserve">
         <value>Add or select a photo image for the employee, preferrably square.</value>
     </data>
 	<data name="labelAltPhoto.Text" xml:space="preserve">
-        <value>Alternate Photo:</value>
+        <value>Alternate Photo (portrait):</value>
     </data>
     <data name="labelAltPhoto.Help" xml:space="preserve">
         <value>Add or select an alternate photo image for the employee, preferrably in a portrait orientation - it will be used in the card views.</value>
