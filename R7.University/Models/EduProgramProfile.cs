@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -48,9 +48,9 @@ namespace R7.University.Models
 
         DateTime? CommunityAccreditedToDate { get; }
 
-        EduProgramInfo EduProgram { get; }
+        IEduProgram EduProgram { get; }
 
-        EduLevelInfo EduLevel { get; }
+        IEduLevel EduLevel { get; }
 
         ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears { get; }
 
@@ -83,9 +83,9 @@ namespace R7.University.Models
 
         new DateTime? CommunityAccreditedToDate { get; set; }
 
-        new EduProgramInfo EduProgram { get; set; }
+        new IEduProgram EduProgram { get; set; }
 
-        new EduLevelInfo EduLevel { get; set; }
+        new IEduLevel EduLevel { get; set; }
 
         new ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears { get; set; }
 
@@ -132,7 +132,21 @@ namespace R7.University.Models
 
         public virtual EduProgramInfo EduProgram { get; set; }
 
+        IEduProgram IEduProgramProfile.EduProgram => EduProgram;
+
+        IEduProgram IEduProgramProfileWritable.EduProgram {
+            get { return EduProgram; }
+            set { EduProgram = (EduProgramInfo) value; }
+        }
+
         public virtual EduLevelInfo EduLevel { get; set; }
+
+        IEduLevel IEduProgramProfile.EduLevel => EduLevel;
+
+        IEduLevel IEduProgramProfileWritable.EduLevel {
+            get { return EduLevel; }
+            set { EduLevel = (EduLevelInfo) value; }
+        }
 
         public virtual ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears { get; set; } = new HashSet<EduProgramProfileFormYearInfo> ();
 

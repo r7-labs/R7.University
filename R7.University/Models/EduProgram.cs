@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -38,7 +38,7 @@ namespace R7.University.Models
 
         string HomePage { get; }
 
-        EduLevelInfo EduLevel { get; }
+        IEduLevel EduLevel { get; }
 
         ICollection<DocumentInfo> Documents { get; }
 
@@ -63,7 +63,7 @@ namespace R7.University.Models
 
         new string HomePage { get; set; }
 
-        new EduLevelInfo EduLevel { get; set; }
+        new IEduLevel EduLevel { get; set; }
 
         new ICollection<DocumentInfo> Documents { get; set; }
 
@@ -101,6 +101,13 @@ namespace R7.University.Models
         public DateTime CreatedOnDate { get; set; }
 
         public virtual EduLevelInfo EduLevel { get; set; }
+
+        IEduLevel IEduProgram.EduLevel => EduLevel;
+
+        IEduLevel IEduProgramWritable.EduLevel {
+            get { return EduLevel; }
+            set { EduLevel = (EduLevelInfo) value; }
+        }
 
         public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
 

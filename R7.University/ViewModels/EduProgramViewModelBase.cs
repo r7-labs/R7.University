@@ -60,7 +60,7 @@ namespace R7.University.ViewModels
 
         public DateTime CreatedOnDate => EduProgram.CreatedOnDate;
 
-        public EduLevelInfo EduLevel => EduProgram.EduLevel;
+        public IEduLevel EduLevel => EduProgram.EduLevel;
 
         public ICollection<DocumentInfo> Documents => EduProgram.Documents;
 

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -47,9 +47,9 @@ namespace R7.University.Models
 
         string TitleSuffix { get; }
 
-        AchievementInfo Achievement { get; }
+        IAchievement Achievement { get; }
 
-        AchievementTypeInfo AchievementType { get; }
+        IAchievementType AchievementType { get; }
     }
 
     public interface IEmployeeAchievementWritable: IEmployeeAchievement
@@ -78,9 +78,9 @@ namespace R7.University.Models
 
         new string TitleSuffix { get; set; }
 
-        new AchievementInfo Achievement { get; set; }
+        new IAchievement Achievement { get; set; }
 
-        new AchievementTypeInfo AchievementType { get; set; }
+        new IAchievementType AchievementType { get; set; }
     }
 
     public class EmployeeAchievementInfo: IEmployeeAchievementWritable
@@ -109,8 +109,22 @@ namespace R7.University.Models
 
         public string TitleSuffix { get; set; }
 
+        public virtual AchievementInfo Achievement { get; set; }
+
         public virtual AchievementTypeInfo AchievementType { get; set; }
 
-        public virtual AchievementInfo Achievement { get; set; }
+        IAchievementType IEmployeeAchievement.AchievementType => AchievementType;
+
+        IAchievementType IEmployeeAchievementWritable.AchievementType {
+            get { return AchievementType; }
+            set { AchievementType = (AchievementTypeInfo) value; }
+        }
+
+        IAchievement IEmployeeAchievement.Achievement => Achievement;
+
+        IAchievement IEmployeeAchievementWritable.Achievement {
+            get { return Achievement; }
+            set { Achievement = (AchievementInfo) value; }
+        }
     }
 }

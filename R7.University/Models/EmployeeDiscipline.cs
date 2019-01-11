@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,9 +31,9 @@ namespace R7.University.Models
 
         string Disciplines { get; }
 
-        EmployeeInfo Employee { get; }
+        IEmployee Employee { get; }
 
-        EduProgramProfileInfo EduProgramProfile { get; }
+        IEduProgramProfile EduProgramProfile { get; }
     }
 
     public interface IEmployeeDisciplineWritable: IEmployeeDiscipline
@@ -46,9 +46,9 @@ namespace R7.University.Models
 
         new string Disciplines { get; set; }
 
-        new EmployeeInfo Employee { get; set; }
+        new IEmployee Employee { get; set; }
 
-        new EduProgramProfileInfo EduProgramProfile { get; set; }
+        new IEduProgramProfile EduProgramProfile { get; set; }
     }
 
     public class EmployeeDisciplineInfo: IEmployeeDisciplineWritable
@@ -63,7 +63,20 @@ namespace R7.University.Models
 
         public virtual EmployeeInfo Employee { get; set; }
 
+        IEmployee IEmployeeDiscipline.Employee => Employee;
+
+        IEmployee IEmployeeDisciplineWritable.Employee {
+            get { return Employee;  }
+            set { Employee = (EmployeeInfo) value; }
+        }
+
         public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
+
+        IEduProgramProfile IEmployeeDiscipline.EduProgramProfile => EduProgramProfile;
+
+        IEduProgramProfile IEmployeeDisciplineWritable.EduProgramProfile {
+            get { return EduProgramProfile; }
+            set { EduProgramProfile = (EduProgramProfileInfo) value; }
+        }
     }
 }
-

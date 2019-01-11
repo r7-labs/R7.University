@@ -80,11 +80,11 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         [Obsolete]
-        public EmployeeInfo Employee { get; set; }
+        public IEmployee Employee { get; set; }
 
         [JsonIgnore]
         [Obsolete]
-        public EduProgramProfileInfo EduProgramProfile { get; set; }
+        public IEduProgramProfile EduProgramProfile { get; set; }
 
         #endregion
 

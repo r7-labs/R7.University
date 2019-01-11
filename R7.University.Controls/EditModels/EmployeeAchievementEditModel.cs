@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -107,11 +107,11 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
-        public AchievementTypeInfo AchievementType { get; set; }
+        public IAchievement Achievement { get; set; }
 
         [JsonIgnore]
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
-        public AchievementInfo Achievement { get; set; }
+        public IAchievementType AchievementType { get; set; }
 
         public string Type { get; set; }
 

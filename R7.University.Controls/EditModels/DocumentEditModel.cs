@@ -82,7 +82,7 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         [Obsolete ("Use DocumentTypeViewModel property instead", true)] 
-        public DocumentTypeInfo DocumentType { get; set; }
+        public IDocumentType DocumentType { get; set; }
 
         public DocumentTypeViewModel DocumentTypeViewModel { get; set; }
 
