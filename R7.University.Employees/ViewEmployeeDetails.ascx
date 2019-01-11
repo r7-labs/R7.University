@@ -77,7 +77,7 @@
         			</div>
         		</div>
         		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade">
-        			<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="_section" Style="margin-bottom:10px;text-align:right">
+        			<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="u8y-science-index-counter">
 						<!--Science Index counter-->
 						<script type="text/javascript"><!--
 						document.write('<a href="https://elibrary.ru/author_counter_click.asp?id=<%: Employee.ScienceIndexAuthorId %>"'+
