@@ -100,7 +100,7 @@
         <value>Contacts</value>
     </data>
     <data name="Experience.Tab" xml:space="preserve">
-        <value>Education &amp; Experience</value>
+        <value>Qualification</value>
     </data>
 	<data name="WorkExperience.Tab" xml:space="preserve">
         <value>Work Experience</value>

@@ -100,7 +100,7 @@
         <value>Контакты</value>
     </data>
     <data name="Experience.Tab" xml:space="preserve">
-        <value>Образование и опыт работы</value>
+        <value>Квалификация</value>
     </data>
 	<data name="WorkExperience.Tab" xml:space="preserve">
         <value>Стаж работы</value>
