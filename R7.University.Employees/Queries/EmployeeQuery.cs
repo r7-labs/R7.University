@@ -66,7 +66,7 @@ namespace R7.University.Employees.Queries
                     .Include2 (op => op.Position)
                     .Where (op => includeSubDivisions ? divisionIds.Contains (op.DivisionID) : op.DivisionID == divisionId)
                     .Include2 (op => op.Employee)
-                    .OrderByDescending (op => op.Position.Weight + (op.IsPrime ? 10 : 0))
+                    .OrderByDescending (op => op.Position.Weight + (op.IsPrime ? 10 : 0) + (op.DivisionID == divisionId ? 10 : 0)) 
                     .ThenBy (op => op.Employee.LastName)
                     .ThenBy (op => op.Employee.FirstName)
                     .Select (op => op.Employee)
