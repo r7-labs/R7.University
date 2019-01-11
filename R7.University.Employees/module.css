@@ -66,6 +66,8 @@
 	margin-bottom:14px
 }
 
+.u8y-employee-details .btn-barcode { margin-top:14px }
+
 .u8y-employee-details ul.dnnActions { display:block }
 
 .u8y-employee-details .dialog-employee-barcode, 

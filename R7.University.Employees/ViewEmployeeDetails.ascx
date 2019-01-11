@@ -33,6 +33,8 @@
         				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
         			</div>
 				</asp:Panel>
+				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
+			        CssClass="btn btn-default btn-block btn-sm btn-barcode" data-toggle="modal" />
 			</div>
 		</div>	
     	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
@@ -120,17 +122,13 @@
     </div>
     <ul class="dnnActions dnnClear" style="margin-bottom:1em">
 		<li>
-            <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default btn-sm" Visible="false">
+            <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default" Visible="false">
                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 <%: LocalizeString ("cmdEdit") %>
             </asp:HyperLink>
         </li>
 		<li>
-			<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
-			    CssClass="btn btn-default btn-sm btn-barcode" data-toggle="modal" />
-		</li>
-        <li>
-			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-link btn-sm">
+			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-link">
 			    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
 				<%: LocalizeString ("Close.Text") %>
 			</asp:HyperLink>
