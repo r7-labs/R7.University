@@ -167,6 +167,7 @@ namespace R7.University.Employees
         {
             get {
                 var actions = new ModuleActionCollection ();
+
                 actions.Add (
                     GetNextActionID (), 
                     LocalizeString ("AddEmployee.Action"),
@@ -182,7 +183,20 @@ namespace R7.University.Employees
                     SecurityContext.CanAdd (typeof (EmployeeInfo)),
                     false
                 );
-			
+
+                actions.Add (
+                    GetNextActionID (),
+                    LocalizeString ("EditDivision.Action"),
+                    ModuleActionType.EditContent,
+                    "",
+                    UniversityIcons.Edit,
+                    EditUrl ("division_id", Settings.DivisionID.ToString (), "EditDivision"),
+                    false,
+                    SecurityAccessLevel.Edit,
+                    !Null.IsNull (Settings.DivisionID) && SecurityContext.IsAdmin,
+                    false
+                );
+
                 return actions;
             }
         }

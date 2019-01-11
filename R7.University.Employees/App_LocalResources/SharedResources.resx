@@ -24,6 +24,9 @@
     <data name="EditEmployee.Action" xml:space="preserve">
         <value>Edit Employee</value>
     </data>
+	<data name="EditDivision.Action" xml:space="preserve">
+        <value>Edit Division</value>
+    </data>
     <data name="Details.Action" xml:space="preserve">
         <value>Employee Details</value>
     </data>

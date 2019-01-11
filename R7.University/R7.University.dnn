@@ -650,6 +650,17 @@
 										<viewOrder>0</viewOrder>
 									</moduleControl>
 									<moduleControl>
+										<controlKey>EditDivision</controlKey>
+										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Divisions/EditDivision.ascx</controlSrc>
+                                        <controlTitle>Edit Division</controlTitle>
+										<controlType>Edit</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>True</supportsPartialRendering>
+										<supportsPopUps>True</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+									<moduleControl>
 										<controlKey>Settings</controlKey>
 										<controlSrc>DesktopModules/MVC/R7.University/R7.University.Employees/EditEmployeeListSettings.ascx</controlSrc>
                                         <controlTitle>Settings</controlTitle>
