@@ -61,6 +61,7 @@ namespace R7.University.Employees.Queries
                         .Select (d => d.DivisionID).ToList ();
             }
 
+            // FIXME: Don't count position weight in not published divisions
             if (sortType == EmployeeListSortType.ByMaxWeightInDivision) {
                 return ModelContext.Query<OccupiedPositionInfo> ()
                     .Include2 (op => op.Position)
