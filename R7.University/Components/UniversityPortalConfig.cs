@@ -29,7 +29,7 @@ namespace R7.University.Components
 
         public VocabulariesConfig Vocabularies { get; set; } = new VocabulariesConfig ();
 
-        public int DataCacheTime { get; set; } = 20;
+        public int DataCacheTime { get; set; } = 60;
 
         public int CuHours { get; set; } = 36;
     }
