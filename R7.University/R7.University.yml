@@ -13,4 +13,4 @@ vocabularies:
   org-structure: University_Structure
   working-hours: University_WorkingHours
 
-data-cache-time: 3600
+data-cache-time: 20
