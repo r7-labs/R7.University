@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,8 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using DotNetNuke.Common.Utilities;
-using R7.Dnn.Extensions.Utilities;
 
 namespace R7.University.Models
 {
@@ -33,6 +31,8 @@ namespace R7.University.Models
         int? UserID { get; }
 
         int? PhotoFileID { get; }
+
+        int? AltPhotoFileId { get; }
 
         string Phone { get; }
 
@@ -70,6 +70,8 @@ namespace R7.University.Models
 
         bool ShowBarcode { get; }
 
+        int? ScienceIndexAuthorId { get; }
+
         ICollection<EmployeeAchievementInfo> Achievements { get; }
 
         ICollection<EmployeeDisciplineInfo> Disciplines { get; }
@@ -84,6 +86,8 @@ namespace R7.University.Models
         new int? UserID { get; set; }
 
         new int? PhotoFileID { get; set; }
+
+        new int? AltPhotoFileId { get; set; }
 
         new string Phone { get; set; }
 
@@ -121,6 +125,8 @@ namespace R7.University.Models
 
         new bool ShowBarcode { get; set; }
 
+        new int? ScienceIndexAuthorId { get; set; }
+
         new ICollection<EmployeeAchievementInfo> Achievements { get; set; }
 
         new ICollection<EmployeeDisciplineInfo> Disciplines { get; set; }
@@ -130,13 +136,13 @@ namespace R7.University.Models
 
     public class EmployeeInfo: IEmployeeWritable
     {
-        #region IEmployeeWritable implementation
-
         public int EmployeeID { get; set; }
 
         public int? UserID { get; set; }
 
         public int? PhotoFileID { get; set; }
+
+        public int? AltPhotoFileId { get; set; }
 
         public string Phone { get; set; }
 
@@ -184,123 +190,13 @@ namespace R7.University.Models
 
         public bool ShowBarcode { get; set; }
 
+        public int? ScienceIndexAuthorId { get; set; }
+
         public virtual ICollection<EmployeeAchievementInfo> Achievements { get; set; } = new HashSet<EmployeeAchievementInfo> ();
 
         public virtual ICollection<EmployeeDisciplineInfo> Disciplines { get; set; } = new HashSet<EmployeeDisciplineInfo> ();
 
         public virtual ICollection<OccupiedPositionInfo> Positions { get; set; } = new HashSet<OccupiedPositionInfo> ();
-
-        #endregion
-
-        #region Calculated properties
-
-        public string AbbrName
-        {
-            get {
-                if (!string.IsNullOrWhiteSpace (OtherName))
-                    return string.Format ("{0} {1}.{2}.", LastName, FirstName.Substring (0, 1), OtherName.Substring (0, 1)); 
-
-                return string.Format ("{0} {1}.", LastName, FirstName.Substring (0, 1));
-            }
-        }
-
-        public static string GetFileName (string firstName, string lastName, string otherName)
-        {
-            if (!string.IsNullOrWhiteSpace (otherName))
-                return string.Format ("{0}_{1}{2}", lastName, firstName.Substring (0, 1), otherName.Substring (0, 1)); 
-
-            return string.Format ("{0}_{1}", lastName, firstName.Substring (0, 1)); 
-        }
-
-        public string FileName
-        {
-            get { return GetFileName (FirstName, LastName, OtherName); }
-        }
-
-        public string FullName
-        {
-            get { return TextUtils.FormatList (" ", LastName, FirstName, OtherName); }
-        }
-
-        public string SearchDocumentText
-        {
-            get {
-                var text = TextUtils.FormatList (", ",
-                    FullName,
-                    Phone,
-                    CellPhone,
-                    Fax,
-                    Email,
-                    SecondaryEmail,
-                    WebSite,
-                    Messenger,
-                    WorkingPlace,
-                    WorkingHours,
-                    HtmlUtils.ConvertToText (Biography)
-                );
-
-                // TODO: Add positions and achievements to the search index
-
-                return text;
-            }
-        }
-
-        #endregion
-
-        public VCard VCard
-        {
-            get {
-                var vcard = new VCard ();
-
-                // names
-                vcard.Names = new List<string> ()
-                {
-                    LastName,
-                    FirstName,
-                    OtherName
-                    // TODO: Add title achievements here
-                };
-
-                // formatted name
-                // TODO: Add title achievements here
-                vcard.FormattedName = FullName;
-
-                // email
-                if (!string.IsNullOrWhiteSpace (Email))
-                    vcard.Emails.Add (Email);
-
-                // secondary email
-                if (!string.IsNullOrWhiteSpace (SecondaryEmail))
-                    vcard.Emails.Add (SecondaryEmail);
-		
-                // phone
-                if (!string.IsNullOrWhiteSpace (Phone))
-                    vcard.Phones.Add (new VCardPhone () { Number = Phone, Type = VCardPhoneType.Work });
-
-                // cellphone
-                if (!string.IsNullOrWhiteSpace (CellPhone))
-                    vcard.Phones.Add (new VCardPhone () { Number = CellPhone, Type = VCardPhoneType.Cell });
-
-                // fax
-                if (!string.IsNullOrWhiteSpace (Fax))
-                    vcard.Phones.Add (new VCardPhone () { Number = Fax, Type = VCardPhoneType.Fax });
-
-                // website
-                if (!string.IsNullOrWhiteSpace (WebSite))
-                    vcard.Url = WebSite;
-
-                // working place
-                if (!string.IsNullOrWhiteSpace (WorkingPlace)) {
-                    // TODO: Add division address
-                    vcard.DeliveryAddress = WorkingPlace;
-                }
-
-                // revision
-                vcard.LastRevision = LastModifiedOnDate;
-
-                return vcard;
-            }
-        }
     }
 }
 	

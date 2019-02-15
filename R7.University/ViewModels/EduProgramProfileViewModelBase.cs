@@ -70,9 +70,9 @@ namespace R7.University.ViewModels
 
         public DateTime CreatedOnDate => EduProgramProfile.CreatedOnDate;
 
-        public EduProgramInfo EduProgram => EduProgramProfile.EduProgram;
+        public IEduProgram EduProgram => EduProgramProfile.EduProgram;
 
-        public EduLevelInfo EduLevel => EduProgramProfile.EduLevel;
+        public IEduLevel EduLevel => EduProgramProfile.EduLevel;
 
         public ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears => EduProgramProfile.EduProgramProfileFormYears;
 

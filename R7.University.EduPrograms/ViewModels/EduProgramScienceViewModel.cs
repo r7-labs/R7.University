@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -44,26 +44,26 @@ namespace R7.University.EduPrograms.ViewModels
 
         public IHtmlString BaseHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Base, "baseNir"));
 
-        public string Scientists => FormatHelper.ValueOrDash (EduProgram.Science?.Scientists);
+        public string Scientists => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Scientists);
 
-        public string Students => FormatHelper.ValueOrDash (EduProgram.Science?.Students);
+        public string Students => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Students);
 
-        public string Monographs => FormatHelper.ValueOrDash (EduProgram.Science?.Monographs);
+        public string Monographs => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Monographs);
 
-        public string Articles => FormatHelper.ValueOrDash (EduProgram.Science?.Articles);
+        public string Articles => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Articles);
 
-        public string ArticlesForeign => FormatHelper.ValueOrDash (EduProgram.Science?.ArticlesForeign);
+        public string ArticlesForeign => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.ArticlesForeign);
 
-        public string Patents => FormatHelper.ValueOrDash (EduProgram.Science?.Patents);
+        public string Patents => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Patents);
 
-        public string PatentsForeign => FormatHelper.ValueOrDash (EduProgram.Science?.PatentsForeign);
+        public string PatentsForeign => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.PatentsForeign);
 
-        public string Certificates => FormatHelper.ValueOrDash (EduProgram.Science?.Certificates);
+        public string Certificates => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Certificates);
 
-        public string CertificatesForeign => FormatHelper.ValueOrDash (EduProgram.Science?.CertificatesForeign);
+        public string CertificatesForeign => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.CertificatesForeign);
 
         public string FinancingByScientist =>
-            FormatHelper.ValueOrDash (EduProgram.Science?.FinancingByScientist, FormatExtensions.ToDecimalString);
+            UniversityFormatHelper.ValueOrDash (EduProgram.Science?.FinancingByScientist, FormatExtensions.ToDecimalString);
 
         public string EditUrl =>
             EduProgram.Science != null

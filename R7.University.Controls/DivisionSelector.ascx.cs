@@ -27,7 +27,8 @@ using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.UI.Modules;
 using DotNetNuke.Web.UI.WebControls;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
@@ -50,9 +51,9 @@ namespace R7.University.Controls
         {
             get {
                 if (IsCurrentMode (DivisionSelectionMode.List)) {
-                    return TypeUtils.ParseToNullable<int> (comboDivision.SelectedValue);
+                    return ParseHelper.ParseToNullable<int> (comboDivision.SelectedValue, true);
                 }
-                return TypeUtils.ParseToNullable<int> (treeDivision.SelectedValue);
+                return ParseHelper.ParseToNullable<int> (treeDivision.SelectedValue, true);
             }
             set {
                 if (IsCurrentMode (DivisionSelectionMode.List)) {

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -41,7 +41,7 @@ namespace R7.University.Models
 
         int SortIndex { get; }
 
-        DocumentTypeInfo DocumentType { get; }
+        IDocumentType DocumentType { get; }
     }
 
     public interface IDocumentWritable: IDocument, IPublishableEntityWritable, ITrackableEntityWritable
@@ -62,7 +62,7 @@ namespace R7.University.Models
 
         new int SortIndex { get; set; }
 
-        new DocumentTypeInfo DocumentType { get; set; }
+        new IDocumentType DocumentType { get; set; }
     }
 
     public class DocumentInfo: IDocumentWritable
@@ -96,6 +96,13 @@ namespace R7.University.Models
         public DateTime CreatedOnDate { get; set; }
 
         public virtual DocumentTypeInfo DocumentType { get; set; }
+
+        IDocumentType IDocument.DocumentType => DocumentType;
+
+        IDocumentType IDocumentWritable.DocumentType {
+            get { return DocumentType; }
+            set { DocumentType = (DocumentTypeInfo) value; }
+        }
     }
 }
 

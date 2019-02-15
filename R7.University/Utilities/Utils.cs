@@ -20,28 +20,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Web.UI.WebControls;
-using DotNetNuke.Entities.Portals;
-using DotNetNuke.Entities.Users;
 using DotNetNuke.Web.UI.WebControls;
 
 namespace R7.University.Utilities
 {
     public static class Utils
     {
-        /// <summary>
-        /// Gets the display name of specified user.
-        /// </summary>
-        /// <returns>The user display name.</returns>
-        /// <param name="userId">User identifier.</param>
-        /// <param name="defName">Default user display name. Pass Null.NullInteger string to use with ModuleAuditControl.</param>
-        public static string GetUserDisplayName (int userId, string defName)
-        {
-            var portalId = PortalController.Instance.GetCurrentPortalSettings ().PortalId;
-            var user = UserController.GetUserById (portalId, userId);
-	
-            return (user != null) ? user.DisplayName : defName;
-        }
-
         // TODO: Move to the base library
         public static void ExpandToLevel (DnnTreeView tree, int maxLevel)
         {

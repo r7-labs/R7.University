@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -26,7 +26,8 @@ using System.Text;
 using System.Web;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Collections;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.ModelExtensions;
@@ -76,12 +77,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string _eduMaterialLinks;
         public string EduMaterial_Links => _eduMaterialLinks ?? (_eduMaterialLinks = GetEduMaterialLinks ());
 
-        string _contingentLinks;
-        public string Contingent_Links => _contingentLinks ?? (_contingentLinks = GetContingentLinks ());
-
-        string _contingentMovementLinks;
-        public string ContingentMovement_Links => _contingentMovementLinks ?? (_contingentMovementLinks = GetContingentMovementLinks ());
-
         string _workProgramOfPracticeLinks;
         public string WorkProgramOfPractice_Links => _workProgramOfPracticeLinks ?? (_workProgramOfPracticeLinks = GetWorkProgramOfPracticeLinks ());
 
@@ -103,7 +98,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetELearningString ()
         {
             if (ELearning || DistanceEducation) {
-                return TextUtils.FormatList (
+                return FormatHelper.JoinNotNullOrEmpty (
                     ", ",
                     ELearning? Localization.GetString ("ELearning_ELearning.Text", Context.LocalResourceFile) : null,
                     DistanceEducation? Localization.GetString ("ELearning_DistanceEducation.Text", Context.LocalResourceFile) : null
@@ -170,7 +165,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return Wrap (FormatDocumentsLinkWithData (
                 GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
-                FormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
+                UniversityFormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                     .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
                 "oop",
                 IsAdopted ? "itemprop=\"adOpMain\"" : "itemprop=\"opMain\""
@@ -224,23 +219,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 string.Empty,
                 "wpp",
                 IsAdopted ? "itemprop=\"adEduPr\"" : "itemprop=\"eduPr\""
-            );
-        }
-
-        string GetContingentLinks ()
-        {
-            return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.Contingent)),
-                string.Empty, "cnt", "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/priem\""
-            );
-        }
-
-        string GetContingentMovementLinks ()
-        {
-            return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.ContingentMovement)),
-                string.Empty, "cnm",
-                "itemscope=\"\" itemtype=\"http://obrnadzor.gov.ru/microformats/Perevod\""
             );
         }
 

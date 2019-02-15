@@ -38,5 +38,6 @@ namespace R7.University.Employees
         protected Panel panelPositions;
         protected Panel panelContacts;
         protected Label labelBarcodeEmployeeName;
+        protected Panel pnlScienceIndexCounter;
     }
 }

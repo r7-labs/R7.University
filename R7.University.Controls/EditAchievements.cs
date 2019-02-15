@@ -26,8 +26,9 @@ using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.FileSystem;
+using R7.Dnn.Extensions.Text;
 using R7.University.Controls.EditModels;
 using R7.University.Controls.SerializationModels;
 using R7.University.ModelExtensions;
@@ -75,6 +76,11 @@ namespace R7.University.Controls
             comboAchievementTypes.DataBind ();
             comboAchievementTypes.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
             comboAchievementTypes.SelectedIndex = 0;
+
+            var lastFolderId = FolderHistory.GetLastFolderId (Request, Module.PortalId);
+            if (lastFolderId != null) {
+                urlDocumentURL.SelectFolder (lastFolderId.Value);
+            }
         }
 
         protected override void OnLoad (EventArgs e)
@@ -126,11 +132,11 @@ namespace R7.University.Controls
 
         protected override void OnUpdateItem (EmployeeAchievementEditModel item)
         {
-            item.AchievementID = TypeUtils.ParseToNullable<int> (comboAchievement.SelectedValue);
+            item.AchievementID = ParseHelper.ParseToNullable<int> (comboAchievement.SelectedValue, true);
             if (item.AchievementID == null) {
                 item.Title = textAchievementTitle.Text.Trim ();
                 item.ShortTitle = textAchievementShortTitle.Text.Trim ();
-                item.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementTypes.SelectedValue);
+                item.AchievementTypeId = ParseHelper.ParseToNullable<int> (comboAchievementTypes.SelectedValue, true);
                 var achievementType = GetAchievementType (item.AchievementTypeId);
                 item.Type = (achievementType != null)? achievementType.Type : string.Empty;
             }
@@ -147,15 +153,17 @@ namespace R7.University.Controls
             item.TitleSuffix = textAchievementTitleSuffix.Text.Trim ();
             item.Description = textAchievementDescription.Text.Trim ();
             item.IsTitle = checkIsTitle.Checked;
-            item.YearBegin = TypeUtils.ParseToNullable<int> (textYearBegin.Text);
-            item.YearEnd = TypeUtils.ParseToNullable<int> (textYearEnd.Text);
+            item.YearBegin = ParseHelper.ParseToNullable<int> (textYearBegin.Text);
+            item.YearEnd = ParseHelper.ParseToNullable<int> (textYearEnd.Text);
             item.DocumentURL = urlDocumentURL.Url;
+
+            FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentURL.Url, Module.PortalId);
         }
 
         protected override void OnCancelEdit (EmployeeAchievementEditModel item)
         {
             // fix for DnnUrlControl looses its state on postback
-            urlDocumentURL.Url = item.DocumentURL;
+            // urlDocumentURL.Url = item.DocumentURL;
 
             base.OnCancelEdit (item);
         }

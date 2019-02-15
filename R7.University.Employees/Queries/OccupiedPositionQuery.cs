@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -34,8 +35,8 @@ namespace R7.University.Employees.Queries
         public OccupiedPositionInfo FirstOrDefaultPrimePosition (int employeeId)
         {
             return ModelContext.Query<OccupiedPositionInfo> ()
-                .Include (op => op.Position)
-                .Include (op => op.Division)
+                .Include2 (op => op.Position)
+                .Include2 (op => op.Division)
                 .Where (op => op.EmployeeID == employeeId)
                 .OrderByDescending (op => op.IsPrime)
                 .ThenByDescending (op => op.Position.Weight)

@@ -72,6 +72,7 @@
                         CssClass="dnnPrimaryAction" CommandArgument="Update" 
                         CausesValidation="true" ValidationGroup="OccupiedPositions" />
 				</li>
+				<li>&nbsp;</li>
                 <li>
 				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />

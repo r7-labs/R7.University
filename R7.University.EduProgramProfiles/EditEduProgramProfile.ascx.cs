@@ -25,7 +25,8 @@ using System.Text.RegularExpressions;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
@@ -97,7 +98,7 @@ namespace R7.University.EduProgramProfiles
             // try to select edu. program
             var eduProgramId = GetQueryId ("eduprogram_id");
             if (eduProgramId != null) {
-                var eduProgram = ModelContext.Get<EduProgramInfo> (eduProgramId.Value);
+                var eduProgram = ModelContext.Get<EduProgramInfo, int> (eduProgramId.Value);
                 BindEduPrograms (eduProgram.EduLevelID);
                 comboEduProgram.SelectByValue (eduProgramId);
                 comboEduProgramLevel.SelectByValue (eduProgram.EduLevelID);
@@ -133,7 +134,7 @@ namespace R7.University.EduProgramProfiles
         void BindEduPrograms (int eduLevelId)
         {
             comboEduProgram.DataSource = new EduProgramCommonQuery (ModelContext).ListByEduLevel (eduLevelId)
-                .Select (ep => new ListItemViewModel (ep.EduProgramID, FormatHelper.FormatEduProgramTitle (ep.Code, ep.Title)));
+                .Select (ep => new { Value = ep.EduProgramID, Text = UniversityFormatHelper.FormatEduProgramTitle (ep.Code, ep.Title) });
 
             comboEduProgram.DataBind ();
 
@@ -152,7 +153,7 @@ namespace R7.University.EduProgramProfiles
 
         protected override void LoadItem (EduProgramProfileInfo item)
         {
-            var epp = GetItemWithDependencies (ItemId.Value);
+            var epp = GetItemWithDependencies (ItemKey.Value);
 
             textProfileCode.Text = epp.ProfileCode;
             textProfileTitle.Text = epp.ProfileTitle;
@@ -177,12 +178,12 @@ namespace R7.University.EduProgramProfiles
             comboEduProgram.SelectByValue (epp.EduProgramID);
             comboEduLevel.SelectByValue (epp.EduLevelId);
 
-            auditControl.Bind (epp);
+            auditControl.Bind (epp, PortalId, LocalizeString ("Unknown")); ;
 
             formEditEduFormYears.SetData (epp.EduProgramProfileFormYears, epp.EduProgramProfileID);
         }
 
-        protected override void BeforeUpdateItem (EduProgramProfileInfo item)
+        protected override void BeforeUpdateItem (EduProgramProfileInfo item, bool isNew)
         {
             // fill the object
             item.ProfileCode = textProfileCode.Text.Trim ();
@@ -198,12 +199,12 @@ namespace R7.University.EduProgramProfiles
 
             // update references
             item.EduProgramID = int.Parse (comboEduProgram.SelectedValue);
-            item.EduProgram = ModelContext.Get<EduProgramInfo> (item.EduProgramID);
+            item.EduProgram = ModelContext.Get<EduProgramInfo, int> (item.EduProgramID);
 
             item.EduLevelId = int.Parse (comboEduLevel.SelectedValue);
-            item.EduLevel = ModelContext.Get<EduLevelInfo> (item.EduLevelId);
+            item.EduLevel = ModelContext.Get<EduLevelInfo, int> (item.EduLevelId);
 
-            if (ItemId == null) {
+            if (ItemKey == null) {
             }
             else {
                 item.LastModifiedOnDate = DateTime.Now;
@@ -211,7 +212,7 @@ namespace R7.University.EduProgramProfiles
             }
         }
 
-        protected override EduProgramProfileInfo GetItemWithDependencies (int itemId)
+        protected EduProgramProfileInfo GetItemWithDependencies (int itemId)
         {
             return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }
@@ -263,7 +264,7 @@ namespace R7.University.EduProgramProfiles
                
         IEduProgramProfile GetEduProgramProfile ()
         {
-            var eppId = TypeUtils.ParseToNullable<int> (Request.QueryString [Key]);
+            var eppId = ParseHelper.ParseToNullable<int> (Request.QueryString [Key]);
             return eppId != null ? GetItemWithDependencies (eppId.Value) : null;
         }
 

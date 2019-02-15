@@ -12,8 +12,8 @@ namespace R7.University.Employees
 		protected LinkButton buttonDelete;
 		protected HyperLink linkCancel;
 		protected DnnFilePickerUploader pickerPhoto;
-        protected LinkButton buttonPhotoLookup;
-		protected DnnUrlControl urlUser;
+        protected DnnFilePickerUploader pickerAltPhoto;
+        protected DnnUrlControl urlUser;
 		protected TextBox textLastName;
 		protected TextBox textFirstName;
 		protected TextBox textOtherName;
@@ -40,6 +40,7 @@ namespace R7.University.Employees
 		protected Label labelUserNames;
 		protected DropDownList comboUsers;
         protected CheckBox checkShowBarcode;
+        protected TextBox txtScienceIndexAuthorId;
         protected EditAchievements formEditAchievements;
         protected EditDisciplines formEditDisciplines;
         protected EditPositions formEditPositions;

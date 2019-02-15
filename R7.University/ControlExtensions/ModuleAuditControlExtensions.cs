@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2016 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,23 +20,20 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DotNetNuke.UI.UserControls;
-using DotNetNuke.Common.Utilities;
-using R7.University.Utilities;
 using R7.University.Models;
+using R7.Dnn.Extensions.Users;
 
 namespace R7.University.ControlExtensions
 {
     // TODO: Move to the base library
     public static class ModuleAuditControlExtensions
     {
-        public static void Bind (this ModuleAuditControl auditControl, ITrackableEntity item)
+        public static void Bind (this ModuleAuditControl auditControl, ITrackableEntity item, int portalId, string unknownUserName)
         {
             auditControl.CreatedDate = item.CreatedOnDate.ToLongDateString ();
-            auditControl.CreatedByUser = Utils.GetUserDisplayName (item.CreatedByUserId, Null.NullInteger.ToString ());
+            auditControl.CreatedByUser = UserHelper.GetUserDisplayName (portalId, item.CreatedByUserId) ?? unknownUserName;
             auditControl.LastModifiedDate = item.LastModifiedOnDate.ToLongDateString ();
-            auditControl.LastModifiedByUser = Utils.GetUserDisplayName (
-                item.LastModifiedByUserId,
-                Null.NullInteger.ToString ());
+            auditControl.LastModifiedByUser = UserHelper.GetUserDisplayName (portalId, item.LastModifiedByUserId) ?? unknownUserName;
         }
     }
 }

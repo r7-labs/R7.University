@@ -1,45 +1,42 @@
 ﻿/* Employee styles */
 
-.Employee ._label,
-.Employee ._section,
-.Employee ._name,
-.Employee ._positions,
-.Employee ._userprofile
-{ 
+.u8y-employee ._label,
+.u8y-employee ._section,
+.u8y-employee ._name,
+.u8y-employee ._positions,
+.u8y-employee ._userprofile { 
 	display:block 
 }
 
-.Employee ._section,
-.Employee ._name,
-.Employee ._positions,
-.Employee ._userprofile
-{
+.u8y-employee ._section,
+.u8y-employee ._name,
+.u8y-employee ._positions,
+.u8y-employee ._userprofile {
 	margin-top:8px
 }
 
-.Employee ._section,
-.Employee ._name
+.u8y-employee ._section,
+.u8y-employee ._name
 { 
 	text-align:center;
 }
 
-.Employee ._email { display:inline-block }
+.u8y-employee ._email { display:inline-block }
 
-.Employee ._userprofile { text-align:right }
+.u8y-employee ._userprofile { text-align:right }
 
-.Employee ._fullname { font-style:italic; }
+.u8y-employee ._fullname { font-style:italic; }
 
 /* Shared styles */
 
-.Employee, .u8y-employee-details { padding-top:.5em }
+.u8y-employee, .u8y-employee-details { padding-top:.5em }
 
 /* Employee details styles */
 
 .u8y-employee-details ._section,
 .u8y-employee-details ._positions,
 .u8y-employee-details ._website,
-.u8y-employee-details ._userprofile
-{
+.u8y-employee-details ._userprofile {
 	display:block
 }
 
@@ -49,7 +46,6 @@
     
 .u8y-employee-details ._label,
 .u8y-employee-details ._email { display:inline-block }
-}
 
 .u8y-employee-details ._label,
 .u8y-employee-details ._email,
@@ -59,6 +55,18 @@
     margin-left:18px; /* compensate left margin of ul */
     margin-top:1em
 }
+
+.u8y-employee-details .u8y-employee-contacts {
+	display:block;
+	text-align:center
+}
+
+.u8y-employee-details .u8y-science-index-counter {
+	display:block;
+	margin-bottom:14px
+}
+
+.u8y-employee-details .btn-barcode { margin-top:14px }
 
 .u8y-employee-details ul.dnnActions { display:block }
 
@@ -71,8 +79,6 @@
 .u8y-employee-details table.grid-achievements,
 .u8y-employee-details table.grid-experience,
 .u8y-employee-details table.grid-disciplines { font-size:85% }
-
-.u8y-employee-details .btn-barcode { margin-top:8px }
 
 .u8y-employee-details .u8y-employee-about { font-size:85% }
 

@@ -21,6 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -36,10 +37,7 @@ namespace R7.University.EduProgramProfiles.Queries
         {
             return ModelContext.Query<EduProgramProfileInfo> ()
                                .IncludeEduProgramAndDivisions ()
-                               .Include (epp => epp.EduProgramProfileFormYears)
-                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year))
-                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
-                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
+                               .IncludeEduProgramProfileFormYears ()
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
                                .DefaultOrder ()
@@ -50,10 +48,8 @@ namespace R7.University.EduProgramProfiles.Queries
         {
             return ModelContext.Query<EduProgramProfileInfo> ()
                                .IncludeEduProgramAndDivisions ()
-                               .Include (epp => epp.Documents)
-                               .Include (epp => epp.Documents.Select (d => d.DocumentType))
-                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Year))
-                               .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
+                               .IncludeDocuments ()
+                               .IncludeEduProgramProfileFormYearsAndForms ()
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
                                .DefaultOrder ()

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,8 +31,8 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls.Extensions;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Collections;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
@@ -282,10 +282,6 @@ namespace R7.University.EduProgramProfiles
             // show / hide edit column
             e.Row.Cells [0].Visible = IsEditable;
 
-            // TODO: Remove columns completely
-            e.Row.Cells [12].Visible = IsEditable;
-            e.Row.Cells [13].Visible = IsEditable;
-
             if (e.Row.RowType == DataControlRowType.Header) {
                 // set right table section for header row
                 e.Row.TableSection = TableRowSection.TableHeader;
@@ -293,7 +289,7 @@ namespace R7.University.EduProgramProfiles
             else if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgramProfile = (EduProgramProfileDocumentsViewModel) e.Row.DataItem;
 
-                e.Row.Attributes.Add ("data-title", FormatHelper.FormatEduProgramProfileTitle (
+                e.Row.Attributes.Add ("data-title", UniversityFormatHelper.FormatEduProgramProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
                     eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle)
                                       .Append (eduProgramProfile.IsAdopted ? LocalizeString ("IsAdopted.Text") : null, " - ")

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
+using DotNetNuke.Common;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Portals;
+using R7.Dnn.Extensions.Models;
+using R7.Dnn.Extensions.Text;
 using R7.University.Models;
 
 namespace R7.University.ModelExtensions
@@ -29,7 +35,7 @@ namespace R7.University.ModelExtensions
     public static class DivisionExtensions
     {
         public static IEnumerable<TDivision> CalculateLevelAndPath<TDivision> (this IEnumerable<TDivision> divisions)
-            where TDivision: IDivisionWritable
+            where TDivision : IDivisionWritable
         {
             var rootDivisions = divisions.Where (d => d.ParentDivisionID == null);
             foreach (var root in rootDivisions) {
@@ -39,8 +45,8 @@ namespace R7.University.ModelExtensions
             return divisions;
         }
 
-        private static void CalculateLevelAndPath<TDivision> (TDivision division, int level, string path) 
-            where TDivision: IDivisionWritable
+        private static void CalculateLevelAndPath<TDivision> (TDivision division, int level, string path)
+            where TDivision : IDivisionWritable
         {
             division.Level = level + 1;
             division.Path = path + "/" + division.DivisionID.ToString ().PadLeft (10, '0');
@@ -52,47 +58,39 @@ namespace R7.University.ModelExtensions
             }
         }
 
-        public static VCard GetVCard (this IDivision division)
+        public static VCard VCard (this IDivision division)
         {
             var vcard = new VCard ();
 
-            // org. name
             if (!string.IsNullOrWhiteSpace (division.Title)) {
                 vcard.OrganizationName = division.Title;
             }
 
-            // email
             if (!string.IsNullOrWhiteSpace (division.Email)) {
                 vcard.Emails.Add (division.Email);
             }
 
-            // secondary email
             if (!string.IsNullOrWhiteSpace (division.SecondaryEmail)) {
                 vcard.Emails.Add (division.SecondaryEmail);
             }
 
-            // phone
             if (!string.IsNullOrWhiteSpace (division.Phone)) {
                 vcard.Phones.Add (new VCardPhone () { Number = division.Phone, Type = VCardPhoneType.Work });
             }
 
-            // fax
             if (!string.IsNullOrWhiteSpace (division.Fax)) {
                 vcard.Phones.Add (new VCardPhone () { Number = division.Fax, Type = VCardPhoneType.Fax });
             }
 
-            // website
             if (!string.IsNullOrWhiteSpace (division.WebSite)) {
                 vcard.Url = division.WebSite;
             }
 
-            // location
             if (!string.IsNullOrWhiteSpace (division.Location)) {
                 // TODO: Add organization address
                 vcard.DeliveryAddress = division.Location;
             }
 
-            // revision
             vcard.LastRevision = division.LastModifiedOnDate;
 
             return vcard;
@@ -100,18 +98,19 @@ namespace R7.University.ModelExtensions
 
         public static IDivision GetParentDivision (this IDivision division, IModelContext modelContext)
         {
+            Contract.Ensures (Contract.Result<IDivision> () != null);
             if (division.ParentDivisionID != null) {
-                return modelContext.Get<DivisionInfo> (division.ParentDivisionID.Value); 
+                return modelContext.Get<DivisionInfo, int> (division.ParentDivisionID.Value);
             }
 
-            return  null;
+            return null;
         }
 
         public static void SetModelId (this IEduProgramDivisionWritable division, ModelType modelType, int modelId)
         {
             if (modelType == ModelType.EduProgram) {
                 division.EduProgramId = modelId;
-            } 
+            }
             else if (modelType == ModelType.EduProgramProfile) {
                 division.EduProgramProfileId = modelId;
             }
@@ -123,6 +122,33 @@ namespace R7.University.ModelExtensions
         public static IEnumerable<IOccupiedPosition> GetHeadEmployeePositions (this IDivision division)
         {
             return division.OccupiedPositions.Where (op => op.PositionID == division.HeadPositionID);
+        }
+
+        public static string SearchText (this IDivision division)
+        {
+            return FormatHelper.JoinNotNullOrEmpty (
+                ", ",
+                division.Title,
+                UniversityModelHelper.HasUniqueShortTitle (division.ShortTitle, division.Title) ? division.ShortTitle : null,
+                division.Phone,
+                division.Fax,
+                division.Email,
+                division.SecondaryEmail,
+                division.WebSite,
+                division.Location,
+                division.WorkingHours
+            );
+        }
+
+        public static string GetSearchUrl (this IDivision division, ModuleInfo module, PortalSettings portalSettings)
+        {
+            if (!string.IsNullOrEmpty (division.HomePage)) {
+                return Globals.NavigateURL (int.Parse (division.HomePage), false, portalSettings, "",
+                    portalSettings.PortalAlias.CultureCode);
+            }
+
+            return Globals.NavigateURL (module.TabID, false, portalSettings, "",
+                portalSettings.PortalAlias.CultureCode, "", "mid", module.ModuleID.ToString ());
         }
     }
 }

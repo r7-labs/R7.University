@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,8 +31,8 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.UI.WebControls.Extensions;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Collections;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
@@ -407,7 +407,7 @@ namespace R7.University.Divisions
                 if (headEmployee != null) {
                     literalHeadEmployee.Text = "<a href=\""
                     + EditUrl ("employee_id", headEmployee.EmployeeID.ToString (), "EmployeeDetails")
-                    + "\" title=\"" + headEmployee.FullName + "\">" + headEmployee.AbbrName + "</a>";
+                    + "\" title=\"" + headEmployee.FullName () + "\">" + headEmployee.AbbrName () + "</a>";
                 }
                 else if (division.HeadPositionID != null) {
                     literalHeadEmployee.Text = LocalizeString ("HeadPosition_IsVacant.Text");
@@ -430,7 +430,7 @@ namespace R7.University.Divisions
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var division = (DivisionObrnadzorViewModel) e.Row.DataItem;
 
-                e.Row.Attributes.Add ("itemprop", "structOrgUprav");
+                e.Row.Attributes.Add ("itemprop", "name");
 
                 if (IsEditable) {
                     // get edit link controls

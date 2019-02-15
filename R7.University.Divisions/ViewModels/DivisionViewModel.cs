@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -161,7 +161,7 @@ namespace R7.University.Divisions.ViewModels
                 return UniversityUrlHelper.FullUrl (string.Format (
                     "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                     barcodeWidth, barcodeWidth,
-                    HttpUtility.UrlEncode (Division.GetVCard ().ToString ()
+                    HttpUtility.UrlEncode (Division.VCard ().ToString ()
                                            // fix for "+" signs in phone numbers
                                           .Replace ("+", "%2b"))
                 ));
@@ -209,11 +209,11 @@ namespace R7.University.Divisions.ViewModels
         }
 
         public string WebSiteUrl {
-            get { return FormatHelper.FormatWebSiteUrl (Division.WebSite); }
+            get { return UniversityFormatHelper.FormatWebSiteUrl (Division.WebSite); }
         }
 
         public string DisplayWebSiteLabel {
-            get { return FormatHelper.FormatWebSiteLabel (Division.WebSite, Division.WebSiteLabel); }
+            get { return UniversityFormatHelper.FormatWebSiteLabel (Division.WebSite, Division.WebSiteLabel); }
         }
     }
 }

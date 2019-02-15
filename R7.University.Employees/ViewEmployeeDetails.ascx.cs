@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -31,11 +31,10 @@ using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.ModuleExtensions;
+using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
-using R7.Dnn.Extensions.TextExtensions;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Text;
+using R7.Dnn.Extensions.Urls;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employees.Models;
@@ -107,10 +106,7 @@ namespace R7.University.Employees
 
         EmployeeInfo _employee;
 
-        public EmployeeInfo GetEmployee ()
-        {
-            return _employee ?? (_employee = GetEmployee_Internal ());
-        }
+        public EmployeeInfo Employee => _employee ?? (_employee = GetEmployee_Internal ());
 
         protected EmployeeInfo GetEmployee_Internal ()
         {
@@ -149,7 +145,7 @@ namespace R7.University.Employees
 
         protected EmployeeInfo GetEmployee_FromQueryString ()
         {
-            var employeeId = TypeUtils.ParseToNullable<int> (Request.QueryString ["employee_id"]);
+            var employeeId = ParseHelper.ParseToNullable<int> (Request.QueryString ["employee_id"]);
             if (employeeId != null) {
                 return new EmployeeQuery (ModelContext).SingleOrDefault (employeeId.Value);
             }
@@ -158,7 +154,7 @@ namespace R7.University.Employees
 
         protected EmployeeInfo GetEmployee_FromCurrentUser ()
         {
-            var userId = TypeUtils.ParseToNullable<int> (Request.QueryString ["userid"]);
+            var userId = ParseHelper.ParseToNullable<int> (Request.QueryString ["userid"]);
             if (userId != null) {
                 return new EmployeeQuery (ModelContext).SingleOrDefaultByUserId (userId.Value);
             }
@@ -183,7 +179,7 @@ namespace R7.University.Employees
                     EditUrl ("EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    GetEmployee () == null && SecurityContext.CanAdd (typeof (EmployeeInfo)), 
+                    Employee == null && SecurityContext.CanAdd (typeof (EmployeeInfo)), 
                     false
                 );
 
@@ -193,10 +189,10 @@ namespace R7.University.Employees
                     ModuleActionType.EditContent, 
                     "", 
                     UniversityIcons.Edit,
-                    EditUrl ("employee_id", GetEmployee ()?.EmployeeID.ToString (), "EditEmployee"),
+                    EditUrl ("employee_id", Employee?.EmployeeID.ToString (), "EditEmployee"),
                     false, 
                     SecurityAccessLevel.Edit,
-                    GetEmployee () != null, 
+                    Employee != null, 
                     false
                 );
 
@@ -240,7 +236,7 @@ namespace R7.University.Employees
 
             try {
                 var now = HttpContext.Current.Timestamp;
-                var employee = GetEmployee ();
+                var employee = Employee;
 
                 // can we display module content?
                 var displayContent = employee != null && (IsEditable || employee.IsPublished (now));
@@ -308,7 +304,7 @@ namespace R7.University.Employees
 
         protected void Display (EmployeeInfo employee)
         {
-            var fullname = employee.FullName;
+            var fullname = employee.FullName ();
 
             if (IsInPopup) {
                 // set popup title to employee name
@@ -316,7 +312,7 @@ namespace R7.University.Employees
             }
             else if (InViewModule) {
                 if (Settings.AutoTitle)
-                    UniversityModuleHelper.UpdateModuleTitle (TabModuleId, employee.FullName);
+                    UniversityModuleHelper.UpdateModuleTitle (TabModuleId, fullname);
             }
             else {
                 // display employee name in label
@@ -326,9 +322,9 @@ namespace R7.University.Employees
             // occupied positions
             var positions = employee.Positions
                               .OrderByDescending (op => op.Position.Weight)
-                              .GroupByDivision ()
-                              .Where (p => IsEditable || p.OccupiedPosition.Division.IsPublished (HttpContext.Current.Timestamp));
-            
+                              .GroupByDivision (HttpContext.Current.Timestamp, IsEditable);
+
+            // TODO: Grey out not published divisions
             if (positions.Any ()) {
                 repeaterPositions.DataSource = positions;
                 repeaterPositions.DataBind ();
@@ -403,22 +399,22 @@ namespace R7.University.Employees
                 linkSecondaryEmail.Visible = false;
 
             if (!string.IsNullOrWhiteSpace (employee.WebSite)) {
-                linkWebSite.NavigateUrl = FormatHelper.FormatWebSiteUrl (employee.WebSite);
-                linkWebSite.Text = FormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
+                linkWebSite.NavigateUrl = UniversityFormatHelper.FormatWebSiteUrl (employee.WebSite);
+                linkWebSite.Text = UniversityFormatHelper.FormatWebSiteLabel (employee.WebSite, employee.WebSiteLabel);
                 displayContacts = true;
             }
             else {
                 linkWebSite.Visible = false;
             }
 
-            if (!TypeUtils.IsNull<int> (employee.UserID)) {
+            if (employee.UserID != null && !Null.IsNull (employee.UserID.Value)) {
                 linkUserProfile.NavigateUrl = Globals.UserProfileURL (employee.UserID.Value);
                 displayContacts = true;
             }
             else
                 linkUserProfile.Visible = false;
 
-            var workingPlaceAndHours = TextUtils.FormatList (", ", employee.WorkingPlace, employee.WorkingHours);
+            var workingPlaceAndHours = FormatHelper.JoinNotNullOrEmpty (", ", employee.WorkingPlace, employee.WorkingHours);
             if (!string.IsNullOrWhiteSpace (workingPlaceAndHours)) {
                 labelWorkingPlaceAndHours.Text = workingPlaceAndHours;
                 displayContacts = true;
@@ -451,7 +447,7 @@ namespace R7.University.Employees
         void BindBarcode (EmployeeInfo employee)
         {
             if (employee.ShowBarcode) {
-                labelBarcodeEmployeeName.Text = employee.FullName;
+                labelBarcodeEmployeeName.Text = employee.FullName ();
                 linkBarcode.Attributes.Add ("data-target", "#employee-barcode-dialog-" + ModuleId);
 
                 // barcode image
@@ -459,7 +455,7 @@ namespace R7.University.Employees
                 imageBarcode.ImageUrl = UniversityUrlHelper.FullUrl (string.Format (
                         "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
                         barcodeWidth, barcodeWidth, 
-                        Server.UrlEncode (employee.VCard.ToString ()
+                        Server.UrlEncode (employee.VCard ().ToString ()
 						.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
                     ));
 
@@ -512,9 +508,9 @@ namespace R7.University.Employees
             
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
-                                     .Select (ach => TextUtils.FormatList (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
+                                     .Select (ach => FormatHelper.JoinNotNullOrEmpty (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
             
-            var strTitles = TextUtils.FormatList (", ", titles);
+            var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = strTitles.FirstCharToUpper ();
             else
@@ -549,14 +545,18 @@ namespace R7.University.Employees
                                                              SystemAchievementType.Work))
                 .OrderByDescending (ach => ach.YearBegin)
                 .ToList ();
-			
+
+            pnlScienceIndexCounter.Visible = employee.ScienceIndexAuthorId != null;
+
             if (otherAchievements.Any ()) {
                 gridAchievements.DataSource = otherAchievements;
                 gridAchievements.DataBind ();
             }
-            else {	
-                // hide achievements tab
-                tabAchievements.Visible = false;
+            else {
+                if (employee.ScienceIndexAuthorId == null) {
+                    // hide achievements tab
+                    tabAchievements.Visible = false;
+                }
             }
         }
 

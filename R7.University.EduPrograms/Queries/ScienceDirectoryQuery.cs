@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +21,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.ModelExtensions;
+using R7.Dnn.Extensions.Collections;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -58,10 +59,9 @@ namespace R7.University.EduPrograms.Queries
         protected IQueryable<EduProgramInfo> QueryEduProgramsIncludeScience ()
         {
             return ModelContext.Query<EduProgramInfo> ()
-                               .Include (ep => ep.EduLevel)
-                               .Include (ep => ep.Divisions)
-                               .Include (ep => ep.Divisions.Select (d => d.Division))
-                               .Include (ep => ep.Science)
+                               .Include2 (ep => ep.EduLevel)
+                               .IncludeDivisions ()
+                               .Include2 (ep => ep.Science)
                                .DefaultOrder ();
         }
     }

@@ -105,7 +105,8 @@
 					<asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDocument" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Documents" />
-				</li>	
+				</li>
+				<li>&nbsp;</li>
                 <li>
 					<asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -35,7 +35,7 @@ namespace R7.University.EduPrograms.ViewModels
             Model = division;
         }
 
-        public DivisionInfo Division => Model.Division;
+        public IDivision Division => Model.Division;
 
         public int DivisionId => Model.DivisionId;
 
@@ -47,6 +47,6 @@ namespace R7.University.EduPrograms.ViewModels
 
         public int? EduProgramProfileId => Model.EduProgramProfileId;
 
-        public string DivisionLink => FormatHelper.FormatEduProgramDivisionLink (Model.Division, Model.DivisionRole, Model.Division.IsPublished (HttpContext.Current.Timestamp));
+        public string DivisionLink => UniversityFormatHelper.FormatEduProgramDivisionLink (Model.Division, Model.DivisionRole, Model.Division.IsPublished (HttpContext.Current.Timestamp));
     }
 }

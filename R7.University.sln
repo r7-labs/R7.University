@@ -15,7 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		LICENSE.md = LICENSE.md
-		CHANGES.md = CHANGES.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Tests", "R7.University.Tests\R7.University.Tests.csproj", "{A503A49E-D291-4125-B5D8-A7FE8D7C6ED2}"
@@ -335,6 +334,6 @@ Global
 		$52.inheritsSet = null
 		$52.inheritsScope = text/plain
 		$52.scope = text/x-cshtml
-		version = 2.1.1
+		version = 2.2
 	EndGlobalSection
 EndGlobal

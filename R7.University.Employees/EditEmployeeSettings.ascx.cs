@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,13 +20,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Linq;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
-using R7.Dnn.Extensions.ControlExtensions;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Controls;
 using R7.University.Employees.Models;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
@@ -41,7 +42,12 @@ namespace R7.University.Employees
 
             // bind employees to the combobox
             using (var modelContext = new UniversityModelContext ()) {
-                comboEmployees.DataSource = new FlatQuery<EmployeeInfo> (modelContext).ListOrderBy (empl => empl.LastName);
+                comboEmployees.DataSource = new FlatQuery<EmployeeInfo> (modelContext)
+                    .ListOrderBy (empl => empl.LastName)
+                    .Select (empl => new {
+                        empl.EmployeeID,
+                        AbbrName = empl.AbbrName ()
+                    });
                 comboEmployees.DataBind ();
             }
 
@@ -88,7 +94,7 @@ namespace R7.University.Employees
 
                 ModuleController.SynchronizeModule (ModuleId);
 
-                CacheHelper.RemoveCacheByPrefix ("//r7_University/Modules/Employee?ModuleId=" + ModuleId);
+                DataCache.ClearCache ("//r7_University/Modules/Employee?ModuleId=" + ModuleId);
             }
             catch (Exception ex) {
                 Exceptions.ProcessModuleLoadException (this, ex);
@@ -96,4 +102,3 @@ namespace R7.University.Employees
         }
     }
 }
-

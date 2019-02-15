@@ -78,7 +78,7 @@ namespace R7.University.Controls.EditModels
         public int DivisionId { get; set; }
 
         [JsonIgnore]
-        public DivisionInfo Division { get; set; }
+        public IDivision Division { get; set; }
 
         public string DivisionRole { get; set; }
 

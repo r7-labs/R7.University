@@ -50,13 +50,12 @@
                     <asp:TextBox id="textOtherName" runat="server" MaxLength="50" />
                 </div>
                 <div class="dnnFormItem">
-                    <dnn:Label id="labelPhotoLookup" runat="server" ControlName="buttonPhotoLookup" />
-                    <asp:LinkButton id="buttonPhotoLookup" runat="server" resourcekey="buttonPhotoLookup"
-                        CssClass="dnnSecondaryAction" OnClick="buttonPhotoLookup_Click" />
-                </div>
-            	<div class="dnnFormItem">
 					<dnn:Label id="labelPhoto" runat="server" ControlName="pickerPhoto" />
-                    <dnn:Picker id="pickerPhoto" runat="server" Required="true" />
+                    <dnn:Picker id="pickerPhoto" runat="server" Required="false" />
+				</div>
+				<div class="dnnFormItem">
+					<dnn:Label id="labelAltPhoto" runat="server" ControlName="pickerAltPhoto" />
+                    <dnn:Picker id="pickerAltPhoto" runat="server" Required="false" />
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelUser" runat="server" ControlName="comboUsers" />
@@ -120,6 +119,10 @@
 					<asp:TextBox id="textMessenger" runat="server" MaxLength="250" />
 				</div>
 				<div class="dnnFormItem">
+					<dnn:Label id="lblScienceIndexAuthorId" runat="server" ControlName="txtScienceIndexAuthorId" />
+					<asp:TextBox id="txtScienceIndexAuthorId" runat="server" />
+				</div>
+				<div class="dnnFormItem">
 					<dnn:Label id="labelWorkingPlace" runat="server" ControlName="textWorkingPlace" />
 					<asp:TextBox id="textWorkingPlace" runat="server" MaxLength="50" />
 				</div>
@@ -180,7 +183,9 @@
 	</div>
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
+		<li>&nbsp;</li>
 		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
+		<li>&nbsp;</li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
 	</ul>
     <controls:AgplSignature runat="server" ShowRule="false" />

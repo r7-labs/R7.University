@@ -30,18 +30,6 @@
     <data name="labelDisciplines.Help" xml:space="preserve">
         <value>Перечислите преподаваемые дисциплины.</value>
     </data>
-    <data name="checkAddToVocabulary.Text" xml:space="preserve">
-        <value>Добавить в словарь</value>
-    </data>
-    <data name="Division.Column" xml:space="preserve">
-        <value>Подразделение</value>
-    </data>
-    <data name="Position.Column" xml:space="preserve">
-        <value>Должность</value>
-    </data>
-    <data name="IsPrime.Column" xml:space="preserve">
-        <value>Основная</value>
-    </data>
     <data name="buttonAddDiscipline.Text" xml:space="preserve">
         <value>Добавить дисциплины</value>
     </data>

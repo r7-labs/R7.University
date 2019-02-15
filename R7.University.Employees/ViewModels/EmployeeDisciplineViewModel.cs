@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -43,16 +43,16 @@ namespace R7.University.Employees.ViewModels
 
         public string Disciplines => EmployeeDiscipline.Disciplines;
 
-        public EmployeeInfo Employee => EmployeeDiscipline.Employee;
+        public IEmployee Employee => EmployeeDiscipline.Employee;
 
-        public EduProgramProfileInfo EduProgramProfile => EmployeeDiscipline.EduProgramProfile;
+        public IEduProgramProfile EduProgramProfile => EmployeeDiscipline.EduProgramProfile;
 
         #endregion
 
         public string EduProgramProfile_String
         {
             get {
-                return FormatHelper.FormatEduProgramProfileTitle (
+                return UniversityFormatHelper.FormatEduProgramProfileTitle (
                     EmployeeDiscipline.EduProgramProfile.EduProgram.Code,
                     EmployeeDiscipline.EduProgramProfile.EduProgram.Title,
                     EmployeeDiscipline.EduProgramProfile.ProfileCode,
@@ -63,7 +63,7 @@ namespace R7.University.Employees.ViewModels
 
         public string EduLevel_String {
             get {
-                return FormatHelper.FormatShortTitle (
+                return UniversityFormatHelper.FormatShortTitle (
                     EmployeeDiscipline.EduProgramProfile.EduLevel.ShortTitle,
                     EmployeeDiscipline.EduProgramProfile.EduLevel.Title
                 );

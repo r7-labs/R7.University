@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -41,6 +41,8 @@ namespace R7.University.ViewModels
         public int? UserID => Employee.UserID;
 
         public int? PhotoFileID => Employee.PhotoFileID;
+
+        public int? AltPhotoFileId => Employee.AltPhotoFileId;
 
         public string Phone => Employee.Phone;
 
@@ -87,6 +89,8 @@ namespace R7.University.ViewModels
         public DateTime CreatedOnDate => Employee.CreatedOnDate;
 
         public bool ShowBarcode => Employee.ShowBarcode;
+
+        public int? ScienceIndexAuthorId => Employee.ScienceIndexAuthorId;
 
         public ICollection<EmployeeAchievementInfo> Achievements => Employee.Achievements;
 

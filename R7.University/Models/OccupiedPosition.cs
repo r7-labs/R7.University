@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -35,11 +35,11 @@ namespace R7.University.Models
 
         string TitleSuffix { get; }
 
-        PositionInfo Position { get; }
+        IPosition Position { get; }
 
-        DivisionInfo Division { get; }
+        IDivision Division { get; }
 
-        EmployeeInfo Employee { get; }
+        IEmployee Employee { get; }
     }
 
     public interface IOccupiedPositionWritable: IOccupiedPosition
@@ -56,11 +56,11 @@ namespace R7.University.Models
 
         new string TitleSuffix { get; set; }
 
-        new PositionInfo Position { get; set; }
+        new IPosition Position { get; set; }
 
-        new DivisionInfo Division { get; set; }
+        new IDivision Division { get; set; }
 
-        new EmployeeInfo Employee { get; set; }
+        new IEmployee Employee { get; set; }
     }
 
     // TODO: Add Unique constraint to OccupiedPositions table FK's?
@@ -80,8 +80,29 @@ namespace R7.University.Models
 
         public virtual PositionInfo Position { get; set; }
 
+        IPosition IOccupiedPosition.Position => Position;
+
+        IPosition IOccupiedPositionWritable.Position {
+            get { return Position; }
+            set { Position = (PositionInfo) value; }
+        }
+
         public virtual DivisionInfo Division { get; set; }
 
+        IDivision IOccupiedPosition.Division => Division;
+
+        IDivision IOccupiedPositionWritable.Division {
+            get { return Division; }
+            set { Division = (DivisionInfo) value; }
+        }
+
         public virtual EmployeeInfo Employee { get; set; }
+
+        IEmployee IOccupiedPosition.Employee => Employee;
+
+        IEmployee IOccupiedPositionWritable.Employee {
+            get { return Employee; }
+            set { Employee = (EmployeeInfo) value; }
+        }
     }
 }

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,67 +20,60 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Globalization;
-using System.IO;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Components;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
-using R7.University.ViewModels;
 
 namespace R7.University.SharedLogic
 {
     public static class EmployeePhotoLogic
     {
-        public static void Bind (IEmployee employee, Image imagePhoto, int photoWidth, bool square = false)
+        public static void Bind (IEmployee employee, Image imagePhoto, int photoWidth, bool listMode = false)
         {
-            IFileInfo image = null;
-            var imageHeight = 0;
-            var imageWidth = 0;
+            var image = default (IFileInfo);
 
-            if (!TypeUtils.IsNull (employee.PhotoFileID)) {
-                image = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
-                if (image != null && square) {
-                    // trying to get square image
-                    var squareImage = FileManager.Instance.GetFile (
-                                          FolderManager.Instance.GetFolder (image.FolderId), 
-                                          Path.GetFileNameWithoutExtension (image.FileName)
-                                          + UniversityConfig.Instance.EmployeePhoto.SquareSuffix
-                                          + Path.GetExtension (image.FileName));
-
-                    if (squareImage != null)
-                        image = squareImage;
-                }
+            var photoFileId = GetPhotoFileId (employee, listMode);
+            if (photoFileId != null && !Null.IsNull (photoFileId.Value)) {
+                image = FileManager.Instance.GetFile (photoFileId.Value);
             }
 
-            if (image != null) {
-                imageHeight = image.Height;
-                imageWidth = image.Width;
+            // if no photo specified (or not found), use fallback image
+            var noPhotoUrl = default (string);
+            if (image == null) {
+                image = new FileInfo ();
+                image.Width = listMode ? UniversityConfig.Instance.EmployeePhoto.ListDefaultWidth : UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
+                image.Height = image.Width;
+                noPhotoUrl = $"/DesktopModules/MVC/R7.University/R7.University/images/nophoto_{CultureInfo.CurrentCulture.TwoLetterISOLanguageName}.png";
+            }
 
-                // do we need to scale image?
-                if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
-                    imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl (string.Format (
-                            "/imagehandler.ashx?fileid={0}&width={1}", image.FileId, photoWidth));
+            var imageWidth = image.Width;
+            var imageHeight = image.Height;
+
+            // do we need to scale image?
+            if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
+
+                if (noPhotoUrl == null) {
+                    imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl ($"/imagehandler.ashx?fileid={image.FileId}&width={photoWidth}");
                 }
                 else {
-                    // use original image
+                    imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl ($"/imagehandler.ashx?file={noPhotoUrl}&width={photoWidth}");
+                }
+           }
+            else {
+                // use original images
+                if (noPhotoUrl == null) {
                     imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
                 }
-            }
-            else {
-                // if not photo specified, or not found, use fallback image
-                imageWidth = square ? UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth : UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
-                imageHeight = square ? UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth : UniversityConfig.Instance.EmployeePhoto.DefaultWidth * 4 / 3;
-
-                // TODO: Make fallback image resizable through image handler
-                imagePhoto.ImageUrl = string.Format ("/DesktopModules/MVC/R7.University/R7.University/images/nophoto_{0}{1}.png", 
-                    CultureInfo.CurrentCulture.TwoLetterISOLanguageName, square ? 
-                        UniversityConfig.Instance.EmployeePhoto.SquareSuffix : "");
+                else {
+                    imagePhoto.ImageUrl = noPhotoUrl;
+                }
             }
 
-            // do we need to scale image dimensions?
+            // set dimensions
             if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
                 imagePhoto.Width = photoWidth;
                 imagePhoto.Height = (int) (imageHeight * (float) photoWidth / imageWidth);
@@ -90,11 +83,23 @@ namespace R7.University.SharedLogic
                 imagePhoto.Height = imageHeight;
             }
 
-            // set alt & title for photo
-            var fullName = FormatHelper.FullName (employee.FirstName, employee.LastName, employee.OtherName);
+            // apply CSS classes
+            if (imageWidth == imageHeight) {
+                imagePhoto.CssClass += " img-circle";
+            }
+            else {
+                imagePhoto.CssClass += " img-rounded";
+            }
+
+            // set alt & title
+            var fullName = employee.FullName ();
             imagePhoto.AlternateText = fullName;
             imagePhoto.ToolTip = fullName;
         }
 
+        private static int? GetPhotoFileId (IEmployee employee, bool listMode)
+        {
+            return listMode ? employee.PhotoFileID : (employee.AltPhotoFileId != null ? employee.AltPhotoFileId : employee.PhotoFileID);
+        }
     }
 }

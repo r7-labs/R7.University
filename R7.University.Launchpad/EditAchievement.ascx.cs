@@ -21,7 +21,8 @@
 
 using System;
 using System.Linq;
-using R7.Dnn.Extensions.ControlExtensions;
+using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
@@ -47,7 +48,7 @@ namespace R7.University.Launchpad
             base.OnInit (e);
 
             comboAchievementType.DataSource = new FlatQuery<AchievementTypeInfo> (ModelContext).List ()
-                .Select (at => new ListItemViewModel (at.AchievementTypeId, at.Localize (LocalResourceFile)));
+                .Select (at => new { Value = at.AchievementTypeId, Text = at.Localize (LocalResourceFile) });
             
             comboAchievementType.DataBind ();
             comboAchievementType.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
@@ -60,11 +61,11 @@ namespace R7.University.Launchpad
             comboAchievementType.SelectByValue (item.AchievementTypeId);
         }
 
-        protected override void BeforeUpdateItem (AchievementInfo item)
+        protected override void BeforeUpdateItem (AchievementInfo item, bool isNew)
         {
             item.Title = textTitle.Text.Trim ();
             item.ShortTitle = textShortTitle.Text.Trim ();
-            item.AchievementTypeId = TypeUtils.ParseToNullable<int> (comboAchievementType.SelectedValue);
+            item.AchievementTypeId = ParseHelper.ParseToNullable<int> (comboAchievementType.SelectedValue, true);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase

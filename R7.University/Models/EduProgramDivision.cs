@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -33,7 +33,7 @@ namespace R7.University.Models
 
         string DivisionRole { get; }
 
-        DivisionInfo Division { get; }
+        IDivision Division { get; }
     }
 
     public interface IEduProgramDivisionWritable: IEduProgramDivision
@@ -48,7 +48,7 @@ namespace R7.University.Models
 
         new string DivisionRole { get; set; }
 
-        new DivisionInfo Division { get; set; }
+        new IDivision Division { get; set; }
     }
 
     public class EduProgramDivisionInfo: IEduProgramDivisionWritable
@@ -64,5 +64,12 @@ namespace R7.University.Models
         public string DivisionRole { get; set; }
 
         public virtual DivisionInfo Division { get; set; }
+
+        IDivision IEduProgramDivision.Division => Division;
+
+        IDivision IEduProgramDivisionWritable.Division {
+            get { return Division; }
+            set { Division = (DivisionInfo) value; }
+        }
     }
 }

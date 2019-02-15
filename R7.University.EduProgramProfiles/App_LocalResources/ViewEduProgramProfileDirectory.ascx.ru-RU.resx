@@ -63,13 +63,7 @@
     <data name="EduMaterial.Column" xml:space="preserve">
         <value>Методические и иные документы</value>
     </data>
-    <data name="Contingent.Column" xml:space="preserve">
-        <value>Информация о результатах приема (численности обучающихся) &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
-    </data>
-    <data name="ContingentMovement.Column" xml:space="preserve">
-        <value>Информация о результатах перевода, восстановления и отчисления &lt;abbr title=&quot;Доступно только редакторам - этот столбец будет удален в одной из следующих версий&quot;&gt;?&lt;/abbr&gt;</value>
-    </data>
-	<data name="ELearning.Column" xml:space="preserve">
+    <data name="ELearning.Column" xml:space="preserve">
         <value>Использование при реализации образовательных программ электронного обучения (ЭО) и &lt;abbr title="Дистанционные образовательные технологии"&gt;ДОТ&lt;/abbr&gt;</value>
 	</data>
 	<data name="ELearning_ELearning.Text" xml:space="preserve">

@@ -1,4 +1,4 @@
-//
+﻿//
 //  DataRepositoryTests.cs
 //
 //  Author:
@@ -45,7 +45,7 @@ namespace R7.University.Tests.Models
                 modelContext.Add<TestEntity> (new TestEntity { Id = 1, Title = "Hello, world!" });
                 modelContext.Add<TestEntity> (new TestEntity { Id = 2, Title = "Hello again!" });
 
-                Assert.Equal (2, modelContext.QueryOne<TestEntity> (e => e.Id == 2).Single ().Id);
+                Assert.Equal (2, modelContext.QueryWhere<TestEntity> (e => e.Id == 2).Single ().Id);
             }
         }
     }

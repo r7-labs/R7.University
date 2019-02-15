@@ -18,17 +18,17 @@
     <data name="ModuleHelp.Text" xml:space="preserve">
         <value>&lt;p&gt;О модуле Edit Employee&lt;/p&gt;</value>
     </data>
-    <data name="labelPhotoLookup.Text" xml:space="preserve">
-        <value>Найти фото:</value>
-    </data>
-    <data name="labelPhotoLookup.Help" xml:space="preserve">
-        <value>Нажмите, чтобы попытаться найти фото сотрудника по его имени в папке по-умолчанию.</value>
-    </data>
-    <data name="labelPhoto.Text" xml:space="preserve">
-        <value>Фото:</value>
+	<data name="labelPhoto.Text" xml:space="preserve">
+        <value>Основное фото (квадратное):</value>
     </data>
     <data name="labelPhoto.Help" xml:space="preserve">
-        <value>Добавьте или выберите фото сотрудника.</value>
+        <value>Добавьте или выберите фото сотрудника, предпочтительно квадратное.</value>
+    </data>
+	<data name="labelAltPhoto.Text" xml:space="preserve">
+        <value>Альтернативное фото (портрет):</value>
+    </data>
+    <data name="labelAltPhoto.Help" xml:space="preserve">
+        <value>Добавьте или выберите альтернативное фото сотрудника, предпочтительно в портретной ориентации - оно будет использовано в представлениях-карточках.</value>
     </data>
     <data name="labelUser.Text" xml:space="preserve">
         <value>Пользователь:</value>
@@ -162,6 +162,12 @@
     <data name="labelShowBarcode.Help" xml:space="preserve">
         <value>Снимите флажок, чтобы запретить показ штрих-кода для данного сотрудника.</value>
     </data>
+	<data name="lblScienceIndexAuthorId.Text" xml:space="preserve">
+        <value>Author ID:</value>
+    </data>
+    <data name="lblScienceIndexAuthorId.Help" xml:space="preserve">
+        <value>Числовой идентификатор автора в Science Index (РИНЦ).</value>
+    </data>
     <data name="labelUserLookup.Text" xml:space="preserve">
         <value>Найти пользователя:</value>
     </data>
@@ -176,6 +182,9 @@
     </data>
     <data name="checkIncludeDeletedUsers.Text" xml:space="preserve">
         <value>Включая удаленных пользователей?</value>
+    </data>
+	<data name="checkAddToVocabulary.Text" xml:space="preserve">
+        <value>Добавить в словарь?</value>
     </data>
 	<data name="labelAudit.Text" xml:space="preserve">
         <value>Данные аудита:</value>

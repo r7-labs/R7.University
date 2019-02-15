@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2017 Roman M. Yagodin
+//  Copyright (c) 2016-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -58,9 +58,9 @@ namespace R7.University.ViewModels
 
         public string TitleSuffix => EmployeeAchievement.TitleSuffix;
 
-        public AchievementTypeInfo AchievementType => (EmployeeAchievement.Achievement != null) ? EmployeeAchievement.Achievement.AchievementType : EmployeeAchievement.AchievementType;
+        public IAchievement Achievement => EmployeeAchievement.Achievement;
 
-        public AchievementInfo Achievement => EmployeeAchievement.Achievement;
+        public IAchievementType AchievementType => (EmployeeAchievement.Achievement != null) ? EmployeeAchievement.Achievement.AchievementType : EmployeeAchievement.AchievementType;
 
         #endregion
     }

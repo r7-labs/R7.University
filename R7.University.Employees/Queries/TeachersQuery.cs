@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,6 +21,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -35,14 +36,9 @@ namespace R7.University.Employees.Queries
         public IList<EmployeeInfo> List ()
         {
             return ModelContext.Query<EmployeeInfo> ()
-                .Include (e => e.Positions)
-                .Include (e => e.Positions.Select (op => op.Position))
-                .Include (e => e.Positions.Select (op => op.Division))
-                .Include (e => e.Disciplines)
-                .Include (e => e.Achievements)
-                .Include (e => e.Achievements.Select (ea => ea.Achievement))
-                .Include (e => e.Achievements.Select (ea => ea.Achievement.AchievementType))
-                .Include (e => e.Achievements.Select (ea => ea.AchievementType))
+                .IncludePositionsWithDivision ()
+                .IncludeAchievements ()
+                .Include2 (e => e.Disciplines)
                 .Where (e => e.Positions.Any (op => op.Position.IsTeacher))
                 .ToList ();
         }

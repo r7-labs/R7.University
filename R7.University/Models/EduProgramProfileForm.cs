@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2017 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -36,7 +36,7 @@ namespace R7.University.Models
         // TODO: Remove
         bool IsAdmissive { get; }
 
-        EduFormInfo EduForm { get; }
+        IEduForm EduForm { get; }
     }
 
     public interface IEduProgramProfileFormWritable: IEduProgramProfileForm
@@ -54,7 +54,7 @@ namespace R7.University.Models
         // TODO: Remove
         new bool IsAdmissive { get; set; }
 
-        new EduFormInfo EduForm { get; set; }
+        new IEduForm EduForm { get; set; }
     }
 
     public class EduProgramProfileFormInfo: IEduProgramProfileFormWritable
@@ -73,6 +73,12 @@ namespace R7.University.Models
         public bool IsAdmissive { get; set; }
 
         public virtual EduFormInfo EduForm { get; set; }
+
+        IEduForm IEduProgramProfileForm.EduForm => EduForm;
+
+        IEduForm IEduProgramProfileFormWritable.EduForm {
+            get { return EduForm; }
+            set { EduForm = (EduFormInfo) value; }
+        }
     }
 }
-

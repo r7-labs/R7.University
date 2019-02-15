@@ -67,13 +67,13 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         [Obsolete]
-        public DivisionInfo Division { get; set; }
+        public IDivision Division { get; set; }
 
         public int DivisionID { get; set; }
 
         [JsonIgnore]
         [Obsolete]
-        public EmployeeInfo Employee { get; set; }
+        public IEmployee Employee { get; set; }
 
         public int EmployeeID { get; set; }
 
@@ -81,7 +81,7 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         [Obsolete]
-        public PositionInfo Position { get; set; }
+        public IPosition Position { get; set; }
        
         public int PositionID { get; set; }
 

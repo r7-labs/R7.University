@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -27,6 +27,7 @@ using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Utilities;
 
 namespace R7.University.Employees.Components
 {
@@ -34,31 +35,29 @@ namespace R7.University.Employees.Components
     {
         #region ModuleSearchBase implementaion
 
-        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo modInfo, DateTime beginDate)
+        public override IList<SearchDocument> GetModifiedSearchDocuments (ModuleInfo moduleInfo, DateTime beginDateUtc)
         {
             var searchDocs = new List<SearchDocument> ();
-            var settings = new EmployeeListSettingsRepository ().GetSettings (modInfo);
+            var settings = new EmployeeListSettingsRepository ().GetSettings (moduleInfo);
+            var portalSettings = HttpOffContextHelper.GetPortalSettings (moduleInfo.PortalID, moduleInfo.TabID, moduleInfo.CultureCode);
 
             IEnumerable<EmployeeInfo> employees = null;
-
             using (var modelContext = new UniversityModelContext ()) {
                 employees = new EmployeeQuery (modelContext).ListByDivisionId (
-                    settings.DivisionID, settings.IncludeSubdivisions, settings.SortType);
+                    settings.DivisionID, settings.IncludeSubdivisions, (EmployeeListSortType) settings.SortType);
             }
 
             var now = DateTime.Now;
             foreach (var employee in employees) {
-                if (employee.LastModifiedOnDate.ToUniversalTime () > beginDate.ToUniversalTime ()) {
-                    var aboutEmployee = employee.SearchDocumentText;
-                    var sd = new SearchDocument ()
-                    {
-                        PortalId = modInfo.PortalID,
+                if (employee.LastModifiedOnDate.ToUniversalTime () > beginDateUtc.ToUniversalTime ()) {
+                    var sd = new SearchDocument {
+                        PortalId = moduleInfo.PortalID,
                         AuthorUserId = employee.LastModifiedByUserId,
-                        Title = employee.FullName,
-                        Body = aboutEmployee,
+                        Title = employee.FullName (),
+                        Body = employee.SearchText (),
                         ModifiedTimeUtc = employee.LastModifiedOnDate.ToUniversalTime (),
                         UniqueKey = string.Format ("University_Employee_{0}", employee.EmployeeID),
-                        Url = string.Format ("/Default.aspx?tabid={0}#{1}", modInfo.TabID, modInfo.ModuleID),
+                        Url = employee.GetSearchUrl (moduleInfo, portalSettings),
                         IsActive = employee.IsPublished (now)
                     };
 

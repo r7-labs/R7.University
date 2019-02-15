@@ -21,7 +21,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.ModelExtensions;
+using Microsoft.EntityFrameworkCore;
+using R7.Dnn.Extensions.Collections;
 using R7.University.Models;
 
 namespace R7.University.Queries
@@ -32,9 +33,46 @@ namespace R7.University.Queries
         {
             return eduProgramProfiles.Include (epp => epp.EduLevel)
                                      .Include (epp => epp.EduProgram)
-                                     .Include (epp => epp.EduProgram.EduLevel)
+                                        .ThenInclude (ep => ep.EduLevel)
                                      .Include (epp => epp.Divisions)
-                                     .Include (epp => epp.EduProgram.Divisions);
+                                     .Include (epp => epp.EduProgram)
+                                        .ThenInclude (epd => epd.Divisions);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeEduProgramProfileFormYears (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.Year)
+                                     .Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.EduForm)
+                                     .Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.EduVolume);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeContingent (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.Contingent);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeEduProgramProfileFormYearsAndForms (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.Year)
+                                     .Include (epp => epp.EduProgramProfileFormYears)
+                                        .ThenInclude (eppfy => eppfy.EduForm);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeDivisions (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.Divisions)
+                                        .ThenInclude (d => d.Division);
+        }
+
+        public static IQueryable<EduProgramProfileInfo> IncludeDocuments (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        {
+            return eduProgramProfiles.Include (epp => epp.Documents)
+                                        .ThenInclude (d => d.DocumentType);
         }
 
         public static IQueryable<EduProgramProfileInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileInfo> eduProgramProfiles, IEnumerable<int> eduLevelIds)

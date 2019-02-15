@@ -12,9 +12,30 @@
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="media">
 		<div class="media-left media-top">
-    	    <asp:Image id="imagePhoto" runat="server" CssClass="img-rounded" />
-			<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
-			    CssClass="btn btn-default btn-sm btn-block btn-barcode" data-toggle="modal" />
+    	    <div class="well">
+				<asp:Image id="imagePhoto" runat="server" />
+				<asp:Panel id="panelContacts" runat="server" CssClass="u8y-employee-contacts">
+					<div class="_section">
+    					<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
+        				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
+        				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
+                        <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" Target="_blank" CssClass="_userprofile more" />
+        			</div>
+                    <div class="_section">
+        				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
+        			</div>
+        			<div class="_section">
+        				<asp:Label id="labelPhone" runat="server" CssClass="_label" />
+        				<asp:Label id="labelFax" runat="server" CssClass="_label" />
+        				<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
+        			</div>
+                    <div class="_section">
+        				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
+        			</div>
+				</asp:Panel>
+				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
+			        CssClass="btn btn-default btn-block btn-sm btn-barcode" data-toggle="modal" />
+			</div>
 		</div>	
     	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
             <asp:Literal id="literalFullName" runat="server" />
@@ -42,27 +63,7 @@
             				<FooterTemplate></ul></FooterTemplate>
             			</asp:Repeater>
 				    </asp:Panel>
-					<asp:Panel id="panelContacts" runat="server" CssClass="_section">
-						<label class="u8y-label-contacts"><%: LocalizeString ("Contacts.Text") %></label>
-            			<div class="_section">
-        					<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
-            				<asp:HyperLink id="linkSecondaryEmail" runat="server" CssClass="email _email" />
-            				<asp:HyperLink id="linkWebSite" runat="server" Target="_blank" CssClass="_website" />
-                            <asp:HyperLink id="linkUserProfile" runat="server" resourcekey="VisitProfile.Text" Target="_blank" CssClass="_userprofile more" />
-            			</div>
-                        <div class="_section">
-            				<asp:Label id="labelMessenger" runat="server" CssClass="_label" />
-            			</div>
-            			<div class="_section">
-            				<asp:Label id="labelPhone" runat="server" CssClass="_label" />
-            				<asp:Label id="labelFax" runat="server" CssClass="_label" />
-            				<asp:Label id="labelCellPhone" runat="server" CssClass="_label" />
-            			</div>
-                        <div class="_section">
-            				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
-            			</div>
-					</asp:Panel>
-        		</div>
+				</div>
         		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">	
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
         			<div class="_section" style="margin-bottom:10px">
@@ -78,7 +79,17 @@
         			</div>
         		</div>
         		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade">
-        			<div class="_section" style="margin-bottom:10px">
+        			<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="u8y-science-index-counter">
+						<!--Science Index counter-->
+						<script type="text/javascript"><!--
+						document.write('<a href="https://elibrary.ru/author_counter_click.asp?id=<%: Employee.ScienceIndexAuthorId %>"'+
+						' target=_blank><img src="https://elibrary.ru/author_counter.aspx?id=<%: Employee.ScienceIndexAuthorId %>&rand='+
+						Math.random()+'" title="<%: LocalizeString ("ScienceIndexAuthorProfile.Text") %>" border="0" '+
+						'height="31" width="88" border="0"><\/a>')
+						//--></script>
+						<!--/Science Index counter-->
+					</asp:Panel>
+					<div class="_section" style="margin-bottom:10px">	
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
@@ -116,7 +127,7 @@
                 <%: LocalizeString ("cmdEdit") %>
             </asp:HyperLink>
         </li>
-        <li>
+		<li>
 			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-link">
 			    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
 				<%: LocalizeString ("Close.Text") %>

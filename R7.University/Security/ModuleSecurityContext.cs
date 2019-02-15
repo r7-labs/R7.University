@@ -66,6 +66,11 @@ namespace R7.University.Security
                 canDelete &= !((ISystemEntity) entity).IsSystem;
             }
 
+            // TODO: Remove this check after splitting these entities
+            if (entity is IEduVolume || entity is IContingent) {
+                canDelete &= IsAdmin;
+            }
+
             return canDelete;
         }
 

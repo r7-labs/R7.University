@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -46,7 +46,7 @@ namespace R7.University.Employees.SharedLogic
 
                 // don't display division title/link for single-entity divisions
                 if (!op.Division.IsSingleEntity) {
-                    var divisionShortTitle = FormatHelper.FormatShortTitle (
+                    var divisionShortTitle = UniversityFormatHelper.FormatShortTitle (
                         op.Division.ShortTitle,
                         op.Division.Title);
 

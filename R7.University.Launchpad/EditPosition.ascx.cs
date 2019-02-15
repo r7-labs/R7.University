@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.Modules;
@@ -44,11 +45,11 @@ namespace R7.University.Launchpad
             checkIsTeacher.Checked = item.IsTeacher;
         }
 
-        protected override void BeforeUpdateItem (PositionInfo item)
+        protected override void BeforeUpdateItem (PositionInfo item, bool isNew)
         {
             item.Title = txtTitle.Text.Trim ();
             item.ShortTitle = txtShortTitle.Text.Trim ();
-            item.Weight = TypeUtils.ParseToNullable<int> (txtWeight.Text) ?? 0;
+            item.Weight = ParseHelper.ParseToNullable<int> (txtWeight.Text) ?? 0;
             item.IsTeacher = checkIsTeacher.Checked;
         }
 

@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using DotNetNuke.Entities.Content.Taxonomy;
 using DotNetNuke.Services.Exceptions;
+using R7.Dnn.Extensions.Models;
 using R7.University.Components;
 using R7.University.Models;
 
@@ -37,51 +38,54 @@ namespace R7.University.ModelExtensions
             return Regex.Replace (Regex.Replace (termName, @"[^(\w\-)]", " ").Trim (), @"\s+", " ");
         }
 
-        public static int? AddTerm (this IDivision division, IModelContext modelContext)
+        public static int? AddOrUpdateTerm (this IDivision division, IModelContext modelContext)
         {
             var vocabularyName = UniversityConfig.Instance.Vocabularies.OrgStructure;
             var vocabulary = new VocabularyController ().GetVocabularies ().FirstOrDefault (v => v.Name == vocabularyName);
-            if (vocabulary != null) {
-                var termName = GetSafeTermName (division.ShortTitle, division.Title);
-                try {
-                    var term = new Term (termName, string.Empty, vocabulary.VocabularyId);
-                    var parentDivision = division.GetParentDivision (modelContext);
-                    if (parentDivision != null) {
-                        term.ParentTermId = parentDivision.DivisionTermID;
-                    }
-                    return new TermController ().AddTerm (term);
+            if (vocabulary == null) {
+                Exceptions.LogException (new Exception ($"Could not find the {vocabularyName} vocabulary."));
+                return null;
+            }
+
+            var termName = GetSafeTermName (division.ShortTitle, division.Title);
+            var termCtrl = new TermController ();
+            var term = default (Term);
+
+            if (division.DivisionTermID == null) {
+                term = termCtrl.GetTermsByVocabulary (vocabulary.VocabularyId).FirstOrDefault (t => t.Name == termName);
+                if (term != null) {
+                    Exceptions.LogException (new Exception ($"Could not create term {termName} in the {vocabularyName} vocabulary as it already exists."));
+                    return null;
                 }
-                catch (Exception ex) {
-                    Exceptions.LogException (new Exception ($"Error adding {termName} term to {vocabularyName} vocabulary.", ex));
-                }
+
+                term = new Term (termName, string.Empty, vocabulary.VocabularyId);
             }
             else {
-                Exceptions.LogException (new Exception ($"Could not find vocabulary with name {vocabularyName}."));
+                term = termCtrl.GetTerm (division.DivisionTermID.Value);
+                term.Name = termName;
             }
 
-            return null;
-        }
+            var parentDivision = division.GetParentDivision (modelContext);
+            if (parentDivision != null) {
+                term.ParentTermId = parentDivision.DivisionTermID;
+            }
+            else {
+                term.ParentTermId = null;
+            }
 
-        public static void UpdateTerm (this IDivision division, IModelContext modelContext)
-        {
-            var termName = GetSafeTermName (division.ShortTitle, division.Title);
             try {
-                var parentDivision = division.GetParentDivision (modelContext);
-                if (division.DivisionTermID != null) {
-                    var termCtrl = new TermController ();
-                    var term = termCtrl.GetTerm (division.DivisionTermID.Value);
-                    if (term != null) {
-                        term.Name = termName;
-                        if (parentDivision != null) {
-                            term.ParentTermId = parentDivision.DivisionTermID;
-                        }
-                        termCtrl.UpdateTerm (term);
-                    }
+                if (division.DivisionTermID == null) {
+                    return termCtrl.AddTerm (term);
                 }
+
+                termCtrl.UpdateTerm (term);
+                return term.TermId;
             }
             catch (Exception ex) {
-                Exceptions.LogException (new Exception ($"Error updating {termName} term.", ex));
+                Exceptions.LogException (new Exception ($"Error creating/updating {termName} term in the vocabulary {vocabularyName}.", ex));
             }
+        
+            return null;
         }
 
         public static void DeleteTerm (int termId)

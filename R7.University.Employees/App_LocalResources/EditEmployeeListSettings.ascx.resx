@@ -48,11 +48,8 @@
 	<data name="labelSortType.Help" xml:space="preserve">
         <value>Select a sort type for employee records.</value>
     </data>
-	<data name="SortTypeByMaxWeight.Text" xml:space="preserve">
-        <value>Max. Position Weight</value>
-    </data>
-	<data name="SortTypeByTotalWeight.Text" xml:space="preserve">
-        <value>Total Weight of Positions</value>
+	<data name="SortTypeByMaxWeightInDivision.Text" xml:space="preserve">
+        <value>Max. Position Weight in Division</value>
     </data>
 	<data name="SortTypeByName.Text" xml:space="preserve">
         <value>Employee Name</value>

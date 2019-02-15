@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016 Roman M. Yagodin
+//  Copyright (c) 2016-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using DotNetNuke.Common.Utilities;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Text;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -36,7 +36,7 @@ namespace R7.University.Launchpad.ViewModels
 
         public string WebSite_String
         {
-            get { return TextUtils.FormatList (": ", Employee.WebSiteLabel, Employee.WebSite); }
+            get { return FormatHelper.JoinNotNullOrEmpty (": ", Employee.WebSiteLabel, Employee.WebSite); }
         }
 
         public string Biography_String

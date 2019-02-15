@@ -36,7 +36,7 @@ namespace R7.University.Employees.Models
         public EmployeeListSettings ()
         {
             if (HttpContext.Current != null) {
-                PhotoWidth = UniversityConfig.Instance.EmployeePhoto.SquareDefaultWidth;
+                PhotoWidth = UniversityConfig.Instance.EmployeePhoto.ListDefaultWidth;
             }
         }
 

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,19 +21,21 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.FileSystem;
-using R7.Dnn.Extensions.Utilities;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
@@ -70,8 +72,7 @@ namespace R7.University.Employees
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
                     
-                    if (eventTarget.Contains ("$" + buttonUserLookup.ID) ||
-                        eventTarget.Contains ("$" + buttonPhotoLookup.ID)) {
+                    if (eventTarget.Contains ("$" + buttonUserLookup.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Common;
                         return EditEmployeeTab.Common;
                     }
@@ -119,9 +120,11 @@ namespace R7.University.Employees
         {
             base.OnInit (e);
 
-            // setup filepicker
             pickerPhoto.FolderPath = UniversityConfig.Instance.EmployeePhoto.DefaultPath;
             pickerPhoto.FileFilter = Globals.glbImageFileTypes;
+
+            pickerAltPhoto.FolderPath = UniversityConfig.Instance.EmployeePhoto.DefaultPath;
+            pickerAltPhoto.FileFilter = Globals.glbImageFileTypes;
 
             checkShowBarcode.Checked = true;
 
@@ -143,7 +146,7 @@ namespace R7.University.Employees
 
         protected override void LoadItem (EmployeeInfo item)
         {
-            var employee = GetItemWithDependencies (ItemId.Value);
+            var employee = GetItemWithDependencies (ItemKey.Value);
 
             textLastName.Text = employee.LastName;
             textFirstName.Text = employee.FirstName;
@@ -159,6 +162,7 @@ namespace R7.University.Employees
             textWorkingPlace.Text = employee.WorkingPlace;
             textBiography.Text = employee.Biography;
             checkShowBarcode.Checked = employee.ShowBarcode;
+            txtScienceIndexAuthorId.Text = employee.ScienceIndexAuthorId.ToString ();
 
             // load working hours
             WorkingHoursLogic.Load (comboWorkingHours, textWorkingHours, employee.WorkingHours);
@@ -175,15 +179,22 @@ namespace R7.University.Employees
             datetimeEndDate.SelectedDate = employee.EndDate;
 
             // set photo
-            if (!TypeUtils.IsNull (employee.PhotoFileID)) {
+            if (employee.PhotoFileID != null && !Null.IsNull (employee.PhotoFileID.Value)) {
                 var photo = FileManager.Instance.GetFile (employee.PhotoFileID.Value);
                 if (photo != null) {
                     pickerPhoto.FileID = photo.FileId;
                 }
             }
 
-            if (!Null.IsNull (employee.UserID)) {
-                var user = UserController.GetUserById (this.PortalId, employee.UserID.Value);
+            if (employee.AltPhotoFileId != null && !Null.IsNull (employee.AltPhotoFileId.Value)) {
+                var photo = FileManager.Instance.GetFile (employee.AltPhotoFileId.Value);
+                if (photo != null) {
+                    pickerAltPhoto.FileID = photo.FileId;
+                }
+            }
+
+            if (employee.UserID != null && !Null.IsNull (employee.UserID.Value)) {
+                var user = UserController.GetUserById (PortalId, employee.UserID.Value);
                 if (user != null) {
                     // add previously selected user to user list...
                     comboUsers.Items.Add (new ListItem (
@@ -193,13 +204,12 @@ namespace R7.University.Employees
                 }
             }
 
-            // TODO: Sort achievements?
-            formEditAchievements.SetData (employee.Achievements, employee.EmployeeID);
+            formEditAchievements.SetData (employee.Achievements.OrderByDescending (ach => ach.YearBegin), employee.EmployeeID);
             formEditPositions.SetData (employee.Positions, employee.EmployeeID);
             formEditDisciplines.SetData (employee.Disciplines, employee.EmployeeID);
       
             // setup audit control
-            ctlAudit.Bind (employee);
+            ctlAudit.Bind (employee, PortalId, LocalizeString ("Unknown")); ;
 
             SetupDivisionSelector ();
         }
@@ -212,10 +222,10 @@ namespace R7.University.Employees
         void SetupDivisionSelector ()
         {
             var divisionId = Request.QueryString ["division_id"];
-            formEditPositions.SetDivision (TypeUtils.ParseToNullable<int> (divisionId));
+            formEditPositions.SetDivision (ParseHelper.ParseToNullable<int> (divisionId));
         }
 
-        protected override void BeforeUpdateItem (EmployeeInfo item)
+        protected override void BeforeUpdateItem (EmployeeInfo item, bool isNew)
         {
             // fill the object
             item.LastName = textLastName.Text.Trim ();
@@ -232,17 +242,20 @@ namespace R7.University.Employees
             item.WorkingPlace = textWorkingPlace.Text.Trim ();
             item.Biography = textBiography.Text.Trim ();
             item.ShowBarcode = checkShowBarcode.Checked;
-            item.ExperienceYears = TypeUtils.ParseToNullable<int> (textExperienceYears.Text);
-            item.ExperienceYearsBySpec = TypeUtils.ParseToNullable<int> (textExperienceYearsBySpec.Text);
+            item.ExperienceYears = ParseHelper.ParseToNullable<int> (textExperienceYears.Text);
+            item.ExperienceYearsBySpec = ParseHelper.ParseToNullable<int> (textExperienceYearsBySpec.Text);
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
+            item.ScienceIndexAuthorId = ParseHelper.ParseToNullable<int> (txtScienceIndexAuthorId.Text);
 
-            // pickerPhoto.FileID may be 0 by default
+            // FileID may be 0 by default
             item.PhotoFileID = (pickerPhoto.FileID > 0) ? (int?) pickerPhoto.FileID : null;
-            item.UserID = TypeUtils.ParseToNullable<int> (comboUsers.SelectedValue);
+            item.AltPhotoFileId = (pickerAltPhoto.FileID > 0) ? (int?) pickerAltPhoto.FileID : null;
+
+            item.UserID = ParseHelper.ParseToNullable<int> (comboUsers.SelectedValue, true);
         }
 
-        protected override EmployeeInfo GetItemWithDependencies (int itemId)
+        protected EmployeeInfo GetItemWithDependencies (int itemId)
         {
             return new EmployeeQuery (ModelContext).SingleOrDefault (itemId);
         }
@@ -375,35 +388,6 @@ namespace R7.University.Employees
                     // at least one user exists, so select first one:
                     // listUsers.SelectedIndex = 1;
                     comboUsers.SelectedIndex = 1;
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
-
-        protected void buttonPhotoLookup_Click (object sender, EventArgs e)
-        {
-            try {
-                var folderPath =  UniversityConfig.Instance.EmployeePhoto.DefaultPath;
-                var folder = FolderManager.Instance.GetFolder (PortalId, folderPath);
-
-                if (folder != null) {
-                    var employeeName = EmployeeInfo.GetFileName (textFirstName.Text, 
-                                           textLastName.Text, textOtherName.Text);
-
-                    // TODO: EmployeeInfo should contain culture data?
-                    var employeeNameTL = UniversityCultureHelper.Transliterate (employeeName, UniversityCultureHelper.RuTranslitTable)
-                                                      .ToLowerInvariant ();
-
-                    // get files from default folder recursively
-                    foreach (var file in FolderManager.Instance.GetFiles (folder, true)) {
-                        var fileName = Path.GetFileNameWithoutExtension (file.FileName).ToLowerInvariant ();
-                        if (fileName == employeeName || fileName == employeeNameTL) {
-                            pickerPhoto.FileID = file.FileId;
-                            break;
-                        }
-                    }
                 }
             }
             catch (Exception ex) {

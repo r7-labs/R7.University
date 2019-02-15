@@ -12,8 +12,7 @@
         <ItemGroup>
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition="'$(Configuration)' == 'Debug'" />
-		    <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/EntityFramework*.dll" />
-        </ItemGroup>
+		</ItemGroup>
         <!-- Declare resource files -->
         <ItemGroup>
             <LocalDeployResourceFiles Include="../**/*.ascx" />

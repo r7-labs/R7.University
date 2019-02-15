@@ -60,8 +60,6 @@
                         <asp:BoundField DataField="EduMaterial_Links" HtmlEncode="false" HeaderText="EduMaterial.Column" />
 						<asp:BoundField DataField="ELearning_String" HtmlEncode="false" HeaderText="ELearning.Column" />
                         <asp:BoundField DataField="WorkProgramOfPractice_Links" HtmlEncode="false" HeaderText="WorkProgramOfPractice.Column" />
-                        <asp:BoundField DataField="Contingent_Links" HtmlEncode="false" HeaderText="Contingent.Column" />
-                        <asp:BoundField DataField="ContingentMovement_Links" HtmlEncode="false" HeaderText="ContingentMovement.Column" />
                     </Columns>
                 </asp:GridView>
             </div>

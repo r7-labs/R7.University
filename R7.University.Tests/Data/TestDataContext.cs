@@ -21,8 +21,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using R7.University.Data;
+using R7.Dnn.Extensions.Data;
+using R7.Dnn.Extensions.Models;
 
 namespace R7.University.Tests.Data
 {
@@ -32,13 +32,13 @@ namespace R7.University.Tests.Data
 
         #region IUniversityDbContext implementation
 
-        public IDbSet<TEntity> Set<TEntity> () where TEntity : class
+        public IDataSet<TEntity> GetDataSet<TEntity> () where TEntity : class
         {
             if (dictEntities.ContainsKey (typeof (TEntity))) {
-                return (TestDbSet<TEntity>) dictEntities [typeof (TEntity)];
+                return (TestDataSet<TEntity>) dictEntities [typeof (TEntity)];
             }
 
-            var dbSet = new TestDbSet<TEntity> ();
+            var dbSet = new TestDataSet<TEntity> ();
             dictEntities [typeof (TEntity)] = dbSet;
             return dbSet;
         }
@@ -61,6 +61,11 @@ namespace R7.University.Tests.Data
         public int SaveChanges ()
         {
             return 0;
+        }
+
+        public ITransaction BeginTransaction ()
+        {
+            throw new NotImplementedException ();
         }
 
         #endregion

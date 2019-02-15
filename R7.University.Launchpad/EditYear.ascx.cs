@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2017 Roman M. Yagodin
+//  Copyright (c) 2014-2018 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -41,7 +41,7 @@ namespace R7.University.Launchpad
             checkAdmissionIsOpen.Checked = item.AdmissionIsOpen;
         }
 
-        protected override void BeforeUpdateItem (YearInfo item)
+        protected override void BeforeUpdateItem (YearInfo item, bool isNew)
         {
             item.Year = int.Parse (textYear.Text);
             item.AdmissionIsOpen = checkAdmissionIsOpen.Checked;

@@ -110,13 +110,14 @@
                     <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddAchievement" 
                         CssClass="dnnPrimaryAction" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Achievements" />
-                </li>   
-                <li>
+                </li>
+				<li>
                     <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateAchievement" 
                         CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Achievements" />
                 </li>   
-                <li>
+                <li>&nbsp;</li>
+				<li>
                     <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
                         CssClass="dnnSecondaryAction" />
                 </li>

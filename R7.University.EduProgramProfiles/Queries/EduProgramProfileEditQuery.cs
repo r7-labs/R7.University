@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Linq;
+using R7.Dnn.Extensions.Models;
 using R7.University.Models;
 using R7.University.Queries;
 
@@ -33,18 +34,15 @@ namespace R7.University.EduProgramProfiles.Queries
 
         public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
         {
-            return ModelContext.QueryOne<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
-                .Include (epp => epp.EduProgram)
-                .Include (epp => epp.EduProgram.EduLevel)
-                .Include (epp => epp.EduLevel)
-                .Include (epp => epp.EduProgramProfileFormYears)
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduForm))
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.EduVolume))
-                .Include (epp => epp.EduProgramProfileFormYears.Select (eppfy => eppfy.Contingent))
-                .Include (epp => epp.Divisions)
-                .Include (epp => epp.Divisions.Select (ed => ed.Division))
-                .Include (epp => epp.Documents)
-                .Include (epp => epp.Documents.Select (d => d.DocumentType))
+            return ModelContext.Query<EduProgramProfileInfo> ()
+                .Where (epp => epp.EduProgramProfileID == eduProgramProfileId)
+                .Include2 (epp => epp.EduProgram)
+                .Include2 (epp => epp.EduProgram.EduLevel)
+                .Include2 (epp => epp.EduLevel)
+                .IncludeEduProgramProfileFormYears ()
+                .IncludeContingent ()
+                .IncludeDivisions ()
+                .IncludeDocuments ()
                 .SingleOrDefault ();
         }
     }

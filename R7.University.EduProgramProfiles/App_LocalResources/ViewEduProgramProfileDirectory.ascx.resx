@@ -63,13 +63,7 @@
     <data name="EduMaterial.Column" xml:space="preserve">
         <value>Educational Materials</value>
     </data>
-    <data name="Contingent.Column" xml:space="preserve">
-        <value>Contingent &lt;abbr title=&quot;Visible for editors only - this column will be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
-    </data>
-    <data name="ContingentMovement.Column" xml:space="preserve">
-        <value>Contingent Movement &lt;abbr title=&quot;Visible for editors only - this column will be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
-    </data>
-	<data name="ELearning.Column" xml:space="preserve">
+    <data name="ELearning.Column" xml:space="preserve">
         <value>E-Learning (EL) and &lt;abbr title="Distance Education Technologies"&gt;DET&lt;/abbr&gt;</value>
     </data>
 	<data name="ELearning_ELearning.Text" xml:space="preserve">
