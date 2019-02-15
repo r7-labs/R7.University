@@ -171,20 +171,7 @@
                         </assembly>
 					</assemblies>
 				</component>
-                <component type="Assembly">
-                    <assemblies>
-                        <basePath>bin</basePath>
-                        <assembly>
-                            <path>bin</path>
-                            <name>EntityFramework.dll</name>
-                        </assembly>
-                        <assembly>
-                            <path>bin</path>
-                            <name>EntityFramework.SqlServer.dll</name>
-                        </assembly>
-                    </assemblies>
-                </component>
-				<component type="ResourceFile">
+                <component type="ResourceFile">
 					<resourceFiles>
 						<basePath>DesktopModules/MVC/R7.University</basePath>
 						<resourceFile>
