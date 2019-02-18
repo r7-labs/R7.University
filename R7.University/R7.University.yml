@@ -1,8 +1,6 @@
 ﻿employee-photo:
   default-path: Images/faces/
-  square-suffix: _square
   default-width: 192
-  square-default-width: 120
 
 cu-hours: 36
 
