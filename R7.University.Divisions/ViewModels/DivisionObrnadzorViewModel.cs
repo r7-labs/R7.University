@@ -209,7 +209,7 @@ namespace R7.University.Divisions
                     division.Level = 0;
                 }
                 else {
-                    division.Order = FormatHelper.JoinNotNullOrEmpty (separator, orderStack) + separator + orderCounter + separator;
+                    division.Order = FormatHelper.JoinNotNullOrEmpty (separator, orderStack.Select (o => o.ToString ())) + separator + orderCounter + separator;
                 }
 
                 prevDivision = division;
