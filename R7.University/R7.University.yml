@@ -1,6 +1,7 @@
 ﻿employee-photo:
   default-path: Images/faces/
   default-width: 192
+  list-default-width: 120
 
 cu-hours: 36
 
