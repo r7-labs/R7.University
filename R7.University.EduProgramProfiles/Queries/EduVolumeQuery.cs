@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017-2018 Roman M. Yagodin
+//  Copyright (c) 2017-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -50,6 +50,7 @@ namespace R7.University.EduProgramProfiles.Queries
                                .WhereEduLevelsOrAll (eduLevelIds)
                                .WhereDivisionOrAll (divisionId, divisionLevel)
                                .DefaultOrder ()
+                               .ThenByDescending (eppfy => eppfy.Year.Year)
                                .ToList ();
         }
     }

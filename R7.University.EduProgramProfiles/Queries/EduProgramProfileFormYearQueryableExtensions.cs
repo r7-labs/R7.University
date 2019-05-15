@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017-2018 Roman M. Yagodin
+//  Copyright (c) 2017-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -51,7 +51,7 @@ namespace R7.University.EduProgramProfiles.Queries
             return eduProgramProfileFormYears;
         }
 
-        public static IQueryable<EduProgramProfileFormYearInfo> DefaultOrder (this IQueryable<EduProgramProfileFormYearInfo> source)
+        public static IOrderedQueryable<EduProgramProfileFormYearInfo> DefaultOrder (this IQueryable<EduProgramProfileFormYearInfo> source)
         {
             return source.OrderBy (ev => ev.EduProgramProfile.EduProgram.EduLevel.SortIndex)
                          .ThenBy (ev => ev.EduProgramProfile.EduProgram.Code)
@@ -61,8 +61,7 @@ namespace R7.University.EduProgramProfiles.Queries
                                   // SQL-compatible PadLeft (10, '0') equivalent
                                   + ("0000000000" + ev.EduProgramProfile.EduLevel.SortIndex.ToString ())
                                     .Substring (ev.EduProgramProfile.EduLevel.SortIndex.ToString ().Length))
-                         .ThenBy (ev => ev.EduForm.SortIndex)
-                         .ThenByDescending (ev => ev.Year.Year);
+                         .ThenBy (ev => ev.EduForm.SortIndex);
         }
     }
 }
