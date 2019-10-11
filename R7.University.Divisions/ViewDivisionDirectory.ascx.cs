@@ -178,9 +178,11 @@ namespace R7.University.Divisions
             }
             else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorDivisions) {
                 gridObrnadzorDivisions.LocalizeColumnHeaders (LocalResourceFile);
+                gridObrnadzorDivisions.Attributes.Add ("itemprop", "structOrgUprav");
             }
             else if (Settings.Mode == DivisionDirectoryMode.ObrnadzorGoverningDivisions) {
                 gridObrnadzorGoverningDivisions.LocalizeColumnHeaders (LocalResourceFile);
+                gridObrnadzorGoverningDivisions.Attributes.Add ("itemprop", "structOrgUprav");
             }
         }
 
