@@ -117,7 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultPortalConfigTests.cs" />
+    <Compile Include="DevelopmentConfigTests.cs" />
     <Compile Include="ModelExtensions\DivisionExtensionsTests.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensionsTests.cs" />
     <Compile Include="Security\TestSecurityContext.cs" />
