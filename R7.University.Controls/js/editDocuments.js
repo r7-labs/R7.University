@@ -1,11 +1,11 @@
 ﻿function validateDocumentUrl (sender, e) {
-    var filesComboBox = jQuery ("[id $= 'urlDocumentUrl_ctlFile_FilesComboBox_state']").first ();
+    var filesComboBox = jQuery ("[id $= '_urlDocumentUrl_ctlFile_FilesComboBox_state']").first ();
     if (filesComboBox.length === 1) {
         var filesComboBoxState = JSON.parse (filesComboBox.val ());
         // TODO: Add separate validation for document URL is required
         if (filesComboBoxState.selectedItem.key != -1) {
             var selectedFileName = filesComboBoxState.selectedItem.value;
-            var comboDocumentType = jQuery ("[id $= 'comboDocumentType']").first ();
+            var comboDocumentType = jQuery ("[id $= '_comboDocumentType']").first ();
             var selectedTypeId = comboDocumentType.val ();
             var regexesAttr = comboDocumentType.attr ("data-validation");
             if (!!regexesAttr) {
@@ -17,7 +17,7 @@
                         var regex = new RegExp ("^" + regexes [0].match + "$");
                         if (!regex.test (selectedFileName)) {
                             e.IsValid = false;
-                            var valDocumentUrl = jQuery ("[id $= 'valDocumentUrl']").first ();
+                            var valDocumentUrl = jQuery ("[id $= '_valDocumentUrl']").first ();
                             valDocumentUrl.text (valDocumentUrl.attr ("data-message-template").replace ("{regex}", regexes [0].match));
                         }
                     }

@@ -1,7 +1,7 @@
 ﻿function validateTimeToLearn (sender, e) {
-    var years = jQuery ("[id $= 'textTimeToLearnYears']").val ();
-    var months = jQuery ("[id $= 'textTimeToLearnMonths']").val ();
-    var hours = jQuery ("[id $= 'textTimeToLearnHours']").val ();
+    var years = jQuery ("[id $= '_textTimeToLearnYears']").val ();
+    var months = jQuery ("[id $= '_textTimeToLearnMonths']").val ();
+    var hours = jQuery ("[id $= '_textTimeToLearnHours']").val ();
     if (years == 0 && months == 0 && hours == 0) {
         e.IsValid = false;
     }
@@ -18,7 +18,7 @@ EduFormUniqueValidator.prototype.getSelectedFieldId = function (valContext) {
 };
 
 EduFormUniqueValidator.prototype.getEditedFieldId = function (valContext) {
-    return valContext.find ("[id $= 'hiddenEduFormID']").val ();
+    return valContext.find ("[id $= '_hiddenEduFormID']").val ();
 };
 
 eduFormUniqueValidator = new EduFormUniqueValidator ();

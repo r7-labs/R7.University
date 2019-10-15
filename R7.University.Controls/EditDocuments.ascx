@@ -124,7 +124,7 @@
 <script type="text/javascript">
 (function($, Sys) {
     function setupEditDocuments() {
-        $("[id $= 'panelEditDocuments']").dnnPanels({defaultState: "closed"});
+        $("[id $= '_panelEditDocuments']").dnnPanels({defaultState: "closed"});
     };
     $(document).ready(function() {
         setupEditDocuments();

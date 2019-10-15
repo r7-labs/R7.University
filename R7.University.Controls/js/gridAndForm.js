@@ -11,12 +11,12 @@ GridAndFormUniqueValidator.prototype.validate = function (sender, e) {
         e.IsValid = false;
         throw "Could not find validation context for " + sender;
     }
-    var itemsData = valContext.find ("[id $= 'gridItems']").attr ("data-items");
+    var itemsData = valContext.find ("[id $= '_gridItems']").attr ("data-items");
     if (!!itemsData) {
         var items = JSON.parse (itemsData);
         if (items.length > 0) {
             var selectedFieldId = this.getSelectedFieldId (valContext);
-            var addCmd = valContext.find ("[id $= 'buttonAddItem']").length === 1;
+            var addCmd = valContext.find ("[id $= '_buttonAddItem']").length === 1;
             var count = items.filter (function (i) { return i[this.uniqueField] == selectedFieldId && i.EditState != "Deleted"; }, this).length;
             if (addCmd && count === 0) { return; }
             var editedEduFormId = this.getEditedFieldId (valContext);

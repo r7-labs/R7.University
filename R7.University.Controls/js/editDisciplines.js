@@ -5,10 +5,10 @@
 EduProgramProfileUniqueValidator.prototype = Object.create (GridAndFormUniqueValidator.prototype);
 EduProgramProfileUniqueValidator.prototype.constructor = EduProgramProfileUniqueValidator;
 EduProgramProfileUniqueValidator.prototype.getSelectedFieldId = function (valContext) {
-    return valContext.find ("[id $= 'comboEduProgramProfile']").val ();
+    return valContext.find ("[id $= '_comboEduProgramProfile']").val ();
 };
 EduProgramProfileUniqueValidator.prototype.getEditedFieldId = function (valContext) {
-    return valContext.find ("[id $= 'hiddenEduProgramProfileID']").val ();
+    return valContext.find ("[id $= '_hiddenEduProgramProfileID']").val ();
 };
 
 eduProgramProfileUniqueValidator = new EduProgramProfileUniqueValidator ();
