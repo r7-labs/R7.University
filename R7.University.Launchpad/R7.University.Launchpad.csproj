@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.Launchpad</RootNamespace>
     <AssemblyName>R7.University.Launchpad</AssemblyName>
-    <ReleaseVersion>2.2.1</ReleaseVersion>
+    <ReleaseVersion>2.2.2</ReleaseVersion>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
