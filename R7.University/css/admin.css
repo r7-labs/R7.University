@@ -126,3 +126,14 @@
     position: absolute;
     width: 1px;
 }
+
+/* HACK: GH-315 Hide "Upload file" button */
+.dnnFileUploadScope .dnnFileUploadDropZone {
+	display:none;
+}
+.dnnFileUploadScope .dnnLeft:nth-child(2) {
+	display:none;
+}
+.dnnFileUploadScope .normalFileUpload + input[type="button"] {
+	display:none;
+}
