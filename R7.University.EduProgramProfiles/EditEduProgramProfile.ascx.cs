@@ -288,7 +288,7 @@ namespace R7.University.EduProgramProfiles
                         CommandName = ModuleActionType.EditContent,
                         Icon = UniversityIcons.Edit,
                         Secure = SecurityAccessLevel.Edit,
-                        Url = EditUrl ("eduprogram_id", epp.EduProgram.ToString (), "EditEduProgram"),
+                        Url = EditUrl ("eduprogram_id", epp.EduProgram.EduProgramID.ToString (), "EditEduProgram"),
                         Visible = SecurityContext.IsAdmin
                     });
                     actions.Add (new ModuleAction (GetNextActionID ()) {
