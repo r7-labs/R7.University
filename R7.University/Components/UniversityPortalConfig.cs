@@ -32,6 +32,8 @@ namespace R7.University.Components
         public int DataCacheTime { get; set; } = 60;
 
         public int CuHours { get; set; } = 36;
+
+        public EduProgramProfilesConfig EduProgramProfiles { get; set; } = new EduProgramProfilesConfig ();
     }
 
     public class EmployeePhotoConfig
@@ -53,6 +55,11 @@ namespace R7.University.Components
         public string OrgStructure { get; set; } = "University_Structure";
 
         public string WorkingHours { get; set; } = "University_WorkingHours";
+    }
+
+    public class EduProgramProfilesConfig
+    {
+        public string DefaultLanguages { get; set; } = "en";
     }
 }
 

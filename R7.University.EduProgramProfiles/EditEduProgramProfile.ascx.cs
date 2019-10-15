@@ -151,6 +151,13 @@ namespace R7.University.EduProgramProfiles
             BindEduPrograms (int.Parse (comboEduProgramLevel.SelectedValue));
         }
 
+        protected override void LoadNewItem ()
+        {
+            base.LoadNewItem ();
+
+            textLanguages.Text = UniversityConfig.Instance.EduProgramProfiles.DefaultLanguages;
+        }
+
         protected override void LoadItem (EduProgramProfileInfo item)
         {
             var epp = GetItemWithDependencies (ItemKey.Value);

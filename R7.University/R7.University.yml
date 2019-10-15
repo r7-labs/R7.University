@@ -13,3 +13,6 @@ vocabularies:
   working-hours: University_WorkingHours
 
 data-cache-time: 60
+
+edu-program-profiles:
+  default-languages: "en"
