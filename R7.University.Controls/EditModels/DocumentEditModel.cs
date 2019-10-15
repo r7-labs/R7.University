@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2019 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -22,9 +22,9 @@
 using System;
 using System.Web;
 using DotNetNuke.Common;
+using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Services.FileSystem;
-using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
 using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.ViewModels;
@@ -127,30 +127,37 @@ namespace R7.University.Controls.EditModels
         [JsonIgnore]
         public string FormattedUrl
         {
-            get { 
-                if (!string.IsNullOrWhiteSpace (Url)) {
-                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                        UniversityUrlHelper.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId),
-                        Localization.GetString ("DocumentUrlLabel.Text", Context.LocalResourceFile)
-                    );
-                }
-
-                return string.Empty;
-            }
-        }
-
-        [JsonIgnore]
-        public string FileNameWithPathRaw
-        {
             get {
+                var label = string.Empty;
+                var title = string.Empty;
+
                 if (Globals.GetURLType (Url) == TabType.File) {
-                    var file = FileManager.Instance.GetFile (int.Parse (Url.ToUpperInvariant ().Replace ("FILEID=","")));
+                    var file = FileManager.Instance.GetFile (int.Parse (Url.ToUpperInvariant ().Replace ("FILEID=", "")));
                     if (file != null) {
-                        return $"<span title=\"{file.RelativePath}\">{file.FileName}</span>";
+                        label = file.FileName;
+                        title = file.RelativePath;
+                    }
+                    else {
+                        label = Context.LocalizeString ("FileNotFound.Text");
                     }
                 }
+                else if (Globals.GetURLType (Url) == TabType.Tab) {
+                    var tab = TabController.Instance.GetTab (int.Parse (Url), Context.Module.PortalId);
+                    if (tab != null) {
+                        label = Context.LocalizeString ("Page.Text") + " " + tab.LocalizedTabName;
+                        title = tab.TabPath.Replace ("//", "/");
+                    }
+                    else {
+                        label = Context.LocalizeString ("PageNotFound.Text");
+                    }
+                }
+                else {
+                    label = HttpUtility.HtmlEncode (HtmlUtils.Shorten (Url, 25, "…"));
+                    title = HttpUtility.HtmlAttributeEncode (Url);
+                }
 
-                return string.Empty;
+                var url = UniversityUrlHelper.LinkClickIdnHack (Url, Context.Module.TabId, Context.Module.ModuleId);
+                return $"<a href={url} target=\"_blank\" title=\"{title}\">{label}</a>";
             }
         }
 

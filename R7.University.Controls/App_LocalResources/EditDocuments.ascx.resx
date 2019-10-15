@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -115,13 +115,7 @@
         <value>Type</value>
     </data>
     <data name="DocumentUrl.Column" xml:space="preserve">
-        <value>Link</value>
-    </data>
-    <data name="DocumentUrlLabel.Text" xml:space="preserve">
-        <value>[open]</value>
-    </data>
-    <data name="DocumentFileName.Column" xml:space="preserve">
-        <value>File Name</value>
+        <value>File/Link</value>
     </data>
     <data name="DocumentSortIndex.Column" xml:space="preserve">
         <value>Sort Index</value>
@@ -134,5 +128,14 @@
     </data>
 	<data name="FileName.Invalid" xml:space="preserve">
         <value>Name of the selected file doesn't match validation expression &quot;{regex}&quot; for the selected document type.</value>
+    </data>
+	<data name="FileNotFound.Text" xml:space="preserve">
+        <value>File not found!</value>
+    </data>
+	<data name="PageNotFound.Text" xml:space="preserve">
+        <value>Page not found!</value>
+    </data>
+	<data name="Page.Text" xml:space="preserve">
+        <value>Page: </value>
     </data>
 </root>

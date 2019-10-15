@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -115,13 +115,7 @@
         <value>Тип</value>
     </data>
     <data name="DocumentUrl.Column" xml:space="preserve">
-        <value>Ссылка</value>
-    </data>
-    <data name="DocumentUrlLabel.Text" xml:space="preserve">
-        <value>[открыть]</value>
-    </data>
-    <data name="DocumentFileName.Column" xml:space="preserve">
-        <value>Имя файла</value>
+        <value>Файл/ссылка</value>
     </data>
     <data name="DocumentSortIndex.Column" xml:space="preserve">
         <value>Индекс</value>
@@ -134,5 +128,14 @@
     </data>
 	<data name="FileName.Invalid" xml:space="preserve">
         <value>Имя выбранного файла не соответствует проверочному выражению &quot;{regex}&quot; для выбранного типа документа.</value>
+    </data>
+	<data name="FileNotFound.Text" xml:space="preserve">
+        <value>Файл не найден!</value>
+    </data>
+	<data name="PageNotFound.Text" xml:space="preserve">
+        <value>Страница не найдена!</value>
+    </data>
+	<data name="Page.Text" xml:space="preserve">
+        <value>Страница: </value>
     </data>
 </root>

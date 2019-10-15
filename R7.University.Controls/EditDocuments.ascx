@@ -39,11 +39,10 @@
                     <asp:BoundField DataField="LocalizedType" HeaderText="DocumentType.Column" />
                     <asp:BoundField DataField="Title" HeaderText="DocumentTitle.Column" />
                     <asp:BoundField DataField="Group" HeaderText="DocumentGroup.Column" />
-                    <asp:BoundField DataField="FileNameWithPathRaw" HeaderText="DocumentFileName.Column" HtmlEncode="false" />
-                    <asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex.Column" />
+                    <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
+					<asp:BoundField DataField="SortIndex" HeaderText="DocumentSortIndex.Column" />
                     <asp:BoundField DataField="StartDate" HeaderText="DocumentStartDate.Column" DataFormatString="{0:d}" />
                     <asp:BoundField DataField="EndDate" HeaderText="DocumentEndDate.Column" DataFormatString="{0:d}" />
-                    <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                 </Columns>
             </asp:GridView>
         </div>
