@@ -137,3 +137,13 @@
 .dnnFileUploadScope .normalFileUpload + input[type="button"] {
 	display:none;
 }
+
+/* GH-321 Increase width of file/URL selection controls */
+.dnnFileUploadScope .dnnLeft {
+	float:none;
+}
+.dnnFileUploadScope .dnnFormItem .folder.dnnDropDownList,
+.dnnFileUploadScope .dnnFormItem .file.dnnDropDownList,
+.urlControl .dnnFormItem .page.dnnDropDownList  {
+    width: 100%;
+}
