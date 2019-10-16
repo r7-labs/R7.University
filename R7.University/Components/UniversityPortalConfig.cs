@@ -38,7 +38,7 @@ namespace R7.University.Components
 
     public class EmployeePhotoConfig
     {
-        public string DefaultPath { get; set; } = "Images/faces/";
+        public string DefaultPath { get; set; } = "Images/";
 
         public int DefaultWidth { get; set; } = 192;
 
