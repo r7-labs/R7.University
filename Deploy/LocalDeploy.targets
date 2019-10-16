@@ -58,7 +58,7 @@
             <LocalDeployBootstrapFiles Include="../node_modules/bootstrap/dist/**/*" />
         </ItemGroup>
 		<!-- Deploy config files -->
-		<Copy SourceFiles="$(MainProjectPath)/R7.University.yml" DestinationFolder="$(DnnLocalDeployPath)/Portals/0/" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="$(MainProjectPath)/R7.University.development.yml" DestinationFiles="$(DnnLocalDeployPath)/Portals/0/R7.University.yml" SkipUnchangedFiles="true" />
 		<!-- Copy files -->
         <Copy SourceFiles="@(LocalDeployBinaryFiles)" DestinationFolder="$(DnnBinPath)" SkipUnchangedFiles="true" />
         <Copy SourceFiles="@(LocalDeployResourceFilteredFiles)" DestinationFolder="$(DnnModulesPath)/%(RecursiveDir)" SkipUnchangedFiles="true" />

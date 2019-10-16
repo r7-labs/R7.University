@@ -32,7 +32,7 @@ namespace R7.University.Tests
         [Fact]
         public void DevelopmentConfigDeserializationTest ()
         {
-            var configFile = Path.Combine ("..", "..", "..", "R7.University", "R7.University.yml");
+            var configFile = Path.Combine ("..", "..", "..", "R7.University", "R7.University.development.yml");
 
             using (var configReader = new StringReader (File.ReadAllText (configFile))) {
                 var deserializer = new DeserializerBuilder ().WithNamingConvention (new HyphenatedNamingConvention ()).Build ();
