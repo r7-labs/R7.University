@@ -204,6 +204,7 @@ namespace R7.University.EduPrograms
                         ProfileTitle = string.Empty,
                         EduProgramID = item.EduProgramID,
                         EduLevelId = item.EduLevelID,
+                        Languages = UniversityConfig.Instance.EduProgramProfiles.DefaultLanguages,
                         // unpublish profile
                         EndDate = item.CreatedOnDate.Date
                     };
