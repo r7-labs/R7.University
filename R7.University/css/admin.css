@@ -128,22 +128,22 @@
 }
 
 /* HACK: GH-315 Hide "Upload file" button */
-.dnnFileUploadScope .dnnFileUploadDropZone {
+.u8y-edit-documents .dnnFileUploadScope .dnnFileUploadDropZone {
 	display:none;
 }
-.dnnFileUploadScope .dnnLeft:nth-child(2) {
+.u8y-edit-documents .dnnFileUploadScope .dnnLeft:nth-child(2) {
 	display:none;
 }
-.dnnFileUploadScope .normalFileUpload + input[type="button"] {
+.u8y-edit-documents .dnnFileUploadScope .normalFileUpload + input[type="button"] {
 	display:none;
 }
 
 /* GH-321 Increase width of file/URL selection controls */
-.dnnFileUploadScope .dnnLeft {
+.u8y-edit-documents .dnnFileUploadScope .dnnLeft {
 	float:none;
 }
-.dnnFileUploadScope .dnnFormItem .folder.dnnDropDownList,
-.dnnFileUploadScope .dnnFormItem .file.dnnDropDownList,
-.urlControl .dnnFormItem .page.dnnDropDownList  {
+.u8y-edit-documents .dnnFileUploadScope .dnnFormItem .folder.dnnDropDownList,
+.u8y-edit-documents .dnnFileUploadScope .dnnFormItem .file.dnnDropDownList,
+.u8y-edit-documents .urlControl .dnnFormItem .page.dnnDropDownList  {
     width: 100%;
 }
