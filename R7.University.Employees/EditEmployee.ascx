@@ -2,8 +2,9 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
-<%@ Register TagPrefix="dnn" TagName="Picker" Src="~/controls/filepickeruploader.ascx" %> 
+<%@ Register TagPrefix="dnn" TagName="Picker" Src="~/controls/filepickeruploader.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
+<%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="EditPositions" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditPositions.ascx" %>
@@ -12,11 +13,12 @@
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/DivisionSelector.ascx" %>
 
+<dnn:JavaScriptLibraryInclude runat="server" Name="Select2" />
+<dnn:DnnCssInclude runat="server" FilePath="~/Resources/Libraries/Select2/04_00_13/css/select2.min.css" />
+
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Employees/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/dnn-ac-combobox.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
 	<div id="employee-tabs">
@@ -66,7 +68,7 @@
                     <div style="float:left;width:45%;margin-bottom:1em">
                         <asp:TextBox id="textUserLookup" runat="server" CssClass="dnn-form-control" Style="display:block;width:100%" />
                         <asp:CheckBox id="checkIncludeDeletedUsers" runat="server" resourcekey="checkIncludeDeletedUsers" />
-                        <asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup" 
+                        <asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup"
                             CssClass="dnnSecondaryAction" Style="margin-left:1em" OnClick="buttonUserLookup_Click" CausesValidation="false" />
                     </div>
 				</div>
@@ -83,7 +85,7 @@
                     <dnn:DnnDateTimePicker id="datetimeEndDate" runat="server" />
                 </div>
 			</fieldset>
-		</div>	
+		</div>
         <div id="employee-contacts-tab">
 			<fieldset>
                 <div class="dnnFormItem">
@@ -175,9 +177,9 @@
 		<div id="employee-audit-tab">
 			<fieldset>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelAudit" runat="server" ControlName="ctlAudit" /> 
+					<dnn:Label id="labelAudit" runat="server" ControlName="ctlAudit" />
                     <dnn:Audit id="ctlAudit" runat="server" />
-				</div>	
+				</div>
 			</fieldset>
         </div>
 	</div>
@@ -197,8 +199,7 @@
         var selectedTab = document.getElementById("hiddenSelectedTab").value;
         $("#employee-tabs").dnnTabs({selected: selectedTab});
         $("#employee-achievements-tab").dnnPanels({defaultState: "closed"});
-        dnnAcCombobox_Init($);
-        $(".dnn-ac-combobox").combobox();
+		$(".dnn-select2").select2();
     };
     $(document).ready(function() {
         setupModule();

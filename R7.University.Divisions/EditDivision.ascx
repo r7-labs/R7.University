@@ -2,16 +2,18 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
+<%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/DivisionSelector.ascx" %>
 
+<dnn:JavaScriptLibraryInclude runat="server" Name="Select2" />
+<dnn:DnnCssInclude runat="server" FilePath="~/Resources/Libraries/Select2/04_00_13/css/select2.min.css" />
+
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Divisions/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/dnn-ac-combobox.css" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
     <div id="division-tabs">
@@ -23,11 +25,11 @@
 			<li><a href="#division-audit-tab"><%= LocalizeString("Audit.Tab") %></a></li>
         </ul>
         <div id="division-common-tab">
-        	<fieldset>	
+        	<fieldset>
         		<div class="dnnFormItem dnnFormRequired">
         			<dnn:Label id="lblTitle" runat="server" ControlName="txtTitle" />
         			<asp:TextBox id="txtTitle" runat="server" MaxLength="128" />
-					<asp:RequiredFieldValidator runat="server" resourcekey="Title.Required" 
+					<asp:RequiredFieldValidator runat="server" resourcekey="Title.Required"
 						ControlToValidate="txtTitle" Display="Dynamic"
                         CssClass="dnnFormMessage dnnFormError" />
         		</div>
@@ -41,7 +43,7 @@
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHeadPosition" runat="server" ControlName="comboHeadPosition" />
-                    <asp:DropDownList id="comboHeadPosition" runat="server" CssClass="dnn-ac-combobox"
+                    <asp:DropDownList id="comboHeadPosition" runat="server" CssClass="dnn-select2"
                         DataValueField="PositionID"
                         DataTextField="Title" />
                 </div>
@@ -119,12 +121,12 @@
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
-                    <dnn:Url id="urlDocumentUrl" runat="server" UrlType="F" 
+                    <dnn:Url id="urlDocumentUrl" runat="server" UrlType="F"
                             IncludeActiveTab="true"
                             ShowFiles="true" ShowTabs="true"
                             ShowUrls="true" ShowUsers="false"
                             ShowLog="false" ShowTrack="false"
-                            ShowNone="true" ShowNewWindow="false" />      
+                            ShowNone="true" ShowNewWindow="false" />
                 </div>
             </fieldset>
         </div>
@@ -132,12 +134,12 @@
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="lblHomePage" runat="server" ControlName="urlHomePage" />
-                    <dnn:Url id="urlHomePage" runat="server" UrlType="T" 
+                    <dnn:Url id="urlHomePage" runat="server" UrlType="T"
                             IncludeActiveTab="true"
                             ShowFiles="false" ShowTabs="true"
                             ShowUrls="true" ShowUsers="false"
                             ShowLog="false" ShowTrack="false"
-                            ShowNone="true" ShowNewWindow="false" />      
+                            ShowNone="true" ShowNewWindow="false" />
                 </div>
             </fieldset>
         </div>
@@ -164,8 +166,7 @@
 (function($, Sys) {
     function setupModule() {
 	    $("#division-tabs").dnnTabs({selected: document.getElementById("hiddenSelectedTab").value});
-        dnnAcCombobox_Init($);
-        $(".dnn-ac-combobox").combobox();
+        $(".dnn-select2").select2();
     };
     $(document).ready(function() {
         setupModule();

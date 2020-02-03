@@ -347,8 +347,6 @@
     <None Include="SqlDataProvider\01.06.00.SqlDataProvider" />
     <None Include="license.htm" />
     <None Include="releaseNotes.htm" />
-    <None Include="js\dnn-ac-combobox.js" />
-    <None Include="css\dnn-ac-combobox.css" />
     <None Include="SqlDataProvider\01.08.00.SqlDataProvider" />
     <None Include="R7.University.development.yml" />
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />

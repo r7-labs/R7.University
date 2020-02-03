@@ -1,11 +1,13 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditEmployeeSettings.ascx.cs" Inherits="R7.University.Employees.EditEmployeeSettings" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditEmployeeSettings.ascx.cs" Inherits="R7.University.Employees.EditEmployeeSettings" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
+<%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+
+<dnn:JavaScriptLibraryInclude runat="server" Name="Select2" />
+<dnn:DnnCssInclude runat="server" FilePath="~/Resources/Libraries/Select2/04_00_13/css/select2.min.css" />
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Employees/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/dnn-ac-combobox.css" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
 	<asp:Panel id="panelGeneralSettings" runat="server">
@@ -13,7 +15,7 @@
     	<fieldset>
     		<div class="dnnFormItem">
     			<dnn:Label id="labelEmployee" runat="server" ControlName="comboEmployees" />
-                <asp:DropDownList id="comboEmployees" runat="server" CssClass="dnn-ac-combobox"
+                <asp:DropDownList id="comboEmployees" runat="server" CssClass="dnn-select2"
                     DataValueField="EmployeeID"
                     DataTextField="AbbrName"
                 />
@@ -39,14 +41,13 @@
             <asp:RequiredFieldValidator runat="server" resourcekey="PhotoWidth.Required"
                 ControlToValidate="textPhotoWidth" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
 		</div>
-	</fieldset>	
+	</fieldset>
 </div>
 
 <script type="text/javascript">
 (function($, Sys) {
     function setupModule() {
-        dnnAcCombobox_Init($);
-        $(".dnn-ac-combobox").combobox();
+        $(".dnn-select2").select2();
     };
     $(document).ready(function() {
         setupModule();

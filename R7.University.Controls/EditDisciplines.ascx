@@ -52,7 +52,7 @@
         </div>
         <div class="dnnFormItem dnnFormRequired">
             <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
-            <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-ac-combobox"
+            <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-select2"
                 DataValueField="EduProgramProfileID"
                 DataTextField="Title_String" />
 			<asp:RequiredFieldValidator runat="server" ControlToValidate="comboEduProgramProfile" Display="Dynamic"

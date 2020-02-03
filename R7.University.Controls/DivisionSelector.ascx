@@ -14,7 +14,7 @@
     <asp:DropDownList id="comboDivision" runat="server"
         DataValueField="DivisionID"
         DataTextField="Title"
-		CssClass="dnn-ac-combobox full-width"
+		CssClass="dnn-select2"
     />
     <dnn:DnnTreeView id="treeDivision" runat="server"
     	DataFieldID="DivisionID"

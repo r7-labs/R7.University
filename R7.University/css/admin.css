@@ -147,3 +147,34 @@
 .u8y-edit-documents .urlControl .dnnFormItem .page.dnnDropDownList  {
     width: 100%;
 }
+
+/* Select2 */
+
+.dnnFormItem .dnn-select2 + .select2 {
+	font-size: 80%;
+	margin-bottom: 18px;
+	width: 45% !important;  /* override inline style */
+	max-width: 445px;
+}
+
+.dnnFormItem .dnn-form-control-group .dnn-select2 + .select2 {
+	width: 100% !important;  /* override inline style */
+	max-width: none;
+}
+
+.dnnFormItem .dnn-select2 + .select2 .select2-selection {
+	padding: 4px;
+}
+
+.dnnFormItem .dnn-select2 + .select2-container .select2-selection--single {
+	height: auto;
+	border-color: #c9c9c9;
+}
+
+.dnnFormItem .dnn-select2 + .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 34px;
+}
+
+.select2-results {
+	font-size: 80%;
+}

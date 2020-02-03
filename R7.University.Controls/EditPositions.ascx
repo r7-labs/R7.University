@@ -47,7 +47,7 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelPositions" runat="server" ControlName="comboPositions" />
-            <asp:DropDownList id="comboPositions" runat="server" CssClass="dnn-ac-combobox"
+            <asp:DropDownList id="comboPositions" runat="server" CssClass="dnn-select2"
                 DataValueField="PositionID"
                 DataTextField="Title" />
         </div>

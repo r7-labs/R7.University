@@ -2,16 +2,18 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
+<%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="EditDocuments" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDocuments.ascx" %>
 <%@ Register TagPrefix="controls" TagName="EditDivisions" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/EditDivisions.ascx" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
+<dnn:JavaScriptLibraryInclude runat="server" Name="Select2" />
+<dnn:DnnCssInclude runat="server" FilePath="~/Resources/Libraries/Select2/04_00_13/css/select2.min.css" />
+
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" Priority="200" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/dnn-ac-combobox.css" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/js/dnn-ac-combobox.js" />
 
 <div class="dnnForm dnnClear">
     <div id="eduprogram-tabs" class="dnnForm dnnClear">
@@ -29,19 +31,19 @@
                     <dnn:Label ID="labelCode" runat="server" ControlName="textCode" />
                     <asp:TextBox ID="textCode" runat="server" MaxLength="64" />
                     <asp:RequiredFieldValidator runat="server" resourcekey="Code.Required"
-                        ControlToValidate="textCode" ValidationGroup="EduProgram" 
+                        ControlToValidate="textCode" ValidationGroup="EduProgram"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
                 <div class="dnnFormItem dnnFormRequired">
         			<dnn:Label ID="labelTitle" runat="server" ControlName="textTitle" />
         			<asp:TextBox ID="textTitle" runat="server" MaxLength="250" />
                     <asp:RequiredFieldValidator runat="server" resourcekey="Title.Required"
-                        ControlToValidate="textTitle" ValidationGroup="EduProgram" 
+                        ControlToValidate="textTitle" ValidationGroup="EduProgram"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         		</div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-                    <asp:DropDownList id="comboEduLevel" runat="server" 
+                    <asp:DropDownList id="comboEduLevel" runat="server"
                         DataTextField="Title"
                         DataValueField="EduLevelID"
                     />
@@ -63,7 +65,7 @@
 		<div id="eduprogram-profiles-tab">
             <fieldset>
                 <div class="dnnFormItem">
-					<asp:GridView id="gridEduProgramProfiles" runat="server" AutoGenerateColumns="false" 
+					<asp:GridView id="gridEduProgramProfiles" runat="server" AutoGenerateColumns="false"
 							OnRowDataBound="gridEduProgramProfiles_RowDataBound"
                             GridLines="None" CssClass="dnnGrid" Style="width:100%;margin-bottom:30px">
                         <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
@@ -101,7 +103,7 @@
                     <dnn:Label id="labelAddDefaultProfile" runat="server" ControlName="checkAddDefaultProfile" />
                     <asp:CheckBox id="checkAddDefaultProfile" runat="server" Checked="true" />
                 </asp:Panel>
-			</fieldset>	
+			</fieldset>
         </div>
         <div id="eduprogram-divisions-tab">
 			<controls:EditDivisions id="formEditDivisions" runat="server" ForModel="EduProgram" />
@@ -110,12 +112,12 @@
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelHomePage" runat="server" ControlName="urlHomePage" />
-                    <dnn:Url id="urlHomePage" runat="server" UrlType="T" 
+                    <dnn:Url id="urlHomePage" runat="server" UrlType="T"
                             IncludeActiveTab="true"
                             ShowFiles="false" ShowTabs="true"
                             ShowUrls="false" ShowUsers="false"
                             ShowLog="false" ShowTrack="false"
-                            ShowNone="true" ShowNewWindow="false" />      
+                            ShowNone="true" ShowNewWindow="false" />
                 </div>
             </fieldset>
         </div>
@@ -146,8 +148,7 @@
     function setupModule() {
         var selectedTab = document.getElementById("hiddenSelectedTab").value;
         $("#eduprogram-tabs").dnnTabs({selected: selectedTab});
-	    dnnAcCombobox_Init($);
-        $(".dnn-ac-combobox").combobox();
+	    $(".dnn-select2").select2();
     };
     $(document).ready(function() {
         setupModule();

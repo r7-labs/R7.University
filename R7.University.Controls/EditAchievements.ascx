@@ -47,7 +47,7 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
-            <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-ac-combobox"
+            <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-select2"
                 DataTextField="Text"
 				DataValueField="Value"
                 AutoPostBack="true"
