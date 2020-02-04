@@ -16,3 +16,11 @@ a.u8y-not-published-element { color:#ccc }
 	left:-.3rem;
 }
 .u8y-selected-item .u8y-selected-item-marker { display:inline }
+
+/* Bootstrap shims */
+
+.d-none, .hidden { display: none; }
+
+.table-sm td, .table-sm th,
+.table-condensed td, .table-condensed th { padding: .3rem; }
+

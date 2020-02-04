@@ -80,7 +80,7 @@ namespace R7.University.EduPrograms.ViewModels
         string GetPopupHtml (string html, string itemprop)
         {
             if (!string.IsNullOrEmpty (html)) {
-                return $"<span itemprop=\"{itemprop}\" class=\"hidden description\">{HttpUtility.HtmlDecode (html)}</span>"
+                return $"<span itemprop=\"{itemprop}\" class=\"d-none description\">{HttpUtility.HtmlDecode (html)}</span>"
         			+ "<a type=\"button\" href=\"#\" data-toggle=\"modal\""
         			+ $" data-target=\"#u8y-science-descr-dlg-{Context.Module.ModuleId}\">[&#8230;]</a>";
         	}

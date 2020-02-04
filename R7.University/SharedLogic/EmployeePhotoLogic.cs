@@ -85,10 +85,10 @@ namespace R7.University.SharedLogic
 
             // apply CSS classes
             if (imageWidth == imageHeight) {
-                imagePhoto.CssClass += " img-circle";
+                imagePhoto.CssClass += " img-circle rounded-circle";
             }
             else {
-                imagePhoto.CssClass += " img-rounded";
+                imagePhoto.CssClass += " img-rounded rounded";
             }
 
             // set alt & title

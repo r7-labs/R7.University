@@ -36,18 +36,18 @@
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
 			        CssClass="btn btn-default btn-block btn-sm btn-barcode" data-toggle="modal" />
 			</div>
-		</div>	
+		</div>
     	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
             <asp:Literal id="literalFullName" runat="server" />
-    		<ul class="nav nav-tabs">
-    		    <li class="active"><a href="#employeeCommon-<%= ModuleId %>" data-toggle="tab"><%= LocalizeString("Common.Tab") %></a></li>
-    			<li id="tabExperience" runat="server"><a data-toggle="tab" href="#employeeExperience-<%= ModuleId %>"><%= LocalizeString("Experience.Tab") %></a></li>
-    			<li id="tabAchievements" runat="server"><a data-toggle="tab" href="#employeeAchievements-<%= ModuleId %>"><%= LocalizeString("Achievements.Tab") %></a></li>
-    			<li id="tabDisciplines" runat="server"><a data-toggle="tab" href="#employeeDisciplines-<%= ModuleId %>"><%= LocalizeString("Disciplines.Tab") %></a></li>
-    			<li id="tabAbout" runat="server"><a data-toggle="tab" href="#employeeAbout-<%= ModuleId %>"><%= LocalizeString("About.Tab") %></a></li>
+    		<ul class="nav nav-tabs" role="tablist">
+    		    <li class="nav-item active"><a class="nav-link active" href="#employeeCommon-<%= ModuleId %>" data-toggle="tab"><%= LocalizeString("Common.Tab") %></a></li>
+    			<li class="nav-item" id="tabExperience" runat="server"><a class="nav-link" data-toggle="tab" href="#employeeExperience-<%= ModuleId %>"><%= LocalizeString("Experience.Tab") %></a></li>
+    			<li class="nav-item" id="tabAchievements" runat="server"><a class="nav-link" data-toggle="tab" href="#employeeAchievements-<%= ModuleId %>"><%= LocalizeString("Achievements.Tab") %></a></li>
+    			<li class="nav-item" id="tabDisciplines" runat="server"><a class="nav-link" data-toggle="tab" href="#employeeDisciplines-<%= ModuleId %>"><%= LocalizeString("Disciplines.Tab") %></a></li>
+    			<li class="nav-item" id="tabAbout" runat="server"><a class="nav-link" data-toggle="tab" href="#employeeAbout-<%= ModuleId %>"><%= LocalizeString("About.Tab") %></a></li>
     		</ul>
 			<div class="tab-content">
-        		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade in active">
+        		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade show in active">
                     <p><asp:Label id="labelAcademicDegreeAndTitle" runat="server" /></p>
 					<asp:Panel id="panelPositions" runat="server" CssClass="_section">
                         <label><%: LocalizeString ("OccupiedPositions.Text") %></label>
@@ -64,7 +64,7 @@
             			</asp:Repeater>
 				    </asp:Panel>
 				</div>
-        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">	
+        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
         			<div class="_section" style="margin-bottom:10px">
         				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-experience"
@@ -89,7 +89,7 @@
 						//--></script>
 						<!--/Science Index counter-->
 					</asp:Panel>
-					<div class="_section" style="margin-bottom:10px">	
+					<div class="_section" style="margin-bottom:10px">
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
@@ -99,11 +99,11 @@
                                 <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                             </Columns>
         			    </asp:GridView>
-        			</div>		
+        			</div>
         		</div>
         		<div id="employeeDisciplines-<%= ModuleId %>" class="tab-pane fade">
                     <div class="_section">
-                        <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-disciplines" 
+                        <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-disciplines"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
                             <Columns>
                                 <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile.Column" />
@@ -117,7 +117,7 @@
         		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade u8y-employee-about">
         			<asp:Literal id="litAbout" runat="server" />
         		</div>
-			</div>	
+			</div>
     	</div>
     </div>
     <ul class="dnnActions dnnClear" style="margin-bottom:1em">
@@ -147,6 +147,6 @@
 				<p><asp:Label runat="server" resourcekey="BarcodeScan.Text" /></p>
 				<asp:Image id="imageBarcode" runat="server" CssClass="center-block" />
 			</div>
-        </div>	
-	</div>	
+        </div>
+	</div>
 </div>
