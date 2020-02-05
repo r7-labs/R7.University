@@ -165,6 +165,7 @@
     <Compile Include="SerializationModels\AchievementSerializationModel.cs" />
     <Compile Include="SerializationModels\AchievementTypeSerializationModel.cs" />
     <Compile Include="ViewModels\EduProgramViewModel.cs" />
+    <Compile Include="Queries\EduProgramQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">

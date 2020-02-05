@@ -70,9 +70,9 @@ namespace R7.University.Controls
 
         IEnumerable<EduProgramViewModel> GetEduPrograms (UniversityModelContext modelContext)
         {
-            return new FlatQuery<EduProgramInfo> (modelContext).List ()
+            return new EduProgramQuery (modelContext).ListWithEduLevels ()
                 .Select (ep => new EduProgramViewModel (ep))
-                .OrderBy (ep => ep.EduLevelID)
+                .OrderBy (ep => ep.EduLevel.SortIndex)
                 .ThenBy (ep => ep.Code)
                 .ThenBy (ep => ep.Title);
         }
@@ -84,7 +84,8 @@ namespace R7.University.Controls
                 .OrderBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
                 .ThenBy (epp => epp.ProfileCode)
-                .ThenBy (epp => epp.ProfileTitle);
+                .ThenBy (epp => epp.ProfileTitle)
+                .ThenBy (epp => epp.EduLevel.SortIndex);
         }
 
         #region implemented abstract members of GridAndFormEditControlBase

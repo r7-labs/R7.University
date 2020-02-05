@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2018 Roman M. Yagodin
+//  Copyright (c) 2018-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -53,11 +53,12 @@ namespace R7.University.Queries
         public static IQueryable<EmployeeInfo> IncludeDisciplines (this IQueryable<EmployeeInfo> employees)
         {
             return employees.Include (e => e.Disciplines)
-                            .ThenInclude (ed => ed.EduProgramProfile)
-                            .ThenInclude (epp => epp.EduProgram)
+                                .ThenInclude (ed => ed.EduProgramProfile)
+                                    .ThenInclude (epp => epp.EduProgram)
+                                        .ThenInclude (ep => ep.EduLevel)
                             .Include (e => e.Disciplines)
-                            .ThenInclude (ed => ed.EduProgramProfile)
-                            .ThenInclude (epp => epp.EduLevel);
+                                .ThenInclude (ed => ed.EduProgramProfile)
+                                    .ThenInclude (epp => epp.EduLevel);
         }
     }
 }

@@ -1,10 +1,10 @@
 //
-//  EduProgramProfileQuery.cs
+//  EduProgramQuery.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2020 Roman M. Yagodin
+//  Copyright (c) 2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -28,29 +28,17 @@ using R7.University.Queries;
 
 namespace R7.University.Controls.Queries
 {
-    internal class EduProgramProfileQuery: QueryBase
+    internal class EduProgramQuery: QueryBase
     {
-        public EduProgramProfileQuery (IModelContext modelContext): base (modelContext)
+        public EduProgramQuery (IModelContext modelContext) : base (modelContext)
         {
         }
 
-        public IList<EduProgramProfileInfo> ListByEduProgram (int eduProgramId)
+        public IList<EduProgramInfo> ListWithEduLevels ()
         {
-            return ModelContext.Query<EduProgramProfileInfo> ()
-                .Include2 (epp => epp.EduProgram)
-                .Include2 (epp => epp.EduProgram.EduLevel)
-                .Include2 (epp => epp.EduLevel)
-                .Where (epp => epp.EduProgramID == eduProgramId)
+            return ModelContext.Query<EduProgramInfo> ()
+                .Include2 (ep => ep.EduLevel)
                 .ToList ();
-        }
-
-        public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
-        {
-            return ModelContext.QueryWhere<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
-                .Include2 (epp => epp.EduProgram)
-                .Include2 (epp => epp.EduProgram.EduLevel)
-                .Include2 (epp => epp.EduLevel)
-                .SingleOrDefault ();
         }
     }
 }

@@ -205,8 +205,19 @@ namespace R7.University.Employees
             }
 
             formEditAchievements.SetData (employee.Achievements.OrderByDescending (ach => ach.YearBegin), employee.EmployeeID);
+
             formEditPositions.SetData (employee.Positions, employee.EmployeeID);
-            formEditDisciplines.SetData (employee.Disciplines, employee.EmployeeID);
+
+            // apply default ordering
+            var employeeDisciplines = employee.Disciplines
+                .OrderBy (ed => ed.EduProgramProfile.EduProgram.EduLevel.SortIndex)
+                .ThenBy (ed => ed.EduProgramProfile.EduProgram.Code)
+                .ThenBy (ed => ed.EduProgramProfile.EduProgram.Title)
+                .ThenBy (ed => ed.EduProgramProfile.ProfileCode)
+                .ThenBy (ed => ed.EduProgramProfile.ProfileTitle)
+                .ThenBy (ed => ed.EduProgramProfile.EduLevel.SortIndex);
+
+            formEditDisciplines.SetData (employeeDisciplines, employee.EmployeeID);
       
             // setup audit control
             ctlAudit.Bind (employee, PortalId, LocalizeString ("Unknown")); ;
