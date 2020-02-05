@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2018 Roman M. Yagodin
+//  Copyright (c) 2016-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -26,18 +27,20 @@ namespace R7.University.Controls.ViewModels
 {
     public class EduProgramProfileViewModel : EduProgramProfileViewModelBase
     {
-        public EduProgramProfileViewModel (IEduProgramProfile model) : base (model)
+        protected IViewModelContext Context;
+
+        public EduProgramProfileViewModel (IEduProgramProfile model, IViewModelContext viewModelContext) : base (model)
         {
+            Context = viewModelContext;
         }
 
         public string Title_String
         {
             get {
-                return UniversityFormatHelper.FormatEduProgramProfileTitle (
-                    EduProgramProfile.EduProgram.Code,
-                    EduProgramProfile.EduProgram.Title,
+                return UniversityFormatHelper.FormatEduProgramProfilePartialTitle (
                     EduProgramProfile.ProfileCode,
-                    EduProgramProfile.ProfileTitle
+                    !string.IsNullOrEmpty (EduProgramProfile.ProfileTitle) ? EduProgramProfile.ProfileTitle : Context.LocalizeString ("EmptyProfileTitle.Text"),
+                    UniversityFormatHelper.FormatShortTitle (EduProgramProfile.EduLevel.ShortTitle, EduProgramProfile.EduLevel.Title)
                 );
             }
         }

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2018 Roman M. Yagodin
+//  Copyright (c) 2016-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using R7.Dnn.Extensions.Models;
@@ -33,11 +34,13 @@ namespace R7.University.Controls.Queries
         {
         }
 
-        public IList<EduProgramProfileInfo> ListByEduLevel (int eduLevelId)
+        public IList<EduProgramProfileInfo> ListByEduProgram (int eduProgramId)
         {
             return ModelContext.Query<EduProgramProfileInfo> ()
-                               .Include2 (epp => epp.EduProgram)
-                               .Where (epp => epp.EduLevelId == eduLevelId).ToList ();
+                .Include2 (epp => epp.EduProgram)
+                .Include2 (epp => epp.EduLevel)
+                .Where (epp => epp.EduProgramID == eduProgramId)
+                .ToList ();
         }
 
         public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)

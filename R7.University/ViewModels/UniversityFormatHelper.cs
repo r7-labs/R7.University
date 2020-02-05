@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -132,6 +132,11 @@ namespace R7.University.ViewModels
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
             return FormatHelper.JoinNotNullOrEmpty (" ", code, title, profileStringInBrackets);
+        }
+
+        public static string FormatEduProgramProfilePartialTitle (string profileCode, string profileTitle, string eduLevelTitle)
+        {
+            return FormatHelper.JoinNotNullOrEmpty (profileCode, profileTitle) + ": " + eduLevelTitle;
         }
 
         public static string FormatDocumentLink_WithMicrodata (this IDocument document, string documentTitle,

@@ -43,22 +43,22 @@
             </asp:GridView>
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelEduLevel" runat="server" ControlName="comboEduLevel" />
-            <asp:DropDownList id="comboEduLevel" runat="server"
+            <dnn:Label id="lblEduProgram" runat="server" ControlName="ddlEduProgram" />
+            <asp:DropDownList id="ddlEduProgram" runat="server" CssClass="dnn-select2"
                 AutoPostBack="true"
-                OnSelectedIndexChanged="comboEduLevel_SelectedIndexChanged"
-                DataValueField="EduLevelID"
-                DataTextField="Title" />
+                OnSelectedIndexChanged="ddlEduProgram_SelectedIndexChanged"
+                DataValueField="EduProgramID"
+                DataTextField="Title_String" />
         </div>
-        <div class="dnnFormItem dnnFormRequired">
-            <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="comboEduProgramProfile" />
-            <asp:DropDownList id="comboEduProgramProfile" runat="server" CssClass="dnn-select2"
+        <div class="dnnFormItem">
+            <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="ddlEduProfile" />
+            <asp:DropDownList id="ddlEduProfile" runat="server" CssClass="dnn-select2"
                 DataValueField="EduProgramProfileID"
                 DataTextField="Title_String" />
-			<asp:RequiredFieldValidator runat="server" ControlToValidate="comboEduProgramProfile" Display="Dynamic"
+			<asp:RequiredFieldValidator runat="server" ControlToValidate="ddlEduProfile" Display="Dynamic"
                 CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="EduProgramProfile.Required" />
             <asp:CustomValidator runat="server" resourcekey="EduProgramProfile.Warning"
-				ControlToValidate="comboEduProgramProfile" ValidationGroup="Disciplines" 
+				ControlToValidate="ddlEduProfile" ValidationGroup="Disciplines" 
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
 			    EnableClientScript="true" ClientValidationFunction="eduProgramProfileUniqueValidator.validate" />
         </div>

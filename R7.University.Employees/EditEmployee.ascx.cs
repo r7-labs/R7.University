@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2019 Roman M. Yagodin
+//  Copyright (c) 2014-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -140,7 +140,7 @@ namespace R7.University.Employees
             var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
 
             formEditAchievements.OnInit (this, achievementTypes, achievements);
-            formEditDisciplines.OnInit (this, new EduLevelQuery (ModelContext).List ());
+            formEditDisciplines.OnInit (this);
             formEditPositions.OnInit (this, positions, divisions);
         }
 

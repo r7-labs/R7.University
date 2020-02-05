@@ -6,8 +6,8 @@ namespace R7.University.Controls
     {
         protected TextBox textDisciplines;
         protected DropDownList comboEduLevel;
-        protected DropDownList comboEduProgramProfile;
-        protected CustomValidator valEduProgramProfile;
+        protected DropDownList ddlEduProgram;
+        protected DropDownList ddlEduProfile;
         protected HiddenField hiddenEduProgramProfileID;
     }
 }

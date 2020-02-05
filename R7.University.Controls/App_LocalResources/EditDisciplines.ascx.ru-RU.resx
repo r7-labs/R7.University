@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -12,17 +12,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="labelEduLevel.Text" xml:space="preserve">
-        <value>Уровень образования:</value>
+	<data name="lblEduProgram.Text" xml:space="preserve">
+        <value>Обр. программа:</value>
     </data>
-    <data name="labelEduLevel.Help" xml:space="preserve">
-        <value>Выберите уровень образования из выпадающего списка.</value>
+    <data name="lblEduProgram.Help" xml:space="preserve">
+        <value>Выберите образовательную программу из выпадающего списка.</value>
     </data>
     <data name="labelEduProgramProfile.Text" xml:space="preserve">
-        <value>Обр. программа (профиль):</value>
+        <value>Профиль обр. программы:</value>
     </data>
     <data name="labelEduProgramProfile.Help" xml:space="preserve">
         <value>Выберите профиль образовательной программы из выпадающего списка.</value>
+    </data>
+	<data name="EmptyProfileTitle.Text" xml:space="preserve">
+        <value>&lt;без названия&gt;</value>
     </data>
     <data name="labelDisciplines.Text" xml:space="preserve">
         <value>Дисципины:</value>

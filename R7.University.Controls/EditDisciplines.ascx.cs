@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017-2018 Roman M. Yagodin
+//  Copyright (c) 2017-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,43 +24,67 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
+using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Controls;
-using R7.University.ControlExtensions;
 using R7.University.Controls.EditModels;
 using R7.University.Controls.Queries;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
+using R7.University.Queries;
 using R7.University.ViewModels;
 
 namespace R7.University.Controls
 {
-    public partial class EditDisciplines : GridAndFormControlBase<EmployeeDisciplineInfo, EmployeeDisciplineEditModel>
+    public partial class EditDisciplines: GridAndFormControlBase<EmployeeDisciplineInfo, EmployeeDisciplineEditModel>
     {
-        public void OnInit (PortalModuleBase module, IEnumerable<EduLevelInfo> eduLevels)
+        public void OnInit (PortalModuleBase module)
         {
             Module = module;
 
-            comboEduLevel.DataSource = eduLevels;
-            comboEduLevel.DataBind ();
+            using (var modelContext = new UniversityModelContext ()) {
+                var eduPrograms = GetEduPrograms (modelContext);
 
-            if (eduLevels.Any ()) {
-                BindEduProgramProfiles (eduLevels.First ().EduLevelID);
+                if (!eduPrograms.IsNullOrEmpty ()) {
+                    ddlEduProgram.DataSource = eduPrograms;
+                    ddlEduProgram.DataBind ();
+
+                    BindEduProfiles (eduPrograms.First ().EduProgramID, modelContext);
+                }
+                else {
+                    ddlEduProgram.Enabled = false;
+                    ddlEduProfile.Enabled = false;
+                    buttonAddItem.Enabled = false;
+                    buttonUpdateItem.Enabled = false;
+                    buttonResetForm.Enabled = false;
+                }
             }
         }
 
-        void BindEduProgramProfiles (int eduLevelId)
+        void BindEduProfiles (int eduProgramId, UniversityModelContext modelContext)
         {
-            using (var modelContext = new UniversityModelContext ()) {
-                var epps = new EduProgramProfileQuery (modelContext).ListByEduLevel (eduLevelId)
-                                                                    .Select (epp => new EduProgramProfileViewModel (epp))
-                                                                    .OrderBy (epp => epp.EduProgram.Code)
-                                                                    .ThenBy (epp => epp.EduProgram.Title)
-                                                                    .ThenBy (epp => epp.ProfileCode)
-                                                                    .ThenBy (epp => epp.ProfileTitle);
+            var eduProfiles = GetEduProfiles (eduProgramId, modelContext);
 
-                comboEduProgramProfile.DataSource = epps;
-                comboEduProgramProfile.DataBind ();
-            }
+            ddlEduProfile.DataSource = eduProfiles;
+            ddlEduProfile.DataBind ();
+        }
+
+        IEnumerable<EduProgramViewModel> GetEduPrograms (UniversityModelContext modelContext)
+        {
+            return new FlatQuery<EduProgramInfo> (modelContext).List ()
+                .Select (ep => new EduProgramViewModel (ep))
+                .OrderBy (ep => ep.EduLevelID)
+                .ThenBy (ep => ep.Code)
+                .ThenBy (ep => ep.Title);
+        }
+
+        IEnumerable<EduProgramProfileViewModel> GetEduProfiles (int eduProgramId, UniversityModelContext modelContext)
+        {
+            return new EduProgramProfileQuery (modelContext).ListByEduProgram (eduProgramId)
+                .Select (epp => new EduProgramProfileViewModel (epp, ViewModelContext))
+                .OrderBy (epp => epp.EduProgram.Code)
+                .ThenBy (epp => epp.EduProgram.Title)
+                .ThenBy (epp => epp.ProfileCode)
+                .ThenBy (epp => epp.ProfileTitle);
         }
 
         #region implemented abstract members of GridAndFormEditControlBase
@@ -68,16 +92,16 @@ namespace R7.University.Controls
         protected override void OnLoadItem (EmployeeDisciplineEditModel item)
         {
             using (var modelContext = new UniversityModelContext ()) {
-                var profile = new EduProgramProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
+                var eduProfile = new EduProgramProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
+                var newEduProgramId = eduProfile.EduProgramID;
+                var eduProgramId = int.Parse (ddlEduProgram.SelectedValue);
 
-                var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
-                var newEduLevelId = profile.EduLevelId;
-                if (eduLevelId != newEduLevelId) {
-                    comboEduLevel.SelectByValue (newEduLevelId);
-                    BindEduProgramProfiles (newEduLevelId);
+                if (eduProgramId != newEduProgramId) {
+                    ddlEduProgram.SelectByValue (newEduProgramId);
+                    BindEduProfiles (newEduProgramId, modelContext);
                 }
 
-                comboEduProgramProfile.SelectByValue (item.EduProgramProfileID);
+                ddlEduProfile.SelectByValue (item.EduProgramProfileID);
                 textDisciplines.Text = item.Disciplines;
 
                 hiddenEduProgramProfileID.Value = item.EduProgramProfileID.ToString ();
@@ -86,25 +110,29 @@ namespace R7.University.Controls
 
         protected override void OnUpdateItem (EmployeeDisciplineEditModel item)
         {
-            item.EduProgramProfileID = int.Parse (comboEduProgramProfile.SelectedValue);
+            item.EduProgramProfileID = int.Parse (ddlEduProfile.SelectedValue);
             item.Disciplines = textDisciplines.Text.Trim ();
 
             using (var modelContext = new UniversityModelContext ()) {
-                var profile = new EduProgramProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
-                item.Code = profile.EduProgram.Code;
-                item.Title = profile.EduProgram.Title;
-                item.ProfileCode = profile.ProfileCode;
-                item.ProfileTitle = profile.ProfileTitle;
-                item.ProfileStartDate = profile.StartDate;
-                item.ProfileEndDate = profile.EndDate;
-                item.EduLevelString = UniversityFormatHelper.FormatShortTitle (profile.EduLevel.ShortTitle, profile.EduLevel.Title);
+                var eduProfile = new EduProgramProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
+                item.Code = eduProfile.EduProgram.Code;
+                item.Title = eduProfile.EduProgram.Title;
+                item.ProfileCode = eduProfile.ProfileCode;
+                item.ProfileTitle = eduProfile.ProfileTitle;
+                item.ProfileStartDate = eduProfile.StartDate;
+                item.ProfileEndDate = eduProfile.EndDate;
+                item.EduLevelString = UniversityFormatHelper.FormatShortTitle (eduProfile.EduLevel.ShortTitle, eduProfile.EduLevel.Title);
             }
         }
 
         protected override void OnResetForm ()
         {
-            comboEduLevel.SelectByValue (-1);
-            comboEduProgramProfile.SelectByValue (-1);
+            ddlEduProgram.SelectedIndex = 0;
+            var eduProgramId = int.Parse (ddlEduProgram.SelectedValue);
+            using (var modelContext = new UniversityModelContext ()) {
+                BindEduProfiles (eduProgramId, modelContext);
+            }
+
             textDisciplines.Text = string.Empty;
         }
 
@@ -117,17 +145,11 @@ namespace R7.University.Controls
 
         #endregion
 
-        protected void comboEduLevel_SelectedIndexChanged (object sender, EventArgs e)
+        protected void ddlEduProgram_SelectedIndexChanged (object sender, EventArgs e)
         {
-            // store currently selected edu. program profile title
-            var selectedEduProgramProfileTitle = comboEduProgramProfile.SelectedItem?.Text;
-
-            var eduLevelId = int.Parse (comboEduLevel.SelectedValue);
-            BindEduProgramProfiles (eduLevelId);
-
-            // try to select edu. program profile with same title
-            if (!string.IsNullOrEmpty (selectedEduProgramProfileTitle)) {
-                comboEduProgramProfile.SelectByText (selectedEduProgramProfileTitle, StringComparison.CurrentCulture);
+            using (var modelContext = new UniversityModelContext ()) {
+                var eduProgramId = int.Parse (ddlEduProgram.SelectedValue);
+                BindEduProfiles (eduProgramId, modelContext);
             }
         }
     }
