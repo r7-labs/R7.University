@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -12,9 +12,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-	<data name="NotSelected.Text" xml:space="preserve">
-        <value>&lt; Not Selected &gt;</value>
-    </data>
 	<data name="CustomAchievement.Text" xml:space="preserve">
         <value>&lt; Custom Achievement &gt;</value>
     </data>
@@ -101,7 +98,7 @@
     </data>
     <data name="AchievementTitle.MaxLength" xml:space="preserve">
         <value>Achievement title is too long.</value>
-    </data>  
+    </data>
     <data name="labelAchievementShortTitle.Text" xml:space="preserve">
         <value>Short Title:</value>
     </data>

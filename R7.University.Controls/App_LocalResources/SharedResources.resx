@@ -30,4 +30,7 @@
 	<data name="SourceLink.Title" xml:space="preserve">
         <value>Source code</value>
     </data>
+	<data name="NotSelected.Text" xml:space="preserve">
+        <value>&lt; Not Selected &gt;</value>
+    </data>
 </root>

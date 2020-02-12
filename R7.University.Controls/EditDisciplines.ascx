@@ -51,19 +51,17 @@
                 DataTextField="Title_String" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelEduProgramProfile" runat="server" ControlName="ddlEduProfile" />
+            <dnn:Label id="labelEduProgramProfile" runat="server" CssClass="dnnFormRequired" ControlName="ddlEduProfile" />
             <asp:DropDownList id="ddlEduProfile" runat="server" CssClass="dnn-select2"
                 DataValueField="EduProgramProfileID"
                 DataTextField="Title_String" />
-			<asp:RequiredFieldValidator runat="server" ControlToValidate="ddlEduProfile" Display="Dynamic"
-                CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="EduProgramProfile.Required" />
-            <asp:CustomValidator runat="server" resourcekey="EduProgramProfile.Warning"
+            <asp:CustomValidator runat="server" resourcekey="EduProgramProfile_Warning.Text"
 				ControlToValidate="ddlEduProfile" ValidationGroup="Disciplines" 
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
-			    EnableClientScript="true" ClientValidationFunction="eduProgramProfileUniqueValidator.validate" />
+			    EnableClientScript="true" ClientValidationFunction="eduProfileValidator.validate2" />
         </div>
-        <div class="dnnFormItem dnnFormRequired">
-            <dnn:Label id="labelDisciplines" runat="server" ControlName="textDisciplines" />
+        <div class="dnnFormItem">
+            <dnn:Label id="labelDisciplines" runat="server" CssClass="dnnFormRequired" ControlName="textDisciplines" />
             <asp:TextBox id="textDisciplines" runat="server" TextMode="MultiLine" Rows="7" />
             <asp:RequiredFieldValidator runat="server" ControlToValidate="textDisciplines" Display="Dynamic"
                 CssClass="dnnFormMessage dnnFormError" ValidationGroup="Disciplines" resourcekey="Disciplines.Required" />

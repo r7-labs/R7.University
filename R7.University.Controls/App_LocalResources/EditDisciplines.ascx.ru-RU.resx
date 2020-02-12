@@ -42,13 +42,10 @@
     <data name="buttonCancelEditDiscipline.Text" xml:space="preserve">
         <value>Отмена</value>
     </data>
-    <data name="EduProgramProfile.Warning" xml:space="preserve">
-        <value>Профили образовательных программ не должны повторяться!</value>
+    <data name="EduProgramProfile_Warning.Text" xml:space="preserve">
+        <value>Выберите профиль образовательной программы. Профили не должны повторяться!</value>
     </data>
-	<data name="EduProgramProfile.Required" xml:space="preserve">
-        <value>Выберите профиль образовательной программы.</value>
-    </data>
-    <data name="Disciplines.Required" xml:space="preserve">
+	<data name="Disciplines.Required" xml:space="preserve">
         <value>Введите дисциплины.</value>
     </data>
 	<data name="EduProgramProfile.Column" xml:space="preserve">

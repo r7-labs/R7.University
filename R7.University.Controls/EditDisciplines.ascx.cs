@@ -30,7 +30,6 @@ using R7.University.Controls.EditModels;
 using R7.University.Controls.Queries;
 using R7.University.Controls.ViewModels;
 using R7.University.Models;
-using R7.University.Queries;
 using R7.University.ViewModels;
 
 namespace R7.University.Controls
@@ -64,8 +63,16 @@ namespace R7.University.Controls
         {
             var eduProfiles = GetEduProfiles (eduProgramId, modelContext);
 
-            ddlEduProfile.DataSource = eduProfiles;
-            ddlEduProfile.DataBind ();
+            if (eduProfiles.IsNullOrEmpty ()) {
+                ddlEduProfile.Items.Clear ();
+                ddlEduProfile.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
+            }
+            else {
+                ddlEduProfile.DataSource = eduProfiles;
+                ddlEduProfile.DataBind ();
+            }
+
+            ddlEduProfile.SelectedIndex = 0;
         }
 
         IEnumerable<EduProgramViewModel> GetEduPrograms (UniversityModelContext modelContext)
@@ -112,6 +119,7 @@ namespace R7.University.Controls
         protected override void OnUpdateItem (EmployeeDisciplineEditModel item)
         {
             item.EduProgramProfileID = int.Parse (ddlEduProfile.SelectedValue);
+            // if (item.EduProgramProfileID > 0) { } 
             item.Disciplines = textDisciplines.Text.Trim ();
 
             using (var modelContext = new UniversityModelContext ()) {

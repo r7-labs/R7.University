@@ -18,7 +18,4 @@
 	<data name="DivisionSelectionMode_Tree.Text" xml:space="preserve">
         <value>From Org. Structure</value>
     </data>
-	<data name="NotSelected.Text" xml:space="preserve">
-        <value>&lt; Not Selected &gt;</value>
-    </data>
 </root>
