@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEduProgram.ascx.cs" Inherits="R7.University.EduPrograms.ViewEduProgram" %>
+<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEduProgram.ascx.cs" Inherits="R7.University.EduPrograms.ViewEduProgram" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
@@ -20,7 +20,7 @@
                         </LayoutTemplate>
                         <ItemTemplate>
                             <li><%# Item.DivisionLink %></li>
-                        </ItemTemplate>                 
+                        </ItemTemplate>
                     </asp:ListView>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@
                         </div>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <div class="well">
+                        <div class="card card-body bg-light mb-3">
                             <h3 runat="server" class='<%# Item.CssClass %>'>
                                 <asp:HyperLink runat="server" Visible='<%# IsEditable %>' NavigateUrl='<%# Item.Edit_Url %>' ImageUrl="<%# R7.University.Components.UniversityIcons.Edit %>" />
                                 <%# Item.Title_String %>
@@ -55,7 +55,7 @@
                                     </LayoutTemplate>
                                     <ItemTemplate>
                                         <li><%# Item.DivisionLink %></li>
-                                    </ItemTemplate>                 
+                                    </ItemTemplate>
                                 </asp:ListView>
                                 </ul>
                             </div>

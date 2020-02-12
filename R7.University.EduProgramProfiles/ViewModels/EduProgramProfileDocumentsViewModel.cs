@@ -139,7 +139,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                     $"<span{microdataAttrs}>"
                     + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#u8y-epp-docs-dlg-{Context.Module.ModuleId}\""
                     + $" data-table=\"doct-{RowId}-{columnSlug}\">{(linkText + docCountText).TrimStart ()}</a>"
-                    + $"<table id=\"doct-{RowId}-{columnSlug}\" class=\"hidden\">"
+                    + $"<table id=\"doct-{RowId}-{columnSlug}\" class=\"d-none\">"
                     + $"<thead><tr><th>{TitleColumnHeader}</th><th>{GroupColumnHeader}</th></tr></thead><tbody>"
                 );
 

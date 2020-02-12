@@ -11,7 +11,7 @@
         </asp:View>
         <asp:View runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridEduProgramProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false" 
+                <asp:GridView id="gridEduProgramProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false"
                         UseAccessibleHeader="true"
                         CssClass="table table-bordered table-striped table-hover grid-eduprogramprofile-obrnadzor-eduforms"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorEduForms_RowDataBound">
@@ -37,7 +37,7 @@
         </asp:View>
         <asp:View runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridEduProgramProfileObrnadzorDocuments" runat="server" AutoGenerateColumns="false" 
+                <asp:GridView id="gridEduProgramProfileObrnadzorDocuments" runat="server" AutoGenerateColumns="false"
                         UseAccessibleHeader="true"
                         CssClass="table table-bordered table-striped table-hover grid-eduprogramprofile-obrnadzor-documents"
                         GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorDocuments_RowDataBound">
@@ -75,9 +75,9 @@
                 </div>
                 <div class="modal-body">
                 </div>
-            </div> 
+            </div>
         </div>
-	</div>	
+	</div>
 </div>
 <script type="text/javascript">
 (function($, document) {
@@ -91,11 +91,11 @@
             var table = $("#" + link.data("table"));
     		$(this).find(".modal-title").text(link.closest("tr").data("title"));
     		$(this).find(".modal-body").html(table.clone()).find("table")
-		        .addClass("table table-striped table-bordered table-hover table-condensed")
-				.removeClass ("hidden")
+		        .addClass("table table-striped table-bordered table-hover table-sm")
+				.removeClass ("d-none")
 				.before("<p class='u8y-epp-docs-dlg-caption'>" + getTh(link.closest ("td")).html() + "</p>")
                 .wrap ("<div class='u8y-epp-docs-dlg-body'></div>");
         });
     });
 } (jQuery, document));
-</script>		
+</script>

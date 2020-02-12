@@ -1,4 +1,4 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DivisionViewModel>
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DivisionViewModel>
 @using System.Collections.Generic
 @using DotNetNuke.Collections
 @using DotNetNuke.Web.Mvc.Helpers
@@ -96,12 +96,12 @@
                         } else {
                             @subDivision.Title
     				    }
-        			</li>    
+        			</li>
                 }
         		</ul>
         	</div>
         }
-    	<button type="button" class="btn btn-default btn-sm btn-barcode" data-toggle="modal"
+    	<button type="button" class="btn btn-outline-secondary btn-sm btn-barcode" data-toggle="modal"
 		        data-target="#division-barcode-dialog-@Dnn.ModuleContext.ModuleId">
 	        @Html.Raw(Dnn.LocalizeString("linkBarcode.Text"))
         </button>
@@ -118,12 +118,12 @@
                         <img class="center-block" src="@Model.BarcodeImageUrl"
         			        alt='@Dnn.LocalizeString("imageBarcode.AlternateText")'
         		            title='@Dnn.LocalizeString("imageBarcode.ToolTip")' />
-                    </div>	
+                    </div>
                 </div>
 		    </div>
 		</div>
 	    @if (Model.DivisionTermID != null) {
-            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-default btn-sm btn-related-content">
+            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-outline-secondary btn-sm btn-related-content">
 		        <span class="glyphicon glyphicon-search"></span>
 	            @Dnn.LocalizeString("RelatedContent.Text")
             </a>

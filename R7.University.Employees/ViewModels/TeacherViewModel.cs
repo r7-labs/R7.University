@@ -108,7 +108,7 @@ namespace R7.University.Employees.ViewModels
 
         string HiddenSpan (string microdata, string content)
         {
-            return $"<span class=\"hidden\" itemprop=\"{microdata}\">{content}</span>";
+            return $"<span class=\"d-none\" itemprop=\"{microdata}\">{content}</span>";
         }
 
         string GetPositionsString ()

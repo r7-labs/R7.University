@@ -12,7 +12,7 @@
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="media">
 		<div class="media-left media-top">
-    	    <div class="well">
+    	    <div class="card card-body bg-light">
 				<asp:Image id="imagePhoto" runat="server" />
 				<asp:Panel id="panelContacts" runat="server" CssClass="u8y-employee-contacts">
 					<div class="_section">
@@ -34,9 +34,9 @@
         			</div>
 				</asp:Panel>
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
-			        CssClass="btn btn-default btn-block btn-sm btn-barcode" data-toggle="modal" />
+			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
 			</div>
-		</div>	
+		</div>
     	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="nav nav-tabs">
@@ -64,7 +64,7 @@
             			</asp:Repeater>
 				    </asp:Panel>
 				</div>
-        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">	
+        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
         			<div class="_section" style="margin-bottom:10px">
         				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-experience"
@@ -89,7 +89,7 @@
 						//--></script>
 						<!--/Science Index counter-->
 					</asp:Panel>
-					<div class="_section" style="margin-bottom:10px">	
+					<div class="_section" style="margin-bottom:10px">
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
@@ -99,11 +99,11 @@
                                 <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                             </Columns>
         			    </asp:GridView>
-        			</div>		
+        			</div>
         		</div>
         		<div id="employeeDisciplines-<%= ModuleId %>" class="tab-pane fade">
                     <div class="_section">
-                        <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-disciplines" 
+                        <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-disciplines"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
                             <Columns>
                                 <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile.Column" />
@@ -117,18 +117,18 @@
         		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade u8y-employee-about">
         			<asp:Literal id="litAbout" runat="server" />
         		</div>
-			</div>	
+			</div>
     	</div>
     </div>
     <ul class="dnnActions dnnClear" style="margin-bottom:1em">
 		<li>
-            <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-default" Visible="false">
+            <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-primary" Visible="false">
                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 <%: LocalizeString ("cmdEdit") %>
             </asp:HyperLink>
         </li>
 		<li>
-			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-link">
+			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-secondary">
 			    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
 				<%: LocalizeString ("Close.Text") %>
 			</asp:HyperLink>
@@ -147,6 +147,6 @@
 				<p><asp:Label runat="server" resourcekey="BarcodeScan.Text" /></p>
 				<asp:Image id="imageBarcode" runat="server" CssClass="center-block" />
 			</div>
-        </div>	
-	</div>	
+        </div>
+	</div>
 </div>
