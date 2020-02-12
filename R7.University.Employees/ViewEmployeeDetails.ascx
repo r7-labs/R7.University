@@ -2,11 +2,6 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
-<%-- tell CDF what we are using lower Bootstrap version than actually used to give skin a preference --%>
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/bootstrap/css/bootstrap.min.css" Name="bootstrap" Version="3.0.0" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/bootstrap/css/bootstrap.theme.min.css" Name="bootstrap.theme" Version="3.0.0" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/bootstrap/js/bootstrap.min.js" Name="bootstrap" Version="3.0.0" ForceProvider="DnnFormBottomProvider" />
-
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">

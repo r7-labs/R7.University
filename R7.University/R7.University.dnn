@@ -228,6 +228,33 @@
 						</file>
 					</files>
 				</component>
+				<component type="Cleanup" version="02.02.03">
+					<files>
+						<basePath>DesktopModules/MVC/R7.University/R7.University/bootstrap/css</basePath>
+						<file><name>bootstrap.css</name></file>
+						<file><name>bootstrap.min.css</name></file>
+						<file><name>bootstrap.css.map</name></file>
+						<file><name>bootstrap.min.css.map</name></file>
+						<file><name>bootstrap-theme.css</name></file>
+						<file><name>bootstrap-theme.min.css</name></file>
+						<file><name>bootstrap-theme.css.map</name></file>
+						<file><name>bootstrap-theme.min.css.map</name></file>
+					</files>
+					<files>
+						<basePath>DesktopModules/MVC/R7.University/R7.University/bootstrap/fonts</basePath>
+						<file><name>glyphicons-halflings-regular.eot</name></file>
+						<file><name>glyphicons-halflings-regular.ttf</name></file>
+						<file><name>glyphicons-halflings-regular.woff</name></file>
+						<file><name>glyphicons-halflings-regular.woff2</name></file>
+						<file><name>glyphicons-halflings-regular.svg</name></file>
+					</files>
+					<files>
+						<basePath>DesktopModules/MVC/R7.University/R7.University/bootstrap/js</basePath>
+						<file><name>bootstrap.js</name></file>
+						<file><name>bootstrap.min.js</name></file>
+						<file><name>npm.js</name></file>
+					</files>
+				</component>
 			</components>
 		</package>
 		<package name="R7.University.Launchpad" type="Module" version="02.03.00">

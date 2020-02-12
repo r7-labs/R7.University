@@ -67,16 +67,11 @@
         <ItemGroup>
             <InstallResourceFilteredFiles Include="@(InstallResourceFiles)" Exclude="@(InstallResourceExcludeFiles)" />
         </ItemGroup>
-		<!-- Declare Bootstrap files -->
-        <ItemGroup>
-			<InstallBootstrapFiles Include="../node_modules/bootstrap/dist/**/*" />
-		</ItemGroup>
-	    <!-- Copy files -->
+		<!-- Copy files -->
         <Copy SourceFiles="@(InstallBinaryFiles)" DestinationFolder="$(TmpDir)/Package/bin" />
         <Copy SourceFiles="@(InstallManifestFiles)" DestinationFolder="$(TmpDir)/Package" />
         <Copy SourceFiles="@(InstallSqlDataProviderFiles)" DestinationFolder="$(TmpDir)/Package/SqlDataProvider" />
         <Copy SourceFiles="@(InstallResourceFilteredFiles)" DestinationFolder="$(TmpDir)/Resources/%(RecursiveDir)" />
-		<Copy SourceFiles="@(InstallBootstrapFiles)" DestinationFolder="$(TmpDir)/Resources/R7.University/bootstrap/%(RecursiveDir)" />
         <!-- Create Resources.zip -->
         <ItemGroup>
             <InstallResourceZipFiles Include="$(TmpDir)/Resources/**/*.*" />
