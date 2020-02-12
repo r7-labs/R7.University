@@ -35,11 +35,11 @@
     	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="nav nav-tabs">
-    		    <li class="active"><a href="#employeeCommon-<%= ModuleId %>" data-toggle="tab"><%= LocalizeString("Common.Tab") %></a></li>
-    			<li id="tabExperience" runat="server"><a data-toggle="tab" href="#employeeExperience-<%= ModuleId %>"><%= LocalizeString("Experience.Tab") %></a></li>
-    			<li id="tabAchievements" runat="server"><a data-toggle="tab" href="#employeeAchievements-<%= ModuleId %>"><%= LocalizeString("Achievements.Tab") %></a></li>
-    			<li id="tabDisciplines" runat="server"><a data-toggle="tab" href="#employeeDisciplines-<%= ModuleId %>"><%= LocalizeString("Disciplines.Tab") %></a></li>
-    			<li id="tabAbout" runat="server"><a data-toggle="tab" href="#employeeAbout-<%= ModuleId %>"><%= LocalizeString("About.Tab") %></a></li>
+    		    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#employeeCommon-<%= ModuleId %>" aria-controls="employeeCommon-<%= ModuleId %>" aria-selected="true"><%= LocalizeString("Common.Tab") %></a></li>
+    			<li class="nav-item" id="tabExperience" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeExperience-<%= ModuleId %>" aria-controls="employeeExperience-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Experience.Tab") %></a></li>
+    			<li class="nav-item" id="tabAchievements" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeAchievements-<%= ModuleId %>" aria-controls="employeeAchievements-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Achievements.Tab") %></a></li>
+    			<li class="nav-item" id="tabDisciplines" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeDisciplines-<%= ModuleId %>" aria-controls="employeeDisciplines-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Disciplines.Tab") %></a></li>
+    			<li class="nav-item" id="tabAbout" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeAbout-<%= ModuleId %>" aria-controls="employeeAbout-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("About.Tab") %></a></li>
     		</ul>
 			<div class="tab-content">
         		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade in active">
