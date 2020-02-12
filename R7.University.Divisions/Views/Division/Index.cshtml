@@ -105,17 +105,17 @@
 		        data-target="#division-barcode-dialog-@Dnn.ModuleContext.ModuleId">
 	        @Html.Raw(Dnn.LocalizeString("linkBarcode.Text"))
         </button>
-        <div class="modal fade" id="division-barcode-dialog-@Dnn.ModuleContext.ModuleId" role="dialog"
+        <div class="modal fade" id="division-barcode-dialog-@Dnn.ModuleContext.ModuleId" role="dialog" tabindex="-1"
 		        aria-labelledby="division-barcode-dialog-title-@Dnn.ModuleContext.ModuleId">
 		    <div class="modal-dialog modal-sm" role="document">
 			    <div class="modal-content">
 				    <div class="modal-header">
-					    <button type="button" class="close" data-dismiss="modal" aria-label='@Dnn.LocalizeString("Close")'><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="division-barcode-dialog-title-@Dnn.ModuleContext.ModuleId">@Model.Title</h4>
+						<h5 class="modal-title" id="division-barcode-dialog-title-@Dnn.ModuleContext.ModuleId">@Model.Title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label='@Dnn.LocalizeString("Close")'><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
 					    <p>@Dnn.LocalizeString("BarcodeScan.Text")</p>
-                        <img class="center-block" src="@Model.BarcodeImageUrl"
+                        <img class="img-thumbnail d-block mx-auto" src="@Model.BarcodeImageUrl"
         			        alt='@Dnn.LocalizeString("imageBarcode.AlternateText")'
         		            title='@Dnn.LocalizeString("imageBarcode.ToolTip")' />
                     </div>

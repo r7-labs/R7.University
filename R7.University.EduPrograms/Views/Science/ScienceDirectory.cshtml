@@ -1,4 +1,4 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ScienceDirectoryViewModel>
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ScienceDirectoryViewModel>
 @using System.Collections.Generic
 @using DotNetNuke.Collections
 @using DotNetNuke.Web.Mvc.Helpers
@@ -76,12 +76,12 @@ else {
         <div class="modal-dialog u8y-science-descr-dlg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label='@Dnn.LocalizeString("Close")'><span aria-hidden="true">&times;</span></button>
-                    <h4 id="u8y-science-descr-dlg-title-@Dnn.ModuleContext.ModuleId" class="modal-title"></h4>
+                    <h5 id="u8y-science-descr-dlg-title-@Dnn.ModuleContext.ModuleId" class="modal-title"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label='@Dnn.LocalizeString("Close")'><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
     <script type="text/javascript">

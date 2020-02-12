@@ -70,8 +70,8 @@
         <div class="modal-dialog u8y-epp-docs-dlg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
-                    <h4 id="u8y-epp-docs-dlg-title-<%: ModuleId %>" class="modal-title"></h4>
+                    <h5 id="u8y-epp-docs-dlg-title-<%: ModuleId %>" class="modal-title"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                 </div>

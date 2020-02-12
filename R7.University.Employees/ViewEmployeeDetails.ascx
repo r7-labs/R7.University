@@ -131,16 +131,16 @@
     </ul>
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="true" />
 </asp:Panel>
-<div id="employee-barcode-dialog-<%: ModuleId %>" class="modal fade" role="dialog" aria-labelledby="employee-barcode-dialog-title-<%: ModuleId %>">
+<div id="employee-barcode-dialog-<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="employee-barcode-dialog-title-<%: ModuleId %>">
     <div class="modal-dialog modal-sm" role="document">
 	    <div class="modal-content">
 	        <div class="modal-header">
+				<h5 id="employee-barcode-dialog-title-<%: ModuleId %>" class="modal-title"><asp:Label id="labelBarcodeEmployeeName" runat="server" /></h5>
 			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
-				<h4 id="employee-barcode-dialog-title-<%: ModuleId %>" class="modal-title"><asp:Label id="labelBarcodeEmployeeName" runat="server" /></h4>
 			</div>
 			<div class="modal-body">
 				<p><asp:Label runat="server" resourcekey="BarcodeScan.Text" /></p>
-				<asp:Image id="imageBarcode" runat="server" CssClass="center-block" />
+				<asp:Image id="imageBarcode" runat="server" CssClass="img-thumbnail d-block mx-auto" />
 			</div>
         </div>
 	</div>
