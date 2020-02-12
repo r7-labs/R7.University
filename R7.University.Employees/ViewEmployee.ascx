@@ -1,9 +1,9 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ViewEmployee.ascx.cs" Inherits="R7.University.Employees.ViewEmployee" %>
+<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ViewEmployee.ascx.cs" Inherits="R7.University.Employees.ViewEmployee" %>
 
 <asp:Panel id="panelEmployee" runat="server" CssClass="u8y-employee">
 	<div class="_photo">
         <asp:HyperLink id="linkPhoto" runat="server" >
-			<asp:Image id="imagePhoto" runat="server" CssClass="center-block" />
+			<asp:Image id="imagePhoto" runat="server" CssClass="d-block mx-auto" />
 		</asp:HyperLink>
 	</div>
 	<div class="_name">
