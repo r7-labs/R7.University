@@ -19,8 +19,8 @@ GridAndFormUniqueValidator.prototype.validate = function (sender, e) {
             var addCmd = valContext.find ("[id $= '_buttonAddItem']").length === 1;
             var count = items.filter (function (i) { return i[this.uniqueField] == selectedFieldId && i.EditState != "Deleted"; }, this).length;
             if (addCmd && count === 0) { return; }
-            var editedEduFormId = this.getEditedFieldId (valContext);
-            if (!addCmd && count === ((selectedFieldId === editedEduFormId)? 1 : 0)) { return; }
+            var editedFieldId = this.getEditedFieldId (valContext);
+            if (!addCmd && count === ((selectedFieldId === editedFieldId)? 1 : 0)) { return; }
             e.IsValid = false;
         }
     }
