@@ -254,6 +254,11 @@
 						<file><name>bootstrap.min.js</name></file>
 						<file><name>npm.js</name></file>
 					</files>
+					<files>
+						<basePath>DesktopModules/MVC/R7.University/R7.University/images</basePath>
+						<file><name>nophoto_en.png</name></file>
+						<file><name>nophoto_ru.png</name></file>
+					</files>
 				</component>
 			</components>
 		</package>

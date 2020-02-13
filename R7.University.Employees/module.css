@@ -171,3 +171,6 @@
     width:100%;
     font-size:85% 
 }
+
+.u8y-img-employee-nophoto { border: 2px solid #ccc }
+.u8y-employee-list-item { margin-bottom: .5rem }

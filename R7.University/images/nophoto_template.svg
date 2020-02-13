@@ -13,11 +13,11 @@
    height="256"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="nophoto_template.svg"
-   inkscape:export-filename="/home/common/Сайт/Моя графика/NoPhoto/nophoto_en_square.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="nophoto_template (copy).svg"
+   inkscape:export-filename="/home/redhound/Рабочий стол/Projects/R7.University/R7.University/images/nophoto.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs4">
     <filter
@@ -98,21 +98,21 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#eeeeee"
+     pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.80253906"
-     inkscape:cx="-135.63061"
-     inkscape:cy="13.33855"
+     inkscape:zoom="1.1349616"
+     inkscape:cx="-119.3534"
+     inkscape:cy="9.6008424"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="718"
+     inkscape:window-width="1920"
+     inkscape:window-height="1014"
      inkscape:window-x="0"
-     inkscape:window-y="26"
+     inkscape:window-y="40"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -122,7 +122,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -131,52 +131,19 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-796.36218)">
-    <g
-       id="g3803">
-      <path
-         transform="translate(30.808472,795.11613)"
-         d="m 148.27938,95.260162 c 0,27.526878 -22.87281,49.841808 -51.087852,49.841808 -28.215044,0 -51.087856,-22.31493 -51.087856,-49.841808 0,-27.526872 22.872812,-49.841812 51.087856,-49.841812 28.215042,0 51.087852,22.31494 51.087852,49.841812 z"
-         sodipodi:ry="49.841812"
-         sodipodi:rx="51.087856"
-         sodipodi:cy="95.260162"
-         sodipodi:cx="97.191528"
-         id="path3934"
-         style="fill:#ffffff;stroke:#999999;stroke-width:4;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-         sodipodi:type="arc" />
-      <path
-         transform="matrix(2.3519074,0,0,4.1124999,-100.58547,753.43514)"
-         d="m 148.27938,95.260162 c 0,27.526878 -22.87281,49.841808 -51.087852,49.841808 -28.215044,0 -51.087856,-22.31493 -51.087856,-49.841808 0,-27.526872 22.872812,-49.841812 51.087856,-49.841812 28.215042,0 51.087852,22.31494 51.087852,49.841812 z"
-         sodipodi:ry="49.841812"
-         sodipodi:rx="51.087856"
-         sodipodi:cy="95.260162"
-         sodipodi:cx="97.191528"
-         id="path3934-1"
-         style="fill:#ffffff;stroke:#999999;stroke-width:1.28616570999999991;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-         sodipodi:type="arc" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text3972"
-         y="1019.7348"
-         x="66.941406"
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
-         xml:space="preserve"><tspan
-           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#999999;font-family:Droid Sans;-inkscape-font-specification:Droid Sans Bold"
-           y="1019.7348"
-           x="66.941406"
-           id="tspan3974"
-           sodipodi:role="line">no photo</tspan></text>
-    </g>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3972-5"
-       y="1105.7393"
-       x="65.054688"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
-       xml:space="preserve"><tspan
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#999999;font-family:Droid Sans;-inkscape-font-specification:Droid Sans Bold"
-         y="1105.7393"
-         x="65.054688"
-         id="tspan3974-2"
-         sodipodi:role="line">нет фото</tspan></text>
+    <ellipse
+       ry="49.841812"
+       rx="51.087856"
+       cy="890.37628"
+       cx="128"
+       style="fill:#f2f2f2;stroke:#cccccc;stroke-width:3;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path3934" />
+    <ellipse
+       ry="204.97444"
+       rx="120.15391"
+       cy="1145.1925"
+       cx="128"
+       style="fill:#f2f2f2;stroke:#cccccc;stroke-width:3;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path3934-1" />
   </g>
 </svg>

@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2019 Roman M. Yagodin
+//  Copyright (c) 2014-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Globalization;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
@@ -41,58 +42,48 @@ namespace R7.University.SharedLogic
                 image = FileManager.Instance.GetFile (photoFileId.Value);
             }
 
+            var defaultWidth = listMode
+                ? UniversityConfig.Instance.EmployeePhoto.ListDefaultWidth
+                : UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
+
+            // TODO: Make PhotoWidth settings nullable
+            photoWidth = (photoWidth > 0) ? photoWidth : defaultWidth;
+
             // if no photo specified (or not found), use fallback image
             var noPhotoUrl = default (string);
             if (image == null) {
                 image = new FileInfo ();
-                image.Width = listMode ? UniversityConfig.Instance.EmployeePhoto.ListDefaultWidth : UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
-                image.Height = image.Width;
-                noPhotoUrl = $"/DesktopModules/MVC/R7.University/R7.University/images/nophoto_{CultureInfo.CurrentCulture.TwoLetterISOLanguageName}.png";
+                image.Width = defaultWidth;
+                image.Height = defaultWidth;
+                noPhotoUrl = $"/DesktopModules/MVC/R7.University/R7.University/images/nophoto.png";
             }
 
-            var imageWidth = image.Width;
-            var imageHeight = image.Height;
-
-            // do we need to scale image?
-            if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
-
-                if (noPhotoUrl == null) {
-                    imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl ($"/imagehandler.ashx?fileid={image.FileId}&width={photoWidth}");
-                }
-                else {
-                    imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl ($"/imagehandler.ashx?file={noPhotoUrl}&width={photoWidth}");
-                }
-           }
-            else {
-                // use original images
-                if (noPhotoUrl == null) {
-                    imagePhoto.ImageUrl = FileManager.Instance.GetUrl (image);
-                }
-                else {
-                    imagePhoto.ImageUrl = noPhotoUrl;
-                }
-            }
-
-            // set dimensions
-            if (!Null.IsNull (photoWidth) && photoWidth != imageWidth) {
-                imagePhoto.Width = photoWidth;
-                imagePhoto.Height = (int) (imageHeight * (float) photoWidth / imageWidth);
+            if (noPhotoUrl == null) {
+                imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl ($"/imagehandler.ashx?fileid={image.FileId}&width={photoWidth}");
             }
             else {
-                imagePhoto.Width = imageWidth;
-                imagePhoto.Height = imageHeight;
+                // files inside DesktopModules folder have no fileid
+                imagePhoto.ImageUrl = UniversityUrlHelper.FullUrl ($"/imagehandler.ashx?file={noPhotoUrl}&width={photoWidth}");
             }
 
             // apply CSS classes
-            if (imageWidth == imageHeight) {
-                imagePhoto.CssClass += " rounded-circle";
+            var imageWidth = image.Width;
+            var imageHeight = image.Height;
+
+            if (Math.Abs (imageWidth - imageHeight) <= 1) {
+                // for square and "almost" square images
+                imagePhoto.CssClass += " img-fluid rounded-circle";
             }
             else {
-                imagePhoto.CssClass += " rounded";
+                imagePhoto.CssClass += " img-fluid rounded";
+            }
+
+            if (noPhotoUrl != null) {
+                imagePhoto.CssClass += " u8y-img-employee-nophoto";
             }
 
             // set alt & title
-            var fullName = employee.FullName ();
+                var fullName = employee.FullName ();
             imagePhoto.AlternateText = fullName;
             imagePhoto.ToolTip = fullName;
         }
