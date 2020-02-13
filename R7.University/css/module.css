@@ -1,5 +1,10 @@
-﻿.u8y-agpl-footer > hr { margin-bottom:0;margin-top:0;width:33% }
-.u8y-agpl-footer > a { font-size:xx-small;color:#ccc }
+﻿.u8y-agpl-footer > hr {
+	margin-bottom:0;
+	margin-top:0;
+	margin-left:0;
+	width:33%
+}
+.u8y-agpl-footer > a { font-size:xx-small }
 
 tr.u8y-not-published { background-color:#ffc!important }
 tr.u8y-not-published:hover { background-color:#fefe97!important }
