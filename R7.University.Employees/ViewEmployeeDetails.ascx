@@ -6,7 +6,7 @@
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
-		<div class="col-md-4 mb-3 mb-md-0">
+		<div class="col-md-3 mb-3 mb-md-0">
     	    <div class="border bg-light rounded p-3">
 				<asp:Image id="imagePhoto" runat="server" CssClass="img-fluid d-block mx-auto" />
 				<asp:Panel id="panelContacts" runat="server" CssClass="u8y-employee-contacts">
@@ -32,7 +32,7 @@
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
 			</div>
 		</div>
-    	<div id="employeeTabs_<%= ModuleId %>" class="col-md-8 pl-md-3">
+    	<div id="employeeTabs_<%= ModuleId %>" class="col-md-9 pl-md-3">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="nav nav-pills u8y-employee-details-tabs" role="tablist">
     		    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="pill" href="#employeeCommon-<%= ModuleId %>" aria-controls="employeeCommon-<%= ModuleId %>" aria-selected="true"><%= LocalizeString("Common.Tab") %></a></li>
