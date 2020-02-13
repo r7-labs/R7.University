@@ -57,6 +57,16 @@
             				</ItemTemplate>
             				<FooterTemplate></ul></FooterTemplate>
             			</asp:Repeater>
+						<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="u8y-science-index-counter d-inline-block border rounded p-2">
+							<!--Science Index counter-->
+							<script type="text/javascript"><!--
+							document.write('<a href="https://elibrary.ru/author_counter_click.asp?id=<%: Employee.ScienceIndexAuthorId %>"'+
+							' target=_blank><img src="https://elibrary.ru/author_counter.aspx?id=<%: Employee.ScienceIndexAuthorId %>&rand='+
+							Math.random()+'" title="<%: LocalizeString ("ScienceIndexAuthorProfile.Text") %>" border="0" '+
+							'height="31" width="88" border="0"><\/a>')
+							//--></script>
+							<!--/Science Index counter-->
+						</asp:Panel>
 				    </asp:Panel>
 				</div>
         		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
@@ -74,17 +84,7 @@
         			</div>
         		</div>
         		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
-        			<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="u8y-science-index-counter">
-						<!--Science Index counter-->
-						<script type="text/javascript"><!--
-						document.write('<a href="https://elibrary.ru/author_counter_click.asp?id=<%: Employee.ScienceIndexAuthorId %>"'+
-						' target=_blank><img src="https://elibrary.ru/author_counter.aspx?id=<%: Employee.ScienceIndexAuthorId %>&rand='+
-						Math.random()+'" title="<%: LocalizeString ("ScienceIndexAuthorProfile.Text") %>" border="0" '+
-						'height="31" width="88" border="0"><\/a>')
-						//--></script>
-						<!--/Science Index counter-->
-					</asp:Panel>
-					<div class="_section" style="margin-bottom:10px">
+        			<div class="_section" style="margin-bottom:10px">
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
