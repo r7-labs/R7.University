@@ -10,7 +10,7 @@
 		<div class="row u8y-employee-list-item">
 			<div class="col-md-2">
 				<asp:HyperLink id="linkDetails" runat="server">
-					<asp:Image id="imagePhoto" runat="server" />
+					<asp:Image id="imagePhoto" runat="server" CssClass="img-fluid" />
 				</asp:HyperLink>
 			</div>
 			<div class="col-md-10">
@@ -28,7 +28,5 @@
 			</div>
 		</div>
 	</ItemTemplate>
-	<ItemStyle CssClass="media employee-list-item" />
-	<AlternatingItemStyle CssClass="media employee-list-item" />
 </asp:DataList>
 <controls:AgplSignature runat="server" />

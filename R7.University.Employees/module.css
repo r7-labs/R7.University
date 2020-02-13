@@ -52,8 +52,7 @@
 .u8y-employee-details ._website { margin-right:8px }
 
 .u8y-employee-details .tab-content {
-    margin-left:18px; /* compensate left margin of ul */
-    margin-top:1em
+    margin-top:1rem
 }
 
 .u8y-employee-details .u8y-employee-contacts {
@@ -78,9 +77,11 @@
 
 .u8y-employee-details table.grid-achievements,
 .u8y-employee-details table.grid-experience,
-.u8y-employee-details table.grid-disciplines { font-size:85% }
+.u8y-employee-details table.grid-disciplines { font-size:80% }
 
-.u8y-employee-details .u8y-employee-about { font-size:85% }
+.u8y-employee-details .u8y-employee-about { font-size:80% }
+
+.u8y-employee-details .u8y-employee-details-tabs { font-size:80% }
 
 .u8y-employee-list {
     display:block;
@@ -173,4 +174,4 @@
 }
 
 .u8y-img-employee-nophoto { border: 2px solid #ccc }
-.u8y-employee-list-item { margin-bottom: .5rem }
+.u8y-employee-list-item { margin-bottom: 1rem }

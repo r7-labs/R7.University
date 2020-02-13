@@ -5,10 +5,10 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
-    <div class="media">
-		<div class="media-left media-top">
-    	    <div class="card card-body bg-light">
-				<asp:Image id="imagePhoto" runat="server" />
+    <div class="row no-gutters">
+		<div class="col-md-4 mb-3 mb-md-0">
+    	    <div class="border bg-light rounded p-3">
+				<asp:Image id="imagePhoto" runat="server" CssClass="img-fluid d-block mx-auto" />
 				<asp:Panel id="panelContacts" runat="server" CssClass="u8y-employee-contacts">
 					<div class="_section">
     					<asp:HyperLink id="linkEmail" runat="server" CssClass="email _email" />
@@ -32,17 +32,17 @@
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
 			</div>
 		</div>
-    	<div id="employeeTabs_<%= ModuleId %>" class="media-body">
+    	<div id="employeeTabs_<%= ModuleId %>" class="col-md-8 pl-md-3">
             <asp:Literal id="literalFullName" runat="server" />
-    		<ul class="nav nav-tabs">
-    		    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#employeeCommon-<%= ModuleId %>" aria-controls="employeeCommon-<%= ModuleId %>" aria-selected="true"><%= LocalizeString("Common.Tab") %></a></li>
-    			<li class="nav-item" id="tabExperience" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeExperience-<%= ModuleId %>" aria-controls="employeeExperience-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Experience.Tab") %></a></li>
-    			<li class="nav-item" id="tabAchievements" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeAchievements-<%= ModuleId %>" aria-controls="employeeAchievements-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Achievements.Tab") %></a></li>
-    			<li class="nav-item" id="tabDisciplines" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeDisciplines-<%= ModuleId %>" aria-controls="employeeDisciplines-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Disciplines.Tab") %></a></li>
-    			<li class="nav-item" id="tabAbout" runat="server"><a class="nav-link" role="tab" data-toggle="tab" href="#employeeAbout-<%= ModuleId %>" aria-controls="employeeAbout-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("About.Tab") %></a></li>
+    		<ul class="nav nav-pills u8y-employee-details-tabs" role="tablist">
+    		    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="pill" href="#employeeCommon-<%= ModuleId %>" aria-controls="employeeCommon-<%= ModuleId %>" aria-selected="true"><%= LocalizeString("Common.Tab") %></a></li>
+    			<li class="nav-item" id="tabExperience" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeExperience-<%= ModuleId %>" aria-controls="employeeExperience-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Experience.Tab") %></a></li>
+    			<li class="nav-item" id="tabAchievements" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeAchievements-<%= ModuleId %>" aria-controls="employeeAchievements-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Achievements.Tab") %></a></li>
+    			<li class="nav-item" id="tabDisciplines" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeDisciplines-<%= ModuleId %>" aria-controls="employeeDisciplines-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Disciplines.Tab") %></a></li>
+    			<li class="nav-item" id="tabAbout" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeAbout-<%= ModuleId %>" aria-controls="employeeAbout-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("About.Tab") %></a></li>
     		</ul>
 			<div class="tab-content">
-        		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade in active">
+        		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade show active" role="tabpanel">
                     <p><asp:Label id="labelAcademicDegreeAndTitle" runat="server" /></p>
 					<asp:Panel id="panelPositions" runat="server" CssClass="_section">
                         <label><%: LocalizeString ("OccupiedPositions.Text") %></label>
@@ -59,10 +59,10 @@
             			</asp:Repeater>
 				    </asp:Panel>
 				</div>
-        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade">
+        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
         			<div class="_section" style="margin-bottom:10px">
-        				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-experience"
+        				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-experience"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
                                 <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
@@ -73,7 +73,7 @@
         			    </asp:GridView>
         			</div>
         		</div>
-        		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade">
+        		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
         			<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="u8y-science-index-counter">
 						<!--Science Index counter-->
 						<script type="text/javascript"><!--
@@ -85,7 +85,7 @@
 						<!--/Science Index counter-->
 					</asp:Panel>
 					<div class="_section" style="margin-bottom:10px">
-        				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-achievements"
+        				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
                                 <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
@@ -96,9 +96,9 @@
         			    </asp:GridView>
         			</div>
         		</div>
-        		<div id="employeeDisciplines-<%= ModuleId %>" class="tab-pane fade">
+        		<div id="employeeDisciplines-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
                     <div class="_section">
-                        <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover grid-disciplines"
+                        <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-disciplines"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
                             <Columns>
                                 <asp:BoundField DataField="EduProgramProfile_String" HeaderText="EduProgramProfile.Column" />
@@ -109,7 +109,7 @@
                     </div>
         			<asp:Literal id="litDisciplines" runat="server" />
         		</div>
-        		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade u8y-employee-about">
+        		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade u8y-employee-about" role="tabpanel">
         			<asp:Literal id="litAbout" runat="server" />
         		</div>
 			</div>

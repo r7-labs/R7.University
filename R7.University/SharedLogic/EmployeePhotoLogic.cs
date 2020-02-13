@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Globalization;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Services.FileSystem;
@@ -72,10 +71,10 @@ namespace R7.University.SharedLogic
 
             if (Math.Abs (imageWidth - imageHeight) <= 1) {
                 // for square and "almost" square images
-                imagePhoto.CssClass += " img-fluid rounded-circle";
+                imagePhoto.CssClass += " rounded-circle";
             }
             else {
-                imagePhoto.CssClass += " img-fluid rounded";
+                imagePhoto.CssClass += " rounded";
             }
 
             if (noPhotoUrl != null) {
