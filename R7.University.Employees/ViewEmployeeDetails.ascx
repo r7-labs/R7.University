@@ -71,7 +71,7 @@
 				</div>
         		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
-        			<div class="_section" style="margin-bottom:10px">
+        			<div class="table-responsive">
         				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-experience"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
@@ -84,7 +84,7 @@
         			</div>
         		</div>
         		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
-        			<div class="_section" style="margin-bottom:10px">
+        			<div class="table-responsive">
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
@@ -97,7 +97,7 @@
         			</div>
         		</div>
         		<div id="employeeDisciplines-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
-                    <div class="_section">
+                    <div class="table-responsive">
                         <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-disciplines"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
                             <Columns>
