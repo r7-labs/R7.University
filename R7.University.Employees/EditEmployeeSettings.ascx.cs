@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2019 Roman M. Yagodin
+//  Copyright (c) 2014-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -26,6 +26,7 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Framework;
 using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Controls;
+using R7.Dnn.Extensions.Text;
 using R7.University.Employees.Models;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -71,7 +72,10 @@ namespace R7.University.Employees
 
                     checkAutoTitle.Checked = Settings.AutoTitle;
                     checkShowCurrentUser.Checked = Settings.ShowCurrentUser;
-					textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
+
+                    if (Settings.PhotoWidth > 0) {
+                        textPhotoWidth.Text = Settings.PhotoWidth.ToString ();
+                    }
                 }
             }
             catch (Exception ex) {
@@ -88,7 +92,7 @@ namespace R7.University.Employees
                 Settings.ShowCurrentUser = checkShowCurrentUser.Checked;
                 Settings.EmployeeID = int.Parse (comboEmployees.SelectedValue);
                 Settings.AutoTitle = checkAutoTitle.Checked;
-                Settings.PhotoWidth = int.Parse (textPhotoWidth.Text);
+                Settings.PhotoWidth = ParseHelper.ParseToNullable<int> (textPhotoWidth.Text) ?? 0;
 
                 SettingsRepository.SaveSettings (ModuleConfiguration, Settings);
 

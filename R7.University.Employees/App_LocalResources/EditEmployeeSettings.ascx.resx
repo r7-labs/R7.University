@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -42,16 +42,4 @@
 	<data name="labelAutoTitle.Help" xml:space="preserve">
     	<value>If checked, module title will be set to employee name.</value>
   	</data>
-	<data name="labelPhotoWidth.Text" xml:space="preserve">
-    	<value>Photo Width:</value>
-  	</data>
-	<data name="labelPhotoWidth.Help" xml:space="preserve">
-    	<value>Enter photo width in pixels, or leave empty to use original photo size.</value>
-  	</data>
-    <data name="PhotoWidth.Required" xml:space="preserve">
-        <value>Photo width is required.</value>
-    </data>
-    <data name="PhotoWidth.Invalid" xml:space="preserve">
-        <value>Photo width should be integer between 1 and 1024.</value>
-    </data>
 </root>

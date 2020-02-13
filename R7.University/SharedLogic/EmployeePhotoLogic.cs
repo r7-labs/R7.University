@@ -83,7 +83,7 @@ namespace R7.University.SharedLogic
             }
 
             // set alt & title
-                var fullName = employee.FullName ();
+            var fullName = employee.FullName ();
             imagePhoto.AlternateText = fullName;
             imagePhoto.ToolTip = fullName;
         }

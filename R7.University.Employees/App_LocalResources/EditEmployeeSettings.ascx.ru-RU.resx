@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -41,17 +41,5 @@
     </data>
     <data name="labelAutoTitle.Help" xml:space="preserve">
         <value>Если отмечено, имя отображаемого сотрудника будет использоваться в качестве заголовка модуля.</value>
-    </data>
-	<data name="labelPhotoWidth.Text" xml:space="preserve">
-        <value>Ширина фото:</value>
-    </data>
-    <data name="labelPhotoWidth.Help" xml:space="preserve">
-        <value>Введите ширину фото в пикселах или оставьте поле пустым для того, чтобы использовать оригинальные размеры фото.</value>
-    </data>
-    <data name="PhotoWidth.Required" xml:space="preserve">
-        <value>Укажите ширину фото.</value>
-    </data>
-    <data name="PhotoWidth.Invalid" xml:space="preserve">
-        <value>Ширина фото должна быть целым числом от 1 до 1024.</value>
     </data>
 </root>

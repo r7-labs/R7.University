@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -92,7 +92,7 @@
     </data>
     <data name="AtTheMoment.Text" xml:space="preserve">
         <value>н/в</value>
-    </data> 
+    </data>
     <data name="Fax.Format" xml:space="preserve">
         <value>{0} (факс)</value>
     </data>
@@ -128,5 +128,14 @@
     </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать, добавьте элементы.</value>
+    </data>
+	<data name="labelPhotoWidth.Text" xml:space="preserve">
+        <value>Ширина фото:</value>
+    </data>
+    <data name="labelPhotoWidth.Help" xml:space="preserve">
+        <value>Введите ширину фото в пикселах или оставьте поле пустым для того, чтобы использовать размер по умолчанию.</value>
+    </data>
+	<data name="PhotoWidth_Invalid.Text" xml:space="preserve">
+        <value>Ширина фото должна быть целым числом от 0 до 1024. </value>
     </data>
 </root>

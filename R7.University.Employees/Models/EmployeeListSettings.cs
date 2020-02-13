@@ -64,6 +64,7 @@ namespace R7.University.Employees.Models
         [TabModuleSetting (Prefix = "EmployeeList_")]
         public int SortType { get; set; } = 0;
 
+        // TODO: Make PhotoWidth settings nullable
         [TabModuleSetting (Prefix = "EmployeeList_")]
         public int PhotoWidth { get; set; }
     }

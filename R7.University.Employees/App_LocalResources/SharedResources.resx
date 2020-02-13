@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -128,5 +128,14 @@
     </data>
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Please select employee to display.</value>
+    </data>
+	<data name="labelPhotoWidth.Text" xml:space="preserve">
+	    <value>Photo Width:</value>
+    </data>
+	<data name="labelPhotoWidth.Help" xml:space="preserve">
+	    <value>Enter photo width in pixels, or leave empty to use default size.</value>
+    </data>
+	<data name="PhotoWidth_Invalid.Text" xml:space="preserve">
+        <value>Photo width should be integer between 0 and 1024.</value>
     </data>
 </root>

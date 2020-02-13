@@ -57,6 +57,7 @@ namespace R7.University.Employees.Models
         [TabModuleSetting (Prefix = "Employee_")]
         public bool AutoTitle { get; set; } = true;
 
+        // TODO: Make PhotoWidth settings nullable
         [TabModuleSetting (Prefix = "Employee_")]
         public int PhotoWidth { get; set; }
     }
