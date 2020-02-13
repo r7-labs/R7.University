@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2016-2019 Roman M. Yagodin
+//  Copyright (c) 2016-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -42,7 +42,7 @@ namespace R7.University.Components
 
         public int DefaultWidth { get; set; } = 192;
 
-        public int ListDefaultWidth { get; set; } = 120;
+        public int ListDefaultWidth { get; set; } = 113;
     }
 
     public class BarcodeConfig
