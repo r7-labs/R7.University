@@ -48,7 +48,7 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentType" runat="server" ControlName="comboDocumentType" />
-            <asp:DropDownList id="comboDocumentType" runat="server" 
+            <asp:DropDownList id="comboDocumentType" runat="server"  CssClass="dnn-select2"
                 DataTextField="LocalizedType"
                 DataValueField="DocumentTypeID"
             />

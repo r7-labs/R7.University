@@ -21,3 +21,16 @@
 	</ul>
 	<controls:AgplSignature runat="server" ShowRule="false" />
 </div>
+<script type="text/javascript">
+(function($, Sys) {
+    function setupModule() {
+	    $(".dnn-select2").select2();
+    };
+    $(document).ready(function() {
+        setupModule();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setupModule();
+        });
+    });
+} (jQuery, window.Sys));
+</script>
