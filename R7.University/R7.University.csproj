@@ -159,6 +159,9 @@
     <Reference Include="R7.Dnn.Extensions.EFCore">
       <HintPath>..\packages\R7.Dnn.Extensions.EFCore.0.1.1\lib\net451\R7.Dnn.Extensions.EFCore.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetNuke.Web.Client">
+      <HintPath>..\packages\DotNetNuke.Web.Client.8.0.4.226\lib\net40\DotNetNuke.Web.Client.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
@@ -298,6 +301,7 @@
     <Compile Include="Queries\EduProgramProfileFormYearQueryableExtensions.cs" />
     <Compile Include="ModelExtensions\EmployeeExtensions.cs" />
     <Compile Include="Utilities\HttpOffContextHelper.cs" />
+    <Compile Include="Client\ClientResourceHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -319,6 +323,7 @@
     <Folder Include="Security\" />
     <Folder Include="Modules\" />
     <Folder Include="EditModels\" />
+    <Folder Include="Client\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />

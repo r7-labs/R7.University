@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017-2018 Roman M. Yagodin
+//  Copyright (c) 2017-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,9 +20,9 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.Dnn.Extensions.Data;
 using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Modules;
+using R7.University.Client;
 using R7.University.Models;
 using R7.University.Security;
 
@@ -76,6 +76,13 @@ namespace R7.University.Modules
 
         protected UniversityEditPortalModuleBase (string key, ICrudProvider<TEntity> crudProvider) : base (key, crudProvider)
         {
+        }
+
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            ClientResourceHelper.RegisterSelect2 (Page);
         }
 
         protected override void OnLoad (EventArgs e)
