@@ -259,6 +259,16 @@
 						<file><name>nophoto_en.png</name></file>
 						<file><name>nophoto_ru.png</name></file>
 					</files>
+					<files>
+						<file>
+							<path>DesktopModules/MVC/R7.University/R7.University/js</path>
+							<name>dnn-ac-combobox.js</name>
+						</file>
+						<file>
+							<path>DesktopModules/MVC/R7.University/R7.University/css</path>
+							<name>dnn-ac-combobox.css</name>
+						</file>
+					</files>
 				</component>
 			</components>
 		</package>
