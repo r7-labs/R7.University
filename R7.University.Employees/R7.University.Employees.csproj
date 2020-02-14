@@ -224,6 +224,7 @@
     <Compile Include="Queries\OccupiedPositionQuery.cs" />
     <Compile Include="Queries\TeachersQuery.cs" />
     <Compile Include="Components\EmployeeDirectoryController.cs" />
+    <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

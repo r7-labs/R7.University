@@ -28,7 +28,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Utilities;
 
-namespace R7.University.SharedLogic
+namespace R7.University.Employees.SharedLogic
 {
     public static class EmployeePhotoLogic
     {

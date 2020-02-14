@@ -178,7 +178,6 @@
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="ViewModels\ViewModelIndexer.cs" />
     <Compile Include="ViewModels\ViewNumerator.cs" />
-    <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
     <Compile Include="SharedLogic\WorkingHoursLogic.cs" />
     <Compile Include="ViewModels\UniversityFormatHelper.cs" />
     <Compile Include="Components\UniversityConfig.cs" />

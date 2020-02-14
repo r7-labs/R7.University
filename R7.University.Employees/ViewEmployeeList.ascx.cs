@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2019 Roman M. Yagodin
+//  Copyright (c) 2014-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -38,11 +38,11 @@ using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
+using R7.University.Employees.SharedLogic;
 using R7.University.Employees.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
-using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
