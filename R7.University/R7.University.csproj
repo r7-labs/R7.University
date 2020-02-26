@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
-    <ReleaseVersion>2.3.0-ci.1</ReleaseVersion>
+    <ReleaseVersion>2.3.0-ci.3</ReleaseVersion>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
