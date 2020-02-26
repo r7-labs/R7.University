@@ -151,7 +151,7 @@
 /* Select2 */
 
 .dnnFormItem .dnn-select2 + .select2 {
-	/* font-size: 80%; */
+	font-size: 80%;
 	margin-bottom: 18px;
 	width: 45% !important;  /* override inline style */
 	max-width: 445px;
@@ -176,5 +176,5 @@
 }
 
 .select2-results {
-	/* font-size: 80%; */
+	font-size: 80%;
 }
