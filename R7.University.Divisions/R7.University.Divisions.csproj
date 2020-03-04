@@ -10,7 +10,7 @@
     <AssemblyName>R7.University.Divisions</AssemblyName>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ReleaseVersion>2.3.0-ci.3</ReleaseVersion>
+    <ReleaseVersion>2.3.1</ReleaseVersion>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
