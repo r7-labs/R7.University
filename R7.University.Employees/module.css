@@ -113,7 +113,7 @@
 	display:inline-block
 }
 
-.u8y-employee-list .employee-list-item {
+.u8y-employee-list .u8y-employee-list-item {
     display:block
 }
 
