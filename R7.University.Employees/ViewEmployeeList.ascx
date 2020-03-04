@@ -7,7 +7,7 @@
 <asp:DataList ID="listEmployees" DataKeyField="EmployeeID" runat="server" RepeatLayout="Flow" CssClass="u8y-employee-list"
 	OnItemDataBound="listEmployees_ItemDataBound">
 	<ItemTemplate>
-		<div class="row u8y-employee-list-item">
+		<div class="row">
 			<div class="col-md-2">
 				<asp:HyperLink id="linkDetails" runat="server">
 					<asp:Image id="imagePhoto" runat="server" CssClass="img-fluid" />
@@ -28,5 +28,7 @@
 			</div>
 		</div>
 	</ItemTemplate>
+	<ItemStyle CssClass="u8y-employee-list-item" />
+	<AlternatingItemStyle CssClass="u8y-employee-list-item" />
 </asp:DataList>
 <controls:AgplSignature runat="server" />
