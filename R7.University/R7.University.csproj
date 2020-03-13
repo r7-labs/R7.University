@@ -415,4 +415,10 @@
     <Content Include="css\admin.css" />
     <None Include="SqlDataProvider\02.00.00.SqlDataProvider" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\R7.University.Core\R7.University.Core.csproj">
+      <Project>{54283781-606F-453A-A474-8DE6473ED30A}</Project>
+      <Name>R7.University.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
