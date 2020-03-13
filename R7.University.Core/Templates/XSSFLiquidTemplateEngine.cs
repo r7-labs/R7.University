@@ -26,7 +26,7 @@ using NPOI.SS.UserModel;
 
 namespace R7.University.Core.Templates
 {
-    public class SSFLiquidTemplateEngine
+    public class XSSFLiquidTemplateEngine
     {
         public IModelToTemplateBinder Binder;
 
