@@ -47,6 +47,7 @@
             <InstallResourceFiles Include="../**/*.jpg" />
             <InstallResourceFiles Include="../**/*.png" />
             <InstallResourceFiles Include="../**/*.gif" />
+			<InstallResourceFiles Include="../**/*.xlsx" />
         </ItemGroup>
         <!-- Declare excluded files -->
         <ItemGroup>
