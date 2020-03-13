@@ -33,6 +33,7 @@
             <LocalDeployResourceFiles Include="../**/*.jpg" />
             <LocalDeployResourceFiles Include="../**/*.png" />
             <LocalDeployResourceFiles Include="../**/*.gif" />
+			<LocalDeployResourceFiles Include="../**/*.xslx" />
         </ItemGroup>
         <!-- Declare excluded files -->
         <ItemGroup>

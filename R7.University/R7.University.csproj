@@ -323,6 +323,8 @@
     <Folder Include="Modules\" />
     <Folder Include="EditModels\" />
     <Folder Include="Client\" />
+    <Folder Include="assets\" />
+    <Folder Include="assets\templates\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -366,6 +368,7 @@
     <None Include="packages.config" />
     <None Include="SqlDataProvider\02.02.00.SqlDataProvider" />
     <None Include="images\nophoto.png" />
+    <None Include="assets\templates\employee_template_ru.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
