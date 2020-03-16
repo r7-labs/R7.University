@@ -32,12 +32,17 @@ namespace R7.University.Core.Templates
 
         public XSSFWorkbookProvider WorkbookProvider = new XSSFWorkbookProvider ();
 
-        public void Test ()
+        public XSSFLiquidTemplateEngine (IModelToTemplateBinder binder)
+        {
+            Binder = binder;
+        }
+
+        public void Apply (string templateFilePath)
         {
             // TODO: Support {% endfor %} and multi-row loops
             // https://github.com/tonyqus/npoi/blob/master/examples/xssf/CopySheet/Program.cs
 
-            using (var file = new FileStream ("employee_template_ru.xlsx", FileMode.Open, FileAccess.Read)) {
+            using (var file = new FileStream (templateFilePath, FileMode.Open, FileAccess.Read)) {
 
                 var templateBook = WorkbookProvider.CreateWorkbook (file);
                 var book = WorkbookProvider.CreateWorkbook ();
@@ -50,7 +55,7 @@ namespace R7.University.Core.Templates
                     Cleanup (sheet);
                 }
 
-                WorkbookProvider.WriteWorkbook (book, new FileStream ("employee.xlsx", FileMode.Create, FileAccess.ReadWrite));
+                WorkbookProvider.WriteWorkbook (book, new FileStream (templateFilePath.Replace ("_template.xlsx", ".xlsx"), FileMode.Create, FileAccess.ReadWrite));
             }
         }
 

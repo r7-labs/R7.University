@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ViewEmployeeDetails.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeDetails" %>
+<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEmployeeDetails.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeDetails" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
@@ -121,6 +121,12 @@
                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 <%: LocalizeString ("cmdEdit") %>
             </asp:HyperLink>
+        </li>
+		<li>
+            <asp:LinkButton id="linkExport" runat="server" role="button" CssClass="btn btn-outline-secondary" OnClick="linkExport_Click">
+                <i class="fas fa-file-excel" aria-hidden="true"></i>
+                Export to Excel form
+            </asp:LinkButton>
         </li>
 		<li>
 			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-secondary">

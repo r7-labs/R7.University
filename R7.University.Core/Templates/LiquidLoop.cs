@@ -31,14 +31,18 @@ namespace R7.University.Core.Templates
 
         public int NumOfRepeats { get; set; }
 
-        public int Index { get; protected set; }
+        public int Index { get; protected set; } = -1;
 
         public bool Next ()
         {
             if (Index < NumOfRepeats) {
                 Index++;
+            }
+
+            if (Index < NumOfRepeats) {
                 return true;
             }
+
             return false;
         }
 

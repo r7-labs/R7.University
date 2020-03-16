@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -37,6 +38,7 @@ using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.Urls;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
+using R7.University.Core.Templates;
 using R7.University.Employees.Models;
 using R7.University.Employees.Queries;
 using R7.University.Employees.SharedLogic;
@@ -44,7 +46,7 @@ using R7.University.Employees.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
-using R7.University.SharedLogic;
+using R7.University.Templates;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
@@ -571,6 +573,13 @@ namespace R7.University.Employees
         protected void repeaterPositions_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             RepeaterPositionsLogic.ItemDataBound (this, sender, e);
+        }
+
+        protected void linkExport_Click (object sender, EventArgs e)
+        {
+            var employeeBinder = new EmployeeToTemplateBinder (Employee);
+            var templateEngine = new XSSFLiquidTemplateEngine (employeeBinder);
+            templateEngine.Apply (Globals.ApplicationMapPath + "/DesktopModules/MVC/R7.University/R7.University/assets/templates/employee_template.xlsx");
         }
     }
 }

@@ -342,6 +342,7 @@
     <Compile Include="ModelExtensions\EmployeeExtensions.cs" />
     <Compile Include="Utilities\HttpOffContextHelper.cs" />
     <Compile Include="Client\ClientResourceHelper.cs" />
+    <Compile Include="Templates\EmployeeModelToTemplateBinder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -366,6 +367,7 @@
     <Folder Include="Client\" />
     <Folder Include="assets\" />
     <Folder Include="assets\templates\" />
+    <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -410,6 +412,7 @@
     <None Include="SqlDataProvider\02.02.00.SqlDataProvider" />
     <None Include="images\nophoto.png" />
     <None Include="assets\templates\employee_template.xlsx" />
+    <None Include="R7.University.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
