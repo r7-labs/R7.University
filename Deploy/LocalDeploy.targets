@@ -11,7 +11,12 @@
         <!-- Declare binaries -->
         <ItemGroup>
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />
-            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition="'$(Configuration)' == 'Debug'" />
+            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition=" '$(Configuration)' == 'Debug' " />
+		</ItemGroup>
+        <!-- Declare NPOI-related binaries -->
+		<ItemGroup>
+			<LocalDeployBinaryFiles Include="$(NuGetPackageRoot)npoi/2.4.1/lib/netstandard2.0/NPOI*.dll" />
+            <LocalDeployBinaryFiles Include="$(NuGetPackageRoot)sharpziplib/1.0.0/lib/netstandard2.0/ICSharpCode.SharpZipLib.dll" />
 		</ItemGroup>
         <!-- Declare resource files -->
         <ItemGroup>

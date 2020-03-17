@@ -17,6 +17,11 @@
             <InstallBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />
             <InstallBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition="'$(Configuration)' == 'Debug'" />
 		</ItemGroup>
+		<!-- Declare NPOI-related binaries -->
+		<ItemGroup>
+			<InstallBinaryFiles Include="$(NuGetPackageRoot)npoi/2.4.1/lib/netstandard2.0/NPOI*.dll" />
+            <InstallBinaryFiles Include="$(NuGetPackageRoot)sharpziplib/1.0.0/lib/netstandard2.0/ICSharpCode.SharpZipLib.dll" />
+		</ItemGroup>
         <!-- Declare manifest files -->
         <ItemGroup>
             <InstallManifestFiles Include="$(MainProjectPath)/*.dnn*" />

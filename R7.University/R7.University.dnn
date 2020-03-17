@@ -170,6 +170,26 @@
                             <path>bin</path>
                             <name>R7.University.Employees.dll</name>
                         </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.OOXML.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.OpenXml4Net.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.OpenXmlFormats.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>ICSharpCode.SharpZipLib.dll</name>
+                        </assembly>
 					</assemblies>
 				</component>
                 <component type="ResourceFile">

@@ -11,6 +11,12 @@
         <DnnModulesPathPrefix>/MVC/R7.University</DnnModulesPathPrefix>
         <CustomExcludeFiles>../doc/**/*</CustomExcludeFiles>
     </PropertyGroup>
+	
+	<!-- NuGet packages for .NET Standard -->
+	<PropertyGroup>
+		<NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(HOME)/.nuget/packages/</NuGetPackageRoot>
+	</PropertyGroup>
+	
     <!-- Derieved settings -->
     <PropertyGroup>
         <MainProjectPath>../$(MainProjectName)</MainProjectPath>
