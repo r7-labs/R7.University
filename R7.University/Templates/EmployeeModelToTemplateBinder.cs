@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -38,7 +37,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Templates
 {
-    public class EmployeeToTemplateBinder: IModelToTemplateBinder
+    public class EmployeeToTemplateBinder: ModelToTemplateBinderBase
     {
         protected readonly IEmployee Model;
 
@@ -79,7 +78,7 @@ namespace R7.University.Templates
             Achievements = Model.OtherAchievements ().ToList ();
         }
 
-        public string Evaluate (string objectName)
+        public override string Evaluate (string objectName)
         {
             // TODO: Add simple bindings via configuration
             if (objectName == NameOf (() => Model.LastName)) {
@@ -180,7 +179,7 @@ namespace R7.University.Templates
             return null;
         }
 
-        public string Evaluate (string objectName, string collectionName, int index)
+        public override string Evaluate (string objectName, string collectionName, int index)
         {
             if (collectionName == nameof (Positions)) {
                 var position = Positions [index];
@@ -233,6 +232,7 @@ namespace R7.University.Templates
         string EvalAchievement (IEmployeeAchievement achievement, string objectName)
         {
             // TODO: Bind via viewmodel 
+            // FIXME: Type not localized properly
             if (objectName == "Type") {
                 return ((achievement.Achievement != null)? achievement.Achievement.AchievementType : achievement.AchievementType)
                     .Localize (ResourceFileRoot);
@@ -267,7 +267,7 @@ namespace R7.University.Templates
             return null;
         }
 
-        public int Count (string collectionName)
+        public override int Count (string collectionName)
         {
             if (collectionName == nameof (Positions)) {
                 return Positions.Count;
@@ -286,16 +286,6 @@ namespace R7.University.Templates
             }
 
             return 0;
-        }
-
-        // TODO: Move to the base class?
-        string NameOf<T> (Expression<Func<T>> propLambda)
-        {
-            var expr = propLambda.Body as MemberExpression;
-            if (expr == null) {
-                throw new ArgumentException ("You must pass a lambda of the form: '() => Class.Property' or '() => object.Property'");
-            }
-            return expr.Member.Name;
         }
     }
 }
