@@ -21,9 +21,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
+using DotNetNuke.Common;
+using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Portals;
+using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Entities.Users;
+using DotNetNuke.Services.FileSystem;
+using DotNetNuke.Services.Localization;
 using R7.University.Core.Templates;
+using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.ViewModels;
 
 namespace R7.University.Templates
 {
@@ -31,18 +42,36 @@ namespace R7.University.Templates
     {
         protected readonly IEmployee Model;
 
+        protected readonly PortalSettings PortalSettings;
+
+        protected readonly string ResourceFileRoot;
+
         protected readonly IList<OccupiedPositionInfo> Positions;
+
+        protected readonly IList<EmployeeAchievementInfo> Education;
+
+        protected readonly IList<EmployeeAchievementInfo> Training;
 
         protected readonly IList<EmployeeAchievementInfo> Achievements;
 
         protected readonly IList<EmployeeDisciplineInfo> Disciplines;
 
-        public EmployeeToTemplateBinder (IEmployee model)
+        string GetString (string key)
+        {
+            return Localization.GetString (key, ResourceFileRoot);
+        }
+
+        public EmployeeToTemplateBinder (IEmployee model, PortalSettings portalSettings, string resourceFileRoot)
         {
             Model = model;
+            PortalSettings = portalSettings;
 
             Positions = new List<OccupiedPositionInfo> (Model.Positions);
             Disciplines = new List<EmployeeDisciplineInfo> (Model.Disciplines);
+
+            Education = Model.EducationAchievements ().ToList ();
+            Training = Model.TrainingAchievements ().ToList ();
+            Achievements = Model.OtherAchievements ().ToList ();
         }
 
         public string Evaluate (string objectName)
@@ -57,29 +86,172 @@ namespace R7.University.Templates
             if (objectName == NameOf (() => Model.OtherName)) {
                 return Model.OtherName;
             }
+            if (objectName == NameOf (() => Model.Phone)) {
+                return Model.Phone;
+            }
+            if (objectName == NameOf (() => Model.CellPhone)) {
+                return Model.CellPhone;
+            }
+            if (objectName == NameOf (() => Model.Fax)) {
+                return Model.Fax;
+            }
+            if (objectName == NameOf (() => Model.Email)) {
+                return Model.Email;
+            }
+            if (objectName == NameOf (() => Model.SecondaryEmail)) {
+                return Model.SecondaryEmail;
+            }
+            if (objectName == NameOf (() => Model.Messenger)) {
+                return Model.Messenger;
+            }
+            if (objectName == NameOf (() => Model.WebSite)) {
+                return Model.WebSite;
+            }
+            if (objectName == NameOf (() => Model.WebSiteLabel)) {
+                return Model.WebSiteLabel;
+            }
+            if (objectName == NameOf (() => Model.ScienceIndexAuthorId)) {
+                return Model.ScienceIndexAuthorId.ToString ();
+            }
+            if (objectName == "PhotoUrl") {
+                return GetFullFileUrl (Model.PhotoFileID);
+            }
+            if (objectName == "AltPhotoUrl") {
+                return GetFullFileUrl (Model.AltPhotoFileId);
+            }
+            if (objectName == "UserEmail") {
+                if (Model.UserID != null) {
+                    var user = UserController.Instance.GetUserById (PortalSettings.PortalId, Model.UserID.Value);
+                    if (user != null) {
+                        return user.Username;
+                    }
+                }
+            }
+            if (objectName == NameOf (() => Model.WorkingPlace)) {
+                return Model.WorkingPlace;
+            }
+            if (objectName == NameOf (() => Model.WorkingHours)) {
+                return Model.WorkingHours;
+            }
+            if (objectName == "About") {
+                // TODO: Strip also HTML entities?
+                return HtmlUtils.StripTags (HttpUtility.HtmlDecode (Model.Biography), true);
+            }
 
+            if (objectName == NameOf (() => Model.ExperienceYears)) {
+                return Model.ExperienceYears.ToString ();
+            }
+            if (objectName == NameOf (() => Model.ExperienceYearsBySpec)) {
+                return Model.ExperienceYearsBySpec.ToString ();
+            }
+
+            return null;
+        }
+
+        string GetFullFileUrl (int? fileId)
+        {
+            var relativeUrl = GetFileUrl (fileId);
+            if (relativeUrl != null) {
+                return Globals.AddHTTP (PortalSettings.PortalAlias.HTTPAlias) + relativeUrl;
+            }
+
+            return null;
+        }
+
+
+        string GetFileUrl (int? fileId)
+        {
+            if (fileId != null) {
+                var file = FileManager.Instance.GetFile (fileId.Value);
+                if (file != null) {
+                    var url = FileManager.Instance.GetUrl (file);
+                    var cacheBusterParamIndex = url.LastIndexOf ("?ver=", StringComparison.Ordinal);
+                    if (cacheBusterParamIndex >= 0) {
+                        return url.Substring (0, cacheBusterParamIndex);
+                    }
+                    return url;
+                }
+            }
             return null;
         }
 
         public string Evaluate (string objectName, string collectionName, int index)
         {
             if (collectionName == nameof (Positions)) {
-                if (objectName == "Title") {
-                    return Positions [index].Position.Title;
+                var position = Positions [index];
+                if (objectName == "PositionTitle") {
+                    return position.Position.Title;
                 }
                 if (objectName == "DivisionTitle") {
-                    return Positions [index].Division.Title;
+                    return position.Division.Title;
                 }
-                // TODO: Localize values
-                if (objectName == "IsPrimary") {
-                    return Positions [index].IsPrime ? "да" : "нет";
+                if (objectName == NameOf (() => position.IsPrime)) {
+                    return Positions [index].IsPrime ? GetString ("Yes") : GetString ("No");
                 }
             }
 
             if (collectionName == nameof (Disciplines)) {
+                var discipline = Disciplines [index];
+                var profile = discipline.EduProgramProfile;
+                if (objectName == NameOf (() => profile.EduProgram)) {
+                    return UniversityFormatHelper.FormatEduProgramTitle (profile.EduProgram.Code, profile.EduProgram.Title);
+                }
+                if (objectName == NameOf (() => Disciplines [index].EduProgramProfile)) {
+                    return UniversityFormatHelper.FormatEduProgramProfilePartialTitle (profile.ProfileCode, profile.ProfileTitle);
+                }
+                if (objectName == NameOf (() => profile.EduLevel)) {
+                    return profile.EduLevel.Title;
+                }
+                if (objectName == NameOf (() => discipline.Disciplines)) {
+                    return discipline.Disciplines;
+                }
+            }
+
+            if (collectionName == nameof (Education)) {
+                var education = Education [index];
+                return EvalAchievement (education, objectName);
+            }
+
+            if (collectionName == nameof (Training)) {
+                var training = Training [index];
+                return EvalAchievement (training, objectName);
             }
 
             if (collectionName == nameof (Achievements)) {
+                var achievement = Achievements [index];
+                return EvalAchievement (achievement, objectName);
+            }
+
+            return null;
+        }
+
+        // TODO: Eval achievement type
+        string EvalAchievement (IEmployeeAchievement achievement, string objectName)
+        {
+            if (objectName == "Years") {
+                return UniversityFormatHelper.FormatYears (
+                    achievement.YearBegin,
+                    achievement.YearEnd,
+                    GetString ("AtTheMoment.Text"));
+            }
+            if (objectName == NameOf (() => achievement.Title)) {
+                return achievement.Title;
+            }
+            if (objectName == NameOf (() => achievement.TitleSuffix)) {
+                return achievement.TitleSuffix;
+            }
+            if (objectName == NameOf (() => achievement.IsTitle)) {
+                return achievement.IsTitle ? GetString ("Yes") : GetString ("No");
+            }
+            if (objectName == NameOf (() => achievement.Description)) {
+                return achievement.Description;
+            }
+            if (objectName == "DocumentUrl") {
+                switch (Globals.GetURLType (achievement.DocumentURL)) {
+                    case TabType.Tab: return Globals.NavigateURL (int.Parse (achievement.DocumentURL));
+                    case TabType.File: return GetFullFileUrl (int.Parse (achievement.DocumentURL.ToUpperInvariant ().Replace ("FILEID=", "")));
+                    default: return achievement.DocumentURL;
+                }
             }
 
             return null;
@@ -92,6 +264,15 @@ namespace R7.University.Templates
             }
             if (collectionName == nameof (Disciplines)) {
                 return Model.Disciplines.Count;
+            }
+            if (collectionName == nameof (Education)) {
+                return Education.Count;
+            }
+            if (collectionName == nameof (Training)) {
+                return Training.Count;
+            }
+            if (collectionName == nameof (Achievements)) {
+                return Achievements.Count;
             }
 
             return 0;

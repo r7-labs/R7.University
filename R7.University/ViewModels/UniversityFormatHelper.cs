@@ -134,6 +134,11 @@ namespace R7.University.ViewModels
             return FormatHelper.JoinNotNullOrEmpty (" ", code, title, profileStringInBrackets);
         }
 
+        public static string FormatEduProgramProfilePartialTitle (string profileCode, string profileTitle)
+        {
+            return FormatHelper.JoinNotNullOrEmpty (profileCode, profileTitle);
+        }
+
         public static string FormatEduProgramProfilePartialTitle (string profileCode, string profileTitle, string eduLevelTitle)
         {
             return FormatHelper.JoinNotNullOrEmpty (profileCode, profileTitle) + ": " + eduLevelTitle;

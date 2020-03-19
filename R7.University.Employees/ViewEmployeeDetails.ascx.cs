@@ -577,7 +577,7 @@ namespace R7.University.Employees
 
         protected void linkExport_Click (object sender, EventArgs e)
         {
-            var employeeBinder = new EmployeeToTemplateBinder (Employee);
+            var employeeBinder = new EmployeeToTemplateBinder (Employee, PortalSettings, LocalResourceFile);
             var templateEngine = new XSSFLiquidTemplateEngine (employeeBinder);
             templateEngine.Apply (Globals.ApplicationMapPath + "/DesktopModules/MVC/R7.University/R7.University/assets/templates/employee_template.xlsx");
         }
