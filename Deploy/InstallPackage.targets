@@ -19,8 +19,8 @@
 		</ItemGroup>
 		<!-- Declare NPOI-related binaries -->
 		<ItemGroup>
-			<InstallBinaryFiles Include="$(NuGetPackageRoot)npoi/2.4.1/lib/netstandard2.0/NPOI*.dll" />
-            <InstallBinaryFiles Include="$(NuGetPackageRoot)sharpziplib/1.0.0/lib/netstandard2.0/ICSharpCode.SharpZipLib.dll" />
+			<InstallBinaryFiles Include="../packages/NPOI.2.4.1/lib/net45/NPOI*.dll" />
+            <InstallBinaryFiles Include="../packages/SharpZipLib.1.0.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
 		</ItemGroup>
         <!-- Declare manifest files -->
         <ItemGroup>

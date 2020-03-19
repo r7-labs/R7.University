@@ -15,8 +15,8 @@
 		</ItemGroup>
         <!-- Declare NPOI-related binaries -->
 		<ItemGroup>
-			<LocalDeployBinaryFiles Include="$(NuGetPackageRoot)npoi/2.4.1/lib/netstandard2.0/NPOI*.dll" />
-            <LocalDeployBinaryFiles Include="$(NuGetPackageRoot)sharpziplib/1.0.0/lib/netstandard2.0/ICSharpCode.SharpZipLib.dll" />
+			<LocalDeployBinaryFiles Include="../packages/NPOI.2.4.1/lib/net45/NPOI*.dll" />
+            <LocalDeployBinaryFiles Include="../packages/SharpZipLib.1.0.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
 		</ItemGroup>
         <!-- Declare resource files -->
         <ItemGroup>
