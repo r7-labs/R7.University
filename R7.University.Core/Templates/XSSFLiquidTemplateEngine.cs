@@ -21,6 +21,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using NPOI.SS.UserModel;
 
@@ -91,7 +92,7 @@ namespace R7.University.Core.Templates
                         continue;
                     }
                     var cellValue = cell.StringCellValue;
-                    if (Regex.IsMatch (cellValue, @"{%\s*for")) {
+                    if (IsLiquidTag (cellValue) && Regex.IsMatch (cellValue, @"{%\s*for")) {
                         var loop = LiquidLoop.Parse (UnwrapLiquidTag (cellValue));
                         if (loop == null) {
                             continue;
@@ -103,6 +104,8 @@ namespace R7.University.Core.Templates
                             EvaluateRow (sheet.GetRow (rowIndex), loop);
                             rowIndex++;
                         }
+                        // check only first cell
+                        break;
                     }
                 }
             }
@@ -126,7 +129,24 @@ namespace R7.University.Core.Templates
 
         public void Cleanup (ISheet sheet)
         {
-            // TODO:
+            for (var r = sheet.FirstRowNum; r <= sheet.LastRowNum; r++) {
+                var row = sheet.GetRow (r);
+                if (row == null) {
+                    continue;
+                }
+                foreach (var cell in row.Cells) {
+                    if (IsLiquidTag (cell.StringCellValue)) {
+                        // TODO: This leaves empty rows
+                        sheet.RemoveRow (row);
+                        // check only first cell
+                        break;
+                    }
+
+                    if (IsLiquidObject (cell.StringCellValue)) {
+                        cell.SetCellValue (string.Empty);
+                    }
+                }
+            }
         }
 
         public string UnwrapLiquidObject (string obj)
@@ -142,6 +162,11 @@ namespace R7.University.Core.Templates
         public bool IsLiquidObject (string value)
         {
             return value.StartsWith ("{{", StringComparison.Ordinal) && value.EndsWith ("}}", StringComparison.Ordinal);
+        }
+
+        public bool IsLiquidTag (string value)
+        {
+            return value.StartsWith ("{%", StringComparison.Ordinal) && value.EndsWith ("%}", StringComparison.Ordinal);
         }
     }
 }
