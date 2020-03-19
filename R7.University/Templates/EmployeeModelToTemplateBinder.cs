@@ -225,17 +225,22 @@ namespace R7.University.Templates
             return null;
         }
 
-        // TODO: Eval achievement type
         string EvalAchievement (IEmployeeAchievement achievement, string objectName)
         {
+            // TODO: Bind via viewmodel 
+            if (objectName == "Type") {
+                return ((achievement.Achievement != null)? achievement.Achievement.AchievementType : achievement.AchievementType)
+                    .Localize (ResourceFileRoot);
+            }
+            if (objectName == NameOf (() => achievement.Title)) {
+                return (achievement.Achievement != null) ? achievement.Achievement.Title : achievement.Title;
+            }
+
             if (objectName == "Years") {
                 return UniversityFormatHelper.FormatYears (
                     achievement.YearBegin,
                     achievement.YearEnd,
                     GetString ("AtTheMoment.Text"));
-            }
-            if (objectName == NameOf (() => achievement.Title)) {
-                return achievement.Title;
             }
             if (objectName == NameOf (() => achievement.TitleSuffix)) {
                 return achievement.TitleSuffix;
