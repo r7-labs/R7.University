@@ -23,11 +23,9 @@ namespace R7.University.Core.Templates
 {
     public interface IModelToTemplateBinder
     {
-        // TODO: Rename to Eval
-        string Evaluate (string objectName);
+        string Eval (string objectName);
 
-        // TODO: Rename to Eval
-        string Evaluate (string objectName, string collectionName, int index);
+        string Eval (string objectName, string collectionName, int index);
 
         int Count (string collectionName);
     }

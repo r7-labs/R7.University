@@ -69,7 +69,7 @@ namespace R7.University.Core.Templates
                 }
                 foreach (var cell in row.Cells) {
                     if (IsLiquidObject (cell.StringCellValue)) {
-                        var value = Binder.Evaluate (UnwrapLiquidObject (cell.StringCellValue));
+                        var value = Binder.Eval (UnwrapLiquidObject (cell.StringCellValue));
                         if (value != null) {
                             cell.SetCellValue (value);
                         }
@@ -119,7 +119,7 @@ namespace R7.University.Core.Templates
                     var objectName = UnwrapLiquidObject (cellValue);
                     // strip loop variable name
                     objectName = Regex.Replace (objectName, @"^" + loop.VariableName + @"\.", "");
-                    var value = Binder.Evaluate (objectName, loop.CollectionName, loop.Index);
+                    var value = Binder.Eval (objectName, loop.CollectionName, loop.Index);
                     if (value != null) {
                         cell.SetCellValue (value);
                     }

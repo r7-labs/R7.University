@@ -28,9 +28,9 @@ namespace R7.University.Core.Templates
     {
         public abstract int Count (string collectionName);
 
-        public abstract string Evaluate (string objectName);
+        public abstract string Eval (string objectName);
 
-        public abstract string Evaluate (string objectName, string collectionName, int index);
+        public abstract string Eval (string objectName, string collectionName, int index);
 
         protected string NameOf<T> (Expression<Func<T>> propLambda)
         {

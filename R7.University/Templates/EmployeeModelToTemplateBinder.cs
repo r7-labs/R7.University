@@ -78,7 +78,7 @@ namespace R7.University.Templates
             Achievements = Model.OtherAchievements ().ToList ();
         }
 
-        public override string Evaluate (string objectName)
+        public override string Eval (string objectName)
         {
             // TODO: Add simple bindings via configuration
             if (objectName == NameOf (() => Model.LastName)) {
@@ -179,7 +179,7 @@ namespace R7.University.Templates
             return null;
         }
 
-        public override string Evaluate (string objectName, string collectionName, int index)
+        public override string Eval (string objectName, string collectionName, int index)
         {
             if (collectionName == nameof (Positions)) {
                 var position = Positions [index];
