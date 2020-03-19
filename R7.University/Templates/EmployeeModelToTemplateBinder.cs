@@ -66,8 +66,13 @@ namespace R7.University.Templates
             Model = model;
             PortalSettings = portalSettings;
 
-            Positions = new List<OccupiedPositionInfo> (Model.Positions);
-            Disciplines = new List<EmployeeDisciplineInfo> (Model.Disciplines);
+            var now = DateTime.Now;
+
+            Positions = new List<OccupiedPositionInfo> (Model.Positions
+                .Where (op => op.Division.IsPublished (now)));
+
+            Disciplines = new List<EmployeeDisciplineInfo> (Model.Disciplines
+                .Where (ed => ed.EduProgramProfile.EduProgram.IsPublished (now) && ed.EduProgramProfile.IsPublished (now)));
 
             Education = Model.EducationAchievements ().ToList ();
             Training = Model.TrainingAchievements ().ToList ();
@@ -265,10 +270,10 @@ namespace R7.University.Templates
         public int Count (string collectionName)
         {
             if (collectionName == nameof (Positions)) {
-                return Model.Positions.Count;
+                return Positions.Count;
             }
             if (collectionName == nameof (Disciplines)) {
-                return Model.Disciplines.Count;
+                return Disciplines.Count;
             }
             if (collectionName == nameof (Education)) {
                 return Education.Count;
