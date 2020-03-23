@@ -76,79 +76,60 @@ namespace R7.University.Templates
             Education = Model.EducationAchievements ().ToList ();
             Training = Model.TrainingAchievements ().ToList ();
             Achievements = Model.OtherAchievements ().ToList ();
+
+            ConfigureBindings ();
+        }
+
+        void ConfigureBindings ()
+        {
+            AddBinding (() => Model.FirstName);
+            AddBinding (() => Model.LastName);
+            AddBinding (() => Model.OtherName);
+            AddBinding (() => Model.Phone);
+            AddBinding (() => Model.CellPhone);
+            AddBinding (() => Model.Fax);
+            AddBinding (() => Model.Email);
+            AddBinding (() => Model.SecondaryEmail);
+            AddBinding (() => Model.Messenger);
+            AddBinding (() => Model.WebSite);
+            AddBinding (() => Model.WebSiteLabel);
+            AddBinding (() => Model.WorkingPlace);
+            AddBinding (() => Model.WorkingHours);
+
+            AddBinding (NameOf (() => Model.ScienceIndexAuthorId), () => Model.ScienceIndexAuthorId.ToString ());
+            AddBinding (NameOf (() => Model.ExperienceYears), () => Model.ExperienceYears.ToString ());
+            AddBinding (NameOf (() => Model.ExperienceYearsBySpec), () => Model.ExperienceYearsBySpec.ToString ());
+
+            AddBinding ("PhotoUrl", () => GetFullFileUrl (Model.PhotoFileID));
+            AddBinding ("AltPhotoUrl", () => GetFullFileUrl (Model.AltPhotoFileId));
+            AddBinding ("UserEmail", () => GetUserEmail (Model.UserID));
+            AddBinding ("About", () => GetAboutText (Model.Biography));
         }
 
         public override string Eval (string objectName)
         {
-            // TODO: Add simple bindings via configuration
-            if (objectName == NameOf (() => Model.LastName)) {
-                return Model.LastName;
+            var retValue = base.Eval (objectName);
+            if (retValue != null) {
+                return retValue;
             }
-            if (objectName == NameOf (() => Model.FirstName)) {
-                return Model.FirstName;
-            }
-            if (objectName == NameOf (() => Model.OtherName)) {
-                return Model.OtherName;
-            }
-            if (objectName == NameOf (() => Model.Phone)) {
-                return Model.Phone;
-            }
-            if (objectName == NameOf (() => Model.CellPhone)) {
-                return Model.CellPhone;
-            }
-            if (objectName == NameOf (() => Model.Fax)) {
-                return Model.Fax;
-            }
-            if (objectName == NameOf (() => Model.Email)) {
-                return Model.Email;
-            }
-            if (objectName == NameOf (() => Model.SecondaryEmail)) {
-                return Model.SecondaryEmail;
-            }
-            if (objectName == NameOf (() => Model.Messenger)) {
-                return Model.Messenger;
-            }
-            if (objectName == NameOf (() => Model.WebSite)) {
-                return Model.WebSite;
-            }
-            if (objectName == NameOf (() => Model.WebSiteLabel)) {
-                return Model.WebSiteLabel;
-            }
-            if (objectName == NameOf (() => Model.ScienceIndexAuthorId)) {
-                return Model.ScienceIndexAuthorId.ToString ();
-            }
-            if (objectName == "PhotoUrl") {
-                return GetFullFileUrl (Model.PhotoFileID);
-            }
-            if (objectName == "AltPhotoUrl") {
-                return GetFullFileUrl (Model.AltPhotoFileId);
-            }
-            if (objectName == "UserEmail") {
-                if (Model.UserID != null) {
-                    var user = UserController.Instance.GetUserById (PortalSettings.PortalId, Model.UserID.Value);
-                    if (user != null) {
-                        return user.Username;
-                    }
+
+            return null;
+        }
+
+        string GetAboutText (string htmlAbout)
+        {
+            // TODO: Strip also HTML entities?
+            return HtmlUtils.StripTags (HttpUtility.HtmlDecode (htmlAbout), true);
+        }
+
+        string GetUserEmail (int? userId)
+        {
+            if (userId != null) {
+                var user = UserController.Instance.GetUserById (PortalSettings.PortalId, Model.UserID.Value);
+                if (user != null) {
+                    return user.Username;
                 }
             }
-            if (objectName == NameOf (() => Model.WorkingPlace)) {
-                return Model.WorkingPlace;
-            }
-            if (objectName == NameOf (() => Model.WorkingHours)) {
-                return Model.WorkingHours;
-            }
-            if (objectName == "About") {
-                // TODO: Strip also HTML entities?
-                return HtmlUtils.StripTags (HttpUtility.HtmlDecode (Model.Biography), true);
-            }
-
-            if (objectName == NameOf (() => Model.ExperienceYears)) {
-                return Model.ExperienceYears.ToString ();
-            }
-            if (objectName == NameOf (() => Model.ExperienceYearsBySpec)) {
-                return Model.ExperienceYearsBySpec.ToString ();
-            }
-
             return null;
         }
 
@@ -161,7 +142,6 @@ namespace R7.University.Templates
 
             return null;
         }
-
 
         string GetFileUrl (int? fileId)
         {
