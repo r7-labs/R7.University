@@ -110,6 +110,17 @@ namespace R7.University.Templates
             return base.Eval (objectName);
         }
 
+        string GetUserName (int? userId, PortalSettings portalSettings)
+        {
+            if (userId != null) {
+                var user = UserController.Instance.GetUserById (portalSettings.PortalId, userId.Value);
+                if (user != null) {
+                    return user.Username;
+                }
+            }
+            return null;
+        }
+
         string GetAboutText (string htmlAbout)
         {
             // TODO: Strip also HTML entities?
