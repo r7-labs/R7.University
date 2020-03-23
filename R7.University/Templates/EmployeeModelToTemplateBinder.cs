@@ -30,14 +30,13 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
-using R7.University.Core.Templates;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 
 namespace R7.University.Templates
 {
-    public class EmployeeToTemplateBinder: ModelToTemplateBinderBase
+    public class EmployeeToTemplateBinder: UniversityModelToTemplateBinderBase
     {
         protected readonly IEmployee Model;
 
@@ -102,35 +101,19 @@ namespace R7.University.Templates
 
             AddBinding ("PhotoUrl", () => GetFullFileUrl (Model.PhotoFileID));
             AddBinding ("AltPhotoUrl", () => GetFullFileUrl (Model.AltPhotoFileId));
-            AddBinding ("UserEmail", () => GetUserEmail (Model.UserID));
+            AddBinding ("UserName", () => GetUserName (Model.UserID, PortalSettings));
             AddBinding ("About", () => GetAboutText (Model.Biography));
         }
 
         public override string Eval (string objectName)
         {
-            var retValue = base.Eval (objectName);
-            if (retValue != null) {
-                return retValue;
-            }
-
-            return null;
+            return base.Eval (objectName);
         }
 
         string GetAboutText (string htmlAbout)
         {
             // TODO: Strip also HTML entities?
             return HtmlUtils.StripTags (HttpUtility.HtmlDecode (htmlAbout), true);
-        }
-
-        string GetUserEmail (int? userId)
-        {
-            if (userId != null) {
-                var user = UserController.Instance.GetUserById (PortalSettings.PortalId, Model.UserID.Value);
-                if (user != null) {
-                    return user.Username;
-                }
-            }
-            return null;
         }
 
         string GetFullFileUrl (int? fileId)

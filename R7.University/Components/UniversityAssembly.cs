@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -28,6 +28,16 @@ namespace R7.University.Components
         public static Assembly GetCoreAssembly ()
         {
             return Assembly.GetExecutingAssembly ();   
+        }
+
+        public static string SafeGetInformationalVersion (int fieldCount)
+        {
+            var coreAssembly = GetCoreAssembly ();
+            var attr = coreAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute> ();
+            if (attr != null) {
+                return attr.InformationalVersion;
+            }
+            return coreAssembly.GetName ().Version.ToString (fieldCount);
         }
     }
 }
