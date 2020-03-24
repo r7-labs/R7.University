@@ -579,7 +579,11 @@ namespace R7.University.Employees
         {
             var employeeBinder = new EmployeeToTemplateBinder (Employee, PortalSettings, LocalResourceFile);
             var templateEngine = new XSSFLiquidTemplateEngine (employeeBinder);
-            templateEngine.Apply (Globals.ApplicationMapPath + "/DesktopModules/MVC/R7.University/R7.University/assets/templates/employee_template.xlsx");
+
+            var templatePath = Globals.ApplicationMapPath + "/DesktopModules/MVC/R7.University/R7.University/assets/templates/employee_template.xlsx";
+            var filePath = templatePath.Replace ("_template", "");
+
+            templateEngine.ApplyAndWrite (templatePath, new FileStream (filePath, FileMode.Create, FileAccess.ReadWrite));
         }
     }
 }

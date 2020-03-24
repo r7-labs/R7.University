@@ -21,7 +21,6 @@
 
 using System;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using NPOI.SS.UserModel;
 
@@ -38,7 +37,13 @@ namespace R7.University.Core.Templates
             Binder = binder;
         }
 
-        public void Apply (string templateFilePath)
+        public void ApplyAndWrite (string templateFilePath, Stream stream)
+        {
+            var book = Apply (templateFilePath);
+            WorkbookProvider.WriteWorkbook (book, stream);
+        }
+
+        public IWorkbook Apply (string templateFilePath)
         {
             // TODO: Support {% endfor %} and multi-row loops
             // https://github.com/tonyqus/npoi/blob/master/examples/xssf/CopySheet/Program.cs
@@ -56,7 +61,7 @@ namespace R7.University.Core.Templates
                     Cleanup (sheet);
                 }
 
-                WorkbookProvider.WriteWorkbook (book, new FileStream (templateFilePath.Replace ("_template.xlsx", ".xlsx"), FileMode.Create, FileAccess.ReadWrite));
+                return book;
             }
         }
 

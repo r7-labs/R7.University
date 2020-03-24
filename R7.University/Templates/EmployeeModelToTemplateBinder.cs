@@ -123,8 +123,11 @@ namespace R7.University.Templates
 
         string GetAboutText (string htmlAbout)
         {
-            // TODO: Strip also HTML entities?
-            return HtmlUtils.StripTags (HttpUtility.HtmlDecode (htmlAbout), true);
+            if (!string.IsNullOrEmpty (htmlAbout)) {
+                // TODO: Strip also HTML entities?
+                return HtmlUtils.StripTags (HttpUtility.HtmlDecode (htmlAbout), true);
+            }
+            return null;
         }
 
         string GetFullFileUrl (int? fileId)
@@ -133,7 +136,6 @@ namespace R7.University.Templates
             if (relativeUrl != null) {
                 return Globals.AddHTTP (PortalSettings.PortalAlias.HTTPAlias) + relativeUrl;
             }
-
             return null;
         }
 
