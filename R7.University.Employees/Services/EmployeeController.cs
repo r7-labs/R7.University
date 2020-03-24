@@ -48,9 +48,9 @@ namespace R7.University.Employees.Services
         {
             // TODO: Get employee
             var employee = new EmployeeInfo ();
-            employee.LastName = "Ivanov";
-            employee.FirstName = "Ivan";
-            employee.OtherName = "Ivanovich";
+            employee.LastName = "Иванов";
+            employee.FirstName = "Иван";
+            employee.OtherName = "Иванович";
 
             return employee;
         }
@@ -82,16 +82,15 @@ namespace R7.University.Employees.Services
                 }
 
                 var stream = GetEmployeeStream (employee);
-                var buffer = stream.GetBuffer ();
-                var outStream = new MemoryStream (buffer);
+
+                // stream.GetBuffer() returns bigger buffer, than data!
+                var buffer = stream.ToArray ();
 
                 var result = Request.CreateResponse (HttpStatusCode.OK);
-                result.Content = new StreamContent (outStream);
-
-                // FIXME: Downloaded file need to be repacked first! 
+                result.Content = new ByteArrayContent (buffer);
                 // TODO: Introduce MimeTypes!
                 result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                //result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/octet-stream");
+                result.Content.Headers.ContentLength = buffer.Length;
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
                     FileName = UniversityFormatHelper.AbbrName (
                         employee.FirstName,
