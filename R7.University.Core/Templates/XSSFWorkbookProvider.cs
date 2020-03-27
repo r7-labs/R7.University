@@ -77,16 +77,26 @@ namespace R7.University.Core.Templates
                     }
                     foreach (var srcCell in row.Cells) {
                         if (srcCell.CellComment != null) {
-                            var dstComment = dstSheet.CreateComment ();
+                            var partiarch = dstSheet.GetDrawingPatriarch () ?? dstSheet.CreateDrawingPatriarch ();
+                            var dstComment = partiarch.CreateCellComment (srcCell.CellComment.ClientAnchor);
+
                             dstComment.Author = srcCell.CellComment.Author;
                             dstComment.Row = srcCell.CellComment.Row;
                             dstComment.Column = srcCell.CellComment.Column;
                             dstComment.String = srcCell.CellComment.String;
                             dstComment.Visible = srcCell.CellComment.Visible;
+
+                            var dstCell = GetMirrorCell (srcCell, dstSheet);
+                            (dstCell as XSSFCell).CellComment = dstComment;
                         }
                     }
                 }
             }
+        }
+
+        ICell GetMirrorCell (ICell cell, ISheet dstSheet)
+        {
+            return dstSheet.GetRow (cell.RowIndex).Cells [cell.ColumnIndex];
         }
 
         // backported from https://stackoverflow.com/questions/6673623/npoi-insert-row-like-excel
