@@ -136,10 +136,12 @@ namespace R7.University.Controls
 
         protected override void OnResetForm ()
         {
-            ddlEduProgram.SelectedIndex = 0;
-            var eduProgramId = int.Parse (ddlEduProgram.SelectedValue);
-            using (var modelContext = new UniversityModelContext ()) {
-                BindEduProfiles (eduProgramId, modelContext);
+            if (ddlEduProgram.Items.Count > 0) {
+                ddlEduProgram.SelectedIndex = 0;
+                var eduProgramId = int.Parse (ddlEduProgram.SelectedValue);
+                using (var modelContext = new UniversityModelContext ()) {
+                    BindEduProfiles (eduProgramId, modelContext);
+                }
             }
 
             textDisciplines.Text = string.Empty;
