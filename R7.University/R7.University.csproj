@@ -359,6 +359,8 @@
     <Compile Include="Client\ClientResourceHelper.cs" />
     <Compile Include="Templates\EmployeeModelToTemplateBinder.cs" />
     <Compile Include="Templates\UniversityModelToTemplateBinderBase.cs" />
+    <Compile Include="Templates\UniversityTemplateHelper.cs" />
+    <Compile Include="Components\UniversityGlobals.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

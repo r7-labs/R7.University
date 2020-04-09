@@ -20,14 +20,15 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
-using DotNetNuke.Common;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
+using R7.University.Components;
 using R7.University.Core.Templates;
 using R7.University.Employees.Queries;
 using R7.University.Models;
@@ -55,13 +56,11 @@ namespace R7.University.Employees.Services
         MemoryStream GetEmployeeStream (IEmployee employee)
         {
             var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
-                    "~/DesktopModules/MVC/R7.University/R7.University.Employees/App_LocalResources/SharedResources.resx");
+                "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
+
             var templateEngine = new XSSFLiquidTemplateEngine (employeeBinder);
-
             var stream = new MemoryStream ();
-
-            // TODO: Support for localized templates
-            var templatePath = Globals.ApplicationMapPath + "/DesktopModules/MVC/R7.University/R7.University/assets/templates/employee_template.xlsx";
+            var templatePath = UniversityTemplateHelper.GetLocalizedTemplatePath ("employee_template.xlsx", CultureInfo.CurrentUICulture);
 
             templateEngine.ApplyAndWrite (templatePath, stream);
 
@@ -80,7 +79,7 @@ namespace R7.University.Employees.Services
 
                 var stream = GetEmployeeStream (employee);
 
-                // stream.GetBuffer() returns bigger buffer, than data!
+                // stream.GetBuffer() returns bigger buffer than actual data!
                 var buffer = stream.ToArray ();
 
                 var result = Request.CreateResponse (HttpStatusCode.OK);
@@ -89,10 +88,10 @@ namespace R7.University.Employees.Services
                 result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 result.Content.Headers.ContentLength = buffer.Length;
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                    FileName = UniversityFormatHelper.AbbrName (
-                        employee.FirstName,
-                        employee.LastName,
-                        employee.OtherName).Replace (".", "").Replace (" ", "_") + ".xlsx"
+                    FileName = "employee_template.xlsx".Replace (
+                        "employee_template", UniversityFormatHelper.AbbrName (
+                            employee.FirstName, employee.LastName, employee.OtherName)
+                            .Replace (".", "").Replace (" ", "_"))
                 };
 
                 return result;
