@@ -50,9 +50,7 @@ namespace R7.University.Core.Templates
 
             using (var file = new FileStream (templateFilePath, FileMode.Open, FileAccess.Read)) {
 
-                var templateBook = WorkbookProvider.CreateWorkbook (file);
-                var book = WorkbookProvider.CreateWorkbook ();
-                WorkbookProvider.CopyWorkbook (templateBook, book, true);
+                var book = WorkbookProvider.CreateWorkbook (file);
 
                 for (var s = 0; s < WorkbookProvider.GetNumberOfSheets (book); s++) {
                     var sheet = WorkbookProvider.GetSheetAt (book, s);
