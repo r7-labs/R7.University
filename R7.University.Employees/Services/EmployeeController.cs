@@ -29,6 +29,7 @@ using DotNetNuke.Common;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
 using R7.University.Core.Templates;
+using R7.University.Employees.Queries;
 using R7.University.Models;
 using R7.University.Templates;
 using R7.University.ViewModels;
@@ -46,13 +47,9 @@ namespace R7.University.Employees.Services
     {
         IEmployee GetEmployee (int employeeId)
         {
-            // TODO: Get employee
-            var employee = new EmployeeInfo ();
-            employee.LastName = "Иванов";
-            employee.FirstName = "Иван";
-            employee.OtherName = "Иванович";
-
-            return employee;
+            using (var modelContext = new UniversityModelContext ()) {
+                return new EmployeeQuery (modelContext).SingleOrDefault (employeeId);
+            }
         }
 
         MemoryStream GetEmployeeStream (IEmployee employee)

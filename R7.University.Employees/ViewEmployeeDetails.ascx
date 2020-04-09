@@ -123,14 +123,11 @@
             </asp:HyperLink>
         </li>
 		<li>
-            <asp:LinkButton id="linkExport" runat="server" role="button" CssClass="btn btn-outline-secondary btn-sm" OnClick="linkExport_Click">
-                <i class="fas fa-file-excel" aria-hidden="true"></i>
-                Export to Excel (callback)
-            </asp:LinkButton>
-			<a role="button" class="btn btn-outline-secondary btn-sm" target="_blank"
+            <a role="button" class="btn btn-outline-secondary btn-sm" target="_blank"
 					href="/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=<%= Employee.EmployeeID %>">
                 <i class="fas fa-file-excel" aria-hidden="true"></i>
-                Export to Excel (Web API)
+				<!-- TODO: Localize me! -->
+                Export to Excel
             </a>
         </li>
 		<li>
