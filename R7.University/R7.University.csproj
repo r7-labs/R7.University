@@ -386,6 +386,8 @@
     <Folder Include="assets\" />
     <Folder Include="assets\templates\" />
     <Folder Include="Templates\" />
+    <Folder Include="assets\css\" />
+    <Folder Include="assets\js\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -431,6 +433,8 @@
     <None Include="images\nophoto.png" />
     <None Include="assets\templates\employee_template.xlsx" />
     <None Include="R7.University.csproj" />
+    <None Include="assets\css\test.scss" />
+    <None Include="assets\js\test.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />

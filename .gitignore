@@ -7,6 +7,9 @@
 # Build output
 bin/
 obj/
+*.min.js
+*.min.css
+*.webpack.tmp
 
 # Packages
 /packages/

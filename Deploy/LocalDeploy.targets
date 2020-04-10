@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="LocalDeploy">
     <Import Project="__Settings.targets" Condition=" '$(BuildSettingsImported)' == '' " />
-    <Import Project="Preprocess.targets" Condition=" '$(PreprocessImported)' == '' " />
+    <Import Project="Bundle.targets" Condition=" '$(BundleImported)' == '' " />
     <Import Project="Tests.targets" Condition=" '$(TestsImported)' == '' " />
     <PropertyGroup>
         <!-- Enable local deploy by default (standalone) -->
         <EnableLocalDeploy Condition=" '$(EnableLocalDeploy)' == '' ">true</EnableLocalDeploy>
     </PropertyGroup>
-    <Target Name="LocalDeploy" Condition=" '$(EnableLocalDeploy)' == 'true' " DependsOnTargets="Preprocess;Tests">
+    <Target Name="LocalDeploy" Condition=" '$(EnableLocalDeploy)' == 'true' " DependsOnTargets="Bundle;Tests">
         <!-- Declare binaries -->
         <ItemGroup>
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />

@@ -64,7 +64,7 @@
 		<None Include="__Settings.targets" />
 		<None Include="InstallPackage.targets" />
 		<None Include="LocalDeploy.targets" />
-		<None Include="Preprocess.targets" />
+		<None Include="Bundle.targets" />
 		<None Include="Tests.targets" />
 		<None Include="Deploy.csproj" />
 		<None Include="packages.config" />
