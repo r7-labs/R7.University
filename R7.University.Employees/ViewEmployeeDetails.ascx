@@ -124,10 +124,16 @@
         </li>
 		<li>
             <a role="button" class="btn btn-outline-secondary btn-sm" target="_blank"
-					href="/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=<%= Employee.EmployeeID %>">
+					href="/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=<%= Employee.EmployeeID %>&format=Excel">
                 <i class="fas fa-file-excel" aria-hidden="true"></i>
 				<!-- TODO: Localize me! -->
                 Export to Excel
+            </a>
+			<a role="button" class="btn btn-outline-secondary btn-sm" target="_blank"
+					href="/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=<%= Employee.EmployeeID %>&format=CSV">
+                <i class="fas fa-file-excel" aria-hidden="true"></i>
+				<!-- TODO: Localize me! -->
+                Export to CSV
             </a>
         </li>
 		<li>

@@ -21,6 +21,7 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using NPOI.SS.UserModel;
 
@@ -37,10 +38,17 @@ namespace R7.University.Core.Templates
             Binder = binder;
         }
 
-        public void ApplyAndWrite (string templateFilePath, Stream stream)
+        public Stream ApplyAndWrite (string templateFilePath, Stream stream)
         {
             var book = Apply (templateFilePath);
             WorkbookProvider.WriteWorkbook (book, stream);
+            return stream;
+        }
+
+        public StringBuilder ApplyAndSerialize (string templateFilePath, IWorkbookSerializer serializer)
+        {
+            var book = Apply (templateFilePath);
+            return serializer.Serialize (book, new StringBuilder ());
         }
 
         public IWorkbook Apply (string templateFilePath)

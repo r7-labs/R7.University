@@ -25,6 +25,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Web.Http;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
@@ -53,23 +54,41 @@ namespace R7.University.Employees.Services
             }
         }
 
-        MemoryStream GetEmployeeStream (IEmployee employee)
+        XSSFLiquidTemplateEngine GetTemplateEngine (IEmployee employee)
         {
             var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
-                "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
+                   "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
 
-            var templateEngine = new XSSFLiquidTemplateEngine (employeeBinder);
-            var stream = new MemoryStream ();
-            var templatePath = UniversityTemplateHelper.GetLocalizedTemplatePath ("employee_template.xlsx", CultureInfo.CurrentUICulture);
-
-            templateEngine.ApplyAndWrite (templatePath, stream);
-
-            return stream;
+            return new XSSFLiquidTemplateEngine (employeeBinder);
         }
-               
+
+        string GetTemplatePath ()
+        {
+            return UniversityTemplateHelper.GetLocalizedTemplatePath ("employee_template.xlsx", CultureInfo.CurrentUICulture);
+        }
+
+        MemoryStream GetEmployeeExcelStream (IEmployee employee)
+        {
+            var templateEngine = GetTemplateEngine (employee);
+            return (MemoryStream) templateEngine.ApplyAndWrite (GetTemplatePath (), new MemoryStream ());
+        }
+
+        string GetEmployeeCsvText (IEmployee employee)
+        {
+            var templateEngine = GetTemplateEngine (employee);
+            return templateEngine.ApplyAndSerialize (GetTemplatePath (), new WorkbookToCsvSerializer ()).ToString ();
+        }
+
+        string GetFileName (IEmployee employee, string extension)
+        {
+            return UniversityFormatHelper.AbbrName (
+                    employee.FirstName, employee.LastName, employee.OtherName)
+                    .Replace (".", "").Replace (" ", "_") + extension;
+        }
+
         [HttpGet]
         [AllowAnonymous]
-        public HttpResponseMessage Export (int employeeId)
+        public HttpResponseMessage Export (int employeeId, string format)
         {
             try {
                 var employee = GetEmployee (employeeId);
@@ -77,22 +96,33 @@ namespace R7.University.Employees.Services
                     return Request.CreateResponse (HttpStatusCode.NotFound);
                 }
 
-                var stream = GetEmployeeStream (employee);
-
-                // stream.GetBuffer() returns bigger buffer than actual data!
-                var buffer = stream.ToArray ();
-
-                var result = Request.CreateResponse (HttpStatusCode.OK);
-                result.Content = new ByteArrayContent (buffer);
-                // TODO: Introduce MimeTypes!
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                result.Content.Headers.ContentLength = buffer.Length;
-                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                    FileName = "employee_template.xlsx".Replace (
-                        "employee_template", UniversityFormatHelper.AbbrName (
-                            employee.FirstName, employee.LastName, employee.OtherName)
-                            .Replace (".", "").Replace (" ", "_"))
-                };
+                var result = default (HttpResponseMessage);
+                 
+                if (string.Equals (format, "Excel", StringComparison.OrdinalIgnoreCase)) {
+                    result = Request.CreateResponse (HttpStatusCode.OK);
+                    var stream = GetEmployeeExcelStream (employee);
+                    var buffer = stream.ToArray ();
+                    // stream.GetBuffer() returns bigger buffer than actual data!
+                    result.Content = new ByteArrayContent (buffer);
+                    // TODO: Introduce MimeTypes!
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                    result.Content.Headers.ContentLength = buffer.Length;
+                    result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+                        FileName = GetFileName (employee, ".xlsx")
+                    };
+                }
+                else if (string.Equals (format, "CSV", StringComparison.OrdinalIgnoreCase)) {
+                    result = Request.CreateResponse (HttpStatusCode.OK);
+                    var text = GetEmployeeCsvText (employee);
+                    result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
+                    result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+                        FileName = GetFileName (employee, ".txt")
+                    };
+                }
+                else {
+                    result = Request.CreateErrorResponse (HttpStatusCode.BadRequest, "The format argument is required!");
+                }
 
                 return result;
             }
