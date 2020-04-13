@@ -1,5 +1,5 @@
 ﻿//
-//  XSSFLiquidTemplateEngine.cs
+//  WorkbookLiquidTemplateEngine.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
@@ -27,13 +27,13 @@ using NPOI.SS.UserModel;
 
 namespace R7.University.Core.Templates
 {
-    public class XSSFLiquidTemplateEngine
+    public class WorkbookLiquidTemplateEngine
     {
         public IModelToTemplateBinder Binder;
 
         public IWorkbookProvider WorkbookProvider;
 
-        public XSSFLiquidTemplateEngine (IModelToTemplateBinder binder, IWorkbookProvider workbookProvider)
+        public WorkbookLiquidTemplateEngine (IModelToTemplateBinder binder, IWorkbookProvider workbookProvider)
         {
             Binder = binder;
             WorkbookProvider = workbookProvider;

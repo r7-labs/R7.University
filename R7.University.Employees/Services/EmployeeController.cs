@@ -54,12 +54,12 @@ namespace R7.University.Employees.Services
             }
         }
 
-        XSSFLiquidTemplateEngine GetTemplateEngine (IEmployee employee)
+        WorkbookLiquidTemplateEngine GetTemplateEngine (IEmployee employee)
         {
             var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
                    "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
 
-            return new XSSFLiquidTemplateEngine (employeeBinder, new XSSFWorkbookProvider ());
+            return new WorkbookLiquidTemplateEngine (employeeBinder, new XSSFWorkbookProvider ());
         }
 
         string GetTemplatePath ()
