@@ -25,7 +25,7 @@ using NPOI.XSSF.UserModel;
 
 namespace R7.University.Core.Templates
 {
-    public class XSSFWorkbookProvider
+    public class XSSFWorkbookProvider: IWorkbookProvider
     {
         public IWorkbook CreateWorkbook ()
         {

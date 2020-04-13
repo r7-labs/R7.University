@@ -31,11 +31,12 @@ namespace R7.University.Core.Templates
     {
         public IModelToTemplateBinder Binder;
 
-        public XSSFWorkbookProvider WorkbookProvider = new XSSFWorkbookProvider ();
+        public IWorkbookProvider WorkbookProvider;
 
-        public XSSFLiquidTemplateEngine (IModelToTemplateBinder binder)
+        public XSSFLiquidTemplateEngine (IModelToTemplateBinder binder, IWorkbookProvider workbookProvider)
         {
             Binder = binder;
+            WorkbookProvider = workbookProvider;
         }
 
         public Stream ApplyAndWrite (string templateFilePath, Stream stream)

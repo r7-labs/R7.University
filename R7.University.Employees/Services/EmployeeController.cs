@@ -59,7 +59,7 @@ namespace R7.University.Employees.Services
             var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
                    "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
 
-            return new XSSFLiquidTemplateEngine (employeeBinder);
+            return new XSSFLiquidTemplateEngine (employeeBinder, new XSSFWorkbookProvider ());
         }
 
         string GetTemplatePath ()
