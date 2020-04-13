@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -80,8 +79,8 @@ namespace R7.University.Core.Templates
                     continue;
                 }
                 foreach (var cell in row.Cells) {
-                    if (IsLiquidObject (cell.StringCellValue)) {
-                        var value = Binder.Eval (UnwrapLiquidObject (cell.StringCellValue));
+                    if (LiquidHelper.IsLiquidObject (cell.StringCellValue)) {
+                        var value = Binder.Eval (LiquidHelper.UnwrapLiquidObject (cell.StringCellValue));
                         if (value != null) {
                             cell.SetCellValue (value);
                         }
@@ -104,8 +103,8 @@ namespace R7.University.Core.Templates
                         continue;
                     }
                     var cellValue = cell.StringCellValue;
-                    if (IsLiquidTag (cellValue) && Regex.IsMatch (cellValue, @"{%\s*for")) {
-                        var loop = LiquidLoop.Parse (UnwrapLiquidTag (cellValue));
+                    if (LiquidHelper.IsLiquidTag (cellValue) && Regex.IsMatch (cellValue, @"{%\s*for")) {
+                        var loop = LiquidLoop.Parse (LiquidHelper.UnwrapLiquidTag (cellValue));
                         if (loop == null) {
                             continue;
                         }
@@ -127,8 +126,8 @@ namespace R7.University.Core.Templates
         {
             foreach (var cell in row.Cells) {
                 var cellValue = cell.StringCellValue;
-                if (IsLiquidObject (cellValue)) {
-                    var objectName = UnwrapLiquidObject (cellValue);
+                if (LiquidHelper.IsLiquidObject (cellValue)) {
+                    var objectName = LiquidHelper.UnwrapLiquidObject (cellValue);
                     // strip loop variable name
                     objectName = Regex.Replace (objectName, @"^" + loop.VariableName + @"\.", "");
                     var value = Binder.Eval (objectName, loop.CollectionName, loop.Index);
@@ -147,38 +146,18 @@ namespace R7.University.Core.Templates
                     continue;
                 }
                 foreach (var cell in row.Cells) {
-                    if (IsLiquidTag (cell.StringCellValue)) {
+                    if (LiquidHelper.IsLiquidTag (cell.StringCellValue)) {
                         // TODO: This leaves empty rows
                         sheet.RemoveRow (row);
                         // check only first cell
                         break;
                     }
 
-                    if (IsLiquidObject (cell.StringCellValue)) {
+                    if (LiquidHelper.IsLiquidObject (cell.StringCellValue)) {
                         cell.SetCellValue (string.Empty);
                     }
                 }
             }
-        }
-
-        public string UnwrapLiquidObject (string obj)
-        {
-            return obj.TrimStart ('{').TrimEnd ('}').Trim ();
-        }
-
-        public string UnwrapLiquidTag (string obj)
-        {
-            return obj.TrimStart ('{').TrimEnd ('}').Trim ('%').Trim ();
-        }
-
-        public bool IsLiquidObject (string value)
-        {
-            return value.StartsWith ("{{", StringComparison.Ordinal) && value.EndsWith ("}}", StringComparison.Ordinal);
-        }
-
-        public bool IsLiquidTag (string value)
-        {
-            return value.StartsWith ("{%", StringComparison.Ordinal) && value.EndsWith ("%}", StringComparison.Ordinal);
         }
     }
 }
