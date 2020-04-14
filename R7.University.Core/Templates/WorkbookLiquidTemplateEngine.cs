@@ -79,11 +79,15 @@ namespace R7.University.Core.Templates
                     continue;
                 }
                 foreach (var cell in row.Cells) {
-                    if (LiquidHelper.IsLiquidObject (cell.StringCellValue)) {
-                        var value = Binder.Eval (LiquidHelper.UnwrapLiquidObject (cell.StringCellValue));
+                    var cellValue = cell.StringCellValue;
+                    foreach (var liquidObject in LiquidHelper.GetLiquidObjects (cellValue)) {
+                        var value = Binder.Eval (LiquidHelper.UnwrapLiquidObject (liquidObject));
                         if (value != null) {
-                            cell.SetCellValue (value);
+                            cellValue = cellValue.Replace (liquidObject, value);
                         }
+                    }
+                    if (cellValue != cell.StringCellValue) {
+                        cell.SetCellValue (cellValue);
                     }
                 }
             }
@@ -103,7 +107,7 @@ namespace R7.University.Core.Templates
                         continue;
                     }
                     var cellValue = cell.StringCellValue;
-                    if (LiquidHelper.IsLiquidTag (cellValue) && Regex.IsMatch (cellValue, @"{%\s*for")) {
+                    if (LiquidHelper.ContainsLiquidTag (cellValue) && Regex.IsMatch (cellValue, @"{%\s*for")) {
                         var loop = LiquidLoop.Parse (LiquidHelper.UnwrapLiquidTag (cellValue));
                         if (loop == null) {
                             continue;
@@ -126,14 +130,17 @@ namespace R7.University.Core.Templates
         {
             foreach (var cell in row.Cells) {
                 var cellValue = cell.StringCellValue;
-                if (LiquidHelper.IsLiquidObject (cellValue)) {
-                    var objectName = LiquidHelper.UnwrapLiquidObject (cellValue);
+                foreach (var liquidObject in LiquidHelper.GetLiquidObjects (cellValue)) {
+                    var objectName = LiquidHelper.UnwrapLiquidObject (liquidObject);
                     // strip loop variable name
                     objectName = Regex.Replace (objectName, @"^" + loop.VariableName + @"\.", "");
                     var value = Binder.Eval (objectName, loop.CollectionName, loop.Index);
                     if (value != null) {
-                        cell.SetCellValue (value);
+                        cellValue = cellValue.Replace (liquidObject, value);
                     }
+                }
+                if (cellValue != cell.StringCellValue) {
+                    cell.SetCellValue (cellValue);
                 }
             }
         }
@@ -146,15 +153,19 @@ namespace R7.University.Core.Templates
                     continue;
                 }
                 foreach (var cell in row.Cells) {
-                    if (LiquidHelper.IsLiquidTag (cell.StringCellValue)) {
+                    var cellValue = cell.StringCellValue;
+                    if (LiquidHelper.ContainsLiquidTag (cell.StringCellValue)) {
                         // TODO: This leaves empty rows
                         sheet.RemoveRow (row);
                         // check only first cell
                         break;
                     }
-
-                    if (LiquidHelper.IsLiquidObject (cell.StringCellValue)) {
-                        cell.SetCellValue (string.Empty);
+                    
+                    foreach (var liquidObject in LiquidHelper.GetLiquidObjects (cellValue)) {
+                        cellValue = cellValue.Replace (liquidObject, string.Empty);
+                    }
+                    if (cellValue != cell.StringCellValue) {
+                        cell.SetCellValue (cellValue);
                     }
                 }
             }
