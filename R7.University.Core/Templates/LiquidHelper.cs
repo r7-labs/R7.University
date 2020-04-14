@@ -5,12 +5,14 @@ namespace R7.University.Core.Templates
 {
     public static class LiquidHelper
     {
-        public static string GetNextLiquidObject (string value, int startIndex)
+        static string GetNextLiquidObject (string value, int startIndex, out int liquidObjectIdx)
         {
+            liquidObjectIdx = -1;
             var openBracketIdx = value.IndexOf ("{{", startIndex, StringComparison.Ordinal);
             var closeBracketIdx = value.IndexOf ("}}", startIndex, StringComparison.Ordinal);
 
             if (openBracketIdx >= 0 && closeBracketIdx >= 0 && openBracketIdx < closeBracketIdx) {
+                liquidObjectIdx = openBracketIdx;
                 return value.Substring (openBracketIdx, closeBracketIdx - openBracketIdx + 2);
             }
 
@@ -19,12 +21,10 @@ namespace R7.University.Core.Templates
 
         public static IEnumerable<string> GetLiquidObjects (string value)
         {
-            var startIndex = 0;
-            var liquidObject = GetNextLiquidObject (value, startIndex);
+            var liquidObject = GetNextLiquidObject (value, 0, out int liquidObjectIdx);
             while (liquidObject != null) {
                 yield return liquidObject;
-                startIndex += liquidObject.Length;
-                liquidObject = GetNextLiquidObject (value, startIndex);
+                liquidObject = GetNextLiquidObject (value, liquidObjectIdx + liquidObject.Length, out liquidObjectIdx);
             }
         }
 
