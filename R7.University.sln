@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Core", "R7.Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deploy", "Deploy\Deploy.csproj", "{48DE273D-19D7-46E3-A3C6-59F301E7CD03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Core.Tests", "R7.University.Core.Tests\R7.University.Core.Tests.csproj", "{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
