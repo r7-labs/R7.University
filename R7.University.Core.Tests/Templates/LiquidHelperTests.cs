@@ -19,7 +19,7 @@ namespace R7.University.Core.Tests.Templates
                 Assert.Equal (liquidObjects [i], LiquidHelper.UnwrapLiquidObject (liquidObjectsActual [i]));
             }
         }
-
+         
         public static IEnumerable<object []> GetTemplates ()
         {
             yield return new object [] { "This is a template with {{one}}  object.", new string [] { "one" } };
