@@ -125,6 +125,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Views\WorkbookConverter\" />
     <Folder Include="Views\Shared\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -247,6 +248,8 @@
     <Compile Include="Tables\YearsTable.cs" />
     <Compile Include="Controllers\WorkbookConverterController.cs" />
     <Compile Include="Components\WorkbookConverterController.cs" />
+    <Compile Include="Services\WorkbookConverterRouteMapper.cs" />
+    <Compile Include="Services\WorkbookConverterController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
