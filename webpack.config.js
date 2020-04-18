@@ -34,10 +34,11 @@ var scssConfig = {
     ]
 };
 
-var jsConfig = {
+var jsxConfig = {
     mode: "production",
     entry: {
-        test: "./R7.University/assets/js/test.jsx"
+        test: "./R7.University/assets/js/test.jsx",
+        WorkbookConverter: "./R7.University.Launchpad/Views/WorkbookConverter/WorkbookConverter.jsx"
     },
     output: {
         path: path.resolve (__dirname, "R7.University/assets/js"),
@@ -59,4 +60,4 @@ var jsConfig = {
     },
 };
 
-module.exports = [scssConfig, jsConfig];
+module.exports = [scssConfig, jsxConfig];

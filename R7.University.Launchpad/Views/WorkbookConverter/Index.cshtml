@@ -1,16 +1,14 @@
 @inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<object>
-@using System.Collections.Generic
-@using DotNetNuke.Collections
 @using DotNetNuke.Web.Mvc.Helpers
 @using DotNetNuke.Web.Client.ClientResourceManagement
-@using DotNetNuke.Framework
 @using DotNetNuke.Framework.JavaScriptLibraries
-@using DotNetNuke.Common
-@using DotNetNuke.Common.Utilities
 @using R7.University.ModelExtensions
 @{
-    ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
+	JavaScript.RequestRegistration ("React");
+	JavaScript.RequestRegistration ("ReactDOM");
+	ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
+	ClientResourceManager.RegisterScript (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/assets/js/WorkbookConverter.min.js");
 }
-<div class="u8y-workbook-converter">
-	<p>Hello, world!</p>
+<div class="u8y-workbook-converter"
+	data-module-id="@Dnn.ModuleContext.ModuleId">
 </div>
