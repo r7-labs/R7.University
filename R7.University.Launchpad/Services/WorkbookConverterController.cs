@@ -56,7 +56,7 @@ namespace R7.University.Launchpad.Services
                 return Request.CreateResponse (HttpStatusCode.OK,
                     new WorkbookConverterUploadResult {
                         FileName = fileName,
-                        TempFilePath = tempFilePath
+                        TempFileName = Path.GetFileName (tempFilePath)
                     });
             }
             catch (Exception ex) {
@@ -67,14 +67,14 @@ namespace R7.University.Launchpad.Services
 
         [HttpGet]
         [AllowAnonymous]
-        public HttpResponseMessage Convert (string fileName, string tempFilePath, string format)
+        public HttpResponseMessage Convert (string fileName, string tempFileName, string format)
         {
             try {
                 var result = default (HttpResponseMessage);
 
                if (string.Equals (format, "CSV", StringComparison.OrdinalIgnoreCase)) {
                     result = Request.CreateResponse (HttpStatusCode.OK);
-                    var text = GetWorkbookText (tempFilePath);
+                    var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), tempFileName));
                     result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
                     result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
                     result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {

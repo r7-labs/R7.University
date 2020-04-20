@@ -14,7 +14,7 @@ class WorkbookConverter extends React.Component {
                 <td>{file.fileName}</td>
                 <td><a href={this.props.service.getUrl ("WorkbookConverter", "Convert", null)
                     + "?fileName=" + encodeURIComponent (file.fileName)
-                    + "&tempFilePath=" + encodeURIComponent (file.tempFilePath)
+                    + "&tempFileName=" + encodeURIComponent (file.tempFileName)
                     + "&format=csv"}>CSV</a></td>
             </tr>
         );
@@ -86,7 +86,7 @@ class WorkbookConverter extends React.Component {
                     files: this.state.files
                 };
                 newState.files.push ({
-                    tempFilePath: retData.tempFilePath,
+                    tempFileName: retData.tempFileName,
                     fileName: retData.fileName
                 });
                 this.setState (newState);
