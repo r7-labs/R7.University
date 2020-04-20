@@ -8,9 +8,10 @@ class WorkbookConverter extends React.Component {
         };
     }
     
-    renderFile (file) {
+    renderFile (file, index) {
         return (
             <tr>
+                <td>{index + 1}</td>
                 <td>{file.fileName}</td>
                 <td><a href={this.props.service.getUrl ("WorkbookConverter", "Convert", null)
                     + "?fileName=" + encodeURIComponent (file.fileName)
@@ -26,12 +27,13 @@ class WorkbookConverter extends React.Component {
                 <table className="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>File Name</th>
                             <th>Download</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {files.map ((f) => this.renderFile (f))}
+                        {files.map ((f, i) => this.renderFile (f, i))}
                     </tbody>
                 </table>
             );
