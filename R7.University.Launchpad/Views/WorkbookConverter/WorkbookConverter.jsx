@@ -58,9 +58,10 @@ class WorkbookConverter extends React.Component {
                 <form>
                     <fieldset>
                         <div className="form-group">
-                            <label for={"u8y_wbc_upload_" + this.props.moduleId}>Select .XLSX file</label>
+                            <label for={"u8y_wbc_upload_" + this.props.moduleId}>Select .XLSX file(s)</label>
                             <input type="file" className="form-control-file" id={"u8y_wbc_upload_" + this.props.moduleId}
                                 accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                multiple="multiple"
                             />
                         </div>    
                         <div className="form-group">    
@@ -75,9 +76,19 @@ class WorkbookConverter extends React.Component {
     
     upload (e) {
         e.preventDefault ();
+       
+        var fileInput = document.getElementById ("u8y_wbc_upload_" + this.props.moduleId);
+        for (let file of fileInput.files) {
+            if (this.uploadFile (file) === false) {
+                break;
+            }
+        }
+    }
     
+    uploadFile (file) {
+        let isError = false;
+        
         const formData = new FormData ();
-        const file = document.getElementById ("u8y_wbc_upload_" + this.props.moduleId).files [0];
         formData.append ("file", file);
             
         this.props.service.upload (
@@ -91,14 +102,18 @@ class WorkbookConverter extends React.Component {
                     tempFileName: retData.tempFileName,
                     fileName: retData.fileName
                 });
+                // TODO: It's better to call setState just once
                 this.setState (newState);
             },
             (xhr, status) => {
                 console.log (xhr);
                 console.log (status);
                 this.setErrorState (xhr.statusText);
+                isError = true;            
             }
         );
+        
+        return !isError;
     }
     
     setErrorState (errorMessage) {
