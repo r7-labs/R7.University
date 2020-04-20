@@ -12,7 +12,6 @@ class WorkbookConverter extends React.Component {
         return (
             <tr>
                 <td>{file.fileName}</td>
-                <td>{file.tempFilePath}</td>
                 <td><a href={this.props.service.getUrl ("WorkbookConverter", "Convert", null)
                     + "?fileName=" + encodeURIComponent (file.fileName)
                     + "&tempFilePath=" + encodeURIComponent (file.tempFilePath)
@@ -27,9 +26,8 @@ class WorkbookConverter extends React.Component {
                 <table className="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>fileName</th>
-                            <th>tempFilePath</th>
-                            <th>Convert</th>
+                            <th>File Name</th>
+                            <th>Download</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,16 +52,22 @@ class WorkbookConverter extends React.Component {
             return this.renderError (this.state.error);
         }
         return (
-            <form>
-                <fieldset>
-                    <div className="form-group">
-                        <label for={"u8y_wbc_upload_" + this.props.moduleId}>Example file input</label>
-                        <input type="file" className="form-control-file" id={"u8y_wbc_upload_" + this.props.moduleId} />
-                        <input type="button" className="btn btn-primary" onClick={this.upload.bind(this)} value="Upload" />
-                    </div>
-                </fieldset>
+            <div>
+                <form>
+                    <fieldset>
+                        <div className="form-group">
+                            <label for={"u8y_wbc_upload_" + this.props.moduleId}>Select .XLSX file</label>
+                            <input type="file" className="form-control-file" id={"u8y_wbc_upload_" + this.props.moduleId}
+                                accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            />
+                        </div>    
+                        <div className="form-group">    
+                            <input type="button" className="btn btn-primary" onClick={this.upload.bind(this)} value="Upload" />
+                        </div>
+                    </fieldset>
+                </form>
                 {this.renderFiles (this.state.files)}
-            </form>
+            </div>
         );
     }
     
@@ -79,7 +83,7 @@ class WorkbookConverter extends React.Component {
             (retData) => {
                 const newState = {
                     error: { isError: false, errorMessage: "" },
-                    files: []
+                    files: this.state.files
                 };
                 newState.files.push ({
                     tempFilePath: retData.tempFilePath,
