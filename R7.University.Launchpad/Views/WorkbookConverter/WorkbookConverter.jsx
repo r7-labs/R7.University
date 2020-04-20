@@ -3,9 +3,8 @@ class WorkbookConverter extends React.Component {
     constructor (props) {
         super (props);
         this.state = {
-            error: false,
-            files: [],
-            pingLabel: "Ping!"
+            error: { isError: false, errorMessage: "" },
+            files: []
         };
     }
     
@@ -42,13 +41,21 @@ class WorkbookConverter extends React.Component {
         return null;
     }
     
+    renderError (error) {
+        return (
+            <div className="alert alert-danger">
+                <p className="mb-0">{error.errorMessage}</p>
+            </div>
+        );
+    }
+    
     render () {
+        if (this.state.error.isError === true) {
+            return this.renderError (this.state.error);
+        }
         return (
             <form>
                 <fieldset>
-                    <div class="form-group d-none">
-                        <input type="button" className="btn btn-secondary" onClick={this.ping.bind(this)} value={this.state.pingLabel} /> 
-                    </div>
                     <div className="form-group">
                         <label for={"u8y_wbc_upload_" + this.props.moduleId}>Example file input</label>
                         <input type="file" className="form-control-file" id={"u8y_wbc_upload_" + this.props.moduleId} />
@@ -60,62 +67,38 @@ class WorkbookConverter extends React.Component {
         );
     }
     
-    ping (e) {
-        e.preventDefault ();
-        this.props.service.ping (
-            (retData) => {
-                this.setState ({
-                    error: false,
-                    files: [],
-                    pingLabel: retData.pingLabel
-                });
-            },
-            (xhr, status) => {
-                console.log (xhr);
-                console.log (status);
-                this.setErrorState ();
-            }
-        );
-    }
-    
     upload (e) {
         e.preventDefault ();
     
-        const formData = new FormData ()
+        const formData = new FormData ();
         const file = document.getElementById ("u8y_wbc_upload_" + this.props.moduleId).files [0];
         formData.append ("file", file);
             
         this.props.service.upload (
             formData,    
             (retData) => {
-                console.log (retData);
-                
                 const newState = {
-                    error: false,
-                    pingLabel: this.state.pingLabel,
+                    error: { isError: false, errorMessage: "" },
                     files: []
                 };
-                
                 newState.files.push ({
                     tempFilePath: retData.tempFilePath,
                     fileName: retData.fileName
                 });
-                
                 this.setState (newState);
             },
             (xhr, status) => {
                 console.log (xhr);
                 console.log (status);
-                this.setErrorState ();
+                this.setErrorState (xhr.statusText);
             }
         );
     }
     
-    setErrorState () {
+    setErrorState (errorMessage) {
         this.setState ({
-            error: true,
-            files: [],
-            pingLabel: "Error!"
+            error: { isError: true, errorMessage: errorMessage },
+            files: []
         });
     }
 }
@@ -166,10 +149,6 @@ class WorkbookConverter extends React.Component {
                     fail (xhr, status);
                 }
             });
-        }
-        
-        ping (success, fail) {
-            this.ajaxCall ("GET", "WorkbookConverter", "Ping", null, null, success, fail);
         }
         
         upload (data, success, fail) {
