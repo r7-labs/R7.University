@@ -1,11 +1,23 @@
+class WorkbookConverterError {
+    constructor () {
+        this.level = 0;
+        this.title = "";
+        this.message = "";
+    }
+}
+
+class WorkbookConverterState {
+    constructor () {
+        this.error = null;
+        this.files = [];
+    }
+}
+
 class WorkbookConverter extends React.Component {
 
     constructor (props) {
         super (props);
-        this.state = {
-            error: { isError: false, errorMessage: "" },
-            files: []
-        };
+        this.state = new WorkbookConverterState ();
     }
     
     renderFile (file, index) {
@@ -41,20 +53,32 @@ class WorkbookConverter extends React.Component {
         return null;
     }
     
+    getBsAlertName (errorLevel) {
+        if (errorLevel === 1) {
+            return "danger";
+        }
+        if (errorLevel === 2) {
+            return "warning";
+        }
+        return "info";
+    }
+    
     renderError (error) {
-        return (
-            <div className="alert alert-danger">
-                <p className="mb-0">{error.errorMessage}</p>
-            </div>
-        );
+        if (error !== null) {
+            return (
+                <div className={"alert alert-" + this.getBsAlertName (error.level)} role="alert">
+                    <h4 className="alert-heading">{error.title}</h4>
+                    <p className="mb-0">{error.message}</p>
+                </div>
+            );
+        }
+        return null;
     }
     
     render () {
-        if (this.state.error.isError === true) {
-            return this.renderError (this.state.error);
-        }
         return (
             <div>
+                {this.renderError (this.state.error)}
                 <form>
                     <fieldset>
                         <div className="form-group">
@@ -65,7 +89,9 @@ class WorkbookConverter extends React.Component {
                             />
                         </div>    
                         <div className="form-group">    
-                            <input type="button" className="btn btn-primary" onClick={this.upload.bind(this)} value="Upload" />
+                            <a role="button" className="btn btn-primary" href="#" onClick={this.upload.bind(this)}>
+                                <i className="fas fa-upload"></i> Upload
+                            </a>
                         </div>
                     </fieldset>
                 </form>
@@ -77,50 +103,37 @@ class WorkbookConverter extends React.Component {
     upload (e) {
         e.preventDefault ();
        
-        var fileInput = document.getElementById ("u8y_wbc_upload_" + this.props.moduleId);
-        for (let file of fileInput.files) {
-            if (this.uploadFile (file) === false) {
-                break;
-            }
-        }
-    }
-    
-    uploadFile (file) {
-        let isError = false;
+        const newState = new WorkbookConverterState ();
         
         const formData = new FormData ();
-        formData.append ("file", file);
-            
+        var fileInput = document.getElementById ("u8y_wbc_upload_" + this.props.moduleId);
+        for (let i = 0; i < fileInput.files.length; i++) {
+            formData.append ("file" + i, fileInput.files [i]);
+        }
+        
         this.props.service.upload (
             formData,    
-            (retData) => {
-                const newState = {
-                    error: { isError: false, errorMessage: "" },
-                    files: this.state.files
-                };
-                newState.files.push ({
-                    tempFileName: retData.tempFileName,
-                    fileName: retData.fileName
-                });
-                // TODO: It's better to call setState just once
+            (results) => {
+                for (let result of results) {
+                    newState.files.push ({
+                        tempFileName: result.tempFileName,
+                        fileName: result.fileName
+                    });
+                }            
                 this.setState (newState);
             },
-            (xhr, status) => {
+            (xhr, status, err) => {
                 console.log (xhr);
                 console.log (status);
-                this.setErrorState (xhr.statusText);
-                isError = true;            
+                console.log (err);
+                
+                newState.error = new WorkbookConverterError ();
+                newState.error.level = 1;
+                newState.error.title = xhr.status + " " + xhr.statusText;
+                newState.error.message = "Error uploading file(s). You can reload the page and try again. If problem persists, please contact the system administrator.";
+                this.setState (newState);
             }
         );
-        
-        return !isError;
-    }
-    
-    setErrorState (errorMessage) {
-        this.setState ({
-            error: { isError: true, errorMessage: errorMessage },
-            files: []
-        });
     }
 }
 
@@ -146,14 +159,14 @@ class WorkbookConverter extends React.Component {
                 if (success != undefined) {
                     success (retData);
                 }
-            }).fail (function (xhr, status) {
+            }).fail (function (xhr, status, err) {
                 if (fail != undefined) {
-                    fail (xhr, status);
+                    fail (xhr, status, err);
                 }
             });
         }
         
-        ajaxCall2 (type, controller, action, id, data, success, fail) {
+        ajaxCallUnprocessed (type, controller, action, id, data, success, fail) {
             $.ajax ({
                 type: type,
                 url: this.baseServicepath + controller + "/" + action + (id != null ? "/" + id : ""),
@@ -165,15 +178,15 @@ class WorkbookConverter extends React.Component {
                 if (success != undefined) {
                     success (retData);
                 }
-            }).fail (function (xhr, status) {
+            }).fail (function (xhr, status, err) {
                 if (fail != undefined) {
-                    fail (xhr, status);
+                    fail (xhr, status, err);
                 }
             });
         }
         
-        upload (data, success, fail) {
-            this.ajaxCall2 ("POST", "WorkbookConverter", "Upload", null, data, success, fail);
+        upload (data, success, fail, always) {
+            this.ajaxCallUnprocessed ("POST", "WorkbookConverter", "Upload", null, data, success, fail);
         }
     }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -41,23 +42,27 @@ namespace R7.University.Launchpad.Services
                 var provider = new MultipartMemoryStreamProvider ();
                 await Request.Content.ReadAsMultipartAsync (provider);
 
-                var fileBytes = await provider.Contents [0].ReadAsByteArrayAsync ();
+                var results = new List<WorkbookConverterUploadResult> ();
+                foreach (var contents in provider.Contents) {
+                    var fileBytes = await contents.ReadAsByteArrayAsync ();
 
-                // create temp file and store uploaded data
-                var tempFilePath = Path.GetTempFileName ();
-                File.WriteAllBytes (tempFilePath, fileBytes);
+                    // create temp file and store uploaded data
+                    var tempFilePath = Path.GetTempFileName ();
+                    File.WriteAllBytes (tempFilePath, fileBytes);
 
-                // extract file name and file contents
-                var fileNameParam = provider.Contents [0].Headers.ContentDisposition.Parameters
-                    .FirstOrDefault (p => p.Name.ToLower () == "filename");
+                    // extract file name and file contents
+                    var fileNameParam = contents.Headers.ContentDisposition.Parameters
+                        .FirstOrDefault (p => p.Name.ToLower () == "filename");
 
-                var fileName = (fileNameParam == null) ? "" : fileNameParam.Value.Trim ('"');
+                    var fileName = (fileNameParam == null) ? "" : fileNameParam.Value.Trim ('"');
 
-                return Request.CreateResponse (HttpStatusCode.OK,
-                    new WorkbookConverterUploadResult {
+                    results.Add (new WorkbookConverterUploadResult {
                         FileName = fileName,
                         TempFileName = Path.GetFileName (tempFilePath)
                     });
+                }
+
+                return Request.CreateResponse (HttpStatusCode.OK, results);
             }
             catch (Exception ex) {
                 Exceptions.LogException (ex);
