@@ -1,8 +1,9 @@
-@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<object>
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<WorkbookConverterViewModel>
 @using DotNetNuke.Web.Mvc.Helpers
 @using DotNetNuke.Web.Client.ClientResourceManagement
 @using DotNetNuke.Framework.JavaScriptLibraries
 @using R7.University.ModelExtensions
+@using R7.University.Launchpad.ViewModels
 @{
 	JavaScript.RequestRegistration ("React");
 	JavaScript.RequestRegistration ("ReactDOM");
@@ -10,5 +11,6 @@
 	ClientResourceManager.RegisterScript (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/assets/js/WorkbookConverter.min.js");
 }
 <div class="u8y-workbook-converter"
-	data-module-id="@Dnn.ModuleContext.ModuleId">
+	data-module-id="@Dnn.ModuleContext.ModuleId"
+	data-resources="@Model.ClientResources">
 </div>

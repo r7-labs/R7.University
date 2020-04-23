@@ -20,6 +20,13 @@ class WorkbookConverter extends React.Component {
         this.state = new WorkbookConverterState ();
     }
     
+    getString (key) {
+        if (key.includes (".")) {
+            return this.props.resources [key];
+        }
+        return this.props.resources [key + ".Text"]
+    }
+    
     renderFile (file, index) {
         return (
             <tr>
@@ -39,9 +46,9 @@ class WorkbookConverter extends React.Component {
                 <table className="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>File Name</th>
-                            <th>Download</th>
+                            <th>{this.getString ("Number")}</th>
+                            <th>{this.getString ("FileName")}</th>
+                            <th>{this.getString ("Download")}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,7 +89,7 @@ class WorkbookConverter extends React.Component {
                 <form>
                     <fieldset>
                         <div className="form-group">
-                            <label for={"u8y_wbc_upload_" + this.props.moduleId}>Select .XLSX file(s)</label>
+                            <label for={"u8y_wbc_upload_" + this.props.moduleId}>{this.getString ("SelectFiles")}</label>
                             <input type="file" className="form-control-file" id={"u8y_wbc_upload_" + this.props.moduleId}
                                 accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                                 multiple="multiple"
@@ -90,7 +97,7 @@ class WorkbookConverter extends React.Component {
                         </div>    
                         <div className="form-group">    
                             <a role="button" className="btn btn-primary" href="#" onClick={this.upload.bind(this)}>
-                                <i className="fas fa-upload"></i> Upload
+                                <i className="fas fa-upload"></i> {this.getString ("Upload")}
                             </a>
                         </div>
                     </fieldset>
@@ -130,7 +137,7 @@ class WorkbookConverter extends React.Component {
                 newState.error = new WorkbookConverterError ();
                 newState.error.level = 1;
                 newState.error.title = xhr.status + " " + xhr.statusText;
-                newState.error.message = "Error uploading file(s). You can reload the page and try again. If problem persists, please contact the system administrator.";
+                newState.error.message = this.getString ("UploadErrorMessage");
                 this.setState (newState);
             }
         );
@@ -182,6 +189,7 @@ class WorkbookConverter extends React.Component {
             const moduleId = $(m).data ("module-id");
             ReactDOM.render (<WorkbookConverter
                 moduleId={moduleId}
+                resources={$(m).data ("resources")}
                 service={new WorkbookConverterService (moduleId)}
             />, m);
         });
