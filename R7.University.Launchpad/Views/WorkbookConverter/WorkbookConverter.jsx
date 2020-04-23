@@ -149,11 +149,17 @@ class WorkbookConverter extends React.Component {
             return this.baseServicepath + controller + "/" + action + (id != null ? "/" + id : "");
         }
     
-        ajaxCall (type, controller, action, id, data, success, fail) {
+        ajaxCall (type, url, data, success, fail) {
+            this.ajaxCall (type, url, data, true, true, success, fail);
+        }
+        
+        ajaxCall (type, url, data, processData, contentType, success, fail) {
             $.ajax ({
                 type: type,
-                url: this.baseServicepath + controller + "/" + action + (id != null ? "/" + id : ""),
+                url: url,
                 beforeSend: $.dnnSF (this.moduleId).setModuleHeaders,
+                processData: processData,
+                contentType: contentType,
                 data: data
             }).done (function (retData) {
                 if (success != undefined) {
@@ -166,27 +172,8 @@ class WorkbookConverter extends React.Component {
             });
         }
         
-        ajaxCallUnprocessed (type, controller, action, id, data, success, fail) {
-            $.ajax ({
-                type: type,
-                url: this.baseServicepath + controller + "/" + action + (id != null ? "/" + id : ""),
-                beforeSend: $.dnnSF (this.moduleId).setModuleHeaders,
-                processData: false,
-                contentType: false,
-                data: data
-            }).done (function (retData) {
-                if (success != undefined) {
-                    success (retData);
-                }
-            }).fail (function (xhr, status, err) {
-                if (fail != undefined) {
-                    fail (xhr, status, err);
-                }
-            });
-        }
-        
-        upload (data, success, fail, always) {
-            this.ajaxCallUnprocessed ("POST", "WorkbookConverter", "Upload", null, data, success, fail);
+        upload (data, success, fail) {
+            this.ajaxCall ("POST", this.getUrl ("WorkbookConverter", "Upload", null), data, false, false, success, fail);
         }
     }
 
