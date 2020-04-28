@@ -121,6 +121,8 @@
     <Folder Include="Models\" />
     <Folder Include="js\" />
     <Folder Include="Services\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\WorkbookDownloader\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -155,6 +157,7 @@
     <None Include="App_LocalResources\EditEmployeeDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.ru-RU.resx" />
+    <None Include="Views\WorkbookDownloader\WorkbookDownloader.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEmployee.ascx.cs">

@@ -1,8 +1,12 @@
 <%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEmployeeDetails.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeDetails" %>
+<%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
+<dnn:JavaScriptLibraryInclude runat="server" Name="React" />
+<dnn:JavaScriptLibraryInclude runat="server" Name="ReactDOM" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/WorkbookDownloader.min.js" />
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
@@ -30,6 +34,9 @@
 				</asp:Panel>
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
+				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_wbdl_dlg_<%: ModuleId %>">
+					<i class="fas fa-file-excel">Export to .XLSX</i>
+				</button>
 			</div>
 		</div>
     	<div id="employeeTabs_<%= ModuleId %>" class="col-md-9 pl-md-3">
@@ -123,20 +130,6 @@
             </asp:HyperLink>
         </li>
 		<li>
-            <a role="button" class="btn btn-outline-secondary btn-sm" target="_blank"
-					href="/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=<%= Employee.EmployeeID %>&format=Excel">
-                <i class="fas fa-file-excel" aria-hidden="true"></i>
-				<!-- TODO: Localize me! -->
-                Export to Excel
-            </a>
-			<a role="button" class="btn btn-outline-secondary btn-sm" target="_blank"
-					href="/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=<%= Employee.EmployeeID %>&format=CSV">
-                <i class="fas fa-file-excel" aria-hidden="true"></i>
-				<!-- TODO: Localize me! -->
-                Export to CSV
-            </a>
-        </li>
-		<li>
 			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-secondary">
 			    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
 				<%: LocalizeString ("Close.Text") %>
@@ -159,3 +152,41 @@
         </div>
 	</div>
 </div>
+<div id="u8y_employee_wbdl_dlg_<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="u8y_employee_wbdl_dlg_title_<%: ModuleId %>">
+    <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	        <div class="modal-header">
+				<h5 id="u8y_employee_wbdl_dlg_title_<%: ModuleId %>" class="modal-title">Export to .XLSX</h5>
+			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body"
+				 data-module-id="<%: ModuleId %>"
+				 data-employee-id="<%: Employee.EmployeeID %>"
+				 data-is-authenticated="<%: Request.IsAuthenticated.ToString().ToLowerInvariant() %>"
+				 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
+				 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'>
+			</div>
+        </div>
+	</div>
+</div>
+<script>
+(function($, window, document) {
+	$(document).ready(function() {
+		$("#u8y_employee_wbdl_dlg_<%: ModuleId %>").on("shown.bs.modal", function (e) {
+			var root = $(e.target).find(".modal-body");
+			var moduleId = root.data("module-id");
+			var props = {
+				moduleId: moduleId,
+				employeeId: root.data("employee-id"),
+				isAuthenticated: root.data("is-authenticated"),
+				isAdmin: root.data("is-admin"),
+				loginUrl: root.data("login-url")
+			};
+			console.log (props);
+			ReactDOM.render(
+		  		React.createElement(WorkbookDownloader, props, null), root.get(0)
+			);
+		});
+	});
+} (jQuery, window, document));
+</script>
