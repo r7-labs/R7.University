@@ -16,8 +16,7 @@
                 <li className="list-inline-item">
                     <a role="button" className="btn btn-outline-secondary"
                             href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=CSV"}>
-                        <i className="fas fa-file-csv" aria-hidden="true"></i>
-                        {this.getString ("ExportToCSV")}
+                        <i className="fas fa-file-csv mr-2" aria-hidden="true"></i> {this.getString ("ExportToCSV")}
                     </a>
                 </li>
             );
@@ -32,8 +31,7 @@
                     <li className="list-inline-item">
                         <a role="button" className="btn btn-outline-primary"
                                 href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=Excel"}>
-                            <i className="fas fa-file-excel" aria-hidden="true"></i>
-                            {this.getString ("ExportToExcel")}
+                            <i className="fas fa-file-excel mr-2" aria-hidden="true"></i> {this.getString ("ExportToExcel")}
                         </a>
                     </li>    
                     {this.renderAdminActions ()}

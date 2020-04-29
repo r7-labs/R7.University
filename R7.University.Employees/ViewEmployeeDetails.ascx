@@ -35,7 +35,7 @@
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
-					<i class="fas fa-file-excel"></i> <%: LocalizeString ("EmployeeExporterButtonLabel") %>
+					<i class="fas fa-file-excel mr-2"></i><%: LocalizeString ("EmployeeExporterButtonLabel") %>
 				</button>
 			</div>
 		</div>
@@ -153,7 +153,7 @@
 	</div>
 </div>
 <div id="u8y_employee_exporter_dlg_<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="u8y_employee_exporter_dlg_title_<%: ModuleId %>">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
 	        <div class="modal-header">
 				<h5 id="u8y_employee_exporter_dlg_title_<%: ModuleId %>" class="modal-title"><%: LocalizeString("EmployeeExporterDialogTitle") %></h5>
