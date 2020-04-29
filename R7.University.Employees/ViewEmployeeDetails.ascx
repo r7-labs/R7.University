@@ -35,7 +35,7 @@
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
-					<i class="fas fa-file-excel">Export to .XLSX</i>
+					<i class="fas fa-file-excel"></i> <%: LocalizeString ("EmployeeExporterButtonLabel") %>
 				</button>
 			</div>
 		</div>

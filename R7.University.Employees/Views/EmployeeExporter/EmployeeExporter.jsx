@@ -14,9 +14,9 @@
         if (this.props.isAdmin === true) {
             return (
                 <li className="list-inline-item">
-                    <a role="button" class="btn btn-outline-secondary"
+                    <a role="button" className="btn btn-outline-secondary"
                             href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=CSV"}>
-                        <i class="fas fa-file-csv" aria-hidden="true"></i>
+                        <i className="fas fa-file-csv" aria-hidden="true"></i>
                         {this.getString ("ExportToCSV")}
                     </a>
                 </li>
@@ -30,7 +30,7 @@
             return (
                 <ul className="list-inline">
                     <li className="list-inline-item">
-                        <a role="button" class="btn btn-outline-primary"
+                        <a role="button" className="btn btn-outline-primary"
                                 href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=Excel"}>
                             <i className="fas fa-file-excel" aria-hidden="true"></i>
                             {this.getString ("ExportToExcel")}
