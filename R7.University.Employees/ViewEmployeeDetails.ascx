@@ -6,7 +6,7 @@
 <dnn:JavaScriptLibraryInclude runat="server" Name="React" />
 <dnn:JavaScriptLibraryInclude runat="server" Name="ReactDOM" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
-<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/WorkbookDownloader.min.js" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/EmployeeExporter.min.js" />
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
@@ -34,7 +34,7 @@
 				</asp:Panel>
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
-				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_wbdl_dlg_<%: ModuleId %>">
+				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
 					<i class="fas fa-file-excel">Export to .XLSX</i>
 				</button>
 			</div>
@@ -152,11 +152,11 @@
         </div>
 	</div>
 </div>
-<div id="u8y_employee_wbdl_dlg_<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="u8y_employee_wbdl_dlg_title_<%: ModuleId %>">
+<div id="u8y_employee_exporter_dlg_<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="u8y_employee_exporter_dlg_title_<%: ModuleId %>">
     <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	        <div class="modal-header">
-				<h5 id="u8y_employee_wbdl_dlg_title_<%: ModuleId %>" class="modal-title"><%: LocalizeString("WorkbookDownloaderDialogTitle") %></h5>
+				<h5 id="u8y_employee_exporter_dlg_title_<%: ModuleId %>" class="modal-title"><%: LocalizeString("EmployeeExporterDialogTitle") %></h5>
 			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body"
@@ -165,7 +165,7 @@
 				 data-is-authenticated="<%: Request.IsAuthenticated.ToString().ToLowerInvariant() %>"
 				 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
 				 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'
-				 data-resources="<%: WorkbookDownloaderResources %>">
+				 data-resources="<%: EmployeeExporterResources %>">
 			</div>
         </div>
 	</div>
@@ -173,7 +173,7 @@
 <script>
 (function($, window, document) {
 	$(document).ready(function() {
-		$("#u8y_employee_wbdl_dlg_<%: ModuleId %>").on("shown.bs.modal", function (e) {
+		$("#u8y_employee_exporter_dlg_<%: ModuleId %>").on("shown.bs.modal", function (e) {
 			var root = $(e.target).find(".modal-body");
 			var moduleId = root.data("module-id");
 			var props = {
@@ -185,7 +185,7 @@
 				resources: root.data("resources")
 			};
 			ReactDOM.render(
-		  		React.createElement(WorkbookDownloader, props, null), root.get(0)
+		  		React.createElement(EmployeeExporter, props, null), root.get(0)
 			);
 		});
 	});

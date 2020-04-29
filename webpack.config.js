@@ -39,7 +39,7 @@ var jsxConfig = {
     entry: {
         test: "./R7.University/assets/js/test.jsx",
         WorkbookConverter: "./R7.University.Launchpad/Views/WorkbookConverter/WorkbookConverter.jsx",
-        WorkbookDownloader: "./R7.University.Employees/Views/WorkbookDownloader/WorkbookDownloader.jsx"
+        EmployeeExporter: "./R7.University.Employees/Views/EmployeeExporter/EmployeeExporter.jsx"
     },
     output: {
         path: path.resolve (__dirname, "R7.University/assets/js"),

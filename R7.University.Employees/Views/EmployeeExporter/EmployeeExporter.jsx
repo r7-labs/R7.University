@@ -1,4 +1,4 @@
-class WorkbookDownloader extends React.Component {
+﻿class EmployeeExporter extends React.Component {
     constructor (props) {
         super (props);
     }
@@ -52,4 +52,4 @@ class WorkbookDownloader extends React.Component {
 }
 
 // basic export
-window.WorkbookDownloader = WorkbookDownloader;
+window.EmployeeExporter = EmployeeExporter;

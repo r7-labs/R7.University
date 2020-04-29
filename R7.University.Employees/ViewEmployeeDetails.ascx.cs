@@ -101,11 +101,11 @@ namespace R7.University.Employees
             get { return ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EmployeeDetails"; }
         }
 
-        protected string WorkbookDownloaderResources {
+        protected string EmployeeExporterResources {
             get {
                 var clientResourcesObject = LocalizationProvider.Instance.GetCompiledResourceFile (
                     PortalSettings,
-                    "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/WorkbookDownloader.resx",
+                    "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/EmployeeExporter.resx",
                     CultureInfo.CurrentUICulture.Name
                 );
                 return JsonConvert.SerializeObject (clientResourcesObject);
