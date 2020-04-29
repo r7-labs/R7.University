@@ -48,4 +48,7 @@
 	<data name="ScienceIndexAuthorProfile.Text" xml:space="preserve">
         <value>Science Index author's profile</value>
     </data>
+	<data name="WorkbookDownloaderDialogTitle.Text" xml:space="preserve">
+		<value>Export to .XLSX</value>
+	</data>
 </root>

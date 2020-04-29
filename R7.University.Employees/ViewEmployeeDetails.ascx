@@ -156,7 +156,7 @@
     <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	        <div class="modal-header">
-				<h5 id="u8y_employee_wbdl_dlg_title_<%: ModuleId %>" class="modal-title">Export to .XLSX</h5>
+				<h5 id="u8y_employee_wbdl_dlg_title_<%: ModuleId %>" class="modal-title"><%: LocalizeString("WorkbookDownloaderDialogTitle") %></h5>
 			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body"
@@ -164,7 +164,8 @@
 				 data-employee-id="<%: Employee.EmployeeID %>"
 				 data-is-authenticated="<%: Request.IsAuthenticated.ToString().ToLowerInvariant() %>"
 				 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
-				 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'>
+				 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'
+				 data-resources="<%: WorkbookDownloaderResources %>">
 			</div>
         </div>
 	</div>
@@ -180,9 +181,9 @@
 				employeeId: root.data("employee-id"),
 				isAuthenticated: root.data("is-authenticated"),
 				isAdmin: root.data("is-admin"),
-				loginUrl: root.data("login-url")
+				loginUrl: root.data("login-url"),
+				resources: root.data("resources")
 			};
-			console.log (props);
 			ReactDOM.render(
 		  		React.createElement(WorkbookDownloader, props, null), root.get(0)
 			);

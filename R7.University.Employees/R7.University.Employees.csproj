@@ -258,4 +258,12 @@
       <Name>R7.University.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\WorkbookDownloader.resx">
+      <LastGenOutput>WorkbookDownloader.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\WorkbookDownloader.ru-RU.resx">
+      <LastGenOutput>WorkbookDownloader.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

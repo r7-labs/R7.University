@@ -16,7 +16,7 @@ class WorkbookDownloader extends React.Component {
                 <a role="button" class="btn btn-outline-secondary"
                         href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=CSV"}>
                     <i class="fas fa-file-csv" aria-hidden="true"></i>
-                    Export to .CSV
+                    {this.getString ("ExportToCSV")}
                 </a>
             );
         }
@@ -30,28 +30,21 @@ class WorkbookDownloader extends React.Component {
                     <a role="button" class="btn btn-outline-primary"
                             href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=Excel"}>
                         <i className="fas fa-file-excel" aria-hidden="true"></i>
-                        Export to .XLSX
+                        {this.getString ("ExportToExcel")}
                     </a>
                     {this.renderAdminActions ()}
                 </div>
             );
         }
         return (
-            <p className="alert alert-warning">
-                Currently only logged in users can download employee data as a spreadsheet (.XLSX) file!
-                Please <a href={this.props.loginUrl} target="_blank">login</a> to the website, reload the page and try again.
-            </p>
+            <p className="alert alert-warning" dangerouslySetInnerHTML={{__html: this.getString ("Unauthorized").replace ("{{loginUrl}}", this.props.loginUrl)}}></p>
         );
     }
     
     render () {
         return (
             <div>
-                <p className="alert alert-info">
-                    You can download employee data as a spreadsheet (.XLSX) file
-                    in order to edit the data offline using the e.g. Microsoft Excel or Libreoffice Calc
-                    and then send the updated form to the authorized website editor.  
-                </p>
+                <p className="alert alert-info">{this.getString ("About")}</p>
                 {this.renderActions ()}
             </div>
         );
