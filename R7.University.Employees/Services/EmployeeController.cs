@@ -36,7 +36,8 @@ using R7.University.Models;
 using R7.University.Templates;
 using R7.University.ViewModels;
 
-/* Need to add binding redirect to web.config (via manifest?)
+// may need the binding redirect in web.config
+/* 
 <dependentAssembly>
     <assemblyIdentity name = "System.Net.Http" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
     <bindingRedirect oldVersion="0.0.0.0-4.2.0.0" newVersion="4.0.0.0" />
@@ -87,7 +88,7 @@ namespace R7.University.Employees.Services
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [DnnAuthorize]
         public HttpResponseMessage Export (int employeeId, string format)
         {
             try {
@@ -112,16 +113,21 @@ namespace R7.University.Employees.Services
                     };
                 }
                 else if (string.Equals (format, "CSV", StringComparison.OrdinalIgnoreCase)) {
-                    result = Request.CreateResponse (HttpStatusCode.OK);
-                    var text = GetEmployeeCsvText (employee);
-                    result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
-                    result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
-                    result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                        FileName = GetFileName (employee, ".txt")
-                    };
+                    if (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")) {
+                        result = Request.CreateResponse (HttpStatusCode.OK);
+                        var text = GetEmployeeCsvText (employee);
+                        result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
+                        result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
+                        result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+                            FileName = GetFileName (employee, ".txt")
+                        };
+                    }
+                    else {
+                        return Request.CreateResponse (HttpStatusCode.Unauthorized);
+                    }
                 }
                 else {
-                    result = Request.CreateErrorResponse (HttpStatusCode.BadRequest, "The format argument is required!");
+                    result = Request.CreateResponse (HttpStatusCode.BadRequest);
                 }
 
                 return result;

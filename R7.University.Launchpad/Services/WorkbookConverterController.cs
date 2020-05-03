@@ -8,7 +8,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
 using R7.University.Core.Templates;
@@ -18,24 +17,9 @@ namespace R7.University.Launchpad.Services
 {
     public class WorkbookConverterController: DnnApiController
     {
-        [HttpGet]
-        [AllowAnonymous]
-        public HttpResponseMessage Ping ()
-        {
-            try {
-                return Request.CreateResponse (HttpStatusCode.OK, new { pingLabel = "Pong!" });
-            }
-            catch (Exception ex) {
-                Exceptions.LogException (ex);
-                return Request.CreateErrorResponse (HttpStatusCode.InternalServerError, ex);
-            }
-        }
-
         [HttpPost]
-        [AllowAnonymous]
+        [DnnAuthorize]
         [ValidateAntiForgeryToken]
-        //[SupportedModules ("R7.University.Launchpad")]
-        //[DnnModuleAuthorize (AccessLevel = SecurityAccessLevel.Admin)]
         public async Task<HttpResponseMessage> Upload ()
         {
             try {
@@ -71,7 +55,7 @@ namespace R7.University.Launchpad.Services
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [DnnAuthorize]
         public HttpResponseMessage Convert (string fileName, string tempFileName, string format)
         {
             try {
@@ -87,7 +71,7 @@ namespace R7.University.Launchpad.Services
                     };
                 }
                 else {
-                    result = Request.CreateErrorResponse (HttpStatusCode.BadRequest, "The format argument is required!");
+                    result = Request.CreateResponse (HttpStatusCode.BadRequest);
                 }
 
                 return result;

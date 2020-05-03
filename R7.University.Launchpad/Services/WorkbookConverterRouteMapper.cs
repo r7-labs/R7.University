@@ -6,7 +6,6 @@ namespace R7.University.Launchpad.Services
     {
         public void RegisterRoutes (IMapRoute mapRouteManager)
         {
-            // TODO: Rename route
             mapRouteManager.MapHttpRoute ("R7.University.Launchpad", "UniversityServicesMap2", "{controller}/{action}",
                 new [] { "R7.University.Launchpad.Services" });
         }

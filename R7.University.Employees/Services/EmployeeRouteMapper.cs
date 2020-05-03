@@ -27,7 +27,6 @@ namespace R7.University.Employees.Services
     {
         public void RegisterRoutes (IMapRoute mapRouteManager)
         {
-            // TODO: Rename route
             mapRouteManager.MapHttpRoute ("R7.University.Employees", "UniversityServicesMap1", "{controller}/{action}",
                 new [] { "R7.University.Employees.Services" });
         }
