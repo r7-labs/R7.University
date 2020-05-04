@@ -89,7 +89,7 @@ namespace R7.University.Employees.Services
 
         [HttpGet]
         [DnnAuthorize]
-        public HttpResponseMessage Export (int employeeId, string format)
+        public HttpResponseMessage ExportToExcel (int employeeId)
         {
             try {
                 var employee = GetEmployee (employeeId);
@@ -97,39 +97,47 @@ namespace R7.University.Employees.Services
                     return Request.CreateResponse (HttpStatusCode.NotFound);
                 }
 
-                var result = default (HttpResponseMessage);
-                 
-                if (string.Equals (format, "Excel", StringComparison.OrdinalIgnoreCase)) {
-                    result = Request.CreateResponse (HttpStatusCode.OK);
-                    var stream = GetEmployeeExcelStream (employee);
-                    var buffer = stream.ToArray ();
-                    // stream.GetBuffer() returns bigger buffer than actual data!
-                    result.Content = new ByteArrayContent (buffer);
-                    // TODO: Introduce MimeTypes!
-                    result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                    result.Content.Headers.ContentLength = buffer.Length;
-                    result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                        FileName = GetFileName (employee, ".xlsx")
-                    };
-                }
-                else if (string.Equals (format, "CSV", StringComparison.OrdinalIgnoreCase)) {
-                    if (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")) {
-                        result = Request.CreateResponse (HttpStatusCode.OK);
-                        var text = GetEmployeeCsvText (employee);
-                        result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
-                        result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
-                        result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                            FileName = GetFileName (employee, ".txt")
-                        };
-                    }
-                    else {
-                        return Request.CreateResponse (HttpStatusCode.Unauthorized);
-                    }
-                }
-                else {
-                    result = Request.CreateResponse (HttpStatusCode.BadRequest);
+                var result = Request.CreateResponse (HttpStatusCode.OK);
+                var stream = GetEmployeeExcelStream (employee);
+                var buffer = stream.ToArray ();
+                result.Content = new ByteArrayContent (buffer);
+                // TODO: Introduce MimeTypes!
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                result.Content.Headers.ContentLength = buffer.Length;
+                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+                    FileName = GetFileName (employee, ".xlsx")
+                };
+
+                return result;
+            }
+            catch (Exception ex) {
+                Exceptions.LogException (ex);
+                return Request.CreateErrorResponse (HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        [HttpGet]
+        [DnnAuthorize]
+        public HttpResponseMessage ExportToCsv (int employeeId)
+        {
+            try {
+                if (!UserInfo.IsSuperUser && !UserInfo.IsInRole ("Administrators")) {
+                    return Request.CreateResponse (HttpStatusCode.Forbidden);
                 }
 
+                var employee = GetEmployee (employeeId);
+                if (employee == null) {
+                    return Request.CreateResponse (HttpStatusCode.NotFound);
+                }
+
+                var result = Request.CreateResponse (HttpStatusCode.OK);
+                var text = GetEmployeeCsvText (employee);
+                result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
+                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+                    FileName = GetFileName (employee, ".txt")
+                };
+            
                 return result;
             }
             catch (Exception ex) {

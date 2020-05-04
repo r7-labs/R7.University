@@ -15,7 +15,7 @@
             return (
                 <li className="list-inline-item">
                     <a role="button" className="btn btn-outline-secondary"
-                            href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=CSV"}>
+                            href={"/DesktopModules/R7.University.Employees/API/Employee/ExportToCsv?employeeId=" + this.props.employeeId}>
                         <i className="fas fa-file-csv mr-2" aria-hidden="true"></i> {this.getString ("ExportToCSV")}
                     </a>
                 </li>
@@ -30,7 +30,7 @@
                 <ul className="list-inline">
                     <li className="list-inline-item">
                         <a role="button" className="btn btn-outline-primary"
-                                href={"/DesktopModules/R7.University.Employees/API/Employee/Export?employeeId=" + this.props.employeeId + "&format=Excel"}>
+                                href={"/DesktopModules/R7.University.Employees/API/Employee/ExportToExcel?employeeId=" + this.props.employeeId}>
                             <i className="fas fa-file-excel mr-2" aria-hidden="true"></i> {this.getString ("ExportToExcel")}
                         </a>
                     </li>    
