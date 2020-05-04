@@ -26,7 +26,7 @@
 	</data>
 	<data name="Unauthorized.Text" xml:space="preserve">
 		<value><![CDATA[Currently only logged in users can download employee data in a spreadsheet format!
-            Please <a href={{loginUrl}} target="_blank">login to the website</a>,
+            Please <a href={{loginUrl}} target="_blank" class="alert-link">login to the website</a>,
 			then reload the page (<code>F5</code> key) and try again.]]>
 		</value>
 	</data>
