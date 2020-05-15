@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using System.Linq;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
@@ -111,6 +112,29 @@ namespace R7.University.ModelExtensions
             vcard.LastRevision = e.LastModifiedOnDate;
 
             return vcard;
+        }
+
+        public static IEnumerable<EmployeeAchievementInfo> EducationAchievements (this IEmployee employee)
+        {
+            return employee.Achievements.Where (ach => ach.AchievementType.IsOneOf (
+                SystemAchievementType.Education,
+                SystemAchievementType.ProfTraining));
+        }
+
+        public static IEnumerable<EmployeeAchievementInfo> TrainingAchievements (this IEmployee employee)
+        {
+            return employee.Achievements.Where (ach => ach.AchievementType.IsOneOf (
+                SystemAchievementType.ProfRetraining,
+                SystemAchievementType.Training));
+        }
+
+        public static IEnumerable<EmployeeAchievementInfo> OtherAchievements (this IEmployee employee)
+        {
+            return employee.Achievements.Where (ach => !ach.AchievementType.IsOneOf (
+                SystemAchievementType.Education,
+                SystemAchievementType.ProfTraining,
+                SystemAchievementType.ProfRetraining,
+                SystemAchievementType.Training));
         }
     }
 }

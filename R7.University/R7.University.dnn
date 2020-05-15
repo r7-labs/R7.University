@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
 	<packages>
-		<package name="R7.University" type="Library" version="02.03.01">
+		<package name="R7.University" type="Library" version="02.04.00">
 			<friendlyName>R7.University</friendlyName>
 			<description>This is a core library for all R7.University modules. By installing this package, you also install all available R7.University modules, such as Launchpad, Division*, Employee*, EduProgram*, etc.</description>
 			<owner>
@@ -170,6 +170,26 @@
                             <path>bin</path>
                             <name>R7.University.Employees.dll</name>
                         </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.OOXML.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.OpenXml4Net.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>NPOI.OpenXmlFormats.dll</name>
+                        </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>ICSharpCode.SharpZipLib.dll</name>
+                        </assembly>
 					</assemblies>
 				</component>
                 <component type="ResourceFile">
@@ -272,7 +292,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Launchpad" type="Module" version="02.03.01">
+		<package name="R7.University.Launchpad" type="Module" version="02.04.00">
 			<friendlyName>R7.University.Launchpad</friendlyName>
 			<description>This is a simple module to display some records from database table.</description>
 			<owner>
@@ -470,7 +490,7 @@
 				</component>
       		</components>
 		</package>
-		<package name="R7.University.Employee" type="Module" version="02.03.01">
+		<package name="R7.University.Employee" type="Module" version="02.04.00">
 			<friendlyName>R7.University.Employee</friendlyName>
 			<description>This is a module to display information about single employee.</description>
 			<owner>
@@ -547,10 +567,9 @@
 						</moduleDefinitions>
 					</desktopModule>
 				</component>
-
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDetails" type="Module" version="02.03.01">
+		<package name="R7.University.EmployeeDetails" type="Module" version="02.04.00">
 			<friendlyName>R7.University.EmployeeDetails</friendlyName>
 			<description>This is a module to display detailed information about single employee.</description>
 			<owner>
@@ -618,7 +637,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeList" type="Module" version="02.03.01">
+		<package name="R7.University.EmployeeList" type="Module" version="02.04.00">
 			<friendlyName>R7.University.EmployeeList</friendlyName>
 			<description>This is a simple module to display a list of employees.</description>
 			<owner>
@@ -708,7 +727,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.Division" type="Module" version="02.03.01">
+		<package name="R7.University.Division" type="Module" version="02.04.00">
 			<friendlyName>R7.University.Division</friendlyName>
 			<description>This is a module to display information about single division.</description>
 			<owner>
@@ -776,7 +795,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.EmployeeDirectory" type="Module" version="02.03.01">
+		<package name="R7.University.EmployeeDirectory" type="Module" version="02.04.00">
 			<friendlyName>R7.University.EmployeeDirectory</friendlyName>
 			<description>This is a module to display information about employees.</description>
 			<owner>
@@ -855,7 +874,7 @@
 				</component>
 			</components>
 		</package>
-		<package name="R7.University.DivisionDirectory" type="Module" version="02.03.01">
+		<package name="R7.University.DivisionDirectory" type="Module" version="02.04.00">
 			<friendlyName>R7.University.DivisionDirectory</friendlyName>
 			<description>This is a module to display information about divisions.</description>
 			<owner>
@@ -945,7 +964,7 @@
 				</component>
 			</components>
 		</package>
-        <package name="R7.University.EduProgram" type="Module" version="02.03.01">
+        <package name="R7.University.EduProgram" type="Module" version="02.04.00">
             <friendlyName>R7.University.EduProgram</friendlyName>
             <description>This is a module to display information about single employee.</description>
             <owner>
@@ -1045,7 +1064,7 @@
                 </component>
             </components>
         </package>
-        <package name="R7.University.EduProgramDirectory" type="Module" version="02.03.01">
+        <package name="R7.University.EduProgramDirectory" type="Module" version="02.04.00">
             <friendlyName>R7.University.EduProgramDirectory</friendlyName>
             <description>This is a module to display information about educational programs.</description>
             <owner>
@@ -1146,7 +1165,7 @@
                 </component>
             </components>
         </package>
-		<package name="R7.University.ScienceDirectory" type="Module" version="02.03.01">
+		<package name="R7.University.ScienceDirectory" type="Module" version="02.04.00">
             <friendlyName>R7.University.ScienceDirectory</friendlyName>
             <description>This is a module to display science information for educational programs.</description>
             <owner>
@@ -1222,7 +1241,7 @@
                 </component>
             </components>
         </package>
-        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="02.03.01">
+        <package name="R7.University.EduProgramProfileDirectory" type="Module" version="02.04.00">
             <friendlyName>R7.University.EduProgramProfileDirectory</friendlyName>
             <description>A module to display information about educational program profiles.</description>
             <owner>
@@ -1331,7 +1350,7 @@
                 </component>
 		    </components>
         </package>
-		<package name="R7.University.EduVolumeDirectory" type="Module" version="02.03.01">
+		<package name="R7.University.EduVolumeDirectory" type="Module" version="02.04.00">
             <friendlyName>R7.University.EduVolumeDirectory</friendlyName>
             <description>A module to display information about educational program profiles volume by years.</description>
             <owner>
@@ -1418,7 +1437,7 @@
                 </component>
             </components>
         </package>
-		<package name="R7.University.ContingentDirectory" type="Module" version="02.03.01">
+		<package name="R7.University.ContingentDirectory" type="Module" version="02.04.00">
             <friendlyName>R7.University.ContingentDirectory</friendlyName>
             <description>A module to display information about contingent.</description>
             <owner>
@@ -1505,5 +1524,48 @@
                 </component>
             </components>
         </package>
+        <package name="R7.University.WorkbookConverter" type="Module" version="02.04.00">
+			<friendlyName>R7.University.WorkbookConverter</friendlyName>
+			<description>Admin module to convert R7.University workbooks into different formats.</description>
+			<owner>
+				<name>Roman M. Yagodin</name>
+				<organization>R7.Labs</organization>
+				<url>https://github.com/roman-yagodin/R7.University</url>
+				<email>roman.yagodin@gmail.com</email>
+			</owner>
+            <license />
+            <releaseNotes />
+            <dependencies />
+			<components>
+				<component type="Module">
+					<desktopModule>
+						<moduleName>R7.University.WorkbookConverter</moduleName>
+						<foldername>R7.University/R7.University.Launchpad</foldername>
+						<businessControllerClass>R7.University.Launchpad.Components.WorkbookConverterController</businessControllerClass>
+						<supportedFeatures />
+						<moduleDefinitions>
+							<moduleDefinition>
+								<friendlyName>R7.University.WorkbookConverter</friendlyName>
+								<definitionName>R7_University_WorkbookConverter</definitionName>
+                                <defaultCacheTime>0</defaultCacheTime>
+								<moduleControls>
+									<moduleControl>
+										<controlKey />
+										<controlSrc>R7.University.Launchpad.Controllers/WorkbookConverter/Index.mvc</controlSrc>
+										<controlTitle />
+										<controlType>Admin</controlType>
+										<iconFile />
+										<helpUrl />
+										<supportsPartialRendering>False</supportsPartialRendering>
+										<supportsPopUps>False</supportsPopUps>
+										<viewOrder>0</viewOrder>
+									</moduleControl>
+                                </moduleControls>
+							</moduleDefinition>
+						</moduleDefinitions>
+					</desktopModule>
+				</component>
+			</components>
+		</package>
 	</packages>
 </dotnetnuke>

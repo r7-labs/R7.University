@@ -10,8 +10,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.Launchpad</RootNamespace>
     <AssemblyName>R7.University.Launchpad</AssemblyName>
-    <ReleaseVersion>2.3.1</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <ReleaseVersion>2.4-beta.1</ReleaseVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,9 +90,6 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="NGettext">
-      <HintPath>..\packages\NGettext.0.6.5\lib\net45\NGettext.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -112,6 +109,9 @@
     <Reference Include="DotNetNuke.Web.Client">
       <HintPath>..\packages\DotNetNuke.Web.Client.8.0.4.226\lib\net40\DotNetNuke.Web.Client.dll</HintPath>
     </Reference>
+    <Reference Include="NGettext">
+      <HintPath>..\packages\NGettext.0.6.5\lib\net46\NGettext.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -121,6 +121,11 @@
     <Folder Include="Queries\" />
     <Folder Include="js\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Views\WorkbookConverter\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -136,6 +141,9 @@
     <Content Include="js\editDocumentType.js" />
     <Content Include="EditAchievementType.ascx" />
     <Content Include="EditYear.ascx" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\WorkbookConverter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_LocalResources\ViewLaunchpad.ascx.resx" />
@@ -158,6 +166,9 @@
     <None Include="App_LocalResources\EditAchievementType.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditYear.ascx.resx" />
     <None Include="App_LocalResources\EditYear.ascx.ru-RU.resx" />
+    <None Include="Views\WorkbookConverter\WorkbookConverter.jsx" />
+    <None Include="App_LocalResources\WorkbookConverter.resx" />
+    <None Include="App_LocalResources\WorkbookConverter.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewLaunchpad.ascx.cs">
@@ -237,6 +248,12 @@
       <DependentUpon>EditYear.ascx</DependentUpon>
     </Compile>
     <Compile Include="Tables\YearsTable.cs" />
+    <Compile Include="Controllers\WorkbookConverterController.cs" />
+    <Compile Include="Components\WorkbookConverterController.cs" />
+    <Compile Include="Services\WorkbookConverterRouteMapper.cs" />
+    <Compile Include="Services\WorkbookConverterController.cs" />
+    <Compile Include="ViewModels\WorkbookConverterUploadResult.cs" />
+    <Compile Include="ViewModels\WorkbookConverterViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -255,6 +272,10 @@
     <ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
       <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
       <Name>R7.University.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\R7.University.Core\R7.University.Core.csproj">
+      <Project>{54283781-606F-453A-A474-8DE6473ED30A}</Project>
+      <Name>R7.University.Core</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

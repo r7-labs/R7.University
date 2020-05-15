@@ -9,8 +9,8 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>Deploy</RootNamespace>
 		<AssemblyName>Deploy</AssemblyName>
-		<TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-		<ReleaseVersion>2.3.1</ReleaseVersion>
+		<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+		<ReleaseVersion>2.4-beta.1</ReleaseVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugSymbols>true</DebugSymbols>
@@ -64,7 +64,7 @@
 		<None Include="__Settings.targets" />
 		<None Include="InstallPackage.targets" />
 		<None Include="LocalDeploy.targets" />
-		<None Include="Preprocess.targets" />
+		<None Include="Bundle.targets" />
 		<None Include="Tests.targets" />
 		<None Include="Deploy.csproj" />
 		<None Include="packages.config" />
@@ -104,6 +104,10 @@
 		<ProjectReference Include="..\R7.University.Controls\R7.University.Controls.csproj">
 		  <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
 		  <Name>R7.University.Controls</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\R7.University.Core\R7.University.Core.csproj">
+		  <Project>{54283781-606F-453A-A474-8DE6473ED30A}</Project>
+		  <Name>R7.University.Core</Name>
 		</ProjectReference>
 	</ItemGroup>
 	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -9,8 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.Employees</RootNamespace>
     <AssemblyName>R7.University.Employees</AssemblyName>
-    <ReleaseVersion>2.3.1</ReleaseVersion>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <ReleaseVersion>2.4-beta.1</ReleaseVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,8 +44,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
+	<Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="DotNetNuke">
       <HintPath>..\packages\DotNetNuke.Core.8.0.4.226\lib\net40\DotNetNuke.dll</HintPath>
@@ -89,9 +88,6 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="NGettext">
-      <HintPath>..\packages\NGettext.0.6.5\lib\net45\NGettext.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -111,6 +107,10 @@
     <Reference Include="DotNetNuke.Web.Client">
       <HintPath>..\packages\DotNetNuke.Web.Client.8.0.4.226\lib\net40\DotNetNuke.Web.Client.dll</HintPath>
     </Reference>
+    <Reference Include="NGettext">
+      <HintPath>..\packages\NGettext.0.6.5\lib\net46\NGettext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
@@ -120,6 +120,9 @@
     <Folder Include="Queries\" />
     <Folder Include="Models\" />
     <Folder Include="js\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\EmployeeExporter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="module.css" />
@@ -154,6 +157,7 @@
     <None Include="App_LocalResources\EditEmployeeDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.ru-RU.resx" />
+    <None Include="Views\EmployeeExporter\EmployeeExporter.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEmployee.ascx.cs">
@@ -228,6 +232,8 @@
     <Compile Include="Queries\TeachersQuery.cs" />
     <Compile Include="Components\EmployeeDirectoryController.cs" />
     <Compile Include="SharedLogic\EmployeePhotoLogic.cs" />
+    <Compile Include="Services\EmployeeRouteMapper.cs" />
+    <Compile Include="Services\EmployeeController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -247,5 +253,17 @@
       <Project>{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}</Project>
       <Name>R7.University.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\R7.University.Core\R7.University.Core.csproj">
+      <Project>{54283781-606F-453A-A474-8DE6473ED30A}</Project>
+      <Name>R7.University.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\EmployeeExporter.resx">
+      <LastGenOutput>WorkbookDownloader.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\EmployeeExporter.ru-RU.resx">
+      <LastGenOutput>WorkbookDownloader.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

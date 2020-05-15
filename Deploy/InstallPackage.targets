@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="InstallPackage">
     <Import Project="__Settings.targets" Condition=" '$(BuildSettingsImported)' == '' " />
-    <Import Project="Preprocess.targets" Condition=" '$(PreprocessImported)' == '' " />
+    <Import Project="Bundle.targets" Condition=" '$(BundleImported)' == '' " />
     <Import Project="Tests.targets" Condition=" '$(TestsImported)' == '' " />
     <PropertyGroup>
         <!-- Enable install package creation by default (standalone) -->
         <EnableInstallPackage Condition=" '$(EnableInstallPackage)' == '' ">true</EnableInstallPackage>
     </PropertyGroup>
-    <Target Name="InstallPackage" Condition=" '$(EnableInstallPackage)' == 'true' " DependsOnTargets="Preprocess;Tests">
+    <Target Name="InstallPackage" Condition=" '$(EnableInstallPackage)' == 'true' " DependsOnTargets="Bundle;Tests">
         <RemoveDir Directories="$(TmpDir)" />
         <PropertyGroup>
             <PackageFileName>$(PackageName)-$(ReleaseVersion)-Install.$(Configuration).zip</PackageFileName>
@@ -16,6 +16,11 @@
         <ItemGroup>
             <InstallBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />
             <InstallBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition="'$(Configuration)' == 'Debug'" />
+		</ItemGroup>
+		<!-- Declare NPOI-related binaries -->
+		<ItemGroup>
+			<InstallBinaryFiles Include="../packages/NPOI.2.4.1/lib/net45/NPOI*.dll" />
+            <InstallBinaryFiles Include="../packages/SharpZipLib.1.0.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
 		</ItemGroup>
         <!-- Declare manifest files -->
         <ItemGroup>
@@ -47,6 +52,7 @@
             <InstallResourceFiles Include="../**/*.jpg" />
             <InstallResourceFiles Include="../**/*.png" />
             <InstallResourceFiles Include="../**/*.gif" />
+			<InstallResourceFiles Include="../**/*.xlsx" />
         </ItemGroup>
         <!-- Declare excluded files -->
         <ItemGroup>

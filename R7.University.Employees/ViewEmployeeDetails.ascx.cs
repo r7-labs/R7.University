@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -31,6 +32,7 @@ using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
+using Newtonsoft.Json;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Modules;
 using R7.Dnn.Extensions.Text;
@@ -44,7 +46,6 @@ using R7.University.Employees.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Security;
-using R7.University.SharedLogic;
 using R7.University.Utilities;
 using R7.University.ViewModels;
 
@@ -98,6 +99,17 @@ namespace R7.University.Employees
         protected bool InViewModule
         {
             get { return ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EmployeeDetails"; }
+        }
+
+        protected string EmployeeExporterResources {
+            get {
+                var clientResourcesObject = LocalizationProvider.Instance.GetCompiledResourceFile (
+                    PortalSettings,
+                    "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/EmployeeExporter.resx",
+                    CultureInfo.CurrentUICulture.Name
+                );
+                return JsonConvert.SerializeObject (clientResourcesObject);
+            }
         }
 
         #endregion

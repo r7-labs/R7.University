@@ -21,9 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Tests", "R7.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.EduPrograms", "R7.University.EduPrograms\R7.University.EduPrograms.csproj", "{71EEFF26-83B2-462A-A809-AB887A905003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Controls", "R7.University.Controls\R7.University.Controls.csproj", "{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Core", "R7.University.Core\R7.University.Core.csproj", "{54283781-606F-453A-A474-8DE6473ED30A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deploy", "Deploy\Deploy.csproj", "{48DE273D-19D7-46E3-A3C6-59F301E7CD03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Controls", "R7.University.Controls\R7.University.Controls.csproj", "{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R7.University.Core.Tests", "R7.University.Core.Tests\R7.University.Core.Tests.csproj", "{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,14 +63,22 @@ Global
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0596572-FD2D-40F2-83FD-98BA2C53A9D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B3B409-6A45-4EE4-9A0B-F1D749497ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54283781-606F-453A-A474-8DE6473ED30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54283781-606F-453A-A474-8DE6473ED30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54283781-606F-453A-A474-8DE6473ED30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54283781-606F-453A-A474-8DE6473ED30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48DE273D-19D7-46E3-A3C6-59F301E7CD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63AE30CA-4070-4C48-9B98-89D5A01DA0BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
@@ -334,6 +346,6 @@ Global
 		$52.inheritsSet = null
 		$52.inheritsScope = text/plain
 		$52.scope = text/x-cshtml
-		version = 2.3.1
+		version = 2.4-beta.1
 	EndGlobalSection
 EndGlobal

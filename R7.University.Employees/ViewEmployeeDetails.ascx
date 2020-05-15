@@ -1,8 +1,12 @@
-<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="ViewEmployeeDetails.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeDetails" %>
+<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEmployeeDetails.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeDetails" %>
+<%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
+<dnn:JavaScriptLibraryInclude runat="server" Name="React" />
+<dnn:JavaScriptLibraryInclude runat="server" Name="ReactDOM" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/EmployeeExporter.min.js" />
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
@@ -30,6 +34,9 @@
 				</asp:Panel>
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
+				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
+					<i class="fas fa-file-excel mr-2"></i><%: LocalizeString ("EmployeeExporterButtonLabel") %>
+				</button>
 			</div>
 		</div>
     	<div id="employeeTabs_<%= ModuleId %>" class="col-md-9 pl-md-3">
@@ -145,3 +152,42 @@
         </div>
 	</div>
 </div>
+<div id="u8y_employee_exporter_dlg_<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="u8y_employee_exporter_dlg_title_<%: ModuleId %>">
+    <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	        <div class="modal-header">
+				<h5 id="u8y_employee_exporter_dlg_title_<%: ModuleId %>" class="modal-title"><%: LocalizeString("EmployeeExporterDialogTitle") %></h5>
+			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body"
+				 data-module-id="<%: ModuleId %>"
+				 data-employee-id="<%: Employee.EmployeeID %>"
+				 data-is-authenticated="<%: Request.IsAuthenticated.ToString().ToLowerInvariant() %>"
+				 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
+				 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'
+				 data-resources="<%: EmployeeExporterResources %>">
+			</div>
+        </div>
+	</div>
+</div>
+<script>
+(function($, window, document) {
+	$(document).ready(function() {
+		$("#u8y_employee_exporter_dlg_<%: ModuleId %>").on("shown.bs.modal", function (e) {
+			var root = $(e.target).find(".modal-body");
+			var moduleId = root.data("module-id");
+			var props = {
+				moduleId: moduleId,
+				employeeId: root.data("employee-id"),
+				isAuthenticated: root.data("is-authenticated"),
+				isAdmin: root.data("is-admin"),
+				loginUrl: root.data("login-url"),
+				resources: root.data("resources")
+			};
+			ReactDOM.render(
+		  		React.createElement(EmployeeExporter, props, null), root.get(0)
+			);
+		});
+	});
+} (jQuery, window, document));
+</script>

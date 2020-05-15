@@ -1,17 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="LocalDeploy">
     <Import Project="__Settings.targets" Condition=" '$(BuildSettingsImported)' == '' " />
-    <Import Project="Preprocess.targets" Condition=" '$(PreprocessImported)' == '' " />
+    <Import Project="Bundle.targets" Condition=" '$(BundleImported)' == '' " />
     <Import Project="Tests.targets" Condition=" '$(TestsImported)' == '' " />
     <PropertyGroup>
         <!-- Enable local deploy by default (standalone) -->
         <EnableLocalDeploy Condition=" '$(EnableLocalDeploy)' == '' ">true</EnableLocalDeploy>
     </PropertyGroup>
-    <Target Name="LocalDeploy" Condition=" '$(EnableLocalDeploy)' == 'true' " DependsOnTargets="Preprocess;Tests">
+    <Target Name="LocalDeploy" Condition=" '$(EnableLocalDeploy)' == 'true' " DependsOnTargets="Bundle;Tests">
         <!-- Declare binaries -->
         <ItemGroup>
             <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.dll" />
-            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition="'$(Configuration)' == 'Debug'" />
+            <LocalDeployBinaryFiles Include="$(MainProjectOutputPath)/$(MainProjectName)*.pdb" Condition=" '$(Configuration)' == 'Debug' " />
+		</ItemGroup>
+        <!-- Declare NPOI-related binaries -->
+		<ItemGroup>
+			<LocalDeployBinaryFiles Include="../packages/NPOI.2.4.1/lib/net45/NPOI*.dll" />
+            <LocalDeployBinaryFiles Include="../packages/SharpZipLib.1.0.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
 		</ItemGroup>
         <!-- Declare resource files -->
         <ItemGroup>
@@ -33,6 +38,7 @@
             <LocalDeployResourceFiles Include="../**/*.jpg" />
             <LocalDeployResourceFiles Include="../**/*.png" />
             <LocalDeployResourceFiles Include="../**/*.gif" />
+			<LocalDeployResourceFiles Include="../**/*.xlsx" />
         </ItemGroup>
         <!-- Declare excluded files -->
         <ItemGroup>
