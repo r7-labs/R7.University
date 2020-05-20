@@ -63,6 +63,7 @@ namespace R7.University.Templates
         {
             Model = model;
             PortalSettings = portalSettings;
+            ResourceFileRoot = resourceFileRoot;
 
             var now = DateTime.Now;
 
@@ -207,8 +208,7 @@ namespace R7.University.Templates
 
         string EvalAchievement (IEmployeeAchievement achievement, string objectName)
         {
-            // TODO: Bind via viewmodel 
-            // FIXME: Type not localized properly
+            // TODO: Bind via viewmodel?
             if (objectName == "Type") {
                 return ((achievement.Achievement != null)? achievement.Achievement.AchievementType : achievement.AchievementType)
                     .Localize (ResourceFileRoot);
