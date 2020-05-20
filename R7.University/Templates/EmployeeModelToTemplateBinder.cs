@@ -125,8 +125,7 @@ namespace R7.University.Templates
         string GetAboutText (string htmlAbout)
         {
             if (!string.IsNullOrEmpty (htmlAbout)) {
-                // TODO: Strip also HTML entities?
-                return HtmlUtils.StripTags (HttpUtility.HtmlDecode (htmlAbout), true);
+                return HtmlUtils.StripTags (HttpUtility.HtmlDecode (HttpUtility.HtmlDecode (htmlAbout)), true);
             }
             return null;
         }
