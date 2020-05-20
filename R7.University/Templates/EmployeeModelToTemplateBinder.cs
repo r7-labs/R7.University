@@ -167,7 +167,7 @@ namespace R7.University.Templates
                     return position.Division.Title;
                 }
                 if (objectName == NameOf (() => position.IsPrime)) {
-                    return Positions [index].IsPrime ? GetString ("Yes") : GetString ("No");
+                    return Positions [index].IsPrime ? GetString ("Yes") : string.Empty;
                 }
             }
 
@@ -227,7 +227,7 @@ namespace R7.University.Templates
                 return achievement.TitleSuffix;
             }
             if (objectName == NameOf (() => achievement.IsTitle)) {
-                return achievement.IsTitle ? GetString ("Yes") : GetString ("No");
+                return achievement.IsTitle ? GetString ("Yes") : string.Empty;
             }
             if (objectName == NameOf (() => achievement.Description)) {
                 return achievement.Description;
