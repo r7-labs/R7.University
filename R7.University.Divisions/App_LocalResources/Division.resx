@@ -43,6 +43,6 @@
         <value>Subdivisions:</value>
     </data>
     <data name="linkBarcode.Text" xml:space="preserve">
-        <value><![CDATA[<span class="glyphicon glyphicon-qrcode"></span> Show QR-code]]></value>
+        <value><![CDATA[<i class="fas fa-qrcode"></i> Show QR-code]]></value>
     </data>
 </root>

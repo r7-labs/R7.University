@@ -28,7 +28,7 @@
         <value>Используйте приложение "сканер штрих-кодов" Вашего мобильного устройства для того, чтобы добавить контакты сотрудника в свою адресную книгу.</value>
     </data>
     <data name="Barcode.Action" xml:space="preserve">
-        <value><![CDATA[<span class="glyphicon glyphicon-qrcode"></span> Показать QR-код]]></value>
+        <value><![CDATA[<i class="fas fa-qrcode"></i> Показать QR-код]]></value>
     </data>
     <data name="ExperienceYears1.Format" xml:space="preserve">
         <value>Общий стаж работы (лет): {0}</value>

@@ -125,13 +125,13 @@
     <ul class="dnnActions dnnClear" style="margin-bottom:1em">
 		<li>
             <asp:HyperLink id="linkEdit" runat="server" role="button" CssClass="btn btn-primary" Visible="false">
-                <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                 <%: LocalizeString ("cmdEdit") %>
             </asp:HyperLink>
         </li>
 		<li>
 			<asp:HyperLink id="linkReturn" runat="server" role="button" CssClass="btn btn-secondary">
-			    <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
+			    <i class="fas fa-times" aria-hidden="true"></i>
 				<%: LocalizeString ("Close.Text") %>
 			</asp:HyperLink>
 		</li>

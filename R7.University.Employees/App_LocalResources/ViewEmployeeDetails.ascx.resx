@@ -28,7 +28,7 @@
         <value>Use your mobile device barcode scanning application to add employee's contacts to your address book.</value>
     </data>
     <data name="Barcode.Action" xml:space="preserve">
-        <value><![CDATA[<span class="glyphicon glyphicon-qrcode"></span> Show QR-code]]></value>
+        <value><![CDATA[<i class="fas fa-qrcode"></i> Show QR-code]]></value>
     </data>
     <data name="ExperienceYears1.Format" xml:space="preserve">
         <value>Total work experience (years): {0}</value>
