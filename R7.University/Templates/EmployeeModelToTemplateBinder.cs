@@ -30,6 +30,7 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
+using R7.University.Core.Markdown;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
@@ -125,7 +126,7 @@ namespace R7.University.Templates
         string GetAboutText (string htmlAbout)
         {
             if (!string.IsNullOrEmpty (htmlAbout)) {
-                return HtmlUtils.StripTags (HttpUtility.HtmlDecode (HttpUtility.HtmlDecode (htmlAbout)), true);
+                return HtmlUtils.StripTags (MarkdownHelper.PreprocessHtml (HttpUtility.HtmlDecode (HttpUtility.HtmlDecode (htmlAbout))), true);
             }
             return null;
         }

@@ -23,5 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\" />
+    <Folder Include="Markdown\" />
   </ItemGroup>
 </Project>

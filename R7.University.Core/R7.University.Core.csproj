@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\" />
+    <Folder Include="Markdown\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.Core.csproj" />
