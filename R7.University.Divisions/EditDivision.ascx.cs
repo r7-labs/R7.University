@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2014-2018 Roman M. Yagodin
+//  Copyright (c) 2014-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -33,6 +33,7 @@ using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.SharedLogic;
+using R7.University.ViewModels;
 
 namespace R7.University.Divisions
 {
@@ -101,7 +102,12 @@ namespace R7.University.Divisions
             WorkingHoursLogic.Init (this, comboWorkingHours);
 
             // bind positions
-            comboHeadPosition.DataSource = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
+            var positions = new FlatQuery<PositionInfo> (ModelContext).ListOrderBy (p => p.Title);
+            comboHeadPosition.DataSource = positions.Select (p => new {
+                p.PositionID,
+                Title = UniversityFormatHelper.FormatTitleWithShortTitle (p.Title, p.ShortTitle)
+            });
+
             comboHeadPosition.DataBind ();
             comboHeadPosition.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
         }

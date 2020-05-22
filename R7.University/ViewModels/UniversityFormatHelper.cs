@@ -49,6 +49,11 @@ namespace R7.University.ViewModels
             return !string.IsNullOrWhiteSpace (titleSuffix) ? shortTitleWoSuffix + " " + titleSuffix : shortTitleWoSuffix; 
         }
 
+        public static string FormatTitleWithShortTitle (string title, string shortTitle)
+        {
+            return !string.IsNullOrWhiteSpace (shortTitle) ? $"{title} ({shortTitle})" : title;
+        }
+
         public static string FormatTimeToLearnMonths (int totalMonths, string keyBase, string resourceFile)
         {
             var years = totalMonths / 12;
