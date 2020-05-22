@@ -33,6 +33,7 @@ using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.EduProgramProfiles.Queries;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
@@ -158,9 +159,15 @@ namespace R7.University.EduProgramProfiles
             textLanguages.Text = UniversityConfig.Instance.EduProgramProfiles.DefaultLanguages;
         }
 
+        protected override string GetItemTitle (EduProgramProfileInfo item)
+        {
+            return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
+        }
+
         protected override void LoadItem (EduProgramProfileInfo item)
         {
             var epp = GetItemWithDependencies (ItemKey.Value);
+            base.LoadItem (epp);
 
             textProfileCode.Text = epp.ProfileCode;
             textProfileTitle.Text = epp.ProfileTitle;

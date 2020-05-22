@@ -23,11 +23,11 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.EduProgramProfiles.Modules;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 
 namespace R7.University.EduProgramProfiles
@@ -97,9 +97,15 @@ namespace R7.University.EduProgramProfiles
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
+        protected override string GetItemTitle (EduVolumeInfo item)
+        {
+            return item.EduProgramProfileFormYear.FormatTitle (GetLastYear (), LocalResourceFile);
+        }
+
         protected override void LoadItem (EduVolumeInfo item)
         {
             var ev = GetItemWithDependencies (ItemKey.Value);
+            base.LoadItem (ev);
 
             textTimeToLearnHours.Text = ev.TimeToLearnHours.ToString ();
             textTimeToLearnYears.Text = (ev.TimeToLearnMonths / 12).ToString ();

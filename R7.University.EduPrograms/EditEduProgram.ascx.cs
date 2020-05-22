@@ -123,9 +123,15 @@ namespace R7.University.EduPrograms
             gridEduProgramProfiles.LocalizeColumnHeaders (LocalResourceFile);
         }
 
+        protected override string GetItemTitle (EduProgramInfo item)
+        {
+            return item.FormatTitle ();
+        }
+
         protected override void LoadItem (EduProgramInfo item)
         {
             var ep = GetItemWithDependencies (ItemKey.Value);
+            base.LoadItem (ep);
 
             textCode.Text = ep.Code;
             textTitle.Text = ep.Title;

@@ -19,16 +19,12 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Text.RegularExpressions;
 using System.Web;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
-using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ModelExtensions;
@@ -48,31 +44,27 @@ namespace R7.University.EduPrograms
             ParseHelper.ParseToNullable<int> (Request.QueryString [Key])
         			 ?? ParseHelper.ParseToNullable<int> (Request.QueryString ["eduprogram_id"]);
 
-        protected IEduProgram GetEduProgram ()
+        protected IEduProgram GetEduProgram (int eduProgramId)
         {
-        	var eduProgramId = GetEduProgramId ();
-        	return eduProgramId != null ? ModelContext.Get<EduProgramInfo,int> (eduProgramId.Value) : null;
+        	return ModelContext.Get<EduProgramInfo,int> (eduProgramId);
         }
-
-        protected override void OnLoad (EventArgs e)
-        {
-        	base.OnLoad (e);
-
-            var eduProgram = GetEduProgram ();
-            if (eduProgram != null) {
-                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (eduProgram.FormatTitle (), " &gt; ");
-            }
-        }
-
-        #region UniversityEditPortalModuleBase implementation
 
         protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
+        #region UniversityEditPortalModuleBase implementation
+
+        protected override string GetItemTitle (ScienceInfo item)
+        {
+            return GetEduProgram (item.ScienceId).FormatTitle ();
+        }
+
         protected override void LoadItem (ScienceInfo item)
         {
+            base.LoadItem (item);
+
             textDirections.Text = item.Directions;
             textBase.Text = item.Base;
             textScientists.Text = item.Scientists.ToString ();

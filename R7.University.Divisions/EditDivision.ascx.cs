@@ -54,8 +54,7 @@ namespace R7.University.Divisions
 
         #region Properties
 
-        protected EditDivisionTab SelectedTab
-        {
+        protected EditDivisionTab SelectedTab {
             get {
                 // get postback initiator
                 var eventTarget = Request.Form ["__EVENTTARGET"];
@@ -117,8 +116,15 @@ namespace R7.University.Divisions
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
+        protected override string GetItemTitle (DivisionInfo item)
+        {
+            return item.Title;
+        }
+
         protected override void LoadItem (DivisionInfo item)
         {
+            base.LoadItem (item);
+
             txtTitle.Text = item.Title;
             txtShortTitle.Text = item.ShortTitle;
             txtWebSite.Text = item.WebSite;

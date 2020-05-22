@@ -144,9 +144,15 @@ namespace R7.University.Employees
             formEditPositions.OnInit (this, positions, divisions);
         }
 
+        protected override string GetItemTitle (EmployeeInfo item)
+        {
+            return item.FullName ();
+        }
+
         protected override void LoadItem (EmployeeInfo item)
         {
             var employee = GetItemWithDependencies (ItemKey.Value);
+            base.LoadItem (employee);
 
             textLastName.Text = employee.LastName;
             textFirstName.Text = employee.FirstName;

@@ -20,6 +20,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using DotNetNuke.Common.Utilities;
+using DotNetNuke.Framework;
 using R7.Dnn.Extensions.Models;
 using R7.Dnn.Extensions.Modules;
 using R7.University.Client;
@@ -90,6 +92,19 @@ namespace R7.University.Modules
             base.OnLoad (e);
 
             UpdateSelectedItem (ItemKey ?? 0);
+        }
+
+        protected virtual string GetItemTitle (TEntity item)
+        {
+            return null;
+        }
+
+        protected override void LoadItem (TEntity item)
+        {
+            var itemTitle = GetItemTitle (item);
+            if (itemTitle != null) {
+                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (itemTitle, " &gt; ");
+            }
         }
 
         protected abstract int GetItemId (TEntity item);

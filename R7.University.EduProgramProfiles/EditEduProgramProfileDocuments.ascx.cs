@@ -34,6 +34,7 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
+using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles
 {
@@ -50,24 +51,21 @@ namespace R7.University.EduProgramProfiles
             formEditDocuments.OnInit (this, new FlatQuery<DocumentTypeInfo> (ModelContext).List ());
         }
 
-        protected override void OnLoad (EventArgs e)
-        {
-	        base.OnLoad (e);
-
-            var epp = GetEduProgramProfile ();
-            if (epp != null) {
-                ((CDefault) Page).Title = ((CDefault) Page).Title.Append ($"{epp.FormatTitle ()}: {epp.EduLevel.Title}", " &gt; ");
-            }
-        }
-
         protected override void InitControls ()
         {
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
+        protected override string GetItemTitle (EduProgramProfileInfo item)
+        {
+            return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
+        }
+
         protected override void LoadItem (EduProgramProfileInfo item)
         {
             var epp = GetItemWithDependencies (item.EduProgramProfileID);
+            base.LoadItem (epp);
+
             formEditDocuments.SetData (epp.Documents, epp.EduProgramProfileID);
         }
 

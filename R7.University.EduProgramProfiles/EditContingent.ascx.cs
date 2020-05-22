@@ -29,6 +29,7 @@ using R7.University.Commands;
 using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
 using R7.University.EduProgramProfiles.Modules;
+using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;
 
@@ -119,9 +120,15 @@ namespace R7.University.EduProgramProfiles
             BindTabs ();
         }
 
+        protected override string GetItemTitle (ContingentInfo item)
+        {
+            return item.EduProgramProfileFormYear.FormatTitle (GetLastYear (), LocalResourceFile);
+        }
+
         protected override void LoadItem (ContingentInfo item)
         {
             var c = GetItemWithDependencies (ItemKey.Value);
+            base.LoadItem (c);
 
             textActualFB.Text = c.ActualFB.ToString ();
             textActualRB.Text = c.ActualRB.ToString ();
