@@ -24,4 +24,9 @@
 			or any other compatible software for spreadsheet editing.
 		</value>
 	</data>
+	<data name="RecaptchaError.Text" xml:space="preserve">
+		<value>Oh, something went wrong with the reCaptcha! Please check your Internet connection and try again.
+			If problem persists, please contact website administrator.
+		</value>
+	</data>
 </root>

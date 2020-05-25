@@ -12,12 +12,17 @@
 <script>
 function u8y_employee_exporter_recaptchaVerifiedCallback_<%: ModuleId %>() {
 	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
-		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: true});
+		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: true, isRecaptchaError: false});
 	}
 }
 function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
 	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
-		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: false});
+		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: false, isRecaptchaError: false});
+	}
+}
+function u8y_employee_exporter_recaptchaErrorCallback_<%: ModuleId %>() {
+	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
+		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: false, isRecaptchaError: true});
 	}
 }
 </script>
@@ -187,7 +192,8 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
 				<div class="g-recaptcha"
 					 data-sitekey="<%: UniversityConfig.Instance.Recaptcha.SiteKey %>"
 					 data-callback="u8y_employee_exporter_recaptchaVerifiedCallback_<%: ModuleId %>"
-					 data-expired-callback="u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>"></div>
+					 data-expired-callback="u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>"
+					 data-error-callback="u8y_employee_exporter_recaptchaErrorCallback_<%: ModuleId %>"></div>
 			</div>
         </div>
 	</div>

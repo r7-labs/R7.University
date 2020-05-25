@@ -2,7 +2,8 @@
     constructor (props) {
         super (props);
         this.state = {
-            isVerified: false
+            isVerified: false,
+            isRecaptchaError: false
         }
     }
     
@@ -44,11 +45,21 @@
         return null;
     }
     
+    renderRecaptchaError () {
+        if (this.state.isRecaptchaError === true) {
+            return (
+                <p className="alert alert-danger">{this.getString ("RecaptchaError")}</p>
+            );
+        }
+        return null;
+    }
+    
     render () {
         return (
             <div>
                 <p className="alert alert-info">{this.getString ("About")}</p>
                 {this.renderActions ()}
+                {this.renderRecaptchaError ()}
             </div>
         );
     }
