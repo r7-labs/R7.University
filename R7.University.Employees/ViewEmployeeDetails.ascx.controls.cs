@@ -29,7 +29,6 @@ namespace R7.University.Employees
         protected GridView gridExperience;
         protected GridView gridAchievements;
         protected GridView gridDisciplines;
-        protected HyperLink linkBarcode;
         protected AgplSignature agplSignature;
         protected HtmlControl tabAbout;
         protected HtmlControl tabDisciplines;

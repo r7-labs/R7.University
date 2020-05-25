@@ -47,8 +47,11 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
         				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
         			</div>
 				</asp:Panel>
-				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
-			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
+				<% if (Employee.ShowBarcode) { %>
+				<button type="button" class="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" data-target="#u8y_employee_barcode_dlg_<%: ModuleId %>">
+					<%= LocalizeString ("Barcode.Action") %>
+				</button>
+				<% } %>
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
 					<i class="fas fa-file-export mr-2"></i><%: LocalizeString ("EmployeeExporterButtonLabel") %>
 				</button>
@@ -57,14 +60,14 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
     	<div id="employeeTabs_<%= ModuleId %>" class="col-md-9 pl-md-3">
             <asp:Literal id="literalFullName" runat="server" />
     		<ul class="nav nav-pills u8y-employee-details-tabs" role="tablist">
-    		    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="pill" href="#employeeCommon-<%= ModuleId %>" aria-controls="employeeCommon-<%= ModuleId %>" aria-selected="true"><%= LocalizeString("Common.Tab") %></a></li>
-    			<li class="nav-item" id="tabExperience" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeExperience-<%= ModuleId %>" aria-controls="employeeExperience-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Experience.Tab") %></a></li>
-    			<li class="nav-item" id="tabAchievements" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeAchievements-<%= ModuleId %>" aria-controls="employeeAchievements-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Achievements.Tab") %></a></li>
-    			<li class="nav-item" id="tabDisciplines" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeDisciplines-<%= ModuleId %>" aria-controls="employeeDisciplines-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Disciplines.Tab") %></a></li>
-    			<li class="nav-item" id="tabAbout" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeAbout-<%= ModuleId %>" aria-controls="employeeAbout-<%= ModuleId %>" aria-selected="false"><%= LocalizeString("About.Tab") %></a></li>
+    		    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="pill" href="#employeeCommon_<%= ModuleId %>" aria-controls="employeeCommon_<%= ModuleId %>" aria-selected="true"><%= LocalizeString("Common.Tab") %></a></li>
+    			<li class="nav-item" id="tabExperience" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeExperience_<%= ModuleId %>" aria-controls="employeeExperience_<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Experience.Tab") %></a></li>
+    			<li class="nav-item" id="tabAchievements" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeAchievements_<%= ModuleId %>" aria-controls="employeeAchievements_<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Achievements.Tab") %></a></li>
+    			<li class="nav-item" id="tabDisciplines" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeDisciplines_<%= ModuleId %>" aria-controls="employeeDisciplines_<%= ModuleId %>" aria-selected="false"><%= LocalizeString("Disciplines.Tab") %></a></li>
+    			<li class="nav-item" id="tabAbout" runat="server"><a class="nav-link" role="tab" data-toggle="pill" href="#employeeAbout_<%= ModuleId %>" aria-controls="employeeAbout_<%= ModuleId %>" aria-selected="false"><%= LocalizeString("About.Tab") %></a></li>
     		</ul>
 			<div class="tab-content">
-        		<div id="employeeCommon-<%= ModuleId %>" class="tab-pane fade show active" role="tabpanel">
+        		<div id="employeeCommon_<%= ModuleId %>" class="tab-pane fade show active" role="tabpanel">
                     <p><asp:Label id="labelAcademicDegreeAndTitle" runat="server" /></p>
 					<asp:Panel id="panelPositions" runat="server" CssClass="_section">
                         <label><%: LocalizeString ("OccupiedPositions.Text") %></label>
@@ -91,7 +94,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
 						</asp:Panel>
 				    </asp:Panel>
 				</div>
-        		<div id="employeeExperience-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
+        		<div id="employeeExperience_<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
         			<asp:Label id="labelExperienceYears" runat="server" CssClass="_label" />
         			<div class="table-responsive">
         				<asp:GridView id="gridExperience" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-experience"
@@ -105,7 +108,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
         			    </asp:GridView>
         			</div>
         		</div>
-        		<div id="employeeAchievements-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
+        		<div id="employeeAchievements_<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
         			<div class="table-responsive">
         				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-achievements"
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
@@ -118,7 +121,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
         			    </asp:GridView>
         			</div>
         		</div>
-        		<div id="employeeDisciplines-<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
+        		<div id="employeeDisciplines_<%= ModuleId %>" class="tab-pane fade" role="tabpanel">
                     <div class="table-responsive">
                         <asp:GridView id="gridDisciplines" runat="server" AutoGenerateColumns="false" CssClass="table table-sm table-striped table-bordered table-hover grid-disciplines"
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
@@ -131,7 +134,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
                     </div>
         			<asp:Literal id="litDisciplines" runat="server" />
         		</div>
-        		<div id="employeeAbout-<%= ModuleId %>" class="tab-pane fade u8y-employee-about" role="tabpanel">
+        		<div id="employeeAbout_<%= ModuleId %>" class="tab-pane fade u8y-employee-about" role="tabpanel">
         			<asp:Literal id="litAbout" runat="server" />
         		</div>
 			</div>
@@ -153,11 +156,11 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
     </ul>
 	<controls:AgplSignature id="agplSignature" runat="server" ShowRule="true" />
 </asp:Panel>
-<div id="employee-barcode-dialog-<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="employee-barcode-dialog-title-<%: ModuleId %>">
+<div id="u8y_employee_barcode_dlg_<%: ModuleId %>" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="u8y_employee_barcode_dlg_title_<%: ModuleId %>">
     <div class="modal-dialog modal-sm" role="document">
 	    <div class="modal-content">
 	        <div class="modal-header">
-				<h5 id="employee-barcode-dialog-title-<%: ModuleId %>" class="modal-title"><asp:Label id="labelBarcodeEmployeeName" runat="server" /></h5>
+				<h5 id="u8y_employee_barcode_dlg_title_<%: ModuleId %>" class="modal-title"><asp:Label id="labelBarcodeEmployeeName" runat="server" /></h5>
 			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body">
