@@ -2,11 +2,27 @@
 <%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
+<%@ Import Namespace="R7.University.Components" %>
 
 <dnn:JavaScriptLibraryInclude runat="server" Name="React" />
 <dnn:JavaScriptLibraryInclude runat="server" Name="ReactDOM" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/EmployeeExporter.min.js" />
+
+<script>
+function u8y_recaptchaCallback() {
+	grecaptcha.render("u8y_employee_exporter_recaptcha_<%: ModuleId %>", {
+		"sitekey" : "<%: UniversityConfig.Instance.Recaptcha.SiteKey %>",
+		"callback" : function () {
+			if (typeof (window ["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
+				$("#u8y_employee_exporter_recaptcha_<%: ModuleId %>").hide();
+				window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: true});
+			}
+		}
+	});
+}
+</script>	
+<script src="https://www.google.com/recaptcha/api.js?onload=u8y_recaptchaCallback&render=explicit&hl=<%: System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName %>" async="" defer=""></script>
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
@@ -159,13 +175,15 @@
 				<h5 id="u8y_employee_exporter_dlg_title_<%: ModuleId %>" class="modal-title"><%: LocalizeString("EmployeeExporterDialogTitle") %></h5>
 			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
 			</div>
-			<div class="modal-body"
-				 data-module-id="<%: ModuleId %>"
-				 data-employee-id="<%: Employee.EmployeeID %>"
-				 data-is-authenticated="<%: Request.IsAuthenticated.ToString().ToLowerInvariant() %>"
-				 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
-				 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'
-				 data-resources="<%: EmployeeExporterResources %>">
+			<div class="modal-body">
+				<div class="react-root"
+					 data-module-id="<%: ModuleId %>"
+					 data-employee-id="<%: Employee.EmployeeID %>"
+					 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
+					 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'
+					 data-resources="<%: EmployeeExporterResources %>">
+				</div>
+				<div id="u8y_employee_exporter_recaptcha_<%: ModuleId %>"></div>
 			</div>
         </div>
 	</div>
@@ -174,17 +192,16 @@
 (function($, window, document) {
 	$(document).ready(function() {
 		$("#u8y_employee_exporter_dlg_<%: ModuleId %>").on("shown.bs.modal", function (e) {
-			var root = $(e.target).find(".modal-body");
+			var root = $(e.target).find(".react-root");
 			var moduleId = root.data("module-id");
 			var props = {
 				moduleId: moduleId,
 				employeeId: root.data("employee-id"),
-				isAuthenticated: root.data("is-authenticated"),
 				isAdmin: root.data("is-admin"),
 				loginUrl: root.data("login-url"),
 				resources: root.data("resources")
 			};
-			ReactDOM.render(
+			window["u8y_employee_exporter_<%: ModuleId %>"] = ReactDOM.render(
 		  		React.createElement(EmployeeExporter, props, null), root.get(0)
 			);
 		});

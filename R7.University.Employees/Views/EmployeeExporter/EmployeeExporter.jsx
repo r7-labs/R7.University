@@ -1,6 +1,9 @@
 ﻿class EmployeeExporter extends React.Component {
     constructor (props) {
         super (props);
+        this.state = {
+            isVerified: false
+        }
     }
     
     getString (key) {
@@ -25,7 +28,7 @@
     }
     
     renderActions () {
-        if (this.props.isAuthenticated === true) {
+        if (this.state.isVerified === true) {
             return (
                 <ul className="list-inline">
                     <li className="list-inline-item">
@@ -33,14 +36,12 @@
                                 href={"/DesktopModules/R7.University.Employees/API/Employee/ExportToExcel?employeeId=" + this.props.employeeId}>
                             <i className="fas fa-file-excel mr-2" aria-hidden="true"></i> {this.getString ("ExportToExcel")}
                         </a>
-                    </li>    
+                    </li>
                     {this.renderAdminActions ()}
                 </ul>
             );
         }
-        return (
-            <p className="alert alert-warning" dangerouslySetInnerHTML={{__html: this.getString ("Unauthorized").replace ("{{loginUrl}}", this.props.loginUrl)}}></p>
-        );
+        return null;
     }
     
     render () {

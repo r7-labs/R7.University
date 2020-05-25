@@ -16,3 +16,6 @@ data-cache-time: 60
 
 edu-program-profiles:
   default-languages: "en"
+  
+recaptcha:
+  site-key: 6Lfq4PsUAAAAAGuUtb7WdEt0Ao6TpDBnhUftaXU1  

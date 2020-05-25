@@ -34,6 +34,8 @@ namespace R7.University.Components
         public int CuHours { get; set; } = 36;
 
         public EduProgramProfilesConfig EduProgramProfiles { get; set; } = new EduProgramProfilesConfig ();
+
+        public RecaptchaConfig Recaptcha { get; set; } = new RecaptchaConfig ();
     }
 
     public class EmployeePhotoConfig
@@ -60,6 +62,11 @@ namespace R7.University.Components
     public class EduProgramProfilesConfig
     {
         public string DefaultLanguages { get; set; } = "en";
+    }
+
+    public class RecaptchaConfig
+    {
+        public string SiteKey { get; set; }
     }
 }
 
