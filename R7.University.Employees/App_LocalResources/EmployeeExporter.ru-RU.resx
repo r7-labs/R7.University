@@ -13,10 +13,10 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="ExportToCSV.Text" xml:space="preserve">
-		<value>Экспортировать в .CSV</value>
+		<value>Скачать как .CSV</value>
 	</data>
 	<data name="ExportToExcel.Text" xml:space="preserve">
-		<value>Экспортировать в .XLSX</value>
+		<value>Скачать как .XLSX</value>
 	</data>
 	<data name="About.Text" xml:space="preserve">
 		<value>Здесь вы можете скачать сведения о сотруднике в формате электронной таблицы (файла .XLSX)
