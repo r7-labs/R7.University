@@ -47,7 +47,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
         				<asp:Label id="labelWorkingPlaceAndHours" runat="server" CssClass="_label" />
         			</div>
 				</asp:Panel>
-				<% if (Employee.ShowBarcode) { %>
+				<% if (Employee != null && Employee.ShowBarcode) { %>
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" data-target="#u8y_employee_barcode_dlg_<%: ModuleId %>">
 					<i class="fas fa-qrcode mr-2"></i><%: LocalizeString ("BarcodeButtonLabel") %>
 				</button>
@@ -85,8 +85,8 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
 						<asp:Panel id="pnlScienceIndexCounter" runat="server" CssClass="u8y-science-index-counter d-inline-block border rounded p-2">
 							<!--Science Index counter-->
 							<script type="text/javascript"><!--
-							document.write('<a href="https://elibrary.ru/author_counter_click.asp?id=<%: Employee.ScienceIndexAuthorId %>"'+
-							' target=_blank><img src="https://elibrary.ru/author_counter.aspx?id=<%: Employee.ScienceIndexAuthorId %>&rand='+
+							document.write('<a href="https://elibrary.ru/author_counter_click.asp?id=<%: (Employee != null)? Employee.ScienceIndexAuthorId : 0 %>"'+
+							' target=_blank><img src="https://elibrary.ru/author_counter.aspx?id=<%: (Employee != null)? Employee.ScienceIndexAuthorId : 0 %>&rand='+
 							Math.random()+'" title="<%: LocalizeString ("ScienceIndexAuthorProfile.Text") %>" border="0" '+
 							'height="31" width="88" border="0"><\/a>')
 							//--></script>
@@ -180,7 +180,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
 			<div class="modal-body">
 				<div class="react-root"
 					 data-module-id="<%: ModuleId %>"
-					 data-employee-id="<%: Employee.EmployeeID %>"
+					 data-employee-id="<%: (Employee != null)? Employee.EmployeeID : 0 %>"
 					 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
 					 data-resources="<%: EmployeeExporterResources %>">
 				</div>
