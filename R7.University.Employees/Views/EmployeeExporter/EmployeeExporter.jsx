@@ -30,7 +30,7 @@
     renderActions () {
         if (this.state.isVerified === true) {
             return (
-                <ul className="list-inline">
+                <ul className="list-inline mb-3">
                     <li className="list-inline-item">
                         <a role="button" className="btn btn-outline-primary"
                                 href={"/DesktopModules/R7.University.Employees/API/Employee/ExportToExcel?employeeId=" + this.props.employeeId}>

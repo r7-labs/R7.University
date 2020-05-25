@@ -49,9 +49,9 @@
         <value>Профиль автора в Science Index</value>
     </data>
 	<data name="EmployeeExporterButtonLabel.Text" xml:space="preserve">
-		<value>Экспорт в .XLSX</value>
+		<value>Экспортировать</value>
 	</data>
 	<data name="EmployeeExporterDialogTitle.Text" xml:space="preserve">
-		<value>Экспорт в .XLSX</value>
+		<value>Экспорт сведений о сотруднике</value>
 	</data>
 </root>

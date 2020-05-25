@@ -10,19 +10,18 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/EmployeeExporter.min.js" />
 
 <script>
-function u8y_recaptchaCallback() {
-	grecaptcha.render("u8y_employee_exporter_recaptcha_<%: ModuleId %>", {
-		"sitekey" : "<%: UniversityConfig.Instance.Recaptcha.SiteKey %>",
-		"callback" : function () {
-			if (typeof (window ["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
-				$("#u8y_employee_exporter_recaptcha_<%: ModuleId %>").hide();
-				window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: true});
-			}
-		}
-	});
+function u8y_employee_exporter_recaptchaVerifiedCallback_<%: ModuleId %>() {
+	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
+		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: true});
+	}
 }
-</script>	
-<script src="https://www.google.com/recaptcha/api.js?onload=u8y_recaptchaCallback&render=explicit&hl=<%: System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName %>" async="" defer=""></script>
+function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
+	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
+		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: false});
+	}
+}
+</script>
+<script src="https://www.google.com/recaptcha/api.js?hl=<%: System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName %>" async="" defer=""></script>
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
@@ -51,7 +50,7 @@ function u8y_recaptchaCallback() {
 				<asp:HyperLink id="linkBarcode" runat="server" resourcekey="Barcode.Action" role="button"
 			        CssClass="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" />
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
-					<i class="fas fa-file-excel mr-2"></i><%: LocalizeString ("EmployeeExporterButtonLabel") %>
+					<i class="fas fa-file-export mr-2"></i><%: LocalizeString ("EmployeeExporterButtonLabel") %>
 				</button>
 			</div>
 		</div>
@@ -180,10 +179,12 @@ function u8y_recaptchaCallback() {
 					 data-module-id="<%: ModuleId %>"
 					 data-employee-id="<%: Employee.EmployeeID %>"
 					 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
-					 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'
 					 data-resources="<%: EmployeeExporterResources %>">
 				</div>
-				<div id="u8y_employee_exporter_recaptcha_<%: ModuleId %>"></div>
+				<div class="g-recaptcha"
+					 data-sitekey="<%: UniversityConfig.Instance.Recaptcha.SiteKey %>"
+					 data-callback="u8y_employee_exporter_recaptchaVerifiedCallback_<%: ModuleId %>"
+					 data-expired-callback="u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>"></div>
 			</div>
         </div>
 	</div>
@@ -198,7 +199,6 @@ function u8y_recaptchaCallback() {
 				moduleId: moduleId,
 				employeeId: root.data("employee-id"),
 				isAdmin: root.data("is-admin"),
-				loginUrl: root.data("login-url"),
 				resources: root.data("resources")
 			};
 			window["u8y_employee_exporter_<%: ModuleId %>"] = ReactDOM.render(
