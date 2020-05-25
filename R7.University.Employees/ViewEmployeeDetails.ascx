@@ -49,7 +49,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
 				</asp:Panel>
 				<% if (Employee.ShowBarcode) { %>
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" data-target="#u8y_employee_barcode_dlg_<%: ModuleId %>">
-					<%= LocalizeString ("Barcode.Action") %>
+					<i class="fas fa-qrcode mr-2"></i><%: LocalizeString ("BarcodeButtonLabel") %>
 				</button>
 				<% } %>
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
@@ -164,7 +164,7 @@ function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
 			    <button type="button" class="close" data-dismiss="modal" aria-label='<%: LocalizeString("Close") %>'><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body">
-				<p><asp:Label runat="server" resourcekey="BarcodeScan.Text" /></p>
+				<p><%: LocalizeString ("BarcodeInfo.Text") %></p>
 				<asp:Image id="imageBarcode" runat="server" CssClass="img-thumbnail d-block mx-auto" />
 			</div>
         </div>

@@ -24,11 +24,11 @@
     <data name="imageBarcode.AlternateText" xml:space="preserve">
         <value>QR-код</value>
     </data>
-    <data name="BarcodeScan.Text" xml:space="preserve">
+    <data name="BarcodeInfo.Text" xml:space="preserve">
         <value>Используйте приложение "сканер штрих-кодов" Вашего мобильного устройства для того, чтобы добавить контакты сотрудника в свою адресную книгу.</value>
     </data>
-    <data name="Barcode.Action" xml:space="preserve">
-        <value><![CDATA[<i class="fas fa-qrcode"></i> Показать QR-код]]></value>
+    <data name="BarcodeButtonLabel.Text" xml:space="preserve">
+        <value>Показать QR-код</value>
     </data>
     <data name="ExperienceYears1.Format" xml:space="preserve">
         <value>Общий стаж работы (лет): {0}</value>
