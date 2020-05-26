@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -70,16 +70,6 @@ namespace R7.University.Controls
             var lastFolderId = FolderHistory.GetLastFolderId (Request, Module.PortalId);
             if (lastFolderId != null) {
                 urlDocumentUrl.SelectFolder (lastFolderId.Value);
-            }
-        }
-
-        protected override void OnLoad (EventArgs e)
-        {
-            base.OnLoad (e);
-
-            // HACK: Fix DnnUrlControl looses its state on async postback
-            if (Page.IsPostBack) {
-                urlDocumentUrl.Url = urlDocumentUrl.Url;
             }
         }
 
