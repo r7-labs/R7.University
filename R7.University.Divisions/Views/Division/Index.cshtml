@@ -101,7 +101,7 @@
         		</ul>
         	</div>
         }
-    	<button type="button" class="btn btn-outline-secondary btn-sm btn-barcode" data-toggle="modal"
+    	<button type="button" class="btn btn-outline-secondary btn-sm btn-block btn-barcode" data-toggle="modal"
 		        data-target="#division-barcode-dialog-@Dnn.ModuleContext.ModuleId">
 	        @Html.Raw(Dnn.LocalizeString("linkBarcode.Text"))
         </button>
@@ -123,7 +123,7 @@
 		    </div>
 		</div>
 	    @if (Model.DivisionTermID != null) {
-            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-outline-secondary btn-sm btn-related-content">
+            <a href="@Model.DisplayTermUrl" role="button" target="_blank" class="btn btn-outline-secondary btn-sm btn-block btn-related-content">
 		        <i class="fas fa-search"></i>
 	            @Dnn.LocalizeString("RelatedContent.Text")
             </a>
