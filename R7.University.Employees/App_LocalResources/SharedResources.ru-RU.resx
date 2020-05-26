@@ -136,6 +136,9 @@
         <value>Введите ширину фото в пикселах или оставьте поле пустым для того, чтобы использовать размер по умолчанию.</value>
     </data>
 	<data name="PhotoWidth_Invalid.Text" xml:space="preserve">
-        <value>Ширина фото должна быть целым числом от 0 до 1024. </value>
+        <value>Ширина фото должна быть целым числом от 0 до 1024.</value>
+    </data>
+	<data name="Copy.Text" xml:space="preserve">
+        <value>Копировать</value>
     </data>
 </root>

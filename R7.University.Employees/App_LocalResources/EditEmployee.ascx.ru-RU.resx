@@ -115,10 +115,10 @@
         <value>Выберите рабочий график сотрудника из списка.</value>
     </data>
     <data name="labelCustomWorkingHours.Text" xml:space="preserve">
-        <value>Другой рабочий график:</value>
+        <value>Особый рабочий график:</value>
     </data>
     <data name="labelCustomWorkingHours.Help" xml:space="preserve">
-        <value>Укажите другой рабочий график для сотрудника.</value>
+        <value>Введите описание особого рабочего графика сотрудника.</value>
     </data>
     <data name="labelWorkingPlace.Text" xml:space="preserve">
         <value>Рабочее место:</value>
