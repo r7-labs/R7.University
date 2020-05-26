@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditScience.ascx.cs" Inherits="R7.University.EduPrograms.EditScience" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditScience.ascx.cs" Inherits="R7.University.EduPrograms.EditScience" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="TextEditor" Src="~/controls/TextEditor.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
@@ -6,8 +6,8 @@
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.EduPrograms/admin.css" Priority="200" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/admin.css" />
 
 <div class="dnnForm dnnClear u8y-edit-science">
     <div id="tabs" runat="server">

@@ -1,7 +1,7 @@
-<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEduProgram.ascx.cs" Inherits="R7.University.EduPrograms.ViewEduProgram" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEduProgram.ascx.cs" Inherits="R7.University.EduPrograms.ViewEduProgram" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/module.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 
 <asp:FormView id="formEduProgram" runat="server" ItemType="R7.University.EduPrograms.ViewModels.EduProgramViewModel" RenderOuterTable="false">
     <ItemTemplate>

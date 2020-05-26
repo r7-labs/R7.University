@@ -1,4 +1,4 @@
-@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ScienceDirectoryViewModel>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ScienceDirectoryViewModel>
 @using System.Collections.Generic
 @using DotNetNuke.Collections
 @using DotNetNuke.Web.Mvc.Helpers
@@ -12,8 +12,8 @@
 @using R7.University.Controls.ViewModels
 @using R7.University.EduPrograms.ViewModels
 @{
-    ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/css/module.css");
-    ClientResourceManager.RegisterScript (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/js/module.js", 100, "DnnFormBottomProvider");
+    ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css");
+    ClientResourceManager.RegisterScript (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/assets/js/module.js", 100, "DnnFormBottomProvider");
 }
 <div class="u8y-science-directory">
 @if (Model.IsEmpty) {

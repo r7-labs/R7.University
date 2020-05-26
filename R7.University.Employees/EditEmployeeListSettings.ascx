@@ -1,10 +1,10 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditEmployeeListSettings.ascx.cs" Inherits="R7.University.Employees.EditEmployeeListSettings" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditEmployeeListSettings.ascx.cs" Inherits="R7.University.Employees.EditEmployeeListSettings" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="DivisionSelector" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/DivisionSelector.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Employees/admin.css" Priority="200" />
-<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/css/admin.css" />
+<dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/admin.css" />
 
 <div class="dnnForm dnnClear">
 	<asp:Panel id="panelGeneralSettings" runat="server">

@@ -54,7 +54,7 @@ namespace R7.University.Employees.SharedLogic
                 image = new FileInfo ();
                 image.Width = defaultWidth;
                 image.Height = defaultWidth;
-                noPhotoUrl = $"/DesktopModules/MVC/R7.University/R7.University/images/nophoto.png";
+                noPhotoUrl = UniversityGlobals.ASSETS_PATH + "/images/nophoto.png";
             }
 
             if (noPhotoUrl == null) {

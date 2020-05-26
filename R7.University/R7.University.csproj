@@ -364,7 +364,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="css\" />
     <Folder Include="ModelExtensions\" />
     <Folder Include="Models\" />
     <Folder Include="ControlExtensions\" />
@@ -374,7 +373,6 @@
     <Folder Include="Utilities\" />
     <Folder Include="ViewModels\" />
     <Folder Include="SharedLogic\" />
-    <Folder Include="js\" />
     <Folder Include="Patterns\" />
     <Folder Include="Data\Mappings\" />
     <Folder Include="Queries\" />
@@ -388,6 +386,7 @@
     <Folder Include="Templates\" />
     <Folder Include="assets\css\" />
     <Folder Include="assets\js\" />
+    <Folder Include="assets\images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.dnn" />
@@ -400,7 +399,6 @@
     <None Include="SqlDataProvider\01.01.01.SqlDataProvider" />
     <None Include="SqlDataProvider\Uninstall.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.02.SqlDataProvider" />
-    <None Include="images\nophoto_template.svg" />
     <None Include="SqlDataProvider\01.01.03.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.04.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.06.SqlDataProvider" />
@@ -419,26 +417,27 @@
     <None Include="SqlDataProvider\01.09.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.10.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.11.00.SqlDataProvider" />
-    <None Include="css\module.css" />
     <None Include="SqlDataProvider\01.12.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.14.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.15.00.SqlDataProvider" />
-    <None Include="images\Rollback_16x16_Standard.png" />
-    <None Include="images\Rollback_16x16_Gray.png" />
     <None Include="SqlDataProvider\01.15.00.PostInstall.SqlDataProvider" />
-    <None Include="js\module.js" />
     <None Include="SqlDataProvider\02.01.00.SqlDataProvider" />
     <None Include="packages.config" />
     <None Include="SqlDataProvider\02.02.00.SqlDataProvider" />
-    <None Include="images\nophoto.png" />
     <None Include="assets\templates\employee_template.xlsx" />
     <None Include="R7.University.csproj" />
     <None Include="assets\css\test.scss" />
     <None Include="assets\js\test.jsx" />
+    <None Include="assets\css\module.css" />
+    <None Include="assets\js\module.js" />
+    <None Include="assets\images\nophoto.png" />
+    <None Include="assets\images\nophoto_template.svg" />
+    <None Include="assets\images\Rollback_16x16_Gray.png" />
+    <None Include="assets\images\Rollback_16x16_Standard.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\admin.css" />
     <None Include="SqlDataProvider\02.00.00.SqlDataProvider" />
+    <Content Include="assets\css\admin.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University.Core\R7.University.Core.csproj">
