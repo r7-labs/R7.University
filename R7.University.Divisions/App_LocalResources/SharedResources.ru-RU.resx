@@ -24,4 +24,7 @@
 	<data name="EditDivision.Action" xml:space="preserve">
     	<value>Редактировать подразделение</value>
   	</data>
+	<data name="Copy.Text" xml:space="preserve">
+		<value>Копировать</value>
+	</data>
 </root>

@@ -125,7 +125,7 @@
 					<asp:TextBox id="textWorkingPlace" runat="server" MaxLength="50" />
 				</div>
 				<div class="dnnFormItem">
-					<dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" />
+					<dnn:Label id="labelWorkingHours" runat="server" ControlName="comboWorkingHours" />
 					<asp:DropDownList id="comboWorkingHours" runat="server"
 						DataTextField="Name"
 						DataValueField="TermId" />
@@ -133,11 +133,8 @@
 				</div>
 				<div class="dnnFormItem">
 					<dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" />
-					<asp:TextBox id="textWorkingHours" runat="server" MaxLength="100" />
-				</div>
-                <div class="dnnFormItem">
-                    <div class="dnnLabel"></div>
-                    <asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
+					<asp:TextBox id="textWorkingHours" runat="server" MaxLength="100" Style="width:300px" />
+					<asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
 				</div>
 			</fieldset>
 		</div>

@@ -100,15 +100,15 @@
                     <asp:TextBox id="txtLocation" runat="server" MaxLength="128" />
                 </div>
                 <div class="dnnFormItem">
-                    <dnn:Label id="labelWorkingHours" runat="server" ControlName="textWorkingHours" />
+                    <dnn:Label id="labelWorkingHours" runat="server" ControlName="comboWorkingHours" />
                     <asp:DropDownList id="comboWorkingHours" runat="server"
                                 DataTextField="Name"
-                                DataValueField="TermId"
-                         />
+                                DataValueField="TermId" />
+					<button class="btn btn-sm btn-outline-secondary" type="button" onclick="btnCopyWorkingHours_Click()"><%: LocalizeString ("Copy") %></button>
                 </div>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelCustomWorkingHours" runat="server" ControlName="textWorkingHours" />
-                    <asp:TextBox id="textWorkingHours" runat="server" Style="width:300px" />
+                    <asp:TextBox id="textWorkingHours" runat="server" MaxLength="100" Style="width:300px" />
                     <asp:CheckBox id="checkAddToVocabulary" runat="server" resourcekey="checkAddToVocabulary" />
                 </div>
             </fieldset>
@@ -159,6 +159,10 @@
 </div>
 <input id="hiddenSelectedTab" type="hidden" value="<%= (int) SelectedTab %>" />
 <script type="text/javascript">
+function btnCopyWorkingHours_Click() {
+	var workingHours = $("#<%= comboWorkingHours.ClientID %> option:selected").text();
+	$("#<%= textWorkingHours.ClientID %>").val(workingHours);
+}
 (function($, Sys) {
     function setupModule() {
 	    $("#division-tabs").dnnTabs({selected: document.getElementById("hiddenSelectedTab").value});
