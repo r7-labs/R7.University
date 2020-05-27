@@ -158,6 +158,8 @@
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewEmployeeDirectory.ascx.ru-RU.resx" />
     <None Include="Views\EmployeeExporter\EmployeeExporter.jsx" />
+    <None Include="App_LocalResources\EmployeeExporter.resx" />
+    <None Include="App_LocalResources\EmployeeExporter.ru-RU.resx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEmployee.ascx.cs">
@@ -257,13 +259,5 @@
       <Project>{54283781-606F-453A-A474-8DE6473ED30A}</Project>
       <Name>R7.University.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="App_LocalResources\EmployeeExporter.resx">
-      <LastGenOutput>WorkbookDownloader.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_LocalResources\EmployeeExporter.ru-RU.resx">
-      <LastGenOutput>WorkbookDownloader.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>
