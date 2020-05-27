@@ -68,6 +68,7 @@
 		<None Include="Tests.targets" />
 		<None Include="Deploy.csproj" />
 		<None Include="packages.config" />
+		<None Include="GenerateManifest.ps1" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="Dummy.cs" />

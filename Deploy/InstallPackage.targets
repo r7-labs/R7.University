@@ -22,10 +22,12 @@
 			<InstallBinaryFiles Include="../packages/NPOI.2.4.1/lib/net45/NPOI*.dll" />
             <InstallBinaryFiles Include="../packages/SharpZipLib.1.0.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
 		</ItemGroup>
-        <!-- Declare manifest files -->
+		<!-- Generate main manifest file -->
+		<Exec Command="$(Pwsh) GenerateManifest.ps1 &quot;$(MainProjectOutputPath)/$(MainProjectName).dnn.template.xml&quot; $(ReleaseVersion)" />
+		<!-- Declare manifest files -->
         <ItemGroup>
-            <InstallManifestFiles Include="$(MainProjectPath)/*.dnn*" />
-            <InstallManifestFiles Include="$(MainProjectPath)/license.htm" />
+            <InstallManifestFiles Include="$(MainProjectOutputPath)/*.dnn" />
+			<InstallManifestFiles Include="$(MainProjectPath)/license.htm" />
             <InstallManifestFiles Include="$(MainProjectPath)/releaseNotes.htm" />
         </ItemGroup>
         <!-- Declare SqlDataProvider files -->

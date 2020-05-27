@@ -389,7 +389,9 @@
     <Folder Include="assets\images\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="R7.University.dnn" />
+    <None Include="R7.University.dnn.template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SqlDataProvider\01.00.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.00.02.SqlDataProvider" />
     <None Include="SqlDataProvider\01.00.04.SqlDataProvider" />
