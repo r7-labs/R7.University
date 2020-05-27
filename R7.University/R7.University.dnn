@@ -17,6 +17,8 @@
 				<dependency type="managedPackage" version="0.1.0">R7.Dnn.Extensions.EFCore</dependency>
                 <dependency type="managedPackage" version="1.1.0">R7.ImageHandler</dependency>
 				<dependency type="package" version="4.0.0">Select2</dependency>
+				<dependency type="package" version="16.0.0">React</dependency>
+				<dependency type="package" version="16.0.0">ReactDOM</dependency>
 			</dependencies>
 			<components>
 				<component type="Script">
