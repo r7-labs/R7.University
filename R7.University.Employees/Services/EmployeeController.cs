@@ -88,7 +88,7 @@ namespace R7.University.Employees.Services
         }
 
         [HttpGet]
-        [DnnAuthorize]
+        [AllowAnonymous]
         public HttpResponseMessage ExportToExcel (int employeeId)
         {
             try {
