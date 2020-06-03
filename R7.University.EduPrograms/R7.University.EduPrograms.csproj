@@ -108,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\R7.University\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="EditEduProgramSettings.ascx.cs">
       <DependentUpon>EditEduProgramSettings.ascx</DependentUpon>
     </Compile>
@@ -205,6 +208,7 @@
     <None Include="App_LocalResources\EditScienceDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\Science.resx" />
     <None Include="App_LocalResources\Science.ru-RU.resx" />
+    <None Include="R7.University.EduPrograms.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

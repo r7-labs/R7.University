@@ -139,6 +139,7 @@
     <None Include="App_LocalResources\EditDivisionDirectorySettings.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\ViewDivisionDirectory.ascx.resx" />
     <None Include="App_LocalResources\ViewDivisionDirectory.ascx.ru-RU.resx" />
+    <None Include="R7.University.Divisions.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditDivisionSettings.ascx.cs">
@@ -154,6 +155,9 @@
       <DependentUpon>EditDivision.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\R7.University\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Components\DivisionController.cs" />
     <Compile Include="Queries\DivisionQuery.cs" />
     <Compile Include="Controllers\DivisionController.cs" />

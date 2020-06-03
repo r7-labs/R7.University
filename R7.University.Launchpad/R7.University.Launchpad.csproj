@@ -169,6 +169,7 @@
     <None Include="Views\WorkbookConverter\WorkbookConverter.jsx" />
     <None Include="App_LocalResources\WorkbookConverter.resx" />
     <None Include="App_LocalResources\WorkbookConverter.ru-RU.resx" />
+    <None Include="R7.University.Launchpad.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewLaunchpad.ascx.cs">
@@ -214,6 +215,9 @@
       <DependentUpon>EditEduForm.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\R7.University\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Components\LaunchpadController.cs" />
     <Compile Include="Tables\AchievementsTable.cs" />
     <Compile Include="Tables\DivisionsTable.cs" />

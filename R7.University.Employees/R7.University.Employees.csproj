@@ -160,6 +160,7 @@
     <None Include="Views\EmployeeExporter\EmployeeExporter.jsx" />
     <None Include="App_LocalResources\EmployeeExporter.resx" />
     <None Include="App_LocalResources\EmployeeExporter.ru-RU.resx" />
+    <None Include="R7.University.Employees.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewEmployee.ascx.cs">
@@ -187,6 +188,9 @@
       <DependentUpon>EditEmployee.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\R7.University\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Components\EmployeeController.cs" />
     <Compile Include="SharedLogic\RepeaterPositionsLogic.cs" />
     <Compile Include="Queries\EmployeeQuery.cs" />

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ReleaseVersion>2.4-beta.2</ReleaseVersion>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,8 +12,14 @@
   <ItemGroup>
     <Folder Include="Templates\" />
     <Folder Include="Markdown\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="R7.University.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\R7.University\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -361,6 +361,7 @@
     <Compile Include="Templates\UniversityModelToTemplateBinderBase.cs" />
     <Compile Include="Templates\UniversityTemplateHelper.cs" />
     <Compile Include="Components\UniversityGlobals.cs" />
+    <Compile Include="Properties\SolutionInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

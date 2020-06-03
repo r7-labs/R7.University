@@ -148,6 +148,9 @@
     <Compile Include="ViewModels\EduProgramProfileEduFormsViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileDocumentsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\R7.University\Properties\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="ViewModels\EduProgramProfileDirectoryDocumentsViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileDirectoryEduFormsViewModel.cs" />
     <Compile Include="Queries\EduProgramProfileQuery.cs" />
@@ -246,6 +249,7 @@
     <None Include="App_LocalResources\EditContingent.ascx.ru-RU.resx" />
     <None Include="App_LocalResources\EditEduProgramProfileDocuments.ascx.resx" />
     <None Include="App_LocalResources\EditEduProgramProfileDocuments.ascx.ru-RU.resx" />
+    <None Include="R7.University.EduProgramProfiles.csproj" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R7.University\R7.University.csproj">
