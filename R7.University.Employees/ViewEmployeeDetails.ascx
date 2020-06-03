@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEmployeeDetails.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeDetails" %>
+<%@ Control Language="C#" AutoEventWireup="false" EnableViewState="false" CodeBehind="ViewEmployeeDetails.ascx.cs" Inherits="R7.University.Employees.ViewEmployeeDetails" %>
 <%@ Register TagPrefix="dnn" TagName="JavaScriptLibraryInclude" Src="~/admin/Skins/JavaScriptLibraryInclude.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
@@ -9,24 +9,8 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/EmployeeExporter.min.js" />
 
-<script>
-function u8y_employee_exporter_recaptchaVerifiedCallback_<%: ModuleId %>() {
-	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
-		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: true, isRecaptchaError: false});
-	}
-}
-function u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>() {
-	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
-		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: false, isRecaptchaError: false});
-	}
-}
-function u8y_employee_exporter_recaptchaErrorCallback_<%: ModuleId %>() {
-	if (typeof(window["u8y_employee_exporter_<%: ModuleId %>"]) !== "undefined") {
-		window["u8y_employee_exporter_<%: ModuleId %>"].setState({isVerified: false, isRecaptchaError: true});
-	}
-}
-</script>
-<script src="https://www.google.com/recaptcha/api.js?hl=<%: System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName %>" async="" defer=""></script>
+<!-- TODO: Load dinamycally (e.g. via $.getScript) only then needed -->
+<script src="https://www.google.com/recaptcha/api.js?render=explicit&hl=<%: System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName %>" async="" defer=""></script>
 
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
@@ -185,15 +169,13 @@ function u8y_employee_exporter_recaptchaErrorCallback_<%: ModuleId %>() {
 			<div class="modal-body">
 				<div class="react-root"
 					 data-module-id="<%: ModuleId %>"
+					 data-is-authenticated="<%: Request.IsAuthenticated.ToString().ToLowerInvariant() %>"
+					 data-recaptcha-sitekey="<%: UniversityConfig.Instance.Recaptcha.SiteKey %>"
 					 data-employee-id="<%: (Employee != null)? Employee.EmployeeID : 0 %>"
 					 data-is-admin='<%: (UserInfo.IsSuperUser || UserInfo.IsInRole ("Administrators")).ToString().ToLowerInvariant() %>'
+					 data-login-url='<%: DotNetNuke.Common.Globals.LoginURL ("", false) %>'
 					 data-resources="<%: EmployeeExporterResources %>">
 				</div>
-				<div class="g-recaptcha"
-					 data-sitekey="<%: UniversityConfig.Instance.Recaptcha.SiteKey %>"
-					 data-callback="u8y_employee_exporter_recaptchaVerifiedCallback_<%: ModuleId %>"
-					 data-expired-callback="u8y_employee_exporter_recaptchaExpiredCallback_<%: ModuleId %>"
-					 data-error-callback="u8y_employee_exporter_recaptchaErrorCallback_<%: ModuleId %>"></div>
 			</div>
         </div>
 	</div>
@@ -206,11 +188,14 @@ function u8y_employee_exporter_recaptchaErrorCallback_<%: ModuleId %>() {
 			var moduleId = root.data("module-id");
 			var props = {
 				moduleId: moduleId,
+				isAuthenticated: root.data("is-authenticated"),
+				recaptchaSitekey: root.data("recaptcha-sitekey"),
 				employeeId: root.data("employee-id"),
 				isAdmin: root.data("is-admin"),
+				loginUrl: root.data("login-url"),
 				resources: root.data("resources")
 			};
-			window["u8y_employee_exporter_<%: ModuleId %>"] = ReactDOM.render(
+			ReactDOM.render(
 		  		React.createElement(EmployeeExporter, props, null), root.get(0)
 			);
 		});
