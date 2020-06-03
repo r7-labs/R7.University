@@ -47,7 +47,7 @@ class EmployeeExporter extends React.Component {
         if (this.props.isAdmin === true) {
             return (
                 <li className="list-inline-item">
-                    <a role="button" className="btn btn-outline-secondary"
+                    <a role="button" className="btn btn-outline-success"
                             href={"/DesktopModules/R7.University.Employees/API/Employee/ExportToCsv?employeeId=" + this.props.employeeId}>
                         <i className="fas fa-file-csv mr-2" aria-hidden="true"></i> {this.getString ("ExportToCSV")}
                     </a>
@@ -62,7 +62,7 @@ class EmployeeExporter extends React.Component {
             return (
                 <ul className="list-inline mb-3">
                     <li className="list-inline-item">
-                        <a role="button" className="btn btn-outline-primary"
+                        <a role="button" className="btn btn-success"
                                 href={"/DesktopModules/R7.University.Employees/API/Employee/ExportToExcel?employeeId=" + this.props.employeeId}>
                             <i className="fas fa-file-excel mr-2" aria-hidden="true"></i> {this.getString ("ExportToExcel")}
                         </a>

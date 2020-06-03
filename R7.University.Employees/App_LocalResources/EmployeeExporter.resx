@@ -26,8 +26,8 @@
 	</data>
 	<data name="RecaptchaError.Text" xml:space="preserve">
 		<value><![CDATA[Oh, something went wrong with the reCaptcha! Please check your Internet connection and try again.
-			You can also download the employee data without reCaptcha check after
-			<a href="{{loginUrl}}" class="alert-link" target="_blank">logging in</a> to the website under your account.
+			You can also download the employee data without reCaptcha check. To do this, you must first
+			<a href="{{loginUrl}}" class="alert-link" target="_blank">login to the website</a> under your account.
 			If none of this helps, please contact website administrator.]]></value>
 	</data>
 </root>
