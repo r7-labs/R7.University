@@ -41,9 +41,11 @@
 					<i class="fas fa-qrcode mr-2"></i><%: LocalizeString ("BarcodeButtonLabel") %>
 				</button>
 				<% } %>
+				<% if (!string.IsNullOrEmpty (UniversityConfig.Instance.Recaptcha.SiteKey)) { %>
 				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
 					<i class="fas fa-file-export mr-2"></i><%: LocalizeString ("EmployeeExporterButtonLabel") %>
 				</button>
+				<% } %>
 			</div>
 		</div>
     	<div id="employeeTabs_<%= ModuleId %>" class="col-md-9 pl-md-3">
