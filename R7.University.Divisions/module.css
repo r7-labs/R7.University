@@ -1,9 +1,7 @@
 ﻿.u8y-division ._section { display:block }
 
 .u8y-division ._section,
-.u8y-division .panel-subdivisions,
-.u8y-division .btn-barcode,
-.u8y-division .btn-related-content { margin-top:8px }
+.u8y-division .panel-subdivisions { margin-top:8px }
 
 .u8y-division ._label
 { 

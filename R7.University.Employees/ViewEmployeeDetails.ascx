@@ -37,12 +37,12 @@
         			</div>
 				</asp:Panel>
 				<% if (Employee != null && Employee.ShowBarcode) { %>
-				<button type="button" class="btn btn-outline-secondary btn-block btn-sm btn-barcode" data-toggle="modal" data-target="#u8y_employee_barcode_dlg_<%: ModuleId %>">
+				<button type="button" class="btn btn-outline-secondary btn-block btn-sm mt-3" data-toggle="modal" data-target="#u8y_employee_barcode_dlg_<%: ModuleId %>">
 					<i class="fas fa-qrcode mr-2"></i><%: LocalizeString ("BarcodeButtonLabel") %>
 				</button>
 				<% } %>
 				<% if (!string.IsNullOrEmpty (UniversityConfig.Instance.Recaptcha.SiteKey)) { %>
-				<button type="button" class="btn btn-outline-secondary btn-block btn-sm" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
+				<button type="button" class="btn btn-outline-secondary btn-block btn-sm mt-2" data-toggle="modal" data-target="#u8y_employee_exporter_dlg_<%: ModuleId %>">
 					<i class="fas fa-file-export mr-2"></i><%: LocalizeString ("EmployeeExporterButtonLabel") %>
 				</button>
 				<% } %>
