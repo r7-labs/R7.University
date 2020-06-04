@@ -9,9 +9,6 @@
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/EmployeeExporter.min.js" />
 
-<!-- TODO: Load dinamycally (e.g. via $.getScript) only then needed -->
-<script src="https://www.google.com/recaptcha/api.js?render=explicit&hl=<%: System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName %>" async="" defer=""></script>
-
 <asp:Panel id="panelEmployeeDetails" runat="server" CssClass="dnnForm dnnClear u8y-employee-details">
     <div class="row no-gutters">
 		<div class="col-md-3 mb-3 mb-md-0">
@@ -186,20 +183,30 @@
 (function($, window, document) {
 	$(document).ready(function() {
 		$("#u8y_employee_exporter_dlg_<%: ModuleId %>").on("shown.bs.modal", function (e) {
-			var root = $(e.target).find(".react-root");
-			var moduleId = root.data("module-id");
-			var props = {
-				moduleId: moduleId,
-				isAuthenticated: root.data("is-authenticated"),
-				recaptchaSitekey: root.data("recaptcha-sitekey"),
-				employeeId: root.data("employee-id"),
-				isAdmin: root.data("is-admin"),
-				loginUrl: root.data("login-url"),
-				resources: root.data("resources")
+			var renderEmployeeExporter = function () {
+				var root = $(e.target).find(".react-root");
+				var moduleId = root.data("module-id");
+				var props = {
+					moduleId: moduleId,
+					isAuthenticated: root.data("is-authenticated"),
+					recaptchaSitekey: root.data("recaptcha-sitekey"),
+					employeeId: root.data("employee-id"),
+					isAdmin: root.data("is-admin"),
+					loginUrl: root.data("login-url"),
+					resources: root.data("resources")
+				};
+				ReactDOM.render(React.createElement(EmployeeExporter, props, null), root.get(0));
 			};
-			ReactDOM.render(
-		  		React.createElement(EmployeeExporter, props, null), root.get(0)
-			);
+			$.getScript("https://www.google.com/recaptcha/api.js?render=explicit&hl=<%: System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName %>")
+				.done(function (script, textStatus) {
+					console.log (textStatus);
+					script.addEventListener("load", function() {
+				    	renderEmployeeExporter();
+					});
+				})
+				.fail(function (jqxhr, settings, exception) {
+					console.log("Error loading reCaptcha script!");
+				})
 		});
 	});
 } (jQuery, window, document));
