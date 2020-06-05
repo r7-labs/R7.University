@@ -28,22 +28,23 @@ namespace R7.University.Core.Templates
 
         protected void SerializeSheet (ISheet sheet, StringBuilder builder)
         {
+            var formatter = new DataFormatter ();
             for (var r = sheet.FirstRowNum; r <= sheet.LastRowNum; r++) {
                 var row = sheet.GetRow (r);
                 if (row == null) {
                     continue;
                 }
                 foreach (var cell in row.Cells) {
-                    builder.Append (FormatCellValue (cell));
+                    builder.Append (FormatCellValue (cell, formatter));
                     builder.Append (CellSeparator);
                 }
                 builder.AppendLine ();
             }
         }
 
-        protected virtual string FormatCellValue (ICell cell)
+        protected virtual string FormatCellValue (ICell cell, DataFormatter formatter)
         {
-            var text = cell.StringCellValue;
+            var text = formatter.FormatCellValue (cell);
 
             if (!string.IsNullOrWhiteSpace (text)) {
                 text = text.Replace ("\r\n", " ");
