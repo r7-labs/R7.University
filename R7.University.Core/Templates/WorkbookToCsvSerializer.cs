@@ -13,7 +13,7 @@ namespace R7.University.Core.Templates
 
         public string SheetHeaderFormat { get; set; } = "== {0}\n\n";
 
-        public string EmptyCellValue { get; set; } = "~";
+        public string EmptyCellValue { get; set; } = "";
 
         public StringBuilder Serialize (IWorkbook book, StringBuilder builder)
         {
