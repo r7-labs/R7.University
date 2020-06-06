@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017-2018 Roman M. Yagodin
+//  Copyright (c) 2017-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -56,9 +56,13 @@ namespace R7.University.EduPrograms
 
         #region UniversityEditPortalModuleBase implementation
 
-        protected override string GetItemTitle (ScienceInfo item)
+        protected override string GetContextString (ScienceInfo item)
         {
-            return GetEduProgram (item.ScienceId).FormatTitle ();
+            var eduProgramId = item?.ScienceId ?? GetEduProgramId ();
+            if (eduProgramId != null) {
+                return GetEduProgram (eduProgramId.Value)?.FormatTitle ();
+            }
+            return null;
         }
 
         protected override void LoadItem (ScienceInfo item)

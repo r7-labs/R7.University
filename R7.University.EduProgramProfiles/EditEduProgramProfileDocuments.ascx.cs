@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2018 Roman M. Yagodin
+//  Copyright (c) 2018-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -20,13 +20,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
-using DotNetNuke.Framework;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.EduProgramProfiles.Queries;
@@ -34,7 +31,6 @@ using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
-using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles
 {
@@ -56,9 +52,12 @@ namespace R7.University.EduProgramProfiles
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
-        protected override string GetItemTitle (EduProgramProfileInfo item)
+        protected override string GetContextString (EduProgramProfileInfo item)
         {
-            return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
+            if (item != null) {
+                return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
+            }
+            return null;
         }
 
         protected override void LoadItem (EduProgramProfileInfo item)

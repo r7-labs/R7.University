@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.IO;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
@@ -40,7 +39,6 @@ using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
 using R7.University.SharedLogic;
-using R7.University.Utilities;
 
 namespace R7.University.Employees
 {
@@ -71,7 +69,7 @@ namespace R7.University.Employees
                 var eventTarget = Request.Form ["__EVENTTARGET"];
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
-                    
+
                     if (eventTarget.Contains ("$" + buttonUserLookup.ID)) {
                         ViewState ["SelectedTab"] = EditEmployeeTab.Common;
                         return EditEmployeeTab.Common;
@@ -144,9 +142,9 @@ namespace R7.University.Employees
             formEditPositions.OnInit (this, positions, divisions);
         }
 
-        protected override string GetItemTitle (EmployeeInfo item)
+        protected override string GetContextString (EmployeeInfo item)
         {
-            return item.FullName ();
+            return item?.FullName ();
         }
 
         protected override void LoadItem (EmployeeInfo item)
@@ -224,7 +222,7 @@ namespace R7.University.Employees
                 .ThenBy (ed => ed.EduProgramProfile.EduLevel.SortIndex);
 
             formEditDisciplines.SetData (employeeDisciplines, employee.EmployeeID);
-      
+
             // setup audit control
             ctlAudit.Bind (employee, PortalId, LocalizeString ("Unknown")); ;
 
@@ -233,6 +231,8 @@ namespace R7.University.Employees
 
         protected override void LoadNewItem ()
         {
+            base.LoadNewItem ();
+
             SetupDivisionSelector ();
         }
 
@@ -295,7 +295,7 @@ namespace R7.University.Employees
                 new AddCommand<EmployeeInfo> (ModelContext, SecurityContext).Add (item);
                 ModelContext.SaveChanges (false);
 
-                // then adding new employee from Employee or EmployeeDetails modules, 
+                // then adding new employee from Employee or EmployeeDetails modules,
                 // set calling module to display new employee
                 if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_Employee" ||
                 ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EmployeeDetails") {
@@ -369,24 +369,24 @@ namespace R7.University.Employees
 
                 var usersFound = 0;
                 var usersFoundTotal = 0;
-			
+
                 // TODO: Link to open admin users interface in a separate tab
-                var users = UserController.GetUsersByEmail (PortalId, term, -1, -1, 
+                var users = UserController.GetUsersByEmail (PortalId, term, -1, -1,
                     ref usersFound, includeDeleted, false);
                 usersFoundTotal += usersFound;
 
                 // find cross-portal users including host user by email
-                users.AddRange (UserController.GetUsersByEmail (Null.NullInteger, term, -1, -1, 
+                users.AddRange (UserController.GetUsersByEmail (Null.NullInteger, term, -1, -1,
                         ref usersFound, includeDeleted, false));
                 usersFoundTotal += usersFound;
 
                 // combine email lookup results with lookup by username
-                users.AddRange (UserController.GetUsersByUserName (PortalId, term, -1, -1, 
+                users.AddRange (UserController.GetUsersByUserName (PortalId, term, -1, -1,
                         ref usersFound, includeDeleted, false));
                 usersFoundTotal += usersFound;
 
                 // find cross-portal users  by username
-                users.AddRange (UserController.GetUsersByUserName (Null.NullInteger, term, -1, -1, 
+                users.AddRange (UserController.GetUsersByUserName (Null.NullInteger, term, -1, -1,
                         ref usersFound, includeDeleted, false));
                 usersFoundTotal += usersFound;
 

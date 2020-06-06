@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -21,14 +21,11 @@
 
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
-using R7.Dnn.Extensions.ViewModels;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.ControlExtensions;
@@ -159,9 +156,12 @@ namespace R7.University.EduProgramProfiles
             textLanguages.Text = UniversityConfig.Instance.EduProgramProfiles.DefaultLanguages;
         }
 
-        protected override string GetItemTitle (EduProgramProfileInfo item)
+        protected override string GetContextString (EduProgramProfileInfo item)
         {
-            return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
+            if (item != null) {
+                return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
+            }
+            return null;
         }
 
         protected override void LoadItem (EduProgramProfileInfo item)
@@ -275,7 +275,7 @@ namespace R7.University.EduProgramProfiles
         }
 
         #endregion
-               
+
         IEduProgramProfile GetEduProgramProfile ()
         {
             var eppId = ParseHelper.ParseToNullable<int> (Request.QueryString [Key]);

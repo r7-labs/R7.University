@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -35,8 +35,15 @@ namespace R7.University.Launchpad
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
+        protected override string GetContextString (EduFormInfo item)
+        {
+            return item?.Title;
+        }
+
         protected override void LoadItem (EduFormInfo item)
         {
+            base.LoadItem (item);
+
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
             textSortIndex.Text = item.SortIndex.ToString ();

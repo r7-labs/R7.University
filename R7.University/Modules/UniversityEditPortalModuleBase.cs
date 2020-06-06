@@ -1,4 +1,4 @@
-﻿//
+//
 //  UniversityEditPortalModuleBase.cs
 //
 //  Author:
@@ -94,18 +94,37 @@ namespace R7.University.Modules
             UpdateSelectedItem (ItemKey ?? 0);
         }
 
-        protected virtual string GetItemTitle (TEntity item)
+        #region Update control title for edited item
+
+        // TODO: Move to the base library?
+
+        void AdjustControlTitle (string appendix)
         {
-            return null;
+            ((CDefault) Page).Title = ((CDefault) Page).Title.Append (appendix, " &gt; ");
         }
+
+        /// <summary>
+        /// Gets the context string for the entity (to display in the edit control title).
+        /// </summary>
+        protected abstract string GetContextString (TEntity item);
 
         protected override void LoadItem (TEntity item)
         {
-            var itemTitle = GetItemTitle (item);
-            if (itemTitle != null) {
-                ((CDefault) Page).Title = ((CDefault) Page).Title.Append (itemTitle, " &gt; ");
+            var contextString = GetContextString (item);
+            if (contextString != null) {
+                AdjustControlTitle (contextString);
             }
         }
+
+        protected override void LoadNewItem ()
+        {
+            var contextString = GetContextString (null);
+            if (contextString != null) {
+                AdjustControlTitle (contextString);
+            }
+        }
+
+        #endregion
 
         protected abstract int GetItemId (TEntity item);
 

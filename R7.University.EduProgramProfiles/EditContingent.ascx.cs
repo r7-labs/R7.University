@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2018 Roman M. Yagodin
+//  Copyright (c) 2018-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +24,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.Components;
 using R7.University.EduProgramProfiles.Models;
@@ -94,7 +93,7 @@ namespace R7.University.EduProgramProfiles
         protected void BindTabs ()
         {
             var showAllTabs = SecurityContext.IsAdmin;
-        
+
             tabActual.Visible = showAllTabs || Settings.Mode == ContingentDirectoryMode.Actual;
             panelActual.Visible = tabActual.Visible;
 
@@ -120,9 +119,10 @@ namespace R7.University.EduProgramProfiles
             BindTabs ();
         }
 
-        protected override string GetItemTitle (ContingentInfo item)
+        protected override string GetContextString (ContingentInfo item)
         {
-            return item.EduProgramProfileFormYear.FormatTitle (GetLastYear (), LocalResourceFile);
+            var eppfy = item?.EduProgramProfileFormYear ?? GetEduProgramProfileFormYear ();
+            return eppfy.FormatTitle (GetLastYear (), LocalResourceFile);
         }
 
         protected override void LoadItem (ContingentInfo item)

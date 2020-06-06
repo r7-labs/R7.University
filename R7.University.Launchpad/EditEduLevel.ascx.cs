@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2018 Roman M. Yagodin
+//  Copyright (c) 2015-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -22,7 +22,6 @@
 using System;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Models;
 using R7.University.Modules;
 using R7.University.Queries;
@@ -38,7 +37,7 @@ namespace R7.University.Launchpad
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
-        
+
             comboParentEduLevel.DataSource = new EduLevelQuery (ModelContext).ListForEduProgram ();
             comboParentEduLevel.DataBind ();
             comboParentEduLevel.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
@@ -49,8 +48,15 @@ namespace R7.University.Launchpad
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
+        protected override string GetContextString (EduLevelInfo item)
+        {
+            return item?.Title;
+        }
+
         protected override void LoadItem (EduLevelInfo item)
         {
+            base.LoadItem (item);
+
             textTitle.Text = item.Title;
             textShortTitle.Text = item.ShortTitle;
             textSortIndex.Text = item.SortIndex.ToString ();

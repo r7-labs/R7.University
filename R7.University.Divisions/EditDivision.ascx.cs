@@ -116,9 +116,9 @@ namespace R7.University.Divisions
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
-        protected override string GetItemTitle (DivisionInfo item)
+        protected override string GetContextString (DivisionInfo item)
         {
-            return item.Title;
+            return item?.Title;
         }
 
         protected override void LoadItem (DivisionInfo item)
@@ -207,7 +207,7 @@ namespace R7.University.Divisions
                 new AddDivisionCommand (ModelContext, SecurityContext).Add (item, DateTime.Now);
                 ModelContext.SaveChanges ();
 
-                // then adding new division from Division module, 
+                // then adding new division from Division module,
                 // set calling module to display new division info
                 if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_Division") {
                     var settingsRepository = new DivisionSettingsRepository ();
