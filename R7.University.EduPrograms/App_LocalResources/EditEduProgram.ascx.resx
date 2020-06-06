@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -98,6 +98,12 @@
     </data>
     <data name="labelHomePage.Help" xml:space="preserve">
         <value>Specify home page for the educational program. This page generally contains details about educational program.</value>
+    </data>
+	<data name="lblUseCurrentPageAsHomePage.Text" xml:space="preserve">
+        <value>Use Current Page as Home Page?</value>
+    </data>
+	<data name="lblUseCurrentPageAsHomePage.Help" xml:space="preserve">
+        <value>Check to use current page as a home page for the educational program.</value>
     </data>
     <data name="labelDivision.Text" xml:space="preserve">
         <value>Division:</value>

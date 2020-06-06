@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditDivision.ascx.cs" Inherits="R7.University.Divisions.EditDivision" %>
+<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditDivision.ascx.cs" Inherits="R7.University.Divisions.EditDivision" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Url" Src="~/controls/DnnUrlControl.ascx" %>
@@ -124,7 +124,7 @@
                             ShowLog="false" ShowTrack="false"
                             ShowNone="true" ShowNewWindow="false" />
                 </div>
-            </fieldset>
+			</fieldset>
         </div>
         <div id="division-bindings-tab">
             <fieldset>
@@ -137,6 +137,10 @@
                             ShowLog="false" ShowTrack="false"
                             ShowNone="true" ShowNewWindow="false" />
                 </div>
+				<div class="dnnFormItem">
+					<dnn:Label id="lblUseCurrentPageAsHomePage" runat="server" ControlName="chkUseCurrentPageAsHomePage" />
+					<asp:CheckBox id="chkUseCurrentPageAsHomePage" runat="server" />
+				</div>
             </fieldset>
         </div>
 		<div id="division-audit-tab">

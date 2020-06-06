@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<resheader name="resmimetype">
 		<value>text/microsoft-resx</value>
@@ -43,7 +43,13 @@
         <value>Home Page:</value>
     </data>
 	<data name="lblHomePage.Help" xml:space="preserve">
-        <value>Specify a home page for this division.</value>
+        <value>Specify a home page for the division.</value>
+    </data>
+	<data name="lblUseCurrentPageAsHomePage.Text" xml:space="preserve">
+        <value>Use Current Page as Home Page?</value>
+    </data>
+	<data name="lblUseCurrentPageAsHomePage.Help" xml:space="preserve">
+        <value>Check to use current page as a home page for the division.</value>
     </data>
 	<data name="labelDocumentUrl.Text" xml:space="preserve">
         <value>Document:</value>
@@ -150,7 +156,7 @@
 	<data name="labelHeadPosition.Help" xml:space="preserve">
 		<value>Select the position which define the division's head employee.
         The specific employee will be determined automatically.
-		If system cannot determine head employee, the corresponding position will be considered vacant; 
+		If system cannot determine head employee, the corresponding position will be considered vacant;
 		if no head position is set, then the division will be considered as one which cannot have head employee at all.</value>
 	</data>
 	<data name="Common.Tab" xml:space="preserve">

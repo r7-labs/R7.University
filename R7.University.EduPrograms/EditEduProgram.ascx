@@ -115,6 +115,10 @@
                             ShowLog="false" ShowTrack="false"
                             ShowNone="true" ShowNewWindow="false" />
                 </div>
+				<div class="dnnFormItem">
+					<dnn:Label id="lblUseCurrentPageAsHomePage" runat="server" ControlName="chkUseCurrentPageAsHomePage" />
+					<asp:CheckBox id="chkUseCurrentPageAsHomePage" runat="server" />
+				</div>
             </fieldset>
         </div>
         <div id="eduprogram-documents-tab">

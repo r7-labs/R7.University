@@ -176,7 +176,7 @@ namespace R7.University.EduPrograms
             item.Generation = textGeneration.Text.Trim ();
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;
-            item.HomePage = urlHomePage.Url;
+            item.HomePage = chkUseCurrentPageAsHomePage.Checked ? TabId.ToString () : urlHomePage.Url;
 
             // update references
             item.EduLevelID = int.Parse (comboEduLevel.SelectedValue);

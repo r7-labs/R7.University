@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -98,6 +98,12 @@
     </data>
     <data name="labelHomePage.Help" xml:space="preserve">
         <value>Укажите домашнюю страницу для образовательной программы. Как правило, эта страница содержит развернутое описание образовательной программы.</value>
+    </data>
+	<data name="lblUseCurrentPageAsHomePage.Text" xml:space="preserve">
+        <value>Текущая страница как домашняя?</value>
+    </data>
+	<data name="lblUseCurrentPageAsHomePage.Help" xml:space="preserve">
+        <value>Отметьте, чтобы использовать текущую страницу в качестве домашней страницы образовательной программы.</value>
     </data>
     <data name="labelDivision.Text" xml:space="preserve">
         <value>Подразделение:</value>

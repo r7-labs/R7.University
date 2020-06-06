@@ -21,10 +21,8 @@
 
 using System;
 using System.Linq;
-using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.University.Commands;
 using R7.University.ControlExtensions;
 using R7.University.Divisions.Models;
@@ -179,7 +177,7 @@ namespace R7.University.Divisions
             item.WebSite = txtWebSite.Text.Trim ();
             item.WebSiteLabel = textWebSiteLabel.Text.Trim ();
             item.ParentDivisionID = parentDivisionSelector.DivisionId;
-            item.HomePage = urlHomePage.Url;
+            item.HomePage = chkUseCurrentPageAsHomePage.Checked ? TabId.ToString () : urlHomePage.Url;
             item.DocumentUrl = urlDocumentUrl.Url;
             item.StartDate = datetimeStartDate.SelectedDate;
             item.EndDate = datetimeEndDate.SelectedDate;

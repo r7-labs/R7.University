@@ -25,5 +25,6 @@ namespace R7.University.EduPrograms
         protected Panel panelAddDefaultProfile;
         protected CheckBox checkAddDefaultProfile;
         protected EditDivisions formEditDivisions;
+        protected CheckBox chkUseCurrentPageAsHomePage;
     }
 }

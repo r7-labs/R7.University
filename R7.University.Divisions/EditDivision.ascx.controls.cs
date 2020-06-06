@@ -1,4 +1,4 @@
-﻿using System.Web.UI.WebControls;
+using System.Web.UI.WebControls;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University.Controls;
@@ -33,5 +33,6 @@ namespace R7.University.Divisions
         protected CheckBox checkIsInformal;
         protected CheckBox checkIsGoverning;
         protected DropDownList comboHeadPosition;
+        protected CheckBox chkUseCurrentPageAsHomePage;
     }
 }
