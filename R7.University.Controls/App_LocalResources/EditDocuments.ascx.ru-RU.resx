@@ -135,13 +135,4 @@
 	<data name="FileName.Invalid" xml:space="preserve">
         <value>Имя выбранного файла не соответствует проверочному выражению &quot;{regex}&quot; для выбранного типа документа.</value>
     </data>
-	<data name="FileNotFound.Text" xml:space="preserve">
-        <value>Файл не найден!</value>
-    </data>
-	<data name="PageNotFound.Text" xml:space="preserve">
-        <value>Страница не найдена!</value>
-    </data>
-	<data name="Page.Text" xml:space="preserve">
-        <value>Страница: </value>
-    </data>
 </root>

@@ -42,7 +42,7 @@
                     <asp:BoundField DataField="Title_String" HeaderText="Title.Column" />
                     <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
                     <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle.Column" />
-                    <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
+                    <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                     <asp:BoundField DataField="Description" Visible="false" />
                 </Columns>
             </asp:GridView>

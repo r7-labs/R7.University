@@ -4,7 +4,7 @@
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2015-2019 Roman M. Yagodin
+//  Copyright (c) 2015-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -146,18 +146,9 @@ namespace R7.University.Controls.EditModels
         }
 
         [JsonIgnore]
-        public string DocumentUrl_Link
-        {
-            get {
-                if (!string.IsNullOrWhiteSpace (DocumentURL)) {
-                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                                          UniversityUrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
-                                          Localization.GetString ("DocumentUrl.Text", Context.LocalResourceFile));
-                }
-
-                return string.Empty;
-            }
-        }
+        public string FormattedUrl =>
+            UniversityUrlHelper.FormatNiceDocumentUrl (DocumentURL, Context.Module.ModuleId, Context.Module.TabId,
+                Context.Module.PortalId, Context.LocalResourceFile);
 
         #endregion
     }

@@ -33,4 +33,13 @@
 	<data name="NotSelected.Text" xml:space="preserve">
         <value>&lt; Не выбрано &gt;</value>
     </data>
+	<data name="FileNotFound.Text" xml:space="preserve">
+        <value>Файл не найден!</value>
+    </data>
+	<data name="PageNotFound.Text" xml:space="preserve">
+        <value>Страница не найдена!</value>
+    </data>
+	<data name="Page.Text" xml:space="preserve">
+        <value>Страница: </value>
+    </data>
 </root>

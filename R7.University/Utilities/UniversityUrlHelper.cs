@@ -26,6 +26,8 @@ using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Services.FileSystem;
+using DotNetNuke.Services.Localization;
 using DotNetNuke.UI.Modules;
 
 namespace R7.University.Utilities
@@ -111,7 +113,7 @@ namespace R7.University.Utilities
                     if (browserName.StartsWith ("IE", StringComparison.Ordinal)
                         || browserName.Contains ("MSIE")
                         || browserName == "INTERNETEXPLORER") {
-                        return Globals.NavigateURL (controlKey, keyName, keyValue, 
+                        return Globals.NavigateURL (controlKey, keyName, keyValue,
                                                     "mid", module.ModuleContext.ModuleId.ToString ());
                     }
                 }
@@ -119,6 +121,39 @@ namespace R7.University.Utilities
 
             // popups disabled, it's safe to use default implementation
             return module.ModuleContext.EditUrl (keyName, keyValue, controlKey);
+        }
+
+        public static string FormatNiceDocumentUrl (string url, int moduleId, int tabId, int portalId, string resourceFile)
+        {
+            var label = string.Empty;
+            var title = string.Empty;
+
+            if (Globals.GetURLType (url) == TabType.File) {
+                var file = FileManager.Instance.GetFile (int.Parse (url.ToUpperInvariant ().Replace ("FILEID=", "")));
+                if (file != null) {
+                label = file.FileName;
+                    title = file.RelativePath;
+                }
+                else {
+                    label = Localization.GetString ("FileNotFound.Text", resourceFile);
+                }
+            }
+            else if (Globals.GetURLType (url) == TabType.Tab) {
+                var tab = TabController.Instance.GetTab (int.Parse (url), portalId);
+                if (tab != null) {
+                    label = Localization.GetString ("Page.Text", resourceFile) + " " + tab.LocalizedTabName;
+                    title = tab.TabPath.Replace ("//", "/");
+                }
+                else {
+                    label = Localization.GetString ("PageNotFound.Text", resourceFile);
+                }
+            }
+            else {
+                label = HttpUtility.HtmlEncode (HtmlUtils.Shorten (url, 32, "…"));
+                title = HttpUtility.HtmlAttributeEncode (url);
+            }
+
+            return $"<a href={LinkClickIdnHack (url, tabId, moduleId)} target=\"_blank\" title=\"{title}\">{label}</a>";
         }
     }
 }
