@@ -12,7 +12,7 @@ namespace R7.University.Controls
         protected TextBox textAchievementShortTitle;
         protected TextBox textAchievementDescription;
         protected CheckBox checkIsTitle;
-        protected DnnUrlControl urlDocumentURL;
+        protected DnnUrlControl urlDocumentUrl;
         protected DropDownList comboAchievement;
         protected Panel panelAchievementTitle;
         protected Panel panelAchievementShortTitle;

@@ -123,11 +123,11 @@
     <data name="labelIsTitle.Help" xml:space="preserve">
         <value>Если флажок отмечен, достижение будет отображаться совместно с именем сотрудника.</value>
     </data>
-    <data name="labelDocumentURL.Text" xml:space="preserve">
-        <value>Документ:</value>
+    <data name="labelDocumentUrl.Text" xml:space="preserve">
+        <value>Ссылка на документ:</value>
     </data>
-    <data name="labelDocumentURL.Help" xml:space="preserve">
-        <value>Укажите ссылку на документы, связанный с достижением.</value>
+    <data name="labelDocumentUrl.Help" xml:space="preserve">
+        <value>Укажите ссылку на документ, связанный с достижением.</value>
     </data>
     <data name="labelAchievements.Text" xml:space="preserve">
         <value>Предопределённые достижения:</value>

@@ -95,8 +95,8 @@
             <asp:CheckBox id="checkIsTitle" runat="server" CssClass="dnn-form-control" />
         </div>
         <div class="dnnFormItem">
-            <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" />
-            <dnn:Url id="urlDocumentURL" runat="server" UrlType="N"
+            <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
+            <dnn:Url id="urlDocumentUrl" runat="server" UrlType="N"
 				ShowNone="true"
                 ShowFiles="true"
 				ShowTabs="true"

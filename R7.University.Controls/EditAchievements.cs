@@ -77,7 +77,7 @@ namespace R7.University.Controls
 
             var lastFolderId = FolderHistory.GetLastFolderId (Request, Module.PortalId);
             if (lastFolderId != null) {
-                urlDocumentURL.SelectFolder (lastFolderId.Value);
+                urlDocumentUrl.SelectFolder (lastFolderId.Value);
             }
         }
 
@@ -102,10 +102,10 @@ namespace R7.University.Controls
             checkIsTitle.Checked = item.IsTitle;
 
             if (!string.IsNullOrWhiteSpace (item.DocumentURL)) {
-                urlDocumentURL.Url = item.DocumentURL;
+                urlDocumentUrl.Url = item.DocumentURL;
             }
             else {
-                urlDocumentURL.Url = string.Empty;
+                urlDocumentUrl.Url = string.Empty;
             }
         }
 
@@ -133,9 +133,9 @@ namespace R7.University.Controls
             item.IsTitle = checkIsTitle.Checked;
             item.YearBegin = ParseHelper.ParseToNullable<int> (textYearBegin.Text);
             item.YearEnd = ParseHelper.ParseToNullable<int> (textYearEnd.Text);
-            item.DocumentURL = urlDocumentURL.Url;
+            item.DocumentURL = urlDocumentUrl.Url;
 
-            FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentURL.Url, Module.PortalId);
+            FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentUrl.Url, Module.PortalId);
         }
 
         protected override void OnResetForm ()

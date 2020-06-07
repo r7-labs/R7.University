@@ -123,11 +123,11 @@
     <data name="labelIsTitle.Help" xml:space="preserve">
         <value>If checked, this achievement will be displayed as one of employee's titles along with his/her name.</value>
     </data>
-    <data name="labelDocumentURL.Text" xml:space="preserve">
-        <value>Document URL:</value>
+    <data name="labelDocumentUrl.Text" xml:space="preserve">
+        <value>Document Link:</value>
     </data>
-    <data name="labelDocumentURL.Help" xml:space="preserve">
-        <value>Specify URL for a document, associated with the achievement.</value>
+    <data name="labelDocumentUrl.Help" xml:space="preserve">
+        <value>Specify link to the document, associated with the achievement.</value>
     </data>
     <data name="labelAchievements.Text" xml:space="preserve">
         <value>Predefined Achievements:</value>
