@@ -149,7 +149,6 @@ namespace R7.University.Controls
 
             textYearBegin.Text = string.Empty;
             textYearEnd.Text = string.Empty;
-            checkIsTitle.Checked = false;
             hiddenViewItemID.Value = string.Empty;
         }
 
@@ -157,9 +156,8 @@ namespace R7.University.Controls
         {
             base.OnPartialResetForm ();
 
-            // TODO: Uncheck title achievements checkbox?
-
             // reset only secondary fields
+            checkIsTitle.Checked = false;
             textAchievementShortTitle.Text = string.Empty;
             textAchievementTitleSuffix.Text = string.Empty;
             textAchievementDescription.Text = string.Empty;
