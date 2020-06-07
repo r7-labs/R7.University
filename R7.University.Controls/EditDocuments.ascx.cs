@@ -73,6 +73,36 @@ namespace R7.University.Controls
             }
         }
 
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
+
+            // HACK: Try to fix GH-348 DnnUrlControl looses its state on postback -
+            // this will preserve currently selected folder between edits, but broke general URLs (GH-335)
+            if (Page.IsPostBack) {
+                urlDocumentUrl.Url = urlDocumentUrl.Url;
+            }
+        }
+
+        string GetDocumentUrl ()
+        {
+            if (!string.IsNullOrEmpty (txtDocumentUrl.Text)) {
+                return txtDocumentUrl.Text;
+            }
+            return urlDocumentUrl.Url;
+        }
+
+        void SetDocumentUrl (string url)
+        {
+            var urlType = Globals.GetURLType (url);
+            if (urlType == TabType.Tab || urlType == TabType.File) {
+                urlDocumentUrl.Url = url;
+            }
+            else {
+                txtDocumentUrl.Text = url;
+            }
+        }
+
         protected DocumentTypeViewModel GetDocumentType (int? documentTypeId)
         {
             if (documentTypeId != null) {
@@ -102,7 +132,7 @@ namespace R7.University.Controls
             textDocumentSortIndex.Text = item.SortIndex.ToString ();
             datetimeDocumentStartDate.SelectedDate = item.StartDate;
             datetimeDocumentEndDate.SelectedDate = item.EndDate;
-            urlDocumentUrl.Url = item.Url;
+            SetDocumentUrl (item.Url);
         }
 
         protected override void OnUpdateItem (DocumentEditModel item)
@@ -114,9 +144,9 @@ namespace R7.University.Controls
             item.SortIndex = ParseHelper.ParseToNullable<int> (textDocumentSortIndex.Text) ?? 0;
             item.StartDate = datetimeDocumentStartDate.SelectedDate;
             item.EndDate = datetimeDocumentEndDate.SelectedDate;
-            item.Url = urlDocumentUrl.Url;
+            item.Url = GetDocumentUrl ();
 
-            FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentUrl.Url, Module.PortalId);
+            FolderHistory.RememberFolderByFileUrl (Request, Response, item.Url, Module.PortalId);
         }
 
         protected override void OnResetForm ()
@@ -134,6 +164,7 @@ namespace R7.University.Controls
 
             // reset only fields within collapsed panel
             textDocumentSortIndex.Text = "0";
+            txtDocumentUrl.Text = string.Empty;
             datetimeDocumentStartDate.SelectedDate = null;
             datetimeDocumentEndDate.SelectedDate = null;
         }

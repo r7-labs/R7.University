@@ -82,7 +82,13 @@
         <value>Link:</value>
     </data>
     <data name="labelDocumentUrl.Help" xml:space="preserve">
-        <value>Provide link to the document.</value>
+        <value>Provide link to the document (file or site page).</value>
+    </data>
+	<data name="lblDocumentUrl2.Text" xml:space="preserve">
+        <value>Link (URL):</value>
+    </data>
+    <data name="lblDocumentUrl2.Help" xml:space="preserve">
+        <value>Provide link to the document. If you provide the value in this field, then the value selected in the &quot;Link&quot; field will be ignored.</value>
     </data>
     <data name="labelDocumentStartDate.Text" xml:space="preserve">
         <value>Start Publication:</value>

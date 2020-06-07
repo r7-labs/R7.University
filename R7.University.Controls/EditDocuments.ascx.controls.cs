@@ -13,5 +13,6 @@ namespace R7.University.Controls
         protected DnnDateTimePicker datetimeDocumentStartDate;
         protected DnnDateTimePicker datetimeDocumentEndDate;
         protected CustomValidator valDocumentUrl;
+        protected TextBox txtDocumentUrl;
     }
 }

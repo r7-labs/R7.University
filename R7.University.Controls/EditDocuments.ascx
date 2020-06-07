@@ -56,17 +56,20 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
             <dnn:Url id="urlDocumentUrl" runat="server"
-				ShowNone="true" ShowFiles="true"
-				ShowTabs="true" ShowUrls="true"
+				ShowNone="true"
+				ShowFiles="true"
+				ShowTabs="true"
 				IncludeActiveTab="true"
-				ShowLog="false" ShowTrack="false"
+				ShowUrls="false"
+				ShowLog="false"
+				ShowTrack="false"
                 ShowNewWindow="false" 
             />
 			<asp:CustomValidator id="valDocumentUrl" runat="server" ValidationGroup="Documents"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
 				EnableClientScript="true" ClientValidationFunction="validateDocumentUrl" />
 		</div>
-        <div class="dnnFormItem">
+		<div class="dnnFormItem">
             <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
             <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
         </div>
@@ -76,14 +79,18 @@
         </div>
         <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("sectionAdvancedProperties.Text") %></a></h2>
         <fieldset>
-         <div class="dnnFormItem">
-            <dnn:Label id="labelDocumentSortIndex" runat="server" ControlName="textDocumentSortIndex" />
+			<div class="dnnFormItem">
+	            <dnn:Label id="lblDocumentUrl2" runat="server" ControlName="txtDocumentUrl" />
+				<asp:TextBox id="txtDocumentUrl" runat="server" />
+			</div>
+         	<div class="dnnFormItem">
+            	<dnn:Label id="labelDocumentSortIndex" runat="server" ControlName="textDocumentSortIndex" />
                 <asp:TextBox id="textDocumentSortIndex" runat="server" Value="0" />
                 <asp:RegularExpressionValidator runat="server" resourcekey="DocumentSortIndex.Invalid"
                     ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents" 
                     Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="^-?\d+$" />
             </div>
-            <div class="dnnFormItem">
+	        <div class="dnnFormItem">
                 <dnn:Label ID="labelDocumentStartDate" runat="server" ControlName="datetimeDocumentStartDate" />
                 <dnn:DnnDateTimePicker id="datetimeDocumentStartDate" runat="server" />
             </div>

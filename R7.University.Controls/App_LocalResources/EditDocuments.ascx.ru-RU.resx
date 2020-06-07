@@ -82,7 +82,13 @@
         <value>Ссылка:</value>
     </data>
     <data name="labelDocumentUrl.Help" xml:space="preserve">
-        <value>Дайте ссылку на документ.</value>
+        <value>Укажите ссылку на документ (файл или страницу сайта).</value>
+    </data>
+	<data name="lblDocumentUrl2.Text" xml:space="preserve">
+        <value>Ссылка (URL):</value>
+    </data>
+    <data name="lblDocumentUrl2.Help" xml:space="preserve">
+        <value>Укажите ссылку на документ. Если указать значения в этом поле, то значение в поле &quot;Ссылка&quot; будет проигнорировано.</value>
     </data>
     <data name="labelDocumentStartDate.Text" xml:space="preserve">
         <value>Начало публикации:</value>
