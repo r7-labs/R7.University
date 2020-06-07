@@ -61,4 +61,29 @@ var jsxConfig = {
     },
 };
 
-module.exports = [scssConfig, jsxConfig];
+var jsConfig = {
+    mode: "production",
+    entry: {
+        EditAchievements: "./R7.University.Controls/js/EditAchievements.js"
+    },
+    output: {
+        path: path.resolve (__dirname, "R7.University/assets/js"),
+        filename: "[name].min.js"
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"]
+                    }
+                }
+            }
+        ]
+    },
+};
+
+module.exports = [scssConfig, jsxConfig, jsConfig];

@@ -124,7 +124,7 @@ namespace R7.University.Controls
 
         protected int TargetItemId
         {
-            get { 
+            get {
                 var targetItemId = ViewState ["targetItemId"];
                 return (targetItemId != null) ? (int) targetItemId : 0;
             }
@@ -134,7 +134,7 @@ namespace R7.University.Controls
         protected virtual string TargetItemKey {
             get { return string.Empty; }
         }
-   
+
         #endregion
 
         #region Set and get data
@@ -391,8 +391,8 @@ namespace R7.University.Controls
 
                         BindItems (items);
 
-                        // return to Add mode if we deleting currently edited item
-                        if (buttonUpdateItem.Visible && hiddenViewItemID.Value == itemId) {
+                        // return to Add mode
+                        if (buttonUpdateItem.Visible) {
                             SwitchToAddMode ();
                         }
                     }
@@ -412,7 +412,7 @@ namespace R7.University.Controls
                     var item = items.Find (i => i.ViewItemID.ToString () == itemId);
                     if (item != null) {
                         item.RestoreEditState ();
-                  
+
                         // refresh viewstate
                         ViewStateItems = items;
 
@@ -422,6 +422,11 @@ namespace R7.University.Controls
                         }
 
                         BindItems (items);
+
+                        // return to Add mode
+                        if (buttonUpdateItem.Visible) {
+                            SwitchToAddMode ();
+                        }
                     }
                 }
             }

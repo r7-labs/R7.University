@@ -217,6 +217,7 @@
     <None Include="Views\_AgplSignature.cshtml" />
     <None Include="Views\_SelectedItemScript.cshtml" />
     <None Include="R7.University.Controls.csproj" />
+    <None Include="js\EditAchievements.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_LocalResources\" />

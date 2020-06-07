@@ -19,13 +19,11 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Exceptions;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.FileSystem;
 using R7.Dnn.Extensions.Text;
@@ -63,7 +61,7 @@ namespace R7.University.Controls
                 Value = a.AchievementID,
                 Text = !string.IsNullOrEmpty (a.ShortTitle) ? $"{a.Title} ({a.ShortTitle})" : a.Title
             });
-                
+
             comboAchievement.DataBind ();
             comboAchievement.InsertDefaultItem (LocalizeString ("CustomAchievement.Text"));
             comboAchievement.SelectedIndex = 0;
@@ -89,21 +87,12 @@ namespace R7.University.Controls
         {
             if (item.AchievementID != null) {
                 comboAchievement.SelectByValue (item.AchievementID);
-
-                panelAchievementTitle.Visible = false;
-                panelAchievementShortTitle.Visible = false;
-                panelAchievementTypes.Visible = false;
             }
             else {
                 comboAchievement.SelectedIndex = 0;
-
                 textAchievementTitle.Text = item.Title;
                 textAchievementShortTitle.Text = item.ShortTitle;
                 comboAchievementTypes.SelectByValue (item.AchievementTypeId);
-
-                panelAchievementTitle.Visible = true;
-                panelAchievementShortTitle.Visible = true;
-                panelAchievementTypes.Visible = true;
             }
 
             textAchievementTitleSuffix.Text = item.TitleSuffix;
@@ -132,7 +121,6 @@ namespace R7.University.Controls
             }
             else {
                 var ach = GetAchievement (int.Parse (comboAchievement.SelectedValue));
-
                 item.Title = ach.Title;
                 item.ShortTitle = ach.ShortTitle;
                 item.AchievementTypeId = ach.AchievementTypeId;
@@ -150,28 +138,15 @@ namespace R7.University.Controls
             FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentURL.Url, Module.PortalId);
         }
 
-        protected override void OnCancelEdit (EmployeeAchievementEditModel item)
-        {
-            // fix for DnnUrlControl looses its state on postback
-            // urlDocumentURL.Url = item.DocumentURL;
-
-            base.OnCancelEdit (item);
-        }
-
         protected override void OnResetForm ()
         {
             OnPartialResetForm ();
-
-            // restore default panels visibility
-            panelAchievementTitle.Visible = true;
-            panelAchievementShortTitle.Visible = true;
-            panelAchievementTypes.Visible = true;
 
             // reset controls
             comboAchievement.SelectedIndex = 0;
             comboAchievementTypes.SelectedIndex = 0;
             textAchievementTitle.Text = string.Empty;
-  
+
             textYearBegin.Text = string.Empty;
             textYearEnd.Text = string.Empty;
             checkIsTitle.Checked = false;
@@ -182,6 +157,8 @@ namespace R7.University.Controls
         {
             base.OnPartialResetForm ();
 
+            // TODO: Uncheck title achievements checkbox?
+
             // reset only secondary fields
             textAchievementShortTitle.Text = string.Empty;
             textAchievementTitleSuffix.Text = string.Empty;
@@ -189,25 +166,6 @@ namespace R7.University.Controls
         }
 
         #endregion
-
-        protected void comboAchievement_SelectedIndexChanged (object sender, EventArgs e)
-        {
-            try {
-                if (((DropDownList) sender).SelectedValue == Null.NullInteger.ToString ()) {
-                    panelAchievementTitle.Visible = true;
-                    panelAchievementShortTitle.Visible = true;
-                    panelAchievementTypes.Visible = true;
-                }
-                else {
-                    panelAchievementTitle.Visible = false;
-                    panelAchievementShortTitle.Visible = false;
-                    panelAchievementTypes.Visible = false;
-                }
-            }
-            catch (Exception ex) {
-                Exceptions.ProcessModuleLoadException (this, ex);
-            }
-        }
 
         protected void gridAchievements_RowDataBound (object sender, GridViewRowEventArgs e)
         {

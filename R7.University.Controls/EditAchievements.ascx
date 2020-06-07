@@ -6,6 +6,8 @@
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/admin.css" Priority="200" />
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.Controls/css/grid-and-form.css" />
+<dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/js/EditAchievements.min.js" ForceProvider="DnnFormBottomProvider" />
+
 <asp:Panel id="panelEditAchievements" runat="server" CssClass="dnnForm dnnClear u8y-edit-achievements">
     <fieldset>
         <div class="dnnFormItem">
@@ -49,13 +51,11 @@
             <dnn:Label id="labelAchievements" runat="server" ControlName="comboAchievements" />
             <asp:DropDownList id="comboAchievement" runat="server" CssClass="dnn-select2"
                 DataTextField="Text"
-				DataValueField="Value"
-                AutoPostBack="true"
-                OnSelectedIndexChanged="comboAchievement_SelectedIndexChanged" />
+				DataValueField="Value" />
         </div>
         <asp:Panel id="panelAchievementTypes" runat="server" class="dnnFormItem">
             <dnn:Label id="labelAchievementTypes" runat="server" ControlName="comboAchievementTypes" />
-            <asp:DropDownList id="comboAchievementTypes" runat="server" 
+            <asp:DropDownList id="comboAchievementTypes" runat="server"
                 DataTextField="Text"
                 DataValueField="Value" />
         </asp:Panel>
@@ -70,7 +70,7 @@
 		<asp:Panel id="panelAchievementTitle" runat="server" class="dnnFormItem dnnFormRequired">
 			<dnn:Label id="labelAchievementTitle" runat="server" ControlName="textAchievementTitle" />
 			<asp:TextBox id="textAchievementTitle" runat="server" TextMode="MultiLine" Rows="3" />
-            <asp:RequiredFieldValidator runat="server" resourcekey="AchievementTitle.Required" 
+            <asp:RequiredFieldValidator runat="server" resourcekey="AchievementTitle.Required"
                 ControlToValidate="textAchievementTitle" ValidationGroup="Achievements"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
             <asp:RegularExpressionValidator runat="server"
@@ -96,38 +96,63 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" />
-            <dnn:Url id="urlDocumentURL" runat="server" UrlType="N" 
+            <dnn:Url id="urlDocumentURL" runat="server" UrlType="N"
                 IncludeActiveTab="true"
                 ShowFiles="true" ShowTabs="true"
                 ShowUrls="true" ShowUsers="true"
                 ShowLog="false" ShowTrack="false"
-                ShowNone="true" ShowNewWindow="false" />      
+                ShowNone="true" ShowNewWindow="false" />
         </div>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <ul class="dnnActions">
                 <li>
-                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddAchievement" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddAchievement"
                         CssClass="dnnPrimaryAction" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Achievements" />
                 </li>
 				<li>
-                    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateAchievement" 
+                    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateAchievement"
                         CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Achievements" />
-                </li>   
+                </li>
                 <li>&nbsp;</li>
 				<li>
-                    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
+                    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
                         CssClass="dnnSecondaryAction" />
                 </li>
                 <li>&nbsp;</li>
                 <li>
-                    <asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
+                    <asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
                     CssClass="dnnSecondaryAction" />
-                </li>   
-            </ul>   
+                </li>
+            </ul>
         </div>
         <asp:HiddenField id="hiddenViewItemID" runat="server" />
 	</fieldset>
 </asp:Panel>
+<script type="text/javascript">
+(function($, window, document, Sys) {
+	function setAchievementPanelsVisibility() {
+		u8y_editAchievements.setAchievementPanelsVisibility (
+			document.getElementById("<%: comboAchievement.ClientID %>"),
+			document.getElementById("<%: panelAchievementTitle.ClientID %>"),
+			document.getElementById("<%: textAchievementTitle.ClientID %>"),
+			document.getElementById("<%: panelAchievementShortTitle.ClientID %>"),
+            document.getElementById("<%: panelAchievementTypes.ClientID %>")
+        );
+	}
+	function setup() {
+		setAchievementPanelsVisibility();	
+		$("#<%: comboAchievement.ClientID %>").change(function (e) {
+			setAchievementPanelsVisibility();
+        });
+	}
+    $(document).ready(function() {
+		setup();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+            setup();
+        });
+    });
+} (jQuery, window, document, window.Sys));
+</script>
