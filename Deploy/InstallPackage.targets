@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="InstallPackage">
     <Import Project="__Settings.targets" Condition=" '$(BuildSettingsImported)' == '' " />
     <Import Project="Bundle.targets" Condition=" '$(BundleImported)' == '' " />
@@ -19,8 +19,9 @@
 		</ItemGroup>
 		<!-- Declare NPOI-related binaries -->
 		<ItemGroup>
-			<InstallBinaryFiles Include="../packages/NPOI.2.4.1/lib/net45/NPOI*.dll" />
-            <InstallBinaryFiles Include="../packages/SharpZipLib.1.0.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
+		   <InstallBinaryFiles Include="../packages/NPOI.2.5.1/lib/net45/NPOI*.dll" />
+       <InstallBinaryFiles Include="../packages/SharpZipLib.1.2.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
+       <InstallBinaryFiles Include="../packages/Portable.BouncyCastle.1.8.6/lib/net40/BouncyCastle.Crypto.dll" />
 		</ItemGroup>
 		<!-- Generate main manifest file -->
 		<Exec Command="$(Pwsh) GenerateManifest.ps1 &quot;$(MainProjectOutputPath)/$(MainProjectName).dnn.template.xml&quot; $(ReleaseVersion)" />

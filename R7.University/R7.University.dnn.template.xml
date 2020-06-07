@@ -196,6 +196,10 @@
                             <path>bin</path>
                             <name>ICSharpCode.SharpZipLib.dll</name>
                         </assembly>
+						<assembly>
+                            <path>bin</path>
+                            <name>BouncyCastle.Crypto.dll</name>
+                        </assembly>
 					</assemblies>
 				</component>
                 <component type="ResourceFile">
