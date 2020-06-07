@@ -97,11 +97,15 @@
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentURL" runat="server" ControlName="urlDocumentURL" />
             <dnn:Url id="urlDocumentURL" runat="server" UrlType="N"
+				ShowNone="true"
+                ShowFiles="true"
+				ShowTabs="true"
                 IncludeActiveTab="true"
-                ShowFiles="true" ShowTabs="true"
-                ShowUrls="true" ShowUsers="true"
-                ShowLog="false" ShowTrack="false"
-                ShowNone="true" ShowNewWindow="false" />
+                ShowUrls="true"
+				ShowUsers="false"
+                ShowLog="false"
+				ShowTrack="false"
+                ShowNewWindow="false" />
         </div>
         <div class="dnnFormItem">
             <div class="dnnLabel"></div>
