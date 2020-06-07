@@ -19,11 +19,14 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Tabs;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.FileSystem;
 using R7.Dnn.Extensions.Text;
@@ -46,6 +49,37 @@ namespace R7.University.Controls
         {
             return Json.Deserialize<List<AchievementTypeSerializationModel>> ((string) ViewState ["achievementTypes"])
                                          .SingleOrDefault (acht => acht.AchievementTypeId == achievementTypeId);
+        }
+
+        protected override void OnLoad (EventArgs e)
+        {
+            base.OnLoad (e);
+
+            // HACK: Try to fix GH-348 DnnUrlControl looses its state on postback -
+            // this will preserve currently selected folder between edits, but broke general URLs (GH-335)
+            if (Page.IsPostBack) {
+                urlDocumentUrl.Url = urlDocumentUrl.Url;
+            }
+        }
+
+        string GetDocumentUrl ()
+        {
+            if (!string.IsNullOrEmpty (txtDocumentUrl.Text.Trim ())) {
+                return txtDocumentUrl.Text.Trim ();
+            }
+            return urlDocumentUrl.Url;
+        }
+
+        void SetDocumentUrl (string url)
+        {
+            var urlType = Globals.GetURLType (url);
+            if (urlType == TabType.Tab || urlType == TabType.File) {
+                urlDocumentUrl.Url = url;
+                txtDocumentUrl.Text = string.Empty;
+            }
+            else {
+                txtDocumentUrl.Text = url;
+            }
         }
 
         public void OnInit (PortalModuleBase module, IEnumerable<AchievementTypeInfo> achievementTypes, IEnumerable<AchievementInfo> achievements)
@@ -101,12 +135,7 @@ namespace R7.University.Controls
             textYearEnd.Text = item.YearEnd.ToString ();
             checkIsTitle.Checked = item.IsTitle;
 
-            if (!string.IsNullOrWhiteSpace (item.DocumentURL)) {
-                urlDocumentUrl.Url = item.DocumentURL;
-            }
-            else {
-                urlDocumentUrl.Url = string.Empty;
-            }
+            SetDocumentUrl (item.DocumentURL);
         }
 
         protected override void OnUpdateItem (EmployeeAchievementEditModel item)
@@ -133,9 +162,9 @@ namespace R7.University.Controls
             item.IsTitle = checkIsTitle.Checked;
             item.YearBegin = ParseHelper.ParseToNullable<int> (textYearBegin.Text);
             item.YearEnd = ParseHelper.ParseToNullable<int> (textYearEnd.Text);
-            item.DocumentURL = urlDocumentUrl.Url;
+            item.DocumentURL = GetDocumentUrl ();
 
-            FolderHistory.RememberFolderByFileUrl (Request, Response, urlDocumentUrl.Url, Module.PortalId);
+            FolderHistory.RememberFolderByFileUrl (Request, Response, item.DocumentURL, Module.PortalId);
         }
 
         protected override void OnResetForm ()

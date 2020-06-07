@@ -86,8 +86,8 @@ namespace R7.University.Controls
 
         string GetDocumentUrl ()
         {
-            if (!string.IsNullOrEmpty (txtDocumentUrl.Text)) {
-                return txtDocumentUrl.Text;
+            if (!string.IsNullOrEmpty (txtDocumentUrl.Text.Trim ())) {
+                return txtDocumentUrl.Text.Trim ();
             }
             return urlDocumentUrl.Url;
         }
@@ -97,6 +97,7 @@ namespace R7.University.Controls
             var urlType = Globals.GetURLType (url);
             if (urlType == TabType.Tab || urlType == TabType.File) {
                 urlDocumentUrl.Url = url;
+                txtDocumentUrl.Text = string.Empty;
             }
             else {
                 txtDocumentUrl.Text = url;

@@ -1,4 +1,4 @@
-﻿using System.Web.UI.WebControls;
+using System.Web.UI.WebControls;
 using DotNetNuke.Web.UI.WebControls;
 
 namespace R7.University.Controls
@@ -12,11 +12,12 @@ namespace R7.University.Controls
         protected TextBox textAchievementShortTitle;
         protected TextBox textAchievementDescription;
         protected CheckBox checkIsTitle;
-        protected DnnUrlControl urlDocumentUrl;
         protected DropDownList comboAchievement;
         protected Panel panelAchievementTitle;
         protected Panel panelAchievementShortTitle;
         protected Panel panelAchievementTypes;
         protected TextBox textAchievementTitleSuffix;
+        protected DnnUrlControl urlDocumentUrl;
+        protected TextBox txtDocumentUrl;
     }
 }

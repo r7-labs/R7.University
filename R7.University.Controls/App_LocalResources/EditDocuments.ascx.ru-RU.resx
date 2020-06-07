@@ -88,7 +88,7 @@
         <value>Ссылка (URL):</value>
     </data>
     <data name="lblDocumentUrl2.Help" xml:space="preserve">
-        <value>Укажите ссылку на документ. Если указать значения в этом поле, то значение в поле &quot;Ссылка&quot; будет проигнорировано.</value>
+        <value>Укажите ссылку на документ. Если задать значение в этом поле, то значение в поле &quot;Ссылка&quot; будет проигнорировано.</value>
     </data>
     <data name="labelDocumentStartDate.Text" xml:space="preserve">
         <value>Начало публикации:</value>

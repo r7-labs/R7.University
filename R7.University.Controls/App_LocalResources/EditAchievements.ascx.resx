@@ -127,7 +127,13 @@
         <value>Document Link:</value>
     </data>
     <data name="labelDocumentUrl.Help" xml:space="preserve">
-        <value>Specify link to the document, associated with the achievement.</value>
+        <value>Specify link to the associated document (file or site page).</value>
+    </data>
+	<data name="lblDocumentUrl2.Text" xml:space="preserve">
+        <value>Document Link (URL):</value>
+    </data>
+    <data name="lblDocumentUrl2.Help" xml:space="preserve">
+        <value>Provide link to the associated document. If you set the value in this field, then the value selected in the &quot;Document Link&quot; field will be ignored.</value>
     </data>
     <data name="labelAchievements.Text" xml:space="preserve">
         <value>Predefined Achievements:</value>

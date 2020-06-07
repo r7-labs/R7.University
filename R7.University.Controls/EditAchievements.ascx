@@ -94,6 +94,10 @@
             <dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />
             <asp:CheckBox id="checkIsTitle" runat="server" CssClass="dnn-form-control" />
         </div>
+		<div class="dnnFormItem">
+            <dnn:Label id="lblDocumentUrl2" runat="server" ControlName="txtDocumentUrl" />
+			<asp:TextBox id="txtDocumentUrl" runat="server" />
+		</div>
         <div class="dnnFormItem">
             <dnn:Label id="labelDocumentUrl" runat="server" ControlName="urlDocumentUrl" />
             <dnn:Url id="urlDocumentUrl" runat="server" UrlType="N"
@@ -101,13 +105,13 @@
                 ShowFiles="true"
 				ShowTabs="true"
                 IncludeActiveTab="true"
-                ShowUrls="true"
+                ShowUrls="false"
 				ShowUsers="false"
                 ShowLog="false"
 				ShowTrack="false"
                 ShowNewWindow="false" />
         </div>
-        <div class="dnnFormItem">
+		<div class="dnnFormItem">
             <div class="dnnLabel"></div>
             <ul class="dnnActions">
                 <li>
