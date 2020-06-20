@@ -161,7 +161,7 @@ namespace R7.University.Templates
             if (collectionName == nameof (Positions)) {
                 var position = Positions [index];
                 if (objectName == "PositionTitle") {
-                    return position.Position.Title;
+                    return position.FormatTitle ();
                 }
                 if (objectName == "DivisionTitle") {
                     return position.Division.Title;

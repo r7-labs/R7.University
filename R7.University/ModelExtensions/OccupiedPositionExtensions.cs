@@ -55,7 +55,7 @@ namespace R7.University.ModelExtensions
                 for (var j = i + 1; j < gops.Count;) {
                     if (gopp.DivisionID == gops [j].OccupiedPosition.DivisionID) {
                         gop.Title += ", " + FormatHelper.JoinNotNullOrEmpty (
-                            " ", 
+                            " ",
                             UniversityFormatHelper.FormatShortTitle (
                                 gops [j].OccupiedPosition.Position.ShortTitle,
                                 gops [j].OccupiedPosition.Position.Title),
@@ -78,7 +78,7 @@ namespace R7.University.ModelExtensions
             if (!op.Division.IsSingleEntity) {
                 var strDivision = UniversityFormatHelper.FormatShortTitle (op.Division.ShortTitle, op.Division.Title);
                 if (!string.IsNullOrWhiteSpace (op.Division.HomePage)) {
-                    strDivision = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
+                    strDivision = string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
                         UniversityUrlHelper.FormatURL (module, op.Division.HomePage, false), strDivision);
                 }
 
@@ -86,6 +86,14 @@ namespace R7.University.ModelExtensions
             }
 
             return string.Empty;
+        }
+
+        public static string FormatTitle (this IOccupiedPosition op)
+        {
+            if (!string.IsNullOrEmpty (op.TitleSuffix)) {
+                return op.Position.Title + " " + op.TitleSuffix;
+            }
+            return op.Position.Title;
         }
     }
 }
