@@ -37,7 +37,7 @@
         <value>Number of Students Financed by:</value>
     </data>
 	<data name="ActualForeign.Column" xml:space="preserve">
-        <value>Number of foreign students</value>
+        <value>Number of Foreign Students</value>
     </data>
 	<data name="Admission.Column" xml:space="preserve">
         <value>Admission Results of Students Financed by:</value>
