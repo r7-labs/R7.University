@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -35,6 +35,9 @@
     </data>
 	<data name="Actual.Column" xml:space="preserve">
         <value>Number of Students Financed by:</value>
+    </data>
+	<data name="ActualForeign.Column" xml:space="preserve">
+        <value>Number of foreign students</value>
     </data>
 	<data name="Admission.Column" xml:space="preserve">
         <value>Admission Results of Students Financed by:</value>

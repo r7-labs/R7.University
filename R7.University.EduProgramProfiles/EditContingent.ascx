@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditContingent.ascx.cs" Inherits="R7.University.EduProgramProfiles.EditContingent" %>
+<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="EditContingent.ascx.cs" Inherits="R7.University.EduProgramProfiles.EditContingent" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/labelcontrol.ascx" %>
 <%@ Register TagPrefix="dnn" TagName="Audit" Src="~/controls/ModuleAuditControl.ascx" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web.Deprecated" %>
@@ -24,7 +24,7 @@
                     <dnn:Label id="labelActualFB" runat="server" ControlName="textActualFB" />
                     <asp:TextBox id="textActualFB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualFB" ValidationGroup="Contingent" 
+                        ControlToValidate="textActualFB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -32,7 +32,7 @@
                     <dnn:Label id="labelActualRB" runat="server" ControlName="textActualRB" />
                     <asp:TextBox id="textActualRB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualRB" ValidationGroup="Contingent" 
+                        ControlToValidate="textActualRB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -40,7 +40,7 @@
                     <dnn:Label id="labelActualMB" runat="server" ControlName="textActualMB" />
                     <asp:TextBox id="textActualMB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualMB" ValidationGroup="Contingent" 
+                        ControlToValidate="textActualMB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -48,7 +48,15 @@
                     <dnn:Label id="labelActualBC" runat="server" ControlName="textActualBC" />
                     <asp:TextBox id="textActualBC" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualBC" ValidationGroup="Contingent" 
+                        ControlToValidate="textActualBC" ValidationGroup="Contingent"
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647"
+                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+                </div>
+				<div class="dnnFormItem">
+                    <dnn:Label id="lblActualForeign" runat="server" ControlName="txtActualForeign" />
+                    <asp:TextBox id="txtActualForeign" runat="server" />
+                    <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
+                        ControlToValidate="txtActualForeign" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -60,7 +68,7 @@
                     <dnn:Label id="labelVacantFB" runat="server" ControlName="textVacantFB" />
                     <asp:TextBox id="textVacantFB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textVacantFB" ValidationGroup="Contingent" 
+                        ControlToValidate="textVacantFB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -68,7 +76,7 @@
                     <dnn:Label id="labelVacantRB" runat="server" ControlName="textVacantRB" />
                     <asp:TextBox id="textVacantRB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textVacantRB" ValidationGroup="Contingent" 
+                        ControlToValidate="textVacantRB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -76,7 +84,7 @@
                     <dnn:Label id="labelVacantMB" runat="server" ControlName="textVacantMB" />
                     <asp:TextBox id="textVacantMB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textVacantMB" ValidationGroup="Contingent" 
+                        ControlToValidate="textVacantMB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -84,7 +92,7 @@
                     <dnn:Label id="labelVacantBC" runat="server" ControlName="textVacantBC" />
                     <asp:TextBox id="textVacantBC" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textVacantBC" ValidationGroup="Contingent" 
+                        ControlToValidate="textVacantBC" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -96,7 +104,7 @@
                     <dnn:Label id="labelAdmittedFB" runat="server" ControlName="textAdmittedFB" />
                     <asp:TextBox id="textAdmittedFB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textAdmittedFB" ValidationGroup="Contingent" 
+                        ControlToValidate="textAdmittedFB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -104,7 +112,7 @@
                     <dnn:Label id="labelAdmittedRB" runat="server" ControlName="textAdmittedRB" />
                     <asp:TextBox id="textAdmittedRB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textAdmittedRB" ValidationGroup="Contingent" 
+                        ControlToValidate="textAdmittedRB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -112,7 +120,7 @@
                     <dnn:Label id="labelAdmittedMB" runat="server" ControlName="textAdmittedMB" />
                     <asp:TextBox id="textAdmittedMB" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textAdmittedMB" ValidationGroup="Contingent" 
+                        ControlToValidate="textAdmittedMB" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -120,7 +128,7 @@
                     <dnn:Label id="labelAdmittedBC" runat="server" ControlName="textAdmittedBC" />
                     <asp:TextBox id="textAdmittedBC" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textAdmittedBC" ValidationGroup="Contingent" 
+                        ControlToValidate="textAdmittedBC" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -129,7 +137,7 @@
                     <dnn:Label id="labelAvgAdmScore" runat="server" ControlName="textAvgAdmScore" />
                     <asp:TextBox id="textAvgAdmScore" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="AvgAdmScore.Invalid"
-                        ControlToValidate="textAvgAdmScore" ValidationGroup="Contingent" 
+                        ControlToValidate="textAvgAdmScore" ValidationGroup="Contingent"
                         Type="Double" MinimumValue="0" MaximumValue="300"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -141,7 +149,7 @@
                     <dnn:Label id="labelMovedOut" runat="server" ControlName="textMovedOut" />
                     <asp:TextBox id="textMovedOut" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textMovedOut" ValidationGroup="Contingent" 
+                        ControlToValidate="textMovedOut" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -149,7 +157,7 @@
                     <dnn:Label id="labelMovedIn" runat="server" ControlName="textMovedIn" />
                     <asp:TextBox id="textMovedIn" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textMovedIn" ValidationGroup="Contingent" 
+                        ControlToValidate="textMovedIn" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -157,7 +165,7 @@
                     <dnn:Label id="labelRestored" runat="server" ControlName="textRestored" />
                     <asp:TextBox id="textRestored" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textRestored" ValidationGroup="Contingent" 
+                        ControlToValidate="textRestored" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
@@ -165,7 +173,7 @@
                     <dnn:Label id="labelExpelled" runat="server" ControlName="textExpelled" />
                     <asp:TextBox id="textExpelled" runat="server" />
                     <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textExpelled" ValidationGroup="Contingent" 
+                        ControlToValidate="textExpelled" ValidationGroup="Contingent"
                         Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>

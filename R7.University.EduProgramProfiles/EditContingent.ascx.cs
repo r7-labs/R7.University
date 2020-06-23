@@ -134,6 +134,7 @@ namespace R7.University.EduProgramProfiles
             textActualRB.Text = c.ActualRB.ToString ();
             textActualMB.Text = c.ActualMB.ToString ();
             textActualBC.Text = c.ActualBC.ToString ();
+            txtActualForeign.Text = c.ActualForeign.ToString ();
 
             textAdmittedFB.Text = c.AdmittedFB.ToString ();
             textAdmittedRB.Text = c.AdmittedRB.ToString ();
@@ -161,6 +162,7 @@ namespace R7.University.EduProgramProfiles
                 item.ActualRB = ParseHelper.ParseToNullable<int> (textActualRB.Text);
                 item.ActualMB = ParseHelper.ParseToNullable<int> (textActualMB.Text);
                 item.ActualBC = ParseHelper.ParseToNullable<int> (textActualBC.Text);
+                item.ActualForeign = ParseHelper.ParseToNullable<int> (txtActualForeign.Text);
             }
 
             if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Vacant) {

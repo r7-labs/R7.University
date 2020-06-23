@@ -1,4 +1,4 @@
-﻿//
+//
 //  ContingentViewModel.cs
 //
 //  Author:
@@ -114,6 +114,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string ActualBC => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualBC);
 
+        public string ActualForeign => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualForeign);
+
         public string AvgAdmScore => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AvgAdmScore, FormatExtensions.ToDecimalString);
 
         public string AdmittedFB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AdmittedFB);
@@ -134,7 +136,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string EduLevelVacantItemProp {
             get {
-                // HACK: Hardcoded edu. levels 
+                // HACK: Hardcoded edu. levels
                 var eduLevel = EduProgramProfile.EduLevel.Title.ToLower ();
                 if (eduLevel.Contains ("бакалавриат")) {
                     return "bachelorVacant";

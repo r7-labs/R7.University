@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
-    <ReleaseVersion>2.4.2</ReleaseVersion>
+    <ReleaseVersion>2.5.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -437,6 +437,7 @@
     <None Include="assets\images\nophoto_template.svg" />
     <None Include="assets\images\Rollback_16x16_Gray.png" />
     <None Include="assets\images\Rollback_16x16_Standard.png" />
+    <None Include="SqlDataProvider\02.05.00.SqlDataProvider" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SqlDataProvider\02.00.00.SqlDataProvider" />

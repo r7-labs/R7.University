@@ -12,6 +12,7 @@ namespace R7.University.EduProgramProfiles
         protected TextBox textActualRB;
         protected TextBox textActualMB;
         protected TextBox textActualBC;
+        protected TextBox txtActualForeign;
         protected TextBox textAdmittedFB;
         protected TextBox textAdmittedRB;
         protected TextBox textAdmittedMB;

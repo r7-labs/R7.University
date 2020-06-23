@@ -1,4 +1,4 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ContingentDirectoryViewModel>
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ContingentDirectoryViewModel>
 @using System.Collections.Generic
 @using DotNetNuke.Collections
 @using DotNetNuke.Web.Mvc.Helpers
@@ -52,7 +52,8 @@ else {
                         }
 					    else if (Model.Settings.Mode == ContingentDirectoryMode.Actual) {
 					        <th scope="col" colspan="4">@Dnn.LocalizeString("Actual.Column")</th>
-					    }
+							<th scope="col" rowspan="2">@Dnn.LocalizeString("ActualForeign.Column")</th>
+						}
 					    else if (Model.Settings.Mode == ContingentDirectoryMode.Admission) {
                             <th scope="col" colspan="4">@Dnn.LocalizeString("Admission.Column")</th>
                             <th scope="col" rowspan="2">@Dnn.LocalizeString("AvgAdmScore.Column")</th>

@@ -1,10 +1,10 @@
-﻿//
+//
 //  Contingent.cs
 //
 //  Author:
 //       Roman M. Yagodin <roman.yagodin@gmail.com>
 //
-//  Copyright (c) 2017 Roman M. Yagodin
+//  Copyright (c) 2017-2020 Roman M. Yagodin
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as published by
@@ -43,6 +43,8 @@ namespace R7.University.Models
 
         int? ActualBC { get; }
 
+        int? ActualForeign { get; }
+
         int? VacantFB { get; }
 
         int? VacantRB { get; }
@@ -50,7 +52,7 @@ namespace R7.University.Models
         int? VacantMB { get; }
 
         int? VacantBC { get; }
-  
+
         int? MovedIn { get; }
 
         int? MovedOut { get; }
@@ -83,6 +85,8 @@ namespace R7.University.Models
         new int? ActualMB { get; set; }
 
         new int? ActualBC { get; set; }
+
+        new int? ActualForeign { get; set; }
 
         new int? VacantFB { get; set;}
 
@@ -124,6 +128,8 @@ namespace R7.University.Models
         public int? ActualMB { get; set; }
 
         public int? ActualBC { get; set; }
+
+        public int? ActualForeign { get; set; }
 
         public int? VacantFB { get; set;}
 
