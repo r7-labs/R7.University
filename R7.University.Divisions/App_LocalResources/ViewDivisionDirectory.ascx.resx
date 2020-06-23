@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
 	<resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -70,15 +70,15 @@
         <value>No division records found matching the specified search parameters.</value>
     </data>
     <data xml:space="preserve" name="SearchHint.Info">
-        <value>This form provides search for division info. Enter any title, 
+        <value>This form provides search for division info. Enter any title,
         phone or fax number, cabinet (location) or email address part and (or)
-        select a division, then press &quot;Search&quot;. Division details 
+        select a division, then press &quot;Search&quot;. Division details
         are available on division's homepage by the link with its title.</value>
     </data>
 	<data name="HeadPosition_IsVacant.Text" xml:space="preserve">
-        <value>vacant position</value>
+        <value></value>
     </data>
 	<data name="HeadPosition_NotApplicable.Text" xml:space="preserve">
-        <value>not applicable</value>
+        <value></value>
     </data>
 </root>
