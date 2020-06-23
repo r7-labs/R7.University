@@ -10,7 +10,7 @@
 <dnn:DnnJsInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/js/editEduVolume.js" ForceProvider="DnnFormBottomProvider" />
 
 <div class="dnnForm dnnClear u8y-edit-contingent">
-	<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduVolume" CssClass="dnnFormMessage dnnFormWarning" />
+	<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="Contingent" CssClass="dnnFormMessage dnnFormWarning" />
     <div id="contingent-tabs">
         <ul class="dnnAdminTabNav dnnClear">
             <li id="tabActual" runat="server"><a href="#<%= panelActual.ClientID %>"><%= LocalizeString ("Actual.Tab") %></a></li>
@@ -181,7 +181,7 @@
         </asp:Panel>
 	</div>
     <ul class="dnnActions dnnClear">
-		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="EduVolume" /></li>
+		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="Contingent" /></li>
 		<li>&nbsp;</li>
 		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
 		<li>&nbsp;</li>
