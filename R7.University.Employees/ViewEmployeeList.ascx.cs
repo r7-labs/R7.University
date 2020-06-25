@@ -22,6 +22,7 @@
 using System;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.UI.WebControls;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
@@ -87,14 +88,11 @@ namespace R7.University.Employees
 
         internal EmployeeListViewModel GetViewModel ()
         {
-            // TODO: Restore caching
-            /*var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
+            var cacheKey = "//r7_University/Modules/EmployeeList?TabModuleId=" + TabModuleId;
             return DataCache.GetCachedData<EmployeeListViewModel> (
                 new CacheItemArgs (cacheKey, UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetViewModel_Internal ()
             ).SetContext (ViewModelContext);
-*/
-            return GetViewModel_Internal ().SetContext (ViewModelContext);
         }
 
         internal EmployeeListViewModel GetViewModel_Internal ()
@@ -130,14 +128,14 @@ namespace R7.University.Employees
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
-			
+
             try {
                 var now = HttpContext.Current.Timestamp;
                 // get employees
                 var employees = GetViewModel ().Employees
                     .Where (empl => IsEditable || (empl.IsPublished (now) && empl.Positions.Any (p => p.Division.IsPublished (now))));
-        
-                // check if we have some content to display, 
+
+                // check if we have some content to display,
                 // otherwise display a message for module editors or hide module from regular users
                 if (employees.IsNullOrEmpty ()) {
                     if (IsEditable) {
@@ -169,16 +167,16 @@ namespace R7.University.Employees
                 var actions = new ModuleActionCollection ();
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("AddEmployee.Action"),
                     ModuleActionType.AddContent,
-                    "", 
+                    "",
                     UniversityIcons.Add,
                     Null.IsNull (Settings.DivisionID) ?
                         EditUrl ("EditEmployee")
                         // pass division_id to select division in which to add employee
                         : EditUrl ("division_id", Settings.DivisionID.ToString (), "EditEmployee"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
                     SecurityContext.CanAdd (typeof (EmployeeInfo)),
                     false
@@ -220,7 +218,7 @@ namespace R7.University.Employees
             var linkEdit = (HyperLink) e.Item.FindControl ("linkEdit");
             var imageEdit = (Image) e.Item.FindControl ("imageEdit");
             var imagePhoto = (Image) e.Item.FindControl ("imagePhoto");
-            var linkDetails = (HyperLink) e.Item.FindControl ("linkDetails"); 
+            var linkDetails = (HyperLink) e.Item.FindControl ("linkDetails");
             var linkFullName = (HyperLink) e.Item.FindControl ("linkFullName");
             var labelAcademicDegreeAndTitle = (Label) e.Item.FindControl ("labelAcademicDegreeAndTitle");
             var labelPositions = (Label) e.Item.FindControl ("labelPositions");
@@ -244,7 +242,7 @@ namespace R7.University.Employees
             // make edit link visible in edit mode
             linkEdit.Visible = IsEditable;
             imageEdit.Visible = IsEditable;
-            
+
             // mark non-published employees, as they visible only to editors
             if (!employee.IsPublished (now)) {
                 if (e.Item.ItemType == ListItemType.Item) {
@@ -282,16 +280,16 @@ namespace R7.University.Employees
             var achievements = employee.Achievements
                 .Select (ea => new EmployeeAchievementViewModel (ea, ViewModelContext))
                 .Where (ach => ach.IsTitle);
-            
+
             var titles = achievements.Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix).FirstCharToLower ());
-			
+
             // employee title achievements
             var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = "&nbsp;&ndash; " + strTitles;
             else
                 labelAcademicDegreeAndTitle.Visible = false;
-			
+
             // phones
             var phones = FormatHelper.JoinNotNullOrEmpty (", ", employee.Phone, employee.CellPhone);
             if (!string.IsNullOrWhiteSpace (phones))
@@ -302,7 +300,7 @@ namespace R7.University.Employees
             // email
             if (!string.IsNullOrWhiteSpace (employee.Email)) {
                 linkEmail.NavigateUrl = "mailto:" + employee.Email;
-                linkEmail.Text = employee.Email; 
+                linkEmail.Text = employee.Email;
             }
             else
                 linkEmail.Visible = false;
@@ -310,7 +308,7 @@ namespace R7.University.Employees
             // secondary email
             if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail)) {
                 linkSecondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
-                linkSecondaryEmail.Text = employee.SecondaryEmail; 
+                linkSecondaryEmail.Text = employee.SecondaryEmail;
             }
             else
                 linkSecondaryEmail.Visible = false;
@@ -338,7 +336,7 @@ namespace R7.University.Employees
                 .OrderByDescending (op => op.DivisionID == Settings.DivisionID)
                 .ThenByDescending (op => op.Position.Weight)
                 .GroupByDivision (HttpContext.Current.Timestamp, IsEditable);
-                
+
             // build positions value
             var positionsVisible = false;
             if (!gops.IsNullOrEmpty ()) {
