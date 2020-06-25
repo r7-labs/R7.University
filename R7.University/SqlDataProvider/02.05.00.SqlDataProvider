@@ -7,3 +7,10 @@ BEGIN
         ADD [ActualForeign] int NULL
 END
 GO
+
+IF EXISTS (select * from sys.indexes where name = N'UN_{objectQualifier}University_OccupiedPositions')
+BEGIN
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_OccupiedPositions]
+		DROP CONSTRAINT UN_{objectQualifier}University_OccupiedPositions
+END
+GO
