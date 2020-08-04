@@ -24,5 +24,7 @@
   <ItemGroup>
     <Folder Include="Templates\" />
     <Folder Include="Markdown\" />
+    <Folder Include="assets\" />
+    <Folder Include="assets\templates\" />
   </ItemGroup>
 </Project>

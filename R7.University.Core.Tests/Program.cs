@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using R7.University.Core.Templates;
 
 namespace R7.University.Core.Tests
 {
@@ -6,7 +7,8 @@ namespace R7.University.Core.Tests
     {
         static void Main (string [] args)
         {
-            Console.WriteLine ("Hello World!");
+            var workbookManager = new WorkbookManager ();
+            Console.Write (workbookManager.SerializeWorkbook ("./assets/templates/workbook-1.xls", WorkbookSerializationFormat.CSV));
         }
     }
 }
