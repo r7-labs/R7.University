@@ -37,7 +37,7 @@ using R7.University.Templates;
 using R7.University.ViewModels;
 
 // may need the binding redirect in web.config
-/* 
+/*
 <dependentAssembly>
     <assemblyIdentity name = "System.Net.Http" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
     <bindingRedirect oldVersion="0.0.0.0-4.2.0.0" newVersion="4.0.0.0" />
@@ -137,7 +137,7 @@ namespace R7.University.Employees.Services
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
                     FileName = GetFileName (employee, ".txt")
                 };
-            
+
                 return result;
             }
             catch (Exception ex) {

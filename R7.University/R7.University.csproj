@@ -438,6 +438,7 @@
     <None Include="assets\images\Rollback_16x16_Gray.png" />
     <None Include="assets\images\Rollback_16x16_Standard.png" />
     <None Include="SqlDataProvider\02.05.00.SqlDataProvider" />
+    <None Include="assets\templates\employee_template.xls" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SqlDataProvider\02.00.00.SqlDataProvider" />

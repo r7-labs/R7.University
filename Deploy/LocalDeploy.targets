@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="LocalDeploy">
     <Import Project="__Settings.targets" Condition=" '$(BuildSettingsImported)' == '' " />
     <Import Project="Bundle.targets" Condition=" '$(BundleImported)' == '' " />
@@ -38,7 +38,8 @@
             <LocalDeployResourceFiles Include="../**/*.jpg" />
             <LocalDeployResourceFiles Include="../**/*.png" />
             <LocalDeployResourceFiles Include="../**/*.gif" />
-			<LocalDeployResourceFiles Include="../**/*.xlsx" />
+            <LocalDeployResourceFiles Include="../**/*.xls" />
+            <LocalDeployResourceFiles Include="../**/*.xlsx" />
         </ItemGroup>
         <!-- Declare excluded files -->
         <ItemGroup>
