@@ -9,7 +9,7 @@ namespace R7.University.Core.Templates
         public string SerializeWorkbook (string filePath, WorkbookSerializationFormat format)
         {
             if (format == WorkbookSerializationFormat.CSV) {
-                var workbookProvider = new XSSFWorkbookProvider ();
+                var workbookProvider = new HSSFWorkbookProvider ();
                 var workbookSerializer = new WorkbookToCsvSerializer ();
 
                 using (var fileStream = new FileStream (filePath, FileMode.Open, FileAccess.Read)) {

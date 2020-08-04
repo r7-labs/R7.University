@@ -16,10 +16,10 @@
 		<value>Скачать как .CSV</value>
 	</data>
 	<data name="ExportToExcel.Text" xml:space="preserve">
-		<value>Скачать как .XLSX</value>
+		<value>Скачать как .XLS</value>
 	</data>
 	<data name="About.Text" xml:space="preserve">
-		<value>Здесь вы можете скачать сведения о сотруднике в формате электронной таблицы (файла .XLSX)
+		<value>Здесь вы можете скачать сведения о сотруднике в формате электронной таблицы (файла .XLS)
 			для последующей правки с помощью Microsoft Excel, LibreOffice Calc
 			или других совместимых приложений для работы с электронными таблицами.
 		</value>

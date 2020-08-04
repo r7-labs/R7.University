@@ -19,14 +19,14 @@ class WorkbookConverter extends React.Component {
         super (props);
         this.state = new WorkbookConverterState ();
     }
-    
+
     getString (key) {
         if (key.includes (".")) {
             return this.props.resources [key];
         }
         return this.props.resources [key + ".Text"]
     }
-    
+
     renderFile (file, index) {
         return (
             <tr>
@@ -39,7 +39,7 @@ class WorkbookConverter extends React.Component {
             </tr>
         );
     }
-    
+
     renderFiles (files) {
         if (files.length > 0) {
             return (
@@ -59,7 +59,7 @@ class WorkbookConverter extends React.Component {
         }
         return null;
     }
-    
+
     getBsAlertName (errorLevel) {
         if (errorLevel === 1) {
             return "danger";
@@ -69,7 +69,7 @@ class WorkbookConverter extends React.Component {
         }
         return "info";
     }
-    
+
     renderError (error) {
         if (error !== null) {
             return (
@@ -81,7 +81,7 @@ class WorkbookConverter extends React.Component {
         }
         return null;
     }
-    
+
     render () {
         return (
             <div>
@@ -91,11 +91,11 @@ class WorkbookConverter extends React.Component {
                         <div className="form-group">
                             <label for={"u8y_wbc_upload_" + this.props.moduleId}>{this.getString ("SelectFiles")}</label>
                             <input type="file" className="form-control-file" id={"u8y_wbc_upload_" + this.props.moduleId}
-                                accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                accept=".xls, application/vnd.ms-excel"
                                 multiple="multiple"
                             />
-                        </div>    
-                        <div className="form-group">    
+                        </div>
+                        <div className="form-group">
                             <a role="button" className="btn btn-primary" href="#" onClick={this.upload.bind(this)}>
                                 <i className="fas fa-upload"></i> {this.getString ("Upload")}
                             </a>
@@ -106,34 +106,34 @@ class WorkbookConverter extends React.Component {
             </div>
         );
     }
-    
+
     upload (e) {
         e.preventDefault ();
-       
+
         const newState = new WorkbookConverterState ();
-        
+
         const formData = new FormData ();
         var fileInput = document.getElementById ("u8y_wbc_upload_" + this.props.moduleId);
         for (let i = 0; i < fileInput.files.length; i++) {
             formData.append ("file" + i, fileInput.files [i]);
         }
-        
+
         this.props.service.upload (
-            formData,    
+            formData,
             (results) => {
                 for (let result of results) {
                     newState.files.push ({
                         tempFileName: result.tempFileName,
                         fileName: result.fileName
                     });
-                }            
+                }
                 this.setState (newState);
             },
             (xhr, status, err) => {
                 console.log (xhr);
                 console.log (status);
                 console.log (err);
-                
+
                 newState.error = new WorkbookConverterError ();
                 newState.error.level = 1;
                 newState.error.title = xhr.status + " " + xhr.statusText;
@@ -151,15 +151,15 @@ class WorkbookConverter extends React.Component {
             this.moduleId = moduleId;
             this.baseServicepath = $.dnnSF (moduleId).getServiceRoot ("R7.University.Launchpad");
         }
-        
+
         getUrl (controller, action, id) {
             return this.baseServicepath + controller + "/" + action + (id != null ? "/" + id : "");
         }
-    
+
         ajaxCall (type, url, data, success, fail) {
             this.ajaxCall (type, url, data, true, true, success, fail);
         }
-        
+
         ajaxCall (type, url, data, processData, contentType, success, fail) {
             $.ajax ({
                 type: type,
@@ -178,7 +178,7 @@ class WorkbookConverter extends React.Component {
                 }
             });
         }
-        
+
         upload (data, success, fail) {
             this.ajaxCall ("POST", this.getUrl ("WorkbookConverter", "Upload", null), data, false, false, success, fail);
         }

@@ -60,12 +60,12 @@ namespace R7.University.Employees.Services
             var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
                    "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
 
-            return new WorkbookLiquidTemplateEngine (employeeBinder, new XSSFWorkbookProvider ());
+            return new WorkbookLiquidTemplateEngine (employeeBinder, new HSSFWorkbookProvider ());
         }
 
         string GetTemplatePath ()
         {
-            return UniversityTemplateHelper.GetLocalizedTemplatePath ("employee_template.xlsx", CultureInfo.CurrentUICulture);
+            return UniversityTemplateHelper.GetLocalizedTemplatePath ("employee_template.xls", CultureInfo.CurrentUICulture);
         }
 
         MemoryStream GetEmployeeExcelStream (IEmployee employee)
@@ -101,11 +101,11 @@ namespace R7.University.Employees.Services
                 var stream = GetEmployeeExcelStream (employee);
                 var buffer = stream.ToArray ();
                 result.Content = new ByteArrayContent (buffer);
-                // TODO: Introduce MimeTypes!
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                // TODO: Introduce helper for MIME types?
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue ("application/vnd.ms-excel");
                 result.Content.Headers.ContentLength = buffer.Length;
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                    FileName = GetFileName (employee, ".xlsx")
+                    FileName = GetFileName (employee, ".xls")
                 };
 
                 return result;

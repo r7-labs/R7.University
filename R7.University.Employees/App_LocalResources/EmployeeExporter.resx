@@ -16,10 +16,10 @@
 		<value>Download as .CSV</value>
 	</data>
 	<data name="ExportToExcel.Text" xml:space="preserve">
-		<value>Download as .XLSX</value>
+		<value>Download as .XLS</value>
 	</data>
 	<data name="About.Text" xml:space="preserve">
-		<value>Here you can download the employee data in a spreadsheet format (as .XLSX file)
+		<value>Here you can download the employee data in a spreadsheet format (as .XLS file)
 			in order to edit the data using the Microsoft Excel, LibreOffice Calc
 			or any other compatible software for spreadsheet editing.
 		</value>
