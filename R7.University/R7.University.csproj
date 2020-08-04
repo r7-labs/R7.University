@@ -427,7 +427,6 @@
     <None Include="SqlDataProvider\02.01.00.SqlDataProvider" />
     <None Include="packages.config" />
     <None Include="SqlDataProvider\02.02.00.SqlDataProvider" />
-    <None Include="assets\templates\employee_template.xlsx" />
     <None Include="R7.University.csproj" />
     <None Include="assets\css\test.scss" />
     <None Include="assets\js\test.jsx" />
