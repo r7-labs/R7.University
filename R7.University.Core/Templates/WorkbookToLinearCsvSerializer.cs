@@ -52,7 +52,7 @@ namespace R7.University.Core.Templates
 
         protected void SerializeHSplittedSheet (ISheet sheet, StringBuilder builder)
         {
-            var colHeaders = GetColumnHeaders (sheet);
+            var colHeaders = ExtractColumnHeaders (sheet);
             var tableWasProcessed = false;
 
             for (var r = sheet.FirstRowNum; r <= sheet.LastRowNum; r++) {
@@ -86,7 +86,7 @@ namespace R7.University.Core.Templates
             builder.AppendLine ();
         }
 
-        IList<string> GetColumnHeaders (ISheet sheet)
+        IList<string> ExtractColumnHeaders (ISheet sheet)
         {
             var colHeaders = new List<string> ();
             var headerRow = sheet.GetRow (sheet.FirstRowNum + NumOfHeaderRows - 1);
@@ -94,6 +94,14 @@ namespace R7.University.Core.Templates
                 colHeaders.Add (Formatter.FormatCellValue (cell));
             }
             return colHeaders;
+        }
+
+        string SafeGetColumnHeader (IList<string> colHeaders, int index)
+        {
+            if (index < colHeaders.Count) {
+                return colHeaders [index];
+            }
+            return EmptyCellValue;
         }
 
         bool CheckAndUpdateTableWasProcessed (ref bool tableWasProcessed, ICell cell)
@@ -108,14 +116,6 @@ namespace R7.University.Core.Templates
                 }
             }
             return tableWasProcessed;
-        }
-
-        string SafeGetColumnHeader (IList<string> colHeaders, int index)
-        {
-            if (index < colHeaders.Count) {
-                return colHeaders [index];
-            }
-            return EmptyCellValue;
         }
     }
 }
