@@ -85,7 +85,7 @@ namespace R7.University.Launchpad.Services
         string GetWorkbookText (string tempFilePath)
         {
             var workbookManager = new WorkbookManager ();
-            return workbookManager.SerializeWorkbook (tempFilePath, WorkbookSerializationFormat.CSV);
+            return workbookManager.SerializeWorkbook (tempFilePath, WorkbookSerializationFormat.LinearCSV);
         }
     }
 }

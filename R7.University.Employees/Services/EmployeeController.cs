@@ -77,7 +77,7 @@ namespace R7.University.Employees.Services
         string GetEmployeeCsvText (IEmployee employee)
         {
             var templateEngine = GetTemplateEngine (employee);
-            return templateEngine.ApplyAndSerialize (GetTemplatePath (), new WorkbookToCsvSerializer ()).ToString ();
+            return templateEngine.ApplyAndSerialize (GetTemplatePath (), new WorkbookToLinearCsvSerializer ()).ToString ();
         }
 
         string GetFileName (IEmployee employee, string extension)
