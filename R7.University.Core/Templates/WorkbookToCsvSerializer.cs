@@ -15,9 +15,9 @@ namespace R7.University.Core.Templates
 
         public string EmptyCellValue { get; set; } = "";
 
-        DataFormatter _formatter = new DataFormatter ();
+        protected DataFormatter Formatter = new DataFormatter ();
 
-        public StringBuilder Serialize (IWorkbook book, StringBuilder builder)
+        public virtual StringBuilder Serialize (IWorkbook book, StringBuilder builder)
         {
             for (var s = 0; s < book.NumberOfSheets; s++) {
                 var sheet = book.GetSheetAt (s);
@@ -35,18 +35,22 @@ namespace R7.University.Core.Templates
                 if (row == null) {
                     continue;
                 }
-                foreach (var cell in row.Cells) {
-                    builder.Append (FormatCellValue (cell));
-                    builder.Append (CellSeparator);
-                }
-                builder.AppendLine ();
+                SerializeRow (row, builder);
             }
+        }
+
+        protected void SerializeRow (IRow row, StringBuilder builder)
+        {
+            foreach (var cell in row.Cells) {
+                builder.Append (FormatCellValue (cell));
+                builder.Append (CellSeparator);
+            }
+            builder.AppendLine ();
         }
 
         protected virtual string FormatCellValue (ICell cell)
         {
-            var text = _formatter.FormatCellValue (cell);
-
+            var text = Formatter.FormatCellValue (cell);
             if (!string.IsNullOrWhiteSpace (text)) {
                 text = text.Replace ("\r\n", " ");
                 text = text.Replace ("\n\r", " ");
