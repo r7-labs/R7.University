@@ -58,6 +58,7 @@ namespace R7.University.Core.Templates
             for (var r = sheet.FirstRowNum; r <= sheet.LastRowNum; r++) {
                 var row = sheet.GetRow (r);
                 if (row == null) {
+                    builder.AppendLine ();
                     continue;
                 }
                 if (r == sheet.FirstRowNum + NumOfHeaderRows - 1) {
@@ -82,6 +83,7 @@ namespace R7.University.Core.Templates
                     builder.AppendLine ();
                 }
             }
+            builder.AppendLine ();
         }
 
         IList<string> GetColumnHeaders (ISheet sheet)

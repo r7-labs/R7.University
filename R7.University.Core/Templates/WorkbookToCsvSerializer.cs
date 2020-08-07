@@ -11,7 +11,7 @@ namespace R7.University.Core.Templates
     {
         public string CellSeparator { get; set; } = "\t";
 
-        public string SheetHeaderFormat { get; set; } = "\n# {0}\n\n";
+        public string SheetHeaderFormat { get; set; } = "# {0}\n\n";
 
         public string EmptyCellValue { get; set; } = "";
 
@@ -33,10 +33,12 @@ namespace R7.University.Core.Templates
             for (var r = sheet.FirstRowNum; r <= sheet.LastRowNum; r++) {
                 var row = sheet.GetRow (r);
                 if (row == null) {
+                    builder.AppendLine ();
                     continue;
                 }
                 SerializeRow (row, builder);
             }
+            builder.AppendLine ();
         }
 
         protected void SerializeRow (IRow row, StringBuilder builder)
