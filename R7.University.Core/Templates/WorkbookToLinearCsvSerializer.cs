@@ -60,7 +60,11 @@ namespace R7.University.Core.Templates
                 if (row == null) {
                     continue;
                 }
-                if (r < NumOfHeaderRows - 1 || tableWasProcessed) {
+                if (r == sheet.FirstRowNum + NumOfHeaderRows - 1) {
+                    builder.AppendLine ();
+                    continue;
+                }
+                if (r < sheet.FirstRowNum + NumOfHeaderRows - 1 || tableWasProcessed) {
                     SerializeRow (row, builder);
                 }
                 else {
