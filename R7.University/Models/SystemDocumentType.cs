@@ -26,16 +26,6 @@ namespace R7.University
     /// </summary>
     public enum SystemDocumentType
     {
-        // ru-RU: приказ о приеме
-        OrderEnrollment,
-        // ru-RU: приказ об отчислении
-        OrderExpulsion,
-        // ru-RU: приказ о восстановлении
-        OrderRestoration,
-        // ru-RU: приказ о переводе
-        OrderTransfer,
-        // ru-RU: приказ об академическом отпуске
-        OrderAcademicLeave,
         // ru-RU: образовательный стандарт
         EduStandard,
         // ru-RU: профессиональный стандарт

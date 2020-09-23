@@ -12,21 +12,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="SystemDocumentType_OrderEnrollment.Text" xml:space="preserve">
-        <value>Приказ о приеме (зачислении)</value>
-    </data>
-    <data name="SystemDocumentType_OrderExpulsion.Text" xml:space="preserve">
-        <value>Приказ об отчислении</value>
-    </data>
-    <data name="SystemDocumentType_OrderRestoration.Text" xml:space="preserve">
-        <value>Приказ о восстановлениии</value>
-    </data>
-    <data name="SystemDocumentType_OrderTransfer.Text" xml:space="preserve">
-        <value>Приказ о переводе</value>
-    </data>
-    <data name="SystemDocumentType_OrderAcademicLeave.Text" xml:space="preserve">
-        <value>Приказ об академическом отпуске</value>
-    </data>
     <data name="SystemDocumentType_EduStandard.Text" xml:space="preserve">
         <value>Образовательный стандарт</value>
     </data>
