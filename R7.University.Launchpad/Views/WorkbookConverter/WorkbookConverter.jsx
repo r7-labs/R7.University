@@ -185,7 +185,7 @@ class WorkbookConverter extends React.Component {
     }
 
     $(() => {
-        $(".u8y-workbook-converter").each ((i, m) => {
+        $(".u8y-workbook-converter-react-root").each ((i, m) => {
             const moduleId = $(m).data ("module-id");
             ReactDOM.render (<WorkbookConverter
                 moduleId={moduleId}
