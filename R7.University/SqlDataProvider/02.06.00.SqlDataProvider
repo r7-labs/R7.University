@@ -26,3 +26,10 @@ BEGIN
 
 END
 GO
+
+IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] = N'WorkProgram')
+BEGIN
+    INSERT INTO {databaseOwner}[{objectQualifier}University_DocumentTypes] (Type, IsSystem, FilenameFormat) VALUES
+        (N'WorkProgram', 1, N'rp_[a-z0-9_]+_\d{8}\.pdf')
+END
+GO

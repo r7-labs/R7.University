@@ -57,8 +57,8 @@
     <data name="Languages.Column" xml:space="preserve">
         <value>Education Languages</value>
     </data>
-    <data name="WorkProgramOfPractice.Column" xml:space="preserve">
-        <value>Work Programs of Practice &lt;abbr title=&quot;This column could be removed in next version&quot;&gt;?&lt;/abbr&gt;</value>
+    <data name="WorkProgram.Column" xml:space="preserve">
+        <value>Work Programs</value>
     </data>
     <data name="EduMaterial.Column" xml:space="preserve">
         <value>Educational Materials</value>

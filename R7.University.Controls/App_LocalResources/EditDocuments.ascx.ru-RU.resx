@@ -49,7 +49,10 @@
         <value>Аннотация (аннотации) рабочей программы</value>
     </data>
     <data name="SystemDocumentType_WorkProgramOfPractice.Text" xml:space="preserve">
-        <value>Рабочая программа практики</value>
+        <value>Рабочая программа практики *устарело*</value>
+    </data>
+	<data name="SystemDocumentType_WorkProgram.Text" xml:space="preserve">
+        <value>Рабочая программа</value>
     </data>
     <data name="labelDocumentTitle.Text" xml:space="preserve">
         <value>Название:</value>

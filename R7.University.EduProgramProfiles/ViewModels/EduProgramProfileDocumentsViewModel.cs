@@ -77,8 +77,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string _eduMaterialLinks;
         public string EduMaterial_Links => _eduMaterialLinks ?? (_eduMaterialLinks = GetEduMaterialLinks ());
 
-        string _workProgramOfPracticeLinks;
-        public string WorkProgramOfPractice_Links => _workProgramOfPracticeLinks ?? (_workProgramOfPracticeLinks = GetWorkProgramOfPracticeLinks ());
+        string _workProgramLinks;
+        public string WorkProgram_Links => _workProgramLinks ?? (_workProgramLinks = GetWorkProgramLinks ());
 
         public string EduForms_String
         {
@@ -212,12 +212,13 @@ namespace R7.University.EduProgramProfiles.ViewModels
             );
         }
 
-        string GetWorkProgramOfPracticeLinks ()
+        string GetWorkProgramLinks ()
         {
             return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramOfPractice)),
+                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgram)),
                 string.Empty,
-                "wpp",
+                "wp",
+                // TODO: This related to obsolete WorkProgramOfPractice document type
                 IsAdopted ? "itemprop=\"adEduPr\"" : "itemprop=\"eduPr\""
             );
         }

@@ -52,6 +52,8 @@ namespace R7.University
         WorkProgramAnnotation,
         // ru-RU: рабочая программа практики
         WorkProgramOfPractice,
+        // ru-RU: рабочая программа
+        WorkProgram,
         Custom
     }
 }

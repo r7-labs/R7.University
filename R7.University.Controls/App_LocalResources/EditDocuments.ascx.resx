@@ -49,7 +49,10 @@
         <value>Work Program Annotation</value>
     </data>
     <data name="SystemDocumentType_WorkProgramOfPractice.Text" xml:space="preserve">
-        <value>Work Program Of Practice</value>
+        <value>Work Program of Practice *obsolete*</value>
+    </data>
+	<data name="SystemDocumentType_WorkProgram.Text" xml:space="preserve">
+        <value>Work Program</value>
     </data>
     <data name="labelDocumentTitle.Text" xml:space="preserve">
         <value>Title:</value>
