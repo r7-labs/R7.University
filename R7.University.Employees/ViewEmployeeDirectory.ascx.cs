@@ -1,24 +1,3 @@
-//
-//  ViewEmployeeDirectory.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2014-2019 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +29,7 @@ namespace R7.University.Employees
     // TODO: Make module instances co-exist on same page
 
     public partial class ViewEmployeeDirectory: PortalModuleBase<EmployeeDirectorySettings>, IActionable
-    {   
+    {
         #region Model context
 
         private UniversityModelContext modelContext;
@@ -90,7 +69,7 @@ namespace R7.University.Employees
 
         protected string SearchText
         {
-            get { 
+            get {
                 var objSearchText = Session ["EmployeeDirectory.SearchText." + TabModuleId];
                 return (string) objSearchText ?? string.Empty;
             }
@@ -99,7 +78,7 @@ namespace R7.University.Employees
 
         protected int SearchDivision
         {
-            get { 
+            get {
                 var objSearchDivision = Session ["EmployeeDirectory.SearchDivision." + TabModuleId];
                 return objSearchDivision != null ? (int) objSearchDivision : Null.NullInteger;
 
@@ -109,7 +88,7 @@ namespace R7.University.Employees
 
         protected bool SearchTeachersOnly
         {
-            get { 
+            get {
                 var objSearchTeachersOnly = Session ["EmployeeDirectory.SearchTeachersOnly." + TabModuleId];
                 return objSearchTeachersOnly != null ? (bool) objSearchTeachersOnly : false;
             }
@@ -159,12 +138,12 @@ namespace R7.University.Employees
 
             if (Settings.Mode == EmployeeDirectoryMode.Search) {
                 // display search hint
-                this.Message ("SearchHint.Info", MessageType.Info, true); 
+                this.Message ("SearchHint.Info", MessageType.Info, true);
 
                 var now = HttpContext.Current.Timestamp;
                 treeDivisions.DataSource = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title)
                     .Where (d => d.IsPublished (now) || IsEditable);
-                
+
                 treeDivisions.DataBind ();
 
                 // select first node
@@ -246,7 +225,7 @@ namespace R7.University.Employees
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
-            
+
             try {
                 var now = HttpContext.Current.Timestamp;
                 if (Settings.Mode == EmployeeDirectoryMode.Search) {
@@ -290,7 +269,7 @@ namespace R7.University.Employees
         protected void repeaterEduProgramProfiles_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             var now = HttpContext.Current.Timestamp;
-                
+
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
                 var eduProgramProfile = (EduProgramProfileViewModel) e.Item.DataItem;
 
@@ -375,7 +354,7 @@ namespace R7.University.Employees
 
             var employees = new EmployeeFindQuery (ModelContext).FindEmployees (searchText, teachersOnly, searchDivision)
                 .Where (e => IsEditable || e.IsPublished (now));
-            
+
             if (employees.IsNullOrEmpty ()) {
                 this.Message ("NoEmployeesFound.Warning", MessageType.Warning, true);
             }
@@ -390,7 +369,7 @@ namespace R7.University.Employees
         protected void linkSearch_Click (object sender, EventArgs e)
         {
             var searchText = textSearch.Text.Trim ();
-            var searchDivision = (treeDivisions.SelectedNode != null) ? 
+            var searchDivision = (treeDivisions.SelectedNode != null) ?
                 int.Parse (treeDivisions.SelectedNode.Value) : Null.NullInteger;
             var teachersOnly = checkTeachersOnly.Checked;
 
@@ -434,9 +413,10 @@ namespace R7.University.Employees
                 }
 
                 var name = (HyperLink) e.Row.FindControl ("linkName");
-                var position = (Literal) e.Row.FindControl ("literalPosition");
                 var phone = (Literal) e.Row.FindControl ("literalPhone");
+                var cellPhone = (Literal) e.Row.FindControl ("litCellPhone");
                 var email = (HyperLink) e.Row.FindControl ("linkEmail");
+                var secondaryEmail = (HyperLink) e.Row.FindControl ("lnkSecondaryEmail");
                 var workingPlace = (Literal) e.Row.FindControl ("literalWorkingPlace");
 
                 name.Text = employee.AbbrName ();
@@ -444,6 +424,7 @@ namespace R7.University.Employees
                 name.NavigateUrl = EditUrl ("employee_id", employee.EmployeeID.ToString (), "EmployeeDetails");
 
                 phone.Text = employee.Phone;
+                cellPhone.Text = employee.CellPhone;
 
                 if (!string.IsNullOrWhiteSpace (employee.Email)) {
                     email.Text = employee.Email;
@@ -452,16 +433,14 @@ namespace R7.University.Employees
                 else
                     email.Visible = false;
 
-                workingPlace.Text = employee.WorkingPlace;
-
-                // try to get prime position:
-                var primePosition = new OccupiedPositionQuery (ModelContext).FirstOrDefaultPrimePosition (employee.EmployeeID);
-
-                if (primePosition != null) {
-                    position.Text = FormatHelper.JoinNotNullOrEmpty (": ",
-                        UniversityFormatHelper.FormatShortTitle (primePosition.Position.ShortTitle, primePosition.Position.Title, 
-                            primePosition.TitleSuffix), primePosition.FormatDivisionLink (this));
+                if (!string.IsNullOrWhiteSpace (employee.SecondaryEmail)) {
+                    secondaryEmail.Text = employee.SecondaryEmail;
+                    secondaryEmail.NavigateUrl = "mailto:" + employee.SecondaryEmail;
                 }
+                else
+                    secondaryEmail.Visible = false;
+
+                workingPlace.Text = employee.WorkingPlace;
 
                 // mark not published employees, as they visible only to editors
                 if (!employee.IsPublished (now)) {

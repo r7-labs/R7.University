@@ -21,14 +21,17 @@
     <data xml:space="preserve" name="Name.Header">
         <value>Name</value>
     </data>
-    <data xml:space="preserve" name="Position.Header">
-        <value>Prime Position</value>
-    </data>
     <data xml:space="preserve" name="Email.Header">
         <value>Email</value>
     </data>
-    <data xml:space="preserve" name="Phone.Header">
+    <data xml:space="preserve" name="SecondaryEmail_Header.Text">
+        <value>Secondary Email</value>
+    </data>
+	<data xml:space="preserve" name="Phone.Header">
         <value>Phone</value>
+    </data>
+	<data xml:space="preserve" name="CellPhone_Header.Text">
+        <value>Cell Phone</value>
     </data>
     <data xml:space="preserve" name="WorkingPlace.Header">
         <value>Working Place</value>

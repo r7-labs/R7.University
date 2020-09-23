@@ -19,9 +19,9 @@
                     <div class="wrapperDivisions">
                         <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('.employee-directory #hiddenDivisions').toggle ()"></a>
                         <div id="hiddenDivisions">
-                            <dnn:DnnTreeView id="treeDivisions" runat="server" 
+                            <dnn:DnnTreeView id="treeDivisions" runat="server"
                                 OnClientLoad="ed_treeLoad"
-                                OnClientNodeClicked="ed_treeNodeClicked" 
+                                OnClientNodeClicked="ed_treeNodeClicked"
                                 DataTextField="Title"
                                 DataValueField="DivisionID"
                                 DataFieldID = "DivisionID"
@@ -51,19 +51,19 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
-                            <HeaderTemplate>
-                                <%# LocalizeString ("Position.Header") %>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:Literal id="literalPosition" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
                              <HeaderTemplate>
                                 <%# LocalizeString ("Phone.Header") %>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <asp:Literal id="literalPhone" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+						<asp:TemplateField>
+                             <HeaderTemplate>
+                                <%# LocalizeString ("CellPhone_Header.Text") %>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:Literal id="litCellPhone" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -72,6 +72,14 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <asp:HyperLink id="linkEmail" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+						<asp:TemplateField>
+                             <HeaderTemplate>
+                                <%# LocalizeString ("SecondaryEmail_Header.Text") %>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:HyperLink id="lnkSecondaryEmail" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -95,9 +103,9 @@
                             <%# Eval ("Title_String") %>
                         </h3>
                         <div class="table-responsive">
-                            <asp:GridView id="gridTeachers" runat="server" AutoGenerateColumns="false" 
+                            <asp:GridView id="gridTeachers" runat="server" AutoGenerateColumns="false"
                                     UseAccessibleHeader="true" OnRowDataBound="gridTeachers_RowDataBound"
-                                    OnRowCreated="grid_RowCreated" CssClass="table table-bordered table-striped table-hover grid-teachers" 
+                                    OnRowCreated="grid_RowCreated" CssClass="table table-bordered table-striped table-hover grid-teachers"
                                     GridLines="None">
                                 <Columns>
                                     <asp:TemplateField>

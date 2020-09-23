@@ -21,16 +21,19 @@
     <data xml:space="preserve" name="Name.Header">
         <value>Имя</value>
     </data>
-    <data xml:space="preserve" name="Position.Header">
-        <value>Основная должность</value>
-    </data>
     <data xml:space="preserve" name="Email.Header">
         <value>Эл. почта</value>
     </data>
     <data xml:space="preserve" name="Phone.Header">
         <value>Телефон</value>
     </data>
-    <data xml:space="preserve" name="WorkingPlace.Header">
+    <data xml:space="preserve" name="SecondaryEmail_Header.Text">
+        <value>Доп. эл. почта</value>
+    </data>
+	<data xml:space="preserve" name="CellPhone_Header.Text">
+        <value>Мобильный тел.</value>
+    </data>
+	<data xml:space="preserve" name="WorkingPlace.Header">
         <value>Рабочее место</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
