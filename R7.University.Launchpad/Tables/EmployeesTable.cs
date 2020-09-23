@@ -44,14 +44,13 @@ namespace R7.University.Launchpad
                     .ListWhere (e => e.LastName.Contains (search)
                                 || e.FirstName.Contains (search)
                                 || e.OtherName.Contains (search)
+                                || (e.FirstName + " " + e.LastName + " " + e.OtherName).Contains (search)
+                                || (e.LastName + " " + e.FirstName + " " + e.OtherName).Contains (search)
                                 || e.CellPhone.Contains (search)
                                 || e.Phone.Contains (search)
-                                || e.Fax.Contains (search)
                                 || e.Email.Contains (search)
                                 || e.SecondaryEmail.Contains (search)
-                                || e.WebSite.Contains (search)
-                                || e.WebSiteLabel.Contains (search)
-                                || e.WorkingHours.Contains (search)
+                                || e.WorkingPlace.Contains (search)
                             );
 
             return DataTableConstructor.FromIEnumerable (employees.Select (e => new EmployeeViewModel (e)));

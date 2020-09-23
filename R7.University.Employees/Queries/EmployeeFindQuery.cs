@@ -1,24 +1,3 @@
-//
-//  EmployeeFindQuery.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2016-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System.Collections.Generic;
 using System.Linq;
 using R7.Dnn.Extensions.Models;
@@ -33,15 +12,41 @@ namespace R7.University.Employees.Queries
         {
         }
 
-        public IEnumerable<EmployeeInfo> FindEmployees (string searchText, bool teachersOnly, int divisionId)
+        public IEnumerable<EmployeeInfo> FindEmployees (string search, bool teachersOnly, int divisionId)
         {
-            // TODO: Remove @includeSubdivisions parameter from University_FindEmployees sp
-            return ModelContext.Query<EmployeeInfo> (
-                "EXECUTE {objectQualifier}University_FindEmployees {0}, {1}, 1, {2}",
-                searchText,
-                teachersOnly,
-                divisionId
-            ).ToList ().Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
+            if (divisionId != -1) {
+                return ModelContext.Query<EmployeeInfo> (
+                    "EXECUTE {objectQualifier}University_FindEmployees {0}, {1}", divisionId, teachersOnly
+                ).ToList ().Where (
+                    e => e.LastName.Contains (search)
+                    || e.FirstName.Contains (search)
+                    || e.OtherName.Contains (search)
+                    || (e.FirstName + " " + e.LastName + " " + e.OtherName).Contains (search)
+                    || (e.LastName + " " + e.FirstName + " " + e.OtherName).Contains (search)
+                    || e.CellPhone.Contains (search)
+                    || e.Phone.Contains (search)
+                    || e.Email.Contains (search)
+                    || e.SecondaryEmail.Contains (search)
+                    || e.WorkingPlace.Contains (search))
+                .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
+            }
+            return ModelContext.Query<EmployeeInfo> ()
+                .IncludePositionsWithDivision ()
+                .Where (e => teachersOnly == false || e.Positions.Any (op => op.Position.IsTeacher))
+                .Where (
+                    e => e.LastName.Contains (search)
+                    || e.FirstName.Contains (search)
+                    || e.OtherName.Contains (search)
+                    || (e.FirstName + " " + e.LastName + " " + e.OtherName).Contains (search)
+                    || (e.LastName + " " + e.FirstName + " " + e.OtherName).Contains (search)
+                    || e.CellPhone.Contains (search)
+                    || e.Phone.Contains (search)
+                    || e.Email.Contains (search)
+                    || e.SecondaryEmail.Contains (search)
+                    || e.WorkingPlace.Contains (search)
+                )
+                .ToList ()
+                .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
         }
     }
 }
