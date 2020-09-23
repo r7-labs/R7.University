@@ -22,12 +22,12 @@
 		<value>Скачать</value>
 	</data>
 	<data name="Upload.Text" xml:space="preserve">
-		<value>Выгрузить</value>
+		<value>Загрузить</value>
 	</data>
 	<data name="SelectFiles.Text" xml:space="preserve">
 		<value>Выберите файл(ы) .XLS</value>
 	</data>
 	<data name="UploadErrorMessage.Text" xml:space="preserve">
-		<value>Произошла ошибка при выгрузке файлов. Можно обновить страницу и попробовать снова. Если проблему не удалось решить, свяжитесь, пожалуйста, с администратором системы.</value>
+		<value>Произошла ошибка при загрузке файлов на сервер. Можно обновить страницу и попробовать снова. Если проблему не удалось решить, свяжитесь, пожалуйста, с администратором системы.</value>
 	</data>
 </root>
