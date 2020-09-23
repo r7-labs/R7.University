@@ -63,12 +63,16 @@
 				ShowUrls="false"
 				ShowLog="false"
 				ShowTrack="false"
-                ShowNewWindow="false" 
+                ShowNewWindow="false"
             />
 			<asp:CustomValidator id="valDocumentUrl" runat="server" ValidationGroup="Documents"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
 				EnableClientScript="true" ClientValidationFunction="validateDocumentUrl" />
-		</div>
+			<div class="dnnFormItem">
+	            <dnn:Label id="lblDocumentUrl2" runat="server" ControlName="txtDocumentUrl" />
+				<asp:TextBox id="txtDocumentUrl" runat="server" />
+			</div>
+        </div>
 		<div class="dnnFormItem">
             <dnn:Label id="labelDocumentTitle" runat="server" ControlName="textDocumentTitle" />
             <asp:TextBox id="textDocumentTitle" runat="server" MaxLength="255" />
@@ -80,14 +84,10 @@
         <h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("sectionAdvancedProperties.Text") %></a></h2>
         <fieldset>
 			<div class="dnnFormItem">
-	            <dnn:Label id="lblDocumentUrl2" runat="server" ControlName="txtDocumentUrl" />
-				<asp:TextBox id="txtDocumentUrl" runat="server" />
-			</div>
-         	<div class="dnnFormItem">
             	<dnn:Label id="labelDocumentSortIndex" runat="server" ControlName="textDocumentSortIndex" />
                 <asp:TextBox id="textDocumentSortIndex" runat="server" Value="0" />
                 <asp:RegularExpressionValidator runat="server" resourcekey="DocumentSortIndex.Invalid"
-                    ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents" 
+                    ControlToValidate="textDocumentSortIndex" ValidationGroup="Documents"
                     Display="Dynamic" CssClass="dnnFormMessage dnnFormError" ValidationExpression="^-?\d+$" />
             </div>
 	        <div class="dnnFormItem">
@@ -103,26 +103,26 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
                 <li>
-					<asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDocument" 
+					<asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDocument"
                         CssClass="dnnPrimaryAction" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Documents" />
-				</li>	
+				</li>
                 <li>
-					<asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDocument" 
+					<asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDocument"
                         CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Documents" />
 				</li>
 				<li>&nbsp;</li>
                 <li>
-					<asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
+					<asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
-					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
                     CssClass="dnnSecondaryAction" />
-				</li>	
-			</ul>	
+				</li>
+			</ul>
         </div>
         <asp:HiddenField id="hiddenViewItemID" runat="server" />
     </fieldset>
