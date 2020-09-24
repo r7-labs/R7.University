@@ -14,6 +14,13 @@ namespace R7.University.Employees.Queries
 
         public IEnumerable<EmployeeInfo> FindEmployees (string search, bool teachersOnly, int divisionId)
         {
+            return FindEmployees_Internal (search, teachersOnly, divisionId)
+                .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID))
+                .OrderBy (e => e.LastName);
+        }
+
+        IEnumerable<EmployeeInfo> FindEmployees_Internal (string search, bool teachersOnly, int divisionId)
+        {
             // TODO: Reduce code duplication, see also Launchpad/EmployeesTable
             if (divisionId != -1) {
                 return ModelContext.Query<EmployeeInfo> (
@@ -29,8 +36,7 @@ namespace R7.University.Employees.Queries
                     || e.Phone.Contains (search)
                     || e.Email.Contains (search)
                     || e.SecondaryEmail.Contains (search)
-                    || e.WorkingPlace.Contains (search))
-                .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
+                    || e.WorkingPlace.Contains (search));
             }
             return ModelContext.Query<EmployeeInfo> ()
                 .IncludePositionsWithDivision ()
@@ -48,8 +54,7 @@ namespace R7.University.Employees.Queries
                     || e.SecondaryEmail.Contains (search)
                     || e.WorkingPlace.Contains (search)
                 )
-                .ToList ()
-                .Distinct (new EntityEqualityComparer<EmployeeInfo> (e => e.EmployeeID));
+                .ToList ();
         }
     }
 }
