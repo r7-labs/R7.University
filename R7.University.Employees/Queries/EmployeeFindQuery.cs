@@ -14,6 +14,7 @@ namespace R7.University.Employees.Queries
 
         public IEnumerable<EmployeeInfo> FindEmployees (string search, bool teachersOnly, int divisionId)
         {
+            // TODO: Reduce code duplication, see also Launchpad/EmployeesTable
             if (divisionId != -1) {
                 return ModelContext.Query<EmployeeInfo> (
                     "EXECUTE {objectQualifier}University_FindEmployees {0}, {1}", divisionId, teachersOnly
