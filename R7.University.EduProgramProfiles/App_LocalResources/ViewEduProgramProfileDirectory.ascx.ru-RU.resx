@@ -58,7 +58,7 @@
         <value>Языки, на которых осуществляется образование (обучение)</value>
     </data>
     <data name="WorkProgram.Column" xml:space="preserve">
-        <value>Рабочие программы</value>
+        <value>Рабочие программы дисциплин и практик</value>
 	</data>
     <data name="EduMaterial.Column" xml:space="preserve">
         <value>Методические и иные документы</value>
