@@ -31,6 +31,6 @@
         <value>Admission is Open?</value>
     </data>
     <data name="labelAdmissionIsOpen.Help" xml:space="preserve">
-        <value>Check if the admission of students is open for this year.</value>
+        <value>Check if the admission of students is open for this year. It only have sense to check this only for the last of the years!</value>
     </data>
 </root>

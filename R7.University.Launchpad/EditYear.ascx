@@ -7,16 +7,16 @@
 
 <div class="dnnForm dnnClear">
 	<br /><br />
-	<fieldset>	
+	<fieldset>
 		<div class="dnnFormItem dnnFormRequired">
 			<dnn:Label id="labelYear" runat="server" ControlName="textYear" />
 			<asp:TextBox id="textYear" runat="server" />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="textYear" 
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="textYear"
 			    Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Year.Required" />
 		</div>
 		<div class="dnnFormItem">
 			<dnn:Label id="labelAdmissionIsOpen" runat="server" ControlName="checkAdmissionIsOpen" />
-			<asp:CheckBox id="checkAdmissionIsOpen" runat="server" Enabled="false" />
+			<asp:CheckBox id="checkAdmissionIsOpen" runat="server" />
 		</div>
 	</fieldset>
 	<ul class="dnnActions dnnClear">
