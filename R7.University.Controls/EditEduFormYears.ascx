@@ -65,12 +65,12 @@
 		<div class="dnnFormItem">
 			<dnn:Label id="labelYear" runat="server" ControlName="comboYear" />
 			<asp:DropDownList id="comboYear" runat="server"
-                DataTextField="Year"
+                DataTextField="YearWithCourse"
 				DataValueField="YearId" />
-		</div>	
+		</div>
         <div class="dnnFormItem">
             <dnn:Label id="labelEduForm" runat="server" ControlName="radioEduForm" />
-            <asp:RadioButtonList id="radioEduForm" runat="server" 
+            <asp:RadioButtonList id="radioEduForm" runat="server"
                 DataTextField="TitleLocalized"
                 DataValueField="EduFormID"
                 RepeatDirection="Horizontal"
@@ -94,26 +94,26 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddEduFormYear" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddEduFormYear"
+                        CssClass="dnnPrimaryAction" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="EduProgramProfileFormYears" />
-				</li>	
+				</li>
                 <li>
-				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateEduFormYear" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Update" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateEduFormYear"
+                        CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="EduProgramProfileFormYears" />
 				</li>
 				<li>&nbsp;</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
-					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
                         CssClass="dnnSecondaryAction" />
 				</li>
-			</ul>	
+			</ul>
         </div>
         <asp:HiddenField id="hiddenViewItemID" runat="server" />
 		<asp:HiddenField id="hiddenEduFormID" runat="server" />
