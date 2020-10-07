@@ -9,7 +9,7 @@
     },
     "args": [
         // active build configuration
-        "/p:Configuration=Debug",
+        //"/p:Configuration=Debug",
         // ask msbuild to generate full paths for file names
         "/p:GenerateFullPaths=true"
     ],
@@ -42,8 +42,8 @@
             "args": ["/p:EnableTests=false", "Deploy/LocalDeploy.targets"]
         },
         {
-            "taskName": "Make Install Package",
-            "args": ["/t:Build", "/p:EnableTests=true", "/p:EnableInstallPackage=true", "/p:EnableLocalDeploy=false"],
+            "taskName": "Make Install Package (Release)",
+            "args": ["/t:Build", "/p:Configuration=Release", "/p:EnableTests=true", "/p:EnableInstallPackage=true", "/p:EnableLocalDeploy=false"],
             // use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
         },
