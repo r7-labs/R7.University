@@ -16,4 +16,4 @@ $template = Get-Content $templateFilename
 
 $template = $template.replace("{{Version}}", $version)
 
-$template | Set-Content $($templateFilename -replace "\.template\.xml")
+$template | Set-Content $($templateFilename -replace "\.template")

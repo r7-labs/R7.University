@@ -390,7 +390,7 @@
     <Folder Include="assets\images\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="R7.University.dnn.template.xml">
+    <None Include="R7.University.dnn.template">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="SqlDataProvider\01.00.00.SqlDataProvider" />

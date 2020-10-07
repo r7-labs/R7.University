@@ -23,7 +23,7 @@
             <InstallBinaryFiles Include="../packages/SharpZipLib.1.0.0/lib/net45/ICSharpCode.SharpZipLib.dll" />
 		</ItemGroup>
 		<!-- Generate main manifest file -->
-		<Exec Command="$(Pwsh) GenerateManifest.ps1 &quot;$(MainProjectOutputPath)/$(MainProjectName).dnn.template.xml&quot; $(ReleaseVersion)" />
+		<Exec Command="$(Pwsh) GenerateManifest.ps1 &quot;$(MainProjectOutputPath)/$(MainProjectName).dnn.template&quot; $(ReleaseVersion)" />
 		<!-- Declare manifest files -->
         <ItemGroup>
             <InstallManifestFiles Include="$(MainProjectOutputPath)/*.dnn" />
