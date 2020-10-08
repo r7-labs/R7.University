@@ -9,6 +9,8 @@ namespace R7.University.Core.Templates
 
         public abstract IWorkbook CreateWorkbook (Stream stream);
 
+        protected DataFormatter Formatter = new DataFormatter ();
+
         public void WriteWorkbook (IWorkbook book, Stream stream)
         {
             book.Write (stream);
@@ -104,8 +106,7 @@ namespace R7.University.Core.Templates
                 var srcCell = srcRow.GetCell (colIndex);
                 var dstCell = dstRow.GetCell (colIndex);
                 if (srcCell != null && dstCell != null) {
-                    // TODO: Other value types?
-                    dstCell.SetCellValue (srcCell.StringCellValue);
+                    dstCell.SetCellValue (Formatter.FormatCellValue (srcCell));
                     dstCell.CellStyle = srcCell.CellStyle;
                 }
             }
