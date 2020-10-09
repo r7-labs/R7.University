@@ -49,7 +49,7 @@
         <value>Положение</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Column">
-        <value>ФИО, должность руководителя</value>
+        <value>Руководитель</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
         <value>N п/п</value>

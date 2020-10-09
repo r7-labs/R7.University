@@ -49,7 +49,7 @@
         <value>Regulations</value>
     </data>
     <data xml:space="preserve" name="HeadEmployee.Column">
-        <value>Head Employee Name and Position</value>
+        <value>Head Employee</value>
     </data>
     <data name="Order.Column" xml:space="preserve">
         <value>#</value>
