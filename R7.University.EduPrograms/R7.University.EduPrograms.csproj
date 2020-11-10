@@ -131,7 +131,7 @@
       <DependentUpon>EditEduProgram.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EduProgramViewModel.cs" />
-    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
+    <Compile Include="ViewModels\EduProfileViewModel.cs" />
     <Compile Include="ViewModels\EduProgramModuleViewModel.cs" />
     <Compile Include="Queries\EduProgramQuery.cs" />
     <Compile Include="ViewModels\EduProfileEditModel.cs" />

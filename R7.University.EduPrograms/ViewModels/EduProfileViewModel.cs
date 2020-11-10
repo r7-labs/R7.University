@@ -1,24 +1,3 @@
-//
-//  EduProgramProfileViewModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2016-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,13 +13,13 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms.ViewModels
 {
-    public class EduProgramProfileViewModel: EduProfileViewModelBase
+    public class EduProfileViewModel: EduProfileViewModelBase
     {
         public EduProgramModuleViewModel RootViewModel { get; protected set; }
 
         protected ViewModelContext Context => RootViewModel.Context;
 
-        public EduProgramProfileViewModel (IEduProfile model, EduProgramModuleViewModel rootViewModel) : base (model)
+        public EduProfileViewModel (IEduProfile model, EduProgramModuleViewModel rootViewModel) : base (model)
         {
             RootViewModel = rootViewModel;
         }
@@ -52,7 +31,7 @@ namespace R7.University.EduPrograms.ViewModels
             Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
             UniversityFormatHelper.FormatEduProgramTitle (EduProfile.ProfileCode, EduProfile.ProfileTitle)
         );
-        
+
         public bool AccreditedToDate_Visible => EduProfile.AccreditedToDate != null;
 
         public string AccreditedToDate_String =>
