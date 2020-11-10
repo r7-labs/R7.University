@@ -1,4 +1,4 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<EduVolumeDirectoryViewModel>
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<EduVolumeDirectoryViewModel>
 @using System.Collections.Generic
 @using DotNetNuke.Collections
 @using DotNetNuke.Web.Mvc.Helpers
@@ -83,9 +83,9 @@ else {
 									<span class="u8y-selected-item-marker">&#9654;</span>
 								</td>
                             }
-            			    <td itemprop="eduCode">@ev.EduProgramProfile.EduProgram.Code</td>
+            			    <td itemprop="eduCode">@ev.EduProfile.EduProgram.Code</td>
     				        <td itemprop="eduName">@ev.EduProgramProfileTitle</td>
-                            <td itemprop="eduLevel">@ev.EduProgramProfile.EduLevel.Title</td>
+                            <td itemprop="eduLevel">@ev.EduProfile.EduLevel.Title</td>
     				        <td>@ev.Year.Year</td>
     				        <td itemprop="eduForm">@ev.EduFormTitle</td>
     				        @if (Model.Settings.ShowTimeToLearnMonths) {

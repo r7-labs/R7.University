@@ -345,7 +345,7 @@
     <Compile Include="Models\Science.cs" />
     <Compile Include="ModelExtensions\EduLevelExtensions.cs" />
     <Compile Include="ModelExtensions\EduFormExtensions.cs" />
-    <Compile Include="Queries\EduProgramProfileQueryableExtensions.cs" />
+    <Compile Include="Queries\EduProfileQueryableExtensions.cs" />
     <Compile Include="Models\DivisionLevel.cs" />
     <Compile Include="ModelExtensions\YearExtensions.cs" />
     <Compile Include="Models\UniversityCrudProvider.cs" />

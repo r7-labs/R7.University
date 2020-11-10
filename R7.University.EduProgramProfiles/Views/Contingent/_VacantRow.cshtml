@@ -1,10 +1,10 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ContingentViewModel>
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<ContingentViewModel>
 @using DotNetNuke.Web.Mvc.Helpers
 @using R7.University.EduProgramProfiles.ViewModels
 
-<td itemprop="eduCode">@Model.EduProgramProfile.EduProgram.Code</td>
+<td itemprop="eduCode">@Model.EduProfile.EduProgram.Code</td>
 <td itemprop="nameProgVacant"><span itemprop="specialVacant">@Model.EduProgramProfileTitle</span></td>
-<td itemprop="@Model.EduLevelVacantItemProp">@Model.EduProgramProfile.EduLevel.Title</td>
+<td itemprop="@Model.EduLevelVacantItemProp">@Model.EduProfile.EduLevel.Title</td>
 <td>@Model.Course</td>
 <td itemprop="eduForm">@Model.EduFormTitle</td>
 <td itemprop="numberBFVacant">@Model.VacantFB</td>
