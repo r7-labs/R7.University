@@ -169,12 +169,12 @@ namespace R7.University.Employees
         {
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
-            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext).ListByEduLevels (Settings.EduLevels)
+            var eduProfiles = new EduProfileQuery (ModelContext).ListByEduLevels (Settings.EduLevels)
                 .Select (epp => new EduProgramProfileViewModel (epp, viewModel))
                 .ToList ();
 
             if (Settings.ShowAllTeachers) {
-                eduProgramProfiles.Add (new EduProgramProfileViewModel (
+                eduProfiles.Add (new EduProgramProfileViewModel (
                     new EduProfileInfo {
                         EduProgramProfileID = Null.NullInteger,
                         EduProgram = new EduProgramInfo
@@ -186,13 +186,13 @@ namespace R7.University.Employees
                 );
             }
 
-            if (eduProgramProfiles.Count > 0) {
+            if (eduProfiles.Count > 0) {
 
                 var teachers = new TeachersQuery (ModelContext).List ();
 
                 IEnumerable<IEmployee> eduProgramProfileTeachers;
 
-                foreach (var eduProgramProfile in eduProgramProfiles) {
+                foreach (var eduProgramProfile in eduProfiles) {
                     if (!Null.IsNull (eduProgramProfile.EduProgramProfileID)) {
                         eduProgramProfileTeachers = teachers
                             .Where (t => t.Disciplines.Any (
@@ -214,7 +214,7 @@ namespace R7.University.Employees
                 }
             }
 
-            viewModel.EduProgramProfiles = eduProgramProfiles;
+            viewModel.EduProgramProfiles = eduProfiles;
             return viewModel;
         }
 

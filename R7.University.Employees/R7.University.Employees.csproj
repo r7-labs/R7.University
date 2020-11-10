@@ -232,7 +232,7 @@
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeDirectoryTeachersViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
-    <Compile Include="Queries\EduProgramProfileQuery.cs" />
+    <Compile Include="Queries\EduProfileQuery.cs" />
     <Compile Include="Queries\EmployeeFindQuery.cs" />
     <Compile Include="Queries\OccupiedPositionQuery.cs" />
     <Compile Include="Queries\TeachersQuery.cs" />
