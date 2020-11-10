@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div runat="server" Visible='<%# Item.EduProgramProfiles_Visible %>'>
-                <asp:ListView runat="server" DataSource="<%# Item.EduProgramProfileViewModels %>" ItemType="R7.University.EduPrograms.ViewModels.EduProgramProfileViewModel">
+                <asp:ListView runat="server" DataSource="<%# Item.EduProgramProfileViewModels %>" ItemType="R7.University.EduPrograms.ViewModels.EduProfileViewModel">
                     <LayoutTemplate>
                         <div runat="server" class="u8y-eduprogram-profiles">
                             <div runat="server" id="itemPlaceholder"></div>
