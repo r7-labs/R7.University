@@ -84,10 +84,10 @@ namespace R7.University.Controls
                 .ThenBy (ep => ep.Title);
         }
 
-        IEnumerable<EduProgramProfileViewModel> GetEduProfiles (int eduProgramId, UniversityModelContext modelContext)
+        IEnumerable<EduProfileViewModel> GetEduProfiles (int eduProgramId, UniversityModelContext modelContext)
         {
             return new EduProfileQuery (modelContext).ListByEduProgram (eduProgramId)
-                .Select (epp => new EduProgramProfileViewModel (epp, ViewModelContext))
+                .Select (epp => new EduProfileViewModel (epp, ViewModelContext))
                 .OrderBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
                 .ThenBy (epp => epp.ProfileCode)

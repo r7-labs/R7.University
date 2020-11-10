@@ -106,7 +106,7 @@
     <Compile Include="Queries\EduProfileQuery.cs" />
     <Compile Include="ViewModels\DocumentTypeViewModel.cs" />
     <Compile Include="ViewModels\EduFormViewModel.cs" />
-    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
+    <Compile Include="ViewModels\EduProfileViewModel.cs" />
     <Compile Include="AgplSignature.ascx.cs">
       <DependentUpon>AgplSignature.ascx</DependentUpon>
     </Compile>
