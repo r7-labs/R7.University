@@ -1,24 +1,3 @@
-//
-//  ViewEduProgramProfileDirectory.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2019 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Globalization;
 using System.Linq;
@@ -88,8 +67,8 @@ namespace R7.University.EduProgramProfiles
         internal EduProgramProfileDirectoryEduFormsViewModel GetEduFormsViewModel ()
         {
             return DataCache.GetCachedData<EduProgramProfileDirectoryEduFormsViewModel> (
-                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId 
-                                   + "&Culture=" + CultureInfo.CurrentCulture.TwoLetterISOLanguageName, 
+                new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId
+                                   + "&Culture=" + CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetEduFormsViewModel_Internal ()
             ).SetContext (ViewModelContext);
@@ -99,7 +78,7 @@ namespace R7.University.EduProgramProfiles
         {
             return DataCache.GetCachedData<EduProgramProfileDirectoryDocumentsViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgramProfileDirectory?ModuleId=" + ModuleId
-                                   + "&Culture=" + CultureInfo.CurrentCulture.TwoLetterISOLanguageName, 
+                                   + "&Culture=" + CultureInfo.CurrentCulture.TwoLetterISOLanguageName,
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
                 c => GetDocumentsViewModel_Internal ()
             ).SetContext (ViewModelContext);
@@ -110,11 +89,11 @@ namespace R7.University.EduProgramProfiles
             var viewModel = new EduProgramProfileDirectoryEduFormsViewModel ();
             var indexer = new ViewModelIndexer (1);
 
-            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
+            var eduProfiles = new EduProfileQuery (ModelContext)
                 .ListWithEduForms (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
-               
+
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileEduFormsViewModel> (indexer,
-                eduProgramProfiles.Select (epp => new EduProgramProfileEduFormsViewModel (epp, viewModel, indexer))
+                eduProfiles.Select (epp => new EduProgramProfileEduFormsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -125,11 +104,11 @@ namespace R7.University.EduProgramProfiles
             var viewModel = new EduProgramProfileDirectoryDocumentsViewModel ();
             var indexer = new ViewModelIndexer (1);
 
-            var eduProgramProfiles = new EduProgramProfileQuery (ModelContext)
+            var eduProfiles = new EduProfileQuery (ModelContext)
                 .ListWithDocuments (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
             viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileDocumentsViewModel> (indexer,
-                eduProgramProfiles.Select (epp => new EduProgramProfileDocumentsViewModel (epp, viewModel, indexer))
+                eduProfiles.Select (epp => new EduProgramProfileDocumentsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -144,15 +123,15 @@ namespace R7.University.EduProgramProfiles
             get {
                 var actions = new ModuleActionCollection ();
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("AddEduProgramProfile.Action"),
-                    ModuleActionType.AddContent, 
-                    "", 
+                    ModuleActionType.AddContent,
+                    "",
                     UniversityIcons.Add,
                     EditUrl ("EditEduProgramProfile"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
-                    SecurityContext.CanAdd (typeof (EduProfileInfo)), 
+                    SecurityContext.CanAdd (typeof (EduProfileInfo)),
                     false
                 );
 
@@ -195,13 +174,13 @@ namespace R7.University.EduProgramProfiles
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
-			
+
             try {
                 switch (Settings.Mode) {
                     case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
                         ObrnadzorEduFormsView ();
                         break;
-                    
+
                     case EduProgramProfileDirectoryMode.ObrnadzorDocuments:
                         ObrnadzorDocumentsView ();
                         break;
@@ -223,7 +202,7 @@ namespace R7.University.EduProgramProfiles
                 gridEduProgramProfileObrnadzorEduForms.DataBind ();
             }
             else {
-                this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
+                this.Message ("NothingToDisplay.Text", MessageType.Info, true);
             }
         }
 
@@ -238,7 +217,7 @@ namespace R7.University.EduProgramProfiles
                 gridEduProgramProfileObrnadzorDocuments.DataBind ();
             }
             else {
-                this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
+                this.Message ("NothingToDisplay.Text", MessageType.Info, true);
             }
         }
 
@@ -264,7 +243,7 @@ namespace R7.University.EduProgramProfiles
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id", 
+                    linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id",
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
@@ -302,7 +281,7 @@ namespace R7.University.EduProgramProfiles
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id", 
+                    linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id",
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }

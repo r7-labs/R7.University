@@ -153,7 +153,7 @@
     </Compile>
     <Compile Include="ViewModels\EduProgramProfileDirectoryDocumentsViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileDirectoryEduFormsViewModel.cs" />
-    <Compile Include="Queries\EduProgramProfileQuery.cs" />
+    <Compile Include="Queries\EduProfileQuery.cs" />
     <Compile Include="Models\EduProgramProfileDirectorySettings.cs" />
     <Compile Include="Models\EduProgramProfileDirectoryMode.cs" />
     <Compile Include="EditEduProgramProfile.ascx.controls.cs">
