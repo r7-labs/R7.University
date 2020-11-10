@@ -233,7 +233,7 @@
     <Compile Include="Tables\PositionsTable.cs" />
     <Compile Include="ViewModels\EduProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
-    <Compile Include="Queries\FindEduProgramProfileQuery.cs" />
+    <Compile Include="Queries\FindEduProfileQuery.cs" />
     <Compile Include="Queries\FindDivisionQuery.cs" />
     <Compile Include="Tables\AchievementTypesTable.cs" />
     <Compile Include="EditAchievementType.cs">
