@@ -33,9 +33,9 @@ namespace R7.University.EduProgramProfiles.Queries
         {
         }
 
-        public IList<EduProgramProfileInfo> ListWithEduForms (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
+        public IList<EduProfileInfo> ListWithEduForms (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
-            return ModelContext.Query<EduProgramProfileInfo> ()
+            return ModelContext.Query<EduProfileInfo> ()
                                .IncludeEduProgramAndDivisions ()
                                .IncludeEduProgramProfileFormYears ()
                                .WhereEduLevelsOrAll (eduLevelIds)
@@ -44,9 +44,9 @@ namespace R7.University.EduProgramProfiles.Queries
                                .ToList ();
         }
 
-        public IList<EduProgramProfileInfo> ListWithDocuments (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
+        public IList<EduProfileInfo> ListWithDocuments (IEnumerable<int> eduLevelIds, int? divisionId, DivisionLevel divisionLevel)
         {
-            return ModelContext.Query<EduProgramProfileInfo> ()
+            return ModelContext.Query<EduProfileInfo> ()
                                .IncludeEduProgramAndDivisions ()
                                .IncludeDocuments ()
                                .IncludeEduProgramProfileFormYearsAndForms ()

@@ -70,13 +70,13 @@ namespace R7.University.Models
             set { Employee = (EmployeeInfo) value; }
         }
 
-        public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
+        public virtual EduProfileInfo EduProgramProfile { get; set; }
 
         IEduProfile IEmployeeDiscipline.EduProgramProfile => EduProgramProfile;
 
         IEduProfile IEmployeeDisciplineWritable.EduProgramProfile {
             get { return EduProgramProfile; }
-            set { EduProgramProfile = (EduProgramProfileInfo) value; }
+            set { EduProgramProfile = (EduProfileInfo) value; }
         }
     }
 }

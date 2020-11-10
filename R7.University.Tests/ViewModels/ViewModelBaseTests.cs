@@ -73,10 +73,10 @@ namespace R7.University.Tests.ViewModels
             var eduProgramViewModel = new EduProgramViewModel (eduProgram);
             CheckPropertiesEqual (typeof (IEduProgram), eduProgram, eduProgramViewModel);
 
-            fixture.Customize<EduProgramProfileInfo> (c => c.Without (epp => epp.Divisions)
+            fixture.Customize<EduProfileInfo> (c => c.Without (epp => epp.Divisions)
                                                       .Without (epp => epp.EduLevel)
                                                       .Without (epp => epp.EduProgramProfileFormYears));
-            var eduProgramProfile = fixture.Create<EduProgramProfileInfo> ();
+            var eduProgramProfile = fixture.Create<EduProfileInfo> ();
             var eduProgramProfileViewModel = new EduProgramProfileViewModel (eduProgramProfile);
             CheckPropertiesEqual (typeof (IEduProfile), eduProgramProfile, eduProgramProfileViewModel);
         }

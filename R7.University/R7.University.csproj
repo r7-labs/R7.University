@@ -324,7 +324,7 @@
     <Compile Include="Models\EduProgram.cs" />
     <Compile Include="Models\EduProgramDivision.cs" />
     <Compile Include="Models\EduProgramProfileForm.cs" />
-    <Compile Include="Models\EduProgramProfile.cs" />
+    <Compile Include="Models\EduProfile.cs" />
     <Compile Include="Models\EmployeeAchievement.cs" />
     <Compile Include="Models\EmployeeDiscipline.cs" />
     <Compile Include="Models\Employee.cs" />

@@ -34,7 +34,7 @@ using R7.University.Queries;
 
 namespace R7.University.EduProgramProfiles
 {
-    public partial class EditEduProgramProfileDocuments: UniversityEditPortalModuleBase<EduProgramProfileInfo>, IActionable
+    public partial class EditEduProgramProfileDocuments: UniversityEditPortalModuleBase<EduProfileInfo>, IActionable
     {
         protected EditEduProgramProfileDocuments () : base ("eduprogramprofile_id")
         {
@@ -52,7 +52,7 @@ namespace R7.University.EduProgramProfiles
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
-        protected override string GetContextString (EduProgramProfileInfo item)
+        protected override string GetContextString (EduProfileInfo item)
         {
             if (item != null) {
                 return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
@@ -60,7 +60,7 @@ namespace R7.University.EduProgramProfiles
             return null;
         }
 
-        protected override void LoadItem (EduProgramProfileInfo item)
+        protected override void LoadItem (EduProfileInfo item)
         {
             var epp = GetItemWithDependencies (item.EduProgramProfileID);
             base.LoadItem (epp);
@@ -68,29 +68,29 @@ namespace R7.University.EduProgramProfiles
             formEditDocuments.SetData (epp.Documents, epp.EduProgramProfileID);
         }
 
-        protected override void BeforeUpdateItem (EduProgramProfileInfo item, bool isNew)
+        protected override void BeforeUpdateItem (EduProfileInfo item, bool isNew)
         {
             item.LastModifiedOnDate = DateTime.Now;
             item.LastModifiedByUserId = UserInfo.UserID;
         }
 
-        protected EduProgramProfileInfo GetItemWithDependencies (int itemId)
+        protected EduProfileInfo GetItemWithDependencies (int itemId)
         {
             return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }
 
-        protected override bool CanDeleteItem (EduProgramProfileInfo item) => false;
+        protected override bool CanDeleteItem (EduProfileInfo item) => false;
 
         #region Implemented abstract members of UniversityEditPortalModuleBase
 
-        protected override int GetItemId (EduProgramProfileInfo item) => item.EduProgramProfileID;
+        protected override int GetItemId (EduProfileInfo item) => item.EduProgramProfileID;
 
-        protected override void AddItem (EduProgramProfileInfo item)
+        protected override void AddItem (EduProfileInfo item)
         {
             throw new InvalidOperationException ();
         }
 
-        protected override void UpdateItem (EduProgramProfileInfo item)
+        protected override void UpdateItem (EduProfileInfo item)
         {
             ModelContext.Update (item);
 
@@ -100,7 +100,7 @@ namespace R7.University.EduProgramProfiles
             ModelContext.SaveChanges ();
         }
 
-        protected override void DeleteItem (EduProgramProfileInfo item)
+        protected override void DeleteItem (EduProfileInfo item)
         {
             throw new InvalidOperationException ();
         }

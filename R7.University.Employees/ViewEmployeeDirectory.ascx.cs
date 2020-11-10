@@ -175,7 +175,7 @@ namespace R7.University.Employees
 
             if (Settings.ShowAllTeachers) {
                 eduProgramProfiles.Add (new EduProgramProfileViewModel (
-                    new EduProgramProfileInfo {
+                    new EduProfileInfo {
                         EduProgramProfileID = Null.NullInteger,
                         EduProgram = new EduProgramInfo
                             {

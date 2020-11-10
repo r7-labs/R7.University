@@ -29,7 +29,7 @@ namespace R7.University.Queries
 {
     public static class EduProgramProfileQueryableExtensions
     {
-        public static IQueryable<EduProgramProfileInfo> IncludeEduProgramAndDivisions (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        public static IQueryable<EduProfileInfo> IncludeEduProgramAndDivisions (this IQueryable<EduProfileInfo> eduProgramProfiles)
         {
             return eduProgramProfiles.Include (epp => epp.EduLevel)
                                      .Include (epp => epp.EduProgram)
@@ -39,7 +39,7 @@ namespace R7.University.Queries
                                         .ThenInclude (epd => epd.Divisions);
         }
 
-        public static IQueryable<EduProgramProfileInfo> IncludeEduProgramProfileFormYears (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        public static IQueryable<EduProfileInfo> IncludeEduProgramProfileFormYears (this IQueryable<EduProfileInfo> eduProgramProfiles)
         {
             return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
                                         .ThenInclude (eppfy => eppfy.Year)
@@ -49,13 +49,13 @@ namespace R7.University.Queries
                                         .ThenInclude (eppfy => eppfy.EduVolume);
         }
 
-        public static IQueryable<EduProgramProfileInfo> IncludeContingent (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        public static IQueryable<EduProfileInfo> IncludeContingent (this IQueryable<EduProfileInfo> eduProgramProfiles)
         {
             return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
                                         .ThenInclude (eppfy => eppfy.Contingent);
         }
 
-        public static IQueryable<EduProgramProfileInfo> IncludeEduProgramProfileFormYearsAndForms (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        public static IQueryable<EduProfileInfo> IncludeEduProgramProfileFormYearsAndForms (this IQueryable<EduProfileInfo> eduProgramProfiles)
         {
             return eduProgramProfiles.Include (epp => epp.EduProgramProfileFormYears)
                                         .ThenInclude (eppfy => eppfy.Year)
@@ -63,19 +63,19 @@ namespace R7.University.Queries
                                         .ThenInclude (eppfy => eppfy.EduForm);
         }
 
-        public static IQueryable<EduProgramProfileInfo> IncludeDivisions (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        public static IQueryable<EduProfileInfo> IncludeDivisions (this IQueryable<EduProfileInfo> eduProgramProfiles)
         {
             return eduProgramProfiles.Include (epp => epp.Divisions)
                                         .ThenInclude (d => d.Division);
         }
 
-        public static IQueryable<EduProgramProfileInfo> IncludeDocuments (this IQueryable<EduProgramProfileInfo> eduProgramProfiles)
+        public static IQueryable<EduProfileInfo> IncludeDocuments (this IQueryable<EduProfileInfo> eduProgramProfiles)
         {
             return eduProgramProfiles.Include (epp => epp.Documents)
                                         .ThenInclude (d => d.DocumentType);
         }
 
-        public static IQueryable<EduProgramProfileInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileInfo> eduProgramProfiles, IEnumerable<int> eduLevelIds)
+        public static IQueryable<EduProfileInfo> WhereEduLevelsOrAll (this IQueryable<EduProfileInfo> eduProgramProfiles, IEnumerable<int> eduLevelIds)
         {
             if (!eduLevelIds.IsNullOrEmpty ()) {
                 return eduProgramProfiles.Where (epp => eduLevelIds.Contains (epp.EduLevelId));
@@ -84,7 +84,7 @@ namespace R7.University.Queries
             return eduProgramProfiles;
         }
 
-        public static IQueryable<EduProgramProfileInfo> WhereDivisionOrAll (this IQueryable<EduProgramProfileInfo> eduProgramProfiles, int? divisionId, DivisionLevel divisionLevel)
+        public static IQueryable<EduProfileInfo> WhereDivisionOrAll (this IQueryable<EduProfileInfo> eduProgramProfiles, int? divisionId, DivisionLevel divisionLevel)
         {
             if (divisionId != null) {
                 if (divisionLevel == DivisionLevel.EduProgram) {
@@ -98,7 +98,7 @@ namespace R7.University.Queries
             return eduProgramProfiles;
         }
 
-        public static IQueryable<EduProgramProfileInfo> DefaultOrder (this IQueryable<EduProgramProfileInfo> source)
+        public static IQueryable<EduProfileInfo> DefaultOrder (this IQueryable<EduProfileInfo> source)
         {
             return source.OrderBy (epp => epp.EduProgram.EduLevel.SortIndex)
                          .ThenBy (epp => epp.EduProgram.Code)

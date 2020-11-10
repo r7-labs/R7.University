@@ -94,7 +94,7 @@ namespace R7.University.Models
         new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
     }
 
-    public class EduProgramProfileInfo: IEduProfileWritable
+    public class EduProfileInfo: IEduProfileWritable
     {
         public int EduProgramProfileID { get; set; }
 

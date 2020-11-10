@@ -42,7 +42,7 @@ namespace R7.University.Models
 
         ICollection<DocumentInfo> Documents { get; }
 
-        ICollection<EduProgramProfileInfo> EduProgramProfiles { get; }
+        ICollection<EduProfileInfo> EduProgramProfiles { get; }
 
         ICollection<EduProgramDivisionInfo> Divisions { get; }
 
@@ -67,7 +67,7 @@ namespace R7.University.Models
 
         new ICollection<DocumentInfo> Documents { get; set; }
 
-        new ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; }
+        new ICollection<EduProfileInfo> EduProgramProfiles { get; set; }
 
         new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
 
@@ -111,7 +111,7 @@ namespace R7.University.Models
 
         public virtual ICollection<DocumentInfo> Documents { get; set; } = new HashSet<DocumentInfo> ();
 
-        public virtual ICollection<EduProgramProfileInfo> EduProgramProfiles { get; set; } = new HashSet<EduProgramProfileInfo> ();
+        public virtual ICollection<EduProfileInfo> EduProgramProfiles { get; set; } = new HashSet<EduProfileInfo> ();
 
         public virtual ICollection<EduProgramDivisionInfo> Divisions { get; set; } = new HashSet<EduProgramDivisionInfo> ();
 

@@ -38,7 +38,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles
 {
-    public partial class EditEduProgramProfile: UniversityEditPortalModuleBase<EduProgramProfileInfo>, IActionable
+    public partial class EditEduProgramProfile: UniversityEditPortalModuleBase<EduProfileInfo>, IActionable
     {
         public enum EditEduProgramProfileTab
         {
@@ -156,7 +156,7 @@ namespace R7.University.EduProgramProfiles
             textLanguages.Text = UniversityConfig.Instance.EduProgramProfiles.DefaultLanguages;
         }
 
-        protected override string GetContextString (EduProgramProfileInfo item)
+        protected override string GetContextString (EduProfileInfo item)
         {
             if (item != null) {
                 return $"{item.FormatTitle ()} : {item.EduLevel.Title}";
@@ -164,7 +164,7 @@ namespace R7.University.EduProgramProfiles
             return null;
         }
 
-        protected override void LoadItem (EduProgramProfileInfo item)
+        protected override void LoadItem (EduProfileInfo item)
         {
             var epp = GetItemWithDependencies (ItemKey.Value);
             base.LoadItem (epp);
@@ -197,7 +197,7 @@ namespace R7.University.EduProgramProfiles
             formEditEduFormYears.SetData (epp.EduProgramProfileFormYears, epp.EduProgramProfileID);
         }
 
-        protected override void BeforeUpdateItem (EduProgramProfileInfo item, bool isNew)
+        protected override void BeforeUpdateItem (EduProfileInfo item, bool isNew)
         {
             // fill the object
             item.ProfileCode = textProfileCode.Text.Trim ();
@@ -226,20 +226,20 @@ namespace R7.University.EduProgramProfiles
             }
         }
 
-        protected EduProgramProfileInfo GetItemWithDependencies (int itemId)
+        protected EduProfileInfo GetItemWithDependencies (int itemId)
         {
             return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }
 
         #region Implemented abstract members of UniversityEditPortalModuleBase
 
-        protected override int GetItemId (EduProgramProfileInfo item) => item.EduProgramProfileID;
+        protected override int GetItemId (EduProfileInfo item) => item.EduProgramProfileID;
 
-        protected override void AddItem (EduProgramProfileInfo item)
+        protected override void AddItem (EduProfileInfo item)
         {
-            if (SecurityContext.CanAdd (typeof (EduProgramProfileInfo))) {
+            if (SecurityContext.CanAdd (typeof (EduProfileInfo))) {
 
-                new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (item);
+                new AddCommand<EduProfileInfo> (ModelContext, SecurityContext).Add (item);
                 ModelContext.SaveChanges (false);
 
                 new UpdateEduProgramProfileFormYearsCommand (ModelContext)
@@ -252,7 +252,7 @@ namespace R7.University.EduProgramProfiles
             }
         }
 
-        protected override void UpdateItem (EduProgramProfileInfo item)
+        protected override void UpdateItem (EduProfileInfo item)
         {
             // TODO: Use single transaction to update main entity along with all dependent ones?
 
@@ -267,10 +267,10 @@ namespace R7.University.EduProgramProfiles
             ModelContext.SaveChanges ();
         }
 
-        protected override void DeleteItem (EduProgramProfileInfo item)
+        protected override void DeleteItem (EduProfileInfo item)
         {
             // TODO: Also remove documents?
-            new DeleteCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Delete (item);
+            new DeleteCommand<EduProfileInfo> (ModelContext, SecurityContext).Delete (item);
             ModelContext.SaveChanges ();
         }
 

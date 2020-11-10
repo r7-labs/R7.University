@@ -34,9 +34,9 @@ namespace R7.University.Controls.Queries
         {
         }
 
-        public IList<EduProgramProfileInfo> ListByEduProgram (int eduProgramId)
+        public IList<EduProfileInfo> ListByEduProgram (int eduProgramId)
         {
-            return ModelContext.Query<EduProgramProfileInfo> ()
+            return ModelContext.Query<EduProfileInfo> ()
                 .Include2 (epp => epp.EduProgram)
                 .Include2 (epp => epp.EduProgram.EduLevel)
                 .Include2 (epp => epp.EduLevel)
@@ -44,9 +44,9 @@ namespace R7.University.Controls.Queries
                 .ToList ();
         }
 
-        public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
+        public EduProfileInfo SingleOrDefault (int eduProgramProfileId)
         {
-            return ModelContext.QueryWhere<EduProgramProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
+            return ModelContext.QueryWhere<EduProfileInfo> (epp => epp.EduProgramProfileID == eduProgramProfileId)
                 .Include2 (epp => epp.EduProgram)
                 .Include2 (epp => epp.EduProgram.EduLevel)
                 .Include2 (epp => epp.EduLevel)

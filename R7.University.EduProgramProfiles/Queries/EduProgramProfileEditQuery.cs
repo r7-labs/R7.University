@@ -32,9 +32,9 @@ namespace R7.University.EduProgramProfiles.Queries
         {
         }
 
-        public EduProgramProfileInfo SingleOrDefault (int eduProgramProfileId)
+        public EduProfileInfo SingleOrDefault (int eduProgramProfileId)
         {
-            return ModelContext.Query<EduProgramProfileInfo> ()
+            return ModelContext.Query<EduProfileInfo> ()
                 .Where (epp => epp.EduProgramProfileID == eduProgramProfileId)
                 .Include2 (epp => epp.EduProgram)
                 .Include2 (epp => epp.EduProgram.EduLevel)

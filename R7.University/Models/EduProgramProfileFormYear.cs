@@ -1,4 +1,4 @@
-﻿//
+//
 //  EduProgramProfileFormYear.cs
 //
 //  Author:
@@ -116,13 +116,13 @@ namespace R7.University.Models
             set { Contingent = (ContingentInfo) value; }
         }
 
-        public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
+        public virtual EduProfileInfo EduProgramProfile { get; set; }
 
         IEduProfile IEduProgramProfileFormYear.EduProgramProfile => EduProgramProfile;
 
         IEduProfile IEduProgramProfileFormYearWritable.EduProgramProfile {
             get { return EduProgramProfile; }
-            set { EduProgramProfile = (EduProgramProfileInfo) value; }
+            set { EduProgramProfile = (EduProfileInfo) value; }
         }
     }
 }

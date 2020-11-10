@@ -27,11 +27,11 @@ using R7.University.Models;
 
 namespace R7.University.Data.Mappings
 {
-    public class EduProgramProfileConfiguration: IEntityTypeConfiguration<EduProgramProfileInfo>
+    public class EduProgramProfileConfiguration: IEntityTypeConfiguration<EduProfileInfo>
     {
-        public void Configure (EntityTypeBuilder<EduProgramProfileInfo> entityBuilder)
+        public void Configure (EntityTypeBuilder<EduProfileInfo> entityBuilder)
         {
-            entityBuilder.ToTable (DnnTableMappingHelper.GetTableName<EduProgramProfileInfo> ("University", t => "EduProgramProfiles"));
+            entityBuilder.ToTable (DnnTableMappingHelper.GetTableName<EduProfileInfo> ("University", t => "EduProgramProfiles"));
             entityBuilder.HasKey (m => m.EduProgramProfileID);
             entityBuilder.Property (m => m.EduProgramProfileID).ValueGeneratedOnAdd ();
             entityBuilder.Property (m => m.EduProgramID).IsRequired ();

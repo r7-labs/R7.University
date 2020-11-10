@@ -33,17 +33,17 @@ namespace R7.University.Launchpad.Queries
         {
         }
 
-        public IList<EduProgramProfileInfo> List (string search)
+        public IList<EduProfileInfo> List (string search)
         {
             // FIXME: Cannot set comparison options
             return ((search != null)
-                ? ModelContext.Query<EduProgramProfileInfo> ()
+                ? ModelContext.Query<EduProfileInfo> ()
                     .Include2 (epp => epp.EduProgram)
                     .Where (p => p.ProfileCode.Contains (search) 
                         || p.ProfileTitle.Contains (search)
                         || p.EduProgram.Code.Contains (search)
                         || p.EduProgram.Title.Contains (search))
-                : ModelContext.Query<EduProgramProfileInfo> ()
+                : ModelContext.Query<EduProfileInfo> ()
                     .Include2 (epp => epp.EduProgram)
             ).ToList ();
         }

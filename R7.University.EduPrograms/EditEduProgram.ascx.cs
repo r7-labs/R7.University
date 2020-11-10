@@ -156,7 +156,7 @@ namespace R7.University.EduPrograms
             gridEduProgramProfiles.DataBind ();
 
             buttonDelete.Visible = SecurityContext.CanDelete (ep);
-            linkAddEduProgramProfile.Visible = SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
+            linkAddEduProgramProfile.Visible = SecurityContext.CanAdd (typeof (EduProfileInfo));
             panelAddDefaultProfile.Visible = false;
         }
 
@@ -165,7 +165,7 @@ namespace R7.University.EduPrograms
             base.LoadNewItem ();
 
             linkAddEduProgramProfile.Visible = false;
-            panelAddDefaultProfile.Visible = SecurityContext.CanAdd (typeof (EduProgramProfileInfo));
+            panelAddDefaultProfile.Visible = SecurityContext.CanAdd (typeof (EduProfileInfo));
         }
 
         protected override void BeforeUpdateItem (EduProgramInfo item, bool isNew)
@@ -206,7 +206,7 @@ namespace R7.University.EduPrograms
                 ModelContext.SaveChanges (false);
 
                 if (checkAddDefaultProfile.Checked) {
-                    var defaultProfile = new EduProgramProfileInfo {
+                    var defaultProfile = new EduProfileInfo {
                         ProfileCode = string.Empty,
                         ProfileTitle = string.Empty,
                         EduProgramID = item.EduProgramID,
@@ -216,7 +216,7 @@ namespace R7.University.EduPrograms
                         EndDate = item.CreatedOnDate.Date
                     };
 
-                    new AddCommand<EduProgramProfileInfo> (ModelContext, SecurityContext).Add (defaultProfile, now);
+                    new AddCommand<EduProfileInfo> (ModelContext, SecurityContext).Add (defaultProfile, now);
                     ModelContext.SaveChanges (false);
                 }
 
