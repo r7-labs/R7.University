@@ -48,18 +48,18 @@ namespace R7.University.Queries
 
         public static IQueryable<EduProgramInfo> IncludeEduProgramProfiles (this IQueryable<EduProgramInfo> eduPrograms)
         {
-            return eduPrograms.Include (ep => ep.EduProgramProfiles)
+            return eduPrograms.Include (ep => ep.EduProfiles)
                                 .ThenInclude (epp => epp.EduLevel)
-                              .Include (ep => ep.EduProgramProfiles)
+                              .Include (ep => ep.EduProfiles)
                                 .ThenInclude (eppd => eppd.Divisions)
                                     .ThenInclude (d => d.Division)
-                              .Include (ep => ep.EduProgramProfiles)
+                              .Include (ep => ep.EduProfiles)
                                 .ThenInclude (epp => epp.EduProgramProfileFormYears)
                                     .ThenInclude (eppfy => eppfy.EduForm)
-                              .Include (ep => ep.EduProgramProfiles)
+                              .Include (ep => ep.EduProfiles)
                                 .ThenInclude (epp => epp.EduProgramProfileFormYears)
                                     .ThenInclude (eppfy => eppfy.EduVolume)
-                              .Include (ep => ep.EduProgramProfiles)
+                              .Include (ep => ep.EduProfiles)
                                 .ThenInclude (epp => epp.EduProgramProfileFormYears)
                                     .ThenInclude (eppfy => eppfy.Year);
         }

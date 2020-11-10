@@ -56,7 +56,7 @@ namespace R7.University.ModelExtensions
 
         public static string SearchText (this IEduProgram eduProgram)
         {
-            return eduProgram.EduProgramProfiles.Select (epp => epp.FormatTitle ()).JoinNotNullOrEmpty ("; ");
+            return eduProgram.EduProfiles.Select (epp => epp.FormatTitle ()).JoinNotNullOrEmpty ("; ");
         }
     }
 }

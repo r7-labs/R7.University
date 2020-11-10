@@ -66,7 +66,7 @@ namespace R7.University.Tests.ViewModels
             // CheckProperties (typeof (IEmployeeAchievement), employeeAchievement, employeeAchievementViewModel);
 
             fixture.Customize<EduProgramInfo> (c => c.Without (ep => ep.Divisions)
-                                               .Without (ep => ep.EduProgramProfiles)
+                                               .Without (ep => ep.EduProfiles)
                                                .Without (ep => ep.EduLevel)
                                                .Without (ep => ep.Science));
             var eduProgram = fixture.Create<EduProgramInfo> ();

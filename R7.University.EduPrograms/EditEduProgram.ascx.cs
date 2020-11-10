@@ -148,7 +148,7 @@ namespace R7.University.EduPrograms
             // setup link for adding new edu. program profile
             linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", ep.EduProgramID.ToString (), "EditEduProgramProfile");
 
-            gridEduProgramProfiles.DataSource = ep.EduProgramProfiles
+            gridEduProgramProfiles.DataSource = ep.EduProfiles
                 .Select (epp => new EduProgramProfileEditModel (epp, ViewModelContext))
                 .OrderBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle);

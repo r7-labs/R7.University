@@ -110,7 +110,7 @@ namespace R7.University.EduPrograms.ViewModels
         public IEnumerable<EduProgramProfileViewModel> EduProgramProfileViewModels {
             get {
                 var now = HttpContext.Current.Timestamp;
-                return EduProgram.EduProgramProfiles
+                return EduProgram.EduProfiles
                                  .Where (epp => epp.IsPublished (now) || Context.Module.IsEditable)
                                  .Select (epp => new EduProgramProfileViewModel (epp, RootViewModel));
             }

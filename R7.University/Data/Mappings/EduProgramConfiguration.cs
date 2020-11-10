@@ -48,7 +48,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.HasOne (m => m.EduLevel).WithMany ().HasForeignKey (m => m.EduLevelID);
             entityBuilder.HasOne (m => m.Science).WithOne (ep => ep.EduProgram).HasForeignKey<ScienceInfo> (s => s.ScienceId);
             entityBuilder.HasMany (m => m.Documents).WithOne ().HasForeignKey (d => d.EduProgramId);
-            entityBuilder.HasMany (m => m.EduProgramProfiles).WithOne (epp => epp.EduProgram).HasForeignKey (epp => epp.EduProgramID);
+            entityBuilder.HasMany (m => m.EduProfiles).WithOne (epp => epp.EduProgram).HasForeignKey (epp => epp.EduProgramID);
         }
     }
 }
