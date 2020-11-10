@@ -26,7 +26,7 @@ namespace R7.University.Employees.ViewModels
 {
     internal class EmployeeDirectoryTeachersViewModel
     {
-        public IEnumerable<EduProgramProfileViewModel> EduProgramProfiles { get; set; }
+        public IEnumerable<EduProfileViewModel> EduProgramProfiles { get; set; }
 
         public ViewModelContext Context { get; protected set; }
 

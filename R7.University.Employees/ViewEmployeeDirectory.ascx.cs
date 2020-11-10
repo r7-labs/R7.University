@@ -170,11 +170,11 @@ namespace R7.University.Employees
             var viewModel = new EmployeeDirectoryTeachersViewModel ();
 
             var eduProfiles = new EduProfileQuery (ModelContext).ListByEduLevels (Settings.EduLevels)
-                .Select (epp => new EduProgramProfileViewModel (epp, viewModel))
+                .Select (epp => new EduProfileViewModel (epp, viewModel))
                 .ToList ();
 
             if (Settings.ShowAllTeachers) {
-                eduProfiles.Add (new EduProgramProfileViewModel (
+                eduProfiles.Add (new EduProfileViewModel (
                     new EduProfileInfo {
                         EduProgramProfileID = Null.NullInteger,
                         EduProgram = new EduProgramInfo
@@ -271,7 +271,7 @@ namespace R7.University.Employees
             var now = HttpContext.Current.Timestamp;
 
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-                var eduProgramProfile = (EduProgramProfileViewModel) e.Item.DataItem;
+                var eduProgramProfile = (EduProfileViewModel) e.Item.DataItem;
 
                 // find controls in the template
                 var panelTeachers = (Panel) e.Item.FindControl ("panelTeachers");

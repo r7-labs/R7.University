@@ -229,7 +229,7 @@
     <Compile Include="ViewEmployeeDirectory.ascx.controls.cs">
       <DependentUpon>ViewEmployeeDirectory.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
+    <Compile Include="ViewModels\EduProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeDirectoryTeachersViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
     <Compile Include="Queries\EduProfileQuery.cs" />
