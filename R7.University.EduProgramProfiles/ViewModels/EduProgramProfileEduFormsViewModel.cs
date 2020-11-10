@@ -46,7 +46,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public ViewModelIndexer Indexer { get; protected set; }
 
         public EduProgramProfileEduFormsViewModel (
-            IEduProgramProfile model,
+            IEduProfile model,
             EduProgramProfileDirectoryEduFormsViewModel rootViewModel,
             ViewModelIndexer indexer): base (model)
         {

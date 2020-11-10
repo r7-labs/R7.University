@@ -35,11 +35,11 @@ namespace R7.University.Employees.ViewModels
     {
         public EmployeeDirectoryTeachersViewModel RootViewModel { get; protected set; }
 
-        public IEduProgramProfile EduProgramProfile { get; protected set; }
+        public IEduProfile EduProgramProfile { get; protected set; }
 
         public ViewModelIndexer Indexer { get; protected set; }
 
-        public TeacherViewModel (IEmployee model, IEduProgramProfile eduProgramProfile, EmployeeDirectoryTeachersViewModel rootViewModel, ViewModelIndexer indexer)
+        public TeacherViewModel (IEmployee model, IEduProfile eduProgramProfile, EmployeeDirectoryTeachersViewModel rootViewModel, ViewModelIndexer indexer)
             : base (model)
         {
             RootViewModel = rootViewModel;

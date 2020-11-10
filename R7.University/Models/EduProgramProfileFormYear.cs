@@ -42,7 +42,7 @@ namespace R7.University.Models
 
         IContingent Contingent { get; }
 
-        IEduProgramProfile EduProgramProfile { get; }
+        IEduProfile EduProgramProfile { get; }
     }
 
     public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear, IPublishableEntityWritable
@@ -63,7 +63,7 @@ namespace R7.University.Models
 
         new IContingent Contingent { get; set; }
 
-        new IEduProgramProfile EduProgramProfile { get; set; }
+        new IEduProfile EduProgramProfile { get; set; }
     }
 
     public class EduProgramProfileFormYearInfo: IEduProgramProfileFormYearWritable
@@ -118,9 +118,9 @@ namespace R7.University.Models
 
         public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
 
-        IEduProgramProfile IEduProgramProfileFormYear.EduProgramProfile => EduProgramProfile;
+        IEduProfile IEduProgramProfileFormYear.EduProgramProfile => EduProgramProfile;
 
-        IEduProgramProfile IEduProgramProfileFormYearWritable.EduProgramProfile {
+        IEduProfile IEduProgramProfileFormYearWritable.EduProgramProfile {
             get { return EduProgramProfile; }
             set { EduProgramProfile = (EduProgramProfileInfo) value; }
         }

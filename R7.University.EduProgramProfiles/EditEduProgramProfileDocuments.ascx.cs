@@ -107,7 +107,7 @@ namespace R7.University.EduProgramProfiles
 
         #endregion
 
-        IEduProgramProfile GetEduProgramProfile ()
+        IEduProfile GetEduProgramProfile ()
         {
         	var eppId = ParseHelper.ParseToNullable<int> (Request.QueryString [Key]);
         	return eppId != null ? GetItemWithDependencies (eppId.Value) : null;

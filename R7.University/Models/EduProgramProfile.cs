@@ -24,7 +24,7 @@ using System.Collections.Generic;
 
 namespace R7.University.Models
 {
-    public interface IEduProgramProfile: ITrackableEntity, IPublishableEntity
+    public interface IEduProfile: ITrackableEntity, IPublishableEntity
     {
         int EduProgramProfileID { get; }
 
@@ -59,7 +59,7 @@ namespace R7.University.Models
         ICollection<EduProgramDivisionInfo> Divisions { get; }
     }
 
-    public interface IEduProgramProfileWritable: IEduProgramProfile, ITrackableEntityWritable, IPublishableEntityWritable
+    public interface IEduProgramProfileWritable: IEduProfile, ITrackableEntityWritable, IPublishableEntityWritable
     {
         new int EduProgramProfileID { get; set; }
 
@@ -132,7 +132,7 @@ namespace R7.University.Models
 
         public virtual EduProgramInfo EduProgram { get; set; }
 
-        IEduProgram IEduProgramProfile.EduProgram => EduProgram;
+        IEduProgram IEduProfile.EduProgram => EduProgram;
 
         IEduProgram IEduProgramProfileWritable.EduProgram {
             get { return EduProgram; }
@@ -141,7 +141,7 @@ namespace R7.University.Models
 
         public virtual EduLevelInfo EduLevel { get; set; }
 
-        IEduLevel IEduProgramProfile.EduLevel => EduLevel;
+        IEduLevel IEduProfile.EduLevel => EduLevel;
 
         IEduLevel IEduProgramProfileWritable.EduLevel {
             get { return EduLevel; }

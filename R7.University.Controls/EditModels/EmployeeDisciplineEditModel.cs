@@ -84,7 +84,7 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         [Obsolete]
-        public IEduProgramProfile EduProgramProfile { get; set; }
+        public IEduProfile EduProgramProfile { get; set; }
 
         #endregion
 

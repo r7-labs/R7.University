@@ -267,7 +267,7 @@ namespace R7.University.EduPrograms
         protected void gridEduProgramProfiles_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                var eduProfile = (IEduProgramProfile) e.Row.DataItem;
+                var eduProfile = (IEduProfile) e.Row.DataItem;
                 if (!eduProfile.IsPublished (HttpContext.Current.Timestamp)) {
                     e.Row.CssClass = gridEduProgramProfiles.GetRowStyle (e.Row).CssClass + " u8y-not-published";
                 }

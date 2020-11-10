@@ -36,7 +36,7 @@ namespace R7.University.Launchpad.ViewModels
             get { return EduProgramProfile.EduProgram.Title; }
         }
 
-        public EduProgramProfileViewModel (IEduProgramProfile model): base (model)
+        public EduProgramProfileViewModel (IEduProfile model): base (model)
         {
         }
     }

@@ -29,7 +29,7 @@ namespace R7.University.Controls.ViewModels
     {
         protected IViewModelContext Context;
 
-        public EduProgramProfileViewModel (IEduProgramProfile model, IViewModelContext viewModelContext) : base (model)
+        public EduProgramProfileViewModel (IEduProfile model, IViewModelContext viewModelContext) : base (model)
         {
             Context = viewModelContext;
         }

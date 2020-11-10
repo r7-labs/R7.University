@@ -45,7 +45,7 @@ namespace R7.University.Tests.ViewModels
 
     public class EduProgramProfileViewModel: EduProgramProfileViewModelBase
     {
-        public EduProgramProfileViewModel (IEduProgramProfile eduProgramProfile): base (eduProgramProfile) {}
+        public EduProgramProfileViewModel (IEduProfile eduProgramProfile): base (eduProgramProfile) {}
     }
 
     public class ViewModelBaseTests
@@ -78,7 +78,7 @@ namespace R7.University.Tests.ViewModels
                                                       .Without (epp => epp.EduProgramProfileFormYears));
             var eduProgramProfile = fixture.Create<EduProgramProfileInfo> ();
             var eduProgramProfileViewModel = new EduProgramProfileViewModel (eduProgramProfile);
-            CheckPropertiesEqual (typeof (IEduProgramProfile), eduProgramProfile, eduProgramProfileViewModel);
+            CheckPropertiesEqual (typeof (IEduProfile), eduProgramProfile, eduProgramProfileViewModel);
         }
 
         void CheckPropertiesEqual (Type type, object object1, object object2)

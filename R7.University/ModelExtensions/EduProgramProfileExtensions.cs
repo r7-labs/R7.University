@@ -29,12 +29,12 @@ namespace R7.University.ModelExtensions
     public static class EduProgramProfileExtensions
     {
         // TODO: Extend IDocument instead, rename to WhereDocumentType
-        public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProgramProfile eduProgramProfile, SystemDocumentType documentType)
+        public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProfile eduProgramProfile, SystemDocumentType documentType)
         {
             return eduProgramProfile.Documents.Where (d => d.GetSystemDocumentType () == documentType);
         }
 
-        public static string FormatTitle (this IEduProgramProfile epp, bool withEduProgramCode = true)
+        public static string FormatTitle (this IEduProfile epp, bool withEduProgramCode = true)
         {
             if (withEduProgramCode) {
                 return UniversityFormatHelper.FormatEduProgramProfileTitle (

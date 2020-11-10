@@ -45,7 +45,7 @@ namespace R7.University.Employees.ViewModels
 
         public IEmployee Employee => EmployeeDiscipline.Employee;
 
-        public IEduProgramProfile EduProgramProfile => EmployeeDiscipline.EduProgramProfile;
+        public IEduProfile EduProgramProfile => EmployeeDiscipline.EduProgramProfile;
 
         #endregion
 

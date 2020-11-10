@@ -40,7 +40,7 @@ namespace R7.University.EduPrograms.ViewModels
 
         protected ViewModelContext Context => RootViewModel.Context;
 
-        public EduProgramProfileViewModel (IEduProgramProfile model, EduProgramModuleViewModel rootViewModel) : base (model)
+        public EduProgramProfileViewModel (IEduProfile model, EduProgramModuleViewModel rootViewModel) : base (model)
         {
             RootViewModel = rootViewModel;
         }

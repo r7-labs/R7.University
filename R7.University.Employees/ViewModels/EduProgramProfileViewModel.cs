@@ -33,7 +33,7 @@ namespace R7.University.Employees.ViewModels
 
         public IndexedEnumerable<TeacherViewModel> Teachers { get; set; }
 
-        public EduProgramProfileViewModel (IEduProgramProfile model, EmployeeDirectoryTeachersViewModel rootViewModel)
+        public EduProgramProfileViewModel (IEduProfile model, EmployeeDirectoryTeachersViewModel rootViewModel)
             : base (model)
         {
             RootViewModel = rootViewModel;

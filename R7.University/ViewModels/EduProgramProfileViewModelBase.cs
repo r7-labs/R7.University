@@ -25,11 +25,11 @@ using R7.University.Models;
 
 namespace R7.University.ViewModels
 {
-    public abstract class EduProgramProfileViewModelBase: IEduProgramProfile
+    public abstract class EduProgramProfileViewModelBase: IEduProfile
     {
-        public IEduProgramProfile EduProgramProfile { get; protected set; }
+        public IEduProfile EduProgramProfile { get; protected set; }
 
-        protected EduProgramProfileViewModelBase (IEduProgramProfile model)
+        protected EduProgramProfileViewModelBase (IEduProfile model)
         {
             EduProgramProfile = model;
         }

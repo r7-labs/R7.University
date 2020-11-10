@@ -33,7 +33,7 @@ namespace R7.University.Models
 
         IEmployee Employee { get; }
 
-        IEduProgramProfile EduProgramProfile { get; }
+        IEduProfile EduProgramProfile { get; }
     }
 
     public interface IEmployeeDisciplineWritable: IEmployeeDiscipline
@@ -48,7 +48,7 @@ namespace R7.University.Models
 
         new IEmployee Employee { get; set; }
 
-        new IEduProgramProfile EduProgramProfile { get; set; }
+        new IEduProfile EduProgramProfile { get; set; }
     }
 
     public class EmployeeDisciplineInfo: IEmployeeDisciplineWritable
@@ -72,9 +72,9 @@ namespace R7.University.Models
 
         public virtual EduProgramProfileInfo EduProgramProfile { get; set; }
 
-        IEduProgramProfile IEmployeeDiscipline.EduProgramProfile => EduProgramProfile;
+        IEduProfile IEmployeeDiscipline.EduProgramProfile => EduProgramProfile;
 
-        IEduProgramProfile IEmployeeDisciplineWritable.EduProgramProfile {
+        IEduProfile IEmployeeDisciplineWritable.EduProgramProfile {
             get { return EduProgramProfile; }
             set { EduProgramProfile = (EduProgramProfileInfo) value; }
         }
