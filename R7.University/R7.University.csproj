@@ -225,7 +225,7 @@
     <Compile Include="Models\Delegates.cs" />
     <Compile Include="Models\SystemDocumentType.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
-    <Compile Include="ModelExtensions\EduProgramProfileExtensions.cs" />
+    <Compile Include="ModelExtensions\EduProfileExtensions.cs" />
     <Compile Include="Models\SystemEduForm.cs" />
     <Compile Include="Models\UniversityModelHelper.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />

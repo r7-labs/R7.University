@@ -26,7 +26,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.ModelExtensions
 {
-    public static class EduProgramProfileExtensions
+    public static class EduProfileExtensions
     {
         // TODO: Extend IDocument instead, rename to WhereDocumentType
         public static IEnumerable<IDocument> GetDocumentsOfType (this IEduProfile eduProgramProfile, SystemDocumentType documentType)
