@@ -162,7 +162,7 @@
     <Compile Include="EditEduProgramProfile.ascx.cs">
       <DependentUpon>EditEduProgramProfile.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Queries\EduProgramProfileEditQuery.cs" />
+    <Compile Include="Queries\EduProfileEditQuery.cs" />
     <Compile Include="Controllers\EduVolumeController.cs" />
     <Compile Include="ViewModels\EduVolumeDirectoryViewModel.cs" />
     <Compile Include="Models\EduVolumeDirectorySettings.cs" />

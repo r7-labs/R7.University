@@ -76,7 +76,7 @@ namespace R7.University.EduProgramProfiles
 
         protected EduProfileInfo GetItemWithDependencies (int itemId)
         {
-            return new EduProgramProfileEditQuery (ModelContext).SingleOrDefault (itemId);
+            return new EduProfileEditQuery (ModelContext).SingleOrDefault (itemId);
         }
 
         protected override bool CanDeleteItem (EduProfileInfo item) => false;
