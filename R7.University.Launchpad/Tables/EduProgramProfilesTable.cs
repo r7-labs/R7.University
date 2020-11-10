@@ -38,7 +38,7 @@ namespace R7.University.Launchpad
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
         {
             var eduProgramProfiles = new FindEduProgramProfileQuery (modelContext).List (search)
-                .Select (epp => new EduProgramProfileViewModel (epp));
+                .Select (epp => new EduProfileViewModel (epp));
             
             return DataTableConstructor.FromIEnumerable (eduProgramProfiles);
         }

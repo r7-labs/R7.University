@@ -231,7 +231,7 @@
     <Compile Include="Tables\LaunchpadTableBase.cs" />
     <Compile Include="Tables\LaunchpadTables.cs" />
     <Compile Include="Tables\PositionsTable.cs" />
-    <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
+    <Compile Include="ViewModels\EduProfileViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Queries\FindEduProgramProfileQuery.cs" />
     <Compile Include="Queries\FindDivisionQuery.cs" />
