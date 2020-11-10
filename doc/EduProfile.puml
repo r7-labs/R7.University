@@ -1,0 +1,22 @@
+@startuml Edu. profiles
+
+EduProfile "1" -- "*" EduProfileForm
+EduForm "1" -- "*" EduProfileForm
+EduProfileForm "1" -- "*" Course
+Year "1" -- "*" Course
+Exam "1" -- "*" EduProfileFormExam
+EduProfileForm "1" -- "*" EduProfileFormExam
+
+class EduProfileForm {
+    TimeToLearnHours: int
+    TimeToLearnMonths: int
+    ..
+    AdmissionIsOpen: bool
+}
+
+class EduProfileFormExam {
+    Order: int
+    MinRate: decimal
+}
+
+@enduml
