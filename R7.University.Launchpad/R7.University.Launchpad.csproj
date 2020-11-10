@@ -225,7 +225,7 @@
     <Compile Include="Tables\DocumentTypesTable.cs" />
     <Compile Include="Tables\EduFormsTable.cs" />
     <Compile Include="Tables\EduLevelsTable.cs" />
-    <Compile Include="Tables\EduProgramProfilesTable.cs" />
+    <Compile Include="Tables\EduProfilesTable.cs" />
     <Compile Include="Tables\EduProgramsTable.cs" />
     <Compile Include="Tables\EmployeesTable.cs" />
     <Compile Include="Tables\LaunchpadTableBase.cs" />
