@@ -23,7 +23,6 @@ using System.Collections.Generic;
 using System.Linq;
 using DotNetNuke.Common.Utilities;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -35,7 +34,7 @@ namespace R7.University.Employees.ViewModels
     {
         public EmployeeDirectoryTeachersViewModel RootViewModel { get; protected set; }
 
-        public IEduProfile EduProgramProfile { get; protected set; }
+        public IEduProfile EduProfile { get; protected set; }
 
         public ViewModelIndexer Indexer { get; protected set; }
 
@@ -43,7 +42,7 @@ namespace R7.University.Employees.ViewModels
             : base (model)
         {
             RootViewModel = rootViewModel;
-            EduProgramProfile = eduProgramProfile;
+            EduProfile = eduProgramProfile;
             Indexer = indexer;
         }
 
@@ -65,11 +64,11 @@ namespace R7.University.Employees.ViewModels
         public string Disciplines_String =>
             _disciplinesString ?? (_disciplinesString = Span ("teachingDiscipline", GetDisciplinesString ())
                                    // duplicate edu. program profile data here
-                                   + ((EduProgramProfile != null && EduProgramProfile.EduLevel != null)
-                                        ? HiddenSpan ("teachingLevel", EduProgramProfile.EduLevel.Title) + HiddenSpan ("teachingQual", EduProgramProfile.FormatTitle ())
+                                   + ((EduProfile != null && EduProfile.EduLevel != null)
+                                        ? HiddenSpan ("teachingLevel", EduProfile.EduLevel.Title) + HiddenSpan ("teachingQual", EduProfile.FormatTitle ())
                                         : string.Empty)
         );
-     
+
         string _academicDegreesString;
         public string AcademicDegrees_String =>
             _academicDegreesString ?? (_academicDegreesString = Span ("degree", GetAcademicDegreesString ()));
@@ -77,11 +76,11 @@ namespace R7.University.Employees.ViewModels
         string _academicTitlesString;
         public string AcademicTitles_String =>
             _academicTitlesString ?? (_academicTitlesString = Span ("academStat", GetAcademicTitlesString ()));
-        
+
         string _educationString;
         public string Education_String =>
             _educationString ?? (_educationString = Span ("employeeQualification", GetEducationString ()));
-        
+
         string _trainingString;
         public string Training_String =>
             _trainingString ?? (_trainingString = Span ("profDevelopment", GetTrainingString ()));
@@ -125,9 +124,9 @@ namespace R7.University.Employees.ViewModels
 
         string GetDisciplinesString ()
         {
-            if (!Null.IsNull (EduProgramProfile.EduProgramProfileID)) {
+            if (!Null.IsNull (EduProfile.EduProgramProfileID)) {
                 var disciplines = Employee.Disciplines
-                    .FirstOrDefault (d => d.EduProgramProfileID == EduProgramProfile.EduProgramProfileID);
+                    .FirstOrDefault (d => d.EduProgramProfileID == EduProfile.EduProgramProfileID);
 
                 if (disciplines != null) {
                     return disciplines.Disciplines;
@@ -139,7 +138,7 @@ namespace R7.University.Employees.ViewModels
 
         string GetAcademicDegreesString ()
         {
-            return FormatHelper.JoinNotNullOrEmpty ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ",
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicDegree)
                                          .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
@@ -148,7 +147,7 @@ namespace R7.University.Employees.ViewModels
 
         string GetAcademicTitlesString ()
         {
-            return FormatHelper.JoinNotNullOrEmpty ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ",
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.GetSystemType () == SystemAchievementType.AcademicTitle)
                                          .Select (ach => UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix))
@@ -157,7 +156,7 @@ namespace R7.University.Employees.ViewModels
 
         string GetEducationString ()
         {
-            return FormatHelper.JoinNotNullOrEmpty ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ",
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education, SystemAchievementType.ProfTraining))
                                             .Select (ach => FormatHelper.JoinNotNullOrEmpty ("&nbsp;- ",
@@ -167,7 +166,7 @@ namespace R7.University.Employees.ViewModels
 
         string GetTrainingString ()
         {
-            return FormatHelper.JoinNotNullOrEmpty ("; ", 
+            return FormatHelper.JoinNotNullOrEmpty ("; ",
                                          AchievementViewModels
                                          .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Training, SystemAchievementType.ProfRetraining))
                                          .Select (ach => FormatHelper.JoinNotNullOrEmpty ("&nbsp;- ",
