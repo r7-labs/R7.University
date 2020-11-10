@@ -103,7 +103,7 @@
     <Compile Include="..\R7.University\Properties\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Queries\EduProgramProfileQuery.cs" />
+    <Compile Include="Queries\EduProfileQuery.cs" />
     <Compile Include="ViewModels\DocumentTypeViewModel.cs" />
     <Compile Include="ViewModels\EduFormViewModel.cs" />
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />

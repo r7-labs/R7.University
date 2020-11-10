@@ -86,7 +86,7 @@ namespace R7.University.Controls
 
         IEnumerable<EduProgramProfileViewModel> GetEduProfiles (int eduProgramId, UniversityModelContext modelContext)
         {
-            return new EduProgramProfileQuery (modelContext).ListByEduProgram (eduProgramId)
+            return new EduProfileQuery (modelContext).ListByEduProgram (eduProgramId)
                 .Select (epp => new EduProgramProfileViewModel (epp, ViewModelContext))
                 .OrderBy (epp => epp.EduProgram.Code)
                 .ThenBy (epp => epp.EduProgram.Title)
@@ -100,7 +100,7 @@ namespace R7.University.Controls
         protected override void OnLoadItem (EmployeeDisciplineEditModel item)
         {
             using (var modelContext = new UniversityModelContext ()) {
-                var eduProfile = new EduProgramProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
+                var eduProfile = new EduProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
                 var newEduProgramId = eduProfile.EduProgramID;
                 var eduProgramId = int.Parse (ddlEduProgram.SelectedValue);
 
@@ -123,7 +123,7 @@ namespace R7.University.Controls
             item.Disciplines = textDisciplines.Text.Trim ();
 
             using (var modelContext = new UniversityModelContext ()) {
-                var eduProfile = new EduProgramProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
+                var eduProfile = new EduProfileQuery (modelContext).SingleOrDefault (item.EduProgramProfileID);
                 item.Code = eduProfile.EduProgram.Code;
                 item.Title = eduProfile.EduProgram.Title;
                 item.ProfileCode = eduProfile.ProfileCode;
