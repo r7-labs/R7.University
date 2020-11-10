@@ -27,7 +27,7 @@ using R7.University.Models;
 
 namespace R7.University.Queries
 {
-    public static class EduProgramProfileQueryableExtensions
+    public static class EduProfileQueryableExtensions
     {
         public static IQueryable<EduProfileInfo> IncludeEduProgramAndDivisions (this IQueryable<EduProfileInfo> eduProgramProfiles)
         {
