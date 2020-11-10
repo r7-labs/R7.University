@@ -20,7 +20,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using R7.University.Models;
 
 namespace R7.University.Models
 {
@@ -42,7 +41,7 @@ namespace R7.University.Models
 
         IContingent Contingent { get; }
 
-        IEduProfile EduProgramProfile { get; }
+        IEduProfile EduProfile { get; }
     }
 
     public interface IEduProgramProfileFormYearWritable: IEduProgramProfileFormYear, IPublishableEntityWritable
@@ -63,7 +62,7 @@ namespace R7.University.Models
 
         new IContingent Contingent { get; set; }
 
-        new IEduProfile EduProgramProfile { get; set; }
+        new IEduProfile EduProfile { get; set; }
     }
 
     public class EduProgramProfileFormYearInfo: IEduProgramProfileFormYearWritable
@@ -116,13 +115,13 @@ namespace R7.University.Models
             set { Contingent = (ContingentInfo) value; }
         }
 
-        public virtual EduProfileInfo EduProgramProfile { get; set; }
+        public virtual EduProfileInfo EduProfile { get; set; }
 
-        IEduProfile IEduProgramProfileFormYear.EduProgramProfile => EduProgramProfile;
+        IEduProfile IEduProgramProfileFormYear.EduProfile => EduProfile;
 
-        IEduProfile IEduProgramProfileFormYearWritable.EduProgramProfile {
-            get { return EduProgramProfile; }
-            set { EduProgramProfile = (EduProfileInfo) value; }
+        IEduProfile IEduProgramProfileFormYearWritable.EduProfile {
+            get { return EduProfile; }
+            set { EduProfile = (EduProfileInfo) value; }
         }
     }
 }

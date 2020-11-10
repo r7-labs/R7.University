@@ -61,11 +61,11 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public IContingent Contingent => FormYear.Contingent;
 
-        public IEduProfile EduProgramProfile => FormYear.EduProgramProfile;
+        public IEduProfile EduProfile => FormYear.EduProfile;
 
-        public DateTime? StartDate => FormYear.EduProgramProfile.StartDate ?? FormYear.StartDate;
+        public DateTime? StartDate => FormYear.EduProfile.StartDate ?? FormYear.StartDate;
 
-        public DateTime? EndDate => FormYear.EduProgramProfile.EndDate ?? FormYear.EndDate;
+        public DateTime? EndDate => FormYear.EduProfile.EndDate ?? FormYear.EndDate;
 
         #endregion
 
@@ -81,8 +81,8 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string CssClass =>
             this.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
-        public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false)
-                                                        .Append (FormYear.EduProgramProfile.IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ");
+        public string EduProgramProfileTitle => FormYear.EduProfile.FormatTitle (withEduProgramCode: false)
+                                                        .Append (FormYear.EduProfile.IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ");
 
         public string Year1Cu => UniversityFormatHelper.ValueOrDash (FormYear.EduVolume?.Year1Cu);
 
@@ -122,7 +122,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string ItemProp =>
             Context.Settings.Mode == EduVolumeDirectoryMode.Practices
-                   ? (FormYear.EduProgramProfile.IsAdopted ? "adEduPr" : "eduPr")
+                   ? (FormYear.EduProfile.IsAdopted ? "adEduPr" : "eduPr")
                    : "eduOp";
 
         public string HtmlElementId => $"eduvolume_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";

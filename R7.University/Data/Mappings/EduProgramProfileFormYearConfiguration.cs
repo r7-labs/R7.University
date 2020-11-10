@@ -39,7 +39,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.YearId).IsRequired (false);
             entityBuilder.Property (m => m.StartDate).IsRequired (false);
             entityBuilder.Property (m => m.EndDate).IsRequired (false);
-            entityBuilder.HasOne (m => m.EduProgramProfile).WithMany (x => x.EduProgramProfileFormYears).HasForeignKey (m => m.EduProgramProfileId);
+            entityBuilder.HasOne (m => m.EduProfile).WithMany (x => x.EduProgramProfileFormYears).HasForeignKey (m => m.EduProgramProfileId);
             entityBuilder.HasOne (m => m.EduForm).WithMany ().HasForeignKey (m => m.EduFormId);
             entityBuilder.HasOne (m => m.Year).WithMany ().HasForeignKey (m => m.YearId);
             entityBuilder.HasOne (m => m.EduVolume).WithOne (x => x.EduProgramProfileFormYear).HasForeignKey<EduVolumeInfo> (ev => ev.EduVolumeId);

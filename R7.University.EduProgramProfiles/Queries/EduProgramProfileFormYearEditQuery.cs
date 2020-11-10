@@ -35,9 +35,9 @@ namespace R7.University.EduProgramProfiles.Queries
         public IEduProgramProfileFormYear SingleOrDefault (int eppfyId)
         {
             return ModelContext.QueryWhere<EduProgramProfileFormYearInfo> (eppfy => eppfy.EduProgramProfileFormYearId == eppfyId)
-                               .Include2 (eppfy => eppfy.EduProgramProfile)
-                               .Include2 (eppfy => eppfy.EduProgramProfile.EduLevel)
-                               .Include2 (eppfy => eppfy.EduProgramProfile.EduProgram)
+                               .Include2 (eppfy => eppfy.EduProfile)
+                               .Include2 (eppfy => eppfy.EduProfile.EduLevel)
+                               .Include2 (eppfy => eppfy.EduProfile.EduProgram)
                                .Include2 (eppfy => eppfy.EduForm)
                                .Include2 (eppfy => eppfy.Year)
                                .SingleOrDefault ();

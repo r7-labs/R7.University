@@ -65,11 +65,11 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public IContingent Contingent => FormYear.Contingent;
 
-        public IEduProfile EduProgramProfile => FormYear.EduProgramProfile;
+        public IEduProfile EduProfile => FormYear.EduProfile;
 
-        public DateTime? StartDate => FormYear.EduProgramProfile.StartDate ?? FormYear.StartDate;
+        public DateTime? StartDate => FormYear.EduProfile.StartDate ?? FormYear.StartDate;
 
-        public DateTime? EndDate => FormYear.EduProgramProfile.EndDate ?? FormYear.EndDate;
+        public DateTime? EndDate => FormYear.EduProfile.EndDate ?? FormYear.EndDate;
 
         #endregion
 
@@ -85,7 +85,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string CssClass =>
             this.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
-        public string EduProgramProfileTitle => FormYear.EduProgramProfile.FormatTitle (withEduProgramCode: false);
+        public string EduProgramProfileTitle => FormYear.EduProfile.FormatTitle (withEduProgramCode: false);
 
         public string EduFormTitle
         {
@@ -137,7 +137,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string EduLevelVacantItemProp {
             get {
                 // HACK: Hardcoded edu. levels
-                var eduLevel = EduProgramProfile.EduLevel.Title.ToLower ();
+                var eduLevel = EduProfile.EduLevel.Title.ToLower ();
                 if (eduLevel.Contains ("бакалавриат")) {
                     return "bachelorVacant";
                 }

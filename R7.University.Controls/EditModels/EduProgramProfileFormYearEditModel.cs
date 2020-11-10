@@ -101,7 +101,7 @@ namespace R7.University.Controls.EditModels
         public IYear Year { get; set; }
 
         [JsonIgnore]
-        public IEduProfile EduProgramProfile { get; set; }
+        public IEduProfile EduProfile { get; set; }
 
         [JsonIgnore]
         public IEduVolume EduVolume { get; set; }

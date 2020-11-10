@@ -1,4 +1,4 @@
-﻿//
+//
 //  EduProgramProfileFormYearQueryableExtensions.cs
 //
 //  Author:
@@ -29,23 +29,23 @@ namespace R7.University.Queries
     {
         public static IQueryable<EduProgramProfileFormYearInfo> IncludeEduProgramProfileWithEduProgramAndDivisions (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears)
         {
-            return eduProgramProfileFormYears.Include (eppfy => eppfy.EduProgramProfile)
+            return eduProgramProfileFormYears.Include (eppfy => eppfy.EduProfile)
                                                 .ThenInclude (epp => epp.EduLevel)
-                                             .Include (eppfy => eppfy.EduProgramProfile)
+                                             .Include (eppfy => eppfy.EduProfile)
                                                 .ThenInclude (eppd => eppd.Divisions)
-                                             .Include (eppfy => eppfy.EduProgramProfile)
+                                             .Include (eppfy => eppfy.EduProfile)
                                                 .ThenInclude (epp => epp.EduProgram)
                                                     .ThenInclude (ep => ep.EduLevel)
-                                             .Include (eppfy => eppfy.EduProgramProfile)
+                                             .Include (eppfy => eppfy.EduProfile)
                                                 .ThenInclude (epp => epp.EduProgram)
                                                     .ThenInclude (ep => ep.Divisions);
         }
 
         public static IQueryable<EduProgramProfileFormYearInfo> IncludeEduProgramProfileWithEduProgram (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears)
         {
-            return eduProgramProfileFormYears.Include (eppfy => eppfy.EduProgramProfile)
+            return eduProgramProfileFormYears.Include (eppfy => eppfy.EduProfile)
                                                 .ThenInclude (epp => epp.EduLevel)
-                                             .Include (eppfy => eppfy.EduProgramProfile)
+                                             .Include (eppfy => eppfy.EduProfile)
                                                 .ThenInclude (epp => epp.EduProgram);
         }
     }

@@ -1,4 +1,4 @@
-﻿//
+//
 //  EduProgramProfileFormYearQueryableExtensions.cs
 //
 //  Author:
@@ -31,20 +31,20 @@ namespace R7.University.EduProgramProfiles.Queries
         public static IQueryable<EduProgramProfileFormYearInfo> WhereEduLevelsOrAll (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, IEnumerable<int> eduLevelIds)
         {
             if (!eduLevelIds.IsNullOrEmpty ()) {
-                return eduProgramProfileFormYears.Where (eppfy => eduLevelIds.Contains (eppfy.EduProgramProfile.EduLevelId));
+                return eduProgramProfileFormYears.Where (eppfy => eduLevelIds.Contains (eppfy.EduProfile.EduLevelId));
             }
 
             return eduProgramProfileFormYears;
         }
 
         public static IQueryable<EduProgramProfileFormYearInfo> WhereDivisionOrAll (this IQueryable<EduProgramProfileFormYearInfo> eduProgramProfileFormYears, int? divisionId, DivisionLevel divisionLevel)
-        { 
+        {
             if (divisionId != null) {
                 if (divisionLevel == DivisionLevel.EduProgram) {
-                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProgramProfile.EduProgram.Divisions.Any (epd => epd.DivisionId == divisionId));
-                } 
+                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProfile.EduProgram.Divisions.Any (epd => epd.DivisionId == divisionId));
+                }
                 if (divisionLevel == DivisionLevel.EduProgramProfile) {
-                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProgramProfile.Divisions.Any (epd => epd.DivisionId == divisionId));
+                    return eduProgramProfileFormYears.Where (eppfy => eppfy.EduProfile.Divisions.Any (epd => epd.DivisionId == divisionId));
                 }
             }
 
@@ -53,14 +53,14 @@ namespace R7.University.EduProgramProfiles.Queries
 
         public static IOrderedQueryable<EduProgramProfileFormYearInfo> DefaultOrder (this IQueryable<EduProgramProfileFormYearInfo> source)
         {
-            return source.OrderBy (ev => ev.EduProgramProfile.EduProgram.EduLevel.SortIndex)
-                         .ThenBy (ev => ev.EduProgramProfile.EduProgram.Code)
-                         .ThenBy (ev => ev.EduProgramProfile.EduProgram.Title)
-                         .ThenBy (ev => ev.EduProgramProfile.ProfileCode)
-                         .ThenBy (ev => ev.EduProgramProfile.ProfileTitle
+            return source.OrderBy (ev => ev.EduProfile.EduProgram.EduLevel.SortIndex)
+                         .ThenBy (ev => ev.EduProfile.EduProgram.Code)
+                         .ThenBy (ev => ev.EduProfile.EduProgram.Title)
+                         .ThenBy (ev => ev.EduProfile.ProfileCode)
+                         .ThenBy (ev => ev.EduProfile.ProfileTitle
                                   // SQL-compatible PadLeft (10, '0') equivalent
-                                  + ("0000000000" + ev.EduProgramProfile.EduLevel.SortIndex.ToString ())
-                                    .Substring (ev.EduProgramProfile.EduLevel.SortIndex.ToString ().Length))
+                                  + ("0000000000" + ev.EduProfile.EduLevel.SortIndex.ToString ())
+                                    .Substring (ev.EduProfile.EduLevel.SortIndex.ToString ().Length))
                          .ThenBy (ev => ev.EduForm.SortIndex);
         }
     }
