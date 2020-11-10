@@ -43,7 +43,7 @@ namespace R7.University.Tests.ViewModels
         public EduProgramViewModel (IEduProgram eduProgram): base (eduProgram) {}
     }
 
-    public class EduProgramProfileViewModel: EduProgramProfileViewModelBase
+    public class EduProgramProfileViewModel: EduProfileViewModelBase
     {
         public EduProgramProfileViewModel (IEduProfile eduProgramProfile): base (eduProgramProfile) {}
     }

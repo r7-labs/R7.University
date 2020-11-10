@@ -243,7 +243,7 @@
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
-    <Compile Include="ViewModels\EduProgramProfileViewModelBase.cs" />
+    <Compile Include="ViewModels\EduProfileViewModelBase.cs" />
     <Compile Include="ViewModels\EmployeeViewModelBase.cs" />
     <Compile Include="ViewModels\EduProgramViewModelBase.cs" />
     <Compile Include="Data\UniversityDataContext.cs" />

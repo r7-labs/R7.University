@@ -27,7 +27,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Employees.ViewModels
 {
-    internal class EduProgramProfileViewModel: EduProgramProfileViewModelBase
+    internal class EduProgramProfileViewModel: EduProfileViewModelBase
     {
         public EmployeeDirectoryTeachersViewModel RootViewModel { get; protected set; }
 

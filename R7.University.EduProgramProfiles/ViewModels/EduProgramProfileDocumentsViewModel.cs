@@ -37,7 +37,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
-    internal class EduProgramProfileDocumentsViewModel : EduProgramProfileViewModelBase
+    internal class EduProgramProfileDocumentsViewModel : EduProfileViewModelBase
     {
         public EduProgramProfileDirectoryDocumentsViewModel RootViewModel { get; protected set; }
 

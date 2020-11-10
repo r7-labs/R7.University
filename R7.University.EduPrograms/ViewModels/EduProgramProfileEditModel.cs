@@ -25,7 +25,7 @@ using R7.Dnn.Extensions.ViewModels;
 
 namespace R7.University.EduPrograms.ViewModels
 {
-    public class EduProgramProfileEditModel: EduProgramProfileViewModelBase
+    public class EduProgramProfileEditModel: EduProfileViewModelBase
     {
         public ViewModelContext Context { get; protected set; }
 

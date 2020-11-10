@@ -25,7 +25,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Controls.ViewModels
 {
-    public class EduProgramProfileViewModel : EduProgramProfileViewModelBase
+    public class EduProgramProfileViewModel : EduProfileViewModelBase
     {
         protected IViewModelContext Context;
 
