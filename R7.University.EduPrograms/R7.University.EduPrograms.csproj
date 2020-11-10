@@ -134,7 +134,7 @@
     <Compile Include="ViewModels\EduProgramProfileViewModel.cs" />
     <Compile Include="ViewModels\EduProgramModuleViewModel.cs" />
     <Compile Include="Queries\EduProgramQuery.cs" />
-    <Compile Include="ViewModels\EduProgramProfileEditModel.cs" />
+    <Compile Include="ViewModels\EduProfileEditModel.cs" />
     <Compile Include="Models\EduProgramSettings.cs" />
     <Compile Include="ViewModels\EduProgramDivisionViewModel.cs" />
     <Compile Include="ViewEduProgramDirectory.ascx.cs">
