@@ -59,7 +59,7 @@ namespace R7.University.Models
         ICollection<EduProgramDivisionInfo> Divisions { get; }
     }
 
-    public interface IEduProgramProfileWritable: IEduProfile, ITrackableEntityWritable, IPublishableEntityWritable
+    public interface IEduProfileWritable: IEduProfile, ITrackableEntityWritable, IPublishableEntityWritable
     {
         new int EduProgramProfileID { get; set; }
 
@@ -94,7 +94,7 @@ namespace R7.University.Models
         new ICollection<EduProgramDivisionInfo> Divisions { get; set; }
     }
 
-    public class EduProgramProfileInfo: IEduProgramProfileWritable
+    public class EduProgramProfileInfo: IEduProfileWritable
     {
         public int EduProgramProfileID { get; set; }
 
@@ -134,7 +134,7 @@ namespace R7.University.Models
 
         IEduProgram IEduProfile.EduProgram => EduProgram;
 
-        IEduProgram IEduProgramProfileWritable.EduProgram {
+        IEduProgram IEduProfileWritable.EduProgram {
             get { return EduProgram; }
             set { EduProgram = (EduProgramInfo) value; }
         }
@@ -143,7 +143,7 @@ namespace R7.University.Models
 
         IEduLevel IEduProfile.EduLevel => EduLevel;
 
-        IEduLevel IEduProgramProfileWritable.EduLevel {
+        IEduLevel IEduProfileWritable.EduLevel {
             get { return EduLevel; }
             set { EduLevel = (EduLevelInfo) value; }
         }
