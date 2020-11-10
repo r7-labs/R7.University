@@ -107,8 +107,8 @@ namespace R7.University.EduProgramProfiles
             var eduProfiles = new EduProfileQuery (ModelContext)
                 .ListWithDocuments (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
-            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileDocumentsViewModel> (indexer,
-                eduProfiles.Select (epp => new EduProgramProfileDocumentsViewModel (epp, viewModel, indexer))
+            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProfileDocumentsViewModel> (indexer,
+                eduProfiles.Select (epp => new EduProfileDocumentsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -266,7 +266,7 @@ namespace R7.University.EduProgramProfiles
                 e.Row.TableSection = TableRowSection.TableHeader;
             }
             else if (e.Row.RowType == DataControlRowType.DataRow) {
-                var eduProgramProfile = (EduProgramProfileDocumentsViewModel) e.Row.DataItem;
+                var eduProgramProfile = (EduProfileDocumentsViewModel) e.Row.DataItem;
 
                 e.Row.Attributes.Add ("data-title", UniversityFormatHelper.FormatEduProgramProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
