@@ -50,20 +50,20 @@ namespace R7.University.EduPrograms.ViewModels
         public string Title_String => FormatHelper.JoinNotNullOrEmpty (
             ": ",
             Localization.GetString ("EduProgramProfile.Text", Context.LocalResourceFile),
-            UniversityFormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle)
+            UniversityFormatHelper.FormatEduProgramTitle (EduProfile.ProfileCode, EduProfile.ProfileTitle)
         );
         
-        public bool AccreditedToDate_Visible => EduProgramProfile.AccreditedToDate != null;
+        public bool AccreditedToDate_Visible => EduProfile.AccreditedToDate != null;
 
         public string AccreditedToDate_String =>
-            EduProgramProfile.AccreditedToDate != null ? EduProgramProfile.AccreditedToDate.Value.ToShortDateString () : string.Empty;
+            EduProfile.AccreditedToDate != null ? EduProfile.AccreditedToDate.Value.ToShortDateString () : string.Empty;
 
-        public bool CommunityAccreditedToDate_Visible => EduProgramProfile.CommunityAccreditedToDate != null;
+        public bool CommunityAccreditedToDate_Visible => EduProfile.CommunityAccreditedToDate != null;
 
         public string CommunityAccreditedToDate_String =>
-            EduProgramProfile.CommunityAccreditedToDate != null ? EduProgramProfile.CommunityAccreditedToDate.Value.ToShortDateString () : string.Empty;
+            EduProfile.CommunityAccreditedToDate != null ? EduProfile.CommunityAccreditedToDate.Value.ToShortDateString () : string.Empty;
 
-        public string EduLevel_Title => EduProgramProfile.EduLevel.Title;
+        public string EduLevel_Title => EduProfile.EduLevel.Title;
 
         public bool ImplementedEduForms_Visible => !ImplementedEduForms.IsNullOrEmpty ();
 
@@ -77,17 +77,17 @@ namespace R7.University.EduPrograms.ViewModels
 
         public string Edit_Url => Context.Module.EditUrl (
             "eduprogramprofile_id",
-            EduProgramProfile.EduProgramProfileID.ToString (),
+            EduProfile.EduProgramProfileID.ToString (),
             "EditEduProgramProfile"
         );
 
-        public string CssClass => EduProgramProfile.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
+        public string CssClass => EduProfile.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
         public bool DivisionsVisible =>
-            EduProgramProfile.Divisions.Any (epd => epd.Division.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable);
+            EduProfile.Divisions.Any (epd => epd.Division.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable);
 
         public IEnumerable<EduProgramDivisionViewModel> DivisionViewModels =>
-            EduProgramProfile.Divisions
+            EduProfile.Divisions
                              .Where (epd => epd.Division.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable)
                              .Select (epd => new EduProgramDivisionViewModel (epd));
 
@@ -109,7 +109,7 @@ namespace R7.University.EduPrograms.ViewModels
 
         IEnumerable<IEduProgramProfileFormYear> GetEduFormYearsForAdmission ()
         {
-            return EduProgramProfile.EduProgramProfileFormYears
+            return EduProfile.EduProgramProfileFormYears
                                     .Where (eppfy => eppfy.Year != null && eppfy.Year.AdmissionIsOpen && (eppfy.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable))
                                     .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }

@@ -17,9 +17,9 @@ namespace R7.University.Controls.ViewModels
         {
             get {
                 return UniversityFormatHelper.FormatEduProgramProfilePartialTitle (
-                    EduProgramProfile.ProfileCode,
-                    !string.IsNullOrEmpty (EduProgramProfile.ProfileTitle) ? EduProgramProfile.ProfileTitle : Context.LocalizeString ("EmptyProfileTitle.Text"),
-                    UniversityFormatHelper.FormatShortTitle (EduProgramProfile.EduLevel.ShortTitle, EduProgramProfile.EduLevel.Title)
+                    EduProfile.ProfileCode,
+                    !string.IsNullOrEmpty (EduProfile.ProfileTitle) ? EduProfile.ProfileTitle : Context.LocalizeString ("EmptyProfileTitle.Text"),
+                    UniversityFormatHelper.FormatShortTitle (EduProfile.EduLevel.ShortTitle, EduProfile.EduLevel.Title)
                 );
             }
         }

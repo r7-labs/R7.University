@@ -1,24 +1,3 @@
-//
-//  EduProgramProfileViewModelBase.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2016-2017 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using R7.University.Models;
@@ -27,58 +6,58 @@ namespace R7.University.ViewModels
 {
     public abstract class EduProfileViewModelBase: IEduProfile
     {
-        public IEduProfile EduProgramProfile { get; protected set; }
+        public IEduProfile EduProfile { get; protected set; }
 
         protected EduProfileViewModelBase (IEduProfile model)
         {
-            EduProgramProfile = model;
+            EduProfile = model;
         }
 
         #region IEduProgramProfile implementation
 
-        public int EduProgramProfileID => EduProgramProfile.EduProgramProfileID;
+        public int EduProgramProfileID => EduProfile.EduProgramProfileID;
 
-        public int EduProgramID => EduProgramProfile.EduProgramID;
+        public int EduProgramID => EduProfile.EduProgramID;
 
-        public int EduLevelId => EduProgramProfile.EduLevelId;
+        public int EduLevelId => EduProfile.EduLevelId;
 
-        public string ProfileCode => EduProgramProfile.ProfileCode;
+        public string ProfileCode => EduProfile.ProfileCode;
 
-        public string ProfileTitle => EduProgramProfile.ProfileTitle;
+        public string ProfileTitle => EduProfile.ProfileTitle;
 
-        public string Languages => EduProgramProfile.Languages;
+        public string Languages => EduProfile.Languages;
 
-        public bool IsAdopted => EduProgramProfile.IsAdopted;
+        public bool IsAdopted => EduProfile.IsAdopted;
 
-        public bool ELearning => EduProgramProfile.ELearning;
+        public bool ELearning => EduProfile.ELearning;
 
-        public bool DistanceEducation => EduProgramProfile.DistanceEducation;
+        public bool DistanceEducation => EduProfile.DistanceEducation;
 
-        public DateTime? AccreditedToDate => EduProgramProfile.AccreditedToDate;
+        public DateTime? AccreditedToDate => EduProfile.AccreditedToDate;
 
-        public DateTime? CommunityAccreditedToDate => EduProgramProfile.CommunityAccreditedToDate;
+        public DateTime? CommunityAccreditedToDate => EduProfile.CommunityAccreditedToDate;
 
-        public DateTime? StartDate => EduProgramProfile.StartDate;
+        public DateTime? StartDate => EduProfile.StartDate;
 
-        public DateTime? EndDate => EduProgramProfile.EndDate;
+        public DateTime? EndDate => EduProfile.EndDate;
 
-        public int LastModifiedByUserId => EduProgramProfile.LastModifiedByUserId;
+        public int LastModifiedByUserId => EduProfile.LastModifiedByUserId;
 
-        public DateTime LastModifiedOnDate => EduProgramProfile.LastModifiedOnDate;
+        public DateTime LastModifiedOnDate => EduProfile.LastModifiedOnDate;
 
-        public int CreatedByUserId => EduProgramProfile.CreatedByUserId;
+        public int CreatedByUserId => EduProfile.CreatedByUserId;
 
-        public DateTime CreatedOnDate => EduProgramProfile.CreatedOnDate;
+        public DateTime CreatedOnDate => EduProfile.CreatedOnDate;
 
-        public IEduProgram EduProgram => EduProgramProfile.EduProgram;
+        public IEduProgram EduProgram => EduProfile.EduProgram;
 
-        public IEduLevel EduLevel => EduProgramProfile.EduLevel;
+        public IEduLevel EduLevel => EduProfile.EduLevel;
 
-        public ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears => EduProgramProfile.EduProgramProfileFormYears;
+        public ICollection<EduProgramProfileFormYearInfo> EduProgramProfileFormYears => EduProfile.EduProgramProfileFormYears;
 
-        public ICollection<DocumentInfo> Documents => EduProgramProfile.Documents;
+        public ICollection<DocumentInfo> Documents => EduProfile.Documents;
 
-        public ICollection<EduProgramDivisionInfo> Divisions => EduProgramProfile.Divisions;
+        public ICollection<EduProgramDivisionInfo> Divisions => EduProfile.Divisions;
 
         #endregion
     }

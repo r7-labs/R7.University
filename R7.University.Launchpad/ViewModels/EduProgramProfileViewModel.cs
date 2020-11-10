@@ -28,12 +28,12 @@ namespace R7.University.Launchpad.ViewModels
     {
         public string Code
         {
-            get { return EduProgramProfile.EduProgram.Code; }
+            get { return EduProfile.EduProgram.Code; }
         }
 
         public string Title
         {
-            get { return EduProgramProfile.EduProgram.Title; }
+            get { return EduProfile.EduProgram.Title; }
         }
 
         public EduProgramProfileViewModel (IEduProfile model): base (model)

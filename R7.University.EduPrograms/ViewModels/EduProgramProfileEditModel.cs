@@ -38,19 +38,19 @@ namespace R7.University.EduPrograms.ViewModels
 
         public string EduProgramProfile_String
         {
-            get { return UniversityFormatHelper.FormatEduProgramTitle (EduProgramProfile.ProfileCode, EduProgramProfile.ProfileTitle); }
+            get { return UniversityFormatHelper.FormatEduProgramTitle (EduProfile.ProfileCode, EduProfile.ProfileTitle); }
         }
 
         public string EduLevel_String
         {
-            get { return EduProgramProfile.EduLevel.Title; }
+            get { return EduProfile.EduLevel.Title; }
         }
 
         public string Edit_Url => Context.Module.EditUrl (
-            "eduprogramprofile_id", EduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
+            "eduprogramprofile_id", EduProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
 
         public string EditDocuments_Url => Context.Module.EditUrl (
-	        "eduprogramprofile_id", EduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
+	        "eduprogramprofile_id", EduProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
 
         #endregion
     }

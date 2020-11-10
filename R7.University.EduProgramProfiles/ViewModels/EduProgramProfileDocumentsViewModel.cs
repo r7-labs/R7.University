@@ -164,7 +164,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetEduProgramLinks ()
         {
             return Wrap (FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
+                GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
                 UniversityFormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                     .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
                 "oop",
@@ -175,7 +175,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetEduPlanLinks ()
         {
             return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
+                GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
                 string.Empty,
                 "epl",
                 IsAdopted ? "itemprop=\"adEducationPlan\"" : "itemprop=\"educationPlan\""
@@ -185,7 +185,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetEduScheduleLinks ()
         {
             return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
+                GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
                 string.Empty,
                 "esh",
                 IsAdopted ? "itemprop=\"adEducationShedule\"" : "itemprop=\"educationShedule\""
@@ -195,7 +195,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetWorkProgramAnnotationLinks ()
         {
             return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
+                GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
                 string.Empty,
                 "wpa",
                 IsAdopted ? "itemprop=\"adEducationAnnotation\"" : "itemprop=\"educationAnnotation\""
@@ -205,7 +205,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetEduMaterialLinks ()
         {
             return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
+                GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
                 string.Empty,
                 "met",
                 IsAdopted ? "itemprop=\"adMethodology\"" : "itemprop=\"methodology\""
@@ -215,7 +215,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string GetWorkProgramLinks ()
         {
             return FormatDocumentsLinkWithData (
-                GetDocuments (EduProgramProfile.GetDocumentsOfType (SystemDocumentType.WorkProgram)),
+                GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.WorkProgram)),
                 string.Empty,
                 "wp",
                 // TODO: This related to obsolete WorkProgramOfPractice document type
