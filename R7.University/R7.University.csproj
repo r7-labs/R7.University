@@ -269,7 +269,7 @@
     <Compile Include="Data\Mappings\EduProgramConfiguration.cs" />
     <Compile Include="Data\Mappings\EduFormConfiguration.cs" />
     <Compile Include="Data\Mappings\EduProgramProfileFormConfiguration.cs" />
-    <Compile Include="Data\Mappings\EduProgramProfileConfiguration.cs" />
+    <Compile Include="Data\Mappings\EduProfileConfiguration.cs" />
     <Compile Include="Models\UniversityModelContext.cs" />
     <Compile Include="Data\Mappings\EmployeeDisciplineConfiguration.cs" />
     <Compile Include="Data\Mappings\EmployeeAchievementConfiguration.cs" />

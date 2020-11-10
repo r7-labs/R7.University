@@ -48,7 +48,7 @@ namespace R7.University.Data
             ApplyConfiguration (new OccupiedPositionConfiguration (), modelBuilder);
             ApplyConfiguration (new EduProgramConfiguration (), modelBuilder);
             ApplyConfiguration (new ScienceConfiguration (), modelBuilder);
-            ApplyConfiguration (new EduProgramProfileConfiguration (), modelBuilder);
+            ApplyConfiguration (new EduProfileConfiguration (), modelBuilder);
             ApplyConfiguration (new EduProgramProfileFormConfiguration (), modelBuilder);
             ApplyConfiguration (new EduProgramProfileFormYearConfiguration (), modelBuilder);
             ApplyConfiguration (new EduVolumeConfiguration (), modelBuilder);

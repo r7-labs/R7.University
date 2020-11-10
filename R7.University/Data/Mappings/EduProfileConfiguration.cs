@@ -27,7 +27,7 @@ using R7.University.Models;
 
 namespace R7.University.Data.Mappings
 {
-    public class EduProgramProfileConfiguration: IEntityTypeConfiguration<EduProfileInfo>
+    public class EduProfileConfiguration: IEntityTypeConfiguration<EduProfileInfo>
     {
         public void Configure (EntityTypeBuilder<EduProfileInfo> entityBuilder)
         {
