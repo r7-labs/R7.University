@@ -11,10 +11,10 @@
         </asp:View>
         <asp:View runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridEduProgramProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false"
+                <asp:GridView id="gridEduProfileObrnadzorEduForms" runat="server" AutoGenerateColumns="false"
                         UseAccessibleHeader="true"
                         CssClass="table table-bordered table-striped table-hover grid-eduprogramprofile-obrnadzor-eduforms"
-                        GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorEduForms_RowDataBound">
+                        GridLines="None" OnRowDataBound="gridEduProfileObrnadzorEduForms_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>

@@ -5,7 +5,7 @@ namespace R7.University.EduProgramProfiles
     public partial class ViewEduProgramProfileDirectory
     {
         protected MultiView mviewEduProgramProfileDirectory;
-        protected GridView gridEduProgramProfileObrnadzorEduForms;
+        protected GridView gridEduProfileObrnadzorEduForms;
         protected GridView gridEduProgramProfileObrnadzorDocuments;
     }
 }
