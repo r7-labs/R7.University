@@ -65,7 +65,7 @@
                         <asp:TextBox id="textUserLookup" runat="server" CssClass="dnn-form-control" Style="display:block;width:100%" />
                         <asp:CheckBox id="checkIncludeDeletedUsers" runat="server" resourcekey="checkIncludeDeletedUsers" />
                         <asp:LinkButton id="buttonUserLookup" runat="server" resourcekey="buttonUserLookup"
-                            CssClass="dnnSecondaryAction" Style="margin-left:1em" OnClick="buttonUserLookup_Click" CausesValidation="false" />
+                            CssClass="btn btn-sm btn-secondary" Style="margin-left:1em" OnClick="buttonUserLookup_Click" CausesValidation="false" />
                     </div>
 				</div>
 				<div class="dnnFormItem">

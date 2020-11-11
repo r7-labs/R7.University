@@ -17,7 +17,7 @@
                     </div>
                     <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
                     <div class="wrapperDivisions">
-                        <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('.employee-directory #hiddenDivisions').toggle ()"></a>
+                        <a id="linkDivisions" class="btn btn-outline-secondary linkDivisions" onclick="$('.employee-directory #hiddenDivisions').toggle ()"></a>
                         <div id="hiddenDivisions">
                             <dnn:DnnTreeView id="treeDivisions" runat="server"
                                 OnClientLoad="ed_treeLoad"
@@ -29,7 +29,7 @@
                             />
                         </div>
                     </div>
-                    <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
+                    <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="btn btn-primary linkSearch" OnClick="linkSearch_Click" />
                 </asp:Panel>
                 <asp:GridView id="gridEmployees" runat="server" Visible="false" AutoGenerateColumns="false"
                     UseAccessibleHeader="true" CssClass="table table-bordered table-striped table-hover grid-employees"

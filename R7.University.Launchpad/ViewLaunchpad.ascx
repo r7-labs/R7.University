@@ -17,10 +17,10 @@
 		</FooterTemplate>
 	</asp:Repeater>
     <asp:Panel runat="server" CssClass="dnnFormItem" DefaultButton="buttonSearch">
-        <asp:HyperLink id="linkAddItem" runat="server" CssClass="dnnSecondaryAction link-add-item" resourcekey="AddItem.Text" />
+        <asp:HyperLink id="linkAddItem" runat="server" CssClass="btn btn-success link-add-item" resourcekey="AddItem.Text" />
         <asp:TextBox id="textSearch" runat="server" />
-        <asp:LinkButton id="buttonSearch" runat="server" CssClass="dnnPrimaryAction" resourcekey="Search.Text" OnClick="buttonSearch_Click" />
-        <asp:LinkButton id="buttonResetSearch" runat="server" CssClass="dnnSecondaryAction" resourcekey="ResetSearch.Text" OnClick="buttonResetSearch_Click" />
+        <asp:LinkButton id="buttonSearch" runat="server" CssClass="btn btn-primary" resourcekey="Search.Text" OnClick="buttonSearch_Click" />
+        <asp:LinkButton id="buttonResetSearch" runat="server" CssClass="btn btn-outline-secondary" resourcekey="ResetSearch.Text" OnClick="buttonResetSearch_Click" />
     </asp:Panel>
 	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged">
 		<asp:View id="viewPositions" runat="server">

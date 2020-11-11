@@ -7,7 +7,7 @@
 
 <div class="dnnForm dnnClear">
 	<br /><br />
-	<fieldset>	
+	<fieldset>
 		<div class="dnnFormItem">
 			<dnn:Label id="lblTitle" runat="server" ControlName="txtTitle" />
 			<asp:TextBox id="txtTitle" runat="server" MaxLength="100" />
@@ -20,7 +20,7 @@
 			<dnn:Label id="lblWeight" runat="server" ControlName="lblWeight" />
 			<asp:TextBox id="txtWeight" runat="server" Value="0" />
             <asp:RegularExpressionValidator runat="server" resourcekey="Weight.Invalid"
-                ControlToValidate="txtWeight" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" 
+                ControlToValidate="txtWeight" Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
                 ValidationExpression="^-?\d+$" />
 		</div>
 		<div class="dnnFormItem">
@@ -29,11 +29,11 @@
 		</div>
 	</fieldset>
 	<ul class="dnnActions dnnClear">
-		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" resourcekey="cmdUpdate" CausesValidation="true" /></li>
+		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="btn btn-primary" resourcekey="cmdUpdate" CausesValidation="true" /></li>
 		<li>&nbsp;</li>
-		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdDelete" /></li>
+		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="btn btn-danger" resourcekey="cmdDelete" /></li>
 		<li>&nbsp;</li>
-		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" resourcekey="cmdCancel" /></li>
+		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="btn btn-outline-secondary" resourcekey="cmdCancel" /></li>
 	</ul>
     <controls:AgplSignature runat="server" ShowRule="false" />
 </div>

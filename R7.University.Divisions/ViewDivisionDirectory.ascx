@@ -14,11 +14,11 @@
                 <div class="wrapperSearchFlags"></div>
                 <asp:TextBox id="textSearch" runat="server" MaxLength="50" CssClass="textSearch" />
                 <div class="wrapperDivisions">
-                    <a id="linkDivisions" class="dnnSecondaryAction linkDivisions" onclick="$('.division-directory #hiddenDivisions').toggle ()"></a>
+                    <a id="linkDivisions" class="btn btn-outline-secondary linkDivisions" onclick="$('.division-directory #hiddenDivisions').toggle ()"></a>
                     <div id="hiddenDivisions">
-                        <dnn:DnnTreeView id="treeDivisions" runat="server" 
+                        <dnn:DnnTreeView id="treeDivisions" runat="server"
                             OnClientLoad="dd_treeLoad"
-                            OnClientNodeClicked="dd_treeNodeClicked" 
+                            OnClientNodeClicked="dd_treeNodeClicked"
                             DataTextField="Title"
                             DataValueField="DivisionID"
                             DataFieldID = "DivisionID"
@@ -26,10 +26,10 @@
                         />
                     </div>
                 </div>
-                <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="dnnPrimaryAction linkSearch" OnClick="linkSearch_Click" />
+                <asp:LinkButton id="linkSearch" runat="server" resourcekey="linkSearch.Text" CssClass="btn btn-primary linkSearch" OnClick="linkSearch_Click" />
             </asp:Panel>
             <asp:GridView id="gridDivisions" runat="server" Visible="false" AutoGenerateColumns="false"
-                UseAccessibleHeader="true" CssClass="table table-striped table-bordered table-hover grid-divisions" 
+                UseAccessibleHeader="true" CssClass="table table-striped table-bordered table-hover grid-divisions"
                 GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridDivisions_RowDataBound">
                 <Columns>
                     <asp:TemplateField>
@@ -75,7 +75,7 @@
         </asp:View>
         <asp:View id="viewObrnadzorDivisions" runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridObrnadzorDivisions" runat="server" EnableViewState="false" AutoGenerateColumns="false" 
+                <asp:GridView id="gridObrnadzorDivisions" runat="server" EnableViewState="false" AutoGenerateColumns="false"
                     UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
                         CssClass="table table-bordered table-striped table-hover grid-obrnadzor-divisions" GridLines="None">
                     <Columns>
@@ -100,7 +100,7 @@
         </asp:View>
 		<asp:View id="viewObrnadzorGoverningDivisions" runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridObrnadzorGoverningDivisions" runat="server" EnableViewState="false" AutoGenerateColumns="false" 
+                <asp:GridView id="gridObrnadzorGoverningDivisions" runat="server" EnableViewState="false" AutoGenerateColumns="false"
                     UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" OnRowDataBound="gridObrnadzorDivisions_RowDataBound"
                         CssClass="table table-bordered table-striped table-hover grid-obrnadzor-governing-divisions" GridLines="None">
                     <Columns>

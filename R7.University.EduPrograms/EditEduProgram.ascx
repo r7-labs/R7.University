@@ -93,7 +93,7 @@
 			    </div>
 				<div class="dnnFormItem">
 					<label class="dnnLabel" />
-					<asp:HyperLink id="linkAddEduProgramProfile" runat="server" CssClass="dnnPrimaryAction" resourcekey="AddEduProgramProfile.Text" />
+					<asp:HyperLink id="linkAddEduProgramProfile" runat="server" CssClass="btn btn-sm btn-secondary" resourcekey="AddEduProgramProfile.Text" />
                 </div>
 				<asp:Panel id="panelAddDefaultProfile" runat="server" CssClass="dnnFormItem">
                     <dnn:Label id="labelAddDefaultProfile" runat="server" ControlName="checkAddDefaultProfile" />
