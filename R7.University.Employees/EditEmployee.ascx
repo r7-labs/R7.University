@@ -180,7 +180,7 @@
 	<ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="btn btn-primary" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
 		<li>&nbsp;</li>
-		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="btn btn danger" ResourceKey="cmdDelete" /></li>
+		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="btn btn-danger" ResourceKey="cmdDelete" /></li>
 		<li>&nbsp;</li>
 		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="btn btn-outline-secondary" ResourceKey="cmdCancel" /></li>
 	</ul>
