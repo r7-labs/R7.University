@@ -214,12 +214,12 @@ namespace R7.University.Employees
 
             // apply default ordering
             var employeeDisciplines = employee.Disciplines
-                .OrderBy (ed => ed.EduProgramProfile.EduProgram.EduLevel.SortIndex)
-                .ThenBy (ed => ed.EduProgramProfile.EduProgram.Code)
-                .ThenBy (ed => ed.EduProgramProfile.EduProgram.Title)
-                .ThenBy (ed => ed.EduProgramProfile.ProfileCode)
-                .ThenBy (ed => ed.EduProgramProfile.ProfileTitle)
-                .ThenBy (ed => ed.EduProgramProfile.EduLevel.SortIndex);
+                .OrderBy (ed => ed.EduProfile.EduProgram.EduLevel.SortIndex)
+                .ThenBy (ed => ed.EduProfile.EduProgram.Code)
+                .ThenBy (ed => ed.EduProfile.EduProgram.Title)
+                .ThenBy (ed => ed.EduProfile.ProfileCode)
+                .ThenBy (ed => ed.EduProfile.ProfileTitle)
+                .ThenBy (ed => ed.EduProfile.EduLevel.SortIndex);
 
             formEditDisciplines.SetData (employeeDisciplines, employee.EmployeeID);
 

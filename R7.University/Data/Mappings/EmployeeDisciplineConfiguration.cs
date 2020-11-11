@@ -38,7 +38,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.EduProgramProfileID).IsRequired ();
             entityBuilder.Property (m => m.Disciplines).IsRequired (false);
             entityBuilder.HasOne (m => m.Employee).WithMany (e => e.Disciplines).HasForeignKey (m => m.EmployeeID);
-            entityBuilder.HasOne (m => m.EduProgramProfile).WithMany ().HasForeignKey (m => m.EduProgramProfileID);
+            entityBuilder.HasOne (m => m.EduProfile).WithMany ().HasForeignKey (m => m.EduProgramProfileID);
         }
     }
 }

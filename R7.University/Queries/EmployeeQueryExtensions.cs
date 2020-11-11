@@ -53,11 +53,11 @@ namespace R7.University.Queries
         public static IQueryable<EmployeeInfo> IncludeDisciplines (this IQueryable<EmployeeInfo> employees)
         {
             return employees.Include (e => e.Disciplines)
-                                .ThenInclude (ed => ed.EduProgramProfile)
+                                .ThenInclude (ed => ed.EduProfile)
                                     .ThenInclude (epp => epp.EduProgram)
                                         .ThenInclude (ep => ep.EduLevel)
                             .Include (e => e.Disciplines)
-                                .ThenInclude (ed => ed.EduProgramProfile)
+                                .ThenInclude (ed => ed.EduProfile)
                                     .ThenInclude (epp => epp.EduLevel);
         }
     }

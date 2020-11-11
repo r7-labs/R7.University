@@ -1,24 +1,3 @@
-//
-//  EmployeeDiscipline.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2019 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 namespace R7.University.Models
 {
     public interface IEmployeeDiscipline
@@ -33,7 +12,7 @@ namespace R7.University.Models
 
         IEmployee Employee { get; }
 
-        IEduProfile EduProgramProfile { get; }
+        IEduProfile EduProfile { get; }
     }
 
     public interface IEmployeeDisciplineWritable: IEmployeeDiscipline
@@ -48,7 +27,7 @@ namespace R7.University.Models
 
         new IEmployee Employee { get; set; }
 
-        new IEduProfile EduProgramProfile { get; set; }
+        new IEduProfile EduProfile { get; set; }
     }
 
     public class EmployeeDisciplineInfo: IEmployeeDisciplineWritable
@@ -70,13 +49,13 @@ namespace R7.University.Models
             set { Employee = (EmployeeInfo) value; }
         }
 
-        public virtual EduProfileInfo EduProgramProfile { get; set; }
+        public virtual EduProfileInfo EduProfile { get; set; }
 
-        IEduProfile IEmployeeDiscipline.EduProgramProfile => EduProgramProfile;
+        IEduProfile IEmployeeDiscipline.EduProfile => EduProfile;
 
-        IEduProfile IEmployeeDisciplineWritable.EduProgramProfile {
-            get { return EduProgramProfile; }
-            set { EduProgramProfile = (EduProfileInfo) value; }
+        IEduProfile IEmployeeDisciplineWritable.EduProfile {
+            get { return EduProfile; }
+            set { EduProfile = (EduProfileInfo) value; }
         }
     }
 }

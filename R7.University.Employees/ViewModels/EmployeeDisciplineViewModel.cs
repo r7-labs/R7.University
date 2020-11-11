@@ -45,7 +45,7 @@ namespace R7.University.Employees.ViewModels
 
         public IEmployee Employee => EmployeeDiscipline.Employee;
 
-        public IEduProfile EduProgramProfile => EmployeeDiscipline.EduProgramProfile;
+        public IEduProfile EduProfile => EmployeeDiscipline.EduProfile;
 
         #endregion
 
@@ -53,10 +53,10 @@ namespace R7.University.Employees.ViewModels
         {
             get {
                 return UniversityFormatHelper.FormatEduProgramProfileTitle (
-                    EmployeeDiscipline.EduProgramProfile.EduProgram.Code,
-                    EmployeeDiscipline.EduProgramProfile.EduProgram.Title,
-                    EmployeeDiscipline.EduProgramProfile.ProfileCode,
-                    EmployeeDiscipline.EduProgramProfile.ProfileTitle
+                    EmployeeDiscipline.EduProfile.EduProgram.Code,
+                    EmployeeDiscipline.EduProfile.EduProgram.Title,
+                    EmployeeDiscipline.EduProfile.ProfileCode,
+                    EmployeeDiscipline.EduProfile.ProfileTitle
                 );
             }
         }
@@ -64,8 +64,8 @@ namespace R7.University.Employees.ViewModels
         public string EduLevel_String {
             get {
                 return UniversityFormatHelper.FormatShortTitle (
-                    EmployeeDiscipline.EduProgramProfile.EduLevel.ShortTitle,
-                    EmployeeDiscipline.EduProgramProfile.EduLevel.Title
+                    EmployeeDiscipline.EduProfile.EduLevel.ShortTitle,
+                    EmployeeDiscipline.EduProfile.EduLevel.Title
                 );
             }
         }

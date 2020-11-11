@@ -43,13 +43,13 @@ namespace R7.University.Controls.EditModels
             var viewModel = new EmployeeDisciplineEditModel ();
             CopyCstor.Copy<IEmployeeDisciplineWritable> (model, viewModel);
 
-            viewModel.Code = model.EduProgramProfile.EduProgram.Code;
-            viewModel.Title = model.EduProgramProfile.EduProgram.Title;
-            viewModel.ProfileCode = model.EduProgramProfile.ProfileCode;
-            viewModel.ProfileTitle = model.EduProgramProfile.ProfileTitle;
-            viewModel.ProfileStartDate = model.EduProgramProfile.StartDate;
-            viewModel.ProfileEndDate = model.EduProgramProfile.EndDate;
-            viewModel.EduLevelString = UniversityFormatHelper.FormatShortTitle (model.EduProgramProfile.EduLevel.ShortTitle, model.EduProgramProfile.EduLevel.Title);
+            viewModel.Code = model.EduProfile.EduProgram.Code;
+            viewModel.Title = model.EduProfile.EduProgram.Title;
+            viewModel.ProfileCode = model.EduProfile.ProfileCode;
+            viewModel.ProfileTitle = model.EduProfile.ProfileTitle;
+            viewModel.ProfileStartDate = model.EduProfile.StartDate;
+            viewModel.ProfileEndDate = model.EduProfile.EndDate;
+            viewModel.EduLevelString = UniversityFormatHelper.FormatShortTitle (model.EduProfile.EduLevel.ShortTitle, model.EduProfile.EduLevel.Title);
 
             return viewModel;
         }
@@ -84,7 +84,7 @@ namespace R7.University.Controls.EditModels
 
         [JsonIgnore]
         [Obsolete]
-        public IEduProfile EduProgramProfile { get; set; }
+        public IEduProfile EduProfile { get; set; }
 
         #endregion
 

@@ -443,8 +443,8 @@ namespace R7.University.Employees
 
             // get employee disciplines
             var disciplines = employee.Disciplines
-                                      .Where (ed => ed.EduProgramProfile.IsPublished (now))
-                                      .OrderBy (ed => ed.EduProgramProfile.EduProgram.Code);
+                                      .Where (ed => ed.EduProfile.IsPublished (now))
+                                      .OrderBy (ed => ed.EduProfile.EduProgram.Code);
 
             if (disciplines.Any ()) {
                 gridDisciplines.DataSource = disciplines.Select (ed => new EmployeeDisciplineViewModel (ed));

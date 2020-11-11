@@ -51,7 +51,7 @@ namespace R7.University.Templates
                 .Where (op => op.Division.IsPublished (now)));
 
             Disciplines = new List<EmployeeDisciplineInfo> (Model.Disciplines
-                .Where (ed => ed.EduProgramProfile.EduProgram.IsPublished (now) && ed.EduProgramProfile.IsPublished (now)));
+                .Where (ed => ed.EduProfile.EduProgram.IsPublished (now) && ed.EduProfile.IsPublished (now)));
 
             Education = Model.EducationAchievements ().ToList ();
             Training = Model.TrainingAchievements ().ToList ();
@@ -153,11 +153,11 @@ namespace R7.University.Templates
 
             if (collectionName == nameof (Disciplines)) {
                 var discipline = Disciplines [index];
-                var profile = discipline.EduProgramProfile;
+                var profile = discipline.EduProfile;
                 if (objectName == NameOf (() => profile.EduProgram)) {
                     return UniversityFormatHelper.FormatEduProgramTitle (profile.EduProgram.Code, profile.EduProgram.Title);
                 }
-                if (objectName == NameOf (() => Disciplines [index].EduProgramProfile)) {
+                if (objectName == NameOf (() => Disciplines [index].EduProfile)) {
                     return UniversityFormatHelper.FormatEduProgramProfilePartialTitle (profile.ProfileCode, profile.ProfileTitle);
                 }
                 if (objectName == NameOf (() => profile.EduLevel)) {
