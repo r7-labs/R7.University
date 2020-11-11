@@ -107,7 +107,7 @@ namespace R7.University.EduProgramProfiles
             var eduProfiles = new EduProfileQuery (ModelContext)
                 .ListWithDocuments (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
-            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProfileDocumentsViewModel> (indexer,
+            viewModel.EduProfiles = new IndexedEnumerable<EduProfileDocumentsViewModel> (indexer,
                 eduProfiles.Select (epp => new EduProfileDocumentsViewModel (epp, viewModel, indexer))
             );
 
@@ -209,7 +209,7 @@ namespace R7.University.EduProgramProfiles
         protected void ObrnadzorDocumentsView ()
         {
             var now = HttpContext.Current.Timestamp;
-            var eduProgramProfiles = GetDocumentsViewModel ().EduProgramProfiles
+            var eduProgramProfiles = GetDocumentsViewModel ().EduProfiles
                 .Where (epp => epp.IsPublished (now) || IsEditable);
 
             if (!eduProgramProfiles.IsNullOrEmpty ()) {
