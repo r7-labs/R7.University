@@ -74,12 +74,12 @@ namespace R7.University.Launchpad
 
         public LaunchpadTableBase GetByName (string name)
         {
-            return NamesDictionary [name];
+            return NamesDictionary.TryGetValue(name, out var table) ? table : null;
         }
 
         public LaunchpadTableBase GetByGridId (string gridId)
         {
-            return GridsDictionary [gridId];
+            return GridsDictionary.TryGetValue (gridId, out var table) ? table : null;
         }
     }
 }

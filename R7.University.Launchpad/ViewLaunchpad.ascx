@@ -294,8 +294,8 @@
                 <br />
             </div>
         </asp:View>
-        <asp:View id="viewEduProgramProfiles" runat="server">
-            <div id="eduprogramprofiles" style="overflow:auto">
+        <asp:View id="viewEduProfiles" runat="server">
+            <div id="eduprofiles" style="overflow:auto">
                 <asp:GridView id="gridEduProfiles" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
                     AllowPaging="true" AllowSorting="true" GridLines="None"
                     OnSorting="gridView_Sorting"

@@ -91,21 +91,21 @@ namespace R7.University.Launchpad
         protected override void OnInit (EventArgs e)
         {
             base.OnInit (e);
-		
+
             // read tab names
             var tables = Settings.Tables;
             if (tables == null || tables.Count == 0) {
                 this.Message ("NotConfigured.Text", MessageType.Info, true);
                 return;
             }
-			
+
             if (tables.Count > 1) {
                 // bind tabs
                 repeatTabs.DataSource = tables;
                 repeatTabs.DataBind ();
             }
 
-            // wireup LoadComplete handler 
+            // wireup LoadComplete handler
             Page.LoadComplete += OnLoadComplete;
 
             // show first view if no session info available
@@ -196,12 +196,12 @@ namespace R7.University.Launchpad
         protected void multiView_ActiveViewChanged (object sender, EventArgs e)
         {
             // set session variable to active view name without "view" prefix
-            Session ["Launchpad_ActiveView_" + TabModuleId] = 
+            Session ["Launchpad_ActiveView_" + TabModuleId] =
 				multiView.GetActiveView ().ID.Substring (4).ToLowerInvariant ();
         }
 
         /// <summary>
-        /// Handles ItemDataBound event for tabs repeater 
+        /// Handles ItemDataBound event for tabs repeater
         /// </summary>
         /// <param name="sender">Sender.</param>
         /// <param name="e">Event arguments.</param>
@@ -210,8 +210,14 @@ namespace R7.University.Launchpad
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
                 var link = (LinkButton) e.Item.FindControl ("linkTab");
                 var tabName = (string) e.Item.DataItem;
-                link.Text = LocalizeString (Tables.GetByName (tabName).ResourceKey);
-                link.CommandArgument = tabName;
+                var table = Tables.GetByName (tabName);
+                if (table != null) {
+                    link.Text = LocalizeString (table.ResourceKey);
+                    link.CommandArgument = tabName;
+                }
+                else {
+                    link.Visible = false;
+                }
             }
         }
 
@@ -245,7 +251,7 @@ namespace R7.University.Launchpad
             var dt = GetDataTable (gv.ID);
 
             if (dt != null) {
-                // sort the data 
+                // sort the data
                 dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection (gv.ID, e.SortExpression);
                 gv.DataSource = dt;
                 gv.DataBind ();
@@ -317,7 +323,7 @@ namespace R7.University.Launchpad
         {
             // enumerate all repeater items
             foreach (RepeaterItem item in repeatTabs.Items) {
-                // enumerate all child controls in a item 
+                // enumerate all child controls in a item
                 foreach (var control in item.Controls)
                     if (control is HtmlControl) {
                         // this means <li>
@@ -325,7 +331,7 @@ namespace R7.University.Launchpad
 
                         // set CSS class attribute to <li>,
                         // depending on linkbutton's (first child of <li>) commandname
-                        li.Attributes ["class"] = 
+                        li.Attributes ["class"] =
 							((li.Controls [0] as LinkButton).CommandArgument == tabName) ? "ui-tabs-active" : "";
                     }
             }
@@ -363,7 +369,7 @@ namespace R7.University.Launchpad
             SelectTab (tabName);
 
             // restore search phrase
-            textSearch.Text = Session [tabName + "_Search"] != null ? 
+            textSearch.Text = Session [tabName + "_Search"] != null ?
                 (string) Session [tabName + "_Search"] : string.Empty;
         }
 

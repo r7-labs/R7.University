@@ -36,7 +36,7 @@
     <data name="EduPrograms.Text" xml:space="preserve">
         <value>Educational Programs</value>
     </data>
-    <data name="EduProgramProfiles.Text" xml:space="preserve">
+    <data name="EduProfiles.Text" xml:space="preserve">
         <value>Educational Profiles</value>
     </data>
     <data name="EduForms.Text" xml:space="preserve">
