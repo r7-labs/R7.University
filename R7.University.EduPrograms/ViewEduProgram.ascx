@@ -29,7 +29,7 @@
                     <%# HttpUtility.HtmlDecode (Item.EduStandard_Links) %>
                 </div>
             </div>
-            <div runat="server" Visible='<%# Item.EduProgramProfiles_Visible %>'>
+            <div runat="server" Visible='<%# Item.EduProfiles_Visible %>'>
                 <asp:ListView runat="server" DataSource="<%# Item.EduProgramProfileViewModels %>" ItemType="R7.University.EduPrograms.ViewModels.EduProfileViewModel">
                     <LayoutTemplate>
                         <div runat="server" class="u8y-eduprogram-profiles">
