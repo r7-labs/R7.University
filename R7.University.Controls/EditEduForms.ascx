@@ -47,7 +47,7 @@
 		<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduProgramProfileForms" CssClass="dnnFormMessage dnnFormWarning" />
         <div class="dnnFormItem">
             <dnn:Label id="labelEduForm" runat="server" ControlName="radioEduForm" />
-            <asp:RadioButtonList id="radioEduForm" runat="server" 
+            <asp:RadioButtonList id="radioEduForm" runat="server"
                 DataTextField="TitleLocalized"
                 DataValueField="EduFormID"
                 RepeatDirection="Horizontal"
@@ -61,10 +61,10 @@
             <dnn:Label id="labelTimeToLearnYears" runat="server" ControlName="textTimeToLearnYears" />
             <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
 			<asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnYears.Required"
-                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
+                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
 			<asp:RangeValidator runat="server" resourcekey="TimeToLearnYears.Invalid"
-                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms" 
+                ControlToValidate="textTimeToLearnYears" ValidationGroup="EduProgramProfileForms"
                 Type="Integer" MinimumValue="0" MaximumValue="11"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
 			<asp:CustomValidator runat="server" resourcekey="TimeToLearn.Required"
@@ -76,10 +76,10 @@
 			<dnn:Label id="labelTimeToLearnMonths" runat="server" ControlName="textTimeToLearnMonths" />
 			<asp:TextBox id="textTimeToLearnMonths" runat="server" Value="0" />
 			<asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnMonths.Required"
-                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
+                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
 			<asp:RangeValidator runat="server" resourcekey="TimeToLearnMonths.Invalid"
-                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms" 
+                ControlToValidate="textTimeToLearnMonths" ValidationGroup="EduProgramProfileForms"
                 Type="Integer" MinimumValue="0" MaximumValue="11"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
 		</div>
@@ -87,10 +87,10 @@
             <dnn:Label id="labelTimeToLearnHours" runat="server" ControlName="textTimeToLearnHours" />
             <asp:TextBox id="textTimeToLearnHours" runat="server" Value="0" />
 			<asp:RequiredFieldValidator runat="server" resourcekey="TimeToLearnHours.Required"
-                ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms" 
+                ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
             <asp:RangeValidator runat="server" resourcekey="TimeToLearnHours.Invalid"
-                ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms" 
+                ControlToValidate="textTimeToLearnHours" ValidationGroup="EduProgramProfileForms"
                 Type="Integer" MinimumValue="0" MaximumValue="2147483647"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         </div>
@@ -102,26 +102,26 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddEduForm" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddEduForm"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
-				</li>	
+				</li>
                 <li>
-				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateEduForm" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Update" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateEduForm"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="EduProgramProfileForms" />
 				</li>
 				<li>&nbsp;</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
-                        CssClass="dnnSecondaryAction" />
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
+                        CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
-					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
-                        CssClass="dnnSecondaryAction" />
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
+                        CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
-			</ul>	
+			</ul>
         </div>
         <asp:HiddenField id="hiddenViewItemID" runat="server" />
 		<asp:HiddenField id="hiddenEduFormID" runat="server" />

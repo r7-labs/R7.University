@@ -104,23 +104,23 @@
 			<ul class="dnnActions">
                 <li>
 					<asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDocument"
-                        CssClass="dnnPrimaryAction" CommandArgument="Add"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Documents" />
 				</li>
                 <li>
 					<asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDocument"
-                        CssClass="dnnPrimaryAction" CommandArgument="Update"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Documents" />
 				</li>
 				<li>&nbsp;</li>
                 <li>
 					<asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
-                        CssClass="dnnSecondaryAction" />
+                        CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
 					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
-                    CssClass="dnnSecondaryAction" />
+                    CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
 			</ul>
         </div>

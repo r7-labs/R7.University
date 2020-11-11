@@ -56,26 +56,26 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDivision" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDivision"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="EduProgramDivisions" />
-				</li>	
+				</li>
                 <li>
-				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDivision" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Update" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDivision"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="EduProgramDivisions" />
 				</li>
 				<li>&nbsp;</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
-                        CssClass="dnnSecondaryAction" />
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
+                        CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
-					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
-                        CssClass="dnnSecondaryAction" />
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
+                        CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
-			</ul>	
+			</ul>
         </div>
 		<asp:HiddenField id="hiddenViewItemID" runat="server" />
 		<asp:HiddenField id="hiddenDivisionID" runat="server" />
