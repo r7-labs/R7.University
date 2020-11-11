@@ -15,3 +15,6 @@ obj/
 /packages/
 /Packages/
 /node_modules/
+
+# etc
+mono_crash.*.json
