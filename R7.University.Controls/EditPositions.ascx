@@ -63,26 +63,26 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddPosition" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddPosition"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="OccupiedPositions" />
-				</li>	
+				</li>
                 <li>
-				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdatePosition" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Update" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdatePosition"
+                        CssClass="btn btn-sm btn-primary" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="OccupiedPositions" />
 				</li>
 				<li>&nbsp;</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
-                        CssClass="dnnSecondaryAction" />
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
+                        CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
-					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
-                        CssClass="dnnSecondaryAction" />
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
+                        CssClass="btn btn-sm btn-outline-secondary" />
 				</li>
-			</ul>	
+			</ul>
         </div>
 		<asp:HiddenField id="hiddenViewItemID" runat="server" />
     </fieldset>
