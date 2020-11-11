@@ -194,11 +194,11 @@ namespace R7.University.EduProgramProfiles
         protected void ObrnadzorEduFormsView ()
         {
             var now = HttpContext.Current.Timestamp;
-            var eduProgramProfiles = GetEduFormsViewModel ().EduProfiles
+            var eduProfiles = GetEduFormsViewModel ().EduProfiles
                 .Where (epp => epp.IsPublished (now) || IsEditable);
 
-            if (!eduProgramProfiles.IsNullOrEmpty ()) {
-                gridEduProgramProfileObrnadzorEduForms.DataSource = eduProgramProfiles;
+            if (!eduProfiles.IsNullOrEmpty ()) {
+                gridEduProgramProfileObrnadzorEduForms.DataSource = eduProfiles;
                 gridEduProgramProfileObrnadzorEduForms.DataBind ();
             }
             else {
@@ -209,11 +209,11 @@ namespace R7.University.EduProgramProfiles
         protected void ObrnadzorDocumentsView ()
         {
             var now = HttpContext.Current.Timestamp;
-            var eduProgramProfiles = GetDocumentsViewModel ().EduProfiles
+            var eduProfiles = GetDocumentsViewModel ().EduProfiles
                 .Where (epp => epp.IsPublished (now) || IsEditable);
 
-            if (!eduProgramProfiles.IsNullOrEmpty ()) {
-                gridEduProgramProfileObrnadzorDocuments.DataSource = eduProgramProfiles;
+            if (!eduProfiles.IsNullOrEmpty ()) {
+                gridEduProgramProfileObrnadzorDocuments.DataSource = eduProfiles;
                 gridEduProgramProfileObrnadzorDocuments.DataBind ();
             }
             else {
