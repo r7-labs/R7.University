@@ -95,7 +95,7 @@
 			<ul class="dnnActions">
 				<li>
                     <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddEduFormYear"
-                        CssClass="btn btn-sm btn-primary" CommandArgument="Add"
+                        CssClass="btn btn-sm btn-success" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="EduProgramProfileFormYears" />
 				</li>
                 <li>

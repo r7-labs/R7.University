@@ -104,7 +104,7 @@
 			<ul class="dnnActions">
                 <li>
 					<asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDocument"
-                        CssClass="btn btn-sm btn-primary" CommandArgument="Add"
+                        CssClass="btn btn-sm btn-success" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Documents" />
 				</li>
                 <li>
