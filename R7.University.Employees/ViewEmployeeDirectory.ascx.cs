@@ -214,7 +214,7 @@ namespace R7.University.Employees
                 }
             }
 
-            viewModel.EduProgramProfiles = eduProfiles;
+            viewModel.EduProfiles = eduProfiles;
             return viewModel;
         }
 
@@ -254,7 +254,7 @@ namespace R7.University.Employees
                     }
                 }
                 else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
-                    repeaterEduProgramProfiles.DataSource = GetViewModel ().EduProgramProfiles
+                    repeaterEduProgramProfiles.DataSource = GetViewModel ().EduProfiles
                         .Where (epp => epp.IsPublished (now) || IsEditable);
                     repeaterEduProgramProfiles.DataBind ();
                 }
