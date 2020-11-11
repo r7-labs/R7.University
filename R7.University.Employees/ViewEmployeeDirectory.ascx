@@ -95,7 +95,7 @@
             </fieldset>
         </asp:View>
         <asp:View id="viewTeachers" runat="server">
-            <asp:Repeater id="repeaterEduProgramProfiles" runat="server" EnableViewState="false" OnItemDataBound="repeaterEduProgramProfiles_ItemDataBound">
+            <asp:Repeater id="repeaterEduProfiles" runat="server" EnableViewState="false" OnItemDataBound="repeaterEduProfiles_ItemDataBound">
                 <ItemTemplate>
                     <asp:Panel id="panelTeachers" runat="server">
                         <h3>

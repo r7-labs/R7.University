@@ -254,9 +254,9 @@ namespace R7.University.Employees
                     }
                 }
                 else if (Settings.Mode == EmployeeDirectoryMode.Teachers) {
-                    repeaterEduProgramProfiles.DataSource = GetViewModel ().EduProfiles
+                    repeaterEduProfiles.DataSource = GetViewModel ().EduProfiles
                         .Where (epp => epp.IsPublished (now) || IsEditable);
-                    repeaterEduProgramProfiles.DataBind ();
+                    repeaterEduProfiles.DataBind ();
                 }
             }
             catch (Exception ex) {
@@ -266,7 +266,7 @@ namespace R7.University.Employees
 
         #endregion
 
-        protected void repeaterEduProgramProfiles_ItemDataBound (object sender, RepeaterItemEventArgs e)
+        protected void repeaterEduProfiles_ItemDataBound (object sender, RepeaterItemEventArgs e)
         {
             var now = HttpContext.Current.Timestamp;
 

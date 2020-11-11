@@ -11,6 +11,6 @@ namespace R7.University.Employees
         protected LinkButton linkSearch;
         protected DnnTreeView treeDivisions;
         protected CheckBox checkTeachersOnly;
-        protected Repeater repeaterEduProgramProfiles;
+        protected Repeater repeaterEduProfiles;
     }
 }
