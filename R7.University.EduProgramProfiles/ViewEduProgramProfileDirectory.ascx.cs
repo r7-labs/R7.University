@@ -92,7 +92,7 @@ namespace R7.University.EduProgramProfiles
             var eduProfiles = new EduProfileQuery (ModelContext)
                 .ListWithEduForms (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
-            viewModel.EduProgramProfiles = new IndexedEnumerable<EduProgramProfileEduFormsViewModel> (indexer,
+            viewModel.EduProfiles = new IndexedEnumerable<EduProgramProfileEduFormsViewModel> (indexer,
                 eduProfiles.Select (epp => new EduProgramProfileEduFormsViewModel (epp, viewModel, indexer))
             );
 
@@ -194,7 +194,7 @@ namespace R7.University.EduProgramProfiles
         protected void ObrnadzorEduFormsView ()
         {
             var now = HttpContext.Current.Timestamp;
-            var eduProgramProfiles = GetEduFormsViewModel ().EduProgramProfiles
+            var eduProgramProfiles = GetEduFormsViewModel ().EduProfiles
                 .Where (epp => epp.IsPublished (now) || IsEditable);
 
             if (!eduProgramProfiles.IsNullOrEmpty ()) {
