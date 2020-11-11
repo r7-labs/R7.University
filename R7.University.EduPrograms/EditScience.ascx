@@ -38,55 +38,55 @@
                     <dnn:Label id="labelScientists" runat="server" ControlName="textScientists" />
                     <asp:TextBox id="textScientists" runat="server" />
     				<asp:RangeValidator runat="server" ControlToValidate="textScientists"
-    					Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+    					Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
     					Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
                 </div>
     			<div class="dnnFormItem">
                     <dnn:Label id="labelStudents" runat="server" ControlName="textStudents" />
                     <asp:TextBox id="textStudents" runat="server" />
                     <asp:RangeValidator runat="server" ControlToValidate="textStudents"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
                 </div>
     			<div class="dnnFormItem">
                     <dnn:Label id="labelMonographs" runat="server" ControlName="textMonographs" />
                     <asp:TextBox id="textMonographs" runat="server" />
     				<asp:RangeValidator runat="server" ControlToValidate="textMonographs"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
                 </div>
 				<div class="dnnFormItem">
 				    <dnn:Label id="labelArticles" runat="server" ControlName="textArticles" />
-				</div>	
+				</div>
     			<div class="dnnFormItem">
                     <div class="dnnLabel text-muted"><%: LocalizeString ("ArticlesHAC.Text") %></div>
 					<asp:TextBox id="textArticles" runat="server" />
 					<asp:RangeValidator runat="server" ControlToValidate="textArticles"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
     			</div>
 				<div class="dnnFormItem">
 					<div class="dnnLabel text-muted"><%: LocalizeString ("ArticlesForeign.Text") %></div>
                     <asp:TextBox id="textArticlesForeign" runat="server" />
                     <asp:RangeValidator runat="server" ControlToValidate="textArticlesForeign"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
                 </div>
 				<div class="dnnFormItem">
 				    <dnn:Label id="labelPatents" runat="server" ControlName="textPatents" />
-				</div>	
+				</div>
     			<div class="dnnFormItem">
 					<div class="dnnLabel text-muted"><%: LocalizeString ("Local.Text") %></div>
                     <asp:TextBox id="textPatents" runat="server" />
 					<asp:RangeValidator runat="server" ControlToValidate="textPatents"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
                 </div>
 				<div class="dnnFormItem">
 					<div class="dnnLabel text-muted"><%: LocalizeString ("Foreign.Text") %></div>
 					<asp:TextBox id="textPatentsForeign" runat="server" />
 					<asp:RangeValidator runat="server" ControlToValidate="textPatentsForeign"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
 				</div>
 				<div class="dnnFormItem">
@@ -96,32 +96,32 @@
 					<div class="dnnLabel text-muted"><%: LocalizeString ("Local.Text") %></div>
                 	<asp:TextBox id="textCertificates" runat="server" />
 					<asp:RangeValidator runat="server" ControlToValidate="textCertificates"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
                 </div>
 				<div class="dnnFormItem">
 					<div class="dnnLabel text-muted"><%: LocalizeString ("Foreign.Text") %></div>
 				    <asp:TextBox id="textCertificatesForeign" runat="server" />
 				    <asp:RangeValidator runat="server" ControlToValidate="textCertificatesForeign"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Integer" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="Value.Invalid" />
 				</div>
     			<div class="dnnFormItem">
                     <dnn:Label id="labelFinancingByScientist" runat="server" ControlName="textFinancingByScientist" />
                     <asp:TextBox id="textFinancingByScientist" runat="server" />
                     <asp:RangeValidator runat="server" ControlToValidate="textFinancingByScientist"
-                        Type="Double" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science" 
+                        Type="Double" MinimumValue="0" MaximumValue="2147483647" ValidationGroup="Science"
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" resourcekey="FinancingByScientistValue.Invalid" />
                 </div>
             </fieldset>
-		</div>	
+		</div>
     </div>
 	<ul class="dnnActions dnnClear">
-		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="dnnPrimaryAction" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
+		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="btn btn-primary" ResourceKey="cmdUpdate" CausesValidation="true" /></li>
 		<li>&nbsp;</li>
-		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdDelete" /></li>
+		<li><asp:LinkButton id="buttonDelete" runat="server" CssClass="btn btn-danger" ResourceKey="cmdDelete" /></li>
 		<li>&nbsp;</li>
-		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="dnnSecondaryAction" ResourceKey="cmdCancel" /></li>
+		<li><asp:HyperLink id="linkCancel" runat="server" CssClass="btn btn-outline-secondary" ResourceKey="cmdCancel" /></li>
 	</ul>
 	<controls:AgplSignature runat="server" ShowRule="false" />
 </div>
