@@ -37,10 +37,10 @@
         </asp:View>
         <asp:View runat="server">
             <div class="table-responsive">
-                <asp:GridView id="gridEduProgramProfileObrnadzorDocuments" runat="server" AutoGenerateColumns="false"
+                <asp:GridView id="gridEduProfileObrnadzorDocuments" runat="server" AutoGenerateColumns="false"
                         UseAccessibleHeader="true"
                         CssClass="table table-bordered table-striped table-hover grid-eduprogramprofile-obrnadzor-documents"
-                        GridLines="None" OnRowDataBound="gridEduProgramProfileObrnadzorDocuments_RowDataBound">
+                        GridLines="None" OnRowDataBound="gridEduProfileObrnadzorDocuments_RowDataBound">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>

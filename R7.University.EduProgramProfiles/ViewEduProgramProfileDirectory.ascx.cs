@@ -148,7 +148,7 @@ namespace R7.University.EduProgramProfiles
             base.OnInit (e);
 
             gridEduProfileObrnadzorEduForms.Attributes.Add ("itemprop", "eduAccred");
-            gridEduProgramProfileObrnadzorDocuments.Attributes.Add ("itemprop", "eduOP");
+            gridEduProfileObrnadzorDocuments.Attributes.Add ("itemprop", "eduOP");
 
             switch (Settings.Mode) {
                 case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
@@ -158,7 +158,7 @@ namespace R7.University.EduProgramProfiles
 
                 case EduProgramProfileDirectoryMode.ObrnadzorDocuments:
                     mviewEduProgramProfileDirectory.ActiveViewIndex = 2;
-                    gridEduProgramProfileObrnadzorDocuments.LocalizeColumnHeaders (LocalResourceFile);
+                    gridEduProfileObrnadzorDocuments.LocalizeColumnHeaders (LocalResourceFile);
                     break;
 
                 default:
@@ -213,8 +213,8 @@ namespace R7.University.EduProgramProfiles
                 .Where (epp => epp.IsPublished (now) || IsEditable);
 
             if (!eduProfiles.IsNullOrEmpty ()) {
-                gridEduProgramProfileObrnadzorDocuments.DataSource = eduProfiles;
-                gridEduProgramProfileObrnadzorDocuments.DataBind ();
+                gridEduProfileObrnadzorDocuments.DataSource = eduProfiles;
+                gridEduProfileObrnadzorDocuments.DataBind ();
             }
             else {
                 this.Message ("NothingToDisplay.Text", MessageType.Info, true);
@@ -254,7 +254,7 @@ namespace R7.University.EduProgramProfiles
             }
         }
 
-        protected void gridEduProgramProfileObrnadzorDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
+        protected void gridEduProfileObrnadzorDocuments_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             var now = HttpContext.Current.Timestamp;
 

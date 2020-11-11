@@ -6,6 +6,6 @@ namespace R7.University.EduProgramProfiles
     {
         protected MultiView mviewEduProgramProfileDirectory;
         protected GridView gridEduProfileObrnadzorEduForms;
-        protected GridView gridEduProgramProfileObrnadzorDocuments;
+        protected GridView gridEduProfileObrnadzorDocuments;
     }
 }
