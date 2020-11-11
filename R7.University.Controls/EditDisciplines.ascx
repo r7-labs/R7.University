@@ -36,7 +36,7 @@
                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="ViewItemID" />
-                    <asp:BoundField DataField="EduProgramProfileString" HeaderText="EduProgramProfile.Column" />
+                    <asp:BoundField DataField="EduProfileString" HeaderText="EduProgramProfile.Column" />
                     <asp:BoundField DataField="EduLevelString" HeaderText="EduLevel.Column" />
                     <asp:BoundField DataField="Disciplines" HeaderText="Disciplines.Column" />
                 </Columns>
@@ -56,7 +56,7 @@
                 DataValueField="EduProgramProfileID"
                 DataTextField="Title_String" />
             <asp:CustomValidator runat="server" resourcekey="EduProgramProfile_Warning.Text"
-				ControlToValidate="ddlEduProfile" ValidationGroup="Disciplines" 
+				ControlToValidate="ddlEduProfile" ValidationGroup="Disciplines"
                 Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
 			    EnableClientScript="true" ClientValidationFunction="eduProfileValidator.validate2" />
         </div>
@@ -70,26 +70,26 @@
             <div class="dnnLabel"></div>
 			<ul class="dnnActions">
 				<li>
-                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDiscipline" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Add" 
+                    <asp:LinkButton id="buttonAddItem" runat="server" resourcekey="buttonAddDiscipline"
+                        CssClass="dnnPrimaryAction" CommandArgument="Add"
                         CausesValidation="true" ValidationGroup="Disciplines" />
-				</li>	
+				</li>
                 <li>
-				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDiscipline" 
-                        CssClass="dnnPrimaryAction" CommandArgument="Update" 
+				    <asp:LinkButton id="buttonUpdateItem" runat="server" resourcekey="buttonUpdateDiscipline"
+                        CssClass="dnnPrimaryAction" CommandArgument="Update"
                         CausesValidation="true" ValidationGroup="Disciplines" />
 				</li>
 				<li>&nbsp;</li>
                 <li>
-				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit" 
+				    <asp:LinkButton id="buttonCancelEditItem" runat="server" resourcekey="CancelEdit"
                         CssClass="dnnSecondaryAction" />
 				</li>
 				<li>&nbsp;</li>
     			<li>
-					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm" 
+					<asp:LinkButton id="buttonResetForm" runat="server" resourcekey="ResetForm"
                         CssClass="dnnSecondaryAction" />
 				</li>
-			</ul>	
+			</ul>
         </div>
 		<asp:HiddenField id="hiddenViewItemID" runat="server" />
 		<asp:HiddenField id="hiddenEduProgramProfileID" runat="server" />

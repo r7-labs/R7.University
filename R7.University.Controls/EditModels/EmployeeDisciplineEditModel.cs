@@ -88,7 +88,7 @@ namespace R7.University.Controls.EditModels
         #region Bindable properties
 
         [JsonIgnore]
-        public string EduProgramProfileString
+        public string EduProfileString
         {
             get { return UniversityFormatHelper.FormatEduProfileTitle (Code, Title, ProfileCode, ProfileTitle); }
         }
