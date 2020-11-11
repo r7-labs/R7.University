@@ -36,7 +36,7 @@ namespace R7.University.EduProgramProfiles
 {
     public partial class EditEduProgramProfileDocuments: UniversityEditPortalModuleBase<EduProfileInfo>, IActionable
     {
-        protected EditEduProgramProfileDocuments () : base ("eduprogramprofile_id")
+        protected EditEduProgramProfileDocuments () : base ("eduprofile_id")
         {
         }
 
@@ -125,7 +125,7 @@ namespace R7.University.EduProgramProfiles
                         CommandName = ModuleActionType.EditContent,
                         Icon = UniversityIcons.Edit,
                         Secure = SecurityAccessLevel.Edit,
-                        Url = EditUrl ("eduprogramprofile_id", epp.EduProgramProfileID.ToString (), "EditEduProgramProfile"),
+                        Url = EditUrl ("eduprofile_id", epp.EduProgramProfileID.ToString (), "EditEduProgramProfile"),
                         Visible = SecurityContext.IsAdmin
                     });
                 }

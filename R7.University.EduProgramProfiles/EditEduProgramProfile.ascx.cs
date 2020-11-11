@@ -75,7 +75,7 @@ namespace R7.University.EduProgramProfiles
 
         #endregion
 
-        protected EditEduProgramProfile () : base ("eduprogramprofile_id")
+        protected EditEduProgramProfile () : base ("eduprofile_id")
         {
         }
 
@@ -303,7 +303,7 @@ namespace R7.University.EduProgramProfiles
                         CommandName = ModuleActionType.EditContent,
                         Icon = UniversityIcons.EditDocuments,
                         Secure = SecurityAccessLevel.Edit,
-                        Url = EditUrl ("eduprogramprofile_id", epp.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments"),
+                        Url = EditUrl ("eduprofile_id", epp.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments"),
                         Visible = SecurityContext.IsAdmin
                     });
                 }

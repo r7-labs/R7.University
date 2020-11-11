@@ -234,7 +234,7 @@ namespace R7.University.EduProgramProfiles
                         CommandName = ModuleActionType.EditContent,
                         Icon = UniversityIcons.Edit,
                         Secure = SecurityAccessLevel.Edit,
-                        Url = EditUrl ("eduprogramprofile_id", eppfy.EduProgramProfileId.ToString (), "EditEduProgramProfile"),
+                        Url = EditUrl ("eduprofile_id", eppfy.EduProgramProfileId.ToString (), "EditEduProgramProfile"),
                         Visible = SecurityContext.IsAdmin
                     });
                 }

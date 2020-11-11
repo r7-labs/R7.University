@@ -243,7 +243,7 @@ namespace R7.University.EduProgramProfiles
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id",
+                    linkEdit.NavigateUrl = EditUrl ("eduprofile_id",
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }
@@ -281,7 +281,7 @@ namespace R7.University.EduProgramProfiles
                     var iconEdit = (Image) e.Row.FindControl ("iconEdit");
 
                     // fill edit link controls
-                    linkEdit.NavigateUrl = EditUrl ("eduprogramprofile_id",
+                    linkEdit.NavigateUrl = EditUrl ("eduprofile_id",
                         eduProgramProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
                     iconEdit.ImageUrl = UniversityIcons.Edit;
                 }

@@ -55,7 +55,7 @@ namespace R7.University.EduPrograms.ViewModels
         public string EduFormsForAdmission_String => FormatEduFormYears (EduFormsForAdmission);
 
         public string Edit_Url => Context.Module.EditUrl (
-            "eduprogramprofile_id",
+            "eduprofile_id",
             EduProfile.EduProgramProfileID.ToString (),
             "EditEduProgramProfile"
         );

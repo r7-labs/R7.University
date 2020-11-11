@@ -26,10 +26,10 @@ namespace R7.University.EduPrograms.ViewModels
         }
 
         public string Edit_Url => Context.Module.EditUrl (
-            "eduprogramprofile_id", EduProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
+            "eduprofile_id", EduProfile.EduProgramProfileID.ToString (), "EditEduProgramProfile");
 
         public string EditDocuments_Url => Context.Module.EditUrl (
-	        "eduprogramprofile_id", EduProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
+	        "eduprofile_id", EduProfile.EduProgramProfileID.ToString (), "EditEduProgramProfileDocuments");
 
         #endregion
     }
