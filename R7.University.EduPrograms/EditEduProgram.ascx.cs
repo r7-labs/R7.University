@@ -243,7 +243,7 @@ namespace R7.University.EduPrograms
 
         #region Handlers
 
-        protected void gridEduProgramProfiles_RowDataBound (object sender, GridViewRowEventArgs e)
+        protected void gridEduProfiles_RowDataBound (object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProfile = (IEduProfile) e.Row.DataItem;

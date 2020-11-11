@@ -62,7 +62,7 @@
             <fieldset>
                 <div class="dnnFormItem">
 					<asp:GridView id="gridEduProfiles" runat="server" AutoGenerateColumns="false"
-							OnRowDataBound="gridEduProgramProfiles_RowDataBound"
+							OnRowDataBound="gridEduProfiles_RowDataBound"
                             GridLines="None" CssClass="dnnGrid" Style="width:100%;margin-bottom:30px">
                         <HeaderStyle CssClass="dnnGridHeader" HorizontalAlign="Left" />
                         <RowStyle CssClass="dnnGridItem" HorizontalAlign="Left" />
