@@ -27,7 +27,7 @@
 			<div id="positions" style="overflow:auto">
 					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
 					AllowPaging="true" AllowSorting="true" GridLines="None"
-					OnSorting="gridView_Sorting" 
+					OnSorting="gridView_Sorting"
 					OnPageIndexChanging="gridView_PageIndexChanging"
 					OnRowDataBound="gridView_RowDataBound">
 						<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -56,11 +56,11 @@
 			        <br />
 				</div>
 		</asp:View>
-		<asp:View id="viewDivisions" runat="server"> 
+		<asp:View id="viewDivisions" runat="server">
 			<div id="divisions" style="overflow:auto">
 				<asp:GridView id="gridDivisions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
 				AllowPaging="true" AllowSorting="true" GridLines="None"
-				OnSorting="gridView_Sorting" 
+				OnSorting="gridView_Sorting"
 				OnPageIndexChanging="gridView_PageIndexChanging"
 				OnRowDataBound="gridView_RowDataBound">
 					<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -112,8 +112,8 @@
 		<asp:View id="viewEmployees" runat="server">
 			<div id="employees" style="overflow:auto">
                 <asp:GridView id="gridEmployees" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-				AllowPaging="true" AllowSorting="true" GridLines="None" 
-				OnSorting="gridView_Sorting" 
+				AllowPaging="true" AllowSorting="true" GridLines="None"
+				OnSorting="gridView_Sorting"
 				OnPageIndexChanging="gridView_PageIndexChanging"
 				OnRowDataBound="gridView_RowDataBound">
 					<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -164,8 +164,8 @@
 		<asp:View id="viewAchievements" runat="server">
 			<div id="achievements" style="overflow:auto">
 				<asp:GridView id="gridAchievements" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-				AllowPaging="true" AllowSorting="true" GridLines="None" 
-				OnSorting="gridView_Sorting" 
+				AllowPaging="true" AllowSorting="true" GridLines="None"
+				OnSorting="gridView_Sorting"
 				OnPageIndexChanging="gridView_PageIndexChanging"
 				OnRowDataBound="gridView_RowDataBound">
 					<HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -196,8 +196,8 @@
 		<asp:View id="viewAchievementTypes" runat="server">
             <div id="achievement-types" style="overflow:auto">
                 <asp:GridView id="gridAchievementTypes" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                AllowPaging="true" AllowSorting="true" GridLines="None" 
-                OnSorting="gridView_Sorting" 
+                AllowPaging="true" AllowSorting="true" GridLines="None"
+                OnSorting="gridView_Sorting"
                 OnPageIndexChanging="gridView_PageIndexChanging"
                 OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -228,8 +228,8 @@
         <asp:View id="viewEduLevels" runat="server">
             <div id="edulevels" style="overflow:auto">
                 <asp:GridView id="gridEduLevels" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -261,8 +261,8 @@
         <asp:View id="viewEduPrograms" runat="server">
             <div id="eduprograms" style="overflow:auto">
                 <asp:GridView id="gridEduPrograms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -296,9 +296,9 @@
         </asp:View>
         <asp:View id="viewEduProgramProfiles" runat="server">
             <div id="eduprogramprofiles" style="overflow:auto">
-                <asp:GridView id="gridEduProgramProfiles" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                <asp:GridView id="gridEduProfiles" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -338,8 +338,8 @@
         <asp:View id="viewDocumentTypes" runat="server">
             <div id="documenttypes" style="overflow:auto">
                 <asp:GridView id="gridDocumentTypes" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -371,8 +371,8 @@
         <asp:View id="viewDocuments" runat="server">
             <div id="documents" style="overflow:auto">
                 <asp:GridView id="gridDocuments" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -412,8 +412,8 @@
 		<asp:View id="viewEduProgramDivisions" runat="server">
             <div id="eduprogram-divisions" style="overflow:auto">
                 <asp:GridView id="gridEduProgramDivisions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -445,8 +445,8 @@
 	    <asp:View id="viewEduForms" runat="server">
             <div id="eduforms" style="overflow:auto">
                 <asp:GridView id="gridEduForms" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />
@@ -478,8 +478,8 @@
         <asp:View id="viewYears" runat="server">
             <div id="years" style="overflow:auto">
                 <asp:GridView id="gridYears" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
-                    AllowPaging="true" AllowSorting="true" GridLines="None" 
-                    OnSorting="gridView_Sorting" 
+                    AllowPaging="true" AllowSorting="true" GridLines="None"
+                    OnSorting="gridView_Sorting"
                     OnPageIndexChanging="gridView_PageIndexChanging"
                     OnRowDataBound="gridView_RowDataBound">
                     <HeaderStyle CssClass="dnnGridHeader" horizontalalign="Left" />

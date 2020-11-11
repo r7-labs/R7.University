@@ -1,24 +1,3 @@
-//
-//  EditEduProgram.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Linq;
 using System.Web;
@@ -119,7 +98,7 @@ namespace R7.University.EduPrograms
             var divisions = new FlatQuery<DivisionInfo> (ModelContext).ListOrderBy (d => d.Title);
             formEditDivisions.OnInit (this, divisions);
 
-            gridEduProgramProfiles.LocalizeColumnHeaders (LocalResourceFile);
+            gridEduProfiles.LocalizeColumnHeaders (LocalResourceFile);
         }
 
         protected override string GetContextString (EduProgramInfo item)
@@ -148,12 +127,12 @@ namespace R7.University.EduPrograms
             // setup link for adding new edu. program profile
             linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", ep.EduProgramID.ToString (), "EditEduProgramProfile");
 
-            gridEduProgramProfiles.DataSource = ep.EduProfiles
+            gridEduProfiles.DataSource = ep.EduProfiles
                 .Select (epp => new EduProfileEditModel (epp, ViewModelContext))
                 .OrderBy (epp => epp.ProfileCode)
                 .ThenBy (epp => epp.ProfileTitle);
 
-            gridEduProgramProfiles.DataBind ();
+            gridEduProfiles.DataBind ();
 
             buttonDelete.Visible = SecurityContext.CanDelete (ep);
             linkAddEduProgramProfile.Visible = SecurityContext.CanAdd (typeof (EduProfileInfo));
@@ -269,7 +248,7 @@ namespace R7.University.EduPrograms
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProfile = (IEduProfile) e.Row.DataItem;
                 if (!eduProfile.IsPublished (HttpContext.Current.Timestamp)) {
-                    e.Row.CssClass = gridEduProgramProfiles.GetRowStyle (e.Row).CssClass + " u8y-not-published";
+                    e.Row.CssClass = gridEduProfiles.GetRowStyle (e.Row).CssClass + " u8y-not-published";
                 }
             }
         }

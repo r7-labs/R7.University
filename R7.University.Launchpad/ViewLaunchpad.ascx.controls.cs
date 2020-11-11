@@ -19,7 +19,7 @@ namespace R7.University.Launchpad
         protected GridView gridAchievementTypes;
         protected GridView gridEduLevels;
         protected GridView gridEduPrograms;
-        protected GridView gridEduProgramProfiles;
+        protected GridView gridEduProfiles;
         protected GridView gridDocumentTypes;
         protected GridView gridDocuments;
         protected GridView gridEduForms;
