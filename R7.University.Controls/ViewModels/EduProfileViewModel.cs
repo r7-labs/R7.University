@@ -16,7 +16,7 @@ namespace R7.University.Controls.ViewModels
         public string Title_String
         {
             get {
-                return UniversityFormatHelper.FormatEduProgramProfilePartialTitle (
+                return UniversityFormatHelper.FormatEduProfilePartialTitle (
                     EduProfile.ProfileCode,
                     !string.IsNullOrEmpty (EduProfile.ProfileTitle) ? EduProfile.ProfileTitle : Context.LocalizeString ("EmptyProfileTitle.Text"),
                     UniversityFormatHelper.FormatShortTitle (EduProfile.EduLevel.ShortTitle, EduProfile.EduLevel.Title)

@@ -1,24 +1,3 @@
-//
-//  FormatHelper.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -46,7 +25,7 @@ namespace R7.University.ViewModels
         public static string FormatShortTitle (string shortTitle, string title, string titleSuffix)
         {
             var shortTitleWoSuffix = FormatShortTitle (shortTitle, title);
-            return !string.IsNullOrWhiteSpace (titleSuffix) ? shortTitleWoSuffix + " " + titleSuffix : shortTitleWoSuffix; 
+            return !string.IsNullOrWhiteSpace (titleSuffix) ? shortTitleWoSuffix + " " + titleSuffix : shortTitleWoSuffix;
         }
 
         public static string FormatTitleWithShortTitle (string title, string shortTitle)
@@ -117,34 +96,34 @@ namespace R7.University.ViewModels
             return FormatHelper.JoinNotNullOrEmpty (" ", code, title);
         }
 
-        public static string FormatEduProgramProfileTitle (string title, 
+        public static string FormatEduProfileTitle (string title,
             string profileCode, string profileTitle)
         {
             var profileString = FormatHelper.JoinNotNullOrEmpty (" ", profileCode, profileTitle);
 
-            var profileStringInBrackets = 
+            var profileStringInBrackets =
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
             return FormatHelper.JoinNotNullOrEmpty (" ", title, profileStringInBrackets);
         }
 
-        public static string FormatEduProgramProfileTitle (string code, string title, 
+        public static string FormatEduProfileTitle (string code, string title,
             string profileCode, string profileTitle)
         {
             var profileString = FormatHelper.JoinNotNullOrEmpty (" ", profileCode, profileTitle);
 
-            var profileStringInBrackets = 
+            var profileStringInBrackets =
                 !string.IsNullOrWhiteSpace (profileString) ? "(" + profileString + ")" : string.Empty;
 
             return FormatHelper.JoinNotNullOrEmpty (" ", code, title, profileStringInBrackets);
         }
 
-        public static string FormatEduProgramProfilePartialTitle (string profileCode, string profileTitle)
+        public static string FormatEduProfilePartialTitle (string profileCode, string profileTitle)
         {
             return FormatHelper.JoinNotNullOrEmpty (profileCode, profileTitle);
         }
 
-        public static string FormatEduProgramProfilePartialTitle (string profileCode, string profileTitle, string eduLevelTitle)
+        public static string FormatEduProfilePartialTitle (string profileCode, string profileTitle, string eduLevelTitle)
         {
             return FormatHelper.JoinNotNullOrEmpty (profileCode, profileTitle) + ": " + eduLevelTitle;
         }
@@ -152,19 +131,19 @@ namespace R7.University.ViewModels
         public static string FormatDocumentLink_WithMicrodata (this IDocument document, string documentTitle,
             string defaultTitle, bool preferDocumentTitle, DocumentGroupPlacement groupPlacement, int tabId, int moduleId, string microdata, DateTime now)
         {
-            var title = (preferDocumentTitle && !string.IsNullOrWhiteSpace (documentTitle)) 
+            var title = (preferDocumentTitle && !string.IsNullOrWhiteSpace (documentTitle))
                 ? ((groupPlacement == DocumentGroupPlacement.InTitle)
                    ? FormatHelper.JoinNotNullOrEmpty (": ", document.Group, documentTitle)
                     : documentTitle)
                 : ((groupPlacement == DocumentGroupPlacement.InTitle && !string.IsNullOrWhiteSpace (document.Group))
                     ? document.Group
                     : defaultTitle);
-              
+
             if (!string.IsNullOrWhiteSpace (document.Url)) {
                 var linkMarkup = "<a href=\"" + UniversityUrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
                                                                    + FormatHelper.JoinNotNullOrEmpty (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
                 + " target=\"_blank\">" + title + "</a>";
-                
+
                 if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {
                     return FormatHelper.JoinNotNullOrEmpty (": ", document.Group, linkMarkup);
                 }
@@ -217,7 +196,7 @@ namespace R7.University.ViewModels
         public static string AbbrName (string firstName, string lastName, string otherName)
         {
             if (!string.IsNullOrWhiteSpace (otherName)) {
-                return string.Format ("{0} {1}.{2}.", lastName, firstName.Substring (0, 1), otherName.Substring (0, 1)); 
+                return string.Format ("{0} {1}.{2}.", lastName, firstName.Substring (0, 1), otherName.Substring (0, 1));
             }
 
             return string.Format ("{0} {1}.", lastName, firstName.Substring (0, 1));
@@ -225,24 +204,24 @@ namespace R7.University.ViewModels
 
         public static string FormatWebSiteUrl  (string website)
         {
-            return website.Contains ("://") ? website.ToLowerInvariant () : 
+            return website.Contains ("://") ? website.ToLowerInvariant () :
                 "http://" + website.ToLowerInvariant ();
         }
 
         public static string FormatWebSiteLabel (string websiteUrl, string websiteLabel)
         {
-            return (!string.IsNullOrWhiteSpace (websiteLabel)) ? websiteLabel : 
+            return (!string.IsNullOrWhiteSpace (websiteLabel)) ? websiteLabel :
                 websiteUrl.Contains ("://") ? websiteUrl.Remove (0, websiteUrl.IndexOf ("://") + 3) : websiteUrl;
         }
 
         public static string FormatYears (int? yearBegin, int? yearEnd, string atTheMoment)
         {
             if (yearBegin != null && yearEnd == null)
-                return yearBegin.ToString (); 
+                return yearBegin.ToString ();
 
             if (yearBegin == null && yearEnd != null) {
                 if (yearEnd.Value != 0)
-                    return "? - " + yearEnd; 
+                    return "? - " + yearEnd;
             }
 
             if (yearBegin != null && yearEnd != null) {

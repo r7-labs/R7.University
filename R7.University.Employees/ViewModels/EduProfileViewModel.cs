@@ -28,7 +28,7 @@ namespace R7.University.Employees.ViewModels
         {
             get {
                 return FormatHelper.JoinNotNullOrEmpty (": ",
-                    UniversityFormatHelper.FormatEduProgramProfileTitle (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle),
+                    UniversityFormatHelper.FormatEduProfileTitle (EduProgram.Code, EduProgram.Title, ProfileCode, ProfileTitle),
                     (EduLevel != null) ? EduLevel.Title : null
                 );
             }

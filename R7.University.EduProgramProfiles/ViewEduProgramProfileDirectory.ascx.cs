@@ -268,7 +268,7 @@ namespace R7.University.EduProgramProfiles
             else if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgramProfile = (EduProfileDocumentsViewModel) e.Row.DataItem;
 
-                e.Row.Attributes.Add ("data-title", UniversityFormatHelper.FormatEduProgramProfileTitle (
+                e.Row.Attributes.Add ("data-title", UniversityFormatHelper.FormatEduProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
                     eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle)
                                       .Append (eduProgramProfile.IsAdopted ? LocalizeString ("IsAdopted.Text") : null, " - ")

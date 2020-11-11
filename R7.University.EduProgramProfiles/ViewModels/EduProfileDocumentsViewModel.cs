@@ -144,7 +144,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return Wrap (FormatDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
-                UniversityFormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
+                UniversityFormatHelper.FormatEduProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                     .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
                 "oop",
                 IsAdopted ? "itemprop=\"adOpMain\"" : "itemprop=\"opMain\""

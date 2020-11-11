@@ -1,24 +1,3 @@
-//
-//  EduProgramProfileEduFormsViewModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -59,7 +38,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string Code => Wrap (EduProgram.Code, "eduCode");
 
         public string Title => Wrap (
-            UniversityFormatHelper.FormatEduProgramProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
+            UniversityFormatHelper.FormatEduProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                 .Append (IsAdopted? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
             "eduName"
         );
@@ -69,7 +48,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string AccreditedToDateString => (AccreditedToDate != null)
             ? Wrap (AccreditedToDate.Value.ToShortDateString (), "dateEnd")
             : string.Empty;
-        
+
         public string EduForms_String
         {
         	get {
@@ -78,7 +57,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                     return "<ul itemprop=\"learningTerm\">" + formYears
                         .Select (eppfy => (eppfy.IsPublished (_now) ? "<li>" : "<li class=\"u8y-not-published-element\">")
                                  + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile, eppfy.EduForm.Title).ToLower ()
-                                 + ((eppfy.EduVolume != null && (eppfy.EduVolume.TimeToLearnMonths != 0 || eppfy.EduVolume.TimeToLearnHours != 0)) 
+                                 + ((eppfy.EduVolume != null && (eppfy.EduVolume.TimeToLearnMonths != 0 || eppfy.EduVolume.TimeToLearnHours != 0))
                                     ? ("&nbsp;- " + UniversityFormatHelper.FormatTimeToLearn (eppfy.EduVolume.TimeToLearnMonths, eppfy.EduVolume.TimeToLearnHours, Context.Settings.TimeToLearnDisplayMode, "TimeToLearn", Context.LocalResourceFile))
                                     : string.Empty)
                                  + "</li>")
@@ -90,7 +69,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
         }
 
         string _languagesString;
-        public string Languages_String => 
+        public string Languages_String =>
             _languagesString ?? (_languagesString = GetLanguagesString ());
 
         static char [] languageCodeSeparator = { ';' };

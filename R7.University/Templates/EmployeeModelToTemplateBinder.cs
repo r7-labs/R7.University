@@ -158,7 +158,7 @@ namespace R7.University.Templates
                     return UniversityFormatHelper.FormatEduProgramTitle (profile.EduProgram.Code, profile.EduProgram.Title);
                 }
                 if (objectName == NameOf (() => Disciplines [index].EduProfile)) {
-                    return UniversityFormatHelper.FormatEduProgramProfilePartialTitle (profile.ProfileCode, profile.ProfileTitle);
+                    return UniversityFormatHelper.FormatEduProfilePartialTitle (profile.ProfileCode, profile.ProfileTitle);
                 }
                 if (objectName == NameOf (() => profile.EduLevel)) {
                     return profile.EduLevel.Title;
