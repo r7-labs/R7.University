@@ -90,7 +90,7 @@ namespace R7.University.Employees
                 }
             }
         }
-       
+
         protected bool IsInPopup
         {
             get { return UrlUtils.InPopUp (); }
@@ -183,28 +183,28 @@ namespace R7.University.Employees
                 var actions = new ModuleActionCollection ();
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("AddEmployee.Action"),
                     ModuleActionType.AddContent,
                     "",
                     UniversityIcons.Add,
                     EditUrl ("EditEmployee"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
-                    Employee == null && SecurityContext.CanAdd (typeof (EmployeeInfo)), 
+                    Employee == null && SecurityContext.CanAdd (typeof (EmployeeInfo)),
                     false
                 );
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("EditEmployee.Action"),
-                    ModuleActionType.EditContent, 
-                    "", 
+                    ModuleActionType.EditContent,
+                    "",
                     UniversityIcons.Edit,
                     EditUrl ("employee_id", Employee?.EmployeeID.ToString (), "EditEmployee"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
-                    Employee != null, 
+                    Employee != null,
                     false
                 );
 
@@ -284,7 +284,7 @@ namespace R7.University.Employees
 
                 if (displayContent) {
                     Display (employee);
-					
+
                     // don't show action buttons in view module
                     if (!InViewModule) {
                         // show edit button only for editors or superusers (in popup)
@@ -346,7 +346,7 @@ namespace R7.University.Employees
             }
 
             EmployeePhotoLogic.Bind (employee, imagePhoto, PhotoWidth);
-					
+
             BindContacts (employee);
             BindBarcode (employee);
 
@@ -464,7 +464,7 @@ namespace R7.University.Employees
             var barcodeWidth = UniversityConfig.Instance.Barcode.DefaultWidth;
             imageBarcode.ImageUrl = UniversityUrlHelper.FullUrl (string.Format (
                     "/imagehandler.ashx?barcode=1&width={0}&height={1}&type=qrcode&encoding=UTF-8&content={2}",
-                    barcodeWidth, barcodeWidth, 
+                    barcodeWidth, barcodeWidth,
                     Server.UrlEncode (employee.VCard ().ToString ()
 					.Replace ("+", "%2b")) // fix for "+" signs in phone numbers
                 ));
@@ -479,13 +479,13 @@ namespace R7.University.Employees
             var exp1 = false;
             var exp2 = false;
             var noExpYears = false;
-		
+
             if (employee.ExperienceYears != null && employee.ExperienceYears.Value > 0)
                 exp1 = true;
-			
+
             if (employee.ExperienceYearsBySpec != null && employee.ExperienceYearsBySpec.Value > 0)
                 exp2 = true;
-			
+
             if (exp1 && !exp2) {
                 labelExperienceYears.Text = string.Format (
                     LocalizeString ("ExperienceYears1.Format"), employee.ExperienceYears.Value);
@@ -496,13 +496,13 @@ namespace R7.University.Employees
             }
             else if (exp1 && exp2) {
                 labelExperienceYears.Text = string.Format (
-                    LocalizeString ("ExperienceYears3.Format"), 
+                    LocalizeString ("ExperienceYears3.Format"),
                     employee.ExperienceYears.Value, employee.ExperienceYearsBySpec);
             }
             else {
                 // hide label for experience years
                 labelExperienceYears.Visible = false;
-				
+
                 // about to hide Experience tab
                 noExpYears = true;
             }
@@ -511,11 +511,11 @@ namespace R7.University.Employees
 
             // get all empoyee achievements
             var achievements = employee.Achievements.Select (ach => new EmployeeAchievementViewModel (ach, viewModelContext));
-            
+
             // employee titles
             var titles = achievements.Where (ach => ach.IsTitle)
                                      .Select (ach => FormatHelper.JoinNotNullOrEmpty (" ", ach.Title.FirstCharToLower (), ach.TitleSuffix));
-            
+
             var strTitles = FormatHelper.JoinNotNullOrEmpty (", ", titles);
             if (!string.IsNullOrWhiteSpace (strTitles))
                 labelAcademicDegreeAndTitle.Text = strTitles.FirstCharToUpper ();
@@ -527,11 +527,12 @@ namespace R7.University.Employees
                 .Where (ach => ach.AchievementType.IsOneOf (SystemAchievementType.Education,
                                                             SystemAchievementType.AcademicDegree,
                                                             SystemAchievementType.Training,
+                                                            SystemAchievementType.ShortTermTraining,
                                                             SystemAchievementType.ProfTraining,
                                                             SystemAchievementType.ProfRetraining,
                                                             SystemAchievementType.Work))
                 .OrderByDescending (exp => exp.YearBegin);
-            
+
             if (experiences.Any ()) {
                 gridExperience.DataSource = experiences;
                 gridExperience.DataBind ();
@@ -540,12 +541,13 @@ namespace R7.University.Employees
                 // hide experience tab
                 tabExperience.Visible = false;
             }
-		
+
             // get all other achievements
             var otherAchievements = achievements
                 .Where (ach => !ach.AchievementType.IsOneOf (SystemAchievementType.Education,
                                                              SystemAchievementType.AcademicDegree,
                                                              SystemAchievementType.Training,
+                                                             SystemAchievementType.ShortTermTraining,
                                                              SystemAchievementType.ProfTraining,
                                                              SystemAchievementType.ProfRetraining,
                                                              SystemAchievementType.Work))

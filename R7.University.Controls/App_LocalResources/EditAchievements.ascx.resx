@@ -36,6 +36,9 @@
     <data name="SystemAchievementType_Training.Text" xml:space="preserve">
         <value>Training</value>
     </data>
+	<data name="SystemAchievementType_ShortTermTraining.Text" xml:space="preserve">
+        <value>Short-term Training</value>
+    </data>
     <data name="SystemAchievementType_ProfTraining.Text" xml:space="preserve">
         <value>Professional Training</value>
     </data>

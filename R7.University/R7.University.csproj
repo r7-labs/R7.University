@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University</RootNamespace>
     <AssemblyName>R7.University</AssemblyName>
-    <ReleaseVersion>2.6.1</ReleaseVersion>
+    <ReleaseVersion>2.7.0</ReleaseVersion>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -400,6 +400,7 @@
     <None Include="SqlDataProvider\01.00.07.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.00.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.01.SqlDataProvider" />
+    <None Include="SqlDataProvider\02.07.00.SqlDataProvider" />
     <None Include="SqlDataProvider\Uninstall.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.02.SqlDataProvider" />
     <None Include="SqlDataProvider\01.01.03.SqlDataProvider" />

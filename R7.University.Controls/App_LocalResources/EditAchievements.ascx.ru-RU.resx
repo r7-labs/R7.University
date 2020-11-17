@@ -36,6 +36,9 @@
     <data name="SystemAchievementType_Training.Text" xml:space="preserve">
         <value>Повышение квалификации</value>
     </data>
+	<data name="SystemAchievementType_ShortTermTraining.Text" xml:space="preserve">
+        <value>Краткосрочное повышение квалификации</value>
+    </data>
     <data name="SystemAchievementType_ProfTraining.Text" xml:space="preserve">
         <value>Проф. подготовка</value>
     </data>
