@@ -2,7 +2,7 @@ using System.IO;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     public class HSSFWorkbookProvider: WorkbookProviderBase
     {

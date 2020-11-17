@@ -22,7 +22,7 @@
 using System;
 using DotNetNuke.Entities.Users;
 using R7.University.Components;
-using R7.University.Core.Templates;
+using R7.University.Templates;
 
 namespace R7.University.Templates
 {

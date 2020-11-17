@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using R7.University.Core.Templates;
+using R7.University.Templates;
 using Xunit;
 
-namespace R7.University.Core.Tests.Templates
+namespace R7.University.Tests.Templates
 {
     public class LiquidHelperTests
     {
@@ -19,7 +19,7 @@ namespace R7.University.Core.Tests.Templates
                 Assert.Equal (liquidObjects [i], LiquidHelper.UnwrapLiquidObject (liquidObjectsActual [i]));
             }
         }
-         
+
         public static IEnumerable<object []> GetTemplates ()
         {
             yield return new object [] { "This is a template with {{one}}  object.", new string [] { "one" } };

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
-using R7.University.Core.Templates;
+using R7.University.Templates;
 using R7.University.Launchpad.ViewModels;
 
 namespace R7.University.Launchpad.Services

@@ -1,7 +1,7 @@
 using System;
-using R7.University.Core.Templates;
+using R7.University.Templates;
 
-namespace R7.University.Core.Tests
+namespace R7.University.Tests
 {
     class Program
     {

@@ -1,7 +1,7 @@
 using System.IO;
 using NPOI.SS.UserModel;
 
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     public abstract class WorkbookProviderBase: IWorkbookProvider
     {

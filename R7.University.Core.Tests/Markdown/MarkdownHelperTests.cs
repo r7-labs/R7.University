@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using R7.University.Core.Markdown;
+using R7.University.Markdown;
 using Xunit;
 
-namespace R7.University.Core.Tests.Markdown
+namespace R7.University.Tests.Markdown
 {
     public class MarkdownHelperTests
     {

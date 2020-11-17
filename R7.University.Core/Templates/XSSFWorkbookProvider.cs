@@ -2,7 +2,7 @@ using System.IO;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     public class XSSFWorkbookProvider: WorkbookProviderBase
     {

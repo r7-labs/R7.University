@@ -9,7 +9,7 @@ using DotNetNuke.Entities.Tabs;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
-using R7.University.Core.Markdown;
+using R7.University.Markdown;
 using R7.University.ModelExtensions;
 using R7.University.Models;
 using R7.University.ViewModels;

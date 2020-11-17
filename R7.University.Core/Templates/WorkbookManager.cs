@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     public class WorkbookManager
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     public static class LiquidHelper
     {

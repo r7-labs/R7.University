@@ -30,7 +30,6 @@ using System.Web.Http;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
 using R7.University.Components;
-using R7.University.Core.Templates;
 using R7.University.Employees.Queries;
 using R7.University.Models;
 using R7.University.Templates;

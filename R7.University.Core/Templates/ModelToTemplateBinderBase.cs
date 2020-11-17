@@ -23,7 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     // TODO: Introduce UniversityModelToTemplateBuilder base class - for version binding, etc.
     public abstract class ModelToTemplateBinderBase: IModelToTemplateBinder

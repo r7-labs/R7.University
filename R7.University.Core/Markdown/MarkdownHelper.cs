@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace R7.University.Core.Markdown
+namespace R7.University.Markdown
 {
     public static class MarkdownHelper
     {

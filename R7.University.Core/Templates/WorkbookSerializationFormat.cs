@@ -1,4 +1,4 @@
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     public enum WorkbookSerializationFormat
     {

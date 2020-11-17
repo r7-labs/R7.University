@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using NPOI.SS.UserModel;
 
-namespace R7.University.Core.Templates
+namespace R7.University.Templates
 {
     public class WorkbookLiquidTemplateEngine
     {
