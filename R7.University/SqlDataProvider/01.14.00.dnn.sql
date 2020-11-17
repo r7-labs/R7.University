@@ -1,27 +1,6 @@
-﻿--
---  01.14.00.SqlDataProvider
---
---  Author:
---       Roman M. Yagodin <roman.yagodin@gmail.com>
---
---  Copyright (c) 2017 Roman M. Yagodin
---
---  This program is free software: you can redistribute it and/or modify
---  it under the terms of the GNU Affero General Public License as published by
---  the Free Software Foundation, either version 3 of the License, or
---  (at your option) any later version.
---
---  This program is distributed in the hope that it will be useful,
---  but WITHOUT ANY WARRANTY; without even the implied warranty of
---  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
---  GNU Affero General Public License for more details.
---
---  You should have received a copy of the GNU Affero General Public License
---  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
--- NOTE: To manually execute this script you must 
--- replace {databaseOwner} and {objectQualifier} with real values. 
--- Defaults is "dbo." for database owner and "" for object qualifier 
+﻿-- NOTE: To manually execute this script you must
+-- replace {databaseOwner} and {objectQualifier} with real values.
+-- Defaults is "dbo." for database owner and "" for object qualifier
 
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_DocumentTypes]') and name = N'FilenameFormat')
     ALTER TABLE {databaseOwner}[{objectQualifier}University_DocumentTypes]
@@ -128,7 +107,7 @@ BEGIN
 END
 GO
 
-IF NOT EXISTS (select * from sys.foreign_keys where name = N'FK_{objectQualifier}University_Achievements_AchievementTypes')       
+IF NOT EXISTS (select * from sys.foreign_keys where name = N'FK_{objectQualifier}University_Achievements_AchievementTypes')
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Achievements]
         ADD CONSTRAINT [FK_{objectQualifier}University_Achievements_AchievementTypes] FOREIGN KEY (AchievementTypeID)
             REFERENCES {databaseOwner}[{objectQualifier}University_AchievementTypes] (AchievementTypeID) ON DELETE NO ACTION

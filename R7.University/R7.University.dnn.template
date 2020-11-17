@@ -25,135 +25,135 @@
 					<scripts>
 						<basePath>DesktopModules\MVC\R7.University\R7.University</basePath>
 						<script type="Install">
-							<name>SqlDataProvider\01.00.00.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.00.dnn.sql</name>
 							<version>01.00.00</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.00.02.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.02.dnn.sql</name>
 							<version>01.00.02</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.00.04.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.04.dnn.sql</name>
 							<version>01.00.04</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.00.05.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.05.dnn.sql</name>
 							<version>01.00.05</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.00.07.SqlDataProvider</name>
+							<name>SqlDataProvider\01.00.07.dnn.sql</name>
 							<version>01.00.07</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.01.00.SqlDataProvider</name>
+							<name>SqlDataProvider\01.01.00.dnn.sql</name>
 							<version>01.01.00</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.01.01.SqlDataProvider</name>
+							<name>SqlDataProvider\01.01.01.dnn.sql</name>
 							<version>01.01.01</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.01.02.SqlDataProvider</name>
+							<name>SqlDataProvider\01.01.02.dnn.sql</name>
 							<version>01.01.02</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.01.03.SqlDataProvider</name>
+							<name>SqlDataProvider\01.01.03.dnn.sql</name>
 							<version>01.01.03</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.01.04.SqlDataProvider</name>
+							<name>SqlDataProvider\01.01.04.dnn.sql</name>
 							<version>01.01.04</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.01.06.SqlDataProvider</name>
+							<name>SqlDataProvider\01.01.06.dnn.sql</name>
 							<version>01.01.06</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.01.07.SqlDataProvider</name>
+							<name>SqlDataProvider\01.01.07.dnn.sql</name>
 							<version>01.01.07</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.02.00.SqlDataProvider</name>
+							<name>SqlDataProvider\01.02.00.dnn.sql</name>
 							<version>01.02.00</version>
 						</script>
 						<script type="Install">
-							<name>SqlDataProvider\01.02.01.SqlDataProvider</name>
+							<name>SqlDataProvider\01.02.01.dnn.sql</name>
 							<version>01.02.01</version>
 						</script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.03.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.03.00.dnn.sql</name>
                             <version>01.03.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.04.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.04.00.dnn.sql</name>
                             <version>01.04.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.05.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.05.00.dnn.sql</name>
                             <version>01.05.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.06.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.06.00.dnn.sql</name>
                             <version>01.06.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.07.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.07.00.dnn.sql</name>
                             <version>01.07.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.08.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.08.00.dnn.sql</name>
                             <version>01.08.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.09.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.09.00.dnn.sql</name>
                             <version>01.09.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.10.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.10.00.dnn.sql</name>
                             <version>01.10.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\01.11.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.11.00.dnn.sql</name>
                             <version>01.11.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\01.12.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.12.00.dnn.sql</name>
                             <version>01.12.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\01.14.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.14.00.dnn.sql</name>
                             <version>01.14.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\01.15.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\01.15.00.dnn.sql</name>
                             <version>01.15.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\02.00.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\02.00.00.dnn.sql</name>
                             <version>02.00.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\02.01.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\02.01.00.dnn.sql</name>
                             <version>02.01.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\02.02.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\02.02.00.dnn.sql</name>
                             <version>02.02.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\02.05.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\02.05.00.dnn.sql</name>
                             <version>02.05.00</version>
                         </script>
 						<script type="Install">
-                            <name>SqlDataProvider\02.06.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\02.06.00.dnn.sql</name>
                             <version>02.06.00</version>
                         </script>
                         <script type="Install">
-                            <name>SqlDataProvider\02.07.00.SqlDataProvider</name>
+                            <name>SqlDataProvider\02.07.00.dnn.sql</name>
                             <version>02.07.00</version>
                         </script>
                         <script type="UnInstall">
-                            <name>SqlDataProvider\Uninstall.SqlDataProvider</name>
+                            <name>SqlDataProvider\Uninstall.dnn.sql</name>
                         </script>
 					</scripts>
 				</component>

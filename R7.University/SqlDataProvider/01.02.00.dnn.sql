@@ -1,0 +1,77 @@
+-- NOTE: To manually execute this script you must
+-- replace {databaseOwner} and {objectQualifier} with real values.
+-- Defaults is "dbo." for database owner and "" for object qualifier
+
+-- Create tables
+
+IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_EduLevels]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}University_EduLevels] (
+		[EduLevelID] int IDENTITY(1,1) NOT NULL,
+		[Title] nvarchar(250) NOT NULL,
+		[ShortTitle] nvarchar(64) NOT NULL,
+		[Type] nchar(1) NOT NULL -- high (H), intermediate (I), additional (A) ...
+	)
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EduLevels]
+		ADD CONSTRAINT [PK_{objectQualifier}University_EduLevels] PRIMARY KEY CLUSTERED ([EduLevelID])
+END
+GO
+
+IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_EduPrograms]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] (
+		[EduProgramID] int IDENTITY(1,1) NOT NULL,
+		[EduLevelID] int NOT NULL,
+		[Code] nvarchar(64) NOT NULL,
+		[Title] nvarchar(250) NOT NULL
+	)
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms]
+		ADD CONSTRAINT [PK_{objectQualifier}University_EduPrograms] PRIMARY KEY CLUSTERED ([EduProgramID])
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EduPrograms] WITH CHECK ADD CONSTRAINT [FK_{objectQualifier}University_EduPrograms_EduLevels] FOREIGN KEY([EduLevelID])
+		REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels]([EduLevelID])
+        -- TODO: Should be SET NULL
+		ON DELETE CASCADE
+END
+GO
+
+IF NOT EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+BEGIN
+	CREATE TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] (
+		[EmployeeEduProgramID] int IDENTITY(1,1) NOT NULL,
+		[EmployeeID] int NOT NULL,
+		[EduProgramID] int NOT NULL,
+		[Disciplines] nvarchar(max) NULL
+	)
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms]
+		ADD CONSTRAINT [PK_{objectQualifier}University_EmployeeEduPrograms] PRIMARY KEY CLUSTERED ([EmployeeEduProgramID])
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] WITH CHECK ADD CONSTRAINT
+		[FK_{objectQualifier}University_EmployeeEduPrograms_Employees] FOREIGN KEY([EmployeeID])
+			REFERENCES {databaseOwner}[{objectQualifier}University_Employees]([EmployeeID]) ON DELETE CASCADE
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] WITH CHECK ADD CONSTRAINT
+		[FK_{objectQualifier}University_EmployeeEduPrograms_EduPrograms] FOREIGN KEY([EduProgramID])
+			REFERENCES {databaseOwner}[{objectQualifier}University_EduPrograms]([EduProgramID]) ON DELETE CASCADE
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] WITH CHECK ADD CONSTRAINT
+		[UN_{objectQualifier}University_EmployeeEduPrograms] UNIQUE NONCLUSTERED ([EmployeeID], [EduProgramID])
+END
+GO
+
+-- Drop views
+
+IF EXISTS (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]') and OBJECTPROPERTY(id, N'IsView') = 1)
+	DROP VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms]
+GO
+
+-- Create views
+
+CREATE VIEW {databaseOwner}[{objectQualifier}vw_University_EmployeeEduPrograms] AS
+	SELECT EEP.*, EP.Code, EP.Title FROM {databaseOwner}[{objectQualifier}University_EmployeeEduPrograms] AS EEP
+		INNER JOIN {databaseOwner}[{objectQualifier}University_EduPrograms] AS EP
+			ON EEP.EduProgramID = EP.EduProgramID
+GO
