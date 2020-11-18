@@ -10,3 +10,10 @@ IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_Achieve
     INSERT INTO {databaseOwner}[{objectQualifier}University_AchievementTypes] (Type, IsSystem) VALUES
         (N'Internship', 1)
 GO
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeAchievements]') and name = N'Hours')
+    BEGIN
+        ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+        ADD [Hours] int NULL
+    END
+GO

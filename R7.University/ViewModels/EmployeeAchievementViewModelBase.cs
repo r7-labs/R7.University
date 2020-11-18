@@ -58,6 +58,8 @@ namespace R7.University.ViewModels
 
         public string TitleSuffix => EmployeeAchievement.TitleSuffix;
 
+        public int? Hours => EmployeeAchievement.Hours;
+
         public IAchievement Achievement => EmployeeAchievement.Achievement;
 
         public IAchievementType AchievementType => (EmployeeAchievement.Achievement != null) ? EmployeeAchievement.Achievement.AchievementType : EmployeeAchievement.AchievementType;

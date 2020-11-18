@@ -105,6 +105,8 @@ namespace R7.University.Controls.EditModels
 
         public string TitleSuffix { get; set; }
 
+        public int? Hours { get; set; }
+
         [JsonIgnore]
         [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
         public IAchievement Achievement { get; set; }

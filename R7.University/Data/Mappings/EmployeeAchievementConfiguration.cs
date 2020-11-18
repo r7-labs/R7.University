@@ -44,6 +44,7 @@ namespace R7.University.Data.Mappings
             entityBuilder.Property (m => m.IsTitle).IsRequired ();
             entityBuilder.Property (m => m.DocumentURL).IsRequired ();
             entityBuilder.Property (m => m.TitleSuffix).IsRequired (false);
+            entityBuilder.Property (m => m.Hours).IsRequired (false);
             //entityBuilder.HasOptional (m => m.Achievement).WithMany ().HasForeignKey (m => m.AchievementID);
             //entityBuilder.HasOptional (m => m.AchievementType).WithMany ().HasForeignKey (m => m.AchievementTypeId);
         }

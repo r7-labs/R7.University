@@ -47,6 +47,8 @@ namespace R7.University.Models
 
         string TitleSuffix { get; }
 
+        int? Hours { get; }
+
         IAchievement Achievement { get; }
 
         IAchievementType AchievementType { get; }
@@ -78,6 +80,8 @@ namespace R7.University.Models
 
         new string TitleSuffix { get; set; }
 
+        new int? Hours { get; set; }
+
         new IAchievement Achievement { get; set; }
 
         new IAchievementType AchievementType { get; set; }
@@ -108,6 +112,8 @@ namespace R7.University.Models
         public string DocumentURL { get; set; }
 
         public string TitleSuffix { get; set; }
+
+        public int? Hours { get; set; }
 
         public virtual AchievementInfo Achievement { get; set; }
 
