@@ -8,6 +8,7 @@ namespace R7.University.Models
         ProfRetraining,
         Training,
         ShortTermTraining,
+        Internship,
         Work,
         Title,
         AcademicTitle,

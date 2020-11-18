@@ -528,6 +528,7 @@ namespace R7.University.Employees
                                                             SystemAchievementType.AcademicDegree,
                                                             SystemAchievementType.Training,
                                                             SystemAchievementType.ShortTermTraining,
+                                                            SystemAchievementType.Internship,
                                                             SystemAchievementType.ProfTraining,
                                                             SystemAchievementType.ProfRetraining,
                                                             SystemAchievementType.Work))
@@ -548,6 +549,7 @@ namespace R7.University.Employees
                                                              SystemAchievementType.AcademicDegree,
                                                              SystemAchievementType.Training,
                                                              SystemAchievementType.ShortTermTraining,
+                                                             SystemAchievementType.Internship,
                                                              SystemAchievementType.ProfTraining,
                                                              SystemAchievementType.ProfRetraining,
                                                              SystemAchievementType.Work))

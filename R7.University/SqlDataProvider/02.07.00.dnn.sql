@@ -5,3 +5,8 @@ IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_Achieve
     INSERT INTO {databaseOwner}[{objectQualifier}University_AchievementTypes] (Type, IsSystem) VALUES
         (N'ShortTermTraining', 1)
 GO
+
+IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_AchievementTypes] where [Type] = N'Internship')
+    INSERT INTO {databaseOwner}[{objectQualifier}University_AchievementTypes] (Type, IsSystem) VALUES
+        (N'Internship', 1)
+GO

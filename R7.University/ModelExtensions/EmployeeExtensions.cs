@@ -127,7 +127,8 @@ namespace R7.University.ModelExtensions
             return employee.Achievements.Where(ach => ach.AchievementType.IsOneOf(
                 SystemAchievementType.ProfRetraining,
                 SystemAchievementType.Training,
-                SystemAchievementType.ShortTermTraining));
+                SystemAchievementType.ShortTermTraining,
+                SystemAchievementType.Internship));
         }
 
         public static IEnumerable<EmployeeAchievementInfo> OtherAchievements(this IEmployee employee)
@@ -137,7 +138,8 @@ namespace R7.University.ModelExtensions
                 SystemAchievementType.ProfTraining,
                 SystemAchievementType.ProfRetraining,
                 SystemAchievementType.Training,
-                SystemAchievementType.ShortTermTraining));
+                SystemAchievementType.ShortTermTraining,
+                SystemAchievementType.Internship));
         }
     }
 }
