@@ -27,15 +27,15 @@ BEGIN
 END
 GO
 
-IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] = N'WorkProgram')
+IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] = N'WorkProgram')
     INSERT INTO {databaseOwner}[{objectQualifier}University_DocumentTypes] (Type, IsSystem, FilenameFormat) VALUES
         (N'WorkProgram', 1, N'rp_[a-z0-9_]+_\d{8}\.pdf')
 GO
 
-IF EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] like N'Order%')
-    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderEnrollment'
-    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderExpulsion'
-    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderRestoration'
-    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderTransfer'
-    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderAcademicLeave'
+IF EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] like N'Order%')
+    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderEnrollment'
+    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderExpulsion'
+    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderRestoration'
+    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderTransfer'
+    DELETE FROM {databaseOwner}[{objectQualifier}University_DocumentTypes] WHERE [Type] = N'OrderAcademicLeave'
 GO
