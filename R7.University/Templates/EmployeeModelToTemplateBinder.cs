@@ -53,9 +53,9 @@ namespace R7.University.Templates
             Disciplines = new List<EmployeeDisciplineInfo> (Model.Disciplines
                 .Where (ed => ed.EduProfile.EduProgram.IsPublished (now) && ed.EduProfile.IsPublished (now)));
 
-            Education = Model.EducationAchievements ().ToList ();
-            Training = Model.TrainingAchievements ().ToList ();
-            Achievements = Model.OtherAchievements ().ToList ();
+            Education = Model.Achievements.Where (ach => ach.AchievementType.IsEducation ()).ToList ();
+            Training = Model.Achievements.Where (ach => ach.AchievementType.IsTraining ()).ToList ();
+            Achievements = Model.Achievements.Where (ach => !ach.AchievementType.IsEducation () && !ach.AchievementType.IsTraining ()).ToList ();
 
             ConfigureBindings ();
         }
