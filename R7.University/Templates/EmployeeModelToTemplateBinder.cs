@@ -209,6 +209,9 @@ namespace R7.University.Templates
             if (objectName == NameOf (() => achievement.IsTitle)) {
                 return achievement.IsTitle ? GetString ("Yes") : string.Empty;
             }
+            if (objectName == NameOf (() => achievement.Hours)) {
+                return achievement.Hours.ToString ();
+            }
             if (objectName == NameOf (() => achievement.Description)) {
                 return achievement.Description;
             }
