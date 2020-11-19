@@ -94,6 +94,9 @@
 	    <div class="dnnFormItem">
             <dnn:Label id="lblHours" runat="server" ControlName="txtHours" />
             <asp:TextBox id="txtHours" runat="server" />
+            <asp:RangeValidator runat="server" resourcekey="Hours_Invalid.Text"
+				ControlToValidate="txtHours" ValidationGroup="Achievements"
+				Type="Integer" MinimumValue="1" MaximumValue="2147483647" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />

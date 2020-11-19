@@ -159,4 +159,7 @@
 	<data name="Hours.Column" xml:space="preserve">
 		<value>Hours</value>
 	</data>
+	<data name="Hours_Invalid.Text" xml:space="preserve">
+		<value>The number of hours must be an integer greater than or equal to 1.</value>
+	</data>
 </root>

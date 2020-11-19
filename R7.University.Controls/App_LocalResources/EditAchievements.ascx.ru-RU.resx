@@ -159,4 +159,7 @@
 	<data name="Hours.Column" xml:space="preserve">
 		<value>Часов</value>
 	</data>
+	<data name="Hours_Invalid.Text" xml:space="preserve">
+		<value>Количество часов должно быть целым числом большим или равным 1.</value>
+	</data>
 </root>
