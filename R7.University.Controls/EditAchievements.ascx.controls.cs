@@ -19,5 +19,6 @@ namespace R7.University.Controls
         protected TextBox textAchievementTitleSuffix;
         protected DnnUrlControl urlDocumentUrl;
         protected TextBox txtDocumentUrl;
+        protected TextBox txtHours;
     }
 }

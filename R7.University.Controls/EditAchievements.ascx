@@ -41,7 +41,8 @@
                     <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
                     <asp:BoundField DataField="Title_String" HeaderText="Title.Column" />
                     <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
-                    <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle.Column" />
+                    <asp:BoundField DataField="Hours" HeaderText="Hours.Column" />
+	                <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle.Column" />
                     <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                     <asp:BoundField DataField="Description" Visible="false" />
                 </Columns>
@@ -89,6 +90,10 @@
 		<div class="dnnFormItem">
             <dnn:Label id="labelAchievementDescription" runat="server" ControlName="textAchievementDescription" />
             <asp:TextBox id="textAchievementDescription" runat="server" TextMode="MultiLine" Rows="3" />
+        </div>
+	    <div class="dnnFormItem">
+            <dnn:Label id="lblHours" runat="server" ControlName="txtHours" />
+            <asp:TextBox id="txtHours" runat="server" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />

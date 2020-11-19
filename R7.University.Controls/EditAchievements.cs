@@ -134,6 +134,7 @@ namespace R7.University.Controls
             textYearBegin.Text = item.YearBegin.ToString ();
             textYearEnd.Text = item.YearEnd.ToString ();
             checkIsTitle.Checked = item.IsTitle;
+            txtHours.Text = item.Hours.ToString ();
 
             SetDocumentUrl (item.DocumentURL);
         }
@@ -163,6 +164,7 @@ namespace R7.University.Controls
             item.YearBegin = ParseHelper.ParseToNullable<int> (textYearBegin.Text);
             item.YearEnd = ParseHelper.ParseToNullable<int> (textYearEnd.Text);
             item.DocumentURL = GetDocumentUrl ();
+            item.Hours = ParseHelper.ParseToNullable<int> (txtHours.Text);
 
             FolderHistory.RememberFolderByFileUrl (Request, Response, item.DocumentURL, Module.PortalId);
         }

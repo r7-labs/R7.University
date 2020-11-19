@@ -150,4 +150,13 @@
     <data name="sectionAdvancedAchievementProperties.Text" xml:space="preserve">
         <value>Advanced Achievement Properties</value>
     </data>
+	<data name="lblHours.Text" xml:space="preserve">
+		<value>Hours:</value>
+	</data>
+	<data name="lblHours.Help" xml:space="preserve">
+		<value>Enter number of hours (for training-related achievements).</value>
+	</data>
+	<data name="Hours.Column" xml:space="preserve">
+		<value>Hours</value>
+	</data>
 </root>

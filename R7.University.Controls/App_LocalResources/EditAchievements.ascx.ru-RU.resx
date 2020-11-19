@@ -150,4 +150,13 @@
     <data name="sectionAdvancedAchievementProperties.Text" xml:space="preserve">
         <value>Расширенные свойства достижения</value>
     </data>
+	<data name="lblHours.Text" xml:space="preserve">
+		<value>Часов:</value>
+	</data>
+	<data name="lblHours.Help" xml:space="preserve">
+		<value>Введите количество часов (для достижений, связанных с обучением).</value>
+	</data>
+	<data name="Hours.Column" xml:space="preserve">
+		<value>Часов</value>
+	</data>
 </root>
