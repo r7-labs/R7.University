@@ -220,8 +220,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelExtensions\DocumentDnnExtensions.cs" />
+    <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
+    <Compile Include="ModelExtensions\EduFormExtensions.cs" />
     <Compile Include="ModelExtensions\EduProgramExtensions.cs" />
-    <Compile Include="ModelExtensions\DocumentExtensions.cs" />
     <Compile Include="ControlExtensions\ModuleAuditControlExtensions.cs" />
     <Compile Include="ModelExtensions\EduProfileExtensions.cs" />
     <Compile Include="ControlExtensions\ListControlExtensions.cs" />
@@ -239,7 +241,6 @@
     <Compile Include="Components\UniversityConfig.cs" />
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />
-    <Compile Include="ModelExtensions\DocumentTypeExtensions.cs" />
     <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
@@ -264,7 +265,7 @@
     <Compile Include="Data\Mappings\EmployeeAchievementConfiguration.cs" />
     <Compile Include="Data\Mappings\AchievementConfiguration.cs" />
     <Compile Include="Queries\QueryBase.cs" />
-    <Compile Include="ModelExtensions\DivisionExtensions.cs" />
+    <Compile Include="ModelExtensions\DivisionDnnExtensions.cs" />
     <Compile Include="Queries\FlatQuery.cs" />
     <Compile Include="Commands\UpdateDocumentsCommand.cs" />
     <Compile Include="Commands\UpdateEduProgramProfileFormsCommand.cs" />
@@ -286,7 +287,7 @@
     <Compile Include="Modules\UniversityModuleSettingsBase.cs" />
     <Compile Include="Modules\UniversityEditPortalModuleBase.cs" />
     <Compile Include="Data\Mappings\AchievementTypeConfiguration.cs" />
-    <Compile Include="ModelExtensions\AchievementTypeExtensions.cs" />
+    <Compile Include="ModelExtensions\AchievementTypeDnnExtensions.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
     <Compile Include="Commands\AddDivisionCommand.cs" />
@@ -311,9 +312,7 @@
     <Compile Include="ModelExtensions\EduProgramProfileFormYearExtensions.cs" />
     <Compile Include="Data\Mappings\ScienceConfiguration.cs" />
     <Compile Include="ModelExtensions\EduLevelExtensions.cs" />
-    <Compile Include="ModelExtensions\EduFormExtensions.cs" />
     <Compile Include="Queries\EduProfileQueryableExtensions.cs" />
-    <Compile Include="ModelExtensions\YearExtensions.cs" />
     <Compile Include="Queries\DivisionQueryExtensions.cs" />
     <Compile Include="Queries\QueryableExtensions.cs" />
     <Compile Include="Queries\EmployeeQueryExtensions.cs" />
