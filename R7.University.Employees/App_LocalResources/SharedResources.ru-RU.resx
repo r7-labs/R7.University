@@ -147,4 +147,7 @@
 	<data name="Copy.Text" xml:space="preserve">
         <value>Копировать</value>
     </data>
+	<data name="Hours.Column" xml:space="preserve">
+		<value>Часов</value>
+	</data>
 </root>
