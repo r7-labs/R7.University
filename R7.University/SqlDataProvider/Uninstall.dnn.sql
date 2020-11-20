@@ -40,6 +40,10 @@ ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
     DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_AchievementTypes]
 GO
 
+ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+	DROP CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_EduLevels]
+GO
+
 ALTER TABLE {databaseOwner}[{objectQualifier}University_Achievements]
     DROP CONSTRAINT [FK_{objectQualifier}University_Achievements_AchievementTypes]
 GO

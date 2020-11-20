@@ -12,8 +12,17 @@ IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_Achieve
 GO
 
 IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeAchievements]') and name = N'Hours')
-    BEGIN
-        ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
         ADD [Hours] int NULL
-    END
+GO
+
+IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{databaseOwner}[{objectQualifier}University_EmployeeAchievements]') and name = N'EduLevelID')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+        ADD [EduLevelID] int NULL
+GO
+
+IF NOT EXISTS (select * from sys.foreign_keys where name = N'FK_{objectQualifier}University_EmployeeAchievements_EduLevels')
+    ALTER TABLE {databaseOwner}[{objectQualifier}University_EmployeeAchievements]
+        ADD CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_EduLevels] FOREIGN KEY (EduLevelID)
+            REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels] (EduLevelID) ON DELETE SET NULL
 GO

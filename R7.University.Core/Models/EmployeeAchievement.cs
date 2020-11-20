@@ -1,24 +1,3 @@
-//
-//  EmployeeAchievement.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2019 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 namespace R7.University.Models
 {
     public interface IEmployeeAchievement
@@ -49,9 +28,13 @@ namespace R7.University.Models
 
         int? Hours { get; }
 
+        int? EduLevelId { get; }
+
         IAchievement Achievement { get; }
 
         IAchievementType AchievementType { get; }
+
+        IEduLevel EduLevel { get; }
     }
 
     public interface IEmployeeAchievementWritable: IEmployeeAchievement
@@ -82,9 +65,13 @@ namespace R7.University.Models
 
         new int? Hours { get; set; }
 
+        new int? EduLevelId { get; set; }
+
         new IAchievement Achievement { get; set; }
 
         new IAchievementType AchievementType { get; set; }
+
+        new IEduLevel EduLevel { get; set; }
     }
 
     public class EmployeeAchievementInfo: IEmployeeAchievementWritable
@@ -115,9 +102,13 @@ namespace R7.University.Models
 
         public int? Hours { get; set; }
 
+        public int? EduLevelId { get; set; }
+
         public virtual AchievementInfo Achievement { get; set; }
 
         public virtual AchievementTypeInfo AchievementType { get; set; }
+
+        public virtual EduLevelInfo EduLevel { get; set; }
 
         IAchievementType IEmployeeAchievement.AchievementType => AchievementType;
 
@@ -131,6 +122,13 @@ namespace R7.University.Models
         IAchievement IEmployeeAchievementWritable.Achievement {
             get { return Achievement; }
             set { Achievement = (AchievementInfo) value; }
+        }
+
+        IEduLevel IEmployeeAchievement.EduLevel => EduLevel;
+
+        IEduLevel IEmployeeAchievementWritable.EduLevel {
+            get { return EduLevel; }
+            set { EduLevel = (EduLevelInfo) value; }
         }
     }
 }
