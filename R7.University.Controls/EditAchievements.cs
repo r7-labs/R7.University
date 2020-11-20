@@ -1,24 +1,3 @@
-//
-//  EditAchievements.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,6 +115,8 @@ namespace R7.University.Controls
             checkIsTitle.Checked = item.IsTitle;
             txtHours.Text = item.Hours.ToString ();
 
+            txtEduLevelId.Text = item.EduLevelId.ToString ();
+
             SetDocumentUrl (item.DocumentURL);
         }
 
@@ -166,7 +147,26 @@ namespace R7.University.Controls
             item.DocumentURL = GetDocumentUrl ();
             item.Hours = ParseHelper.ParseToNullable<int> (txtHours.Text);
 
+            item.EduLevelId = ParseHelper.ParseToNullable<int> (txtEduLevelId.Text);
+            item.EduLevel_String = GetEduLevelTitle (item.EduLevelId);
+
             FolderHistory.RememberFolderByFileUrl (Request, Response, item.DocumentURL, Module.PortalId);
+        }
+
+        string GetEduLevelTitle (int? eduLevelId)
+        {
+            if (eduLevelId == null) {
+                return string.Empty;
+            }
+
+            using (var modelContext = new UniversityModelContext ()) {
+                var eduLevel = modelContext.Get<EduLevelInfo, int> (eduLevelId.Value);
+                if (eduLevel != null) {
+                    return eduLevel.FormatTitle ();
+                }
+            }
+
+            return string.Empty;
         }
 
         protected override void OnResetForm ()
@@ -192,6 +192,8 @@ namespace R7.University.Controls
             textAchievementShortTitle.Text = string.Empty;
             textAchievementTitleSuffix.Text = string.Empty;
             textAchievementDescription.Text = string.Empty;
+
+            // TODO: Reset hours and edu. level fields
         }
 
         #endregion

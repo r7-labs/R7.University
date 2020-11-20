@@ -44,10 +44,12 @@ namespace R7.University.Queries
         public static IQueryable<EmployeeInfo> IncludeAchievements (this IQueryable<EmployeeInfo> employees)
         {
             return employees.Include (e => e.Achievements)
-                            .ThenInclude (ea => ea.Achievement)
-                            .ThenInclude (a => a.AchievementType)
-                            .Include (e => e.Achievements)
-                            .ThenInclude (ea => ea.AchievementType);
+                .ThenInclude (ea => ea.Achievement)
+                .ThenInclude (a => a.AchievementType)
+                .Include (e => e.Achievements)
+                .ThenInclude (ea => ea.AchievementType)
+                .Include (e => e.Achievements)
+                .ThenInclude (ea => ea.EduLevel);
         }
 
         public static IQueryable<EmployeeInfo> IncludeDisciplines (this IQueryable<EmployeeInfo> employees)

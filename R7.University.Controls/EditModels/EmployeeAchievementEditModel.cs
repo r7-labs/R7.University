@@ -53,6 +53,8 @@ namespace R7.University.Controls.EditModels
                 viewModel.Type = model.AchievementType.Type;
             }
 
+            viewModel.EduLevel_String = (model.EduLevel != null) ? model.EduLevel.FormatTitle () : string.Empty;
+
             return viewModel;
         }
 
@@ -97,14 +99,19 @@ namespace R7.University.Controls.EditModels
         public IAchievementType AchievementType { get; set; }
 
         [JsonIgnore]
-        [Obsolete ("Do not use EduLevel property directly here", true)]
+        [Obsolete ("Do not use this property directly", true)]
         public IEduLevel EduLevel { get; set; }
-
-        public string Type { get; set; }
 
         #endregion
 
-        #region Bindable properties
+        #region Flattened properties
+        public string Type { get; set; }
+
+        public string EduLevel_String { get; set; }
+
+        #endregion
+
+        #region Other derieved properties
 
         [JsonIgnore]
         public string Years_String

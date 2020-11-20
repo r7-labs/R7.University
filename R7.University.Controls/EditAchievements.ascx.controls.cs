@@ -20,5 +20,8 @@ namespace R7.University.Controls
         protected DnnUrlControl urlDocumentUrl;
         protected TextBox txtDocumentUrl;
         protected TextBox txtHours;
+
+        // TODO: Replace with dropdown
+        protected TextBox txtEduLevelId;
     }
 }

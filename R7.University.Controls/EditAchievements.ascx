@@ -41,7 +41,8 @@
                     <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
                     <asp:BoundField DataField="Title_String" HeaderText="Title.Column" />
                     <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
-                    <asp:BoundField DataField="Hours" HeaderText="Hours.Column" />
+	                <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel.Column" />
+	                <asp:BoundField DataField="Hours" HeaderText="Hours.Column" />
 	                <asp:CheckBoxField DataField="IsTitle" HeaderText="IsTitle.Column" />
                     <asp:BoundField DataField="FormattedUrl" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
                     <asp:BoundField DataField="Description" Visible="false" />
@@ -97,6 +98,10 @@
             <asp:RangeValidator runat="server" resourcekey="Hours_Invalid.Text"
 				ControlToValidate="txtHours" ValidationGroup="Achievements"
 				Type="Integer" MinimumValue="1" MaximumValue="2147483647" Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label id="lblEduLevel" runat="server" ControlName="txtEduLevel" />
+            <asp:TextBox id="txtEduLevelId" runat="server" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />

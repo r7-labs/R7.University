@@ -162,4 +162,10 @@
 	<data name="Hours_Invalid.Text" xml:space="preserve">
 		<value>The number of hours must be an integer greater than or equal to 1.</value>
 	</data>
+	<data name="lblEduLevel.Text" xml:space="preserve">
+		<value>Edu. Level:</value>
+	</data>
+	<data name="lblEduLevel.Help" xml:space="preserve">
+		<value />
+	</data>
 </root>

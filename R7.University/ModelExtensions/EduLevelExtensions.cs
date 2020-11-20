@@ -26,6 +26,7 @@ namespace R7.University.ModelExtensions
 {
     public static class EduLevelExtensions
     {
+        // TODO: Rename to FormatShortTitle
         public static string FormatTitle (this IEduLevel eduLevel)
         {
             return UniversityFormatHelper.FormatShortTitle (eduLevel.ShortTitle, eduLevel.Title);
