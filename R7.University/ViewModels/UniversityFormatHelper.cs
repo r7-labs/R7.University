@@ -270,5 +270,15 @@ namespace R7.University.ViewModels
 
             return decimalStr;
         }
+
+        // TODO: Move to base library?
+        public static string WrapNotNullOrEmpty (string begin, string text, string end)
+        {
+            if (!string.IsNullOrEmpty (text)) {
+                return begin + text + end;
+            }
+
+            return string.Empty;
+        }
     }
 }
