@@ -355,6 +355,8 @@
     <Folder Include="assets\images\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\css\grid-and-form.css" />
+    <None Include="assets\js\gridAndForm.js" />
     <None Include="R7.University.dnn.template">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

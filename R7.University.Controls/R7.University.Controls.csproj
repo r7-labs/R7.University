@@ -202,7 +202,6 @@
     <None Include="js\editDivisions.js" />
     <None Include="js\editDocuments.js" />
     <None Include="js\editEduForms.js" />
-    <None Include="js\gridAndForm.js" />
     <None Include="AgplSignature.ascx" />
     <None Include="DivisionSelector.ascx" />
     <None Include="EditAchievements.ascx" />
@@ -212,7 +211,6 @@
     <None Include="EditEduForms.ascx" />
     <None Include="EditPositions.ascx" />
     <None Include="packages.config" />
-    <None Include="css\grid-and-form.css" />
     <None Include="EditEduFormYears.ascx" />
     <None Include="App_LocalResources\EditEduFormYears.ascx.resx" />
     <None Include="App_LocalResources\EditEduFormYears.ascx.ru-RU.resx" />
@@ -223,7 +221,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_LocalResources\" />
-    <Folder Include="css\" />
     <Folder Include="js\" />
     <Folder Include="Queries\" />
     <Folder Include="ViewModels\" />
