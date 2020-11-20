@@ -162,7 +162,7 @@ namespace R7.University.Controls
             using (var modelContext = new UniversityModelContext ()) {
                 var eduLevel = modelContext.Get<EduLevelInfo, int> (eduLevelId.Value);
                 if (eduLevel != null) {
-                    return eduLevel.FormatTitle ();
+                    return eduLevel.FormatShortTitle ();
                 }
             }
 

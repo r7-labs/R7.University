@@ -79,7 +79,7 @@ namespace R7.University.ModelExtensions
 
         public static string FormatTitle (this IEduProgramProfileFormYear eppfy, IYear lastYear, string resourceFile)
         {
-            return $"{eppfy.EduProfile.FormatTitle ()}: {eppfy.EduProfile.EduLevel.FormatTitle ()}"
+            return $"{eppfy.EduProfile.FormatTitle ()}: {eppfy.EduProfile.EduLevel.FormatShortTitle ()}"
                 + $" - {eppfy.EduForm.FormatTitle (resourceFile)}" 
                 + $"{(eppfy.Year != null ? " / " + eppfy.Year.FormatWithCourse (lastYear) : string.Empty)}";
         }
