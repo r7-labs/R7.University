@@ -53,7 +53,7 @@ namespace R7.University.Controls.EditModels
                 viewModel.Type = model.AchievementType.Type;
             }
 
-            viewModel.EduLevel_String = (model.EduLevel != null) ? model.EduLevel.FormatShortTitle () : string.Empty;
+            viewModel.EduLevel_String = model.EduLevel?.FormatShortTitle () ?? string.Empty;
 
             return viewModel;
         }

@@ -49,7 +49,7 @@ namespace R7.University.Employees.ViewModels
 
         public string Title_Link
         {
-            get { 
+            get {
                 if (!string.IsNullOrWhiteSpace (Description)) {
                     var title = HttpUtility.HtmlEncode (Title_String);
                     return $"<a role=\"button\" tabindex=\"0\" data-toggle=\"popover\" data-trigger=\"focus\" title=\"{title}\" "
@@ -64,7 +64,7 @@ namespace R7.University.Employees.ViewModels
         {
             get {
                 if (!string.IsNullOrWhiteSpace (DocumentURL)) {
-                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>", 
+                    return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
                         UniversityUrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrl.Text",  Context.LocalResourceFile));
                 }
@@ -75,7 +75,7 @@ namespace R7.University.Employees.ViewModels
 
         public string Years_String
         {
-            get {  
+            get {
                 return UniversityFormatHelper.FormatYears (EmployeeAchievement.YearBegin, EmployeeAchievement.YearEnd,
                                                  Localization.GetString ("AtTheMoment.Text", Context.LocalResourceFile));
             }
@@ -85,6 +85,8 @@ namespace R7.University.Employees.ViewModels
         {
             get { return AchievementType.Localize (Context.LocalResourceFile); }
         }
+
+        public string EduLevel_String => EduLevel?.FormatShortTitle () ?? string.Empty;
 
         #endregion
     }

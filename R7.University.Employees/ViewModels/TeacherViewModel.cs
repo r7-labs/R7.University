@@ -135,12 +135,13 @@ namespace R7.University.Employees.ViewModels
 
         string GetEducationString ()
         {
-            return FormatHelper.JoinNotNullOrEmpty ("; ",
-                                         AchievementViewModels
-                                         .Where (ach => ach.AchievementType.IsEducation ())
-                                         .Select (ach => FormatHelper.JoinNotNullOrEmpty ("&nbsp;- ",
-                        UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix), ach.YearBegin))
-            );
+            return FormatHelper.JoinNotNullOrEmpty ("; ", AchievementViewModels
+                .Where (ach => ach.AchievementType.IsEducation ())
+                .Select (ach => FormatHelper.JoinNotNullOrEmpty ("&nbsp;- ",
+                    FormatHelper.JoinNotNullOrEmpty (" ",
+                        UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix),
+                        UniversityFormatHelper.WrapNotNullOrEmpty ("(", ach.EduLevel?.Title, ")")),
+                    ach.YearBegin)));
         }
 
         string GetTrainingString ()
