@@ -91,27 +91,28 @@ namespace R7.University.Controls.EditModels
         public int? EduLevelId { get; set; }
 
         [JsonIgnore]
-        [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
+        [Obsolete ("Don't use this property directly", true)]
         public IAchievement Achievement { get; set; }
 
         [JsonIgnore]
-        [Obsolete ("Use AchievementTypeId and Type properties directly", true)]
+        [Obsolete ("Don't use this property directly", true)]
         public IAchievementType AchievementType { get; set; }
 
         [JsonIgnore]
-        [Obsolete ("Do not use this property directly", true)]
+        [Obsolete ("Don't use this property directly", true)]
         public IEduLevel EduLevel { get; set; }
 
         #endregion
 
-        #region Flattened properties
+        #region Flattened external properties
+
         public string Type { get; set; }
 
         public string EduLevel_String { get; set; }
 
         #endregion
 
-        #region Other derieved properties
+        #region Derieved properties
 
         [JsonIgnore]
         public string Years_String

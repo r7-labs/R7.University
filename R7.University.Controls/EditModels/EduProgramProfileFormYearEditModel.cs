@@ -1,24 +1,3 @@
-//
-//  EduProgramProfileFormEditModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Web;
 using Newtonsoft.Json;
@@ -92,7 +71,7 @@ namespace R7.University.Controls.EditModels
         public DateTime? EndDate { get; set; }
 
         [JsonIgnore]
-        [Obsolete ("Use EduFormViewModel property instead", true)] 
+        [Obsolete ("Use EduFormViewModel property instead", true)]
         public IEduForm EduForm { get; set; }
 
         public EduFormViewModel EduFormViewModel { get; set; }
@@ -111,13 +90,17 @@ namespace R7.University.Controls.EditModels
 
         #endregion
 
+        #region  Flattened external properties
+
         public bool HasContingent { get; set; }
 
         public bool HasEduVolume { get; set; }
 
-        #region Bindable properties
-
         public string YearString { get; set; }
+
+        #endregion
+
+        #region Derieved properties
 
         [JsonIgnore]
         public string EduFormTitleLocalized {
@@ -134,7 +117,7 @@ namespace R7.University.Controls.EditModels
         public string EditContingentIconUrl => HasContingent ? UniversityIcons.Edit : UniversityIcons.AddAlternate;
 
         [JsonIgnore]
-        public string EditEduVolumeUrl => 
+        public string EditEduVolumeUrl =>
             Context.Module.EditUrl (HasEduVolume ? "eduvolume_id" : "eduprogramprofileformyear_id", EduProgramProfileFormYearId.ToString (), "EditEduVolume");
 
         [JsonIgnore]

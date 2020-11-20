@@ -58,16 +58,16 @@ namespace R7.University.Controls.EditModels
         public string Disciplines { get; set; }
 
         [JsonIgnore]
-        [Obsolete]
+        [Obsolete ("Don't use this property directly", true)]
         public IEmployee Employee { get; set; }
 
         [JsonIgnore]
-        [Obsolete]
+        [Obsolete ("Don't use this property directly", true)]
         public IEduProfile EduProfile { get; set; }
 
         #endregion
 
-        #region External properties
+        #region Flattened external properties
 
         public string Code { get; set; }
 
@@ -85,7 +85,7 @@ namespace R7.University.Controls.EditModels
 
         #endregion
 
-        #region Bindable properties
+        #region Derieved properties
 
         [JsonIgnore]
         public string EduProfileString

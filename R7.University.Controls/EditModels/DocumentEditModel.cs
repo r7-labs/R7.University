@@ -1,24 +1,3 @@
-//
-//  DocumentEditModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Web;
 using Newtonsoft.Json;
@@ -77,7 +56,7 @@ namespace R7.University.Controls.EditModels
         public int DocumentTypeID { get; set; }
 
         [JsonIgnore]
-        [Obsolete ("Use DocumentTypeViewModel property instead", true)]
+        [Obsolete ("Don't use this property directly", true)]
         public IDocumentType DocumentType { get; set; }
 
         public DocumentTypeViewModel DocumentTypeViewModel { get; set; }
@@ -108,7 +87,7 @@ namespace R7.University.Controls.EditModels
 
         #endregion
 
-        #region Bindable properties
+        #region Derieved properties
 
         [JsonIgnore]
         public string LocalizedType
