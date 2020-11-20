@@ -152,14 +152,12 @@
     <Compile Include="EditPositions.controls.ascx.cs">
       <DependentUpon>EditPositions.ascx</DependentUpon>
     </Compile>
-    <Compile Include="GridAndFormControlBase.cs" />
     <Compile Include="EditModels\DocumentEditModel.cs" />
     <Compile Include="EditModels\EduProgramDivisionEditModel.cs" />
     <Compile Include="EditModels\EduProgramProfileFormEditModel.cs" />
     <Compile Include="EditModels\EmployeeAchievementEditModel.cs" />
     <Compile Include="EditModels\EmployeeDisciplineEditModel.cs" />
     <Compile Include="EditModels\OccupiedPositionEditModel.cs" />
-    <Compile Include="EditModels\EditModelBase.cs" />
     <Compile Include="EditEduFormYears.ascx.controls.cs">
       <DependentUpon>EditEduFormYears.ascx</DependentUpon>
     </Compile>
