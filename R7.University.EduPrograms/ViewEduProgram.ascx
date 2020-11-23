@@ -71,8 +71,10 @@
                             </div>
                             <div runat="server" Visible='<%# Item.EduFormsForAdmission_Visible %>'>
                                 <label runat="server">
-									<%# LocalizeString ("EduFormsForAdmission.Text") %>
-									<%# Item.YearOfAdmission %><%# LocalizeString ("Year.Text") %>
+									<strong>
+										<%# LocalizeString ("EduFormsForAdmission.Text") %>
+										<%# Item.YearOfAdmission %><%# LocalizeString ("Year.Text") %>
+									</strong>
 								</label>
                                 <%# HttpUtility.HtmlDecode (Item.EduFormsForAdmission_String) %>
                             </div>
