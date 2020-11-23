@@ -91,6 +91,8 @@ namespace R7.University.EduPrograms.ViewModels
                 var now = HttpContext.Current.Timestamp;
                 return EduProgram.EduProfiles
                                  .Where (epp => epp.IsPublished (now) || Context.Module.IsEditable)
+                                 .OrderBy (epp => epp.ProfileCode)
+                                 .ThenBy (epp => epp.ProfileTitle)
                                  .Select (epp => new EduProfileViewModel (epp, RootViewModel));
             }
         }
