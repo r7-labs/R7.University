@@ -272,10 +272,10 @@ namespace R7.University.ViewModels
         }
 
         // TODO: Move to base library?
-        public static string WrapNotNullOrEmpty (string begin, string text, string end)
+        public static string FormatNotNullOrEmpty (string format, string text)
         {
             if (!string.IsNullOrEmpty (text)) {
-                return begin + text + end;
+                return string.Format (format, text);
             }
 
             return string.Empty;

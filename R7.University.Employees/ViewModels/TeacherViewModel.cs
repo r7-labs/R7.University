@@ -140,7 +140,7 @@ namespace R7.University.Employees.ViewModels
                 .Select (ach => FormatHelper.JoinNotNullOrEmpty ("&nbsp;- ",
                     FormatHelper.JoinNotNullOrEmpty (" ",
                         UniversityFormatHelper.FormatShortTitle (ach.ShortTitle, ach.Title, ach.TitleSuffix),
-                        UniversityFormatHelper.WrapNotNullOrEmpty ("(", ach.EduLevel?.Title, ")")),
+                        UniversityFormatHelper.FormatNotNullOrEmpty ("({0})", ach.EduLevel?.Title)),
                     ach.YearBegin)));
         }
 
