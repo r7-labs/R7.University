@@ -20,13 +20,10 @@
             </div>
     	</fieldset>
 	</asp:Panel>
+	<!--
 	<h2 class="dnnFormSectionHead"><a href="#"><%: LocalizeString ("DisplaySettings.Section") %></a></h2>
-	<fieldset>
-        <div class="dnnFormItem">
-            <dnn:Label id="labelColumns" runat="server" ControlName="listColumns" />
-            <asp:CheckBoxList id="listColumns" runat="server" CssClass="dnn-form-control" />
-        </div>
-	</fieldset>
+	<fieldset></fieldset>
+	-->
 </div>
 
 <script type="text/javascript">

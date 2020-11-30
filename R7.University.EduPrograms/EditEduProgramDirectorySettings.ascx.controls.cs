@@ -7,6 +7,5 @@ namespace R7.University.EduPrograms
     {
         protected DivisionSelector divisionSelector;
         protected CheckBoxList listEduLevels;
-        protected CheckBoxList listColumns;
     }
 }

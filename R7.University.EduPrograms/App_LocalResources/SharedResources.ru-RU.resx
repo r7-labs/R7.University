@@ -27,16 +27,16 @@
     <data name="EduProgramEduLevel.Column" xml:space="preserve">
         <value>Уровень образования</value>
     </data>
-    <data name="EduProgramGeneration.Column" xml:space="preserve">
-        <value>Поколение</value>
-    </data>
-    <data name="EduProgramEduStandard.Column" xml:space="preserve">
-        <value>Образовательный стандарт</value>
-    </data>
-    <data name="EduProgramProfStandard.Column" xml:space="preserve">
-        <value>Профессиональный стандарт</value>
-    </data>
+	<data name="EduProgramEduStandard.Column" xml:space="preserve">
+		<value>Стандарты</value>
+	</data>
 	<data name="EditScience.Action" xml:space="preserve">
         <value>Редактировать сведения о науке</value>
+    </data>
+	<data name="EduStandards.Text" xml:space="preserve">
+        <value>ФГОС:</value>
+    </data>
+	<data name="ProfStandards.Text" xml:space="preserve">
+        <value>Проф. стандарты:</value>
     </data>
 </root>

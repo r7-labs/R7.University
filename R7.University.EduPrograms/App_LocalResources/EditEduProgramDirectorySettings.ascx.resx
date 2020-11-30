@@ -39,10 +39,4 @@
     <data name="labelEduLevels.Help" xml:space="preserve">
         <value>Check educational levels the module should display. Leave all checkboxes unchecked to display educational programs for all available education levels.</value>
     </data>
-    <data name="labelColumns.Text" xml:space="preserve">
-        <value>Additional Columns:</value>
-    </data>
-    <data name="labelColumns.Help" xml:space="preserve">
-        <value>Check additional columns to display.</value>
-    </data>
 </root>

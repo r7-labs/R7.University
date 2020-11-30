@@ -27,16 +27,16 @@
     <data name="EduProgramEduLevel.Column" xml:space="preserve">
         <value>Education Level</value>
     </data>
-    <data name="EduProgramGeneration.Column" xml:space="preserve">
-        <value>Generation</value>
-    </data>
-    <data name="EduProgramEduStandard.Column" xml:space="preserve">
-        <value>Educational Standard</value>
-    </data>
-    <data name="EduProgramProfStandard.Column" xml:space="preserve">
-        <value>Professional Standard</value>
-    </data>
+	<data name="EduProgramEduStandard.Column" xml:space="preserve">
+		<value>Standards</value>
+	</data>
 	<data name="EditScience.Action" xml:space="preserve">
         <value>Edit Science</value>
+    </data>
+	<data name="EduStandards.Text" xml:space="preserve">
+        <value>Federal Standards:</value>
+    </data>
+	<data name="ProfStandards.Text" xml:space="preserve">
+        <value>Prof. Standards:</value>
     </data>
 </root>

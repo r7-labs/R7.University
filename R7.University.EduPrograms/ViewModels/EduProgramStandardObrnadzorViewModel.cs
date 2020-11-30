@@ -1,27 +1,8 @@
-//
-//  EduProgramStandardObrnadzorViewModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System.Collections.Generic;
+using System.Text;
 using System.Web;
 using DotNetNuke.Common;
+using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -70,33 +51,36 @@ namespace R7.University.EduPrograms.ViewModels
             get { return UniversityFormatHelper.FormatShortTitle (EduLevel.ShortTitle, EduLevel.Title); }
         }
 
-        public string EduStandard_Links
+        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata)
         {
-            get {
-                return UniversityFormatHelper.FormatDocumentLinks (
-                    GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)),
-                    Context,
-                    "<li>{0}</li>",
-                    "<ul class=\"list-inline\">{0}</ul>",
-                    "<ul>{0}</ul>",
-                    "itemprop=\"eduFedDoc\"",
-                    DocumentGroupPlacement.InTitle
-                );
-            }
+            return UniversityFormatHelper.FormatDocumentLinks (
+                documents,
+                Context,
+                "<li class=\"list-inline-item\">{0}</li>",
+                "<ul class=\"list-inline\">{0}</ul>",
+                "<ul class=\"list-inline\">{0}</ul>",
+                microdata,
+                DocumentGroupPlacement.InTitle
+            );
         }
 
-        public string ProfStandard_Links
-        {
+        public string Standard_Links {
             get {
-                return UniversityFormatHelper.FormatDocumentLinks (
-                    GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard)),
-                    Context,
-                    "<li>{0}</li>",
-                    "<ul class=\"list-inline\">{0}</ul>",
-                    "<ul>{0}</ul>",
-                    string.Empty,
-                    DocumentGroupPlacement.InTitle
-                );
+                var sb = new StringBuilder ();
+                var eduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard));
+
+                if (!eduStandardDocs.IsNullOrEmpty ()) {
+                    sb.AppendFormat ("<p><em>{0}</em></p>", Context.LocalizeString ("EduStandards.Text"));
+                    sb.Append (FormatDocumentLinks (eduStandardDocs, "itemprop=\"eduFedDoc\""));
+                }
+
+                var profStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard));
+                if (!profStandardDocs.IsNullOrEmpty ()) {
+                    sb.AppendFormat ("<p><em>{0}</em></p>", Context.LocalizeString ("ProfStandards.Text"));
+                    sb.Append (FormatDocumentLinks (profStandardDocs, string.Empty));
+                }
+
+                return sb.ToString ();
             }
         }
     }

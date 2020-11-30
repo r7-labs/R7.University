@@ -176,11 +176,6 @@ namespace R7.University.EduPrograms
                 e.Row.Cells [3].CssClass = "u8y-column u8y-expand";
             }
 
-            // show or hide additional columns
-            e.Row.Cells [4].Visible = Settings.Columns.Contains (EduProgramDirectoryColumn.EduLevel.ToString ());
-            e.Row.Cells [5].Visible = Settings.Columns.Contains (EduProgramDirectoryColumn.Generation.ToString ());
-            e.Row.Cells [6].Visible = Settings.Columns.Contains (EduProgramDirectoryColumn.ProfStandard.ToString ());
-
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgram = (IEduProgram) e.Row.DataItem;
 
