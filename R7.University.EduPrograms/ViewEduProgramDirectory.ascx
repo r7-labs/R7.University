@@ -3,35 +3,30 @@
 <%@ Register TagPrefix="controls" TagName="AgplSignature" Src="~/DesktopModules/MVC/R7.University/R7.University.Controls/AgplSignature.ascx" %>
 
 <dnn:DnnCssInclude runat="server" FilePath="~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css" />
-
-<div class="dnnForm dnnClear eduprogram-directory">
-    <asp:MultiView id="mviewEduProgramDirectory" runat="server" ActiveViewIndex="0">
-        <asp:View id="viewEduStandards" runat="server">
-            <div class="table-responsive">
-                <asp:GridView id="gridEduStandards" runat="server"
-					itemprop="eduStandartDoc"
-					AutoGenerateColumns="false" UseAccessibleHeader="true"
-					CssClass="table table-bordered table-striped table-hover grid-edustandards"
-                    GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEduStandards_RowDataBound">
-                    <Columns>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:HyperLink id="linkEdit" runat="server">
-                                    <asp:Image id="iconEdit" runat="server" />
-                                </asp:HyperLink>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="Order" HeaderText="EduProgramOrder.Column" DataFormatString="{0}." />
-                        <asp:BoundField DataField="Code" HeaderText="EduProgramCode.Column" />
-                        <asp:BoundField DataField="Title_Link" HeaderText="EduProgramTitle.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="EduLevel_String" HeaderText="EduProgramEduLevel.Column" />
-                        <asp:BoundField DataField="Generation" HeaderText="EduProgramGeneration.Column" />
-                        <asp:BoundField DataField="ProfStandard_Links" HeaderText="EduProgramProfStandard.Column" HtmlEncode="false" />
-                        <asp:BoundField DataField="EduStandard_Links" HeaderText="EduProgramEduStandard.Column" HtmlEncode="false" />
-                    </Columns>
-                </asp:GridView>
-            </div>
-        </asp:View>
-    </asp:MultiView>
+<div class="eduprogram-directory">
+	<div class="table-responsive">
+	    <asp:GridView id="gridEduStandards" runat="server"
+			itemprop="eduStandartDoc"
+			AutoGenerateColumns="false" UseAccessibleHeader="true"
+			CssClass="table table-bordered table-striped table-hover grid-edustandards"
+	        GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEduStandards_RowDataBound">
+	        <Columns>
+	            <asp:TemplateField>
+	                <ItemTemplate>
+	                    <asp:HyperLink id="linkEdit" runat="server">
+	                        <asp:Image id="iconEdit" runat="server" />
+	                    </asp:HyperLink>
+	                </ItemTemplate>
+	            </asp:TemplateField>
+	            <asp:BoundField DataField="Order" HeaderText="EduProgramOrder.Column" DataFormatString="{0}." />
+	            <asp:BoundField DataField="Code" HeaderText="EduProgramCode.Column" />
+	            <asp:BoundField DataField="Title_Link" HeaderText="EduProgramTitle.Column" HtmlEncode="false" />
+	            <asp:BoundField DataField="EduLevel_String" HeaderText="EduProgramEduLevel.Column" />
+	            <asp:BoundField DataField="Generation" HeaderText="EduProgramGeneration.Column" />
+	            <asp:BoundField DataField="ProfStandard_Links" HeaderText="EduProgramProfStandard.Column" HtmlEncode="false" />
+	            <asp:BoundField DataField="EduStandard_Links" HeaderText="EduProgramEduStandard.Column" HtmlEncode="false" />
+	        </Columns>
+	    </asp:GridView>
+	</div>
 	<controls:AgplSignature runat="server" />
- </div>
+</div>
