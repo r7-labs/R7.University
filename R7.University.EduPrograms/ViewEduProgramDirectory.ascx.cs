@@ -1,24 +1,3 @@
-//
-//  ViewEduProgramDirectory.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2015-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +25,12 @@ namespace R7.University.EduPrograms
 {
     public partial class ViewEduProgramDirectory: PortalModuleBase<EduProgramDirectorySettings>, IActionable
     {
+        #region Controls
+
+        protected GridView gridEduStandards;
+
+        #endregion
+
         #region Model context
 
         private UniversityModelContext modelContext;
@@ -97,7 +82,7 @@ namespace R7.University.EduPrograms
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad (e);
-			
+
             try {
                 var now = HttpContext.Current.Timestamp;
 
@@ -113,13 +98,13 @@ namespace R7.University.EduPrograms
                         ep,
                         ViewModelContext,
                         viewModelIndexer));
-                 
+
                 if (eduProgramViewModels.Any ()) {
                     gridEduStandards.DataSource = eduProgramViewModels.Where (ep => ep.IsPublished (now) || IsEditable);
                     gridEduStandards.DataBind ();
                 }
                 else {
-                    this.Message ("NothingToDisplay.Text", MessageType.Info, true); 
+                    this.Message ("NothingToDisplay.Text", MessageType.Info, true);
                 }
             }
             catch (Exception ex) {
@@ -154,18 +139,18 @@ namespace R7.University.EduPrograms
             get {
                 var actions = new ModuleActionCollection ();
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("AddEduProgram.Action"),
-                    ModuleActionType.AddContent, 
-                    "", 
+                    ModuleActionType.AddContent,
+                    "",
                     UniversityIcons.Add,
                     EditUrl ("EditEduProgram"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
-                    SecurityContext.CanAdd (typeof (EduProgramInfo)), 
+                    SecurityContext.CanAdd (typeof (EduProgramInfo)),
                     false
                 );
-			
+
                 return actions;
             }
         }
@@ -188,7 +173,7 @@ namespace R7.University.EduPrograms
             e.Row.Cells [0].Visible = IsEditable;
 
             if (e.Row.RowType == DataControlRowType.Header) {
-                e.Row.Cells [3].CssClass = "u8y-column u8y-expand"; 
+                e.Row.Cells [3].CssClass = "u8y-column u8y-expand";
             }
 
             // show or hide additional columns

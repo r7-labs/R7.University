@@ -140,9 +140,6 @@
     <Compile Include="ViewEduProgramDirectory.ascx.cs">
       <DependentUpon>ViewEduProgramDirectory.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewEduProgramDirectory.ascx.controls.cs">
-      <DependentUpon>ViewEduProgramDirectory.ascx</DependentUpon>
-    </Compile>
     <Compile Include="EditEduProgramDirectorySettings.ascx.cs">
       <DependentUpon>EditEduProgramDirectorySettings.ascx</DependentUpon>
     </Compile>
