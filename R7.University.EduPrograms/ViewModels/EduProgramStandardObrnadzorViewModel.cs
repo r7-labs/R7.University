@@ -72,14 +72,14 @@ namespace R7.University.EduPrograms.ViewModels
 
         public string EduStandard_Links
         {
-            get { 
+            get {
                 return UniversityFormatHelper.FormatDocumentLinks (
                     GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)),
                     Context,
                     "<li>{0}</li>",
                     "<ul class=\"list-inline\">{0}</ul>",
                     "<ul>{0}</ul>",
-                    string.Empty,
+                    "itemprop=\"eduFedDoc\"",
                     DocumentGroupPlacement.InTitle
                 );
             }
@@ -87,7 +87,7 @@ namespace R7.University.EduPrograms.ViewModels
 
         public string ProfStandard_Links
         {
-            get { 
+            get {
                 return UniversityFormatHelper.FormatDocumentLinks (
                     GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard)),
                     Context,

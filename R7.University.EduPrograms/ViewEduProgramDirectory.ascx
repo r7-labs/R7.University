@@ -6,7 +6,6 @@
 <div class="eduprogram-directory">
 	<div class="table-responsive">
 	    <asp:GridView id="gridEduStandards" runat="server"
-			itemprop="eduStandartDoc"
 			AutoGenerateColumns="false" UseAccessibleHeader="true"
 			CssClass="table table-bordered table-striped table-hover grid-edustandards"
 	        GridLines="None" OnRowCreated="grid_RowCreated" OnRowDataBound="gridEduStandards_RowDataBound">
