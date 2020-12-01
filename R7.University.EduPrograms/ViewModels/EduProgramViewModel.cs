@@ -85,16 +85,10 @@ namespace R7.University.EduPrograms.ViewModels
             }
         }
 
-        public bool EduProfiles_Visible
-        {
-            get {
-                return EduProgramProfileViewModels.Any (epp => epp.IsPublished (HttpContext.Current.Timestamp)
-                    || Context.Module.IsEditable
-                );
-            }
-        }
+        public bool EduProfiles_Visible => EduProfileViewModels
+            .Any (epp => epp.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable);
 
-        public IEnumerable<EduProfileViewModel> EduProgramProfileViewModels {
+        public IEnumerable<EduProfileViewModel> EduProfileViewModels {
             get {
                 var now = HttpContext.Current.Timestamp;
                 return EduProgram.EduProfiles
