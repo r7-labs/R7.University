@@ -24,4 +24,13 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Нечего отображать. Добавьте образовательные программы или измените настройки модуля.</value>
     </data>
+	<data name="StateEduStandards.Text" xml:space="preserve">
+		<value>ФГОС:</value>
+	</data>
+	<data name="EduStandards.Text" xml:space="preserve">
+		<value>Обр. стандарты:</value>
+	</data>
+	<data name="ProfStandards.Text" xml:space="preserve">
+		<value>Проф. стандарты:</value>
+	</data>
 </root>

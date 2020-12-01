@@ -24,4 +24,13 @@
     <data name="NothingToDisplay.Text" xml:space="preserve">
         <value>Nothing to display. Please add some educational programs or change module settings.</value>
     </data>
+	<data name="EduStandards.Text" xml:space="preserve">
+		<value>Edu. Standards:</value>
+	</data>
+	<data name="StateEduStandards.Text" xml:space="preserve">
+		<value>State Edu. Standards:</value>
+	</data>
+	<data name="ProfStandards.Text" xml:space="preserve">
+		<value>Prof. Standards:</value>
+	</data>
 </root>
