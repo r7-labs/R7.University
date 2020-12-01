@@ -34,9 +34,12 @@
         <value>Edit Science</value>
     </data>
 	<data name="EduStandards.Text" xml:space="preserve">
-        <value>Federal Standards:</value>
-    </data>
+		<value>Educational Standards:</value>
+	</data>
 	<data name="ProfStandards.Text" xml:space="preserve">
-        <value>Prof. Standards:</value>
+        <value>Professional Standards:</value>
     </data>
+	<data name="StateEduStandards.Text" xml:space="preserve">
+		<value>State Educational Standards:</value>
+	</data>
 </root>

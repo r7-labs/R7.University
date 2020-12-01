@@ -26,3 +26,8 @@ IF NOT EXISTS (select * from sys.foreign_keys where name = N'FK_{objectQualifier
         ADD CONSTRAINT [FK_{objectQualifier}University_EmployeeAchievements_EduLevels] FOREIGN KEY (EduLevelID)
             REFERENCES {databaseOwner}[{objectQualifier}University_EduLevels] (EduLevelID) ON DELETE SET NULL
 GO
+
+IF NOT EXISTS (select * from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] = N'StateEduStandard')
+    INSERT INTO {databaseOwner}[{objectQualifier}University_DocumentTypes] (Type, IsSystem, FilenameFormat) VALUES
+        (N'StateEduStandard', 1, N'standart_[a-z0-9_]+\.pdf')
+GO

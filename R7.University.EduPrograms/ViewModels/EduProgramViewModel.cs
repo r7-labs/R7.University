@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
@@ -36,14 +37,20 @@ namespace R7.University.EduPrograms.ViewModels
             get { return EduProgram.EduLevel.Title; }
         }
 
-        public bool EduStandards_Visible
-        {
-            get { return GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)).Any (); }
-        }
+        public bool StateEduStandards_Visible =>
+            !GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.StateEduStandard)).IsNullOrEmpty ();
 
-        public bool ProfStandards_Visible
-        {
-            get { return GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard)).Any (); }
+        public bool EduStandards_Visible =>
+            !GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)).IsNullOrEmpty ();
+
+        public bool ProfStandards_Visible =>
+            !GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard)).IsNullOrEmpty ();
+
+        public string StateEduStandard_Links {
+            get {
+                var stateEduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.StateEduStandard));
+                return FormatDocumentLinks (stateEduStandardDocs, string.Empty);
+            }
         }
 
         public string EduStandard_Links {

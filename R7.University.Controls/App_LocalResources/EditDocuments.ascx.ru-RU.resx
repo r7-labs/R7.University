@@ -123,4 +123,7 @@
 	<data name="FileName.Invalid" xml:space="preserve">
         <value>Имя выбранного файла не соответствует проверочному выражению &quot;{regex}&quot; для выбранного типа документа.</value>
     </data>
+	<data name="SystemDocumentType_StateEduStandard.Text" xml:space="preserve">
+		<value>Федеральный государственный образовательный стандарт</value>
+	</data>
 </root>

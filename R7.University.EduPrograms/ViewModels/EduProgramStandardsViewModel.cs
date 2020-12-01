@@ -47,11 +47,17 @@ namespace R7.University.EduPrograms.ViewModels
         public string Standard_Links {
             get {
                 var sb = new StringBuilder ();
-                var eduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard));
 
+                var stateEduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.StateEduStandard));
+                if (!stateEduStandardDocs.IsNullOrEmpty ()) {
+                    sb.AppendFormat ("<em>{0}</em>", Context.LocalizeString ("StateEduStandards.Text"));
+                    sb.Append (FormatDocumentLinks (stateEduStandardDocs, "itemprop=\"eduFedDoc\""));
+                }
+
+                var eduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard));
                 if (!eduStandardDocs.IsNullOrEmpty ()) {
                     sb.AppendFormat ("<em>{0}</em>", Context.LocalizeString ("EduStandards.Text"));
-                    sb.Append (FormatDocumentLinks (eduStandardDocs, "itemprop=\"eduFedDoc\""));
+                    sb.Append (FormatDocumentLinks (eduStandardDocs, "itemprop=\"eduStandartDoc\""));
                 }
 
                 var profStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard));

@@ -123,4 +123,7 @@
 	<data name="FileName.Invalid" xml:space="preserve">
         <value>Name of the selected file doesn't match validation expression &quot;{regex}&quot; for the selected document type.</value>
     </data>
+	<data name="SystemDocumentType_StateEduStandard.Text" xml:space="preserve">
+		<value>State Educational Standard</value>
+	</data>
 </root>

@@ -34,9 +34,12 @@
         <value>Редактировать сведения о науке</value>
     </data>
 	<data name="EduStandards.Text" xml:space="preserve">
-        <value>ФГОС:</value>
-    </data>
+		<value>Образовательные стандарты:</value>
+	</data>
 	<data name="ProfStandards.Text" xml:space="preserve">
-        <value>Проф. стандарты:</value>
+        <value>Профессиональные стандарты:</value>
     </data>
+	<data name="StateEduStandards.Text" xml:space="preserve">
+		<value>Федеральные государственные образовательные стандарты:</value>
+	</data>
 </root>
