@@ -147,7 +147,6 @@
       <DependentUpon>EditEduProgramDirectorySettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EduProgramStandardsViewModel.cs" />
-    <Compile Include="Models\EduProgramDirectoryColumn.cs" />
     <Compile Include="Models\EduProgramDirectorySettings.cs" />
     <Compile Include="Components\EduProgramDirectoryController.cs" />
     <Compile Include="Queries\EduProgramDirectoryQuery.cs" />
