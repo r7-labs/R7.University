@@ -1,24 +1,3 @@
-//
-//  ViewEduProgram.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2016-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -57,7 +36,7 @@ namespace R7.University.EduPrograms
             return DataCache.GetCachedData<EduProgramModuleViewModel> (
                 new CacheItemArgs ("//r7_University/Modules/EduProgram?ModuleId=" + ModuleId,
                     UniversityConfig.Instance.DataCacheTime, CacheItemPriority.Normal),
-                c => GetViewModel_Internal ()).SetContext (new ViewModelContext (this));
+                c => GetViewModel_Internal ()).SetContext (new ViewModelContext<EduProgramSettings> (this, Settings));
         }
 
         internal EduProgramModuleViewModel GetViewModel_Internal ()
@@ -87,8 +66,8 @@ namespace R7.University.EduPrograms
 
         #endregion
 
-        #region Handlers 
-     
+        #region Handlers
+
         /// <summary>
         /// Handles Load event for a control
         /// </summary>
@@ -96,7 +75,7 @@ namespace R7.University.EduPrograms
         protected override void OnLoad (EventArgs e)
         {
             base.OnLoad(e);
-            
+
             try
             {
                 var shouldBind = true;
@@ -126,11 +105,9 @@ namespace R7.University.EduPrograms
                             UniversityFormatHelper.FormatEduProgramTitle (viewModel.EduProgram.Code, viewModel.EduProgram.Title)
                         );
                     }
-                       
-                    // bind the data
-                    formEduProgram.DataSource = new List<EduProgramViewModel> { viewModel.EduProgram };
-                    formEduProgram.DataBind ();
-                } 
+
+                    Bind (viewModel);
+                }
                 else {
                     ContainerControl.Visible = IsEditable;
                 }
@@ -141,10 +118,16 @@ namespace R7.University.EduPrograms
             }
         }
 
-        #endregion        
-            
+        #endregion
+
+        void Bind (EduProgramModuleViewModel viewModel)
+        {
+            formEduProgram.DataSource = new List<EduProgramViewModel> { viewModel.EduProgram };
+            formEduProgram.DataBind ();
+        }
+
         #region IActionable implementation
-        
+
         public ModuleActionCollection ModuleActions
         {
             get
@@ -152,28 +135,28 @@ namespace R7.University.EduPrograms
                 var actions = new ModuleActionCollection ();
 
                 actions.Add (
-                    GetNextActionID (), 
+                    GetNextActionID (),
                     LocalizeString ("AddEduProgram.Action"),
-                    ModuleActionType.AddContent, 
-                    "", 
+                    ModuleActionType.AddContent,
+                    "",
                     UniversityIcons.Add,
                     EditUrl ("EditEduProgram"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
-                    Settings.EduProgramId == null && SecurityContext.CanAdd (typeof (EduProgramInfo)), 
+                    Settings.EduProgramId == null && SecurityContext.CanAdd (typeof (EduProgramInfo)),
                     false
                 );
 
                 actions.Add (
                     GetNextActionID (),
                     LocalizeString ("EditEduProgram.Action"),
-                    ModuleActionType.EditContent, 
-                    "", 
+                    ModuleActionType.EditContent,
+                    "",
                     UniversityIcons.Edit,
                     EditUrl ("eduprogram_id", Settings.EduProgramId.ToString (), "EditEduProgram"),
-                    false, 
+                    false,
                     SecurityAccessLevel.Edit,
-                    Settings.EduProgramId != null, 
+                    Settings.EduProgramId != null,
                     false
                 );
 
@@ -184,4 +167,3 @@ namespace R7.University.EduPrograms
         #endregion
     }
 }
-
