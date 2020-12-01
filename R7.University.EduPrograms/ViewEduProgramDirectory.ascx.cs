@@ -173,7 +173,9 @@ namespace R7.University.EduPrograms
             e.Row.Cells [0].Visible = IsEditable;
 
             if (e.Row.RowType == DataControlRowType.Header) {
-                e.Row.Cells [3].CssClass = "u8y-column u8y-expand";
+                e.Row.Cells [0].CssClass = "u8y-col u8y-compact";
+                e.Row.Cells [1].CssClass = "u8y-col u8y-compact";
+                e.Row.Cells [2].CssClass = "u8y-col u8y-compact";
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow) {

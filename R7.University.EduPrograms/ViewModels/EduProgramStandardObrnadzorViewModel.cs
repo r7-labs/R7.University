@@ -70,13 +70,13 @@ namespace R7.University.EduPrograms.ViewModels
                 var eduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard));
 
                 if (!eduStandardDocs.IsNullOrEmpty ()) {
-                    sb.AppendFormat ("<p><em>{0}</em></p>", Context.LocalizeString ("EduStandards.Text"));
+                    sb.AppendFormat ("<em>{0}</em>", Context.LocalizeString ("EduStandards.Text"));
                     sb.Append (FormatDocumentLinks (eduStandardDocs, "itemprop=\"eduFedDoc\""));
                 }
 
                 var profStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard));
                 if (!profStandardDocs.IsNullOrEmpty ()) {
-                    sb.AppendFormat ("<p><em>{0}</em></p>", Context.LocalizeString ("ProfStandards.Text"));
+                    sb.AppendFormat ("<em>{0}</em>", Context.LocalizeString ("ProfStandards.Text"));
                     sb.Append (FormatDocumentLinks (profStandardDocs, string.Empty));
                 }
 

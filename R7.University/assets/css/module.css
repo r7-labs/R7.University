@@ -21,3 +21,5 @@ a.u8y-not-published-element { color:#ccc }
 	left:-.3rem;
 }
 .u8y-selected-item .u8y-selected-item-marker { display:inline }
+
+.u8y-col.u8y-compact { width:0 }
