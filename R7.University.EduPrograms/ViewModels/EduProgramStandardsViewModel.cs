@@ -10,13 +10,13 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms.ViewModels
 {
-    internal class EduProgramStandardObrnadzorViewModel: EduProgramViewModelBase
+    internal class EduProgramStandardsViewModel: EduProgramViewModelBase
     {
         public IIndexer Indexer { get; protected set; }
 
         public ViewModelContext Context { get; protected set; }
 
-        public EduProgramStandardObrnadzorViewModel (IEduProgram model, ViewModelContext context, IIndexer indexer)
+        public EduProgramStandardsViewModel (IEduProgram model, ViewModelContext context, IIndexer indexer)
             : base (model)
         {
             Context = context;

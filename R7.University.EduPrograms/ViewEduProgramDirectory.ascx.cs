@@ -94,7 +94,7 @@ namespace R7.University.EduPrograms
                     .ToList ();
 
                 var eduProgramViewModels = eduPrograms
-                    .Select (ep => new EduProgramStandardObrnadzorViewModel (
+                    .Select (ep => new EduProgramStandardsViewModel (
                         ep,
                         ViewModelContext,
                         viewModelIndexer));

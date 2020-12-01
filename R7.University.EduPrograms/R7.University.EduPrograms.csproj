@@ -146,7 +146,7 @@
     <Compile Include="EditEduProgramDirectorySettings.ascx.controls.cs">
       <DependentUpon>EditEduProgramDirectorySettings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EduProgramStandardObrnadzorViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramStandardsViewModel.cs" />
     <Compile Include="Models\EduProgramDirectoryColumn.cs" />
     <Compile Include="Models\EduProgramDirectorySettings.cs" />
     <Compile Include="Components\EduProgramDirectoryController.cs" />
