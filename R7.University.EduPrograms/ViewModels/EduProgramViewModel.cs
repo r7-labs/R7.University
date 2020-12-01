@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,19 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms.ViewModels
 {
-    public class EduProgramViewModel: EduProgramViewModelBase
+    public class EduProgramViewModel: EduProgramWithDocumentsViewModelBase
     {
         public EduProgramModuleViewModel RootViewModel { get; protected set; }
 
-        protected ViewModelContext Context
+        protected override ViewModelContext Context
         {
             get { return RootViewModel.Context; }
+            set { throw new InvalidOperationException (); }
         }
 
         public EduProgramViewModel (IEduProgram model, EduProgramModuleViewModel rootViewModel): base (model)
         {
             RootViewModel = rootViewModel;
-        }
-
-        protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
-        {
-            return documents.WherePublished (HttpContext.Current.Timestamp, Context.Module.IsEditable).OrderByGroupDescThenSortIndex ();
         }
 
         #region Bindable properties
@@ -39,23 +36,27 @@ namespace R7.University.EduPrograms.ViewModels
             get { return EduProgram.EduLevel.Title; }
         }
 
-        public bool EduStandard_Visible
+        public bool EduStandards_Visible
         {
             get { return GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)).Any (); }
         }
 
-        public string EduStandard_Links
+        public bool ProfStandards_Visible
         {
+            get { return GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard)).Any (); }
+        }
+
+        public string EduStandard_Links {
             get {
-                return UniversityFormatHelper.FormatDocumentLinks (
-                    GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard)),
-                    Context,
-                    "<li>{0}</li>",
-                    "<ul class=\"list-inline u8y-inline\">{0}</ul>",
-                    "<ul class=\"list-inline u8y-inline\">{0}</ul>",
-                    string.Empty,
-                    DocumentGroupPlacement.InTitle
-                );
+                var eduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard));
+                return FormatDocumentLinks (eduStandardDocs, string.Empty);
+            }
+        }
+
+        public string ProfStandard_Links {
+            get {
+                var profStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard));
+                return FormatDocumentLinks (profStandardDocs, string.Empty);
             }
         }
 
@@ -91,8 +92,8 @@ namespace R7.University.EduPrograms.ViewModels
                 var now = HttpContext.Current.Timestamp;
                 return EduProgram.EduProfiles
                                  .Where (epp => epp.IsPublished (now) || Context.Module.IsEditable)
-                                 .OrderBy (epp => epp.ProfileCode)
-                                 .ThenBy (epp => epp.ProfileTitle)
+                                 .OrderBy (epp => epp.ProfileCode)
+                                 .ThenBy (epp => epp.ProfileTitle)
                                  .Select (epp => new EduProfileViewModel (epp, RootViewModel));
             }
         }

@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Text;
-using System.Web;
 using DotNetNuke.Common;
 using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.ViewModels;
@@ -10,22 +8,17 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduPrograms.ViewModels
 {
-    internal class EduProgramStandardsViewModel: EduProgramViewModelBase
+    internal class EduProgramStandardsViewModel: EduProgramWithDocumentsViewModelBase
     {
         public IIndexer Indexer { get; protected set; }
 
-        public ViewModelContext Context { get; protected set; }
+        protected override ViewModelContext Context { get; set; }
 
         public EduProgramStandardsViewModel (IEduProgram model, ViewModelContext context, IIndexer indexer)
             : base (model)
         {
             Context = context;
             Indexer = indexer;
-        }
-
-        protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
-        {
-            return documents.WherePublished (HttpContext.Current.Timestamp, Context.Module.IsEditable).OrderByGroupDescThenSortIndex ();
         }
 
         public int Order
@@ -49,19 +42,6 @@ namespace R7.University.EduPrograms.ViewModels
         public string EduLevel_String
         {
             get { return UniversityFormatHelper.FormatShortTitle (EduLevel.ShortTitle, EduLevel.Title); }
-        }
-
-        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata)
-        {
-            return UniversityFormatHelper.FormatDocumentLinks (
-                documents,
-                Context,
-                "<li class=\"list-inline-item\">{0}</li>",
-                "<ul class=\"list-inline\">{0}</ul>",
-                "<ul class=\"list-inline\">{0}</ul>",
-                microdata,
-                DocumentGroupPlacement.InTitle
-            );
         }
 
         public string Standard_Links {

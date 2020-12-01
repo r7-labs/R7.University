@@ -51,9 +51,9 @@
     <data name="Divisions.Text" xml:space="preserve">
         <value>Divisions:</value>
     </data>
-    <data name="EduStandard.Text" xml:space="preserve">
-        <value>Educational standard:</value>
-    </data>
+	<data name="EduStandards.Text" xml:space="preserve">
+		<value>Federal Educational Standards:</value>
+	</data>
     <data name="AccreditedToDate.Text" xml:space="preserve">
         <value>Accredited to:</value>
     </data>
@@ -96,4 +96,7 @@
     <data name="TimeToLearnHours3.Format" xml:space="preserve">
         <value>{0} hours</value>
     </data>
+	<data name="ProfStandards.Text" xml:space="preserve">
+		<value>Professional Standards:</value>
+	</data>
 </root>

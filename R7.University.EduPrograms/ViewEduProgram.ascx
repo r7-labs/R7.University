@@ -24,9 +24,13 @@
                     </asp:ListView>
                     </ul>
                 </div>
-                <div runat="server" Visible='<%# Item.EduStandard_Visible %>' class="u8y-para">
-                    <label runat="server"><%# LocalizeString ("EduStandard.Text") %></label>
+                <div runat="server" Visible='<%# Item.EduStandards_Visible %>' class="u8y-para">
+                    <label runat="server"><%# LocalizeString ("EduStandards.Text") %></label>
                     <%# HttpUtility.HtmlDecode (Item.EduStandard_Links) %>
+                </div>
+	            <div runat="server" Visible='<%# Item.ProfStandards_Visible %>' class="u8y-para">
+                    <label runat="server"><%# LocalizeString ("ProfStandards.Text") %></label>
+                    <%# HttpUtility.HtmlDecode (Item.ProfStandard_Links) %>
                 </div>
             </div>
             <div runat="server" Visible='<%# Item.EduProfiles_Visible %>'>

@@ -51,9 +51,9 @@
     <data name="Divisions.Text" xml:space="preserve">
         <value>Подразделения:</value>
     </data>
-    <data name="EduStandard.Text" xml:space="preserve">
-        <value>Образовательный стандарт:</value>
-    </data>
+	<data name="EduStandards.Text" xml:space="preserve">
+		<value>Федеральные образовательные стандарты:</value>
+	</data>
     <data name="AccreditedToDate.Text" xml:space="preserve">
         <value>Государственная аккредитация (до):</value>
     </data>
@@ -96,4 +96,7 @@
     <data name="TimeToLearnHours3.Format" xml:space="preserve">
         <value>{0} часов</value>
     </data>
+	<data name="ProfStandards.Text" xml:space="preserve">
+		<value>Профессиональные стандарты:</value>
+	</data>
 </root>

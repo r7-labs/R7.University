@@ -156,6 +156,7 @@
     <Compile Include="Models\ScienceDirectorySettings.cs" />
     <Compile Include="Queries\ScienceDirectoryQuery.cs" />
     <Compile Include="ViewModels\EduProgramScienceViewModel.cs" />
+    <Compile Include="ViewModels\EduProgramWithDocumentsViewModelBase.cs" />
     <Compile Include="ViewModels\ScienceDirectoryViewModel.cs" />
     <Compile Include="EditScience.ascx.cs">
       <DependentUpon>EditScience.ascx</DependentUpon>
