@@ -45,16 +45,10 @@
     <data name="EduLevels.Text" xml:space="preserve">
         <value>Уровни образования</value>
     </data>
-    <data name="Documents.Text" xml:space="preserve">
-        <value>Документы</value>
-    </data>
-    <data name="DocumentTypes.Text" xml:space="preserve">
+	<data name="DocumentTypes.Text" xml:space="preserve">
         <value>Типы документов</value>
     </data>
-	<data name="EduProgramDivisions.Text" xml:space="preserve">
-        <value>Подразделения обр. программы</value>
-    </data>
-    <data name="Years.Text" xml:space="preserve">
+	<data name="Years.Text" xml:space="preserve">
         <value>Годы</value>
     </data>
 </root>

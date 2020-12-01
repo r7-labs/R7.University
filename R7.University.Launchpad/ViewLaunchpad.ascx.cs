@@ -229,14 +229,12 @@ namespace R7.University.Launchpad
         {
             get {
                 var actions = new ModuleActionCollection ();
-                // add module actions for tables configured in settings
                 foreach (var tableName in Settings.Tables) {
                     var table = Tables.GetByName (tableName);
-                    if (table.IsEditable && SecurityContext.CanAdd (table.EntityType)) {
+                    if (table != null && table.IsEditable && SecurityContext.CanAdd (table.EntityType)) {
                         actions.Add (table.GetAction (this));
                     }
                 }
-
                 return actions;
             }
         }
@@ -272,8 +270,9 @@ namespace R7.University.Launchpad
                 if (sortExpression == column) {
                     if (ViewState ["SortDirection"] != null) {
                         var lastDirection = (string) ViewState ["SortDirection"];
-                        if (lastDirection == "ASC")
+                        if (lastDirection == "ASC") {
                             sortDirection = "DESC";
+                        }
                     }
                 }
             }

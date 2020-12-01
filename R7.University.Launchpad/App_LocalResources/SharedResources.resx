@@ -45,16 +45,10 @@
     <data name="EduLevels.Text" xml:space="preserve">
         <value>Education Levels</value>
     </data>
-    <data name="Documents.Text" xml:space="preserve">
-        <value>Documents</value>
-    </data>
-    <data name="DocumentTypes.Text" xml:space="preserve">
+	<data name="DocumentTypes.Text" xml:space="preserve">
         <value>Document Types</value>
     </data>
-	<data name="EduProgramDivisions.Text" xml:space="preserve">
-        <value>Edu. Program Divisions</value>
-    </data>
-    <data name="Years.Text" xml:space="preserve">
+	<data name="Years.Text" xml:space="preserve">
         <value>Years</value>
     </data>
 </root>

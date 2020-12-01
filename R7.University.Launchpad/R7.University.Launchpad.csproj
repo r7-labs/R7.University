@@ -221,7 +221,6 @@
     <Compile Include="Components\LaunchpadController.cs" />
     <Compile Include="Tables\AchievementsTable.cs" />
     <Compile Include="Tables\DivisionsTable.cs" />
-    <Compile Include="Tables\DocumentsTable.cs" />
     <Compile Include="Tables\DocumentTypesTable.cs" />
     <Compile Include="Tables\EduFormsTable.cs" />
     <Compile Include="Tables\EduLevelsTable.cs" />
@@ -244,7 +243,6 @@
     </Compile>
     <Compile Include="Models\LaunchpadSettings.cs" />
     <Compile Include="Components\DataTableConstructor.cs" />
-    <Compile Include="Tables\EduProgramDivisionsTable.cs" />
     <Compile Include="EditYear.ascx.cs">
       <DependentUpon>EditYear.ascx</DependentUpon>
     </Compile>
