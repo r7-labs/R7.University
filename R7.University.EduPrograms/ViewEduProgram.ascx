@@ -77,12 +77,10 @@
                                     <%# Item.CommunityAccreditedToDate_String %>
                                 </div>
                             </div>
-                            <div runat="server" Visible='<%# Item.EduFormsForAdmission_Visible %>'>
+                            <div runat="server" class="font-weight-bold" Visible='<%# Item.EduFormsForAdmission_Visible %>'>
                                 <label runat="server">
-									<strong>
-										<%# LocalizeString ("EduFormsForAdmission.Text") %>
-										<%# Item.YearOfAdmission %><%# LocalizeString ("Year.Text") %>
-									</strong>
+									<%# LocalizeString ("EduFormsForAdmission.Text") %>
+									<%# Item.YearOfAdmission %><%# LocalizeString ("Year.Text") %>
 								</label>
                                 <%# HttpUtility.HtmlDecode (Item.EduFormsForAdmission_String) %>
                             </div>
