@@ -13,6 +13,7 @@ using R7.University.Controls.EditModels;
 using R7.University.Controls.SerializationModels;
 using R7.University.ModelExtensions;
 using R7.University.Models;
+using R7.University.Queries;
 
 namespace R7.University.Controls
 {
@@ -92,9 +93,16 @@ namespace R7.University.Controls
             if (lastFolderId != null) {
                 urlDocumentUrl.SelectFolder (lastFolderId.Value);
             }
+
+            using (var modelContext = new UniversityModelContext ()) {
+                ddlEduLevel.DataSource = new EduLevelQuery (modelContext).ListForEduProgram ();
+                ddlEduLevel.DataBind ();
+                ddlEduLevel.InsertDefaultItem (LocalizeString ("NotSelected.Text"));
+                ddlEduLevel.SelectedIndex = 0;
+            }
         }
 
-        #region implemented abstract members of GridAndFormEditControlBase
+        #region Implemented abstract members of GridAndFormEditControlBase
 
         protected override void OnLoadItem (EmployeeAchievementEditModel item)
         {
@@ -114,8 +122,7 @@ namespace R7.University.Controls
             textYearEnd.Text = item.YearEnd.ToString ();
             checkIsTitle.Checked = item.IsTitle;
             txtHours.Text = item.Hours.ToString ();
-
-            txtEduLevelId.Text = item.EduLevelId.ToString ();
+            ddlEduLevel.SelectByValue (item.EduLevelId);
 
             SetDocumentUrl (item.DocumentURL);
         }
@@ -146,27 +153,10 @@ namespace R7.University.Controls
             item.YearEnd = ParseHelper.ParseToNullable<int> (textYearEnd.Text);
             item.DocumentURL = GetDocumentUrl ();
             item.Hours = ParseHelper.ParseToNullable<int> (txtHours.Text);
-
-            item.EduLevelId = ParseHelper.ParseToNullable<int> (txtEduLevelId.Text);
-            item.EduLevel_String = GetEduLevelTitle (item.EduLevelId);
+            item.EduLevelId = ParseHelper.ParseToNullable<int> (ddlEduLevel.SelectedValue, true);
+            item.EduLevel_String = ddlEduLevel.SelectedItem.Text;
 
             FolderHistory.RememberFolderByFileUrl (Request, Response, item.DocumentURL, Module.PortalId);
-        }
-
-        string GetEduLevelTitle (int? eduLevelId)
-        {
-            if (eduLevelId == null) {
-                return string.Empty;
-            }
-
-            using (var modelContext = new UniversityModelContext ()) {
-                var eduLevel = modelContext.Get<EduLevelInfo, int> (eduLevelId.Value);
-                if (eduLevel != null) {
-                    return eduLevel.FormatShortTitle ();
-                }
-            }
-
-            return string.Empty;
         }
 
         protected override void OnResetForm ()
@@ -177,7 +167,6 @@ namespace R7.University.Controls
             comboAchievement.SelectedIndex = 0;
             comboAchievementTypes.SelectedIndex = 0;
             textAchievementTitle.Text = string.Empty;
-
             textYearBegin.Text = string.Empty;
             textYearEnd.Text = string.Empty;
             hiddenViewItemID.Value = string.Empty;
@@ -192,8 +181,8 @@ namespace R7.University.Controls
             textAchievementShortTitle.Text = string.Empty;
             textAchievementTitleSuffix.Text = string.Empty;
             textAchievementDescription.Text = string.Empty;
-
-            // TODO: Reset hours and edu. level fields
+            txtHours.Text = string.Empty;
+            ddlEduLevel.SelectedIndex = 0;
         }
 
         #endregion

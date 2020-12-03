@@ -101,7 +101,9 @@
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="lblEduLevel" runat="server" ControlName="txtEduLevel" />
-            <asp:TextBox id="txtEduLevelId" runat="server" />
+            <asp:DropDownList id="ddlEduLevel" runat="server"
+				DataTextField="Title"
+	            DataValueField="EduLevelId" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label id="labelIsTitle" runat="server" ControlName="checkIsTitle" />

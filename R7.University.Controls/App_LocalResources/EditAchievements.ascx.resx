@@ -166,6 +166,9 @@
 		<value>Edu. Level:</value>
 	</data>
 	<data name="lblEduLevel.Help" xml:space="preserve">
-		<value />
+		<value>Select education level for education-related achievements.</value>
+	</data>
+	<data name="EduLevel.Column" xml:space="preserve">
+		<value>Edu. Level</value>
 	</data>
 </root>

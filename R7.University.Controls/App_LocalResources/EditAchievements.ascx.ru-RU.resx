@@ -162,4 +162,13 @@
 	<data name="Hours_Invalid.Text" xml:space="preserve">
 		<value>Количество часов должно быть целым числом большим или равным 1.</value>
 	</data>
+	<data name="lblEduLevel.Text" xml:space="preserve">
+		<value>Уровень образования:</value>
+	</data>
+	<data name="lblEduLevel.Help" xml:space="preserve">
+		<value>Выберите уровень образования для достижений, связанных с получением образования.</value>
+	</data>
+	<data name="EduLevel.Column" xml:space="preserve">
+		<value>Уровень образования</value>
+	</data>
 </root>
