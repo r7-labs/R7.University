@@ -1,27 +1,6 @@
-//
-//  EmployeeAchievementViewModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2017-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System.Text;
 using System.Web;
 using DotNetNuke.Services.Localization;
-using R7.Dnn.Extensions.Utilities;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Models;
 using R7.University.Utilities;
@@ -42,21 +21,26 @@ namespace R7.University.Employees.ViewModels
 
         #region Bindable properties
 
-        public string Title_String
-        {
-            get { return FormatHelper.JoinNotNullOrEmpty (" ", Title, TitleSuffix); }
-        }
+        public string Title_String => FormatHelper.JoinNotNullOrEmpty (" ", Title, TitleSuffix);
 
-        public string Title_Link
-        {
+        public string MoreInfo_Link {
             get {
-                if (!string.IsNullOrWhiteSpace (Description)) {
-                    var title = HttpUtility.HtmlEncode (Title_String);
-                    return $"<a role=\"button\" tabindex=\"0\" data-toggle=\"popover\" data-trigger=\"focus\" title=\"{title}\" "
-                        + $"data-content=\"{HttpUtility.HtmlEncode (Description)}\">{title}</a>";
+                var showMoreInfo = Hours != null || EduLevel != null || !string.IsNullOrWhiteSpace (Description);
+                if (!showMoreInfo) {
+                    return string.Empty;
                 }
-
-                return HttpUtility.HtmlEncode (Title_String);
+                var sb = new StringBuilder ();
+                if (!string.IsNullOrWhiteSpace (Description)) {
+                    sb.Append ($"<p>{Description}</p>");
+                }
+                if (EduLevel != null) {
+                    sb.Append ($"<p><strong>{Context.LocalizeString ("EduLevel.Text")}</strong> {EduLevel.Title}</p>");
+                }
+                if (Hours != null) {
+                    sb.Append ($"<p><strong>{Context.LocalizeString ("Hours.Text")}</strong> {Hours}</p>");
+                }
+                return $"<a class=\"btn btn-sm btn-link p-0\" role=\"button\" tabindex=\"0\" data-toggle=\"popover\" data-trigger=\"focus\" title=\"{HttpUtility.HtmlEncode (Title_String)}\" "
+                    + $"data-html=\"true\" data-content=\"{HttpUtility.HtmlEncode (sb.ToString ())}\"><i class=\"fas fa-info-circle\"></i></a>";
             }
         }
 

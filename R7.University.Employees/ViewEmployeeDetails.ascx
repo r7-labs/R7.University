@@ -92,11 +92,10 @@
                             UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
                                 <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
-                                <asp:BoundField DataField="Title_Link" HeaderText="Title.Column" HtmlEncode="false" />
+                                <asp:BoundField DataField="Title_String" HeaderText="Title.Column" />
                                 <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
-                                <asp:BoundField DataField="EduLevel_String" HeaderText="EduLevel.Column" />
-								<asp:BoundField DataField="Hours" HeaderText="Hours.Column" />
-	                            <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
+                                <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
+	                            <asp:BoundField DataField="MoreInfo_Link" HeaderText="MoreInfo.Column" HtmlEncode="false" />
                             </Columns>
         			    </asp:GridView>
         			</div>
@@ -107,9 +106,10 @@
         			        UseAccessibleHeader="true" OnRowCreated="grid_RowCreated" GridLines="None">
     						<Columns>
                                 <asp:BoundField DataField="Years_String" HeaderText="Years.Column" />
-                                <asp:BoundField DataField="Title_Link" HeaderText="Title.Column" HtmlEncode="false" />
+                                <asp:BoundField DataField="Title_String" HeaderText="Title.Column" />
                                 <asp:BoundField DataField="AchievementType_String" HeaderText="AchievementType.Column" />
                                 <asp:BoundField DataField="DocumentUrl_Link" HeaderText="DocumentUrl.Column" HtmlEncode="false" />
+	                            <asp:BoundField DataField="MoreInfo_Link" HeaderText="MoreInfo.Column" HtmlEncode="false" />
                             </Columns>
         			    </asp:GridView>
         			</div>

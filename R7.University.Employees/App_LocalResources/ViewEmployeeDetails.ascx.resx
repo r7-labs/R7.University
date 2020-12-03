@@ -54,4 +54,10 @@
 	<data name="EmployeeExporterDialogTitle.Text" xml:space="preserve">
 		<value>Export employee data</value>
 	</data>
+	<data name="EduLevel.Text" xml:space="preserve">
+		<value>Education Level:</value>
+	</data>
+	<data name="Hours.Text" xml:space="preserve">
+		<value>Hours:</value>
+	</data>
 </root>
