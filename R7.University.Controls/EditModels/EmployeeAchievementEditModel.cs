@@ -2,6 +2,7 @@ using System;
 using DotNetNuke.Services.Localization;
 using Newtonsoft.Json;
 using R7.Dnn.Extensions.Models;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EditModels;
 using R7.University.ModelExtensions;
@@ -135,9 +136,12 @@ namespace R7.University.Controls.EditModels
         }
 
         [JsonIgnore]
-        public string Title_String
+        public string Title_HtmlString
         {
-            get { return Title + " " + TitleSuffix; }
+            get {
+                var title = FormatHelper.JoinNotNullOrEmpty (" ", Title, TitleSuffix);
+                return IsTitle ? $"<strong>{title}</strong>" : title;
+            }
         }
 
         [JsonIgnore]
