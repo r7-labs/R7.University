@@ -113,26 +113,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string Expelled => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.Expelled);
 
-        public string EduLevelVacantItemProp {
-            get {
-                // HACK: Hardcoded edu. levels
-                var eduLevel = EduProfile.EduLevel.Title.ToLower ();
-                if (eduLevel.Contains ("бакалавриат")) {
-                    return "bachelorVacant";
-                }
-                if (eduLevel.Contains ("магистратура")) {
-                    return "magistracyVacant";
-                }
-                if (eduLevel.Contains ("специалитет")) {
-                    return "specialityVacant";
-                }
-                if (eduLevel.Contains ("высшей квалификации") || eduLevel.Contains ("аспирантура")) {
-                    return "postgraduateVacant";
-                }
-                return string.Empty;
-            }
-        }
-
         public int? Course => UniversityModelHelper.SafeGetCourse (Year, RootViewModel.LastYear);
 
         public string HtmlElementId => $"contingent_{Context.Module.ModuleId}_{EduProgramProfileFormYearId}";
