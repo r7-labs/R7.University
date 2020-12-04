@@ -212,6 +212,9 @@ namespace R7.University.Templates
             if (objectName == NameOf (() => achievement.Hours)) {
                 return achievement.Hours.ToString ();
             }
+            if (objectName == "EduLevel") {
+                return achievement.EduLevel.Title;
+            }
             if (objectName == NameOf (() => achievement.Description)) {
                 return achievement.Description;
             }
