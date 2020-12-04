@@ -154,7 +154,7 @@ namespace R7.University.Controls
             item.DocumentURL = GetDocumentUrl ();
             item.Hours = ParseHelper.ParseToNullable<int> (txtHours.Text);
             item.EduLevelId = ParseHelper.ParseToNullable<int> (ddlEduLevel.SelectedValue, true);
-            item.EduLevel_String = ddlEduLevel.SelectedItem.Text;
+            item.EduLevel_String = (item.EduLevelId != null)? ddlEduLevel.SelectedItem.Text : string.Empty;
 
             FolderHistory.RememberFolderByFileUrl (Request, Response, item.DocumentURL, Module.PortalId);
         }
