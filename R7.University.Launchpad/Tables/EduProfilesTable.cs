@@ -12,6 +12,7 @@ namespace R7.University.Launchpad
     {
         public EduProfilesTable () : base (typeof (EduProfileInfo))
         {
+            EditControlKey = "editEduProgramProfile";
         }
 
         public override DataTable GetDataTable (PortalModuleBase module, UniversityModelContext modelContext, string search)
