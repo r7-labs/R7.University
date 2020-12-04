@@ -83,7 +83,7 @@ namespace R7.University.EduPrograms.Controllers
             );
 
             if (settings.Mode == ContingentDirectoryMode.Vacant) {
-                contingents = contingents.Where (c => c.Year != null);
+                contingents = contingents.Where (c => c.Year != null && !c.Year.AdmissionIsOpen);
             }
             else {
                 contingents = contingents.Where (c => c.Year == null);
