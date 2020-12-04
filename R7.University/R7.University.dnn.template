@@ -1065,6 +1065,28 @@
                                         <viewOrder>0</viewOrder>
                                     </moduleControl>
                                     <moduleControl>
+                                        <controlKey>EditEduVolume</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduVolume.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program Volume Record</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditContingent</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditContingent.ascx</controlSrc>
+                                        <controlTitle>Edit Contingent Record</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
                                         <controlKey>Settings</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduPrograms/EditEduProgramSettings.ascx</controlSrc>
                                         <controlTitle>EduProgram Settings</controlTitle>
@@ -1158,6 +1180,28 @@
                                         <controlKey>EditEduProgramProfileDocuments</controlKey>
                                         <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduProgramProfileDocuments.ascx</controlSrc>
                                         <controlTitle>Edit Edu. Program Profile Documents</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditEduVolume</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditEduVolume.ascx</controlSrc>
+                                        <controlTitle>Edit Educational Program Volume Record</controlTitle>
+                                        <controlType>Edit</controlType>
+                                        <iconFile />
+                                        <helpUrl />
+                                        <supportsPartialRendering>True</supportsPartialRendering>
+                                        <supportsPopUps>True</supportsPopUps>
+                                        <viewOrder>0</viewOrder>
+                                    </moduleControl>
+                                    <moduleControl>
+                                        <controlKey>EditContingent</controlKey>
+                                        <controlSrc>DesktopModules/MVC/R7.University/R7.University.EduProgramProfiles/EditContingent.ascx</controlSrc>
+                                        <controlTitle>Edit Contingent Record</controlTitle>
                                         <controlType>Edit</controlType>
                                         <iconFile />
                                         <helpUrl />
