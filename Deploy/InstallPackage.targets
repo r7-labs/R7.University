@@ -62,10 +62,11 @@
             <InstallResourceExcludeFiles Include="../*/bin/**/*" />
             <InstallResourceExcludeFiles Include="../*/obj/**/*" />
             <InstallResourceExcludeFiles Include="../.git/**/*" />
-			<InstallResourceExcludeFiles Include="../.vs/**/*" />
+			      <InstallResourceExcludeFiles Include="../.vs/**/*" />
             <InstallResourceExcludeFiles Include="../.vscode/**/*" />
+            <InstallResourceExcludeFiles Include="../.idea/**/*" />
             <InstallResourceExcludeFiles Include="../packages/**/*" />
-			<InstallResourceExcludeFiles Include="../node_modules/**/*" />
+            <InstallResourceExcludeFiles Include="../node_modules/**/*" />
             <InstallResourceExcludeFiles Include="../Deploy/**/*" />
             <InstallResourceExcludeFiles Include="../.*" />
             <InstallResourceExcludeFiles Include="$(MainProjectPath)/license.htm" />
