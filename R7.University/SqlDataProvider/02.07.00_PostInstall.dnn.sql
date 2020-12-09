@@ -3,7 +3,9 @@
 
 -- Assume all previously added edu. standards are state ones GH-401
 
-UPDATE {databaseOwner}[{objectQualifier}University_DocumentTypes] SET [Type] = N'StateEduStandard' WHERE [Type] = N'EduStandard'
+UPDATE {databaseOwner}[{objectQualifier}University_Documents]
+    SET DocumentTypeID = (select DocumentTypeID from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] = N'StateEduStandard')
+    WHERE DocumentTypeID = (select DocumentTypeID from {databaseOwner}[{objectQualifier}University_DocumentTypes] where [Type] = N'EduStandard')
 GO
 
 -- Set proper EduLevelID based on TitleSuffix, clear TitleSuffix GH-398
