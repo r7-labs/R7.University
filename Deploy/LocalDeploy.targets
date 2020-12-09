@@ -45,12 +45,9 @@
         <ItemGroup>
             <LocalDeployResourceExcludeFiles Include="../*/bin/**/*" />
             <LocalDeployResourceExcludeFiles Include="../*/obj/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../.git/**/*" />
-			<LocalDeployResourceExcludeFiles Include="../.vs/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../.vscode/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../.idea/**/*" />
+            <LocalDeployResourceExcludeFiles Include="../.*/**/*" />
             <LocalDeployResourceExcludeFiles Include="../packages/**/*" />
-			<LocalDeployResourceExcludeFiles Include="../node_modules/**/*" />
+      			<LocalDeployResourceExcludeFiles Include="../node_modules/**/*" />
             <LocalDeployResourceExcludeFiles Include="../Deploy/**/*" />
             <LocalDeployResourceExcludeFiles Include="../.*" />
             <LocalDeployResourceExcludeFiles Include="$(MainProjectPath)/license.htm" />
