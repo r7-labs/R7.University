@@ -27,4 +27,9 @@
     <Folder Include="assets\" />
     <Folder Include="assets\templates\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\templates\workbook-1.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
