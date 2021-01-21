@@ -34,7 +34,6 @@ namespace R7.University.Templates
 
         public IWorkbook Apply (string templateFilePath)
         {
-            // TODO: Support {% endfor %} and multi-row loops
             // https://github.com/tonyqus/npoi/blob/master/examples/xssf/CopySheet/Program.cs
 
             using (var file = new FileStream (templateFilePath, FileMode.Open, FileAccess.Read)) {
@@ -82,12 +81,7 @@ namespace R7.University.Templates
                 if (row == null) {
                     continue;
                 }
-                var rowIndex = 0;
                 foreach (var cell in row.Cells) {
-                    // skip affected rows
-                    if (rowIndex > row.RowNum) {
-                        continue;
-                    }
                     var cellValue = GetStringCellValue (cell);
                     if (LiquidHelper.ContainsLiquidTag (cellValue) && Regex.IsMatch (cellValue, @"{%\s*for")) {
                         var loop = LiquidLoop.Parse (LiquidHelper.UnwrapLiquidTag (cellValue));
@@ -95,12 +89,14 @@ namespace R7.University.Templates
                             continue;
                         }
                         loop.NumOfRepeats = Binder.Count (loop.CollectionName);
-                        rowIndex = row.RowNum + 1;
+                        var rowIndex = row.RowNum;
                         while (loop.Next ()) {
                             WorkbookProvider.DuplicateRow (sheet, rowIndex);
                             EvaluateRow (sheet.GetRow (rowIndex), loop);
                             rowIndex++;
                         }
+                        // skip affected rows
+                        r = rowIndex;
                         // check only first cell
                         break;
                     }
@@ -139,15 +135,14 @@ namespace R7.University.Templates
                     var cellValue = GetStringCellValue (cell);
                     var cellOriginalValue = cellValue;
                     if (LiquidHelper.ContainsLiquidTag (cellValue)) {
-                        // TODO: This leaves empty rows
-                        sheet.RemoveRow (row);
-                        // check only first cell
-                        break;
+                        cellValue = string.Empty;
+                    }
+                    else {
+                        foreach (var liquidObject in LiquidHelper.GetLiquidObjects (cellValue)) {
+                            cellValue = cellValue.Replace (liquidObject, string.Empty);
+                        }
                     }
 
-                    foreach (var liquidObject in LiquidHelper.GetLiquidObjects (cellValue)) {
-                        cellValue = cellValue.Replace (liquidObject, string.Empty);
-                    }
                     if (cellValue != cellOriginalValue) {
                         cell.SetCellValue (cellValue);
                     }

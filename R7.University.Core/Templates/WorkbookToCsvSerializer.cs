@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using NPOI.SS.UserModel;
@@ -12,6 +13,8 @@ namespace R7.University.Templates
         public string CellSeparator { get; set; } = "\t";
 
         public string SheetHeaderFormat { get; set; } = "# {0}\n\n";
+
+        public string CommentToken { get; set; } = "#";
 
         public string EmptyCellValue { get; set; } = "";
 
@@ -44,7 +47,16 @@ namespace R7.University.Templates
         protected void SerializeRow (IRow row, StringBuilder builder)
         {
             foreach (var cell in row.Cells) {
-                builder.Append (FormatCellValue (cell));
+                var cellValue = FormatCellValue (cell);
+                if (cell.ColumnIndex == 0) {
+                    if (cellValue.Trim ().StartsWith (CommentToken, StringComparison.CurrentCultureIgnoreCase)) {
+                        // skip entire row
+                        return;
+                    }
+                    // skip first cell
+                    continue;
+                }
+                builder.Append (cellValue);
                 builder.Append (CellSeparator);
             }
             builder.AppendLine ();

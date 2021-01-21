@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 using NPOI.SS.UserModel;
 
 namespace R7.University.Templates
@@ -14,15 +13,13 @@ namespace R7.University.Templates
     {
         public int NumOfHeaderRows { get; set; } = 2;
 
-        public string TableWasProcessedToken { get; set; } = "##";
-
         public override StringBuilder Serialize (IWorkbook book, StringBuilder builder)
         {
-            if (NumOfHeaderRows < 1) {
+            if (NumOfHeaderRows < 1) {
                 throw new ArgumentOutOfRangeException ("Argument must be greater than 0", nameof (NumOfHeaderRows));
             }
-            if (string.IsNullOrWhiteSpace (TableWasProcessedToken)) {
-                throw new ArgumentException ("Argument must not be null, empty nor whitespace", nameof (TableWasProcessedToken));
+            if (string.IsNullOrWhiteSpace (CommentToken)) {
+                throw new ArgumentException ("Argument must not be null, empty nor whitespace", nameof (CommentToken));
             }
 
             for (var s = 0; s < book.NumberOfSheets; s++) {
@@ -74,7 +71,10 @@ namespace R7.University.Templates
                             SerializeRow (row, builder);
                             break;
                         }
-                        builder.Append (SafeGetColumnHeader (colHeaders, cell.ColumnIndex));
+                        if (cell.ColumnIndex == 0) {
+                            continue;
+                        }
+                        builder.Append (SafeGetColumnHeader (colHeaders, cell.ColumnIndex - 1));
                         builder.Append (CellSeparator);
                         builder.Append (FormatCellValue (cell));
                         builder.Append (CellSeparator);
@@ -91,7 +91,9 @@ namespace R7.University.Templates
             var colHeaders = new List<string> ();
             var headerRow = sheet.GetRow (sheet.FirstRowNum + NumOfHeaderRows - 1);
             foreach (var cell in headerRow.Cells) {
-                colHeaders.Add (Formatter.FormatCellValue (cell));
+                if (cell.ColumnIndex != 0) {
+                    colHeaders.Add (Formatter.FormatCellValue (cell));
+                }
             }
             return colHeaders;
         }
@@ -111,7 +113,7 @@ namespace R7.University.Templates
             }
             if (cell.ColumnIndex == 0) {
                 var cellValue = Formatter.FormatCellValue (cell);
-                if (cellValue.Trim ().StartsWith (TableWasProcessedToken, StringComparison.CurrentCultureIgnoreCase)) {
+                if (cellValue.Trim ().StartsWith (CommentToken, StringComparison.CurrentCultureIgnoreCase)) {
                     tableWasProcessed = true;
                 }
             }
