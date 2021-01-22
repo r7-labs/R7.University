@@ -66,6 +66,9 @@ namespace R7.University.Templates
                     SerializeRow (row, builder);
                 }
                 else {
+                    var recordBuilder = new StringBuilder ();
+                    var recordIsEmpty = true;
+
                     foreach (var cell in row.Cells) {
                         if (CheckAndUpdateTableWasProcessed (ref tableWasProcessed, cell)) {
                             SerializeRow (row, builder);
@@ -74,13 +77,23 @@ namespace R7.University.Templates
                         if (cell.ColumnIndex == 0) {
                             continue;
                         }
-                        builder.Append (SafeGetColumnHeader (colHeaders, cell.ColumnIndex - 1));
-                        builder.Append (CellSeparator);
-                        builder.Append (FormatCellValue (cell));
-                        builder.Append (CellSeparator);
+
+                        var cellValue = FormatCellValue (cell);
+                        if (!string.IsNullOrEmpty (cellValue)) {
+                            recordIsEmpty = false;
+                        }
+
+                        recordBuilder.Append (SafeGetColumnHeader (colHeaders, cell.ColumnIndex - 1));
+                        recordBuilder.Append (CellSeparator);
+                        recordBuilder.Append (cellValue);
+                        recordBuilder.Append (CellSeparator);
+                        recordBuilder.AppendLine ();
+                    }
+
+                    if (!recordIsEmpty) {
+                        builder.Append (recordBuilder.ToString ());
                         builder.AppendLine ();
                     }
-                    builder.AppendLine ();
                 }
             }
             builder.AppendLine ();
