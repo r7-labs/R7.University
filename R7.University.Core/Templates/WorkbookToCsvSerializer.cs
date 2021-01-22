@@ -14,7 +14,7 @@ namespace R7.University.Templates
 
         public string SheetHeaderFormat { get; set; } = "# {0}\n\n";
 
-        public string CommentToken { get; set; } = "#";
+        public string CommentToken { get; set; } = "//";
 
         public string EmptyCellValue { get; set; } = "";
 
