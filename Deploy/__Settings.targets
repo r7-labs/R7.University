@@ -6,17 +6,17 @@
     <PropertyGroup>
         <MainProjectName>R7.University</MainProjectName>
         <PackageName>R7.University</PackageName>
-        <DnnLocalDeployPath Condition=" '$(OS)' == 'Unix' ">/mnt/hdd$(HOME)/mnt/dnn804</DnnLocalDeployPath>
-        <DnnLocalDeployPath Condition=" '$(OS)' != 'Unix' ">C:\Dotnetnuke804</DnnLocalDeployPath>
+        <DnnLocalDeployPath Condition=" '$(OS)' == 'Unix' ">$(HOME)/mnt/dnn990</DnnLocalDeployPath>
+        <DnnLocalDeployPath Condition=" '$(OS)' != 'Unix' ">C:\Dotnetnuke990</DnnLocalDeployPath>
         <DnnModulesPathPrefix>/MVC/R7.University</DnnModulesPathPrefix>
         <CustomExcludeFiles>../doc/**/*</CustomExcludeFiles>
     </PropertyGroup>
-	
+
 	<!-- NuGet packages for .NET Standard -->
 	<PropertyGroup>
 		<NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(HOME)/.nuget/packages/</NuGetPackageRoot>
 	</PropertyGroup>
-	
+
     <!-- Derieved settings -->
     <PropertyGroup>
         <MainProjectPath>../$(MainProjectName)</MainProjectPath>
