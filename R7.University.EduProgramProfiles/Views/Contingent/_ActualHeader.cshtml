@@ -1,0 +1,21 @@
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+@using DotNetNuke.Web.Mvc.Helpers
+@using R7.University.EduProgramProfiles.ViewModels
+
+<tr>
+	@if (Dnn.ModuleContext.IsEditable) {
+		<th scope="col" rowspan="2"></th>
+	}
+	<th scope="col" rowspan="2">@Dnn.LocalizeString("EduCode.Column")</th>
+	<th scope="col" rowspan="2">@Dnn.LocalizeString("EduProgram.Column")</th>
+	<th scope="col" rowspan="2">@Dnn.LocalizeString("EduLevel.Column")</th>
+	<th scope="col" rowspan="2">@Dnn.LocalizeString("EduForm.Column")</th>
+	<th scope="col" colspan="4">@Dnn.LocalizeString("Actual.Column")</th>
+	<th scope="col" rowspan="2">@Dnn.LocalizeString("ActualTotal.Column")</th>
+</tr>
+<tr>
+	<th scope="col">@Dnn.LocalizeString("NumberFB.Column")</th>
+    <th scope="col">@Dnn.LocalizeString("NumberRB.Column")</th>
+    <th scope="col">@Dnn.LocalizeString("NumberMB.Column")</th>
+    <th scope="col">@Dnn.LocalizeString("NumberBC.Column")</th>
+</tr>

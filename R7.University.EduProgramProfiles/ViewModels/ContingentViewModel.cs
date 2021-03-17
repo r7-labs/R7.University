@@ -93,16 +93,27 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public string ActualBC => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualBC);
 
-        [Obsolete]
-        public string ActualForeign => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualForeign);
-
         public string ActualForeignFB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualForeignFB);
 
         public string ActualForeignRB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualForeignRB);
 
         public string ActualForeignMB => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualForeignMB);
-        
+
         public string ActualForeignBC => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.ActualForeignBC);
+
+        public string ActualTotal => UniversityFormatHelper.ValueOrDash<int> (
+            (FormYear.Contingent?.ActualFB ?? 0) +
+            (FormYear.Contingent?.ActualRB ?? 0) +
+            (FormYear.Contingent?.ActualMB ?? 0) +
+            (FormYear.Contingent?.ActualBC ?? 0)
+        );
+
+        public string ActualForeignTotal => UniversityFormatHelper.ValueOrDash<int> (
+            (FormYear.Contingent?.ActualForeignFB ?? 0) +
+            (FormYear.Contingent?.ActualForeignRB ?? 0) +
+            (FormYear.Contingent?.ActualForeignMB ?? 0) +
+            (FormYear.Contingent?.ActualForeignBC ?? 0)
+        );
 
         public string AvgAdmScore => UniversityFormatHelper.ValueOrDash (FormYear.Contingent?.AvgAdmScore, FormatExtensions.ToDecimalString);
 

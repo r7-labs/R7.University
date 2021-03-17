@@ -34,11 +34,11 @@
         <value>Number of Vacant Places for Admission (Movement) Financed by:</value>
     </data>
 	<data name="Actual.Column" xml:space="preserve">
-        <value>Number of Students Financed by:</value>
-    </data>
-	<data name="ActualForeign.Column" xml:space="preserve">
-        <value>Number of Foreign Students</value>
-    </data>
+		<value>Number of Students Financed by (including foreign citizens):</value>
+	</data>
+	<data name="ActualTotal.Column" xml:space="preserve">
+		<value>Total Number of Students (including foreign citizens) </value>
+	</data>
 	<data name="Admission.Column" xml:space="preserve">
         <value>Admission Results of Students Financed by:</value>
     </data>

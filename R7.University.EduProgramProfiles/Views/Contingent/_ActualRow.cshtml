@@ -6,8 +6,8 @@
 <td itemprop="eduName">@Model.EduProfileTitle</td>
 <td itemprop="eduLevel">@Model.EduProfile.EduLevel.Title</td>
 <td itemprop="eduForm">@Model.EduFormTitle</td>
-<td itemprop="numberBF">@Model.ActualFB</td>
-<td itemprop="numberBR">@Model.ActualRB</td>
-<td itemprop="numberBM">@Model.ActualMB</td>
-<td itemprop="numberP">@Model.ActualBC</td>
-<td itemprop="numberF">@Model.ActualForeign</td>
+<td><span itemprop="numberBF">@Model.ActualFB</span> / @Model.ActualForeignFB</td>
+<td><span itemprop="numberBR">@Model.ActualRB</span> / @Model.ActualForeignRB</td>
+<td><span itemprop="numberBM">@Model.ActualMB</span> / @Model.ActualForeignMB</td>
+<td><span itemprop="numberP">@Model.ActualBC</span> / @Model.ActualForeignBC</td>
+<td>@Model.ActualTotal / <span itemprop="numberF">@Model.ActualForeignTotal</span></td>

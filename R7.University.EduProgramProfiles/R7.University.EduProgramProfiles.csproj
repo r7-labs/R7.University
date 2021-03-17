@@ -116,6 +116,7 @@
     <Content Include="EditEduProgramProfileDirectorySettings.ascx" />
     <Content Include="packages.config" />
     <Content Include="EditEduProgramProfile.ascx" />
+    <Content Include="Views\Contingent\_ActualHeader.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\EduVolume\EduVolumeDirectory.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

@@ -34,11 +34,11 @@
         <value>Количество вакантных мест для приема (перевода) на места, финансируемые за счет:</value>
     </data>
 	<data name="Actual.Column" xml:space="preserve">
-        <value>Численность обучающихся за счет (количество человек):</value>
-    </data>
-	<data name="ActualForeign.Column" xml:space="preserve">
-        <value>Численность обучающихся, являющихся иностранными гражданами</value>
-    </data>
+		<value>Численность обучающихся за счет (количество человек / из них являющихся иностранными гражданами):</value>
+	</data>
+	<data name="ActualTotal.Column" xml:space="preserve">
+		<value>Общая численность обучающихся (количество человек / из них являющихся иностранными гражданами)</value>
+	</data>
 	<data name="Admission.Column" xml:space="preserve">
         <value>Результаты приема обучающихся за счет (количество человек):</value>
     </data>
