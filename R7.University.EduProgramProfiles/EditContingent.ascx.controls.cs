@@ -9,10 +9,13 @@ namespace R7.University.EduProgramProfiles
         protected LinkButton buttonDelete;
         protected HyperLink linkCancel;
         protected TextBox textActualFB;
+        protected TextBox txtActualForeignFB;
         protected TextBox textActualRB;
+        protected TextBox txtActualForeignRB;
         protected TextBox textActualMB;
+        protected TextBox txtActualForeignMB;
         protected TextBox textActualBC;
-        protected TextBox txtActualForeign;
+        protected TextBox txtActualForeignBC;
         protected TextBox textAdmittedFB;
         protected TextBox textAdmittedRB;
         protected TextBox textAdmittedMB;

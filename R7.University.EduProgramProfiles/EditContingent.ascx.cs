@@ -1,24 +1,3 @@
-//
-//  EditContingent.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2018-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
@@ -131,10 +110,13 @@ namespace R7.University.EduProgramProfiles
             base.LoadItem (c);
 
             textActualFB.Text = c.ActualFB.ToString ();
+            txtActualForeignFB.Text = c.ActualForeignFB.ToString ();
             textActualRB.Text = c.ActualRB.ToString ();
+            txtActualForeignRB.Text = c.ActualForeignRB.ToString ();
             textActualMB.Text = c.ActualMB.ToString ();
+            txtActualForeignMB.Text = c.ActualForeignMB.ToString ();
             textActualBC.Text = c.ActualBC.ToString ();
-            txtActualForeign.Text = c.ActualForeign.ToString ();
+            txtActualForeignBC.Text = c.ActualForeignBC.ToString ();
 
             textAdmittedFB.Text = c.AdmittedFB.ToString ();
             textAdmittedRB.Text = c.AdmittedRB.ToString ();
@@ -159,10 +141,13 @@ namespace R7.University.EduProgramProfiles
 
             if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Actual) {
                 item.ActualFB = ParseHelper.ParseToNullable<int> (textActualFB.Text);
+                item.ActualForeignFB = ParseHelper.ParseToNullable<int> (txtActualForeignFB.Text);
                 item.ActualRB = ParseHelper.ParseToNullable<int> (textActualRB.Text);
+                item.ActualForeignRB = ParseHelper.ParseToNullable<int> (txtActualForeignRB.Text);
                 item.ActualMB = ParseHelper.ParseToNullable<int> (textActualMB.Text);
+                item.ActualForeignMB = ParseHelper.ParseToNullable<int> (txtActualForeignMB.Text);
                 item.ActualBC = ParseHelper.ParseToNullable<int> (textActualBC.Text);
-                item.ActualForeign = ParseHelper.ParseToNullable<int> (txtActualForeign.Text);
+                item.ActualForeignBC = ParseHelper.ParseToNullable<int> (txtActualForeignBC.Text);
             }
 
             if (updateAllTabs || Settings.Mode == ContingentDirectoryMode.Vacant) {

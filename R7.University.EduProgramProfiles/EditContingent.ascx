@@ -20,45 +20,25 @@
 		</ul>
         <asp:Panel id="panelActual" runat="server">
 	        <fieldset>
-		        <div class="dnnFormItem">
+		        <div class="dnnFormItem mb-3">
                     <dnn:Label id="labelActualFB" runat="server" ControlName="textActualFB" />
-                    <asp:TextBox id="textActualFB" runat="server" />
-                    <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualFB" ValidationGroup="Contingent"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647"
-                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+                    <asp:TextBox id="textActualFB" runat="server" TextMode="Number" min="0" /> /
+			        <asp:TextBox id="txtActualForeignFB" runat="server" TextMode="Number" min="0" />
                 </div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem mb-3">
                     <dnn:Label id="labelActualRB" runat="server" ControlName="textActualRB" />
-                    <asp:TextBox id="textActualRB" runat="server" />
-                    <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualRB" ValidationGroup="Contingent"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647"
-                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+                    <asp:TextBox id="textActualRB" runat="server" TextMode="Number" min="0" /> /
+					<asp:TextBox id="txtActualForeignRB" runat="server" TextMode="Number" min="0" />
                 </div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem mb-3">
                     <dnn:Label id="labelActualMB" runat="server" ControlName="textActualMB" />
-                    <asp:TextBox id="textActualMB" runat="server" />
-                    <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualMB" ValidationGroup="Contingent"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647"
-                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+                    <asp:TextBox id="textActualMB" runat="server" TextMode="Number" min="0" /> /
+					<asp:TextBox id="txtActualForeignMB" runat="server" TextMode="Number" min="0" />
                 </div>
-				<div class="dnnFormItem">
+				<div class="dnnFormItem mb-3">
                     <dnn:Label id="labelActualBC" runat="server" ControlName="textActualBC" />
-                    <asp:TextBox id="textActualBC" runat="server" />
-                    <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="textActualBC" ValidationGroup="Contingent"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647"
-                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
-                </div>
-				<div class="dnnFormItem">
-                    <dnn:Label id="lblActualForeign" runat="server" ControlName="txtActualForeign" />
-                    <asp:TextBox id="txtActualForeign" runat="server" />
-                    <asp:RangeValidator runat="server" resourcekey="ContingentValue.Invalid"
-                        ControlToValidate="txtActualForeign" ValidationGroup="Contingent"
-                        Type="Integer" MinimumValue="0" MaximumValue="2147483647"
-                        Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
+                    <asp:TextBox id="textActualBC" runat="server" TextMode="Number" min="0" /> /
+					<asp:TextBox id="txtActualForeignBC" runat="server" TextMode="Number" min="0" />
                 </div>
 			</fieldset>
         </asp:Panel>
