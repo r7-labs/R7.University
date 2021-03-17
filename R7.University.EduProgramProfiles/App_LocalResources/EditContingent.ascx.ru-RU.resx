@@ -39,27 +39,27 @@
 	<data name="labelActualFB.Text" xml:space="preserve">
         <value>Федеральный бюджет:</value>
     </data>
-    <data name="labelActualFB.Help" xml:space="preserve">
-        <value>Численность обучающихся за счет бюджетных ассигнований федерального бюджета, человек.</value>
-    </data>
+	<data name="labelActualFB.Help" xml:space="preserve">
+		<value>Численность обучающихся за счет бюджетных ассигнований федерального бюджета, человек / из них иностранных граждан.</value>
+	</data>
     <data name="labelActualRB.Text" xml:space="preserve">
         <value>Бюджеты субъектов РФ:</value>
     </data>
-    <data name="labelActualRB.Help" xml:space="preserve">
-        <value>Численность обучающихся за счет бюджетов субъектов Российской Федерации, человек.</value>
-    </data>
+	<data name="labelActualRB.Help" xml:space="preserve">
+		<value>Численность обучающихся за счет бюджетов субъектов Российской Федерации, человек / из них иностранных граждан.</value>
+	</data>
     <data name="labelActualMB.Text" xml:space="preserve">
         <value>Местные бюджеты:</value>
     </data>
-    <data name="labelActualMB.Help" xml:space="preserve">
-        <value>Численность обучающихся за счет местных бюджетов, человек.</value>
-    </data>
+	<data name="labelActualMB.Help" xml:space="preserve">
+		<value>Численность обучающихся за счет местных бюджетов, человек / из них иностранных граждан.</value>
+	</data>
     <data name="labelActualBC.Text" xml:space="preserve">
         <value>По договорам:</value>
     </data>
-    <data name="labelActualBC.Help" xml:space="preserve">
-        <value>Численность обучающихся за счет средств физических и (или) юридических лиц, человек.</value>
-    </data>
+	<data name="labelActualBC.Help" xml:space="preserve">
+		<value>Численность обучающихся за счет средств физических и (или) юридических лиц, человек / из них иностранных граждан.</value>
+	</data>
 	<data name="lblActualForeign.Text" xml:space="preserve">
         <value>Численность обучающихся, являющихся иностранными гражданами, человек.</value>
     </data>

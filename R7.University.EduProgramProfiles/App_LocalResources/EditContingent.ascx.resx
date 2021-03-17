@@ -39,27 +39,27 @@
 	<data name="labelActualFB.Text" xml:space="preserve">
         <value>Federal Budget:</value>
     </data>
-    <data name="labelActualFB.Help" xml:space="preserve">
-        <value>Students financed by federal budget, number of people.</value>
-    </data>
+	<data name="labelActualFB.Help" xml:space="preserve">
+		<value>Students financed by federal budget, number of people / including foreign citizents.</value>
+	</data>
     <data name="labelActualRB.Text" xml:space="preserve">
         <value>Regional Budgets:</value>
     </data>
-    <data name="labelActualRB.Help" xml:space="preserve">
-        <value>Students financed by regional budgets, number of people.</value>
-    </data>
+	<data name="labelActualRB.Help" xml:space="preserve">
+		<value>Students financed by regional budgets, number of people / including foreign citizents.</value>
+	</data>
     <data name="labelActualMB.Text" xml:space="preserve">
         <value>Municipal Budgets:</value>
     </data>
-    <data name="labelActualMB.Help" xml:space="preserve">
-        <value>Students financed by municipal budgets, number of people.</value>
-    </data>
+	<data name="labelActualMB.Help" xml:space="preserve">
+		<value>Students financed by municipal budgets, number of people / including foreign citizents.</value>
+	</data>
     <data name="labelActualBC.Text" xml:space="preserve">
         <value>By Contracts:</value>
     </data>
-    <data name="labelActualBC.Help" xml:space="preserve">
-        <value>Students financed by contracts, number of people.</value>
-    </data>
+	<data name="labelActualBC.Help" xml:space="preserve">
+		<value>Students financed by contracts, number of people / including foreign citizents.</value>
+	</data>
 	<data name="lblActualForeign.Text" xml:space="preserve">
         <value>Foreign:</value>
     </data>
