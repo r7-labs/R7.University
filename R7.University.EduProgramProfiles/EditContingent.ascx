@@ -19,28 +19,50 @@
 			<li id="tabMovement" runat="server"><a href="#<%= panelMovement.ClientID %>"><%= LocalizeString ("Movement.Tab") %></a></li>
 		</ul>
         <asp:Panel id="panelActual" runat="server">
-	        <fieldset>
-		        <div class="dnnFormItem mb-3">
-                    <dnn:Label id="labelActualFB" runat="server" ControlName="textActualFB" />
-                    <asp:TextBox id="textActualFB" runat="server" TextMode="Number" min="0" /> /
+	        <div class="form-group row">
+		        <div class="col-sm-4">
+					<dnn:Label id="labelActualFB" runat="server" ControlName="textActualFB" />
+			    </div>
+		        <div class="col-sm-4">
+                    <asp:TextBox id="textActualFB" runat="server" TextMode="Number" min="0" />
+			    </div>
+		        <div class="col-sm-4">
 			        <asp:TextBox id="txtActualForeignFB" runat="server" TextMode="Number" min="0" />
+			    </div>
+            </div>
+			<div class="form-group row">
+				<div class="col-sm-4">
+					<dnn:Label id="labelActualRB" runat="server" ControlName="textActualRB" />
+				</div>
+                <div class="col-sm-4">
+					<asp:TextBox id="textActualRB" runat="server" TextMode="Number" min="0" />
                 </div>
-				<div class="dnnFormItem mb-3">
-                    <dnn:Label id="labelActualRB" runat="server" ControlName="textActualRB" />
-                    <asp:TextBox id="textActualRB" runat="server" TextMode="Number" min="0" /> /
-					<asp:TextBox id="txtActualForeignRB" runat="server" TextMode="Number" min="0" />
-                </div>
-				<div class="dnnFormItem mb-3">
-                    <dnn:Label id="labelActualMB" runat="server" ControlName="textActualMB" />
-                    <asp:TextBox id="textActualMB" runat="server" TextMode="Number" min="0" /> /
+				<div class="col-sm-4">
+                    <asp:TextBox id="txtActualForeignRB" runat="server" TextMode="Number" min="0" />
+				</div>
+            </div>
+			<div class="form-group row">
+				<div class="col-sm-4">
+					<dnn:Label id="labelActualMB" runat="server" ControlName="textActualMB" />
+				</div>
+				<div class="col-sm-4">
+					<asp:TextBox id="textActualMB" runat="server" TextMode="Number" min="0" />
+				</div>
+				<div class="col-sm-4">
 					<asp:TextBox id="txtActualForeignMB" runat="server" TextMode="Number" min="0" />
-                </div>
-				<div class="dnnFormItem mb-3">
-                    <dnn:Label id="labelActualBC" runat="server" ControlName="textActualBC" />
-                    <asp:TextBox id="textActualBC" runat="server" TextMode="Number" min="0" /> /
+				</div>
+            </div>
+			<div class="form-group row">
+				<div class="col-sm-4">
+					<dnn:Label id="labelActualBC" runat="server" ControlName="textActualBC" />
+				</div>
+				<div class="col-sm-4">
+					<asp:TextBox id="textActualBC" runat="server" TextMode="Number" min="0" />
+				</div>
+				<div class="col-sm-4">
 					<asp:TextBox id="txtActualForeignBC" runat="server" TextMode="Number" min="0" />
-                </div>
-			</fieldset>
+				</div>
+            </div>
         </asp:Panel>
 		<asp:Panel id="panelVacant" runat="server">
             <fieldset>
