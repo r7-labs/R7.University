@@ -20,6 +20,16 @@
 		</ul>
         <asp:Panel id="panelActual" runat="server">
 	        <div class="form-group row">
+                <div class="col-sm-4">
+            	</div>
+                <div class="col-sm-4 small text-muted">
+	                <%: LocalizeString ("NumberOfStudents.Text") %>
+                </div>
+                <div class="col-sm-4 small text-muted">
+	                <%: LocalizeString ("NumberOfForeignCitizens.Text") %>
+                </div>
+            </div>
+	        <div class="form-group row">
 		        <div class="col-sm-4">
 					<dnn:Label id="labelActualFB" runat="server" ControlName="textActualFB" />
 			    </div>

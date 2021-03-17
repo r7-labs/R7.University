@@ -147,4 +147,10 @@
 	<data name="EditEduProgramProfile.Action" xml:space="preserve">
         <value>Edit Edu. Program Profile</value>
     </data>
+	<data name="NumberOfStudents.Text" xml:space="preserve">
+		<value>Number of Students</value>
+	</data>
+	<data name="NumberOfForeignCitizens.Text" xml:space="preserve">
+		<value>Including Foreign Citizens</value>
+	</data>
 </root>
