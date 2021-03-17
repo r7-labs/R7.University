@@ -48,15 +48,15 @@
     <data name="NumberFB.Column" xml:space="preserve">
         <value>бюджетных ассигнований федерального бюджета</value>
     </data>
-    <data name="NumberRB.Column" xml:space="preserve">
-        <value>бюджетов субъектов Российской Федерации</value>
-    </data>
-    <data name="NumberMB.Column" xml:space="preserve">
-        <value>местных бюджетов</value>
-    </data>
-    <data name="NumberBC.Column" xml:space="preserve">
-        <value>по договорам об образовании за счет средств физических и (или) юридических лиц</value>
-    </data>
+	<data name="NumberRB.Column" xml:space="preserve">
+		<value>бюджетных ассигнований субъектов Российской Федерации</value>
+	</data>
+	<data name="NumberMB.Column" xml:space="preserve">
+		<value>бюджетных ассигнований местных бюджетов</value>
+	</data>
+	<data name="NumberBC.Column" xml:space="preserve">
+		<value>по договорам об образовании, заключаемым при приеме на обучение за счет средств физического и (или) юридического лица</value>
+	</data>
 	<data name="MovedOut.Column" xml:space="preserve">
         <value>Численность обучающихся, переведенных в другие образовательные организации</value>
     </data>
