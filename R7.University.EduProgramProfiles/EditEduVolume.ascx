@@ -11,14 +11,14 @@
 
 <div class="dnnForm dnnClear u8y-edit-eduvolume">
 	<asp:ValidationSummary runat="server" EnableClientScript="true" ValidationGroup="EduVolume" CssClass="dnnFormMessage dnnFormWarning" />
-    <div id="eduvolume-tabs">
+	<div id="eduvolume-tabs">
         <ul class="dnnAdminTabNav dnnClear">
-            <li><a href="#eduvolume-common-tab"><%= LocalizeString ("Common.Tab") %></a></li>
-			<li><a href="#eduvolume-years-tab"><%= LocalizeString ("Years.Tab") %></a></li>
-			<li><a href="#eduvolume-practices-tab"><%= LocalizeString ("Practices.Tab") %></a></li>
+            <li id="tabCommon" runat="server"><a href="#<%= pnlCommon.ClientID %>"><%= LocalizeString ("Common.Tab") %></a></li>
+			<li id="tabYears" runat="server"><a href="#<%= pnlYears.ClientID %>"><%= LocalizeString ("Years.Tab") %></a></li>
+			<li id="tabPractices" runat="server"><a href="#<%= pnlPractices.ClientID %>"><%= LocalizeString ("Practices.Tab") %></a></li>
         </ul>
-        <div id="eduvolume-common-tab">
-	        <fieldset>
+	    <asp:Panel id="pnlCommon" runat="server">
+			<fieldset>
 		        <div class="dnnFormItem dnnFormRequired">
                     <dnn:Label id="labelTimeToLearnYears" runat="server" ControlName="textTimeToLearnYears" />
                     <asp:TextBox id="textTimeToLearnYears" runat="server" Value="0" />
@@ -59,8 +59,8 @@
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
 			</fieldset>
-        </div>
-        <div id="eduvolume-years-tab">
+        </asp:Panel>
+        <asp:Panel id="pnlYears" runat="server">
             <fieldset>
 				<div class="dnnFormItem">
                     <dnn:Label id="labelYear1Cu" runat="server" ControlName="textYear1Cu" />
@@ -111,8 +111,8 @@
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
 			</fieldset>
-        </div>
-		<div id="eduvolume-practices-tab">
+        </asp:Panel>
+		<asp:Panel id="pnlPractices" runat="server">
             <fieldset>
                 <div class="dnnFormItem">
                     <dnn:Label id="labelPracticeType1Cu" runat="server" ControlName="textPracticeType1Cu" />
@@ -139,7 +139,7 @@
                         Display="Dynamic" CssClass="dnnFormMessage dnnFormError" />
                 </div>
             </fieldset>
-        </div>
+        </asp:Panel>
     </div>
     <ul class="dnnActions dnnClear">
 		<li><asp:LinkButton id="buttonUpdate" runat="server" CssClass="btn btn-primary" ResourceKey="cmdUpdate" CausesValidation="true" ValidationGroup="EduVolume" /></li>

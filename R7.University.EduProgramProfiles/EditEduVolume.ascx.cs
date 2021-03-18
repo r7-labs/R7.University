@@ -1,24 +1,4 @@
-//
-//  EditEduVolume.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2017-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Security;
@@ -48,15 +28,6 @@ namespace R7.University.EduProgramProfiles
             get {
                 // get postback initiator control
                 var eventTarget = Request.Form ["__EVENTTARGET"];
-
-                /*
-                if (!string.IsNullOrEmpty (eventTarget)) {
-                    if (eventTarget.Contains ("$" + <practicesControl>.ID)) {
-                        ViewState ["SelectedTab"] = EditEduVolumeTab.Practices;
-                        return EditEduVolumeTab.Practices;
-                    }
-                }
-                */
 
                 // otherwise, get current tab from viewstate
                 var obj = ViewState ["SelectedTab"];
@@ -97,10 +68,31 @@ namespace R7.University.EduProgramProfiles
             InitControls (buttonUpdate, buttonDelete, linkCancel);
         }
 
+        protected override void OnInit (EventArgs e)
+        {
+            base.OnInit (e);
+
+            BindTabs ();
+        }
+
         protected override string GetContextString (EduVolumeInfo item)
         {
             var eppfy = item?.EduProgramProfileFormYear ?? GetEduProgramProfileFormYear ();
             return eppfy.FormatTitle (GetLastYear (), LocalResourceFile);
+        }
+
+        private void BindTabs ()
+        {
+            var showAllTabs = SecurityContext.IsAdmin;
+
+            tabCommon.Visible = showAllTabs;
+            pnlCommon.Visible = tabCommon.Visible;
+
+            tabYears.Visible = showAllTabs || Settings.Mode == EduVolumeDirectoryMode.EduVolume;
+            pnlYears.Visible = tabYears.Visible;
+
+            tabPractices.Visible = showAllTabs || Settings.Mode == EduVolumeDirectoryMode.Practices;
+            pnlPractices.Visible = tabPractices.Visible;
         }
 
         protected override void LoadItem (EduVolumeInfo item)
@@ -126,19 +118,28 @@ namespace R7.University.EduProgramProfiles
 
         protected override void BeforeUpdateItem (EduVolumeInfo item, bool isNew)
         {
-            item.TimeToLearnHours = int.Parse (textTimeToLearnHours.Text);
-            item.TimeToLearnMonths = int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
+            var updateAllTabs = SecurityContext.IsAdmin;
 
-            item.Year1Cu = ParseHelper.ParseToNullable<int> (textYear1Cu.Text);
-            item.Year2Cu = ParseHelper.ParseToNullable<int> (textYear2Cu.Text);
-            item.Year3Cu = ParseHelper.ParseToNullable<int> (textYear3Cu.Text);
-            item.Year4Cu = ParseHelper.ParseToNullable<int> (textYear4Cu.Text);
-            item.Year5Cu = ParseHelper.ParseToNullable<int> (textYear5Cu.Text);
-            item.Year6Cu = ParseHelper.ParseToNullable<int> (textYear6Cu.Text);
+            if (updateAllTabs) {
+                item.TimeToLearnHours = int.Parse (textTimeToLearnHours.Text);
+                item.TimeToLearnMonths =
+                    int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);
+            }
 
-            item.PracticeType1Cu = ParseHelper.ParseToNullable<int> (textPracticeType1Cu.Text);
-            item.PracticeType2Cu = ParseHelper.ParseToNullable<int> (textPracticeType2Cu.Text);
-            item.PracticeType3Cu = ParseHelper.ParseToNullable<int> (textPracticeType3Cu.Text);
+            if (updateAllTabs || Settings.Mode == EduVolumeDirectoryMode.EduVolume) {
+                item.Year1Cu = ParseHelper.ParseToNullable<int> (textYear1Cu.Text);
+                item.Year2Cu = ParseHelper.ParseToNullable<int> (textYear2Cu.Text);
+                item.Year3Cu = ParseHelper.ParseToNullable<int> (textYear3Cu.Text);
+                item.Year4Cu = ParseHelper.ParseToNullable<int> (textYear4Cu.Text);
+                item.Year5Cu = ParseHelper.ParseToNullable<int> (textYear5Cu.Text);
+                item.Year6Cu = ParseHelper.ParseToNullable<int> (textYear6Cu.Text);
+            }
+
+            if (updateAllTabs || Settings.Mode == EduVolumeDirectoryMode.Practices) {
+                item.PracticeType1Cu = ParseHelper.ParseToNullable<int> (textPracticeType1Cu.Text);
+                item.PracticeType2Cu = ParseHelper.ParseToNullable<int> (textPracticeType2Cu.Text);
+                item.PracticeType3Cu = ParseHelper.ParseToNullable<int> (textPracticeType3Cu.Text);
+            }
         }
 
         protected EduVolumeInfo GetItemWithDependencies (int itemId)
