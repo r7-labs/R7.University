@@ -22,7 +22,7 @@
         <asp:LinkButton id="buttonSearch" runat="server" CssClass="btn btn-primary" resourcekey="Search.Text" OnClick="buttonSearch_Click" />
         <asp:LinkButton id="buttonResetSearch" runat="server" CssClass="btn btn-outline-secondary" resourcekey="ResetSearch.Text" OnClick="buttonResetSearch_Click" />
     </asp:Panel>
-	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged">
+	<asp:MultiView id="multiView" runat="server" OnActiveViewChanged="multiView_ActiveViewChanged" ActiveViewIndex="0">
 		<asp:View id="viewPositions" runat="server">
 			<div id="positions" style="overflow:auto">
 					<asp:GridView id="gridPositions" runat="server" AutoGenerateColumns="false" CssClass="dnnGrid"
