@@ -20,11 +20,11 @@ namespace R7.University.EduPrograms.ViewModels
 
         #region Bindable properties
 
-        public IHtmlString DirectionsHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Directions, "perechenNir"));
+        public IHtmlString DirectionsHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Directions));
 
-        public IHtmlString ResultsHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Results, "resultNir"));
+        public IHtmlString ResultsHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Results));
 
-        public IHtmlString BaseHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Base, "baseNir"));
+        public IHtmlString BaseHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Base));
 
         public string EduLevelTitle => EduProgram.EduLevel.Title;
 
@@ -73,15 +73,15 @@ namespace R7.University.EduPrograms.ViewModels
 
         #endregion
 
-        string GetPopupHtml (string html, string itemprop)
+        string GetPopupHtml (string html)
         {
             if (!string.IsNullOrEmpty (html)) {
-                return $"<span itemprop=\"{itemprop}\" class=\"d-none description\">{HttpUtility.HtmlDecode (html)}</span>"
+                return $"<span class=\"d-none description\">{HttpUtility.HtmlDecode (html)}</span>"
         			+ "<a type=\"button\" href=\"#\" data-toggle=\"modal\""
         			+ $" data-target=\"#u8y-science-descr-dlg-{Context.Module.ModuleId}\">[&#8230;]</a>";
         	}
 
-        	return $"<span itemprop=\"{itemprop}\">-</span>";
+            return "-";
         }
     }
 }
