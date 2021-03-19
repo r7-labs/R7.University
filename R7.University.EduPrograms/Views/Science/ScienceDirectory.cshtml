@@ -27,7 +27,7 @@
 }
 else {
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover" itemprop="eduNir">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
 			    <tr>
     			    @if (Dnn.ModuleContext.IsEditable) {
@@ -43,7 +43,7 @@ else {
     	    </thead>
     	    <tbody>
 			    @foreach (var eps in Model.EduProgramScienceViewModels) {
-                    <tr id="@eps.HtmlElementId" data-title="@eps.ModalTitle" class="@eps.CssClass">
+                    <tr id="@eps.HtmlElementId" data-title="@eps.ModalTitle" class="@eps.CssClass" itemprop="eduNir">
                         @if (Dnn.ModuleContext.IsEditable) {
                             <td class="u8y-actions">
 								<a href="@eps.EditUrl" onclick="r7_University_selectItem(jQuery,this)"><img src="@UniversityIcons.Edit" /></a>
