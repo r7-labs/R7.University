@@ -69,6 +69,8 @@ namespace R7.University.EduPrograms.ViewModels
 
         public string HtmlElementId => $"science_{Context.Module.ModuleId}_{EduProgramID}";
 
+        public string ModalTitle => $"{EduProgram.FormatTitle ()} ({EduProgram.EduLevel.Title})";
+
         #endregion
 
         string GetPopupHtml (string html, string itemprop)
