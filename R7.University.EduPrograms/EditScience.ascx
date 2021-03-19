@@ -13,8 +13,9 @@
     <div id="tabs" runat="server">
         <ul class="dnnAdminTabNav dnnClear">
             <li><a href="#<%= tabDirections.ClientID %>"><%= LocalizeString ("Directions.Tab") %></a></li>
-			<li><a href="#<%= tabBase.ClientID %>"><%= LocalizeString ("Base.Tab") %></a></li>
-			<li><a href="#<%= tabValues.ClientID %>"><%= LocalizeString ("Values.Tab") %></a></li>
+			<li><a href="#<%= tabResults.ClientID %>"><%= LocalizeString ("Results_Tab.Text") %></a></li>
+	        <li><a href="#<%= tabBase.ClientID %>"><%= LocalizeString ("Base.Tab") %></a></li>
+	        <li><a href="#<%= tabValues.ClientID %>"><%= LocalizeString ("Values.Tab") %></a></li>
         </ul>
     	<div id="tabDirections" runat="server">
         	<fieldset>
@@ -24,6 +25,14 @@
         		</div>
         	</fieldset>
     	</div>
+	    <div id="tabResults" runat="server">
+            <fieldset>
+                <div class="dnnFormItem">
+                    <dnn:Label id="lblResults" runat="server" ControlName="txtResults" />
+                    <dnn:TextEditor id="txtResults" runat="server" ChooseMode="false" />
+                </div>
+            </fieldset>
+        </div>
     	<div id="tabBase" runat="server">
             <fieldset>
                 <div class="dnnFormItem">

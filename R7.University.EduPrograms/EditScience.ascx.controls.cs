@@ -9,6 +9,7 @@ namespace R7.University.EduPrograms
         protected LinkButton buttonDelete;
         protected HyperLink linkCancel;
         protected TextEditor textDirections;
+        protected TextEditor txtResults;
         protected TextEditor textBase;
         protected TextBox textScientists;
         protected TextBox textStudents;

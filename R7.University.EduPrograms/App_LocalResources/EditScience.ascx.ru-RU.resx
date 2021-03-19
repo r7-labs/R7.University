@@ -27,9 +27,9 @@
     <data name="Base.Tab" xml:space="preserve">
         <value>База ННИД</value>
     </data>
-    <data name="Values.Tab" xml:space="preserve">
-        <value>Показатели</value>
-    </data>
+	<data name="Values.Tab" xml:space="preserve">
+		<value>Показатели **устарело**</value>
+	</data>
 	<data name="labelDirections.Text" xml:space="preserve">
         <value>Направления научных исследований:</value>
     </data>
@@ -102,4 +102,13 @@
     <data name="FinancingByScientistValue.Invalid" xml:space="preserve">
         <value>Значение должно быть неотрицательным вещественным числом.</value>
     </data>
+	<data name="Results_Tab.Text" xml:space="preserve">
+		<value>Результаты</value>
+	</data>
+	<data name="lblResults.Help" xml:space="preserve">
+		<value>Результаты научной (научно-исследовательской) деятельности.</value>
+	</data>
+	<data name="lblResults.Text" xml:space="preserve">
+		<value>Результаты:</value>
+	</data>
 </root>

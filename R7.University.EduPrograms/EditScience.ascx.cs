@@ -1,24 +1,3 @@
-//
-//  EditScience.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2017-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System.Text.RegularExpressions;
 using System.Web;
 using DotNetNuke.Entities.Modules;
@@ -70,7 +49,9 @@ namespace R7.University.EduPrograms
             base.LoadItem (item);
 
             textDirections.Text = item.Directions;
+            txtResults.Text = item.Results;
             textBase.Text = item.Base;
+
             textScientists.Text = item.Scientists.ToString ();
             textStudents.Text = item.Students.ToString ();
             textMonographs.Text = item.Monographs.ToString ();
@@ -86,7 +67,9 @@ namespace R7.University.EduPrograms
         protected override void BeforeUpdateItem (ScienceInfo item, bool isNew)
         {
             item.Directions = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textDirections.Text)));
+            item.Results = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (txtResults.Text)));
             item.Base = HttpUtility.HtmlEncode (StripScripts (HttpUtility.HtmlDecode (textBase.Text)));
+
             item.Scientists = ParseHelper.ParseToNullable<int> (textScientists.Text);
             item.Students = ParseHelper.ParseToNullable<int> (textStudents.Text);
             item.Monographs = ParseHelper.ParseToNullable<int> (textMonographs.Text);

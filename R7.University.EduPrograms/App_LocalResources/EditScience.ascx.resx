@@ -28,8 +28,8 @@
         <value>Scientific and Research Base</value>
     </data>
 	<data name="Values.Tab" xml:space="preserve">
-        <value>Values</value>
-    </data>
+		<value>Values **obsolete**</value>
+	</data>
 	<data name="labelDirections.Text" xml:space="preserve">
         <value>Scientific Directions:</value>
     </data>
@@ -102,4 +102,13 @@
 	<data name="FinancingByScientistValue.Invalid" xml:space="preserve">
         <value>Value must be decimal number equal to or greater than zero.</value>
     </data>
+	<data name="Results_Tab.Text" xml:space="preserve">
+		<value>Results</value>
+	</data>
+	<data name="lblResults.Help" xml:space="preserve">
+		<value>Results of scientific (research) activities.</value>
+	</data>
+	<data name="lblResults.Text" xml:space="preserve">
+		<value>Results:</value>
+	</data>
 </root>
