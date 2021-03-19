@@ -34,16 +34,11 @@ else {
                         <th scope="col"></th>
                     }
         		    <th scope="col">@Dnn.LocalizeString("ScienceCode.Column")</th>
-        		    <th scope="col">@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
+			        <th scope="col">@Dnn.LocalizeString("ScienceEduProgram.Column")</th>
+			        <th scope="col">@Dnn.LocalizeString("EduProgramEduLevel.Column")</th>
         		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceDirections.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceBase.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceScientists.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceStudents.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceMonographs.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceArticles.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("SciencePatents.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceCertificates.Column"))</th>
-        		    <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceFinances.Column"))</th>
+			        <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceResults_Column.Text"))</th>
+			        <th scope="col">@Html.Raw(Dnn.LocalizeString("ScienceBase.Column"))</th>
 				</tr>
     	    </thead>
     	    <tbody>
@@ -55,17 +50,12 @@ else {
 								<span class="u8y-selected-item-marker">&#9654;</span>
 							</td>
                         }
-    			        <td itemprop="eduCode">@eps.Code</td>
+                        <td itemprop="eduCode">@eps.Code</td>
                         <td itemprop="eduName">@eps.Title</td>
-    				    <td>@eps.DirectionsHtml</td>
+                        <td itemprop="eduLevel">@eps.EduLevelTitle</td>
+                        <td>@eps.DirectionsHtml</td>
+                        <td>@eps.ResultsHtml</td>
     				    <td>@eps.BaseHtml</td>
-    				    <td itemprop="nprNir">@eps.Scientists</td>
-    				    <td itemprop="studNir">@eps.Students</td>
-    				    <td itemprop="monografNir">@eps.Monographs</td>
-                        <td itemprop="articleNir">@eps.Articles / @eps.ArticlesForeign</td>
-    				    <td><span itemprop="patentRNir">@eps.Patents</span> / <span itemprop="patentZNir">@eps.PatentsForeign</span></td>
-    				    <td><span itemprop="svidRNir">@eps.Certificates</span> / <span itemprop="svidZNir">@eps.CertificatesForeign</span></td>
-    				    <td itemprop="financeNir">@eps.FinancingByScientist</td>
     			    </tr>
                 }
 			</tbody>

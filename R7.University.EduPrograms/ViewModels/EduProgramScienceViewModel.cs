@@ -1,24 +1,4 @@
-//
-//  EduProgramScienceViewModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2017-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+using System;
 using System.Web;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.EduPrograms.Models;
@@ -42,26 +22,40 @@ namespace R7.University.EduPrograms.ViewModels
 
         public IHtmlString DirectionsHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Directions, "perechenNir"));
 
+        public IHtmlString ResultsHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Results, "resultNir"));
+
         public IHtmlString BaseHtml => new HtmlString (GetPopupHtml (EduProgram.Science?.Base, "baseNir"));
 
+        public string EduLevelTitle => EduProgram.EduLevel.Title;
+
+        [Obsolete]
         public string Scientists => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Scientists);
 
+        [Obsolete]
         public string Students => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Students);
 
+        [Obsolete]
         public string Monographs => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Monographs);
 
+        [Obsolete]
         public string Articles => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Articles);
 
+        [Obsolete]
         public string ArticlesForeign => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.ArticlesForeign);
 
+        [Obsolete]
         public string Patents => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Patents);
 
+        [Obsolete]
         public string PatentsForeign => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.PatentsForeign);
 
+        [Obsolete]
         public string Certificates => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.Certificates);
 
+        [Obsolete]
         public string CertificatesForeign => UniversityFormatHelper.ValueOrDash (EduProgram.Science?.CertificatesForeign);
 
+        [Obsolete]
         public string FinancingByScientist =>
             UniversityFormatHelper.ValueOrDash (EduProgram.Science?.FinancingByScientist, FormatExtensions.ToDecimalString);
 
@@ -69,7 +63,7 @@ namespace R7.University.EduPrograms.ViewModels
             EduProgram.Science != null
                 ? Context.Module.EditUrl ("science_id", EduProgram.Science.ScienceId.ToString (), "EditScience")
                 : Context.Module.EditUrl ("eduprogram_id", EduProgram.EduProgramID.ToString (), "EditScience");
-        
+
         public string CssClass =>
             EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
@@ -84,7 +78,7 @@ namespace R7.University.EduPrograms.ViewModels
         			+ "<a type=\"button\" href=\"#\" data-toggle=\"modal\""
         			+ $" data-target=\"#u8y-science-descr-dlg-{Context.Module.ModuleId}\">[&#8230;]</a>";
         	}
-            	
+
         	return $"<span itemprop=\"{itemprop}\">-</span>";
         }
     }

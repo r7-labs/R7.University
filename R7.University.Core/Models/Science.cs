@@ -1,23 +1,4 @@
-﻿//
-//  IScience.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2017 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+﻿using System;
 
 namespace R7.University.Models
 {
@@ -27,26 +8,38 @@ namespace R7.University.Models
 
         string Directions { get; }
 
+        string Results { get; }
+
         string Base { get; }
 
+        [Obsolete]
         int? Scientists { get; }
 
+        [Obsolete]
         int? Students { get; }
 
+        [Obsolete]
         int? Monographs { get; }
 
+        [Obsolete]
         int? Articles { get; }
 
+        [Obsolete]
         int? ArticlesForeign { get; }
 
+        [Obsolete]
         int? Patents { get; }
 
+        [Obsolete]
         int? PatentsForeign { get; }
 
+        [Obsolete]
         int? Certificates { get; }
 
+        [Obsolete]
         int? CertificatesForeign { get; }
 
+        [Obsolete]
         decimal? FinancingByScientist { get; }
 
         IEduProgram EduProgram { get; }
@@ -56,28 +49,43 @@ namespace R7.University.Models
     {
         new int ScienceId { get; set; }
 
+        [Obsolete]
         new string Directions { get; set; }
 
+        [Obsolete]
+        new string Results { get; set; }
+
+        [Obsolete]
         new string Base { get; set; }
 
+        [Obsolete]
         new int? Scientists { get; set; }
 
+        [Obsolete]
         new int? Students { get; set; }
 
+        [Obsolete]
         new int? Monographs { get; set; }
 
+        [Obsolete]
         new int? Articles { get; set; }
 
+        [Obsolete]
         new int? ArticlesForeign { get; set; }
 
+        [Obsolete]
         new int? Patents { get; set; }
 
+        [Obsolete]
         new int? PatentsForeign { get; set; }
 
+        [Obsolete]
         new int? Certificates { get; set; }
 
+        [Obsolete]
         new int? CertificatesForeign { get; set; }
 
+        [Obsolete]
         new decimal? FinancingByScientist { get; set; }
 
         new IEduProgram EduProgram { get; set; }
@@ -88,6 +96,8 @@ namespace R7.University.Models
         public int ScienceId { get; set; }
 
         public string Directions { get; set; }
+
+        public string Results { get; set; }
 
         public string Base { get; set; }
 

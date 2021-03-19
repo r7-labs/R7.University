@@ -51,4 +51,7 @@
     <data name="ScienceFinances.Column" xml:space="preserve">
 		<value>The average annual volume of research funding per scientific-pedagogical worker of the organization (in the reduced to integer values of rates), thousands of rub</value>
     </data>
+	<data name="ScienceResults_Column.Text" xml:space="preserve">
+		<value>Results of scientific (research) activities </value>
+	</data>
 </root>

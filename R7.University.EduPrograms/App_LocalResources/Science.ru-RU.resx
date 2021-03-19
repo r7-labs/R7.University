@@ -25,11 +25,11 @@
         <value>Наименование специальности, направления подготовки</value>
     </data>
 	<data name="ScienceDirections.Column" xml:space="preserve">
-	    <value>Перечень научных направлений, в рамках которых ведется &lt;abbr title=&quot;Научная (научно-исследовательская) деятельность&quot;&gt;НИД&lt;/abbr&gt;</value>
-    </data>
-    <data name="ScienceBase.Column" xml:space="preserve">
-		<value>Информация о научно-исследовательской базе для осуществления &lt;abbr title=&quot;Научная (научно-исследовательская) деятельность&quot;&gt;НИД&lt;/abbr&gt;</value>
-    </data>
+		<value>Перечень научных направлений, в рамках которых ведется научная (научно-исследовательская) деятельность</value>
+	</data>
+	<data name="ScienceBase.Column" xml:space="preserve">
+		<value>Сведения о научно-исследовательской базе для осуществления научной (научно-исследовательской деятельности</value>
+	</data>
     <data name="ScienceScientists.Column" xml:space="preserve">
 		<value>Количество &lt;abbr title=&quot;Научно-педагогический работник&quot;&gt;НПР&lt;/abbr&gt;, принимающих участие в &lt;abbr title=&quot;Научная (научно-исследовательская) деятельность&quot;&gt;НИД&lt;/abbr&gt;, чел.</value>
     </data>
@@ -51,4 +51,7 @@
     <data name="ScienceFinances.Column" xml:space="preserve">
 		<value>Среднегодовой объем финансирования научных исследований на одного &lt;abbr title=&quot;Научно-педагогический работник&quot;&gt;НПР&lt;/abbr&gt; организации (в приведенных к целочисленным значениям ставок), тыс. руб.</value>
     </data>
+	<data name="ScienceResults_Column.Text" xml:space="preserve">
+		<value>Результаты научной (научно-исследовательской) деятельности</value>
+	</data>
 </root>
