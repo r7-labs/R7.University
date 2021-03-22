@@ -56,7 +56,7 @@ namespace R7.University.Launchpad
         {
             var session = Session [gridviewId];
             if (session == null) {
-                var tabName = GetActiveTabName ();
+                var tabName = GetActiveTabNameFromSession ();
                 session = Tables.GetByGridId (gridviewId).GetDataTable (this, ModelContext, (string) Session [tabName + "_Search"]);
                 Session [gridviewId] = session;
             }
@@ -88,7 +88,8 @@ namespace R7.University.Launchpad
             Page.LoadComplete += OnLoadComplete;
 
             // show first view if no session info available
-            if (Session ["Launchpad_ActiveView_" + TabModuleId] == null) {
+            var tabName = GetActiveTabNameFromSession ();
+            if (tabName == null) {
                 // if no tabs set in settings, don't set active view
                 if (tables != null && tables.Count > 0) {
                     multiView.SetActiveView (FindView (tables [0]));
@@ -118,14 +119,13 @@ namespace R7.University.Launchpad
         protected void OnLoadComplete (object sender, EventArgs e)
         {
             try {
+                var tabName = GetActiveTabNameFromSession ();
                 if (!IsPostBack) {
                     // restore multiview state from session on first load
-                    if (Session ["Launchpad_ActiveView_" + TabModuleId] != null) {
-                        multiView.SetActiveView (FindView ((string) Session ["Launchpad_ActiveView_" + TabModuleId]));
-                        SelectTab ((string) Session ["Launchpad_ActiveView_" + TabModuleId]);
+                    if (tabName != null) {
+                        multiView.SetActiveView (FindView (tabName));
+                        SelectTab (tabName);
                     }
-
-                    var tabName = GetActiveTabName ();
 
                     // restore search phrase from session
                     if (Session [tabName + "_Search"] != null) {
@@ -140,7 +140,7 @@ namespace R7.University.Launchpad
 
                     // check if tab was switched
                     if (!string.IsNullOrEmpty (eventTarget) && eventTarget.Contains ("$linkTab")) {
-                        BindTab (GetActiveTabName ());
+                        BindTab (tabName);
                     }
                 }
             }
@@ -330,10 +330,7 @@ namespace R7.University.Launchpad
             return null;
         }
 
-        protected string GetActiveTabName ()
-        {
-            return multiView.GetActiveView ().ID.ToLowerInvariant ().Replace ("view", "");
-        }
+        string GetActiveTabNameFromSession () => (string) Session["Launchpad_ActiveView_" + TabModuleId];
 
         /// <summary>
         /// Handles click on tab linkbutton
@@ -355,13 +352,10 @@ namespace R7.University.Launchpad
 
         protected void buttonSearch_Click (object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 var tabName = GetActiveTabNameFromSession ();
                 multiView.SetActiveView (FindView (tabName));
                 SelectTab (tabName);
-
-                lblTest.Text = tabName;
 
                 Session [tabName + "_Search"] = textSearch.Text.Trim ();
 
