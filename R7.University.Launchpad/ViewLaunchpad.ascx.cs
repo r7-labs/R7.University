@@ -45,6 +45,67 @@ namespace R7.University.Launchpad
             get { return securityContext ?? (securityContext = new ModuleSecurityContext (UserInfo)); }
         }
 
+        #region Multiview fixes
+
+        /// <summary>
+        /// Makes tab selected by its name.
+        /// </summary>
+        /// <param name="tabName">Tab name.</param>
+        protected void SelectTab (string tabName)
+        {
+            // enumerate all repeater items
+            foreach (RepeaterItem item in repeatTabs.Items) {
+                // enumerate all child controls in a item
+                foreach (var control in item.Controls)
+                    if (control is HtmlControl) {
+                        // this means <li>
+                        var li = control as HtmlControl;
+
+                        // set CSS class attribute to <li>,
+                        // depending on linkbutton's (first child of <li>) commandname
+                        li.Attributes ["class"] =
+                            ((li.Controls [0] as LinkButton).CommandArgument == tabName) ? "ui-tabs-active" : "";
+                    }
+            }
+        }
+
+        /// <summary>
+        /// Finds the view in a multiview by its name.
+        /// </summary>
+        /// <returns>The view.</returns>
+        /// <param name="viewName">View name without prefix.</param>
+        /// <param name="prefix">View name prefix.</param>
+        protected View FindView (string viewName, string prefix = "view")
+        {
+            foreach (View view in multiView.Views)
+                if (view.ID.ToLowerInvariant () == prefix + viewName)
+                    return view;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Mirrors multiview ActiveViewIndex changes in session variable
+        /// </summary>
+        /// <param name="sender">Sender (a MultiView)</param>
+        /// <param name="e">Event arguments</param>
+        protected void multiView_ActiveViewChanged (object sender, EventArgs e)
+        {
+            // set session variable to active view name without "view" prefix
+            Session["Launchpad_ActiveView_" + TabModuleId] =
+                multiView.GetActiveView ().ID.ToLowerInvariant ().Replace ("view", "");
+        }
+
+        string GetActiveTabNameFromSession () => (string) Session["Launchpad_ActiveView_" + TabModuleId];
+
+        void SetActiveTabFix (string tabName)
+        {
+            multiView.SetActiveView (FindView (tabName));
+            SelectTab (tabName);
+        }
+
+        #endregion
+
         #region Handlers
 
         /// <summary>
@@ -92,8 +153,7 @@ namespace R7.University.Launchpad
             if (tabName == null) {
                 // if no tabs set in settings, don't set active view
                 if (tables != null && tables.Count > 0) {
-                    multiView.SetActiveView (FindView (tables [0]));
-                    SelectTab (tables [0]);
+                    SetActiveTabFix (tables[0]);
                 }
             }
 
@@ -123,8 +183,7 @@ namespace R7.University.Launchpad
                 if (!IsPostBack) {
                     // restore multiview state from session on first load
                     if (tabName != null) {
-                        multiView.SetActiveView (FindView (tabName));
-                        SelectTab (tabName);
+                        SetActiveTabFix (tabName);
                     }
 
                     // restore search phrase from session
@@ -165,18 +224,6 @@ namespace R7.University.Launchpad
             // setup link to add new item
             linkAddItem.NavigateUrl = table.GetAddUrl (this);
             linkAddItem.Visible = table.IsEditable && SecurityContext.CanAdd (table.EntityType);
-        }
-
-        /// <summary>
-        /// Mirrors multiview ActiveViewIndex changes in session variable
-        /// </summary>
-        /// <param name="sender">Sender (a MultiView)</param>
-        /// <param name="e">Event arguments</param>
-        protected void multiView_ActiveViewChanged (object sender, EventArgs e)
-        {
-            // set session variable to active view name without "view" prefix
-            Session["Launchpad_ActiveView_" + TabModuleId] =
-                multiView.GetActiveView ().ID.ToLowerInvariant ().Replace ("view", "");
         }
 
         /// <summary>
@@ -294,45 +341,6 @@ namespace R7.University.Launchpad
         }
 
         /// <summary>
-        /// Makes tab selected by its name.
-        /// </summary>
-        /// <param name="tabName">Tab name.</param>
-        protected void SelectTab (string tabName)
-        {
-            // enumerate all repeater items
-            foreach (RepeaterItem item in repeatTabs.Items) {
-                // enumerate all child controls in a item
-                foreach (var control in item.Controls)
-                    if (control is HtmlControl) {
-                        // this means <li>
-                        var li = control as HtmlControl;
-
-                        // set CSS class attribute to <li>,
-                        // depending on linkbutton's (first child of <li>) commandname
-                        li.Attributes ["class"] =
-							((li.Controls [0] as LinkButton).CommandArgument == tabName) ? "ui-tabs-active" : "";
-                    }
-            }
-        }
-
-        /// <summary>
-        /// Finds the view in a multiview by its name.
-        /// </summary>
-        /// <returns>The view.</returns>
-        /// <param name="viewName">View name without prefix.</param>
-        /// <param name="prefix">View name prefix.</param>
-        protected View FindView (string viewName, string prefix = "view")
-        {
-            foreach (View view in multiView.Views)
-                if (view.ID.ToLowerInvariant () == prefix + viewName)
-                    return view;
-
-            return null;
-        }
-
-        string GetActiveTabNameFromSession () => (string) Session["Launchpad_ActiveView_" + TabModuleId];
-
-        /// <summary>
         /// Handles click on tab linkbutton
         /// </summary>
         /// <param name="sender">Sender.</param>
@@ -340,8 +348,7 @@ namespace R7.University.Launchpad
         protected void linkTab_Clicked (object sender, EventArgs e)
         {
             var tabName = (sender as LinkButton).CommandArgument;
-            multiView.SetActiveView (FindView (tabName));
-            SelectTab (tabName);
+            SetActiveTabFix (tabName);
 
             multiView_ActiveViewChanged (multiView, EventArgs.Empty);
 
@@ -354,8 +361,7 @@ namespace R7.University.Launchpad
         {
             try {
                 var tabName = GetActiveTabNameFromSession ();
-                multiView.SetActiveView (FindView (tabName));
-                SelectTab (tabName);
+                SetActiveTabFix (tabName);
 
                 Session [tabName + "_Search"] = textSearch.Text.Trim ();
 
@@ -370,8 +376,7 @@ namespace R7.University.Launchpad
         {
             try {
                 var tabName = GetActiveTabNameFromSession ();
-                multiView.SetActiveView (FindView (tabName));
-                SelectTab (tabName);
+                SetActiveTabFix (tabName);
 
                 textSearch.Text = string.Empty;
                 Session [tabName + "_Search"] = null;
