@@ -23,7 +23,6 @@ namespace R7.University.Launchpad
         protected GridView gridDocumentTypes;
         protected GridView gridDocuments;
         protected GridView gridEduForms;
-        protected GridView gridEduProgramDivisions;
         protected Repeater repeatTabs;
     }
 }
