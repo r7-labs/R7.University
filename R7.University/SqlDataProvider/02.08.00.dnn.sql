@@ -29,3 +29,5 @@ IF NOT EXISTS (select * from sys.columns where object_id = object_id(N'{database
     ALTER TABLE {databaseOwner}[{objectQualifier}University_Science]
         ADD [Results] nvarchar(max)
 GO
+
+-- TODO: Cleanup obsolete fields
