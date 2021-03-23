@@ -147,9 +147,6 @@ namespace R7.University.EduProgramProfiles
         {
             base.OnInit (e);
 
-            gridEduProfileObrnadzorEduForms.Attributes.Add ("itemprop", "eduAccred");
-            gridEduProfileObrnadzorDocuments.Attributes.Add ("itemprop", "eduOP");
-
             switch (Settings.Mode) {
                 case EduProgramProfileDirectoryMode.ObrnadzorEduForms:
                     mviewEduProgramProfileDirectory.ActiveViewIndex = 1;
@@ -236,6 +233,7 @@ namespace R7.University.EduProgramProfiles
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgramProfile = (EduProgramProfileEduFormsViewModel) e.Row.DataItem;
+                e.Row.Attributes.Add ("itemprop", "eduAccred");
 
                 if (IsEditable) {
                     // get edit link controls
@@ -268,6 +266,7 @@ namespace R7.University.EduProgramProfiles
             else if (e.Row.RowType == DataControlRowType.DataRow) {
                 var eduProgramProfile = (EduProfileDocumentsViewModel) e.Row.DataItem;
 
+                e.Row.Attributes.Add ("itemprop", "eduOP");
                 e.Row.Attributes.Add ("data-title", UniversityFormatHelper.FormatEduProfileTitle (
                     eduProgramProfile.EduProgram.Code, eduProgramProfile.EduProgram.Title,
                     eduProgramProfile.ProfileCode, eduProgramProfile.ProfileTitle)

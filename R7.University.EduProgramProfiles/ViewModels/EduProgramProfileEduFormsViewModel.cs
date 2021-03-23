@@ -49,6 +49,10 @@ namespace R7.University.EduProgramProfiles.ViewModels
             ? Wrap (AccreditedToDate.Value.ToShortDateString (), "dateEnd")
             : string.Empty;
 
+        public string CommunityAccreditedToDateString => (CommunityAccreditedToDate != null)
+            ? Wrap (Wrap (CommunityAccreditedToDate.Value.ToShortDateString (), "dateEnd"), "eduPOAccred")
+            : string.Empty;
+
         public string EduForms_String
         {
         	get {
