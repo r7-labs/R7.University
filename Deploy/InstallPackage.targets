@@ -58,19 +58,10 @@
             <InstallResourceFiles Include="../**/*.xlsx" />
         </ItemGroup>
         <!-- Declare excluded files -->
-        <ItemGroup>
-            <InstallResourceExcludeFiles Include="../*/bin/**/*" />
-            <InstallResourceExcludeFiles Include="../*/obj/**/*" />
-            <InstallResourceExcludeFiles Include="../.*/**/*" />
-            <InstallResourceExcludeFiles Include="../packages/**/*" />
-            <InstallResourceExcludeFiles Include="../node_modules/**/*" />
-            <InstallResourceExcludeFiles Include="../Deploy/**/*" />
-            <InstallResourceExcludeFiles Include="../.*" />
-            <InstallResourceExcludeFiles Include="$(MainProjectPath)/license.htm" />
-            <InstallResourceExcludeFiles Include="$(MainProjectPath)/releaseNotes.htm" />
-            <InstallResourceExcludeFiles Include="$(CustomExcludeFiles)" Condition=" '$(CustomExcludeFiles)' != '' " />
-        </ItemGroup>
-        <!-- Apply excluded files filters -->
+      <ItemGroup>
+        <InstallResourceExcludeFiles Include="@(ExcludeFiles)" />
+      </ItemGroup>
+      <!-- Apply excluded files filters -->
         <ItemGroup>
             <InstallResourceFilteredFiles Include="@(InstallResourceFiles)" Exclude="@(InstallResourceExcludeFiles)" />
         </ItemGroup>

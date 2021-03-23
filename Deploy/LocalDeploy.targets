@@ -43,16 +43,7 @@
         </ItemGroup>
         <!-- Declare excluded files -->
         <ItemGroup>
-            <LocalDeployResourceExcludeFiles Include="../*/bin/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../*/obj/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../.*/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../packages/**/*" />
-      			<LocalDeployResourceExcludeFiles Include="../node_modules/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../Deploy/**/*" />
-            <LocalDeployResourceExcludeFiles Include="../.*" />
-            <LocalDeployResourceExcludeFiles Include="$(MainProjectPath)/license.htm" />
-            <LocalDeployResourceExcludeFiles Include="$(MainProjectPath)/releaseNotes.htm" />
-            <LocalDeployResourceExcludeFiles Include="$(CustomExcludeFiles)" Condition=" '$(CustomExcludeFiles)' != '' " />
+            <LocalDeployResourceExcludeFiles Include="@(ExcludeFiles)" />
         </ItemGroup>
         <!-- Apply excluded files filters -->
         <ItemGroup>

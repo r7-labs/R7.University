@@ -28,10 +28,25 @@
         <DnnModulesPath>$(DnnLocalDeployPath)/DesktopModules$(DnnModulesPathPrefix)</DnnModulesPath>
         <DnnJsLibrariesPath>$(DnnLocalDeployPath)/Resources/Libraries</DnnJsLibrariesPath>
     </PropertyGroup>
+
     <!-- Internal settings -->
     <PropertyGroup>
         <PackageOutputPath>$(MSBuildProjectDirectory)/bin/Deploy</PackageOutputPath>
         <TmpDir>$(MSBuildProjectDirectory)/bin/tmp</TmpDir>
         <BuildSettingsImported>true</BuildSettingsImported>
     </PropertyGroup>
+
+    <!-- Excluded files -->
+    <ItemGroup>
+      <ExcludeFiles Include="../*/bin/**/*" />
+      <ExcludeFiles Include="../*/obj/**/*" />
+      <ExcludeFiles Include="../.*/**/*" />
+      <ExcludeFiles Include="../.*" />
+      <ExcludeFiles Include="../packages/**/*" />
+      <ExcludeFiles Include="../node_modules/**/*" />
+      <ExcludeFiles Include="../Deploy/**/*" />
+      <ExcludeFiles Include="$(MainProjectPath)/license.htm" />
+      <ExcludeFiles Include="$(MainProjectPath)/releaseNotes.htm" />
+    </ItemGroup>
+
 </Project>
