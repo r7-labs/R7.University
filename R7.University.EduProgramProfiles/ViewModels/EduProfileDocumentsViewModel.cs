@@ -107,7 +107,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
         protected string TitleColumnHeader =>
             _titleColumnHeader ?? (_titleColumnHeader = Localization.GetString ("DocumentTitle.Column", Context.LocalResourceFile));
 
-        // TODO: Calculate initial capacity for StringBuilder?
         string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string linkText, string columnSlug, string microdata = "")
         {
             var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
