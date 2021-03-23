@@ -37,12 +37,12 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public int Order => Indexer.GetNextIndex ();
 
-        public string Code => Wrap (EduProgram.Code, "eduCode");
+        public string Code => Span (EduProgram.Code, "eduCode");
 
         string _eduProgramLinks;
         public string EduProgram_Links => _eduProgramLinks ?? (_eduProgramLinks = GetEduProgramLinks ());
 
-        public string EduLevel_String => Wrap (EduLevel.Title, "eduLevel");
+        public string EduLevel_String => Span (EduLevel.Title, "eduLevel");
 
         string _eduPlanLinks;
         public string EduPlan_Links => _eduPlanLinks ?? (_eduPlanLinks = GetEduPlanLinks ());
@@ -87,7 +87,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
             return Localization.GetString ("ELearning_No.Text", Context.LocalResourceFile);
         }
 
-        public string ELearning_String => Wrap (GetELearningString (), IsAdopted ? "adEduEl" : "eduEl");
+        public string ELearning_String => Span (GetELearningString (), IsAdopted ? "adEduEl" : "eduEl");
 
         #endregion
 
@@ -142,7 +142,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         string GetEduProgramLinks ()
         {
-            return Wrap (FormatDocumentsLinkWithData (
+            return Span (FormatDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
                 UniversityFormatHelper.FormatEduProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                     .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
@@ -211,7 +211,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                                              .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
 
-        string Wrap (string text, string itemprop)
+        string Span (string text, string itemprop)
         {
 	        return $"<span itemprop=\"{itemprop}\">{text}</span>";
         }

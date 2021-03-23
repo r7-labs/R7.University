@@ -35,22 +35,22 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public int Order => Indexer.GetNextIndex ();
 
-        public string Code => Wrap (EduProgram.Code, "eduCode");
+        public string Code => Span (EduProgram.Code, "eduCode");
 
-        public string Title => Wrap (
+        public string Title => Span (
             UniversityFormatHelper.FormatEduProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
                 .Append (IsAdopted? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
             "eduName"
         );
 
-        public string EduLevelString => Wrap (EduLevel.Title, "eduLevel");
+        public string EduLevelString => Span (EduLevel.Title, "eduLevel");
 
         public string AccreditedToDateString => (AccreditedToDate != null)
-            ? Wrap (AccreditedToDate.Value.ToShortDateString (), "dateEnd")
+            ? Span (AccreditedToDate.Value.ToShortDateString (), "dateEnd")
             : string.Empty;
 
         public string CommunityAccreditedToDateString => (CommunityAccreditedToDate != null)
-            ? Wrap (Wrap (CommunityAccreditedToDate.Value.ToShortDateString (), "dateEnd"), "eduPOAccred")
+            ? Span (Span (CommunityAccreditedToDate.Value.ToShortDateString (), "dateEnd"), "eduPOAccred")
             : string.Empty;
 
         public string EduForms_String
@@ -113,7 +113,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                                              .OrderBy (eppfy => eppfy.EduForm.SortIndex);
         }
 
-        string Wrap (string text, string itemprop)
+        string Span (string text, string itemprop)
         {
 	        return $"<span itemprop=\"{itemprop}\">{text}</span>";
         }
