@@ -10,7 +10,7 @@
     <Target Name="InstallPackage" Condition=" '$(EnableInstallPackage)' == 'true' " DependsOnTargets="Bundle;Tests">
         <RemoveDir Directories="$(TmpDir)" />
         <PropertyGroup>
-            <PackageFileName>$(PackageName)-$(ReleaseVersion)-Install.$(Configuration).zip</PackageFileName>
+            <PackageFileName>$(PackageName)-$(ReleaseVersion)-Install-$(Configuration).zip</PackageFileName>
         </PropertyGroup>
         <!-- Declare binaries -->
         <ItemGroup>
