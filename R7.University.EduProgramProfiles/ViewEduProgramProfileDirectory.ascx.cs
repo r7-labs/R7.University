@@ -92,8 +92,8 @@ namespace R7.University.EduProgramProfiles
             var eduProfiles = new EduProfileQuery (ModelContext)
                 .ListWithEduForms (Settings.EduLevelIds, Settings.DivisionId, Settings.DivisionLevel);
 
-            viewModel.EduProfiles = new IndexedEnumerable<EduProgramProfileEduFormsViewModel> (indexer,
-                eduProfiles.Select (epp => new EduProgramProfileEduFormsViewModel (epp, viewModel, indexer))
+            viewModel.EduProfiles = new IndexedEnumerable<EduProfileEduFormsViewModel> (indexer,
+                eduProfiles.Select (epp => new EduProfileEduFormsViewModel (epp, viewModel, indexer))
             );
 
             return viewModel;
@@ -232,7 +232,7 @@ namespace R7.University.EduProgramProfiles
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                var eduProgramProfile = (EduProgramProfileEduFormsViewModel) e.Row.DataItem;
+                var eduProgramProfile = (EduProfileEduFormsViewModel) e.Row.DataItem;
                 e.Row.Attributes.Add ("itemprop", "eduAccred");
 
                 if (IsEditable) {

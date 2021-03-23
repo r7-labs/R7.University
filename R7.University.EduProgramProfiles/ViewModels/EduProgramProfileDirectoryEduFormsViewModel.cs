@@ -6,7 +6,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 {
     internal class EduProgramProfileDirectoryEduFormsViewModel
     {
-        public IndexedEnumerable<EduProgramProfileEduFormsViewModel> EduProfiles { get; set; }
+        public IndexedEnumerable<EduProfileEduFormsViewModel> EduProfiles { get; set; }
 
         public ViewModelContext<EduProgramProfileDirectorySettings> Context { get; protected set; }
 

@@ -16,7 +16,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.EduProgramProfiles.ViewModels
 {
-    internal class EduProgramProfileEduFormsViewModel: EduProfileViewModelBase
+    internal class EduProfileEduFormsViewModel: EduProfileViewModelBase
     {
         public EduProgramProfileDirectoryEduFormsViewModel RootViewModel { get; protected set; }
 
@@ -24,7 +24,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         public ViewModelIndexer Indexer { get; protected set; }
 
-        public EduProgramProfileEduFormsViewModel (
+        public EduProfileEduFormsViewModel (
             IEduProfile model,
             EduProgramProfileDirectoryEduFormsViewModel rootViewModel,
             ViewModelIndexer indexer): base (model)
