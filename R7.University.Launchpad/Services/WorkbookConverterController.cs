@@ -61,9 +61,11 @@ namespace R7.University.Launchpad.Services
             try {
                 var result = default (HttpResponseMessage);
 
-               if (string.Equals (format, "CSV", StringComparison.OrdinalIgnoreCase)) {
+               if (format.Contains ("CSV")) {
+                    var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), tempFileName),
+                        (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+
                     result = Request.CreateResponse (HttpStatusCode.OK);
-                    var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), tempFileName));
                     result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
                     result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
                     result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
@@ -82,10 +84,10 @@ namespace R7.University.Launchpad.Services
             }
         }
 
-        string GetWorkbookText (string tempFilePath)
+        string GetWorkbookText (string tempFilePath, WorkbookSerializationFormat format)
         {
             var workbookManager = new WorkbookManager ();
-            return workbookManager.SerializeWorkbook (tempFilePath, WorkbookSerializationFormat.LinearCSV);
+            return workbookManager.SerializeWorkbook (tempFilePath, format);
         }
     }
 }

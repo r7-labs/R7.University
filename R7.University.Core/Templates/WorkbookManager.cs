@@ -20,6 +20,9 @@ namespace R7.University.Templates
             if (format == WorkbookSerializationFormat.LinearCSV) {
                 return new WorkbookToLinearCsvSerializer ();
             }
+            if (format == WorkbookSerializationFormat.LinearCSV_270) {
+                return new WorkbookToLinearCsvSerializer_270 ();
+            }
             if (format == WorkbookSerializationFormat.CSV) {
                 return new WorkbookToCsvSerializer ();
             }
