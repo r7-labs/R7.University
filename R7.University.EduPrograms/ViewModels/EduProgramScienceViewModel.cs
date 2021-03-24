@@ -77,8 +77,8 @@ namespace R7.University.EduPrograms.ViewModels
         {
             if (!string.IsNullOrEmpty (html)) {
                 return $"<span class=\"d-none description\">{HttpUtility.HtmlDecode (html)}</span>"
-        			+ "<a type=\"button\" href=\"#\" data-toggle=\"modal\""
-        			+ $" data-target=\"#u8y-science-descr-dlg-{Context.Module.ModuleId}\">[&#8230;]</a>";
+        			+ "<a type=\"button\" class=\"badge badge-secondary\" data-toggle=\"modal\""
+        			+ $" data-target=\"#u8y-science-descr-dlg-{Context.Module.ModuleId}\">&hellip;</a>";
         	}
 
             return "-";

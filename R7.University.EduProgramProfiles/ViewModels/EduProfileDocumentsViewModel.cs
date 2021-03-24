@@ -70,7 +70,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                         .Aggregate ((s1, s2) => s1 + s2) + "</ul>";
                 }
 
-                return string.Empty;
+                return "<span itemprop=\"eduForm\">-</span>";
             }
         }
 
@@ -107,16 +107,15 @@ namespace R7.University.EduProgramProfiles.ViewModels
         protected string TitleColumnHeader =>
             _titleColumnHeader ?? (_titleColumnHeader = Localization.GetString ("DocumentTitle.Column", Context.LocalResourceFile));
 
-        string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string linkText, string columnSlug, string microdata = "")
+        string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string columnSlug, string microdata = "", string noLinksText = "-")
         {
             var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
             var docCount = documents.Count ();
             if (docCount > 0) {
-                var docCountText = (docCount > 1 || string.IsNullOrEmpty (linkText)) ? " [" + docCount + "]" : string.Empty;
                 var table = new StringBuilder (
                     $"<span{microdataAttrs}>"
-                    + $"<a type=\"button\" href=\"#\" data-toggle=\"modal\" data-target=\"#u8y-epp-docs-dlg-{Context.Module.ModuleId}\""
-                    + $" data-table=\"doct-{RowId}-{columnSlug}\">{(linkText + docCountText).TrimStart ()}</a>"
+                    + $"<a type=\"button\" class=\"badge badge-secondary\" data-toggle=\"modal\" data-target=\"#u8y-epp-docs-dlg-{Context.Module.ModuleId}\""
+                    + $" data-table=\"doct-{RowId}-{columnSlug}\">{docCount}</a>"
                     + $"<table id=\"doct-{RowId}-{columnSlug}\" class=\"d-none\">"
                     + $"<thead><tr><th>{TitleColumnHeader}</th><th>{GroupColumnHeader}</th></tr></thead><tbody>"
                 );
@@ -132,29 +131,27 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 return table.ToString ();
             }
 
-            if (!string.IsNullOrEmpty (linkText)) {
-                return $"<span{microdataAttrs}>{linkText}</span>";
-            }
-
-            return string.Empty;
+            return $"<span{microdataAttrs}>{noLinksText}</span>";
         }
 
         string GetEduProgramLinks ()
         {
-            return Span (FormatDocumentsLinkWithData (
-                GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
+            return Span (
                 UniversityFormatHelper.FormatEduProfileTitle (EduProgram.Title, ProfileCode, ProfileTitle)
-                    .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - "),
-                "oop",
-                IsAdopted ? "itemprop=\"adOpMain\"" : "itemprop=\"opMain\""
-            ), "eduName");
+                    .Append (IsAdopted ? Context.LocalizeString ("IsAdopted.Text") : null, " - ")
+                + " "
+                + FormatDocumentsLinkWithData (
+                    GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduProgram)),
+                    "oop",
+                    IsAdopted ? "itemprop=\"adOpMain\"" : "itemprop=\"opMain\"",
+                    string.Empty
+                ), "eduName");
         }
 
         string GetEduPlanLinks ()
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduPlan)),
-                string.Empty,
                 "epl",
                 IsAdopted ? "itemprop=\"adEducationPlan\"" : "itemprop=\"educationPlan\""
             );
@@ -164,7 +161,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduSchedule)),
-                string.Empty,
                 "esh",
                 IsAdopted ? "itemprop=\"adEducationShedule\"" : "itemprop=\"educationShedule\""
             );
@@ -174,7 +170,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.WorkProgramAnnotation)),
-                string.Empty,
                 "wpa",
                 IsAdopted ? "itemprop=\"adEducationAnnotation\"" : "itemprop=\"educationAnnotation\""
             );
@@ -184,7 +179,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.EduMaterial)),
-                string.Empty,
                 "met",
                 IsAdopted ? "itemprop=\"adMethodology\"" : "itemprop=\"methodology\""
             );
@@ -194,7 +188,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
         {
             return FormatDocumentsLinkWithData (
                 GetDocuments (EduProfile.GetDocumentsOfType (SystemDocumentType.WorkProgram)),
-                string.Empty,
                 "wp",
                 // TODO: This related to obsolete WorkProgramOfPractice document type
                 IsAdopted ? "itemprop=\"adEduPr\"" : "itemprop=\"eduPr\""
