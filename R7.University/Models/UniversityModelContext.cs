@@ -22,8 +22,9 @@ namespace R7.University.Models
             return UniversityDataContextFactory.Instance.Create ();
         }
 
-        public override bool SaveChanges (bool isFinal = true)
+        public override bool SaveChanges (bool dispose = true)
         {
+            var isFinal = dispose;
             var result = base.SaveChanges (isFinal);
             if (isFinal) {
                 DataCache.ClearCache ("//r7_University");
