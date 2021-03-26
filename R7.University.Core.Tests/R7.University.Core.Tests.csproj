@@ -8,7 +8,7 @@
 	  https://andrewlock.net/fixing-the-error-program-has-more-than-one-entry-point-defined-for-console-apps-containing-xunit-tests/ -->
     <GenerateProgramFile>false</GenerateProgramFile>
     <!-- End fix -->
-    <ReleaseVersion>2.8.1-beta.2</ReleaseVersion>
+    <ReleaseVersion>2.8.2-beta.3</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>R7.University.Employees</RootNamespace>
     <AssemblyName>R7.University.Employees</AssemblyName>
-    <ReleaseVersion>2.8.1-beta.2</ReleaseVersion>
+    <ReleaseVersion>2.8.2-beta.3</ReleaseVersion>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

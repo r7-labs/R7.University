@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
-    <ReleaseVersion>2.8.1-beta.2</ReleaseVersion>
+    <ReleaseVersion>2.8.2-beta.3</ReleaseVersion>
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
