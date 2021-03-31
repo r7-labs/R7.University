@@ -172,7 +172,7 @@ namespace R7.University.EduPrograms
 
         int? GetDivisionIdSetting ()
         {
-            if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduProgramDirectory") {
+            if (ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.EduProgramDirectory) {
                 var settings = new EduProgramDirectorySettingsRepository ().GetSettings (ModuleConfiguration);
                 return settings?.DivisionId;
             }
@@ -233,7 +233,7 @@ namespace R7.University.EduPrograms
                 }
 
                 // update EduProgram module settings then adding new item
-                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduProgram") {
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.EduProgram) {
                     var settingsRepository = new EduProgramSettingsRepository ();
                     var settings = settingsRepository.GetSettings (ModuleConfiguration);
                     settings.EduProgramId = item.EduProgramID;

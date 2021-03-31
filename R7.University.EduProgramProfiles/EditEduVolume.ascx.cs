@@ -53,7 +53,7 @@ namespace R7.University.EduProgramProfiles
 
         EduVolumeDirectorySettings _settings;
         protected new EduVolumeDirectorySettings Settings =>
-            _settings ?? (_settings = ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduVolumeDirectory"
+            _settings ?? (_settings = ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.EduVolumeDirectory
                           ? new EduVolumeDirectorySettingsRepository ().GetSettings (ModuleConfiguration)
                           : null);
 
@@ -86,7 +86,7 @@ namespace R7.University.EduProgramProfiles
             var showAllTabs = SecurityContext.IsAdmin;
 
             // TODO: Introduce separate edit form for base edu. volume
-            tabCommon.Visible = showAllTabs || ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduProgramProfileDirectory";
+            tabCommon.Visible = showAllTabs || ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.EduProgramProfileDirectory;
             pnlCommon.Visible = tabCommon.Visible;
 
             tabYears.Visible = showAllTabs || (Settings != null && Settings.Mode == EduVolumeDirectoryMode.EduVolume);
@@ -121,7 +121,7 @@ namespace R7.University.EduProgramProfiles
         {
             var updateAllTabs = SecurityContext.IsAdmin;
 
-            if (updateAllTabs || ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduProgramProfileDirectory") {
+            if (updateAllTabs || ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.EduProgramProfileDirectory) {
                 item.TimeToLearnHours = int.Parse (textTimeToLearnHours.Text);
                 item.TimeToLearnMonths =
                     int.Parse (textTimeToLearnYears.Text) * 12 + int.Parse (textTimeToLearnMonths.Text);

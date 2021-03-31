@@ -63,8 +63,8 @@ namespace R7.University.Employees
         {
             get {
                 switch (ModuleConfiguration.ModuleDefinition.DefinitionName) {
-                    case "R7_University_Employee": return Settings.PhotoWidth;
-                    case "R7_University_EmployeeDetails": return Settings.PhotoWidth;
+                    case ModuleDefinitions.Employee: return Settings.PhotoWidth;
+                    case ModuleDefinitions.EmployeeDetails: return Settings.PhotoWidth;
                     default: return UniversityConfig.Instance.EmployeePhoto.DefaultWidth;
                 }
             }
@@ -77,7 +77,7 @@ namespace R7.University.Employees
 
         protected bool InViewModule
         {
-            get { return ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EmployeeDetails"; }
+            get { return ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.EmployeeDetails; }
         }
 
         protected string EmployeeExporterResources {

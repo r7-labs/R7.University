@@ -59,7 +59,7 @@ namespace R7.University.EduProgramProfiles
 
         ContingentDirectorySettings _settings;
         protected new ContingentDirectorySettings Settings =>
-            _settings ?? (_settings = ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_ContingentDirectory"
+            _settings ?? (_settings = ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.ContingentDirectory
                           ? new ContingentDirectorySettingsRepository ().GetSettings (ModuleConfiguration)
                           : null);
 

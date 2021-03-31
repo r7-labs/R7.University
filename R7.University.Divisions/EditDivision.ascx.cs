@@ -1,29 +1,9 @@
-//
-//  EditDivision.ascx.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2014-2020 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Linq;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Text;
 using R7.University.Commands;
+using R7.University.Components;
 using R7.University.ControlExtensions;
 using R7.University.Divisions.Models;
 using R7.University.Divisions.Queries;
@@ -207,7 +187,7 @@ namespace R7.University.Divisions
 
                 // then adding new division from Division module,
                 // set calling module to display new division info
-                if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_Division") {
+                if (ModuleConfiguration.ModuleDefinition.DefinitionName == ModuleDefinitions.Division) {
                     var settingsRepository = new DivisionSettingsRepository ();
                     var settings = settingsRepository.GetSettings (ModuleConfiguration);
                     settings.DivisionID = item.DivisionID;

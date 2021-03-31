@@ -220,6 +220,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ModuleDefinitions.cs" />
     <Compile Include="Controls\EditModels\EditModelBase.cs" />
     <Compile Include="Controls\GridAndFormControlBase.cs" />
     <Compile Include="ModelExtensions\DocumentDnnExtensions.cs" />
