@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -38,38 +39,39 @@ namespace R7.University.EduPrograms
         {
             get {
                 // get postback initiator control
-                var eventTarget = Request.Form ["__EVENTTARGET"];
+                var eventTarget = Request.Form["__EVENTTARGET"];
 
                 if (!string.IsNullOrEmpty (eventTarget)) {
 
                     if (eventTarget.Contains ("$" + formEditDocuments.ID)) {
-                        ViewState ["SelectedTab"] = EditEduProgramTab.Documents;
+                        ViewState["SelectedTab"] = EditEduProgramTab.Documents;
                         return EditEduProgramTab.Documents;
                     }
 
                     if (eventTarget.Contains ("$" + formEditDivisions.ID)) {
-                        ViewState ["SelectedTab"] = EditEduProgramTab.Divisions;
+                        ViewState["SelectedTab"] = EditEduProgramTab.Divisions;
                         return EditEduProgramTab.Divisions;
                     }
 
                     if (eventTarget.Contains ("$" + urlHomePage.ID)) {
-                        ViewState ["SelectedTab"] = EditEduProgramTab.Bindings;
+                        ViewState["SelectedTab"] = EditEduProgramTab.Bindings;
                         return EditEduProgramTab.Bindings;
                     }
                 }
 
                 // otherwise, get current tab from viewstate
-                var obj = ViewState ["SelectedTab"];
+                var obj = ViewState["SelectedTab"];
                 if (obj != null) {
                     return (EditEduProgramTab) obj;
                 }
 
                 return EditEduProgramTab.Common;
             }
-            set { ViewState ["SelectedTab"] = value; }
+            set { ViewState["SelectedTab"] = value; }
         }
 
         ViewModelContext viewModelContext;
+
         protected ViewModelContext ViewModelContext
         {
             get { return viewModelContext ?? (viewModelContext = new ViewModelContext (this)); }
@@ -120,12 +122,13 @@ namespace R7.University.EduPrograms
             urlHomePage.Url = ep.HomePage;
             formEditDivisions.SetData (ep.Divisions, ep.EduProgramID);
 
-            auditControl.Bind (ep, PortalId, LocalizeString ("Unknown")); ;
+            auditControl.Bind (ep, PortalId, LocalizeString ("Unknown"));
 
             formEditDocuments.SetData (ep.Documents, ep.EduProgramID);
 
             // setup link for adding new edu. program profile
-            linkAddEduProgramProfile.NavigateUrl = EditUrl ("eduprogram_id", ep.EduProgramID.ToString (), "EditEduProgramProfile");
+            linkAddEduProgramProfile.NavigateUrl =
+                EditUrl ("eduprogram_id", ep.EduProgramID.ToString (), "EditEduProgramProfile");
 
             gridEduProfiles.DataSource = ep.EduProfiles
                 .Select (epp => new EduProfileEditModel (epp, ViewModelContext))
@@ -143,8 +146,38 @@ namespace R7.University.EduPrograms
         {
             base.LoadNewItem ();
 
+            PrefillDivisionsList ();
+
             linkAddEduProgramProfile.Visible = false;
             panelAddDefaultProfile.Visible = SecurityContext.CanAdd (typeof (EduProfileInfo));
+        }
+
+        void PrefillDivisionsList ()
+        {
+            var divisionId = GetDivisionIdSetting ();
+            if (divisionId == null) {
+                return;
+            }
+
+            using (var modelContext = new UniversityModelContext ()) {
+                var division = modelContext.Get<DivisionInfo,int> (divisionId.Value);
+                formEditDivisions.AddData (new List<EduProgramDivisionInfo> {
+                    new EduProgramDivisionInfo {
+                        DivisionId = division.DivisionID,
+                        Division = division
+                    }
+                });
+            }
+        }
+
+        int? GetDivisionIdSetting ()
+        {
+            if (ModuleConfiguration.ModuleDefinition.DefinitionName == "R7_University_EduProgramDirectory") {
+                var settings = new EduProgramDirectorySettingsRepository ().GetSettings (ModuleConfiguration);
+                return settings?.DivisionId;
+            }
+
+            return null;
         }
 
         protected override void BeforeUpdateItem (EduProgramInfo item, bool isNew)

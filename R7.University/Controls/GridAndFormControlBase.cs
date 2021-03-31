@@ -139,6 +139,19 @@ namespace R7.University.Controls
             BindItems (viewModels);
         }
 
+        public virtual void AddData (IEnumerable<TModel> items)
+        {
+            var convertor = new TViewModel ();
+            var viewModels = items.Select (i => DebugEnsureCreatedProperly (CreateViewModel (i, convertor))).ToList ();
+            foreach (var viewModel in viewModels) {
+                viewModel.EditState = ModelEditState.Added;
+            }
+
+            ViewStateItems = viewModels;
+
+            BindItems (viewModels);
+        }
+
         protected virtual TViewModel CreateViewModel (TModel model, TViewModel convertor)
         {
             return (TViewModel) convertor.Create (model, ViewModelContext);

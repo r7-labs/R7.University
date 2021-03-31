@@ -28,4 +28,8 @@ namespace R7.University.EduPrograms.Models
             }
         }
     }
+
+    class EduProgramDirectorySettingsRepository: SettingsRepository<EduProgramDirectorySettings>
+    {
+    }
 }
