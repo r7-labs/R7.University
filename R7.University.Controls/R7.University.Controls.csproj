@@ -138,10 +138,10 @@
       <DependentUpon>..\R7.University\Controls\Controls\EditDocuments.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditDocuments.ascx.controls.cs">
-      <DependentUpon>..\R7.University\Controls\Controls\EditDocuments.ascx</DependentUpon>
+      <DependentUpon>EditDocuments.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditEduForms.ascx.controls.cs">
-      <DependentUpon>..\R7.University\Controls\Controls\EditEduForms.ascx</DependentUpon>
+      <DependentUpon>EditEduForms.ascx</DependentUpon>
     </Compile>
     <Compile Include="EditEduForms.ascx.cs">
       <DependentUpon>..\R7.University\Controls\Controls\EditEduForms.ascx</DependentUpon>
