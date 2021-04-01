@@ -66,22 +66,19 @@ namespace R7.University.Launchpad.Services
         public HttpResponseMessage Convert (string fileName, string guid, string format)
         {
             try {
-                var result = default (HttpResponseMessage);
-
-               if (format.Contains ("CSV")) {
-                    var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), guid),
-                        (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
-
-                    result = Request.CreateResponse (HttpStatusCode.OK);
-                    result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
-                    result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
-                    result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                        FileName = Path.GetFileNameWithoutExtension (fileName) + ".txt"
-                    };
+                if (!format.Contains ("CSV")) {
+                    return Request.CreateResponse (HttpStatusCode.BadRequest);
                 }
-                else {
-                    result = Request.CreateResponse (HttpStatusCode.BadRequest);
-                }
+
+                var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), guid),
+                    (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+
+                var result = Request.CreateResponse (HttpStatusCode.OK);
+                result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
+                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+                    FileName = Path.GetFileNameWithoutExtension (fileName) + ".txt"
+                };
 
                 return result;
             }
