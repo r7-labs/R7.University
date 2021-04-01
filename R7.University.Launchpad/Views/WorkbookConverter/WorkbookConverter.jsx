@@ -34,12 +34,12 @@ class WorkbookConverter extends React.Component {
                 <td>{file.fileName}</td>
                 <td><a href={this.props.service.getUrl ("WorkbookConverter", "Convert", null)
                     + "?fileName=" + encodeURIComponent (file.fileName)
-                    + "&tempFileName=" + encodeURIComponent (file.tempFileName)
+                    + "&guid=" + encodeURIComponent (file.guid)
                     + "&format=LinearCSV"}>CSV</a>
                     <span className="mx-2">|</span>
                     <a href={this.props.service.getUrl ("WorkbookConverter", "Convert", null)
                     + "?fileName=" + encodeURIComponent (file.fileName)
-                    + "&tempFileName=" + encodeURIComponent (file.tempFileName)
+                    + "&guid=" + encodeURIComponent (file.guid)
                     + "&format=LinearCSV_270"} className="text-muted">CSV (2.7.0)</a>
                 </td>
                 </tr>
@@ -129,7 +129,7 @@ class WorkbookConverter extends React.Component {
             (results) => {
                 for (let result of results) {
                     newState.files.push ({
-                        tempFileName: result.tempFileName,
+                        guid: result.guid,
                         fileName: result.fileName
                     });
                 }

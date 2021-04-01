@@ -31,7 +31,8 @@ namespace R7.University.Launchpad.Services
                     var fileBytes = await contents.ReadAsByteArrayAsync ();
 
                     // create temp file and store uploaded data
-                    var tempFilePath = Path.GetTempFileName ();
+                    var guid = Guid.NewGuid ().ToString ();
+                    var tempFilePath = Path.Combine (Path.GetTempPath (), guid);
                     File.WriteAllBytes (tempFilePath, fileBytes);
 
                     // extract file name and file contents
@@ -42,7 +43,7 @@ namespace R7.University.Launchpad.Services
 
                     results.Add (new WorkbookConverterUploadResult {
                         FileName = fileName,
-                        TempFileName = Path.GetFileName (tempFilePath)
+                        Guid = guid
                     });
                 }
 
@@ -56,13 +57,13 @@ namespace R7.University.Launchpad.Services
 
         [HttpGet]
         [DnnAuthorize]
-        public HttpResponseMessage Convert (string fileName, string tempFileName, string format)
+        public HttpResponseMessage Convert (string fileName, string guid, string format)
         {
             try {
                 var result = default (HttpResponseMessage);
 
                if (format.Contains ("CSV")) {
-                    var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), tempFileName),
+                    var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), guid),
                         (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
 
                     result = Request.CreateResponse (HttpStatusCode.OK);

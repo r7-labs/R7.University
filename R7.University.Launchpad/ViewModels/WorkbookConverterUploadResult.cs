@@ -8,7 +8,7 @@ namespace R7.University.Launchpad.ViewModels
         [JsonProperty (PropertyName = "fileName")]
         public string FileName { get; set; }
 
-        [JsonProperty (PropertyName = "tempFileName")]
-        public string TempFileName { get; set; }
+        [JsonProperty (PropertyName = "guid")]
+        public string Guid { get; set; }
     }
 }
