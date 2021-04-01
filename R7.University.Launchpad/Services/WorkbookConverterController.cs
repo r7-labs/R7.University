@@ -30,12 +30,9 @@ namespace R7.University.Launchpad.Services
                 foreach (var contents in provider.Contents) {
                     var fileBytes = await contents.ReadAsByteArrayAsync ();
 
-                    // create temp file and store uploaded data
-                    var guid = Guid.NewGuid ().ToString ();
-                    var tempFilePath = Path.Combine (Path.GetTempPath (), guid);
-                    File.WriteAllBytes (tempFilePath, fileBytes);
+                    var guid = StoreUploadedFile (fileBytes);
 
-                    // extract file name and file contents
+                    // extract filename
                     var fileNameParam = contents.Headers.ContentDisposition.Parameters
                         .FirstOrDefault (p => p.Name.ToLower () == "filename");
 
@@ -53,6 +50,15 @@ namespace R7.University.Launchpad.Services
                 Exceptions.LogException (ex);
                 return Request.CreateErrorResponse (HttpStatusCode.InternalServerError, ex);
             }
+        }
+
+        string StoreUploadedFile (byte [] fileBytes)
+        {
+            var guid = Guid.NewGuid ().ToString ();
+            var tempFilePath = Path.Combine (Path.GetTempPath (), guid);
+            File.WriteAllBytes (tempFilePath, fileBytes);
+
+            return guid;
         }
 
         [HttpGet]
