@@ -110,7 +110,7 @@ namespace R7.University.Launchpad.Services
                 result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
                 result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
-                    FileName = Path.GetFileNameWithoutExtension (fileName) + ".txt"
+                    FileName = Path.GetFileNameWithoutExtension (fileName) + "_0.txt"
                 };
 
                 return result;
