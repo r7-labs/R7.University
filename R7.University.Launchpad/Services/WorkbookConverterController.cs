@@ -144,7 +144,7 @@ namespace R7.University.Launchpad.Services
         string GetWorkbookText (string tempFilePath, string format)
         {
             var workbookManager = new WorkbookManager ();
-            return workbookManager.SerializeWorkbook (tempFilePath, (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+            return workbookManager.SerializeWorkbook (tempFilePath, format);
         }
 
         string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)

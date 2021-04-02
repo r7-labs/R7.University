@@ -14,6 +14,12 @@ namespace R7.University.Templates
 
     public class WorkbookManager
     {
+        public string SerializeWorkbook (string filePath, string format)
+        {
+            return SerializeWorkbook (filePath,
+                (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+        }
+
         public string SerializeWorkbook (string filePath, WorkbookSerializationFormat format)
         {
             var workbookProvider = new HSSFWorkbookProvider ();
