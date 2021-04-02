@@ -73,13 +73,13 @@ namespace R7.University.Templates
                     foreach (var cell in row.Cells) {
                         var cellValue = formatter.FormatCellValue (cell);
                         if (cellValue == "Entity Type:") {
-                            var nextCell = row.GetCell (cell.ColumnIndex + 1);
+                            var nextCell = GetNextCell (row, cell);
                             if (nextCell != null) {
                                 bookInfo.EntityType = formatter.FormatCellValue (nextCell);
                             }
                         }
-                        if (cellValue == "Entity ID:") {
-                            var nextCell = row.GetCell (cell.ColumnIndex + 1);
+                        else if (cellValue == "Entity ID:") {
+                            var nextCell = GetNextCell (row, cell);
                             if (nextCell != null) {
                                 if (int.TryParse (formatter.FormatCellValue (nextCell), out int entityId)) {
                                     bookInfo.EntityId = entityId;
@@ -91,6 +91,11 @@ namespace R7.University.Templates
             }
 
             return bookInfo;
+        }
+
+        ICell GetNextCell (IRow row, ICell cell)
+        {
+            return row.GetCell (cell.ColumnIndex + 1);
         }
     }
 }
