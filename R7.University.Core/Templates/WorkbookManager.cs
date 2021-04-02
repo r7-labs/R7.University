@@ -61,30 +61,21 @@ namespace R7.University.Templates
         {
             var formatter = new DataFormatter ();
             var bookInfo = new WorkbookInfo ();
+            var cellEnumerator = new WorkbookCellEnumerator ();
 
-            // TODO: Create CellEnumerator!
-            for (var s = 0; s < book.NumberOfSheets; s++) {
-                var sheet = book.GetSheetAt (s);
-                for (var r = sheet.FirstRowNum; r <= sheet.LastRowNum; r++) {
-                    var row = sheet.GetRow (r);
-                    if (row == null) {
-                        continue;
+            foreach (var cell in cellEnumerator.GetCells (book)) {
+                var cellValue = formatter.FormatCellValue (cell);
+                if (cellValue == "Entity Type:") {
+                    var nextCell = GetNextCell (cell);
+                    if (nextCell != null) {
+                        bookInfo.EntityType = formatter.FormatCellValue (nextCell);
                     }
-                    foreach (var cell in row.Cells) {
-                        var cellValue = formatter.FormatCellValue (cell);
-                        if (cellValue == "Entity Type:") {
-                            var nextCell = GetNextCell (row, cell);
-                            if (nextCell != null) {
-                                bookInfo.EntityType = formatter.FormatCellValue (nextCell);
-                            }
-                        }
-                        else if (cellValue == "Entity ID:") {
-                            var nextCell = GetNextCell (row, cell);
-                            if (nextCell != null) {
-                                if (int.TryParse (formatter.FormatCellValue (nextCell), out int entityId)) {
-                                    bookInfo.EntityId = entityId;
-                                }
-                            }
+                }
+                else if (cellValue == "Entity ID:") {
+                    var nextCell = GetNextCell (cell);
+                    if (nextCell != null) {
+                        if (int.TryParse (formatter.FormatCellValue (nextCell), out int entityId)) {
+                            bookInfo.EntityId = entityId;
                         }
                     }
                 }
@@ -93,9 +84,9 @@ namespace R7.University.Templates
             return bookInfo;
         }
 
-        ICell GetNextCell (IRow row, ICell cell)
+        ICell GetNextCell (ICell cell)
         {
-            return row.GetCell (cell.ColumnIndex + 1);
+            return cell.Row.GetCell (cell.ColumnIndex + 1);
         }
     }
 }
