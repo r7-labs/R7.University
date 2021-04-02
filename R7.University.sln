@@ -346,6 +346,6 @@ Global
 		$52.inheritsSet = null
 		$52.inheritsScope = text/plain
 		$52.scope = text/x-cshtml
-		version = 2.8.2-beta.3
+		version = 2.9.0
 	EndGlobalSection
 EndGlobal
