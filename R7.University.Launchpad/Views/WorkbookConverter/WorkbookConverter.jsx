@@ -66,8 +66,7 @@ class WorkbookConverter extends React.Component {
                             <th>{this.getString ("Number")}</th>
                             <th>{this.getString ("FileName")}</th>
                             <th>{this.getString ("Download")}</th>
-                            {/* TODO: Localize me */}
-                            <th>Original</th>
+                            <th>{this.getString ("DownloadOriginal")}</th>
                         </tr>
                     </thead>
                     <tbody>

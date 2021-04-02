@@ -30,4 +30,7 @@
 	<data name="UploadErrorMessage.Text" xml:space="preserve">
 		<value>Error uploading file(s). You can reload the page and try again. If problem persists, please contact the system administrator.</value>
 	</data>
+	<data name="DownloadOriginal.Text" xml:space="preserve">
+		<value>Download Original</value>
+	</data>
 </root>
