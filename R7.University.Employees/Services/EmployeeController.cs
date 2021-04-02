@@ -47,10 +47,10 @@ namespace R7.University.Employees.Services
             return (MemoryStream) templateEngine.ApplyAndWrite (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), new MemoryStream ());
         }
 
-        string GetEmployeeCsvText (IEmployee employee)
+        string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
         {
             var templateEngine = GetTemplateEngine (employee);
-            return templateEngine.ApplyAndSerialize (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), new WorkbookToLinearCsvSerializer ()).ToString ();
+            return templateEngine.ApplyAndSerialize (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), serializer).ToString ();
         }
 
         string GetFileName (IEmployee employee, string extension)
@@ -104,7 +104,7 @@ namespace R7.University.Employees.Services
                 }
 
                 var result = Request.CreateResponse (HttpStatusCode.OK);
-                var text = GetEmployeeCsvText (employee);
+                var text = GetEmployeeCsvText (employee, new WorkbookToLinearCsvSerializer ());
                 result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
                 result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
                 result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {

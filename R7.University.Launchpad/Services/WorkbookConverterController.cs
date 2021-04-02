@@ -156,7 +156,6 @@ namespace R7.University.Launchpad.Services
             return new WorkbookLiquidTemplateEngine (employeeBinder, new HSSFWorkbookProvider ());
         }
 
-        // TODO: Code duplication
         string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
         {
             var templateEngine = GetTemplateEngine (employee);
