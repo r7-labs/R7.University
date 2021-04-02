@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,8 +11,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Api;
+using R7.University.Components;
 using R7.University.Templates;
 using R7.University.Launchpad.ViewModels;
+using R7.University.Models;
 
 namespace R7.University.Launchpad.Services
 {
@@ -70,8 +73,38 @@ namespace R7.University.Launchpad.Services
                     return Request.CreateResponse (HttpStatusCode.BadRequest);
                 }
 
-                var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), guid),
-                    (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+                var text = GetWorkbookText (Path.Combine (Path.GetTempPath (), guid), format);
+
+                var result = Request.CreateResponse (HttpStatusCode.OK);
+                result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue ("text/plain");
+                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue ("attachment") {
+                    FileName = Path.GetFileNameWithoutExtension (fileName) + ".txt"
+                };
+
+                return result;
+            }
+            catch (Exception ex) {
+                Exceptions.LogException (ex);
+                return Request.CreateErrorResponse (HttpStatusCode.InternalServerError, ex);
+            }
+        }
+        [HttpGet]
+        [DnnAuthorize]
+        public HttpResponseMessage ConvertOriginal (string fileName, string guid, string format)
+        {
+            try {
+                if (!format.Contains ("CSV")) {
+                    return Request.CreateResponse (HttpStatusCode.BadRequest);
+                }
+
+                var filePath = Path.Combine (Path.GetTempPath (), guid);
+
+                var text = FindAndConvertOriginal (filePath, format);
+
+                if (string.IsNullOrEmpty (text)) {
+                    return Request.CreateResponse (HttpStatusCode.NotFound);
+                }
 
                 var result = Request.CreateResponse (HttpStatusCode.OK);
                 result.Content = new StringContent (text, Encoding.UTF8, "text/plain");
@@ -88,10 +121,52 @@ namespace R7.University.Launchpad.Services
             }
         }
 
-        string GetWorkbookText (string tempFilePath, WorkbookSerializationFormat format)
+        string FindAndConvertOriginal (string filePath, string format)
         {
             var workbookManager = new WorkbookManager ();
-            return workbookManager.SerializeWorkbook (tempFilePath, format);
+            var serializer =
+                workbookManager.GetWorkbookSerializer (
+                    (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+
+            var bookInfo = workbookManager.ReadWorkbookInfo (filePath);
+            if (bookInfo.EntityId != null && !string.IsNullOrEmpty (bookInfo.EntityType)) {
+                using (var modelContext = new UniversityModelContext ()) {
+                    var employee = modelContext.Get<EmployeeInfo, int> (bookInfo.EntityId.Value);
+                    if (employee != null) {
+                        return GetEmployeeCsvText (employee, serializer);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        string GetWorkbookText (string tempFilePath, string format)
+        {
+            var workbookManager = new WorkbookManager ();
+            return workbookManager.SerializeWorkbook (tempFilePath, (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+        }
+
+        // TODO: Code duplication
+        WorkbookLiquidTemplateEngine GetTemplateEngine (IEmployee employee)
+        {
+            var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
+                "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
+
+            return new WorkbookLiquidTemplateEngine (employeeBinder, new HSSFWorkbookProvider ());
+        }
+
+        // TODO: Code duplication
+        string GetTemplatePath ()
+        {
+            return UniversityTemplateHelper.GetLocalizedTemplatePath ("employee_template.xls", CultureInfo.CurrentUICulture);
+        }
+
+        // TODO: Code duplication
+        string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
+        {
+            var templateEngine = GetTemplateEngine (employee);
+            return templateEngine.ApplyAndSerialize (GetTemplatePath (), serializer).ToString ();
         }
     }
 }

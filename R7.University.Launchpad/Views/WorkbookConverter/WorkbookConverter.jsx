@@ -42,7 +42,18 @@ class WorkbookConverter extends React.Component {
                     + "&guid=" + encodeURIComponent (file.guid)
                     + "&format=LinearCSV_270"} className="text-muted">CSV (2.7.0)</a>
                 </td>
-                </tr>
+                <td>
+                    <a href={this.props.service.getUrl ("WorkbookConverter", "ConvertOriginal", null)
+                    + "?fileName=" + encodeURIComponent (file.fileName)
+                    + "&guid=" + encodeURIComponent (file.guid)
+                    + "&format=LinearCSV"}>CSV</a>
+                    <span className="mx-2">|</span>
+                    <a href={this.props.service.getUrl ("WorkbookConverter", "ConvertOriginal", null)
+                    + "?fileName=" + encodeURIComponent (file.fileName)
+                    + "&guid=" + encodeURIComponent (file.guid)
+                    + "&format=LinearCSV_270"} className="text-muted">CSV (2.7.0)</a>
+                </td>
+            </tr>
         );
     }
 
@@ -55,6 +66,8 @@ class WorkbookConverter extends React.Component {
                             <th>{this.getString ("Number")}</th>
                             <th>{this.getString ("FileName")}</th>
                             <th>{this.getString ("Download")}</th>
+                            {/* TODO: Localize me */}
+                            <th>Original</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -163,6 +176,7 @@ class WorkbookConverter extends React.Component {
         }
 
         ajaxCall (type, url, data, success, fail) {
+            // TODO: Review contentType could be boolean?
             this.ajaxCall (type, url, data, true, true, success, fail);
         }
 
