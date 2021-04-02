@@ -148,7 +148,7 @@ namespace R7.University.Launchpad.Services
         }
 
         // TODO: Code duplication
-        WorkbookLiquidTemplateEngine GetTemplateEngine (IEmployee employee)
+        WorkbookLiquidTemplateEngine GetEmployeeTemplateEngine (IEmployee employee)
         {
             var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
                 "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
@@ -158,7 +158,7 @@ namespace R7.University.Launchpad.Services
 
         string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
         {
-            var templateEngine = GetTemplateEngine (employee);
+            var templateEngine = GetEmployeeTemplateEngine (employee);
             return templateEngine.ApplyAndSerialize (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), serializer).ToString ();
         }
     }
