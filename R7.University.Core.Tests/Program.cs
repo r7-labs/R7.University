@@ -31,7 +31,7 @@ namespace R7.University.Tests
         {
             Console.WriteLine ("--- Start test output");
             var workbookManager = new WorkbookManager ();
-            Console.Write (workbookManager.SerializeWorkbook ("./assets/templates/workbook-1.xls", WorkbookSerializationFormat.CSV));
+            Console.Write (workbookManager.SerializeWorkbook ("./assets/templates/workbook-1.xls", workbookManager.GetWorkbookSerializer (WorkbookSerializationFormat.CSV)));
             Console.WriteLine ("--- End test output");
         }
 
@@ -39,7 +39,7 @@ namespace R7.University.Tests
         {
             Console.WriteLine ("--- Start test output");
             var workbookManager = new WorkbookManager ();
-            Console.Write (workbookManager.SerializeWorkbook ("./assets/templates/workbook-1.xls", WorkbookSerializationFormat.LinearCSV));
+            Console.Write (workbookManager.SerializeWorkbook ("./assets/templates/workbook-1.xls", workbookManager.GetWorkbookSerializer (WorkbookSerializationFormat.LinearCSV)));
             Console.WriteLine ("--- End test output");
         }
     }

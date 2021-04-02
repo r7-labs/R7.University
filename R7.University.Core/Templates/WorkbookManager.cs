@@ -7,18 +7,11 @@ namespace R7.University.Templates
 {
     public class WorkbookManager
     {
-        public string SerializeWorkbook (string filePath, string format)
-        {
-            return SerializeWorkbook (filePath,
-                (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
-        }
-
-        public string SerializeWorkbook (string filePath, WorkbookSerializationFormat format)
+        public string SerializeWorkbook (string filePath, IWorkbookSerializer serializer)
         {
             var workbookProvider = new HSSFWorkbookProvider ();
-            var workbookSerializer = GetWorkbookSerializer (format);
             using (var fileStream = new FileStream (filePath, FileMode.Open, FileAccess.Read)) {
-                return workbookSerializer.Serialize (workbookProvider.CreateWorkbook (fileStream), new StringBuilder ())
+                return serializer.Serialize (workbookProvider.CreateWorkbook (fileStream), new StringBuilder ())
                     .ToString ();
             }
         }
@@ -37,7 +30,13 @@ namespace R7.University.Templates
                 return new WorkbookToCsvSerializer ();
             }
 
-            throw new ArgumentException ("Unsupported serialization format!", nameof (format));
+            return null;
+        }
+
+        public IWorkbookSerializer GetWorkbookSerializer (string format)
+        {
+            var enumFormat = (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format);
+            return GetWorkbookSerializer (enumFormat);
         }
 
         public WorkbookInfo ReadWorkbookInfo (string filePath)

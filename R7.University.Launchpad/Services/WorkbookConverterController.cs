@@ -124,9 +124,7 @@ namespace R7.University.Launchpad.Services
         string FindAndConvertOriginal (string filePath, string format)
         {
             var workbookManager = new WorkbookManager ();
-            var serializer =
-                workbookManager.GetWorkbookSerializer (
-                    (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
+            var serializer = workbookManager.GetWorkbookSerializer (format);
 
             var bookInfo = workbookManager.ReadWorkbookInfo (filePath);
             if (bookInfo.EntityId != null && !string.IsNullOrEmpty (bookInfo.EntityType)) {
@@ -144,7 +142,7 @@ namespace R7.University.Launchpad.Services
         string GetWorkbookText (string tempFilePath, string format)
         {
             var workbookManager = new WorkbookManager ();
-            return workbookManager.SerializeWorkbook (tempFilePath, format);
+            return workbookManager.SerializeWorkbook (tempFilePath, workbookManager.GetWorkbookSerializer (format));
         }
 
         string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
