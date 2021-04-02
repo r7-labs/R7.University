@@ -5,13 +5,6 @@ using NPOI.SS.UserModel;
 
 namespace R7.University.Templates
 {
-    public class WorkbookInfo
-    {
-        public string EntityType;
-
-        public int? EntityId;
-    }
-
     public class WorkbookManager
     {
         public string SerializeWorkbook (string filePath, string format)
