@@ -157,16 +157,10 @@ namespace R7.University.Launchpad.Services
         }
 
         // TODO: Code duplication
-        string GetTemplatePath ()
-        {
-            return UniversityTemplateHelper.GetLocalizedTemplatePath ("employee_template.xls", CultureInfo.CurrentUICulture);
-        }
-
-        // TODO: Code duplication
         string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
         {
             var templateEngine = GetTemplateEngine (employee);
-            return templateEngine.ApplyAndSerialize (GetTemplatePath (), serializer).ToString ();
+            return templateEngine.ApplyAndSerialize (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), serializer).ToString ();
         }
     }
 }

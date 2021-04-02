@@ -18,5 +18,10 @@ namespace R7.University.Templates
 
             return templatePath;
         }
+
+        public static string GetLocalizedEmployeeTemplatePath ()
+        {
+            return GetLocalizedTemplatePath ("employee_template.xls", CultureInfo.CurrentUICulture);
+        }
     }
 }
