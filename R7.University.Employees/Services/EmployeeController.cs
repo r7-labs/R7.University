@@ -33,23 +33,19 @@ namespace R7.University.Employees.Services
             }
         }
 
-        WorkbookLiquidTemplateEngine GetEmployeeTemplateEngine (IEmployee employee)
-        {
-            var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
-                   "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
-
-            return new WorkbookLiquidTemplateEngine (employeeBinder, new HSSFWorkbookProvider ());
-        }
-
         MemoryStream GetEmployeeExcelStream (IEmployee employee)
         {
-            var templateEngine = GetEmployeeTemplateEngine (employee);
+            var templateEngine = new UniversityTemplateEngineManager ()
+                .GetEmployeeTemplateEngine (employee, PortalSettings);
+
             return (MemoryStream) templateEngine.ApplyAndWrite (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), new MemoryStream ());
         }
 
         string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
         {
-            var templateEngine = GetEmployeeTemplateEngine (employee);
+            var templateEngine = new UniversityTemplateEngineManager ()
+                .GetEmployeeTemplateEngine (employee, PortalSettings);
+
             return templateEngine.ApplyAndSerialize (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), serializer).ToString ();
         }
 

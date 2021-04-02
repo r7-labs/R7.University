@@ -147,18 +147,11 @@ namespace R7.University.Launchpad.Services
             return workbookManager.SerializeWorkbook (tempFilePath, (WorkbookSerializationFormat) Enum.Parse (typeof (WorkbookSerializationFormat), format));
         }
 
-        // TODO: Code duplication
-        WorkbookLiquidTemplateEngine GetEmployeeTemplateEngine (IEmployee employee)
-        {
-            var employeeBinder = new EmployeeToTemplateBinder (employee, PortalSettings,
-                "~" + UniversityGlobals.INSTALL_PATH + "/R7.University.Employees/App_LocalResources/SharedResources.resx");
-
-            return new WorkbookLiquidTemplateEngine (employeeBinder, new HSSFWorkbookProvider ());
-        }
-
         string GetEmployeeCsvText (IEmployee employee, IWorkbookSerializer serializer)
         {
-            var templateEngine = GetEmployeeTemplateEngine (employee);
+            var templateEngine = new UniversityTemplateEngineManager ()
+                .GetEmployeeTemplateEngine (employee, PortalSettings);
+
             return templateEngine.ApplyAndSerialize (UniversityTemplateHelper.GetLocalizedEmployeeTemplatePath (), serializer).ToString ();
         }
     }
