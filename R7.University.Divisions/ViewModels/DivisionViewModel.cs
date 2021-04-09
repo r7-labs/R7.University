@@ -25,8 +25,12 @@ using System.Linq;
 using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Entities.Content.Taxonomy;
+using DotNetNuke.Entities.Icons;
 using DotNetNuke.Entities.Portals;
+using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
+using R7.Dnn.Extensions.Text;
 using R7.Dnn.Extensions.ViewModels;
 using R7.University.Components;
 using R7.University.Divisions.Models;
@@ -52,7 +56,7 @@ namespace R7.University.Divisions.ViewModels
             Division = division;
             Context = context;
 
-            _subDivisionViewModels = Division.SubDivisions.Select (d => new DivisionViewModel (d, Context)).ToList (); 
+            _subDivisionViewModels = Division.SubDivisions.Select (d => new DivisionViewModel (d, Context)).ToList ();
         }
 
         #region IDivision implementation
@@ -138,8 +142,8 @@ namespace R7.University.Divisions.ViewModels
                                              .OrderBy (d => d.Title)
                                              .ToList ();
             }
-        } 
-            
+        }
+
         public string DisplayTitle {
             get {
                 if (UniversityModelHelper.HasUniqueShortTitle (Division.ShortTitle, Division.Title)) {
@@ -147,6 +151,39 @@ namespace R7.University.Divisions.ViewModels
                 }
                 return Division.Title;
             }
+        }
+
+        public string DocumentFileIconUrl {
+            get {
+                var file = GetDocumentFile (Division.DocumentUrl);
+                if (file == null) {
+                    return null;
+                }
+
+                return IconController.GetFileIconUrl (file.Extension);
+            }
+        }
+
+        public string DocumentFileExtension {
+            get {
+                var file = GetDocumentFile (Division.DocumentUrl);
+                return file?.Extension;
+            }
+        }
+
+        IFileInfo GetDocumentFile (string url)
+        {
+            if (Globals.GetURLType (url) != TabType.File) {
+                return null;
+            }
+
+            var fileId = ParseHelper.ParseToNullable<int> (url.ToLowerInvariant ().Replace ("fileid=", ""));
+            if (fileId == null) {
+                return null;
+            }
+
+            var file = FileManager.Instance.GetFile (fileId.Value);
+            return file;
         }
 
         public string DisplayFax {

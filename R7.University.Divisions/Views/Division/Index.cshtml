@@ -41,9 +41,14 @@
             <span class="_section">@Model.DisplayTitle</span>
         }
         @if (!string.IsNullOrWhiteSpace (Model.DocumentUrl)) {
-        	<div class="_section">
-        	    <a href="@Model.DocumentUrl" target="_blank">@Dnn.LocalizeString("DocumentUrl.Text")</a>
-            </div>
+	        <div class="_section">
+		        <a href="@Model.DocumentUrl" target="_blank">
+			        @if (!string.IsNullOrEmpty (Model.DocumentFileIconUrl)) {
+				        <img src="@Model.DocumentFileIconUrl" alt="@Model.DocumentFileExtension"/>
+			        }
+			        @Dnn.LocalizeString("DocumentUrl.Text")
+		        </a>
+	        </div>
         }
     	@if (!string.IsNullOrWhiteSpace (Model.Phone) || !string.IsNullOrWhiteSpace (Model.Fax)) {
         	<div class="_section">
