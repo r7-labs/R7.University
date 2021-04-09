@@ -49,8 +49,8 @@
 			        @Dnn.LocalizeString("DocumentUrl.Text")
 		        </a>
 		        @if (!string.IsNullOrEmpty (Model.DocumentSignatureFileUrl)) {
-			        <span> + </span>
-			        <a href="Model.DocumentSignatureFileUrl" target="_blank">.sig</a>
+			        <span> | </span>
+			        <a href="@Model.DocumentSignatureFileUrl" target="_blank" title='@Dnn.LocalizeString("Signature.Text")'>.sig</a>
 		        }
 	        </div>
         }

@@ -36,13 +36,16 @@
     <data name="RelatedContent.Text" xml:space="preserve">
         <value>Найти связанное содержимое</value>
     </data>
-    <data name="DocumentUrl.Text" xml:space="preserve">
-        <value>[положение]</value>
-    </data>
+	<data name="DocumentUrl.Text" xml:space="preserve">
+		<value>Положение</value>
+	</data>
     <data name="SubDivisions.Text" xml:space="preserve">
         <value>Подчиненные подразделения:</value>
     </data>
     <data name="linkBarcode.Text" xml:space="preserve">
         <value><![CDATA[<i class="fas fa-qrcode"></i> Показать QR-код]]></value>
     </data>
+	<data name="Signature.Text" xml:space="preserve">
+		<value>Цифровая подпись</value>
+	</data>
 </root>

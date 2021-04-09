@@ -36,13 +36,16 @@
     <data name="RelatedContent.Text" xml:space="preserve">
         <value>Find Related Content</value>
     </data>
-    <data name="DocumentUrl.Text" xml:space="preserve">
-        <value>[regulations]</value>
-    </data>
+	<data name="DocumentUrl.Text" xml:space="preserve">
+		<value>Regulations</value>
+	</data>
     <data name="SubDivisions.Text" xml:space="preserve">
         <value>Subdivisions:</value>
     </data>
     <data name="linkBarcode.Text" xml:space="preserve">
         <value><![CDATA[<i class="fas fa-qrcode"></i> Show QR-code]]></value>
     </data>
+	<data name="Signature.Text" xml:space="preserve">
+		<value>Digital Signature</value>
+	</data>
 </root>
