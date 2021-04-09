@@ -1,24 +1,3 @@
-//
-//  DivisionViewModel.cs
-//
-//  Author:
-//       Roman M. Yagodin <roman.yagodin@gmail.com>
-//
-//  Copyright (c) 2017-2018 Roman M. Yagodin
-//
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Affero General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Affero General Public License for more details.
-//
-//  You should have received a copy of the GNU Affero General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +20,7 @@ using R7.University.ViewModels;
 
 namespace R7.University.Divisions.ViewModels
 {
-    public class DivisionViewModel: IDivision
+    public class DivisionViewModel : IDivision
     {
         protected IDivision Division;
 
@@ -76,6 +55,7 @@ namespace R7.University.Divisions.ViewModels
                 if (!string.IsNullOrEmpty (Division.DocumentUrl)) {
                     return Globals.LinkClick (Division.DocumentUrl, Context.Module.TabId, Context.Module.ModuleId);
                 }
+
                 return string.Empty;
             }
         }
@@ -135,12 +115,13 @@ namespace R7.University.Divisions.ViewModels
         }
 
         ICollection<DivisionViewModel> _subDivisionViewModels;
+
         public ICollection<DivisionViewModel> SubDivisionViewModels {
             get {
                 var now = HttpContext.Current.Timestamp;
                 return _subDivisionViewModels.Where (d => Context.Module.IsEditable || d.IsPublished (now))
-                                             .OrderBy (d => d.Title)
-                                             .ToList ();
+                    .OrderBy (d => d.Title)
+                    .ToList ();
             }
         }
 
@@ -149,6 +130,7 @@ namespace R7.University.Divisions.ViewModels
                 if (UniversityModelHelper.HasUniqueShortTitle (Division.ShortTitle, Division.Title)) {
                     return Division.Title + $" ({Division.ShortTitle})";
                 }
+
                 return Division.Title;
             }
         }
@@ -183,6 +165,23 @@ namespace R7.University.Divisions.ViewModels
 
             var file = FileManager.Instance.GetFile (fileId.Value);
             return file;
+        }
+
+        public string DocumentSignatureFileUrl {
+            get {
+                var sigFile = GetSignatureFile (GetCachedDocumentFile ());
+                if (sigFile == null) {
+                    return null;
+                }
+                return FileManager.Instance.GetUrl (sigFile);
+            }
+        }
+
+        IFileInfo GetSignatureFile (IFileInfo file)
+        {
+            var folder = FolderManager.Instance.GetFolder (file.FolderId);
+            var sigFile = FileManager.Instance.GetFile (folder, file.FileName + ".sig");
+            return sigFile;
         }
 
         public string DisplayFax {

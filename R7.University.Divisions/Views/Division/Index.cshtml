@@ -48,6 +48,10 @@
 			        }
 			        @Dnn.LocalizeString("DocumentUrl.Text")
 		        </a>
+		        @if (!string.IsNullOrEmpty (Model.DocumentSignatureFileUrl)) {
+			        <span> + </span>
+			        <a href="Model.DocumentSignatureFileUrl" target="_blank">.sig</a>
+		        }
 	        </div>
         }
     	@if (!string.IsNullOrWhiteSpace (Model.Phone) || !string.IsNullOrWhiteSpace (Model.Fax)) {
