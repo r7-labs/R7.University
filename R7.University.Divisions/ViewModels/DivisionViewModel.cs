@@ -155,7 +155,7 @@ namespace R7.University.Divisions.ViewModels
 
         public string DocumentFileIconUrl {
             get {
-                var file = GetDocumentFile (Division.DocumentUrl);
+                var file = GetCachedDocumentFile ();
                 if (file == null) {
                     return null;
                 }
@@ -164,12 +164,11 @@ namespace R7.University.Divisions.ViewModels
             }
         }
 
-        public string DocumentFileExtension {
-            get {
-                var file = GetDocumentFile (Division.DocumentUrl);
-                return file?.Extension;
-            }
-        }
+        public string DocumentFileExtension => GetCachedDocumentFile ()?.Extension;
+
+        private IFileInfo _documentFile;
+
+        IFileInfo GetCachedDocumentFile () => _documentFile ?? (_documentFile = GetDocumentFile (Division.DocumentUrl));
 
         IFileInfo GetDocumentFile (string url)
         {
