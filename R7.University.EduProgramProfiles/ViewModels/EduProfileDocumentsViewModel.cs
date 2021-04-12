@@ -163,7 +163,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 UniversityFileHelper.Instance.GetSignatureFile (
                     UniversityFileHelper.Instance.GetFileByUrl (document.Url));
             var sigUrl = sigFile != null
-                ? UniversityUrlHelper.LinkClick ("fileid=" + sigFile.FileId, Context.Module.TabId,
+                ? UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId,
                     Context.Module.ModuleId)
                 : string.Empty;
 

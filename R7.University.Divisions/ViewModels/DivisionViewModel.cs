@@ -148,7 +148,7 @@ namespace R7.University.Divisions.ViewModels
                 if (sigFile == null) {
                     return null;
                 }
-                return UniversityUrlHelper.LinkClick ("fileid=" + sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId);
+                return UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId);
             }
         }
 

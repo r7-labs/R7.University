@@ -58,6 +58,11 @@ namespace R7.University.Utilities
             return LinkClickIdnHack (url, tabId, moduleId);
         }
 
+        public static string LinkClickFile (int fileId, int tabId, int moduleId)
+        {
+            return LinkClick ("fileid=" + fileId, tabId, moduleId);
+        }
+
         /// <summary>
         /// Formats the URL by DNN rules.
         /// </summary>
