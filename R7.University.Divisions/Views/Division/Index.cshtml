@@ -50,8 +50,8 @@
 			           style="color:@fa.GetBrandColorByExtension(Model.DocumentFileExtension)"></i>
 			        @Dnn.LocalizeString("DocumentUrl.Text")
 		        </a>
-		        <span> | </span>
 		        @if (!string.IsNullOrEmpty (Model.DocumentSignatureFileUrl)) {
+			        <span> | </span>
 			        <a href="@Model.DocumentSignatureFileUrl" target="_blank" title='@Dnn.LocalizeString("Signature.Text")'>
 				        <i class="fas fa-signature"></i>
 			        </a>
