@@ -159,7 +159,7 @@ namespace R7.University.Divisions.ViewModels
                 if (sigFile == null) {
                     return null;
                 }
-                return FileManager.Instance.GetUrl (sigFile);
+                return UniversityUrlHelper.LinkClick ("fileid=" + sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId);
             }
         }
 
