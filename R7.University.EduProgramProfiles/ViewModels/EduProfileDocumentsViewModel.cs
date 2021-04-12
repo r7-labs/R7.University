@@ -54,7 +54,9 @@ namespace R7.University.EduProgramProfiles.ViewModels
         public string EduSchedule_Links => _eduScheduleLinks ?? (_eduScheduleLinks = GetEduScheduleLinks ());
 
         string _workProgramAnnotationLinks;
-        public string WorkProgramAnnotation_Links => _workProgramAnnotationLinks ?? (_workProgramAnnotationLinks = GetWorkProgramAnnotationLinks ());
+
+        public string WorkProgramAnnotation_Links => _workProgramAnnotationLinks ??
+                                                     (_workProgramAnnotationLinks = GetWorkProgramAnnotationLinks ());
 
         string _eduMaterialLinks;
         public string EduMaterial_Links => _eduMaterialLinks ?? (_eduMaterialLinks = GetEduMaterialLinks ());
@@ -62,14 +64,15 @@ namespace R7.University.EduProgramProfiles.ViewModels
         string _workProgramLinks;
         public string WorkProgram_Links => _workProgramLinks ?? (_workProgramLinks = GetWorkProgramLinks ());
 
-        public string EduForms_String
-        {
+        public string EduForms_String {
             get {
                 var formYears = GetImplementedEduFormYears ();
                 if (!formYears.IsNullOrEmpty ()) {
                     return "<ul itemprop=\"eduForm\">" + formYears
-                        .Select (eppfy => (eppfy.IsPublished (_now) ? "<li>" : "<li class=\"u8y-not-published-element\">")
-                                 + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text", Context.LocalResourceFile, eppfy.EduForm.Title).ToLower () + "</li>")
+                        .Select (eppfy =>
+                            (eppfy.IsPublished (_now) ? "<li>" : "<li class=\"u8y-not-published-element\">")
+                            + LocalizationHelper.GetStringWithFallback ("EduForm_" + eppfy.EduForm.Title + ".Text",
+                                Context.LocalResourceFile, eppfy.EduForm.Title).ToLower () + "</li>")
                         .Aggregate ((s1, s2) => s1 + s2) + "</ul>";
                 }
 
@@ -82,8 +85,10 @@ namespace R7.University.EduProgramProfiles.ViewModels
             if (ELearning || DistanceEducation) {
                 return FormatHelper.JoinNotNullOrEmpty (
                     ", ",
-                    ELearning? Localization.GetString ("ELearning_ELearning.Text", Context.LocalResourceFile) : null,
-                    DistanceEducation? Localization.GetString ("ELearning_DistanceEducation.Text", Context.LocalResourceFile) : null
+                    ELearning ? Localization.GetString ("ELearning_ELearning.Text", Context.LocalResourceFile) : null,
+                    DistanceEducation
+                        ? Localization.GetString ("ELearning_DistanceEducation.Text", Context.LocalResourceFile)
+                        : null
                 );
             }
 
@@ -96,25 +101,33 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
         protected IEnumerable<IDocument> GetDocuments (IEnumerable<IDocument> documents)
         {
-            return documents.WherePublished (HttpContext.Current.Timestamp, Context.Module.IsEditable).OrderByGroupDescThenSortIndex ();
+            return documents.WherePublished (HttpContext.Current.Timestamp, Context.Module.IsEditable)
+                .OrderByGroupDescThenSortIndex ();
         }
 
         string _rowId;
         protected string RowId => _rowId ?? (_rowId = $"m{Context.Module.ModuleId}-epp{EduProgramProfileID}");
 
         string _groupColumnHeader;
+
         protected string GroupColumnHeader =>
-            _groupColumnHeader ?? (_groupColumnHeader = Localization.GetString ("DocumentGroup.Column", Context.LocalResourceFile));
+            _groupColumnHeader ?? (_groupColumnHeader =
+                Localization.GetString ("DocumentGroup.Column", Context.LocalResourceFile));
 
         string _titleColumnHeader;
+
         protected string TitleColumnHeader =>
-            _titleColumnHeader ?? (_titleColumnHeader = Localization.GetString ("DocumentTitle.Column", Context.LocalResourceFile));
+            _titleColumnHeader ?? (_titleColumnHeader =
+                Localization.GetString ("DocumentTitle.Column", Context.LocalResourceFile));
 
         string _signatureColumnHeader;
-        protected string SignatureColumnHeader =>
-            _signatureColumnHeader ?? (_signatureColumnHeader = Localization.GetString ("DocumentSignature_Column.Text", Context.LocalResourceFile));
 
-        string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string columnSlug, string microdata = "", string noLinksText = "-")
+        protected string SignatureColumnHeader =>
+            _signatureColumnHeader ?? (_signatureColumnHeader =
+                Localization.GetString ("DocumentSignature_Column.Text", Context.LocalResourceFile));
+
+        string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string columnSlug, string microdata = "",
+            string noLinksText = "-")
         {
             var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
             var docCount = documents.Count ();
@@ -128,24 +141,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                 );
 
                 foreach (var document in documents) {
-                    var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
-                    var docUrl = UniversityUrlHelper.LinkClick (document.Url, Context.Module.TabId, Context.Module.ModuleId);
-
-                    var sigFile = UniversityFileHelper.Instance.GetSignatureFile (UniversityFileHelper.Instance.GetFileByUrl (document.Url));
-                    var sigUrl = sigFile != null ? UniversityUrlHelper.LinkClick ("fileid=" + sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId) : "";
-
-                    var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp) ? " class=\"u8y-not-published\"" : string.Empty;
-
-                    table.Append ($"<tr{rowCssClassAttr}>");
-                    table.Append ($"<td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td>");
-                    if (sigFile != null) {
-                        table.Append ($"<td><a href=\"{sigUrl}\">.sig</a></td>");
-                    }
-                    else {
-                        table.Append ("<td></td>");
-                    }
-
-                    table.Append ($"<td>{document.Group}</td></tr>");
+                    GenerateDocumentsTableRow (table, document);
                 }
 
                 table.Append ("</tbody></table></span>");
@@ -153,6 +149,38 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
 
             return $"<span{microdataAttrs}>{noLinksText}</span>";
+        }
+
+        void GenerateDocumentsTableRow (StringBuilder table, IDocument document)
+        {
+            var docTitle = !string.IsNullOrEmpty (document.Title)
+                ? document.Title
+                : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
+            var docUrl =
+                UniversityUrlHelper.LinkClick (document.Url, Context.Module.TabId, Context.Module.ModuleId);
+
+            var sigFile =
+                UniversityFileHelper.Instance.GetSignatureFile (
+                    UniversityFileHelper.Instance.GetFileByUrl (document.Url));
+            var sigUrl = sigFile != null
+                ? UniversityUrlHelper.LinkClick ("fileid=" + sigFile.FileId, Context.Module.TabId,
+                    Context.Module.ModuleId)
+                : string.Empty;
+
+            var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp)
+                ? " class=\"u8y-not-published\""
+                : string.Empty;
+
+            table.Append ($"<tr{rowCssClassAttr}>");
+            table.Append ($"<td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td>");
+            if (sigFile != null) {
+                table.Append ($"<td><a href=\"{sigUrl}\">.sig</a></td>");
+            }
+            else {
+                table.Append ("<td></td>");
+            }
+
+            table.Append ($"<td>{document.Group}</td></tr>");
         }
 
         string GetEduProgramLinks ()
