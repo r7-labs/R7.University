@@ -1,5 +1,6 @@
 @inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<DivisionViewModel>
 @using System.Collections.Generic
+@using System.Drawing
 @using DotNetNuke.Collections
 @using DotNetNuke.Web.Mvc.Helpers
 @using DotNetNuke.Web.Client.ClientResourceManagement
@@ -7,10 +8,11 @@
 @using DotNetNuke.Framework.JavaScriptLibraries
 @using DotNetNuke.Common
 @using DotNetNuke.Common.Utilities
+@using R7.University.UI
 @using R7.University.ModelExtensions
 @using R7.University.Divisions.ViewModels
 @{
-    ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css");
+	ClientResourceManager.RegisterStyleSheet (Dnn.DnnPage, "~/DesktopModules/MVC/R7.University/R7.University/assets/css/module.css");
     var now = Request.RequestContext.HttpContext.Timestamp;
     var displayContent = true;
     if (Dnn.ModuleContext.IsEditable) {
@@ -43,14 +45,16 @@
         @if (!string.IsNullOrWhiteSpace (Model.DocumentUrl)) {
 	        <div class="_section">
 		        <a href="@Model.DocumentUrl" target="_blank">
-			        @if (!string.IsNullOrEmpty (Model.DocumentFileIconUrl)) {
-				        <img src="@Model.DocumentFileIconUrl" alt="@Model.DocumentFileExtension"/>
-			        }
+			        @{ var fa = FontAwesomeHelper.Instance; }
+			        <i class="fas fa-file-@fa.GetBaseIconNameByExtension(Model.DocumentFileExtension)"
+			           style="color:@fa.GetBrandColorByExtension(Model.DocumentFileExtension)"></i>
 			        @Dnn.LocalizeString("DocumentUrl.Text")
 		        </a>
+		        <span> | </span>
 		        @if (!string.IsNullOrEmpty (Model.DocumentSignatureFileUrl)) {
-			        <span> | </span>
-			        <a href="@Model.DocumentSignatureFileUrl" target="_blank" title='@Dnn.LocalizeString("Signature.Text")'>.sig</a>
+			        <a href="@Model.DocumentSignatureFileUrl" target="_blank" title='@Dnn.LocalizeString("Signature.Text")'>
+				        <i class="fas fa-signature"></i>
+			        </a>
 		        }
 	        </div>
         }
