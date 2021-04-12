@@ -131,7 +131,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
                     var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
                     var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId);
 
-                    var sigFile = GetSignatureFile (GetFileByUrl (document.Url));
+                    var sigFile = UniversityFileHelper.Instance.GetSignatureFile (UniversityFileHelper.Instance.GetFileByUrl (document.Url));
                     var sigUrl = sigFile != null ? UniversityUrlHelper.LinkClickIdnHack ("fileid=" + sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId) : "";
 
                     var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp) ? " class=\"u8y-not-published\"" : string.Empty;
@@ -153,28 +153,6 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
 
             return $"<span{microdataAttrs}>{noLinksText}</span>";
-        }
-
-        IFileInfo GetFileByUrl (string url)
-        {
-            if (Globals.GetURLType (url) != TabType.File) {
-                return null;
-            }
-
-            var fileId = ParseHelper.ParseToNullable<int> (url.ToLowerInvariant ().Replace ("fileid=", ""));
-            if (fileId == null) {
-                return null;
-            }
-
-            var file = FileManager.Instance.GetFile (fileId.Value);
-            return file;
-        }
-
-        IFileInfo GetSignatureFile (IFileInfo file)
-        {
-            var folder = FolderManager.Instance.GetFolder (file.FolderId);
-            var sigFile = FileManager.Instance.GetFile (folder, file.FileName + ".sig");
-            return sigFile;
         }
 
         string GetEduProgramLinks ()

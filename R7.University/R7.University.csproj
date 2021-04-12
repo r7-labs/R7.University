@@ -237,6 +237,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\UniversityController.cs" />
     <Compile Include="Templates\UniversityTemplateEngineManager.cs" />
+    <Compile Include="Utilities\UniversityFileHelper.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="ViewModels\ViewModelIndexer.cs" />
     <Compile Include="ViewModels\ViewNumerator.cs" />

@@ -150,38 +150,17 @@ namespace R7.University.Divisions.ViewModels
 
         private IFileInfo _documentFile;
 
-        IFileInfo GetCachedDocumentFile () => _documentFile ?? (_documentFile = GetFileByUrl (Division.DocumentUrl));
-
-        IFileInfo GetFileByUrl (string url)
-        {
-            if (Globals.GetURLType (url) != TabType.File) {
-                return null;
-            }
-
-            var fileId = ParseHelper.ParseToNullable<int> (url.ToLowerInvariant ().Replace ("fileid=", ""));
-            if (fileId == null) {
-                return null;
-            }
-
-            var file = FileManager.Instance.GetFile (fileId.Value);
-            return file;
-        }
+        IFileInfo GetCachedDocumentFile () =>
+            _documentFile ?? (_documentFile = UniversityFileHelper.Instance.GetFileByUrl (Division.DocumentUrl));
 
         public string DocumentSignatureFileUrl {
             get {
-                var sigFile = GetSignatureFile (GetCachedDocumentFile ());
+                var sigFile = UniversityFileHelper.Instance.GetSignatureFile (GetCachedDocumentFile ());
                 if (sigFile == null) {
                     return null;
                 }
                 return FileManager.Instance.GetUrl (sigFile);
             }
-        }
-
-        IFileInfo GetSignatureFile (IFileInfo file)
-        {
-            var folder = FolderManager.Instance.GetFolder (file.FolderId);
-            var sigFile = FileManager.Instance.GetFile (folder, file.FileName + ".sig");
-            return sigFile;
         }
 
         public string DisplayFax {
