@@ -150,9 +150,9 @@ namespace R7.University.Divisions.ViewModels
 
         private IFileInfo _documentFile;
 
-        IFileInfo GetCachedDocumentFile () => _documentFile ?? (_documentFile = GetDocumentFile (Division.DocumentUrl));
+        IFileInfo GetCachedDocumentFile () => _documentFile ?? (_documentFile = GetFileByUrl (Division.DocumentUrl));
 
-        IFileInfo GetDocumentFile (string url)
+        IFileInfo GetFileByUrl (string url)
         {
             if (Globals.GetURLType (url) != TabType.File) {
                 return null;
