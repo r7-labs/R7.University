@@ -44,13 +44,18 @@ namespace R7.University.Utilities
         /// https://dnntracker.atlassian.net/browse/DNN-7919
         /// </summary>
         /// <returns>Return raw (untrackable) URL for external URLs.</returns>
-        public static string LinkClickIdnHack (string url, int tabId, int moduleId)
+        private static string LinkClickIdnHack (string url, int tabId, int moduleId)
         {
             var urlType = Globals.GetURLType (url);
             if (urlType == TabType.Url) {
                 return url;
             }
             return Globals.LinkClick (url, tabId, moduleId);
+        }
+
+        public static string LinkClick (string url, int tabId, int moduleId)
+        {
+            return LinkClickIdnHack (url, tabId, moduleId);
         }
 
         /// <summary>

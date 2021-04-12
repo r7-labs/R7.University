@@ -129,10 +129,10 @@ namespace R7.University.EduProgramProfiles.ViewModels
 
                 foreach (var document in documents) {
                     var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
-                    var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId);
+                    var docUrl = UniversityUrlHelper.LinkClick (document.Url, Context.Module.TabId, Context.Module.ModuleId);
 
                     var sigFile = UniversityFileHelper.Instance.GetSignatureFile (UniversityFileHelper.Instance.GetFileByUrl (document.Url));
-                    var sigUrl = sigFile != null ? UniversityUrlHelper.LinkClickIdnHack ("fileid=" + sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId) : "";
+                    var sigUrl = sigFile != null ? UniversityUrlHelper.LinkClick ("fileid=" + sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId) : "";
 
                     var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp) ? " class=\"u8y-not-published\"" : string.Empty;
 

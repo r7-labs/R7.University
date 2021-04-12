@@ -49,7 +49,7 @@ namespace R7.University.Employees.ViewModels
             get {
                 if (!string.IsNullOrWhiteSpace (DocumentURL)) {
                     return string.Format ("<a href=\"{0}\" target=\"_blank\">{1}</a>",
-                        UniversityUrlHelper.LinkClickIdnHack (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
+                        UniversityUrlHelper.LinkClick (DocumentURL, Context.Module.TabId, Context.Module.ModuleId),
                         Localization.GetString ("DocumentUrl.Text",  Context.LocalResourceFile));
                 }
 

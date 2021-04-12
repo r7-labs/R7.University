@@ -140,9 +140,9 @@ namespace R7.University.ViewModels
                     : defaultTitle);
 
             if (!string.IsNullOrWhiteSpace (document.Url)) {
-                var linkMarkup = "<a href=\"" + UniversityUrlHelper.LinkClickIdnHack (document.Url, tabId, moduleId) + "\" "
-                                                                   + FormatHelper.JoinNotNullOrEmpty (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
-                + " target=\"_blank\">" + title + "</a>";
+                var linkMarkup = "<a href=\"" + UniversityUrlHelper.LinkClick (document.Url, tabId, moduleId) + "\" "
+                                 + FormatHelper.JoinNotNullOrEmpty (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
+                                 + " target=\"_blank\">" + title + "</a>";
 
                 if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {
                     return FormatHelper.JoinNotNullOrEmpty (": ", document.Group, linkMarkup);
