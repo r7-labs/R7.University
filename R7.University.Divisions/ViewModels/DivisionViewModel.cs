@@ -182,10 +182,6 @@ namespace R7.University.Divisions.ViewModels
             }
         }
 
-        public string DisplayDocumentUrl {
-            get { return Globals.LinkClick (Division.DocumentUrl, Context.Module.TabId, Context.Module.ModuleId); }
-        }
-
         string _termUrl;
         public string DisplayTermUrl {
             get {
