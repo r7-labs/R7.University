@@ -135,17 +135,6 @@ namespace R7.University.Divisions.ViewModels
             }
         }
 
-        public string DocumentFileIconUrl {
-            get {
-                var file = GetCachedDocumentFile ();
-                if (file == null) {
-                    return null;
-                }
-
-                return IconController.GetFileIconUrl (file.Extension);
-            }
-        }
-
         public string DocumentFileExtension => GetCachedDocumentFile ()?.Extension;
 
         private IFileInfo _documentFile;
