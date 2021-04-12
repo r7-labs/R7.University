@@ -87,4 +87,7 @@
 	<data name="UnknownLanguage.Text" xml:space="preserve">
         <value>&lt;неизвестный язык&gt;</value>
     </data>
+	<data name="DocumentSignature_Column.Text" xml:space="preserve">
+		<value>ЭЦП</value>
+	</data>
 </root>

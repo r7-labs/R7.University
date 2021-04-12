@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Tabs;
+using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Collections;
 using R7.Dnn.Extensions.Text;
@@ -107,6 +110,10 @@ namespace R7.University.EduProgramProfiles.ViewModels
         protected string TitleColumnHeader =>
             _titleColumnHeader ?? (_titleColumnHeader = Localization.GetString ("DocumentTitle.Column", Context.LocalResourceFile));
 
+        string _signatureColumnHeader;
+        protected string SignatureColumnHeader =>
+            _signatureColumnHeader ?? (_signatureColumnHeader = Localization.GetString ("DocumentSignature_Column.Text", Context.LocalResourceFile));
+
         string FormatDocumentsLinkWithData (IEnumerable<IDocument> documents, string columnSlug, string microdata = "", string noLinksText = "-")
         {
             var microdataAttrs = !string.IsNullOrEmpty (microdata) ? " " + microdata : string.Empty;
@@ -117,14 +124,28 @@ namespace R7.University.EduProgramProfiles.ViewModels
                     + $"<a type=\"button\" class=\"badge badge-secondary\" data-toggle=\"modal\" data-target=\"#u8y-epp-docs-dlg-{Context.Module.ModuleId}\""
                     + $" data-table=\"doct-{RowId}-{columnSlug}\">{docCount}</a>"
                     + $"<table id=\"doct-{RowId}-{columnSlug}\" class=\"d-none\">"
-                    + $"<thead><tr><th>{TitleColumnHeader}</th><th>{GroupColumnHeader}</th></tr></thead><tbody>"
+                    + $"<thead><tr><th>{TitleColumnHeader}</th><th>{SignatureColumnHeader}</th><th>{GroupColumnHeader}</th></tr></thead><tbody>"
                 );
 
                 foreach (var document in documents) {
                     var docTitle = !string.IsNullOrEmpty (document.Title) ? document.Title : Localization.GetString ("LinkOpen.Text", Context.LocalResourceFile);
                     var docUrl = UniversityUrlHelper.LinkClickIdnHack (document.Url, Context.Module.TabId, Context.Module.ModuleId);
+
+                    var sigFile = GetSignatureFile (GetFileByUrl (document.Url));
+                    var sigUrl = sigFile != null ? UniversityUrlHelper.LinkClickIdnHack ("fileid=" + sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId) : "";
+
                     var rowCssClassAttr = !document.IsPublished (HttpContext.Current.Timestamp) ? " class=\"u8y-not-published\"" : string.Empty;
-                    table.Append ($"<tr{rowCssClassAttr}><td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td><td>{document.Group}</td></tr>");
+
+                    table.Append ($"<tr{rowCssClassAttr}>");
+                    table.Append ($"<td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td>");
+                    if (sigFile != null) {
+                        table.Append ($"<td><a href=\"{sigUrl}\">.sig</a></td>");
+                    }
+                    else {
+                        table.Append ("<td></td>");
+                    }
+
+                    table.Append ($"<td>{document.Group}</td></tr>");
                 }
 
                 table.Append ("</tbody></table></span>");
@@ -132,6 +153,28 @@ namespace R7.University.EduProgramProfiles.ViewModels
             }
 
             return $"<span{microdataAttrs}>{noLinksText}</span>";
+        }
+
+        IFileInfo GetFileByUrl (string url)
+        {
+            if (Globals.GetURLType (url) != TabType.File) {
+                return null;
+            }
+
+            var fileId = ParseHelper.ParseToNullable<int> (url.ToLowerInvariant ().Replace ("fileid=", ""));
+            if (fileId == null) {
+                return null;
+            }
+
+            var file = FileManager.Instance.GetFile (fileId.Value);
+            return file;
+        }
+
+        IFileInfo GetSignatureFile (IFileInfo file)
+        {
+            var folder = FolderManager.Instance.GetFolder (file.FolderId);
+            var sigFile = FileManager.Instance.GetFile (folder, file.FileName + ".sig");
+            return sigFile;
         }
 
         string GetEduProgramLinks ()

@@ -87,4 +87,7 @@
 	<data name="UnknownLanguage.Text" xml:space="preserve">
         <value>&lt;unknown language&gt;</value>
     </data>
+	<data name="DocumentSignature_Column.Text" xml:space="preserve">
+		<value>Signature</value>
+	</data>
 </root>
