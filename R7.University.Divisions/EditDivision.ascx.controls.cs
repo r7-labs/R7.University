@@ -21,7 +21,9 @@ namespace R7.University.Divisions
         protected TextBox txtPhone;
         protected TextBox txtFax;
         protected TextBox txtEmail;
+        protected RegularExpressionValidator valEmail;
         protected TextBox txtSecondaryEmail;
+        protected RegularExpressionValidator valSecondaryEmail;
         protected TextBox textAddress;
         protected TextBox txtLocation;
         protected DropDownList comboWorkingHours;

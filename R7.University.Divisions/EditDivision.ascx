@@ -86,10 +86,16 @@
         		<div class="dnnFormItem">
         			<dnn:Label id="lblEmail" runat="server" ControlName="txtEmail" />
         			<asp:TextBox id="txtEmail" runat="server" MaxLength="250" />
+	                <asp:RegularExpressionValidator id="valEmail" runat="server" ControlToValidate="txtEmail"
+	                                                Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
+                                                    resourcekey="Email_Invalid.Text" />
         		</div>
         		<div class="dnnFormItem">
         			<dnn:Label id="lblSecondaryEmail" runat="server" ControlName="txtSecondaryEmail" />
         			<asp:TextBox id="txtSecondaryEmail" runat="server" MaxLength="250" />
+                    <asp:RegularExpressionValidator id="valSecondaryEmail" runat="server" ControlToValidate="txtSecondaryEmail"
+                                                    Display="Dynamic" CssClass="dnnFormMessage dnnFormError"
+                                                    resourcekey="Email_Invalid.Text" />
         		</div>
 				<div class="dnnFormItem">
                     <dnn:Label id="labelAddress" runat="server" ControlName="textAddress" />

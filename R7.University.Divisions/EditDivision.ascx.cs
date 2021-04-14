@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using DotNetNuke.Common;
 using R7.Dnn.Extensions.Controls;
 using R7.Dnn.Extensions.Text;
 using R7.University.Commands;
@@ -74,6 +75,9 @@ namespace R7.University.Divisions
             // FIXME: Possible circular dependency as list can still contain childrens of current division
             parentDivisionSelector.DataSource = new DivisionQuery (ModelContext).ListExcept (itemId).OrderBy (d => d.Title);
             parentDivisionSelector.DataBind ();
+
+            valEmail.ValidationExpression = Globals.glbEmailRegEx;
+            valSecondaryEmail.ValidationExpression = Globals.glbEmailRegEx;
 
             // init working hours
             WorkingHoursLogic.Init (this, comboWorkingHours);
