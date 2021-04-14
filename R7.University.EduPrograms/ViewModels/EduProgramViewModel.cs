@@ -27,15 +27,9 @@ namespace R7.University.EduPrograms.ViewModels
 
         #region Bindable properties
 
-        public string Title_String
-        {
-            get { return UniversityFormatHelper.FormatEduProgramTitle (EduProgram.Code, EduProgram.Title); }
-        }
+        public string Title_String => UniversityFormatHelper.FormatEduProgramTitle (EduProgram.Code, EduProgram.Title);
 
-        public string EduLevel_Title
-        {
-            get { return EduProgram.EduLevel.Title; }
-        }
+        public string EduLevel_Title => EduProgram.EduLevel.Title;
 
         public bool StateEduStandards_Visible =>
             !GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.StateEduStandard)).IsNullOrEmpty ();
@@ -78,12 +72,7 @@ namespace R7.University.EduPrograms.ViewModels
             }
         }
 
-        public string CssClass
-        {
-            get {
-                return EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
-            }
-        }
+        public string CssClass => EduProgram.IsPublished (HttpContext.Current.Timestamp) ? string.Empty : "u8y-not-published";
 
         public bool EduProfiles_Visible => EduProfileViewModels
             .Any (epp => epp.IsPublished (HttpContext.Current.Timestamp) || Context.Module.IsEditable);
