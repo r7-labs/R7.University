@@ -51,19 +51,19 @@ namespace R7.University.EduPrograms.ViewModels
                 var stateEduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.StateEduStandard));
                 if (!stateEduStandardDocs.IsNullOrEmpty ()) {
                     sb.AppendFormat ("<em>{0}</em>", Context.LocalizeString ("StateEduStandards.Text"));
-                    sb.Append (FormatDocumentLinks (stateEduStandardDocs, "itemprop=\"eduFedDoc\""));
+                    sb.Append (RenderDocumentsList (stateEduStandardDocs, "itemprop=\"eduFedDoc\""));
                 }
 
                 var eduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard));
                 if (!eduStandardDocs.IsNullOrEmpty ()) {
                     sb.AppendFormat ("<em>{0}</em>", Context.LocalizeString ("EduStandards.Text"));
-                    sb.Append (FormatDocumentLinks (eduStandardDocs, "itemprop=\"eduStandartDoc\""));
+                    sb.Append (RenderDocumentsList (eduStandardDocs, "itemprop=\"eduStandartDoc\""));
                 }
 
                 var profStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard));
                 if (!profStandardDocs.IsNullOrEmpty ()) {
                     sb.AppendFormat ("<em>{0}</em>", Context.LocalizeString ("ProfStandards.Text"));
-                    sb.Append (FormatDocumentLinks (profStandardDocs, string.Empty));
+                    sb.Append (RenderDocumentsList (profStandardDocs, string.Empty));
                 }
 
                 return sb.ToString ();

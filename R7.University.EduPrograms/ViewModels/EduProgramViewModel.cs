@@ -43,21 +43,21 @@ namespace R7.University.EduPrograms.ViewModels
         public string StateEduStandard_Links {
             get {
                 var stateEduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.StateEduStandard));
-                return FormatDocumentLinks (stateEduStandardDocs, string.Empty);
+                return RenderDocumentsList (stateEduStandardDocs, string.Empty);
             }
         }
 
         public string EduStandard_Links {
             get {
                 var eduStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.EduStandard));
-                return FormatDocumentLinks (eduStandardDocs, string.Empty);
+                return RenderDocumentsList (eduStandardDocs, string.Empty);
             }
         }
 
         public string ProfStandard_Links {
             get {
                 var profStandardDocs = GetDocuments (EduProgram.GetDocumentsOfType (SystemDocumentType.ProfStandard));
-                return FormatDocumentLinks (profStandardDocs, string.Empty);
+                return RenderDocumentsList (profStandardDocs, string.Empty);
             }
         }
 

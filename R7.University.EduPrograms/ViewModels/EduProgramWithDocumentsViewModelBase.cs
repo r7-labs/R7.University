@@ -24,9 +24,9 @@ namespace R7.University.EduPrograms.ViewModels
             return documents.WherePublished (HttpContext.Current.Timestamp, Context.Module.IsEditable).OrderByGroupDescThenSortIndex ();
         }
 
-        protected string FormatDocumentLinks (IEnumerable<IDocument> documents, string microdata)
+        protected string RenderDocumentsList (IEnumerable<IDocument> documents, string microdata)
         {
-            return FormatDocumentLinks (
+            return RenderDocumentsList (
                 documents,
                 "<ul class=\"list-inline\">{0}</ul>",
                 "<li class=\"list-inline-item\">{0}</li>",
@@ -34,11 +34,11 @@ namespace R7.University.EduPrograms.ViewModels
             );
         }
 
-        public string FormatDocumentLinks (IEnumerable<IDocument> documents, string listTemplate, string itemTemplate, string microdata)
+        string RenderDocumentsList (IEnumerable<IDocument> documents, string listTemplate, string itemTemplate, string microdata)
         {
             var markupBuilder = new StringBuilder ();
             foreach (var document in documents) {
-                var linkMarkup = FormatDocumentLink (document,
+                var linkMarkup = RenderDocumentLink (document,
                     document.Title,
                     Context.LocalizeString ("LinkOpen.Text"),
                     microdata,
@@ -58,7 +58,7 @@ namespace R7.University.EduPrograms.ViewModels
             return string.Empty;
         }
 
-        string FormatDocumentLink (IDocument document, string documentTitle,
+        string RenderDocumentLink (IDocument document, string documentTitle,
             string defaultTitle, string microdata, DateTime now)
         {
             var title = !string.IsNullOrWhiteSpace (documentTitle)
