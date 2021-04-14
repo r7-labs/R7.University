@@ -192,4 +192,7 @@
     <data name="labelAudit.Help" xml:space="preserve">
         <value>Данные аудита сотрудника.</value>
     </data>
+	<data name="Email_Invalid.Text" xml:space="preserve">
+		<value>Некорректный формат адреса эл. почты!</value>
+	</data>
 </root>

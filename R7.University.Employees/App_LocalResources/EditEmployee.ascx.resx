@@ -192,4 +192,7 @@
     <data name="labelAudit.Help" xml:space="preserve">
         <value>Audit data for the employee.</value>
     </data>
+	<data name="Email_Invalid.Text" xml:space="preserve">
+		<value>Invalid Format of Email Address!</value>
+	</data>
 </root>

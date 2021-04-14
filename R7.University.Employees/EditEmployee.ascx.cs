@@ -105,6 +105,9 @@ namespace R7.University.Employees
 
             checkShowBarcode.Checked = true;
 
+            valEmail.ValidationExpression = Globals.EmailValidatorRegex.ToString ();
+            valSecondaryEmail.ValidationExpression = Globals.EmailValidatorRegex.ToString ();
+
             // add default item to user list
             comboUsers.Items.Add (new ListItem (LocalizeString ("NotSelected.Text"), Null.NullInteger.ToString ()));
 

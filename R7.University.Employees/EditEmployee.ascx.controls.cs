@@ -1,4 +1,5 @@
-﻿using System.Web.UI.WebControls;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.UI.WebControls;
 using DotNetNuke.UI.UserControls;
 using DotNetNuke.Web.UI.WebControls;
 using R7.University.Controls;
@@ -21,7 +22,9 @@ namespace R7.University.Employees
 		protected TextBox textCellPhone;
 		protected TextBox textFax;
 		protected TextBox textEmail;
+        protected RegularExpressionValidator valEmail;
 		protected TextBox textSecondaryEmail;
+        protected RegularExpressionValidator valSecondaryEmail;
 		protected TextBox textWebSite;
 		protected TextBox textWebSiteLabel;
 		protected TextBox textMessenger;
