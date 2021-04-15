@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using System.Web;
 using DotNetNuke.Common;
 using DotNetNuke.Services.Localization;
 using R7.Dnn.Extensions.Localization;
 using R7.Dnn.Extensions.Text;
-using R7.Dnn.Extensions.ViewModels;
-using R7.University.ModelExtensions;
 using R7.University.Models;
-using R7.University.Utilities;
 
 namespace R7.University.ViewModels
 {
@@ -126,66 +121,6 @@ namespace R7.University.ViewModels
         public static string FormatEduProfilePartialTitle (string profileCode, string profileTitle, string eduLevelTitle)
         {
             return FormatHelper.JoinNotNullOrEmpty (profileCode, profileTitle) + ": " + eduLevelTitle;
-        }
-
-        public static string FormatDocumentLink_WithMicrodata (this IDocument document, string documentTitle,
-            string defaultTitle, bool preferDocumentTitle, DocumentGroupPlacement groupPlacement, int tabId, int moduleId, string microdata, DateTime now)
-        {
-            var title = (preferDocumentTitle && !string.IsNullOrWhiteSpace (documentTitle))
-                ? ((groupPlacement == DocumentGroupPlacement.InTitle)
-                   ? FormatHelper.JoinNotNullOrEmpty (": ", document.Group, documentTitle)
-                    : documentTitle)
-                : ((groupPlacement == DocumentGroupPlacement.InTitle && !string.IsNullOrWhiteSpace (document.Group))
-                    ? document.Group
-                    : defaultTitle);
-
-            if (!string.IsNullOrWhiteSpace (document.Url)) {
-                var linkMarkup = "<a href=\"" + UniversityUrlHelper.LinkClick (document.Url, tabId, moduleId) + "\" "
-                                 + FormatHelper.JoinNotNullOrEmpty (" ", !document.IsPublished (now) ? "class=\"u8y-not-published-element\"" : string.Empty, microdata)
-                                 + " target=\"_blank\">" + title + "</a>";
-
-                if (groupPlacement == DocumentGroupPlacement.BeforeTitle) {
-                    return FormatHelper.JoinNotNullOrEmpty (": ", document.Group, linkMarkup);
-                }
-
-                if (groupPlacement == DocumentGroupPlacement.AfterTitle) {
-                    return FormatHelper.JoinNotNullOrEmpty (": ", linkMarkup, document.Group);
-                }
-
-                return linkMarkup;
-            }
-
-            return string.Empty;
-        }
-
-        public static string FormatDocumentLinks (IEnumerable<IDocument> documents, ViewModelContext context, string itemTemplate, string listTemplateOne, string listTemplateMany, string microdata, DocumentGroupPlacement groupPlacement, GetDocumentTitle getDocumentTitle = null)
-        {
-            var markupBuilder = new StringBuilder ();
-            var count = 0;
-            foreach (var document in documents) {
-                var linkMarkup = document.FormatDocumentLink_WithMicrodata (
-                    (getDocumentTitle == null)? document.Title : getDocumentTitle (document),
-                    Localization.GetString ("LinkOpen.Text", context.LocalResourceFile),
-                    true,
-                    groupPlacement,
-                    context.Module.TabId,
-                    context.Module.ModuleId,
-                    microdata,
-                    HttpContext.Current.Timestamp
-                );
-
-                if (!string.IsNullOrEmpty (linkMarkup)) {
-                    markupBuilder.Append (string.Format (itemTemplate, linkMarkup));
-                    count++;
-                }
-            }
-
-            var markup = markupBuilder.ToString ();
-            if (!string.IsNullOrEmpty (markup)) {
-                return string.Format ((count == 1)? listTemplateOne : listTemplateMany, markup);
-            }
-
-            return string.Empty;
         }
 
         public static string FullName (string firstName, string lastName, string otherName)

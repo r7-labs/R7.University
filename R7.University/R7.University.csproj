@@ -246,7 +246,6 @@
     <Compile Include="Components\UniversityConfig.cs" />
     <Compile Include="Components\UniversityPortalConfig.cs" />
     <Compile Include="ModelExtensions\OccupiedPositionExtensions.cs" />
-    <Compile Include="ViewModels\DocumentGroupPlacement.cs" />
     <Compile Include="ViewModels\IndexedEnumerable.cs" />
     <Compile Include="ViewModels\IIndexer.cs" />
     <Compile Include="ViewModels\EduProfileViewModelBase.cs" />
