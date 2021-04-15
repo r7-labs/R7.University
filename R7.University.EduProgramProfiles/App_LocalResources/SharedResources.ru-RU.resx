@@ -90,4 +90,7 @@
 	<data name="IsAdopted.Text" xml:space="preserve">
         <value>Адаптированная ОП</value>
     </data>
+	<data name="Signature.Text" xml:space="preserve">
+		<value>Цифровая подпись</value>
+	</data>
 </root>

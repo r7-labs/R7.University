@@ -174,7 +174,7 @@ namespace R7.University.EduProgramProfiles.ViewModels
             table.Append ($"<tr{rowCssClassAttr}>");
             table.Append ($"<td><a href=\"{docUrl}\" target=\"_blank\">{docTitle}</a></td>");
             if (sigFile != null) {
-                table.Append ($"<td><a href=\"{sigUrl}\">.sig</a></td>");
+                table.Append ($"<td><a href=\"{sigUrl}\"><i class=\"fas fa-signature\" title=\"{Context.LocalizeString ("Signature.Text")}\"></i></a></td>");
             }
             else {
                 table.Append ("<td></td>");

@@ -80,7 +80,7 @@ namespace R7.University.EduPrograms.ViewModels
                 var sigFile = UniversityFileHelper.Instance.GetSignatureFile (documentFile);
 
                 if (sigFile != null) {
-                    linkMarkup += "<span> | </span>"
+                    linkMarkup += "<span> + </span>"
                                   + $"<a href=\"{UniversityUrlHelper.LinkClickFile (sigFile.FileId, Context.Module.TabId, Context.Module.ModuleId)}\" "
                                   + $"title=\"{Context.LocalizeString ("Signature.Text")}\"><i class=\"fas fa-signature\"></i></a>";
 

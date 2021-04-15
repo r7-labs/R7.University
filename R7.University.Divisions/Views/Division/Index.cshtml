@@ -51,7 +51,7 @@
 			        @Dnn.LocalizeString("DocumentUrl.Text")
 		        </a>
 		        @if (!string.IsNullOrEmpty (Model.DocumentSignatureFileUrl)) {
-			        <span> | </span>
+			        <span> + </span>
 			        <a href="@Model.DocumentSignatureFileUrl" title='@Dnn.LocalizeString("Signature.Text")'>
 				        <i class="fas fa-signature"></i>
 			        </a>

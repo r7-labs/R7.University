@@ -90,4 +90,7 @@
 	<data name="IsAdopted.Text" xml:space="preserve">
         <value>Adopted edu. program</value>
     </data>
+	<data name="Signature.Text" xml:space="preserve">
+		<value>Digital Signature</value>
+	</data>
 </root>
