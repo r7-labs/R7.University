@@ -42,4 +42,7 @@
 	<data name="StateEduStandards.Text" xml:space="preserve">
 		<value>Федеральные государственные образовательные стандарты:</value>
 	</data>
+	<data name="Signature.Text" xml:space="preserve">
+		<value>Цифровая подпись</value>
+	</data>
 </root>

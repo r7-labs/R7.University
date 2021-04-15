@@ -42,4 +42,7 @@
 	<data name="StateEduStandards.Text" xml:space="preserve">
 		<value>State Educational Standards:</value>
 	</data>
+	<data name="Signature.Text" xml:space="preserve">
+		<value>Digital Signature</value>
+	</data>
 </root>
